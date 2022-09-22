@@ -4,11 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "ux-dev": "npm run dev --workspace=packages/ux-guidelines",
+    "build-theme": "npm run build --workspace=packages/theme",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines" : { 
+    "npm" : ">=7.0.0",
+    "node" : ">=16.0.0"
+  },
   "workspaces": [
     "packages/theme",
     "packages/ux-guidelines"

@@ -2,7 +2,7 @@ import Layout from "../components/layouts"
 
 const HomePage = () => (
   <Layout>
-    <div>Welcome to the CBP Design System!</div>
+    <h1>U.S. Customs & Border Protection Design System</h1>
   </Layout>
 )
 
