@@ -9,7 +9,8 @@ export default {
   plugins: [
     copy({
       targets: [
-        {src: 'src/sass', dest: 'dist'}
+        {src: 'src/sass', dest: 'dist'},
+        {src: 'assets/images', dest: 'dist/assets'}
       ]
     })
   ]

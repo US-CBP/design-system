@@ -11,7 +11,7 @@ const Header = styled.header`
   font: 14px;
   height: 50px;
   justify-content: space-between;
-  padding: 0 15px;
+  padding: 0 20px;
   
   a {
     color: inherit;
@@ -40,7 +40,7 @@ const Layout = ({ children }) => {
           <Link href="/">View on Github</Link>
         </div>
       </Header>
-      <main>{children}</main>
+      <main className="cbp-grid-container">{children}</main>
     </>
   );
 };

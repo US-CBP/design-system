@@ -2,8 +2,6 @@
 
 @import "base/normalize";
 
-@import "fonts/all";
-
 // CBP Color Tokens
 @import "tokens/base";
 @import "tokens/color";
@@ -12,6 +10,14 @@
 @import "tokens/theme";
 @import "tokens/ui";
 @import "tokens/variables";
+
+// CBP Utilities
+@import "utilities/mixins/button";
+@import "utilities/mixins/slider";
+@import "utilities/helpers";
+
+// CBP Grid
+@import "grid/all";
 
 // CBP Components
 @import "components/all";
