@@ -40,8 +40,6 @@ const StyledMain = styled.main`
 `
 
 const StyledContent = styled.section`
-  display: inherit;
-  justify-content: center;
   width: 100%;
 `
 

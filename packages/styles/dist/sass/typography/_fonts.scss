@@ -1,0 +1,99 @@
+@use "sass:map";
+
+$font-roboto: 'Roboto' !default;
+$font-roboto-mono: 'Roboto-Mono' !default;
+$font-path-roboto: 'assets/fonts/roboto' !default; // Check path variables correspond correctly according to build
+$font-path-roboto-mono: 'assets/fonts/roboto-mono' !default; // Check path variables correspond correctly according to package
+$font-awesome-path: 'assets/font-awesome' !default;
+
+/* Includes "italic" */
+$font-weights-roboto: (
+  "thin": 100,
+  "light": 300,
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+  "black": 900
+);
+
+/* Includes italic */
+$font-weight-roboto-mono: (
+  "regular": 400,
+  "bold": 700
+);
+
+.cbp-text-body {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 20px;
+  max-width: 75em;
+}
+
+.cbp-text-button {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.cbp-text-subhead {
+  font-size: 0.889rem;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+}
+
+.cbp-text-heading-3xs {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.cbp-text-heading-2xs {
+  font-size: 1.266rem;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+
+.cbp-text-heading-xs {
+  font-size: 1.424rem;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.cbp-text-heading-sm {
+  font-weight: 500;
+  font-size: 1.602rem;
+  line-height: 28px;
+}
+
+.cbp-text-heading-md {
+  font-weight: 400;
+  font-size: 1.802rem;
+  line-height: 32px;
+}
+
+.cbp-text-heading-lg {
+  font-weight: 400;
+  font-size: 2.027rem;
+  line-height: 36px;
+}
+
+.cbp-text-heading-xl {
+  font-weight: 300;
+  font-size: 2.281rem;
+  line-height: 40px;
+}
+
+.cbp-text-heading-2xl {
+  font-weight: 100;
+  font-size: 2.566rem;
+  line-height: 44px;
+}
+
+.cbp-text-heading-3xl {
+  font-size: 2.887rem;
+  font-weight: 100;
+  line-height: 44px;
+}

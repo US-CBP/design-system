@@ -61,10 +61,12 @@ const SideMenu = () => {
         </StyledMenuList>
         <h6 className="nav-header">Components</h6>
         <StyledMenuList>
-          <li>Accordion</li>
+          <li>
+            <Link href="/components/accordion">Accordion</Link>
+          </li>
           <li>Buttons</li>
           <li>
-            <Link href="/components/file-uploader">File Uploader</Link>
+            <Link href="/components/file-uploader">File Upload</Link>
           </li>
         </StyledMenuList>
         <h6 className="nav-header">Patterns</h6>
