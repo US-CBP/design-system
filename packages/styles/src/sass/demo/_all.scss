@@ -1,0 +1,29 @@
+.sandbox {
+  width: 100%;
+}
+
+.sandbox__demo-container {
+  display: flex;
+}
+
+.sandbox__demo {
+  align-items: center;
+  border: 1px solid $cbp-base-neutral-dark;
+  display: flex;
+  justify-content: center;
+  height: 35rem;
+  width: 100%;
+}
+
+.sandbox__modifiers {
+  border: 1px solid $cbp-base-neutral-dark;
+  border-left: 0;
+  width: 239px;
+
+  & > h2 {
+    background: $cbp-base-neutral-lighter;
+    font-size: 1rem;
+    margin: 0;
+    padding: 1rem;
+  }
+}

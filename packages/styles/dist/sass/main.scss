@@ -27,3 +27,6 @@
 
 // CBP Components
 @import "components/all";
+
+// Demo SCSS - figure out a way to exclude these files from compile
+@import "demo/all";
