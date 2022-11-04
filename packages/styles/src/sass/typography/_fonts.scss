@@ -22,7 +22,25 @@ $font-weight-roboto-mono: (
   "bold": 700
 );
 
+.cbp-text-masthead-1 {
+  font-weight: 100;
+  size: 2.566rem;
+  line-height: 44px;
+  letter-spacing: 0.12;
+  color: $cbp-text-darker;
+}
+
+
+.cbp-text-masthead-2 {
+  font-weight: 100;
+  size: 2.281rem;
+  line-height: 40px;
+  letter-spacing: 0.12;
+  color: $cbp-text-darker;
+}
+
 .cbp-text-body {
+  color: $cbp-text-darkest;
   font-weight: 400;
   font-size: 1rem;
   line-height: 20px;
@@ -43,57 +61,51 @@ $font-weight-roboto-mono: (
   letter-spacing: 0.05em;
 }
 
-.cbp-text-heading-3xs {
-  font-size: 1.125rem;
-  font-weight: 700;
-  line-height: 20px;
-}
-
-.cbp-text-heading-2xs {
-  font-size: 1.266rem;
-  font-weight: 500;
-  line-height: 24px;
-}
-
-
-.cbp-text-heading-xs {
-  font-size: 1.424rem;
-  font-weight: 500;
-  line-height: 24px;
-}
-
-.cbp-text-heading-sm {
-  font-weight: 500;
-  font-size: 1.602rem;
-  line-height: 28px;
-}
-
-.cbp-text-heading-md {
-  font-weight: 400;
-  font-size: 1.802rem;
-  line-height: 32px;
-}
-
-.cbp-text-heading-lg {
-  font-weight: 400;
+.cbp-heading-xxl {
+  color: $cbp-text-darker;
+  font-weight: 300; // light
   font-size: 2.027rem;
   line-height: 36px;
+  letter-spacing: 0.12px;
 }
 
-.cbp-text-heading-xl {
-  font-weight: 300;
-  font-size: 2.281rem;
-  line-height: 40px;
+.cbp-heading-xl {
+  color: $cbp-text-darker;
+  font-weight: 400; // regular
+  font-size: 1.802rem;
+  line-height: 32px;
+  letter-spacing: 0.12px;
 }
 
-.cbp-text-heading-2xl {
-  font-weight: 100;
-  font-size: 2.566rem;
-  line-height: 44px;
+
+.cbp-heading-l {
+  color: $cbp-text-darker;
+  font-weight: 400; // regular
+  font-size: 1.602rem;
+  line-height: 28px;
+  letter-spacing: 0.12px;
 }
 
-.cbp-text-heading-3xl {
-  font-size: 2.887rem;
-  font-weight: 100;
-  line-height: 44px;
+.cbp-heading-m {
+  color: $cbp-text-darker;
+  font-weight: 500; // medium
+  font-size: 1.424rem;
+  line-height: 24px;
+  letter-spacing: 0.12px;
+}
+
+.cbp-heading-s {
+  color: $cbp-text-darker;
+  font-weight: 500; // medium
+  font-size: 1.266rem;
+  line-height: 24px;
+  letter-spacing: 0.12px;
+}
+
+.cbp-heading-xs {
+  color: $cbp-text-darker;
+  font-weight: 700; // bold
+  font-size: 1.424rem;
+  line-height: 20px;
+  letter-spacing: 0.12px;
 }

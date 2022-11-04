@@ -10,5 +10,11 @@
         "attributes": { "use": "theme", "type": "primary" }
       }
     }
+  },
+  "dhs": {
+    "blue": {
+      "value": "#003366",
+      "attributes": { "use": "theme" }
+    }
   }
 }

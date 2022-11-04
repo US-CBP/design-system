@@ -1,3 +1,10 @@
+.demo-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .sandbox {
   width: 100%;
 }
@@ -8,16 +15,21 @@
 
 .sandbox__demo {
   align-items: center;
-  border: 1px solid $cbp-base-neutral-dark;
+  border: 2px solid $cbp-base-neutral-dark;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   display: flex;
   justify-content: center;
-  height: 35rem;
+  min-height: 24rem;
+  padding: 4rem 0;
   width: 100%;
 }
 
 .sandbox__modifiers {
-  border: 1px solid $cbp-base-neutral-dark;
+  border: 2px solid $cbp-base-neutral-dark;
   border-left: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   width: 239px;
 
   & > h2 {
