@@ -28,7 +28,7 @@
   
   &:hover::after {
     background-color: $cbp-ui-neutral-darker;
-    border: 2px solid $cbp-ui-neutral-darker;
+    // border: 2px solid $cbp-ui-neutral-darker;
   }
 
   &:disabled {
@@ -50,7 +50,7 @@
 
     &:disabled:hover::after {
       background-color: $cbp-ui-neutral-darker;
-      border: 2px solid $cbp-ui-neutral-darker;
+      // border: 2px solid $cbp-ui-neutral-darker;
     }
   }
 
@@ -65,7 +65,7 @@
 .cbp-dropdown__custom::after {
   align-items: center;
   background-color: $cbp-ui-neutral-base;
-  border: 2px solid $cbp-ui-neutral-base;
+  // border: 2px solid $cbp-ui-neutral-base;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   content: "\f107";
@@ -106,7 +106,7 @@
   max-height: 216px;
   overflow-y: scroll;
   position: absolute;
-  width: 100%;
+  width: calc(100% - 2px);
   z-index: 9999;
 
   &:hover {
@@ -324,13 +324,13 @@
 
 /* When hover over custom select, apply hover to dropdown menu */
 .cbp-dropdown__custom:hover + .cbp-dropdown {
-  border: 2px solid $cbp-ui-neutral-darker;
+  // border: 2px solid $cbp-ui-neutral-darker;
   border-top: 0;
 }
 
 /* Hover over error custom select, apply hover to dropdown menu */
 .cbp-dropdown__custom--error:hover + .cbp-dropdown {
-  border: 2px solid $cbp-ui-danger-dark;
+  // border: 2px solid $cbp-ui-danger-dark;
   border-top: 0;
 }
 
@@ -344,11 +344,11 @@
 /* Focus Caret State */
 .cbp-dropdown__custom:focus-within::after {
   background-color: $cbp-focus-dark;
-  border: 2px solid $cbp-focus-dark;
+  // border: 2px solid $cbp-focus-dark;
 }
 
 // Focus on Select and Dropdown Menu
 .cbp-dropdown--open:focus + .cbp-dropdown {
-  border: 2px solid $cbp-focus-dark;
+  // border: 2px solid $cbp-focus-dark;
   border-top: 0;
 }  
