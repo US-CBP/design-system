@@ -1,5 +1,5 @@
-/* Extended Classes */
-/* PRIMARY DISABLE PROPERTIES */
+// @use './states';
+
 .btn-disabled {
   background: $cbp-disabled-light;
   color: $cbp-disabled-dark;
@@ -8,7 +8,7 @@
   font-weight: 500;
 
   &:hover {
-    background-color: #ADADAD;
+    background-color: $cbp-disabled-dark;
     color: $cbp-text-darkest;
   }
 }
@@ -151,7 +151,7 @@ span.ripple {
 
     /* PRIMARY OUTLINE */
     &--outline {
-      @include outline($cbp-ui-primary-dark, $cbp-ui-primary-darker);
+      @include outline($cbp-ui-primary-dark, $cbp-ui-primary-dark);
     }
 
     /* PRIMARY GHOST */
@@ -193,7 +193,11 @@ span.ripple {
 
     /* SECONDARY OUTLINE */
     &--outline {
-      @include outline($cbp-ui-neutral-dark, $cbp-ui-neutral-darker)
+      @include outline($cbp-ui-neutral-darker, $cbp-ui-neutral-darker);
+      
+      &:hover:not([disabled]) {
+        color: $cbp-text-lightest;
+      }
     }
 
     /* SECONDARY GHOST BUTTON */
@@ -233,7 +237,11 @@ span.ripple {
 
     /* BUTTON DANGER OUTLINE */
     &--outline {
-      @include outline($cbp-ui-danger-base, $cbp-ui-danger-dark);
+      @include outline($cbp-ui-danger-base, $cbp-ui-danger-base);
+      
+      &:hover:not([disabled]) {
+        color: $cbp-text-lightest;
+      }
     }
 
     /* DANGER GHOST BUTTON */
@@ -258,14 +266,18 @@ span.ripple {
     }
     &-primary {
       background-color: $cbp-ui-primary-dark;
-      color: $cbp-white;
+      color: $cbp-text-lightest;
 
       &:hover:not([disabled]) {
         background-color: $cbp-ui-primary-darker;
       }
 
       &--outline {
-        @include outline($cbp-ui-primary-dark, $cbp-ui-primary-darker);
+        @include outline($cbp-ui-primary-dark, $cbp-ui-primary-dark);
+
+        &:hover:not([disabled]) {
+          color: $cbp-text-lightest;
+        }
       }
       &--ghost {
         @include ghost($cbp-ui-primary-dark, $cbp-ui-primary-lighter);
@@ -281,7 +293,11 @@ span.ripple {
       }
 
       &--outline {
-        @include outline($cbp-ui-neutral-dark, $cbp-ui-neutral-darker);
+        @include outline($cbp-ui-neutral-darker, $cbp-ui-neutral-darker);
+
+        &:hover:not([disabled]) {
+          color: $cbp-text-lightest;
+        }
       }
       &--ghost {
         @include ghost($cbp-ui-neutral-dark, $cbp-ui-neutral-lighter);
@@ -297,7 +313,11 @@ span.ripple {
       }
 
       &--outline {
-        @include outline($cbp-ui-danger-base, $cbp-ui-danger-dark);
+        @include outline($cbp-ui-danger-base, $cbp-ui-danger-base);
+
+        &:hover:not([disabled]) {
+          color: $cbp-text-lightest;
+        }
       }
 
       &--ghost {
@@ -443,6 +463,165 @@ span.ripple {
     &:hover {
       background-color: transparent !important;
       font-weight: 500 !important;
+    }
+  }
+}
+
+/* DARK MODE */
+// Abstract when 'theme' folder is created
+
+[data-theme="dark"] {
+  // .cbp-btn__primary {}
+
+  .cbp-btn__primary--outline {
+    &:hover {
+      background-color: $cbp-ui-primary-light;
+      border-color: $cbp-ui-primary-light;
+      color: $cbp-text-darkest;
+    }
+  }
+  .cbp-btn__primary--ghost {
+    &:hover {
+      background-color: $cbp-ui-primary-dark;
+    }
+  }
+  // .cbp-btn__primary--float {}
+
+  .cbp-btn__secondary {
+    background-color: $cbp-ui-neutral-lighter;
+
+    &:hover {
+      background-color: $cbp-ui-neutral-light;
+    }
+  }
+  .cbp-btn__secondary--outline {
+    background-color: $cbp-base-neutral-darker;
+    border-color: $cbp-ui-neutral-lighter !important;
+    color: $cbp-ui-neutral-lighter;
+
+    &:hover {
+      background-color: $cbp-ui-neutral-lighter;
+      color: $cbp-text-darkest;
+    }
+  }
+  .cbp-btn__secondary--ghost {
+    color: $cbp-ui-neutral-lighter;
+
+    &:hover {
+      background-color: $cbp-ui-neutral-dark;
+      color: $cbp-text-lightest;
+    }
+  }
+
+  // .cbp-btn__secondary--float {}
+
+  .cbp-btn__danger {
+    &:hover {
+      background-color: $cbp-ui-danger-lighter;
+      color: $cbp-ui-danger-darker;
+    }
+  }
+
+  .cbp-btn__danger--outline {
+    background-color: $cbp-base-neutral-darker;
+    border-color: $cbp-ui-danger-light;
+    color: $cbp-ui-danger-light;
+    &:hover {
+      background-color: $cbp-ui-danger-light;
+      border-color: $cbp-ui-danger-light;
+      color: $cbp-text-darkest;
+    }
+  }
+
+  .cbp-btn__danger--ghost {
+    color: $cbp-ui-danger-light;
+
+    &:hover {
+      background-color: $cbp-ui-danger-dark;
+      color: $cbp-text-lightest;
+    }
+  }
+
+  // .cbp-btn__square {}
+
+  .cbp-btn__square-primary {
+    &:hover {
+      background-color: $cbp-ui-primary-lighter;
+      color: $cbp-text-darkest;
+    }
+  }
+
+  .cbp-btn__square-primary--outline {
+    background-color: $cbp-base-neutral-darker;
+    border-color: $cbp-ui-primary-light;
+    color: $cbp-ui-primary-light;
+
+    &:hover:not([disabled]) {
+      background-color: $cbp-ui-primary-light;
+      border-color: $cbp-ui-primary-light;
+      color: $cbp-text-darkest;
+    }
+  }
+  // .cbp-btn__square-primary--ghost {}
+
+  .cbp-btn__square-secondary {
+    background-color: $cbp-ui-neutral-light;
+    color: $cbp-text-darkest;
+
+    &:hover {
+      background-color: $cbp-ui-neutral-lighter;
+    }
+  }
+
+  .cbp-btn__square-secondary--outline {
+    background-color: $cbp-base-neutral-darker;
+    border-color: $cbp-ui-neutral-lighter;
+    color: $cbp-ui-neutral-lighter;
+
+    &:hover:not([disabled]) {
+      background-color: $cbp-ui-neutral-lighter;
+      border-color: $cbp-ui-neutral-lighter;
+      color: $cbp-text-darkest;
+    }
+  }
+
+  .cbp-btn__square-secondary--ghost {
+    color: $cbp-ui-neutral-lighter;
+
+    &:hover:not([disabled]) {
+      background-color: $cbp-ui-neutral-dark;
+    }
+  }
+
+  .cbp-btn__square-danger {
+    background-color: $cbp-ui-danger-light;
+    color: $cbp-ui-danger-darker;
+
+    &:hover:not([disabled]) {
+      background-color: $cbp-ui-danger-lighter;
+      color: $cbp-ui-danger-darker;
+    }
+  }
+
+  .cbp-btn__square-danger--outline {
+    background-color: $cbp-base-neutral-darker;
+    border-color: $cbp-ui-danger-light;
+    color: $cbp-ui-danger-light;
+
+    &:hover:not([disabled]) {
+      background-color: $cbp-ui-danger-light;
+      border-color: $cbp-ui-danger-light;
+      color: $cbp-text-darkest;
+    }
+  }
+
+  .cbp-btn__square-danger--ghost {
+    background-color: $cbp-base-neutral-darker;
+    color: $cbp-ui-danger-light;
+
+    &:hover:not([disabled]) {
+      background-color: $cbp-ui-danger-dark;
+      color: $cbp-text-lightest;
     }
   }
 }

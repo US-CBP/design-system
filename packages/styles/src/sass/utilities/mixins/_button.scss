@@ -1,8 +1,8 @@
 /**
   Mixin for Outline Buttons
   ================================
-  @param {$outline-color} 
-  @param {$bg-hover}
+  @param {$color} - text color
+  @param {$bg-hover} - background-color for hover state
 */
 
 @mixin outline ($color, $bg-hover) {
@@ -13,8 +13,8 @@
   /* PRIMARY OUTLINE HOVER */
   &:hover:not([disabled]) {
     background-color: $bg-hover;
-    border: 2px solid $bg-hover;
-    color: $cbp-white;
+    border-color: $bg-hover;
+    color: $color;
     font-weight: 700;
   }
 

@@ -306,25 +306,215 @@
     }
   }
 
+  class Expand {
+    constructor(component) {
+      this.expand = component;
+      this.title = component.querySelector('.cbp-expand__title');
+      this.activeClass = 'active';
+      
+      this.addListener('click');
+    }
+
+    addListener(type) {
+      this.title.addEventListener(type, e => {
+        this.expand.classList.toggle(this.activeClass);
+      });
+    }
+  }
+
+  class Toggle {
+    constructor(node) {
+      this.node = node; // Toggle wrapper
+      this.checkbox = node.querySelector('input[type="checkbox"]'); // Toggle checkbox
+      this.slider = this.checkbox.nextElementSibling; // Slider (span) element should always be adjacent to checkbox input
+      this.firstIcon = this.slider.firstElementChild;
+      this.lastIcon = this.slider.lastElementChild;
+
+      this.node.addEventListener("change", (e) => {
+        this.toggleIcons(e);
+      });
+    }
+
+    isChecked(event = null) {
+      if (event) {
+        return event.target.checked;
+      } else {
+        return this.checkbox.checked;
+      }
+    }
+
+    isCheckbox(event) {
+      return event.target.type === "checkbox";
+    }
+
+    containsIcons() {
+      return this.slider.children.length > 0;
+    }
+
+    toggleIcons(event) {
+      if (!this.containsIcons()) {
+        return;
+      } else {
+        if (this.isChecked(event)) {
+          this.firstIcon.style.display = "inline-block";
+          this.lastIcon.style.display = "none";
+        } else {
+          this.firstIcon.style.display = "none";
+          this.lastIcon.style.display = "inline-block";
+        }
+      }
+    }
+  }
+
+  // MDN Doc (https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications)
+
+  const fileUtil = {
+    createUpload: (key, name, progressValue, progressMax, files) => {
+      const fileProgress = document.createElement("div");
+      const fileName = document.createElement("span");
+      const cancelIcon = document.createElement("i");
+      const cancelBtn = document.createElement("button");
+      const progressBar = document.createElement("progress");
+
+      fileProgress.className = "cbp-form__upload";
+      fileProgress.id = `${key}_${name}`;
+
+      fileName.innerText = name;
+      cancelIcon.className = "fa fa-times";
+      cancelBtn.appendChild(cancelIcon);
+
+      cancelBtn.onclick = (e) => {
+        fileUtil.cancelUpload(key, files, e);
+      };
+
+      progressBar.value = progressValue;
+      progressBar.max = progressMax;
+
+      fileProgress.appendChild(fileName);
+      fileProgress.appendChild(cancelBtn);
+      fileProgress.appendChild(progressBar);
+
+      return fileProgress;
+    },
+    createErrorUpload: (key, name) => {
+      const errorUpload = document.createElement("div");
+      const fileContainer = document.createElement("div");
+      const errorFile = document.createElement("span");
+      const cancelBtn = document.createElement("button");
+      const divider = document.createElement("hr");
+      const errorMessage = document.createElement("span");
+      const errorIcon = document.createElement("i");
+      const cancelIcon = document.createElement("i");
+
+      errorUpload.id = `${key}_${name}`;
+      errorFile.innerText = name;
+      cancelIcon.className = 'fa fa-times';
+      cancelBtn.appendChild = cancelIcon;
+
+      errorIcon.className = "fas fa-exclamation-triangle";
+      errorMessage.appendChild(cancelIcon);
+      errorMessage.innerText = 'File size exceeds the limit.';
+
+      fileContainer.appendChild(errorFile);
+      fileContainer.appendChild(cancelBtn);
+
+      errorUpload.appendChild(fileContainer);
+      errorUpload.appendChild(divider);
+      errorUpload.appendChild(errorMessage);
+
+      return errorUpload;
+    },
+    cancelUpload: (key, files, event) => {
+      const list = new DataTransfer();
+      const fileArray = Object.entries(files);
+      const filteredList = fileArray.filter(([listkey, value]) => listkey != key);
+      const filteredFiles = filteredList.map(arr => arr[1]);
+      
+      filteredFiles.forEach(file => list.items.add(file));
+
+      const upload = event.target.closest('.cbp-form__upload');
+
+      upload.remove();
+    },
+  };
+
+  class FileUploader {
+    constructor(element) {
+      this.formWrapper = element.closest('.cbp-form-wrapper');
+      this.element = element;
+      this.input = element.querySelector("input[type=file]");
+
+      this.handleInput(this.input, this.reader);
+    }
+
+    handleEvent(event, key, value, files) {
+      if (event.type === "loadstart") {
+        console.log('loadstart process');
+        const upload = fileUtil.createUpload(key, value.name, event.loaded, event.total, files);
+        this.element.insertAdjacentElement("afterend", upload);
+      }
+
+      if (event.type === "progress") {
+        // update progress bar value
+        const upload = document.getElementById(`${key}_${value.name}`);
+        const progress = upload.querySelector("progress");
+        console.log('progress process');
+        progress.setAttribute("value", event.loaded);
+      }
+
+      if (event.type === 'loadend') {
+        const upload = document.getElementById(`${key}_${value.name}`);
+        const progress = upload.querySelector("progress");
+
+        // Hide progress bar once file has finished uploading
+        progress.hidden = true;
+      }
+
+      if (event.type === "error") {
+        const upload = fileUtil.createErrorUpload(key, value.name);
+
+        this.element.insertAdjacentElement("afterend", upload);
+      }
+    }
+
+    handleReader(files) {
+      for (const [key, value] of Object.entries(files)) {
+        const reader = new FileReader();
+
+        reader.addEventListener("loadstart", (e) => this.handleEvent(e, key, value, files));
+        reader.addEventListener("load", (e) => this.handleEvent(e, key, value, files));
+        reader.addEventListener("loadend", (e) => this.handleEvent(e, key, value, files));
+        reader.addEventListener("progress", (e) => this.handleEvent(e, key, value, files));
+        reader.addEventListener("error", (e) => this.handleEvent(e, key, value, files));
+        reader.addEventListener("abort", this.handleEvent);
+
+        reader.readAsDataURL(value);
+      }
+    }
+
+    handleInput(input, reader) {
+      input.addEventListener("change", (e) => {
+        this.handleReader(e.target.files);
+      });
+    }
+  }
+
   const addOrInstantiate = (Klass, node) => {
     return new Klass(node);
   };
 
-  const allAccordions = SelectorEngine.findAll('.cbp-accordion__title');
-
-  allAccordions.forEach(btn => {
-    new Accordion(btn);
+  /**
+   * Accordion Component
+   */
+   SelectorEngine.findAll(".cbp-accordion__title").forEach((accordion) => {
+    addOrInstantiate(Accordion, accordion);
   });
-
 
   /**
    * Expand Component
    */
-  SelectorEngine.findAll(".cbp-expand__title").forEach((title) => {
-    title.addEventListener("click", (item) => {
-      const expandParent = item.target.closest(".cbp-expand");
-      expandParent.classList.toggle("active");
-    });
+  SelectorEngine.findAll(".cbp-expand").forEach((expand) => {
+    addOrInstantiate(Expand, expand);
   });
 
   /**
@@ -332,6 +522,22 @@
    */
    SelectorEngine.findAll('[data-toggle="dropdown"]').forEach((dropdown) => {
     addOrInstantiate(Dropdown, dropdown);
+  });
+
+  /**
+   * Toggle Component
+   */
+   window.addEventListener("load", () => {
+    SelectorEngine.findAll('[data-component="cbp-toggle"]').forEach((toggle) => {
+      new Toggle(toggle);
+    });
+  });
+
+  /**
+   * File Upload Component
+   */
+   SelectorEngine.findAll('.cbp-form__file').forEach((fileupload) => {
+    addOrInstantiate(FileUploader, fileupload);
   });
 
 })();

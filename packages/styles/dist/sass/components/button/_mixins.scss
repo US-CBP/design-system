@@ -1,0 +1,12 @@
+.btn-disabled {
+  background: $cbp-disabled-light;
+  color: $cbp-disabled-dark;
+  cursor: pointer;
+  font-style: italic;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #ADADAD;
+    color: $cbp-text-darkest;
+  }
+}
