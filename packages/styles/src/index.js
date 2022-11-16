@@ -4,6 +4,8 @@ import Dropdown from './components/dropdown';
 import Expand from './components/expand';
 import Toggle from './components/toggle';
 import FileUploader from './components/fileupload';
+import HashField from './components/hashField';
+import NumberCounter from './components/numberCounter';
 
 import './sass/main.scss';
 
@@ -14,7 +16,7 @@ const addOrInstantiate = (Klass, node) => {
 /**
  * Accordion Component
  */
- SelectorEngine.findAll(".cbp-accordion__title").forEach((accordion) => {
+SelectorEngine.findAll(".cbp-accordion__title").forEach((accordion) => {
   addOrInstantiate(Accordion, accordion);
 });
 
@@ -28,14 +30,14 @@ SelectorEngine.findAll(".cbp-expand").forEach((expand) => {
 /**
  * Dropdown Components
  */
- SelectorEngine.findAll('[data-toggle="dropdown"]').forEach((dropdown) => {
+SelectorEngine.findAll('[data-toggle="dropdown"]').forEach((dropdown) => {
   addOrInstantiate(Dropdown, dropdown);
 });
 
 /**
  * Toggle Component
  */
- window.addEventListener("load", () => {
+window.addEventListener("load", () => {
   SelectorEngine.findAll('[data-component="cbp-toggle"]').forEach((toggle) => {
     new Toggle(toggle);
   });
@@ -44,6 +46,20 @@ SelectorEngine.findAll(".cbp-expand").forEach((expand) => {
 /**
  * File Upload Component
  */
- SelectorEngine.findAll('.cbp-form__file').forEach((fileupload) => {
+SelectorEngine.findAll('.cbp-form__file').forEach((fileupload) => {
   addOrInstantiate(FileUploader, fileupload);
+});
+
+/**
+ * Hashfield Component
+ */
+SelectorEngine.findAll('.cbp-form__password').forEach((hashfield) => {
+  addOrInstantiate(HashField, hashfield);
+});
+
+/**
+ * Number Counter Component (Input)
+ */
+SelectorEngine.findAll('.cbp-form__number--counter').forEach((counter) => {
+  addOrInstantiate(NumberCounter, counter);
 });

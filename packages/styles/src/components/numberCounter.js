@@ -1,9 +1,8 @@
 class NumberCounter {
-  constructor(id) {
-    this.numCounterNode = document.getElementById(id)
-    this.input = this.numCounterNode.querySelector('input[type="number"]');
-    this.minus = this.numCounterNode.querySelector('#decrement');
-    this.plus = this.numCounterNode.querySelector('#increment');
+  constructor(component) {
+    this.input = component.querySelector('input[type="number"]');
+    this.minus = component.querySelector('#decrement');
+    this.plus = component.querySelector('#increment');
     this.isDisabled = this.input.disabled;
     this.isReadOnly = this.input.readOnly;
 
@@ -45,4 +44,4 @@ class NumberCounter {
   }
  }
 
-const demoNumInput = new NumberCounter('number-counter');
+export default NumberCounter;

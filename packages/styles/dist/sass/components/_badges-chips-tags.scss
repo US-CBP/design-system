@@ -81,13 +81,12 @@
 
   & > span + .plus-border {
     align-items: center;
-    border: 1px solid transparent;
     border-radius: 14px;
     display: flex;
-    height: 90%;
+    height: 28px;
     justify-content: center;
     margin-left: 4px;
-    width: 24px;
+    width: 28px;
   }
 
   &:hover {

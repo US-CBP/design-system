@@ -3,8 +3,8 @@ class Toggle {
     this.node = node; // Toggle wrapper
     this.checkbox = node.querySelector('input[type="checkbox"]'); // Toggle checkbox
     this.slider = this.checkbox.nextElementSibling; // Slider (span) element should always be adjacent to checkbox input
-    this.firstIcon = this.slider.firstElementChild;
-    this.lastIcon = this.slider.lastElementChild;
+    this.leftIcon = this.slider.firstElementChild;
+    this.rightIcon = this.slider.lastElementChild;
 
     this.node.addEventListener("change", (e) => {
       this.toggleIcons(e);
@@ -32,11 +32,11 @@ class Toggle {
       return;
     } else {
       if (this.isChecked(event)) {
-        this.firstIcon.style.display = "inline-block";
-        this.lastIcon.style.display = "none";
+        this.leftIcon.style.display = "inline-block";
+        this.rightIcon.style.display = "none";
       } else {
-        this.firstIcon.style.display = "none";
-        this.lastIcon.style.display = "inline-block";
+        this.leftIcon.style.display = "none";
+        this.rightIcon.style.display = "inline-block";
       }
     }
   }

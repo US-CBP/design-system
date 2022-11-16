@@ -471,7 +471,60 @@ span.ripple {
 // Abstract when 'theme' folder is created
 
 [data-theme="dark"] {
-  // .cbp-btn__primary {}
+  .cbp-btn__primary {
+    background-color: $cbp-ui-primary-base;
+
+    &:hover {
+      background-color: $cbp-ui-primary-dark;
+    }
+
+    &:focus {
+      @extend .btn-focus;
+      // DRY
+      background-color: $cbp-focus-light;
+      color: $cbp-text-darkest;
+      outline: 2px solid $cbp-black;
+      outline-offset: -4px;
+
+      &:hover {
+        background-color: $cbp-focus-light;
+        color: $cbp-text-darkest;
+      }
+    }
+
+    /* DISABLED */
+    &:disabled {
+      @extend .btn-disabled;
+      background-color: $cbp-disabled-light;
+      color: $cbp-disabled-dark;
+
+      &:hover {
+        background: $cbp-disabled-dark;
+        color: $cbp-text-darker;
+        font-weight: 700;
+      }
+
+      &:focus {
+        @extend .btn-focus;
+        // DRY
+        background-color: $cbp-focus-light;
+        color: $cbp-text-darkest;
+        outline: 2px solid $cbp-black;
+        outline-offset: -4px;
+
+        &:hover {
+          background-color: $cbp-focus-light;
+          color: $cbp-text-darkest;
+        }
+      }
+
+      &:active:not([disabled]) {
+        @extend .btn-active;
+        outline: none;
+      }
+    }
+  }
+
 
   .cbp-btn__primary--outline {
     &:hover {

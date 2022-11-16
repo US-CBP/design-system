@@ -12,11 +12,13 @@ export default {
     {
       file: "dist/bundle.js",
       format: "iife",
+      sourceMap: true,
     },
     {
       file: "dist/bundle.min.js",
       format: "iife",
       plugins: [terser()],
+      sourceMap: true,
     },
   ],
   plugins: [

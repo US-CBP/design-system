@@ -35,6 +35,7 @@
     }
 
     .title-left span {
+      @extend .cbp-heading-s;
       margin-left: 16px;
     }
 
@@ -45,6 +46,9 @@
     &:focus {
       @extend .hover-focus;
       @extend .focus-outline;
+      .title-left span {
+        color: $cbp-text-lightest;
+      }
     }
 
     &:focus + .cbp-accordion__content {

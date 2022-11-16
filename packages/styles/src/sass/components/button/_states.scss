@@ -1,12 +1,17 @@
-// .btn-disabled {
-//   background: $cbp-disabled-light;
-//   color: $cbp-disabled-dark;
-//   cursor: pointer;
-//   font-style: italic;
-//   font-weight: 500;
-
-//   &:hover {
-//     background-color: $cbp-disabled-dark;
-//     color: $cbp-text-darkest;
-//   }
-// }
+// @forward/@use 'colors'
+@mixin btn-active($theme: light) {
+  @if $theme == light {
+    background-color: $cbp-active-dark !important;
+    box-shadow: none;
+    cursor: not-allowed;
+    font-style: italic;
+    outline: none;
+  
+    &:hover {
+      font-weight: 500 !important;
+    } 
+  } @else {
+    background-color: $cbp-active-light;
+    color: $cbp-text-darkest;
+  }
+}

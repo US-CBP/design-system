@@ -327,8 +327,8 @@
       this.node = node; // Toggle wrapper
       this.checkbox = node.querySelector('input[type="checkbox"]'); // Toggle checkbox
       this.slider = this.checkbox.nextElementSibling; // Slider (span) element should always be adjacent to checkbox input
-      this.firstIcon = this.slider.firstElementChild;
-      this.lastIcon = this.slider.lastElementChild;
+      this.leftIcon = this.slider.firstElementChild;
+      this.rightIcon = this.slider.lastElementChild;
 
       this.node.addEventListener("change", (e) => {
         this.toggleIcons(e);
@@ -356,11 +356,11 @@
         return;
       } else {
         if (this.isChecked(event)) {
-          this.firstIcon.style.display = "inline-block";
-          this.lastIcon.style.display = "none";
+          this.leftIcon.style.display = "inline-block";
+          this.rightIcon.style.display = "none";
         } else {
-          this.firstIcon.style.display = "none";
-          this.lastIcon.style.display = "inline-block";
+          this.leftIcon.style.display = "none";
+          this.rightIcon.style.display = "inline-block";
         }
       }
     }
@@ -499,6 +499,74 @@
     }
   }
 
+  class HashField {
+    constructor(component) {
+      this.className = ".cbp-form__password";
+      this.input = component.querySelector("input[type='password']");
+      this.btn = component.querySelector("button[type='button']");
+
+      this.addListener(this.btn, this.input);
+    }
+
+    addListener(btn, input) {
+      btn.addEventListener("click", (e) => {
+        if (input.type === "password") {
+          input.type = "text";
+          btn.firstElementChild.className = "fas fa-eye";
+        } else {
+          input.type = "password";
+          btn.firstElementChild.className = "fas fa-eye-slash";
+        }
+      });
+    }
+  }
+
+  class NumberCounter {
+    constructor(component) {
+      this.input = component.querySelector('input[type="number"]');
+      this.minus = component.querySelector('#decrement');
+      this.plus = component.querySelector('#increment');
+      this.isDisabled = this.input.disabled;
+      this.isReadOnly = this.input.readOnly;
+
+      this.plus.addEventListener('click', (e) => {
+        this.increment(this.input);
+      });
+
+      this.minus.addEventListener('click', (e) => {
+        this.decrement(this.input);
+      });
+
+      this.setReadOnly();
+    }
+
+    increment(input, step = 1) {
+      if (step > 1) {
+        input.value += step;
+      } else {
+        input.value++;
+      }
+    }
+
+    decrement(input, step = 1) {
+      if (step > 1) {
+        input.value -= step;
+      } else {
+        input.value--;
+      }
+    }
+
+    setReadOnly() {
+      if (this.isReadOnly || this.isDisabled) {
+        this.minus.disabled = true;
+        this.plus.disabled = true;
+      } else {
+        this.minus.disabled = false;
+        this.plus.disabled = false;
+      }
+    }
+   }
+
   const addOrInstantiate = (Klass, node) => {
     return new Klass(node);
   };
@@ -506,7 +574,7 @@
   /**
    * Accordion Component
    */
-   SelectorEngine.findAll(".cbp-accordion__title").forEach((accordion) => {
+  SelectorEngine.findAll(".cbp-accordion__title").forEach((accordion) => {
     addOrInstantiate(Accordion, accordion);
   });
 
@@ -520,14 +588,14 @@
   /**
    * Dropdown Components
    */
-   SelectorEngine.findAll('[data-toggle="dropdown"]').forEach((dropdown) => {
+  SelectorEngine.findAll('[data-toggle="dropdown"]').forEach((dropdown) => {
     addOrInstantiate(Dropdown, dropdown);
   });
 
   /**
    * Toggle Component
    */
-   window.addEventListener("load", () => {
+  window.addEventListener("load", () => {
     SelectorEngine.findAll('[data-component="cbp-toggle"]').forEach((toggle) => {
       new Toggle(toggle);
     });
@@ -536,8 +604,22 @@
   /**
    * File Upload Component
    */
-   SelectorEngine.findAll('.cbp-form__file').forEach((fileupload) => {
+  SelectorEngine.findAll('.cbp-form__file').forEach((fileupload) => {
     addOrInstantiate(FileUploader, fileupload);
+  });
+
+  /**
+   * Hashfield Component
+   */
+  SelectorEngine.findAll('.cbp-form__password').forEach((hashfield) => {
+    addOrInstantiate(HashField, hashfield);
+  });
+
+  /**
+   * Number Counter Component (Input)
+   */
+  SelectorEngine.findAll('.cbp-form__number--counter').forEach((counter) => {
+    addOrInstantiate(NumberCounter, counter);
   });
 
 })();

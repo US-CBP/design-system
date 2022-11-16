@@ -40,9 +40,9 @@
   }
 
   &:checked + .slider:before {
-    -webkit-transform: translateX(24px);
-    -ms-transform: translateX(24px);
-    transform: translateX(24px);
+    -webkit-transform: translateX(25px);
+    -ms-transform: translateX(25px);
+    transform: translateX(25px);
   }
 
   &:focus:hover + .slider:before {
@@ -80,10 +80,10 @@
     position: absolute;
     content: "";
     border-radius: 50%;
-    height: 18px;
-    width: 18px;
-    left: 5px;
-    bottom: 5px;
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
     background-color: $cbp-white;
     border: 4px solid $cbp-white;
     -webkit-transition: .2s;
