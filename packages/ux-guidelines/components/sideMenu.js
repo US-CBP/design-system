@@ -46,8 +46,8 @@ const SideMenu = () => {
   return (
     <aside>
       <StyledSideNav>
-        <Link href="/getting-started">
-          <a className="nav-header-link">Getting Started</a>
+        <Link href="/getting-started" className="nav-header-link">
+          Getting Started
         </Link>
         <h6 className="nav-header">Foundation</h6>
         <StyledMenuList>

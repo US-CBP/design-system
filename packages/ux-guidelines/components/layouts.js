@@ -53,7 +53,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <StyledHeader>
         <Link href="/" className="brand">
-          <a><strong>CBP</strong>&nbsp;Design System</a>
+          <strong>CBP</strong>&nbsp;Design System
         </Link>
         <div className="view-log">
           <Link href="/">Changelog</Link>
