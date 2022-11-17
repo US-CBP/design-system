@@ -21,7 +21,7 @@
   "workspaces": [
     "packages/styles",
     "packages/ux-guidelines",
-    "packages/kitchen_sink"
+    "packages/kitchen-sink"
   ],
   "devDependencies": {
     "eslint": "^8.27.0",
@@ -31,6 +31,27 @@
     "stylelint-config-prettier": "^9.0.4",
     "stylelint-config-recommended": "^9.0.0",
     "stylelint-scss": "^4.3.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "overrides": [],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {}
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "singleQuote": true
   },
   "stylelint": {
     "extends": [
