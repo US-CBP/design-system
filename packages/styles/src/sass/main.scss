@@ -1,33 +1,31 @@
 @charset "utf-8";
 
 // CBP Color Tokens
-@import "tokens/base";
-@import "tokens/color";
-@import "tokens/state";
-@import "tokens/text";
-@import "tokens/theme";
-@import "tokens/ui";
-@import "tokens/variables";
+@use "tokens/base";
+@use "tokens/color";
+@use "tokens/state";
+@use "tokens/text";
+@use "tokens/theme";
+@use "tokens/ui";
+@use "tokens/variables";
 
 // CBP Base
-@import "base/reset";
-@import "base/normalize";
-@import "base/core";
+@use "base/reset";
+@use "base/normalize";
+@use "base/core";
 
 // CBP Typography
-@import "typography/all";
+@use "typography";
 
 // CBP Utilities
-@import "utilities/mixins/button";
-@import "utilities/mixins/slider";
-@import "utilities/helpers";
-@import "utilities/spacing";
+@use "utilities/helpers";
+@use "utilities/spacing";
 
 // CBP Grid
-@import "grid/all";
+@use "grid";
 
 // CBP Components
-@import "components/all";
+@use "components";
 
 // Demo SCSS - figure out a way to exclude these files from compile
-@import "demo/all";
+@use "demo";

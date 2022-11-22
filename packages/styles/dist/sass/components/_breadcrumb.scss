@@ -1,3 +1,7 @@
+@use '../base/colors' as *;
+@use 'link' as *;
+@use 'button' as *;
+
 .cbp-breadcrumb {
   align-items: center;
   display: flex;

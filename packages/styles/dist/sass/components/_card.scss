@@ -1,3 +1,7 @@
+@use '../base/colors' as *;
+@use '../typography/fonts' as *;
+@use './button/index' as *;
+
 .cbp-card {
   width: 312px;
 

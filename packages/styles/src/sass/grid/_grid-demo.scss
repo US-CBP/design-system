@@ -1,3 +1,6 @@
+@use './breakpoints' as *;
+@use './columns' as *;
+
 #cbp-grid-demo {
   &.cbp-grid-container {
     //changed from 100vh to inherit to fill height of universal header

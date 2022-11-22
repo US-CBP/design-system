@@ -26,10 +26,10 @@
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.6"
   },
-  "devDependencies": {
-    "sass": "^1.54.9"
-  },
   "resolutions": {
     "styled-components": "^5"
+  },
+  "devDependencies": {
+    "sass": "^1.56.1"
   }
 }

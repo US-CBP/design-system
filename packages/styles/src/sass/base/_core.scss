@@ -1,10 +1,12 @@
+@use 'colors';
+
 :root {
-  color: $cbp-text-darkest;
+  color: colors.$cbp-text-darkest;
   font-family: 'Roboto', Calibri, Tahoma, sans-serif;
   font-size: 14px;
 }
 
 [data-theme="dark"] {
-  background-color: $cbp-bg-dark;
-  color: $cbp-text-lightest;
+  background-color: colors.$cbp-bg-dark;
+  color: colors.$cbp-text-lightest;
 }

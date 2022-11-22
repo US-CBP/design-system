@@ -1,4 +1,5 @@
-// @forward/@use 'colors'
+@use '../../base/colors' as *;
+
 @mixin btn-active($theme: light) {
   @if $theme == light {
     background-color: $cbp-active-dark !important;
@@ -13,5 +14,31 @@
   } @else {
     background-color: $cbp-active-light;
     color: $cbp-text-darkest;
+  }
+}
+
+@mixin btn-disabled {
+  background: $cbp-disabled-light;
+  color: $cbp-disabled-dark;
+  cursor: pointer;
+  font-style: italic;
+  font-weight: 500;
+
+  &:hover {
+    background-color: $cbp-disabled-dark;
+    color: $cbp-text-darkest;
+  }
+}
+
+@mixin btn-focus {
+  background: $cbp-focus-dark;
+  color: $cbp-white;
+  font-weight: 700;
+  outline: 2px solid $cbp-white;
+  outline-offset: -4px;
+
+  &:hover {
+    background-color: $cbp-focus-dark;
+    color: $cbp-white;
   }
 }

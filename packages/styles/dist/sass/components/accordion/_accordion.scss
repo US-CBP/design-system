@@ -1,3 +1,5 @@
+@use '../../base/colors' as *;
+
 .hover-focus {
   background: $cbp-focus-dark !important;
   color: $cbp-white;

@@ -1,4 +1,7 @@
 // @use './states';
+@use '../../base/colors' as *;
+@use 'mixins' as *;
+
 
 .btn-disabled {
   background: $cbp-disabled-light;

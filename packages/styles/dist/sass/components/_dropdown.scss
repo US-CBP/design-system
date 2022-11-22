@@ -1,3 +1,6 @@
+@use '../base/colors' as *;
+@use 'checkbox' as *;
+
 .cbp-dropdown__wrapper {
   position: relative;
 }

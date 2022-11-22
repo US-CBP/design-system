@@ -22,7 +22,10 @@
     "rollup-plugin-scss": "^3.0.0",
     "rollup-plugin-serve": "^2.0.1",
     "rollup-plugin-terser": "^7.0.2",
-    "sass": "^1.54.9",
+    "sass": "^1.56.1",
     "style-dictionary": "^3.7.1"
+  },
+  "peerDependencies": {
+    "sass": "^1.56.1"
   }
 }

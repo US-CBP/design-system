@@ -1,3 +1,5 @@
+@use '../base/colors' as *;
+
 .cbp-link__inline {
   color: $cbp-ui-primary-base;
   cursor: pointer;

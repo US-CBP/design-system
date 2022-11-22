@@ -1,3 +1,5 @@
+@use '../base/colors' as *;
+
 /* Reset for Radio */
 [type="radio"]::before,
 [type="radio"]::after {
