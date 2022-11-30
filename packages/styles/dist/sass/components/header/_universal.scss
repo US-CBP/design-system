@@ -1,0 +1,108 @@
+@use '../../base/colors' as *;
+@use '../../typography/fonts' as *;
+
+.cbp-header {
+  align-items: center;
+  background-color: $dhs-blue;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  height: 60px;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: sticky;
+  top: 0;
+  transition: top 500ms ease-in-out;
+  width: 100%;
+}
+
+.cbp-header__brand {
+  align-items: center;
+  display: flex;
+  & > img {
+    height: 44px;
+    width: 44px;
+    margin-right: 8px;
+  }
+
+  & > span {
+    @extend .cbp-heading-xl;
+    color: $cbp-text-lightest;
+  }
+}
+
+.cbp-header__info {
+  display: flex;
+}
+
+.cbp-header__item {
+  align-items: center;
+  background-color: transparent;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 3px;
+  display: flex;
+  color: $cbp-ui-neutral-lighter;
+  font-size: 14px;
+  font-weight: 500;
+  height: 36px;
+  justify-content: center;
+  margin-right: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 36px;
+
+  &:hover {
+    background-color: $cbp-ui-neutral-dark;
+  }
+
+  &:focus {
+    background: $cbp-focus-light;
+    color: $cbp-text-darkest;
+    font-weight: 700;
+    outline: 2px solid $cbp-black;
+    outline-offset: -4px;
+  
+    &:hover {
+      background-color: $cbp-focus-light;
+      color: $cbp-text-darkest;
+    }
+  }
+}
+
+.cbp-header__item:last-child {
+  margin-right: 0;
+} 
+
+// Once media breakpoints are determined, change .dh-lg-sm-none classes in utilities
+@media screen and (min-width : 768px) {
+  .cbp-header {
+    height: 88px;
+  }
+
+  .cbp-header__brand {
+    & > img {
+      height: 55px;
+      width: 186px;
+    }
+  }
+
+  .cbp-header__item {
+    padding: 0 12px;
+    width: unset;
+
+    & > i {
+      margin-right: 8px;
+      pointer-events: none;
+    }
+  }
+}
+
+.cbp-header.scroll-up,
+.cbp-header:focus-within {
+  top: 0;
+}
+
+.cbp-header.scroll-down {
+  top: -100%;
+}

@@ -1,0 +1,107 @@
+@use '../../base/colors' as *;
+@use '../button/states' as *;
+
+@mixin menu-hover {
+  background-color: $cbp-ui-neutral-lighter;
+  border-top: 0;
+  border-bottom: 2px solid $cbp-ui-neutral-darker;
+  color: $cbp-text-darkest;
+}
+
+.cbp-application-header {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  height: 56px;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 16px;
+}
+
+.nav-home {
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  color: $cbp-ui-neutral-darker;
+  cursor: pointer;
+  display: flex;
+  font-size: 18px;
+  font-weight: 700;
+  height: 100%;
+  padding: 0 16px;
+  text-align: left;
+  white-space: nowrap;
+
+  &:hover {
+    @include menu-hover;
+  }
+
+  &:focus {
+    @include btn-focus;
+    border-bottom: 0;
+  }
+}
+
+.cbp-application-menus {
+  height: 100%;
+}
+
+.cbp-nav-menu {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: end;
+  width: 100%;
+}
+
+.cbp-menu-dropdown {
+  @extend .nav-home;
+  display: unset;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 0 12px;
+
+  & > i {
+    margin-left: 8px;
+  }
+
+  &:hover {
+    @include menu-hover;
+  }
+
+  &:focus {
+    @include btn-focus;
+    border-bottom: 0;
+  }
+
+  &:active {
+    color: $cbp-active-dark;
+    border-bottom: 2px solid $cbp-active-dark;
+  }
+}
+
+.cbp-hamburger {
+  background-color: transparent;
+  border: 2px solid $cbp-ui-neutral-darker;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 36px;
+  width: 36px;
+
+  &:hover {
+    background-color: $cbp-ui-neutral-darker;
+    color: $cbp-text-lightest;
+  }
+
+  &:focus {
+    @include btn-focus;
+    border: 0;
+  }
+}
+
+@media only screen and (min-width : 768px) {
+  .cbp-nav-menu {
+    justify-content: space-between;
+  } 
+}

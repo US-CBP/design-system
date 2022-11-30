@@ -6,6 +6,7 @@ import Toggle from './components/toggle';
 import FileUploader from './components/fileupload';
 import HashField from './components/hashField';
 import NumberCounter from './components/numberCounter';
+import { handleHeaderScroll, throttle, mediaQuery } from './components/header';
 
 import './sass/main.scss';
 
@@ -62,4 +63,14 @@ SelectorEngine.findAll('.cbp-form__password').forEach((hashfield) => {
  */
 SelectorEngine.findAll('.cbp-form__number--counter').forEach((counter) => {
   addOrInstantiate(NumberCounter, counter);
+});
+
+/**
+ * Universal Header Component
+ */
+
+window.addEventListener('scroll', () => {
+  if (mediaQuery && !mediaQuery.matches) {
+    throttle(handleHeaderScroll, 250) 
+  }
 });

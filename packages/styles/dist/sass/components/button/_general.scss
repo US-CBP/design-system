@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '../../base/colors';
+@use '../../base/colors' as *;
 
 
 $button-type: (

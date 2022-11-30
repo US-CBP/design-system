@@ -1,15 +1,15 @@
-@use '../variables' as v;
+@use '../variables' as *;
 
 @font-face {
   font-family: "Roboto";
   font-weight: 400;
   font-display: swap;
-  src: url("#{v.font-path-roboto-mono}/RobotoMono-VariableFont_wght.ttf") format("ttf");
+  src: url("#{font-path-roboto-mono}/RobotoMono-VariableFont_wght.ttf") format("ttf");
 }
 
 @font-face {
   font-family: "Roboto";
   font-weight: 700;
   font-display: swap;
-  src: url("#{v.font-path-roboto-mono}/RobotoMono-VariableFont_wght.ttf") format("ttf");
+  src: url("#{font-path-roboto-mono}/RobotoMono-VariableFont_wght.ttf") format("ttf");
 }

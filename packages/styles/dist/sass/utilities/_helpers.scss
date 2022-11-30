@@ -1,5 +1,17 @@
 @use '../base/colors' as token;
 
+.dh-lg-none {
+  @media screen and (min-width : 768px) {
+   display: none !important; 
+  }
+}
+
+.dh-sm-none {
+  @media screen and (max-width : 768px) {
+   display: none !important; 
+  }
+}
+
 .cbp-text-lightest {
   color: token.$cbp-text-lightest;
 }
