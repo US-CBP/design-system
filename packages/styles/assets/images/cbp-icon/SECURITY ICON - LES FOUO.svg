@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="60px" viewBox="0 0 48 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>SECURITY ICON - LES FOUO</title>
+    <g id="SECURITY-ICON---LES-FOUO" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-8-Copy-4" transform="translate(0.495785, 0.000000)">
+            <rect id="Rectangle" fill="#FACE00" x="0" y="51.8274148" width="47.0084307" height="8.17258517" rx="4.08629259"></rect>
+            <path d="M33.7030841,16.3157507 L26.0950689,1.49592714 C24.9436724,-0.498642379 22.0647582,-0.498642379 20.9133618,1.49592714 L13.3053466,16.3157507 L33.7030841,16.3157507 Z" id="Fill-5" fill="#71767A"></path>
+            <path d="M46.6032084,41.4441964 L42.8264137,34.0874412 L4.18201704,34.0874412 L0.405222251,41.4441964 C-0.746174233,43.4387659 0.693141872,45.9316253 2.99621684,45.9316253 L44.0122139,45.9316253 C46.3152888,45.9316253 47.7546049,43.4387659 46.6032084,41.4441964" id="Fill-2" fill="#71767A"></path>
+            <polygon id="Fill-1" fill="#71767A" points="5.51183345 31.4970388 41.49671 31.4970388 35.0330415 18.9061248 11.975502 18.9061248"></polygon>
+        </g>
+    </g>
+</svg>

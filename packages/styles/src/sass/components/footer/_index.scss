@@ -1,0 +1,227 @@
+@use '../../base/colors' as *;
+@use '../../grid/breakpoints' as *;
+
+.cbp-footer__links {
+  background-color: $cbp-base-secondary-dark;
+}
+
+.cbp-footer__links--item {
+  border: 0;
+  box-sizing: border-box;
+  height: 44px;
+
+  & > a {
+    align-items: center;
+    border: 0;
+    box-sizing: border-box;
+    color: $cbp-ui-neutral-lighter;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    height: 100%;
+    padding: 0 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+
+    &:hover {
+      background-color: $cbp-ui-neutral-darker;
+      color: $cbp-text-lightest;
+      font-weight: 700;
+    }
+  }
+}
+
+.cbp-footer__info {
+  background-color: $cbp-base-secondary-darker;
+  color: $cbp-text-lightest;
+  padding: 16px 20px;
+  letter-spacing: 0.35px;
+
+  & > div > h6 {
+    color: $cbp-text-lightest;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  & > div > p {
+    color: $cbp-text-lightest;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.45;
+  }
+}
+
+.cbp-footer__supplement {
+  font-style: italic;
+  line-height: 2;
+  margin-bottom: 16px;
+}
+
+.cbp-footer__sec {
+  align-items: center;
+  display: flex;
+  margin-bottom: 12px;
+
+  & > img {
+    margin-right: 20px;
+  }
+
+  & > div > * {
+    margin-bottom: 4px;
+  }
+  
+  & > div > h6 {
+    color: $cbp-text-lighter;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  & > div > p, a {
+    display: none;
+  }
+}
+
+.cbp-contact-list {
+  color: $cbp-text-lightest;
+  font-size: 14px;
+  margin-bottom: 24px;
+
+  & > li {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  & > li span {
+    font-weight: 700;
+  }
+}
+
+
+
+@include cbp-medium-grid {
+  .cbp-footer__info {
+    & > p,
+    & > a {
+      display: none;
+    }
+  }
+
+  .cbp-footer__sec {
+    align-items: start;
+  }
+
+  .cbp-footer__sec > div {
+    & > p, a {
+      display: initial;
+    }
+  }
+
+  .cbp-footer__links {
+    display: flex;
+  }
+
+  .cbp-contact-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > li {
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@include cbp-large-grid {
+  .cbp-footer__info {
+    display: flex;
+
+    & > div {
+      width: 50%;
+    }
+
+    & > p,
+    & > a {
+      display: none;
+    }
+
+    .cbp-footer__sec {
+      align-items: start;
+    }
+
+    .cbp-footer__sec > div {
+      & > p, a {
+        display: initial;
+      }
+    }
+  }
+
+  .cbp-footer__links {
+    display: flex;
+  }
+
+  .cbp-contact-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+
+    & > li {
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }  
+}
+
+@include cbp-extra-large-grid {
+  .cbp-footer__info {
+    display: flex;
+
+    & > div {
+      width: 50%;
+    }
+
+    & > p,
+    & > a {
+      display: none;
+    }
+
+    .cbp-footer__sec {
+      align-items: start;
+    }
+
+    .cbp-footer__sec > div {
+      & > p, a {
+        display: initial;
+      }
+    }
+  }
+
+  .cbp-footer__links {
+    display: flex;
+  }
+
+  .cbp-contact-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+
+    & > li {
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }  
+}

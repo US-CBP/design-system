@@ -1,5 +1,5 @@
 {
-  "name": "design-system",
+  "name": "cbp-design-system",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -21,7 +21,8 @@
   "workspaces": [
     "packages/styles",
     "packages/ux-guidelines",
-    "packages/kitchen-sink"
+    "packages/kitchen-sink",
+    "packages/typography"
   ],
   "devDependencies": {
     "eslint": "^8.27.0",
