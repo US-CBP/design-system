@@ -82,6 +82,10 @@
   & > div > p, a {
     display: none;
   }
+
+  & > div > p {
+    line-height: 1.45;
+  }
 }
 
 .cbp-contact-list {

@@ -10,12 +10,17 @@
 
 .cbp-application-header {
   align-items: center;
+  background-color: $cbp-white;
   box-sizing: border-box;
+  box-shadow: 0px 5px 5px -3px $cbp-ui-neutral-dark;
   display: flex;
   height: 56px;
+  position: sticky;
   width: 100%;
   padding-left: 0;
   padding-right: 16px;
+  top: -1px;
+  z-index: 9999;
 }
 
 .nav-home {
@@ -89,6 +94,10 @@
   height: 36px;
   width: 36px;
 
+  & > i {
+    color: $cbp-ui-neutral-darker;
+  }
+
   &:hover {
     background-color: $cbp-ui-neutral-darker;
     color: $cbp-text-lightest;
@@ -100,7 +109,7 @@
   }
 }
 
-@media only screen and (min-width : 768px) {
+@media only screen and (min-width: 768px) {
   .cbp-nav-menu {
     justify-content: space-between;
   } 

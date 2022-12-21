@@ -1,10 +1,11 @@
 @use '../base/colors' as *;
 
 .demo-container {
-  height: 100vh;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 13rem;
+  margin-bottom: 16rem;
 }
 
 .sandbox {

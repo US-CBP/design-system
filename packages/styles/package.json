@@ -12,6 +12,9 @@
   },
   "author": "",
   "license": "ISC",
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "autoprefixer": "^10.4.12",
     "postcss": "^8.4.18",

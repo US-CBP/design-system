@@ -572,8 +572,7 @@
    }
 
   const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const header = document.querySelector('header');
-  const appHeader = document.querySelector('.cbp-application-header');
+  const header = document.querySelector('[data-header="flow"]');
   let previousScrollPosition = 0;
   let throttleWait;
 
@@ -595,11 +594,9 @@
     if (isScrollingDown() && !header.contains(document.activeElement)) {
       header.classList.add('scroll-down');
       header.classList.remove('scroll-up');
-      appHeader.classList.add('scroll-down');
     } else {
       header.classList.add('scroll-up');
       header.classList.remove('scroll-down');
-      appHeader.classList.add('scroll-up');
     }
   };
 
