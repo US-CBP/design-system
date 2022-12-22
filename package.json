@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start-sb": "npm run storybook -w packages/components",
     "style-lint": "npx stylelint '**/*.scss'",
     "stylelint-check": "stylelint-config-prettier-check",
     "ux-dev": "npm run dev --workspace=packages/ux-guidelines",
@@ -22,7 +23,8 @@
     "packages/styles",
     "packages/ux-guidelines",
     "packages/kitchen-sink",
-    "packages/typography"
+    "packages/typography",
+    "packages/components"
   ],
   "devDependencies": {
     "eslint": "^8.27.0",
