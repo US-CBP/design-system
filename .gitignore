@@ -138,4 +138,7 @@ public/
 # Ignore all local history of files
 .history
 
+## build files
+dist
+
 # End of https://www.gitignore.io/api/node,macos,visualstudiocode
