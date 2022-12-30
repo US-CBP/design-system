@@ -1,0 +1,37 @@
+@use '../../base/colors' as *;
+
+@mixin accordion-focus {
+  background: $cbp-focus-dark !important;
+  color: $cbp-white;
+  outline: 2px solid $cbp-white !important;
+  outline-offset: -4px !important;
+}
+
+@mixin accordion-text-light {
+  div:first-child span,
+  div:first-child i {
+    color: $cbp-text-lightest;
+  }
+}
+
+@mixin accordion-badge($bg-color, $text-color) {
+  .cbp-badge {
+    background-color: $bg-color;
+
+    & span {
+      color: $text-color;
+    }
+  }
+}
+
+@mixin accordion-content-border($border-color, $override: false) {
+  @if $override {
+    border-bottom: 4px solid $border-color !important;
+    border-left: 4px solid $border-color !important;
+    border-right: 4px solid $border-color !important;
+  } @else {
+    border-bottom: 4px solid $border-color;
+    border-left: 4px solid $border-color;
+    border-right: 4px solid $border-color;
+  }
+}

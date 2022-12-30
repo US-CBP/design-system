@@ -1,12 +1,5 @@
 @use '../base/colors' as *;
 
-.cbp-accordion__title--danger .cbp-badge,
-.cbp-accordion__item.active  .cbp-badge,
-.cbp-accordion__title:hover .cbp-badge {
-  background-color: #FFF;
-  color: #000;
-}
-
 /* Potential CBP List styling */
 .cbp-list {
   display: flex;
