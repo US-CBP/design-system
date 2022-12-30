@@ -23,7 +23,6 @@
     "packages/styles",
     "packages/ux-guidelines",
     "packages/kitchen-sink",
-    "packages/typography",
     "packages/components"
   ],
   "devDependencies": {
