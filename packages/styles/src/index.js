@@ -1,5 +1,6 @@
 import SelectorEngine from './utilities/selectorEngine';
 import Accordion from './components/accordion';
+import Drawer from './components/drawer';
 import Dropdown from './components/dropdown';
 import Expand from './components/expand';
 import Toggle from './components/toggle';
@@ -22,10 +23,10 @@ SelectorEngine.findAll(".cbp-accordion__title").forEach((accordion) => {
 });
 
 /**
- * Expand Component
+ * Drawer Components
  */
-SelectorEngine.findAll(".cbp-expand").forEach((expand) => {
-  addOrInstantiate(Expand, expand);
+ SelectorEngine.findAll('[data-drawer-align]').forEach((drawer) => {
+  addOrInstantiate(Drawer, drawer);
 });
 
 /**
@@ -34,6 +35,14 @@ SelectorEngine.findAll(".cbp-expand").forEach((expand) => {
 SelectorEngine.findAll('[data-toggle="dropdown"]').forEach((dropdown) => {
   addOrInstantiate(Dropdown, dropdown);
 });
+
+/**
+ * Expand Component
+ */
+SelectorEngine.findAll(".cbp-expand").forEach((expand) => {
+  addOrInstantiate(Expand, expand);
+});
+
 
 /**
  * Toggle Component

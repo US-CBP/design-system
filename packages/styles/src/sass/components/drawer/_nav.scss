@@ -1,0 +1,41 @@
+@use '../../base/colors' as *;
+@use 'mixins' as *;
+
+.cbp-drawer__nav {
+  height: 100%;
+  width: 100%;
+}
+
+.cbp-drawer__nav > li {
+  height: 56px;
+  width: inherit;
+
+  &:first-child > button {
+    border-top: 1px solid $cbp-base-neutral-light;
+  }
+}
+
+.cbp-drawer__nav > li > button {
+  @include drawer-nav-btn(20px, 12px);  
+}
+
+
+// ul {
+//   li {} // A
+//   li {
+//     ul {
+//       li {} // B
+//       li {
+//         ul {
+//           li {} // C
+//           li {
+//             ul {
+//               li {} // D
+//               li {}
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

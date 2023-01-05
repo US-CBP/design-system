@@ -1,0 +1,168 @@
+@use "sass:map";
+
+@use '../../base/colors' as *;
+
+$drawer-sizes: (
+  "small": (
+    "width": 100%
+  ),
+  "rest": (
+    "width": 400px
+  )
+);
+
+
+
+@mixin drawer-left {
+  [data-drawer-align='left'] {
+    top: 0;
+    left: -400px;
+
+    &.active {
+      left: 0;
+    }
+
+    .cbp-drawer__header {
+      padding-left: 44px;
+      padding-right: 20px;
+    }
+
+    .cbp-drawer__content {
+      padding-top: 16px;
+      padding-left: 44px;
+      padding-right: 20px;
+    }
+  }
+}
+
+@mixin drawer-right {
+  [data-drawer-align='right'] {
+    top: 0;
+    right: -400px;
+
+    &.active {
+      right: 0;
+      left: unset;
+    }
+
+    .cbp-drawer__header {
+      padding-left: 20px;
+      padding-right: 44px;
+    }
+
+    .cbp-drawer__content {
+      padding-top: 16px;
+      padding-right: 44px;
+      padding-left: 20px;
+    }
+  }
+}
+
+/* Potential DRY */
+@mixin drawer-close-btn {
+  align-items: center;
+  background-color: transparent;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+
+  & > i {
+    color: $cbp-ui-neutral-lighter;
+    font-size: 14px;
+  }
+
+  &:hover {
+    background-color: $cbp-ui-neutral-dark;
+
+    & > i {
+      color: $cbp-text-lightest;
+    }
+  }
+
+  &:focus {
+    background-color: $cbp-focus-light;
+    outline: 2px solid $cbp-black;
+    outline-offset: -4px;
+
+    & > i {
+      color: $cbp-text-darkest;
+    }
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+@mixin drawer-nav-btn($font-size, $pad-left) {
+  align-items: center;
+  background-color: transparent;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 1px solid $cbp-base-neutral-light;
+  box-sizing: border-box;
+  color: $cbp-ui-neutral-darker;
+  display: flex;
+  cursor: pointer;
+  font-size: $font-size;
+  font-weight: 500;
+  height: inherit;
+  justify-content: space-between;
+  padding-left: $pad-left;
+  text-align: left;
+  width: inherit;
+
+  &:hover {
+    background-color: $cbp-ui-neutral-lighter;
+    border-left: 4px solid $cbp-ui-neutral-darker;
+    color: $cbp-text-darkest;
+
+    & > span {
+      color: $cbp-text-darkest;
+      font-weight: 700;
+    }
+  }
+
+  &:active {
+    background-color: $cbp-active-light;
+    border-left: 4px solid $cbp-active-dark;
+    color: $cbp-active-dark;
+    font-style: italic;
+
+    &:hover {
+      color: $cbp-active-dark;
+    }
+
+    &:focus {
+      color: $cbp-text-lightest;
+      border-left: unset;
+    }
+  }
+
+  &:focus {
+    background-color: $cbp-focus-dark;
+    color: $cbp-text-lightest;
+    outline: 2px solid $cbp-white;
+    outline-offset: -4px;
+
+    & > span {
+      color: $cbp-text-lightest;
+      font-weight: 700;
+    }
+
+    &:hover {
+      border-left: 0;
+    }
+  }
+}
+
+@mixin nav-caret {
+  @extend .cbp-btn;
+  @extend .cbp-btn__square; 
+  @extend .cbp-btn__square-secondary--ghost
+}

@@ -1,5 +1,9 @@
+@use "sass:map";
+
 @use '../../base/colors' as *;
 @use '../button/states' as *;
+@use '../drawer/hamburger' as *;
+@use '../../utilities/z-index' as *;
 
 @mixin menu-hover {
   background-color: $cbp-ui-neutral-lighter;
@@ -20,7 +24,7 @@
   padding-left: 0;
   padding-right: 16px;
   top: -1px;
-  z-index: 9999;
+  z-index: map.get($z, "application-header");
 }
 
 .nav-home {
@@ -86,26 +90,7 @@
 }
 
 .cbp-hamburger {
-  background-color: transparent;
-  border: 2px solid $cbp-ui-neutral-darker;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 14px;
-  height: 36px;
-  width: 36px;
-
-  & > i {
-    color: $cbp-ui-neutral-darker;
-  }
-
-  &:hover {
-    background-color: $cbp-ui-neutral-darker;
-  }
-
-  &:focus {
-    @include btn-focus;
-    border: 0;
-  }
+  @include hamburger-menu;
 }
 
 @media only screen and (min-width: 768px) {
