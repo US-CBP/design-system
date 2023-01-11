@@ -68,3 +68,5 @@ class FocusTrapUtility {
     return false;
   }
 }
+
+export default FocusTrapUtility;

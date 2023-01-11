@@ -5,7 +5,7 @@
 
 /* Default Drawer Direction: 'left' */
 .cbp-drawer {
-  display: none;
+  // display: none;
   height: 100%;
   position: fixed;
   overflow-x: hidden;
@@ -50,11 +50,8 @@
 @include drawer-left;
 @include drawer-right;
 
-.cbp-drawer__content > .content {
-  border: 1px dashed $cbp-base-neutral-darker;
-  height: 100%;
-}
-
 @media only screen and (min-width : 600px) {
-  
+  .cbp-drawer {
+    width: 400px;
+  }
 }

@@ -1,25 +1,7 @@
 @use '../../base/colors' as *;
 @use 'mixins' as *;
 
-.cbp-drawer__nav {
-  height: 100%;
-  width: 100%;
-}
-
-.cbp-drawer__nav > li {
-  height: 56px;
-  width: inherit;
-
-  &:first-child > button {
-    border-top: 1px solid $cbp-base-neutral-light;
-  }
-}
-
-.cbp-drawer__nav > li > button {
-  @include drawer-nav-btn(20px, 12px);  
-}
-
-
+/* Drawer Nav Menu Tree */
 // ul {
 //   li {} // A
 //   li {
@@ -39,3 +21,50 @@
 //     }
 //   }
 // }
+
+.cbp-drawer__nav {
+  border-top: 1px solid $cbp-base-neutral-light;
+}
+
+.cbp-drawer__nav > li { // A
+  height: max-content;
+  
+  & > button {
+    @include drawer-nav-btn(20px, 12px);
+    
+    & > i {
+      @include nav-caret;
+    }
+  }
+}
+
+.cbp-drawer__nav > li > ul > li { // B
+
+  & > button {
+    @include drawer-nav-btn(18px, 20px);
+
+    & > i {
+      @include nav-caret;
+    }
+  }
+}
+
+.cbp-drawer__nav > li > ul > li > ul > li { // C
+  & > button {
+    @include drawer-nav-btn(16px, 28px);
+
+    & > i {
+      @include nav-caret;
+    }
+  }
+}
+
+.cbp-drawer__nav > li > ul > li > ul > li > ul > li { // D
+  & > button {
+    @include drawer-nav-btn(14px, 36px);
+
+    & > i {
+      @include nav-caret;
+    }
+  }
+}

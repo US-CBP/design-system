@@ -16,29 +16,44 @@ $drawer-sizes: (
 @mixin drawer-left {
   [data-drawer-align='left'] {
     top: 0;
-    left: -400px;
+    left: -100%;
 
     &.active {
+      box-shadow: 5px 0px 25px 5px rgba(0, 0, 0, 0.5);
       left: 0;
     }
 
     .cbp-drawer__header {
-      padding-left: 44px;
+      padding-left: 20px;
       padding-right: 20px;
     }
 
     .cbp-drawer__content {
       padding-top: 16px;
-      padding-left: 44px;
+      padding-left: 20px;
       padding-right: 20px;
     }
+
+    @media only screen and (min-width : 600px) {
+      .cbp-drawer__header {
+        padding-left: 44px;
+        padding-right: 20px;
+      }
+  
+      .cbp-drawer__content {
+        padding-top: 16px;
+        padding-left: 44px;
+        padding-right: 20px;
+      }
+    }
+
   }
 }
 
 @mixin drawer-right {
   [data-drawer-align='right'] {
     top: 0;
-    right: -400px;
+    right: -100%;
 
     &.active {
       right: 0;
@@ -105,17 +120,16 @@ $drawer-sizes: (
   border-right: 0;
   border-top: 0;
   border-bottom: 1px solid $cbp-base-neutral-light;
-  box-sizing: border-box;
   color: $cbp-ui-neutral-darker;
   display: flex;
   cursor: pointer;
   font-size: $font-size;
   font-weight: 500;
-  height: inherit;
+  height: 56px;
   justify-content: space-between;
   padding-left: $pad-left;
   text-align: left;
-  width: inherit;
+  width: 100%;
 
   &:hover {
     background-color: $cbp-ui-neutral-lighter;
@@ -162,7 +176,9 @@ $drawer-sizes: (
 }
 
 @mixin nav-caret {
-  @extend .cbp-btn;
-  @extend .cbp-btn__square; 
-  @extend .cbp-btn__square-secondary--ghost
+  align-items: center;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
 }
