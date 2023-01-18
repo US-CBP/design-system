@@ -24,17 +24,12 @@
 
 .cbp-drawer__nav {
   border-top: 1px solid $cbp-base-neutral-light;
+  height: fit-content;
 }
 
 .cbp-drawer__nav > li { // A
-  height: max-content;
-  
   & > button {
     @include drawer-nav-btn(20px, 12px);
-    
-    & > i {
-      @include nav-caret;
-    }
   }
 }
 
@@ -42,29 +37,17 @@
 
   & > button {
     @include drawer-nav-btn(18px, 20px);
-
-    & > i {
-      @include nav-caret;
-    }
   }
 }
 
 .cbp-drawer__nav > li > ul > li > ul > li { // C
   & > button {
     @include drawer-nav-btn(16px, 28px);
-
-    & > i {
-      @include nav-caret;
-    }
   }
 }
 
 .cbp-drawer__nav > li > ul > li > ul > li > ul > li { // D
   & > button {
     @include drawer-nav-btn(14px, 36px);
-
-    & > i {
-      @include nav-caret;
-    }
   }
 }

@@ -1,0 +1,51 @@
+@use '../../base/colors' as *;
+@use '../button' as *;
+
+@mixin new-container {
+  margin: 0 20px;
+
+  @media only screen and (min-width : 600px) and (max-width : 1439px) {
+    margin: 0 32px;
+  }
+
+  @media only screen and (min-width : 1440px) {
+    margin: 0 44px;
+  }
+}
+
+@mixin banner-info ($bg-color) {
+  background-color: $bg-color;
+  padding-top: 16px;
+  padding-bottom: 16px;
+
+  & > div {
+    @include new-container;
+    @content;
+
+    & > div:first-child {
+      display: flex;
+    }
+  }
+}
+
+@mixin banner-text($text-color) {
+  color: $text-color;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  max-width: 1024px;
+}
+
+@mixin banner-title($text-color) {
+  color: $text-color;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+@mixin banner-dismiss($text-color) {
+  @extend .cbp-btn;
+  @extend .cbp-btn__secondary--ghost;
+  color: $text-color;
+}

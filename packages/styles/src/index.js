@@ -1,5 +1,6 @@
 import SelectorEngine from './utilities/selectorEngine';
 import Accordion from './components/accordion';
+import Banner from './components/banner';
 import Drawer from './components/drawer';
 import Dropdown from './components/dropdown';
 import Expand from './components/expand';
@@ -21,6 +22,15 @@ const addOrInstantiate = (Klass, node) => {
 SelectorEngine.findAll(".cbp-accordion__title").forEach((accordion) => {
   addOrInstantiate(Accordion, accordion);
 });
+
+/**
+ * Banner Component
+ */
+SelectorEngine.findAll(".cbp-banner").forEach((banner) => {
+  addOrInstantiate(Banner, banner);
+});
+
+
 
 /**
  * Drawer Components
