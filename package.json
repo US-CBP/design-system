@@ -22,7 +22,6 @@
   "workspaces": [
     "packages/styles",
     "packages/ux-guidelines",
-    "packages/kitchen-sink",
     "packages/components"
   ],
   "devDependencies": {
