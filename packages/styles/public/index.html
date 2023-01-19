@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBP Sandbox</title>
+  <link rel="stylesheet" href="../../assets/font-awesome/all.css">
+  <link rel="stylesheet" href="styles.min.css">
+</head>
+
+<body>
+  <header class="cbp-banner">
+    <div class="cbp-grid-container cbp-banner__title">
+      <img src="../assets/images/us_flag_small.png" alt="usa logo">
+      <div>
+        <span>An official website of the United States government.</span>
+        <button>Here's how you know.<i class="fas fa-angle-up"></i></button>
+      </div>
+    </div>
+
+    <div class="cbp-banner__content">
+      <div>
+        <i class="fas fa-landmark"></i>
+        <div>
+          <h6>Official websites use .gov</h6>
+          <p>A .gov website belongs to an official government organization in the United States.</p>
+        </div>
+      </div>
+      <div>
+        <i class="fas fa-lock"></i>
+        <div>
+          <h6>Secure .gov websites use HTTPS</h6>
+          <p>A lock (lock) or https:// means you’ve safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <header class="cbp-header">
+    <div class="cbp-header__brand">
+      <img src="../assets/images/CBP_LOGO_HORIZONTAL_WHITE_TEXT.svg" alt="cbp brand logo" class="dh-sm-none">
+      <img src="../assets/images/CBP_SEAL.svg" alt="cbp brand logo" class="dh-lg-none">
+      <span class="dh-lg-none">CBP</span>
+    </div>
+    <div class="cbp-header__info dh-sm-none">
+      <a href="#" class="cbp-header__item" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i>App Directory</a>
+      <button class="cbp-header__item"><i class="fas fa-comment"></i>Feedback</button>
+      <button class="cbp-header__item"><i class="fas fa-user"></i>John Smithington</button>
+    </div>
+    <div class="cbp-header__info dh-lg-none">
+      <a href="#" class="cbp-header__item" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i></a>
+      <button class="cbp-header__item"><i class="fas fa-comment"></i></button>
+      <button class="cbp-header__item"><i class="fas fa-user"></i></button>
+    </div>
+  </header>
+  <nav class="cbp-application-header">
+    <button class="nav-home">Application Name</button>
+    <div class="cbp-nav-menu">
+      <div class="cbp-application-menus dh-sm-none">
+        <button class="cbp-menu-dropdown">Child Page 1<i class="fas fa-chevron-down"></i></button>
+        <button class="cbp-menu-dropdown">Child Page 2<i class="fas fa-chevron-down"></i></button>
+        <button class="cbp-menu-dropdown">Child Page 3<i class="fas fa-chevron-down"></i></button>
+      </div>
+      <div>
+        <!-- <button class="cbp-hamburger dh-sm-none">
+          <i class="fas fa-search"></i>
+        </button> -->
+        <button class="cbp-hamburger" data-drawer="open">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <nav class="cbp-drawer" data-drawer-align="left">
+    <div class="cbp-drawer__header">
+      <div>
+        <i class="fas fa-filter"></i>
+        <h6>Filter</h6>
+      </div>
+      <button>
+        <i class="fas fa-times-circle"></i>
+      </button>
+    </div>
+    <section class="cbp-drawer__content">
+      <ul class="cbp-drawer__nav">
+        <li class="cbp-drawer__nav-item--a">
+          <button>
+            <span>
+              <i class="fas fa-home"></i>
+              Default/Home Page (A)
+            </span>
+            <i class="fas fa-angle-up"></i>
+          </button>
+          <ul>
+            <li>
+              <button>Child Page 1 (B)</button>
+            </li>
+            <li>
+              <button>Child Page 2 (B)<i class="fas fa-angle-up"></i></button>
+              <ul>
+                <li>
+                  <button>
+                    Grandchild Page 1 (C)
+                    <i class="fas fa-caret-up"></i>
+                  </button>
+                  <ul>
+                    <li>
+                      <button>Great-Grandchild Page 1 (D)</button>
+                    </li>
+                    <li>
+                      <button>Great-Grandchild Page 2 (D)</button>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <button>Grandchild Page 2 (C)</button>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <button>
+            Sibling Page 1 (A)
+            <i class="fas fa-angle-up"></i>
+          </button>
+        </li>
+        <li>
+          <button>Sibling Page 2 (A)</button>
+        </li>
+        <li>
+          <button>Sibling Page 3 (A)</button>
+        </li>
+      </ul>
+    </section>
+  </nav>
+  <div class="cbp-banner__info">
+    <div>
+      <div>
+        <i class="fas fa-exclamation"></i>
+        <h6 class="cbp-banner__info-title d-none-lg">Scheduled Maintenance Notice</h6>
+      </div>
+      <div>
+        <h6 class="cbp-banner__info-title d-none-sm">Scheduled Maintenance Notice</h6>
+        <p class="cbp-banner__text">This application will be undergoing scheduled maintenance from 10/15/22 - 10/31/22 from 12am - 3am and will be unavailable during these times.</p>
+      </div>
+      <button>
+        <i class="fas fa-times"></i>
+        Dismiss
+      </button>
+    </div>
+  </div>
+  <div class="cbp-banner__security">
+    <div>
+      <div>
+        <img src="../assets/images/cbp-icon/SECURITY ICON - TS SCI.svg" alt="security logo">
+        <h6 class="cbp-banner__info-title d-none-lg">
+          <i class="fas fa-exclamation-triangle"></i> Infosec Classification: TS/SCI
+        </h6>
+      </div>
+      <div>
+        <h6 class="cbp-banner__info-title d-none-sm">
+          <i class="fas fa-exclamation-triangle"></i> Infosec Classification: TS/SCI
+        </h6>
+        <p class="cbp-banner__text">
+          This page contains information, in whole or part, that is marked <span class="cbp-text-bold cbp-text-italic">CLASSIFIED: TOP SECRET (TS)</span>. 
+          If you are accessing this information from a non-classified device, stop what you are doing 
+          immediately and contact your unit&#39;s security officer. 
+          <a href="#" class="cbp-link__inline"><i class="fas fa-external-link-alt"></i> Learn More About INFOSEC</a>
+        </p>
+      </div>
+      <button>
+        <i class="fas fa-times"></i>
+        Dismiss
+      </button>
+    </div>
+  </div>
+  <main>
+    <section class="cbp-grid-container">
+      <div class="cbp-row">
+        <div class="cbp-grid-col-full demo-container">
+          <div class="sandbox">
+            <div class="cbp-row sandbox__dropdown-container">
+              <div class="cbp-grid-col-2-sm cbp-grid-col-4-md cbp-grid-col-6-lg cbp-grid-col-6-xl">
+                <div class="cbp-form-wrapper">
+                  <label for="pod2" class="cbp-form__label">Theme Selector</label>
+                  <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+                  <div class="cbp-dropdown__wrapper" id="dropdown-demo-2">
+                    <button class="cbp-dropdown__custom" id="port-dropdown" data-toggle="dropdown">
+                      <span class="cbp-dropdown__placeholder">Choose Theme</span>
+                    </button>
+                    <div class="cbp-dropdown" id="custom-dropdown-menu">
+                      <a href="#" class="cbp-dropdown__item">Dark</a>
+                      <a href="#" class="cbp-dropdown__item">Light</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cbp-grid-col-2-sm cbp-grid-col-4-md cbp-grid-col-6-lg cbp-grid-col-6-xl">
+                <div class="cbp-form-wrapper">
+                  <label for="pod2" class="cbp-form__label">Variant Selector</label>
+                  <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+                  <div class="cbp-dropdown__wrapper" id="dropdown-demo-2">
+                    <button class="cbp-dropdown__custom" id="port-dropdown" data-toggle="dropdown">
+                      <span class="cbp-dropdown__placeholder">Choose Variant</span>
+                    </button>
+                    <div class="cbp-dropdown" id="custom-dropdown-menu">
+                      <a href="#" class="cbp-dropdown__item">Single Button Card</a>
+                      <a href="#" class="cbp-dropdown__item">Dual Button Card</a>
+                      <a href="#" class="cbp-dropdown__item">Three Button Card</a>
+                      <a href="#" class="cbp-dropdown__item">General Card</a>
+                      <a href="#" class="cbp-dropdown__item">Clickable Card</a>
+                      <a href="#" class="cbp-dropdown__item">Single Select Card (Radio)</a>
+                      <a href="#" class="cbp-dropdown__item">Multi-Select Card (Checkbox)</a>
+                      <a href="#" class="cbp-dropdown__item">Banner Card</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cbp-row">
+              <div class="cbp-grid-col-full">
+                <div class="sandbox__demo-container">
+                  <div class="sandbox__demo">
+                    <!-- *COMPONENT GOES HERE* -->
+
+                  </div>
+                  <aside class="sandbox__modifiers">
+                    <h2>State Modifiers</h2>
+                    <fieldset style="padding: 20px 16px;">
+                      <div class="form-check">
+                        <input type="checkbox" name="modifier_1" class="cbp-form__checkbox" id="modifier_1">
+                        <label for="readonly">Disable</label>
+                      </div>
+                      <div class="form-check">
+                        <input type="checkbox" name="modifier_2" class="cbp-form__checkbox" id="modifier_2">
+                        <label for="readonly">Error</label>
+                      </div>
+                      <div class="form-check">
+                        <input type="checkbox" name="modifier_3" class="cbp-form__checkbox" id="modifier_3">
+                        <label for="readonly">Read Only</label>
+                      </div>
+                    </fieldset>
+                  </aside>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="cbp-footer">
+    <ul class="cbp-footer__links">
+      <li><a href="#">App Overview</a></li>
+      <li><a href="#">Trainings</a></li>
+      <li><a href="#">FAQ's</a></li>
+      <li><a href="#">Release Notes</a></li>
+    </ul>
+    <div class="cbp-footer__info">
+      <div>
+        <h6><i class="fas fa-headset"></i> Application Support</h6>
+        <p class="cbp-footer__supplement">This application is maintained by The Office of Information Technology: TASPD.</p>
+        <ul class="cbp-contact-list">
+          <li>Having an issue?</li>
+          <li><span>Email:</span>&nbsp;<a href="#">application-support@cbp.dhs.gov</a></li>
+          <li><span>CBP Helpdesk:</span>&nbsp;(555) 555-5555</li>
+        </ul>
+      </div>
+      <div class="cbp-footer__sec">
+        <img src="../assets/images/cbp-icon/SECURITY ICON - LES FOUO.svg" alt="security icon">
+        <div>
+          <h6>Infosec Classification: FOUO</h6>
+          <p>This page contains information, in whole or part, that is marked FOR OFFFICIAL USE ONLY (FOUO). </p>
+          <a href="#"><i class="fas fa-external-link-alt"></i>&nbsp;Learn More About InfoSec</a>    
+        </div>
+      </div>
+      <p>This page contains information, in whole or part, that is marked FOR OFFFICIAL USE ONLY (FOUO). </p>
+      <a href="#"><i class="fas fa-external-link-alt"></i>&nbsp;Learn More About InfoSec</a>
+    </div>
+  </footer>
+  <script src="bundle.min.js"></script>
+</body>
+
+</html>
