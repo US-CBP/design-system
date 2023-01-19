@@ -1,0 +1,71 @@
+@use '../../base/colors' as *;
+
+@mixin base-input {
+  background-color: $cbp-white;
+  border: 1px solid $cbp-ui-neutral-base;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: $cbp-text-darkest;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 36px;
+  letter-spacing: 0.3px;
+  margin-bottom: 16px;
+  padding: 0 8px;
+  width: 100%;
+
+  &::placeholder {
+    font-style: italic;
+  }
+
+  &:hover:not([disabled]) {
+    border: 2px solid $cbp-ui-neutral-darker;
+  }
+
+  &:focus:not([disabled]) {
+    border: 2px solid $cbp-focus-dark;
+    outline: 0;
+  }
+
+  &:read-only {
+    background-color: $cbp-base-neutral-lighter;
+    border: 1px solid $cbp-ui-neutral-light;
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus {
+      border: 1px solid $cbp-ui-neutral-light;
+    }
+  }
+
+  &:disabled {
+    background-color: $cbp-disabled-light;
+    border: 1px solid $cbp-disabled-dark;
+    cursor: pointer;
+
+    &:hover {
+      border: 2px solid $cbp-ui-neutral-darker;
+    }
+
+    &:focus {
+      border: 2px solid $cbp-focus-dark;
+    }
+  }
+
+  &:invalid {
+    background-color: $cbp-ui-danger-lighter;
+    border: 1px solid $cbp-danger;
+
+    &:focus {
+      border-color: $cbp-focus-dark;
+    }
+    
+    &:hover {
+      border: 2px solid $cbp-ui-danger-dark;
+
+      &:focus {
+        border-color: $cbp-focus-dark;
+      }
+    }
+  }
+}

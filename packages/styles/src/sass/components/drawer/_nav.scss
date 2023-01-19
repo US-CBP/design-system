@@ -1,0 +1,53 @@
+@use '../../base/colors' as *;
+@use 'mixins' as *;
+
+/* Drawer Nav Menu Tree */
+// ul {
+//   li {} // A
+//   li {
+//     ul {
+//       li {} // B
+//       li {
+//         ul {
+//           li {} // C
+//           li {
+//             ul {
+//               li {} // D
+//               li {}
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+.cbp-drawer__nav {
+  border-top: 1px solid $cbp-base-neutral-light;
+  height: fit-content;
+}
+
+.cbp-drawer__nav > li { // A
+  & > button {
+    @include drawer-nav-btn(20px, 12px);
+  }
+}
+
+.cbp-drawer__nav > li > ul > li { // B
+
+  & > button {
+    @include drawer-nav-btn(18px, 20px);
+  }
+}
+
+.cbp-drawer__nav > li > ul > li > ul > li { // C
+  & > button {
+    @include drawer-nav-btn(16px, 28px);
+  }
+}
+
+.cbp-drawer__nav > li > ul > li > ul > li > ul > li { // D
+  & > button {
+    @include drawer-nav-btn(14px, 36px);
+  }
+}

@@ -1,0 +1,40 @@
+@use 'sass:map';
+@use '../../base/colors' as *;
+
+
+$button-type: (
+  "primary": $cbp-ui-primary-dark,
+  "secondary": $cbp-ui-neutral-dark,
+  "danger": $cbp-ui-danger-base,
+);
+
+@mixin base-btn {
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 36px;
+  justify-content: center;
+  letter-spacing: 1.08px;
+  overflow: hidden;
+  padding: 0 12px;
+  position: relative;
+  text-transform: uppercase;
+  transition: all 300ms;
+
+  & > i {
+    margin-right: 8px;
+    pointer-events: none;
+  }
+}
+
+@mixin btn-type($type) {
+  .cbp-btn__#{$type} {
+    @content;
+  }
+}

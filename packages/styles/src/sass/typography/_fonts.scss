@@ -1,0 +1,106 @@
+@use "sass:map";
+@use "../base/colors" as *;
+
+/* Includes "italic" */
+$font-weights-roboto: (
+  "thin": 100,
+  "light": 300,
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+  "black": 900
+);
+
+/* Includes italic */
+$font-weight-roboto-mono: (
+  "regular": 400,
+  "bold": 700
+);
+
+.cbp-text-masthead-1 {
+  font-weight: 100;
+  size: 2.566rem;
+  line-height: 44px;
+  letter-spacing: 0.12;
+  color: $cbp-text-darker;
+}
+
+
+.cbp-text-masthead-2 {
+  font-weight: 100;
+  size: 2.281rem;
+  line-height: 40px;
+  letter-spacing: 0.12;
+  color: $cbp-text-darker;
+}
+
+.cbp-text-body {
+  color: $cbp-text-darkest;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 20px;
+  max-width: 75em;
+}
+
+.cbp-text-button {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.cbp-text-subhead {
+  font-size: 0.889rem;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+}
+
+.cbp-heading-xxl {
+  color: $cbp-text-darker;
+  font-weight: 300; // light
+  font-size: 2.027rem;
+  line-height: 36px;
+  letter-spacing: 0.12px;
+}
+
+.cbp-heading-xl {
+  color: $cbp-text-darker;
+  font-weight: 400; // regular
+  font-size: 1.802rem;
+  line-height: 32px;
+  letter-spacing: 0.12px;
+}
+
+
+.cbp-heading-l {
+  color: $cbp-text-darker;
+  font-weight: 400; // regular
+  font-size: 1.602rem;
+  line-height: 28px;
+  letter-spacing: 0.12px;
+}
+
+.cbp-heading-m {
+  color: $cbp-text-darker;
+  font-weight: 500; // medium
+  font-size: 1.424rem;
+  line-height: 24px;
+  letter-spacing: 0.12px;
+}
+
+.cbp-heading-s {
+  color: $cbp-text-darker;
+  font-weight: 500; // medium
+  font-size: 1.266rem;
+  line-height: 24px;
+  letter-spacing: 0.12px;
+}
+
+.cbp-heading-xs {
+  color: $cbp-text-darker;
+  font-weight: 700; // bold
+  font-size: 1.424rem;
+  line-height: 20px;
+  letter-spacing: 0.12px;
+}

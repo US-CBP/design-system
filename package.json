@@ -1,16 +1,65 @@
 {
-  "name": "design-system",
+  "name": "cbp-design-system",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start-sb": "npm run storybook -w packages/components",
+    "style-lint": "npx stylelint '**/*.scss'",
+    "stylelint-check": "stylelint-config-prettier-check",
+    "styles-build": "npm run build --workspace=packages/styles",
+    "styles-dev": "npm run dev --workspace=packages/styles",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16.0.0"
+  },
   "workspaces": [
-    "packages/theme",
-    "packages/ux-guidelines"
-  ]
+    "packages/*"
+  ],
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "postcss-scss": "^4.0.5",
+    "stylelint": "^14.15.0",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-recommended": "^9.0.0",
+    "stylelint-scss": "^4.3.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "overrides": [],
+    "requireConfigFile": false,
+    "rules": {}
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "singleQuote": true
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-prettier",
+      "stylelint-config-recommended"
+    ],
+    "customSyntax": "postcss-scss",
+    "plugins": [
+      "stylelint-scss"
+    ],
+    "rules": {
+      "at-rule-no-unknown": null,
+      "scss/at-rule-no-unknown": true
+    }
+  }
 }

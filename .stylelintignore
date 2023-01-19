@@ -1,0 +1,6 @@
+packages/styles/dist/**/*.css
+packages/styles/dist/**/*.scss
+packages/styles/src/sass/base/_normalize.scss
+packages/styles/src/sass/base/_reset.scss
+packages/ux-guidelines
+kitchen_sink
