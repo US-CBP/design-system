@@ -7,7 +7,6 @@
     "start-sb": "npm run storybook -w packages/components",
     "style-lint": "npx stylelint '**/*.scss'",
     "stylelint-check": "stylelint-config-prettier-check",
-    "ux-dev": "npm run dev --workspace=packages/ux-guidelines",
     "styles-build": "npm run build --workspace=packages/styles",
     "styles-dev": "npm run dev --workspace=packages/styles",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,9 +19,7 @@
     "node": ">=16.0.0"
   },
   "workspaces": [
-    "packages/styles",
-    "packages/ux-guidelines",
-    "packages/components"
+    "packages/*"
   ],
   "devDependencies": {
     "eslint": "^8.27.0",

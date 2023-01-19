@@ -1,5 +1,5 @@
 import { create } from '@storybook/theming';
-import cbpLogo from 'styles/dist/assets/images/cbp_seal_cmyk.png';
+import cbpLogo from '@cbpds/styles/dist/assets/images/CBP_SEAL.svg';
 
 export default create({
   base: 'light',
