@@ -40,3 +40,6 @@ The `components` package houses the React components in Storybook that also prov
 
 <!-- 
 The [UX Guidelines](https://us-cbp.github.io/cbp-theme/design-system/) site offers robust examples, user experience guidance, code instruction and best practices for using the CBP Design System that follow its core principles. You can find the source code for the site in [ds-ux-guidelines](https://github.com/US-CBP/cbp-theme/tree/master/ds-ux-guidelines). This repo is strictly for housing the codebase for the style guide site. -->
+
+### License
+Please refer to [CBP Open Source License](https://github.com/US-CBP/open-source-policy/blob/master/LICENSE.md)
