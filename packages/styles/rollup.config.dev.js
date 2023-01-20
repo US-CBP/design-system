@@ -10,18 +10,18 @@ export default {
   input: "src/index.js",
   output: [
     {
-      file: "dist/bundle.js",
+      file: "public/bundle.js",
       format: "iife",
     },
     {
-      file: "dist/bundle.min.js",
+      file: "public/bundle.min.js",
       format: "iife",
       plugins: [terser()],
     },
   ],
   plugins: [
     scss({
-      output: "dist/styles.min.css",
+      output: "public/styles.min.css",
       sourceMap: true,
       outputStyle: "compressed",
       processor: () => postcss([autoprefixer()]),
@@ -29,17 +29,16 @@ export default {
     }),
     copy({
       targets: [
-        { src: "src/sass", dest: "dist" },
-        { src: "assets/images", dest: "dist/assets" },
-        { src: "assets/fonts", dest: "dist/assets" },
-        { src: "assets/font-awesome", dest: "dist/assets" },
+        { src: "assets/images", dest: "public/assets" },
+        { src: "assets/fonts", dest: "public/assets" },
+        { src: "assets/font-awesome", dest: "public/assets" },
       ],
     }),
     serve({
-      contentBase: ['dist', 'public']
+      contentBase: ['public']
     }),
     livereload({
-      watch: ['dist', 'public']
+      watch: ['public']
     }),
   ],
 };
