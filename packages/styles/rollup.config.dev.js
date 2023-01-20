@@ -6,9 +6,6 @@ import autoprefixer from "autoprefixer";
 import livereload from "rollup-plugin-livereload";
 import serve from 'rollup-plugin-serve';
 
-const devMode = (process.env.NODE_ENV === 'development');
-console.log(`${ devMode ? 'development' : 'production' } mode bundle`);
-
 export default {
   input: "src/index.js",
   output: [
