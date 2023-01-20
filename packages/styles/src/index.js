@@ -30,7 +30,13 @@ SelectorEngine.findAll(".cbp-banner").forEach((banner) => {
   addOrInstantiate(Banner, banner);
 });
 
+SelectorEngine.findAll(".cbp-banner__info").forEach((banner) => {
+  addOrInstantiate(Banner, banner);
+});
 
+SelectorEngine.findAll(".cbp-banner__security").forEach((banner) => {
+  addOrInstantiate(Banner, banner);
+});
 
 /**
  * Drawer Components
