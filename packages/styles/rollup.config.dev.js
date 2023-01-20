@@ -4,7 +4,7 @@ import scss from "rollup-plugin-scss";
 import postcss from "postcss";
 import autoprefixer from "autoprefixer";
 import livereload from "rollup-plugin-livereload";
-import serve from 'rollup-plugin-serve'
+import serve from 'rollup-plugin-serve';
 
 export default {
   input: "src/index.js",
