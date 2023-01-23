@@ -6,52 +6,53 @@
   width: 100%;
 
   &__title {
+    align-items: center;
     display: flex;
     height: 52px;
 
     & > img {
+      align-self: baseline;
       height: 11px;
-      margin-right: 12px;
-      margin-top: 14px;
+      margin-right: 8px;
+      margin-top: 11px;
       width: 16px;
     }
 
     & > div {
-      margin-top: 14px;
-
       & > span {
         display: block;
         color: $cbp-text-lightest;
         font-size: 0.889rem;
         font-weight: 500;
-      }
-  
-      & > button {
-        background-color: transparent;
-        border: 0;
-        color: $cbp-ui-neutral-light;
-        cursor: pointer;
-        font-size: 0.889rem;
-        font-weight: 500;
-        padding: 0;
-        text-decoration: underline;
-    
-        & > i {
-          margin-left: 8px;
-          text-decoration: none;
-        }
-    
-        &:hover {
-          color: $cbp-ui-neutral-lighter;
-        }
-    
-        &:focus {
-          color: $cbp-focus-light;
-          outline: 2px solid $cbp-focus-light;
-          outline-offset: 4px;
-        }
+        line-height: 1.25;
       }
     }
+  }
+}
+
+.cbp-banner__toggle {
+  background-color: transparent;
+  border: 0;
+  color: $cbp-ui-neutral-light;
+  cursor: pointer;
+  font-size: 0.889rem;
+  font-weight: 500;
+  padding: 0;
+  text-decoration: underline;
+
+  & > i {
+    margin-left: 6px;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $cbp-ui-neutral-lighter;
+  }
+
+  &:focus {
+    color: $cbp-focus-light;
+    outline: 2px solid $cbp-focus-light;
+    outline-offset: 2px;
   }
 }
 
@@ -104,13 +105,14 @@
   height: fit-content;
 }
 
-@include cbp-medium-grid {
+
+@media only screen and (min-width : 473px) { // Text appears as one line at this breakpoint
   .cbp-banner__title {
     align-items: center;
     height: 32px;
 
     & > img {
-      margin-top: unset;
+      margin-top: 10px;
     }
 
     & > div {
@@ -120,42 +122,9 @@
     & > div > span {
       display: initial;
     }
-  }
-  
-  .cbp-banner__content {
-    display: none;
-    height: 0;
 
-    & > div {
-      width: 50%;
-
-      &:first-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  .banner-active {
-    display: flex;
-    height: fit-content;
-  }
-}
-
-@media only screen and (min-width : 1024px) {
-  .cbp-banner__title {
-    align-items: center;
-    height: 32px;
-
-    & > img {
-      margin-top: unset;
-    }
-
-    & > div {
-      margin-top: unset;
-    }
-
-    & > div > span {
-      display: initial;
+    & > div > span > button {
+      margin-left: 2px;
     }
   }
 
