@@ -1,17 +1,9 @@
 @charset "utf-8";
 
-// CBP Color Tokens
-@use "tokens/base";
-@use "tokens/color";
-@use "tokens/state";
-@use "tokens/text";
-@use "tokens/theme";
-@use "tokens/ui";
-@use "tokens/variables";
-
 // CBP Base
 @use "base/reset";
 @use "base/normalize";
+@use "base/colors";
 @use "base/core";
 
 // CBP Typography

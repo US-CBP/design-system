@@ -6,14 +6,18 @@
   background-color: $dhs-blue;
   box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
   height: 60px;
-  justify-content: space-between;
-  padding: 0 16px;
-  // position: sticky;
   top: 0;
   transition: top 500ms ease-in-out;
   width: 100%;
+  
+  & > div {
+    align-items: inherit;
+    display: inherit;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: inherit;
+  }
 }
 
 .cbp-header__brand {

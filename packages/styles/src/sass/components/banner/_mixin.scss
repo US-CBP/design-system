@@ -1,29 +1,25 @@
 @use '../../base/colors' as *;
 @use '../button' as *;
 
-@mixin new-container {
-  margin: 0 20px;
-
-  @media only screen and (min-width : 600px) and (max-width : 1439px) {
-    margin: 0 32px;
-  }
-
-  @media only screen and (min-width : 1440px) {
-    margin: 0 44px;
-  }
-}
-
-@mixin banner-info ($bg-color) {
+@mixin banner-info($bg-color) {
   background-color: $bg-color;
   padding-top: 16px;
   padding-bottom: 16px;
 
   & > div {
-    @include new-container;
     @content;
+    margin: 0 16px;
 
     & > div:first-child {
       display: flex;
+    }
+
+    @media only screen and (min-width: 600px) and (max-width: 1439px) {
+      margin: 0 20px;
+    }
+
+    @media only screen and (min-width: 1440px) {
+      margin: 0 28px;
     }
   }
 }
@@ -42,6 +38,11 @@
   color: $text-color;
   font-size: 20px;
   font-weight: 500;
+  line-height: 1.5;
+
+  &::first-line {
+    line-height: initial;
+  }
 }
 
 @mixin banner-dismiss($text-color) {
