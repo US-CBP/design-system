@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "style-lint": "npx stylelint '**/*.scss'",
+    "stylelint-check": "stylelint-config-prettier-check",
     "build-tokens": "npm run sd -w packages/styles",
     "styles-dev": "npm run dev -w packages/styles",
     "styles-build": "npm run build -w packages/styles",
