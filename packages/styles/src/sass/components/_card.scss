@@ -1,0 +1,417 @@
+@use '../base/colors' as *;
+@use '../typography/fonts' as *;
+@use './button/index' as *;
+
+.cbp-card {
+  width: 312px;
+
+  &__content { // container for all image and card body content (use for border and alignment with button layout)
+    border: 2px solid $cbp-base-neutral-lighter;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 0;
+  }
+}
+
+.cbp-card__header {
+  @extend .cbp-heading-m;
+  display: flex;
+  justify-content: space-between;
+
+  & > div:first-child {
+    display: inherit;
+    align-items: center;
+    text-decoration: none;
+
+    i {
+      margin-right: 8px;
+    }
+
+    h4 {
+      margin-bottom: 0;
+    }
+  }
+
+  .form-radio {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0;
+  }
+
+  .form-radio > input[type=checkbox] {
+    margin-bottom: 0;
+  }
+}
+
+.cbp-card__img {
+  height: 314px; // Variable
+  width: 100%;
+
+  & > img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.cbp-card__flag {
+  @extend .cbp-heading-m;
+  background-color: $cbp-info-dark;
+  color: $cbp-text-lightest;
+  display: flex;
+  padding: 12px;
+
+  & > i {
+    margin-right: 8px;
+  }
+}
+
+.cbp-card__title {
+  @extend .cbp-heading-m;
+}
+
+.cbp-card__body {
+  padding: 20px 16px;
+}
+
+.cbp-card__buttons {
+  display: flex;
+
+  & > button {
+    @extend .cbp-btn;
+    @extend .cbp-btn__primary;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    height: 44px;
+    width: 100%;
+  }
+
+  &--single {
+    button {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+  &--double {
+    button:first-child {
+      border-bottom-right-radius: 0;
+    }
+
+    button:nth-child(2) {
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  &--triple {
+    button:first-child {
+      border-bottom-right-radius: 0px;
+    }
+
+    button:nth-child(2) {
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    button:last-child {
+      border-bottom-left-radius: 0px;
+    }
+  }
+}
+
+/* DANGER */
+.cbp-card--danger {
+  .cbp-card__flag {
+    background-color: $cbp-ui-danger-base;
+  }
+
+  .cbp-card__content {
+    background-color: $cbp-ui-danger-lighter;
+    border: 2px solid $cbp-ui-danger-base;
+    border-bottom: 0;
+  }
+}
+
+.cbp-card__general {
+  display: flex;
+  border: 2px solid $cbp-base-neutral-lighter;
+  border-radius: 5px;
+
+  .cbp-card__img {
+    align-items: center;
+    background-color: $cbp-ui-success-darker;
+    border-top-left-radius: 3px; // Matching the border radius with card leaves empty unfilled space
+    border-bottom-left-radius: 3px;
+    display: inherit;
+    height: 124px;
+    justify-content: center;
+    width: 124px;
+
+    & > img {
+      border-top-left-radius: 2px; // Matching the border radius with card leaves empty unfilled space
+      border-bottom-left-radius: 2px;
+      height: 100%;
+      width: 100%;
+    }
+
+    & > i {
+      color: $cbp-white;
+      font-size: 4rem;
+    }
+  }
+
+  .cbp-card__header {
+    padding: 0;
+    margin-bottom: 16px;
+  }
+
+  .cbp-card__body {
+    padding: 20px 16px;
+  }
+}
+
+.cbp-card__info {
+  @extend .cbp-card__general;
+
+  background-color: $cbp-info-lighter;
+  border: 2px solid $cbp-info-light;
+
+  .cbp-card__header {
+    color: $cbp-info-darker;
+  }
+}
+
+.cbp-card__success {
+  @extend .cbp-card__general;
+
+  background-color: $cbp-ui-success-lighter;
+  border: 2px solid $cbp-ui-success-light;
+
+  .cbp-card__header {
+    color: $cbp-ui-success-darker;
+  }
+}
+
+.cbp-card__danger {
+  @extend .cbp-card__general;
+
+  background-color: $cbp-ui-danger-lighter;
+  border: 2px solid $cbp-ui-danger-light;
+
+  .cbp-card__header {
+    color: $cbp-ui-danger-dark;
+  }
+}
+
+
+.cbp-card__banner {
+  @extend .cbp-card__general;
+  border: 0;
+  display: block;
+
+  h4 {
+    @extend .cbp-heading-l;
+    align-items: center;
+    background-color: $cbp-base-secondary-dark;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: $cbp-text-lightest;
+    display: flex;
+    height: 52px;
+    padding-left: 16px;
+
+    & > i {
+      margin-right: 8px;
+    }
+  }
+
+  .cbp-card__body {
+    padding-top: 16px;
+    border: 2px solid $cbp-base-neutral-light;
+    border-top: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}
+
+.cbp-card__banner--info {
+  h4 {
+    background-color: $cbp-info-dark;
+  }
+
+  .cbp-card__body {
+    background-color: $cbp-info-lighter;
+    border: 2px solid $cbp-info-light;
+    border-top: 0;
+  }
+}
+
+.cbp-card__banner--success {
+  h4 {
+    background-color: $cbp-ui-success-base;
+  }
+
+  .cbp-card__body {
+    background-color: $cbp-ui-success-lighter;
+    border: 2px solid $cbp-ui-success-light;
+    border-top: 0;
+  }
+}
+
+.cbp-card__banner--danger {
+  h4 {
+    background-color: $cbp-ui-danger-base;
+  }
+
+  .cbp-card__body {
+    background-color: $cbp-ui-danger-lighter;
+    border: 2px solid $cbp-ui-danger-light;
+    border-top: 0;
+  }
+}
+
+/* Card Link/Button */
+.cbp-card__link {
+  @extend .cbp-card__general;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $cbp-base-neutral-lightest;
+    border: 2px solid $cbp-base-neutral-dark;
+  }
+
+  &:focus {
+    background-color: $cbp-focus-dark;
+    border: 2px solid $cbp-focus-light;
+    outline: 0;
+  }
+
+  &:focus:not([disabled]) > .cbp-card__body > p {
+    color: $cbp-text-lightest;
+  }
+  
+  &:focus:not([disabled]) > .cbp-card__body > .cbp-card__header {
+    color: $cbp-text-lightest;
+
+    & > div:first-child > h4 {
+      color: $cbp-text-lightest;
+    }
+  }
+}
+
+.cbp-card__link--danger {
+  border: 2px solid $cbp-ui-danger-light;
+  background-color: $cbp-ui-danger-lighter;
+
+  .cbp-card__body > .cbp-card__header > div:first-child {
+    color: $cbp-ui-danger-dark;
+
+    h4 {
+      color: inherit;
+    }
+  }
+
+  &:hover {
+    border: 2px solid $cbp-ui-danger-darker;
+    background-color: $cbp-ui-danger-light;
+
+    .cbp-card__body > .cbp-card__header > div:first-child {
+      color: revert;
+
+      h4 {
+        color: revert;
+      }
+    }
+  }
+
+  &:focus:not([disabled]) {
+    border: 2px solid $cbp-focus-light;
+    background-color: $cbp-focus-dark;
+  }
+
+  &:focus:not([disabled]) > .cbp-card__body > .cbp-card__header {
+    & > div:first-child > .cbp-card__title {
+      color: $cbp-text-lightest;
+    }
+  }
+}
+
+.cbp-card__radio,
+.cbp-card__checkbox {
+  @extend .cbp-card__general;
+
+  &:hover {
+    background-color: $cbp-base-neutral-lightest;
+    border: 2px solid $cbp-base-neutral-dark;
+  }
+
+  &:focus-within:not([disabled]) {
+    border: 2px solid $cbp-focus-light;
+    background-color: $cbp-focus-dark;
+
+    & > .cbp-card__body > .cbp-card__header {
+      & > div:first-child {
+        color: $cbp-text-lightest;
+      }
+
+      & > div:first-child > h4 {
+        color: $cbp-text-lightest;
+      }
+    }
+
+    & > .cbp-card__body > p {
+      color: $cbp-text-lightest;
+    }
+  }
+}
+
+.cbp-card__radio--danger,
+.cbp-card__checkbox--danger {
+  background-color: $cbp-ui-danger-lighter;
+  border: 2px solid $cbp-ui-danger-light;
+
+  & > .cbp-card__body > .cbp-card__header {
+    & > div:first-child {
+      color: $cbp-ui-danger-dark;
+    }
+
+    & > div:first-child > h4 {
+      color: $cbp-ui-danger-dark;
+    }
+  }
+
+  &:hover {
+    background-color: $cbp-ui-danger-light;
+    border: 2px solid $cbp-ui-danger-darker;
+
+    & > .cbp-card__body > .cbp-card__header {
+      & > div:first-child {
+        color: $cbp-ui-danger-darker;
+      }
+
+      & > div:first-child > h4 {
+        color: $cbp-ui-danger-darker;
+      }
+    }
+  }
+
+  &:focus-within:not([disabled]) {
+    border: 2px solid $cbp-focus-light;
+    background-color: $cbp-focus-dark;
+
+    & > .cbp-card__body > .cbp-card__header {
+      & > div:first-child {
+        color: $cbp-text-lightest;
+      }
+
+      & > div:first-child > h4 {
+        color: $cbp-text-lightest;
+      }
+    }
+
+    & > .cbp-card__body > p {
+      color: $cbp-text-lightest;
+    }
+  }
+}

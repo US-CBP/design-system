@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBP Sandbox</title>
+  <link rel="stylesheet" href="../../assets/font-awesome/all.css">
+</head>
+
+<body>
+  <header class="cbp-banner">
+    <div class="cbp-grid-container cbp-banner__title">
+      <img src="../assets/images/us_flag_small.png" alt="usa logo">
+      <div>
+        <span>An official website of the United States government.</span>
+        <button>Here&#39;s how you know.<i class="fas fa-angle-up"></i></button>
+      </div>
+    </div>
+
+    <div class="cbp-banner__content">
+      <div>
+        <i class="fas fa-landmark"></i>
+        <div>
+          <h6>Official websites use .gov</h6>
+          <p>A .gov website belongs to an official government organization in the United States.</p>
+        </div>
+      </div>
+      <div>
+        <i class="fas fa-lock"></i>
+        <div>
+          <h6>Secure .gov websites use HTTPS</h6>
+          <p>A lock (lock) or https:// means you&#39;ve safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <header class="cbp-header">
+    <div class="cbp-header__brand">
+      <img src="../assets/images/CBP_LOGO_HORIZONTAL_WHITE_TEXT.svg" alt="cbp brand logo" class="dh-sm-none">
+      <img src="../assets/images/CBP_SEAL.svg" alt="cbp brand logo" class="dh-lg-none">
+      <span class="dh-lg-none">CBP</span>
+    </div>
+    <div class="cbp-header__info dh-sm-none">
+      <a href="#" class="cbp-header__item" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i>App Directory</a>
+      <button class="cbp-header__item"><i class="fas fa-comment"></i>Feedback</button>
+      <button class="cbp-header__item"><i class="fas fa-user"></i>John Smithington</button>
+    </div>
+    <div class="cbp-header__info dh-lg-none">
+      <a href="#" class="cbp-header__item" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i></a>
+      <button class="cbp-header__item"><i class="fas fa-comment"></i></button>
+      <button class="cbp-header__item"><i class="fas fa-user"></i></button>
+    </div>
+  </header>
+  <nav class="cbp-application-header">
+    <button class="nav-home">Application Name</button>
+    <div class="cbp-nav-menu">
+      <div class="cbp-application-menus dh-sm-none">
+        <button class="cbp-menu-dropdown">Child Page 1<i class="fas fa-chevron-down"></i></button>
+        <button class="cbp-menu-dropdown">Child Page 2<i class="fas fa-chevron-down"></i></button>
+        <button class="cbp-menu-dropdown">Child Page 3<i class="fas fa-chevron-down"></i></button>
+      </div>
+      <div>
+        <!-- <button class="cbp-hamburger dh-sm-none">
+          <i class="fas fa-search"></i>
+        </button> -->
+        <button class="cbp-hamburger" data-drawer="open">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <nav class="cbp-drawer" data-drawer-align="left">
+    <div class="cbp-drawer__header">
+      <div>
+        <i class="fas fa-filter"></i>
+        <h6>Filter</h6>
+      </div>
+      <button>
+        <i class="fas fa-times-circle"></i>
+      </button>
+    </div>
+    <section class="cbp-drawer__content">
+      <ul class="cbp-drawer__nav">
+        <li class="cbp-drawer__nav-item--a">
+          <button>
+            <span>
+              <i class="fas fa-home"></i>
+              Default/Home Page (A)
+            </span>
+            <i class="fas fa-angle-up"></i>
+          </button>
+          <ul>
+            <li>
+              <button>Child Page 1 (B)</button>
+            </li>
+            <li>
+              <button>Child Page 2 (B)<i class="fas fa-angle-up"></i></button>
+              <ul>
+                <li>
+                  <button>
+                    Grandchild Page 1 (C)
+                    <i class="fas fa-caret-up"></i>
+                  </button>
+                  <ul>
+                    <li>
+                      <button>Great-Grandchild Page 1 (D)</button>
+                    </li>
+                    <li>
+                      <button>Great-Grandchild Page 2 (D)</button>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <button>Grandchild Page 2 (C)</button>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <button>
+            Sibling Page 1 (A)
+            <i class="fas fa-angle-up"></i>
+          </button>
+        </li>
+        <li>
+          <button>Sibling Page 2 (A)</button>
+        </li>
+        <li>
+          <button>Sibling Page 3 (A)</button>
+        </li>
+      </ul>
+    </section>
+  </nav>
+  <main>
+    <article class="cbp-grid-container">
+      <section class="cbp-row">
+        <div class="cbp-grid-col-full">
+          <h1>Accordion</h1>
+          <div>
+            <div class="cbp-accordion">
+              <div class="cbp-accordion__item">
+                <button class="cbp-accordion__title" aria-expanded="false" aria-controls="accordion-demo-1">
+                  <div>
+                    <i class="fas fa-angle-down"></i>
+                    <span>Adverse Events</span>
+                  </div>
+                  <div class="cbp-badge">
+                    <span class="cbp-text-badge">7</span>
+                  </div>
+                </button>
+                <div class="cbp-accordion__content" aria-labelledby="accordion-demo-1">
+                  <h6 class="cbp-text-heading-3xs text-italic">Most Recent to Oldest</h6>
+                  <hr>
+                  <ul class="cbp-list">
+                    <li>
+                      <b>1-555-555-5555</b>
+                      <div>
+                        <ul class="cbp-list__info">
+                          <li>
+                            <b>Type:</b> Mobile
+                          </li>
+                          <li>
+                            <b>Carrier:</b> Verizon
+                          </li>
+                          <li>
+                            <b>Locality:</b> Wallawall, Washington
+                          </li>
+                          <li>
+                            <b>Country Code:</b> 1 (United States)
+                          </li>
+                          <li>
+                            <b>Added:</b> 01/01/2021
+                          </li>
+                        </ul>
+          
+                        <button class="cbp-btn cbp-btn__secondary--outline">
+                          <i class="fas fa-phone"></i>
+                          call
+                        </button>
+                      </div>
+                    </li>
+                    
+                    <li>
+                      <b>1-555-555-5555</b>
+                      <div>
+                        <ul class="cbp-list__info">
+                          <li>
+                            <b>Type:</b> Mobile
+                          </li>
+                          <li>
+                            <b>Carrier:</b> Verizon
+                          </li>
+                          <li>
+                            <b>Locality:</b> Wallawall, Washington
+                          </li>
+                          <li>
+                            <b>Country Code:</b> 1 (United States)
+                          </li>
+                          <li>
+                            <b>Added:</b> 01/01/2021
+                          </li>
+                        </ul>
+          
+                        <button class="cbp-btn cbp-btn__secondary--outline">
+                          <i class="fas fa-phone"></i>
+                          call
+                        </button>
+                      </div>
+                    </li>
+          
+                    <li>
+                      <b>1-555-555-5555</b>
+                      <div>
+                        <ul class="cbp-list__info">
+                          <li>
+                            <b>Type:</b> Mobile
+                          </li>
+                          <li>
+                            <b>Carrier:</b> Verizon
+                          </li>
+                          <li>
+                            <b>Locality:</b> Wallawall, Washington
+                          </li>
+                          <li>
+                            <b>Country Code:</b> 1 (United States)
+                          </li>
+                          <li>
+                            <b>Added:</b> 01/01/2021
+                          </li>
+                        </ul>
+          
+                        <button class="cbp-btn cbp-btn__secondary--outline">
+                          <i class="fas fa-phone"></i>
+                          call
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="cbp-accordion__footer">
+                    <div class="cbp-page-list">
+                      <select name="" id="cbp-page-select">
+                        <option value="1">1/Page</option>
+                        <option value="2">2/Page</option>
+                        <option value="3">3/Page</option>
+                        <option value="4">4/Page</option>
+                        <option value="5">5/Page</option>
+                        <option value="6">6/Page</option>
+                        <option value="7">7/Page</option>
+                        <option value="8">8/Page</option>
+                        <option value="9">9/Page</option>
+                        <option selected="" value="10">10/Page</option>
+                      </select>
+          
+                      <nav class="cbp-pagination">
+                        <div class="cbp-page-list">
+                          <select name="" id="cbp-page-select">
+                            <option value="1">1 of 5</option>
+                            <option value="2">2 of 5</option>
+                            <option value="3">3 of 5</option>
+                            <option value="4">4 of 5</option>
+                            <option value="5">5 of 5</option>
+                          </select>
+                        </div>
+                        <ul class="cbp-pagination-number">
+                          <li class="cbp-pagination-down">
+                            <button type="button" disabled="">
+                              <i class="fas fa-chevron-left"></i>
+                            </button>
+                          </li>
+                          <li>
+                            <button class="active">1</button>
+                          </li>
+                          <li class="additonal-btn"><button>2</button></li>
+                          <li class="additonal-btn"><button>3</button></li>
+                          <li class="additonal-btn"><button>4</button></li>
+                          <li class="additonal-btn"><button>5</button></li>
+                          <li class="cbp-pagination-up">
+                            <button>
+                              <i class="fas fa-chevron-right"></i>
+                            </button>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cbp-accordion__item">
+                <button class="cbp-accordion__title cbp-accordion__title--danger" aria-expanded="false" aria-controls="accordion-demo-1">
+                  <div>
+                    <i class="fas fa-angle-down"></i>
+                    <span>Adverse Events</span>
+                  </div>
+                  <div class="cbp-badge">
+                    <span class="cbp-text-badge">7</span>
+                  </div>
+                </button>
+                <div class="cbp-accordion__content" aria-labelledby="accordion-demo-1">
+                  <h6 class="cbp-text-heading-3xs text-italic">Most Recent to Oldest</h6>
+                  <hr>
+                  <ul class="cbp-list">
+                    <li>
+                      <b>1-555-555-5555</b>
+                      <div>
+                        <ul class="cbp-list__info">
+                          <li>
+                            <b>Type:</b> Mobile
+                          </li>
+                          <li>
+                            <b>Carrier:</b> Verizon
+                          </li>
+                          <li>
+                            <b>Locality:</b> Wallawall, Washington
+                          </li>
+                          <li>
+                            <b>Country Code:</b> 1 (United States)
+                          </li>
+                          <li>
+                            <b>Added:</b> 01/01/2021
+                          </li>
+                        </ul>
+          
+                        <button class="cbp-btn cbp-btn__secondary--outline">
+                          <i class="fas fa-phone"></i>
+                          call
+                        </button>
+                      </div>
+                    </li>
+                    
+                    <li>
+                      <b>1-555-555-5555</b>
+                      <div>
+                        <ul class="cbp-list__info">
+                          <li>
+                            <b>Type:</b> Mobile
+                          </li>
+                          <li>
+                            <b>Carrier:</b> Verizon
+                          </li>
+                          <li>
+                            <b>Locality:</b> Wallawall, Washington
+                          </li>
+                          <li>
+                            <b>Country Code:</b> 1 (United States)
+                          </li>
+                          <li>
+                            <b>Added:</b> 01/01/2021
+                          </li>
+                        </ul>
+          
+                        <button class="cbp-btn cbp-btn__secondary--outline">
+                          <i class="fas fa-phone"></i>
+                          call
+                        </button>
+                      </div>
+                    </li>
+          
+                    <li>
+                      <b>1-555-555-5555</b>
+                      <div>
+                        <ul class="cbp-list__info">
+                          <li>
+                            <b>Type:</b> Mobile
+                          </li>
+                          <li>
+                            <b>Carrier:</b> Verizon
+                          </li>
+                          <li>
+                            <b>Locality:</b> Wallawall, Washington
+                          </li>
+                          <li>
+                            <b>Country Code:</b> 1 (United States)
+                          </li>
+                          <li>
+                            <b>Added:</b> 01/01/2021
+                          </li>
+                        </ul>
+          
+                        <button class="cbp-btn cbp-btn__secondary--outline">
+                          <i class="fas fa-phone"></i>
+                          call
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="cbp-accordion__footer">
+                    <div class="cbp-page-list">
+                      <select name="" id="cbp-page-select">
+                        <option value="1">1/Page</option>
+                        <option value="2">2/Page</option>
+                        <option value="3">3/Page</option>
+                        <option value="4">4/Page</option>
+                        <option value="5">5/Page</option>
+                        <option value="6">6/Page</option>
+                        <option value="7">7/Page</option>
+                        <option value="8">8/Page</option>
+                        <option value="9">9/Page</option>
+                        <option selected="" value="10">10/Page</option>
+                      </select>
+          
+                      <nav class="cbp-pagination">
+                        <div class="cbp-page-list">
+                          <select name="" id="cbp-page-select">
+                            <option value="1">1 of 5</option>
+                            <option value="2">2 of 5</option>
+                            <option value="3">3 of 5</option>
+                            <option value="4">4 of 5</option>
+                            <option value="5">5 of 5</option>
+                          </select>
+                        </div>
+                        <ul class="cbp-pagination-number">
+                          <li class="cbp-pagination-down">
+                            <button type="button" disabled="">
+                              <i class="fas fa-chevron-left"></i>
+                            </button>
+                          </li>
+                          <li>
+                            <button class="active">1</button>
+                          </li>
+                          <li class="additonal-btn"><button>2</button></li>
+                          <li class="additonal-btn"><button>3</button></li>
+                          <li class="additonal-btn"><button>4</button></li>
+                          <li class="additonal-btn"><button>5</button></li>
+                          <li class="cbp-pagination-up">
+                            <button>
+                              <i class="fas fa-chevron-right"></i>
+                            </button>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cbp-row">
+        <div class="cbp-grid-col-full">
+          <h1>Badges, Chips & Tags</h1>
+
+          <!-- BADGES -->
+          <div style="display: flex; margin-bottom: 1rem;">
+            <div class="cbp-badge margin-right-1">
+              <span class="cbp-text-badge">0</span>
+            </div>
+            <div class="cbp-badge margin-right-1">
+              <span class="cbp-text-badge">7</span>
+            </div>
+            <div class="cbp-badge margin-right-1">
+              <span class="cbp-text-badge">73</span>
+            </div>
+            <div>
+              <div class="cbp-badge margin-right-1">
+                <span class="cbp-text-badge">99+</span>
+              </div>
+            </div>
+            <div>
+              <div class="cbp-badge cbp-badge--danger">
+                <span class="cbp-text-badge">7</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAGS -->
+          <div style="margin-bottom: 1rem;">
+            <div class="cbp-tag margin-right-1">
+              <i class="fas fa-calendar"></i>
+              <span>06/22/21</span>
+            </div>
+    
+            <div class="cbp-tag cbp-tag--warning margin-right-1">
+              <i class="fas fa-exclamation-circle"></i>
+              <span>Warning</span>
+            </div>
+    
+            <div class="cbp-tag cbp-tag--success margin-right-1">
+              <i class="fas fa-check"></i>
+              <span>Online</span>
+            </div>
+    
+            <div class="cbp-tag cbp-tag--danger">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span>Danger</span>
+            </div>
+          </div>
+
+          <!-- TAGS W/ NO ICON -->
+          <div style="display: flex; margin-bottom: 1rem;">
+            <div class="cbp-tag margin-right-1">
+              <span>Hotlist</span>
+            </div>
+            <div class="cbp-tag cbp-tag--warning margin-right-1">
+              <span>Warning</span>
+            </div>
+            <div class="cbp-tag cbp-tag--success margin-right-1">
+              <span>Online</span>
+            </div>
+            <div class="cbp-tag cbp-tag--danger margin-right-1">
+              <span>Danger</span>
+            </div>
+          </div>
+
+          <!-- CHIPS -->
+          <div style="display: flex; margin-bottom: 1rem;">
+            <div class="cbp-chips margin-right-1">
+              <span>Hotlist</span>
+              <div class="plus-border">
+                <i class="fas fa-plus"></i>
+              </div>
+            </div>
+            <div class="cbp-chips cbp-chips--active">
+              <span>Hotlist</span>
+              <div class="plus-border">
+                <i class="fas fa-plus"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cbp-row">
+        <div class="cbp-grid-col-full">
+          <h1>Banner</h1>
+          <!-- USA BANNER -->
+          <header class="cbp-banner">
+            <div class="cbp-grid-container cbp-banner__title">
+              <img src="../assets/images/us_flag_small.png" alt="usa logo">
+              <div>
+                <span>An official website of the United States government.</span>
+                <button>Here&#39;s how you know.<i class="fas fa-angle-up"></i></button>
+              </div>
+            </div>
+        
+            <div class="cbp-banner__content">
+              <div>
+                <i class="fas fa-landmark"></i>
+                <div>
+                  <h6>Official websites use .gov</h6>
+                  <p>A .gov website belongs to an official government organization in the United States.</p>
+                </div>
+              </div>
+              <div>
+                <i class="fas fa-lock"></i>
+                <div>
+                  <h6>Secure .gov websites use HTTPS</h6>
+                  <p>A lock (lock) or https:// means you&#39;ve safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <!-- INFO BANNER -->
+          <div class="cbp-banner__info">
+            <div>
+              <div>
+                <i class="fas fa-exclamation"></i>
+                <h6 class="cbp-banner__info-title d-none-lg">Scheduled Maintenance Notice</h6>
+              </div>
+              <div>
+                <h6 class="cbp-banner__info-title d-none-sm">Scheduled Maintenance Notice</h6>
+                <p class="cbp-banner__text">This application will be undergoing scheduled maintenance from 10/15/22 - 10/31/22 from 12am - 3am and will be unavailable during these times.</p>
+              </div>
+              <button>
+                <i class="fas fa-times"></i>
+                Dismiss
+              </button>
+            </div>
+          </div>
+
+          <!-- SECURITY BANNER -->
+          <div class="cbp-banner__security">
+            <div>
+              <div>
+                <img src="../assets/images/cbp-icon/SECURITY ICON - TS SCI.svg" alt="security logo">
+                <h6 class="cbp-banner__info-title d-none-lg">
+                  <i class="fas fa-exclamation-triangle"></i> Infosec Classification: TS/SCI
+                </h6>
+              </div>
+              <div>
+                <h6 class="cbp-banner__info-title d-none-sm">
+                  <i class="fas fa-exclamation-triangle"></i> Infosec Classification: TS/SCI
+                </h6>
+                <p class="cbp-banner__text">
+                  This page contains information, in whole or part, that is marked <span class="cbp-text-bold cbp-text-italic">CLASSIFIED: TOP SECRET (TS)</span>. 
+                  If you are accessing this information from a non-classified device, stop what you are doing 
+                  immediately and contact your unit&#39;s security officer. 
+                  <a href="#" class="cbp-link__inline"><i class="fas fa-external-link-alt"></i> Learn More About INFOSEC</a>
+                </p>
+              </div>
+              <button>
+                <i class="fas fa-times"></i>
+                Dismiss
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cbp-row">
+        <div class="cbp-grid-col-full">
+          <h1>Breadcrumb</h1>
+          <!-- DEFAULT BREADCRUMB -->
+          <!-- Wrapper element needs to be display: block -->
+          <div>
+            <ul class="cbp-breadcrumb" data-breadcrumb="true">
+              <li class="cbp-breadcrumb__item">
+                <button class="cbp-breadcrumb__btn">
+                  <i class="fas fa-home"></i>
+                </button>
+              </li>
+              <li class="cbp-breadcrumb__item">
+                <a href="#">Child Page</a>
+              </li>
+              <li class="cbp-breadcrumb__item">
+                <a href="#">Grandchild Page</a>
+              </li>
+            </ul>
+            <h1 class="cbp-lastcrumb">Primary Passengers Application</h1>
+          </div>
+
+          <!-- CONDENSED BREADCRUMB -->
+          <!-- Wrapper element needs to be display: block -->
+          <div> 
+            <ul class="cbp-breadcrumb cbp-breadcrumb--condensed">
+              <li class="cbp-breadcrumb__item">
+                <button class="cbp-breadcrumb__btn">
+                  <i class="fas fa-home"></i>
+                </button>
+              </li>
+              <li class="cbp-breadcrumb__item">
+                <div class="cbp-overflow-menu__wrapper">
+                  <button class="cbp-breadcrumb__btn" id="btn3" onclick="openOverflowMenu('menu3', this)">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  <ul class="cbp-overflow-menu cbp-overflow-menu--top-left" id="menu3" data-menu-type="breadcrumb">
+                    <li class="cbp-overflow-menu__item">
+                      <a href="#"><i class="fas fa-home"></i>Home Page (A)</a>
+                    </li>
+                    <li class="cbp-overflow-menu__item">
+                      <a href="#"><i class="fas fa-arrow-right"></i>Child Page (B)</a>
+                    </li>
+                    <li class="cbp-overflow-menu__item">
+                      <a href="#"><i class="fas fa-arrow-right"></i>Grandchild Page (C)</a>
+                    </li>
+                    <li class="cbp-overflow-menu__item">
+                      <a href="#"><i class="fas fa-arrow-right"></i>Great-Grandchild Page (D)</a>
+                    </li>
+                    <li>
+                      <button class="cbp-overflow-menu__btn" onclick="closeOverflowMenu()"><i
+                          class="fas fa-times-circle"></i>Close</button>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="cbp-breadcrumb__item">
+                <a href="#">Grandchild Page</a>
+              </li>
+            </ul>
+            <h1 class="cbp-lastcrumb">Primary Passengers Application</h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUTTON -->
+      <section class="cbp-row">
+        <div class="cbp-grid-col-full">
+          <h1>Button</h1>
+          <div style="margin-bottom: 1rem;">
+            <!-- PRIMARY BUTTON -->
+            <button class="cbp-btn cbp-btn__primary">
+              <i class="fas fa-clipboard-check"></i>
+              vet passenger
+            </button>
+
+            <!-- PRIMARY OUTLINE BUTTON -->
+            <button class="cbp-btn cbp-btn__primary--outline">
+              <i class="fas fa-clipboard-check"></i>
+              vet passenger
+            </button>
+
+            <!-- PRIMARY GHOST BUTTON -->
+            <button class="cbp-btn cbp-btn__primary--ghost">
+              <i class="fas fa-clipboard-check"></i>
+              vet passenger
+            </button>
+
+            <!-- PRIMARY SQUARE BUTTON -->
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-primary">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+
+            <!-- PRIMARY SQUARE OUTLINE BUTTON -->
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-primary--outline">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+
+            <!-- PRIMARY SQUARE GHOST BUTTON -->
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-primary--ghost">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <!-- SECONDARY BUTTON -->
+            <button class="cbp-btn cbp-btn__secondary">
+              <i class="fas fa-clipboard-check"></i>
+              vet passenger
+            </button>
+
+            <!-- SECONDARY OUTLINE BUTTON -->
+            <button class="cbp-btn cbp-btn__secondary--outline">
+              <i class="fas fa-clipboard-check"></i>
+              vet passenger
+            </button>
+
+            <!-- SECONDARY GHOST BUTTON -->
+            <button class="cbp-btn cbp-btn__secondary--ghost">
+              <i class="fas fa-clipboard-check"></i>
+              vet passenger
+            </button>
+
+            <!-- SECONDARY SQUARE BUTTON -->
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+
+            <!-- SECONDARY SQUARE OUTLINE BUTTON -->
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary--outline">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+
+            <!-- SECONDARY SQUARE GHOST BUTTON -->
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary--ghost">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <!-- DANGER BUTTON -->
+            <button class="cbp-btn cbp-btn__danger">
+              <i class="fas fa-trash-alt"></i>
+              delete
+            </button>
+
+            <!-- DANGER OUTLINE BUTTON -->
+            <button class="cbp-btn cbp-btn__danger--outline">
+              <i class="fas fa-trash-alt"></i>
+              delete
+            </button>
+
+            <!-- DANGER GHOST BUTTON -->
+            <button class="cbp-btn cbp-btn__danger--ghost">
+              <i class="fas fa-trash-alt"></i>
+              delete
+            </button>
+
+            <!-- DANGER SQUARE BUTTON -->
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-danger">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+
+            <!-- DANGER SQUARE OUTLINE BUTTON -->
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-danger--outline">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+
+            <!-- DANGER SQUARE GHOST BUTTON -->
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-danger--ghost">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+          </div>
+
+          <div style="display: flex; margin-bottom: 1rem;">
+            <!-- FLOATING ACTION BUTTON -->
+            <button class="cbp-btn cbp-btn__primary cbp-btn__primary--float">
+              <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            <!-- SECONDARY ACTION BUTTON -->
+            <button class="cbp-btn cbp-btn__secondary cbp-btn__secondary--float">
+              <i class="fas fa-arrow-up"></i>
+            </button>
+          </div>
+
+          <div style="display: flex; margin-bottom: 1rem;">
+            <!-- TEXT LINK -->
+            <a href="#" class="cbp-link__inline" aria-disabled="false">Text Link</a>
+          </div>
+
+          <div style="display: flex; margin-bottom: 1rem;">
+            <!-- SINGLE-SELECT SEGMENTED TEXT BUTTONS -->
+            <div class="cbp-btn--segment" data-segment-button="single">
+              <button>Small</button>
+              <button>Medium</button>
+              <button>Large</button>
+            </div>
+          </div>
+
+          <div style="display: flex; margin-bottom: 1rem;">
+            <!-- MULTI-SELECT SEGMENTED TEXT BUTTONS -->
+            <div class="cbp-btn--segment" data-segment-button="multi">
+              <button>Sauce</button>
+              <button>Cheese</button>
+              <button>Crust</button>
+              <button>Toppings</button>
+            </div>
+          </div>
+
+          <div style="display: flex; margin-bottom: 1rem;">
+            <!-- ICON SEGMENTED TEXT BUTTONS -->
+            <div class="cbp-btn--segment" data-segment-button="multi">
+              <button><i class="fas fa-bold"></i></button>
+              <button><i class="fas fa-italic"></i></button>
+              <button><i class="fas fa-underline"></i></button>
+              <button><i class="fas fa-list-ol"></i></button>
+              <button><i class="fas fa-list"></i></button>
+              <button><i class="fas fa-superscript"></i></button>
+              <button><i class="fas fa-subscript"></i></button>
+              <button><i class="fas fa-eye-dropper"></i></button>
+            </div>
+          </div>
+          
+          <div style="display: flex; margin-bottom: 1rem;">
+            <!-- CALL-TO-ACTION (CTA) BUTTON -->
+            <button class="cbp-btn cbp-btn__cta">
+              <i class="fas fa-arrow-right"></i>
+              learn more
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUTTON -->
+      <section class="cbp-row">
+        <div class="cbp-grid-col-full">
+          <h1>Button</h1>
+
+          <!-- PROFILE CARD -->
+          <div class="cbp-card cbp-card--danger">
+            <div class="cbp-card__content">
+              <div class="cbp-card__img">
+                <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="card general image" />
+              </div>
+              <div class="cbp-card__flag">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h4>Jimbo Thompson</h4>
+              </div>
+              <div class="cbp-card__body">
+                <div class="cbp-row" style="margin-bottom: 8px;">
+                  <b>Sex:</b>&nbsp;<span style="margin-right: 18px;">Male</span>
+                  <b>DOB:</b>&nbsp;<span>01/01/1980</span>
+                </div>
+                <div class="cbp-row" style="margin-bottom: 8px;">
+                  <b>Citizenship:</b>&nbsp;<span>United States of American</span>
+                </div>
+                <div class="cbp-row">
+                  <b>Place of Birth:</b>&nbsp;<span>New York, New York USA</span>
+                </div>
+              </div>
+            </div>
+            <div class="cbp-card__buttons cbp-card__buttons--single">
+              <button><i class="fas fa-eye"></i>View Profile</button>
+            </div>
+          </div>
+          
+          <!-- EXAMPLE CARD -->
+          <div class="cbp-card">
+            <div class="cbp-card__content">
+              <div class="cbp-card__img">
+                <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="card general image" />
+              </div>
+              <div class="cbp-card__flag">
+                <i class="fas fa-vector-square"></i>
+                <h4>Cypress Pass</h4>
+              </div>
+              <div class="cbp-card__body">
+                <div class="cbp-row" style="margin-bottom: 8px;">
+                  <h6 class="cbp-heading-xs">Port of Arrival</h6>
+                </div>
+                <div class="cbp-row" style="margin-bottom: 12px;">
+                  <span>Jacksonville, FL&nbsp;|&nbsp;</span>
+                  <span>1/2/2018&nbsp;|&nbsp;</span>
+                  <span>12:00 EST</span>
+                </div>
+                <div class="cbp-row" style="margin-bottom: 8px;">
+                  <h6 class="cbp-heading-xs">Port of Departure</h6>
+                </div>
+                <div class="cbp-row" style="margin-bottom: 12px;">
+                  <span>Tincan/Lagos, NG&nbsp;|&nbsp;</span>
+                  <span>1/2/2018&nbsp;|&nbsp;</span>
+                  <span>12:00 EST</span>
+                </div>
+                <div class="cbp-row" style="margin-bottom: 8px;">
+                  <div class="cbp-grid-col-2-sm cbp-grid-col-4-md cbp-grid-col-6-lg" style="margin: 0 !important;">
+                    <b>Voyage:</b>&nbsp;<span>6</span>
+                    <b>Crew:</b>&nbsp;<span>8</span>
+                    <b>Containers:</b>&nbsp;<span>253</span>
+                  </div>
+          
+                  <div class="cbp-grid-col-2-sm cbp-grid-col-4-md cbp-grid-col-6-lg" style="margin-right: 0 !important;">
+                    <b>Passenger:</b>&nbsp;<span>55425TV</span>
+                    <b>Engine:</b>&nbsp;<span>Under Power</span>
+                    <b>Filing(s) Status:</b>&nbsp;<span>Yes</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cbp-card__buttons cbp-card__buttons--single">
+              <button><i class="fas fa-eye"></i>View Profile</button>
+            </div>
+          </div>
+
+          <div class="cbp-card">
+            <div class="cbp-card__content">
+              <div class="cbp-card__body">
+                <div class="cbp-card__header">
+                  <div>
+                    <i class="fas fa-circle"></i>
+                    <h4 class="cbp-card__title">Decision Card 1</h4>
+                  </div>
+                  <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary--ghost">
+                    <i class="fas fa-clipboard-check"></i>
+                  </button>
+                </div>
+                <p class="cbp-text-body">
+                  The card has this passage of example text to emphasize
+                  truncation and reveal functionality and some other things...
+                </p>
+                <div class="cbp-row">
+                  <button class="cbp-btn cbp-btn__secondary--ghost">
+                    <i class="fas fa-angle-down"></i>
+                    More
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="cbp-card__buttons cbp-card__buttons--single">
+              <button><i class="fas fa-external-link-alt"></i>Go To App</button>
+            </div>
+            <div class="cbp-card__buttons cbp-card__buttons--double">
+              <button><i class="fas fa-info-circle"></i>App Info</button>
+              <button><i class="fas fa-external-link-alt"></i>Go To App</button>
+            </div>
+            <div class="cbp-card__buttons cbp-card__buttons--triple">
+              <button><i class="fas fa-trash-alt"></i>Delete</button>
+              <button><i class="fas fa-times"></i>Cancel</button>
+              <button><i class="fas fa-save"></i>Publish</button>
+            </div>
+          </div>
+        
+          <!-- CARD GENERAL -->
+          <!-- cbp-card__danger -->
+          <div class="cbp-card__general">
+            <div class="cbp-card__body">
+              <div class="cbp-card__header">
+                <div>
+                  <i class="fas fa-info"></i>
+                  <h4>General Card</h4>
+                </div>
+              </div>
+              <p class="cbp-text-body">Here is an example of some supplementary text for this purely informational card</p>
+            </div>
+          </div>
+        
+          <div class="cbp-card__general">
+            <div class="cbp-card__img">
+              <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="card general image">
+            </div>
+            <div class="cbp-card__body">
+              <div class="cbp-card__header">
+                <div>
+                  <i class="fas fa-info"></i>
+                  <h4 class="cbp-card__title">General Card</h4>
+                </div>
+              </div>
+              <p class="cbp-text-body">Here is an example of some supplementary text for this purely informational card</p>
+            </div>
+          </div>
+        
+          <div class="cbp-card__general">
+            <div class="cbp-card__img">
+              <i class="fas fa-building"></i>
+            </div>
+            <div class="cbp-card__body">
+              <div class="cbp-card__header">
+                <h4 class="cbp-card__title">4784 Tulip Rd.</h4>
+              </div>
+              <p class="cbp-text-body">Here is an example of some supplementary text <br> for this purely informational card</p>
+            </div>
+          </div>
+        
+          <!-- CARD BANNER  -->
+          <!-- .cbp-card__banner--info, .cbp-card__banner--success, .cbp-card__banner--danger -->
+          <div class="cbp-card__banner">
+            <h4><i class="fas fa-info"></i>General Card</h4>
+            <div class="cbp-card__body">
+              <p class="cbp-text-body" style="margin: 0">Here is an example of some supplementary text for this purely
+                informational card</p>
+            </div>
+          </div>
+        
+          <!-- CARD LINK -->
+          <!-- cbp-card__link--danger -->
+          <a href="#" class="cbp-card__link">
+            <div class="cbp-card__body">
+              <div class="cbp-card__header">
+                <div>
+                  <i class="fas fa-info"></i>
+                  <h4 class="cbp-card__title">General Card</h4>
+                </div>
+                <i class="fas fa-arrow-circle-right"></i>
+              </div>
+              <p class="cbp-text-body">Here is an example of some supplementary text for this purely informational card</p>
+            </div>
+          </a>
+        
+          <a href="#" class="cbp-card__link cbp-card__link--danger">
+            <div class="cbp-card__img">
+              <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="card general image">
+            </div>
+            <div class="cbp-card__body">
+              <div class="cbp-card__header">
+                <div>
+                  <i class="fas fa-info"></i>
+                  <h4 class="cbp-card__title">General Card</h4>
+                </div>
+                <i class="fas fa-arrow-circle-right"></i>
+              </div>
+              <p class="cbp-text-body">Here is an example of some supplementary text for this purely informational card</p>
+            </div>
+          </a>
+        
+          <a href="#" class="cbp-card__link">
+            <div class="cbp-card__img">
+              <i class="fas fa-building"></i>
+            </div>
+            <div class="cbp-card__body">
+              <div class="cbp-card__header">
+                <div>
+                  <h4 class="cbp-card__title">4784 Tulip Rd.</h4>
+                </div>
+                <i class="fas fa-arrow-circle-right"></i>
+              </div>
+              <p class="cbp-text-body">Here is an example of some supplementary text for this purely informational card</p>
+            </div>
+          </a>
+        
+          <!-- CARD RADIO BUTTON  -->
+          <label for="card-radio-demo" class="cbp-card__radio">
+            <div class="cbp-card__body">
+              <div class="cbp-card__header">
+                <div>
+                  <i class="fas fa-info"></i>
+                  <h4 class="cbp-card__title">General Card</h4>
+                </div>
+                <div class="form-radio">
+                  <input type="radio" name="card-radio-demo" id="card-radio-demo" class="cbp-form__radio">
+                </div>
+              </div>
+              <p class="cbp-text-body">Here is an example of some supplementary text for this purely informational card</p>
+            </div>
+          </label>
+        
+          <!-- CARD CHECKBOX BUTTON  -->
+          <label for="card-checkbox-demo" class="cbp-card__checkbox cbp-card__checkbox--danger">
+            <div class="cbp-card__body">
+              <div class="cbp-card__header">
+                <div>
+                  <i class="fas fa-info"></i>
+                  <h4 class="cbp-card__title">General Card</h4>
+                </div>
+                <div class="form-radio">
+                  <input type="checkbox" name="card-checkbox-demo" class="cbp-form__checkbox" id="card-checkbox-demo">
+                </div>
+              </div>
+              <p class="cbp-text-body">Here is an example of some supplementary text for this purely informational card</p>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section class="cbp-row">
+        <div class="cbp-grid-col-6-sm cbp-grid-col-6-md cbp-grid-col-6-lg cbp-grid-col-6-xl">
+          <h1>Dropdown</h1>
+          <div class="cbp-form-wrapper">
+            <label for="pod2" class="cbp-form__label">Variant Selector</label>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i
+                class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+            <div class="cbp-dropdown__wrapper" id="dropdown-demo-2">
+              <button class="cbp-dropdown__custom" id="port-dropdown" data-toggle="dropdown">
+                <span class="cbp-dropdown__placeholder">Choose Variant</span>
+              </button>
+              <div class="cbp-dropdown" id="custom-dropdown-menu">
+                <a href="#" class="cbp-dropdown__item">Single Button Card</a>
+                <a href="#" class="cbp-dropdown__item">Dual Button Card</a>
+                <a href="#" class="cbp-dropdown__item">Three Button Card</a>
+                <a href="#" class="cbp-dropdown__item">General Card</a>
+                <a href="#" class="cbp-dropdown__item">Clickable Card</a>
+                <a href="#" class="cbp-dropdown__item">Single Select Card (Radio)</a>
+                <a href="#" class="cbp-dropdown__item">Multi-Select Card (Checkbox)</a>
+                <a href="#" class="cbp-dropdown__item">Banner Card</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cbp-form-wrapper">
+            <label for="pod2" class="cbp-form__label">Port(s) of Departure</label>
+            <span class="cbp-form__description">
+              Required.
+            </span>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i
+                class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+            <div class="cbp-dropdown-wrapper" id="dropdown-demo-3">
+              <button class="cbp-dropdown__custom" id="ports-dropdown" data-toggle="dropdown">
+                <span class="cbp-dropdown__placeholder">Choose Ports</span>
+              </button>
+              <div class="cbp-dropdown" id="custom-dropdown-menu">
+                <label class="cbp-dropdown__item cbp-dropdown__item--multiselect">
+                  <input type="checkbox" value="22" autocomplete="off">
+                  Port of Balitmore
+                </label>
+                <label class="cbp-dropdown__item cbp-dropdown__item--multiselect">
+                  <input type="checkbox" value="82" autocomplete="off">
+                  Port of Newark
+                </label>
+                <label class="cbp-dropdown__item cbp-dropdown__item--multiselect">
+                  <input type="checkbox" value="11" autocomplete="off">
+                  Port of Washington
+                </label>
+                <label class="cbp-dropdown__item cbp-dropdown__item--multiselect">
+                  <input type="checkbox" value="667" autocomplete="off">
+                  Port of Zoolily
+                </label>
+                <label class="cbp-dropdown__item cbp-dropdown__item--multiselect">
+                  <input type="checkbox" value="2" autocomplete="off">
+                  Port of Boston
+                </label>
+                <label class="cbp-dropdown__item cbp-dropdown__item--multiselect">
+                  <input type="checkbox" value="65" autocomplete="off">
+                  Port of San Ysidro
+                </label>
+                <label class="cbp-dropdown__item cbp-dropdown__item--multiselect">
+                  <input type="checkbox" value="87" autocomplete="off">
+                  Port of San Diego
+                </label>
+                <label class="cbp-dropdown__item cbp-dropdown__item--multiselect">
+                  <input type="checkbox" value="998" autocomplete="off">
+                  Port of Rhode Island
+                </label>
+                <label class="cbp-dropdown__item cbp-dropdown__item--multiselect">
+                  <input type="checkbox" value="423" autocomplete="off">
+                  Port of Galveston
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cbp-grid-col-6-sm cbp-grid-col-6-md cbp-grid-col-6-lg cbp-grid-col-6-xl"></div>
+      </section>
+      
+      <section class="cbp-row">
+        <div class="cbp-grid-col-full">
+          <h1>Expand</h1>
+          <!-- EXPAND 1 -->
+          <div class="cbp-expand">
+            <div class="cbp-expand__title">
+              <button>
+                <i class="fas fa-caret-down"></i>
+              </button>
+              <span>
+                This is a question about where frogs live.
+              </span>
+            </div>
+            <div class="cbp-expand__content">
+              <ul class="cbp-expand__list">
+                <li>There are different species of frogs and some make great pets!</li>
+                <li>Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com"
+                    class="cbp-text-link" target="_blank" rel="noopener noreferrer">petstore.com</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- EXPAND 2 -->
+          <div class="cbp-expand">
+            <div class="cbp-expand__title">
+              <button>
+                <i class="fas fa-caret-down"></i>
+              </button>
+              <span>
+                This is a question about where frogs live.
+              </span>
+            </div>
+            <div class="cbp-expand__content">
+              <ul class="cbp-expand__list">
+                <li>Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com"
+                    target="_blank" rel="noopener noreferrer">petstore.com</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- EXPAND 3 -->
+          <div class="cbp-expand">
+            <div class="cbp-expand__title">
+              <button>
+                <i class="fas fa-caret-down"></i>
+              </button>
+              <span>
+                Some facts about dinosaurs and their eating habits that you should teach your kids.
+              </span>
+            </div>
+            <div class="cbp-expand__content">
+              <ul class="cbp-expand__list">
+                <li>Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com"
+                    target="_blank" rel="noopener noreferrer">petstore.com</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cbp-row">
+        <div class="cbp-grid-col-6-sm cbp-grid-col-6-md cbp-grid-col-6-lg cbp-grid-col-6-xl">
+          <h1>Form</h1>
+          <!-- FILE UPLOAD (INPUT) COMPONENT -->
+          <div class="cbp-form-wrapper" id="fileupload-demo">
+            <label class="cbp-form__label">Upload Files</label>
+            <label class="cbp-form__label cbp-form__label--error" hidden><i
+                class="fas fa-exclamation-triangle"></i>&nbsp;Upload Files</label>
+            <span class="cbp-form__description">Accepted files: .doc, .docx, .pdf, .jpg, .png, .gif. Max File size 10mb per
+              file. Up to 5 files may be uploaded.</span>
+            <label for="file-upload-demo" class="cbp-form__file">
+              <i class="fas fa-file-alt"></i>
+              Drag & Drop Files Here or
+              <button class="cbp-btn cbp-btn__secondary" tabindex="-1">
+                <i class="fas fa-upload"></i>
+                browse
+              </button>
+              <input type="file" name="file-upload-demo" id="file-upload-demo" multiple>
+            </label>
+            <!-- <div class="cbp-form__upload">
+            <span>super_duper-fun_times_at_the_beach.jpg</span>
+            <button><i class="fa fa-times" aria-hidden="true"></i></button>
+            <progress value="70" max="100">70 %</progress>
+          </div> -->
+            <div class="cbp-form__upload cbp-form__upload--error" style="display: none;">
+              <div>
+                <span>super_duper-fun_times_at_the_beach.jpg</span>
+                <button><i class="fa fa-times" aria-hidden="true"></i></button>
+              </div>
+              <hr>
+              <span>
+                <i class="fas fa-exclamation-triangle"></i>File size exceeds the limit.
+              </span>
+            </div>
+          </div>
+      
+          <!-- UPLOAD COMPONENT (ITEM) -->
+          <div class="cbp-form__upload">
+            <span>super_duper-fun_times_at_the_beach.jpg</span>
+            <button><i class="fa fa-times" aria-hidden="true"></i></button>
+            <progress value="70" max="100">70 %</progress>
+          </div>
+      
+          <!-- UPLOAD ERROR COMPONENT (ITEM) -->
+          <div class="cbp-form__upload cbp-form__upload--error" style="display: none;">
+            <div>
+              <span>super_duper-fun_times_at_the_beach.jpg</span>
+              <button><i class="fa fa-times" aria-hidden="true"></i></button>
+            </div>
+            <hr>
+            <span>
+              <i class="fas fa-exclamation-triangle"></i>File size exceeds the limit.
+            </span>
+          </div>
+        </div>
+      </section>
+      
+      <section class="cbp-row">
+        <div class="cbp-grid-col-6-sm cbp-grid-col-6-md cbp-grid-col-6-lg cbp-grid-col-6-xl">
+          <h1>Form</h1>
+          <!-- TEXT INPUT -->
+          <div class="cbp-form-wrapper">
+            <label for="firstName" class="cbp-form__label">First Name</label>
+            <span class="cbp-form__description">
+              Required. <span id="char-count-2" data-char-counter="true">250</span>/250 Characters remaining.
+            </span>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+            <input type="text" class="cbp-form__input" name="firstName" id="firstName" maxlength="250" oninput="countChar('char-count-2', event)" placeholder="Enter first name">
+          </div>
+
+          <!-- TEXT AREA -->
+          <div class="cbp-form-wrapper">
+            <label for="firstName" class="cbp-form__label">Description</label>
+            <span class="cbp-form__description">Required. <span id="char-count">500</span>/500 Characters remaining.</span>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;You must make a selection</span>
+            <textarea class="cbp-form__textarea" name="description" id="description" cols="30" rows="10" maxlength="500" oninput="countChar('char-count', event)" placeholder="Enter a description"></textarea>
+          </div>
+
+          <!-- PASSWORD (HASH) FIELD -->
+          <div class="cbp-form-wrapper">
+            <label for="password" class="cbp-form__label">Password</label>
+            <span class="cbp-form__description">Required.</span>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This password does not match our records</span>
+            <div class="cbp-form__password">
+              <input type="password" name="password" id="password" placeholder="Enter Password"></input>
+              <button type="button">
+                <i class="fas fa-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- INPUT GROUP 1 -->
+          <div class="cbp-form-wrapper">
+            <label for="password" class="cbp-form__label">Add Tags</label>
+            <span class="cbp-form__description">Required.</span>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This password does not match our records</span>
+            <div class="cbp-form__password">
+              <input type="text" name="tag" id="tag" placeholder="Enter Password"></input>
+              <button type="button">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- SIMPLE NUMERIC FIELD -->
+          <div class="cbp-form-wrapper">
+            <label for="number" class="cbp-form__label">Number of Fish</label>
+            <span class="cbp-form__description">Required.</span>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+            <div class="cbp-form__number">
+              <input type="number" name="numeric" id="numeric" placeholder="Enter Number of Fish"></input>
+            </div>
+          </div>
+
+          <!-- NUMERIC COUNTER FIELD -->
+          <div class="cbp-form-wrapper">
+            <label for="number" class="cbp-form__label">Number of Fish</label>
+            <span class="cbp-form__description">Required.</span>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+            <div class="cbp-form__number cbp-form__number--counter" id="number-counter">
+              <input type="number" name="numeric-counter" id="numeric-counter" placeholder="Enter Number of Fish"></input>
+              <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary" id="decrement">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary" id="increment">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- NUMERIC SWITCH FIELD -->
+          <div class="cbp-form-wrapper">
+            <label for="number" class="cbp-form__label">Your Weight</label>
+            <span class="cbp-form__description">Required.</span>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+            <div class="cbp-form__number cbp-form__number--switch" id="demo-switch">
+              <div>
+                <input type="number" name="numeric-switch" id="numeric-switch" placeholder="Enter Weight"></input>
+                <div class="cbp-form__unit">lbs</div>
+              </div>
+              <div class="cbp-btn--segment">
+                <button class="active">LBS</button>
+                <button>KG</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cbp-grid-col-6-sm cbp-grid-col-6-md cbp-grid-col-6-lg cbp-grid-col-6-xl"></div>
+      </section>
+
+      <section class="cbp-row">
+        <div class="cbp-grid-col-6-sm cbp-grid-col-6-md cbp-grid-col-6-lg cbp-grid-col-6-xl">
+          <h1>Form Controls</h1>
+          <!-- CHECKBOX FIELD -->
+          <form action="submit">
+            <div class="cbp-form-wrapper">
+              <label for="number" class="cbp-form__label">Pizza Toppings</label>
+              <span class="cbp-form__description">Required. Choose as many as you like.</span>
+              <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+              <div class="cbp-form__control" id="check-wrapper">
+                <div class="form-check">
+                  <input type="checkbox" name="checkbox1" class="cbp-form__checkbox">
+                  <label for="checkbox1">Bacon</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" name="checkbox2" class="cbp-form__checkbox">
+                  <label for="checkbox1">Pepperoni</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" name="checkbox3" class="cbp-form__checkbox">
+                  <label for="checkbox1">Sausage</label>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <!-- INDETERMINATE CHECKBOX -->
+          <form action="submit">
+            <div class="cbp-form-wrapper">
+              <label for="number" class="cbp-form__label">Pizza Toppings</label>
+              <span class="cbp-form__description">Required. Choose as many as you like.</span>
+              <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+              <div class="cbp-form__control" id="indy-wrapper">
+                <div class="form-check">
+                  <input type="checkbox" name="toppings" class="cbp-form__checkbox" id="all-toppings">
+                  <label for="all-toppings">All Toppings</label>
+                </div>
+                <div class="cbp-form__control--nested">
+                  <div class="form-check">
+                    <input type="checkbox" name="toppings" id="checkbox2" class="cbp-form__checkbox">
+                    <label for="checkbox2">Olives</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" name="toppings" id="checkbox3" class="cbp-form__checkbox">
+                    <label for="checkbox3">Pineapple</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" name="toppings" id="checkbox4" class="cbp-form__checkbox">
+                    <label for="checkbox4">Sardines</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <!-- RADIO BUTTON FIELD -->
+          <form action="submit">
+            <div class="cbp-form-wrapper">
+              <label for="number" class="cbp-form__label">Pizza Toppings</label>
+              <span class="cbp-form__description">Required. Choose as many as you like.</span>
+              <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+              <div class="cbp-form__control" id="radio-wrapper">
+                <div class="form-radio">
+                  <input type="radio" name="pizza-radio" class="cbp-form__radio" id="pepperoni">
+                  <label for="pepperoni">Pepperoni</label>
+                </div>
+                <div class="form-radio">
+                  <input type="radio" name="pizza-radio" class="cbp-form__radio" id="sardines">
+                  <label for="sardines">Sardines</label>
+                </div>
+                <div class="form-radio">
+                  <input type="radio" name="pizza-radio" class="cbp-form__radio" id="olives">
+                  <label for="olives">Olives</label>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <!-- TOGGLE FIELD -->
+          <div class="cbp-form-wrapper">
+            <h4><i class="fas fa-user"></i> User Preferences</h4>
+            <div class="cbp-toggle__wrapper">
+              <label for="wi-fi" class="cbp-toggle__label">Wi-Fi Connection</label>
+              <label class="cbp-toggle" data-component="cbp-toggle">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+              <span>On</span>
+            </div>
+            <div class="cbp-toggle__wrapper">
+              <label for="cell-data" class="cbp-toggle__label">Cellular Data</label>
+              <label class="cbp-toggle" data-component="cbp-toggle">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+              <span>On</span>
+            </div>
+            <div class="cbp-toggle__wrapper">
+              <label for="bluetooth" class="cbp-toggle__label">Bluetooth</label>
+              <label class="cbp-toggle" data-component="cbp-toggle">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+              <span>On</span>
+            </div>
+            <div class="cbp-toggle__wrapper">
+              <label for="dnd" class="cbp-toggle__label">Do Not Disturb</label>
+              <label class="cbp-toggle" data-component="cbp-toggle">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+              <span>Off</span>
+            </div>
+            <div class="cbp-toggle__wrapper">
+              <label for="airplane-mode" class="cbp-toggle__label">Airplane Mode</label>
+              <label class="cbp-toggle" data-component="cbp-toggle">
+                <input type="checkbox">
+                <span class="slider"></span>
+              </label>
+              <span>Off</span>
+            </div>
+          </div>
+
+          <!-- CONTINUOUS SLIDER -->
+          <form action="submit">
+            <div class="cbp-form-wrapper">
+              <label for="number" class="cbp-form__label">Volume</label>
+              <div class="cbp-form__control cbp-form__control--range" id="demo-slider">
+                <i class="fas fa-volume-down"></i>
+                <input type="range" name="volume" id="volume" max="100" min="0" value="88" data-slider="continuous">
+                <i class="fas fa-volume-up"></i>
+              </div>
+            </div>
+          </form>
+
+          <!-- VALUE SLIDER -->
+          <form action="submit">
+            <div class="cbp-form-wrapper">
+              <label for="number" class="cbp-form__label">How many turnips you want?</label>
+              <div class="cbp-form__control cbp-form__control--value" id="demo-value-slider">
+                <span>0</span>
+                <input type="range" name="value-slider" id="value-slider" max="100" min="0" value="15" step="1"  data-slider="value">
+                <span>100</span>
+                <div class="cbp-form__number">
+                  <input type="number" class="value-slider" name="value-slider-input" id="value-slider-input" value="15" autocomplete="off">
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <!-- RANGE SLIDER -->
+          <form action="submit">
+            <div class="cbp-form-wrapper">
+              <label for="number" class="cbp-form__label">Price Range for Turnips</label>
+              <div class="cbp-form__control cbp-form__control--range" id="demo-multi-thumb">
+                <div class="cbp-form__number">
+                  <input type="number" name="lower-range" id="lower-range">
+                </div>
+                <span>0</span>
+                <div class="range-wrapper">
+                  <input type="range" name="range-slider" id="range-slider" max="100" min="0" value="25">
+                  <input type="range" name="range-slider" id="range-slider" max="100" min="0" value="75">
+                </div>
+                <span>100</span>
+                <div class="cbp-form__number">
+                  <input type="number" name="upper-range" id="upper-range" value="75">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="cbp-grid-col-6-sm cbp-grid-col-6-md cbp-grid-col-6-lg cbp-grid-col-6-xl"></div>
+      </section>
+
+      <section class="cbp-row">
+        <div class="cbp-grid-col-6-sm cbp-grid-col-6-md cbp-grid-col-6-lg cbp-grid-col-6-xl">
+          <h1>Input Group</h1>
+          <!-- INPUT TEXT GROUP -->
+          <div class="cbp-form-wrapper">
+            <label for="password" class="cbp-form__label">Add Person to List</label>
+            <span class="cbp-form__description">Required.</span>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+            <div class="cbp-field-group" id="demo-button-text-field">
+              <input type="text" name="tag" id="tag" placeholder="Add Person"></input>
+              <button type="button">
+                Add Person
+              </button>
+            </div>
+          </div>
+
+          <!-- INPUT GROUP W/ TAGS -->
+          <div class="cbp-form-wrapper">
+            <label for="password" class="cbp-form__label">Add Tags</label>
+            <span class="cbp-form__description">Required.</span>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This password does not match our records</span>
+            <div class="cbp-field-group" id="demo-square-button-field">
+              <input type="text" name="tag" id="tag" placeholder="Add Tag Keyword"></input>
+              <button type="button" class="square">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <div class="bacon-tags" style="display: flex;">
+              <div class="cbp-chips" style="margin-right: 8px;">
+                <span>Pepperoni</span>
+                <div class="plus-border">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+              <div class="cbp-chips">
+                <span>Mushroom</span>
+                <div class="plus-border">
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DEFAULT SEARCH FIELD -->
+          <div class="cbp-form-wrapper">
+            <label for="password" class="cbp-form__label">Search</label>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This password does not match our records</span>
+            <div class="cbp-field-group" id="demo-square-button-field">
+              <input type="text" name="tag" id="tag" placeholder="Enter Search Criteria"></input>
+              <button type="button" class="square">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- SEARCH PREDICTIVE TEXT -->
+          <div class="cbp-form-wrapper">
+            <label for="password" class="cbp-form__label">Search</label>
+            <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This password does not match our records</span>
+            <form autocomplete="off" style="margin: 0;">
+              <div class="cbp-field-group autocomplete">
+                <input type="text" name="myInput" id="myInput" placeholder="Enter Search Criteria"></input>
+                <button type="button" class="square">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      
+      <section class="cbp-row">
+        <div class="cbp-grid-col-full">
+          <h1>Modals</h1>
+          <!-- Modals -->
+
+          <!-- Acknowledgement Modal  -->
+          <button class="cbp-btn cbp-btn__primary" data-modal-target="modal-one" onclick="openModal('modal-one', this)">Acknowledgement Modal</button><br>
+          <div class="cbp-hidden" id="modal-one" role="dialog" aria-labelledby="modal-one-label" aria-modal="true">
+            <div class="cbp-modal__header">
+              <h5 class="cbp-modal__title" id="modal-one-label">Terms of Service Update</h5>
+            </div>
+            <hr>
+            <div class="cbp-modal__content">
+              <p>There was a change to our terms of service. Continued use of this system constitutes acceptance of these terms.
+              </p>
+            </div>
+            <div class="cbp-modal__footer cbp-modal__footer--single">
+              <button class="cbp-btn cbp-btn__primary" onclick="closeModal(this)">
+                <i class="fas fa-check"></i>
+                accept
+              </button>
+            </div>
+          </div>
+
+          <!-- Confirmation Modal  -->
+          <button class="cbp-btn cbp-btn__primary" data-modal-target="confirmation-modal" onclick="openModal('confirmation-modal', this)">Confirmation Modal</button><br>
+          <div class="cbp-hidden" id="confirmation-modal" role="dialog" aria-labelledby="confirmation-modal-label"
+            aria-modal="true">
+            <div class="cbp-modal__header">
+              <i class="fas fa-check"></i>
+              <h5 class="cbp-modal__title" id="confirmation-modal-label">Confirm</h5>
+            </div>
+            <hr>
+            <div class="cbp-modal__content">
+              <p>Are you sure you want to submit and close this exam?</p>
+            </div>
+            <div class="cbp-modal__footer cbp-modal__footer--double">
+              <button class="cbp-btn cbp-btn__secondary" onclick="closeModal(this)">
+                <i class="fas fa-times"></i>
+                <span class="cbp-text-button">cancel</span>
+              </button>
+              <button class="cbp-btn cbp-btn__primary" onclick="closeModal(this)">
+                <i class="fas fa-paper-plane"></i>
+                <span class="cbp-text-button">submit</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Danger Modal -->
+          <button class="cbp-btn cbp-btn__primary" data-modal-target="danger-modal" onclick="openModal('danger-modal', this)">Danger Modal</button><br>
+          <div class="cbp-hidden" id="danger-modal" role="dialog" aria-labelledby="danger-modal-label" aria-modal="true">
+            <div class="cbp-modal__header cbp-modal__header--danger">
+              <i class="fas fa-exclamation-triangle"></i>
+              <h5 class="cbp-modal__title" id="danger-modal-label">Warning</h5>
+            </div>
+            <hr>
+            <div class="cbp-modal__content">
+              <p id="danger-modal-desc">Are you sure you want to delete this item? This action cannot be undone.</p>
+            </div>
+            <div class="cbp-modal__footer cbp-modal__footer--double">
+              <button class="cbp-btn cbp-btn__secondary" onclick="closeModal(this)">
+                <i class="fas fa-times"></i>
+                cancel
+              </button>
+              <button class="cbp-btn cbp-btn__danger">
+                <i class="fas fa-trash-alt"></i>
+                delete
+              </button>
+            </div>
+          </div>
+
+          <!-- Form Modal -->
+          <button class="cbp-btn cbp-btn__primary" data-modal-target="form-modal" onclick="openModal('form-modal', this)">Form Modal</button><br>
+          <div class="cbp-hidden" id="form-modal" role="dialog" role="dialog" aria-labelledby="form-modal-label"
+            aria-modal="true">
+            <div class="cbp-modal__header">
+              <i class="fas fa-comment"></i>
+              <h5 class="cbp-modal__title" id="form-modal-label">Feedback</h5>
+            </div>
+            <hr>
+            <div class="cbp-modal__content">
+              <p id="form-modal-desc">If you're experiencing a system error or application problem please contact the Technology
+                Service Desk.</p>
+              <form action="">
+                <label for="description" class="cbp-form__label">Description</label>
+                <textarea name="description" id="description" class="cbp-form__textarea" cols="30" rows="5"
+                  placeholder="Enter a Description"></textarea>
+                <div class="cbp-form__validation">
+                  <p><b>Required.</b> Please describe the issue or feedback you would like the team to know about. 101/200
+                    Characters remaining.</p>
+                </div>
+              </form>
+            </div>
+            <div class="cbp-modal__footer cbp-modal__footer--double">
+              <button class="cbp-btn cbp-btn__secondary" onclick="closeModal(this)">
+                <i class="fas fa-times"></i>
+                cancel
+              </button>
+              <button class="cbp-btn cbp-btn__primary">
+                <i class="fas fa-paper-plane"></i>
+                send
+              </button>
+            </div>
+          </div>
+
+          <!-- Simple Modal -->
+          <button class="cbp-btn cbp-btn__primary" data-modal-target="simple-modal" onclick="openModal('simple-modal', this)">Simple Modal</button><br>
+          <div class="cbp-hidden" id="simple-modal" role="dialog" aria-modal="true">
+            <div class="cbp-modal__content">
+              <p id="simple-modal-desc" class="cbp-text-heading-2xs">Are you sure you want to add this user to the list?</p>
+            </div>
+            <div class="cbp-modal__footer cbp-modal__footer--double">
+              <button class="cbp-btn cbp-btn__secondary" onclick="closeModal(this)">
+                <i class="fas fa-trash-alt"></i>
+                cancel
+              </button>
+              <button class="cbp-btn cbp-btn__primary">
+                <i class="fas fa-plus"></i>
+                add user
+              </button>
+            </div>
+          </div>
+
+          <!-- 3 Choice Modal  -->
+          <button class="cbp-btn cbp-btn__primary" data-modal-target="modal-three" onclick="openModal('modal-three', this)">3 Choice Modal</button>
+          <div class="cbp-hidden" id="modal-three" role="dialog" aria-labelledby="modal-three-label" aria-modal="true">
+            <div class="cbp-modal__header">
+              <i class="fas fa-file-alt"></i>
+              <h5 class="cbp-modal__title" id="modal-three-label">Document Changes</h5>
+            </div>
+            <hr>
+            <div class="cbp-modal__content">
+              <p id="modal-three-desc">What would you like to do with the changes you have made to this document?</p>
+            </div>
+            <div class="cbp-modal__footer cbp-modal__footer--triple">
+              <button class="cbp-btn cbp-btn__secondary" onclick="closeModal(this)">
+                <i class="fas fa-times"></i>
+                cancel
+              </button>
+              <button class="cbp-btn cbp-btn__primary" id="alt-btn" style="background-color: #2672de;">
+                <i class="fas fa-save"></i>
+                save
+              </button>
+              <button class="cbp-btn cbp-btn__primary">
+                <i class="fas fa-paper-plane"></i>
+                publish
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="cbp-row">
+        <div class="cbp-grid-col-full">
+          <h1>Overflow Menu</h1>
+          <!-- OVERFLOW MENU -->
+          <div class="cbp-overflow-menu__wrapper">
+            <button class="cbp-btn--action" id="btn1" onclick="openOverflowMenu('menu1', this)">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <ul class="cbp-overflow-menu cbp-overflow-menu--top-left" id="menu1">
+              <li class="cbp-overflow-menu__item">
+                <a href="#">First Option</a>
+              </li>
+              <li class="cbp-overflow-menu__item">
+                <a href="#">Second Option</a>
+              </li>
+              <li class="cbp-overflow-menu__item">
+                <a href="#">Third Option</a>
+              </li>
+              <li>
+                <button class="cbp-overflow-menu__btn" onclick="closeOverflowMenu()"><i class="fas fa-times-circle"></i>Close</button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- CONDENSED OVERFLOW MENU -->
+          <div class="cbp-overflow-menu__wrapper">
+            <button class="cbp-btn--action" id="btn2" onclick="openOverflowMenu('menu2', this)">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <ul class="cbp-overflow-menu cbp-overflow-menu--condensed cbp-overflow-menu--top-left" id="menu2">
+              <li class="cbp-overflow-menu__item">
+                <a href="#"><i class="fas fa-sync-alt"></i>Refresh</a>
+              </li>
+              <li class="cbp-overflow-menu__item">
+                <a href="#"><i class="fas fa-copy"></i>Copy</a>
+              </li>
+              <li class="cbp-overflow-menu__item">
+                <button><i class="fas fa-download"></i>Export as .csv</button>
+              </li>
+              <li class="cbp-overflow-menu__item cbp-overflow-menu__item--danger">
+                <button><i class="fas fa-trash-alt"></i>Delete</button>
+              </li>
+              <li>
+                <button class="cbp-overflow-menu__btn" onclick="closeOverflowMenu()"><i class="fas fa-times-circle"></i>Close</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- GRID DEMO -->
+    <div class="cbp-grid-container">
+      <div class="cbp-row">
+        <div class="cbp-grid-col-full">
+          <h1>Grid</h1>
+        </div>
+      </div>
+    </div>
+    <div id="cbp-grid-demo" class="cbp-grid-container">
+      <div class="cbp-row">
+        <div class="cbp-grid-col-full">Full container width</div>
+      </div>
+  
+      <div class="cbp-row">
+        <div class="cbp-grid-col-2-sm cbp-grid-col-4-md cbp-grid-col-6-lg">
+          Half container width
+        </div>
+  
+        <div class="cbp-grid-col-2-sm cbp-grid-col-4-md cbp-grid-col-6-lg">
+          Half container width
+        </div>
+      </div>
+  
+      <div class="cbp-row">
+  
+        <div class="cbp-grid-col-4-sm cbp-grid-col-4-md cbp-grid-col-3-lg cbp-grid-col-6-xl">
+          <span></span>
+        </div>
+  
+        <div class="cbp-grid-col-4-sm cbp-grid-col-4-md cbp-grid-col-3-lg cbp-grid-col-6-xl">
+          <span class="demo-content"></span>
+        </div>
+  
+        <div class="cbp-grid-col-4-sm cbp-grid-col-4-md cbp-grid-col-3-lg">
+          <span></span>
+        </div>
+  
+        <div class="cbp-grid-col-4-sm cbp-grid-col-4-md cbp-grid-col-3-lg">
+          <span></span>
+        </div>
+  
+        <!-- <div class="cbp-grid-col-4-sm cbp-grid-col-4-md cbp-grid-col-4-lg">
+          .cbp-grid-col-4-sm
+        </div> -->
+      </div>
+  
+      <div class="cbp-row">
+        <div class="cbp-grid-col-1-sm cbp-grid-col-3-md cbp-grid-col-3-lg"><span></span></div>
+        <div class="cbp-grid-col-auto">Auto fill column</div>
+        <div class="cbp-grid-col-1-sm cbp-grid-col-3-md cbp-grid-col-3-lg"><span></span></div>
+      </div>
+    </div>
+  </main>
+  <footer class="cbp-footer">
+    <ul class="cbp-footer__links">
+      <li><a href="#">App Overview</a></li>
+      <li><a href="#">Trainings</a></li>
+      <li><a href="#">FAQ's</a></li>
+      <li><a href="#">Release Notes</a></li>
+    </ul>
+    <div class="cbp-footer__info">
+      <div>
+        <h6><i class="fas fa-headset"></i> Application Support</h6>
+        <p class="cbp-footer__supplement">This application is maintained by The Office of Information Technology: TASPD.</p>
+        <ul class="cbp-contact-list">
+          <li>Having an issue?</li>
+          <li><span>Email:</span>&nbsp;<a href="#">application-support@cbp.dhs.gov</a></li>
+          <li><span>CBP Helpdesk:</span>&nbsp;(555) 555-5555</li>
+        </ul>
+      </div>
+      <div class="cbp-footer__sec">
+        <img src="../assets/images/cbp-icon/SECURITY ICON - LES FOUO.svg" alt="security icon">
+        <div>
+          <h6>Infosec Classification: FOUO</h6>
+          <p>This page contains information, in whole or part, that is marked FOR OFFFICIAL USE ONLY (FOUO). </p>
+          <a href="#"><i class="fas fa-external-link-alt"></i>&nbsp;Learn More About InfoSec</a>    
+        </div>
+      </div>
+      <p>This page contains information, in whole or part, that is marked FOR OFFFICIAL USE ONLY (FOUO). </p>
+      <a href="#"><i class="fas fa-external-link-alt"></i>&nbsp;Learn More About InfoSec</a>
+    </div>
+  </footer>
+  <script type="module" src="../index.js"></script>
+</body>
+
+</html>

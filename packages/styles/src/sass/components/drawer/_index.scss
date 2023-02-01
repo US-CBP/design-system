@@ -1,0 +1,57 @@
+@use '../../base/colors' as *;
+@use 'mixins' as *;
+
+@forward 'nav';
+
+/* Default Drawer Direction: 'left' */
+.cbp-drawer {
+  // display: none;
+  height: 100%;
+  position: fixed;
+  overflow-x: hidden;
+  transition: 0.5s;
+  width: 100%;
+  z-index: 9999;
+}
+
+.cbp-drawer__header {
+  align-items: center;
+  background-color: $cbp-base-secondary-base;
+  border-bottom: 4px solid $cbp-base-secondary-dark;
+  color: $cbp-text-lightest;
+  display: flex;
+  height: 72px;
+  justify-content: space-between;
+
+  div:first-child {
+    display: inherit;
+
+    i {
+      font-size: 22px;
+      margin-right: 16px;
+    }
+
+    h6 {
+      font-weight: 700;
+      font-size: 1.602rem;
+    }
+  }
+
+  & > button {
+    @include drawer-close-btn;
+  }
+}
+
+.cbp-drawer__content {
+  background-color: $cbp-white;
+  height: 100%;
+}
+
+@include drawer-left;
+@include drawer-right;
+
+@media only screen and (min-width : 600px) {
+  .cbp-drawer {
+    width: 400px;
+  }
+}

@@ -1,0 +1,61 @@
+@use '../../base/colors' as *;
+@use 'mixin' as *;
+
+.cbp-banner__info {
+  @include banner-info($cbp-info-dark) {
+    & > div > i {
+      align-items: center;
+      background-color: $cbp-info-light;
+      border-radius: 50%;
+      color: $cbp-info-darker;
+      display: flex;
+      font-size: 24px;
+      height: 48px;
+      justify-content: center;
+      margin-right: 16px;
+      width: 48px;
+    }
+  }
+
+  .cbp-banner__info-title {
+    @include banner-title($cbp-text-lighter);
+  }
+
+  .cbp-banner__text {
+    @include banner-text($cbp-text-lightest);
+  }
+
+  button {
+    @include banner-dismiss($cbp-text-lightest);
+  }
+}
+
+.d-none-lg {
+  @media only screen and (min-width : 599px) {
+    display: none !important;
+  }
+}
+
+.d-none-sm {
+  @media only screen and (max-width : 599px) {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width : 599px) {
+  .cbp-banner__info > div {
+    display: flex;
+  }
+
+  .cbp-banner__info .cbp-banner__text {
+    margin-bottom: 0;
+    margin-top: 12px;
+  }
+
+
+  .cbp-banner__info button {
+    align-self: center;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+}

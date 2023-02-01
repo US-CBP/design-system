@@ -1,0 +1,148 @@
+@use '../../base/colors' as *;
+@use '../../grid/breakpoints' as *;
+
+.cbp-banner {
+  background-color: $cbp-base-neutral-darkest;
+  width: 100%;
+
+  &__title {
+    align-items: center;
+    display: flex;
+    height: 52px;
+
+    & > img {
+      align-self: baseline;
+      height: 11px;
+      margin-right: 8px;
+      margin-top: 11px;
+      width: 16px;
+    }
+
+    & > div > span {
+      display: block;
+      color: $cbp-text-lightest;
+      font-size: 0.889rem;
+      font-weight: 500;
+      line-height: 1.25;
+    }
+  }
+}
+
+.cbp-banner__toggle {
+  background-color: transparent;
+  border: 0;
+  color: $cbp-ui-neutral-light;
+  cursor: pointer;
+  font-size: 0.889rem;
+  font-weight: 500;
+  padding: 0;
+  text-decoration: underline;
+
+  & > i {
+    margin-left: 6px;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: $cbp-ui-neutral-lighter;
+  }
+
+  &:focus {
+    color: $cbp-focus-light;
+    outline: 2px solid $cbp-focus-light;
+    outline-offset: 2px;
+  }
+}
+
+.cbp-banner__content {
+  display: none;
+  background-color: $cbp-base-neutral-darkest;
+  color: $cbp-text-lightest;
+  height: 0;
+  padding: 12px 20px;
+  
+  & > div {
+    display: flex;
+
+    &:first-child {
+      margin-bottom: 32px;
+    }
+
+    & > i {
+      align-items: center;
+      border: 2px solid $cbp-info-light;
+      border-radius: 50%;
+      color: $cbp-info-light;
+      display: flex;
+      font-size: 20px;
+      flex-shrink: 0;
+      height: 52px;
+      justify-content: center;
+      width: 52px;
+    }
+
+    & > div {
+      padding-left: 12px;
+    }
+
+    & > div > h6 {
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    & > div > p {
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+  }
+}
+
+.banner-active {
+  display: block;
+  height: fit-content;
+}
+
+
+@media only screen and (min-width : 473px) { // Text appears as one line at this breakpoint
+  .cbp-banner__title {
+    align-items: center;
+    height: 32px;
+
+    & > img {
+      margin-top: 10px;
+    }
+
+    & > div {
+      margin-top: unset;
+    }
+
+    & > div > span {
+      display: initial;
+    }
+
+    & > div > span > button {
+      margin-left: 2px;
+    }
+  }
+
+  .cbp-banner__content {
+    display: none;
+    height: 0;
+
+    & > div {
+      width: 468px;
+
+      &:first-child {
+        margin-bottom: 0;
+        padding-right: 24px;
+      }
+    }
+  }
+
+  .banner-active {
+    display: flex;
+    justify-items: flex-start;
+    height: fit-content;
+  }
+}

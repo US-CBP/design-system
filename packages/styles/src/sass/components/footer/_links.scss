@@ -1,0 +1,39 @@
+@use '../../base/colors' as *;
+
+.cbp-footer__links {
+  background-color: $cbp-base-secondary-dark;
+}
+
+.cbp-footer__links li {
+  border: 0;
+  box-sizing: border-box;
+  height: 44px;
+
+  & > a {
+    align-items: center;
+    border: 0;
+    box-sizing: border-box;
+    color: $cbp-ui-neutral-lighter;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    height: 100%;
+    padding: 0 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+
+    &:hover {
+      background-color: $cbp-ui-neutral-darker;
+      color: $cbp-text-lightest;
+      font-weight: 700;
+    }
+  }
+}
+
+@media only screen and (min-width : 600px) {
+  .cbp-footer__links {
+    display: flex;
+  }
+}

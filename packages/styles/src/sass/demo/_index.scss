@@ -1,0 +1,44 @@
+@use '../base/colors' as *;
+
+.demo-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+}
+
+.sandbox {
+  width: 100%;
+}
+
+.sandbox__demo-container {
+  display: flex;
+}
+
+.sandbox__demo {
+  align-items: center;
+  border: 2px solid $cbp-base-neutral-dark;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  display: flex;
+  justify-content: center;
+  min-height: 24rem;
+  padding: 4rem 2rem;
+  width: 100%;
+}
+
+.sandbox__modifiers {
+  border: 2px solid $cbp-base-neutral-dark;
+  border-left: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 239px;
+
+  & > h2 {
+    background: $cbp-base-neutral-lighter;
+    font-size: 1rem;
+    margin: 0;
+    padding: 1rem;
+  }
+}

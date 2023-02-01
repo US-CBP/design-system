@@ -4,13 +4,69 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build-tokens": "npm run sd -w packages/styles",
+    "styles-dev": "npm run dev -w packages/styles",
+    "styles-build": "npm run build -w packages/styles",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/US-CBP/design-system.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/US-CBP/design-system/issues"
+  },
+  "homepage": "https://github.com/US-CBP/design-system",
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=16.0.0"
+  },
   "workspaces": [
-    "packages/theme",
-    "packages/ux-guidelines"
-  ]
+    "packages/*"
+  ],
+  "devDependencies": {
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
+    "postcss-scss": "^4.0.6",
+    "prettier": "^2.8.3",
+    "stylelint": "^14.16.1",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-recommended": "^9.0.0",
+    "stylelint-scss": "^4.3.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "overrides": [],
+    "requireConfigFile": false,
+    "rules": {}
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "singleQuote": true
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-prettier",
+      "stylelint-config-recommended"
+    ],
+    "customSyntax": "postcss-scss",
+    "plugins": [
+      "stylelint-scss"
+    ],
+    "rules": {
+      "at-rule-no-unknown": null,
+      "scss/at-rule-no-unknown": true
+    }
+  }
 }
