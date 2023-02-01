@@ -17,11 +17,14 @@ From your npm project, simply run:
 > **This is an `npm` workspace and commands need to run with the `--workspace` flag if you are not using the scripts in the `package.json`**
 
 ```bash
+$ cd design-system
 $ npm install
-$ npm run build-tokens    # builds design tokens
 $ npm run styles-dev      # run the styles dev server
 $ npm run styles-build      # runs vite build
 ```
+
+After running `npm install` you can start the `styles` package dev server by running `npm run styles-dev` and the page should
+load locally through `port 8000`.
 
 After running `npm run styles-build`, you will have a `dist` folder in the `packages/styles` folder that contains the `CSS` and `JavaScript` files for distribution. 
 
