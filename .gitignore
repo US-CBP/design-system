@@ -110,6 +110,9 @@ dist
 # Serverless directories
 .serverless/
 
+# Storybook static generated files
+storybook-static/
+
 # FuseBox cache
 .fusebox/
 
@@ -121,6 +124,9 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+# vscode - unless there are project settings we wish to commit.
+.vscode/
 
 # yarn v2
 .yarn/cache
