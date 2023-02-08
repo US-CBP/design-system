@@ -36,7 +36,6 @@ const Template = _ => {
                 </div>
             </div>
         </header>
-        <script type="module" src="./bundle.js"></script>
     </div>
     `;
 };
