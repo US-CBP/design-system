@@ -4,10 +4,14 @@ module.exports = {
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
   ],
   "addons": [
-    "@storybook/addon-essentials",
     "@whitespace/storybook-addon-html",
+    "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-links",
+  ],
+  "staticDirs": [
+    "../dist",
+    "../assets",
   ],
   "framework": "@storybook/html",
   "core": {
