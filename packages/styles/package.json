@@ -11,9 +11,24 @@
     "sd": "style-dictionary build --config ./config.json",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "storybook-static": "npm run build && npm run build-storybook && copy dist storybook-static/assets && npx http-server storybook-static"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-vite": "^0.4.0",
+    "@storybook/html": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
+    "@whitespace/storybook-addon-html": "^5.1.1",
+    "babel-loader": "^8.3.0",
+    "prettier": "^2.8.3",
+    "react-syntax-highlighter": "^15.5.0",
     "sass": "^1.58.0",
     "style-dictionary": "^3.7.2",
     "vite": "^4.0.0"
