@@ -1,12 +1,12 @@
-@use 'colors';
+@use 'colors' as *;
+@use '../tokens/font' as *;
 
-:root {
-  color: colors.$cbp-text-darkest;
-  font-family: 'Roboto', Calibri, Tahoma, sans-serif;
-  font-size: 14px;
+html {
+  color: $cbp-text-darkest;
+  font-family: $cbp-font-family-roboto;
 }
 
 [data-theme="dark"] {
-  background-color: colors.$cbp-bg-dark;
-  color: colors.$cbp-text-lightest;
+  background-color: $cbp-bg-dark;
+  color: $cbp-text-lightest;
 }
