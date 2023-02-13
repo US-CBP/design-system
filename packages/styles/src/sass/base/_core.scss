@@ -1,8 +1,9 @@
 @use 'colors' as *;
+@use '../tokens/font' as *;
 
 html {
   color: $cbp-text-darkest;
-  font-family: 'Roboto', Calibri, Tahoma, sans-serif;
+  font-family: $cbp-font-family-roboto;
 }
 
 [data-theme="dark"] {

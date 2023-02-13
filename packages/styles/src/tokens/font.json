@@ -1,0 +1,54 @@
+{
+  "cbp": {
+    "font-family": {
+      "roboto": {
+        "value": "'Roboto', Calibri, Tahoma, sans-serif",
+        "attributes": { "use": "family", "type": "font" }
+      }
+    },
+    "masthead": {
+      "1": {
+        "value": "2.280rem",
+        "attributes": { "use": "size", "type": "font" }
+      },
+      "2": {
+        "value": "2.027rem",
+        "attributes": { "use": "size", "type": "font" }
+      }
+    },
+    "font-size": {
+      "xxl": {
+        "value": "1.802rem",
+        "attributes": { "use": "size", "type": "font" }
+      },
+      "xl": {
+        "value": "1.602rem",
+        "attributes": { "use": "size", "type": "font" }
+      },
+      "large": {
+        "value": "1.424rem",
+        "attributes": { "use": "size", "type": "font" }
+      },
+      "medium": {
+        "value": "1.266rem",
+        "attributes": { "use": "size", "type": "font" }
+      },
+      "small": {
+        "value": "1.125rem",
+        "attributes": { "use": "size", "type": "font" }
+      },
+      "xs": {
+        "value": "1rem",
+        "attributes": { "use": "size", "type": "font" }
+      },
+      "xxs": {
+        "value": "0.875rem",
+        "attributes": { "use": "size", "type": "font" }
+      },
+      "subhead": {
+        "value": "0.766rem",
+        "attributes": { "use": "size", "type": "font" }
+      }
+    }
+  }
+}

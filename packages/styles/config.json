@@ -67,6 +67,15 @@
               "use": "variables"
             }
           }
+        },
+        {
+          "destination": "_font.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "type": "font"
+            }
+          }
         }
       ]
     }
