@@ -1,6 +1,7 @@
 @use '../../base/colors' as *;
 @use '../../typography' as *;
 @use './states' as *;
+@use '../../tokens/font' as *;
 
 .cbp-accordion {
   margin: 24px 0;
@@ -21,7 +22,7 @@
 
     div:first-child i {
       color: $cbp-text-darker;
-      font-size: 20px;
+      font-size: $cbp-font-size-medium;
       transition: transform .2s ease-in-out;
     }
 
