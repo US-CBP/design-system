@@ -1,14 +1,14 @@
 import SelectorEngine from './utilities/selectorEngine';
 import Accordion from './components/accordion/accordion';
 import Banner from './components/banner/banner';
-import Drawer from './components/drawer';
-import Dropdown from './components/dropdown';
-import Expand from './components/expand';
-import Toggle from './components/toggle';
-import FileUploader from './components/fileupload';
-import HashField from './components/hashField';
-import NumberCounter from './components/numberCounter';
-import { handleHeaderScroll, throttle, mediaQuery } from './components/header';
+import Drawer from './components/drawer/drawer';
+import Dropdown from './components/dropdown/dropdown';
+import Expand from './components/expand/expand';
+import Toggle from './components/toggle/toggle';
+import FileUploader from './components/fileupload/fileupload';
+import HashField from './components/hashfield/hashField';
+import NumberCounter from './components/number-counter/numberCounter';
+import { handleHeaderScroll, throttle, mediaQuery } from './components/header/header';
 
 import './sass/main.scss';
 
