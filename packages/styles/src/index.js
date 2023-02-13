@@ -6,8 +6,8 @@ import Dropdown from './components/dropdown/dropdown';
 import Expand from './components/expand/expand';
 import Toggle from './components/toggle/toggle';
 import FileUploader from './components/fileupload/fileupload';
-import HashField from './components/hashfield/hashField';
-import NumberCounter from './components/number-counter/numberCounter';
+import HashField from './components/form/hashfield/hashField';
+import NumberCounter from './components/form/number-counter/numberCounter';
 import { handleHeaderScroll, throttle, mediaQuery } from './components/header/header';
 
 import './sass/main.scss';
