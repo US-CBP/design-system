@@ -1,5 +1,5 @@
 export default {
-  title: 'Patterns/Badges, Chips & Tags/Badges',
+  title: 'Patterns/Badges, Chips & Tags',
   argTypes: {},
 };
 
