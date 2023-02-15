@@ -1,4 +1,4 @@
-class HashField {
+class HashedField {
   constructor(component) {
     this.className = ".cbp-form__password";
     this.input = component.querySelector("input[type='password']");
@@ -20,4 +20,4 @@ class HashField {
   }
 }
 
-export default HashField;
+export default HashedField;

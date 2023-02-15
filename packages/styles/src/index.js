@@ -6,7 +6,7 @@ import Dropdown from './components/dropdown/dropdown';
 import Expand from './components/expand/expand';
 import Toggle from './components/toggle/toggle';
 import FileUploader from './components/fileupload/fileupload';
-import HashField from './components/form/hashfield/hashField';
+import HashedField from './components/form/hashed-field/hashedField';
 import NumberCounter from './components/form/number-counter/numberCounter';
 import { handleHeaderScroll, throttle, mediaQuery } from './components/header/header';
 
@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   /**
    * Hashfield Component
    */
-  SelectorEngine.findAll('.cbp-form__password').forEach((hashfield) => {
-    addOrInstantiate(HashField, hashfield);
+  SelectorEngine.findAll('.cbp-form__password').forEach((hashedfield) => {
+    addOrInstantiate(HashedField, hashedfield);
   });
 
   /**
