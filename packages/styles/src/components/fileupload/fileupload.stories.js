@@ -3,7 +3,7 @@ export default {
   argType: {},
 };
 
-const Template = () => {
+const FileUploadTemplate = () => {
   return `
     <div class="cbp-form-wrapper" id="fileupload-demo">
       <label class="cbp-form__label">Upload Files</label>
@@ -23,5 +23,36 @@ const Template = () => {
   `;
 };
 
-export const FileUpload = Template.bind({});
+const UploadProgressTemplate = () => {
+  return `
+    <div class="cbp-form__upload">
+      <span>super_duper-fun_times_at_the_beach.jpg</span>
+      <button><i class="fa fa-times" aria-hidden="true"></i></button>
+      <progress value="70" max="100">70 %</progress>
+    </div>
+  `;
+};
+
+const UploadErrorTemplate = () => {
+  return `
+    <div class="cbp-form__upload cbp-form__upload--error">
+      <div>
+        <span>super_duper-fun_times_at_the_beach.jpg</span>
+        <button><i class="fa fa-times" aria-hidden="true"></i></button>
+      </div>
+      <hr>
+      <span>
+        <i class="fas fa-exclamation-triangle"></i>File size exceeds the limit.
+      </span>
+    </div>
+  `;
+};
+
+export const FileUpload = FileUploadTemplate.bind({});
 FileUpload.args = {};
+
+export const UploadProgress = UploadProgressTemplate.bind({});
+UploadProgress.args = {};
+
+export const UploadError = UploadErrorTemplate.bind({});
+UploadError.args = {};
