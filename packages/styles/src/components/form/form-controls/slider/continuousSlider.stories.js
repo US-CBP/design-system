@@ -1,5 +1,5 @@
 export default {
-  title: 'Patterns/Slider'
+  title: 'Patterns/Form Controls'
 };
 
 const Template = () => {
