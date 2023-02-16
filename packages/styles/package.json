@@ -35,6 +35,5 @@
     "vite": "^4.0.0",
     "vite-plugin-static-copy": "^0.13.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
