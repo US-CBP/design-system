@@ -1,7 +1,7 @@
 // vite.config.js
 import { resolve } from 'path'
 import { defineConfig, normalizePath } from 'vite'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
+//import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
   server: {
@@ -10,16 +10,7 @@ export default defineConfig({
   preview: {
     port: 8080,
   },
-  plugins: [
-    viteStaticCopy({
-      targets: [
-        {
-          src: '../../node_modules/@fortawesome/fontawesome-free/svgs/*',
-          dest: 'assets/icons'
-        }
-      ]
-    })
-  ],
+  plugins: [],
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points
