@@ -1,40 +1,56 @@
-export const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-const header = document.querySelector('[data-header="flow"]');
-let previousScrollPosition = 0;
-let throttleWait;
+// TODO: Refactor this throttle method to work the Universal Header class below
+// const throttle = (callback, time) => {
+//   if (throttleWait) return;
 
-const isScrollingDown = () => {
-  let currentScrolledPosition = window.scrollY || window.pageYOffset;
-  let scrollingDown;
+//   throttleWait = true;
 
-  if (currentScrolledPosition > previousScrollPosition) {
-    scrollingDown = true;
-  } else {
-    scrollingDown = false;
+//   setTimeout(() => {
+//     callback();
+
+//     throttleWait = false;
+//   }, time)
+// }
+
+// TODO: Refactor 'scroll' event listener on window to work with Universal Header class below
+// window.addEventListener('scroll', () => {
+//   if (mediaQuery && !mediaQuery.matches) {
+//     throttle(handleHeaderScroll, 250) 
+//   }
+// });
+
+export class UniversalHeader {
+  constructor (univHeader) {
+    this.univHeader = univHeader;
+    this.mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    this.previousScrollPosition = 0;
+    this.throttleWait;
+
+    window.addEventListener('scroll', () => {
+      this.handleHeaderScroll();
+    })
   }
 
-  previousScrollPosition = currentScrolledPosition;
-  return scrollingDown;
-}
-
-export const handleHeaderScroll = () => {
-  if (isScrollingDown() && !header.contains(document.activeElement)) {
-    header.classList.add('scroll-down');
-    header.classList.remove('scroll-up');
-  } else {
-    header.classList.add('scroll-up');
-    header.classList.remove('scroll-down');
+  isScrollingDown() {
+    let currentScrolledPosition = window.scrollY || window.pageYOffset;
+    let scrollingDown;
+  
+    if (currentScrolledPosition > this.previousScrollPosition) {
+      scrollingDown = true;
+    } else {
+      scrollingDown = false;
+    }
+  
+    this.previousScrollPosition = currentScrolledPosition;
+    return scrollingDown;
   }
-}
 
-export const throttle = (callback, time) => {
-  if (throttleWait) return;
-
-  throttleWait = true;
-
-  setTimeout(() => {
-    callback();
-
-    throttleWait = false;
-  }, time)
+  handleHeaderScroll = () => {
+    if (this.isScrollingDown() && !this.univHeader.contains(document.activeElement)) {
+      this.univHeader.classList.add('scroll-down');
+      this.univHeader.classList.remove('scroll-up');
+    } else {
+      this.univHeader.classList.add('scroll-up');
+      this.univHeader.classList.remove('scroll-down');
+    }
+  }
 }
