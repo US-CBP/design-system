@@ -58,42 +58,6 @@
       }
     },
 
-    "letter-spacing": {
-      "loose": {
-        "value": "0.025em"
-      },
-      "regular": {
-        "value": "auto"
-      },
-      "tight": {
-        "value": "-.01em"
-      }
-    },
-
-    "line-height": {
-      "loose": {
-        "value": "1.62"
-      },
-      "regular": {
-        "value": "1.5"
-      },
-      "tight": {
-        "value": "1.15"
-      }
-    },
-
-    "line-length": {
-      "longest": {
-        "value": "72ch"
-      },
-      "medium": {
-        "value": "60ch"
-      },
-      "shortest": {
-        "value": "44ch"
-      }
-    },
-
     "weight": {
       "heavy": {
         "value": "900"
@@ -114,6 +78,41 @@
         "value": "100"
       }
     }
+  },
 
+  "letter-spacing": {
+    "loose": {
+      "value": "0.025em"
+    },
+    "regular": {
+      "value": "auto"
+    },
+    "tight": {
+      "value": "-.01em"
+    }
+  },
+
+  "line-height": {
+    "loose": {
+      "value": "1.62"
+    },
+    "regular": {
+      "value": "1.5"
+    },
+    "tight": {
+      "value": "1.15"
+    }
+  },
+
+  "line-length": {
+    "longest": {
+      "value": "72ch"
+    },
+    "medium": {
+      "value": "60ch"
+    },
+    "shortest": {
+      "value": "44ch"
+    }
   }
 }
