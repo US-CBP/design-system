@@ -1,12 +1,13 @@
 {
-  "cbp": {
-    "font-family": {
+  "font": {
+    "family": {
       "roboto": {
-        "value": "'Roboto', Calibri, Tahoma, sans-serif",
+        "value": "Roboto, Calibri, Tahoma, sans-serif",
         "attributes": { "use": "family", "type": "font" }
       }
     },
-    "text": {
+
+    "size": {
       "masthead": {
         "1": {
           "value": "2.280rem",
@@ -55,6 +56,64 @@
         "value": "0.766rem",
         "attributes": { "use": "size", "type": "font" }
       }
+    },
+
+    "letter-spacing": {
+      "loose": {
+        "value": "0.025em"
+      },
+      "regular": {
+        "value": "auto"
+      },
+      "tight": {
+        "value": "-.01em"
+      }
+    },
+
+    "line-height": {
+      "loose": {
+        "value": "1.62"
+      },
+      "regular": {
+        "value": "1.5"
+      },
+      "tight": {
+        "value": "1.15"
+      }
+    },
+
+    "line-length": {
+      "longest": {
+        "value": "72ch"
+      },
+      "medium": {
+        "value": "60ch"
+      },
+      "shortest": {
+        "value": "44ch"
+      }
+    },
+
+    "weight": {
+      "heavy": {
+        "value": "900"
+      },
+      "bold": {
+        "value": "700"
+      },
+      "semibold": {
+        "value": "600"
+      },
+      "regular": {
+        "value": "400"
+      },
+      "semilight": {
+        "value": "300"
+      },
+      "light": {
+        "value": "100"
+      }
     }
+
   }
 }

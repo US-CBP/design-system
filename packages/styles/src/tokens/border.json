@@ -1,0 +1,39 @@
+{
+  "border": {
+    "size": {  
+      "thin": {
+        "value": ".0625rem"
+      },
+      "medium": {
+        "value": ".125rem"
+      },
+      "3x": {
+        "value": ".75rem"
+      },
+      "4x": {
+        "value": "1rem"
+      }
+    },
+    
+    "radius": {  
+      "sharp": {
+        "value": "0"
+      },
+      "soft": {
+        "value": "{ size.1x.value }"
+      },
+      "softer": {
+        "value": "{ size.2x.value }"
+      },
+      "softest": {
+        "value": "{ size.4x.value }"
+      },
+      "pill": {
+        "value": "100%"
+      },
+      "circle": {
+        "value": "9999px"
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+    "size": {
+      "half-x": {
+        "value": ".125rem"
+      },
+      "1x": {
+        "value": ".25rem"
+      },
+      "2x": {
+        "value": ".5rem"
+      },
+      "3x": {
+        "value": ".75rem"
+      },
+      "4x": {
+        "value": "1rem"
+      },
+      "5x": {
+        "value": "1.25rem"
+      },
+      "6x": {
+        "value": "1.5rem"
+      },
+      "7x": {
+        "value": "1.75rem"
+      },
+      "8x": {
+        "value": "2rem"
+      },
+      "12x": {
+        "value": "3rem"
+      },
+      "16x": {
+        "value": "4rem"
+      },
+      "24x": {
+        "value": "6rem"
+      },
+      "32x": {
+        "value": "8rem"
+      }
+    }
+  }
+  

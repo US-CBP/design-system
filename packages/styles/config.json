@@ -3,6 +3,7 @@
   "platforms": {
     "scss": {
       "transformGroup": "web",
+      "prefix": "cbp",
       "buildPath": "src/sass/tokens/",
       "files": [
         {
@@ -76,8 +77,34 @@
               "type": "font"
             }
           }
+        },
+        
+        {
+          "destination": "_variables.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "variables"
+            }
+          }
+        }
+      ]
+    },
+
+    "css": {
+      "transformGroup": "web",
+      "prefix": "cbp",
+      "buildPath": "src/sass/tokens/",
+      "files": [
+        {
+          "destination": "cbp-variables.css",
+          "format": "css/variables",
+          "options": {
+            "outputReferences": true
+          }
         }
       ]
     }
+
   }
 }

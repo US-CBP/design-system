@@ -1,5 +1,5 @@
 {
-  "cbp": {
+  "color": {
     "yellow": {
       "5": { "value": "#fff5c2", "attributes": { "use": "color" } },
       "10": { "value": "#fee685", "attributes": { "use": "color" } },

@@ -1,5 +1,5 @@
 {
-  "cbp": {
+  "color": {
     "mint": {
       "5": { "value": "#c9fbeb", "attributes": { "use": "color" } },
       "10": { "value": "#83fcd4", "attributes": { "use": "color" } },
