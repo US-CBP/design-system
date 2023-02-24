@@ -1,6 +1,4 @@
-import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
-
-const CUSTOM_VIEWPORTS = {
+export const CUSTOM_VIEWPORTS = {
   small: {
     name: "Small Grid",
     styles: {
@@ -30,25 +28,19 @@ const CUSTOM_VIEWPORTS = {
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
+    expanded: true,
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
     },
   },
   backgrounds: {
-    values: [
-      {
-        name: 'light',
-        value: '#f5f6f7'
-      },
-      {
-        name: 'dark',
-        value: '#2d2e2f'
-      }
-    ]
+    grid: {
+      disable: true
+    }
   },
   viewport: {
-    viewports: {...CUSTOM_VIEWPORTS, ...MINIMAL_VIEWPORTS}
+    viewports: CUSTOM_VIEWPORTS
   },
   html: {
     prettier: {

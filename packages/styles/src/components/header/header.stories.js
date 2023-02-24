@@ -69,7 +69,17 @@ const ApplicationHeaderTemplate = () => {
 
 export const UniversalHeader = UniversalHeaderTemplate.bind({});
 UniversalHeader.args = {
-  username: "John Smithington"
+  username: 'John Smithington',
+};
+UniversalHeader.argTypes = {
+  username: {
+    name: 'User Name',
+    type: { name: 'string', required: true },
+    description: 'Name of user to be displayed in the Universal Header',
+    control: {
+      type: 'text',
+    },
+  },
 };
 
 export const ApplicationHeader = ApplicationHeaderTemplate.bind({});

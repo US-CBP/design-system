@@ -5,7 +5,15 @@ module.exports = {
   ],
   "addons": [
     "@whitespace/storybook-addon-html",
-    "@storybook/addon-essentials",
+    {
+      name: "@storybook/addon-essentials",
+      options: {
+        backgrounds: false,
+        docs: false,
+        measure: false,
+        outline: false,
+      }
+    },
     "@storybook/addon-interactions",
     "@storybook/addon-links",
   ],
