@@ -23,7 +23,7 @@
   display: flex;
 
   &::after {
-    @extend .cbp-heading-xl;
+    @extend .cbp-heading-l;
     content: "CBP";
     color: $cbp-text-lightest;
     margin-left: 8px;
@@ -51,6 +51,7 @@
   border-radius: 3px;
   display: flex;
   color: $cbp-ui-neutral-lighter;
+  cursor: pointer;
   font-size: $cbp-text-button;
   font-weight: 500;
   height: 36px;
