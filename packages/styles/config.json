@@ -1,5 +1,6 @@
 {
   "source": ["src/tokens/**/*.json"],
+  
   "platforms": {
     "scss": {
       "transformGroup": "web",
@@ -7,11 +8,56 @@
       "buildPath": "src/sass/tokens/",
       "files": [
         {
+          "destination": "_animation.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "animation"
+            }
+          }
+        },
+        {
+          "destination": "_border.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "border"
+            }
+          }
+        },
+        {
+          "destination": "_breakpoints.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "breakpoints"
+            }
+          }
+        },
+        {
           "destination": "_color.scss",
           "format": "scss/variables",
           "filter": {
             "attributes": {
               "use": "color"
+            }
+          }
+        },
+        {
+          "destination": "_elevation.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "elevation"
+            }
+          }
+        },
+        {
+          "destination": "_size.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "test"
             }
           }
         },
@@ -24,75 +70,36 @@
             }
           }
         },
+
         {
-          "destination": "_base.scss",
+          "destination": "_typography.scss",
           "format": "scss/variables",
           "filter": {
             "attributes": {
-              "use": "base"
-            }
-          }
-        },
-        {
-          "destination": "_ui.scss",
-          "format": "scss/variables",
-          "filter": {
-            "attributes": {
-              "use": "ui"
-            }
-          }
-        },
-        {
-          "destination": "_text.scss",
-          "format": "scss/variables",
-          "filter": {
-            "attributes": {
-              "use": "non-interactive"
-            }
-          }
-        },
-        {
-          "destination": "_state.scss",
-          "format": "scss/variables",
-          "filter": {
-            "attributes": {
-              "use": "state"
-            }
-          }
-        },
-        {
-          "destination": "_variables.scss",
-          "format": "scss/variables",
-          "filter": {
-            "attributes": {
-              "use": "variables"
-            }
-          }
-        },
-        {
-          "destination": "_font.scss",
-          "format": "scss/variables",
-          "filter": {
-            "attributes": {
-              "type": "font"
-            }
-          }
-        },
-        
-        {
-          "destination": "_variables.scss",
-          "format": "scss/variables",
-          "filter": {
-            "attributes": {
-              "use": "variables"
+              "use": "typography"
             }
           }
         }
       ]
     },
 
-    "css": {
+    "sass": {
       "transformGroup": "web",
+      "prefix": "cbp",
+      "buildPath": "src/sass/tokens/",
+      "files": [
+        {
+          "destination": "cbp-variables.scss",
+          "format": "scss/variables",
+          "options": {
+            "outputReferences": true
+          }
+        }
+      ]
+    },
+
+    "css": {
+      "transformGroup": "css",
       "prefix": "cbp",
       "buildPath": "src/sass/tokens/",
       "files": [

@@ -1,20 +1,20 @@
 {
-    "breakpoint": {
-      "xs": {
-        "value": ".125rem"
-      },
-      "sm": {
-        "value": ".25rem"
-      },
-      "md": {
-        "value": ".5rem"
-      },
-      "lg": {
-        "value": ".75rem"
-      },
-      "xl": {
-        "value": "1rem"
-      }
+  "breakpoint": {
+    "xs": {
+      "value": "30em",
+      "attributes": { "use": "breakpoints" }
+    },
+    "sm": {
+      "value": "48em",
+      "attributes": { "use": "breakpoints" }
+    },
+    "md": {
+      "value": "80em",
+      "attributes": { "use": "breakpoints" }
+    },
+    "lg": {
+      "value": "120em",
+      "attributes": { "use": "breakpoints" }
     }
   }
-  
+}

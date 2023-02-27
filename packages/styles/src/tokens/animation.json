@@ -1,0 +1,20 @@
+{
+  "duration": {
+    "instant": {
+      "value": "1ms",
+      "attributes": { "use": "animation" }
+    },
+    "short": {
+        "value": "200ms",
+        "attributes": { "use": "animation" }
+    },
+    "normal": {
+        "value": "500ms",
+        "attributes": { "use": "animation" }
+    },
+    "long": {
+        "value": "2s",
+        "attributes": { "use": "animation" }
+    }
+  }
+}

@@ -3,7 +3,7 @@
     "family": {
       "roboto": {
         "value": "Roboto, Calibri, Tahoma, sans-serif",
-        "attributes": { "use": "family", "type": "font" }
+        "attributes": { "use": "typography", "type": "font" }
       }
     },
 
@@ -11,108 +11,123 @@
       "masthead": {
         "1": {
           "value": "2.280rem",
-          "attributes": { "use": "size", "type": "font" }
+          "attributes": { "use": "typography", "type": "font" }
         },
         "2": {
           "value": "2.027rem",
-          "attributes": { "use": "size", "type": "font" }
+          "attributes": { "use": "typography", "type": "font" }
         }
       },
       "heading": {
         "xxl": {
           "value": "1.802rem",
-          "attributes": { "use": "size", "type": "font" }
+          "attributes": { "use": "typography", "type": "font" }
         },
         "xl": {
           "value": "1.602rem",
-          "attributes": { "use": "size", "type": "font" }
+          "attributes": { "use": "typography", "type": "font" }
         },
         "large": {
           "value": "1.424rem",
-          "attributes": { "use": "size", "type": "font" }
+          "attributes": { "use": "typography", "type": "font" }
         },
         "medium": {
           "value": "1.266rem",
-          "attributes": { "use": "size", "type": "font" }
+          "attributes": { "use": "typography", "type": "font" }
         },
         "small": {
           "value": "1.125rem",
-          "attributes": { "use": "size", "type": "font" }
+          "attributes": { "use": "typography", "type": "font" }
         },
         "xs": {
           "value": "1rem",
-          "attributes": { "use": "size", "type": "font" }
+          "attributes": { "use": "typography", "type": "font" }
         }
       },
       "body": {
         "value": "0.875rem",
-        "attributes": { "use": "size", "type": "font" }
+        "attributes": { "use": "typography", "type": "font" }
       },
       "button": {
         "value": "0.875rem",
-        "attributes": { "use": "size", "type": "font" }
+        "attributes": { "use": "typography", "type": "font" }
       },
       "subhead": {
         "value": "0.766rem",
-        "attributes": { "use": "size", "type": "font" }
+        "attributes": { "use": "typography", "type": "font" }
       }
     },
 
     "weight": {
       "heavy": {
-        "value": "900"
+        "value": "900",
+        "attributes": { "use": "typography" }
       },
       "bold": {
-        "value": "700"
+        "value": "700",
+        "attributes": { "use": "typography" }
       },
       "semibold": {
-        "value": "600"
+        "value": "600",
+        "attributes": { "use": "typography" }
       },
       "regular": {
-        "value": "400"
+        "value": "400",
+        "attributes": { "use": "typography" }
       },
       "semilight": {
-        "value": "300"
+        "value": "300",
+        "attributes": { "use": "typography" }
       },
       "light": {
-        "value": "100"
+        "value": "100",
+        "attributes": { "use": "typography" }
       }
     }
   },
 
   "letter-spacing": {
     "loose": {
-      "value": "0.025em"
+      "value": "0.025em",
+      "attributes": { "use": "typography" }
     },
     "regular": {
-      "value": "auto"
+      "value": "auto",
+      "attributes": { "use": "typography" }
     },
     "tight": {
-      "value": "-.01em"
+      "value": "-.01em",
+      "attributes": { "use": "typography" }
     }
   },
 
   "line-height": {
     "loose": {
-      "value": "1.62"
+      "value": "1.62",
+      "attributes": { "use": "typography" }
     },
     "regular": {
-      "value": "1.5"
+      "value": "1.5",
+      "attributes": { "use": "typography" }
     },
     "tight": {
-      "value": "1.15"
+      "value": "1.15",
+      "attributes": { "use": "typography" }
     }
   },
 
   "line-length": {
     "longest": {
-      "value": "72ch"
+      "value": "72ch",
+      "attributes": { "use": "typography" }
     },
     "medium": {
-      "value": "60ch"
+      "value": "60ch",
+      "attributes": { "use": "typography" }
     },
     "shortest": {
-      "value": "44ch"
+      "value": "44ch",
+      "attributes": { "use": "typography" }
     }
   }
 }

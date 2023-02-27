@@ -2,37 +2,47 @@
   "border": {
     "size": {  
       "thin": {
-        "value": ".0625rem"
+        "value": ".0625rem",
+        "attributes": { "use": "border" }
       },
       "medium": {
-        "value": ".125rem"
+        "value": ".125rem",
+        "attributes": { "use": "border" }
       },
       "3x": {
-        "value": ".75rem"
+        "value": ".75rem",
+        "attributes": { "use": "border" }
       },
       "4x": {
-        "value": "1rem"
+        "value": "1rem",
+        "attributes": { "use": "border" }
       }
     },
     
     "radius": {  
       "sharp": {
-        "value": "0"
+        "value": "0",
+        "attributes": { "use": "border" }
       },
       "soft": {
-        "value": "{ size.1x.value }"
+        "value": "{ size.1x.value }",
+        "attributes": { "use": "border" }
       },
       "softer": {
-        "value": "{ size.2x.value }"
+        "value": "{ size.2x.value }",
+        "attributes": { "use": "border" }
       },
       "softest": {
-        "value": "{ size.4x.value }"
+        "value": "{ size.4x.value }",
+        "attributes": { "use": "border" }
       },
       "pill": {
-        "value": "100%"
+        "value": "100%",
+        "attributes": { "use": "border" }
       },
       "circle": {
-        "value": "9999px"
+        "value": "9999px",
+        "attributes": { "use": "border" }
       }
     }
   }

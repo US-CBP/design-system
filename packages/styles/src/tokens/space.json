@@ -1,5 +1,5 @@
 {
-    "size": {
+    "space": {
       "half-x": {
         "value": ".125rem",
         "attributes": { "use": "test" }
