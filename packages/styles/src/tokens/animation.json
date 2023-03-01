@@ -16,5 +16,39 @@
         "value": "2s",
         "attributes": { "use": "animation" }
     }
+  },
+  "easing": {
+    "linear": {
+      "value": "0, 0, 1, 1",
+      "attributes": { "use": "animation" }
+    },
+    "standard": {
+      "value": "0.2, 0, 0, 1",
+      "attributes": { "use": "animation" }
+    },
+    "standard-accelerate": {
+      "value": "0.3, 0, 1, 1",
+      "attributes": { "use": "animation" }
+    },
+    "standard-decelerate": {
+      "value": "0, 0, 0, 1",
+      "attributes": { "use": "animation" }
+    },
+    "emphasized": {
+      "value": "0.2, 0, 0, 1",
+      "attributes": { "use": "animation" }
+    },
+    "emphasized-accelerate": {
+      "value": "0.3, 0, 0.8, 0.15",
+      "attributes": { "use": "animation" }
+    },
+    "emphasized-decelerate": {
+      "value": "0.05, 0.7, 0.1, 1",
+      "attributes": { "use": "animation" }
+    },
+    "motion-path": {
+      "value": "linear",
+      "attributes": { "use": "animation" }
+    }
   }
 }

@@ -1,20 +1,20 @@
 {
   "border": {
     "size": {  
-      "thin": {
+      "sm": {
         "value": ".0625rem",
         "attributes": { "use": "border" }
       },
-      "medium": {
+      "md": {
         "value": ".125rem",
         "attributes": { "use": "border" }
       },
-      "3x": {
-        "value": ".75rem",
+      "lg": {
+        "value": ".1875rem",
         "attributes": { "use": "border" }
       },
-      "4x": {
-        "value": "1rem",
+      "xl": {
+        "value": ".25rem",
         "attributes": { "use": "border" }
       }
     },
@@ -25,15 +25,11 @@
         "attributes": { "use": "border" }
       },
       "soft": {
-        "value": "{ size.1x.value }",
+        "value": "0.1875rem",
         "attributes": { "use": "border" }
       },
       "softer": {
-        "value": "{ size.2x.value }",
-        "attributes": { "use": "border" }
-      },
-      "softest": {
-        "value": "{ size.4x.value }",
+        "value": "0.25rem",
         "attributes": { "use": "border" }
       },
       "pill": {

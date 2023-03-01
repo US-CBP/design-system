@@ -53,11 +53,11 @@
           }
         },
         {
-          "destination": "_size.scss",
+          "destination": "_space.scss",
           "format": "scss/variables",
           "filter": {
             "attributes": {
-              "use": "test"
+              "use": "space"
             }
           }
         },
