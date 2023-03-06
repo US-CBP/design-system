@@ -91,7 +91,7 @@
   },
 
   "letter-spacing": {
-    "looser": {
+    "loosest": {
       "value": "0.2em",
       "attributes": { "use": "typography" }
     },
