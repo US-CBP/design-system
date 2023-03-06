@@ -2,15 +2,13 @@
   "color": {
     "branding": {
       "cbp": {
-        "bg": {
-          "light": {
-            "value": "{cbp.gray.cool.3}",
-            "attributes": { "use": "theme", "type": "primary" }
-          },
-          "dark": {
-            "value": "{cbp.gray.cool.80}",
-            "attributes": { "use": "theme", "type": "primary" }
-          }
+        "light": {
+          "value": "{color.gray.cool.3}",
+          "attributes": { "use": "theme", "type": "primary" }
+        },
+        "dark": {
+          "value": "{color.gray.cool.80}",
+          "attributes": { "use": "theme", "type": "primary" }
         }
       },
       "dhs": {
