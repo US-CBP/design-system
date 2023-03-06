@@ -104,7 +104,7 @@
       "buildPath": "src/sass/tokens/",
       "files": [
         {
-          "destination": "cbp-variables.css",
+          "destination": "_css-variables.scss",
           "format": "css/variables",
           "options": {
             "outputReferences": true

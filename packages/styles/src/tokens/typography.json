@@ -63,7 +63,7 @@
     },
 
     "weight": {
-      "heavy": {
+      "black": {
         "value": "900",
         "attributes": { "use": "typography" }
       },
@@ -91,16 +91,16 @@
   },
 
   "letter-spacing": {
+    "looser": {
+      "value": "0.2em",
+      "attributes": { "use": "typography" }
+    },
     "loose": {
-      "value": "0.025em",
+      "value": "0.12em",
       "attributes": { "use": "typography" }
     },
     "regular": {
       "value": "auto",
-      "attributes": { "use": "typography" }
-    },
-    "tight": {
-      "value": "-.01em",
       "attributes": { "use": "typography" }
     }
   },
@@ -137,17 +137,29 @@
   },
 
   "line-length": {
-    "longest": {
-      "value": "72ch",
-      "attributes": { "use": "typography" }
-    },
-    "medium": {
-      "value": "60ch",
-      "attributes": { "use": "typography" }
-    },
     "shortest": {
       "value": "44ch",
         "attributes": { "use": "typography" }
+    },
+    "short": {
+      "value": "60ch",
+        "attributes": { "use": "typography" }
+    },
+    "medium": {
+      "value": "64ch",
+        "attributes": { "use": "typography" }
+    },
+    "long": {
+      "value": "68ch",
+      "attributes": { "use": "typography" }
+    },
+    "longer": {
+      "value": "72ch",
+      "attributes": { "use": "typography" }
+    },
+    "longest": {
+      "value": "88ch",
+      "attributes": { "use": "typography" }
     }
   }
 }
