@@ -39,6 +39,17 @@ export const parameters = {
       disable: true
     }
   },
+  'data-theme-toggle': {
+    querySelector: "html",
+    "data-target": "cbp-theme",
+    default: "light",
+    values: {
+      dark: "dark",
+      light: "light",
+    },
+    lightFill: "#e5a000",
+    darkFill: "#2e2e2e",
+  },
   viewport: {
     viewports: CUSTOM_VIEWPORTS
   },

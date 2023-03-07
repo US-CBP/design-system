@@ -30,8 +30,8 @@
     "prettier": "^2.8.3",
     "react-syntax-highlighter": "^15.5.0",
     "sass": "^1.58.0",
+    "storybook-addon-dark-mode-toggle": "^0.0.6",
     "style-dictionary": "^3.7.2",
     "vite": "^4.0.0"
-  },
-  "dependencies": {}
+  }
 }

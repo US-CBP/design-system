@@ -14,6 +14,7 @@ module.exports = {
         outline: false,
       }
     },
+    'storybook-addon-dark-mode-toggle',
     "@storybook/addon-interactions",
     "@storybook/addon-links",
   ],
@@ -28,5 +29,4 @@ module.exports = {
   "features": {
     "storyStoreV7": true
   }
-  
 }
