@@ -11,7 +11,7 @@ const UniversalHeaderTemplate = ({ username }) => {
       <div class="cbp-universal-header__brand">
         <picture>
           <source srcset="assets/images/CBP_SEAL.svg" media="(max-width: 599px)" type="image/svg+xml" height="44" width="44" />
-          <img src="assets/images/CBP_LOGO_HORIZONTAL_WHITE_TEXT.svg" alt="cbp brand logo" height="55" width="186" />
+          <img src="assets/images/CBP_LOGO_HORIZONTAL_WHITE_TEXT.svg" alt="U.S. Customs and Border Protection" height="55" width="186" />
         </picture>
       </div>
       <ul class="cbp-universal-header__list">
