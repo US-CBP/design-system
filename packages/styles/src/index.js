@@ -8,7 +8,6 @@ import Toggle from './components/toggle/toggle';
 import FileUploader from './components/fileupload/fileupload';
 import HashedField from './components/form/hashed-field/hashedField';
 import NumberCounter from './components/form/number-counter/numberCounter';
-import { UniversalHeader } from './components/header/header';
 
 import './sass/main.scss';
 
@@ -94,16 +93,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addOrInstantiate(NumberCounter, counter);
   });
 });
-
-/**
- * Universal Header Component
- */
-
-// window.addEventListener('scroll', () => {
-//   if (mediaQuery && !mediaQuery.matches) {
-//     throttle(handleHeaderScroll, 250) 
-//   }
-// });
-
-const universalHeader = SelectorEngine.findOne('.cbp-header__universal');
-addOrInstantiate(UniversalHeader, universalHeader);
