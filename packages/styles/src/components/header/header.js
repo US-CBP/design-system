@@ -1,23 +1,3 @@
-// TODO: Refactor this throttle method to work the Universal Header class below
-// const throttle = (callback, time) => {
-//   if (throttleWait) return;
-
-//   throttleWait = true;
-
-//   setTimeout(() => {
-//     callback();
-
-//     throttleWait = false;
-//   }, time)
-// }
-
-// TODO: Refactor 'scroll' event listener on window to work with Universal Header class below
-// window.addEventListener('scroll', () => {
-//   if (mediaQuery && !mediaQuery.matches) {
-//     throttle(handleHeaderScroll, 250) 
-//   }
-// });
-
 export class UniversalHeader {
   constructor (univHeader) {
     this.univHeader = univHeader;

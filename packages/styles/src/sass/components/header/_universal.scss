@@ -126,13 +126,3 @@
     padding-right: 28px;
   }
 }
-
-// TODO: Scroll behavior for universal header not finished
-.cbp-universal-header.scroll-up,
-.cbp-universal-header:focus-within {
-  top: 0;
-}
-
-.cbp-universal-header.scroll-down {
-  top: -100%;
-}
