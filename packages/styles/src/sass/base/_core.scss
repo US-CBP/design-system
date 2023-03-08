@@ -1,12 +1,39 @@
 @use 'colors' as *;
 @use '../tokens/font' as *;
 
-html {
-  color: $cbp-text-darkest;
-  font-family: $cbp-font-family-roboto;
+:root {
+  --cbp-color-background: #{$cbp-bg-light};
+  --cbp-color-text: #{$cbp-text-darkest};
 }
 
-[data-theme="dark"] {
-  background-color: $cbp-bg-dark;
-  color: $cbp-text-lightest;
+html {
+  color: var(--cbp-color-text);
+  background-color: var(--cbp-color-background);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cbp-color-background: #{$cbp-bg-dark};
+    --cbp-color-text: #{$cbp-text-lightest};
+  }
+
+  html[data-cbp-theme="light"] {
+    --cbp-color-background: #{$cbp-bg-light};
+    --cbp-color-text: #{$cbp-text-darkest};
+    
+    color: var(--cbp-color-text);
+    background-color: var(--cbp-color-background);
+  }
+}
+
+html[data-cbp-theme="dark"] {
+  --cbp-color-background: #{$cbp-bg-dark};
+  --cbp-color-text: #{$cbp-text-lightest};
+
+  color: var(--cbp-color-text);
+  background-color: var(--cbp-color-background);
+}
+
+body {
+  font-family: $cbp-font-family-roboto;
 }

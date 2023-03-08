@@ -10,6 +10,7 @@ import HashedField from './components/form/hashed-field/hashedField';
 import NumberCounter from './components/form/number-counter/numberCounter';
 
 import './sass/main.scss';
+import DarkMode from './utilities/darkMode';
 
 const addOrInstantiate = (Klass, node) => {
   return new Klass(node);
@@ -91,5 +92,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
    */
   SelectorEngine.findAll('.cbp-form__number--counter').forEach((counter) => {
     addOrInstantiate(NumberCounter, counter);
+  });
+
+  SelectorEngine.findAll('[data-theme-toggle]').forEach((themeToggle) => {
+    new DarkMode();
   });
 });
