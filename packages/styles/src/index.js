@@ -8,9 +8,9 @@ import Toggle from './components/toggle/toggle';
 import FileUploader from './components/fileupload/fileupload';
 import HashedField from './components/form/hashed-field/hashedField';
 import NumberCounter from './components/form/number-counter/numberCounter';
+import DarkMode from './utilities/darkMode';
 
 import './sass/main.scss';
-import DarkMode from './utilities/darkMode';
 
 const addOrInstantiate = (Klass, node) => {
   return new Klass(node);
