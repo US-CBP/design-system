@@ -1,7 +1,7 @@
 class DarkMode {
-  constructor() {
+  constructor(themeToggle) {
     // Toggle component needs to have 'data-theme-toggle' attribute in order for this to work.
-    this.themeToggle = document.querySelector("[data-theme-toggle]");
+    this.themeToggle = themeToggle;
     this.prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
     this.storedTheme = localStorage.getItem('theme');
 

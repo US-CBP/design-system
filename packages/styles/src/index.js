@@ -95,6 +95,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
   });
 
   SelectorEngine.findAll('[data-theme-toggle]').forEach((themeToggle) => {
-    new DarkMode();
+    addOrInstantiate(DarkMode, themeToggle);
   });
 });
