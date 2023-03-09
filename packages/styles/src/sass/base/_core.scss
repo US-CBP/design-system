@@ -1,37 +1,26 @@
 @use 'colors' as *;
 @use '../tokens/font' as *;
 
-:root {
-  --cbp-color-background: #{$cbp-bg-light};
-  --cbp-color-text: #{$cbp-text-darkest};
-}
-
 html {
-  color: var(--cbp-color-text);
-  background-color: var(--cbp-color-background);
+  background-color: $cbp-bg-light;
+  color: $cbp-text-darkest;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --cbp-color-background: #{$cbp-bg-dark};
-    --cbp-color-text: #{$cbp-text-lightest};
+  html {
+    background-color: $cbp-bg-dark;
+    color: $cbp-text-lightest;
   }
 
   html[data-cbp-theme="light"] {
-    --cbp-color-background: #{$cbp-bg-light};
-    --cbp-color-text: #{$cbp-text-darkest};
-    
-    color: var(--cbp-color-text);
-    background-color: var(--cbp-color-background);
+    color: $cbp-text-darkest;
+    background-color: $cbp-bg-light;
   }
 }
 
 html[data-cbp-theme="dark"] {
-  --cbp-color-background: #{$cbp-bg-dark};
-  --cbp-color-text: #{$cbp-text-lightest};
-
-  color: var(--cbp-color-text);
-  background-color: var(--cbp-color-background);
+  color: $cbp-text-lightest;
+  background-color: $cbp-bg-dark;
 }
 
 body {
