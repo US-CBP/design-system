@@ -1,21 +1,9 @@
 @use 'colors' as *;
 @use '../tokens/font' as *;
 
-html {
-  background-color: $cbp-bg-light;
+html[data-cbp-theme="light"] {
   color: $cbp-text-darkest;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    background-color: $cbp-bg-dark;
-    color: $cbp-text-lightest;
-  }
-
-  html[data-cbp-theme="light"] {
-    color: $cbp-text-darkest;
-    background-color: $cbp-bg-light;
-  }
+  background-color: $cbp-bg-light;
 }
 
 html[data-cbp-theme="dark"] {
