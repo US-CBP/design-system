@@ -1,12 +1,16 @@
 @use 'colors' as *;
 @use '../tokens/font' as *;
 
-html {
+html[data-cbp-theme="light"] {
   color: $cbp-text-darkest;
-  font-family: $cbp-font-family-roboto;
+  background-color: $cbp-bg-light;
 }
 
-[data-theme="dark"] {
-  background-color: $cbp-bg-dark;
+html[data-cbp-theme="dark"] {
   color: $cbp-text-lightest;
+  background-color: $cbp-bg-dark;
+}
+
+body {
+  font-family: $cbp-font-family-roboto;
 }

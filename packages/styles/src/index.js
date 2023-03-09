@@ -8,6 +8,7 @@ import Toggle from './components/toggle/toggle';
 import FileUploader from './components/fileupload/fileupload';
 import HashedField from './components/form/hashed-field/hashedField';
 import NumberCounter from './components/form/number-counter/numberCounter';
+import DarkMode from './utilities/darkMode';
 
 import './sass/main.scss';
 
@@ -91,5 +92,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
    */
   SelectorEngine.findAll('.cbp-form__number--counter').forEach((counter) => {
     addOrInstantiate(NumberCounter, counter);
+  });
+
+  SelectorEngine.findAll('[data-theme-toggle]').forEach((themeToggle) => {
+    addOrInstantiate(DarkMode, themeToggle);
   });
 });
