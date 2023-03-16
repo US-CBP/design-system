@@ -6,67 +6,67 @@
       },
       "1x": {
         "value": ".25rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "2x": {
         "value": ".5rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "3x": {
         "value": ".75rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "4x": {
         "value": "1rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "5x": {
         "value": "1.25rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "6x": {
         "value": "1.5rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "7x": {
         "value": "1.75rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "8x": {
         "value": "2rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "9x": {
         "value": "2.25rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "10x": {
         "value": "2.5rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "11x": {
         "value": "2.75rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "12x": {
         "value": "3rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "13x": {
         "value": "3.25rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "14x": {
         "value": "3.5rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "15x": {
         "value": "3.75rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       },
       "16x": {
         "value": "4rem",
-        "attributes": { "use": "test" }
+        "attributes": { "use": "space" }
       }
     }
   }
