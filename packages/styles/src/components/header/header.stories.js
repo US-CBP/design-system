@@ -1,25 +1,45 @@
 export default {
   title: 'Patterns/Header',
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
-const UniversalHeaderTemplate = () => {
+const UniversalHeaderTemplate = ({ username }) => {
   return `
-    <header class="cbp-header">
-      <div class="cbp-header__brand">
-        <img src="../assets/images/CBP_LOGO_HORIZONTAL_WHITE_TEXT.svg" alt="cbp brand logo" class="dh-sm-none">
-        <img src="../assets/images/CBP_SEAL.svg" alt="cbp brand logo" class="dh-lg-none">
-        <span class="dh-lg-none">CBP</span>
+    <header class="cbp-universal-header">
+      <div class="cbp-universal-header__brand">
+        <picture>
+          <source srcset="assets/images/CBP_SEAL.svg" media="(max-width: 599px)" type="image/svg+xml" height="44" width="44" />
+          <img src="assets/images/CBP_LOGO_HORIZONTAL_WHITE_TEXT.svg" alt="U.S. Customs and Border Protection" height="55" width="186" />
+        </picture>
       </div>
-      <div class="cbp-header__info dh-sm-none">
-        <a href="#" class="cbp-header__item" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i>App Directory</a>
-        <button class="cbp-header__item"><i class="fas fa-comment"></i>Feedback</button>
-        <button class="cbp-header__item"><i class="fas fa-user"></i>John Smithington</button>
-      </div>
-      <div class="cbp-header__info dh-lg-none">
-        <a href="#" class="cbp-header__item" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i></a>
-        <button class="cbp-header__item"><i class="fas fa-comment"></i></button>
-        <button class="cbp-header__item"><i class="fas fa-user"></i></button>
-      </div>
+      <ul class="cbp-universal-header__list">
+        <li>
+          <a href="#" class="cbp-universal-header__item" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-book"></i>
+            <span>
+              App Directory
+            </span>
+          </a>
+        </li>
+        <li>
+          <button class="cbp-universal-header__item">
+            <i class="fas fa-comment"></i>
+            <span>
+              Feedback
+            </span>
+          </button>
+        </li>
+        <li>
+          <button class="cbp-universal-header__item">
+            <i class="fas fa-user"></i>
+            <span>
+              ${username}
+            </span>
+          </button>
+        </li>
+      </ul>
     </header>
   `;
 };
@@ -48,7 +68,19 @@ const ApplicationHeaderTemplate = () => {
 };
 
 export const UniversalHeader = UniversalHeaderTemplate.bind({});
-UniversalHeader.args = {};
+UniversalHeader.args = {
+  username: 'John Smithington',
+};
+UniversalHeader.argTypes = {
+  username: {
+    name: 'User Name',
+    type: { name: 'string', required: true },
+    description: 'Name of user to be displayed in the Universal Header',
+    control: {
+      type: 'text',
+    },
+  },
+};
 
 export const ApplicationHeader = ApplicationHeaderTemplate.bind({});
 ApplicationHeader.args = {};

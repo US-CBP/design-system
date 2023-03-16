@@ -12,7 +12,8 @@ The CBP Design System (1.0) exists to provide a unifying user experience and red
 $ cd design-system
 $ npm install
 $ npm run styles-dev      # run the styles dev server
-$ npm run styles-build    # runs vite build
+$ npm run styles-build    # runs vite build to build out css and js
+$ npm run styles-sb       # runs storybook for the styles package
 ```
 
 The CBP Design System repo is set up as a monorepo that uses the "workspaces" feature from `npm` for managing multiple packages from a singular top-level, root package. [[NPM Workspaces]](https://docs.npmjs.com/cli/v8/using-npm/workspaces)

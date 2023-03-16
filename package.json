@@ -9,6 +9,7 @@
     "build-tokens": "npm run sd -w packages/styles",
     "styles-dev": "npm run dev -w packages/styles",
     "styles-build": "npm run build -w packages/styles",
+    "styles-sb": "npm run storybook -w packages/styles",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

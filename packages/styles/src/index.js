@@ -8,7 +8,7 @@ import Toggle from './components/toggle/toggle';
 import FileUploader from './components/fileupload/fileupload';
 import HashedField from './components/form/hashed-field/hashedField';
 import NumberCounter from './components/form/number-counter/numberCounter';
-import { handleHeaderScroll, throttle, mediaQuery } from './components/header/header';
+import DarkMode from './utilities/darkMode';
 
 import './sass/main.scss';
 
@@ -93,14 +93,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   SelectorEngine.findAll('.cbp-form__number--counter').forEach((counter) => {
     addOrInstantiate(NumberCounter, counter);
   });
-});
 
-/**
- * Universal Header Component
- */
-
-window.addEventListener('scroll', () => {
-  if (mediaQuery && !mediaQuery.matches) {
-    throttle(handleHeaderScroll, 250) 
-  }
+  SelectorEngine.findAll('[data-theme-toggle]').forEach((themeToggle) => {
+    addOrInstantiate(DarkMode, themeToggle);
+  });
 });

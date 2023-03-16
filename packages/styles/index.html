@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,24 +34,39 @@
       </div>
     </div>
   </header>
-  <header class="cbp-header">
-    <div class="cbp-grid-container">
-      <div class="cbp-header__brand">
-        <img src="assets/images/CBP_LOGO_HORIZONTAL_WHITE_TEXT.svg" alt="cbp brand logo" class="dh-sm-none">
-        <img src="assets/images/CBP_SEAL.svg" alt="cbp brand logo" class="dh-lg-none">
-        <span class="dh-lg-none">CBP</span>
-      </div>
-      <div class="cbp-header__info dh-sm-none">
-        <a href="#" class="cbp-header__item" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i>App Directory</a>
-        <button class="cbp-header__item"><i class="fas fa-comment"></i>Feedback</button>
-        <button class="cbp-header__item"><i class="fas fa-user"></i>John Smithington</button>
-      </div>
-      <div class="cbp-header__info dh-lg-none">
-        <a href="#" class="cbp-header__item" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i></a>
-        <button class="cbp-header__item"><i class="fas fa-comment"></i></button>
-        <button class="cbp-header__item"><i class="fas fa-user"></i></button>
-      </div>
+  <header class="cbp-universal-header">
+    <div class="cbp-universal-header__brand">
+      <picture>
+        <source srcset="assets/images/CBP_SEAL.svg" media="(max-width: 599px)" type="image/svg+xml" height="44" width="44" />
+        <img src="assets/images/CBP_LOGO_HORIZONTAL_WHITE_TEXT.svg" alt="cbp brand logo" height="55" width="186" />
+      </picture>
     </div>
+    <ul class="cbp-universal-header__list">
+      <li>
+        <a href="#" class="cbp-universal-header__item" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-book"></i>
+          <span>
+            App Directory
+          </span>
+        </a>
+      </li>
+      <li>
+        <button class="cbp-universal-header__item">
+          <i class="fas fa-comment"></i>
+          <span>
+            Feedback
+          </span>
+        </button>
+      </li>
+      <li>
+        <button class="cbp-universal-header__item">
+          <i class="fas fa-user"></i>
+          <span>
+            John Smithington
+          </span>
+        </button>
+      </li>
+    </ul>
   </header>
   <nav class="cbp-application-header">
     <button class="nav-home">Application Name</button>
@@ -63,9 +77,9 @@
         <button class="cbp-menu-dropdown">Child Page 3<i class="fas fa-chevron-down"></i></button>
       </div>
       <div>
-        <!-- <button class="cbp-hamburger dh-sm-none">
+        <button class="cbp-hamburger dh-sm-none">
           <i class="fas fa-search"></i>
-        </button> -->
+        </button>
         <button class="cbp-hamburger" data-drawer="open">
           <i class="fas fa-bars"></i>
         </button>
@@ -224,7 +238,13 @@
                 <div class="sandbox__demo-container">
                   <div class="sandbox__demo">
                     <!-- *COMPONENT GOES HERE* -->
-
+                    <label class="cbp-toggle demo-toggle" data-component="cbp-toggle">
+                      <input type="checkbox" data-theme-toggle>
+                      <span class="slider">
+                        <i class="fas fa-moon" style="color: yellow;"></i>
+                        <i class="fas fa-sun" style="color: orange;"></i>
+                      </span>
+                    </label>
                   </div>
                   <aside class="sandbox__modifiers">
                     <h2>State Modifiers</h2>
