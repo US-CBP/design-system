@@ -1,4 +1,4 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 @use 'mixins' as *;
 
 @forward 'nav';
@@ -15,13 +15,14 @@
 }
 
 .cbp-drawer__header {
-  align-items: center;
-  background-color: $cbp-base-secondary-base;
-  border-bottom: 4px solid $cbp-base-secondary-dark;
-  color: $cbp-text-lightest;
   display: flex;
-  height: 72px;
+  align-items: center;
   justify-content: space-between;
+  height: 72px;
+  color: var(--cbp-color-text-lightest);
+  background-color: var(--cbp-color-base-secondary-base);
+  border-bottom: 4px solid var(--cbp-color-base-secondary-dark);
+
 
   div:first-child {
     display: inherit;
@@ -32,6 +33,7 @@
     }
 
     h6 {
+      color: var(--cbp-color-text-lightest);
       font-weight: 700;
       font-size: 1.602rem;
     }
@@ -43,8 +45,14 @@
 }
 
 .cbp-drawer__content {
-  background-color: $cbp-white;
+  background-color: var(--cbp-color-white);
   height: 100%;
+
+  ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 @include drawer-left;

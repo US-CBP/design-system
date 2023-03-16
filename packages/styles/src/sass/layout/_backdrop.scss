@@ -1,6 +1,5 @@
-@use "sass:map";
-
-@use "../utilities/z-index" as *;
+//@use "sass:map";
+//@use "../utilities/z-index" as *;
 
 /*
   Background overlay css used by components that require
@@ -8,6 +7,7 @@
 
   - Drawer
   - Modal
+
 */
 
 /* this is added to the body when a backdrop is active */
@@ -16,7 +16,6 @@
 }
 
 .cbp-backdrop {
-  background-color: rgba(0, 0, 0, 0.3);
   display: none;
   position: fixed;
   overflow-y: auto;
@@ -24,7 +23,8 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: map.get($z, "backdrop");
+  z-index: var(--cbp-z-index-level-top);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .cbp-backdrop.active {

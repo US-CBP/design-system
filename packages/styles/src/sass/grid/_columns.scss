@@ -1,7 +1,6 @@
 @use './utility-functions' as util;
 
 @mixin grid-cols($num-cols, $margin, $size) {
-  
   @for $i from 1 through $num-cols {
     $width: util.cbp-column-offset-length($i,$num-cols);
 
@@ -13,7 +12,6 @@
 }
 
 @mixin grid-offset($num-offset, $margin, $size) {
-
   @for $i from 1 to $num-offset {
     $offset: util.cbp-column-offset-length($i,$num-offset);
     

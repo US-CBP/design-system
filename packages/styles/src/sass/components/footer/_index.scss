@@ -1,4 +1,4 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 @use '../../grid/breakpoints' as *;
 
 @forward 'links';
@@ -24,7 +24,7 @@
   }
   
   & > div > h6 {
-    color: $cbp-text-lighter;
+    color: var(--cbp-color-text-lighter);
     font-size: 20px;
     font-weight: 500;
   }
@@ -39,9 +39,12 @@
 }
 
 .cbp-contact-list {
-  color: $cbp-text-lightest;
+  color: var(--cbp-color-text-lightest);
   font-size: 14px;
   margin-bottom: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
   & > li {
     margin-bottom: 16px;
@@ -70,8 +73,9 @@
   .cbp-contact-list {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 1.5rem;
 
-    & > li {
+    li {
       margin-right: 16px;
 
       &:last-child {

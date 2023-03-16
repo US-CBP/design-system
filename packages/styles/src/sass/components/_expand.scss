@@ -1,4 +1,4 @@
-@use '../base/colors' as *;
+//@use '../base/colors' as *;
 
 .cbp-expand {
   margin: 12px 0;
@@ -20,18 +20,18 @@
 
     // Focus states for expand button 
     &:focus {
-      background-color: $cbp-focus-dark;
+      background-color: var(--cbp-color-interactive-focus-dark);
       outline: none;
     }
 
     &:focus i {
-      color: $cbp-white;
+      color: var(--cbp-color-white);
     }
   }
 
   button > i {
     font-size: 16px;
-    color: $cbp-ui-neutral-darker;
+    color: var(--cbp-color-interactive-neutral-darker);
     transform: rotate(0);
     transition: transform 0.2s ease-in-out;
   }
@@ -41,16 +41,16 @@
     font-weight: 500;
     line-height: 20px;
     text-align: left;
-    color: $cbp-text-darker;
+    color: var(--cbp-color-text-darker);
     width: 100%;
   }
 
   // Hover states for expand button
   &:hover button {
-    background-color: $cbp-ui-neutral-darker;
+    background-color: var(--cbp-color-interactive-neutral-darker);
 
     i {
-      color: $cbp-white; // $white
+      color: var(--cbp-color-white); // $white
     }
   }
 }
@@ -67,7 +67,7 @@
   list-style: none;
 
   li {
-    color: $cbp-text-darkest;
+    color: var(--cbp-color-text-darkest);
     font-weight: 400;
     font-size: 1rem;
     line-height: 20px;

@@ -1,3 +1,8 @@
+/*
+  TODO:
+    convert px to ems
+    leverage the cascade
+*/
 @mixin cbp-small-grid {
   @media only screen and (max-width : 599px) {
     @content;

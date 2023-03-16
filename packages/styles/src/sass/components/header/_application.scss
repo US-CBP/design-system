@@ -1,23 +1,23 @@
-@use "sass:map";
+//@use "sass:map";
 
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 @use '../button/states' as *;
 @use '../drawer/hamburger' as *;
-@use '../../utilities/z-index' as *;
+//@use '../../utilities/z-index' as *;
 @use '../../grid/breakpoints' as *;
 
 @mixin menu-hover {
-  background-color: $cbp-ui-neutral-lighter;
+  background-color: var(--cbp-color-interactive-neutral-lighter);
   border-top: 0;
-  border-bottom: 2px solid $cbp-ui-neutral-darker;
-  color: $cbp-text-darkest;
+  border-bottom: 2px solid var(--cbp-color-interactive-neutral-darker);
+  color: var(--cbp-color-text-darkest);
 }
 
 .cbp-application-header {
   align-items: center;
-  background-color: $cbp-white;
+  background-color: var(--cbp-color-white);
   box-sizing: border-box;
-  box-shadow: 0px 5px 5px -3px $cbp-ui-neutral-dark;
+  box-shadow: 0px 5px 5px -3px var(--cbp-color-interactive-neutral-dark);
   display: flex;
   height: 56px;
   position: sticky;
@@ -25,14 +25,15 @@
   padding-left: 0;
   padding-right: 12px;
   top: -1px;
-  z-index: map.get($z, "application-header");
+  //z-index: map.get($z, "application-header");
+  z-index: var(--cbp-z-index-level-1);
 }
 
 .nav-home {
   align-items: center;
   background-color: transparent;
   border: 0;
-  color: $cbp-ui-neutral-darker;
+  color: var(--cbp-color-interactive-neutral-darker);
   cursor: pointer;
   display: flex;
   font-size: 18px;
@@ -89,8 +90,8 @@
   }
 
   &:active {
-    color: $cbp-active-dark;
-    border-bottom: 2px solid $cbp-active-dark;
+    color: var(--cbp-color-interactive-active-dark);
+    border-bottom: 2px solid var(--cbp-color-interactive-active-dark);
   }
 }
 

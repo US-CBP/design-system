@@ -1,4 +1,4 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 @use '../form/general' as *;
 @use '../button' as *;
 
@@ -29,8 +29,8 @@
     white-space: nowrap;
 
     &:disabled {
-      background-color: $cbp-disabled-dark;
-      color: $cbp-disabled-light;
+      background-color: var(--cbp-color-interactive-disabled-dark);
+      color: var(--cbp-color-interactive-disabled-light);
     }
   }
 
@@ -43,8 +43,8 @@
     margin-left: -2px;
 
     &:disabled {
-      background-color: $cbp-disabled-dark;
-      color: $cbp-disabled-light;
+      background-color: var(--cbp-color-interactive-disabled-dark);
+      color: var(--cbp-color-interactive-disabled-light);
     }
   }
 }
@@ -62,17 +62,17 @@
 .cbp-field-group--readonly {
   & > button,
   & > .square {
-    background-color: $cbp-ui-neutral-light;
-    color: $cbp-text-lightest;
+    background-color: var(--cbp-color-interactive-neutral-light);
+    color: var(--cbp-color-text-lightest);
     cursor: not-allowed;
 
     &:hover:not([disabled]) {
-      background-color: $cbp-ui-neutral-light;
+      background-color: var(--cbp-color-interactive-neutral-light);
     }
 
     &:disabled {
-      background-color: $cbp-base-neutral-light;
-      color: $cbp-text-lightest;
+      background-color: var(--cbp-color-base-neutral-light);
+      color: var(--cbp-color-text-lightest);
     }
   }
 }
@@ -86,8 +86,8 @@
 }
 
 .autocomplete-items {
-  background-color: $cbp-white;
-  border: 1px solid $cbp-ui-neutral-base;
+  background-color: var(--cbp-color-white);
+  border: 1px solid var(--cbp-color-interactive-neutral-base);
   border-top: none;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
@@ -104,9 +104,9 @@
 
 .autocomplete-items div {
   align-items: center;
-  background-color: $cbp-white;
-  border-bottom: 1px solid $cbp-ui-neutral-lighter;
-  color: $cbp-text-dark;
+  background-color: var(--cbp-color-white);
+  border-bottom: 1px solid var(--cbp-color-interactive-neutral-lighter);
+  color: var(--cbp-color-text-dark);
   cursor: pointer;
   display: flex;
   font-size: 1rem;
@@ -117,7 +117,7 @@
   padding-left: 16px;
 
   & > strong {
-    color: $cbp-text-darkest;
+    color: var(--cbp-color-text-darkest);
     font-style: normal;
     font-weight: 400;
   }
@@ -125,21 +125,21 @@
 
 /*when hovering an item:*/
 .autocomplete-items div:hover {
-  background-color: $cbp-ui-neutral-darker;
-  color: $cbp-text-base;
+  background-color: var(--cbp-color-interactive-neutral-darker);
+  color: var(--cbp-color-text-base);
   & > strong {
-    color: $cbp-text-lightest;
+    color: var(--cbp-color-text-lightest);
     font-weight: 700;
   }
 }
 
 /*when navigating through the items using the arrow keys:*/
 .autocomplete-active {
-  background-color: $cbp-focus-dark !important; 
-  color: $cbp-text-base !important;
+  background-color: var(--cbp-color-interactive-focus-dark) !important; 
+  color: var(--cbp-color-text-base) !important;
   
   & > strong {
-    color: $cbp-text-lightest !important;
+    color: var(--cbp-color-text-lightest) !important;
     font-weight: 700 !important;
   }
 }

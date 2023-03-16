@@ -1,4 +1,4 @@
-@use '../base/colors' as *;
+//@use '../base/colors' as *;
 
 .cbp-toggle__wrapper {
   align-items: center;
@@ -31,13 +31,13 @@
   height: 0;
 
   &:checked + .slider {
-    background-color: $cbp-selected-dark;
+    background-color: var(--cbp-color-interactive-selected-dark);
   }
 
   &:focus + .slider {
-    background-color: $cbp-focus-dark;
+    background-color: var(--cbp-color-interactive-focus-dark);
     box-shadow: none;
-    outline: 2px solid $cbp-white;
+    outline: 2px solid var(--cbp-color-white);
     outline-offset: -4px;
   }
 
@@ -48,23 +48,23 @@
   }
 
   &:focus:hover + .slider:before {
-    background-color: $cbp-white;
+    background-color: var(--cbp-color-white);
   }
 
   &:disabled + .slider {
-    background-color: $cbp-disabled-dark;
+    background-color: var(--cbp-color-interactive-disabled-dark);
   }
 
   &:disabled:hover + .slider {
-    background-color: $cbp-ui-neutral-dark;
+    background-color: var(--cbp-color-interactive-neutral-dark);
   }
 
   &:disabled:focus + .slider {
-    background-color: $cbp-focus-dark;
+    background-color: var(--cbp-color-interactive-focus-dark);
   }
 
   &:checked:disabled:focus + .slider {
-    background-color: $cbp-selected-dark;
+    background-color: var(--cbp-color-interactive-selected-dark);
   }
 }
 
@@ -76,7 +76,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $cbp-ui-neutral-light;
+  background-color: var(--cbp-color-interactive-neutral-light);
 
   &:before {
     position: absolute;
@@ -86,14 +86,14 @@
     width: 12px;
     left: 4px;
     bottom: 4px;
-    background-color: $cbp-white;
-    border: 4px solid $cbp-white;
+    background-color: var(--cbp-color-white);
+    border: 4px solid var(--cbp-color-white);
     -webkit-transition: .2s;
     transition: .2s;
   }
 
   &:hover {
-    background-color: $cbp-ui-neutral-dark;
+    background-color: var(--cbp-color-interactive-neutral-dark);
 
     &::before {
       background-color: transparent;
@@ -116,5 +116,5 @@
 }
 
 .demo-toggle > .slider {
-  background-color: #4F7942;
+  background-color: #4F7942; // TODO - need token
 }

@@ -1,4 +1,7 @@
-@use '../base/colors' as *;
+//@use '../base/colors' as *;
+
+// TODO - needs color tokens in place of hex codes
+// TechDebt: Why is regular list CSS here?
 
 /* Potential CBP List styling */
 .cbp-list {
@@ -8,12 +11,13 @@
 }
 
 .cbp-list > li {
-  border-bottom: 1px solid #F1F3F6;
+  border-bottom: 1px solid #F1F3F6; // Token?
   flex: 1 0 100%;
   max-width: 100%;
 }
 
 /* Gives space above to all phone numbers except first one in accordion */
+// TechDebt: is this comment relevant or copy-paste?
 .cbp-list > li:not(:first-child) { 
   margin-top: 16px;
 }
@@ -89,7 +93,7 @@
   color: #fff;
 }
 
-.cbp-pagination-number li.additonal-btn  {
+.cbp-pagination-number li.additional-btn  {
   display: none;
 }
 

@@ -1,10 +1,10 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 
 $track-height: 4px;
 $track-width: 100%;
-$track-background-color: $cbp-ui-neutral-light;
+$track-background-color: var(--cbp-color-interactive-neutral-light);
 
-$thumb-background-color: $cbp-ui-neutral-dark;
+$thumb-background-color: var(--cbp-color-interactive-neutral-dark);
 $thumb-height: 20px;
 $thumb-width: $thumb-height;
 $thumb-margin: calc(($track-height / 2) - ($thumb-height / 2));
@@ -19,7 +19,7 @@ $thumb-margin: calc(($track-height / 2) - ($thumb-height / 2));
 
 @mixin fill {
   height: 8px;
-  background: $cbp-selected-dark;
+  background: var(--cbp-color-interactive-selected-dark);
   border-radius: 4px;
 }
 
@@ -39,6 +39,6 @@ $thumb-margin: calc(($track-height / 2) - ($thumb-height / 2));
 }
 
 @mixin thumb-focus {
-  background: $cbp-focus-dark;
+  background: var(--cbp-color-interactive-focus-dark);
   box-shadow: 0 0 0 8px rgba(190, 50, 208, 0.5);
 }

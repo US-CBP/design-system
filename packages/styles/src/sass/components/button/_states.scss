@@ -2,7 +2,7 @@
 
 @mixin btn-active($theme: light) {
   @if $theme == light {
-    background-color: $cbp-active-dark !important;
+    background-color: var(--cbp-color-interactive-active-dark) !important;
     box-shadow: none;
     cursor: not-allowed;
     font-style: italic;
@@ -12,40 +12,40 @@
       font-weight: 500 !important;
     } 
   } @else {
-    background-color: $cbp-active-light;
-    color: $cbp-text-darkest;
+    background-color: var(--cbp-color-interactive-active-light);
+    color: var(--cbp-color-text-darkest);
   }
 }
 
 @mixin btn-disabled {
-  background: $cbp-disabled-light;
-  color: $cbp-disabled-dark;
+  background: var(--cbp-color-interactive-disabled-light);
+  color: var(--cbp-color-interactive-disabled-dark);
   cursor: pointer;
   font-style: italic;
   font-weight: 500;
 
   &:hover {
-    background-color: $cbp-disabled-dark;
-    color: $cbp-text-darkest;
+    background-color: var(--cbp-color-interactive-disabled-dark);
+    color: var(--cbp-color-text-darkest);
   }
 }
 
 @mixin btn-focus {
-  background: $cbp-focus-dark;
-  color: $cbp-text-lightest;
+  background: var(--cbp-color-interactive-focus-dark);
+  color: var(--cbp-color-text-lightest);
   font-weight: 700;
-  outline: 2px solid $cbp-white;
+  outline: 2px solid var(--cbp-color-white);
   outline-offset: -4px;
 
   & > i {
-    color: $cbp-text-lightest;
+    color: var(--cbp-color-text-lightest);
   }
 
   &:hover {
-    background-color: $cbp-focus-dark;
+    background-color: var(--cbp-color-interactive-focus-dark);
   }
 
   &:hover > i {
-    color: $cbp-text-lightest;
+    color: var(--cbp-color-text-lightest);
   }
 }

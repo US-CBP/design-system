@@ -1,12 +1,17 @@
-@use 'colors' as *;
-@use '../tokens/font' as *;
+//@use 'colors' as *;
+//@use '../tokens/font' as *;
 
 html {
-  color: $cbp-text-darkest;
-  font-family: $cbp-font-family-roboto;
+  font-size: 100%;
 }
 
-[data-theme="dark"] {
-  background-color: $cbp-bg-dark;
-  color: $cbp-text-lightest;
+body {
+  color: var(--cbp-color-text-darkest);
+  background-color: var(--cbp-color-branding-cbp-light);
+  font: var(--cbp-font-size-body)/1rem var(--cbp-font-family-roboto);
+}
+
+[data-theme="dark"] body {
+  color: var(--cbp-color-text-lightest);
+  background-color: var(--cbp-color-branding-cbp-dark);
 }

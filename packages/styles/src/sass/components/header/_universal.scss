@@ -1,9 +1,9 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 @use '../../typography/fonts' as *;
 
 .cbp-header {
   align-items: center;
-  background-color: $dhs-blue;
+  background-color: var(--cbp-color-branding-dhs-blue);
   box-sizing: border-box;
   display: flex;
   height: 60px;
@@ -31,7 +31,7 @@
 
   & > span {
     @extend .cbp-heading-xl;
-    color: $cbp-text-lightest;
+    color: var(--cbp-color-text-lightest);
   }
 }
 
@@ -46,7 +46,7 @@
   border: 0;
   border-radius: 3px;
   display: flex;
-  color: $cbp-ui-neutral-lighter;
+  color: var(--cbp-color-interactive-neutral-lighter);
   font-size: 14px;
   font-weight: 500;
   height: 36px;
@@ -57,19 +57,19 @@
   width: 36px;
 
   &:hover {
-    background-color: $cbp-ui-neutral-dark;
+    background-color: var(--cbp-color-interactive-neutral-dark);
   }
 
   &:focus {
-    background: $cbp-focus-light;
-    color: $cbp-text-darkest;
+    background: var(--cbp-color-interactive-focus-light);
+    color: var(--cbp-color-text-darkest);
     font-weight: 700;
-    outline: 2px solid $cbp-black;
+    outline: 2px solid var(--cbp-color-black);
     outline-offset: -4px;
   
     &:hover {
-      background-color: $cbp-focus-light;
-      color: $cbp-text-darkest;
+      background-color: var(--cbp-color-interactive-focus-light);
+      color: var(--cbp-color-text-darkest);
     }
   }
 }
