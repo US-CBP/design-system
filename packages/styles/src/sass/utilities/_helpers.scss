@@ -1,5 +1,6 @@
-@use '../base/colors' as token;
+//@use '../base/colors' as token;
 @use '../grid/breakpoints' as *;
+
 
 .dh-lg-none {
   @media screen and (min-width : 768px) {
@@ -37,58 +38,73 @@
   }
 }
 
+
+
 .cbp-text-lightest {
-  color: token.$cbp-text-lightest;
+  color: var(--cbp-color-text-lightest);
 }
 
 .cbp-text-lighter {
-  color: token.$cbp-text-lighter;
+  color: var(--cbp-color-text-lighter);
 }
 
 .cbp-text-dark {
-  color: token.$cbp-text-dark;
+  color: var(--cbp-color-text-dark);
 }
 
 .cbp-text-darker {
-  color: token.$cbp-text-darker;
+  color: var(--cbp-color-text-darker);
 }
 
 .cbp-text-darkest {
-  color: token.$cbp-text-darkest;
+  color: var(--cbp-color-text-darkest);
 }
 
 .cbp-bg {
-  background-color: token.$cbp-bg-light;
+  background-color: var(--cbp-color-branding-cbp-light);
 
   &--dark {
-    background-color: token.$cbp-bg-dark;
+    background-color: var(--cbp-color-branding-cbp-dark);
   }
 }
 
 .cbp-bg-base-lightest {
-  background-color: token.$cbp-base-neutral-lightest;
+  background-color: var(--cbp-color-base-neutral-lightest);
 }
 
 .cbp-bg-base-lighter {
-  background-color: token.$cbp-base-neutral-lighter;
+  background-color: var(--cbp-color-base-neutral-lighter);
 }
 
 .cbp-bg-base-light {
-  background-color: token.$cbp-base-neutral-light;
+  background-color: var(--cbp-color-base-neutral-light);
 }
 
 .cbp-bg-base {
-  background-color: token.$cbp-base-neutral-base;
+  background-color: var(--cbp-color-base-neutral-base);
 }
 
 .cbp-bg-base-dark {
-  background-color: token.$cbp-base-neutral-dark;
+  background-color: var(--cbp-color-base-neutral-dark);
 }
 
 .cbp-bg-base-darker {
-  background-color: token.$cbp-base-neutral-darker;
+  background-color: var(--cbp-color-base-neutral-darker);
 }
 
 .cbp-bg-base-darkest {
-  background-color: token.$cbp-base-neutral-darkest;
+  background-color: var(--cbp-color-base-neutral-darkest);
+}
+
+.visually-hidden:not(:focus):not(:active) {
+	border: 0;
+	clip: rect(0 0 0 0); 
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap; 
+	width: 1px;
 }

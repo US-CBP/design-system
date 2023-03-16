@@ -1,24 +1,26 @@
 @use 'sass:map';
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 
 
 $button-type: (
-  "primary": $cbp-ui-primary-dark,
-  "secondary": $cbp-ui-neutral-dark,
-  "danger": $cbp-ui-danger-base,
+  "primary": var(--cbp-color-interactive-primary-dark),
+  "secondary": var(--cbp-color-interactive-neutral-dark),
+  "danger": var(--cbp-color-danger-base),
 );
 
 @mixin base-btn {
+  display: flex;
   align-items: center;
+  height: 2.25rem;
   border: 2px solid transparent;
   border-radius: 3px;
   box-sizing: border-box;
   cursor: pointer;
-  display: flex;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
+
+  font-family: inherit;
+  font-size: .875rem;
   font-weight: 500;
-  height: 36px;
+  
   justify-content: center;
   letter-spacing: 1.08px;
   overflow: hidden;

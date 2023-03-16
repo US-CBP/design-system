@@ -1,11 +1,11 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 
 @mixin base-input {
-  background-color: $cbp-white;
-  border: 1px solid $cbp-ui-neutral-base;
+  background-color: var(--cbp-color-white);
+  border: 1px solid var(--cbp-color-interactive-neutral-base);
   border-radius: 3px;
   box-sizing: border-box;
-  color: $cbp-text-darkest;
+  color: var(--cbp-color-text-darkest);
   font-size: 1rem;
   font-weight: 400;
   height: 36px;
@@ -19,52 +19,52 @@
   }
 
   &:hover:not([disabled]) {
-    border: 2px solid $cbp-ui-neutral-darker;
+    border: 2px solid var(--cbp-color-interactive-neutral-darker);
   }
 
   &:focus:not([disabled]) {
-    border: 2px solid $cbp-focus-dark;
+    border: 2px solid var(--cbp-color-interactive-focus-dark);
     outline: 0;
   }
 
   &:read-only {
-    background-color: $cbp-base-neutral-lighter;
-    border: 1px solid $cbp-ui-neutral-light;
+    background-color: var(--cbp-color-base-neutral-lighter);
+    border: 1px solid var(--cbp-color-interactive-neutral-light);
     cursor: not-allowed;
 
     &:hover,
     &:focus {
-      border: 1px solid $cbp-ui-neutral-light;
+      border: 1px solid var(--cbp-color-interactive-neutral-light);
     }
   }
 
   &:disabled {
-    background-color: $cbp-disabled-light;
-    border: 1px solid $cbp-disabled-dark;
+    background-color: var(--cbp-color-interactive-disabled-light);
+    border: 1px solid var(--cbp-color-interactive-disabled-dark);
     cursor: pointer;
 
     &:hover {
-      border: 2px solid $cbp-ui-neutral-darker;
+      border: 2px solid var(--cbp-color-interactive-neutral-darker);
     }
 
     &:focus {
-      border: 2px solid $cbp-focus-dark;
+      border: 2px solid var(--cbp-color-interactive-focus-dark);
     }
   }
 
   &:invalid {
-    background-color: $cbp-ui-danger-lighter;
-    border: 1px solid $cbp-danger;
+    background-color: var(--cbp-color-danger-lighter);
+    border: 1px solid var(--cbp-color-danger-base);
 
     &:focus {
-      border-color: $cbp-focus-dark;
+      border-color: var(--cbp-color-interactive-focus-dark);
     }
     
     &:hover {
-      border: 2px solid $cbp-ui-danger-dark;
+      border: 2px solid var(--cbp-color-danger-dark);
 
       &:focus {
-        border-color: $cbp-focus-dark;
+        border-color: var(--cbp-color-interactive-focus-dark);
       }
     }
   }

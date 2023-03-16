@@ -1,4 +1,4 @@
-@use '../base/colors' as *;
+//@use '../base/colors' as *;
 
 /* Future form components CSS */
 .cbp-form__row {
@@ -26,7 +26,7 @@
   justify-content: center;
   height: 400px;
   resize: both;
-  border: 2px solid #71767A;
+  border: 2px solid #71767A; // TODO Token?
   border-radius: 5px;
   overflow: auto;
 }
@@ -48,12 +48,12 @@
   }
 
   &:hover {
-    background-color: $cbp-ui-neutral-light;
+    background-color: var(--cbp-color-interactive-neutral-light);
   }
 
   &:not([disabled]):focus {
-    background-color: $cbp-focus-dark;
-    border: 2px solid $cbp-focus-dark;
+    background-color: var(--cbp-color-interactive-focus-dark);
+    border: 2px solid var(--cbp-color-interactive-focus-dark);
     box-shadow: inset 0 0 0 2px #fff;
     outline: 0;
 
@@ -89,7 +89,7 @@
     width: 100%;
     height: 36px;
     max-width: 100%; // Override styles from _list.scss (uswds)
-    background-color: $cbp-gray-cool-80; // $cbp-base-darker;
+    background-color: var(--cbp-color-base-neutral-darker); // $cbp-base-darker;
 
     &:first-child {
       border-top-left-radius: 5px;
@@ -119,22 +119,22 @@
   padding-left: 12px;
   font-weight: 400;
   line-height: 20px;
-  color: $cbp-text-lightest;
+  color: var(--cbp-color-text-lightest);
   text-decoration: none;
-  background-color: $cbp-gray-cool-80; // $cbp-main-bg-dark;
+  background-color: var(--cbp-color-background-dark);
   border: 0;
 
   &:hover {
     font-weight: 700;
-    color: $cbp-text-darkest;
-    background-color: #AFAEA2;
+    color: var(--cbp-color-text-darkest);
+    background-color: #AFAEA2; // TODO token?
   }
 
   &:focus {
     font-weight: 700;
-    color: $cbp-text-darkest;
-    background-color: $cbp-focus-light;
-    border: 2px solid $cbp-focus-light;
+    color: var(--cbp-color-text-darkest);
+    background-color: var(--cbp-color-interactive-focus-light);
+    border: 2px solid var(--cbp-color-interactive-focus-light);
     box-shadow: inset 0 0 0 2px #fff;
     outline: 0;
   }
@@ -151,9 +151,9 @@
   height: 36px;
   font-weight: 700;
   text-transform: uppercase;
-  color: $cbp-text-lightest;
+  color: var(--cbp-color-text-lightest);
   letter-spacing: 1.08px;
-  background-color: $cbp-blue-warm-50; // $cbp-ui-primary;
+  background-color: var(--cbp-color-interactive-primary-base);
   border: 0;
   border-radius: 0 0 5px 5px;
   cursor: pointer;
@@ -163,28 +163,28 @@
   }
 
   &:hover {
-    color: $cbp-text-lightest !important;
-    background-color: $cbp-ui-primary-dark;
+    color: var(--cbp-color-text-lightest) !important;
+    background-color: var(--cbp-color-interactive-primary-dark);
   }
 
   &:focus {
-    background-color: $cbp-focus-dark;
-    border: 2px solid $cbp-focus-dark;
+    background-color: var(--cbp-color-interactive-focus-dark);
+    border: 2px solid var(--cbp-color-interactive-focus-dark);
     box-shadow: inset 0 0 0 2px #fff;
     outline: 0 !important;
   }
 }
 
 .cbp-overflow-menu__item--danger {
-  border-top: 2px solid #71767A;
+  border-top: 2px solid #71767A; // TODO token?
 
   & > button {
-    color: #f39268;
+    color: #f39268; // ???
     cursor: pointer;
 
     &:hover {
       color: #ffffff !important;
-      background-color: #D54309;
+      background-color: #D54309; // ???
     }
   }
 }

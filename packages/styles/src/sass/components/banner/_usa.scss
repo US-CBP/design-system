@@ -1,8 +1,8 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 @use '../../grid/breakpoints' as *;
 
 .cbp-banner {
-  background-color: $cbp-base-neutral-darkest;
+  background-color: var(--cbp-color-base-neutral-darkest);
   width: 100%;
 
   &__title {
@@ -20,7 +20,7 @@
 
     & > div > span {
       display: block;
-      color: $cbp-text-lightest;
+      color: var(--cbp-color-text-lightest);
       font-size: 0.889rem;
       font-weight: 500;
       line-height: 1.25;
@@ -31,7 +31,7 @@
 .cbp-banner__toggle {
   background-color: transparent;
   border: 0;
-  color: $cbp-ui-neutral-light;
+  color: var(--cbp-color-interactive-neutral-light);
   cursor: pointer;
   font-size: 0.889rem;
   font-weight: 500;
@@ -44,20 +44,20 @@
   }
 
   &:hover {
-    color: $cbp-ui-neutral-lighter;
+    color: var(--cbp-color-interactive-neutral-lighter);
   }
 
   &:focus {
-    color: $cbp-focus-light;
-    outline: 2px solid $cbp-focus-light;
+    color: var(--cbp-color-interactive-focus-light);
+    outline: 2px solid var(--cbp-color-interactive-focus-light);
     outline-offset: 2px;
   }
 }
 
 .cbp-banner__content {
   display: none;
-  background-color: $cbp-base-neutral-darkest;
-  color: $cbp-text-lightest;
+  background-color: var(--cbp-color-base-neutral-darkest);
+  color: var(--cbp-color-text-lightest);
   height: 0;
   padding: 12px 20px;
   
@@ -70,9 +70,9 @@
 
     & > i {
       align-items: center;
-      border: 2px solid $cbp-info-light;
+      border: 2px solid var(--cbp-color-info-light);
       border-radius: 50%;
-      color: $cbp-info-light;
+      color: var(--cbp-color-info-light);
       display: flex;
       font-size: 20px;
       flex-shrink: 0;
@@ -100,10 +100,10 @@
 
 .banner-active {
   display: block;
-  height: fit-content;
+  //height: fit-content;
 }
 
-
+// TODO: This can all be done with flexbox and no media queries
 @media only screen and (min-width : 473px) { // Text appears as one line at this breakpoint
   .cbp-banner__title {
     align-items: center;

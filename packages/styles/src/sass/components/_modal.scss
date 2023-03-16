@@ -1,4 +1,4 @@
-@use '../base/colors' as *;
+//@use '../base/colors' as *;
 
 // Future CSS to use for hidden components
 .cbp-hidden {
@@ -30,7 +30,7 @@
   left: 50%;
   bottom: 2rem;
   transform: translateX(-50%);
-  background-color: $cbp-white;
+  background-color: var(--cbp-color-white);
   border-radius: 5px;
   width: 336px;
   height: fit-content;
@@ -38,7 +38,7 @@
   
   & > hr {
     margin: 0px 16px;
-    border: 1px solid #A9AEB1;
+    border: 1px solid #A9AEB1; // TODO - token
   }
 }
 
@@ -49,7 +49,7 @@
   padding-left: 16px;
   padding-right: 16px;
   padding-bottom: 16px;
-  color: $cbp-text-darker;
+  color: var(--cbp-color-text-darker);
 
   i {
     font-size: 22px;
@@ -65,12 +65,12 @@
 
   // Modal Title Danger
   &--danger {
-    color: #d54309;
+    color: #d54309; // TODO Token?
   }
 }
 
 .cbp-modal__content {
-  color: $cbp-text-darker;
+  color: var(--cbp-color-text-darker);
   font-size: 1.125rem;
   font-weight: 700;
   padding: 16px 16px 20px 16px;

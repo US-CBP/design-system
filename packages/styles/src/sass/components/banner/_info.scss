@@ -1,13 +1,13 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 @use 'mixin' as *;
 
 .cbp-banner__info {
-  @include banner-info($cbp-info-dark) {
+  @include banner-info(var(--cbp-color-info-dark)) {
     & > div > i {
       align-items: center;
-      background-color: $cbp-info-light;
+      background-color: var(--cbp-color-info-light);
       border-radius: 50%;
-      color: $cbp-info-darker;
+      color: var(--cbp-color-info-darker);
       display: flex;
       font-size: 24px;
       height: 48px;
@@ -18,15 +18,15 @@
   }
 
   .cbp-banner__info-title {
-    @include banner-title($cbp-text-lighter);
+    @include banner-title(var(--cbp-color-text-lighter));
   }
 
   .cbp-banner__text {
-    @include banner-text($cbp-text-lightest);
+    @include banner-text(var(--cbp-color-text-lightest));
   }
 
   button {
-    @include banner-dismiss($cbp-text-lightest);
+    @include banner-dismiss(var(--cbp-color-text-lightest));
   }
 }
 

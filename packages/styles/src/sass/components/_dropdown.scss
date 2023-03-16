@@ -1,4 +1,4 @@
-@use '../base/colors' as *;
+//@use '../base/colors' as *;
 @use 'checkbox' as *;
 
 .cbp-dropdown__wrapper {
@@ -9,7 +9,7 @@
 .cbp-dropdown__custom {
   align-items: center;
   background-color: transparent;
-  border: 1px solid $cbp-ui-neutral-base;
+  border: 1px solid var(--cbp-color-interactive-neutral-base);
   border-radius: 3px;
   border-right: 0;
   cursor: inherit;
@@ -25,41 +25,41 @@
   width: 100%;
 
   &:hover {
-    border: 2px solid $cbp-ui-neutral-darker;
+    border: 2px solid var(--cbp-color-interactive-neutral-darker);
     border-right: 0;
   }
   
   &:hover::after {
-    background-color: $cbp-ui-neutral-darker;
+    background-color: var(--cbp-color-interactive-neutral-darker);
     // border: 2px solid $cbp-ui-neutral-darker;
   }
 
   &:disabled {
-    border: 1px solid $cbp-disabled-dark;
-    background-color: $cbp-disabled-light;
-    color: $cbp-disabled-dark;
+    border: 1px solid var(--cbp-color-interactive-disabled-dark);
+    background-color: var(--cbp-color-interactive-disabled-light);
+    color: var(--cbp-color-interactive-disabled-dark);
     font-style: italic;
 
     &::after {
-      background-color: $cbp-disabled-dark;
-      border-color: $cbp-disabled-dark;
+      background-color: var(--cbp-color-interactive-disabled-dark);
+      border-color: var(--cbp-color-interactive-disabled-dark);
       font-style: initial;
     }
 
     &:hover {
-      border: 2px solid $cbp-ui-neutral-darker;
+      border: 2px solid var(--cbp-color-interactive-neutral-darker);
       border-right: 0;
     }
 
     &:disabled:hover::after {
-      background-color: $cbp-ui-neutral-darker;
+      background-color: var(--cbp-color-interactive-neutral-darker);
       // border: 2px solid $cbp-ui-neutral-darker;
     }
   }
 
   &:disabled .cbp-chips {
-    background-color: $cbp-disabled-dark;
-    color: $cbp-disabled-light;
+    background-color: var(--cbp-color-interactive-disabled-dark);
+    color: var(--cbp-color-interactive-disabled-light);
     font-style: normal;
   }
 }
@@ -67,12 +67,12 @@
 /* Down Caret */
 .cbp-dropdown__custom::after {
   align-items: center;
-  background-color: $cbp-ui-neutral-base;
+  background-color: var(--cbp-color-interactive-neutral-base);
   // border: 2px solid $cbp-ui-neutral-base;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   content: "\f107";
-  color: $cbp-white;
+  color: var(--cbp-color-white);
   display: flex;
   font-family: "Font Awesome 5 Free";
   font-size: 20px;
@@ -87,7 +87,7 @@
 }
 
 .cbp-dropdown__placeholder {
-  color: $cbp-text-dark;
+  color: var(--cbp-color-text-dark);
   display: block;
   font-style: italic;
 }
@@ -99,8 +99,8 @@
 
 /* Dropdown Menu */
 .cbp-dropdown {
-  background-color: $cbp-white;
-  border: 1px solid $cbp-ui-neutral-base;
+  background-color: var(--cbp-color-white);
+  border: 1px solid var(--cbp-color-interactive-neutral-base);
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   border-bottom-left-radius: 3px;
@@ -120,7 +120,7 @@
     align-items: center;
     border-bottom: 0;
     border-top: 0;
-    color: $cbp-text-darkest;
+    color: var(--cbp-color-text-darkest);
     display: flex;
     font-size: 1rem;
     height: 36px;
@@ -129,33 +129,33 @@
     text-decoration: none;
 
     &:hover:not([disabled]) {
-      background-color: $cbp-ui-neutral-darker;
-      color: $cbp-text-lightest;
+      background-color: var(--cbp-color-interactive-neutral-darker);
+      color: var(--cbp-color-text-lightest);
       cursor: pointer;
       font-weight: 700;
 
       &::after {
-        border-bottom: 1px solid $cbp-ui-neutral-darker;
+        border-bottom: 1px solid var(--cbp-color-interactive-neutral-darker);
       }
     }
 
     &:focus:not([disabled]) {
-      background-color: $cbp-focus-dark;
-      color: $cbp-white;
+      background-color: var(--cbp-color-interactive-focus-dark);
+      color: var(--cbp-color-white);
       font-weight: 700;
       outline: 0;
 
       &::after {
         content: "";
         display: none;
-        border-bottom: 1px solid $cbp-ui-neutral-darker;
+        border-bottom: 1px solid var(--cbp-color-interactive-neutral-darker);
       }
     }
 
     /* Hacky solution due to width property (right margin) of separating line */
     &::after {
       content: "";
-      border-bottom: 1px solid $cbp-ui-neutral-lighter;
+      border-bottom: 1px solid var(--cbp-color-interactive-neutral-lighter);
       display: block;
       height: 1px;
       left: 12px;
@@ -165,7 +165,7 @@
     }
 
     &:visited {
-      color: $cbp-text-darkest;
+      color: var(--cbp-color-text-darkest);
     }
   }
   
@@ -189,18 +189,18 @@
 
     &:hover:not([disabled]) {
       background-color: inherit;
-      border-color: $cbp-ui-neutral-lighter;
+      border-color: var(--cbp-color-interactive-neutral-lighter);
       box-shadow: initial;
       clip-path: initial;
     }
 
     &:checked {
       &:hover {
-        background-color: $cbp-selected-light;
+        background-color: var(--cbp-color-interactive-selected-light);
 
         &::before {
-          border-right: 3px solid $cbp-text-darkest;
-          border-bottom: 3px solid $cbp-text-darkest;
+          border-right: 3px solid var(--cbp-color-text-darkest);
+          border-bottom: 3px solid var(--cbp-color-text-darkest);
           height: 70%;
           width: 30%;
           transform: rotate(45deg) translateY(-10%) translateX(-10%);
@@ -209,7 +209,7 @@
     }
 
     &:focus {
-      border: 2px solid $cbp-ui-neutral-lighter;
+      border: 2px solid var(--cbp-color-interactive-neutral-lighter);
       box-shadow: initial;
       clip-path: initial;
       outline: 0 !important; // Overriding style from _focus.scss??
@@ -224,7 +224,7 @@
   /* Hacky solution due to width property (right margin) of separating line */
   &::after {
     content: "";
-    border-bottom: 1px solid $cbp-ui-neutral-lighter;
+    border-bottom: 1px solid var(--cbp-color-interactive-neutral-lighter);
     display: block;
     height: 1px;
     left: 12px;
@@ -238,8 +238,8 @@
   }
 
   &:focus-within {
-    background-color: $cbp-focus-dark;
-    color: $cbp-text-lighter;
+    background-color: var(--cbp-color-interactive-focus-dark);
+    color: var(--cbp-color-text-lighter);
 
     &::after {
       border-bottom: 0;
@@ -249,42 +249,44 @@
 
 /* Custom Dropdown Error State */
 .cbp-dropdown__custom--error {
-  background-color: $cbp-ui-danger-lighter;
-  border-left: 2px solid $cbp-ui-danger-base;
+  background-color: var(--cbp-color-danger-lighter);
+  // TechDebt: this is why you would break border down into border-style, width, color. Less repetition.
+  border-left: 2px solid var(--cbp-color-danger-base);
   border-right: 0;
-  border-top: 2px solid $cbp-ui-danger-base;
-  border-bottom: 2px solid $cbp-ui-danger-base;
+  border-top: 2px solid var(--cbp-color-danger-base);
+  border-bottom: 2px solid var(--cbp-color-danger-base);
 
   &::after {
-    border: 2px solid $cbp-ui-danger-base !important;
-    background-color: $cbp-ui-danger-base !important;
+    border: 2px solid var(--cbp-color-danger-base) !important;
+    background-color: var(--cbp-color-danger-base) !important;
   }
 
   &:hover {
-    border-left: 2px solid $cbp-ui-danger-dark;
+    // TechDebt - same
+    border-left: 2px solid var(--cbp-color-danger-dark);
     border-right: 0;
-    border-top: 2px solid $cbp-ui-danger-dark;
-    border-bottom: 2px solid $cbp-ui-danger-dark;
+    border-top: 2px solid var(--cbp-color-danger-dark);
+    border-bottom: 2px solid var(--cbp-color-danger-dark);
 
     &::after {
-      border: 2px solid $cbp-ui-danger-dark !important;
-      background-color: $cbp-ui-danger-dark !important;
+      border: 2px solid var(--cbp-color-danger-dark) !important;
+      background-color: var(--cbp-color-danger-dark) !important;
     }
   }
 
   &:focus:not([disabled]) {
-    border: 2px solid $cbp-focus-dark;
+    border: 2px solid var(--cbp-color-interactive-focus-dark);
     outline: 0;
 
     &::after {
-      border: 2px solid $cbp-focus-dark !important;
-      background-color: $cbp-focus-dark !important;
+      border: 2px solid var(--cbp-color-interactive-focus-dark) !important;
+      background-color: var(--cbp-color-interactive-focus-dark) !important;
     }
   }
 
   & + .cbp-dropdown {
-    background-color: $cbp-ui-danger-lighter;
-    border: 2px solid $cbp-danger;
+    background-color: var(--cbp-color-danger-lighter);
+    border: 2px solid var(--cbp-color-danger-base);
     border-top: 0;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -294,7 +296,7 @@
     }
 
     &:focus {
-      border: 2px solid $cbp-focus-dark;
+      border: 2px solid var(--cbp-color-interactive-focus-dark);
       border-top: 0;
       border-bottom-left-radius: 3px;
       border-bottom-right-radius: 3px;
@@ -304,8 +306,8 @@
 
   /* Caret Button */
   &::after {
-    background-color: $cbp-danger;
-    border: 2px solid $cbp-danger;
+    background-color: var(--cbp-color-danger-base);
+    border: 2px solid var(--cbp-color-danger-base);
   }
 }
 
@@ -339,14 +341,14 @@
 
 /* Focus State */
 .cbp-dropdown__custom:focus:not([disabled]) {
-  border: 2px solid $cbp-focus-dark;
+  border: 2px solid var(--cbp-color-interactive-focus-dark);
   border-right: 0;
   outline: 0;
 }
 
 /* Focus Caret State */
 .cbp-dropdown__custom:focus-within::after {
-  background-color: $cbp-focus-dark;
+  background-color: var(--cbp-color-interactive-focus-dark);
   // border: 2px solid $cbp-focus-dark;
 }
 

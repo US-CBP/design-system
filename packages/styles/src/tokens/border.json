@@ -1,0 +1,45 @@
+{
+  "border": {
+    "size": {  
+      "sm": {
+        "value": ".0625rem",
+        "attributes": { "use": "border" }
+      },
+      "md": {
+        "value": ".125rem",
+        "attributes": { "use": "border" }
+      },
+      "lg": {
+        "value": ".1875rem",
+        "attributes": { "use": "border" }
+      },
+      "xl": {
+        "value": ".25rem",
+        "attributes": { "use": "border" }
+      }
+    },
+    
+    "radius": {  
+      "sharp": {
+        "value": "0",
+        "attributes": { "use": "border" }
+      },
+      "soft": {
+        "value": "0.1875rem",
+        "attributes": { "use": "border" }
+      },
+      "softer": {
+        "value": "0.25rem",
+        "attributes": { "use": "border" }
+      },
+      "pill": {
+        "value": "100%",
+        "attributes": { "use": "border" }
+      },
+      "circle": {
+        "value": "9999px",
+        "attributes": { "use": "border" }
+      }
+    }
+  }
+}

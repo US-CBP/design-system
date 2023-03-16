@@ -1,4 +1,4 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 @use 'mixins' as *;
 
 /* Drawer Nav Menu Tree */
@@ -23,7 +23,7 @@
 // }
 
 .cbp-drawer__nav {
-  border-top: 1px solid $cbp-base-neutral-light;
+  border-top: 1px solid var(--cbp-color-base-neutral-light);
   height: fit-content;
 }
 

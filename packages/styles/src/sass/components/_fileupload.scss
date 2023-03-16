@@ -1,22 +1,25 @@
-@use '../base/colors' as *;
+//@use '../base/colors' as *;
 @use './button/states' as *;
 
 .cbp-form__file {
+  display: flex;
   align-items: center;
+  width: fit-content;
+  
   background-color: transparent;
-  border: 1px dashed $cbp-ui-neutral-base;
+  border: 1px dashed var(--cbp-color-interactive-neutral-base);
   border-radius: 3px;
   cursor: pointer;
-  display: flex;
+
   font-style: italic;
   height: 72px;
   margin-bottom: 16px;
   padding: 0 12px;
   position: relative;
-  width: fit-content;
+  
 
   i {
-    color: $cbp-text-base;
+    color: var(--cbp-color-text-base);
     font-size: 30px;
     margin-right: 12px;
   }
@@ -30,19 +33,19 @@
   }
 
   &:hover {
-    border: 2px dashed $cbp-ui-neutral-darker;
-    outline: 4px solid $cbp-ui-neutral-light;
+    border: 2px dashed var(--cbp-color-interactive-neutral-darker);
+    outline: 4px solid var(--cbp-color-interactive-neutral-light);
     outline-offset: -6px;
 
     & > .cbp-btn__secondary {
-      background-color: $cbp-ui-neutral-darker;
+      background-color: var(--cbp-color-interactive-neutral-darker);
     }
   }
 }
 
 .cbp-form__file:focus-within {
-  border: 2px dashed $cbp-focus-dark;
-  outline: 4px solid $cbp-focus-light;
+  border: 2px dashed var(--cbp-color-interactive-focus-dark);
+  outline: 4px solid var(--cbp-color-interactive-focus-light);
   outline-offset: -6px;
 }
 
@@ -51,14 +54,14 @@
 }
 
 .cbp-form__file:focus-within > .cbp-btn__secondary {
-  background-color: $cbp-focus-dark;
+  background-color: var(--cbp-color-interactive-focus-dark);
 }
 
 .cbp-form__file > .cbp-btn__secondary {
   margin-left: 6px;
   pointer-events: none;
   & > i {
-    color: $cbp-text-lightest;
+    color: var(--cbp-color-text-lightest);
     font-size: 14px;
     margin-right: 8px;
   }
@@ -66,16 +69,16 @@
 
 /* DISABLED: must apply 'disable' attribute on input[type=file] */
 .cbp-form__file.disabled {
-  border: 1px dashed $cbp-disabled-dark;
-  color: $cbp-disabled-dark;
+  border: 1px dashed var(--cbp-color-disabled-dark);
+  color: var(--cbp-color-interactive-disabled-dark);
 
   & > i {
-    color: $cbp-disabled-dark;
+    color: var(--cbp-color-interactive-disabled-dark);
   }
 
   & > button {
-    background-color: $cbp-disabled-dark;
-    color: $cbp-disabled-light;
+    background-color: var(--cbp-color-interactive-disabled-dark);
+    color: var(--cbp-color-interactive-disabled-light);
     font-style: italic;
 
     & > i {
@@ -90,16 +93,16 @@
 
 /* READ-ONLY: must apply 'disable' attribute on input[type=file] */
 .cbp-form__file.read-only {
-  border: 1px dashed $cbp-ui-neutral-light;
-  color: $cbp-text-dark;
+  border: 1px dashed var(--cbp-color-interactive-neutral-light);
+  color: var(--cbp-color-text-dark);
 
   & > i {
-    color: $cbp-text-light;
+    color: var(--cbp-color-text-light);
   }
 
   & > button {
-    background-color: $cbp-ui-neutral-light;
-    color: $cbp-text-lightest;
+    background-color: var(--cbp-color-interactive-neutral-light);
+    color: var(--cbp-color-text-lightest);
     font-style: italic;
 
     & > i {
@@ -111,15 +114,15 @@
     outline: none;
 
     & > button {
-      background-color: $cbp-ui-neutral-light;
-      color: $cbp-text-lightest;
+      background-color: var(--cbp-color-interactive-neutral-light);
+      color: var(--cbp-color-text-lightest);
     }
   }
 }
 
 .cbp-form__upload {
   align-items: center;
-  background-color: $cbp-base-neutral-lighter;
+  background-color: var(--cbp-color-base-neutral-lighter);
   border-radius: 3px;
   display: flex;
   font-style: italic;
@@ -140,15 +143,15 @@
     width: 28px;
 
     & > i {
-      color: $cbp-ui-neutral-dark;
+      color: var(--cbp-color-interactive-neutral-dark);
       vertical-align: middle;
     }
 
     &:hover {
-      background-color: $cbp-ui-neutral-darker;
+      background-color: var(--cbp-color-interactive-neutral-darker);
 
       & > i {
-        color: $cbp-ui-neutral-lighter;
+        color: var(--cbp-color-interactive-neutral-lighter);
       }
     }
 
@@ -156,7 +159,7 @@
       @include btn-focus;
       
       & > i {
-        color: $cbp-ui-neutral-lighter;
+        color: var(--cbp-color-interactive-neutral-lighter);
       }
     }
   }
@@ -178,25 +181,25 @@
 }
 
 .cbp-form__upload > progress[value]::-webkit-progress-bar {
-  background-color: $cbp-base-neutral-lighter;
+  background-color: var(--cbp-color-base-neutral-lighter);
 }
 
 .cbp-form__upload > progress[value]::-webkit-progress-value {
-  background-color: $cbp-info-base;
+  background-color: var(--cbp-color-info-base);
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
 
 .cbp-form__upload > progress[value]::-moz-progress-bar {
-  background-color: $cbp-info-base;
+  background-color: var(--cbp-color-info-base);
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
 
 .cbp-form__upload--error {
   align-items: baseline;
-  background-color: $cbp-ui-danger-lighter;
-  border: 2px solid $cbp-ui-danger-base;
+  background-color: var(--cbp-color-danger-lighter);
+  border: 2px solid var(--cbp-color-danger-base);
   flex-direction: column;
   height: 72px;
 
@@ -206,8 +209,8 @@
 
   & > hr {
     border: none;
-    border-top: 1px solid $cbp-base-neutral-lighter;
-    color: $cbp-base-neutral-lighter;
+    border-top: 1px solid var(--cbp-color-base-neutral-lighter);
+    color: var(--cbp-color-base-neutral-lighter);
     height: 1px;
     margin: 8px 0;
     width: 100%;
@@ -231,14 +234,14 @@
     width: 28px;
 
     & > i {
-      color: $cbp-ui-danger-base;
+      color: var(--cbp-color-danger-base);
     }
 
     &:hover {
-      background-color: $cbp-ui-neutral-darker;
+      background-color: var(--cbp-color-interactive-neutral-darker);
 
       & > i {
-        color: $cbp-ui-neutral-lighter
+        color: var(--cbp-color-interactive-neutral-lighter);
       }
     }
 
@@ -246,14 +249,14 @@
       @include btn-focus;
 
       & > i {
-        color: $cbp-ui-neutral-lighter
+        color: var(--cbp-color-interactive-neutral-lighter);
       }
     }
   }
 }
 
 .cbp-form__upload--error > span:last-child {
-  color: $cbp-ui-danger-base;
+  color: var(--cbp-color-danger-base);
 
   & > i {
     margin-right: 4px;

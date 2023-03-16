@@ -1,4 +1,4 @@
-@use '../base/colors' as *;
+//@use '../base/colors' as *;
 
 /* Select (Form Input) */
 .select-wrapper {
@@ -26,7 +26,7 @@ select {
   }
 
   &:invalid {
-    color: $cbp-text-dark;
+    color: var(--cbp-color-text-dark);
     font-style: italic;
   }
 }
@@ -34,12 +34,12 @@ select {
 /* Down Caret "Button */
 .select-wrapper::after {
   align-items: center;
-  background-color: $cbp-ui-neutral-base;
-  border: 2px solid $cbp-ui-neutral-base;
+  background-color: var(--cbp-color-interactive-neutral-base);
+  border: 2px solid var(--cbp-color-interactive-neutral-base);
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   content: "\f107";
-  color: $cbp-white;
+  color: var(--cbp-color-white);
   display: flex;
   font-family: "Font Awesome 5 Free";
   font-size: 20px;
@@ -54,7 +54,7 @@ select {
 }
 
 .cbp-form__single-select {
-  border: 1px solid $cbp-ui-neutral-base;
+  border: 1px solid var(--cbp-color-interactive-neutral-base);
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   border-right: none;
@@ -63,90 +63,90 @@ select {
 
 /* Hover State */
 .cbp-form__single-select:hover {
-  border: 2px solid $cbp-ui-neutral-darker;
+  border: 2px solid var(--cbp-color-interactive-neutral-darker);
   border-right: 0;
 }
 
 /* Hover Caret State */
 .select-wrapper:hover::after {
-  background-color: $cbp-ui-neutral-darker;
-  border: 2px solid $cbp-ui-neutral-darker;
+  background-color: var(--cbp-color-interactive-neutral-darker);
+  border: 2px solid var(--cbp-color-interactive-neutral-darker);
 }
 
 /* Focus State */
 .cbp-form__single-select:focus {
-  border: 2px solid $cbp-focus-dark;
+  border: 2px solid var(--cbp-color-interactive-focus-dark);
   border-right: 0;
   outline: 0;
 }
 
 /* Focus Caret State */
 .select-wrapper:focus-within::after {
-  background-color: $cbp-focus-dark;
-  border: 2px solid $cbp-focus-dark;
+  background-color: var(--cbp-color-interactive-focus-dark);
+  border: 2px solid var(--cbp-color-interactive-focus-dark);
 }
 
 /* Error State */
 .select-wrapper--error {
   & > select {
-    background: linear-gradient(to right, $cbp-ui-danger-lighter calc(100% - 34px), transparent 0);
-    border: 2px solid $cbp-danger;
+    background: linear-gradient(to right, var(--cbp-color-danger-lighter) calc(100% - 34px), transparent 0);
+    border: 2px solid var(--cbp-color-danger-base);
 
     &:hover {
-      border: 2px solid $cbp-ui-danger-dark;
+      border: 2px solid var(--cbp-color-danger-dark);
     }
 
     &:focus {
-      background: linear-gradient(to right, $cbp-ui-danger-lighter calc(100% - 34px), transparent 0);
-      border: 2px solid $cbp-focus-dark;
+      background: linear-gradient(to right, var(--cbp-color-danger-lighter) calc(100% - 34px), transparent 0);
+      border: 2px solid var(--cbp-color-interactive-focus-dark);
     }
   }
 
   &::after {
-    background-color: $cbp-danger;
-    border: 2px solid $cbp-danger;
+    background-color: var(--cbp-color-danger-base);
+    border: 2px solid var(--cbp-color-danger-base);
   }
 
   &:hover::after {
-    background-color: $cbp-ui-danger-dark;
-    border: 2px solid $cbp-ui-danger-dark;
+    background-color: var(--cbp-color-danger-dark);
+    border: 2px solid var(--cbp-color-danger-dark);
   }
 
   &:focus-within::after {
-    background-color: $cbp-focus-dark;
-    border: 2px solid $cbp-focus-dark;
+    background-color: var(--cbp-color-interactive-focus-dark);
+    border: 2px solid var(--cbp-color-interactive-focus-dark);
   }
 }
 
 .select-wrapper--disabled {
   & > select {
-    background: linear-gradient(to right, $cbp-disabled-light calc(100% - 34px), transparent 0);
-    border: 1px solid $cbp-disabled-dark;
-    color: $cbp-disabled-dark;
+    background: linear-gradient(to right, var(--cbp-color-interactive-disabled-light) calc(100% - 34px), transparent 0);
+    border: 1px solid var(--cbp-color-interactive-disabled-dark);
+    color: var(--cbp-color-interactive-disabled-dark);
     font-style: italic;
 
     &:hover {
-      border: 2px solid $cbp-ui-neutral-darker;
+      border: 2px solid var(--cbp-color-interactive-neutral-darker);
     }
 
     &:focus {
-      background: linear-gradient(to right, $cbp-disabled-light calc(100% - 34px), transparent 0);
-      border: 2px solid $cbp-focus-dark;
+      background: linear-gradient(to right, var(--cbp-color-interactive-disabled-light) calc(100% - 34px), transparent 0);
+      border: 2px solid var(--cbp-color-interactive-focus-dark);
     }
 
     &::placeholder {
-      color: $cbp-disabled-light;
+      color: var(--cbp-color-interactive-disabled-light);
       font-style: italic;
     }
   }
 
   &::after {
-    background-color: $cbp-disabled-dark;
-    border: 2px solid $cbp-disabled-dark;
+    background-color: var(--cbp-color-interactive-disabled-dark);
+    border: 2px solid var(--cbp-color-interactive-disabled-dark);
   }
 
   &:hover::after {
-    background-color: $cbp-ui-neutral-darker;
-    border: 2px solid $cbp-ui-neutral-darker;
+    background-color: var(--cbp-color-interactive-neutral-darker);
+    border: 2px solid var(--cbp-color-interactive-neutral-darker);
   }
 }

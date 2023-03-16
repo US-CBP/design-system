@@ -1,11 +1,11 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 @use '../../typography/fonts' as *;
 @use '../../grid/breakpoints' as *;
-@use '../../tokens/font' as *;
+//@use '../../tokens/font' as *;
 
 .cbp-universal-header {
   align-items: center;
-  background-color: $dhs-blue;
+  background-color: var(--cbp-color-branding-dhs-blue);
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
@@ -25,7 +25,7 @@
   &::after {
     @extend .cbp-heading-l;
     content: "CBP";
-    color: $cbp-text-lightest;
+    color: var(--cbp-color-text-lightest);
     margin-left: 8px;
   }
 }
@@ -50,9 +50,9 @@
   border: 0;
   border-radius: 3px;
   display: flex;
-  color: $cbp-ui-neutral-lighter;
   cursor: pointer;
-  font-size: $cbp-text-button;
+  color: var(--cbp-color-interactive-neutral-lighter);
+  font-size: 14px;
   font-weight: 500;
   height: 36px;
   justify-content: center;
@@ -65,19 +65,19 @@
   }
 
   &:hover {
-    background-color: $cbp-ui-neutral-dark;
+    background-color: var(--cbp-color-interactive-neutral-dark);
   }
 
   &:focus {
-    background: $cbp-focus-light;
-    color: $cbp-text-darkest;
+    background: var(--cbp-color-interactive-focus-light);
+    color: var(--cbp-color-text-darkest);
     font-weight: 700;
-    outline: 2px solid $cbp-black;
+    outline: 2px solid var(--cbp-color-black);
     outline-offset: -4px;
   
     &:hover {
-      background-color: $cbp-focus-light;
-      color: $cbp-text-darkest;
+      background-color: var(--cbp-color-interactive-focus-light);
+      color: var(--cbp-color-text-darkest);
     }
   }
 }

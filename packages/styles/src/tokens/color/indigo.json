@@ -1,5 +1,5 @@
 {
-  "cbp": {
+  "color": {
     "indigo": {
       "5": { "value": "#f0f0ff", "attributes": { "use": "color" } },
       "10": { "value": "#e0e0ff", "attributes": { "use": "color" } },

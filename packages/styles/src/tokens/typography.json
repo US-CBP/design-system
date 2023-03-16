@@ -1,0 +1,165 @@
+{
+  "font": {
+    "family": {
+      "roboto": {
+        "value": "'Roboto', Calibri, Tahoma, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, 'Apple color emoji', 'Segoe UI Emoji', 'Segoe Ui Symbol', sans-serif",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "roboto-mono": {
+        "value": "'Roboto-mono', 'Roboto Mono Web', Consolas, 'Bitstream Vera Sans Mono', Courier, monospace",
+        "attributes": { "use": "typography", "type": "font" }
+      }
+    },
+
+    "size": {
+      "masthead": {
+        "1": {
+          "value": "2.280rem",
+          "attributes": { "use": "typography", "type": "font" }
+        },
+        "2": {
+          "value": "2.027rem",
+          "attributes": { "use": "typography", "type": "font" }
+        }
+      },
+      "heading": {
+        "xxl": {
+          "value": "1.802rem",
+          "attributes": { "use": "typography", "type": "font" }
+        },
+        "xl": {
+          "value": "1.602rem",
+          "attributes": { "use": "typography", "type": "font" }
+        },
+        "lg": {
+          "value": "1.424rem",
+          "attributes": { "use": "typography", "type": "font" }
+        },
+        "md": {
+          "value": "1.266rem",
+          "attributes": { "use": "typography", "type": "font" }
+        },
+        "sm": {
+          "value": "1.125rem",
+          "attributes": { "use": "typography", "type": "font" }
+        },
+        "xs": {
+          "value": "1rem",
+          "attributes": { "use": "typography", "type": "font" }
+        }
+      },
+      "body": {
+        "value": "0.875rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "button": {
+        "value": "0.875rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "subhead": {
+        "value": "0.766rem",
+        "attributes": { "use": "typography", "type": "font" }
+      }
+    },
+
+    "weight": {
+      "black": {
+        "value": "900",
+        "attributes": { "use": "typography" }
+      },
+      "bold": {
+        "value": "700",
+        "attributes": { "use": "typography" }
+      },
+      "medium": {
+        "value": "500",
+        "attributes": { "use": "typography" }
+      },
+      "regular": {
+        "value": "400",
+        "attributes": { "use": "typography" }
+      },
+      "light": {
+        "value": "300",
+        "attributes": { "use": "typography" }
+      },
+      "thin": {
+        "value": "100",
+        "attributes": { "use": "typography" }
+      }
+    }
+  },
+
+  "letter-spacing": {
+    "loosest": {
+      "value": "0.2em",
+      "attributes": { "use": "typography" }
+    },
+    "loose": {
+      "value": "0.12em",
+      "attributes": { "use": "typography" }
+    },
+    "regular": {
+      "value": "auto",
+      "attributes": { "use": "typography" }
+    }
+  },
+
+  "line-height": {
+    "xs": {
+      "value": "1.25rem",
+      "attributes": { "use": "typography" }
+    },
+    "sm": {
+      "value": "1.5rem",
+      "attributes": { "use": "typography" }
+    },
+    "md": {
+      "value": "1.75rem",
+      "attributes": { "use": "typography" }
+    },
+    "lg": {
+      "value": "2rem",
+      "attributes": { "use": "typography" }
+    },
+    "xl": {
+      "value": "2.25rem",
+      "attributes": { "use": "typography" }
+    },
+    "xxl": {
+      "value": "2.5rem",
+      "attributes": { "use": "typography" }
+    },
+    "xxxl": {
+      "value": "2.75rem",
+      "attributes": { "use": "typography" }
+    }
+  },
+
+  "line-length": {
+    "shortest": {
+      "value": "44ch",
+        "attributes": { "use": "typography" }
+    },
+    "short": {
+      "value": "60ch",
+        "attributes": { "use": "typography" }
+    },
+    "medium": {
+      "value": "64ch",
+        "attributes": { "use": "typography" }
+    },
+    "long": {
+      "value": "68ch",
+      "attributes": { "use": "typography" }
+    },
+    "longer": {
+      "value": "72ch",
+      "attributes": { "use": "typography" }
+    },
+    "longest": {
+      "value": "88ch",
+      "attributes": { "use": "typography" }
+    }
+  }
+}

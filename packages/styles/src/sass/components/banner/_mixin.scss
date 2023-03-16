@@ -1,4 +1,4 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 @use '../button' as *;
 
 @mixin banner-info($bg-color) {
@@ -12,6 +12,7 @@
 
     & > div:first-child {
       display: flex;
+      flex-shrink: 0;
     }
 
     @media only screen and (min-width: 600px) and (max-width: 1439px) {

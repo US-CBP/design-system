@@ -1,9 +1,9 @@
-@use '../../base/colors' as *;
+//@use '../../base/colors' as *;
 @use '../button/states' as *;
 
 @mixin hamburger-menu {
   background-color: transparent;
-  border: 2px solid $cbp-ui-neutral-darker;
+  border: 2px solid var(--cbp-color-interactive-neutral-darker);
   border-radius: 3px;
   cursor: pointer;
   font-size: 14px;
@@ -11,14 +11,14 @@
   width: 36px;
 
   & > i {
-    color: $cbp-ui-neutral-darker;
+    color: var(--cbp-color-interactive-neutral-darker);
   }
 
   &:hover {
-    background-color: $cbp-ui-neutral-darker;
+    background-color: var(--cbp-color-interactive-neutral-darker);
 
     & > i {
-      color: $cbp-text-lightest;
+      color: var(--cbp-color-text-lightest);
     }
   }
 

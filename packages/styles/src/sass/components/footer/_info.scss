@@ -2,21 +2,21 @@
 @use '../link' as *;
 
 .cbp-footer__info {
-  background-color: $cbp-base-secondary-darker;
-  color: $cbp-text-lightest;
+  background-color: var(--cbp-color-base-secondary-darker);
+  color: var(--cbp-color-text-lightest);
   padding: 16px 20px;
   letter-spacing: 0.35px;
 }
 
 .cbp-footer__info h6 {
-  color: $cbp-text-lightest;
+  color: var(--cbp-color-text-lightest);
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 8px;
 }
 
 .cbp-footer__info p {
-  color: $cbp-text-lightest;
+  color: var(--cbp-color-text-lightest);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.45;

@@ -1,4 +1,4 @@
-@use '../base/colors' as *;
+//@use '../base/colors' as *;
 @use 'link' as *;
 @use 'button' as *;
 
@@ -25,7 +25,7 @@
 
   &::after {
     // @extend .cbp-text-subhead;
-    color: $cbp-text-darker;
+    color: var(--cbp-color-text-darker);
     content: '/';
     font-style: italic;
     margin-left: 4px;
@@ -53,7 +53,7 @@
 }
 
 .cbp-breadcrumb--condensed > li:nth-child(2) > a {
-  color: $cbp-black;
+  color:  var(--cbp-color-black);
 }
 
 .cbp-breadcrumb__btn {
@@ -64,8 +64,8 @@
 
 /* Header (Might not be part of actual breadcrumb */
 .cbp-lastcrumb {
-  color: $cbp-black;
-  border-bottom: 4px solid $cbp-base-neutral-light;
+  color: var(--cbp-color-black);
+  border-bottom: 4px solid var(--cbp-color-base-neutral-light);
   font-size: 32px;
   font-weight: 500;
   line-height: 48px;
