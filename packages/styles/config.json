@@ -83,21 +83,6 @@
       ]
     },
 
-    "sass": {
-      "transformGroup": "web",
-      "prefix": "cbp",
-      "buildPath": "src/sass/tokens/",
-      "files": [
-        {
-          "destination": "cbp-variables.scss",
-          "format": "scss/variables",
-          "options": {
-            "outputReferences": true
-          }
-        }
-      ]
-    },
-
     "css": {
       "transformGroup": "css",
       "prefix": "cbp",
