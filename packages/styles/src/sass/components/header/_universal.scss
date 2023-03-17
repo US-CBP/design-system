@@ -1,64 +1,55 @@
-//@use '../../base/colors' as *;
 @use '../../typography/fonts' as *;
-@use '../../grid/breakpoints' as *;
-//@use '../../tokens/font' as *;
+@use '../../tokens/breakpoints' as *;
+
 
 .cbp-universal-header {
-  align-items: center;
-  background-color: var(--cbp-color-branding-dhs-blue);
-  box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  height: 60px;
+  align-items: center;
   justify-content: space-between;
-  padding-left: 12px;
-  padding-right: 12px;
-  top: 0;
-  transition: top 500ms ease-in-out;
   width: 100%;
+  min-height: 60px;
+  padding: 0 var(--cbp-space-3x);
+  background-color: var(--cbp-color-branding-dhs-blue);
+  transition: top var(--cbp-motion-duration-medium) ease-in-out;
 }
 
 .cbp-universal-header__brand {
-  align-items: center;
   display: flex;
+  align-items: center;
 
   &::after {
     @extend .cbp-heading-l;
     content: "CBP";
     color: var(--cbp-color-text-lightest);
-    margin-left: 8px;
+    margin-left: var(--cbp-space-2x);
   }
 }
 
 .cbp-universal-header__list {
   display: flex;
-
-  & > li {
-    margin-right: 16px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 // TODO: Add Secondary Ghost Button Mixin
 .cbp-universal-header__item {
-  align-items: center;
-  background-color: transparent;
-  box-sizing: border-box;
-  border: 0;
-  border-radius: 3px;
   display: flex;
-  cursor: pointer;
-  color: var(--cbp-color-interactive-neutral-lighter);
-  font-size: 14px;
-  font-weight: 500;
-  height: 36px;
+  gap: var(--cbp-space-2x);
+  align-items: center;
   justify-content: center;
+  min-height: 36px;
+  min-width: 36px;
+  color: var(--cbp-color-interactive-neutral-lighter);
+  background-color: transparent;
+  border: 0;
+  border-radius: var(--cbp-border-radius-soft);
+  cursor: pointer;
+  font-weight: var(--cbp-font-weight-medium);
   text-decoration: none;
   text-transform: uppercase;
-  width: 36px;
 
   & span {
     display: none;
@@ -71,9 +62,9 @@
   &:focus {
     background: var(--cbp-color-interactive-focus-light);
     color: var(--cbp-color-text-darkest);
-    font-weight: 700;
+    font-weight: --cbp-font-weight-bold;
     outline: 2px solid var(--cbp-color-black);
-    outline-offset: -4px;
+    outline-offset: calc(var(--cbp-space-1x) * -1);
   
     &:hover {
       background-color: var(--cbp-color-interactive-focus-light);
@@ -82,11 +73,11 @@
   }
 }
 
-@media screen and (min-width : 600px) {
+@media (min-width: $cbp-breakpoint-sm) {
   .cbp-universal-header {
-    height: 88px;
-    padding-left: 20px;
-    padding-right: 20px;
+    min-height: 88px;
+    padding-left: var(--cbp-space-5x);
+    padding-right: var(--cbp-space-5x);
   }
 
   .cbp-universal-header__brand::after {
@@ -94,7 +85,7 @@
   }
 
   .cbp-universal-header__item {
-    padding: 0 12px;
+    padding: 0 var(--cbp-space-3x);
     width: unset;
 
     & > i {
@@ -103,26 +94,20 @@
   }
 }
 
-@media only screen and (min-width : 1024px) {
+@media (min-width: $cbp-breakpoint-lg) {
   .cbp-universal-header {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0 var(--cbp-space-5x);
   }
 
   .cbp-universal-header__item {
-    & > i {
-      margin-right: 8px;
-    }
-    
     & > span {
-      display: unset;
+      display: inline;
     }
   }
 }
 
-@include cbp-extra-large-grid {
+@media (min-width: $cbp-breakpoint-xl) {
   .cbp-universal-header {
-    padding-left: 28px;
-    padding-right: 28px;
+    padding: 0 var(--cbp-space-7x);
   }
 }
