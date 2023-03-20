@@ -1,0 +1,70 @@
+@use '../../base/colors' as *;
+@use '../../typography/fonts' as *;
+@use './mixins' as *;
+
+.cbp-card__radio,
+.cbp-card__checkbox {
+  @include card-general-base;
+
+  &:hover {
+    background-color: var(--cbp-color-base-neutral-lightest);
+    border: 2px solid var(--cbp-color-base-neutral-dark);
+  }
+
+  &:focus-within {
+    border: 2px solid var(--cbp-color-interactive-focus-light);
+    background-color: var(--cbp-color-interactive-focus-dark);
+
+    .cbp-card__title {
+      color: var(--cbp-color-text-lightest);
+    }
+
+    & * {
+      color: var(--cbp-color-text-lightest);
+    }
+  }
+}
+
+.cbp-card__radio--danger,
+.cbp-card__checkbox--danger {
+  background-color: var(--cbp-color-danger-lighter);
+  border: 2px solid var(--cbp-color-danger-light);
+
+  .cbp-card__title {
+    color: var(--cbp-color-danger-dark);
+  }
+
+  &:hover {
+    background-color: var(--cbp-color-danger-light);
+    border: 2px solid var(--cbp-color-danger-darker);
+
+    & > .cbp-card__body > .cbp-card__header {
+      & > div:first-child {
+        color: var(--cbp-color-danger-darker);
+      }
+
+      & > div:first-child > h4 {
+        color: var(--cbp-color-danger-darker);
+      }
+    }
+  }
+
+  &:focus-within:not([disabled]) {
+    border: 2px solid var(--cbp-color-interactive-focus-light);
+    background-color: var(--cbp-color-interactive-focus-dark);
+
+    & > .cbp-card__body > .cbp-card__header {
+      & > div:first-child {
+        color: var(--cbp-color-text-lightest);
+      }
+
+      & > div:first-child > h4 {
+        color: var(--cbp-color-text-lightest);
+      }
+    }
+
+    & > .cbp-card__body > p {
+      color: var(--cbp-color-text-lightest);
+    }
+  }
+}

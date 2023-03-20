@@ -1,0 +1,125 @@
+@use 'sass:map';
+
+@use '../../typography/fonts' as *;
+
+@mixin card-general-base {
+  background-color: var(--cbp-color-white);
+  border: 2px solid var(--cbp-color-base-neutral-lighter);
+  border-radius: 5px;
+  display: flex;
+  height: fit-content;
+}
+
+@mixin card-general-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+// TODO: Replace with .cbp-heading-m when css variables are available
+@mixin card-general-title {
+  color: var(--cbp-color-text-darker);
+  font-weight: 500;
+  font-size: 1.424rem;
+  line-height: 24px;
+  letter-spacing: 0.12px;
+
+  & > i {
+    margin-right: 8px;
+  }
+}
+
+@mixin card-general-states {
+  &:hover {
+    background-color: var(--cbp-color-base-neutral-lightest);
+    border: 2px solid var(--cbp-color-base-neutral-dark);
+  }
+
+  &:focus {
+    background-color: var(--cbp-color-interactive-focus-dark);
+    border: 2px solid var(--cbp-color-interactive-focus-light);
+    outline: 0;
+  }
+
+  &:focus:not([disabled]) > .cbp-card__body > p {
+    color: var(--cbp-color-text-lightest);
+  }
+  
+  &:focus:not([disabled]) > .cbp-card__body > .cbp-card__header {
+    color: var(--cbp-color-text-lightest);
+
+    & > div:first-child > h4 {
+      color: var(--cbp-color-text-lightest);
+    }
+  }
+}
+
+@mixin card-general-danger-states {
+  .cbp-card__link--danger {
+    border: 2px solid var(--cbp-color-danger-light);
+    background-color: var(--cbp-color-danger-lighter);
+  
+    .cbp-card__body > .cbp-card__header > div:first-child {
+      color: var(--cbp-color-danger-dark);
+  
+      h4 {
+        color: inherit;
+      }
+    }
+  
+    &:hover {
+      border: 2px solid var(--cbp-color-danger-darker);
+      background-color: var(--cbp-color-danger-light);
+  
+      .cbp-card__body > .cbp-card__header > div:first-child {
+        color: revert;
+  
+        h4 {
+          color: revert;
+        }
+      }
+    }
+  
+    &:focus:not([disabled]) {
+      border: 2px solid var(--cbp-color-interactive-focus-light);
+      background-color: var(--cbp-color-interactive-focus-dark);
+    }
+  
+    &:focus:not([disabled]) > .cbp-card__body > .cbp-card__header {
+      & > div:first-child > .cbp-card__title {
+        color: var(--cbp-color-text-lightest);
+      }
+    }
+  }
+}
+
+@mixin card-general-modifier ($background-color, $border-color, $title-color) {
+  background-color: $background-color;
+  border: 2px solid $border-color;
+
+  & .cbp-card__title {
+    color: $title-color;
+  }
+}
+
+// Banner Card Mixins
+@mixin card-banner-modifier($title-background-color, $body-background-color, $body-border-color) {
+  & .cbp-card__banner-title {
+    background-color: $title-background-color;
+  }
+
+  & .cbp-card__banner-content {
+    background-color: $body-background-color;
+    border: 2px solid $body-border-color;
+    border-top: 0;
+  }
+}
+
+// Button Card Mixins
+@mixin card-title-flag($title-background-color, $title-color) {
+  @include card-general-title;
+  background-color: $title-background-color;
+  color: $title-color;
+  padding: 16px 16px 20px 16px;
+}

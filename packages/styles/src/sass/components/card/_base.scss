@@ -1,0 +1,60 @@
+@use '../../typography/fonts' as *;
+
+@use './mixins' as *;
+
+.cbp-card {
+  background-color: var(--cbp-color-white);
+  border: 2px solid var(--cbp-color-base-neutral-lighter);
+  border-radius: 5px;
+  display: flex;
+  height: fit-content;
+}
+
+.cbp-card__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.cbp-card__media {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.cbp-card__flag {
+  @include card-title-flag(var(--cbp-color-base-secondary-base), var(--cbp-color-text-lightest));
+}
+
+.cbp-card__title {
+  color: var(--cbp-color-text-darker);
+  font-weight: 500;
+  font-size: 1.424rem;
+  line-height: 24px;
+  letter-spacing: 0.12px;
+
+  & > i {
+    margin-right: 8px;
+  }
+}
+
+.cbp-card__content {
+  padding: 20px 16px;
+}
+
+.cbp-card--small {
+  max-width: 312px;
+}
+
+.cbp-card--info {
+  @include card-general-modifier(var(--cbp-color-info-lighter), var(--cbp-color-info-light), var(--cbp-color-info-darker));
+}
+
+.cbp-card--success {
+  @include card-general-modifier(var(--cbp-color-success-lighter), var(--cbp-color-success-light), var(--cbp-color-success-darker));
+}
+
+.cbp-card--danger {
+  @include card-general-modifier(var(--cbp-color-danger-lighter), var(--cbp-color-danger-light), var(--cbp-color-danger-darker));
+}

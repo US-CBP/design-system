@@ -1,0 +1,102 @@
+@use '../../typography/fonts' as *;
+@use '../button/index' as *;
+@use './mixins' as *;
+
+// Card Action is the name for these fucking cards w/ buttons
+
+.cbp-card-action {
+  min-width: 312px;
+  width: 100%;
+}
+
+.cbp-card-action__wrapper { // container for all image and card body content (use for border and alignment with button layout)
+  border: 2px solid var(--cbp-color-base-neutral-lighter);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 0;
+}
+
+.cbp-card-action__media {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  width: 100%;
+}
+
+// Depending on if a 'Card Media' is in the Card or not, this can be added to the .cbp-card-action__wrapper classlist as sort of a modifier
+.cbp-card-action__content {
+  padding: 20px 16px 16px 16px;
+}
+
+.cbp-card-action__buttons {
+  display: flex;
+
+  & > button {
+    @extend .cbp-btn;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    height: 44px;
+    width: 100%;
+
+    & > i {
+      margin-right: 8px;
+    }
+  }
+
+  &--single {
+    & > button {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+  &--double {
+    & > button:first-child {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 0;
+    }
+
+    & > button:nth-child(2) {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+  &--triple {
+    button:first-child {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 0px;
+    }
+
+    button:nth-child(2) {
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    button:last-child {
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 0px;
+    }
+  }
+}
+
+/* DANGER */
+.cbp-card-action--danger {
+  .cbp-card-action__wrapper {
+    border: 2px solid var(--cbp-color-danger-base);
+    border-bottom: 0;
+  }
+
+  .cbp-card__flag {
+    background-color: var(--cbp-color-danger-base);
+  }
+
+  .cbp-card__title {
+    color: var(--cbp-color-danger-base);
+  }
+
+  .cbp-card-action__content {
+    background-color: var(--cbp-color-danger-lighter);
+  }
+}
