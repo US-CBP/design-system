@@ -1,45 +1,40 @@
-//@use "sass:map";
-
-//@use '../../base/colors' as *;
 @use '../button/states' as *;
 @use '../drawer/hamburger' as *;
-//@use '../../utilities/z-index' as *;
-@use '../../grid/breakpoints' as *;
+@use '../../tokens/breakpoints' as *;
 
 @mixin menu-hover {
-  background-color: var(--cbp-color-interactive-neutral-lighter);
-  border-top: 0;
-  border-bottom: 2px solid var(--cbp-color-interactive-neutral-darker);
   color: var(--cbp-color-text-darkest);
+  background-color: var(--cbp-color-interactive-neutral-lighter);
+  border-style: solid;
+  border-color: var(--cbp-color-interactive-neutral-darker);
+  border-width: 0 0 var(--cbp-border-size-md) 0;
 }
 
 .cbp-application-header {
-  align-items: center;
-  background-color: var(--cbp-color-white);
-  box-sizing: border-box;
-  box-shadow: 0px 5px 5px -3px var(--cbp-color-interactive-neutral-dark);
   display: flex;
+  align-items: center;
   height: 56px;
-  position: sticky;
   width: 100%;
-  padding-left: 0;
-  padding-right: 12px;
+  position: sticky;
   top: -1px;
-  //z-index: map.get($z, "application-header");
+  background-color: var(--cbp-color-white);
+  box-shadow: 0px 5px 5px -3px var(--cbp-color-interactive-neutral-dark);
+  padding-right: var(--cbp-space-3x);
   z-index: var(--cbp-z-index-level-1);
 }
 
+// TODO: Why is this a button (seems like a link) and why is it using flex?
 .nav-home {
+  display: flex;
   align-items: center;
+  height: 100%;
+  padding: 0 var(--cbp-space-4x);
+  color: var(--cbp-color-interactive-neutral-darker);
   background-color: transparent;
   border: 0;
-  color: var(--cbp-color-interactive-neutral-darker);
   cursor: pointer;
-  display: flex;
-  font-size: 18px;
-  font-weight: 700;
-  height: 100%;
-  padding: 0 16px;
+  font-size: var(--cbp-font-size-heading-sm);
+  font-weight: var(--cbp-font-weight-bold);
   text-align: left;
   white-space: nowrap;
 
@@ -58,13 +53,13 @@
 }
 
 .cbp-nav-menu {
-  align-items: center;
   display: flex;
-  height: 100%;
+  align-items: center;
   justify-content: end;
+  height: 100%;
   width: 100%;
 
-  @media only screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     justify-content: space-between;
   }
 }
@@ -72,9 +67,9 @@
 .cbp-menu-dropdown {
   @extend .nav-home;
   display: unset;
-  font-size: 16px;
-  font-weight: 500;
-  padding: 0 12px;
+  font-size: var(--cbp-font-size-heading-xs);
+  font-weight: var(--cbp-font-weight-medium);
+  padding: 0 var(--cbp-space-3x);
 
   & > i {
     margin-left: 8px;
@@ -99,32 +94,20 @@
   @include hamburger-menu;
 }
 
-@include cbp-medium-grid {
+@media (min-width: $cbp-breakpoint-sm) {
   .cbp-application-header {
-    padding-right: 20px;
+    padding-right: var(--cbp-space-5x);
   }
-
   .nav-home {
-    padding-left: 20px;
+    padding-left: var(--cbp-space-5x);
   }
 }
 
-@include cbp-large-grid {
+@media (min-width: $cbp-breakpoint-xl) {
   .cbp-application-header {
-    padding-right: 20px;
+    padding-right: var(--cbp-space-7x);
   }
-
   .nav-home {
-    padding-left: 20px;
-  }
-}
-
-@include cbp-extra-large-grid {
-  .cbp-application-header {
-    padding-right: 28px;
-  }
-
-  .nav-home {
-    padding-left: 28px;
+    padding-left: var(--cbp-space-7x);
   }
 }
