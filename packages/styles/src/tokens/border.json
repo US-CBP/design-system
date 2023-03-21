@@ -33,11 +33,11 @@
         "attributes": { "use": "border" }
       },
       "pill": {
-        "value": "100%",
+        "value": "9999px",
         "attributes": { "use": "border" }
       },
       "circle": {
-        "value": "9999px",
+        "value": "100%",
         "attributes": { "use": "border" }
       }
     }
