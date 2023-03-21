@@ -1,21 +1,25 @@
 //@use '../base/colors' as *;
 
+:root {
+  --cbp-switch-label-width: 10.5rem;
+}
+
 .cbp-toggle__wrapper {
-  align-items: center;
   display: flex;
-  margin-bottom: 16px;
+  align-items: center;
+  margin-bottom: var(--cbp-space-4x);
 
   & > span {
-    margin-left: 8px;
+    margin-left: var(--cbp-space-2x);
   }
 
   &:first-child {
-    margin-top: 20px;
+    margin-top: var(--cbp-space-5x);
   }
 }
 
 .cbp-toggle__label {
-  width: 168px; // Document that this width or margin should be determined at time of development
+  width: var(--cbp-switch-label-width); // Document that this width or margin should be determined at time of development
 }
 
 .cbp-toggle {
@@ -37,14 +41,14 @@
   &:focus + .slider {
     background-color: var(--cbp-color-interactive-focus-dark);
     box-shadow: none;
-    outline: 2px solid var(--cbp-color-white);
-    outline-offset: -4px;
+    outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
+    outline-offset: calc(var(cbp-space-1x) * -1);
   }
 
   &:checked + .slider:before {
-    -webkit-transform: translateX(25px);
-    -ms-transform: translateX(25px);
-    transform: translateX(25px);
+    -webkit-transform: translateX(24px);
+    -ms-transform: translateX(24px);
+    transform: translateX(24px);
   }
 
   &:focus:hover + .slider:before {
@@ -69,27 +73,27 @@
 }
 
 .slider {
-  border-radius: 34px;
   position: absolute;
-  cursor: pointer;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: var(--cbp-color-interactive-neutral-light);
+  border-radius: var(--cbp-border-radius-pill);
+  cursor: pointer;
 
   &:before {
     position: absolute;
     content: "";
-    border-radius: 50%;
-    height: 12px;
-    width: 12px;
+    border-radius: var(--cbp-border-radius-circle);
+    height: 20px;
+    width: 20px;
     left: 4px;
     bottom: 4px;
     background-color: var(--cbp-color-white);
     border: 4px solid var(--cbp-color-white);
-    -webkit-transition: .2s;
-    transition: .2s;
+    -webkit-transition: var(--cbp-motion-duration-shortest);
+    transition: var(--cbp-motion-duration-shortest);
   }
 
   &:hover {
