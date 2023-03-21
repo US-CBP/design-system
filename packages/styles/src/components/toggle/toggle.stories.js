@@ -2,9 +2,15 @@ export default {
   title: 'Patterns/Toggle'
 };
 
+
+/*
+  TechDebt: the use of 2 labels isn't correct here and the overall structure could be made more flexible 
+  (no hardcoded widths in CSS) with Flexbox.
+  However, heavily modifying the HTML structure will impact both the CSS and JS, so saving for later.
+  The real label text should live inside of the wrapping label tag with the input.
+*/
 const Template = () => {
   return `
-    <div class="cbp-form-wrapper">
       <h4><i class="fas fa-user"></i> User Preferences</h4>
       <div class="cbp-toggle__wrapper">
         <label for="wi-fi" class="cbp-toggle__label">Wi-Fi Connection</label>
@@ -46,7 +52,6 @@ const Template = () => {
         </label>
         <span>Off</span>
       </div>
-    </div>
   `
 }
 
