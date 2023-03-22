@@ -11,7 +11,8 @@ const LinkCardTemplate = ({ title, ...args }) => {
       <div class="cbp-card__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
-          <i class="fas fa-arrow-circle-right"></i>
+          <!-- Replace icon with SVG -->
+          <i class="fas fa-arrow-circle-right cbp-font-size-large"></i>
         </div>
         <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
       </div>
@@ -26,7 +27,8 @@ const LinkCardMediaTemplate = ({ title, type }) => {
       <div class="cbp-card__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
-          <i class="fas fa-arrow-circle-right"></i>
+          <!-- Replace icon with SVG -->
+          <i class="fas fa-arrow-circle-right cbp-font-size-large"></i>
         </div>
         <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
       </div>
@@ -40,6 +42,8 @@ const LinkCardWithFlagTemplate = ({ title, danger, ...args }) => {
       <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait of a person" width="310">
       <div class="cbp-card__header cbp-card__header--flag">
         <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle"></i>Jimbo Thompson</h4>
+        <!-- Replace icon with SVG -->
+        <i class="fas fa-arrow-circle-right cbp-font-size-large"></i>
       </div>
     </div>
   `;
@@ -51,7 +55,8 @@ const SmallLinkCardTemplate = ({ title, type }) => {
       <div class="cbp-card__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
-          <i class="fas fa-arrow-circle-right"></i>
+          <!-- Replace icon with SVG -->
+          <i class="fas fa-arrow-circle-right cbp-font-size-large"></i>
         </div>
         <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
       </div>

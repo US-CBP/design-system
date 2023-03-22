@@ -1,7 +1,12 @@
 @use './mixins' as *;
 
+// utility class
 .cbp-d-block {
   display: block !important;
+}
+
+.cbp-font-size-large {
+  font-size: var(--cbp-font-size-heading-lg);
 }
 
 .cbp-card {
@@ -17,6 +22,10 @@
   display: flex;
   justify-content: space-between;
   padding: 0;
+
+  & > i {
+    font-size: var(--cbp-font-size-heading-lg);
+  }
 }
 
 .cbp-card__media {
@@ -39,11 +48,6 @@
 .cbp-card__header--flag {
   background-color: var(--cbp-color-interactive-neutral-base);
   padding: var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-5x) var(--cbp-space-4x);
-
-  & > img {
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
-  }
 
   & > h4 {
     color: var(--cbp-color-text-lightest);
