@@ -30,7 +30,7 @@
   border-top: 0;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  padding: 16px 16px 20px 16px;
+  padding: var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-5x) var(--cbp-space-4x);
 }
 
 .cbp-card__banner--info {

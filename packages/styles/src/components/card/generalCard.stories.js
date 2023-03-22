@@ -29,7 +29,7 @@ const DefaultGeneralCardTemplate = ({ title, type }) => {
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
         </div>
-        <p class="cbp-text-body">Here is an example of some supplementary text for this purely informational card</p>
+        <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
       </div>
     </div>
   `;
@@ -43,7 +43,7 @@ const GeneralCardMediaTemplate = ({ title, type }) => {
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
         </div>
-        <p class="cbp-text-body">Here is an example of some supplementary text for this purely informational card</p>
+        <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
       </div>
     </div>
   `;
@@ -51,12 +51,12 @@ const GeneralCardMediaTemplate = ({ title, type }) => {
 
 const SmallGeneralCardTemplate = ({ title, type }) => {
   return `
-    <div class="cbp-card ${type} cbp-card__general--small">
+    <div class="cbp-card ${type} cbp-card--small">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
         </div>
-        <p class="cbp-text-body">Here is an example of some supplementary text for this purely informational card</p>
+        <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
       </div>
     </div>
   `;

@@ -6,6 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CBP Sandbox</title>
   <link rel="stylesheet" href="assets/font-awesome/all.css">
+  <style>
+    .sandbox {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -191,84 +198,83 @@
     </div>
   </div>
   <main>
-    <section class="cbp-grid-container">
-      <div class="cbp-row">
-        <div class="cbp-grid-col-full demo-container">
-          <div class="sandbox">
-            <div class="cbp-row sandbox__dropdown-container">
-              <div class="cbp-grid-col-2-sm cbp-grid-col-4-md cbp-grid-col-6-lg cbp-grid-col-6-xl">
-                <div class="cbp-form-wrapper">
-                  <label for="pod2" class="cbp-form__label">Theme Selector</label>
-                  <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
-                  <div class="cbp-dropdown__wrapper" id="dropdown-demo-2">
-                    <button class="cbp-dropdown__custom" id="port-dropdown" data-toggle="dropdown">
-                      <span class="cbp-dropdown__placeholder">Choose Theme</span>
-                    </button>
-                    <div class="cbp-dropdown" id="custom-dropdown-menu">
-                      <a href="#" class="cbp-dropdown__item">Dark</a>
-                      <a href="#" class="cbp-dropdown__item">Light</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="cbp-grid-col-2-sm cbp-grid-col-4-md cbp-grid-col-6-lg cbp-grid-col-6-xl">
-                <div class="cbp-form-wrapper">
-                  <label for="pod2" class="cbp-form__label">Variant Selector</label>
-                  <span class="cbp-form__description cbp-form__description--error" hidden><i class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
-                  <div class="cbp-dropdown__wrapper" id="dropdown-demo-2">
-                    <button class="cbp-dropdown__custom" id="port-dropdown" data-toggle="dropdown">
-                      <span class="cbp-dropdown__placeholder">Choose Variant</span>
-                    </button>
-                    <div class="cbp-dropdown" id="custom-dropdown-menu">
-                      <a href="#" class="cbp-dropdown__item">Single Button Card</a>
-                      <a href="#" class="cbp-dropdown__item">Dual Button Card</a>
-                      <a href="#" class="cbp-dropdown__item">Three Button Card</a>
-                      <a href="#" class="cbp-dropdown__item">General Card</a>
-                      <a href="#" class="cbp-dropdown__item">Clickable Card</a>
-                      <a href="#" class="cbp-dropdown__item">Single Select Card (Radio)</a>
-                      <a href="#" class="cbp-dropdown__item">Multi-Select Card (Checkbox)</a>
-                      <a href="#" class="cbp-dropdown__item">Banner Card</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="cbp-row">
-              <div class="cbp-grid-col-full">
-                <div class="sandbox__demo-container">
-                  <div class="sandbox__demo">
-                    <!-- *COMPONENT GOES HERE* -->
-                    <label class="cbp-toggle demo-toggle" data-component="cbp-toggle">
-                      <input type="checkbox" data-theme-toggle>
-                      <span class="slider">
-                        <i class="fas fa-moon" style="color: yellow;"></i>
-                        <i class="fas fa-sun" style="color: orange;"></i>
-                      </span>
-                    </label>
-                  </div>
-                  <aside class="sandbox__modifiers">
-                    <h2>State Modifiers</h2>
-                    <fieldset style="padding: 20px 16px;">
-                      <div class="form-check">
-                        <input type="checkbox" name="modifier_1" class="cbp-form__checkbox" id="modifier_1">
-                        <label for="readonly">Disable</label>
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" name="modifier_2" class="cbp-form__checkbox" id="modifier_2">
-                        <label for="readonly">Error</label>
-                      </div>
-                      <div class="form-check">
-                        <input type="checkbox" name="modifier_3" class="cbp-form__checkbox" id="modifier_3">
-                        <label for="readonly">Read Only</label>
-                      </div>
-                    </fieldset>
-                  </aside>
-                </div>
-              </div>
-            </div>
+    <section class="cbp-grid-container sandbox" style="padding-top: 4rem; padding-bottom: 4rem;">
+
+      <div class="cbp-card-action">
+        <div class="cbp-card-action__wrapper cbp-card-action__content">
+          <div class="cbp-card__header">
+            <h4 class="cbp-card__title"><i class="fas fa-circle"></i>Decision Card 1</h4>
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary--ghost">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+          </div>
+          <p class="cbp-text-body cbp-mt-2 cbp-mb-2">
+            The card has this passage of example text to emphasize
+            truncation and reveal functionality and some other things...
+          </p>
+          <div class="cbp-row">
+            <button class="cbp-btn cbp-btn__secondary--ghost">
+              <i class="fas fa-angle-down"></i>
+              More
+            </button>
           </div>
         </div>
+        <div class="cbp-card-action__buttons cbp-card-action__buttons--single">
+          <button class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</button>
+        </div>
       </div>
+      
+      <div class="cbp-card-action">
+        <div class="cbp-card-action__wrapper cbp-card-action__content">
+          <div class="cbp-card__header">
+            <h4 class="cbp-card__title"><i class="fas fa-circle"></i>Decision Card 1</h4>
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary--ghost">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+          </div>
+          <p class="cbp-text-body cbp-mt-2 cbp-mb-2">
+            The card has this passage of example text to emphasize
+            truncation and reveal functionality and some other things...
+          </p>
+          <div class="cbp-row">
+            <button class="cbp-btn cbp-btn__secondary--ghost">
+              <i class="fas fa-angle-down"></i>
+              More
+            </button>
+          </div>
+        </div>
+        <div class="cbp-card-action__buttons cbp-card-action__buttons--double">
+          <button class="cbp-btn__secondary"><i class="fas fa-info-circle"></i>App Info</button>
+          <button class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</button>
+        </div>
+      </div>
+
+      <div class="cbp-card-action">
+        <div class="cbp-card-action__wrapper cbp-card-action__content">
+          <div class="cbp-card__header">
+            <h4 class="cbp-card__title"><i class="fas fa-circle"></i>Decision Card 1</h4>
+            <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary--ghost">
+              <i class="fas fa-clipboard-check"></i>
+            </button>
+          </div>
+          <p class="cbp-text-body cbp-mt-2 cbp-mb-2">
+            The card has this passage of example text to emphasize
+            truncation and reveal functionality and some other things...
+          </p>
+          <div class="cbp-row">
+            <button class="cbp-btn cbp-btn__secondary--ghost">
+              <i class="fas fa-angle-down"></i>
+              More
+            </button>
+          </div>
+        </div>
+        <div class="cbp-card-action__buttons cbp-card-action__buttons--triple">
+          <button class="cbp-btn__danger"><i class="fas fa-trash-alt"></i>Delete</button>
+          <button class="cbp-btn__secondary"><i class="fas fa-times"></i>Cancel</button>
+          <button class="cbp-btn__primary"><i class="fas fa-save"></i>Publish</button>
+        </div>
+      </div>
+
     </section>
   </main>
   <footer class="cbp-footer">

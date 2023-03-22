@@ -1,16 +1,18 @@
 export default {
-  title: 'Patterns/Card/Examples',
+  title: 'Patterns/Card/Recipes',
   parameters: {
     layout: 'centered'
   }
 };
 
-const ProfileCardTemplate = ({ label, ...args }) => {
+const ProfileCardTemplate = ({ title, danger, ...args }) => {
   return `
-    <div class="cbp-card-action cbp-card-action--danger">
+    <div class="cbp-card-action ${danger && 'cbp-card-action--danger'}">
       <div class="cbp-card-action__wrapper">
         <img class="cbp-card-action__media" src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" />
-        <h4 class="cbp-card__flag"><i class="fas fa-exclamation-triangle"></i>Jimbo Thompson</h4>
+        <div class="cbp-card__header cbp-card__header--flag">
+          <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle"></i>${title}</h4>
+        </div>
         <div class="cbp-card-action__content">
           <div class="cbp-row" style="margin-bottom: 8px;">
             <b>Sex:</b>&nbsp;<span style="margin-right: 18px;">Male</span>
@@ -25,24 +27,21 @@ const ProfileCardTemplate = ({ label, ...args }) => {
         </div>
       </div>
       <div class="cbp-card-action__buttons cbp-card__buttons--single">
-        <button><i class="fas fa-eye"></i>View Profile</button>
+        <button class="cbp-btn__${danger ? 'danger' : 'primary'}"><i class="fas fa-eye"></i>View Profile</button>
       </div>
     </div>
   `;
 };
 
-const PortCardTemplate = ({ label, ...args }) => {
+const PortCardTemplate = ({ title, danger, ...args }) => {
   return `
-    <div class="cbp-card">
-      <div class="cbp-card__content">
-        <div class="cbp-card__img">
-          <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="card general image" />
-        </div>
-        <div class="cbp-card__flag">
-          <i class="fas fa-vector-square"></i>
-          <h4>Cypress Pass</h4>
-        </div>
-        <div class="cbp-card__body">
+    <div class="cbp-card-action ${danger && 'cbp-card-action--danger'}">
+      <div class="cbp-card-action__wrapper">
+      <img class="cbp-card-action__media" src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" />
+      <div class="cbp-card__header cbp-card__header--flag">
+        <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle"></i>${title}</h4>
+      </div>
+        <div class="cbp-card-action__content">
           <div class="cbp-row" style="margin-bottom: 8px;">
             <h6 class="cbp-heading-xs">Port of Arrival</h6>
           </div>
@@ -74,15 +73,21 @@ const PortCardTemplate = ({ label, ...args }) => {
           </div>
         </div>
       </div>
-      <div class="cbp-card__buttons cbp-card__buttons--single">
-        <button><i class="fas fa-eye"></i>View Profile</button>
+      <div class="cbp-card-action__buttons cbp-card__buttons--single">
+        <button class="cbp-btn__${danger ? 'danger' : 'primary'}"><i class="fas fa-eye"></i>View Profile</button>
       </div>
     </div>
   `;
 };
 
 export const ProfileCard = ProfileCardTemplate.bind({});
-ProfileCard.args = {};
+ProfileCard.args = {
+  title: 'Jimbo Thompson',
+  danger: false
+};
 
 export const PortCard = PortCardTemplate.bind({});
-PortCard.args = {};
+PortCard.args = {
+  title: 'Jimbo Thompson',
+  danger: false
+};

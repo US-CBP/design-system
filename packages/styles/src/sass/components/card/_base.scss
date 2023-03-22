@@ -1,21 +1,22 @@
-@use '../../typography/fonts' as *;
-
 @use './mixins' as *;
+
+.cbp-d-block {
+  display: block !important;
+}
 
 .cbp-card {
   background-color: var(--cbp-color-white);
   border: 2px solid var(--cbp-color-base-neutral-lighter);
   border-radius: 5px;
   display: flex;
-  height: fit-content;
+  width: fit-content;
 }
 
 .cbp-card__header {
+  align-items: center;
   display: flex;
   justify-content: space-between;
   padding: 0;
-  margin-bottom: 16px;
-  align-items: center;
 }
 
 .cbp-card__media {
@@ -23,24 +24,41 @@
   border-bottom-left-radius: 3px;
 }
 
-.cbp-card__flag {
-  @include card-title-flag(var(--cbp-color-base-secondary-base), var(--cbp-color-text-lightest));
-}
-
 .cbp-card__title {
   color: var(--cbp-color-text-darker);
-  font-weight: 500;
-  font-size: 1.424rem;
-  line-height: 24px;
+  font-weight: var(--cbp-font-weight-medium);
+  font-size: var(--cbp-font-size-heading-lg);
+  line-height: var(--cbp-line-height-sm);
   letter-spacing: 0.12px;
 
   & > i {
-    margin-right: 8px;
+    margin-right: var(--cbp-space-2x);
+  }
+}
+
+.cbp-card__header--flag {
+  background-color: var(--cbp-color-interactive-neutral-base);
+  padding: var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-5x) var(--cbp-space-4x);
+
+  & > img {
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+  }
+
+  & > h4 {
+    color: var(--cbp-color-text-lightest);
+  }
+
+  & > .cbp-form__radio, 
+  & > .cbp-form__checkbox {
+    border: 2px solid var(--cbp-color-base-neutral-lighter);
+    background-color: var(--cbp-color-base-neutral-dark);
   }
 }
 
 .cbp-card__content {
-  padding: 20px 16px;
+  padding: var(--cbp-space-5x) var(--cbp-space-4x);
+  width: 100%;
 }
 
 .cbp-card--small {

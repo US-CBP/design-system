@@ -21,9 +21,9 @@ export default {
   }
 };
 
-const BannerCardTemplate = ({ title, type }) => {
+const BannerCardTemplate = ({ title, modifier }) => {
   return `
-    <div class="cbp-card__banner ${type}">
+    <div class="cbp-card__banner ${modifier}">
       <h4 class="cbp-card__banner-title">
         <i class="fas fa-info"></i>
         ${title}

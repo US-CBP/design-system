@@ -1,32 +1,75 @@
-@use '../../base/colors' as *;
-@use '../../typography/fonts' as *;
 @use './mixins' as *;
 
-.cbp-card__radio,
-.cbp-card__checkbox {
-  @include card-general-base;
+[data-card="radio"]:hover,
+[data-card="check"]:hover { 
+  background-color: var(--cbp-color-base-neutral-lightest);
+  border: 2px solid var(--cbp-color-base-neutral-dark);
 
-  &:hover {
-    background-color: var(--cbp-color-base-neutral-lightest);
-    border: 2px solid var(--cbp-color-base-neutral-dark);
+  & input[type=radio],
+  & input[type=checkbox] {
+    background-color: var(--cbp-color-white);
+    box-shadow: none;
+  }
+  & .cbp-card__header--flag {
+    background-color: var(--cbp-color-interactive-neutral-darker);
   }
 
-  &:focus-within {
-    border: 2px solid var(--cbp-color-interactive-focus-light);
-    background-color: var(--cbp-color-interactive-focus-dark);
-
-    .cbp-card__title {
-      color: var(--cbp-color-text-lightest);
-    }
-
-    & * {
-      color: var(--cbp-color-text-lightest);
-    }
+  & .cbp-card__header--flag input[type=radio],
+  & .cbp-card__header--flag input[type=checkbox] {
+    border: 2px solid var(--cbp-color-base-neutral-lighter);
+    background-color: var(--cbp-color-base-neutral-dark);
   }
 }
 
-.cbp-card__radio--danger,
-.cbp-card__checkbox--danger {
+// Does not work in Firefox
+[data-card="radio"]:has(input[type=radio]:checked:not(:focus-within)),
+[data-card="check"]:has(input[type=checkbox]:checked:not(:focus-within)) {
+  background-color: var(--cbp-color-interactive-selected-light);
+  border: 2px solid var(--cbp-color-interactive-selected-dark);
+
+  & input[type=radio]:checked,
+  & input[type=checkbox]:checked {
+    background-color: var(--cbp-color-white);
+  }
+}
+
+[data-card="radio"]:focus-within,
+[data-card="check"]:focus-within {
+  border: 2px solid var(--cbp-color-interactive-focus-light);
+  background-color: var(--cbp-color-interactive-focus-dark);
+
+  & .cbp-card__title {
+    color: var(--cbp-color-text-lightest);
+  }
+
+  & * {
+    color: var(--cbp-color-text-lightest);
+  }
+
+  & input[type=radio]:checked,
+  & input[type=checkbox]:checked {
+    box-shadow: none;
+  }
+
+  & input[type=radio]:not(:checked),
+  & input[type=checkbox]:not(:checked) {
+    background-color: var(--cbp-color-base-neutral-dark);
+    border: 2px solid var(--cbp-color-white);
+    box-shadow: none;
+
+    &:hover {
+      background-color: var(--cbp-color-base-neutral-dark);
+    }
+  }
+
+  & input[type=radio]:hover,
+  & input[type=checkbox]:hover {
+    background-color: unset;
+  }
+}
+
+.cbp-card--danger[data-card="radio"],
+.cbp-card--danger[data-card="check"] {
   background-color: var(--cbp-color-danger-lighter);
   border: 2px solid var(--cbp-color-danger-light);
 
@@ -37,34 +80,30 @@
   &:hover {
     background-color: var(--cbp-color-danger-light);
     border: 2px solid var(--cbp-color-danger-darker);
+  }
 
-    & > .cbp-card__body > .cbp-card__header {
-      & > div:first-child {
-        color: var(--cbp-color-danger-darker);
-      }
-
-      & > div:first-child > h4 {
-        color: var(--cbp-color-danger-darker);
-      }
-    }
+  & input[type=radio],
+  & input[type=checkbox] {
+    background-color: var(--cbp-color-white);
   }
 
   &:focus-within:not([disabled]) {
     border: 2px solid var(--cbp-color-interactive-focus-light);
     background-color: var(--cbp-color-interactive-focus-dark);
 
-    & > .cbp-card__body > .cbp-card__header {
-      & > div:first-child {
-        color: var(--cbp-color-text-lightest);
-      }
-
-      & > div:first-child > h4 {
-        color: var(--cbp-color-text-lightest);
-      }
-    }
-
-    & > .cbp-card__body > p {
+    .cbp-card__header {
       color: var(--cbp-color-text-lightest);
     }
+
+    & * {
+      color: var(--cbp-color-text-lightest);
+    }
+  }
+}
+
+.cbp-card--danger[data-card="radio"]:has(input[type=radio]:checked:not(:focus-within)),
+.cbp-card--danger[data-card="check"]:has(input[type=checkbox]:checked:not(:focus-within)) {
+  .cbp-card__title {
+    color: var(--cbp-color-base-neutral-dark);
   }
 }
