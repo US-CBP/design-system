@@ -22,6 +22,7 @@
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
     "@storybook/addon-links": "^6.5.16",
+    "@storybook/addon-styling": "^0.3.2",
     "@storybook/builder-vite": "^0.4.0",
     "@storybook/html": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
@@ -29,9 +30,11 @@
     "babel-loader": "^8.3.0",
     "prettier": "^2.8.3",
     "react-syntax-highlighter": "^15.5.0",
+    "resolve-url-loader": "^5.0.0",
     "sass": "^1.58.0",
-    "storybook-addon-dark-mode-toggle": "^0.0.6",
+    "sass-loader": "^13.2.1",
     "style-dictionary": "^3.7.2",
+    "style-loader": "^3.3.2",
     "vite": "^4.0.0"
   }
 }
