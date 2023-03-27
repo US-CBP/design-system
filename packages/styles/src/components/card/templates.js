@@ -2,7 +2,7 @@ export const renderButtons = (buttonLayout) => {
   switch (buttonLayout) {
     case 'double':
       return `
-        <div class="cbp-card-action__buttons cbp-card-action__buttons--double">
+        <div class="cbp-card-decision__actions cbp-card-decision__actions--double">
           <button class="cbp-btn__secondary"><i class="fas fa-info-circle"></i>App Info</button>
           <button class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</button>
         </div>
@@ -10,7 +10,7 @@ export const renderButtons = (buttonLayout) => {
       break;
     case 'triple':
       return `
-        <div class="cbp-card-action__buttons cbp-card-action__buttons--triple">
+        <div class="cbp-card-decision__actions cbp-card-decision__actions--triple">
           <button class="cbp-btn__danger"><i class="fas fa-trash-alt"></i>Delete</button>
           <button class="cbp-btn__secondary"><i class="fas fa-times"></i>Cancel</button>
           <button class="cbp-btn__primary"><i class="fas fa-save"></i>Publish</button>
@@ -19,7 +19,7 @@ export const renderButtons = (buttonLayout) => {
       break;
     default:
       return `
-      <div class="cbp-card-action__buttons cbp-card-action__buttons--single">
+      <div class="cbp-card-decision__actions cbp-card-decision__actions--single">
         <button class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</button>
       </div>
       `
@@ -31,12 +31,12 @@ export const renderLinks = (buttonLayout) => {
   switch (buttonLayout) {
     case 'double':
       return `
-        <div class="cbp-card-action__buttons cbp-card-action__buttons--double">
-          <a class="cbp-card-action__link cbp-card-action__link--secondary" href="#">
+        <div class="cbp-card-decision__actions cbp-card-decision__actions--double">
+          <a class="cbp-card-decision__link cbp-card-decision__link--secondary" href="#">
             <i class="fas fa-info-circle"></i>
             App Info
           </a>
-          <a class="cbp-card-action__link cbp-card-action__link--primary" href="#">
+          <a class="cbp-card-decision__link cbp-card-decision__link--primary" href="#">
             <i class="fas fa-external-link-alt"></i>
             Go To App
           </a>
@@ -45,16 +45,16 @@ export const renderLinks = (buttonLayout) => {
       break;
     case 'triple':
       return `
-        <div class="cbp-card-action__buttons cbp-card-action__buttons--triple">
-          <a class="cbp-card-action__link cbp-card-action__link--danger" href="#">
+        <div class="cbp-card-decision__actions cbp-card-decision__actions--triple">
+          <a class="cbp-card-decision__link cbp-card-decision__link--danger" href="#">
             <i class="fas fa-trash-alt"></i>
             Delete
           </a>
-          <a class="cbp-card-action__link cbp-card-action__link--secondary" href="#">
+          <a class="cbp-card-decision__link cbp-card-decision__link--secondary" href="#">
             <i class="fas fa-times"></i>
             Cancel
           </a>
-          <a class="cbp-card-action__link cbp-card-action__link--primary" href="#">
+          <a class="cbp-card-decision__link cbp-card-decision__link--primary" href="#">
             <i class="fas fa-times"></i>
             Publish
           </a>
@@ -63,8 +63,8 @@ export const renderLinks = (buttonLayout) => {
       break;
     default:
       return `
-      <div class="cbp-card-action__buttons cbp-card-action__buttons--single">
-        <a class="cbp-card-action__link cbp-card-action__link--secondary" href="#">
+      <div class="cbp-card-decision__actions cbp-card-decision__actions--single">
+        <a class="cbp-card-decision__link cbp-card-decision__link--secondary" href="#">
           <i class="fas fa-external-link-alt"></i>
           Go To App
         </a>

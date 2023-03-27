@@ -1,35 +1,34 @@
 @use '../button/index' as *;
 @use './mixins' as *;
 
-// Card Action is the name for these fucking cards w/ buttons
-
-.cbp-card-action {
+.cbp-card-decision {
   width: 312px;
 }
 
-.cbp-card-action__wrapper { // container for all image and card body content (use for border and alignment with button layout)
+// Wrapper for the content above actions
+.cbp-card-decision__wrapper {
   border: 2px solid var(--cbp-color-base-neutral-lighter);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom: 0;
 }
 
-.cbp-card-action__media {
+.cbp-card-decision__media {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   width: 100%;
 }
 
-// Depending on if a 'Card Media' is in the Card or not, this can be added to the .cbp-card-action__wrapper classlist as sort of a modifier
-.cbp-card-action__content {
+// Depending on if a 'Card Media' is in the Card or not, this can be added to the .cbp-card-decision__wrapper classlist as sort of a modifier
+.cbp-card-decision__content {
   padding: 20px 16px 16px 16px;
 }
 
-.cbp-card-action__buttons {
+.cbp-card-decision__actions {
   display: flex;
 
   & > button,
-  & > .cbp-card-action__link {
+  & > .cbp-card-decision__link {
     @extend .cbp-btn;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -43,7 +42,7 @@
 
   &--single {
     & > button,
-    & > .cbp-card-action__link {
+    & > .cbp-card-decision__link {
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
     }
@@ -51,13 +50,13 @@
 
   &--double {
     & > button:first-child,
-    & > .cbp-card-action__link:first-child {
+    & > .cbp-card-decision__link:first-child {
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 0;
     }
 
     & > button:nth-child(2),
-    & > .cbp-card-action__link:nth-child(2) {
+    & > .cbp-card-decision__link:nth-child(2) {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 5px;
     }
@@ -65,13 +64,13 @@
 
   &--triple {
     & > button:first-child,
-    & > .cbp-card-action__link:first-child {
+    & > .cbp-card-decision__link:first-child {
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 0px;
     }
 
     & > button:nth-child(2),
-    & > .cbp-card-action__link:nth-child(2) {
+    & > .cbp-card-decision__link:nth-child(2) {
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
       border-bottom-left-radius: 0px;
@@ -79,14 +78,14 @@
     }
 
     & > button:last-child,
-    & > .cbp-card-action__link:last-child {
+    & > .cbp-card-decision__link:last-child {
       border-bottom-right-radius: 5px;
       border-bottom-left-radius: 0px;
     }
   }
 }
 
-.cbp-card-action__link {
+.cbp-card-decision__link {
   @extend .cbp-btn;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
@@ -108,25 +107,21 @@
 }
 
 /* DANGER */
-.cbp-card-action--danger {
-  .cbp-card-action__wrapper {
+.cbp-card-decision--danger {
+  .cbp-card-decision__wrapper {
     border: 2px solid var(--cbp-color-danger-base);
     border-bottom: 0;
   }
 
-  .cbp-card__title {
-    color: var(--cbp-color-danger-base);
-  }
-
-  .cbp-card__flag {
-    background-color: var(--cbp-color-danger-base);
+  .cbp-card__header--flag {
+    background-color: var(--cbp-color-danger-base) !important;
 
     & > .cbp-card__title {
       color: var(--cbp-color-text-lightest);
     }
   }
 
-  .cbp-card-action__content {
+  .cbp-card-decision__content {
     background-color: var(--cbp-color-danger-lighter);
   }
 }

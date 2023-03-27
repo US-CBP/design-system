@@ -11,8 +11,8 @@ export default {
       description: 'Title of the Card component to display',
       type: { name: 'string', required: false }
     },
-    buttonLayout: {
-      name: 'Button Layout',
+    actionsLayout: {
+      name: 'Actions Layout',
       description: 'Choose button layout of the card component',
       control: 'radio',
       options: ['single', 'double', 'triple']
@@ -21,15 +21,15 @@ export default {
       name: 'Modifiers',
       description: 'Choose modifier for the state of card',
       control: 'radio',
-      options: ['default', 'cbp-card-action--danger']
+      options: ['default', 'cbp-card-decision--danger']
     }
   }
 };
 
-const DefaultActionCardTemplate = ({ title, buttonLayout, modifiers }) => {
+const DefaultActionCardTemplate = ({ title, actionsLayout, modifiers }) => {
   return `
-    <div class="cbp-card-action ${modifiers}">
-      <div class="cbp-card-action__wrapper cbp-card-action__content">
+    <div class="cbp-card-decision ${modifiers}">
+      <div class="cbp-card-decision__wrapper cbp-card-decision__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-circle"></i>${title}</h4>
           <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary--ghost">
@@ -47,15 +47,15 @@ const DefaultActionCardTemplate = ({ title, buttonLayout, modifiers }) => {
           </button>
         </div>
       </div>
-      ${renderButtons(buttonLayout)}
+      ${renderButtons(actionsLayout)}
     </div>
   `;
 };
 
-const DefaultActionLinksCardTemplate = ({ title, buttonLayout, modifiers}) => {
+const DefaultActionLinksCardTemplate = ({ title, actionsLayout, modifiers}) => {
   return `
-    <div class="cbp-card-action ${modifiers}">
-      <div class="cbp-card-action__wrapper cbp-card-action__content">
+    <div class="cbp-card-decision ${modifiers}">
+      <div class="cbp-card-decision__wrapper cbp-card-decision__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-circle"></i>${title}</h4>
           <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary--ghost">
@@ -73,20 +73,20 @@ const DefaultActionLinksCardTemplate = ({ title, buttonLayout, modifiers}) => {
           </button>
         </div>
       </div>
-      ${renderLinks(buttonLayout)}
+      ${renderLinks(actionsLayout)}
     </div>
   `;
 };
 
-const ProfileCardTemplate = ({ title, modifiers, buttonLayout }) => {
+const ProfileCardTemplate = ({ title, modifiers, actionsLayout }) => {
   return `
-    <div class="cbp-card-action ${modifiers}">
-      <div class="cbp-card-action__wrapper">
-        <img class="cbp-card-action__media" src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" />
+    <div class="cbp-card-decision ${modifiers}">
+      <div class="cbp-card-decision__wrapper">
+        <img class="cbp-card-decision__media" src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" />
         <div class="cbp-card__header cbp-card__header--flag">
           <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle"></i>${title}</h4>
         </div>
-        <div class="cbp-card-action__content">
+        <div class="cbp-card-decision__content">
           <div class="cbp-row" style="margin-bottom: 8px;">
             <b>Sex:</b>&nbsp;<span style="margin-right: 18px;">Male</span>
             <b>DOB:</b>&nbsp;<span>01/01/1980</span>
@@ -99,20 +99,20 @@ const ProfileCardTemplate = ({ title, modifiers, buttonLayout }) => {
           </div>
         </div>
       </div>
-      ${renderButtons(buttonLayout)}
+      ${renderButtons(actionsLayout)}
     </div>
   `;
 };
 
-const PortCardTemplate = ({ title, modifiers, buttonLayout }) => {
+const PortCardTemplate = ({ title, modifiers, actionsLayout }) => {
   return `
-    <div class="cbp-card-action ${modifiers}">
-      <div class="cbp-card-action__wrapper">
-      <img class="cbp-card-action__media" src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" />
+    <div class="cbp-card-decision ${modifiers}">
+      <div class="cbp-card-decision__wrapper">
+      <img class="cbp-card-decision__media" src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" />
       <div class="cbp-card__header cbp-card__header--flag">
         <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle"></i>${title}</h4>
       </div>
-        <div class="cbp-card-action__content">
+        <div class="cbp-card-decision__content">
           <div class="cbp-row" style="margin-bottom: 8px;">
             <h6 class="cbp-heading-xs">Port of Arrival</h6>
           </div>
@@ -144,9 +144,7 @@ const PortCardTemplate = ({ title, modifiers, buttonLayout }) => {
           </div>
         </div>
       </div>
-      <div class="cbp-card-action__buttons cbp-card__buttons--single">
-        <button class="cbp-btn__primary"><i class="fas fa-eye"></i>View Profile</button>
-      </div>
+      ${renderButtons(actionsLayout)}
     </div>
   `;
 };
@@ -154,7 +152,7 @@ const PortCardTemplate = ({ title, modifiers, buttonLayout }) => {
 export const DefaultActionCard = DefaultActionCardTemplate.bind({});
 DefaultActionCard.args = {
   title: 'Decision Card 1',
-  buttonLayout: 'single',
+  actionsLayout: 'single',
   modifiers: 'default'
 };
 DefaultActionCard.storyName = 'Default';
@@ -162,7 +160,7 @@ DefaultActionCard.storyName = 'Default';
 export const DefaultActionLinksCard = DefaultActionLinksCardTemplate.bind({});
 DefaultActionLinksCard.args = {
   title: 'Decision Card 1',
-  buttonLayout: 'single',
+  actionsLayout: 'single',
   modifiers: 'default'
 };
 DefaultActionLinksCard.storyName = 'Default With Links'
@@ -170,15 +168,15 @@ DefaultActionLinksCard.storyName = 'Default With Links'
 export const ProfileCard = ProfileCardTemplate.bind({});
 ProfileCard.args = {
   title: 'Jimbo Thompson',
-  buttonLayout: 'single',
+  actionsLayout: 'single',
   modifiers: 'default'
 };
 ProfileCard.storyName = 'Example Profile Card';
 
 export const PortCard = PortCardTemplate.bind({});
 PortCard.args = {
-  title: 'Cypress Hill',
-  buttonLayout: 'single',
+  title: 'Cyruss Hill',
+  actionsLayout: 'single',
   modifiers: 'default'
 };
 PortCard.storyName = 'Example Port Card';
