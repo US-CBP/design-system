@@ -1,32 +1,36 @@
+import { withThemeByDataAttribute } from '@storybook/addon-styling';
+
+import '../src/sass/main.scss';
+
 export const CUSTOM_VIEWPORTS = {
   small: {
-    name: "Small Grid",
+    name: 'Small Grid',
     styles: {
-      width: "599px",
-      height: "100%"
+      width: '599px',
+      height: '100%',
     },
-    type: 'desktop'
+    type: 'desktop',
   },
   medium: {
-    name: "Medium Grid",
+    name: 'Medium Grid',
     styles: {
-      width: "1023px",
-      height: "100%"
+      width: '1023px',
+      height: '100%',
     },
-    type: 'desktop'
+    type: 'desktop',
   },
   large: {
-    name: "Large Grid",
+    name: 'Large Grid',
     styles: {
-      width: "1439px",
-      height: "100%"
+      width: '1439px',
+      height: '100%',
     },
-    type: 'desktop'
+    type: 'desktop',
   },
-}
+};
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     expanded: true,
     matchers: {
@@ -36,28 +40,17 @@ export const parameters = {
   },
   backgrounds: {
     grid: {
-      disable: true
-    }
-  },
-  'data-theme-toggle': {
-    querySelector: "html",
-    "data-target": "cbp-theme",
-    default: "light",
-    values: {
-      dark: "dark",
-      light: "light",
+      disable: true,
     },
-    lightFill: "#e5a000",
-    darkFill: "#2e2e2e",
   },
   viewport: {
-    viewports: CUSTOM_VIEWPORTS
+    viewports: CUSTOM_VIEWPORTS,
   },
   html: {
     prettier: {
       tabWidth: 2,
       useTabs: false,
-      htmlWhitespaceSensitivity: "strict",
+      htmlWhitespaceSensitivity: 'strict',
       removeEmptyComments: true,
       removeComments: /^\s*remove me\s*$/,
     },
@@ -68,7 +61,18 @@ export const parameters = {
     transform: (code) => {
       // DEG: keeping this as an example because it may solve other issues I've encountered
       // Remove attributes `_nghost` and `ng-reflect` injected by Angular:
-      return code.replace(/(?:_nghost|ng-reflect).*?="[\S\s]*?"/g, "");
+      return code.replace(/(?:_nghost|ng-reflect).*?="[\S\s]*?"/g, '');
     },
   },
 };
+
+export const decorators = [
+  withThemeByDataAttribute({
+    themes: {
+      light: 'light',
+      dark: 'dark',
+    },
+    defaultTheme: 'light',
+    attributeName: 'data-cbp-theme',
+  }),
+];
