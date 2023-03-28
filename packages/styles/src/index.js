@@ -9,6 +9,7 @@ import FileUploader from './components/fileupload/fileupload';
 import HashedField from './components/form/hashed-field/hashedField';
 import NumberCounter from './components/form/number-counter/numberCounter';
 import DarkMode from './utilities/darkMode';
+import LinkCard from './components/card';
 
 import './sass/main.scss';
 
@@ -97,4 +98,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
   SelectorEngine.findAll('[data-theme-toggle]').forEach((themeToggle) => {
     addOrInstantiate(DarkMode, themeToggle);
   });
+
+  SelectorEngine.findAll('[data-component="link-card"]').forEach((linkCard) => {
+    addOrInstantiate(LinkCard, linkCard);
+  })
+
+  // console.log(document.querySelectorAll(''))
 });

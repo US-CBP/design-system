@@ -2,7 +2,6 @@
 
 .cbp-card__banner {
   border: 0;
-  display: block;
 }
 
 .cbp-card__banner-title {
@@ -12,12 +11,11 @@
   border-top-right-radius: 5px;
   color: var(--cbp-color-text-lightest);
   display: flex;
-  height: 52px;
   font-size: var(--cbp-font-size-heading-xl);
   font-weight: var(--cbp-font-weight-regular);
   letter-spacing: 0.12px;
   line-height: var(--cbp-line-height-md);
-  padding-left: var(--cbp-space-4x);
+  padding: var(--cbp-space-3x) 0 var(--cbp-space-3x) var(--cbp-space-4x);
 
   & > i {
     margin-right: var(--cbp-space-2x);

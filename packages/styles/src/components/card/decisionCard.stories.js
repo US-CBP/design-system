@@ -1,7 +1,7 @@
 import { renderButtons, renderLinks } from "./templates";
 
 export default {
-  title: 'Patterns/Card/Action Card',
+  title: 'Patterns/Card/Decision Card',
   parameters: {
     layout: 'centered'
   },
@@ -26,10 +26,10 @@ export default {
   }
 };
 
-const DefaultActionCardTemplate = ({ title, actionsLayout, modifiers }) => {
+const DefaultDecisionCardTemplate = ({ title, actionsLayout, modifiers }) => {
   return `
     <div class="cbp-card-decision ${modifiers}">
-      <div class="cbp-card-decision__wrapper cbp-card-decision__content">
+      <div class="cbp-card-decision__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-circle"></i>${title}</h4>
           <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary--ghost">
@@ -52,10 +52,10 @@ const DefaultActionCardTemplate = ({ title, actionsLayout, modifiers }) => {
   `;
 };
 
-const DefaultActionLinksCardTemplate = ({ title, actionsLayout, modifiers}) => {
+const DefaultDecisionLinksCardTemplate = ({ title, actionsLayout, modifiers}) => {
   return `
     <div class="cbp-card-decision ${modifiers}">
-      <div class="cbp-card-decision__wrapper cbp-card-decision__content">
+      <div class="cbp-card-decision__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-circle"></i>${title}</h4>
           <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary--ghost">
@@ -81,17 +81,17 @@ const DefaultActionLinksCardTemplate = ({ title, actionsLayout, modifiers}) => {
 const ProfileCardTemplate = ({ title, modifiers, actionsLayout }) => {
   return `
     <div class="cbp-card-decision ${modifiers}">
-      <div class="cbp-card-decision__wrapper">
-        <img class="cbp-card-decision__media" src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" />
+      <div class="cbp-card-decision__content p-0">
+        <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" />
         <div class="cbp-card__header cbp-card__header--flag">
           <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle"></i>${title}</h4>
         </div>
-        <div class="cbp-card-decision__content">
-          <div class="cbp-row" style="margin-bottom: 8px;">
-            <b>Sex:</b>&nbsp;<span style="margin-right: 18px;">Male</span>
+        <div class="cbp-grid-container">
+          <div class="cbp-row">
+            <b>Sex:</b>&nbsp;<span>Male</span>
             <b>DOB:</b>&nbsp;<span>01/01/1980</span>
           </div>
-          <div class="cbp-row" style="margin-bottom: 8px;">
+          <div class="cbp-row">
             <b>Citizenship:</b>&nbsp;<span>United States of American</span>
           </div>
           <div class="cbp-row">
@@ -104,66 +104,21 @@ const ProfileCardTemplate = ({ title, modifiers, actionsLayout }) => {
   `;
 };
 
-const PortCardTemplate = ({ title, modifiers, actionsLayout }) => {
-  return `
-    <div class="cbp-card-decision ${modifiers}">
-      <div class="cbp-card-decision__wrapper">
-      <img class="cbp-card-decision__media" src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" />
-      <div class="cbp-card__header cbp-card__header--flag">
-        <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle"></i>${title}</h4>
-      </div>
-        <div class="cbp-card-decision__content">
-          <div class="cbp-row" style="margin-bottom: 8px;">
-            <h6 class="cbp-heading-xs">Port of Arrival</h6>
-          </div>
-          <div class="cbp-row" style="margin-bottom: 12px;">
-            <span>Jacksonville, FL&nbsp;|&nbsp;</span>
-            <span>1/2/2018&nbsp;|&nbsp;</span>
-            <span>12:00 EST</span>
-          </div>
-          <div class="cbp-row" style="margin-bottom: 8px;">
-            <h6 class="cbp-heading-xs">Port of Departure</h6>
-          </div>
-          <div class="cbp-row" style="margin-bottom: 12px;">
-            <span>Tincan/Lagos, NG&nbsp;|&nbsp;</span>
-            <span>1/2/2018&nbsp;|&nbsp;</span>
-            <span>12:00 EST</span>
-          </div>
-          <div class="cbp-row" style="margin-bottom: 8px;">
-            <div class="cbp-grid-col-2-sm cbp-grid-col-4-md cbp-grid-col-6-lg" style="margin: 0 !important;">
-              <b>Voyage:</b>&nbsp;<span>6</span>
-              <b>Crew:</b>&nbsp;<span>8</span>
-              <b>Containers:</b>&nbsp;<span>253</span>
-            </div>
-
-            <div class="cbp-grid-col-2-sm cbp-grid-col-4-md cbp-grid-col-6-lg" style="margin-right: 0 !important;">
-              <b>Passenger:</b>&nbsp;<span>55425TV</span>
-              <b>Engine:</b>&nbsp;<span>Under Power</span>
-              <b>Filing(s) Status:</b>&nbsp;<span>Yes</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      ${renderButtons(actionsLayout)}
-    </div>
-  `;
-};
-
-export const DefaultActionCard = DefaultActionCardTemplate.bind({});
-DefaultActionCard.args = {
+export const DefaultDecisionCard = DefaultDecisionCardTemplate.bind({});
+DefaultDecisionCard.args = {
   title: 'Decision Card 1',
   actionsLayout: 'single',
   modifiers: 'default'
 };
-DefaultActionCard.storyName = 'Default';
+DefaultDecisionCard.storyName = 'Default';
 
-export const DefaultActionLinksCard = DefaultActionLinksCardTemplate.bind({});
-DefaultActionLinksCard.args = {
+export const DefaultDecisionLinksCard = DefaultDecisionLinksCardTemplate.bind({});
+DefaultDecisionLinksCard.args = {
   title: 'Decision Card 1',
   actionsLayout: 'single',
   modifiers: 'default'
 };
-DefaultActionLinksCard.storyName = 'Default With Links'
+DefaultDecisionLinksCard.storyName = 'Default With Links'
 
 export const ProfileCard = ProfileCardTemplate.bind({});
 ProfileCard.args = {
@@ -172,11 +127,3 @@ ProfileCard.args = {
   modifiers: 'default'
 };
 ProfileCard.storyName = 'Example Profile Card';
-
-export const PortCard = PortCardTemplate.bind({});
-PortCard.args = {
-  title: 'Cyruss Hill',
-  actionsLayout: 'single',
-  modifiers: 'default'
-};
-PortCard.storyName = 'Example Port Card';

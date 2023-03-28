@@ -1,26 +1,21 @@
 @use '../button/index' as *;
 @use './mixins' as *;
 
+// Utility class for (all-around) padding: 0;
+.p-0 {
+  padding: 0 !important;
+}
+
 .cbp-card-decision {
-  width: 312px;
-}
-
-// Wrapper for the content above actions
-.cbp-card-decision__wrapper {
-  border: 2px solid var(--cbp-color-base-neutral-lighter);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom: 0;
-}
-
-.cbp-card-decision__media {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  width: 100%;
+  min-width: 312px;
 }
 
 // Depending on if a 'Card Media' is in the Card or not, this can be added to the .cbp-card-decision__wrapper classlist as sort of a modifier
 .cbp-card-decision__content {
+  border: 2px solid var(--cbp-color-base-neutral-lighter);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 0;
   padding: 20px 16px 16px 16px;
 }
 
@@ -28,11 +23,12 @@
   display: flex;
 
   & > button,
-  & > .cbp-card-decision__link {
+  & > a[href] {
     @extend .cbp-btn;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     height: 44px;
+    text-decoration: none;
     width: 100%;
 
     & > i {
@@ -40,23 +36,21 @@
     }
   }
 
-  &--single {
-    & > button,
-    & > .cbp-card-decision__link {
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
-    }
+  & > button:only-child,
+  & > a[href]:only-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 
   &--double {
     & > button:first-child,
-    & > .cbp-card-decision__link:first-child {
+    & > a[href]:first-child {
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 0;
     }
 
     & > button:nth-child(2),
-    & > .cbp-card-decision__link:nth-child(2) {
+    & > a[href]:nth-child(2) {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 5px;
     }
@@ -64,13 +58,13 @@
 
   &--triple {
     & > button:first-child,
-    & > .cbp-card-decision__link:first-child {
+    & > a[href]:first-child {
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 0px;
     }
 
     & > button:nth-child(2),
-    & > .cbp-card-decision__link:nth-child(2) {
+    & > a[href]:nth-child(2) {
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
       border-bottom-left-radius: 0px;
@@ -78,42 +72,20 @@
     }
 
     & > button:last-child,
-    & > .cbp-card-decision__link:last-child {
+    & > a[href]:last-child {
       border-bottom-right-radius: 5px;
       border-bottom-left-radius: 0px;
     }
   }
 }
 
-.cbp-card-decision__link {
-  @extend .cbp-btn;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  height: 44px;
-  text-decoration: none;
-  width: 100%;
-
-  &--primary {
-    @extend .cbp-btn__primary;
-  }
-
-  &--secondary {
-    @extend .cbp-btn__secondary;
-  }
-
-  &--danger {
-    @extend .cbp-btn__danger;
-  }
-}
-
 /* DANGER */
 .cbp-card-decision--danger {
-  .cbp-card-decision__wrapper {
-    border: 2px solid var(--cbp-color-danger-base);
-    border-bottom: 0;
+  & .cbp-card__title {
+    color: var(--cbp-color-danger-base);
   }
 
-  .cbp-card__header--flag {
+  & .cbp-card__header--flag {
     background-color: var(--cbp-color-danger-base) !important;
 
     & > .cbp-card__title {
@@ -121,7 +93,9 @@
     }
   }
 
-  .cbp-card-decision__content {
+  & .cbp-card-decision__content {
     background-color: var(--cbp-color-danger-lighter);
+    border: 2px solid var(--cbp-color-danger-base);
+    border-bottom: 0;
   }
 }

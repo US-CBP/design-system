@@ -19,7 +19,7 @@ export const renderButtons = (buttonLayout) => {
       break;
     default:
       return `
-      <div class="cbp-card-decision__actions cbp-card-decision__actions--single">
+      <div class="cbp-card-decision__actions">
         <button class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</button>
       </div>
       `
@@ -32,11 +32,11 @@ export const renderLinks = (buttonLayout) => {
     case 'double':
       return `
         <div class="cbp-card-decision__actions cbp-card-decision__actions--double">
-          <a class="cbp-card-decision__link cbp-card-decision__link--secondary" href="#">
+          <a href="#" class="cbp-btn__secondary">
             <i class="fas fa-info-circle"></i>
             App Info
           </a>
-          <a class="cbp-card-decision__link cbp-card-decision__link--primary" href="#">
+          <a href="#" class="cbp-btn__primary">
             <i class="fas fa-external-link-alt"></i>
             Go To App
           </a>
@@ -46,15 +46,15 @@ export const renderLinks = (buttonLayout) => {
     case 'triple':
       return `
         <div class="cbp-card-decision__actions cbp-card-decision__actions--triple">
-          <a class="cbp-card-decision__link cbp-card-decision__link--danger" href="#">
+          <a href="#" class="cbp-btn__danger">
             <i class="fas fa-trash-alt"></i>
             Delete
           </a>
-          <a class="cbp-card-decision__link cbp-card-decision__link--secondary" href="#">
+          <a href="#" class="cbp-btn__secondary">
             <i class="fas fa-times"></i>
             Cancel
           </a>
-          <a class="cbp-card-decision__link cbp-card-decision__link--primary" href="#">
+          <a href="#" class="cbp-btn__primary">
             <i class="fas fa-times"></i>
             Publish
           </a>
@@ -63,8 +63,8 @@ export const renderLinks = (buttonLayout) => {
       break;
     default:
       return `
-      <div class="cbp-card-decision__actions cbp-card-decision__actions--single">
-        <a class="cbp-card-decision__link cbp-card-decision__link--secondary" href="#">
+      <div class="cbp-card-decision__actions">
+        <a href="#" class="cbp-btn__primary">
           <i class="fas fa-external-link-alt"></i>
           Go To App
         </a>

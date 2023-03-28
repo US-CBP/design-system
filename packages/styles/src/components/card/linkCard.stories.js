@@ -7,10 +7,13 @@ export default {
 
 const LinkCardTemplate = ({ title, ...args }) => {
   return `
-    <div href="#" class="cbp-card" data-component="link-card">
+    <div class="cbp-card" data-component="link-card">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
-          <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
+          <h4 class="cbp-card__title">
+            <i class="fas fa-info"></i>
+            <a href="https://google.com" target="_blank" rel="noopener noreferrer">${title}</a>
+          </h4>
           <!-- Replace icon with SVG -->
           <i class="fas fa-arrow-circle-right cbp-font-size-large"></i>
         </div>
@@ -22,11 +25,14 @@ const LinkCardTemplate = ({ title, ...args }) => {
 
 const LinkCardMediaTemplate = ({ title, type }) => {
   return `
-    <div class="cbp-card ${type}" data-component="link-card">
+    <div class="cbp-card ${type} cbp-d-flex" data-component="link-card">
       <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait of a person" width="116">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
-          <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
+          <h4 class="cbp-card__title">
+            <i class="fas fa-info"></i>
+            <a href="#" target="_blank" rel="noopener noreferrer">${title}</a>
+          </h4>
           <!-- Replace icon with SVG -->
           <i class="fas fa-arrow-circle-right cbp-font-size-large"></i>
         </div>
@@ -41,7 +47,10 @@ const LinkCardWithFlagTemplate = ({ title, danger, ...args }) => {
     <div class="cbp-card ${danger && 'cbp-card--danger'} cbp-d-block" data-component="link-card">
       <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait of a person" width="310">
       <div class="cbp-card__header cbp-card__header--flag">
-        <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle"></i>Jimbo Thompson</h4>
+        <h4 class="cbp-card__title">
+          <i class="fas fa-exclamation-triangle"></i>
+          <a href="https://google.com"  target="_blank" rel="noopener noreferrer">Jimbo Thompson</a>
+        </h4>
         <!-- Replace icon with SVG -->
         <i class="fas fa-arrow-circle-right cbp-font-size-large"></i>
       </div>
@@ -51,10 +60,14 @@ const LinkCardWithFlagTemplate = ({ title, danger, ...args }) => {
 
 const SmallLinkCardTemplate = ({ title, type }) => {
   return `
-    <div class="cbp-card ${type} cbp-card--small" data-component="link-card">
+    <!-- Cards are width: 100% be default -->
+    <div class="cbp-card ${type}" data-component="link-card" style="width: 312px;">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
-          <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
+          <h4 class="cbp-card__title">
+            <i class="fas fa-info"></i>
+            <a href="#" target="_blank" rel="noopener noreferrer">${title}</a>
+          </h4>
           <!-- Replace icon with SVG -->
           <i class="fas fa-arrow-circle-right cbp-font-size-large"></i>
         </div>

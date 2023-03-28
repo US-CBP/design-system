@@ -200,15 +200,20 @@
   <main>
     <section class="cbp-grid-container sandbox" style="padding-top: 4rem; padding-bottom: 4rem;">
       <!-- SANDBOX -->
-      <div class="cbp-card-decision">
-        <div class="cbp-card-decision__wrapper" style="border: 2px solid black; padding: 16px 16px;">
-          <div class="cbp-card-decision__content" style="height: 250px; border: 2px dashed var(--cbp-color-black)"></div>
-        </div>
-        <div class="cbp-card-decision__actions cbp-card-decision__actions--single">
-          <button class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</button>
+      <div href="#" class="cbp-card" data-component="link-card">
+        <div class="cbp-card__content">
+          <div class="cbp-card__header">
+            <h4 class="cbp-card__title">
+              <i class="fas fa-info"></i>
+              <a href="www.cnn.com" target="_blank" rel="noopener noreferrer">${title}</a>
+            </h4>
+            <!-- Replace icon with SVG -->
+            <i class="fas fa-arrow-circle-right cbp-font-size-large"></i>
+          </div>
+          <p class="cbp-text-body cbp-mt-2"><a href="www.google.com" target="_blank" rel="noopener noreferrer">Here is an example</a> of some supplementary text for this purely informational card</p>
         </div>
       </div>
-      
+      <a href="http://google.com" target="_blank" rel="noopener noreferrer">click me</a>
     </section>
   </main>
   <footer class="cbp-footer">

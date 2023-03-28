@@ -1,20 +1,28 @@
 @use './mixins' as *;
 
 // utility class
-.cbp-d-block {
-  display: block !important;
-}
-
 .cbp-font-size-large {
   font-size: var(--cbp-font-size-heading-lg);
 }
+
+.cbp-text-decoration-none {
+  text-decoration: none;
+}
+
+.cbp-mr-2 {
+  margin-right: var(--cbp-space-2x);
+}
+
+.cbp-d-flex {
+  display: flex;
+}
+
+// utility class END
 
 .cbp-card {
   background-color: var(--cbp-color-white);
   border: 2px solid var(--cbp-color-base-neutral-lighter);
   border-radius: 5px;
-  display: flex;
-  width: fit-content;
 }
 
 .cbp-card__header {
@@ -28,21 +36,12 @@
   }
 }
 
-.cbp-card__media {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
 .cbp-card__title {
   color: var(--cbp-color-text-darker);
   font-weight: var(--cbp-font-weight-medium);
   font-size: var(--cbp-font-size-heading-lg);
   line-height: var(--cbp-line-height-sm);
   letter-spacing: 0.12px;
-
-  & > i {
-    margin-right: var(--cbp-space-2x);
-  }
 }
 
 .cbp-card__header--flag {
@@ -65,10 +64,6 @@
   width: 100%;
 }
 
-.cbp-card--small {
-  max-width: 312px;
-}
-
 .cbp-card--info {
   @include card-general-modifier(var(--cbp-color-info-lighter), var(--cbp-color-info-light), var(--cbp-color-info-darker));
 }
@@ -79,4 +74,34 @@
 
 .cbp-card--danger {
   @include card-general-modifier(var(--cbp-color-danger-lighter), var(--cbp-color-danger-light), var(--cbp-color-danger-darker));
+}
+
+// General Card that is a link.
+[data-component="link-card"] {
+  // Link in .cbp-card__title
+  .cbp-card__title a {
+    color: inherit;
+    text-decoration: none;
+    outline: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--cbp-color-base-neutral-lightest);
+    border: 2px solid var(--cbp-color-base-neutral-dark);
+  }
+
+  &:focus-within {
+    background-color: var(--cbp-color-interactive-focus-dark);
+    border: 2px solid var(--cbp-color-interactive-focus-light);;
+    color: var(--cbp-color-text-lightest);
+    
+    .cbp-card__title {
+      color: inherit;
+    }
+
+    .cbp-text-body {
+      color: inherit;
+    }
+  }
 }
