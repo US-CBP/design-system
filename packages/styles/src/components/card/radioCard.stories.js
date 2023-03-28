@@ -7,7 +7,7 @@ export default {
 
 const DefaultRadioCardTemplate = ({ title, danger, ...args }) => {
   return `
-    <label for="card-radio-demo" class="cbp-card ${danger && 'cbp-card--danger'}" data-card="radio">
+    <label for="card-radio-demo" class="cbp-card ${danger && 'cbp-card--danger'}" data-component="radio-card">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
@@ -21,7 +21,7 @@ const DefaultRadioCardTemplate = ({ title, danger, ...args }) => {
 
 const RadioCardWithMediaTemplate = ({ title, danger, ...args }) => {
   return `
-    <label for="card-radio-demo" class="cbp-card ${danger && 'cbp-card--danger'}" data-card="radio">
+    <label for="card-radio-demo" class="cbp-card ${danger && 'cbp-card--danger'}" data-component="radio-card">
       <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait of a person" width="116">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
@@ -36,7 +36,7 @@ const RadioCardWithMediaTemplate = ({ title, danger, ...args }) => {
 
 const RadioCardWithFlagTemplate = ({ title, danger, ...args }) => {
   return `
-    <label for="card-radio-demo" class="cbp-card ${danger && 'cbp-card--danger'}" data-card="radio" style="display: block;">
+    <label for="card-radio-demo" class="cbp-card ${danger && 'cbp-card--danger'}" data-component="radio-card" style="display: block;">
       <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait of a person" width="310">
       <div class="cbp-card__header cbp-card__header--flag">
         <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle"></i>Jimbo Thompson</h4>

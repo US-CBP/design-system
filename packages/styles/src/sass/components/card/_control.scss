@@ -1,15 +1,29 @@
 @use './mixins' as *;
 
-[data-card="radio"]:hover,
-[data-card="check"]:hover { 
-  background-color: var(--cbp-color-base-neutral-lightest);
-  border: 2px solid var(--cbp-color-base-neutral-dark);
+[data-component="radio-card"],
+[data-component="checkbox-card"] {
+  cursor: pointer;
+
+  & label {
+    cursor: inherit;
+  }
 
   & input[type=radio],
   & input[type=checkbox] {
-    background-color: var(--cbp-color-white);
+    cursor: inherit;
+  }
+}
+
+[data-component="radio-card"]:hover,
+[data-component="checkbox-card"]:hover { 
+  background-color: var(--cbp-color-base-neutral-lightest);
+  border: 2px solid var(--cbp-color-base-neutral-dark);
+  
+  & input[type=radio],
+  & input[type=checkbox] {
     box-shadow: none;
   }
+
   & .cbp-card__header--flag {
     background-color: var(--cbp-color-interactive-neutral-darker);
   }
@@ -21,28 +35,12 @@
   }
 }
 
-// Does not work in Firefox
-[data-card="radio"]:has(input[type=radio]:checked:not(:focus-within)),
-[data-card="check"]:has(input[type=checkbox]:checked:not(:focus-within)) {
-  background-color: var(--cbp-color-interactive-selected-light);
-  border: 2px solid var(--cbp-color-interactive-selected-dark);
-
-  & input[type=radio]:checked,
-  & input[type=checkbox]:checked {
-    background-color: var(--cbp-color-white);
-  }
-}
-
-[data-card="radio"]:focus-within,
-[data-card="check"]:focus-within {
+[data-component="radio-card"]:focus-within,
+[data-component="checkbox-card"]:focus-within {
   border: 2px solid var(--cbp-color-interactive-focus-light);
   background-color: var(--cbp-color-interactive-focus-dark);
 
   & .cbp-card__title {
-    color: var(--cbp-color-text-lightest);
-  }
-
-  & * {
     color: var(--cbp-color-text-lightest);
   }
 
@@ -56,20 +54,26 @@
     background-color: var(--cbp-color-base-neutral-dark);
     border: 2px solid var(--cbp-color-white);
     box-shadow: none;
-
-    &:hover {
-      background-color: var(--cbp-color-base-neutral-dark);
-    }
-  }
-
-  & input[type=radio]:hover,
-  & input[type=checkbox]:hover {
-    background-color: unset;
   }
 }
 
-.cbp-card--danger[data-card="radio"],
-.cbp-card--danger[data-card="check"] {
+// Does not work in Firefox
+[data-component="radio-card"]:has(input[type=radio]:checked:not(:focus-within)),
+[data-component="checkbox-card"]:has(input[type=checkbox]:checked:not(:focus-within)) {
+  background-color: var(--cbp-color-interactive-selected-light);
+  border: 2px solid var(--cbp-color-interactive-selected-dark);
+
+  & input[type=radio]:checked{
+    background-color: var(--cbp-color-white);
+  }
+
+  & input[type=checkbox]:checked {
+    background-color: var(--cbp-color-interactive-selected-dark);
+  }
+}
+
+.cbp-card--danger[data-component="radio-card"],
+.cbp-card--danger[data-component="checkbox-card"] {
   background-color: var(--cbp-color-danger-lighter);
   border: 2px solid var(--cbp-color-danger-light);
 
@@ -80,29 +84,26 @@
   &:hover {
     background-color: var(--cbp-color-danger-light);
     border: 2px solid var(--cbp-color-danger-darker);
-  }
 
-  & input[type=radio],
-  & input[type=checkbox] {
-    background-color: var(--cbp-color-white);
-  }
-
-  &:focus-within:not([disabled]) {
-    border: 2px solid var(--cbp-color-interactive-focus-light);
-    background-color: var(--cbp-color-interactive-focus-dark);
-
-    .cbp-card__header {
-      color: var(--cbp-color-text-lightest);
-    }
-
-    & * {
-      color: var(--cbp-color-text-lightest);
+    & .cbp-card__title {
+      color: var(--cbp-color-text-darkest);
     }
   }
 }
 
-.cbp-card--danger[data-card="radio"]:has(input[type=radio]:checked:not(:focus-within)),
-.cbp-card--danger[data-card="check"]:has(input[type=checkbox]:checked:not(:focus-within)) {
+.cbp-card--danger[data-component="radio-card"]:focus-within,
+.cbp-card--danger[data-component="checkbox-card"]:focus-within {
+  border: 2px solid var(--cbp-color-interactive-focus-light);
+  background-color: var(--cbp-color-interactive-focus-dark);
+
+  .cbp-card__title {
+    color: var(--cbp-color-text-lightest);
+  }
+}
+
+// :has not supported in Firefox 
+.cbp-card--danger[data-component="radio-card"]:has(input[type=radio]:checked:not(:focus-within)),
+.cbp-card--danger[data-component="checkbox-card"]:has(input[type=checkbox]:checked:not(:focus-within)) {
   .cbp-card__title {
     color: var(--cbp-color-base-neutral-dark);
   }

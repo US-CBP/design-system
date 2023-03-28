@@ -5,44 +5,44 @@ export default {
   }
 };
 
-const DefaultCheckboxCardTemplate = ({ title, danger, ...args }) => {
+const DefaultCheckboxCardTemplate = ({ title, danger }) => {
   return `
-    <label for="card-checkbox-demo" class="cbp-card ${danger && 'cbp-card--danger'}" data-card="check">
+    <div class="cbp-card ${danger && 'cbp-card--danger'}" data-component="checkbox-card">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
-          <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
-          <input type="checkbox" name="card-checkbox-demo" class="cbp-form__checkbox" id="card-checkbox-demo">
+          <label class="cbp-card__title" for="default-checkbox-card"><i class="fas fa-info cbp-mr-2"></i>${title}</label>
+          <input type="checkbox" class="cbp-form__checkbox" name="default-checkbox-card" id="default-checkbox-card">
         </div>
         <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
       </div>
-    </label>
+    </div>
   `;
 };
 
-const CheckCardWithMediaTemplate = ({ title, danger, ...args }) => {
+const CheckCardWithMediaTemplate = ({ title, danger }) => {
   return `
-    <label for="card-checkbox-demo" class="cbp-card ${danger && 'cbp-card--danger'}" data-card="check">
+    <div class="cbp-card ${danger && 'cbp-card--danger'} cbp-d-flex" data-component="checkbox-card">
       <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait of a person" width="116">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
-          <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
-          <input type="checkbox" name="card-checkbox-demo" id="card-checkbox-demo" class="cbp-form__checkbox">
+          <label class="cbp-card__title" for="checkbox-card-media"><i class="fas fa-info cbp-mr-2"></i>${title}</label>
+          <input type="checkbox" class="cbp-form__checkbox" name="checkbox-card-media" id="checkbox-card-media">
         </div>
         <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
       </div>
-    </label>
+    </div>
   `;
 };
 
-const CheckCardWithFlagTemplate = ({ title, danger, ...args }) => {
+const CheckCardWithFlagTemplate = ({ title, danger }) => {
   return `
-    <label for="card-checkbox-demo" class="cbp-card ${danger && 'cbp-card--danger'} cbp-d-block" data-card="check">
+    <div class="cbp-card ${danger && 'cbp-card--danger'}" data-component="checkbox-card">
       <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait of a person" width="310">
       <div class="cbp-card__header cbp-card__header--flag">
-        <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle"></i>Jimbo Thompson</h4>
-        <input type="checkbox" name="card-checkbox-demo" id="card-checkbox-demo" class="cbp-form__checkbox">
+        <label class="cbp-card__title" for="checkbox-card-flag"><i class="fas fa-exclamation-triangle cbp-mr-2"></i>${title}</label>
+        <input type="checkbox" class="cbp-form__checkbox" name="checkbox-card-flag" id="checkbox-card-flag">
       </div>
-    </label>
+    </div>
   `;
 };
 
@@ -62,7 +62,7 @@ CheckCardWithMedia.storyName = 'With Media'
 
 export const CheckCardWithFlag = CheckCardWithFlagTemplate.bind({});
 CheckCardWithFlag.args = {
-  title: 'General Card',
+  title: 'Jimbo Thompson',
   danger: false
 };
 CheckCardWithFlag.storyName = 'With Flag'

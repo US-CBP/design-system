@@ -1,4 +1,4 @@
-import { renderButtons, renderLinks } from "./templates";
+import { renderButtons, renderLinks } from "./cardStoryTemplates";
 
 export default {
   title: 'Patterns/Card/Decision Card',
