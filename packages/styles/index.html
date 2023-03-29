@@ -200,20 +200,65 @@
   <main>
     <section class="cbp-grid-container sandbox" style="padding-top: 4rem; padding-bottom: 4rem;">
       <!-- SANDBOX -->
-      <div href="#" class="cbp-card" data-component="link-card">
-        <div class="cbp-card__content">
-          <div class="cbp-card__header">
-            <h4 class="cbp-card__title">
-              <i class="fas fa-info"></i>
-              <a href="www.cnn.com" target="_blank" rel="noopener noreferrer">${title}</a>
-            </h4>
-            <!-- Replace icon with SVG -->
-            <i class="fas fa-arrow-circle-right cbp-font-size-large"></i>
+      <fieldset>
+        <div class="cbp-card ${danger ? 'cbp-card--danger' : ''}" data-component="radio-card">
+          <div class="cbp-card__content">
+            <div class="cbp-card__header">
+              <label class="cbp-card__title" for="choice-1"><i class="fas fa-info cbp-mr-2"></i>Choice 1</label>
+              <input type="radio" class="cbp-form__radio" name="radio-card-test" id="choice-1">
+            </div>
+            <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
           </div>
-          <p class="cbp-text-body cbp-mt-2"><a href="www.google.com" target="_blank" rel="noopener noreferrer">Here is an example</a> of some supplementary text for this purely informational card</p>
         </div>
-      </div>
-      <a href="http://google.com" target="_blank" rel="noopener noreferrer">click me</a>
+        <div class="cbp-card ${danger ? 'cbp-card--danger' : ''}" data-component="radio-card">
+          <div class="cbp-card__content">
+            <div class="cbp-card__header">
+              <label class="cbp-card__title" for="choice-2"><i class="fas fa-info cbp-mr-2"></i>Choice 2</label>
+              <input type="radio" class="cbp-form__radio" name="radio-card-test" id="choice-2">
+            </div>
+            <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
+          </div>
+        </div>
+        <div class="cbp-card ${danger ? 'cbp-card--danger' : ''}" data-component="radio-card">
+          <div class="cbp-card__content">
+            <div class="cbp-card__header">
+              <label class="cbp-card__title" for="choice-3"><i class="fas fa-info cbp-mr-2"></i>Choice 3</label>
+              <input type="radio" class="cbp-form__radio" name="radio-card-test" id="choice-3">
+            </div>
+            <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <div class="cbp-card ${danger && 'cbp-card--danger'}" data-component="checkbox-card">
+          <div class="cbp-card__content">
+            <div class="cbp-card__header">
+              <label class="cbp-card__title" for="choice-4"><i class="fas fa-info cbp-mr-2"></i>${title}</label>
+              <input type="checkbox" class="cbp-form__checkbox" name="checkbox-card-test" id="choice-4">
+            </div>
+            <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
+          </div>
+        </div>
+        <div class="cbp-card ${danger && 'cbp-card--danger'}" data-component="checkbox-card">
+          <div class="cbp-card__content">
+            <div class="cbp-card__header">
+              <label class="cbp-card__title" for="choice-5"><i class="fas fa-info cbp-mr-2"></i>${title}</label>
+              <input type="checkbox" class="cbp-form__checkbox" name="checkbox-card-test" id="choice-5">
+            </div>
+            <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
+          </div>
+        </div>
+        <div class="cbp-card ${danger && 'cbp-card--danger'}" data-component="checkbox-card">
+          <div class="cbp-card__content">
+            <div class="cbp-card__header">
+              <label class="cbp-card__title" for="choice-6"><i class="fas fa-info cbp-mr-2"></i>${title}</label>
+              <input type="checkbox" class="cbp-form__checkbox" name="checkbox-card-test" id="choice-6">
+            </div>
+            <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
+          </div>
+        </div>
+      </fieldset>
     </section>
   </main>
   <footer class="cbp-footer">

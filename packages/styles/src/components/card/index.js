@@ -1,4 +1,4 @@
-class LinkCard {
+export class LinkCard {
   constructor(component) {
     this.card = component;
     this.title = component.querySelector('.cbp-card__title');
@@ -22,4 +22,20 @@ class LinkCard {
   }
 }
 
-export default LinkCard;
+export class ControlCard {
+  constructor(component) {
+    this.card = component;
+    this.isCheckbox = !!this.card.querySelector('input[type="checkbox"');
+    this.input = this.card.querySelector('input');
+
+    this.card.addEventListener('click', (e) => this.handleClick(e, this.isCheckbox))
+  }
+
+  handleClick(e, isCheckbox) {
+    if (!isCheckbox) {
+      this.input.checked = true;
+      this.input.focus();
+      return;
+    }
+  }
+}

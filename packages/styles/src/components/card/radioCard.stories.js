@@ -2,47 +2,57 @@ export default {
   title: 'Patterns/Card/Radio Card',
   parameters: {
     layout: 'centered'
+  },
+  argTypes: {
+    title: {
+      name: 'Title',
+      control: 'text'
+    },
+    danger: {
+      name: 'Danger',
+      control: 'boolean'
+    }
   }
 };
 
-const DefaultRadioCardTemplate = ({ title, danger, ...args }) => {
+const DefaultRadioCardTemplate = ({ title, danger }) => {
   return `
-    <label for="card-radio-demo" class="cbp-card ${danger && 'cbp-card--danger'}" data-component="radio-card">
+    <div class="cbp-card ${danger ? 'cbp-card--danger' : ''}" data-component="radio-card">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
-          <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
-          <input type="radio" name="card-radio-demo" id="card-radio-demo" class="cbp-form__radio">
+          <label class="cbp-card__title" for="default-radio-card"><i class="fas fa-info cbp-mr-2"></i>${title}</label>
+          <input type="radio" class="cbp-form__radio" name="default-radio-card" id="default-radio-card">
         </div>
         <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
       </div>
-    </label>
+    </div>
   `;
 };
 
-const RadioCardWithMediaTemplate = ({ title, danger, ...args }) => {
+const RadioCardWithMediaTemplate = ({ title, danger }) => {
   return `
-    <label for="card-radio-demo" class="cbp-card ${danger && 'cbp-card--danger'}" data-component="radio-card">
+    <div class="cbp-card ${danger ? 'cbp-card--danger' : ''} cbp-d-flex" data-component="radio-card">
       <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait of a person" width="116">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
-          <h4 class="cbp-card__title"><i class="fas fa-info"></i>${title}</h4>
-          <input type="radio" name="card-radio-demo" id="card-radio-demo" class="cbp-form__radio">
+          <label class="cbp-card__title" for="radio-card-media"><i class="fas fa-info cbp-mr-2"></i>${title}</label>
+          <input type="radio" class="cbp-form__radio" name="radio-card-media" id="radio-card-media">
         </div>
         <p class="cbp-text-body cbp-mt-2">Here is an example of some supplementary text for this purely informational card</p>
       </div>
-    </label>
+    </div>
   `;
 };
 
-const RadioCardWithFlagTemplate = ({ title, danger, ...args }) => {
+const RadioCardWithFlagTemplate = ({ title, danger }) => {
   return `
-    <label for="card-radio-demo" class="cbp-card ${danger && 'cbp-card--danger'}" data-component="radio-card" style="display: block;">
+    <div class="cbp-card ${danger ? 'cbp-card--danger' : ''}" data-component="radio-card" style="display: block;">
       <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait of a person" width="310">
       <div class="cbp-card__header cbp-card__header--flag">
-        <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle"></i>Jimbo Thompson</h4>
-        <input type="radio" name="card-radio-demo" id="card-radio-demo" class="cbp-form__radio">
+        <label class="cbp-card__title" for="radio-card-flag"><i class="fas fa-exclamation-triangle cbp-mr-2"></i>${title}</label>
+        <input type="radio" class="cbp-form__radio" name="radio-card-flag" id="radio-card-flag">
       </div>
-    </label>
+    </div>
   `;
 };
 
@@ -62,7 +72,7 @@ RadioCardWithMedia.storyName = 'With Media';
 
 export const RadioCardWithFlag = RadioCardWithFlagTemplate.bind({});
 RadioCardWithFlag.args = {
-  title: 'General Radio Card',
+  title: 'Jimbo Thompson',
   danger: false
 };
 RadioCardWithFlag.storyName = 'With Flag';

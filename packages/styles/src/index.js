@@ -9,7 +9,7 @@ import FileUploader from './components/fileupload/fileupload';
 import HashedField from './components/form/hashed-field/hashedField';
 import NumberCounter from './components/form/number-counter/numberCounter';
 import DarkMode from './utilities/darkMode';
-import LinkCard from './components/card';
+import { LinkCard, ControlCard } from './components/card';
 
 import './sass/main.scss';
 
@@ -101,6 +101,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   SelectorEngine.findAll('[data-component="link-card"]').forEach((linkCard) => {
     addOrInstantiate(LinkCard, linkCard);
+  })
+
+  SelectorEngine.findAll('[data-component="radio-card"]').forEach((radioCard) => {
+    addOrInstantiate(ControlCard, radioCard);
+  })
+
+  SelectorEngine.findAll('[data-component="checkbox-card"]').forEach((checkboxCard) => {
+    addOrInstantiate(ControlCard, checkboxCard);
   })
 
   // console.log(document.querySelectorAll(''))
