@@ -1,0 +1,86 @@
+@use '../button/index' as *;
+
+.cbp-card-decision {
+  min-width: 312px;
+}
+
+.cbp-card-decision__content {
+  border: 2px solid var(--cbp-color-base-neutral-lighter);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 0;
+  padding: 20px 16px 16px 16px;
+}
+
+.cbp-card-decision__actions {
+  display: flex;
+
+  & > button,
+  & > a[href] {
+    @extend .cbp-btn;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    height: 44px;
+    text-decoration: none;
+    width: 100%;
+
+    & > i {
+      margin-right: 8px;
+    }
+  }
+
+  & > button:only-child,
+  & > a[href]:only-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  &--double {
+    & > button:first-child,
+    & > a[href]:first-child {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 0;
+    }
+
+    & > button:nth-child(2),
+    & > a[href]:nth-child(2) {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+  &--triple {
+    & > button:first-child,
+    & > a[href]:first-child {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 0px;
+    }
+
+    & > button:nth-child(2),
+    & > a[href]:nth-child(2) {
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    & > button:last-child,
+    & > a[href]:last-child {
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 0px;
+    }
+  }
+}
+
+/* DANGER */
+.cbp-card-decision--danger {
+  & .cbp-card__title {
+    color: var(--cbp-color-danger-base);
+  }
+
+  & .cbp-card-decision__content {
+    background-color: var(--cbp-color-danger-lighter);
+    border: 2px solid var(--cbp-color-danger-base);
+    border-bottom: 0;
+  }
+}
