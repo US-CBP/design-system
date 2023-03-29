@@ -5,16 +5,17 @@
   font-size: var(--cbp-font-size-heading-lg);
 }
 
-.cbp-text-decoration-none {
-  text-decoration: none;
-}
-
 .cbp-mr-2 {
   margin-right: var(--cbp-space-2x);
 }
 
 .cbp-d-flex {
   display: flex;
+}
+
+.cbp-my-4 {
+  margin-top: var(--cbp-space-4x);
+  margin-bottom: var(--cbp-space-4x);
 }
 
 // utility class END
@@ -42,21 +43,6 @@
   font-size: var(--cbp-font-size-heading-lg);
   line-height: var(--cbp-line-height-sm);
   letter-spacing: 0.12px;
-}
-
-.cbp-card__header--flag {
-  background-color: var(--cbp-color-interactive-neutral-base);
-  padding: var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-5x) var(--cbp-space-4x);
-
-  & > .cbp-card__title {
-    color: var(--cbp-color-text-lightest);
-  }
-
-  & > .cbp-form__radio, 
-  & > .cbp-form__checkbox {
-    border: 2px solid var(--cbp-color-base-neutral-lighter);
-    background-color: var(--cbp-color-base-neutral-dark);
-  }
 }
 
 .cbp-card__content {
@@ -103,5 +89,21 @@
     .cbp-text-body {
       color: inherit;
     }
+  }
+}
+
+// Used for one of the examples/recipes in Card mockups
+.cbp-card__header--flag {
+  background-color: var(--cbp-color-interactive-neutral-base);
+  padding: var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-5x) var(--cbp-space-4x);
+
+  & > .cbp-card__title {
+    color: var(--cbp-color-text-lightest);
+  }
+
+  & > .cbp-form__radio, 
+  & > .cbp-form__checkbox {
+    border: 2px solid var(--cbp-color-base-neutral-lighter);
+    background-color: var(--cbp-color-base-neutral-dark);
   }
 }

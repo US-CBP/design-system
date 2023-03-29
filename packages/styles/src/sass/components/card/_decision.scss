@@ -1,16 +1,9 @@
 @use '../button/index' as *;
-@use './mixins' as *;
-
-// Utility class for (all-around) padding: 0;
-.p-0 {
-  padding: 0 !important;
-}
 
 .cbp-card-decision {
   min-width: 312px;
 }
 
-// Depending on if a 'Card Media' is in the Card or not, this can be added to the .cbp-card-decision__wrapper classlist as sort of a modifier
 .cbp-card-decision__content {
   border: 2px solid var(--cbp-color-base-neutral-lighter);
   border-top-left-radius: 5px;
@@ -83,14 +76,6 @@
 .cbp-card-decision--danger {
   & .cbp-card__title {
     color: var(--cbp-color-danger-base);
-  }
-
-  & .cbp-card__header--flag {
-    background-color: var(--cbp-color-danger-base) !important;
-
-    & > .cbp-card__title {
-      color: var(--cbp-color-text-lightest);
-    }
   }
 
   & .cbp-card-decision__content {

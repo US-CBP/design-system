@@ -1,5 +1,4 @@
-@use './mixins' as *;
-
+// General Cards with Controls (Radio Button/Checkbox) inside the Card
 [data-component="radio-card"],
 [data-component="checkbox-card"] {
   cursor: pointer;

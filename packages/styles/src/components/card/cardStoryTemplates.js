@@ -32,14 +32,8 @@ export const renderLinks = (buttonLayout) => {
     case 'double':
       return `
         <div class="cbp-card-decision__actions cbp-card-decision__actions--double">
-          <a href="#" class="cbp-btn__secondary">
-            <i class="fas fa-info-circle"></i>
-            App Info
-          </a>
-          <a href="#" class="cbp-btn__primary">
-            <i class="fas fa-external-link-alt"></i>
-            Go To App
-          </a>
+          <a href="#" class="cbp-btn__secondary"><i class="fas fa-info-circle"></i>App Info</a>
+          <a href="#" class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</a>
         </div>
       `
       break;
@@ -64,10 +58,7 @@ export const renderLinks = (buttonLayout) => {
     default:
       return `
       <div class="cbp-card-decision__actions">
-        <a href="#" class="cbp-btn__primary">
-          <i class="fas fa-external-link-alt"></i>
-          Go To App
-        </a>
+        <a href="#" class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</a>
       </div>
       `
       break;
