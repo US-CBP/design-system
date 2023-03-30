@@ -5,6 +5,7 @@
 }
 
 .cbp-card-decision__content {
+  background-color: var(--cbp-color-white);
   border: 2px solid var(--cbp-color-base-neutral-lighter);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -90,5 +91,17 @@
     & > .cbp-card__title {
       color: var(--cbp-color-text-lightest);
     }
+  }
+}
+
+[data-cbp-theme="dark"] {
+  .cbp-card-decision__content {
+    background-color: var(--cbp-color-base-neutral-dark);
+    border: 2px solid var(--cbp-color-base-neutral-base);
+    border-bottom: 0;
+  }
+
+  .cbp-card__title {
+    color: var(--cbp-color-text-lightest);
   }
 }
