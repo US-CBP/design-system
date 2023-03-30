@@ -1,5 +1,5 @@
 export default {
-  title: 'Patterns/Card',
+  title: 'Patterns/Card/Decision Card',
   parameters: {
     layout: 'centered'
   },
@@ -51,10 +51,10 @@ const renderActions = (layout) => {
   }
 }
 
-const DecisionCardTemplate = ({ title, actionsLayout, danger }) => {
+const DefaultDecisionCardTemplate = ({ title, actionsLayout, danger }) => {
   return `
     <!-- Default width is 100%, hardcoded for demo purposes -->
-    <div class="cbp-card-decision ${danger ? 'cbp-card-decision--danger' : ''}" style="width: 312px;">
+    <div class="cbp-card-decision ${danger ? 'cbp-card-decision--danger' : ''}" style="width: 312px">
       <div class="cbp-card-decision__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-circle cbp-margin-right-2x"></i>${title}</h4>
@@ -76,9 +76,49 @@ const DecisionCardTemplate = ({ title, actionsLayout, danger }) => {
   `;
 };
 
-export const DecisionCard = DecisionCardTemplate.bind({});
+const ProfileCardTemplate = ({ title, danger, actionsLayout }) => {
+  return `
+    <!-- Default width is 100%, hardcoded for demo purposes -->
+    <div class="cbp-card-decision ${danger ? 'cbp-card-decision--danger' : ''}" style="width: 312px">
+      <div class="cbp-card-decision__content cbp-padding-0">
+        <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" width="312px" />
+        <div class="cbp-card__header cbp-card__header--flag">
+          <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle cbp-margin-right-2x"></i>${title}</h4>
+        </div>
+        <div class="cbp-padding-4x">
+          <div class="cbp-margin-bottom-2x" style="display: flex;">
+            <p class="cbp-margin-right-4x">
+              <span class="cbp-font-weight-bold">Sex:</span>&nbsp;Male
+            </p>
+            <p class="cbp-margin-right-4x">
+              <span class="cbp-font-weight-bold">DOB:</span>&nbsp;01/01/1980
+            </p>
+          </div>
+          <p class="cbp-margin-bottom-2x">
+            <span class="cbp-font-weight-bold">Citizenship:</span>&nbsp;United States of American
+          </p>
+          <p class="cbp-margin-bottom-2x">
+            <span class="cbp-font-weight-bold">Place of Birth:</span>&nbsp;New York, New York USA
+          </p>
+        </div>
+      </div>
+      ${renderActions(actionsLayout)}
+    </div>
+  `;
+};
+
+export const DecisionCard = DefaultDecisionCardTemplate.bind({});
 DecisionCard.args = {
   title: 'Decision Card 1',
   actionsLayout: 'single',
   danger: false
 };
+DecisionCard.storyName = 'Default';
+
+export const ProfileCard = ProfileCardTemplate.bind({});
+ProfileCard.args = {
+  title: 'Jimbo Thompson',
+  actionsLayout: 'single',
+  modifiers: 'default'
+};
+ProfileCard.storyName = 'Example Profile Card';

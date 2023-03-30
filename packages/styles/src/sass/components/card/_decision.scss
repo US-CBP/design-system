@@ -9,7 +9,7 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom: 0;
-  padding: 20px 16px 16px 16px;
+  padding: var(--cbp-space-5x) var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-4x);
 }
 
 .cbp-card-decision__actions {

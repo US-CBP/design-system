@@ -2,52 +2,70 @@
   TODO: replace with CSS variables/tokens
 */
 
+/*
+$spacing: (
+  "xxxl": var(--cbp-space-16x),   // 64px
+  "xxl": var(--cbp-space-12x),    // 48px
+  "xl": var(--cbp-space-8x),      // 32px
+  "l": var(--cbp-space-6x),       // 24px
+  "md": var(--cbp-space-4x),      // 16px
+  "s": var(--cbp-space-2x),       // 8px
+  'xs': var(--cbp-space-1x),      // 4px
+  "none": 0                       // 0
+);
+*/
+
 $spacing: (
   16x: var(--cbp-space-16x),
-  15x: var(--cbp-space-15x),
-  14x: var(--cbp-space-14x),
-  13x: var(--cbp-space-13x),
   12x: var(--cbp-space-12x),
-  11x: var(--cbp-space-11x),
-  10: var(--cbp-space-10x),
-  9x: var(--cbp-space-9x),
   8x: var(--cbp-space-8x),
-  7x: var(--cbp-space-7x),
   6x: var(--cbp-space-6x),
-  5x: var(--cbp-space-5x),
   4x: var(--cbp-space-4x),
-  3x: var(--cbp-space-3x),
   2x: var(--cbp-space-2x),
   1x: var(--cbp-space-1x),
-  half-x: var(--cbp-space-half-x)
+  0: 0
 );
 
 @each $name, $space in $spacing {
   .cbp-margin-#{$name} {
-    margin-left: #{$space};
+    margin-left: #{$space} !important;
   }
-}
 
-@each $name, $space in $spacing {
   .cbp-margin-top-#{$name} {
-    margin-top: #{$space};
+    margin-top: #{$space} !important;;
   }
-}
 
-@each $name, $space in $spacing {
   .cbp-margin-bottom-#{$name} {
-    margin-bottom: #{$space};
+    margin-bottom: #{$space} !important;;
   }
-}
 
-@each $name, $space in $spacing {
   .cbp-margin-right-#{$name} {
-    margin-right: #{$space};
+    margin-right: #{$space} !important;;
+  }
+
+  .cbp-margin-left-#{$name} {
+    margin-left: #{$space} !important;;
   }
 }
 
 @each $name, $space in $spacing {
-  .cbp-margin-left-#{$name} {
-    margin-left: #{$space};
+  .cbp-padding-#{$name} {
+    padding: #{$space} !important;;
+  }
+
+  .cbp-padding-top-#{$name} {
+    padding-top: #{$space} !important;;
+  }
+
+  .cbp-padding-bottom-#{$name} {
+    padding-bottom: #{$space} !important;;
+  }
+
+  .cbp-padding-right-#{$name} {
+    padding-right: #{$space} !important;;
+  }
+
+  .cbp-padding-left-#{$name} {
+    padding-left: #{$space} !important;;
   }
 }
