@@ -11,13 +11,13 @@ export default {
     },
     actionsLayout: {
       name: 'Actions Layout',
-      description: 'Choose button layout of the card component',
+      description: 'Choose actions layout of the card component',
       control: 'radio',
       options: ['single', 'double', 'triple']
     },
     danger: {
       name: 'Danger',
-      description: 'Choose modifier for the state of card',
+      description: 'Display the "danger" state modifier of the card',
       control: 'boolean'
     }
   }
@@ -31,7 +31,7 @@ const renderActions = (layout) => {
         <button class="cbp-btn__secondary"><i class="fas fa-info-circle"></i>App Info</button>
         <a href="#" class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</a>
       </div>
-    `
+    `;
   } else if (layout === 'triple') {
     return `
       <!-- Card Decision actions can contain both Button and Link elements -->
@@ -40,16 +40,16 @@ const renderActions = (layout) => {
         <button class="cbp-btn__secondary"><i class="fas fa-times"></i>Cancel</button>
         <button class="cbp-btn__primary"><i class="fas fa-save"></i>Publish</button>
       </div>
-    `
+    `;
   } else {
     return `
       <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card-decision__actions">
         <a href="#" class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</a>
       </div>
-    `
+    `;
   }
-}
+};
 
 const DefaultDecisionCardTemplate = ({ title, actionsLayout, danger }) => {
   return `
@@ -119,6 +119,6 @@ export const ProfileCard = ProfileCardTemplate.bind({});
 ProfileCard.args = {
   title: 'Jimbo Thompson',
   actionsLayout: 'single',
-  modifiers: 'default'
+  danger: false
 };
 ProfileCard.storyName = 'Example Profile Card';

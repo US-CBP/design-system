@@ -83,4 +83,12 @@
     border: 2px solid var(--cbp-color-danger-base);
     border-bottom: 0;
   }
+
+  & .cbp-card__header--flag {
+    background-color: var(--cbp-color-danger-base) !important;
+
+    & > .cbp-card__title {
+      color: var(--cbp-color-text-lightest);
+    }
+  }
 }
