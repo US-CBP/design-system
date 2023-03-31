@@ -1,7 +1,10 @@
 export default {
   title: 'Patterns/Card/General Card',
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
+    html: {
+      root: '.wrapper'
+    },
   },
   argTypes: {
     title: {
@@ -18,12 +21,45 @@ export default {
 
 const DefaultGeneralCardTemplate = ({ title, modifier }) => {
   return `
-    <div class="cbp-card ${modifier}">
-      <div class="cbp-card__content">
-        <div class="cbp-card__header">
-          <h4 class="cbp-card__title"><i class="fas fa-info cbp-margin-right-2x"></i>${title}</h4>
+    <div class="wrapper" style="display: grid; grid-template-columns: 432px">
+      <div class="cbp-card ${modifier}">
+        <div class="cbp-card__content">
+          <div class="cbp-card__header">
+            <h4 class="cbp-card__title"><i class="fas fa-info cbp-margin-right-2x"></i>${title}</h4>
+          </div>
+          <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
         </div>
-        <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
+      </div>
+    </div>
+  `;
+};
+
+const GeneralCardMediaTemplate = ({ title, modifier }) => {
+  return `
+    <div class="wrapper" style="display: grid; grid-template-columns: 486px">
+      <div class="cbp-card ${modifier} cbp-display-flex">
+        <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait of a person" height="127" width="116">
+        <div class="cbp-card__content">
+          <div class="cbp-card__header">
+            <h4 class="cbp-card__title"><i class="fas fa-info cbp-margin-right-2x"></i>${title}</h4>
+          </div>
+          <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+const SmallGeneralCardTemplate = ({ title, modifier }) => {
+  return `
+    <div class="wrapper" style="display: grid; grid-template-columns: 312px">
+      <div class="cbp-card ${modifier}">
+        <div class="cbp-card__content">
+          <div class="cbp-card__header">
+            <h4 class="cbp-card__title"><i class="fas fa-info cbp-margin-right-2x"></i>${title}</h4>
+          </div>
+          <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
+        </div>
       </div>
     </div>
   `;
@@ -31,6 +67,21 @@ const DefaultGeneralCardTemplate = ({ title, modifier }) => {
 
 export const DefaultGeneralCard = DefaultGeneralCardTemplate.bind({});
 DefaultGeneralCard.args = {
-  title: 'General Card'
+  title: 'General Card',
+  modifier: ''
 };
 DefaultGeneralCard.storyName = 'Default';
+
+export const GeneralCardMedia = GeneralCardMediaTemplate.bind({});
+GeneralCardMedia.args = {
+  title: 'General Card',
+  modifier: ''
+};
+GeneralCardMedia.storyName = 'With Media';
+
+export const SmallGeneralCard = SmallGeneralCardTemplate.bind({});
+SmallGeneralCard.args = {
+  title: 'General Card',
+  modifier: ''
+};
+SmallGeneralCard.storyName = 'Small Size';

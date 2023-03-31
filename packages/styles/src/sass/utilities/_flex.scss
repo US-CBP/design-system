@@ -1,0 +1,12 @@
+@use 'sass:map';
+
+// Add more flex utilities to map
+$flex-utilities: (
+  'display': 'flex',
+);
+
+@each $flex-property, $flex-value in $flex-utilities {
+  .cbp-#{$flex-property}-#{$flex-value} {
+    #{$flex-property}: #{$flex-value} !important;
+  }
+}
