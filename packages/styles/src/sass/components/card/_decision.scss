@@ -1,52 +1,24 @@
-@use '../button/index' as *;
+.cbp-card--decision {
+  border: 0;
 
-.cbp-card-decision {
-  max-width: 100%;
-}
-
-.cbp-card-decision__content {
-  background-color: var(--cbp-color-white);
-  border: 2px solid var(--cbp-color-base-neutral-lighter);
-  border-top-left-radius: var(--cbp-border-radius-softest);
-  border-top-right-radius: var(--cbp-border-radius-softest);
-  border-bottom: 0;
-  padding: var(--cbp-space-5x) var(--cbp-space-4x);
-}
-
-.cbp-card-decision__actions {
-  display: flex;
-
-  & > button,
-  & > a[href] {
-    @extend .cbp-btn;
-    border-radius: 0;
-    padding-top: var(--cbp-space-3x);
-    padding-bottom: var(--cbp-space-3x);
-    text-decoration: none;
-    width: 100%;
-  }
-
-  & > button:first-child,
-  & > a[href]:first-child {
-    border-bottom-left-radius: var(--cbp-border-radius-softest);
-  }
-
-  & > button:last-child,
-  & > a[href]:last-child {
-    border-bottom-right-radius: var(--cbp-border-radius-softest);
+  & .cbp-card__content {
+    border: var(--cbp-border-size-md) solid var(--cbp-color-base-neutral-lighter);
+    border-top-left-radius: var(--cbp-border-radius-softest);
+    border-top-right-radius: var(--cbp-border-radius-softest);
+    border-bottom: 0;
   }
 }
 
 /* DANGER */
-.cbp-card-decision--danger {
+.cbp-card--danger.cbp-card--decision {
+  & .cbp-card__content {
+    background-color: var(--cbp-color-danger-lighter);
+    border: var(--cbp-border-size-md) solid var(--cbp-color-danger-base);
+    border-bottom: 0;
+  }
+  
   & .cbp-card__title {
     color: var(--cbp-color-danger-base);
-  }
-
-  & .cbp-card-decision__content {
-    background-color: var(--cbp-color-danger-lighter);
-    border: 2px solid var(--cbp-color-danger-base);
-    border-bottom: 0;
   }
 
   & .cbp-card__header--flag {
@@ -59,24 +31,26 @@
 }
 
 [data-cbp-theme="dark"] {
-  .cbp-card-decision__content {
-    background-color: var(--cbp-color-base-neutral-dark);
-    border: 2px solid var(--cbp-color-base-neutral-base);
-    border-bottom: 0;
+  .cbp-card--decision {
+    & .cbp-card__content {
+      background-color: var(--cbp-color-base-neutral-dark);
+      border: var(--cbp-border-size-md) solid var(--cbp-color-base-neutral-base);
+      border-bottom: 0;
+    }
+
+    & .cbp-card__title {
+      color: var(--cbp-color-text-lightest);
+    }
   }
 
-  .cbp-card__title {
-    color: var(--cbp-color-text-lightest);
-  }
-
-  .cbp-card-decision--danger {
+  .cbp-card--danger.cbp-card--decision {
     & .cbp-card__title {
       color: var(--cbp-color-danger-light);
     }
   
-    & .cbp-card-decision__content {
+    & .cbp-card__content {
       background-color: var(--cbp-color-danger-darker);
-      border: 2px solid var(--cbp-color-danger-light);
+      border: var(--cbp-border-size-md) solid var(--cbp-color-danger-light);
       border-bottom: 0;
     }
   
