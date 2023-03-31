@@ -1,3 +1,5 @@
+@use '../button/index' as *;
+
 .cbp-card--decision {
   border: 0;
 
@@ -6,6 +8,30 @@
     border-top-left-radius: var(--cbp-border-radius-softest);
     border-top-right-radius: var(--cbp-border-radius-softest);
     border-bottom: 0;
+  }
+}
+
+.cbp-card__actions {
+  display: flex;
+
+  & > button,
+  & > a[href] {
+    @extend .cbp-btn;
+    border-radius: 0;
+    padding-top: var(--cbp-space-3x);
+    padding-bottom: var(--cbp-space-3x);
+    text-decoration: none;
+    width: 100%;
+  }
+
+  & > button:first-child,
+  & > a[href]:first-child {
+    border-bottom-left-radius: var(--cbp-border-radius-softest);
+  }
+
+  & > button:last-child,
+  & > a[href]:last-child {
+    border-bottom-right-radius: var(--cbp-border-radius-softest);
   }
 }
 
@@ -32,14 +58,11 @@
 
 [data-cbp-theme="dark"] {
   .cbp-card--decision {
+    border: 0;
+    
     & .cbp-card__content {
-      background-color: var(--cbp-color-base-neutral-dark);
       border: var(--cbp-border-size-md) solid var(--cbp-color-base-neutral-base);
       border-bottom: 0;
-    }
-
-    & .cbp-card__title {
-      color: var(--cbp-color-text-lightest);
     }
   }
 
