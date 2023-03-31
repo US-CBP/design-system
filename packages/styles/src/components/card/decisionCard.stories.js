@@ -1,7 +1,10 @@
 export default {
   title: 'Patterns/Card/Decision Card',
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
+    html: {
+      root: '.wrapper'
+    }
   },
   argTypes: {
     title: {
@@ -20,7 +23,14 @@ export default {
       description: 'Display the "danger" state modifier of the card',
       control: 'boolean'
     }
-  }
+  },
+  decorators: [
+    (Story) => `
+      <div class="wrapper" style="display: grid; grid-template-columns: 312px">
+        ${Story().outerHTML || Story()}
+      </div>
+    `
+  ]
 };
 
 const renderActions = (layout) => {
@@ -28,7 +38,7 @@ const renderActions = (layout) => {
     return `
       <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card-decision__actions cbp-card-decision__actions--double">
-        <button class="cbp-btn__secondary"><i class="fas fa-info-circle"></i>App Info</button>
+        <button class="cbp-btn__secondary" type="button"><i class="fas fa-info-circle"></i>App Info</button>
         <a href="#" class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</a>
       </div>
     `;
@@ -36,9 +46,9 @@ const renderActions = (layout) => {
     return `
       <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card-decision__actions cbp-card-decision__actions--triple">
-        <button class="cbp-btn__danger"><i class="fas fa-trash-alt"></i>Delete</button>
-        <button class="cbp-btn__secondary"><i class="fas fa-times"></i>Cancel</button>
-        <button class="cbp-btn__primary"><i class="fas fa-save"></i>Publish</button>
+        <button class="cbp-btn__danger" type="button"><i class="fas fa-trash-alt"></i>Delete</button>
+        <button class="cbp-btn__secondary" type="button"><i class="fas fa-times"></i>Cancel</button>
+        <button class="cbp-btn__primary" type="button"><i class="fas fa-save"></i>Publish</button>
       </div>
     `;
   } else {
@@ -53,8 +63,7 @@ const renderActions = (layout) => {
 
 const DefaultDecisionCardTemplate = ({ title, actionsLayout, danger }) => {
   return `
-    <!-- Default width is 100%, hardcoded for demo purposes -->
-    <div class="cbp-card-decision ${danger ? 'cbp-card-decision--danger' : ''}" style="width: 312px">
+    <div class="cbp-card-decision ${danger ? 'cbp-card-decision--danger' : ''}">
       <div class="cbp-card-decision__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-circle cbp-margin-right-2x"></i>${title}</h4>
@@ -66,7 +75,7 @@ const DefaultDecisionCardTemplate = ({ title, actionsLayout, danger }) => {
           The card has this passage of example text to emphasize
           truncation and reveal functionality and some other things...
         </p>
-        <button class="cbp-btn cbp-btn__secondary--ghost cbp-margin-top-4x">
+        <button class="cbp-btn cbp-btn__secondary--ghost cbp-margin-top-4x" type="button">
           <i class="fas fa-angle-down"></i>
           More
         </button>
@@ -78,8 +87,7 @@ const DefaultDecisionCardTemplate = ({ title, actionsLayout, danger }) => {
 
 const ProfileCardTemplate = ({ title, danger, actionsLayout }) => {
   return `
-    <!-- Default width is 100%, hardcoded for demo purposes -->
-    <div class="cbp-card-decision ${danger ? 'cbp-card-decision--danger' : ''}" style="width: 312px">
+    <div class="cbp-card-decision ${danger ? 'cbp-card-decision--danger' : ''}">
       <div class="cbp-card-decision__content cbp-padding-0">
         <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" width="312px" />
         <div class="cbp-card__header cbp-card__header--flag">

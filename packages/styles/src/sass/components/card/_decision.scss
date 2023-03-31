@@ -1,16 +1,16 @@
 @use '../button/index' as *;
 
 .cbp-card-decision {
-  min-width: 312px;
+  max-width: 100%;
 }
 
 .cbp-card-decision__content {
   background-color: var(--cbp-color-white);
   border: 2px solid var(--cbp-color-base-neutral-lighter);
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: var(--cbp-border-radius-softest);
+  border-top-right-radius: var(--cbp-border-radius-softest);
   border-bottom: 0;
-  padding: var(--cbp-space-5x) var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-4x);
+  padding: var(--cbp-space-5x) var(--cbp-space-4x);
 }
 
 .cbp-card-decision__actions {
@@ -19,57 +19,21 @@
   & > button,
   & > a[href] {
     @extend .cbp-btn;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    height: 44px;
+    border-radius: 0;
+    padding-top: var(--cbp-space-3x);
+    padding-bottom: var(--cbp-space-3x);
     text-decoration: none;
     width: 100%;
-
-    & > i {
-      margin-right: 8px;
-    }
   }
 
-  & > button:only-child,
-  & > a[href]:only-child {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+  & > button:first-child,
+  & > a[href]:first-child {
+    border-bottom-left-radius: var(--cbp-border-radius-softest);
   }
 
-  &--double {
-    & > button:first-child,
-    & > a[href]:first-child {
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 0;
-    }
-
-    & > button:nth-child(2),
-    & > a[href]:nth-child(2) {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 5px;
-    }
-  }
-
-  &--triple {
-    & > button:first-child,
-    & > a[href]:first-child {
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 0px;
-    }
-
-    & > button:nth-child(2),
-    & > a[href]:nth-child(2) {
-      border-top-left-radius: 0px;
-      border-top-right-radius: 0px;
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
-    }
-
-    & > button:last-child,
-    & > a[href]:last-child {
-      border-bottom-right-radius: 5px;
-      border-bottom-left-radius: 0px;
-    }
+  & > button:last-child,
+  & > a[href]:last-child {
+    border-bottom-right-radius: var(--cbp-border-radius-softest);
   }
 }
 
@@ -118,10 +82,10 @@
   
     & .cbp-card__header--flag {
       background-color: var(--cbp-color-danger-light);
-  
-      & > .cbp-card__title {
-        color: var(--cbp-color-text-darkest);
-      }
+    }
+
+    & .cbp-card__header--flag > .cbp-card__title {
+      color: var(--cbp-color-text-darkest);
     }
   }
 }
