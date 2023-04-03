@@ -1,0 +1,14 @@
+$font-weights: (
+  "thin": var(--cbp-font-weight-thin),
+  "light": var(--cbp-font-weight-light),
+  "regular": var(--cbp-font-weight-regular),
+  "medium": var(--cbp-font-weight-medium),
+  "bold": var(--cbp-font-weight-bold),
+  "black": var(--cbp-font-weight-black)
+);
+
+@each $name, $weight in $font-weights {
+  .cbp-font-weight-#{$name} {
+    font-weight: #{$weight} !important;
+  }
+}
