@@ -89,7 +89,7 @@ const ProfileCardTemplate = ({ title, danger, actionsLayout }) => {
   return `
     <div class="cbp-card ${danger ? 'cbp-card--danger' : ''} cbp-card--decision">
       <div class="cbp-card__content cbp-padding-0">
-        <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait image of person" width="312px" />
+        <img src="assets/images/profile-page/passenge-photo-v2.jpg" class="cbp-card__img-top" alt="portrait image of person" width="312px" />
         <div class="cbp-card__header cbp-card__header--flag">
           <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle cbp-margin-right-2x"></i>${title}</h4>
         </div>

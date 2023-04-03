@@ -32,6 +32,14 @@
   }
 }
 
+.cbp-card__img-top {
+  border-radius: var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0;
+}
+
+.cbp-card__img-left {
+  border-radius: var(--cbp-border-radius-soft) 0 0 var(--cbp-border-radius-soft);
+}
+
 @mixin card-general-modifier ($background-color, $border-color, $title-color) {
   border: var(--cbp-border-size-md) solid $border-color;
 
@@ -80,5 +88,4 @@
   .cbp-card--danger {
     @include card-general-modifier(var(--cbp-color-danger-darker), var(--cbp-color-danger-dark), var(--cbp-color-danger-lighter));
   }
-
 }

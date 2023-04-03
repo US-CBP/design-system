@@ -25,7 +25,7 @@ const DefaultGeneralCardTemplate = ({ title, modifier }) => {
       <div class="cbp-card ${modifier}">
         <div class="cbp-card__content">
           <div class="cbp-card__header">
-            <h4 class="cbp-card__title"><i class="fas fa-info cbp-margin-right-2x"></i>${title}</h4>
+            <h4 class="cbp-card__title"><i class="fas fa-info-circle cbp-margin-right-2x"></i>${title}</h4>
           </div>
           <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
         </div>
@@ -38,10 +38,10 @@ const GeneralCardMediaTemplate = ({ title, modifier }) => {
   return `
     <div class="wrapper" style="display: grid; grid-template-columns: 486px">
       <div class="cbp-card ${modifier} cbp-display-flex">
-        <img src="assets/images/profile-page/passenge-photo-v2.jpg" alt="portrait of a person" height="127" width="116">
+        <img src="assets/images/profile-page/passenge-photo-v2.jpg" class="cbp-card__img-left" alt="portrait of a person" height="127" width="116">
         <div class="cbp-card__content">
           <div class="cbp-card__header">
-            <h4 class="cbp-card__title"><i class="fas fa-info cbp-margin-right-2x"></i>${title}</h4>
+            <h4 class="cbp-card__title"><i class="fas fa-info-circle cbp-margin-right-2x"></i>${title}</h4>
           </div>
           <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
         </div>
@@ -56,7 +56,7 @@ const SmallGeneralCardTemplate = ({ title, modifier }) => {
       <div class="cbp-card ${modifier}">
         <div class="cbp-card__content">
           <div class="cbp-card__header">
-            <h4 class="cbp-card__title"><i class="fas fa-info cbp-margin-right-2x"></i>${title}</h4>
+            <h4 class="cbp-card__title"><i class="fas fa-info-circle cbp-margin-right-2x"></i>${title}</h4>
           </div>
           <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
         </div>
