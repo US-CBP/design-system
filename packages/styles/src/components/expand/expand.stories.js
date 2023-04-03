@@ -23,8 +23,8 @@ const ExpandTemplate = ({ title }) => {
   return `
     <div class="cbp-expand">
       <div class="cbp-expand__title">
-        <button><i class="fas fa-caret-down"></i></button>
-        <span>${title}</span>
+        <button type="button" aria-labelledby="expand-title"><i class="fas fa-caret-down"></i></button>
+        <span id="expand-title">${title}</span>
       </div>
       <div class="cbp-expand__content">
         <p class="cbp-text-body">There are different species of frogs and some make great pets!</p>
@@ -38,7 +38,7 @@ const ExpandLongTitleTemplate = ({ title }) => {
   return `
     <div class="cbp-expand">
       <div class="cbp-expand__title">
-        <button><i class="fas fa-caret-down"></i></button>
+        <button type="button"><i class="fas fa-caret-down"></i></button>
         <span>${title}</span>
       </div>
       <div class="cbp-expand__content">
