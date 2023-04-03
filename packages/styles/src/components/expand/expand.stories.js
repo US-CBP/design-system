@@ -1,22 +1,22 @@
 export default {
   title: 'Patterns/Expand',
   parameters: {
-    layout: 'centered'
+    html: {
+      root: '.wrapper'
+    }
   },
   argTypes: {
     title: {
       name: 'Expand Title',
       description: 'Title of the Expand component to display',
-      type: { name: 'string', required: true }
+      type: { name: 'string' }
     },
   },
-  // decorators: [
-  //   (Story) => (
-  //     `<div class="demo-container" style="margin: 12rem">
-  //       ${Story().outerHTML || Story()}
-  //     </div>`
-  //   )
-  // ]
+  decorators: [
+    (Story) => `
+      <div class="wrapper" style="margin-top: 2rem; margin-left: 2rem;">${Story().outerHTML || Story()}</div>
+    `
+  ]
 };
 
 const ExpandTemplate = ({ title }) => {
@@ -28,7 +28,7 @@ const ExpandTemplate = ({ title }) => {
       </div>
       <div class="cbp-expand__content">
         <p class="cbp-text-body">There are different species of frogs and some make great pets!</p>
-        <p class="cbp-text-body">Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com" class="cbp-text-link" target="_blank" rel="noopener noreferrer">petstore.com</a></p>
+        <p class="cbp-text-body" style="margin-top: 0.5rem;">Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com" class="cbp-text-link" target="_blank" rel="noopener noreferrer">petstore.com</a></p>
       </div>
     </div>
   `;
@@ -36,14 +36,14 @@ const ExpandTemplate = ({ title }) => {
 
 const ExpandLongTitleTemplate = ({ title }) => {
   return `
-    <div class="cbp-expand" style="width: 513px">
+    <div class="cbp-expand">
       <div class="cbp-expand__title">
         <button><i class="fas fa-caret-down"></i></button>
         <span>${title}</span>
       </div>
       <div class="cbp-expand__content">
         <p class="cbp-text-body">There are different species of frogs and some make great pets!</p>
-        <p class="cbp-text-body">Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com" class="cbp-text-link" target="_blank" rel="noopener noreferrer">petstore.com</a></p>
+        <p class="cbp-text-body" style="margin-top: 0.5rem;">Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com" class="cbp-text-link" target="_blank" rel="noopener noreferrer">petstore.com</a></p>
       </div>
     </div>
   `

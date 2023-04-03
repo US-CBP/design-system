@@ -1,5 +1,5 @@
 .cbp-expand {
-  width: 100%;
+  max-width: 100%;
 }
 
 .cbp-expand__title {
@@ -18,11 +18,7 @@
     background-color: transparent;
     border: 0;
     border-radius: var(--cbp-border-radius-soft);
-    height: 1rem;
-    justify-content: center;
-    margin-right: var(--cbp-space-2x);
-    padding: 0;
-    width: 1rem;
+    padding: 0 0.227rem;
 
     // Focus states for expand button 
     &:focus {
@@ -31,7 +27,6 @@
     }
 
     & > i {
-      font-size: var(--cbp-font-size-heading-xs);
       color: var(--cbp-color-interactive-neutral-darker);
       transform: rotate(0);
       transition: transform 0.2s ease-in-out;
@@ -43,30 +38,30 @@
   }
 
   & > span {
+    color: var(--cbp-color-text-darker);
     font-size: var(--cbp-font-size-heading-sm);
     font-weight: var(--cbp-font-weight-medium);
     line-height: var(--cbp-line-height-xs);
-    color: var(--cbp-color-text-darker);
+    margin-left: var(--cbp-space-2x);
   }
 }
 
 .cbp-expand__content {
   display: none;
-  max-height: 0;
   overflow: hidden;
 }
 
 // Active state for expand
-.active .cbp-expand__title {
+.cbp-expand.active .cbp-expand__title {
   & > button > i {
     transform: rotate(-180deg);
     transition: transform 0.2s ease-in-out;
   }
 }
 
-.active .cbp-expand__content {
+.cbp-expand.active .cbp-expand__content {
   display: block;
   max-height: fit-content;
-  padding-top: 12px;
-  padding-left: 24px;
+  padding-top: var(--cbp-space-3x);
+  padding-left: var(--cbp-space-6x);
 }

@@ -2,14 +2,11 @@ class Expand {
   constructor(component) {
     this.expand = component;
     this.title = component.querySelector('.cbp-expand__title');
-    this.activeClass = 'active';
+    this.button = component.querySelector('button');
 
-    this.addListener('click');
-  }
-
-  addListener(type) {
-    this.title.addEventListener(type, () => {
-      this.expand.classList.toggle(this.activeClass);
+    this.title.addEventListener('click', () => {
+      this.expand.classList.toggle('active');
+      this.button.focus();
     });
   }
 }
