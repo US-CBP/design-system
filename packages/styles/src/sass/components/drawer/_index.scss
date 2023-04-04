@@ -6,6 +6,7 @@
 /* Default Drawer Direction: 'left' */
 .cbp-drawer {
   // display: none;
+  min-height: min-content;
   height: 100%;
   position: fixed;
   overflow-x: hidden;
@@ -18,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  min-height: 72px;
   color: var(--cbp-color-text-lightest);
   background-color: var(--cbp-color-base-secondary-base);
   border-bottom: 4px solid var(--cbp-color-base-secondary-dark);

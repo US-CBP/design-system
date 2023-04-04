@@ -19,6 +19,8 @@ class Drawer {
     this.openBtn = document.querySelector(this.#hamburger);
     this.direction = this.drawer.dataset.drawerAlign;
 
+    console.log(this.drawer);
+    this.drawer.setAttribute('hidden','');
     this.addListeners(this.openBtn, this.closeBtn);
   }
 
@@ -44,9 +46,15 @@ class Drawer {
    */
   open(drawer) {
     //window.addEventListener('keydown', (e) => this.handleKey(e, drawer));
-    drawer.classList.add('active');
+    drawer.removeAttribute('hidden');
+    setTimeout( () => {
+      drawer.classList.add('active')
+    }, 1);
     this.addBackdrop();
     this.handleBackdrop();
+    setTimeout( () => {
+      this.setFocus()
+    }, 10);
   }
 
   /**
@@ -59,7 +67,9 @@ class Drawer {
     if (isActive) {
       drawer.classList.remove('active');
       this.removeBackdrop(drawer);
-      window.removeEventListener('keydown', this.handleEsc, true);
+      setTimeout( () => {
+        drawer.setAttribute('hidden','')
+      }, 500);
     }
   }
 
@@ -68,6 +78,20 @@ class Drawer {
     const parentEl = this.drawer.parentNode;
     backdropEl.classList.add('cbp-backdrop', 'active');
     parentEl.insertBefore(backdropEl, this.drawer);
+  }
+
+  /**
+   * Send focus to the second focusable element ideally, else the first, which is the close button
+   * @param {obj} drawer
+   */
+  setFocus(drawer) {
+    const focusableEls=this.drawer.querySelectorAll('button','a','[tabindex]');
+    if(focusableEls.length > 1) {
+      focusableEls[1].focus();
+    }
+    else {
+      focusableEls[0].focus();
+    }
   }
 
   /**
