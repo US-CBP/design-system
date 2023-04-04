@@ -28,26 +28,29 @@
 }
 
 .cbp-drawer__nav > li { // A
-  & > button {
+  & > button,
+  & > a {
     @include drawer-nav-btn(20px, 12px);
   }
 }
 
 .cbp-drawer__nav > li > ul > li { // B
-
-  & > button {
+  & > button,
+  & > a {
     @include drawer-nav-btn(18px, 20px);
   }
 }
 
 .cbp-drawer__nav > li > ul > li > ul > li { // C
-  & > button {
+  & > button,
+  & > a {
     @include drawer-nav-btn(16px, 28px);
   }
 }
 
 .cbp-drawer__nav > li > ul > li > ul > li > ul > li { // D
-  & > button {
+  & > button,
+  & > a {
     @include drawer-nav-btn(14px, 36px);
   }
 }
