@@ -1,5 +1,6 @@
 import SelectorEngine from './utilities/selectorEngine';
 import Accordion from './components/accordion/accordion';
+import ApplicationHeader from './components/application-header/application-header';
 import Banner from './components/banner/banner';
 import Drawer from './components/drawer/drawer';
 import Dropdown from './components/dropdown/dropdown';
@@ -8,6 +9,7 @@ import Toggle from './components/toggle/toggle';
 import FileUploader from './components/fileupload/fileupload';
 import HashedField from './components/form/hashed-field/hashedField';
 import NumberCounter from './components/form/number-counter/numberCounter';
+//import UniversalHeader from './components/header/header';
 import DarkMode from './utilities/darkMode';
 
 import './sass/main.scss';
@@ -81,6 +83,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
   });
 
   /**
+   * Application Header Component
+   */
+  SelectorEngine.findAll('.cbp-application-header').forEach((appHeader) => {
+    addOrInstantiate(ApplicationHeader, appHeader);
+  });
+
+  /**
+   * Universal Header Component
+   */
+  SelectorEngine.findAll('.cbp-universal-header').forEach((univHeader) => {
+    //addOrInstantiate(UniversalHeader, univHeader);
+  });
+
+  /**
    * Hashfield Component
    */
   SelectorEngine.findAll('.cbp-form__password').forEach((hashedfield) => {
@@ -97,4 +113,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
   SelectorEngine.findAll('[data-theme-toggle]').forEach((themeToggle) => {
     addOrInstantiate(DarkMode, themeToggle);
   });
+
+
 });
