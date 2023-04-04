@@ -13,11 +13,10 @@ class ApplicationHeader {
         }
         
         el.addEventListener('click', (event) => {
-          const target = document.querySelector('#'+el.dataset.target);
           if ('target' in el.dataset) {
+            const target = document.querySelector('#'+el.dataset.target);
             if (target){
               target.click();
-              //event.preventDefault();
             }
             else {
               console.warn('Application Header: Button target not found referencing the drawer control.');
