@@ -23,19 +23,13 @@ class Drawer {
   }
 
   addListeners(openBtn, closeBtn) {
-    openBtn.addEventListener('mouseup', (e) => {
+    openBtn.addEventListener('click', (e) => {
       if (e.button === 0) {
         this.open(this.drawer);
       }
     });
 
-    openBtn.addEventListener('keyup', (e) => {
-      if (e.code === 'Space' || e.code === 'Enter') {
-        this.drawer.classList.contains('active')
-          ? this.close(this.drawer)
-          : this.open(this.drawer);
-      }
-
+    window.addEventListener('keyup', (e) => {
       if (e.code === 'Escape' && e.key === 'Escape') {
         this.close(this.drawer);
       }
@@ -49,7 +43,7 @@ class Drawer {
    * @param {obj} drawer
    */
   open(drawer) {
-    window.addEventListener('keydown', (e) => this.handleKey(e, drawer));
+    //window.addEventListener('keydown', (e) => this.handleKey(e, drawer));
     drawer.classList.add('active');
     this.addBackdrop();
     this.handleBackdrop();
