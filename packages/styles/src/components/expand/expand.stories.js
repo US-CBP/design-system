@@ -25,6 +25,7 @@ const ExpandTemplate = ({ title }) => {
       <div class="cbp-expand__title">
         <button
           type="button"
+          aria-controls="expand-content"
           aria-expanded="false"
           aria-labelledby="expand-title"
         >
@@ -32,7 +33,7 @@ const ExpandTemplate = ({ title }) => {
         </button>
         <span id="expand-title">${title}</span>
       </div>
-      <div class="cbp-expand__content" aria-hidden="true">
+      <div class="cbp-expand__content" id="expand-content" aria-hidden="true">
         <p class="cbp-text-body">There are different species of frogs and some make great pets!</p>
         <p class="cbp-text-body cbp-margin-top-4x">Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com" class="cbp-text-link" target="_blank" rel="noopener noreferrer">petstore.com</a></p>
       </div>
@@ -46,6 +47,7 @@ const ExpandLongTitleTemplate = ({ title }) => {
       <div class="cbp-expand__title">
         <button 
           type="button"
+          aria-controls="expand-content"
           aria-expanded="false"
           aria-labelledby="expand-title"
         >
@@ -53,7 +55,7 @@ const ExpandLongTitleTemplate = ({ title }) => {
         </button>
         <span id="expand-title">${title}</span>
       </div>
-      <div class="cbp-expand__content" aria-hidden="true">
+      <div class="cbp-expand__content" id="expand-content" aria-hidden="true">
         <p class="cbp-text-body">There are different species of frogs and some make great pets!</p>
         <p class="cbp-text-body cbp-margin-top-4x">Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com" class="cbp-text-link" target="_blank" rel="noopener noreferrer">petstore.com</a></p>
       </div>

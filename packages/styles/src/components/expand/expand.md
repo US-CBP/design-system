@@ -21,6 +21,7 @@ The Expand patterns are simple interface patterns that allow the user to expand 
 
 ### Accessibility
 
+* `aria-controls` is placed on the <button> of the Expand title and the value is set to the ID of the Expand content ID attribute.
 * `aria-expanded="true/false"` is placed on the button and changed with JS during open/close
 * Interactive elements must have an accessible name, `aria-labelledby` can be used to reference a different element to define it's accessible name. Since the button in the Expand title is a <button> with only an icon (svg), `aria-labelledby="expand-title"` is placed on the <span> element indicating the element ID that describes the button 
 * `aria-hidden` is used to hide non-interactive content from the accessibility API and hides content from assistive techology but doesn't visually hide anything. 
