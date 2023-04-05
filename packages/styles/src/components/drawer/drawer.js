@@ -18,24 +18,18 @@ class Drawer {
     this.closeBtn = this.drawerHeader.querySelector('button');
     this.openBtn = document.querySelector(this.#hamburger);
     this.direction = this.drawer.dataset.drawerAlign;
-
+    this.drawer.setAttribute('hidden', '');
     this.addListeners(this.openBtn, this.closeBtn);
   }
 
   addListeners(openBtn, closeBtn) {
-    openBtn.addEventListener('mouseup', (e) => {
+    openBtn.addEventListener('click', (e) => {
       if (e.button === 0) {
         this.open(this.drawer);
       }
     });
 
-    openBtn.addEventListener('keyup', (e) => {
-      if (e.code === 'Space' || e.code === 'Enter') {
-        this.drawer.classList.contains('active')
-          ? this.close(this.drawer)
-          : this.open(this.drawer);
-      }
-
+    window.addEventListener('keyup', (e) => {
       if (e.code === 'Escape' && e.key === 'Escape') {
         this.close(this.drawer);
       }
@@ -49,10 +43,15 @@ class Drawer {
    * @param {obj} drawer
    */
   open(drawer) {
-    window.addEventListener('keydown', (e) => this.handleKey(e, drawer));
-    drawer.classList.add('active');
+    drawer.removeAttribute('hidden');
+    setTimeout(() => {
+      drawer.classList.add('active');
+    }, 1);
     this.addBackdrop();
     this.handleBackdrop();
+    setTimeout(() => {
+      this.setFocus();
+    }, 10);
   }
 
   /**
@@ -65,7 +64,9 @@ class Drawer {
     if (isActive) {
       drawer.classList.remove('active');
       this.removeBackdrop(drawer);
-      window.removeEventListener('keydown', this.handleEsc, true);
+      setTimeout(() => {
+        drawer.setAttribute('hidden', '');
+      }, 500);
     }
   }
 
@@ -74,6 +75,23 @@ class Drawer {
     const parentEl = this.drawer.parentNode;
     backdropEl.classList.add('cbp-backdrop', 'active');
     parentEl.insertBefore(backdropEl, this.drawer);
+  }
+
+  /**
+   * Send focus to the second focusable element ideally, else the first, which is the close button
+   * @param {obj} drawer
+   */
+  setFocus(drawer) {
+    const focusableEls = this.drawer.querySelectorAll(
+      'button',
+      'a',
+      '[tabindex]'
+    );
+    if (focusableEls.length > 1) {
+      focusableEls[1].focus();
+    } else {
+      focusableEls[0].focus();
+    }
   }
 
   /**

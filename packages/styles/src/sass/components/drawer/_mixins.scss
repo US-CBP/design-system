@@ -117,9 +117,9 @@ $drawer-sizes: (
 @mixin drawer-nav-btn($font-size, $pad-left) {
   align-items: center;
   background-color: transparent;
-  border-left: 0;
-  border-right: 0;
-  border-top: 0;
+  border-width: 0 0 var(--cbp-border-size-sm) var(--cbp-border-size-lg);
+  border-color: transparent;
+  border-style: solid;
   border-bottom: 1px solid var(--cbp-color-base-neutral-light);
   color: var(--cbp-color-interactive-neutral-darker);
   display: flex;
@@ -130,6 +130,7 @@ $drawer-sizes: (
   justify-content: space-between;
   padding-left: $pad-left;
   text-align: left;
+  text-decoration: none;
   width: 100%;
 
   & > i {
@@ -138,7 +139,8 @@ $drawer-sizes: (
   
   &:hover {
     background-color: var(--cbp-color-interactive-neutral-lighter);
-    border-left: 4px solid var(--cbp-color-interactive-neutral-darker);
+    border-color: var(--cbp-color-interactive-neutral-darker);
+    border-bottom-color: var(--cbp-color-base-neutral-light);
     color: var(--cbp-color-text-darkest);
 
     & > span {
