@@ -47,22 +47,68 @@ const UniversalHeaderTemplate = ({ username }) => {
 const ApplicationHeaderTemplate = () => {
   return `
     <nav class="cbp-application-header">
-      <button class="nav-home">Application Name</button>
+      <a href="/" class="nav-home">Application Name</a>
       <div class="cbp-nav-menu">
         <div class="cbp-application-menus dh-sm-none">
-          <button class="cbp-menu-dropdown">Child Page 1<i class="fas fa-chevron-down"></i></button>
-          <button class="cbp-menu-dropdown">Child Page 2<i class="fas fa-chevron-down"></i></button>
-          <button class="cbp-menu-dropdown">Child Page 3<i class="fas fa-chevron-down"></i></button>
+          <button type="button" class="cbp-nav-item cbp-menu-dropdown" data-target="cbp-nav-drawer-control" data-controls="cbp-nav-drawer">Child Page 1<i class="fas fa-chevron-down"></i></button>
+          <button type="button" class="cbp-nav-item cbp-menu-dropdown" data-target="cbp-nav-drawer-control" data-controls="cbp-nav-drawer">Child Page 2<i class="fas fa-chevron-down"></i></button>
+          <a href="#" class="cbp-nav-item">Child Page 3</a>
         </div>
         <div>
-          <!-- <button class="cbp-hamburger dh-sm-none">
-            <i class="fas fa-search"></i>
-          </button> -->
-          <button class="cbp-hamburger" data-drawer="open">
+          <button class="cbp-hamburger" data-drawer="open" id="cbp-nav-drawer-control" aria-label="Open navigation drawer">
             <i class="fas fa-bars"></i>
           </button>
         </div>
       </div>
+    </nav>
+
+    <nav class="cbp-drawer" id="cbp-nav-drawer" data-drawer-align="right">
+      <div class="cbp-drawer__header">
+        <div>
+          <i class="fas fa-filter"></i>
+          <h6>Filter</h6>
+        </div>
+        <button>
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+      <section class="cbp-drawer__content">
+        <ul class="cbp-drawer__nav">
+          <li class="cbp-drawer__nav-item--a">
+            <button>
+              <span>
+                <i class="fas fa-home"></i>
+                Default/Home Page (A)
+              </span>
+              <i class="fas fa-angle-up"></i>
+            </button>
+            <ul>
+              <li>
+                <button>
+                  Child Page 1 (B)
+                  <i class="fas fa-angle-up"></i>
+                </button>
+                <ul>
+                  <li><a href="#">Grandchild Page 1 (B)</a></li>
+                  <li><a href="#">Grandchild Page 2 (B)</a></li>
+                  <li><a href="#">Grandchild Page 3 (B)</a></li>
+                </ul>
+              </li>
+              <li>
+                <button>
+                  Child Page 2 (B)
+                  <i class="fas fa-angle-up"></i>
+                </button>
+                <ul>
+                  <li><a href="#">Grandchild Page 1 (B)</a></li>
+                  <li><a href="#">Grandchild Page 2 (B)</a></li>
+                  <li><a href="#">Grandchild Page 3 (B)</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Child Page 3</a></li>
+            </ul>
+        </ul>
+      </section>
     </nav>
   `;
 };
