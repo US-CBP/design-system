@@ -5,6 +5,7 @@
 .cbp-expand__title {
   display: flex;
   align-items: center;
+  width: fit-content;
 
   &:hover > button {
     background-color: var(--cbp-color-interactive-neutral-darker);
