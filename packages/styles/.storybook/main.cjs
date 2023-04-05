@@ -14,7 +14,14 @@ module.exports = {
         outline: false,
       }
     },
-    'storybook-addon-dark-mode-toggle',
+    {
+      name: "@storybook/addon-styling",
+      options: {
+        sass: {
+          implementation: require("sass"),
+        },
+      },
+    },
     "@storybook/addon-interactions",
     "@storybook/addon-links",
   ],

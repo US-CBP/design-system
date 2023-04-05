@@ -120,3 +120,9 @@ h6,
   line-height: 20px;
   letter-spacing: 0.05em;
 }
+
+[data-cbp-theme="dark"] {
+  .cbp-text-body {
+    color: var(--cbp-color-text-lightest);
+  }
+}

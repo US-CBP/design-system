@@ -32,6 +32,10 @@
         "value": "0.25rem",
         "attributes": { "use": "border" }
       },
+      "softest": {
+        "value": "0.313rem",
+        "attributes": { "use": "border" }
+      },
       "pill": {
         "value": "9999px",
         "attributes": { "use": "border" }
