@@ -18,9 +18,7 @@ class Drawer {
     this.closeBtn = this.drawerHeader.querySelector('button');
     this.openBtn = document.querySelector(this.#hamburger);
     this.direction = this.drawer.dataset.drawerAlign;
-
-    console.log(this.drawer);
-    this.drawer.setAttribute('hidden','');
+    this.drawer.setAttribute('hidden', '');
     this.addListeners(this.openBtn, this.closeBtn);
   }
 
@@ -45,15 +43,14 @@ class Drawer {
    * @param {obj} drawer
    */
   open(drawer) {
-    //window.addEventListener('keydown', (e) => this.handleKey(e, drawer));
     drawer.removeAttribute('hidden');
-    setTimeout( () => {
-      drawer.classList.add('active')
+    setTimeout(() => {
+      drawer.classList.add('active');
     }, 1);
     this.addBackdrop();
     this.handleBackdrop();
-    setTimeout( () => {
-      this.setFocus()
+    setTimeout(() => {
+      this.setFocus();
     }, 10);
   }
 
@@ -67,8 +64,8 @@ class Drawer {
     if (isActive) {
       drawer.classList.remove('active');
       this.removeBackdrop(drawer);
-      setTimeout( () => {
-        drawer.setAttribute('hidden','')
+      setTimeout(() => {
+        drawer.setAttribute('hidden', '');
       }, 500);
     }
   }
@@ -85,11 +82,14 @@ class Drawer {
    * @param {obj} drawer
    */
   setFocus(drawer) {
-    const focusableEls=this.drawer.querySelectorAll('button','a','[tabindex]');
-    if(focusableEls.length > 1) {
+    const focusableEls = this.drawer.querySelectorAll(
+      'button',
+      'a',
+      '[tabindex]'
+    );
+    if (focusableEls.length > 1) {
       focusableEls[1].focus();
-    }
-    else {
+    } else {
       focusableEls[0].focus();
     }
   }
