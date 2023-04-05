@@ -62,7 +62,7 @@ const ApplicationHeaderTemplate = () => {
       </div>
     </nav>
 
-    <nav class="cbp-drawer" id="cbp-nav-drawer" data-drawer-align="right" role="dialog">
+    <nav class="cbp-drawer" id="cbp-nav-drawer" data-drawer-align="right">
       <div class="cbp-drawer__header">
         <div>
           <i class="fas fa-filter"></i>
