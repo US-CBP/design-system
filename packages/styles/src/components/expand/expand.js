@@ -18,8 +18,8 @@ class Expand {
     })
   }
 
-  generateId() {
-    return Math.random().toString(36).substring(2,7);
+  generateId(ariaName) {
+    return `${ariaName}-${Math.random().toString(36).substring(2,7)}`;
   }
   
   setAriaExpanded(expand) {
@@ -31,8 +31,8 @@ class Expand {
   }
 
   setAriaAttributes() {
-    const ariaLabelledById = `expand-title-${this.generateId()}`;
-    const ariaControlsId = `expand-content-${this.generateId()}`;
+    const ariaLabelledById = this.generateId('aria-expand');
+    const ariaControlsId = this.generateId('expand-content');
 
     this.button.setAttribute('aria-expanded', 'false')
 
