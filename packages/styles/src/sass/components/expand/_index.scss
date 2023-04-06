@@ -19,9 +19,8 @@
     background-color: transparent;
     border: 0;
     border-radius: var(--cbp-border-radius-soft);
-    padding: 0 0.227rem;
+    padding: 0 0.227rem; // Change when SVG icons are available.
 
-    // Focus states for expand button 
     &:focus {
       background-color: var(--cbp-color-interactive-focus-dark);
       outline: none;
@@ -30,7 +29,7 @@
     & > i {
       color: var(--cbp-color-interactive-neutral-darker);
       transform: rotate(0);
-      transition: transform 0.2s ease-in-out;
+      transition: transform var(--cbp-motion-duration-shortest) cubic-bezier(var(--cbp-motion-easing-standard-accelerate));
     }
 
     &:focus > i {
@@ -56,7 +55,7 @@
 .cbp-expand.active .cbp-expand__title {
   & > button > i {
     transform: rotate(-180deg);
-    transition: transform 0.2s ease-in-out;
+    transition: transform var(--cbp-motion-duration-shortest) cubic-bezier(var(--cbp-motion-easing-standard-accelerate));
   }
 }
 

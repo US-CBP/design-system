@@ -1,25 +1,46 @@
 class Expand {
   constructor(expand) {
     this.expand = expand;
-    this.title = this.expand.querySelector('.cbp-expand__title');
+    this.title = this.expand.querySelector('.cbp-expand__title > span');
     this.button = this.expand.querySelector('button');
     this.expandContent = this.expand.querySelector('.cbp-expand__content');
 
-    this.title.addEventListener('click', () => {
+    this.setAriaAttributes();
+    
+    this.button.addEventListener('click', () => {
       this.expand.classList.toggle('active');
-      this.setExpandAria(this.expand);
-      this.button.focus();
+      this.setAriaExpanded(this.expand);
     });
+
+    this.title.addEventListener('click', () => {
+      this.button.click();
+      this.button.focus();
+    })
   }
 
-  setExpandAria(expand) {
+  generateId() {
+    return Math.random().toString(36).substring(2,7);
+  }
+  
+  setAriaExpanded(expand) {
     if (!expand.classList.contains('active')) {
       this.button.setAttribute('aria-expanded', 'false');
-      this.expandContent.setAttribute('aria-hidden', 'true');
     } else {
       this.button.setAttribute('aria-expanded', 'true');
-      this.expandContent.setAttribute('aria-hidden', 'false');
     }
+  }
+
+  setAriaAttributes() {
+    const ariaLabelledById = `expand-title-${this.generateId()}`;
+    const ariaControlsId = `expand-content-${this.generateId()}`;
+
+    this.button.setAttribute('aria-expanded', 'false')
+
+    this.button.setAttribute('aria-controls', ariaControlsId);
+    this.expandContent.setAttribute('id', ariaControlsId);
+
+    this.button.setAttribute('aria-labelledby', ariaLabelledById);
+    this.title.setAttribute('id', ariaLabelledById);
   }
 }
 
