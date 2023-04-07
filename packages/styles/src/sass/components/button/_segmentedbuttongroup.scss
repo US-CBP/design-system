@@ -69,7 +69,7 @@
     color: var(--cbp-color-text-base);
   }
 
-  .active {
+  button[aria-pressed='true'] {
     background-color: var(--cbp-color-base-neutral-base) !important;
     color: var(--cbp-color-text-base);
   }
