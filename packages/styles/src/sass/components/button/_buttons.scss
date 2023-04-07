@@ -102,8 +102,8 @@ span.ripple {
 
 .cbp-btn {
   align-items: center;
-  border: 2px solid transparent;
-  border-radius: 3px;
+  border: var(--cbp-border-size-md) solid transparent;
+  border-radius: var(--cbp-border-radius-soft);
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
@@ -331,87 +331,6 @@ span.ripple {
       &--ghost {
         @include ghost(var(--cbp-color-danger-base), var(--cbp-color-danger-lighter));
       }
-    }
-  }
-
-  /* SEGMENTED BUTTONS */
-  &--segment {
-    display: flex;
-    width: fit-content;
-    
-    button {
-      @extend .cbp-btn;
-      background-color: var(--cbp-color-white);
-      border: 2px solid var(--cbp-color-interactive-neutral-dark);
-
-      &:first-child {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        border-right: 1px solid var(--cbp-color-interactive-neutral-dark);
-      }
-
-      &:not(:first-child):not(:last-child) {
-        border-left: 1px solid var(--cbp-color-interactive-neutral-dark);
-        border-right: 1px solid var(--cbp-color-interactive-neutral-dark);
-        border-radius: 0;
-      }
-
-      &:last-child {
-        border-left: 1px solid var(--cbp-color-interactive-neutral-dark);
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-
-      &:hover:not([disabled]) {
-        background-color: var(--cbp-color-interactive-neutral-darker);
-        color: #fff;
-      }
-
-      &:focus:not([disabled]) {
-        background: var(--cbp-color-white);
-        color: var(--cbp-color-interactive-focus-dark);
-        font-weight: 700;
-        outline: 2px solid var(--cbp-color-interactive-focus-dark);
-        outline-offset: -3px;
-      }
-
-      &:disabled {
-        background-color: var(--cbp-color-interactive-disabled-light);
-        border-color: var(--cbp-color-interactive-disabled-dark);
-        color: var(--cbp-color-interactive-disabled-dark);
-      }
-
-      & > i {
-        margin-right: 0;
-      }
-    }
-
-    .active {
-      background-color: var(--cbp-color-interactive-selected-dark);
-      color: var(--cbp-color-white);
-
-      &:focus:not([disabled]) {
-        @extend .btn-focus;
-        outline-offset: -3px;
-      }
-
-      &:disabled {
-        background-color: var(--cbp-color-interactive-disabled-dark);
-        color: var(--cbp-color-interactive-disabled-light);
-      }
-    }
-  }
-
-  &--segment.read-only {
-    button:disabled {
-      background-color: var(--cbp-color-interactive-neutral-lighter);
-      border-color: var(--cbp-color-interactive-neutral-light); 
-      color: var(--cbp-color-text-base);
-    }
-
-    .active {
-      background-color: var(--cbp-color-base-neutral-base) !important;
-      color: var(--cbp-color-text-base);
     }
   }
 
