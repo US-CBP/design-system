@@ -9,6 +9,7 @@ import Toggle from './components/toggle/toggle';
 import FileUploader from './components/fileupload/fileupload';
 import HashedField from './components/form/hashed-field/hashedField';
 import NumberCounter from './components/form/number-counter/numberCounter';
+import SegmentedButtonGroup from './components/segmented-button-group/segmented-button-group';
 //import UniversalHeader from './components/header/header';
 import DarkMode from './utilities/darkMode';
 
@@ -110,9 +111,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addOrInstantiate(NumberCounter, counter);
   });
 
-  SelectorEngine.findAll('[data-theme-toggle]').forEach((themeToggle) => {
-    addOrInstantiate(DarkMode, themeToggle);
+  /**
+   * Segmented Buttons (Toggle Buttons)
+   */
+  SelectorEngine.findAll('.cbp-btn--segment').forEach((segmentedButtonGroup) => {
+    addOrInstantiate(SegmentedButtonGroup, segmentedButtonGroup);
   });
 
 
+
+
+
+
+  SelectorEngine.findAll('[data-theme-toggle]').forEach((themeToggle) => {
+    addOrInstantiate(DarkMode, themeToggle);
+  });
+  
 });
