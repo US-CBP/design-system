@@ -54,23 +54,11 @@
         border-color: var(--cbp-color-interactive-selected-dark);
   
         &:disabled {
-          background-color: var(--cbp-color-interactive-disabled-dark);
           color: var(--cbp-color-interactive-disabled-light);
+          background-color: var(--cbp-color-interactive-disabled-dark);
+          border-color: var(--cbp-color-interactive-disabled-dark);
         }
       }
 
-  }
-}
-
-.cbp-btn--segment.read-only {
-  button:disabled {
-    background-color: var(--cbp-color-interactive-neutral-lighter);
-    border-color: var(--cbp-color-interactive-neutral-light);
-    color: var(--cbp-color-text-base);
-  }
-
-  button[aria-pressed='true'] {
-    background-color: var(--cbp-color-base-neutral-base) !important;
-    color: var(--cbp-color-text-base);
   }
 }

@@ -39,17 +39,6 @@ const IconSelectTemplate = () => {
   `;
 };
 
-const ReadonlySelectTemplate = (args) => {
-  return `
-    <div class="cbp-btn--segment read-only" data-segmented-button-type="single">
-      <button disabled type="button" value="sm">Small</button>
-      <button disabled type="button" value="md" aria-pressed="true">Medium</button>
-      <button disabled type="button" value="lg">Large</button>
-    </div>
-  `;
-};
-
-
 export const SingleSelect = SingleSelectTemplate.bind({});
 SingleSelect.args = {};
 
@@ -58,6 +47,3 @@ MultiSelect.args = {};
 
 export const IconSelect = IconSelectTemplate.bind({});
 IconSelect.args = {};
-
-export const ReadonlySelect = ReadonlySelectTemplate.bind({});
-ReadonlySelect.args = {};
