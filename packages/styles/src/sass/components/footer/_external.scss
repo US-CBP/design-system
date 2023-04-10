@@ -1,0 +1,33 @@
+@use './internal' as *;
+
+[data-footer="external"] {
+  & > div:first-child {
+    background-color: var(--cbp-color-base-secondary-dark);
+
+    & > p {
+      color: var(--cbp-color-text-lightest);
+      font-size: var(--cbp-font-size-heading-sm);
+      font-weight: var(--cbp-font-weight-medium);
+      margin-left: var(--cbp-space-5x);
+      padding: var(--cbp-font-size-button) 0;
+     }
+  }
+}
+
+.cbp-footer__social {
+  @extend .cbp-footer__links;
+  display: flex;
+  padding: 0 var(--cbp-space-5x);
+
+  a[href] {
+    /*
+      - no spacing token for 0.875 except --font-size-button height of button = 44px
+      - 0.938rem used to match 44px width in mockups
+    */
+    padding: var(--cbp-font-size-button) 0.938rem;
+  }
+}
+
+.cbp-footer__seal {
+  margin: 0;
+}
