@@ -2,25 +2,13 @@
   TODO: replace with CSS variables/tokens
 */
 
-/*
-$spacing: (
-  "xxxl": var(--cbp-space-16x),   // 64px
-  "xxl": var(--cbp-space-12x),    // 48px
-  "xl": var(--cbp-space-8x),      // 32px
-  "l": var(--cbp-space-6x),       // 24px
-  "md": var(--cbp-space-4x),      // 16px
-  "s": var(--cbp-space-2x),       // 8px
-  'xs': var(--cbp-space-1x),      // 4px
-  "none": 0                       // 0
-);
-*/
-
 $spacing: (
   16x: var(--cbp-space-16x),
   12x: var(--cbp-space-12x),
   8x: var(--cbp-space-8x),
   6x: var(--cbp-space-6x),
   4x: var(--cbp-space-4x),
+  3x: var(--cbp-space-3x),
   2x: var(--cbp-space-2x),
   1x: var(--cbp-space-1x),
   0: 0

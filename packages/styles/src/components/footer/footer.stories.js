@@ -32,7 +32,7 @@ const InternalTemplate = () => {
             <a href="#"><i class="fas fa-external-link-alt"></i>&nbsp;Learn More About InfoSec</a>
           </div>
         </div>
-        <p>This page contains information, in whole or part, that is marked FOR OFFFICIAL USE ONLY (FOUO).</p>
+        <p class="cbp-margin-top-3x">This page contains information, in whole or part, that is marked FOR OFFFICIAL USE ONLY (FOUO).</p>
         <a href="#"><i class="fas fa-external-link-alt"></i>&nbsp;Learn More About InfoSec</a>
       </div>
     </footer>
@@ -41,10 +41,10 @@ const InternalTemplate = () => {
 
 const ExternalTemplate = () => {
   return `
-    <footer class="cbp-footer" data-footer="external">
+    <footer class="cbp-footer-external">
       <div>
         <p>Contact CBP</p>
-        <ul class="cbp-footer__social">
+        <ul class="cbp-footer__social-links">
           <li><a href="#"><i class="fab fa-twitter"></i></a></li>
           <li><a href="#"><i class="fab fa-facebook"></i></a></li>
           <li><a href="#"><i class="fab fa-youtube"></i></a></li>
@@ -56,16 +56,29 @@ const ExternalTemplate = () => {
       </div>
       <div class="cbp-footer__info">
         <div>
-          <img src="assets/images/DHS_SEAL.svg" class="cbp-footer__seal" alt="U.S. Department of Homeland Security" height="44" width="44" />
-          <span>CBP.gov</span>
-          <p>An official website of the</p>
-          <a href="https://www.dhs.gov/" class="cbp-font-italic"><i class="fas fa-external-link-alt"></i>&nbsp;U.S. Department of Homeland Security</a>
+          <div class="cbp-footer__seal">
+            <img src="assets/images/DHS_SEAL.svg" alt="U.S. Department of Homeland Security" height="44" width="44" />
+            <span>CBP.gov</span>
+          </div>
+          <p>An official website of the <br><a href="https://www.dhs.gov/" class="cbp-font-italic"><i class="fas fa-external-link-alt"></i>U.S. Department of Homeland Security</a></p>
         </div>
-        <div class="cbp-footer__sec">
-          
+        <ul class="cbp-footer__external-links">
+          <li><a href="#"><i class="fas fa-arrow-right"></i>Accessibility</a></li>
+          <li><a href="#"><i class="fas fa-arrow-right"></i>Accountability</a></li>
+          <li><a href="#"><i class="fas fa-arrow-right"></i>DHS Components</a></li>
+          <li><a href="#"><i class="fas fa-arrow-right"></i>FOIA</a></li>
+          <li><a href="#"><i class="fas fa-arrow-right"></i>Forms</a></li>
+          <li><a href="#"><i class="fas fa-arrow-right"></i>Inspector General</a></li>
+          <li><a href="#"><i class="fas fa-arrow-right"></i>No FEAR Act</a></li>
+          <li><a href="#"><i class="fas fa-arrow-right"></i>Privacy</a></li>
+          <li><a href="#"><i class="fas fa-arrow-right"></i>Site Policies</a></li>
+          <li><a href="#"><i class="fas fa-arrow-right"></i>The White House</a></li>
+          <li><a href="#"><i class="fas fa-arrow-right"></i>USA.gov</a></li>
+        </ul>
+        <div class="cbp-footer__ntas">
+          <img src="assets/images/NTAS_LOGO.svg" alt="National Terrorism Advisory System" height="84" width="200" />
+          <a href="#"><i class="fas fa-external-link-alt"></i>Learn More</a>
         </div>
-        <p>This page contains information, in whole or part, that is marked FOR OFFFICIAL USE ONLY (FOUO). </p>
-        <a href="#"><i class="fas fa-external-link-alt"></i>&nbsp;Learn More About InfoSec</a>
       </div>
     </footer>
   `;
