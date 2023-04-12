@@ -1,22 +1,15 @@
-//@use '../base/colors' as *;
-
-.mr-2 {
-  margin-right: 8px;
-}
-
 // CBP Badges
 .cbp-badge {
-  align-items: center;
-  background-color: var(--cbp-color-info-base);
-  border-radius: 12px;
+  display: inline-block;
+  width: var(--cbp-space-6x);
+  height: var(--cbp-space-6x);
   color: var(--cbp-color-white);
+  background-color: var(--cbp-color-info-base);
+  border-radius: var(--cbp-border-radius-pill);
   cursor: default;
-  display: flex;
-  font-size: 10px;
-  height: 24px;
-  justify-content: center;
+  font-size: .625rem;
   text-align: center;
-  width: 24px;
+  line-height: var(--cbp-space-6x);
 
   &--danger {
     background-color: var(--cbp-color-danger-base);
@@ -25,25 +18,22 @@
 
 // CBP Tags
 .cbp-tag {
-  // @extend .cbp-text-subhead;
-  align-items: center;
-  background-color: var(--cbp-color-info-base);
-  border-radius: 14px;
+  display: inline-block;
   color: var(--cbp-color-white);
+  background-color: var(--cbp-color-info-base);
+  border-radius: var(--cbp-border-radius-pill);
   cursor: default;
-  display: flex;
-  height: 28px;
-  justify-content: center;
-  padding: 0 12px;
-  width: fit-content;
+  padding: 0 var(--cbp-space-3x);
+  text-align: center;
+  line-height: var(--cbp-space-7x);
 
   & > i::after {
     content: '\a0\a0';
   }
 
   &--warning {
-    background-color: var(--cbp-color-warning-base);
     color: var(--cbp-color-black);
+    background-color: var(--cbp-color-warning-base);
   }
 
   &--success {
@@ -56,58 +46,63 @@
 }
 
 // CBP Chips
-.cbp-chips {
+.cbp-chip {
   // @extend .cbp-text-subhead;
-  align-items: center;
-  background-color: var(--cbp-color-interactive-neutral-base);
-  border-radius: 14px;
-  color: var(--cbp-color-white);
   display: flex;
-  height: 28px;
+  align-items: center;
   justify-content: center;
-  padding-left: 12px;
-  text-transform: uppercase;
   width: fit-content;
-
-  &--active {
+  padding: 0 0 0 var(--cbp-space-3x);
+  color: var(--cbp-color-white);
+  background-color: var(--cbp-color-interactive-neutral-base);
+  border-width: 0;
+  border-radius: var(--cbp-border-radius-pill);
+  text-transform: uppercase;
+  line-height: var(--cbp-space-7x);
+  
+  & > .cbp-chip__label + .cbp-chip__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    min-height: 28px;
+    border-width: 0;
+    border-radius: 14px;
+    margin-left: 4px;
+    transition: var(--cbp-motion-duration-shortest);
+  }
+  
+  //&--active {
+  &[aria-pressed=true] {
     background-color: var(--cbp-color-interactive-active-dark);
-    
+  
+    & > .cbp-chip__label + .cbp-chip__icon {
+      transform: rotate(-135deg);
+    }
+
     &:hover { 
       background-color: var(--cbp-color-interactive-active-dark);
     }
-
-    & > span + .plus-border {
-      transform: rotate(-45deg);
-    }
-  }
-
-  & > span + .plus-border {
-    align-items: center;
-    border-radius: 14px;
-    display: flex;
-    height: 28px;
-    justify-content: center;
-    margin-left: 4px;
-    width: 28px;
   }
 
   &:hover {
     cursor: pointer;
 
-    > span + .plus-border {
+    > .cbp-chip__label + .cbp-chip__icon {
       background-color: #454540; // ToDo
     }
   }
 
-  &:focus {
+  &:focus-visible {
     background-color: var(--cbp-color-interactive-focus-dark);
-    outline: none;
+    outline: 0;
 
-    > span + .plus-border {
+    > .cbp-chip__label + .cbp-chip__icon {
       background-color: transparent;
-      border-color: var(--cbp-color-white);
+      border-color: var(--cbp-color-white); 
+      outline: 2px solid white;
+      outline-offset: -4px;
     }
   }
-
 }
 
