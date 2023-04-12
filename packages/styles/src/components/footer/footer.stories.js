@@ -59,7 +59,7 @@ const ExternalTemplate = () => {
       <div class="cbp-footer__info">
         <div>
           <div class="cbp-external-footer__seal">
-            <img src="assets/images/DHS_SEAL.svg" alt="U.S. Department of Homeland Security" height="44" width="44" />
+            <img src="assets/images/CBP_SEAL.svg" alt="U.S. Department of Homeland Security" height="44" width="44" />
             <span>CBP.gov</span>
           </div>
           <p class="cbp-footer__text">An official website of the <br><a href="https://www.dhs.gov/" class="cbp-font-style-italic"><i class="fas fa-external-link-alt"></i>U.S. Department of Homeland Security</a></p>
@@ -75,8 +75,8 @@ const ExternalTemplate = () => {
           <li><a href="https://www.cbp.gov/about/eeo-diversity/no-fear-act"><i class="fas fa-arrow-right"></i>No FEAR Act</a></li>
           <li><a href="https://www.cbp.gov/site-policy-notices/privacy-policy"><i class="fas fa-arrow-right"></i>Privacy</a></li>
           <li><a href="https://www.cbp.gov/site-policy-notices"><i class="fas fa-arrow-right"></i>Site Policies</a></li>
-          <li><a target="_blank" rel="noopener noreferrer" href="https://www.whitehouse.gov/"><i class="fas fa-external-link-alt"></i>The White House</a></li>
           <li><a href="https://www.cbp.gov/document/directives/vulnerability-disclosure-program-policy-and-rules-engagement"><i class="fas fa-arrow-right"></i>Vulnerability Disclosure Program</a></li>
+          <li><a target="_blank" rel="noopener noreferrer" href="https://www.whitehouse.gov/"><i class="fas fa-external-link-alt"></i>The White House</a></li>
           <li><a href="https://www.usa.gov/"><i class="fas fa-external-link-alt"></i></i>USA.gov</a></li>
         </ul>
         <div class="cbp-external-footer__ntas">
