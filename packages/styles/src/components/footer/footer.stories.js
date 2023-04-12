@@ -62,7 +62,7 @@ const ExternalTemplate = () => {
             <img src="assets/images/DHS_SEAL.svg" alt="U.S. Department of Homeland Security" height="44" width="44" />
             <span>CBP.gov</span>
           </div>
-          <p class="cbp-footer__text">An official website of the <br><a href="https://www.dhs.gov/" class="cbp-font-italic"><i class="fas fa-external-link-alt"></i>U.S. Department of Homeland Security</a></p>
+          <p class="cbp-footer__text">An official website of the <br><a href="https://www.dhs.gov/" class="cbp-font-style-italic"><i class="fas fa-external-link-alt"></i>U.S. Department of Homeland Security</a></p>
         </div>
         <ul class="cbp-external-footer__links">
           <li><a href="https://www.cbp.gov/contact"><i class="fas fa-arrow-right"></i>CBP Contact Information</a></li>
