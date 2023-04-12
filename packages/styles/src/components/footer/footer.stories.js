@@ -22,7 +22,7 @@ const InternalTemplate = () => {
           <p class="cbp-footer__text">This application is maintained by The Office of Information Technology: TASPD.</p>
           <ul>
             <li>Having an issue?</li>
-            <li><span>Email:</span>&nbsp;<a href="#">application-support@cbp.dhs.gov</a></li>
+            <li><span>Email:</span>&nbsp;<a href="#">this-application-support@abc.def.gov</a></li>
             <li><span>CBP Helpdesk:</span>&nbsp;(555) 555-5555</li>
           </ul>
         </section>
