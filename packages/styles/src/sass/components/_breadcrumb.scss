@@ -1,5 +1,5 @@
 //@use '../base/colors' as *;
-@use 'link' as *;
+// @use 'link' as *;
 @use 'button' as *;
 
 .cbp-breadcrumb {
@@ -19,7 +19,7 @@
   }
 
   & > a {
-    @extend .cbp-link__inline;
+    // @extend .cbp-link__inline;
     letter-spacing: unset;
   }
 

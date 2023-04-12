@@ -1,5 +1,5 @@
 export default {
-  title: 'Patterns/Typography',
+  title: 'Foundations/Typography',
   argTypes: {
     label: { control: 'text' },
     onClick: { action: 'onClick' },

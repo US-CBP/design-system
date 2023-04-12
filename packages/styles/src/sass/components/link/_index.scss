@@ -1,0 +1,49 @@
+.cbp-link {
+  color: var(--cbp-color-interactive-primary-base);
+  font-weight: var(--cbp-font-weight-regular);
+
+  &:visited {
+    color:  var(--cbp-color-interactive-visited-dark);
+  }
+  
+  &:focus {
+    color: var(--cbp-color-interactive-focus-dark);
+    font-weight: var(--cbp-font-weight-bold);
+    outline: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-dark);
+    outline-offset: var(--cbp-border-size-sm);
+
+    &:hover {
+      color: var(--cbp-color-interactive-focus-dark);
+    }
+  }
+
+  &:hover {
+    color:  var(--cbp-color-interactive-primary-dark);
+    font-weight: var(--cbp-font-weight-bold);
+  }
+}
+
+.cbp-link--definition:link {
+  text-decoration-style: dotted;
+}
+
+[data-cbp-theme="dark"] .cbp-link {
+  color: var(--cbp-color-interactive-primary-light);
+  
+  &:visited {
+    color: var(--cbp-color-interactive-visited-light);
+  }
+
+  &:focus {
+    color: var(--cbp-color-interactive-focus-light);
+    outline: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-light);
+
+    &:hover {
+      color: var(--cbp-color-interactive-focus-light);
+    }
+  }
+
+  &:hover {
+    color:  var(--cbp-color-interactive-primary-base);
+  }
+}
