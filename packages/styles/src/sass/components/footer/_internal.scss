@@ -1,6 +1,6 @@
 @use '../../tokens/breakpoints' as *;
 
-// Styling for Link pattern (Dark)
+// Styling for Link pattern (Dark) move to link SCSS after merge.
 @mixin footer-links {
   color: var(--cbp-color-interactive-primary-light);
 
@@ -8,18 +8,18 @@
     margin-right: var(--cbp-space-1x);
   }
 
+  &:visited {
+    color: var(--cbp-color-interactive-visited-light);
+  }
+
   &:hover {
     color: var(--cbp-color-interactive-primary-base);
   }
 
   &:focus {
-    color: var(--cbp-color-interactive-focus-light) !important;
+    color: var(--cbp-color-interactive-focus-light);
     outline: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-light);
     outline-offset: var(--cbp-border-size-md);
-  }
-
-  &:visited {
-    color: var(--cbp-color-interactive-visited-light);
   }
 }
 
