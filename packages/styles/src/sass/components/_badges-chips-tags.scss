@@ -1,4 +1,4 @@
-// CBP Badges
+// Badges
 .cbp-badge {
   display: inline-block;
   width: var(--cbp-space-6x);
@@ -16,7 +16,7 @@
   }
 }
 
-// CBP Tags
+// Tags
 .cbp-tag {
   display: inline-block;
   color: var(--cbp-color-white);
@@ -45,9 +45,8 @@
   }
 }
 
-// CBP Chips
+// Chips
 .cbp-chip {
-  // @extend .cbp-text-subhead;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,10 +63,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 28px;
-    min-height: 28px;
+    min-width: var(--cbp-space-7x);
+    min-height: var(--cbp-space-7x);
     border-width: 0;
-    border-radius: 14px;
+    border-radius: var(--cbp-border-radius-pill);
     margin-left: 4px;
     transition: var(--cbp-motion-duration-shortest);
   }
@@ -99,8 +98,8 @@
 
     > .cbp-chip__label + .cbp-chip__icon {
       background-color: transparent;
-      border-color: var(--cbp-color-white); 
-      outline: 2px solid white;
+      border-color: var(--cbp-color-white);
+      outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
       outline-offset: -4px;
     }
   }
