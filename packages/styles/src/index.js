@@ -2,6 +2,7 @@ import SelectorEngine from './utilities/selectorEngine';
 import Accordion from './components/accordion/accordion';
 import ApplicationHeader from './components/application-header/application-header';
 import Banner from './components/banner/banner';
+import Chip from './components/chip/chip';
 import Drawer from './components/drawer/drawer';
 import Dropdown from './components/dropdown/dropdown';
 import Expand from './components/expand/expand';
@@ -43,6 +44,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   SelectorEngine.findAll(".cbp-banner__security").forEach((banner) => {
     addOrInstantiate(Banner, banner);
+  });
+
+  /**
+   * Chips
+   */
+  SelectorEngine.findAll('.cbp-chip').forEach((chip) => {
+    addOrInstantiate(Chip, chip);
   });
 
   /**
