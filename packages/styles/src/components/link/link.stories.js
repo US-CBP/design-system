@@ -10,7 +10,7 @@ const LinkTemplate = ({ label, definition }) => (
 )
 
 const DisabledLinkTemplate = ({ label }) => (
-  `<a role=link aria-disabled=true>${label}</a> <a href="#">${label}</a>`
+  `<a class="cbp-link" role=link aria-disabled="true">${label}</a>`
 )
 
 export const Link = LinkTemplate.bind({});
@@ -26,7 +26,7 @@ Link.argTypes = {
   },
   definition: {
     name: 'Definition Modifier',
-    description: 'Used when the developer wants to give more information about a term or acronym',
+    description: 'Used when the developer wants to give more information about a term or acronym and can be used in conjuction with a `<abbr>` tag',
     type: { name: 'boolean', required: false }
   }
 }

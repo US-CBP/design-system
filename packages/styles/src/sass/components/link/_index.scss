@@ -1,6 +1,9 @@
 .cbp-link {
-  color: var(--cbp-color-interactive-primary-base);
   font-weight: var(--cbp-font-weight-regular);
+
+  &:link {
+    color: var(--cbp-color-interactive-primary-base);
+  }
 
   &:visited {
     color:  var(--cbp-color-interactive-visited-dark);
@@ -21,6 +24,20 @@
     color:  var(--cbp-color-interactive-primary-dark);
     font-weight: var(--cbp-font-weight-bold);
   }
+
+  &[aria-disabled=true] {
+    color: var(--cbp-color-interactive-disabled-dark);
+    font-style: italic;
+    text-decoration: underline;
+  
+    &:hover {
+      color: var(--cbp-color-interactive-neutral-dark);
+    }
+  
+    &:focus {
+      color: var(--cbp-color-interactive-focus-dark);
+    }
+  }
 }
 
 .cbp-link--definition:link {
@@ -28,7 +45,9 @@
 }
 
 [data-cbp-theme="dark"] .cbp-link {
-  color: var(--cbp-color-interactive-primary-light);
+  &:link {
+    color: var(--cbp-color-interactive-primary-light);
+  }
   
   &:visited {
     color: var(--cbp-color-interactive-visited-light);
@@ -45,5 +64,17 @@
 
   &:hover {
     color:  var(--cbp-color-interactive-primary-base);
+  }
+
+  &[aria-disabled=true] {
+    color: var(--cbp-color-interactive-disabled-light);
+  
+    &:hover {
+      color: var(--cbp-color-interactive-neutral-light);
+    }
+  
+    &:focus {
+      color: var(--cbp-color-interactive-focus-light);
+    }
   }
 }
