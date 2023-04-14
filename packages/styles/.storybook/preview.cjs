@@ -3,26 +3,34 @@ import { withThemeByDataAttribute } from '@storybook/addon-styling';
 import '../src/sass/main.scss';
 
 export const CUSTOM_VIEWPORTS = {
-  small: {
-    name: 'Small Grid',
+  mobile: {
+    name: 'Mobile',
     styles: {
-      width: '599px',
+      width: '360px',
       height: '100%',
     },
     type: 'desktop',
   },
   medium: {
-    name: 'Medium Grid',
+    name: 'Medium Breakpoint',
     styles: {
-      width: '1023px',
+      width: '600px',
       height: '100%',
     },
     type: 'desktop',
   },
   large: {
-    name: 'Large Grid',
+    name: 'Large Breakpoint',
     styles: {
-      width: '1439px',
+      width: '1024px',
+      height: '100%',
+    },
+    type: 'desktop',
+  },
+  xl: {
+    name: 'Extra-Large Breakpoint',
+    styles: {
+      width: '1440px',
       height: '100%',
     },
     type: 'desktop',

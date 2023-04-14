@@ -1,0 +1,176 @@
+@use './internal' as *;
+@use '../../tokens/breakpoints' as *;
+
+.cbp-external-footer {
+  & > section:first-child {
+    display: flex;
+    flex-direction: column;
+
+    & > .cbp-footer__heading {
+      background-color: var(--cbp-color-base-secondary-dark);
+      padding: var(--cbp-space-3x) 0 var(--cbp-space-3x) var(--cbp-space-5x);
+    }
+  }
+
+  & > .cbp-footer__info {
+    row-gap: var(--cbp-space-8x);
+  }
+}
+
+.cbp-external-footer__social {
+  @include footer-nav-bar;
+  display: flex;
+  padding-left: var(--cbp-space-5x);
+
+  a[href] {
+    font-size: var(--cbp-font-size-heading-md);
+    padding: 0.743rem; // Due to font-size, using this rem value is closest to height of 44px and width ~44px in mockups
+  }
+}
+
+.cbp-external-footer__seal {
+  align-items: center;
+  display: flex;
+  margin-bottom: var(--cbp-space-4x);
+
+  & > span {
+    color: var(--cbp-color-text-lightest);
+    font-size: var(--cbp-font-size-heading-xl);
+    font-weight: var(--cbp-font-weight-bold);
+    margin-left: var(--cbp-space-2x);
+  }
+
+  // Link Component Dark Stylings
+  & + p > a[href] {
+    @include footer-links;
+  }
+}
+
+.cbp-external-footer__links {
+  font-size: var(--cbp-font-size-heading-xs);
+  font-weight: var(--cbp-font-weight-medium);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  & > li {
+    margin-bottom: var(--cbp-space-4x);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  & a[href] {
+    color: var(--cbp-color-interactive-primary-light);
+    font-weight: var(--cbp-font-weight-medium);
+    text-decoration: none;
+
+    // Replace with SVG Icon
+    & > i {
+      margin-right: var(--cbp-space-2x);
+    }
+
+    &:hover {
+      color: var(--cbp-color-interactive-primary-lighter);
+      font-weight: var(--cbp-font-weight-bold);
+      text-decoration: underline;
+    }
+
+    &:focus {
+      color: var(--cbp-color-interactive-focus-light) !important;
+      outline: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-light);
+      outline-offset: var(--cbp-space-1x);
+    }
+  }
+}
+
+.cbp-external-footer__ntas {
+  text-align: center;
+  width: fit-content;
+
+  // Secondary Ghost Button (Dark) Stylings
+  & > a[href] {
+    display: inline-block;
+    border-radius: var(--cbp-border-radius-softest);
+    color: var(--cbp-color-interactive-neutral-lighter);
+    font-weight: var(--cbp-font-weight-medium);
+    margin-top: var(--cbp-space-4x);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0.875rem var(--cbp-space-3x);
+
+    & > i {
+      margin-right: var(--cbp-space-2x);
+    }
+
+    &:hover {
+      background-color: var(--cbp-color-interactive-neutral-darker);
+      color: var(--cbp-color-interactive-neutral-lighter);
+      font-weight: var(--cbp-font-weight-bold);
+    }
+
+    // Remove !important color during Link component refactor
+    &:focus {
+      background-color: var(--cbp-color-interactive-focus-light);
+      color: var(--cbp-color-text-darkest) !important;
+      font-weight: var(--cbp-font-weight-bold);
+      outline: var(--cbp-border-size-md) solid var(--cbp-color-black);
+      outline-offset: calc(-1 * var(--cbp-space-1x));
+    }
+  }
+}
+
+@media (min-width: $cbp-breakpoint-md) {
+  .cbp-external-footer {
+    & > section:first-child {
+      flex-direction: row;
+    }
+
+    & > section:first-child > .cbp-footer__heading {
+      padding-left: var(--cbp-space-8x);
+    }
+
+    & .cbp-external-footer__social {
+      flex-grow: 1;
+      padding-left: var(--cbp-space-4x);
+    }
+  }
+
+  .cbp-external-footer > .cbp-footer__info {
+    display: grid;
+    grid-template-columns: 0.75fr 1fr;
+  }
+
+  .cbp-external-footer__links {
+    column-count: 2;
+    margin-top: var(--cbp-space-2x);
+  }
+
+  // Apply negative margin-top to fit mockups
+  .cbp-external-footer__ntas {
+    margin-top: -8.625rem;
+  }
+}
+
+@media (min-width: $cbp-breakpoint-lg) {
+  .cbp-external-footer > .cbp-footer__info {
+    grid-template-columns: auto 1fr auto;
+    column-gap: var(--cbp-space-12x);
+  }
+
+  .cbp-external-footer__ntas {
+    justify-self: end;
+    margin-top: unset;
+  }
+}
+
+@media (min-width: $cbp-breakpoint-xl) {
+  .cbp-external-footer > section:first-child > .cbp-footer__heading {
+    padding-left: var(--cbp-space-11x);
+  }
+
+  .cbp-external-footer__links {
+    column-count: 3;
+  }
+}
