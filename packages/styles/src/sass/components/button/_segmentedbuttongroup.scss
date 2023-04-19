@@ -13,6 +13,7 @@
     border-color: var(--cbp-color-interactive-neutral-dark);
     border-width: var(--cbp-border-size-md) calc(var(--cbp-border-size-md) / 2);
     border-radius: 0;
+    color: var(--cbp-color-text-darker);
     min-height: 44px;
 
     &:first-child {
