@@ -5,6 +5,7 @@ class Banner {
   constructor(component) {
     this.banner = component;
     this.dismiss = component.querySelector('button');
+    this.toggleControl = component.querySelector('.cbp-banner__toggle');
     this.content = component.querySelector('.cbp-banner__content');
 
     this.dismiss.addEventListener('click', () => {
@@ -17,14 +18,16 @@ class Banner {
   }
 
   toggle(content) {
-    content.classList.toggle('banner-active')
+    content.classList.toggle('banner-active');
+
+    if( this.toggleControl.hasAttribute('aria-expanded') && this.toggleControl.getAttribute('aria-expanded')  === "true" ){
+      this.toggleControl.setAttribute('aria-expanded','false');
+    }
+    else {
+      this.toggleControl.setAttribute('aria-expanded','true');
+    }
   }
 }
-
-/**
- * TODO: Combine code for accordion and USA banner since they have similar functionality. 
- */
-
 
 
 export default Banner;

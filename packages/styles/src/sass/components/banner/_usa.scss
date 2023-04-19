@@ -1,31 +1,28 @@
-//@use '../../base/colors' as *;
 @use '../../grid/breakpoints' as *;
 
+:root {
+  --cbp-usa-banner-color: var(--cbp-color-text-lightest);
+  --cbp-usa-banner-background-color: var(--cbp-color-base-neutral-darkest);
+}
+
+[data-variant=light] {
+  --cbp-usa-banner-color: var(--cbp-color-text-darker);
+  --cbp-usa-banner-background-color: var(--cbp-color-base-neutral-lighter);
+}
+
 .cbp-banner {
-  background-color: var(--cbp-color-base-neutral-darkest);
-  width: 100%;
+  position: relative;
+  color: var(--cbp-usa-banner-color);
+  background-color: var(--cbp-usa-banner-background-color);
+}
 
-  &__title {
-    align-items: center;
-    display: flex;
-    height: 52px;
-
-    & > img {
-      align-self: baseline;
-      height: 11px;
-      margin-right: 8px;
-      margin-top: 11px;
-      width: 16px;
-    }
-
-    & > div > span {
-      display: block;
-      color: var(--cbp-color-text-lightest);
-      font-size: 0.889rem;
-      font-weight: 500;
-      line-height: 1.25;
-    }
-  }
+.cbp-banner__title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--cbp-space-2x);
+  padding: var(--cbp-space-1x) 0;
+  font-size: 0.8rem;
 }
 
 .cbp-banner__toggle {
@@ -33,14 +30,22 @@
   border: 0;
   color: var(--cbp-color-interactive-neutral-light);
   cursor: pointer;
-  font-size: 0.889rem;
-  font-weight: 500;
   padding: 0;
   text-decoration: underline;
 
-  & > i {
-    margin-left: 6px;
+  .cbp-usa-banner__dismiss {
+    display: none;
+  }
+
+  & > span > i {
+    position: relative;
+    margin-left: var(--cbp-space-1x);
     text-decoration: none;
+  }
+
+  &[aria-expanded='true'] span > i {
+    transform: rotate(180deg);
+    top: -2px;
   }
 
   &:hover {
@@ -49,100 +54,90 @@
 
   &:focus {
     color: var(--cbp-color-interactive-focus-light);
-    outline: 2px solid var(--cbp-color-interactive-focus-light);
+    outline: var(--cbp-border-size-md) solid
+      var(--cbp-color-interactive-focus-light);
     outline-offset: 2px;
   }
 }
 
 .cbp-banner__content {
   display: none;
-  background-color: var(--cbp-color-base-neutral-darkest);
-  color: var(--cbp-color-text-lightest);
-  height: 0;
-  padding: 12px 20px;
-  
+  background-color: var(--cbp-usa-banner-background-color);
+  color: var(--cbp-usa-banner-color);
+  max-width: 64rem;
+  line-height: 1.6;
+  margin: var(--cbp-space-6x) 0;
+
   & > div {
     display: flex;
-
-    &:first-child {
-      margin-bottom: 32px;
-    }
+    flex-basis: 20rem;
+    flex-grow: 1;
+    gap: var(--cbp-space-3x);
+    padding: 0 var(--cbp-space-3x);
+    margin-bottom: 32px;
 
     & > i {
-      align-items: center;
-      border: 2px solid var(--cbp-color-info-light);
-      border-radius: 50%;
-      color: var(--cbp-color-info-light);
       display: flex;
-      font-size: 20px;
       flex-shrink: 0;
-      height: 52px;
+      align-items: center;
       justify-content: center;
+      height: 52px;
       width: 52px;
-    }
-
-    & > div {
-      padding-left: 12px;
+      border: var(--cbp-border-size-md) solid var(--cbp-color-info-light);
+      border-radius: var(--cbp-border-radius-pill);
+      color: var(--cbp-color-info-light);
+      font-size: var(--cbp-space-5x);
     }
 
     & > div > h6 {
-      font-weight: 700;
-      line-height: 1.25;
-    }
-
-    & > div > p {
-      font-weight: 400;
-      font-size: 1rem;
-      line-height: 1.25;
+      color: var(--cbp-usa-banner-color);
+      font-size: inherit;
+      line-height: inherit;
     }
   }
 }
 
 .banner-active {
-  display: block;
-  //height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-// TODO: This can all be done with flexbox and no media queries
-@media only screen and (min-width : 473px) { // Text appears as one line at this breakpoint
-  .cbp-banner__title {
-    align-items: center;
-    height: 32px;
-
-    & > img {
-      margin-top: 10px;
-    }
-
-    & > div {
-      margin-top: unset;
-    }
-
-    & > div > span {
-      display: initial;
-    }
-
-    & > div > span > button {
-      margin-left: 2px;
-    }
+/* This goes against mobile-first, but since all the heavy lifting is at the small size, 
+    this makes more sense and reduces the amount of CSS to overwrite it at the larger size.
+*/
+@media (max-width: 39.99em) {
+  .cbp-banner__title:has(.cbp-banner__toggle[aria-expanded='true']) {
+    padding-right: 3rem;
   }
 
-  .cbp-banner__content {
-    display: none;
-    height: 0;
+  .cbp-banner__toggle[aria-expanded='true'] {
+    position: absolute;
+    width: 100%;
+    min-height: 3rem;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    margin-left: auto;
+    outline-offset: 0;
 
-    & > div {
-      width: 468px;
-
-      &:first-child {
-        margin-bottom: 0;
-        padding-right: 24px;
-      }
+    span {
+      position: absolute;
+      left: -999em;
+      right: auto;
     }
-  }
 
-  .banner-active {
-    display: flex;
-    justify-items: flex-start;
-    height: fit-content;
+    .cbp-usa-banner__dismiss {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 3rem;
+      width: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cbp-color-interactive-primary-base);
+      background-color: var(--cbp-color-base-neutral-light);
+      font-size: 2rem;
+    }
   }
 }
