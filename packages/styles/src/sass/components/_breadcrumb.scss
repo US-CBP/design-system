@@ -1,6 +1,6 @@
 //@use '../base/colors' as *;
 // @use 'link' as *;
-@use 'button' as *;
+// @use 'button' as *;
 
 .cbp-breadcrumb {
   align-items: center;
@@ -57,9 +57,9 @@
 }
 
 .cbp-breadcrumb__btn {
-  @extend .cbp-btn;
-  @extend .cbp-btn__square; 
-  @extend .cbp-btn__square-primary--ghost;
+  // @extend .cbp-btn;
+  // @extend .cbp-btn__square; 
+  // @extend .cbp-btn__square-primary--ghost;
 }
 
 /* Header (Might not be part of actual breadcrumb */

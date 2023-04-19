@@ -1,65 +1,162 @@
 export default {
   title: 'Patterns/Button',
-  argType: {
-    className: { control: 'text' }
+  parameters: {
+    layout: 'centered',
   },
+  argTypes: {
+    label: {
+      name: 'Button Label',
+      description: 'Label text in the `<button>` element and used to describe the action when clicked.',
+      control: 'text'
+    },
+    square: {
+      name: 'Square Button',
+      description: 'Square button type holds an icon only with no text. `aria-label` attribute will need to be added to the `<button>` element for accessibility.',
+      control: 'boolean'
+    },
+    disabled: {
+      name: 'Disabled',
+      description: 'When `[disabled="true"]` attribute is present, specifies that the button should be disabled. A disabled button is unusable and un-clickable.',
+      control: 'boolean'
+    }
+  }
 };
 
-const Template = ({ className }) => {
-  return `
-    <button class="${className}">
+const setBtnType = (color, type) => {
+  const btnColor = `cbp-btn__${color}`
+
+  if (type) {
+    return `${btnColor}-${type}`
+  }
+
+  return btnColor;
+}
+
+const Template = ({ square, color, type, label, disabled }) => (
+  `
+    <button
+      class="${square ? 'cbp-btn-square' : 'cbp-btn'} ${setBtnType(color, type)}"
+      type="button"
+      ${disabled ? "disabled='true'" : ''}
+    >
       <i class="fas fa-clipboard-check"></i>
-      vet passenger
+      ${square ? '' : label}
     </button>
-  `;
-};
+  `
+);
+
+const FloatingActionTemplate = ({ color, disabled }) => (
+  `
+    <button 
+      class="cbp-btn cbp-btn__${color}-float"
+      type="button"
+      ${disabled ? "disabled='true'" : ''}
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  `
+)
 
 export const Primary = Template.bind({});
 Primary.args = {
-  className: 'cbp-btn cbp-btn__primary'
+  color: 'primary',
+  type: '',
+  label: 'Primary',
+  square: false
 };
-
-export const PrimaryOutline = Template.bind({});
-PrimaryOutline.args = {
-  className: 'cbp-btn cbp-btn__primary--outline'
-};
-
-export const PrimaryGhost = Template.bind({});
-PrimaryGhost.args = {
-  className: 'cbp-btn cbp-btn__primary--ghost'
-};
+Primary.argTypes = {
+  color: {
+    table: {
+      disable: true
+    }
+  },
+  type: {
+    name: 'Button Type',
+    description: 'Displays button type in the overall button hierarchy. Available options are: `Solid (empty option)`, `Outline`, `Ghost`, and `Call-to-Action (CTA)`.',
+    control: 'select',
+    options: [
+      '',
+      'outline',
+      'ghost',
+      'cta',
+    ],
+  }
+}
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  className: 'cbp-btn cbp-btn__secondary'
+  color: 'secondary',
+  type: '',
+  label: 'Secondary',
+  square: false
 };
-
-export const SecondaryOutline = Template.bind({});
-SecondaryOutline.args = {
-  className: 'cbp-btn cbp-btn__secondary--outline'
-};
-
-export const SecondaryGhost = Template.bind({});
-SecondaryGhost.args = {
-  className: 'cbp-btn cbp-btn__secondary--ghost'
-};
+Secondary.argTypes = {
+  color: {
+    table: {
+      disable: true
+    }
+  },
+  type: {
+    name: 'Button Type',
+    description: 'Displays button type in the overall button hierarchy. Available options are: `Solid (empty option)`, `Outline` and `Ghost`.',
+    control: 'select',
+    options: [
+      '',
+      'outline',
+      'ghost'
+    ],
+  }
+}
 
 export const Danger = Template.bind({});
 Danger.args = {
-  className: 'cbp-btn cbp-btn__danger'
+  color: 'danger',
+  type: '',
+  label: 'Danger',
+  square: false
 };
+Danger.argTypes = {
+  color: {
+    control: { type: 'text' },
+    table: {
+      disable: true
+    }
+  },
+  type: {
+    name: 'Button Type',
+    description: 'Displays button type in the overall button hierarchy. Available options are: `Solid (empty option)`, `Outline` and `Ghost`.',
+    control: 'select',
+    options: [
+      '',
+      'outline',
+      'ghost',
+    ],
+  }
+}
 
-export const DangerOutline = Template.bind({});
-DangerOutline.args = {
-  className: 'cbp-btn cbp-btn__danger--outline'
+export const FloatingActionButton = FloatingActionTemplate.bind({});
+FloatingActionButton.args = {
+  color: 'primary'
 };
-
-export const DangerGhost = Template.bind({});
-DangerGhost.args = {
-  className: 'cbp-btn cbp-btn__danger--ghost'
-};
-
-export const CTAButton = Template.bind({});
-CTAButton.args = {
-  className: 'cbp-btn cbp-btn__cta'
-};
+FloatingActionButton.argTypes = {
+  color: {
+    name: 'Color',
+    description: 'The floating action button is reserved for actions that must be accessible above all other content because of the nature of what they do.',
+    control: 'radio',
+    options: [
+      'primary',
+      'secondary'
+    ]
+  },
+  label: {
+    table: {
+      disable: true
+    }
+  },
+  square: {
+    table: {
+      disable: true
+    }
+  }
+}
+FloatingActionButton.storyName = 'Floating Action';

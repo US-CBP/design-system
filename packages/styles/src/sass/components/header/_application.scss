@@ -1,4 +1,4 @@
-@use '../button/states' as *;
+// @use '../button/states' as *;
 @use '../drawer/hamburger' as *;
 @use '../../tokens/breakpoints' as *;
 
@@ -72,7 +72,7 @@
     }
 
     &:focus {
-      @include btn-focus;
+      // @include btn-focus;
       border-bottom: 0;
     }
 

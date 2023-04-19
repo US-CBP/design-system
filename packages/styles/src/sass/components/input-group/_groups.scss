@@ -1,6 +1,6 @@
 //@use '../../base/colors' as *;
 @use '../form/general' as *;
-@use '../button' as *;
+// @use '../button' as *;
 
 .cbp-field-group {
   display: flex;
@@ -20,8 +20,8 @@
   }
 
   & > button {
-    @extend .cbp-btn;
-    @extend .cbp-btn__secondary;
+    // @extend .cbp-btn;
+    // @extend .cbp-btn__secondary;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     display: inline-block;
@@ -35,9 +35,9 @@
   }
 
   & > .square {
-    @extend .cbp-btn;
-    @extend .cbp-btn__square;
-    @extend .cbp-btn__square-secondary;
+    // @extend .cbp-btn;
+    // @extend .cbp-btn__square;
+    // @extend .cbp-btn__square-secondary;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     margin-left: -2px;
@@ -51,11 +51,11 @@
 
 .cbp-field-group--error {
   & > button {
-    @extend .cbp-btn__square-danger;
+    // @extend .cbp-btn__square-danger;
   }
 
   & > .square {
-    @extend .cbp-btn__square-danger;
+    // @extend .cbp-btn__square-danger;
   }
 }
 
