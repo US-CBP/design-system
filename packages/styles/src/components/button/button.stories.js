@@ -11,7 +11,7 @@ export default {
     },
     square: {
       name: 'Square Button',
-      description: 'Square button type holds an icon only with no text. `aria-label` attribute will need to be added to the `<button>` element for accessibility.',
+      description: 'Square button type holds an icon only with no text. `aria-label` attribute will need to be added to the `<button>` element for accessibility. Styling not applied to **CTA** Button Type',
       control: 'boolean'
     },
     disabled: {
@@ -38,6 +38,7 @@ const Template = ({ square, color, type, label, disabled }) => (
       class="${square ? 'cbp-btn-square' : 'cbp-btn'} ${setBtnType(color, type)}"
       type="button"
       ${disabled ? "disabled='true'" : ''}
+      ${square ? "aria-label='accessible-label'" : ''}
     >
       <i class="fas fa-clipboard-check"></i>
       ${square ? '' : label}
@@ -50,6 +51,7 @@ const FloatingActionTemplate = ({ color, disabled }) => (
     <button 
       class="cbp-btn cbp-btn__${color}-float"
       type="button"
+      aria-label="back to top"
       ${disabled ? "disabled='true'" : ''}
     >
       <i class="fas fa-arrow-up"></i>

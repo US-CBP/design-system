@@ -2,6 +2,7 @@
 
 .cbp-btn__primary {
   background-color: var(--cbp-color-interactive-primary-dark);
+  color: var(--cbp-color-text-lightest);
 
   &:hover {
     background-color: var(--cbp-color-interactive-primary-darker);

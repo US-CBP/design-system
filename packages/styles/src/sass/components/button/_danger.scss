@@ -2,6 +2,7 @@
 
 .cbp-btn__danger {
   background-color: var(--cbp-color-danger-base);
+  color: var(--cbp-color-text-lightest);
 
   &:hover {
     background-color: var(--cbp-color-danger-dark);
