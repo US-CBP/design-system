@@ -19,7 +19,7 @@
 .cbp-banner__title {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: var(--cbp-space-2x);
   padding: var(--cbp-space-1x) 0;
   font-size: 0.8rem;
@@ -83,10 +83,17 @@
       justify-content: center;
       height: 52px;
       width: 52px;
-      border: var(--cbp-border-size-md) solid var(--cbp-color-info-light);
+      border-width: var(--cbp-border-size-md);
+      border-style: solid;
+      border-color: var(--cbp-color-info-base);
       border-radius: var(--cbp-border-radius-pill);
-      color: var(--cbp-color-info-light);
+      color: var(--cbp-color-info-base);
       font-size: var(--cbp-space-5x);
+    }
+
+    & > i.fa-lock {
+      color: var(--cbp-color-green-warm-40);
+      border-color: var(--cbp-color-green-warm-40);
     }
 
     & > div > h6 {
