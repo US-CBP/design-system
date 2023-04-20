@@ -56,7 +56,7 @@ const SecurityBannerTemplate = () => {
 
 const UsaBannerTemplate = () => {
   return `
-    <section aria-label="Official website of the United States government" data-variant="light">
+    <section aria-label="Official website of the United States government">
       <header class="cbp-banner">
         <div class="cbp-grid-container cbp-banner__title">
           <img src="../assets/images/us_flag_small.png" height="11" width="16" alt="usa logo" />

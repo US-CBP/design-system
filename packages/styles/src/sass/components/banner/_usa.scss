@@ -103,7 +103,7 @@
 }
 
 /* This goes against mobile-first, but since all the heavy lifting is at the small size, 
-    this makes more sense and reduces the amount of CSS to overwrite it at the larger size.
+    this approach makes more sense and reduces the amount of CSS to overwrite it at the larger size.
 */
 @media (max-width: 39.99em) {
   .cbp-banner__title:has(.cbp-banner__toggle[aria-expanded='true']) {
