@@ -4,12 +4,10 @@ module.exports = {
     "../src/**/*.stories.@(js|jsx|ts|tsx)"
   ],
   "addons": [
-    "@whitespace/storybook-addon-html",
     {
       name: "@storybook/addon-essentials",
       options: {
         backgrounds: false,
-        docs: false,
         measure: false,
         outline: false,
       }
@@ -24,6 +22,7 @@ module.exports = {
     },
     "@storybook/addon-interactions",
     "@storybook/addon-links",
+    "@whitespace/storybook-addon-html",
   ],
   "staticDirs": [
     "../dist",
