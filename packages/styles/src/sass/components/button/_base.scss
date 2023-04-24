@@ -13,14 +13,9 @@
     margin-right: var(--cbp-space-2x);
   }
 
-  &:hover {
-    font-weight: var(--cbp-font-weight-bold);
-  }
-
   &:focus {
     background: var(--cbp-color-interactive-focus-dark);
     color: var(--cbp-color-text-lightest);
-    font-weight: var(--cbp-font-weight-bold);
     outline: var(--cbp-border-size-sm) solid var(--cbp-color-white);
     outline-offset: calc(-1 * var(--cbp-space-1x));
   
