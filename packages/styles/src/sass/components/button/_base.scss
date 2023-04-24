@@ -4,7 +4,7 @@
   border-radius: var(--cbp-border-radius-soft);
   cursor: pointer;
   font-weight: var(--cbp-font-weight-medium);
-  letter-spacing: 0.068em; // Replace with CSS Variables after all letter-spacing sizes confirmed
+  letter-spacing: var(--cbp-letter-spacing-loose); // Replace with CSS Variables after all letter-spacing sizes confirmed
   padding: 0.625rem var(--cbp-space-3x);
   text-transform: uppercase;
   transition: all var(--cbp-motion-duration-shorter);
