@@ -43,7 +43,7 @@ const Template = ({ square, color, fill, label, disabled, ariaLabel, type }) => 
       class="${square ? 'cbp-btn-square' : 'cbp-btn'} ${setBtnFill(color, fill)}"
       type=${type}
       ${disabled ? "disabled='true'" : ''}
-      ${square ? 'aria-label=' + ariaLabel : ''}
+      ${square ? `aria-label=${ariaLabel}` : ''}
     >
       <i class="fas fa-clipboard-check"></i>
       ${square ? '' : label}
