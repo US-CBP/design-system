@@ -51,7 +51,10 @@
 
 .cbp-btn-square {
   @extend .cbp-btn;
-  padding: 0.625rem 0.797rem;
+  padding: unset;
+  letter-spacing: unset;
+  height: 2.25rem;
+  width: 2.25rem;
 
   & > i {
     margin-right: 0;

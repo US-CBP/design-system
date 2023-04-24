@@ -1,22 +1,19 @@
 # Button
 
-### Types
-
-**Shape (_Square?_)**
+**Variants**
 - Regular
 - Square
+- Floating Action
 
 **Color**
 - Primary
 - Secondary
 - Danger
 
-**Type**
+**Fill**
 - Solid
 - Outline
 - Ghost
-- Floating Action
-- *Segmented* (Single/Multiple Select)
 
 ### Components Affected
 
@@ -26,4 +23,3 @@
 4. File Upload (Button Focus)
 5. Drawer (Button Focus)
 6. Banner (`_mixin.scss`)
-7. Segemented Buttons

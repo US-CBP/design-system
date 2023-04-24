@@ -6,14 +6,14 @@
 
 ### Functional Requirements
 
-- **Inline Text Link:** used when a link needs to be embedded in a chunk of text. These links These links should lead to toher pages or applications.
-- **Definition Text Link:** used when the developer wants to give more informatoin about a term or acronym and can be used in conjuction with an `<abbr>` tag. These links should lead to other pages or applications. 
+- **Inline Text Link:** used when a link needs to be embedded in a chunk of text. These links should lead to other pages or applications.
+- **Definition Text Link:** used when the developer wants to give more information about a term or acronym and can be used in conjunction with an `<abbr>` tag. These links should lead to other pages or applications. 
 
 ### Accessibility 
 
 - It is **_NOT RECOMMENDED_** to use `aria-disabled=true` on an element with an `href` attribute.
-- HTML does now allow for the use of the `disabled` attribute on a hyperlink, `aria-disabled=true` communicates the hyperlink as being disabled to assisstive technologies but does not actually disable the element.
-- Most effective way to communicate and actually disable a hyperlink would be to remove the `href` from the `<a>` eleemtn, creating a placeholder. ARIA can be applied to this placeholder link to communicate the lement's inteded role and state.
+- HTML does not allow for the use of the `disabled` attribute on a hyperlink, `aria-disabled=true` communicates the hyperlink as being disabled to assistive technologies but does not actually disable the element.
+- Most effective way to communicate and actually disable a hyperlink would be to remove the `href` from the `<a>` element, creating a placeholder. ARIA can be applied to this placeholder link to communicate the element's intended role and state.
 
 ### References
 
