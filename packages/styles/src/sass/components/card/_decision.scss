@@ -18,8 +18,8 @@
   & > a[href] {
     @extend .cbp-btn;
     border-radius: 0;
-    padding-top: var(--cbp-space-3x);
-    padding-bottom: var(--cbp-space-3x);
+    padding: var(--cbp-space-3x) 0;
+    text-align: center;
     text-decoration: none;
     width: 100%;
   }
