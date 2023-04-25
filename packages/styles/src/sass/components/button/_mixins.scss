@@ -46,3 +46,20 @@
     }
   }
 }
+
+@mixin btn-active-solid-pseudo($darkMode: false) {
+  @if $darkMode {
+    &:active {
+      background-color: var(--cbp-color-interactive-active-light);
+      border-color: var(--cbp-color-interactive-active-light);
+      color: var(--cbp-color-text-darkest);
+    }
+  }
+  @else {
+    &:active {
+      background-color: var(--cbp-color-interactive-active-dark);
+      border-color: var(--cbp-color-interactive-active-dark);
+      font-style: italic;
+    }
+  }
+}

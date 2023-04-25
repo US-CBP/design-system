@@ -4,25 +4,10 @@ export default {
     layout: 'centered',
   },
   argTypes: {
-    label: {
-      name: 'Button Label',
-      description: 'Label text in the `<button>` element and used to describe the action when clicked.',
-      control: 'text'
-    },
-    square: {
-      name: 'Square Button',
-      description: 'Square button type holds an icon only with no text. `aria-label` attribute will need to be added to the `<button>` element for accessibility. Styling not applied to **CTA** Button Type',
-      control: 'boolean'
-    },
     disabled: {
       name: 'Disabled',
       description: 'When `[disabled="true"]` attribute is present, specifies that the button should be disabled. A disabled button is unusable and un-clickable.',
       control: 'boolean'
-    },
-    ariaLabel: { 
-      name: 'Aria Label Attribute',
-      description: 'When a button displays an icon without a label, `aria-label` should be set to define the accessible label.',
-      control: 'text'
     }
   }
 };
@@ -37,16 +22,16 @@ const setBtnFill = (color, fill) => {
   }
 }
 
-const Template = ({ square, color, fill, label, disabled, ariaLabel, type }) => (
+const Template = ({ variant, color, fill, label, disabled, type, ariaLabel }) => (
   `
     <button
-      class="${square ? 'cbp-btn-square' : 'cbp-btn'} ${setBtnFill(color, fill)}"
+      class="${variant === 'default' ? 'cbp-btn' : 'cbp-btn-square'} ${setBtnFill(color, fill)}"
       type=${type}
       ${disabled ? "disabled='true'" : ''}
-      ${square ? `aria-label=${ariaLabel}` : ''}
+      ${variant === 'default' ? '' : 'aria-label=' + ariaLabel}
     >
       <i class="fas fa-clipboard-check"></i>
-      ${square ? '' : label}
+      ${variant === 'default' ? label : ''}
     </button>
   `
 );
@@ -64,17 +49,41 @@ const FloatingActionTemplate = ({ color, disabled, ariaLabel }) => (
   `
 )
 
+const CTATemplate = ({ label, disabled, type }) => (
+  `
+    <button
+      class="cbp-btn-cta cbp-btn__primary"
+      type=${type}
+      ${disabled ? "disabled='true'" : ''}
+    >
+      <i class="fas fa-clipboard-check"></i>
+      ${label}
+    </button>
+  `
+);
+
 export const Default = Template.bind({});
 Default.args = {
+  variant: 'default',
   color: 'primary',
   fill: 'solid',
   label: 'Default',
-  square: false,
   type: 'button',
   disabled: false,
   ariaLabel: ''
 };
 Default.argTypes = {
+  variant: {
+    name: 'Button Variant',
+    description: 'Choose button variant',
+    control: 'radio',
+    options: ['default', 'square']
+  },
+  label: {
+    name: 'Button Label',
+    description: 'Label text in the `<button>` element and used to describe the action when clicked.',
+    control: 'text'
+  },
   color: {
     name: 'Button Color',
     description: '`primary` is generally the dominant action among their peer buttons, `secondary` is the most common to appear but is not the dominant action over its peers, `danger` can indicate an action that cannot easily be undone.',
@@ -87,13 +96,12 @@ Default.argTypes = {
   },
   fill: {
     name: 'Button Fill',
-    description: 'Displays button fill in the overall button hierarchy. Available options are: `Solid`, `Outline`, `Ghost`, and `Call-to-Action (CTA)` (Only available in `primary` color).',
+    description: 'Displays button fill in the overall button hierarchy. Available options are: `Solid`, `Outline` and `Ghost`.',
     control: 'select',
     options: [
       'solid',
       'outline',
-      'ghost',
-      'cta',
+      'ghost'
     ],
   },
   type: {
@@ -106,6 +114,11 @@ Default.argTypes = {
       'reset',
       'button'
     ]
+  },
+  ariaLabel: { 
+    name: 'Aria Label Attribute',
+    description: 'When a button displays an icon without a label, `aria-label` should be set to define the accessible label.',
+    control: 'text'
   }
 }
 
@@ -125,15 +138,24 @@ FloatingActionButton.argTypes = {
       'secondary'
     ]
   },
-  label: {
-    table: {
-      disable: true
-    }
-  },
-  square: {
-    table: {
-      disable: true
-    }
+  ariaLabel: { 
+    name: 'Aria Label Attribute',
+    description: 'When a button displays an icon without a label, `aria-label` should be set to define the accessible label.',
+    control: 'text'
   }
 }
 FloatingActionButton.storyName = 'Floating Action';
+
+export const CTAButton = CTATemplate.bind({});
+CTAButton.args = {
+  label: 'Call-To-Action',
+  disabled: false
+};
+CTAButton.argTypes = {
+  label: {
+    name: 'Button Label',
+    description: 'Label text in the `<button>` element and used to describe the action when clicked. There should be no more than one of these on any given page, **CTA buttons are not part of a group and should be the only option given**.',
+    control: 'text'
+  }
+};
+CTAButton.storyName = 'Call-To-Action';

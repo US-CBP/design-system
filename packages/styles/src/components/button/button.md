@@ -1,9 +1,10 @@
 # Button
 
 **Variants**
-- Regular
+- Default
 - Square
 - Floating Action
+- Call-to-Action
 
 **Color**
 - Primary

@@ -9,6 +9,7 @@
     background-color: var(--cbp-color-interactive-neutral-darker);
     border-color: var(--cbp-color-interactive-neutral-darker);
   }
+  @include btn-active-solid-pseudo;
 }
 
 .cbp-btn__secondary-outline {
@@ -87,6 +88,8 @@
       background-color: var(--cbp-color-interactive-neutral-light);
       border-color: var(--cbp-color-interactive-neutral-light);
     }
+
+    @include btn-active-solid-pseudo($darkMode: true);
   }
 
   & .cbp-btn__secondary-outline {

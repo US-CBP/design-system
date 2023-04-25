@@ -9,6 +9,8 @@
     background-color: var(--cbp-color-danger-dark);
     border-color: var(--cbp-color-danger-dark);
   }
+
+  @include btn-outline-pseudo;
 }
 
 .cbp-btn__danger-outline {
@@ -63,6 +65,8 @@
       background-color: var(--cbp-color-danger-base);
       border-color: var(--cbp-color-danger-base);
     }
+
+    @include btn-outline-pseudo($darkMode: true);
   }
 
   & .cbp-btn__danger-outline {

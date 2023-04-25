@@ -17,6 +17,7 @@
 
   &:focus {
     background: var(--cbp-color-interactive-focus-dark);
+    border-color: var(--cbp-color-interactive-focus-dark);
     border-width: var(--cbp-border-size-md);
     border-style: solid;
     color: var(--cbp-color-text-lightest);
@@ -25,6 +26,7 @@
   
     &:hover {
       background-color: var(--cbp-color-interactive-focus-dark);
+      border-color: var(--cbp-color-interactive-focus-dark);
       color: var(--cbp-color-text-lightest);
     }
   }
@@ -32,18 +34,21 @@
   // TODO: why are disabled buttons interactive? Ask Jeremy
   &:disabled {
     background-color: var(--cbp-color-interactive-disabled-light);
+    border-color: var(--cbp-color-interactive-disabled-light);
     color: var(--cbp-color-interactive-disabled-dark);
     font-style: italic;
   
     // font-weight property does not apply in :disabled pseudo-class
     &:hover {
       background-color: var(--cbp-color-interactive-disabled-dark);
+      border-color: var(--cbp-color-interactive-disabled-dark);
       color: var(--cbp-color-text-darkest);
     }
   }
 
   &:active {
     background-color: var(--cbp-color-interactive-active-dark);
+    border-color: var(--cbp-color-interactive-active-dark);
     font-style: italic;
   }
 }
@@ -60,40 +65,50 @@
   }
 }
 
-[data-cbp-theme="dark"] .cbp-btn {
-  &:hover {
-    color: var(--cbp-color-text-lightest);
-  }
+.cbp-btn-cta {
+  @extend .cbp-btn;
+  font-size: var(--cbp-font-size-heading-sm);
+  padding: 1.063rem var(--cbp-space-4x);
 
-  &:focus {
-    background-color: var(--cbp-color-interactive-focus-light);
-    border-color: var(--cbp-color-interactive-focus-light);
-    color: var(--cbp-color-text-darkest);
-    outline: var(--cbp-border-size-md) solid var(--cbp-color-black);
-    outline-offset: calc(-1 * var(--cbp-space-1x));
-
-    &:hover {
-      background-color: var(--cbp-color-interactive-focus-light);
-      color: var(--cbp-color-text-darkest);
-    }
-  }
-
-  &:disabled {
-    background-color: var(--cbp-color-interactive-disabled-dark);
-    color: var(--cbp-color-interactive-disabled-light);
-
-    &:hover {
-      background: var(--cbp-color-interactive-disabled-light);
-      color: var(--cbp-color-text-darker);
-    }
-  }
-
-  &:active {
-    background-color: var(--cbp-color-interactive-active-light);
-    border-color: var(--cbp-color-interactive-active-light);
-    color: var(--cbp-color-text-darkest);
+  & > i {
+    margin-right: var(--cbp-space-3x);
   }
 }
+
+[data-cbp-theme='dark'] {
+  .cbp-btn {
+    &:hover {
+      color: var(--cbp-color-text-lightest);
+    }
+
+    &:focus {
+      background-color: var(--cbp-color-interactive-focus-light);
+      border-color: var(--cbp-color-interactive-focus-light);
+      color: var(--cbp-color-text-darkest);
+      outline: var(--cbp-border-size-md) solid var(--cbp-color-black);
+      outline-offset: calc(-1 * var(--cbp-space-1x));
+
+      &:hover {
+        background-color: var(--cbp-color-interactive-focus-light);
+        border-color: var(--cbp-color-interactive-focus-light);
+        color: var(--cbp-color-text-darkest);
+      }
+    }
+
+    &:disabled {
+      background-color: var(--cbp-color-interactive-disabled-dark);
+      border-color: var(--cbp-color-interactive-disabled-dark);
+      color: var(--cbp-color-interactive-disabled-light);
+
+      &:hover {
+        background-color: var(--cbp-color-interactive-disabled-light);
+        border-color: var(--cbp-color-interactive-disabled-light);
+        color: var(--cbp-color-text-darker);
+      }
+    }
+  }
+}
+
 
 // Ripple Animation on Button Click
 span.ripple {
