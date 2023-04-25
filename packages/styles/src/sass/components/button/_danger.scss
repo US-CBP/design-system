@@ -2,10 +2,12 @@
 
 .cbp-btn__danger {
   background-color: var(--cbp-color-danger-base);
+  border-color: var(--cbp-color-danger-base);
   color: var(--cbp-color-text-lightest);
 
   &:hover {
     background-color: var(--cbp-color-danger-dark);
+    border-color: var(--cbp-color-danger-dark);
   }
 }
 
@@ -27,6 +29,7 @@
 
 .cbp-btn__danger-ghost {
   background-color: transparent;
+  border-color: transparent;
   color: var(--cbp-color-danger-base);
 
   &:hover {
@@ -53,10 +56,12 @@
 [data-cbp-theme="dark"] {
   & .cbp-btn__danger {
     background-color: var(--cbp-color-danger-light);
+    border-color: var(--cbp-color-danger-light);
     color: var(--cbp-color-danger-darker);
   
     &:hover {
       background-color: var(--cbp-color-danger-base);
+      border-color: var(--cbp-color-danger-base);
     }
   }
 
@@ -73,12 +78,12 @@
     @include btn-outline-pseudo($darkMode: true);
   }
 
-  .cbp-btn__primary-ghost {
+  .cbp-btn__danger-ghost {
     color: var(--cbp-color-danger-light);
 
     &:hover {
-      background-color: var(--cbp-color-interactive-primary-darker);
-      color: var(--cbp-color-interactive-primary-lighter);
+      background-color: var(--cbp-color-danger-base);
+      color: var(--cbp-color-text-lightest);
     }
 
     &:disabled {

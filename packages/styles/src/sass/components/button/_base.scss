@@ -1,13 +1,15 @@
 // Base Button CSS
 .cbp-btn {
-  border: 0;
+  border-width: var(--cbp-border-size-md);
+  border-style: solid;
   border-radius: var(--cbp-border-radius-soft);
   cursor: pointer;
   font-weight: var(--cbp-font-weight-medium);
   letter-spacing: var(--cbp-letter-spacing-loose); // Replace with CSS Variables after all letter-spacing sizes confirmed
-  padding: 0.625rem var(--cbp-space-3x);
+  padding: var(--cbp-space-2x) var(--cbp-space-3x);
   text-transform: uppercase;
   transition: all var(--cbp-motion-duration-shorter);
+  min-height: 2.25rem;
 
   & > i {
     margin-right: var(--cbp-space-2x);
@@ -15,6 +17,8 @@
 
   &:focus {
     background: var(--cbp-color-interactive-focus-dark);
+    border-width: var(--cbp-border-size-md);
+    border-style: solid;
     color: var(--cbp-color-text-lightest);
     outline: var(--cbp-border-size-sm) solid var(--cbp-color-white);
     outline-offset: calc(-1 * var(--cbp-space-1x));
@@ -48,8 +52,8 @@
   @extend .cbp-btn;
   padding: unset;
   letter-spacing: unset;
-  height: 2.25rem;
-  width: 2.25rem;
+  min-height: 2.25rem;
+  min-width: 2.25rem;
 
   & > i {
     margin-right: 0;
@@ -63,6 +67,7 @@
 
   &:focus {
     background-color: var(--cbp-color-interactive-focus-light);
+    border-color: var(--cbp-color-interactive-focus-light);
     color: var(--cbp-color-text-darkest);
     outline: var(--cbp-border-size-md) solid var(--cbp-color-black);
     outline-offset: calc(-1 * var(--cbp-space-1x));
@@ -85,6 +90,7 @@
 
   &:active {
     background-color: var(--cbp-color-interactive-active-light);
+    border-color: var(--cbp-color-interactive-active-light);
     color: var(--cbp-color-text-darkest);
   }
 }

@@ -2,10 +2,12 @@
 
 .cbp-btn__secondary {
   background-color: var(--cbp-color-interactive-neutral-dark);
+  border-color: var(--cbp-color-interactive-neutral-dark);
   color: var(--cbp-color-text-lightest);
 
   &:hover {
     background-color: var(--cbp-color-interactive-neutral-darker);
+    border-color: var(--cbp-color-interactive-neutral-darker);
   }
 }
 
@@ -27,6 +29,7 @@
 
 .cbp-btn__secondary-ghost {
   background-color: transparent;
+  border-color: transparent;
   color: var(--cbp-color-interactive-neutral-dark);
 
   &:hover {
@@ -51,6 +54,7 @@
 
 .cbp-btn__secondary-float {
   background-color: var(--cbp-color-interactive-neutral-dark);
+  border-color: var(--cbp-color-interactive-neutral-dark);
   border-radius: var(--cbp-border-radius-circle);
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
   color: var(--cbp-color-text-lightest);
@@ -65,6 +69,7 @@
 
   &:hover {
     background-color: var(--cbp-color-interactive-neutral-darker);
+    border-color: var(--cbp-color-interactive-neutral-darker);
   }
 
   &:active {
@@ -75,10 +80,12 @@
 [data-cbp-theme="dark"] {
   & .cbp-btn__secondary {
     background-color: var(--cbp-color-interactive-neutral-lighter);
+    border-color: var(--cbp-color-interactive-neutral-lighter);
     color: var(--cbp-color-text-darkest);
 
     &:hover {
       background-color: var(--cbp-color-interactive-neutral-light);
+      border-color: var(--cbp-color-interactive-neutral-light);
     }
   }
 
@@ -111,10 +118,12 @@
 
   & .cbp-btn__secondary-float {
     background-color: var(--cbp-color-interactive-neutral-lighter);
+    border-color: var(--cbp-color-interactive-neutral-lighter);
     color: var(--cbp-color-text-darkest);
   
     &:hover {
       background-color: var(--cbp-color-interactive-neutral-light);
+      border-color: var(--cbp-color-interactive-neutral-light);
       color: var(--cbp-color-text-darkest);
     }
   }
