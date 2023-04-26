@@ -63,7 +63,9 @@
   height: 3.5rem;
   font-size: var(--cbp-font-size-heading-xl);
   letter-spacing: unset;
+  position: absolute;
   width: 3.5rem;
+  z-index: var(--cbp-z-index-level-4);
 
   & > i {
     margin-right: 0;

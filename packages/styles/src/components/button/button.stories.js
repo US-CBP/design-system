@@ -156,6 +156,17 @@ CTAButton.argTypes = {
     name: 'Button Label',
     description: 'Label text in the `<button>` element and used to describe the action when clicked. There should be no more than one of these on any given page, **CTA buttons are not part of a group and should be the only option given**.',
     control: 'text'
-  }
+  },
+  type: {
+    name: 'Button Type Attribute',
+    description: 'The `type` attribute sets the default behavior of the button',
+    defaultValue: 'button',
+    control: 'radio',
+    options: [
+      'submit',
+      'reset',
+      'button'
+    ]
+  },
 };
 CTAButton.storyName = 'Call-To-Action';

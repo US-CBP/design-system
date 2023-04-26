@@ -68,7 +68,9 @@
 .cbp-btn-cta {
   @extend .cbp-btn;
   font-size: var(--cbp-font-size-heading-sm);
-  padding: 1.063rem var(--cbp-space-4x);
+  padding-left: var(--cbp-space-4x);
+  padding-right: var(--cbp-space-4x);
+  min-height: 3.25rem;
 
   & > i {
     margin-right: var(--cbp-space-3x);
