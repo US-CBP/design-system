@@ -1,5 +1,5 @@
 //@use '../../base/colors' as *;
-@use '../button/states' as *;
+// @use '../button/states' as *;
 
 @mixin hamburger-menu {
   background-color: transparent;
@@ -23,7 +23,7 @@
   }
 
   &:focus {
-    @include btn-focus;
+    // @include btn-focus;
     border: 0;
   }
 }

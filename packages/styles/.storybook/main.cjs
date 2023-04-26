@@ -9,7 +9,6 @@ module.exports = {
       name: "@storybook/addon-essentials",
       options: {
         backgrounds: false,
-        docs: false,
         measure: false,
         outline: false,
       }
@@ -23,7 +22,7 @@ module.exports = {
       },
     },
     "@storybook/addon-interactions",
-    "@storybook/addon-links",
+    "@storybook/addon-links"
   ],
   "staticDirs": [
     "../dist",

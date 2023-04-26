@@ -1,6 +1,3 @@
-//@use '../base/colors' as *;
-@use './button/states' as *;
-
 .cbp-form__file {
   display: flex;
   align-items: center;
@@ -49,9 +46,7 @@
   outline-offset: -6px;
 }
 
-.cbp-form__file:focus-within > .cbp-btn__secondary {
-  @include btn-focus;
-}
+.cbp-form__file:focus-within > .cbp-btn__secondary {}
 
 .cbp-form__file:focus-within > .cbp-btn__secondary {
   background-color: var(--cbp-color-interactive-focus-dark);
@@ -156,7 +151,6 @@
     }
 
     &:focus {
-      @include btn-focus;
       
       & > i {
         color: var(--cbp-color-interactive-neutral-lighter);
@@ -246,7 +240,6 @@
     }
 
     &:focus {
-      @include btn-focus;
 
       & > i {
         color: var(--cbp-color-interactive-neutral-lighter);

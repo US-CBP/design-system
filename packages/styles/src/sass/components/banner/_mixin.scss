@@ -1,5 +1,5 @@
 //@use '../../base/colors' as *;
-@use '../button' as *;
+// @use '../button' as *;
 
 @mixin banner-info($bg-color) {
   background-color: $bg-color;
@@ -47,7 +47,7 @@
 }
 
 @mixin banner-dismiss($text-color) {
-  @extend .cbp-btn;
-  @extend .cbp-btn__secondary--ghost;
+  // @extend .cbp-btn;
+  // @extend .cbp-btn__secondary--ghost;
   color: $text-color;
 }

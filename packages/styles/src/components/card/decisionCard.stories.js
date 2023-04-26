@@ -67,7 +67,7 @@ const DefaultDecisionCardTemplate = ({ title, actionsLayout, danger }) => {
       <div class="cbp-card__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-circle cbp-margin-right-2x"></i>${title}</h4>
-          <button class="cbp-btn cbp-btn__square cbp-btn__square-secondary--ghost">
+          <button class="cbp-btn-square cbp-btn__secondary-ghost">
             <i class="fas fa-clipboard-check"></i>
           </button>
         </div>
@@ -75,7 +75,7 @@ const DefaultDecisionCardTemplate = ({ title, actionsLayout, danger }) => {
           The card has this passage of example text to emphasize
           truncation and reveal functionality and some other things...
         </p>
-        <button class="cbp-btn cbp-btn__secondary--ghost cbp-margin-top-4x" type="button">
+        <button class="cbp-btn cbp-btn__secondary-ghost cbp-margin-top-4x" type="button">
           <i class="fas fa-angle-down"></i>
           More
         </button>

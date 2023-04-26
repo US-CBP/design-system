@@ -1,0 +1,133 @@
+@use 'mixins' as *;
+
+.cbp-btn__primary {
+  background-color: var(--cbp-color-interactive-primary-dark);
+  border-color: var(--cbp-color-interactive-primary-dark);
+  color: var(--cbp-color-text-lightest);
+
+  &:hover {
+    background-color: var(--cbp-color-interactive-primary-darker);
+    border-color: var(--cbp-color-interactive-primary-darker);
+  }
+
+  @include btn-active-solid-pseudo;
+}
+
+.cbp-btn__primary-outline {
+  background-color: var(--cbp-color-white);
+  border-color: var(--cbp-color-interactive-primary-dark);
+  color: var(--cbp-color-interactive-primary-dark);
+  padding-top: var(--cbp-space-2x);
+  padding-bottom: var(--cbp-space-2x);
+
+  &:hover {
+    background-color: var(--cbp-color-interactive-primary-darker);
+    border-color: var(--cbp-color-interactive-primary-darker);
+    color: var(--cbp-color-text-lightest);
+  }
+
+  @include btn-outline-pseudo;
+}
+
+.cbp-btn__primary-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--cbp-color-interactive-primary-dark);
+
+  &:hover {
+    background-color: var(--cbp-color-interactive-primary-lighter);
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: var(--cbp-color-interactive-disabled-dark);
+
+    &:hover {
+      background-color: var(--cbp-color-interactive-disabled-light);
+      color: var(--cbp-color-text-darker);
+    }
+  }
+
+  &:active {
+    background-color: transparent;
+    color: var(--cbp-color-interactive-active-dark);
+  }
+}
+
+.cbp-btn__primary-float {
+  background-color: var(--cbp-color-interactive-primary-dark);
+  border-color: var(--cbp-color-interactive-primary-dark);
+  border-radius: var(--cbp-border-radius-circle);
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
+  color: var(--cbp-color-text-lightest);
+  height: 3.5rem;
+  font-size: var(--cbp-font-size-heading-xl);
+  letter-spacing: unset;
+  position: absolute;
+  width: 3.5rem;
+  z-index: var(--cbp-z-index-level-4);
+
+  & > i {
+    margin-right: 0;
+  }
+
+  &:hover {
+    background-color: var(--cbp-color-interactive-primary-darker);
+    border-color: var(--cbp-color-interactive-primary-darker);
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+[data-cbp-theme="dark"] {
+  & .cbp-btn__primary {
+    background-color: var(--cbp-color-interactive-primary-base);
+    border-color: var(--cbp-color-interactive-primary-base);
+
+    &:hover {
+      background-color: var(--cbp-color-interactive-primary-dark);
+      border-color: var(--cbp-color-interactive-primary-dark);
+    }
+
+    @include btn-active-solid-pseudo($darkMode: true);
+  }
+
+  & .cbp-btn__primary-outline {
+    background-color: var(--cbp-color-base-neutral-darker);
+    border-color: var(--cbp-color-interactive-primary-light);
+    color: var(--cbp-color-interactive-primary-light);
+
+    &:hover {
+      background-color: var(--cbp-color-interactive-primary-dark);
+      border-color: var(--cbp-color-interactive-primary-dark);
+    }
+
+    @include btn-outline-pseudo($darkMode: true);
+  }
+
+  .cbp-btn__primary-ghost {
+    color: var(--cbp-color-interactive-primary-light);
+
+    &:hover {
+      background-color: var(--cbp-color-interactive-primary-darker);
+      color: var(--cbp-color-interactive-primary-lighter);
+    }
+
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+
+  .cbp-btn__primary-float {
+    background-color: var(--cbp-color-interactive-primary-base);
+    border-color: var(--cbp-color-interactive-primary-base);
+    color: var(--cbp-color-text-lightest);
+  
+    &:hover {
+      background-color: var(--cbp-color-interactive-primary-dark);
+      border-color: var(--cbp-color-interactive-primary-dark);
+    }
+  }
+}
