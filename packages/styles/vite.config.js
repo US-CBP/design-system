@@ -1,6 +1,7 @@
 // vite.config.js
 import { resolve } from 'path'
 import { defineConfig, normalizePath } from 'vite'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
   server: {
@@ -9,7 +10,20 @@ export default defineConfig({
   preview: {
     port: 8080,
   },
-  plugins: [],
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'assets',
+          dest: ''
+        },
+        {
+          src: 'src/sass',
+          dest: ''
+        }
+      ]
+    })
+  ],
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points

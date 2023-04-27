@@ -22,7 +22,8 @@ module.exports = {
       },
     },
     "@storybook/addon-interactions",
-    "@storybook/addon-links"
+    "@storybook/addon-links",
+    '@storybook/addon-a11y'
   ],
   "staticDirs": [
     "../dist",
