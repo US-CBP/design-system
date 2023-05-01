@@ -1,6 +1,4 @@
-//@use '../../base/colors' as *;
-@use '../form/general' as *;
-// @use '../button' as *;
+@use 'mixins' as *;
 
 .cbp-field-group {
   display: flex;

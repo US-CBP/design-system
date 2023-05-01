@@ -1,45 +1,20 @@
-//@use '../../base/colors' as *;
-// @use '../button/index' as *;
-@use 'general' as *;
-
-.cbp-form__group {
-  display: flex;
-  align-items: center;
-
-  & > label {
-    margin-left: 6px;
-  }
-}
-
-.cbp-form-wrapper {
-  display: flex;
-  flex-direction: column;
-  margin: 16px 0;
-}
-
-.cbp-form__control {
-  display: block;
-}
-
-.cbp-form__control--inline {
-  display: flex;
-}
+@use 'mixins' as *;
 
 .cbp-form__label {
   color: var(--cbp-color-text-darkest);
-  font-size: 1rem;
+  display: inline-block;
+  font-size: var(--cbp-font-size-body);
   font-style: italic;
-  font-weight: 700;
-  padding-bottom: 8px;
+  font-weight: var(--cbp-font-weight-bold);
+  margin-bottom: var(--cbp-space-2x);
 }
 
 .cbp-form__description {
   color: var(--cbp-color-text-darkest);
-  font-size: 0.889rem;
+  font-size: var(--cbp-font-size-subhead);
   font-style: italic;
-  font-weight: 500;
-  letter-spacing: 0.3px;
-  padding-bottom: 8px;
+  font-weight: var(--cbp-font-weight-medium);
+  margin-bottom: var(--cbp-space-2x);
 
   &--error {
     color: var(--cbp-color-danger-base);
@@ -52,8 +27,8 @@
 
 .cbp-form__textarea {
   @include base-input;
-  min-height: 108px;
-  padding: 8px;
+  min-height: 6.75rem;
+  padding: var(--cbp-space-2x);
   resize: none;
 }
 

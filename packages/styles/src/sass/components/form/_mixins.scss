@@ -1,0 +1,68 @@
+// Common CSS properties for <input> 
+@mixin base-input {
+  background-color: var(--cbp-color-white);
+  border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-neutral-base);
+  border-radius: var(--cbp-border-radius-soft);
+  color: var(--cbp-color-text-darkest);
+  font-size: var(--cbp-font-size-body);
+  font-weight: var(--cbp-font-weight-regular);
+  letter-spacing: var(--cbp-letter-spacing-regular);
+  min-height: 2.25rem;
+  padding: 0 var(--cbp-space-2x);
+  width: 100%;
+
+  &::placeholder {
+    font-style: italic;
+  }
+
+  &:hover {
+    border-color: var(--cbp-color-interactive-neutral-darker);
+  }
+
+  &:focus {
+    border-color: var(--cbp-color-interactive-focus-dark);
+    outline: 0;
+  }
+
+  &:read-only {
+    background-color: var(--cbp-color-base-neutral-lighter);
+    border-color: var(--cbp-color-interactive-neutral-light);
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus {
+      border-color: var(--cbp-color-interactive-neutral-light);
+    }
+  }
+
+  &:disabled {
+    background-color: var(--cbp-color-interactive-disabled-light);
+    border: var(--cbp-color-interactive-disabled-dark);
+    cursor: pointer;
+
+    &:hover {
+      border: var(--cbp-color-interactive-neutral-darker);
+    }
+
+    &:focus {
+      border: var(--cbp-color-interactive-focus-dark);
+    }
+  }
+
+  &:invalid {
+    background-color: var(--cbp-color-danger-lighter);
+    border-color: var(--cbp-color-danger-base);
+
+    &:focus {
+      border-color: var(--cbp-color-interactive-focus-dark);
+    }
+    
+    &:hover {
+      border-color: var(--cbp-color-danger-dark);
+
+      &:focus {
+        border-color: var(--cbp-color-interactive-focus-dark);
+      }
+    }
+  }
+}
