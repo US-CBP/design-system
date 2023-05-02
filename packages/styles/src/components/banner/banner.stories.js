@@ -56,38 +56,46 @@ const SecurityBannerTemplate = () => {
 
 const UsaBannerTemplate = () => {
   return `
-    <header class="cbp-banner">
-      <div class="cbp-grid-container cbp-banner__title">
-        <img src="../assets/images/us_flag_small.png" alt="usa logo">
-        <div>
-          <span>An official website of the United States government.</span>
-          <button>Here&#39;s how you know.<i class="fas fa-angle-up"></i></button>
+    <section aria-label="Official website of the United States government">
+      <header class="cbp-banner">
+        <div class="cbp-grid-container cbp-banner__title">
+          <img src="../assets/images/us_flag_small.png" height="11" width="16" alt="usa logo" />
+          <div>
+            <span>An official website of the United States government.</span>
+            <button class="cbp-banner__toggle" aria-controls="gov-banner">
+              <span>Here&#39;s how you know<i class="fas fa-angle-down"></i></span>
+              <div class="cbp-usa-banner__dismiss">
+                <i class="fas fa-times"></i>
+              </div>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="cbp-banner__content">
-        <div>
-          <i class="fas fa-landmark"></i>
+        <div class="cbp-banner__content cbp-grid-container" id="gov-banner">
           <div>
-            <h6>Official websites use .gov</h6>
-            <p>A .gov website belongs to an official government organization in the United States.</p>
+            <i class="fas fa-landmark"></i>
+            <div>
+              <strong>Official websites use .gov</strong>
+              <p>A <strong>.gov</strong> website belongs to an official government organization in the United States.</p>
+            </div>
+          </div>
+
+          <div>
+            <i class="fas fa-lock"></i>
+            <div>
+              <strong>Secure .gov websites use HTTPS</strong>
+              <p>A <strong>lock</strong> (<i class="fas fa-lock"></i>) or <strong>https://</strong> means you&#39;ve safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
+            </div>
           </div>
         </div>
-        <div>
-          <i class="fas fa-lock"></i>
-          <div>
-            <h6>Secure .gov websites use HTTPS</h6>
-            <p>A lock (lock) or https:// means you&#39;ve safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
-          </div>
-        </div>
-      </div>
-    </header>
+      </header>
+    </section>
   `;
 };
 
 export const UsaBanner = UsaBannerTemplate.bind({});
 UsaBanner.args = {};
-
+UsaBanner.storyName="USA Banner";
 
 export const InfoBanner = InfoBannerTemplate.bind({});
 InfoBanner.args = {};
