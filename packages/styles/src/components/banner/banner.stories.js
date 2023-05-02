@@ -76,7 +76,7 @@ const UsaBannerTemplate = () => {
             <i class="fas fa-landmark"></i>
             <div>
               <strong>Official websites use .gov</strong>
-              <p>A .gov website belongs to an official government organization in the United States.</p>
+              <p>A <strong>.gov</strong> website belongs to an official government organization in the United States.</p>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ const UsaBannerTemplate = () => {
             <i class="fas fa-lock"></i>
             <div>
               <strong>Secure .gov websites use HTTPS</strong>
-              <p>A lock (<i class="fas fa-lock"></i>) or https:// means you&#39;ve safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
+              <p>A <strong>lock</strong> (<i class="fas fa-lock"></i>) or <strong>https://</strong> means you&#39;ve safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
             </div>
           </div>
         </div>
