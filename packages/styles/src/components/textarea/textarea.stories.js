@@ -1,5 +1,5 @@
 export default {
-  title: 'Patterns/Form/Inputs',
+  title: 'Patterns/Textarea',
   parameters: {
     layout: 'centered',
     html: {
@@ -36,25 +36,7 @@ export default {
   ]
 };
 
-const Template = ({ labelFor }) => `<input type="text" class="cbp-form__input" name="firstName" id=${labelFor} placeholder="Enter first name."> `
-
 const TextAreaTemplate = ({ labelFor }) => `<textarea class="cbp-form__textarea" name="description" id=${labelFor} cols="30" rows="10" placeholder="Enter a description"></textarea>`
-
-const NumericFieldTemplate = ({ labelFor }) => (
-  `
-    <div class="cbp-form__number">
-      <input type="number" name="numeric" id=${labelFor} placeholder="Enter Number of Fish"></input>
-    </div>
-  `
-)
-
-export const TextField = Template.bind({});
-TextField.args = {
-  label: 'First Name',
-  labelFor: 'firstName',
-  inputDescription: 'Required. 250/250 Characters remaining.',
-  errorMessage: 'This field is required.'
-};
 
 export const TextArea = TextAreaTemplate.bind({});
 TextArea.args = {
@@ -62,12 +44,4 @@ TextArea.args = {
   labelFor: 'description',
   inputDescription: 'Required. 500/500 Characters remaining.',
   errorMessage: 'You must enter a description.'
-}
-
-export const NumericField = NumericFieldTemplate.bind({});
-NumericField.args = {
-  label: 'Number of Fish',
-  labelFor: 'numberOfFish',
-  inputDescription: 'Required.',
-  errorMessage: 'This field is required.'
 }
