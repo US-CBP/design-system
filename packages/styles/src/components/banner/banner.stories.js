@@ -71,11 +71,11 @@ const UsaBannerTemplate = () => {
           </div>
         </div>
 
-        <div class="cbp-banner__content" id="gov-banner">
+        <div class="cbp-banner__content cbp-grid-container" id="gov-banner">
           <div>
             <i class="fas fa-landmark"></i>
             <div>
-              <h6>Official websites use .gov</h6>
+              <strong>Official websites use .gov</strong>
               <p>A .gov website belongs to an official government organization in the United States.</p>
             </div>
           </div>
@@ -83,7 +83,7 @@ const UsaBannerTemplate = () => {
           <div>
             <i class="fas fa-lock"></i>
             <div>
-              <h6>Secure .gov websites use HTTPS</h6>
+              <strong>Secure .gov websites use HTTPS</strong>
               <p>A lock (<i class="fas fa-lock"></i>) or https:// means you&#39;ve safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
             </div>
           </div>
