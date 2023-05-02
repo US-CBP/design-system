@@ -21,8 +21,10 @@
   display: flex;
   align-items: baseline;
   gap: var(--cbp-space-2x);
-  padding: var(--cbp-space-1x) 0;
-  font-size: 0.8rem;
+  min-height: var(--cbp-space-8x);
+  padding: var(--cbp-space-2x) 0;
+  font-size: var(--cbp-font-size-subhead);
+  font-weight: var(--cbp-font-weight-medium);
 }
 
 .cbp-banner__toggle {
@@ -87,19 +89,8 @@
       border-style: solid;
       border-color: var(--cbp-color-info-base);
       border-radius: var(--cbp-border-radius-pill);
-      color: var(--cbp-color-info-base);
+      color: var(--cbp-color-info-light);
       font-size: var(--cbp-space-5x);
-    }
-
-    & > i.fa-lock {
-      color: var(--cbp-color-green-warm-40);
-      border-color: var(--cbp-color-green-warm-40);
-    }
-
-    & > div > h6 {
-      color: var(--cbp-usa-banner-color);
-      font-size: inherit;
-      line-height: inherit;
     }
   }
 }
@@ -107,44 +98,4 @@
 .banner-active {
   display: flex;
   flex-wrap: wrap;
-}
-
-/* This goes against mobile-first, but since all the heavy lifting is at the small size, 
-    this approach makes more sense and reduces the amount of CSS to overwrite it at the larger size.
-*/
-@media (max-width: 39.99em) {
-  .cbp-banner__title:has(.cbp-banner__toggle[aria-expanded='true']) {
-    padding-right: 3rem;
-  }
-
-  .cbp-banner__toggle[aria-expanded='true'] {
-    position: absolute;
-    width: 100%;
-    min-height: 3rem;
-    left: 0;
-    bottom: 0;
-    top: 0;
-    margin-left: auto;
-    outline-offset: 0;
-
-    span {
-      position: absolute;
-      left: -999em;
-      right: auto;
-    }
-
-    .cbp-usa-banner__dismiss {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 3rem;
-      width: 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--cbp-color-interactive-primary-base);
-      background-color: var(--cbp-color-base-neutral-light);
-      font-size: 2rem;
-    }
-  }
 }
