@@ -95,6 +95,7 @@ const UsaBannerTemplate = () => {
 
 export const UsaBanner = UsaBannerTemplate.bind({});
 UsaBanner.args = {};
+UsaBanner.storyName="USA Banner";
 
 export const InfoBanner = InfoBannerTemplate.bind({});
 InfoBanner.args = {};

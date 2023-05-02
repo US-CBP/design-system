@@ -5,11 +5,6 @@
   --cbp-usa-banner-background-color: var(--cbp-color-base-neutral-darkest);
 }
 
-[data-variant=light] {
-  --cbp-usa-banner-color: var(--cbp-color-text-darker);
-  --cbp-usa-banner-background-color: var(--cbp-color-base-neutral-lighter);
-}
-
 .cbp-banner {
   position: relative;
   color: var(--cbp-usa-banner-color);
@@ -58,7 +53,7 @@
     color: var(--cbp-color-interactive-focus-light);
     outline: var(--cbp-border-size-md) solid
       var(--cbp-color-interactive-focus-light);
-    outline-offset: 2px;
+    outline-offset: var(--cbp-space-half-x);
   }
 }
 
@@ -76,7 +71,7 @@
     flex-grow: 1;
     gap: var(--cbp-space-3x);
     padding: 0 var(--cbp-space-3x);
-    margin-bottom: 32px;
+    margin-bottom: var(--cbp-space-8x);
 
     & > i {
       display: flex;
