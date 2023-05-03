@@ -124,6 +124,7 @@ textarea.cbp-input {
     }
 
     & + button:disabled {
+      border-color: var(--cbp-color-interactive-disabled-dark);
       background-color: var(--cbp-color-interactive-disabled-dark);
       color: var(--cbp-color-interactive-disabled-light);
     }

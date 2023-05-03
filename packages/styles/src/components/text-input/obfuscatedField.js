@@ -1,7 +1,7 @@
-class HashedField {
+class ObfuscatedField {
   constructor(component) {
     this.input = component;
-    this.btn = component.querySelector("input[type='password'] + button[type='button']");
+    this.btn = component.nextElementSibling;
 
     this.addListener(this.btn, this.input);
   }
@@ -19,4 +19,4 @@ class HashedField {
   }
 }
 
-export default HashedField;
+export default ObfuscatedField;

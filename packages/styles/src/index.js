@@ -8,7 +8,7 @@ import Dropdown from './components/dropdown/dropdown';
 import Expand from './components/expand/expand';
 import Toggle from './components/toggle/toggle';
 import FileUploader from './components/fileupload/fileupload';
-import HashedField from './components/text-input/hashedField';
+import ObfuscatedField from './components/text-input/obfuscatedField';
 import NumberCounter from './components/text-input/numberCounter';
 import SegmentedButtonGroup from './components/segmented-button-group/segmented-button-group';
 //import UniversalHeader from './components/header/header';
@@ -108,9 +108,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   /**
    * Hashfield Component
    */
-  // SelectorEngine.findAll("input[type='password']").forEach((hashedfield) => {
-  //   addOrInstantiate(HashedField, hashedfield);
-  // });
+  SelectorEngine.findAll("input[type='password']").forEach((obfuscatedField) => {
+    addOrInstantiate(ObfuscatedField, obfuscatedField);
+  });
 
   /**
    * Number Counter Component (Input)
