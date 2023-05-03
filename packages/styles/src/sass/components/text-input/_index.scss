@@ -214,19 +214,20 @@ textarea.cbp-input {
 
 }
 
-.cbp-form__number--phone {
-  display: flex;
+// TODO: Refactor when <select> and Dropdown patterns are refactored.
+// .cbp-form__number--phone {
+//   display: flex;
 
-  & button {
-    margin-right: 16px;
-    width: 168px;
-  }
+//   & button {
+//     margin-right: 16px;
+//     width: 168px;
+//   }
 
-  & .cbp-dropdown {
-    width: 168px;
-  }
+//   & .cbp-dropdown {
+//     width: 168px;
+//   }
 
-  & .cbp-input {
-    width: 100%;
-  }
-}
+//   & .cbp-input {
+//     width: 100%;
+//   }
+// }
