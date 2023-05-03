@@ -27,16 +27,16 @@ export default {
   decorators: [
     (Story, context) => `
       <form class="cbp-form" style="width: 512px;">
-        <label for=${context.args.labelFor} class="cbp-form__label">${context.args.label}</label>
-        <p class="cbp-form__description">${context.args.inputDescription}</p>
-        <p class="cbp-form__description cbp-form__description--error" hidden="true"><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>
+        <label for=${context.args.labelFor} class="cbp-input__label">${context.args.label}</label>
+        <p class="cbp-input__description">${context.args.inputDescription}</p>
+        <p class="cbp-input__description cbp-input__description--error" hidden="true"><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>
         ${Story().outerHTML || Story()}
       </form>
     `
   ]
 };
 
-const TextAreaTemplate = ({ labelFor }) => `<textarea class="cbp-form__textarea" name="description" id=${labelFor} cols="30" rows="10" placeholder="Enter a description"></textarea>`
+const TextAreaTemplate = ({ labelFor }) => `<textarea class="cbp-input" name="description" id=${labelFor} cols="30" rows="10" placeholder="Enter a description"></textarea>`
 
 export const TextArea = TextAreaTemplate.bind({});
 TextArea.args = {

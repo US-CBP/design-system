@@ -1,8 +1,7 @@
 class HashedField {
   constructor(component) {
-    this.className = ".cbp-form__password";
-    this.input = component.querySelector("input[type='password']");
-    this.btn = component.querySelector("button[type='button']");
+    this.input = component;
+    this.btn = component.querySelector("input[type='password'] + button[type='button']");
 
     this.addListener(this.btn, this.input);
   }
