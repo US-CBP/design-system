@@ -47,7 +47,7 @@
   }
 
   &:read-only {
-    background-color: var(--cbp-color-base-neutral-lighter);
+    background-color: var(--cbp-color-interactive-neutral-lighter);
     border-color: var(--cbp-color-interactive-neutral-light);
     cursor: not-allowed;
 
@@ -171,6 +171,11 @@ textarea.cbp-input {
       border-color: var(--cbp-color-interactive-disabled-dark);
     }
 
+    &:has(.cbp-input:read-only) {
+      background-color: var(--cbp-color-interactive-neutral-lighter);
+      border-color: var(--cbp-color-interactive-neutral-light);
+    }
+
     &:has(.cbp-input:invalid) {
       border-color: var(--cbp-color-danger-base);
     }
@@ -195,12 +200,16 @@ textarea.cbp-input {
     padding: var(--cbp-space-2x);
   }
 
-  & > div:first-child:has(.cbp-input:invalid)::after {
-    background-color: var(--cbp-color-danger-lighter);
-  }
-
   & > div:first-child:has(.cbp-input:disabled)::after {
     background-color: var(--cbp-color-interactive-disabled-light);
+  }
+
+  & > div:first-child:has(.cbp-input:read-only)::after {
+    background-color: var(--cbp-color-interactive-neutral-lighter);
+  }
+  
+  & > div:first-child:has(.cbp-input:invalid)::after {
+    background-color: var(--cbp-color-danger-lighter);
   }
 
 }
