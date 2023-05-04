@@ -31,7 +31,10 @@
   letter-spacing: var(--cbp-letter-spacing-regular);
   min-height: 2.25rem;
   padding: var(--cbp-space-2x);
-  width: 100%;
+  
+  &:not([size]) {
+    width: 100%;
+  }
 
   &::placeholder {
     font-style: italic;
@@ -60,7 +63,6 @@
   &:disabled {
     background-color: var(--cbp-color-interactive-disabled-light);
     border-color: var(--cbp-color-interactive-disabled-dark);
-    cursor: pointer;
 
     &:hover {
       border-color: var(--cbp-color-interactive-neutral-darker);
@@ -100,7 +102,10 @@ textarea.cbp-input {
   min-height: 6.75rem;
   padding-top: var(--cbp-space-2x);
   padding-bottom: var(--cbp-space-2x);
-  resize: none;
+
+  &:not([cols]) {
+    width: 100%;
+  }
 }
 
 // Inputs with <button> attached to the end
@@ -112,10 +117,6 @@ textarea.cbp-input {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     flex: 1 1 auto;
-
-    &:disabled {
-      cursor: pointer;
-    }
 
     & + button {
       border-bottom-left-radius: 0;

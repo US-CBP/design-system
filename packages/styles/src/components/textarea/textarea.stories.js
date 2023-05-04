@@ -1,7 +1,6 @@
 export default {
-  title: 'Patterns/Textarea',
+  title: 'Patterns',
   parameters: {
-    layout: 'centered',
     html: {
       root: '.cbp-form'
     }
@@ -9,18 +8,22 @@ export default {
   argTypes: {
     label: {
       name: 'Input Label',
+      description: 'Represents a caption for the input element in the user interface.',
       control: { type: 'text' }
     },
     labelFor: {
       name: 'Label `for` Attribute',
+      description: 'When used on a <label> element it indicates the form element that this label describes and has the value which is the `id` of the form element it relates to.',
       control: { type: 'text' }
     },
     inputDescription: {
       name: 'Input Description',
+      description: 'Instructions or supplementary information regarding the input element. Placed below the <label> element.',
       control: { type: 'text' }
     },
     errorMessage: {
       name: 'Error Message',
+      description: 'A message in the input description that a problem has occurred.',
       control: { type: 'text' }
     },
     inputName: {
@@ -56,3 +59,4 @@ TextArea.args = {
   inputName: 'description',
   errorMessage: 'You must enter a description.'
 }
+TextArea.storyName = 'Textarea'

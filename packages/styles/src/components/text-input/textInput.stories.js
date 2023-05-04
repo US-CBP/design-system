@@ -96,7 +96,7 @@ const PasswordFieldTemplate = ({ inputName, labelFor, disabled, required, readon
   `\
     <div class="cbp-input-group">
       <input class="cbp-input" type="password" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Enter password" />
-      <button class="cbp-btn-square cbp-btn__secondary" type="button" aria-label="show password" ${disabled || readonly ? 'disabled' : ''}><i class="fas fa-eye-slash"></i></button>
+      <button class="cbp-btn-square cbp-btn__secondary" type="button" aria-label="show password" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}><i class="fas fa-eye-slash"></i></button>
     </div>  
   `
 )
@@ -105,10 +105,10 @@ const NumericCounterFieldTemplate = ({ labelFor, inputName, disabled, required, 
   `\
     <div class="cbp-input__numeric-counter" id="number-counter">
       <input class="cbp-input" type="number" name=${inputName} id=${labelFor}  ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Enter Number of Fish"></input>
-      <button class="cbp-btn-square cbp-btn__secondary" type="button" id="decrement"  ${disabled || readonly ? 'disabled' : ''} aria-label="decrement">
+      <button class="cbp-btn-square cbp-btn__secondary" type="button" id="decrement"  ${disabled || readonly ? 'disabled' : ''} aria-label="decrement" aria-controls=${labelFor}>
         <i class="fas fa-minus"></i>
       </button>
-      <button class="cbp-btn-square cbp-btn__secondary" type="button" id="increment"  ${disabled || readonly ? 'disabled' : ''} aria-label="increment">
+      <button class="cbp-btn-square cbp-btn__secondary" type="button" id="increment"  ${disabled || readonly ? 'disabled' : ''} aria-label="increment" aria-controls=${labelFor}>
         <i class="fas fa-plus"></i>
       </button>
     </div>
@@ -121,9 +121,9 @@ const NumericSwitchTemplate = ({ labelFor, inputName, disabled, required, readon
       <div>
         <input class="cbp-input" type="number" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Enter Weight"></input>
       </div>
-      <div class="cbp-btn--segment">
-        <button type="button" value="lbs" ${disabled || readonly ? 'disabled' : ''}>LBS</button>
-        <button type="button" value="kg" ${disabled || readonly ? 'disabled' : ''}>KG</button>
+      <div class="cbp-btn--segment" data-segmented-button-type="single">
+        <button type="button" value="lbs" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>LBS</button>
+        <button type="button" value="kg" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>KG</button>
       </div>
     </div>
   `
@@ -133,7 +133,7 @@ const TextfieldButtonGroupTemplate = ({ square, labelFor, inputType, tags, input
   `\
     <div class="cbp-input-group">
       <input class="cbp-input" type=${inputType} name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Add Person" />
-      <button class="${square ? 'cbp-btn-square' : 'cbp-btn'} ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" type="button" ${disabled || readonly ? 'disabled' : ''}>${square ? '<i class="fas fa-plus"></i>' : buttonLabel}</button>
+      <button class="${square ? 'cbp-btn-square' : 'cbp-btn'} ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" type="button" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>${square ? '<i class="fas fa-plus"></i>' : buttonLabel}</button>
     </div>
     ${tags ? tagsExample() : ''}
   `
@@ -144,7 +144,7 @@ const SearchFieldTemplate = ({ labelFor, inputName, disabled, required, readonly
   `\
     <div class="cbp-input-group">
       <input class="cbp-input" type="search" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Enter Search Criteria"></input>
-      <button type="button" class="cbp-btn-square ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" ${disabled || readonly ? 'disabled' : ''} aria-label="search">
+      <button type="button" class="cbp-btn-square ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" ${disabled || readonly ? 'disabled' : ''} aria-label="search"  aria-controls=${labelFor}>
         <i class="fas fa-search"></i>
       </button>
     </div>
@@ -183,6 +183,7 @@ NumericCounterField.args = {
   label: 'Number of Fish',
   inputDescription: 'Required. 1,000 fish maximum.',
   labelFor: 'numberOfFish',
+  inputName: 'numberOfFish',
   errorMessage: 'This field is required.'
 };
 
@@ -191,6 +192,7 @@ NumericSwitchField.args = {
   label: 'Your Weight',
   inputDescription: 'Required.',
   labelFor: 'weight',
+  inputName: 'weight',
   errorMessage: 'This field is required.'
 }
 
