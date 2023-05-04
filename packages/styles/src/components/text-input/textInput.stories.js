@@ -236,5 +236,6 @@ SearchField.args = {
   label: 'Search',
   inputDescription: 'Required.',
   labelFor: 'search',
+  inputName: 'search',
   errorMessage: 'This field is required.'
 }
