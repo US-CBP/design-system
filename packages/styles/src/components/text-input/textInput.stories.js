@@ -96,7 +96,7 @@ const PasswordFieldTemplate = ({ inputName, labelFor, disabled, required, readon
   `\
     <div class="cbp-input-group">
       <input class="cbp-input" type="password" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Enter password" />
-      <button class="cbp-btn-square cbp-btn__secondary" type="button" aria-label="show password" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}><i class="fas fa-eye-slash"></i></button>
+      <button class="cbp-btn-square cbp-btn__secondary" type="button" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}><i class="fas fa-eye-slash"></i></button>
     </div>  
   `
 )
