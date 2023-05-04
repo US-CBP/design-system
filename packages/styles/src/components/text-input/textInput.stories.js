@@ -1,7 +1,6 @@
 export default {
   title: 'Patterns/Text Inputs',
   parameters: {
-    layout: 'centered',
     html: {
       root: '.cbp-form'
     }
@@ -130,7 +129,7 @@ const NumericSwitchTemplate = ({ labelFor, inputName, disabled, required, readon
   `
 )
 
-const TextfieldButtonGroupTemplate = ({ square, labelFor, inputType, tags, inputName, disabled, buttonLabel, required }) => (
+const TextfieldButtonGroupTemplate = ({ square, labelFor, inputType, tags, inputName, disabled, buttonLabel, required, readonly }) => (
   `\
     <div class="cbp-input-group">
       <input class="cbp-input" type=${inputType} name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Add Person" />
@@ -141,7 +140,7 @@ const TextfieldButtonGroupTemplate = ({ square, labelFor, inputType, tags, input
 )
 
 // TODO: Predictive search functionality
-const SearchFieldTemplate = ({ labelFor, inputName, disabled, required }) => (
+const SearchFieldTemplate = ({ labelFor, inputName, disabled, required, readonly }) => (
   `\
     <div class="cbp-input-group">
       <input class="cbp-input" type="search" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Enter Search Criteria"></input>
