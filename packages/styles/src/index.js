@@ -8,8 +8,8 @@ import Dropdown from './components/dropdown/dropdown';
 import Expand from './components/expand/expand';
 import Toggle from './components/toggle/toggle';
 import FileUploader from './components/fileupload/fileupload';
-import HashedField from './components/form/hashed-field/hashedField';
-import NumberCounter from './components/form/number-counter/numberCounter';
+import ObfuscatedField from './components/text-input/obfuscatedField';
+import NumberCounter from './components/text-input/numberCounter';
 import SegmentedButtonGroup from './components/segmented-button-group/segmented-button-group';
 //import UniversalHeader from './components/header/header';
 import DarkMode from './utilities/darkMode';
@@ -108,14 +108,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
   /**
    * Hashfield Component
    */
-  SelectorEngine.findAll('.cbp-form__password').forEach((hashedfield) => {
-    addOrInstantiate(HashedField, hashedfield);
+  SelectorEngine.findAll("input[type='password']").forEach((obfuscatedField) => {
+    addOrInstantiate(ObfuscatedField, obfuscatedField);
   });
 
   /**
    * Number Counter Component (Input)
    */
-  SelectorEngine.findAll('.cbp-form__number--counter').forEach((counter) => {
+  SelectorEngine.findAll('.cbp-input__numeric-counter').forEach((counter) => {
     addOrInstantiate(NumberCounter, counter);
   });
 

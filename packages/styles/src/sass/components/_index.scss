@@ -10,9 +10,7 @@
 @use 'expand';
 @use './fileupload';
 @use 'footer';
-@use 'form';
 @use 'header';
-@use 'input-group';
 @use 'link';
 @use './modal';
 @use './overflow-menu';
@@ -20,4 +18,5 @@
 @use './radio';
 @use './select';
 @use 'slider';
+@use 'text-input';
 @use './toggle';
