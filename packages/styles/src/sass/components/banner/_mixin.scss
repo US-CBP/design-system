@@ -15,11 +15,11 @@
       flex-shrink: 0;
     }
 
-    @media only screen and (min-width: 600px) and (max-width: 1439px) {
+    @media (min-width: 600px) and (max-width: 1439px) {
       margin: 0 20px;
     }
 
-    @media only screen and (min-width: 1440px) {
+    @media (min-width: 1440px) {
       margin: 0 28px;
     }
   }

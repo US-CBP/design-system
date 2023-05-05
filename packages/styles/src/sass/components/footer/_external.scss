@@ -2,12 +2,16 @@
 @use '../../tokens/breakpoints' as *;
 
 .cbp-external-footer {
+  
+  section {
+    background-color: var(--cbp-color-gray-cool-60);
+  }
+
   & > section:first-child {
     display: flex;
     flex-direction: column;
 
     & > .cbp-footer__heading {
-      background-color: var(--cbp-color-base-secondary-dark);
       padding: var(--cbp-space-3x) 0 var(--cbp-space-3x) var(--cbp-space-5x);
     }
   }
