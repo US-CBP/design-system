@@ -13,16 +13,14 @@
     border-color: var(--cbp-color-interactive-neutral-dark);
     border-width: var(--cbp-border-size-md) calc(var(--cbp-border-size-md) / 2);
     border-radius: 0;
-    min-height: 44px;
+    min-height: var(--cbp-space-9x);
 
     &:first-child {
-      border-radius: var(--cbp-border-radius-soft) 0 0
-        var(--cbp-border-radius-soft);
+      border-radius: var(--cbp-border-radius-soft) 0 0 var(--cbp-border-radius-soft);
       border-left-width: var(--cbp-border-size-md);
     }
     &:last-child {
-      border-radius: 0 var(--cbp-border-radius-soft)
-        var(--cbp-border-radius-soft) 0;
+      border-radius: 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0;
       border-right-width: var(--cbp-border-size-md);
     }
 
