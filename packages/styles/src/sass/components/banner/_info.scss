@@ -26,8 +26,13 @@
   }
 
   button {
-    @include banner-dismiss(var(--cbp-color-text-lightest));
+    color: var(--cbp-color-text-lightest);
   }
+
+  button:hover {
+    color: var(--cbp-color-text-darker);
+  }
+
 }
 
 .d-none-lg {
