@@ -15,9 +15,8 @@ const InfoBannerTemplate = () => {
           <h6 class="cbp-banner__info-title d-none-sm">Scheduled Maintenance Notice</h6>
           <p class="cbp-banner__text">This application will be undergoing scheduled maintenance from 10/15/22 - 10/31/22 from 12am - 3am and will be unavailable during these times.</p>
         </div>
-        <button>
-          <i class="fas fa-times"></i>
-          Dismiss
+        <button type="button" class="cbp-btn cbp-btn__secondary-ghost">
+          <i class="fas fa-times"></i>Dismiss
         </button>
       </div>
     </div>
@@ -45,9 +44,8 @@ const SecurityBannerTemplate = () => {
             <a href="#" class="cbp-link__inline"><i class="fas fa-external-link-alt"></i> Learn More About INFOSEC</a>
           </p>
         </div>
-        <button>
-          <i class="fas fa-times"></i>
-          Dismiss
+        <button type="button" class="cbp-btn cbp-btn__secondary-ghost">
+          <i class="fas fa-times"></i>Dismiss
         </button>
       </div>
     </div>
