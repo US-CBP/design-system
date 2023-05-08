@@ -1,0 +1,234 @@
+.cbp-input__label {
+  color: var(--cbp-color-text-darkest);
+  display: inline-block;
+  font-size: var(--cbp-font-size-body);
+  font-style: italic;
+  font-weight: var(--cbp-font-weight-bold);
+  margin-bottom: var(--cbp-space-2x);
+}
+
+.cbp-input__description {
+  color: var(--cbp-color-text-darkest);
+  font-size: var(--cbp-font-size-subhead);
+  font-style: italic;
+  font-weight: var(--cbp-font-weight-medium);
+  margin-bottom: var(--cbp-space-2x);
+
+  &--error {
+    color: var(--cbp-color-danger-base);
+  }
+}
+
+.cbp-input {
+  background-color: var(--cbp-color-white);
+  border-color: var(--cbp-color-interactive-neutral-base);
+  border-style: solid;
+  border-width: var(--cbp-border-size-md);
+  border-radius: var(--cbp-border-radius-soft);
+  color: var(--cbp-color-text-darkest);
+  font-size: var(--cbp-font-size-body);
+  font-weight: var(--cbp-font-weight-regular);
+  letter-spacing: var(--cbp-letter-spacing-regular);
+  min-height: 2.25rem;
+  padding: var(--cbp-space-2x);
+  
+  &:not([size]) {
+    width: 100%;
+  }
+
+  &::placeholder {
+    font-style: italic;
+  }
+
+  &:hover {
+    border-color: var(--cbp-color-interactive-neutral-darker);
+  }
+
+  &:focus {
+    border-color: var(--cbp-color-interactive-focus-dark);
+    outline: 0;
+  }
+
+  &:read-only {
+    background-color: var(--cbp-color-interactive-neutral-lighter);
+    border-color: var(--cbp-color-interactive-neutral-light);
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus {
+      border-color: var(--cbp-color-interactive-neutral-light);
+    }
+  }
+
+  &:disabled {
+    background-color: var(--cbp-color-interactive-disabled-light);
+    border-color: var(--cbp-color-interactive-disabled-dark);
+
+    &:hover {
+      border-color: var(--cbp-color-interactive-neutral-darker);
+    }
+
+    &:focus {
+      border-color: var(--cbp-color-interactive-focus-dark);
+    }
+  }
+
+  &:invalid {
+    background-color: var(--cbp-color-danger-lighter);
+    border-color: var(--cbp-color-danger-base);
+
+    &:focus {
+      border-color: var(--cbp-color-interactive-focus-dark);
+    }
+    
+    &:hover {
+      border-color: var(--cbp-color-danger-dark);
+    }
+
+    &:hover:focus {
+      border-color: var(--cbp-color-interactive-focus-dark);
+    }
+  }
+
+  // This removes the default increment arrows in the number input field
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* Margins still appear even if hidden */
+  }
+}
+
+textarea.cbp-input {
+  min-height: 6.75rem;
+  padding-top: var(--cbp-space-2x);
+  padding-bottom: var(--cbp-space-2x);
+
+  &:not([cols]) {
+    width: 100%;
+  }
+}
+
+// Inputs with <button> attached to the end
+.cbp-input-group {
+  display: flex;
+
+  & > .cbp-input {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    flex: 1 1 auto;
+
+    & + button {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      white-space: nowrap;
+    }
+
+    & + button:disabled {
+      border-color: var(--cbp-color-interactive-disabled-dark);
+      background-color: var(--cbp-color-interactive-disabled-dark);
+      color: var(--cbp-color-interactive-disabled-light);
+    }
+  }
+}
+
+.cbp-input__numeric-counter {
+  display: flex;
+  gap: var(--cbp-space-4x);
+  
+  & > .cbp-input {
+    -moz-appearance: textfield; // Removes the default increment arrows in Firefox 
+  }
+}
+
+.cbp-input__numeric-switch {
+  display: flex;
+  gap: var(--cbp-space-4x);
+  
+  & > div:first-child {
+    align-items: center;
+    border-color: var(--cbp-color-interactive-neutral-dark);
+    border-radius: var(--cbp-border-radius-softer);
+    border-style: solid;
+    border-width: var(--cbp-border-size-md);
+    display: inherit;
+    height: 2.25rem;
+    width: 100%;
+
+    &:hover {
+      border-color: var(--cbp-color-interactive-neutral-darker)
+    }
+
+    &:focus-within {
+      border-color: var(--cbp-color-interactive-focus-dark);
+      outline: 0;
+    }
+
+    &:focus-within:has(.cbp-input:invalid) {
+      border-color: var(--cbp-color-interactive-focus-dark);
+    }
+
+    &:has(.cbp-input:disabled) {
+      border-color: var(--cbp-color-interactive-disabled-dark);
+    }
+
+    &:has(.cbp-input:read-only) {
+      background-color: var(--cbp-color-interactive-neutral-lighter);
+      border-color: var(--cbp-color-interactive-neutral-light);
+    }
+
+    &:has(.cbp-input:invalid) {
+      border-color: var(--cbp-color-danger-base);
+    }
+  }
+
+  & > div:first-child > .cbp-input {
+    -moz-appearance: textfield; // Removes the default increment arrows in Firefox
+    border: none;
+    min-height: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  & > div:first-child::after {
+    content: 'lbs';
+    background-color: var(--cbp-color-white);
+    border-top-right-radius: var(--cbp-border-radius-softer);
+    border-bottom-right-radius: var(--cbp-border-radius-softer);
+    color: var(--cbp-color-text-darker);
+    font-style: italic;
+    font-weight: var(--cbp-font-weight-bold);
+    padding: var(--cbp-space-2x);
+  }
+
+  & > div:first-child:has(.cbp-input:disabled)::after {
+    background-color: var(--cbp-color-interactive-disabled-light);
+  }
+
+  & > div:first-child:has(.cbp-input:read-only)::after {
+    background-color: var(--cbp-color-interactive-neutral-lighter);
+  }
+  
+  & > div:first-child:has(.cbp-input:invalid)::after {
+    background-color: var(--cbp-color-danger-lighter);
+  }
+
+}
+
+// TODO: Refactor when <select> and Dropdown patterns are refactored.
+// .cbp-form__number--phone {
+//   display: flex;
+
+//   & button {
+//     margin-right: 16px;
+//     width: 168px;
+//   }
+
+//   & .cbp-dropdown {
+//     width: 168px;
+//   }
+
+//   & .cbp-input {
+//     width: 100%;
+//   }
+// }

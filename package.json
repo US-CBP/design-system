@@ -6,10 +6,10 @@
   "scripts": {
     "style-lint": "npx stylelint '**/*.scss'",
     "stylelint-check": "stylelint-config-prettier-check",
-    "build-tokens": "npm run sd -w packages/styles",
-    "styles-dev": "npm run dev -w packages/styles",
-    "styles-build": "npm run build -w packages/styles",
-    "styles-sb": "npm run storybook -w packages/styles",
+    "build-tokens": "npm run sd -w packages/vanilla",
+    "vanilla-dev": "npm run dev -w packages/vanilla",
+    "vanilla-build": "npm run build -w packages/vanilla",
+    "vanilla-sb": "npm run storybook -w packages/vanilla",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,7 +28,7 @@
     "node": ">=16.0.0"
   },
   "workspaces": [
-    "packages/*"
+    "packages/vanilla"
   ],
   "devDependencies": {
     "eslint": "^8.33.0",
