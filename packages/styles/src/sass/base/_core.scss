@@ -15,3 +15,9 @@ body {
   color: var(--cbp-color-text-lightest);
   background-color: var(--cbp-color-branding-cbp-dark);
 }
+
+:disabled,
+:read-only,
+[aria-disabled=true] {
+  cursor: not-allowed;
+}
