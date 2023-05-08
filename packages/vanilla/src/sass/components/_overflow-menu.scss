@@ -41,7 +41,6 @@
   background-color: transparent;
   border: 0;
   border-radius: 3px;
-  cursor: pointer;
 
   i {
     font-size: 14px;
@@ -180,7 +179,6 @@
 
   & > button {
     color: #f39268; // ???
-    cursor: pointer;
 
     &:hover {
       color: #ffffff !important;
