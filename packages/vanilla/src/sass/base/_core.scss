@@ -16,8 +16,15 @@ body {
   background-color: var(--cbp-color-branding-cbp-dark);
 }
 
+a[href],
+button {
+  cursor: pointer;
+}
+
+[aria-disabled=true],
 :disabled,
-:read-only,
-[aria-disabled=true] {
+input:read-only,
+textarea:read-only,
+select:read-only {
   cursor: not-allowed;
 }
