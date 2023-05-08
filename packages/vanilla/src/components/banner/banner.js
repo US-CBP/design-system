@@ -17,7 +17,7 @@ class Banner {
         this.banner.classList.contains(this.infoClassName) ||
         this.banner.classList.contains(this.securityClassName)
       ) {
-        this.banner.remove();
+        this.banner.setAttribute('hidden','');
       } else {
         this.toggle(this.content);
       }
