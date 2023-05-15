@@ -73,6 +73,7 @@ export const Checkbox = Template.bind({});
 Checkbox.args = {
   legend: 'Pizza Toppings',
   inputDescription: 'Required. Choose as many as you like.',
+  formControlName: 'toppings',
   errorMessage: 'This field is required',
   checkboxObj: {
     checkbox1: {
@@ -95,17 +96,12 @@ Checkbox.args = {
 Checkbox.argTypes = {
   formControlName: {
     name: '`name` Attribute',
-    description: 'Name of the form control.',
-    control: { type: 'text' }
-  },
-  labelFor: {
-    name: 'Label `for` Attribute',
-    description: 'When used on a <label> element it indicates the form element that this label describes and has the value which is the `id` of the form element it relates to.',
+    description: 'The `name` attribute of the checkboxes.',
     control: { type: 'text' }
   },
   checkboxObj: {
     name: 'Checkbox Object',
-    description: 'This object contains the attributes/values for the `<input type="checkbox">` elements in the story. This includes the `id`, `label` and `value` attributes.',
+    description: 'This object contains the attributes/values for the `<input type="checkbox">` elements in the story. This includes the `id`, `label` and `value` attributes. **Setting a value for the `id` key will set the value for the corresponding `<input type="checkbox">` `id` attribute and associated `<label>` `labelFor` attribute.**',
     control: { type: 'object' }
   }
 }
@@ -143,12 +139,12 @@ IndeterminateCheckbox.args = {
 IndeterminateCheckbox.argTypes = {
   indeterminateCheckboxObj: {
     name: 'Indeterminate Checkbox Object',
-    description: 'This object contains the attributes/values for the **_top-level_** indeterminate `<input type="checkbox">` element in the story. This includes the`name`, `id`, `label` and `value` attributes.',
+    description: 'This object contains the attributes/values for the **_top-level_** indeterminate `<input type="checkbox">` element in the story. This includes the`name`, `id`, `label` and `value` attributes. **Setting a value for the `id` key will set the value for the corresponding `<input type="checkbox">` `id` attribute and associated `<label>` `labelFor` attribute.**',
     control: { type: 'object' }
   },
   nestedCheckboxObj: {
     name: 'Nested Checkbox Object',
-    description: 'This object contains the attributes/values for the **_nested-level_** indeterminate `<input type="checkbox">` elements in the story',
+    description: 'This object contains the attributes/values for the **_nested-level_** indeterminate `<input type="checkbox">` elements in the story. **Setting a value for the `id` key will set the value for the corresponding `<input type="checkbox">` `id` attribute and associated `<label>` `labelFor` attribute.**',
     control: { type: 'object' }
   },
 }

@@ -15,7 +15,7 @@ class IndeterminateCheckbox {
     });
 
     this.nestedCheckboxInputs.forEach(checkbox => {
-      checkbox.addEventListener('change', e => {
+      checkbox.addEventListener('change', () => {
         this.updateDisplay();
       })
     })

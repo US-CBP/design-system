@@ -20,8 +20,7 @@ button {
 
 [aria-disabled=true],
 :disabled,
-// Apply to only inputs with readonly attribute. Checkbox, radio, select, file, range/color do not have the readonly attribute.
-// input:read-only,
+input:read-only:not([type="checkbox"], [type="radio"], [type="file"], [type="range"], [type="color"]),
 textarea:read-only,
 select:read-only {
   cursor: not-allowed;

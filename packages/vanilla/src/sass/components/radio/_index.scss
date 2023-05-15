@@ -61,7 +61,7 @@
     box-shadow: 0 0 0 8px var(--cbp-color-interactive-focus-light);
 
     &::before {
-      border: 6px solid var(--cbp-color-white); // double check
+      border-color: var(--cbp-color-white);
     }
   }
 }
@@ -92,7 +92,7 @@
   }
   
   &:hover {
-    box-shadow: 0 0 0 8px var(--cbp-color-interactive-disabled-light); // $cbp-selected-light
-    border: 2px solid var(--cbp-color-interactive-neutral-base);
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-disabled-light);
+    border-color: var(--cbp-color-interactive-neutral-base);
   }
 }

@@ -8,7 +8,7 @@ export default {
     },
     inputDescription: {
       name: 'Input Description',
-      description: 'Instructions or supplementary information regarding the input element. Placed below the <label> element.',
+      description: 'Instructions or supplementary information regarding the input element. Placed below the `<fieldset>` element.',
       control: { type: 'text' }
     },
     errorMessage: {
@@ -18,11 +18,11 @@ export default {
     },
     formControlName: {
       name: '`name` Attribute',
-      description: 'Name of the form control. *Only one radio button in a same-named group of radio buttons can be checked at a time.*'
+      description: '`name` attributes of the radio buttons. **Only one radio button in a same-named group of radio buttons can be checked at a time.**'
     },
     radioBtnObj: {
       name: 'Radio Button Object',
-      description: '**Setting a value for the `id` key will set the value for the corresponding `<input type="radio">` `id` attribute and associated `<label>` `labelFor` attribute.**'
+      description: 'This object contains the attributes/values for the `<input type="checkbox">` elements in the story. This includes the `id`, `label` and `value` attributes. **Setting a value for the `id` key will set the value for the corresponding `<input type="radio">` `id` attribute and associated `<label>` `labelFor` attribute.**'
     }
   },
   decorators: [
@@ -59,6 +59,7 @@ RadioButton.args = {
   legend: 'Pizza Toppings',
   inputDescription: 'Required. Only one topping is allowed.',
   formControlName: 'pizza-topping',
+  errorMessage: 'The field is required.',
   radioBtnObj: {
     radio1: {
       id: 'pepperoni',
