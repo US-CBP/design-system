@@ -28,6 +28,16 @@ export default {
       name: 'Display Inline',
       description: 'Displays the radio buttons and labels `inline`',
       control: { type: 'boolean' }
+    },
+    disabled: {
+      name: 'Disabled',
+      description: 'Disable radio button. **In order to see a "checked" disabled radio button, toggle the Checked story control to `true`**',
+      control: { type: 'boolean' }
+    },
+    checked: {
+      name: 'Checked',
+      description: 'Add the `checked` attribute to the radio button (first choice only)',
+      control: { type: 'boolean' }
     }
   },
   decorators: [
@@ -42,19 +52,19 @@ export default {
   ]
 };
 
-const Template = ({ formControlName, radioBtnObj }) => (
+const Template = ({ formControlName, radioBtnObj: { radio1, radio2, radio3 }, disabled, checked }) => (
   `
     <div class="cbp-radio-item cbp-margin-bottom-5x">
-      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radioBtnObj.radio1.id} value=${radioBtnObj.radio1.value}>
-      <label for=${radioBtnObj.radio1.id}>${radioBtnObj.radio1.label}</label>
+      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radio1.id} value=${radio1.value} ${disabled ? 'disabled' : ''} ${checked ? 'checked' : ''}>
+      <label for=${radio1.id}>${radio1.label}</label>
     </div>
     <div class="cbp-radio-item cbp-margin-bottom-5x">
-      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radioBtnObj.radio2.id} value=${radioBtnObj.radio1.value}>
-      <label for=${radioBtnObj.radio2.id}>${radioBtnObj.radio2.label}</label>
+      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radio2.id} value=${radio1.value} ${disabled ? 'disabled' : ''}>
+      <label for=${radio2.id}>${radio2.label}</label>
     </div>
     <div class="cbp-radio-item">
-      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radioBtnObj.radio3.id} value=${radioBtnObj.radio1.value}>
-      <label for=${radioBtnObj.radio3.id}>${radioBtnObj.radio3.label}</label>
+      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radio3.id} value=${radio1.value} ${disabled ? 'disabled' : ''}>
+      <label for=${radio3.id}>${radio3.label}</label>
     </div>
   `
 )

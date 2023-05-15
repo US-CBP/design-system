@@ -16,9 +16,9 @@ export default {
       description: 'A message in the checkbox description that a problem has occurred.',
       control: { type: 'text' }
     },
-    displayInline: {
-      name: 'Display Inline',
-      description: 'Displays the checkboxes and labels `inline`',
+    disabled: {
+      name: 'Disabled',
+      description: 'Disable checkbox. **In order to see a "checked" disabled checkbox, toggle the Checked story control to `true`**',
       control: { type: 'boolean' }
     }
   },
@@ -34,40 +34,40 @@ export default {
   ]
 };
 
-const Template = ({ formControlName, checkboxObj: { checkbox1, checkbox2, checkbox3 }  }) => (
+const Template = ({ formControlName, checkboxObj: { checkbox1, checkbox2, checkbox3 }, disabled, checked }) => (
   `
     <div class="cbp-checkbox-item cbp-margin-bottom-5x">
-      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox1.id} value=${checkbox1.value}>
+      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox1.id} value=${checkbox1.value} ${disabled ? 'disabled' : ''} ${checked ? 'checked' : ''}>
       <label for=${checkbox1.id}>${checkbox1.label}</label>
     </div>
     <div class="cbp-checkbox-item cbp-margin-bottom-5x">
-      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox2.id} value=${checkbox2.value}>
+      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox2.id} value=${checkbox2.value} ${disabled ? 'disabled' : ''}>
       <label for=${checkbox2.id}>${checkbox2.label}</label>
     </div>
     <div class="cbp-checkbox-item">
-      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox3.id} value=${checkbox3.value}>
+      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox3.id} value=${checkbox3.value} ${disabled ? 'disabled' : ''}>
       <label for=${checkbox3.id}>${checkbox3.label}</label>
     </div>
   `
 )
 
-const IndeterminateCheckboxTemplate = ({ indeterminateCheckboxObj, nestedCheckboxObj: { name: nestCheckboxName, checkbox1, checkbox2, checkbox3 } }) => {
+const IndeterminateCheckboxTemplate = ({ indeterminateCheckboxObj, nestedCheckboxObj: { name: nestCheckboxName, checkbox1, checkbox2, checkbox3 }, disabled }) => {
   return `
     <div class="cbp-checkbox-item cbp-margin-bottom-5x">
-      <input type="checkbox" name=${indeterminateCheckboxObj.name} class="cbp-input__checkbox" id=${indeterminateCheckboxObj.id} value=${indeterminateCheckboxObj.value} data-checkbox="indeterminate">
+      <input type="checkbox" name=${indeterminateCheckboxObj.name} class="cbp-input__checkbox" id=${indeterminateCheckboxObj.id} value=${indeterminateCheckboxObj.value} data-checkbox="indeterminate" ${disabled ? 'disabled' : ''}>
       <label for=${indeterminateCheckboxObj.id}>${indeterminateCheckboxObj.label}</label>
     </div>
     <div class="cbp-checkbox--nested">
       <div class="cbp-checkbox-item cbp-margin-bottom-5x">
-        <input type="checkbox" name=${nestCheckboxName} id=${checkbox1.id} class="cbp-input__checkbox" value=${checkbox1.value}>
+        <input type="checkbox" name=${nestCheckboxName} id=${checkbox1.id} class="cbp-input__checkbox" value=${checkbox1.value} ${disabled ? 'disabled' : ''}>
         <label for=${checkbox1.id}>${checkbox1.label}</label>
       </div>
       <div class="cbp-checkbox-item cbp-margin-bottom-5x">
-        <input type="checkbox" name=${nestCheckboxName} id=${checkbox2.id} class="cbp-input__checkbox" value=${checkbox2.value}>
+        <input type="checkbox" name=${nestCheckboxName} id=${checkbox2.id} class="cbp-input__checkbox" value=${checkbox2.value} ${disabled ? 'disabled' : ''}>
         <label for=${checkbox2.id}>${checkbox2.label}</label>
       </div>
       <div class="cbp-checkbox-item">
-        <input type="checkbox" name=${nestCheckboxName} id=${checkbox3.id} class="cbp-input__checkbox" value=${checkbox3.value}>
+        <input type="checkbox" name=${nestCheckboxName} id=${checkbox3.id} class="cbp-input__checkbox" value=${checkbox3.value} ${disabled ? 'disabled' : ''}>
         <label for=${checkbox3.id}>${checkbox3.label}</label>
       </div>
     </div>
@@ -108,6 +108,16 @@ Checkbox.argTypes = {
     name: 'Checkbox Object',
     description: 'This object contains the attributes/values for the `<input type="checkbox">` elements in the story. This includes the `id`, `label` and `value` attributes. **Setting a value for the `id` key will set the value for the corresponding `<input type="checkbox">` `id` attribute and associated `<label>` `labelFor` attribute.**',
     control: { type: 'object' }
+  },
+  checked: {
+    name: 'Checked',
+    description: 'Add the `checked` attribute to the checkbox (first choice only)',
+    control: { type: 'boolean' }
+  },
+  displayInline: {
+    name: 'Display Inline',
+    description: 'Displays the checkboxes and labels `inline`',
+    control: { type: 'boolean' }
   }
 }
 Checkbox.storyName = 'Default';
