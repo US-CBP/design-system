@@ -1,40 +1,79 @@
 export default {
   title: 'Patterns',
-  parameters: {
-    html: {
-      root: '.cbp-form'
+  argTypes: {
+    legend: {
+      name: 'Legend Element',
+      description: 'Represents a caption for the content of its parent `<fieldset>` element.',
+      control: { type: 'text' }
+    },
+    inputDescription: {
+      name: 'Input Description',
+      description: 'Instructions or supplementary information regarding the input element. Placed below the <label> element.',
+      control: { type: 'text' }
+    },
+    errorMessage: {
+      name: 'Error Message',
+      description: 'A message in the radio button description that a problem has occurred.',
+      control: { type: 'text' }
+    },
+    formControlName: {
+      name: '`name` Attribute',
+      description: 'Name of the form control. *Only one radio button in a same-named group of radio buttons can be checked at a time.*'
+    },
+    radioBtnObj: {
+      name: 'Radio Button Object',
+      description: '**Setting a value for the `id` key will set the value for the corresponding `<input type="radio">` `id` attribute and associated `<label>` `labelFor` attribute.**'
     }
   },
   decorators: [
     (Story, context) => `
-      <form class="cbp-form">
-        <label for=${context.args.labelFor} class="cbp-input__label">${context.args.label}</label>
-        <p class="cbp-input__description" ${!context.args.required ? '' : 'hidden'}>${context.args.inputDescription}</p>
-        <p class="cbp-input__description ${context.args.required ? 'cbp-input__description--error': ''}" ${context.args.required ? '' : 'hidden'}><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>
+      <fieldset class="cbp-fieldset">
+        <legend class="cbp-legend">${context.args.legend}</legend>
+        <p class="cbp-input__description">${context.args.inputDescription}</p>
+        <p class="cbp-input__description cbp-input__description--error" hidden><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>
         ${Story().outerHTML || Story()}
-      </form>
+      </fieldset>
     `
   ]
 };
 
-const Template = () => (
+const Template = ({ formControlName, radioBtnObj }) => (
   `
-    <fieldset class="cbp-form__control" id="radio-wrapper">
-      <div class="form-radio">
-        <input type="radio" name="pizza-radio" class="cbp-form__radio" id="pepperoni">
-        <label for="pepperoni">Pepperoni</label>
-      </div>
-      <div class="form-radio">
-        <input type="radio" name="pizza-radio" class="cbp-form__radio" id="sardines">
-        <label for="sardines">Sardines</label>
-      </div>
-      <div class="form-radio">
-        <input type="radio" name="pizza-radio" class="cbp-form__radio" id="olives">
-        <label for="olives">Olives</label>
-      </div>
-    </fieldset>
+    <div class="cbp-radio-item cbp-margin-bottom-5x">
+      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radioBtnObj.radio1.id} value=${radioBtnObj.radio1.value}>
+      <label for=${radioBtnObj.radio1.id}>${radioBtnObj.radio1.label}</label>
+    </div>
+    <div class="cbp-radio-item cbp-margin-bottom-5x">
+      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radioBtnObj.radio2.id} value=${radioBtnObj.radio1.value}>
+      <label for=${radioBtnObj.radio2.id}>${radioBtnObj.radio2.label}</label>
+    </div>
+    <div class="cbp-radio-item">
+      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radioBtnObj.radio3.id} value=${radioBtnObj.radio1.value}>
+      <label for=${radioBtnObj.radio3.id}>${radioBtnObj.radio3.label}</label>
+    </div>
   `
 )
 
 export const RadioButton = Template.bind({});
-RadioButton.args = {};
+RadioButton.args = {
+  legend: 'Pizza Toppings',
+  inputDescription: 'Required. Only one topping is allowed.',
+  formControlName: 'pizza-topping',
+  radioBtnObj: {
+    radio1: {
+      id: 'pepperoni',
+      label: 'Pepperoni',
+      value: 'pepperoni'
+    },
+    radio2: {
+      id: 'sardines',
+      label: 'Sardines',
+      value: 'sardines'
+    },
+    radio3: {
+      id: 'olives',
+      label: 'Olives',
+      value: 'sardines'
+    }
+  }
+};

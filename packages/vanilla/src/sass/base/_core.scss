@@ -1,6 +1,3 @@
-//@use 'colors' as *;
-//@use '../tokens/font' as *;
-
 html {
   font-size: 100%;
 }
@@ -23,7 +20,8 @@ button {
 
 [aria-disabled=true],
 :disabled,
-input:read-only,
+// Apply to only inputs with readonly attribute. Checkbox, radio, select, file, range/color do not have the readonly attribute.
+// input:read-only,
 textarea:read-only,
 select:read-only {
   cursor: not-allowed;
