@@ -4,12 +4,16 @@
   margin: 0;
 }
 
+.cbp-fieldset--inline {
+  & > .cbp-checkbox-item, .cbp-radio-item {
+    display: inline;
+    margin-right: var(--cbp-space-4x);
+  }
+}
+
 // Wraps a single checkbox or radio with its own <label>
 .cbp-checkbox-item,
 .cbp-radio-item {
-  display: flex;
-  align-items: center;
-
   & > label {
     padding-left: var(--cbp-space-2x);
   }
@@ -33,6 +37,7 @@
   outline: 0;
   position: relative;
   width: var(--cbp-space-6x);
+  vertical-align: middle;
 
   // Check Mark
   &::before {
@@ -45,7 +50,7 @@
 		overflow: hidden;
 		top: 0;
 	}
-	
+
   &:hover {
     box-shadow: 0 0 0 8px rgba(230, 230, 226, 0.5); // $cbp-ui-neutral-lighter
     clip-path: circle(80%);

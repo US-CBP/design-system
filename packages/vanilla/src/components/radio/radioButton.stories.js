@@ -23,11 +23,16 @@ export default {
     radioBtnObj: {
       name: 'Radio Button Object',
       description: 'This object contains the attributes/values for the `<input type="checkbox">` elements in the story. This includes the `id`, `label` and `value` attributes. **Setting a value for the `id` key will set the value for the corresponding `<input type="radio">` `id` attribute and associated `<label>` `labelFor` attribute.**'
+    },
+    displayInline: {
+      name: 'Display Inline',
+      description: 'Displays the radio buttons and labels `inline`',
+      control: { type: 'boolean' }
     }
   },
   decorators: [
     (Story, context) => `
-      <fieldset class="cbp-fieldset">
+      <fieldset class="cbp-fieldset ${context.args.displayInline ? 'cbp-fieldset--inline' : ''}">
         <legend class="cbp-legend">${context.args.legend}</legend>
         <p class="cbp-input__description">${context.args.inputDescription}</p>
         <p class="cbp-input__description cbp-input__description--error" hidden><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>

@@ -16,10 +16,15 @@ export default {
       description: 'A message in the checkbox description that a problem has occurred.',
       control: { type: 'text' }
     },
+    displayInline: {
+      name: 'Display Inline',
+      description: 'Displays the checkboxes and labels `inline`',
+      control: { type: 'boolean' }
+    }
   },
   decorators: [
     (Story, context) => `
-      <fieldset class="cbp-fieldset">
+      <fieldset class="cbp-fieldset ${context.args.displayInline ? 'cbp-fieldset--inline' : ''}">
         <legend class="cbp-legend">${context.args.legend}</legend>
         <p class="cbp-input__description">${context.args.inputDescription}</p>
         <p class="cbp-input__description cbp-input__description--error" hidden><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>
