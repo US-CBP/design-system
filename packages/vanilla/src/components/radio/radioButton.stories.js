@@ -42,7 +42,7 @@ export default {
   },
   decorators: [
     (Story, context) => `
-      <fieldset class="cbp-fieldset ${context.args.displayInline ? 'cbp-fieldset--inline' : ''}">
+      <fieldset class="cbp-fieldset ${context.args.displayInline ? 'cbp-fieldset--inline' : ''}" ${context.args.disabled ? 'disabled' : ''}>
         <legend class="cbp-legend">${context.args.legend}</legend>
         <p class="cbp-input__description">${context.args.inputDescription}</p>
         <p class="cbp-input__description cbp-input__description--error" hidden><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>
@@ -52,18 +52,18 @@ export default {
   ]
 };
 
-const Template = ({ formControlName, radioBtnObj: { radio1, radio2, radio3 }, disabled, checked }) => (
+const Template = ({ formControlName, radioBtnObj: { radio1, radio2, radio3 }, checked }) => (
   `
-    <div class="cbp-radio-item cbp-margin-bottom-5x">
-      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radio1.id} value=${radio1.value} ${disabled ? 'disabled' : ''} ${checked ? 'checked' : ''}>
+    <div class="cbp-radio-item">
+      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radio1.id} value=${radio1.value} ${checked ? 'checked' : ''}>
       <label for=${radio1.id}>${radio1.label}</label>
     </div>
-    <div class="cbp-radio-item cbp-margin-bottom-5x">
-      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radio2.id} value=${radio1.value} ${disabled ? 'disabled' : ''}>
+    <div class="cbp-radio-item">
+      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radio2.id} value=${radio1.value}>
       <label for=${radio2.id}>${radio2.label}</label>
     </div>
     <div class="cbp-radio-item">
-      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radio3.id} value=${radio1.value} ${disabled ? 'disabled' : ''}>
+      <input type="radio" name=${formControlName} class="cbp-input__radio" id=${radio3.id} value=${radio1.value}>
       <label for=${radio3.id}>${radio3.label}</label>
     </div>
   `

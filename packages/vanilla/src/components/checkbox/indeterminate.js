@@ -2,7 +2,7 @@ class IndeterminateCheckbox {
   constructor(checkbox) {
     this.indeterminateCheckbox = checkbox;
     this.nestedCheckboxWrapper = this.indeterminateCheckbox.closest('.cbp-checkbox-item').nextElementSibling;
-    this.nestedCheckboxInputs = this.nestedCheckboxWrapper.querySelectorAll('input[type="checkbox"');
+    this.nestedCheckboxInputs = this.nestedCheckboxWrapper.querySelectorAll('input[type="checkbox"]');
 
     this.indeterminateCheckbox.addEventListener('change', (e) => {
       e.target.checked

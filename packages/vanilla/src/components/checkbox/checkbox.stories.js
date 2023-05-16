@@ -24,7 +24,7 @@ export default {
   },
   decorators: [
     (Story, context) => `
-      <fieldset class="cbp-fieldset ${context.args.displayInline ? 'cbp-fieldset--inline' : ''}">
+      <fieldset class="cbp-fieldset ${context.args.displayInline ? 'cbp-fieldset--inline' : ''}" ${context.args.disabled ? 'disabled' : ''}>
         <legend class="cbp-legend">${context.args.legend}</legend>
         <p class="cbp-input__description">${context.args.inputDescription}</p>
         <p class="cbp-input__description cbp-input__description--error" hidden><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>
@@ -34,48 +34,89 @@ export default {
   ]
 };
 
-const Template = ({ formControlName, checkboxObj: { checkbox1, checkbox2, checkbox3 }, disabled, checked }) => (
+const CheckboxTemplate = ({ formControlName, checkboxObj: { checkbox1 }, checked }) => (
   `
-    <div class="cbp-checkbox-item cbp-margin-bottom-5x">
-      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox1.id} value=${checkbox1.value} ${disabled ? 'disabled' : ''} ${checked ? 'checked' : ''}>
+    <div class="cbp-checkbox-item">
+      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox1.id} value=${checkbox1.value} ${checked ? 'checked' : ''}>
       <label for=${checkbox1.id}>${checkbox1.label}</label>
     </div>
-    <div class="cbp-checkbox-item cbp-margin-bottom-5x">
-      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox2.id} value=${checkbox2.value} ${disabled ? 'disabled' : ''}>
+  `
+)
+
+const CheckListTemplate = ({ formControlName, checkboxObj: { checkbox1, checkbox2, checkbox3 }, checked }) => (
+  `
+    <div class="cbp-checkbox-item">
+      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox1.id} value=${checkbox1.value} ${checked ? 'checked' : ''}>
+      <label for=${checkbox1.id}>${checkbox1.label}</label>
+    </div>
+    <div class="cbp-checkbox-item">
+      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox2.id} value=${checkbox2.value}>
       <label for=${checkbox2.id}>${checkbox2.label}</label>
     </div>
     <div class="cbp-checkbox-item">
-      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox3.id} value=${checkbox3.value} ${disabled ? 'disabled' : ''}>
+      <input type="checkbox" name=${formControlName} class="cbp-input__checkbox" id=${checkbox3.id} value=${checkbox3.value}>
       <label for=${checkbox3.id}>${checkbox3.label}</label>
     </div>
   `
 )
 
-const IndeterminateCheckboxTemplate = ({ indeterminateCheckboxObj, nestedCheckboxObj: { name: nestCheckboxName, checkbox1, checkbox2, checkbox3 }, disabled }) => {
+const IndeterminateCheckboxTemplate = ({ indeterminateCheckboxObj, nestedCheckboxObj: { name: nestCheckboxName, checkbox1, checkbox2, checkbox3 }, checked }) => {
   return `
-    <div class="cbp-checkbox-item cbp-margin-bottom-5x">
-      <input type="checkbox" name=${indeterminateCheckboxObj.name} class="cbp-input__checkbox" id=${indeterminateCheckboxObj.id} value=${indeterminateCheckboxObj.value} data-checkbox="indeterminate" ${disabled ? 'disabled' : ''}>
+    <div class="cbp-checkbox-item">
+      <input type="checkbox" name=${indeterminateCheckboxObj.name} class="cbp-input__checkbox" id=${indeterminateCheckboxObj.id} value=${indeterminateCheckboxObj.value} data-checkbox="indeterminate">
       <label for=${indeterminateCheckboxObj.id}>${indeterminateCheckboxObj.label}</label>
     </div>
     <div class="cbp-checkbox--nested">
-      <div class="cbp-checkbox-item cbp-margin-bottom-5x">
-        <input type="checkbox" name=${nestCheckboxName} id=${checkbox1.id} class="cbp-input__checkbox" value=${checkbox1.value} ${disabled ? 'disabled' : ''}>
+      <div class="cbp-checkbox-item">
+        <input type="checkbox" name=${nestCheckboxName} id=${checkbox1.id} class="cbp-input__checkbox" value=${checkbox1.value}  ${checked ? 'checked' : ''}>
         <label for=${checkbox1.id}>${checkbox1.label}</label>
       </div>
-      <div class="cbp-checkbox-item cbp-margin-bottom-5x">
-        <input type="checkbox" name=${nestCheckboxName} id=${checkbox2.id} class="cbp-input__checkbox" value=${checkbox2.value} ${disabled ? 'disabled' : ''}>
+      <div class="cbp-checkbox-item">
+        <input type="checkbox" name=${nestCheckboxName} id=${checkbox2.id} class="cbp-input__checkbox" value=${checkbox2.value}>
         <label for=${checkbox2.id}>${checkbox2.label}</label>
       </div>
       <div class="cbp-checkbox-item">
-        <input type="checkbox" name=${nestCheckboxName} id=${checkbox3.id} class="cbp-input__checkbox" value=${checkbox3.value} ${disabled ? 'disabled' : ''}>
+        <input type="checkbox" name=${nestCheckboxName} id=${checkbox3.id} class="cbp-input__checkbox" value=${checkbox3.value}>
         <label for=${checkbox3.id}>${checkbox3.label}</label>
       </div>
     </div>
   `
 }
 
-export const Checkbox = Template.bind({});
+export const Checkbox = CheckboxTemplate.bind({});
 Checkbox.args = {
+  legend: 'Terms of Service',
+  inputDescription: 'Required.',
+  formControlName: 'tos',
+  errorMessage: 'This field is required',
+  checkboxObj: {
+    checkbox1: {
+      id: 'tos',
+      label: 'I accept the terms and conditions.',
+      value: 'tos'
+    }
+  }
+};
+Checkbox.argTypes = {
+  formControlName: {
+    name: '`name` Attribute',
+    description: 'The `name` attribute of the checkboxes.',
+    control: { type: 'text' }
+  },
+  checkboxObj: {
+    name: 'Checkbox Object',
+    description: 'This object contains the attributes/values for the `<input type="checkbox">` elements in the story. This includes the `id`, `label` and `value` attributes. **Setting a value for the `id` key will set the value for the corresponding `<input type="checkbox">` `id` attribute and associated `<label>` `labelFor` attribute.**',
+    control: { type: 'object' }
+  },
+  checked: {
+    name: 'Checked',
+    description: 'Add the `checked` attribute to the checkbox (first choice only)',
+    control: { type: 'boolean' }
+  }
+}
+
+export const CheckList = CheckListTemplate.bind({});
+CheckList.args = {
   legend: 'Pizza Toppings',
   inputDescription: 'Required. Choose as many as you like.',
   formControlName: 'toppings',
@@ -98,7 +139,7 @@ Checkbox.args = {
     }
   }
 };
-Checkbox.argTypes = {
+CheckList.argTypes = {
   formControlName: {
     name: '`name` Attribute',
     description: 'The `name` attribute of the checkboxes.',
@@ -120,7 +161,7 @@ Checkbox.argTypes = {
     control: { type: 'boolean' }
   }
 }
-Checkbox.storyName = 'Default';
+CheckList.storyName = 'Check List';
 
 export const IndeterminateCheckbox = IndeterminateCheckboxTemplate.bind({});
 IndeterminateCheckbox.args = {

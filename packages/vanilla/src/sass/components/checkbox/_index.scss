@@ -2,6 +2,10 @@
   border: 0;
   padding: 0;
   margin: 0;
+
+  &:disabled label {
+    font-style: italic;
+  }
 }
 
 .cbp-fieldset--inline {
@@ -14,8 +18,14 @@
 // Wraps a single checkbox or radio with its own <label>
 .cbp-checkbox-item,
 .cbp-radio-item {
+  margin-bottom: var(--cbp-space-5x);
+
   & > label {
     padding-left: var(--cbp-space-2x);
+  }
+
+  &:last-child {
+    margin-bottom: unset;
   }
 }
 
