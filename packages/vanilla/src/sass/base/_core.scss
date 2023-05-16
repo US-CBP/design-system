@@ -1,6 +1,3 @@
-//@use 'colors' as *;
-//@use '../tokens/font' as *;
-
 html {
   font-size: 100%;
 }
@@ -23,7 +20,7 @@ button {
 
 [aria-disabled=true],
 :disabled,
-input:read-only,
+input:read-only:not([type="checkbox"], [type="radio"], [type="file"], [type="range"], [type="color"]),
 textarea:read-only,
 select:read-only {
   cursor: not-allowed;

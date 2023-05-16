@@ -11,6 +11,7 @@ import FileUploader from './components/fileupload/fileupload';
 import ObfuscatedField from './components/text-input/obfuscatedField';
 import NumberCounter from './components/text-input/numberCounter';
 import SegmentedButtonGroup from './components/segmented-button-group/segmented-button-group';
+import IndeterminateCheckbox from './components/checkbox/indeterminate';
 //import UniversalHeader from './components/header/header';
 import DarkMode from './utilities/darkMode';
 
@@ -126,11 +127,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addOrInstantiate(SegmentedButtonGroup, segmentedButtonGroup);
   });
 
-
-
-
-
-
+  SelectorEngine.findAll("[data-checkbox='indeterminate']").forEach(checkbox => {
+    addOrInstantiate(IndeterminateCheckbox, checkbox);
+  })
+  
   SelectorEngine.findAll('[data-theme-toggle]').forEach((themeToggle) => {
     addOrInstantiate(DarkMode, themeToggle);
   });

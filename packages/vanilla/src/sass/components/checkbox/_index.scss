@@ -1,0 +1,190 @@
+.cbp-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  &:disabled label {
+    font-style: italic;
+  }
+}
+
+.cbp-fieldset--inline {
+  & > .cbp-checkbox-item, .cbp-radio-item {
+    display: inline;
+    margin-right: var(--cbp-space-4x);
+  }
+}
+
+// Wraps a single checkbox or radio with its own <label>
+.cbp-checkbox-item,
+.cbp-radio-item {
+  margin-bottom: var(--cbp-space-5x);
+
+  & > label {
+    padding-left: var(--cbp-space-2x);
+  }
+
+  &:last-child {
+    margin-bottom: unset;
+  }
+}
+
+.cbp-checkbox--nested {
+  margin-left: var(--cbp-space-6x);
+}
+
+.cbp-input__checkbox {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  background-color: var(--cbp-color-white);
+  border-color: var(--cbp-color-interactive-neutral-base);
+  border-style: solid;
+  border-width: var(--cbp-border-size-md);
+  border-radius: var(--cbp-border-radius-soft);
+  height: var(--cbp-space-6x);
+  margin: 0;
+  outline: 0;
+  position: relative;
+  width: var(--cbp-space-6x);
+  vertical-align: middle;
+
+  // Check Mark
+  &::before {
+		content: '';
+		position: absolute;
+		margin: auto;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow: hidden;
+		top: 0;
+	}
+
+  &:hover {
+    box-shadow: 0 0 0 8px rgba(230, 230, 226, 0.5); // $cbp-ui-neutral-lighter
+    clip-path: circle(80%);
+  }
+  
+  &:focus {
+    border-color: var(--cbp-color-interactive-focus-dark);
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-focus-light);
+    clip-path: circle(80%);
+    outline: 0;
+
+    &:hover {
+      box-shadow: 0 0 0 8px var(--cbp-color-interactive-focus-light);
+      clip-path: circle(80%);
+    }
+	}
+}
+
+.cbp-input__checkbox:checked {
+  border-color: var(--cbp-color-interactive-selected-dark);
+  background-color: var(--cbp-color-interactive-selected-dark);
+  color: var(--cbp-color-white);
+
+  // Check Mark
+  &::before {
+    border-right-color: var(--cbp-color-white);
+    border-right-style: solid;
+    border-right-width: var(--cbp-border-size-lg);
+    border-bottom-color: (--cbp-color-white);
+    border-bottom-style: solid;
+    border-bottom-width: var(--cbp-border-size-lg);
+    height: 70%;
+    width: 30%;
+    transform: rotate(45deg) translateY(-10%) translateX(-10%);
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-selected-light);
+    clip-path: circle(80%);
+  }
+
+  &:focus {
+    background-color: var(--cbp-color-interactive-focus-dark);
+    border-color: var(--cbp-color-white); // TODO: Discuss color change for this
+  }
+}
+
+.cbp-input__checkbox:disabled {
+  background-color: var(--cbp-color-interactive-disabled-light);
+  border-color: var(--cbp-color-interactive-disabled-dark);
+
+  &:hover {
+    border-color: var(--cbp-color-interactive-neutral-base);
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-neutral-lighter);
+    clip-path: circle(80%);
+  }
+}
+
+.cbp-input__checkbox:disabled:checked {
+  border-color: var(--cbp-color-interactive-disabled-dark);
+  background-color: var(--cbp-color-interactive-disabled-dark);
+  color: var(--cbp-color-white);
+
+  &::before {
+    border-right-color: var(--cbp-color-white);
+    border-right-style: solid;
+    border-right-width: var(--cbp-border-size-lg);
+    border-bottom-color: var(--cbp-color-white);
+    border-bottom-style: solid;
+    border-bottom-width: var(--cbp-border-size-lg);
+    height: 70%;
+    width: 30%;
+    transform: rotate(45deg) translateY(-10%) translateX(-10%);
+  }
+
+  &:hover {
+    background-color: var(--cbp-color-interactive-neutral-base);
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-disabled-light);
+    clip-path: circle(80%);
+  }
+}
+
+.cbp-input__checkbox:indeterminate {
+  background-color: var(--cbp-color-interactive-selected-dark);
+  border-color: var(--cbp-color-interactive-selected-dark);
+  border-style: solid;
+  border-width: var(--cbp-border-size-md);
+
+  // Dash Mark
+  &::before {
+    border-color: var(--cbp-color-white);
+    border-style: solid;
+    border-width: var(--cbp-border-size-sm);
+    height: 0;
+    width: 60%;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-selected-light);
+    clip-path: circle(80%);
+  }
+
+  &:focus {
+    background-color: var(--cbp-color-interactive-focus-dark);
+    border-color: var(--cbp-color-white);
+  }
+}
+
+.cbp-input__checkbox:disabled:indeterminate {
+  background-color: var(--cbp-color-interactive-disabled-dark);
+  border-color: var(--cbp-color-interactive-disabled-dark);
+
+  &::before {
+    border-color: var(--cbp-color-interactive-disabled-light);
+    border-style: solid;
+    border-width: var(--cbp-border-size-sm);
+    height: 0;
+    width: 60%;
+  }
+
+  &:hover {
+    background-color: var(--cbp-color-interactive-neutral-base);
+    border-color: var(--cbp-color-interactive-neutral-base);
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-disabled-light); // $cbp-selected-light
+    clip-path: circle(80%);
+  }
+}

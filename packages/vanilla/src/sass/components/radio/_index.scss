@@ -1,0 +1,99 @@
+.cbp-input__radio {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  border-color: var(--cbp-color-interactive-neutral-base);
+  border-style: solid;
+  border-width: var(--cbp-border-size-md);
+  border-radius: var(--cbp-border-radius-circle);
+  height: var(--cbp-space-7x);
+  margin: 0;
+  position: relative;
+  width: var(--cbp-space-7x);
+  vertical-align: middle;
+
+  &::before {
+		content: '';
+		position: absolute;
+		margin: auto;
+		left: 0;
+		right: 0;
+		bottom: 0;
+    height: 0;
+		overflow: hidden;
+		top: 0;
+    width: 0;
+	}
+
+  &:hover {
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-neutral-lighter);
+  }
+	
+	&:focus {
+    border-color: var(--cbp-color-interactive-focus-dark);
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-focus-light);
+    outline: 0;
+
+    &:hover {
+      box-shadow: 0 0 0 8px var(--cbp-color-interactive-focus-light);
+    }
+	}
+}
+
+.cbp-input__radio:checked {
+  border-color: var(--cbp-color-interactive-selected-dark);
+
+  &::before {
+    border: 0.375rem;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: var(--cbp-border-radius-circle);
+    outline-offset: -0.375rem;
+    background: var(--cbp-color-interactive-selected-dark); 
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-selected-light);
+  }
+
+  &:focus {
+    background-color: var(--cbp-color-interactive-focus-dark);
+    border-color: var(--cbp-color-white);
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-focus-light);
+
+    &::before {
+      border-color: var(--cbp-color-white);
+    }
+  }
+}
+
+.cbp-input__radio:disabled {
+  background-color: var(--cbp-color-interactive-disabled-light);
+  border-color: var(--cbp-color-interactive-disabled-dark);
+
+  &:checked {
+    border-color: var(--cbp-color-interactive-disabled-dark);
+
+    &::before {
+      border-color: transparent;
+      border-style: solid;
+      border-width: 0.375rem;
+      border-radius: 100%;
+      outline-offset: -0.375rem;
+      background: var(--cbp-color-interactive-disabled-dark);
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 8px var(--cbp-color-interactive-disabled-light);
+
+      &::before {
+        background: var(--cbp-color-interactive-neutral-base);
+      }
+    }
+  }
+  
+  &:hover {
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-disabled-light);
+    border-color: var(--cbp-color-interactive-neutral-base);
+  }
+}

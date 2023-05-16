@@ -1,6 +1,3 @@
-//@use '../base/colors' as *;
-@use 'checkbox' as *;
-
 .cbp-dropdown__wrapper {
   position: relative;
 }
@@ -184,7 +181,6 @@
 
 .cbp-dropdown__item--multiselect {
   & > input[type="checkbox"] {
-    @extend .cbp-form__checkbox;
     border-radius: 12px;
 
     &:hover:not([disabled]) {
