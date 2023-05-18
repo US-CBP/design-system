@@ -1,4 +1,6 @@
-.cbp-input__label {
+// Can be used on both <label> and <legend> elements
+.cbp-input__label,
+.cbp-legend {
   color: var(--cbp-color-text-darkest);
   display: inline-block;
   font-size: var(--cbp-font-size-body);
