@@ -6,8 +6,6 @@ export default {
   },
 };
 
-
-
 const Template = ({ label, ...args }) => {
   return `
     <h1>Heading 1</h1>
@@ -62,24 +60,24 @@ const Template = ({ label, ...args }) => {
 
     <ul>
         <li>Item A</li>
-        <li>Item B</li>
-        <li>Item C
-            <ul>
-                <li>Item a</li>
-                <li>Item b</li>
-            </ul>
+        <li>Item B
+          <ul>
+            <li>Item a</li>
+            <li>Item b</li>
+          </ul>
         </li>
+        <li>Item C</li>
     </ul>
     
     <ol>
         <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3
-            <ol>
-                <li>Item A</li>
-                <li>Item B</li>
-            </ol>
+        <li>Item 2
+          <ol>
+            <li>Item A</li>
+            <li>Item B</li>
+          </ol>
         </li>
+        <li>Item 3</li>
     </ol>
     
     <dl>
