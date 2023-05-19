@@ -3,8 +3,6 @@ class Tabset {
     this.tabset = tabset;
     this.tabs = this.tabset.querySelectorAll('button');
     
-    console.log(tabset);
-
     // Set event listeners on each tab control
     this.tabs.forEach(el => {
       el.addEventListener('click', (e) => {
@@ -24,7 +22,6 @@ class Tabset {
     this.tabs.forEach( tab => {
       if (tab.getAttribute('aria-selected') === 'true') activeTab = tab;
     });
-    console.log({activeTab})
     this.setActiveTab(activeTab);
   }
 
@@ -34,7 +31,7 @@ class Tabset {
       let panel=document.querySelector(`#${panelid}`);
 
       if(!panel) {
-        console.log(`Tab does not reference valid tab panel with id ${panelid}`)
+        console.error(`Tab does not reference valid tab panel with id ${panelid}`)
         return;
       }
 
@@ -61,7 +58,6 @@ class Tabset {
         nativeEvent: e
       }
     });
-    console.log({tabActivatedEvent});
     this.tabset.dispatchEvent(tabActivatedEvent);
   }
 
