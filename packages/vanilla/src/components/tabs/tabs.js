@@ -51,7 +51,7 @@ class Tabset {
     this.setActiveTab(clickedButton);
   
     // Emit a custom event so that the developer can listen to
-    const tabActivatedEvent = new CustomEvent("buttonToggle", { 
+    const tabActivatedEvent = new CustomEvent("tabActivated", { 
       detail: {
         tab: clickedButton,
         name: clickedButton.name || clickedButton.innerText,
