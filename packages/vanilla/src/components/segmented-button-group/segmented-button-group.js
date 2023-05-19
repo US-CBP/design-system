@@ -5,7 +5,7 @@ class SegmentedButtonGroup {
     this.type="multi";
 
     // Default all buttons to aria-pressed='false' if not explicitly set
-    Array.from(this.buttons).forEach(el => {
+    this.buttons.forEach(el => {
       if(!el.hasAttribute('aria-pressed') ){
           el.setAttribute('aria-pressed','false');
       }
@@ -37,7 +37,7 @@ class SegmentedButtonGroup {
 
       // handle type=single segmented buttons (toggle off all other buttons)
       if(this.type=="single") {
-        Array.from(this.buttons).forEach(el => {
+        this.buttons.forEach(el => {
             if(!previousState && el !=clickedButton){
               el.setAttribute('aria-pressed','false');
             }

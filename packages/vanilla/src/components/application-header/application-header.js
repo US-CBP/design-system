@@ -6,7 +6,7 @@ class ApplicationHeader {
   
     bootstrapNavControls() {
       const controls = document.querySelectorAll('nav.cbp-application-header button.cbp-menu-dropdown');
-      Array.from(controls).forEach( (el) => {
+      controls.forEach( (el) => {
         // add aria-controls to each button
         if('controls' in el.dataset) {
           el.setAttribute('aria-controls', el.dataset.controls);
