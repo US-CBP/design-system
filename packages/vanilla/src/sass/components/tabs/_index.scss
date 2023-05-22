@@ -7,10 +7,11 @@
 
   .cbp-tab {
     all: unset;
+    box-sizing: border-box;
     min-height: var(--cbp-space-14x);
     padding: 0 var(--cbp-space-3x);
     margin-bottom: calc(var(--cbp-space-half-x) * -1);
-    border-bottom: var(--cbp-border-size-lg) solid transparent;
+    border-bottom: var(--cbp-border-size-xl) solid transparent;
     font-size: var(--cbp-font-size-heading-xs);
     font-weight: var(--cbp-font-weight-medium);
 
@@ -40,7 +41,6 @@
     &:hover {
       color: var(--cbp-color-danger-dark);
       background-color: var(--cbp-color-danger-lighter);
-      //border-bottom-color: var(--cbp-color-interactive-neutral-darker);
     }
 
     &:focus-visible {
