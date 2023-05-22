@@ -15,7 +15,6 @@ class Tabset {
   }
 
   initTabset() {
-    let err;
     let activeTab = this.tabs[0];
 
     // If a reference tab was not passed in, check for a default tab, otherwise set the first one active
