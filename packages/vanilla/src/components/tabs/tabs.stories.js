@@ -13,7 +13,7 @@ export default {
 const TabsTemplate = ({tabsObj: { tab1, tab2, tab3, tab4 }}) => {
   return `
     <div class="cbp-tabset" role="tablist">
-      <button class="cbp-tab ${tab1.danger ? 'cbp-tab--danger' : ''}" type="button" role="tab" name="Tab 1" aria-controls=${tab1.panelid}>
+      <button class="cbp-tab ${tab1.danger ? 'cbp-tab--danger' : ''}" type="button" role="tab" aria-controls=${tab1.panelid}>
         ${tab1.danger ? '<i class="fas fa-exclamation-triangle"></i>' : ''}
         ${tab1.label}
       </button>
