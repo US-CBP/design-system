@@ -1,0 +1,58 @@
+.cbp-tabset {
+  display: flex;
+  align-items: flex-end;
+  //gap: var(--cbp-space-2x);
+  border-bottom: var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-30);
+  margin-bottom: var(--cbp-space-4x);
+
+  .cbp-tab {
+    all: unset;
+    box-sizing: border-box;
+    min-height: var(--cbp-space-14x);
+    padding: 0 var(--cbp-space-3x);
+    margin-bottom: calc(var(--cbp-space-half-x) * -1);
+    border-bottom: var(--cbp-border-size-xl) solid transparent;
+    font-size: var(--cbp-font-size-heading-xs);
+    font-weight: var(--cbp-font-weight-medium);
+
+    &[aria-selected='true'] {
+      color: var(--cbp-color-interactive-active-dark);
+      border-bottom-color: var(--cbp-color-interactive-active-dark);
+      font-style: italic;
+    }
+
+    &:hover {
+      background-color: var(--cbp-color-interactive-neutral-lighter);
+      border-bottom-color: var(--cbp-color-interactive-neutral-darker);
+    }
+
+    &:focus-visible {
+      color: var(--cbp-color-text-lightest);
+      background: var(--cbp-color-interactive-focus-dark);
+      border-color: var(--cbp-color-interactive-focus-dark);
+      outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
+      outline-offset: calc(-1 * var(--cbp-space-1x));
+    }
+  }
+
+  .cbp-tab--danger {
+    color: var(--cbp-color-danger-base);
+
+    &:hover {
+      color: var(--cbp-color-danger-dark);
+      background-color: var(--cbp-color-danger-lighter);
+    }
+
+    &:focus-visible {
+      color: var(--cbp-color-text-lightest);
+      background: var(--cbp-color-interactive-focus-dark);
+      border-color: var(--cbp-color-interactive-focus-dark);
+      outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
+      outline-offset: calc(-1 * var(--cbp-space-1x));
+    }
+
+  
+  }
+
+
+}

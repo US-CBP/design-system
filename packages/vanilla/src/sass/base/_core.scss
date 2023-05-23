@@ -13,6 +13,13 @@ body {
   background-color: var(--cbp-color-branding-cbp-dark);
 }
 
+p,
+blockquote,
+ul:not(ul ul):not(ul ol),
+ol:not(ol ol):not(ol ul) {
+  margin-bottom: var(--cbp-space-4x);
+}
+
 a[href],
 button {
   cursor: pointer;
@@ -24,4 +31,9 @@ input:read-only:not([type="checkbox"], [type="radio"], [type="file"], [type="ran
 textarea:read-only,
 select:read-only {
   cursor: not-allowed;
+}
+
+/* Ensure that `hidden` is not overridden by other selectors setting display, such as flex or grid */
+[hidden] {
+  display: none !important;
 }

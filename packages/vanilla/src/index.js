@@ -11,6 +11,7 @@ import FileUploader from './components/fileupload/fileupload';
 import ObfuscatedField from './components/text-input/obfuscatedField';
 import NumberCounter from './components/text-input/numberCounter';
 import SegmentedButtonGroup from './components/segmented-button-group/segmented-button-group';
+import Tabset from './components/tabs/tabs';
 import IndeterminateCheckbox from './components/checkbox/indeterminate';
 //import UniversalHeader from './components/header/header';
 import DarkMode from './utilities/darkMode';
@@ -127,6 +128,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
     addOrInstantiate(SegmentedButtonGroup, segmentedButtonGroup);
   });
 
+  /**
+   * Tabset
+   */
+  SelectorEngine.findAll('.cbp-tabset').forEach((tabset) => {
+    addOrInstantiate(Tabset, tabset);
+  });
+
+  
   SelectorEngine.findAll("[data-checkbox='indeterminate']").forEach(checkbox => {
     addOrInstantiate(IndeterminateCheckbox, checkbox);
   })
