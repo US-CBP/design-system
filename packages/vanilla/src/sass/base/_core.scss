@@ -33,6 +33,7 @@ select:read-only {
   cursor: not-allowed;
 }
 
+/* Ensure that `hidden` is not overridden by other selectors setting display, such as flex or grid */
 [hidden] {
   display: none !important;
 }
