@@ -1,52 +1,59 @@
 export default {
   title: 'Patterns/Accordion',
   argTypes: {
-    label: { control: 'text' },
-    onClick: { action: 'onClick' },
-  },
+    defaultAccordion: {
+      name: 'Accordion (Default)',
+    },
+    badgeAccordion: {
+      name: 'Accordion w/ Badge',
+    }, 
+    iconAccordion: {
+      name: 'Accordion w/ Icon',
+    }
+  }
 };
 
-
-
-const Template = ({ label, ...args }) => {
+const Template = ({ defaultAccordion, badgeAccordion, iconAccordion }) => {
   return `
-    <div class="cbp-accordion">
-      <div class="cbp-accordion__item">
-        <button class="cbp-accordion__title" aria-expanded="false" aria-controls="accordion-demo-1">
-            <div>
-                <i class="fas fa-angle-down"></i>
-                <span>Accordion Control</span>
-            </div>
+    <div class="cbp-accordion-group">
+      <div class="cbp-accordion__item ${defaultAccordion.danger ? 'cbp-accordion__item--danger' : ''}">
+        <button class="cbp-accordion__trigger" id="accordion1"  aria-controls="accordion-content-1">
+          <span class="cbp-accordion__title">
+            <i class="fas fa-chevron-down"></i>
+            ${defaultAccordion.title}
+          </span>
         </button>
-
-        <div class="cbp-accordion__content" aria-labelledby="accordion-demo-1">
-            <h6 class="cbp-text-heading-3xs text-italic">Content Heading</h6>
-            <hr>
-            <p>Accordion content here.</p>
-            <div class="cbp-accordion__footer">
-              <p>Accordion footer</p>
-            </div>
+        <div class="cbp-accordion__content" id="accordion-content-1" aria-labelledby="accordion1" hidden>
+          <p class="cbp-font-style-italic">Content Area</p>
         </div>
       </div>
 
-      <div class="cbp-accordion__item">
-        <button class="cbp-accordion__title" aria-expanded="false" aria-controls="accordion-demo-1">
-            <div>
-              <i class="fas fa-angle-down"></i>
-              <span>Accordion Control with badge</span>
-            </div>
-            <div class="cbp-badge">
-              <span class="cbp-text-badge">7</span>
-            </div>
+      <div class="cbp-accordion__item ${badgeAccordion.danger ? 'cbp-accordion__item--danger' : ''}">
+        <button class="cbp-accordion__trigger" id="accordion2" aria-controls="accordion-content-2">
+          <span class="cbp-accordion__title">
+            <i class="fas fa-chevron-down"></i>
+            ${badgeAccordion.title}
+          </span>
+          <div class="cbp-badge">
+            <span class="cbp-text-badge">16</span>
+          </div>
         </button>
 
-        <div class="cbp-accordion__content" aria-labelledby="accordion-demo-1">
-          <h6 class="cbp-text-heading-3xs text-italic">Content Heading</h6>
-          <hr>
-          <p>Accordion content here.</p>
-          <div class="cbp-accordion__footer">
-            <p>Accordion footer</p>
-          </div>
+        <div class="cbp-accordion__content" id="accordion-content-2" aria-labelledby="accordion2" hidden>
+          <p class="cbp-font-style-italic">Content Area</p>
+        </div>
+      </div>
+
+      <div class="cbp-accordion__item ${iconAccordion.danger ? 'cbp-accordion__item--danger' : ''}">
+        <button class="cbp-accordion__trigger" id="accordion3" aria-controls="accordion-content-3">
+          <span class="cbp-accordion__title">
+            <i class="fas fa-chevron-down"></i>
+            ${iconAccordion.title}
+          </span>
+          <i class="fas fa-exclamation-triangle"></i>
+        </button>
+        <div class="cbp-accordion__content" id="accordion-content-3" aria-labelledby="accordion3" hidden>
+          <p class="cbp-font-style-italic">Content Area</p>
         </div>
       </div>
     </div>
@@ -54,4 +61,17 @@ const Template = ({ label, ...args }) => {
 };
 
 export const Accordion = Template.bind({});
-Accordion.args = {};
+Accordion.args = {
+  defaultAccordion: {
+    title: 'Accordion (Default)',
+    danger: false
+  },
+  badgeAccordion: {
+    title: 'Accordion w/ Badge',
+    danger: false
+  }, 
+  iconAccordion: {
+    title: 'Accordion w/ Icon',
+    danger: false
+  }
+};

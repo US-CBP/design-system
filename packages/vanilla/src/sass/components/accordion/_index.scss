@@ -1,148 +1,127 @@
-//@use '../../base/colors' as *;
-@use '../../typography' as *;
-@use './states' as *;
-//@use '../../tokens/font' as *;
-
-.cbp-accordion {
-  margin: 24px 0;
+.cbp-accordion-group {
+  margin-top: var(--cbp-space-6x);
+  margin-bottom: var(--cbp-space-6x);
   width: 100%;
-
-  .cbp-accordion__item {
-    margin-bottom: 12px;
-  
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-  }
-
-  .cbp-accordion__title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    color: var(--cbp-color-text-darkest);
-    background: var(--cbp-color-interactive-neutral-lighter);
-    border: none;
-    outline: transparent;
-    padding: 16px;
-    transition: all 300ms;
-
-    div:first-child i {
-      color: var(--cbp-color-text-darker);
-      font-size: var(--cbp-font-size-heading-md);
-      transition: transform .2s ease-in-out;
-    }
-
-    div:first-child span {
-      @extend .cbp-heading-s;
-      margin-left: 16px;
-    }
-
-    &:hover {
-      background-color: var(--cbp-color-interactive-neutral-light);
-    }
-
-    &:focus {
-      @include accordion-focus;
-      @include accordion-text-light;
-      @include accordion-badge(var(--cbp-color-white), var(--cbp-color-base-secondary-base));
-    }
-
-    /* TODO: Leverage the cascade. Put states last. */
-    &:focus + .cbp-accordion__content {
-      @include accordion-content-border(var(--cpb-color-interactive-focus-dark), true);
-    }
-  }
-
-  .cbp-accordion__content {
-    background: var(--cbp-color-white);
-    display: none;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-in-out;
-
-    /* TODO: wouldn't it be easier to apply padding to the content panel 
-      rather than margin to every child inside of it, possibly overriding something?
-    */
-    > * { 
-      margin: 16px 
-    }
-  }
 }
 
+.cbp-accordion__item:not(:last-child) {
+  margin-bottom: var(--cbp-space-3x);
+}
 
-.cbp-accordion__title--danger {
-  background: var(--cbp-color-danger-base);
+.cbp-accordion__trigger {
+  display: flex;
+  align-items: center;
+  background: var(--cbp-color-interactive-neutral-lighter);
+  border: none;
+  color: var(--cbp-color-text-darkest);
+  justify-content: space-between;
+  outline: 0;
+  min-height: var(--cbp-space-13x);
+  padding-left: var(--cbp-space-4x);
+  padding-right: var(--cbp-space-4x);
+  transition: all 300ms;
+  width: 100%;
 
-  @include accordion-text-light;
-  @include accordion-badge(var(--cbp-color-white), var(--cbp-color-danger-base));
+  & i {
+    font-size: var(--cbp-font-size-heading-md);
+
+    &:first-child {
+      margin-right: var(--cbp-space-2x);
+      transition: transform var(--cbp-motion-duration-shortest) ease-in-out;
+    }
+  }
 
   &:hover {
-    background: var(--cbp-color-danger-dark);
+    background-color: var(--cbp-color-interactive-neutral-light);
   }
 
   &:focus {
-    @include accordion-focus;
-    @include accordion-badge(var(--cbp-color-white), var(--cbp-color-danger-base));
-  }
-}
+    background: var(--cbp-color-interactive-focus-dark);
+    color: var(--cbp-color-text-lightest);
+    outline-width: var(--cbp-border-size-md);
+    outline-style: solid;
+    outline-color: var(--cbp-color-white);
+    outline-offset: calc(-1 * var(--cbp-space-2x));
 
-.active {
-  .cbp-accordion__title {
-    background-color: var(--cbp-color-base-secondary-base);
-
-    @include accordion-text-light;
-
-    div:first-child i {
-      transform: rotate(-180deg);
-    }
-
-    @include accordion-badge(var(--cbp-color-white), var(--cbp-color-base-secondary-base));
-
-    .cbp-accordion__title--danger {
-      background: var(--cbp-color-danger-base);
-      color: var(--cbp-color-text-lightest);
-
-      .cbp-badge span {
-        color: var(--cbp-color-danger-base);
-      }
-    }
-
-    .cbp-accordion__title--danger + .cbp-accordion__content {
-      border-color: var(--cbp-color-danger-base);
-    }
-  }
-
-  .cbp-accordion__content {
-    display: block;
-    max-height: fit-content;
-    @include accordion-content-border(var(--cbp-color-base-secondary-base));
-
-    .cbp-accordion__footer {
-      align-items: center;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 16px;
-      margin-top: 16px;
+    & > .cbp-badge {
+      background-color: var(--cbp-color-white);
+      color: var(--cbp-color-base-secondary-base);
     }
   }
 }
 
-// Hover States
-.cbp-accordion__item.active:hover {
-  .cbp-accordion__title {
+.cbp-accordion__trigger[aria-expanded="true"] {
+  background-color: var(--cbp-color-base-secondary-base);
+  color: var(--cbp-color-text-lightest);
+
+  & i:first-child {
+    transform: rotate(-180deg);
+  }
+
+  & .cbp-badge {
+    background-color: var(--cbp-color-white);
+    color: var(--cbp-color-base-secondary-base);
+  }
+
+  &:hover {
     background-color: var(--cbp-color-base-secondary-dark);
+
+    & + .cbp-accordion__content {
+      border-color: var(--cbp-color-base-secondary-dark);
+    }
   }
 
-  .cbp-accordion__content {
-    @include accordion-content-border(var(--cbp-color-base-secondary-base));
+  &:focus {
+    background-color: var(--cbp-color-interactive-focus-dark);
+
+    & + .cbp-accordion__content {
+      border-color: var(--cbp-color-interactive-focus-dark);
+    }
+  }
+}
+
+.cbp-accordion__title {
+  align-items: center;
+  display: flex;
+  font-weight: var(--cbp-font-weight-medium);
+  font-size: var(--cbp-font-size-heading-sm);
+}
+
+.cbp-accordion__content {
+  background: var(--cbp-color-white);
+  border: var(--cbp-border-size-xl) solid var(--cbp-color-base-secondary-base);
+  border-top: 0;
+  padding: var(--cbp-space-4x);
+}
+
+
+
+.cbp-accordion__item--danger > .cbp-accordion__trigger {
+  background: var(--cbp-color-danger-base);
+  color: var(--cbp-color-text-lightest);
+
+  & + .cbp-accordion__content {
+    border-color: var(--cbp-color-danger-base);
+  }
+  
+  & .cbp-badge {
+    background-color: var(--cbp-color-white);
+    color: var(--cbp-color-danger-base);
   }
 
-  .cbp-accordion__title--danger {
-    background-color: var(--cbp-color-danger-dark);
+  &:hover {
+    background: var(--cbp-color-danger-dark);
+
+    & + .cbp-accordion__content {
+      border-color: var(--cbp-color-danger-dark);
+    }
   }
 
-  .cbp-accordion__title--danger + .cbp-accordion__content {
-    @include accordion-content-border(var(--cbp-color-danger-dark));
+  &:focus {
+    background: var(--cbp-color-interactive-focus-dark);
+
+    & + .cbp-accordion__content {
+      border-color: var(--cbp-color-interactive-focus-dark);
+    }
   }
 }

@@ -1,13 +1,25 @@
 class Accordion {
-  constructor(domNode) {
-    this.accordionNode = domNode;
+  constructor(accordionItem) {
+    this.accordionNode = accordionItem;
+    this.accordionTrigger = this.accordionNode.querySelector('.cbp-accordion__trigger');
+    this.accordionContent = this.accordionNode.querySelector('.cbp-accordion__content');
 
-    this.accordionNode.addEventListener('click', this.toggle);
+    this.accordionTrigger.setAttribute('aria-expanded', false)
+
+    this.accordionNode.addEventListener('click', () => {
+      this.toggle()
+    });
   }
 
-  toggle(event) {
-    const wrapper = event.target.closest('.cbp-accordion__item');
-    wrapper.classList.toggle('active');
+  toggle() {
+    const previousState =
+      this.accordionTrigger.hasAttribute('aria-expanded') &&
+      this.accordionTrigger.getAttribute('aria-expanded') === 'true'
+        ? true
+        : false;
+    
+    this.accordionTrigger.setAttribute('aria-expanded', !previousState);
+    this.accordionContent.toggleAttribute('hidden');
   }
 }
 
