@@ -15,9 +15,9 @@ export default {
 
 const Template = ({ defaultAccordion, badgeAccordion, iconAccordion }) => {
   return `
-    <div class="cbp-accordion-group">
+    <div class="cbp-accordion">
       <div class="cbp-accordion__item ${defaultAccordion.danger ? 'cbp-accordion__item--danger' : ''}">
-        <button class="cbp-accordion__trigger" id="accordion1"  aria-controls="accordion-content-1">
+        <button class="cbp-accordion__control" id="accordion1"  aria-controls="accordion-content-1">
           <span class="cbp-accordion__title">
             <i class="fas fa-chevron-down"></i>
             ${defaultAccordion.title}
@@ -29,7 +29,7 @@ const Template = ({ defaultAccordion, badgeAccordion, iconAccordion }) => {
       </div>
 
       <div class="cbp-accordion__item ${badgeAccordion.danger ? 'cbp-accordion__item--danger' : ''}">
-        <button class="cbp-accordion__trigger" id="accordion2" aria-controls="accordion-content-2">
+        <button class="cbp-accordion__control" id="accordion2" aria-controls="accordion-content-2">
           <span class="cbp-accordion__title">
             <i class="fas fa-chevron-down"></i>
             ${badgeAccordion.title}
@@ -45,7 +45,7 @@ const Template = ({ defaultAccordion, badgeAccordion, iconAccordion }) => {
       </div>
 
       <div class="cbp-accordion__item ${iconAccordion.danger ? 'cbp-accordion__item--danger' : ''}">
-        <button class="cbp-accordion__trigger" id="accordion3" aria-controls="accordion-content-3">
+        <button class="cbp-accordion__control" id="accordion3" aria-controls="accordion-content-3">
           <span class="cbp-accordion__title">
             <i class="fas fa-chevron-down"></i>
             ${iconAccordion.title}

@@ -1,4 +1,4 @@
-.cbp-accordion-group {
+.cbp-accordion {
   margin-top: var(--cbp-space-6x);
   margin-bottom: var(--cbp-space-6x);
   width: 100%;
@@ -8,7 +8,7 @@
   margin-bottom: var(--cbp-space-3x);
 }
 
-.cbp-accordion__trigger {
+.cbp-accordion__control {
   display: flex;
   align-items: center;
   background: var(--cbp-color-interactive-neutral-lighter);
@@ -50,7 +50,7 @@
   }
 }
 
-.cbp-accordion__trigger[aria-expanded="true"] {
+.cbp-accordion__control[aria-expanded="true"] {
   background-color: var(--cbp-color-base-secondary-base);
   color: var(--cbp-color-text-lightest);
 
@@ -96,7 +96,7 @@
 
 
 
-.cbp-accordion__item--danger > .cbp-accordion__trigger {
+.cbp-accordion__item--danger > .cbp-accordion__control {
   background: var(--cbp-color-danger-base);
   color: var(--cbp-color-text-lightest);
 
