@@ -1,6 +1,6 @@
-select {
+.cbp-input__select {
   appearance: none;
-  background-color: transparent;
+  background-color: var(--cbp-color-white);
   background-image: url('/assets/images/angle-arrow-down-gray-90.svg');
   background-repeat: no-repeat;
   background-position: right var(--cbp-space-2x) center;
@@ -8,15 +8,10 @@ select {
   border-color: var(--cbp-color-interactive-neutral-base);
   border-radius: var(--cbp-border-radius-soft);
   border-width: var(--cbp-border-size-md);
-  display: block;
-  font-family: inherit;
-  font-size: inherit;
+  color: var(--cbp-color-text-darkest);
   min-height: var(--cbp-space-9x);
-  line-height: inherit;
   outline: 0;
   padding-left: var(--cbp-space-2x);
-  padding-top: var(--cbp-space-2x);
-  padding-bottom: var(--cbp-space-2x);
   width: 100%;
 
   &:hover {
@@ -28,11 +23,18 @@ select {
   }
 
   &:disabled {
-    cursor: not-allowed;
+    background-color: var(--cbp-color-interactive-disabled-light);
+    border-color: var(--cbp-color-interactive-disabled-dark);
+    font-style: italic;
+
+    &:hover {
+      border-color: var(--cbp-color-base-neutral-darker);
+    }
   }
 
   &:invalid {
-    color: var(--cbp-color-text-dark);
+    background-color: var(--cbp-color-danger-lighter);
+    border-color: var(--cbp-color-danger-dark);
     font-style: italic;
   }
 }
