@@ -1,0 +1,38 @@
+select {
+  appearance: none;
+  background-color: transparent;
+  background-image: url('/assets/images/angle-arrow-down-gray-90.svg');
+  background-repeat: no-repeat;
+  background-position: right var(--cbp-space-2x) center;
+  background-size: var(--cbp-space-3x) var(--cbp-space-3x);
+  border-color: var(--cbp-color-interactive-neutral-base);
+  border-radius: var(--cbp-border-radius-soft);
+  border-width: var(--cbp-border-size-md);
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  min-height: var(--cbp-space-9x);
+  line-height: inherit;
+  outline: 0;
+  padding-left: var(--cbp-space-2x);
+  padding-top: var(--cbp-space-2x);
+  padding-bottom: var(--cbp-space-2x);
+  width: 100%;
+
+  &:hover {
+    border-color: var(--cbp-color-base-neutral-darker);
+  }
+
+  &:focus {
+    border-color: var(--cbp-color-interactive-focus-dark);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:invalid {
+    color: var(--cbp-color-text-dark);
+    font-style: italic;
+  }
+}
