@@ -25,11 +25,11 @@ A Segmented Button Group represent a group of stateful buttons that can be toggl
 
 * `aria-pressed` is automatically set to `false` on each button if it does not exist when the component is loaded.
 * `aria-pressed` is toggled when a button is activated.
-* Buttons without accessibile label text, such as icon buttons, should use the `aria-label` attribute on the button to specify an accessible label.
+* Buttons without accessible label text, such as icon buttons, should use the `aria-label` attribute on the button to specify an accessible label.
 
 ### Usage Notes and Additional Considerations
 
-* Segmented Button Groupss default to multiple selection unless specified as single via `data-segmented-button-group="single"`.
+* Segmented Button Groups default to multiple selection unless specified as single via `data-segmented-button-group="single"`.
 * A custom event of `buttonToggle` is emitted from the parent component tag, allowing applications to listen to the entire group rather than each individual button within it. The custom event's `details` contain the following keys:
   * `button`: a DOM reference to the button element activated
   * `nativeEvent`: the full native `click` event from the activated button
