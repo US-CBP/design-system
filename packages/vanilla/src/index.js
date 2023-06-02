@@ -7,7 +7,7 @@ import Drawer from './components/drawer/drawer';
 import Dropdown from './components/dropdown/dropdown';
 import Expand from './components/expand/expand';
 import Toggle from './components/toggle/toggle';
-import FileUploader from './components/fileupload/fileupload';
+import FileInput from './components/file-input/fileInput';
 import ObfuscatedField from './components/text-input/obfuscatedField';
 import NumberCounter from './components/text-input/numberCounter';
 import SegmentedButtonGroup from './components/segmented-button-group/segmented-button-group';
@@ -89,8 +89,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   /**
    * File Upload Component
    */
-  SelectorEngine.findAll('.cbp-form__file').forEach((fileupload) => {
-    addOrInstantiate(FileUploader, fileupload);
+  SelectorEngine.findAll('.cbp-file-input').forEach((fileInput) => {
+    addOrInstantiate(FileInput, fileInput);
   });
 
   /**

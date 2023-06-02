@@ -1,0 +1,240 @@
+.cbp-file-input__wrapper {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  position: relative;
+  
+  background-color: transparent;
+  border: var(--cbp-border-size-md) dashed var(--cbp-color-interactive-neutral-base);
+  border-radius: 3px;
+  cursor: pointer;
+
+  font-style: italic;
+  height: 72px;
+  margin-bottom: 16px;
+  padding: 0 12px;
+  
+  i {
+    color: var(--cbp-color-text-base);
+    font-size: 30px;
+    margin-right: 12px;
+  }
+
+  /* The actual input is the drop-target for browser-based drag and drop, so it needs to cover the entire faux-input area. */
+  input[type=file] {
+    cursor: pointer;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: none;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: var(--cbp-space-2x);
+    text-indent: -999em;
+    z-index: 1;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & > .cbp-btn__secondary {
+    margin-left: 6px;
+    pointer-events: none;
+  
+    & > i {
+      color: var(--cbp-color-text-lightest);
+      font-size: 14px;
+      margin-right: 8px;
+    }
+  }
+
+  &:hover {
+    border: var(--cbp-border-size-md) dashed var(--cbp-color-interactive-neutral-darker);
+    outline: var(--cbp-border-size-xl) solid var(--cbp-color-interactive-neutral-light);
+    outline-offset: -6px;
+
+    & > .cbp-btn__secondary {
+      background-color: var(--cbp-color-interactive-neutral-darker);
+    }
+  }
+
+  &:focus-within {
+    border-color: var(--cbp-color-interactive-focus-dark);
+    outline: var(--cbp-border-size-xl) solid var(--cbp-color-interactive-focus-light);
+    outline-offset: -6px;
+
+    & > .cbp-btn__secondary {
+      background-color: var(--cbp-color-interactive-focus-dark);
+    }
+  }
+}
+
+
+
+
+.cbp-file-input.disabled {
+  .cbp-file-input__wrapper {
+    border-color: var(--cbp-color-disabled-dark);
+    color: var(--cbp-color-interactive-disabled-dark);
+
+    & > i {
+      color: var(--cbp-color-interactive-disabled-dark);
+    }
+
+    & > button {
+      background-color: var(--cbp-color-interactive-disabled-dark);
+      color: var(--cbp-color-interactive-disabled-light);
+      font-style: italic;
+
+      & > i {
+        color: inherit;
+      }
+    }
+
+    &:hover {
+      outline: none;
+    }
+  }
+}
+
+.cbp-file-input__file {
+  align-items: center;
+  background-color: var(--cbp-color-base-neutral-lighter);
+  border-radius: 3px;
+  display: flex;
+  font-style: italic;
+  height: 40px;
+  margin-bottom: 16px;
+  padding: 12px;
+  position: relative;
+  width: 333px;
+
+  & > button {
+    background-color: transparent;
+    border: 0;
+    border-radius: 50%;
+    font-size: 14px;
+    height: 28px;
+    position: absolute;
+    right: 12px;
+    width: 28px;
+
+    & > i {
+      color: var(--cbp-color-interactive-neutral-dark);
+      vertical-align: middle;
+    }
+
+    progress {
+      background-color: transparent;
+      border: 0; // FF
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      width: 100%;
+    }
+    
+    progress::-webkit-progress-bar {
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+    
+    progress[value]::-webkit-progress-bar {
+      background-color: var(--cbp-color-base-neutral-lighter);
+    }
+    
+    progress[value]::-webkit-progress-value {
+      background-color: var(--cbp-color-info-base);
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+    
+    progress[value]::-moz-progress-bar {
+      background-color: var(--cbp-color-info-base);
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+
+    &:hover {
+      background-color: var(--cbp-color-interactive-neutral-darker);
+
+      & > i {
+        color: var(--cbp-color-interactive-neutral-lighter);
+      }
+    }
+
+    &:focus {
+      & > i {
+        color: var(--cbp-color-interactive-neutral-lighter);
+      }
+    }
+  }
+}
+
+.cbp-file-input__file--error {
+  align-items: baseline;
+  background-color: var(--cbp-color-danger-lighter);
+  border: 2px solid var(--cbp-color-danger-base);
+  flex-direction: column;
+  height: 72px;
+
+  & > progress {
+    display: none;
+  }
+
+  & > hr {
+    border: none;
+    border-top: 1px solid var(--cbp-color-base-neutral-lighter);
+    color: var(--cbp-color-base-neutral-lighter);
+    height: 1px;
+    margin: 8px 0;
+    width: 100%;
+  }
+
+  & > div:first-child {
+    align-items: center;
+    position: relative;
+    width: 100%;
+    
+    & > button {
+      background-color: transparent;
+      border: 0;
+      border-radius: 50%;
+      font-size: 14px;
+      height: 28px;
+      position: absolute;
+      right: -1px;
+      top: -6px;
+      width: 28px;
+
+      & > i {
+        color: var(--cbp-color-danger-base);
+      }
+
+      &:hover {
+        background-color: var(--cbp-color-interactive-neutral-darker);
+
+        & > i {
+          color: var(--cbp-color-interactive-neutral-lighter);
+        }
+      }
+
+      &:focus {
+
+        & > i {
+          color: var(--cbp-color-interactive-neutral-lighter);
+        }
+      }
+    }
+  }
+
+  & > span:last-child {
+    color: var(--cbp-color-danger-base);
+
+    & > i {
+      margin-right: 4px;
+    }
+  }
+}

@@ -8,7 +8,7 @@ const fileUtil = {
     const cancelBtn = document.createElement("button");
     const progressBar = document.createElement("progress");
 
-    fileProgress.className = "cbp-form__upload";
+    fileProgress.className = "cbp-file-input__file";
     fileProgress.id = `${key}_${name}`;
 
     fileName.innerText = name;
@@ -16,7 +16,7 @@ const fileUtil = {
     cancelBtn.appendChild(cancelIcon);
 
     cancelBtn.onclick = (e) => {
-      fileUtil.cancelUpload(key, files, e)
+      fileUtil.cancelUpload(key, files, e);
     };
 
     progressBar.value = progressValue;
@@ -64,49 +64,31 @@ const fileUtil = {
     
     filteredFiles.forEach(file => list.items.add(file));
 
-    const upload = event.target.closest('.cbp-form__upload')
-
+    const upload = event.target.closest('.cbp-file-input__file')
     upload.remove();
+    // Reset the input's value to no files selected (this won't work with multiple file uploads)
+    //event.srcElement.value="";
+    this.input.value=undefined;
+    
+    console.log("File Removed: ", this.input, event.srcElement.value, event.srcElement.files);
   },
 };
 
-class FileUploader {
+
+class FileInput {
   constructor(element) {
     this.formWrapper = element.closest('.cbp-form-wrapper');
-    this.element = element;
+    this.fileinput = element;
     this.input = element.querySelector("input[type=file]");
 
     this.handleInput(this.input, this.reader);
   }
 
-  handleEvent(event, key, value, files) {
-    if (event.type === "loadstart") {
-      console.log('loadstart process')
-      const upload = fileUtil.createUpload(key, value.name, event.loaded, event.total, files);
-      this.element.insertAdjacentElement("afterend", upload);
-    }
-
-    if (event.type === "progress") {
-      // update progress bar value
-      const upload = document.getElementById(`${key}_${value.name}`);
-      const progress = upload.querySelector("progress");
-      console.log('progress process')
-      progress.setAttribute("value", event.loaded);
-    }
-
-    if (event.type === 'loadend') {
-      const upload = document.getElementById(`${key}_${value.name}`);
-      const progress = upload.querySelector("progress");
-
-      // Hide progress bar once file has finished uploading
-      progress.hidden = true;
-    }
-
-    if (event.type === "error") {
-      const upload = fileUtil.createErrorUpload(key, value.name);
-
-      this.element.insertAdjacentElement("afterend", upload);
-    }
+  handleInput(input, reader) {
+    input.addEventListener("change", (e) => {
+      this.handleReader(e.target.files);
+      console.log('Change event: ', e, "Files: ", e.srcElement.files.length)
+    });
   }
 
   handleReader(files) {
@@ -124,14 +106,38 @@ class FileUploader {
     }
   }
 
-  handleInput(input, reader) {
-    input.addEventListener("change", (e) => {
-      this.handleReader(e.target.files);
-    });
+  handleEvent(event, key, value, files) {
+    if (event.type === "loadstart") {
+      console.log('loadstart process');
+      const upload = fileUtil.createUpload(key, value.name, event.loaded, event.total, files);
+      this.fileinput.insertAdjacentElement("afterend", upload);
+    }
+
+    if (event.type === "progress") {
+      // update progress bar value
+      const upload = document.getElementById(`${key}_${value.name}`);
+      const progress = upload.querySelector("progress");
+      console.log('progress process')
+      progress.setAttribute("value", event.loaded);
+    }
+
+    if (event.type === 'loadend') {
+      const upload = document.getElementById(`${key}_${value.name}`);
+      const progress = upload.querySelector("progress");
+
+      // Hide progress bar once file has finished reading
+      progress.hidden = true;
+    }
+
+    if (event.type === "error") {
+      const upload = fileUtil.createErrorLoad(key, value.name);
+      this.fileinput.insertAdjacentElement("afterend", upload);
+    }
   }
 }
 
 // Below is Demo Code
+/*
 const fileuploadDemo = (e) => {
   const formWrapper = document.getElementById('fileupload-demo');
   const labelArr = formWrapper.querySelectorAll('label');
@@ -191,5 +197,6 @@ const handleReadonly = (checked, labels) => {
     input.disabled = false;
   }
 }
+*/
 
-export default FileUploader;
+export default FileInput;
