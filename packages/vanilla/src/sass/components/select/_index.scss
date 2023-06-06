@@ -1,0 +1,40 @@
+.cbp-input__select {
+  appearance: none;
+  background-color: var(--cbp-color-white);
+  background-image: url('/assets/images/angle-arrow-down-gray-90.svg');
+  background-repeat: no-repeat;
+  background-position: right var(--cbp-space-2x) center;
+  background-size: var(--cbp-space-3x) var(--cbp-space-3x);
+  border-color: var(--cbp-color-interactive-neutral-base);
+  border-radius: var(--cbp-border-radius-soft);
+  border-width: var(--cbp-border-size-md);
+  color: var(--cbp-color-text-darkest);
+  min-height: var(--cbp-space-9x);
+  outline: 0;
+  padding-left: var(--cbp-space-2x);
+  width: 100%;
+
+  &:hover {
+    border-color: var(--cbp-color-base-neutral-darker);
+  }
+
+  &:focus {
+    border-color: var(--cbp-color-interactive-focus-dark);
+  }
+
+  &:disabled {
+    background-color: var(--cbp-color-interactive-disabled-light);
+    border-color: var(--cbp-color-interactive-disabled-dark);
+    font-style: italic;
+
+    &:hover {
+      border-color: var(--cbp-color-base-neutral-darker);
+    }
+  }
+
+  &:invalid {
+    background-color: var(--cbp-color-danger-lighter);
+    border-color: var(--cbp-color-danger-dark);
+    font-style: italic;
+  }
+}
