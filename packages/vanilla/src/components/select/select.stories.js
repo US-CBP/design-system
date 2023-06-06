@@ -100,7 +100,5 @@ Select.args = {
       value: 'zoolily',
       label: 'Port of Zoolily'
     },
-  },
-  disabled: false,
-  required: false
+  }
 };
