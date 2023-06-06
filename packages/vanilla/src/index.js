@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   /**
    * Accordion Component
    */
-  SelectorEngine.findAll(".cbp-accordion__title").forEach((accordion) => {
+  SelectorEngine.findAll(".cbp-accordion__item").forEach((accordion) => {
     addOrInstantiate(Accordion, accordion);
   });
 
