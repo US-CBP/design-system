@@ -48,13 +48,6 @@ export default {
       description: 'Indicates that the user must specify a value for the input before submission.',
       control: { type: 'boolean' }
     },
-    /*
-    readonly: {
-      name: '`readonly` Attribute',
-      description: 'Makes the input element not mutable, meaning the user can not edit the control.',
-      control: { type: 'boolean' }
-    }
-    */
   },
 };
 
@@ -99,7 +92,9 @@ FileInput.args = {
 };
 
 
-/*
+/* These no longer work now as a result of the nesting context of the CSS; 
+    they should not really exist outside of the file input pattern anyway.
+
 const UploadProgressTemplate = () => {
   return `
     <div class="cbp-file-input">
