@@ -1,5 +1,3 @@
-// MDN Doc (https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications)
-
 const fileUtil = {
   createUpload: (key, name, progressValue, progressMax, files) => {
     const fileProgress = document.createElement('div');
@@ -69,17 +67,25 @@ const fileUtil = {
   },
 };
 
+
 class FileInput {
   constructor(element) {
-    this.formWrapper = element.closest('.cbp-form-wrapper');
     this.fileinput = element;
     this.input = element.querySelector('input[type=file]');
+
+    // Create a container for selected files when initialized
+    const filesContainer = document.createElement('div');
+    filesContainer.className = 'cbp-file-input__selected-files';
+    this.fileinput.appendChild(filesContainer);
+    this.filesContainer=filesContainer;
 
     this.handleInput(this.input, this.reader);
   }
 
   handleInput(input, reader) {
     input.addEventListener('change', (e) => {
+      // Clear the selected files because selecting new files will overwrite the previous selection and values
+      this.filesContainer.innerHTML='';
       this.handleReader(e.target.files);
     });
   }
@@ -118,7 +124,7 @@ class FileInput {
         event.total,
         files
       );
-      this.fileinput.insertAdjacentElement('afterend', upload);
+      this.filesContainer.appendChild(upload);
     }
 
     if (event.type === 'progress') {
@@ -138,72 +144,9 @@ class FileInput {
 
     if (event.type === 'error') {
       const upload = fileUtil.createErrorLoad(key, value.name);
-      this.fileinput.insertAdjacentElement('afterend', upload);
+      this.filesContainer.appendChild(upload);
     }
   }
 }
-
-// Below is Demo Code
-/*
-const fileuploadDemo = (e) => {
-  const formWrapper = document.getElementById('fileupload-demo');
-  const labelArr = formWrapper.querySelectorAll('label');
-
-  if (e.target.name === 'invalid') {
-    handleInvalid(e.target.checked, labelArr, formWrapper);
-  }
-
-  if (e.target.name === 'disable') {
-    handleDisable(e.target.checked, labelArr);
-  }
-
-  if (e.target.name === 'readonly') {
-    handleReadonly(e.target.checked, labelArr);
-  }
-}
-
-const handleInvalid = (checked, labels, parent) => {
-  const [label, error, component] = labels;
-  const upload = parent.querySelector('.cbp-form__upload--error');
-
-  if (checked) {
-    label.hidden = true;
-    error.hidden = false;
-
-    upload.style.display = 'revert';
-  } else {
-    label.hidden = false;
-    error.hidden = true;
-
-    upload.style.display = 'none';
-  }
-}
-
-const handleDisable = (checked, labels) => {
-  const [label, error, component] = labels;
-  const input = component.querySelector('input[type=file]');
-
-  if (checked) {
-    component.classList.add('disabled')
-    input.disabled = true;
-  } else {
-    component.classList.remove('disabled')
-    input.disabled = false;
-  }
-}
-
-const handleReadonly = (checked, labels) => {
-  const [label, error, component] = labels;
-  const input = component.querySelector('input[type=file]');
-
-  if (checked) {
-    component.classList.add('read-only')
-    input.disabled = true;
-  } else {
-    component.classList.remove('read-only')
-    input.disabled = false;
-  }
-}
-*/
 
 export default FileInput;

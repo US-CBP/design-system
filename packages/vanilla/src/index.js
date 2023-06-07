@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   });
 
   /**
-   * File Upload Component
+   * File Input Component
    */
   SelectorEngine.findAll('.cbp-file-input').forEach((fileInput) => {
     addOrInstantiate(FileInput, fileInput);
