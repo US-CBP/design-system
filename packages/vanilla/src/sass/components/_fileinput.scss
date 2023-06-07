@@ -1,0 +1,252 @@
+.cbp-file-input__wrapper {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  position: relative;
+  
+  background-color: transparent;
+  border: var(--cbp-border-size-md) dashed var(--cbp-color-interactive-neutral-base);
+  border-radius: var(--cbp-border-radius-soft);
+  cursor: pointer;
+
+  font-style: italic;
+  min-height: 4.5rem;
+  margin-bottom: var(--cbp-space-4x);
+  padding: 0 var(--cbp-space-3x);
+  
+  i {
+    color: var(--cbp-color-text-base);
+    font-size: var(--cbp-font-size-body);
+    margin-right: var(--cbp-space-3x);
+  }
+
+  /* The actual input is the drop-target for browser-based drag and drop, 
+      so it needs to cover the entire faux-input area.
+  */
+  input[type=file] {
+    cursor: pointer;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: none;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: var(--cbp-space-2x);
+    text-indent: -999em;
+    z-index: var(--cbp-z-index-level-0);
+
+    // The focus outline is set on .cbp-file-input__wrapper, so override user agent styles here
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & > .cbp-btn__secondary {
+    margin-left: calc(var(--cbp-space-3x) / 2);
+    pointer-events: none;
+  
+    & > i {
+      color: var(--cbp-color-text-lightest);
+      font-size: var(--cbp-font-size-body);
+      margin-right: var(--cbp-space-2x);
+    }
+  }
+
+  &:hover {
+    border: var(--cbp-border-size-md) dashed var(--cbp-color-interactive-neutral-darker);
+    outline: var(--cbp-border-size-xl) solid var(--cbp-color-interactive-neutral-light);
+    outline-offset: calc(-1 * var(--cbp-space-3x) / 2);
+
+    & > .cbp-btn__secondary {
+      background-color: var(--cbp-color-interactive-neutral-darker);
+    }
+  }
+
+  &:focus-within {
+    border-color: var(--cbp-color-interactive-focus-darker);
+    outline-color: var(--cbp-color-interactive-focus-dark);
+    outline-style: solid;
+    outline-width: var(--cbp-border-size-xl);
+    outline-offset: calc(-1 * var(--cbp-space-3x) / 2);
+
+    & > .cbp-btn__secondary {
+      background-color: var(--cbp-color-interactive-focus-dark);
+    }
+  }
+}
+
+.cbp-file-input__selected-files {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  max-width: 100%;
+}
+
+.cbp-file-input.disabled {
+  .cbp-file-input__wrapper {
+    border-color: var(--cbp-color-disabled-dark);
+    color: var(--cbp-color-interactive-disabled-dark);
+
+    & > i {
+      color: var(--cbp-color-interactive-disabled-dark);
+    }
+
+    & > button {
+      background-color: var(--cbp-color-interactive-disabled-dark);
+      color: var(--cbp-color-interactive-disabled-light);
+      font-style: italic;
+
+      & > i {
+        color: inherit;
+      }
+    }
+
+    &:hover {
+      outline: none;
+    }
+  }
+}
+
+.cbp-file-input__file {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 20rem;
+  width: fit-content;
+  min-height: var(--cbp-space-10x);
+  background-color: var(--cbp-color-base-neutral-lighter);
+  border-radius: 3px;
+  font-style: italic;
+  margin-bottom: var(--cbp-space-4x);
+  padding: var(--cbp-space-3x);
+    
+  & > button {
+    background-color: transparent;
+    border: 0;
+    border-radius: var(--cbp-border-radius-circle);
+    font-size: var(--cbp-font-size-button);
+    height: var(--cbp-space-7x);
+    position: absolute;
+    right: var(--cbp-space-3x);
+    width: var(--cbp-space-7x);
+
+    & > i {
+      color: var(--cbp-color-interactive-neutral-dark);
+      vertical-align: middle;
+    }
+
+    progress {
+      background-color: transparent;
+      border: 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: var(--cbp-space-1x);
+      width: 100%;
+    }
+    
+    progress::-webkit-progress-bar {
+      border-bottom-left-radius: var(--cbp-border-radius-soft);
+      border-bottom-right-radius: var(--cbp-border-radius-soft);
+    }
+    
+    progress[value]::-webkit-progress-bar {
+      background-color: var(--cbp-color-base-neutral-lighter);
+    }
+    
+    progress[value]::-webkit-progress-value {
+      background-color: var(--cbp-color-info-base);
+      border-bottom-left-radius: var(--cbp-border-radius-soft);
+      border-bottom-right-radius: var(--cbp-border-radius-soft);
+    }
+    
+    progress[value]::-moz-progress-bar {
+      background-color: var(--cbp-color-info-base);
+      border-bottom-left-radius: var(--cbp-border-radius-soft);
+      border-bottom-right-radius: var(--cbp-border-radius-soft);
+    }
+
+    &:hover {
+      background-color: var(--cbp-color-interactive-neutral-darker);
+
+      & > i {
+        color: var(--cbp-color-interactive-neutral-lighter);
+      }
+    }
+
+    &:focus {
+      & > i {
+        color: var(--cbp-color-interactive-neutral-lighter);
+      }
+    }
+  }
+}
+
+
+
+.cbp-file-input__file--error {
+  align-items: baseline;
+  background-color: var(--cbp-color-danger-lighter);
+  border: var(--cbp-border-size-md) solid var(--cbp-color-danger-base);
+  flex-direction: column;
+  min-height: 4.5rem;
+
+  & > progress {
+    display: none;
+  }
+
+  & > hr {
+    border: none;
+    border-top: 1px solid var(--cbp-color-base-neutral-lighter);
+    color: var(--cbp-color-base-neutral-lighter);
+    height: 1px;
+    margin: var(--cbp-space-2x) 0;
+    width: 100%;
+  }
+
+  & > div:first-child {
+    align-items: center;
+    position: relative;
+    width: 100%;
+    
+    & > button {
+      background-color: transparent;
+      border: 0;
+      border-radius: var(--cbp-border-radius-circle);
+      font-size: var(--cbp-font-size-button);
+      height: var(--cbp-space-7x);
+      position: absolute;
+      right: -1px;
+      top: -6px;
+      width: var(--cbp-space-7x);
+
+      & > i {
+        color: var(--cbp-color-danger-base);
+      }
+
+      &:hover {
+        background-color: var(--cbp-color-interactive-neutral-darker);
+
+        & > i {
+          color: var(--cbp-color-interactive-neutral-lighter);
+        }
+      }
+
+      &:focus {
+
+        & > i {
+          color: var(--cbp-color-interactive-neutral-lighter);
+        }
+      }
+    }
+  }
+
+  & > span:last-child {
+    color: var(--cbp-color-danger-base);
+
+    & > i {
+      margin-right: var(--cbp-space-1x);
+    }
+  }
+}
