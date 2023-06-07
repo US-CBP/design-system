@@ -6,21 +6,23 @@
   
   background-color: transparent;
   border: var(--cbp-border-size-md) dashed var(--cbp-color-interactive-neutral-base);
-  border-radius: 3px;
+  border-radius: var(--cbp-border-radius-soft);
   cursor: pointer;
 
   font-style: italic;
-  height: 72px;
-  margin-bottom: 16px;
-  padding: 0 12px;
+  min-height: 4.5rem;
+  margin-bottom: var(--cbp-space-4x);
+  padding: 0 var(--cbp-space-3x);
   
   i {
     color: var(--cbp-color-text-base);
-    font-size: 30px;
-    margin-right: 12px;
+    font-size: var(--cbp-font-size-body);
+    margin-right: var(--cbp-space-3x);
   }
 
-  /* The actual input is the drop-target for browser-based drag and drop, so it needs to cover the entire faux-input area. */
+  /* The actual input is the drop-target for browser-based drag and drop, 
+      so it needs to cover the entire faux-input area.
+  */
   input[type=file] {
     cursor: pointer;
     position: absolute;
@@ -32,28 +34,29 @@
     margin: 0;
     padding: var(--cbp-space-2x);
     text-indent: -999em;
-    z-index: 1;
+    z-index: var(--cbp-z-index-level-0);
 
+    // The focus outline is set on .cbp-file-input__wrapper, so override user agent styles here
     &:focus {
       outline: none;
     }
   }
 
   & > .cbp-btn__secondary {
-    margin-left: 6px;
+    margin-left: calc(var(--cbp-space-3x) / 2);
     pointer-events: none;
   
     & > i {
       color: var(--cbp-color-text-lightest);
-      font-size: 14px;
-      margin-right: 8px;
+      font-size: var(--cbp-font-size-body);
+      margin-right: var(--cbp-space-2x);
     }
   }
 
   &:hover {
     border: var(--cbp-border-size-md) dashed var(--cbp-color-interactive-neutral-darker);
     outline: var(--cbp-border-size-xl) solid var(--cbp-color-interactive-neutral-light);
-    outline-offset: -6px;
+    outline-offset: calc(-1 * var(--cbp-space-3x) / 2);
 
     & > .cbp-btn__secondary {
       background-color: var(--cbp-color-interactive-neutral-darker);
@@ -61,9 +64,11 @@
   }
 
   &:focus-within {
-    border-color: var(--cbp-color-interactive-focus-dark);
-    outline: var(--cbp-border-size-xl) solid var(--cbp-color-interactive-focus-light);
-    outline-offset: -6px;
+    border-color: var(--cbp-color-interactive-focus-darker);
+    outline-color: var(--cbp-color-interactive-focus-dark);
+    outline-style: solid;
+    outline-width: var(--cbp-border-size-xl);
+    outline-offset: calc(-1 * var(--cbp-space-3x) / 2);
 
     & > .cbp-btn__secondary {
       background-color: var(--cbp-color-interactive-focus-dark);
@@ -71,8 +76,12 @@
   }
 }
 
-
-
+.cbp-file-input__selected-files {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  max-width: 100%;
+}
 
 .cbp-file-input.disabled {
   .cbp-file-input__wrapper {
@@ -100,26 +109,27 @@
 }
 
 .cbp-file-input__file {
+  position: relative;
+  display: flex;
   align-items: center;
+  min-width: 20rem;
+  width: fit-content;
+  min-height: var(--cbp-space-10x);
   background-color: var(--cbp-color-base-neutral-lighter);
   border-radius: 3px;
-  display: flex;
   font-style: italic;
-  height: 40px;
-  margin-bottom: 16px;
-  padding: 12px;
-  position: relative;
-  width: 333px;
-
+  margin-bottom: var(--cbp-space-4x);
+  padding: var(--cbp-space-3x);
+    
   & > button {
     background-color: transparent;
     border: 0;
-    border-radius: 50%;
-    font-size: 14px;
-    height: 28px;
+    border-radius: var(--cbp-border-radius-circle);
+    font-size: var(--cbp-font-size-button);
+    height: var(--cbp-space-7x);
     position: absolute;
-    right: 12px;
-    width: 28px;
+    right: var(--cbp-space-3x);
+    width: var(--cbp-space-7x);
 
     & > i {
       color: var(--cbp-color-interactive-neutral-dark);
@@ -128,17 +138,17 @@
 
     progress {
       background-color: transparent;
-      border: 0; // FF
+      border: 0;
       position: absolute;
       bottom: 0;
       left: 0;
-      height: 4px;
+      height: var(--cbp-space-1x);
       width: 100%;
     }
     
     progress::-webkit-progress-bar {
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: var(--cbp-border-radius-soft);
+      border-bottom-right-radius: var(--cbp-border-radius-soft);
     }
     
     progress[value]::-webkit-progress-bar {
@@ -147,14 +157,14 @@
     
     progress[value]::-webkit-progress-value {
       background-color: var(--cbp-color-info-base);
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: var(--cbp-border-radius-soft);
+      border-bottom-right-radius: var(--cbp-border-radius-soft);
     }
     
     progress[value]::-moz-progress-bar {
       background-color: var(--cbp-color-info-base);
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: var(--cbp-border-radius-soft);
+      border-bottom-right-radius: var(--cbp-border-radius-soft);
     }
 
     &:hover {
@@ -173,12 +183,14 @@
   }
 }
 
+
+
 .cbp-file-input__file--error {
   align-items: baseline;
   background-color: var(--cbp-color-danger-lighter);
-  border: 2px solid var(--cbp-color-danger-base);
+  border: var(--cbp-border-size-md) solid var(--cbp-color-danger-base);
   flex-direction: column;
-  height: 72px;
+  min-height: 4.5rem;
 
   & > progress {
     display: none;
@@ -189,7 +201,7 @@
     border-top: 1px solid var(--cbp-color-base-neutral-lighter);
     color: var(--cbp-color-base-neutral-lighter);
     height: 1px;
-    margin: 8px 0;
+    margin: var(--cbp-space-2x) 0;
     width: 100%;
   }
 
@@ -201,13 +213,13 @@
     & > button {
       background-color: transparent;
       border: 0;
-      border-radius: 50%;
-      font-size: 14px;
-      height: 28px;
+      border-radius: var(--cbp-border-radius-circle);
+      font-size: var(--cbp-font-size-button);
+      height: var(--cbp-space-7x);
       position: absolute;
       right: -1px;
       top: -6px;
-      width: 28px;
+      width: var(--cbp-space-7x);
 
       & > i {
         color: var(--cbp-color-danger-base);
@@ -234,7 +246,7 @@
     color: var(--cbp-color-danger-base);
 
     & > i {
-      margin-right: 4px;
+      margin-right: var(--cbp-space-1x);
     }
   }
 }
