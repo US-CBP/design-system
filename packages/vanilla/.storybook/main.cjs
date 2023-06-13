@@ -1,39 +1,26 @@
 module.exports = {
-  "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
-  ],
-  "addons": [
-    "@whitespace/storybook-addon-html",
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: [
+    '@whitespace/storybook-addon-html',
     {
-      name: "@storybook/addon-essentials",
+      name: '@storybook/addon-essentials',
       options: {
         backgrounds: false,
         measure: false,
         outline: false,
-      }
-    },
-    {
-      name: "@storybook/addon-styling",
-      options: {
-        sass: {
-          implementation: require("sass"),
-        },
       },
     },
-    "@storybook/addon-interactions",
-    "@storybook/addon-links",
-    '@storybook/addon-a11y'
+    '@storybook/addon-styling',
+    '@storybook/addon-interactions',
+    '@storybook/addon-links',
+    '@storybook/addon-a11y',
   ],
-  "staticDirs": [
-    "../dist",
-    "../assets",
-  ],
-  "framework": "@storybook/html",
-  "core": {
-    "builder": "@storybook/builder-vite"
+  staticDirs: ['../dist', '../assets'],
+  framework: {
+    name: '@storybook/html-vite',
+    options: {},
   },
-  "features": {
-    "storyStoreV7": true
-  }
-}
+  features: {
+    storyStoreV7: true,
+  },
+};
