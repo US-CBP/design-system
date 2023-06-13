@@ -20,6 +20,9 @@ module.exports = {
     name: '@storybook/html-vite',
     options: {},
   },
+  core: {
+    disableTelemetry: true, // 👈 Disables telemetry
+  },
   features: {
     storyStoreV7: true,
   },
