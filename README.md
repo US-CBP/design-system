@@ -1,6 +1,8 @@
-<img src="packages/vanilla/assets/images/CBP_SEAL.svg" style="display: block; margin: 24px auto;" height="200" width="200" />
+<p align="center">
+  <img src="packages/vanilla/assets/images/CBP_SEAL.svg" style="display: block; margin: 24px auto;" height="200" width="200" />
+</p>
 
-<h1 style="text-align: center;">[ALPHA] U.S. Customs and Border Protection (CBP) Design System</h1>
+<h1 align="center">[ALPHA] U.S. Customs and Border Protection (CBP) Design System</h1>
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](/LICENSE)
 [![Open-Source: Policy](https://img.shields.io/badge/Open--Source-Policy-f39f37)](https://github.com/US-CBP/open-source-policy/blob/master/policy.md)
