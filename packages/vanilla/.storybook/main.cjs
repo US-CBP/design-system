@@ -25,9 +25,5 @@ module.exports = {
   },
   features: {
     storyStoreV7: true,
-  },
-  managerHead: (head) => `
-    ${head}
-    <link rel="shortcut icon" sizes="16x16" href="images/us_flag_small.png" type="image/x-icon">
-  `,
+  }
 };
