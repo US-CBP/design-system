@@ -4,13 +4,13 @@ export default {
 
 const SimpleModalTemplate = () => {
   return `
-    <button class="cbp-btn cbp-btn__primary cbp-hidden" data-modal-target="simple-modal" onclick="openModal('simple-modal', this)">Simple Modal</button><br>
-    <div id="simple-modal" role="dialog" aria-modal="true">
+    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="simple-modal">Open Modal</button>
+    <dialog class="cbp-modal" id="simple-modal">
       <div class="cbp-modal__content">
-        <p id="simple-modal-desc" class="cbp-text-heading-2xs">Are you sure you want to add this user to the list?</p>
+        <p>Are you sure you want to add this user to the list?</p>
       </div>
-      <div class="cbp-modal__footer cbp-modal__footer--double">
-        <button class="cbp-btn cbp-btn__secondary" onclick="closeModal(this)">
+      <div class="cbp-modal__controls">
+        <button class="cbp-btn cbp-btn__secondary" data-modal-close>
           <i class="fas fa-trash-alt"></i>
           cancel
         </button>
@@ -19,72 +19,63 @@ const SimpleModalTemplate = () => {
           add user
         </button>
       </div>
-    </div>
+    </dialog>
   `
 }
 
 const AcknowledgementModalTemplate = () => {
   return `
-    <button class="cbp-btn cbp-btn__primary cbp-hidden" data-modal-target="modal-one" onclick="openModal('modal-one', this)">Acknowledgement Modal</button><br>
-    <div id="modal-one" role="dialog" aria-labelledby="modal-one-label" aria-modal="true">
-      <div class="cbp-modal__header">
-        <h5 class="cbp-modal__title" id="modal-one-label">Terms of Service Update</h5>
-      </div>
-      <hr>
+    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="acknowledge">Open Model</button>
+    <dialog class="cbp-modal" id="acknowledge">
       <div class="cbp-modal__content">
-        <p>There was a change to our terms of service. Continued use of this system constitutes acceptance of these terms.
-        </p>
+        <h2 class="cbp-modal__title"><i class="fas fa-check"></i>Terms of Service Update</h2>
+        <hr>
+        <p>There was a change to our terms of service. Continued use of this system constitutes acceptance of these terms.</p>
       </div>
-      <div class="cbp-modal__footer cbp-modal__footer--single">
-        <button class="cbp-btn cbp-btn__primary" onclick="closeModal(this)">
+      <div class="cbp-modal__controls">
+        <button class="cbp-btn cbp-btn__primary" data-modal-close>
           <i class="fas fa-check"></i>
           accept
         </button>
       </div>
-    </div>
+    </dialog>
   `
 }
 
 const ConfirmationModalTemplate = () => {
   return `
-    <button class="cbp-btn cbp-btn__primary cbp-hidden" data-modal-target="confirmation-modal" onclick="openModal('confirmation-modal', this)">Confirmation Modal</button><br>
-    <div id="confirmation-modal" role="dialog" aria-labelledby="confirmation-modal-label" aria-modal="true">
-      <div class="cbp-modal__header">
-        <i class="fas fa-check"></i>
-        <h5 class="cbp-modal__title" id="confirmation-modal-label">Confirm</h5>
-      </div>
-      <hr>
+    <button class="cbp-btn cbp-btn__primary" data-modal="confirm">Confirmation Modal</button>
+    <dialog class="cbp-modal" id="confirm">
       <div class="cbp-modal__content">
+        <h5 class="cbp-modal__title"><i class="fas fa-check"></i>Confirm</h5>
+        <hr>
         <p>Are you sure you want to submit and close this exam?</p>
       </div>
-      <div class="cbp-modal__footer cbp-modal__footer--double">
-        <button class="cbp-btn cbp-btn__secondary" onclick="closeModal(this)">
+      <div class="cbp-modal__controls">
+        <button class="cbp-btn cbp-btn__secondary" data-modal-close>
           <i class="fas fa-times"></i>
           <span class="cbp-text-button">cancel</span>
         </button>
-        <button class="cbp-btn cbp-btn__primary" onclick="closeModal(this)">
+        <button class="cbp-btn cbp-btn__primary">
           <i class="fas fa-paper-plane"></i>
           <span class="cbp-text-button">submit</span>
         </button>
       </div>
-    </div>
+    </dialog>
   `
 }
 
 const DangerModalTemplate = () => {
   return `
-    <button class="cbp-btn cbp-btn__primary cbp-hidden" data-modal-target="danger-modal" onclick="openModal('danger-modal', this)">Danger Modal</button><br>
-    <div id="danger-modal" role="dialog" aria-labelledby="danger-modal-label" aria-modal="true">
-      <div class="cbp-modal__header cbp-modal__header--danger">
-        <i class="fas fa-exclamation-triangle"></i>
-        <h5 class="cbp-modal__title" id="danger-modal-label">Warning</h5>
-      </div>
-      <hr>
+    <button class="cbp-btn cbp-btn__primary" data-modal="danger">Danger Modal</button>
+    <dialog class="cbp-modal" id="danger">
       <div class="cbp-modal__content">
-        <p id="danger-modal-desc">Are you sure you want to delete this item? This action cannot be undone.</p>
+        <h5 class="cbp-modal__title"><i class="fas fa-exclamation-triangle"></i>Warning</h5>
+        <hr>
+        <p>Are you sure you want to delete this item? This action cannot be undone.</p>
       </div>
-      <div class="cbp-modal__footer cbp-modal__footer--double">
-        <button class="cbp-btn cbp-btn__secondary" onclick="closeModal(this)">
+      <div class="cbp-modal__controls">
+        <button class="cbp-btn cbp-btn__secondary" data-modal-close>
           <i class="fas fa-times"></i>
           cancel
         </button>
@@ -93,28 +84,25 @@ const DangerModalTemplate = () => {
           delete
         </button>
       </div>
-    </div>
+    </dialog>
   `
 }
 
 const MultiChoiceModalTemplate = () => {
   return `
-    <button class="cbp-btn cbp-btn__primary cbp-hidden" data-modal-target="modal-three" onclick="openModal('modal-three', this)">3 Choice Modal</button>
-    <div id="modal-three" role="dialog" aria-labelledby="modal-three-label" aria-modal="true">
-      <div class="cbp-modal__header">
-        <i class="fas fa-file-alt"></i>
-        <h5 class="cbp-modal__title" id="modal-three-label">Document Changes</h5>
-      </div>
-      <hr>
+    <button class="cbp-btn cbp-btn__primary" data-modal="multi">3 Choice Modal</button>
+    <dialog class="cbp-modal" id="multi">
       <div class="cbp-modal__content">
-        <p id="modal-three-desc">What would you like to do with the changes you have made to this document?</p>
+        <h5 class="cbp-modal__title"><i class="fas fa-file-alt"></i>Document Changes</h5>
+        <hr>
+        <p>What would you like to do with the changes you have made to this document?</p>
       </div>
-      <div class="cbp-modal__footer cbp-modal__footer--triple">
-        <button class="cbp-btn cbp-btn__secondary" onclick="closeModal(this)">
+      <div class="cbp-modal__controls">
+        <button class="cbp-btn cbp-btn__secondary" data-modal-close>
           <i class="fas fa-times"></i>
           cancel
         </button>
-        <button class="cbp-btn cbp-btn__primary" id="alt-btn" style="background-color: #2672de;">
+        <button class="cbp-btn cbp-btn__primary">
           <i class="fas fa-save"></i>
           save
         </button>
@@ -123,34 +111,28 @@ const MultiChoiceModalTemplate = () => {
           publish
         </button>
       </div>
-    </div>
+    </dialog>
   `
 }
 
 const FormModalTemplate = () => {
   return `
-    <button class="cbp-btn cbp-btn__primary cbp-hidden" data-modal-target="form-modal" onclick="openModal('form-modal', this)">Form Modal</button><br>
-    <div id="form-modal" role="dialog" role="dialog" aria-labelledby="form-modal-label" aria-modal="true">
-      <div class="cbp-modal__header">
-        <i class="fas fa-comment"></i>
-        <h5 class="cbp-modal__title" id="form-modal-label">Feedback</h5>
-      </div>
-      <hr>
+    <button class="cbp-btn cbp-btn__primary" data-modal="form-modal">Form Modal</button>
+    <dialog class="cbp-modal" id="form-modal">
       <div class="cbp-modal__content">
-        <p id="form-modal-desc">If you're experiencing a system error or application problem please contact the Technology
-          Service Desk.</p>
-        <form action="">
-          <label for="description" class="cbp-form__label">Description</label>
-          <textarea name="description" id="description" class="cbp-form__textarea" cols="30" rows="5"
-            placeholder="Enter a Description"></textarea>
-          <div class="cbp-form__validation">
-            <p><b>Required.</b> Please describe the issue or feedback you would like the team to know about. 101/200
-              Characters remaining.</p>
-          </div>
+        <h5 class="cbp-modal__title"><i class="fas fa-comment"></i>Feedback</h5>
+        <hr>
+        <p>If you're experiencing a system error or application problem please contact the Technology Service Desk.</p>
+        <form action="dialog" method="">
+          <label for="description" class="cbp-input__label">Task Description</label>
+          <p class="cbp-input__description">Required. 500/500 Characters remaining.</p>
+          <p class="cbp-input__description cbp-input__description--error" hidden="true"><i class="fas fa-exclamation-triangle"></i>You must enter a description.</p>
+          <textarea class="cbp-input" name="description" id="description" placeholder="Enter a description"></textarea>
+          <p><b>Required.</b> Please describe the issue or feedback you would like the team to know about. 200/200 Characters remaining.</p>
         </form>
       </div>
-      <div class="cbp-modal__footer cbp-modal__footer--double">
-        <button class="cbp-btn cbp-btn__secondary" onclick="closeModal(this)">
+      <div class="cbp-modal__controls">
+        <button class="cbp-btn cbp-btn__secondary" data-modal-close>
           <i class="fas fa-times"></i>
           cancel
         </button>
@@ -159,7 +141,7 @@ const FormModalTemplate = () => {
           send
         </button>
       </div>
-    </div>
+    </dialog>
   `
 }
 

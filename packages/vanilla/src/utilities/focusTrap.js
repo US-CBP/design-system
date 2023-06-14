@@ -1,12 +1,5 @@
 class FocusTrapUtility {
-  static ignoreUtilFocusChanges = false;
-
-  /* Retrieve current menu */
-  static getCurrentMenu(openMenus) {
-    return openMenus[openMenus.length - 1];
-  }
-
-  /* Check menu for focusable elements */
+  /* Check container for focusable elements */
   static isFocusable(element) {
     if (element.tabIndex < 0) {
       return false;
