@@ -1,8 +1,8 @@
 class Modal {
   constructor(modal) {
     this.modal = modal;
-    this.control = document.querySelector(`[data-modal="${modal.id}"]`)
-    this.closeControls = this.modal.querySelectorAll('[data-modal-close]')
+    this.control = document.querySelector(`[data-modal="${modal.id}"]`);
+    this.closeControls = this.modal.querySelectorAll('[data-modal-close]');
 
     this.control.addEventListener('click', () => {
       this.modal.showModal();

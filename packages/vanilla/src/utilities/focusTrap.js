@@ -1,4 +1,4 @@
-class FocusTrapUtility {
+export class FocusTrapUtility {
   /* Check container for focusable elements */
   static isFocusable(element) {
     if (element.tabIndex < 0) {
@@ -61,5 +61,3 @@ class FocusTrapUtility {
     return false;
   }
 }
-
-export default FocusTrapUtility;

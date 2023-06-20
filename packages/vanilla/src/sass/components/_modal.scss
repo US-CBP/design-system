@@ -19,13 +19,13 @@ dialog,
 
 .cbp-modal__title {
   color: var(--cbp-color-text-darker);
-  font-size: var(--cbp-font-size-heading-md);
+  font-size: var(--cbp-font-size-heading-lg);
   font-weight: var(--cbp-font-weight-medium);
   line-height: var(--cbp-line-height-md);
 
   & i {
     font-size: var(--cbp-font-size-heading-md);
-    margin-inline-end: var(--cbp-space-4x);
+    margin-right: var(--cbp-space-4x);
   }
 
   &--danger {
@@ -34,7 +34,18 @@ dialog,
 }
 
 .cbp-modal__content {
-  padding: var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-5x) var(--cbp-space-4x);
+  padding: var(--cbp-space-5x) var(--cbp-space-4x);
+
+  & hr {
+    margin: var(--cbp-space-4x) 0;
+  }
+}
+
+.cbp-modal__description {
+  color: var(--cbp-color-text-darker);
+  font-size: var(--cbp-font-size-heading-xs);
+  font-weight: var(--cbp-font-weight-bold);
+  line-height: var(--cbp-line-height-xs);
 }
 
 .cbp-modal__controls {
@@ -43,6 +54,7 @@ dialog,
   & button {
     border-radius: 0;
     flex-grow: 1;
+    height: var(--cbp-space-11x);
     
     &:first-child {
       border-bottom-left-radius: var(--cbp-border-radius-softest);
