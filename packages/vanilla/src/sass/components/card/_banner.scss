@@ -1,0 +1,54 @@
+@mixin card-banner-modifier($title-background-color, $body-background-color, $body-border-color) {
+  & .cbp-card__banner-title {
+    background-color: $title-background-color;
+  }
+
+  & .cbp-card__banner-content {
+    background-color: $body-background-color;
+    border: 2px solid $body-border-color;
+    border-top: 0;
+  }
+}
+
+.cbp-card__banner {
+  border: 0;
+}
+
+.cbp-card__banner-title {
+  align-items: center;
+  background-color: var(--cbp-color-base-secondary-dark);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: var(--cbp-color-text-lightest);
+  display: flex;
+  font-size: var(--cbp-font-size-heading-xl);
+  font-weight: var(--cbp-font-weight-regular);
+  letter-spacing: 0.12px;
+  line-height: var(--cbp-line-height-md);
+  padding: var(--cbp-space-3x) 0 var(--cbp-space-3x) var(--cbp-space-4x);
+
+  & > i {
+    margin-right: var(--cbp-space-2x);
+  }
+}
+
+.cbp-card__banner-content {
+  background-color: var(--cbp-color-base-neutral-lighter);
+  border: 2px solid var(--cbp-color-base-neutral-light);
+  border-top: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-5x) var(--cbp-space-4x);
+}
+
+.cbp-card__banner--info {
+  @include card-banner-modifier(var(--cbp-color-info-dark), var(--cbp-color-info-lighter), var(--cbp-color-info-light));
+}
+
+.cbp-card__banner--success {
+  @include card-banner-modifier(var(--cbp-color-success-base), var(--cbp-color-success-lighter), var(--cbp-color-success-light));
+}
+
+.cbp-card__banner--danger {
+  @include card-banner-modifier(var(--cbp-color-danger-base), var(--cbp-color-danger-lighter), var(--cbp-color-danger-light));
+}
