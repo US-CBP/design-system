@@ -9,7 +9,6 @@ class Menu {
       : this.menuComponent.querySelector('.cbp-menu__menu');
 
     this.menuItems = this.menu.querySelectorAll('a,button');
-
     this.closeButton = this.menu.querySelector('.cbp-menu__close-btn');
 
     // Default all buttons to aria-pressed='false' and menu to hidden
@@ -41,15 +40,13 @@ class Menu {
       this.handleMenuNavigation(e);
     });
 
+    // Listen for clicks outside of the menu to close it
     document.addEventListener('click', (e) => {
-      this.clickAwayHandler(e)
+      this.clickAwayHandler(e);
     });
-    //const clickAwayListener = (e) => { this.clickAwayHandler(e) };
   }
 
-
   toggleMenu(e) {
-    console.log(e, this.control);
     this.control.hasAttribute('aria-expanded') &&
     this.control.getAttribute('aria-expanded') === 'false'
       ? this.openMenu(e)
@@ -60,24 +57,14 @@ class Menu {
     this.control.setAttribute('aria-expanded', 'true');
     this.setCurrentMenuItem(0);
     this.emitCustomEvent(true);
-    // Set up the click-away listener
-    //document.addEventListener('click', this.clickAwayListener);
-    /*
-    document.addEventListener('click', (e) => {
-      this.clickAwayHandler(e)
-    });
-    */
   }
 
   closeMenu(e) {
     if (this.control.getAttribute('aria-expanded') == 'true') {
-      console.log(e);
       this.control.setAttribute('aria-expanded', 'false');
       this.emitCustomEvent(false, e);
       this.control.focus();
     }
-    // Remove the click-away listener
-    //document.removeEventListener('click', this.clickAwayListener);
   }
 
   emitCustomEvent(open, e) {
@@ -92,16 +79,14 @@ class Menu {
   }
 
   handleKeyPress(e) {
-    //console.log(e.key);
     e.key == 'Escape' && this.closeMenu(e);
   }
 
   handleMenuNavigation(e) {
-    console.log(e.key, this.currentMenuItem);
     if (e.key == 'ArrowDown') this.keyboardNavigateForward(e);
     if (e.key == 'ArrowUp') this.keyboardNavigateBackward(e);
     if (e.key == 'Home') this.setCurrentMenuItem(0);
-    if (e.key == 'End') this.setCurrentMenuItem(this.menuItems.length-1);
+    if (e.key == 'End') this.setCurrentMenuItem(this.menuItems.length - 1);
   }
 
   keyboardNavigateForward(e) {
@@ -122,10 +107,8 @@ class Menu {
   }
 
   clickAwayHandler(e) {
-    console.log('click anywhere: ', e);
     !this.menuComponent.contains(e.target) && this.closeMenu(e);
   }
-
 }
 
 export default Menu;
