@@ -11,6 +11,8 @@ const fileUtil = {
 
     fileName.innerText = name;
     cancelIcon.className = 'fa fa-times';
+    cancelBtn.setAttribute('type','button');
+    cancelBtn.setAttribute('aria-label','Remove File');
     cancelBtn.appendChild(cancelIcon);
 
     cancelBtn.onclick = (e) => {

@@ -64,8 +64,8 @@
   }
 
   &:focus-within {
-    border-color: var(--cbp-color-interactive-focus-darker);
-    outline-color: var(--cbp-color-interactive-focus-dark);
+    border-color: var(--cbp-color-interactive-focus-darker); // TechDebt: not to spec
+    outline-color: var(--cbp-color-interactive-focus-dark); // TechDebt: not to spec because "light" is not visible on the gray background
     outline-style: solid;
     outline-width: var(--cbp-border-size-xl);
     outline-offset: calc(-1 * var(--cbp-space-3x) / 2);
