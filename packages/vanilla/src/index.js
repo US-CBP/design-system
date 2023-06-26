@@ -18,7 +18,6 @@ import IndeterminateCheckbox from './components/checkbox/indeterminate';
 //import UniversalHeader from './components/header/header';
 
 import DarkMode from './utilities/darkMode';
-//import globalScripts from './utilities/globalScripts';
 
 
 //import './sass/main.scss';
