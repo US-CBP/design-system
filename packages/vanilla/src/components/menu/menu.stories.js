@@ -1,6 +1,20 @@
 export default {
   title: 'Patterns/Menu',
+  parameters: {
+    layout: 'centered',
+  },
   argTypes: {
+    menuPosition: {
+      name: 'Menu Position',
+      description: 'The positioning of the menu relative to the control.',
+      control: 'select',
+        options: [
+          'Bottom start',
+          'Bottom end',
+          'Top start',
+          'Top end'
+        ],
+    },
     buttonFill: {
       name: 'Button Fill',
       description: 'The menu button styling may vary based on context and placement of the component.',
@@ -22,11 +36,6 @@ export default {
       control: { type: 'text' }
     },
     */
-    controlAriaLabel: {
-      name: 'Control ARIA Label',
-      description: 'The menu control\'s accessible label, required when the control contains only an icon.',
-      control: { type: 'text' }
-    },
     controlID: {
       name: 'Control ID',
       description: 'The unique `id` of the menu control (button), used to make associations for accessibility purposes.',
@@ -37,10 +46,17 @@ export default {
       description: 'The unique `id` of the menu element, used to make associations for accessibility purposes.',
       control: { type: 'text' }
     },
+    controlAriaLabel: {
+      name: 'Control ARIA Label',
+      description: 'The menu control\'s accessible label, required when the control contains only an icon.',
+      control: { type: 'text' }
+    },
   }
 };
 
-const OverflowMenuTemplate = ({buttonFill, controlIcon, controlLabel, controlAriaLabel, controlID, menuID}) => {
+const OverflowMenuTemplate = ({buttonFill, menuPosition, controlLabel, controlAriaLabel, controlID, menuID}) => {
+  const position = menuPosition.toLowerCase().replace(' ','-');
+
   return `
     <div class="cbp-menu">
       <button
@@ -57,7 +73,7 @@ const OverflowMenuTemplate = ({buttonFill, controlIcon, controlLabel, controlAri
       <ul
         role="menu"
         id="${menuID}"
-        class="cbp-menu__menu cbp-menu--top-left"
+        class="cbp-menu__menu cbp-menu--${position}"
         aria-labelledby="${controlID}"
       >
         <li class="cbp-menu__item">
@@ -79,7 +95,9 @@ const OverflowMenuTemplate = ({buttonFill, controlIcon, controlLabel, controlAri
   `
 }
 
-const OverflowMenuOptionsTemplate = ({buttonFill, controlIcon, controlLabel, controlAriaLabel, controlID, menuID}) => {
+const OverflowMenuOptionsTemplate = ({buttonFill, menuPosition, controlLabel, controlAriaLabel, controlID, menuID}) => {
+  const position = menuPosition.toLowerCase().replace(' ','-');
+
   return `
     <div class="cbp-menu cbp-overflow-menu__wrapper">
       <button 
@@ -96,7 +114,7 @@ const OverflowMenuOptionsTemplate = ({buttonFill, controlIcon, controlLabel, con
       <ul 
         role="menu"
         id="${menuID}"
-        class="cbp-menu__menu cbp-menu--condensed cbp-menu--top-left"
+        class="cbp-menu__menu cbp-menu--${position}"
         aria-labelledby="${controlID}"
       >
         <li class="cbp-menu__item">
@@ -126,6 +144,7 @@ const OverflowMenuOptionsTemplate = ({buttonFill, controlIcon, controlLabel, con
 
 export const OverflowMenu = OverflowMenuTemplate.bind({});
 OverflowMenu.args = {
+  menuPosition: 'Bottom start',
   buttonFill: "ghost",
   controlID: "menubutton1",
   menuID: "menu1",
@@ -135,6 +154,7 @@ OverflowMenu.storyName="Overflow Menu";
 
 export const OverflowMenuOptions = OverflowMenuOptionsTemplate.bind({});
 OverflowMenuOptions.args = {
+  menuPosition: 'Bottom start',
   buttonFill: "outline",
   controlID: "menubutton2",
   menuID: "menu2",

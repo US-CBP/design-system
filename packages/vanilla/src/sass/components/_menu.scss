@@ -68,18 +68,18 @@
 
 
   .cbp-menu__menu {
-    position: relative;
-    display: inline-block;
+    position: absolute;
+    display: block;
     top: 0;
     right: 0;
-    width: fit-content;
-    max-width: 100%;
+    width: max-content;
+    //max-width: 100%;
     margin: 0;
     padding: 0;
     border-radius: var(--cbp-border-radius-softest);
     box-shadow: var(--cbp-shadow-level-1-down);
     list-style-type: none;
-    z-index: 1; // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
+    z-index: 9; // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
   }
 
   .cbp-menu__item {
@@ -190,37 +190,28 @@
     }
   }
 
-  /* Open state */
-  /*
-  .active {
-    display: block;
-  }
-  */
-
-  /* Top Left Menu Position */
-  .cbp-menu--top-left {
+  /* Menu Positioning */
+  .cbp-menu--top-start {
+    position: absolute;
     top: 0;
+    left: 0;
+    transform: translate(0, -100%);
+  }
+
+  .cbp-menu--top-end {
+    top: 0;
+    left: 100%;
+    transform: translate(-100%, -100%);
+  }
+
+  .cbp-menu--bottom-start {
+    top: 100%;
     left: 0;
   }
 
-  /* Top Right Menu Position */
-  .cbp-menu--top-right {
-    top: 0;
-    right: 0;
+  .cbp-menu--bottom-end {
+    top: 100%;
+    left: 100%;
+    transform: translate(-100%, 0);
   }
-
-  /* Bottom Left Menu Position */
-  .cbp-menu--bottom-left {
-    top: unset;
-    bottom: 0;
-    left: 0;
-  }
-
-  /* Bottom Right Menu Position */
-  .cbp-menu--bottom-right {
-    top: unset;
-    bottom: 0;
-    right: 0;
-  }
-
 }
