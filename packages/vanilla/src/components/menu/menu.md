@@ -9,7 +9,8 @@ A Menu contains additional actions in the form of links or buttons, which can be
 * A menu is an container that, when opened, overlays the contents of the site/application.
 * The menu's control should always be a button.
 * A menu typically contains links and optionally other content.
-* The menu's width is determined by the length of the menu items, up to a maximum of the viewport width.
+* The menu's width is determined by the length of the menu items.
+* The menu may be positioned above or below the control, aligned to the right or left edges, to accommodate different placements on a page.
 * Menu items may indicate a danger state for options such as deletion.
 * The menu may optionally contain a "close" button as the last option.
 * A Menu may be closed by pressing `ESC` or clicking outside of the menu.
