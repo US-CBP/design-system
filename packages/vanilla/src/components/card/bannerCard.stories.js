@@ -6,16 +6,18 @@ export default {
   argTypes: {
     title: {
       name: 'Title',
+      description: 'Set the title in the banner area of the card',
       control: 'text'
     },
     modifier: {
       name: 'Modifier',
+      description: 'Set the modifier class of the card',
       control: 'select',
       options: [
-        '',
-        'cbp-card__banner--info',  
-        'cbp-card__banner--success', 
-        'cbp-card__banner--danger'
+        'default',
+        'info',  
+        'success', 
+        'danger'
       ]
     }
   }
@@ -23,7 +25,7 @@ export default {
 
 const BannerCardTemplate = ({ title, modifier }) => {
   return `
-    <div class="cbp-card__banner ${modifier}">
+    <div class="cbp-card__banner ${modifier != 'default' ? `cbp-card__banner--${modifier}` : ''}">
       <h4 class="cbp-card__banner-title">
         <i class="fas fa-info"></i>
         ${title}
