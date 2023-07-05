@@ -42,6 +42,6 @@ const BannerCardTemplate = ({ title, modifier }) => {
 export const BannerCard = BannerCardTemplate.bind({});
 BannerCard.args = {
   title: 'Banner Card',
-  modifier: ''
+  modifier: 'default'
 };
 

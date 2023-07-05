@@ -70,20 +70,20 @@ const SmallGeneralCardTemplate = ({ title, modifier }) => {
 export const DefaultGeneralCard = DefaultGeneralCardTemplate.bind({});
 DefaultGeneralCard.args = {
   title: 'General Card',
-  modifier: ''
+  modifier: 'default'
 };
 DefaultGeneralCard.storyName = 'Default';
 
 export const GeneralCardMedia = GeneralCardMediaTemplate.bind({});
 GeneralCardMedia.args = {
   title: 'General Card',
-  modifier: ''
+  modifier: 'default'
 };
 GeneralCardMedia.storyName = 'With Media';
 
 export const SmallGeneralCard = SmallGeneralCardTemplate.bind({});
 SmallGeneralCard.args = {
   title: 'General Card',
-  modifier: ''
+  modifier: 'default'
 };
 SmallGeneralCard.storyName = 'Small Size';

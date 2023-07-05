@@ -5,8 +5,7 @@
 
   & .cbp-card__banner-content {
     background-color: $body-background-color;
-    border: var(--cbp-border-size-md) solid $body-border-color;
-    border-top: 0;
+    border-color: $body-border-color;
   }
 }
 
@@ -33,7 +32,9 @@
 
 .cbp-card__banner-content {
   background-color: var(--cbp-color-base-neutral-lighter);
-  border: var(--cbp-border-size-md) solid var(--cbp-color-base-neutral-light);
+  border-color: var(--cbp-color-base-neutral-light);
+  border-style: solid;
+  border-width: var(--cbp-border-size-md);
   border-top: 0;
   border-bottom-left-radius: var(--cbp-border-radius-softest);;
   border-bottom-right-radius: var(--cbp-border-radius-softest);;
