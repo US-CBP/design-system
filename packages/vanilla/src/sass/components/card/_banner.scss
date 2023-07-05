@@ -15,7 +15,7 @@
 
 .cbp-card__banner-title {
   align-items: center;
-  background-color: var(--cbp-color-base-secondary-dark);
+  background-color: var(--cbp-color-gray-cool-60);
   border-top-left-radius: var(--cbp-border-radius-softest);
   border-top-right-radius: var(--cbp-border-radius-softest);;
   color: var(--cbp-color-text-lightest);
@@ -23,7 +23,7 @@
   font-size: var(--cbp-font-size-heading-xl);
   font-weight: var(--cbp-font-weight-regular);
   line-height: var(--cbp-line-height-md);
-  padding: var(--cbp-space-3x) 0 var(--cbp-space-3x) var(--cbp-space-4x);
+  padding: var(--cbp-space-4x);
 
   & > i {
     margin-right: var(--cbp-space-2x);
@@ -31,13 +31,13 @@
 }
 
 .cbp-card__banner-content {
-  background-color: var(--cbp-color-base-neutral-lighter);
-  border-color: var(--cbp-color-base-neutral-light);
+  background-color: var(--cbp-color-gray-cool-10);
+  border-color: var(--cbp-color-gray-cool-30);
   border-style: solid;
   border-width: var(--cbp-border-size-md);
   border-top: 0;
-  border-bottom-left-radius: var(--cbp-border-radius-softest);;
-  border-bottom-right-radius: var(--cbp-border-radius-softest);;
+  border-bottom-left-radius: var(--cbp-border-radius-softest);
+  border-bottom-right-radius: var(--cbp-border-radius-softest);
   padding: var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-5x) var(--cbp-space-4x);
 }
 
