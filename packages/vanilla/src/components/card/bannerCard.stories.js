@@ -19,21 +19,28 @@ export default {
         'success', 
         'danger'
       ]
-    }
+    },
+    showIcon: {
+      name: 'Show Icon',
+      description: 'Show an icon in the title',
+      control: 'boolean'
+    },
   }
 };
 
+const icons = {
+  default: '<i class="fas fa-info"></i>',
+  info: '<i class="fas fa-info-circle"></i>',  
+  success: '<i class="fas fa-check"></i>',
+  danger: '<i class="fas fa-exclamation-triangle"></i>'
+}
 
-
-const BannerCardTemplate = ({ title, variant }) => {
+const BannerCardTemplate = ({ title, variant, showIcon }) => {
   return `
     <div class="cbp-card__banner ${variant != 'default' ? `cbp-card__banner--${variant}` : ''}">
-      <h4 class="cbp-card__banner-title">
-        <i class="fas fa-info"></i>
-        ${title}
-      </h4>
+      <h4 class="cbp-card__banner-title">${showIcon ? icons[variant] : ''}${title}</h4>
       <div class="cbp-card__banner-content">
-        <p class="cbp-text-body">
+        <p class="cbp-text-body cbp-margin-bottom-0">
           Here is an example of some supplementary text for this purely informational card
         </p>
       </div>
