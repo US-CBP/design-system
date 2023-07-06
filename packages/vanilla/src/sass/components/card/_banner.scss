@@ -1,0 +1,54 @@
+@mixin card-banner-modifier($title-background-color, $body-background-color, $body-border-color) {
+  & .cbp-card__banner-title {
+    background-color: $title-background-color;
+  }
+
+  & .cbp-card__banner-content {
+    background-color: $body-background-color;
+    border-color: $body-border-color;
+  }
+}
+
+.cbp-card__banner {
+  border: 0;
+}
+
+.cbp-card__banner-title {
+  align-items: center;
+  background-color: var(--cbp-color-gray-cool-60);
+  border-top-left-radius: var(--cbp-border-radius-softest);
+  border-top-right-radius: var(--cbp-border-radius-softest);;
+  color: var(--cbp-color-text-lightest);
+  display: flex;
+  font-size: var(--cbp-font-size-heading-xl);
+  font-weight: var(--cbp-font-weight-regular);
+  line-height: var(--cbp-line-height-md);
+  padding: var(--cbp-space-4x);
+
+  & > i {
+    margin-right: var(--cbp-space-2x);
+  }
+}
+
+.cbp-card__banner-content {
+  background-color: var(--cbp-color-gray-cool-10);
+  border-color: var(--cbp-color-gray-cool-30);
+  border-style: solid;
+  border-width: var(--cbp-border-size-md);
+  border-top: 0;
+  border-bottom-left-radius: var(--cbp-border-radius-softest);
+  border-bottom-right-radius: var(--cbp-border-radius-softest);
+  padding: var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-5x) var(--cbp-space-4x);
+}
+
+.cbp-card__banner--info {
+  @include card-banner-modifier(var(--cbp-color-info-dark), var(--cbp-color-info-lighter), var(--cbp-color-info-light));
+}
+
+.cbp-card__banner--success {
+  @include card-banner-modifier(var(--cbp-color-success-base), var(--cbp-color-success-lighter), var(--cbp-color-success-light));
+}
+
+.cbp-card__banner--danger {
+  @include card-banner-modifier(var(--cbp-color-danger-base), var(--cbp-color-danger-lighter), var(--cbp-color-danger-light));
+}
