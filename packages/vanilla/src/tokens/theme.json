@@ -303,11 +303,11 @@
 
       "focus": {
         "light": {
-          "value": "{ color.blue.warm.5.value }",
+          "value": "{ color.blue.20.value }",
           "attributes": { "use": "theme", "type": "focus" }
         },
         "dark": {
-          "value": "{ color.blue.warm.40.value }",
+          "value": "{ color.blue.60.value }",
           "attributes": { "use": "theme", "type": "focus" }
         }
       },

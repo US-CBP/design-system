@@ -3,7 +3,7 @@
   display: inline-block;
   width: var(--cbp-space-6x);
   height: var(--cbp-space-6x);
-  color: var(--cbp-color-white);
+  color: var(--cbp-color-text-lightest);
   background-color: var(--cbp-color-info-base);
   border-radius: var(--cbp-border-radius-pill);
   cursor: default;
@@ -16,11 +16,11 @@
   }
 }
 
-// Tags
+// Tags (info is the default)
 .cbp-tag {
   display: inline-block;
-  color: var(--cbp-color-white);
-  background-color: var(--cbp-color-info-base);
+  color: var(--cbp-color-info-lighter);
+  background-color: var(--cbp-color-info-dark);
   border-radius: var(--cbp-border-radius-pill);
   cursor: default;
   padding: 0 var(--cbp-space-3x);
@@ -32,16 +32,18 @@
   }
 
   &--warning {
-    color: var(--cbp-color-black);
+    color: var(--cbp-color-text-darker);
     background-color: var(--cbp-color-warning-base);
   }
 
   &--success {
-    background-color: var(--cbp-color-success-base);
+    color: var(--cbp-color-success-lighter);
+    background-color: var(--cbp-color-success-dark);
   }
 
   &--danger {
-    background-color: var(--cbp-color-danger-base);
+    color: var(--cbp-color-text-lightest);
+    background-color: var(--cbp-color-danger-dark);
   }
 }
 
@@ -52,8 +54,8 @@
   justify-content: center;
   width: fit-content;
   padding: 0 0 0 var(--cbp-space-3x);
-  color: var(--cbp-color-white);
-  background-color: var(--cbp-color-interactive-neutral-base);
+  color: var(--cbp-color-text-lightest);
+  background-color: var(--cbp-color-interactive-neutral-base); // --cbp-color-interactive-secondary-dark does not exist
   border-width: 0;
   border-radius: var(--cbp-border-radius-pill);
   text-transform: uppercase;
@@ -71,17 +73,14 @@
     transition: var(--cbp-motion-duration-shortest);
   }
   
-  //&--active {
+  // Selected
   &[aria-pressed=true] {
-    background-color: var(--cbp-color-interactive-active-dark);
+    background-color: var(--cbp-color-interactive-selected-dark);
   
     & > .cbp-chip__label + .cbp-chip__icon {
       transform: rotate(-135deg);
     }
 
-    &:hover { 
-      background-color: var(--cbp-color-interactive-active-dark);
-    }
   }
 
   &:hover {
