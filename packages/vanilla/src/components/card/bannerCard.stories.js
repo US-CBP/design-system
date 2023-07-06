@@ -9,9 +9,9 @@ export default {
       description: 'Set the title in the banner area of the card',
       control: 'text'
     },
-    modifier: {
-      name: 'Modifier',
-      description: 'Set the modifier class of the card',
+    variant: {
+      name: 'Variant',
+      description: 'Set the variant class of the card',
       control: 'select',
       options: [
         'default',
@@ -23,9 +23,11 @@ export default {
   }
 };
 
-const BannerCardTemplate = ({ title, modifier }) => {
+
+
+const BannerCardTemplate = ({ title, variant }) => {
   return `
-    <div class="cbp-card__banner ${modifier != 'default' ? `cbp-card__banner--${modifier}` : ''}">
+    <div class="cbp-card__banner ${variant != 'default' ? `cbp-card__banner--${variant}` : ''}">
       <h4 class="cbp-card__banner-title">
         <i class="fas fa-info"></i>
         ${title}
@@ -42,6 +44,6 @@ const BannerCardTemplate = ({ title, modifier }) => {
 export const BannerCard = BannerCardTemplate.bind({});
 BannerCard.args = {
   title: 'Banner Card',
-  modifier: 'default'
+  variant: 'default'
 };
 
