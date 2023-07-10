@@ -1,30 +1,9 @@
-/* Future form components CSS */
-/*
-.cbp-form__row {
-  display: flex;
-  align-items: center;
-}
-
-.cbp-radio__input {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-}
-
-.cbp-radio__label {
-  margin-left: 0.25rem;
-}
-
-.cbp-checkox__label {
-  margin-left: 0.25rem;
-}
-*/
-
 .cbp-menu {
   position: relative;
   display: inline-block;
   max-width: 100%;
 
-  // This should inherit from button classes first
+  // The Control uses and inherits from button classes to reduce duplication
   .cbp-menu__control {
     display: flex;
     justify-content: center;
@@ -33,10 +12,7 @@
     min-height: var(--cbp-space-6x);
     padding: 0;
     letter-spacing: unset;
-    //background-color: transparent;
-    //border: 0;
-    //border-radius: var(--cbp-border-radius-soft);
-
+    
     i {
       font-size: var(--cbp-font-size-body);
       margin-right: unset;
@@ -45,28 +21,9 @@
     &:hover { 
       background-color: var(--cbp-color-interactive-neutral-light);
     }
-/*
-    &:not([disabled]):focus {
-      background-color: var(--cbp-color-interactive-focus-dark);
-      border-color: var(--cbp-color-interactive-focus-dark);
-      //box-shadow: inset 0 0 0 2px #fff;
-      //outline: 0;
-
-      i {
-        color: #fff;
-      }
-    
-    }
-    */
   }
 
-  /* Toggle the visibility of the menu based on aria-expanded value */
-  .cbp-menu__control:not([aria-expanded]) + .cbp-menu__menu,
-  .cbp-menu__control[aria-expanded=false] + .cbp-menu__menu {
-    display: none;
-  }
-
-
+  /* The actual menu, positioned for mobile-first */
   .cbp-menu__menu {
     position: fixed;
     display: block;
@@ -82,11 +39,18 @@
     z-index: var(--cbp-z-index-level-0); // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
   }
 
+  /* Toggle the visibility of the menu based on the control's aria-expanded value */
+  .cbp-menu__control:not([aria-expanded]) + .cbp-menu__menu,
+  .cbp-menu__control[aria-expanded=false] + .cbp-menu__menu {
+    display: none;
+  }
+
+  /* Menu Items */
   .cbp-menu__item {
     padding: 0;
     margin-bottom: 0;
     width: 100%;
-    max-width: 100%; // Override styles from _list.scss (uswds)
+    //max-width: 100%;
     height: var(--cbp-space-9x);
     background-color: var(--cbp-color-base-neutral-darker);
 
@@ -111,7 +75,6 @@
 
   }
 
-  /* Menu Items */
   .cbp-menu__item > a,
   .cbp-menu__item > button {
     display: flex;
@@ -134,7 +97,6 @@
     &:focus {
       color: var(--cbp-color-text-darkest);
       background-color: var(--cbp-color-interactive-focus-light);
-      //border: 2px solid var(--cbp-color-interactive-focus-light);
       box-shadow: inset 0 0 0 var(--cbp-border-size-md) var(--cbp-color-white);
       outline: 0;
     }
@@ -148,11 +110,10 @@
     &.cbp-menu__close-btn {
       width: 100%;
       justify-content: center;
-      //height: var(--cbp-space-8x);
       font-weight: var(--cbp-font-weight-bold);
       text-transform: uppercase;
       color: var(--cbp-color-text-lightest);
-      letter-spacing: var(--cbp-letter-spacing-loose); //1.08px;
+      letter-spacing: var(--cbp-letter-spacing-loose);
       background-color: var(--cbp-color-interactive-primary-base);
       border: 0;
       cursor: pointer;
@@ -168,10 +129,6 @@
 
       &:focus {
         background-color: var(--cbp-color-interactive-focus-dark);
-        //border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-dark);
-        //outline: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-dark);
-        //box-shadow: inset 0 0 0 2px #fff;
-        //outline: 0 !important;
       }
     }
   }
@@ -183,7 +140,7 @@
       color: var(--cbp-color-danger-light);
 
       &:hover {
-        color: var(--cbp-color-white); //!important;
+        color: var(--cbp-color-white);
         background-color: var(-cbp-color-danger-base);
       }
     }
