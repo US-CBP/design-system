@@ -19,9 +19,14 @@
   2. `showModal()`: displays the dialog as a modal along with the `::backdrop` pseudo-element. Interaction outside the dialog is blocked and the content outside it is rendered inert. 
   3. The `close()` method is used to close the modal 
 
+- Forms in `<dialog>`
+  1. `formmethod="dialog"` attribute in a `<button>` overrides the `<form>`'s default GET method.
+  2. When a `<form>` method is `dialog`, the state of the form is saved, not submitted, and the dialog get's closed. 
+
 ### Accessibility 
 
 - `<dialog>` opened by the `showModal()` method will have an implicit `aria-modal="true"`
+- `role="alertdialog"` is used on modal alert dialogs that interrupt a user's workflow to communicate an important message and require a response. This helps assistive technology identify the content as being grouped and separated from the rest of the page content.
 - Modal titles/headings should have an `id` attribute whose value is referenced by the `aria-labelledby` attribute in the `<dialog>` element.
 - Modal description or detail text should have the `aria-describedby` data attribute with the value of the `id` of the element that describes the Modal. 
 
