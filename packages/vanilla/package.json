@@ -4,9 +4,17 @@
   "description": "Vanilla UI pattern library for the U.S. Customs & Border Protection",
   "type": "module",
   "license": "CC0-1.0",
+  "author": "Creative Services <CreativeServices@cbp.dhs.gov>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/US-CBP/design-system"
+  },
   "files": [
     "dist"
   ],
+  "bugs": {
+    "url": "https://github.com/US-CBP/design-system/issues"
+  },
   "scripts": {
     "sd": "style-dictionary build --config ./config.json",
     "dev": "vite",
@@ -41,5 +49,9 @@
     "style-loader": "^3.3.2",
     "vite": "^4.0.0",
     "vite-plugin-static-copy": "^0.14.0"
-  }
+  },
+  "keywords": [
+    "CBP",
+    "CBP Design System"
+  ]
 }
