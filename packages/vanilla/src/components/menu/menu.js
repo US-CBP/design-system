@@ -31,7 +31,7 @@ class Menu {
       });
 
     // Listen for ESC keypress anywhere
-    document.addEventListener('keyup', (e) => {
+    document.addEventListener('keydown', (e) => {
       this.handleKeyPress(e);
     });
 
@@ -59,11 +59,11 @@ class Menu {
     this.emitCustomEvent(true);
   }
 
-  closeMenu(e) {
+  closeMenu(e, focusControl = true) {
     if (this.control.getAttribute('aria-expanded') == 'true') {
       this.control.setAttribute('aria-expanded', 'false');
       this.emitCustomEvent(false, e);
-      this.control.focus();
+      focusControl && this.control.focus();
     }
   }
 
@@ -80,13 +80,15 @@ class Menu {
 
   handleKeyPress(e) {
     e.key == 'Escape' && this.closeMenu(e);
+    e.key == 'Tab' && this.checkFocus(e);
   }
 
   handleMenuNavigation(e) {
-    if (e.key == 'ArrowDown') this.keyboardNavigateForward(e);
-    if (e.key == 'ArrowUp') this.keyboardNavigateBackward(e);
-    if (e.key == 'Home') this.setCurrentMenuItem(0);
-    if (e.key == 'End') this.setCurrentMenuItem(this.menuItems.length - 1);
+    e.key == 'ArrowDown' && this.keyboardNavigateForward(e);
+    e.key == 'ArrowUp' && this.keyboardNavigateBackward(e);
+    e.key == 'Home' && this.setCurrentMenuItem(0);
+    e.key == 'End' && this.setCurrentMenuItem(this.menuItems.length - 1);
+    //e.key == 'Tab' && this.checkFocus(e);
   }
 
   keyboardNavigateForward(e) {
@@ -108,6 +110,16 @@ class Menu {
 
   clickAwayHandler(e) {
     !this.menuComponent.contains(e.target) && this.closeMenu(e);
+  }
+
+  checkFocus(e) {
+    setTimeout(() => {
+      console.log('Tab: ', document.activeElement);
+      !(
+        document.activeElement != null &&
+        this.menuComponent.contains(document.activeElement)
+      ) && this.closeMenu(e, false);
+    }, 50);
   }
 }
 
