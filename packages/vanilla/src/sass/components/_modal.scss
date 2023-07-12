@@ -4,12 +4,14 @@ dialog,
   background-color: var(--cbp-color-white);
   border-radius: var(--cbp-border-radius-softest);
   border-width: 0;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 21rem;
+  box-shadow: var(--cbp-shadow-level-1-down);
+  width: 22rem;
   padding: 0;
 
   & > hr {
-    border: var(--cbp-border-size-sm) solid var(--cbp-color-base-neutral-light);
+    border-color: var(--cbp-color-base-neutral-light);
+    border-style: solid;
+    border-width: var(--cbp-border-size-sm);
   }
 
   &::backdrop {
