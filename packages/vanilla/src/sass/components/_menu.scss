@@ -119,11 +119,10 @@
       cursor: pointer;
 
       i {
-        margin-right: 8px;
+        margin-right: var(--cbp-space-2x);
       }
 
       &:hover {
-        color: var(--cbp-color-text-lightest) !important;
         background-color: var(--cbp-color-interactive-primary-dark);
       }
 
