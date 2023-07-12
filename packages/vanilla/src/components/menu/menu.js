@@ -114,7 +114,6 @@ class Menu {
 
   checkFocus(e) {
     setTimeout(() => {
-      console.log('Tab: ', document.activeElement);
       !(
         document.activeElement != null &&
         this.menuComponent.contains(document.activeElement)
