@@ -20,7 +20,7 @@ import IndeterminateCheckbox from './components/checkbox/indeterminate';
 import DarkMode from './utilities/darkMode';
 
 
-//import './sass/main.scss';
+import './sass/main.scss';
 
 const addOrInstantiate = (Klass, node) => {
   return new Klass(node);
