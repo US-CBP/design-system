@@ -1,4 +1,5 @@
 import SelectorEngine from './utilities/selectorEngine';
+
 import Accordion from './components/accordion/accordion';
 import ApplicationHeader from './components/application-header/application-header';
 import Banner from './components/banner/banner';
@@ -8,13 +9,16 @@ import Dropdown from './components/dropdown/dropdown';
 import Expand from './components/expand/expand';
 import Toggle from './components/toggle/toggle';
 import FileInput from './components/file-input/fileInput';
+import Menu from './components/menu/menu';
 import ObfuscatedField from './components/text-input/obfuscatedField';
 import NumberCounter from './components/text-input/numberCounter';
 import SegmentedButtonGroup from './components/segmented-button-group/segmented-button-group';
 import Tabset from './components/tabs/tabs';
 import IndeterminateCheckbox from './components/checkbox/indeterminate';
 //import UniversalHeader from './components/header/header';
+
 import DarkMode from './utilities/darkMode';
+
 
 import './sass/main.scss';
 
@@ -112,6 +116,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
    */
   SelectorEngine.findAll("input[type='password']").forEach((obfuscatedField) => {
     addOrInstantiate(ObfuscatedField, obfuscatedField);
+  });
+
+  /**
+   * Menu
+   */
+  SelectorEngine.findAll('.cbp-menu').forEach((menu) => {
+    addOrInstantiate(Menu, menu);
   });
 
   /**
