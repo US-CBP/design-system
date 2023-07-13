@@ -30,8 +30,7 @@ const Template = ({ variant, color, fill, label, disabled, type, ariaLabel }) =>
       ${disabled ? "disabled='true'" : ''}
       ${variant === 'default' ? '' : 'aria-label=' + ariaLabel}
     >
-      <i class="fas fa-clipboard-check"></i>
-      ${variant === 'default' ? label : ''}
+      <i class="fas fa-clipboard-check"></i>${variant === 'default' ? label : ''}
     </button>
   `
 );
@@ -56,8 +55,7 @@ const CTATemplate = ({ label, disabled, type }) => (
       type=${type}
       ${disabled ? "disabled='true'" : ''}
     >
-      <i class="fas fa-clipboard-check"></i>
-      ${label}
+      <i class="fas fa-clipboard-check"></i>${label}
     </button>
   `
 );
