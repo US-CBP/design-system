@@ -16,7 +16,7 @@ const Template = () => {
           <!-- <button class="cbp-hamburger dh-sm-none">
             <i class="fas fa-search"></i>
           </button> -->
-          <button class="cbp-hamburger" data-drawer="open">
+          <button aria-label="Open Drawer" class="cbp-hamburger" data-drawer="open">
             <i class="fas fa-bars"></i>
           </button>
         </div>
@@ -28,7 +28,7 @@ const Template = () => {
           <i class="fas fa-filter"></i>
           <h6>Filter</h6>
         </div>
-        <button>
+        <button aria-label="Close">
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
