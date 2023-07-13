@@ -1,15 +1,15 @@
 export default {
   title: 'Patterns/Modal/Examples',
   argTypes: {
-    title: {
-      name: 'Modal Title',
-      description: 'Title of the modal component'
+    heading: {
+      name: 'Modal Heading',
+      description: 'Heading of the modal component'
     },
     modalID: {
       name: 'Modal ID',
       description: 'Sets the ID of the `<dialog>` element associated with the `data-modal` attribute on the control that opens the modal'
     },
-    titleID: {
+    headingID: {
       name: 'ARIA Labelledby ID',
       description: 'The modals accessible title, associated with the title/heading element within the modal'
     },
@@ -35,12 +35,12 @@ const SimpleModalTemplate = ({ modalID, ariaLabel, describedByID }) => {
   `
 }
 
-const AcknowledgementModalTemplate = ({ title, modalID, titleID, describedByID }) => {
+const AcknowledgementModalTemplate = ({ heading, modalID, headingID, describedByID }) => {
   return `
     <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Acknowledgement Model</button>
-    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${titleID}" aria-describedby="${describedByID}">
+    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
-        <h2 class="cbp-modal__title" id="${titleID}">${title}</h2>
+        <h2 class="cbp-modal__heading" id="${headingID}">${heading}</h2>
         <hr>
         <p class="cbp-modal__description" id="${describedByID}">There was a change to our terms of service. Continued use of this system constitutes acceptance of these terms.</p>
       </div>
@@ -51,12 +51,12 @@ const AcknowledgementModalTemplate = ({ title, modalID, titleID, describedByID }
   `
 }
 
-const ConfirmationModalTemplate = ({ title, modalID, titleID, describedByID }) => {
+const ConfirmationModalTemplate = ({ heading, modalID, headingID, describedByID }) => {
   return `
     <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Confirmation Modal</button>
-    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${titleID}" aria-describedby="${describedByID}">
+    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
-        <h2 class="cbp-modal__title" id="${titleID}"><i class="fas fa-check"></i>${title}</h2>
+        <h2 class="cbp-modal__heading" id="${headingID}"><i class="fas fa-check"></i>${heading}</h2>
         <hr>
         <p class="cbp-modal__description" id="${describedByID}">Are you sure you want to submit and close this exam?</p>
       </div>
@@ -68,12 +68,12 @@ const ConfirmationModalTemplate = ({ title, modalID, titleID, describedByID }) =
   `
 }
 
-const DangerModalTemplate = ({ title, modalID, titleID, describedByID }) => {
+const DangerModalTemplate = ({ heading, modalID, headingID, describedByID }) => {
   return `
     <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Danger Modal</button>
-    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${titleID}" aria-describedby="${describedByID}">
+    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
-        <h2 class="cbp-modal__title" id="${titleID}"><i class="fas fa-exclamation-triangle"></i>${title}</h2>
+        <h2 class="cbp-modal__heading cbp-modal__heading--danger" id="${headingID}"><i class="fas fa-exclamation-triangle"></i>${heading}</h2>
         <hr>
         <p class="cbp-modal__description" id="${describedByID}">Are you sure you want to delete this item? This action cannot be undone.</p>
       </div>
@@ -85,12 +85,12 @@ const DangerModalTemplate = ({ title, modalID, titleID, describedByID }) => {
   `
 }
 
-const MultiChoiceModalTemplate = ({ title, modalID, titleID, describedByID }) => {
+const MultiChoiceModalTemplate = ({ heading, modalID, headingID, describedByID }) => {
   return `
     <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Multi-Choice Modal</button>
-    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${titleID}" aria-describedby="${describedByID}">
+    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
-        <h2 class="cbp-modal__title" id="${titleID}"><i class="fas fa-file-alt"></i>${title}</h2>
+        <h2 class="cbp-modal__heading" id="${headingID}"><i class="fas fa-file-alt"></i>${heading}</h2>
         <hr>
         <p class="cbp-modal__description" id="${describedByID}">What would you like to do with the changes you have made to this document?</p>
       </div>
@@ -103,12 +103,12 @@ const MultiChoiceModalTemplate = ({ title, modalID, titleID, describedByID }) =>
   `
 }
 
-const FormModalTemplate = ({ title, modalID, titleID, describedByID }) => {
+const FormModalTemplate = ({ heading, modalID, headingID, describedByID }) => {
   return `
     <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Form Modal</button>
-    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${titleID}" aria-describedby="${describedByID}">
+    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
-        <h2 class="cbp-modal__title" id="${titleID}"><i class="fas fa-comment"></i>${title}</h2>
+        <h2 class="cbp-modal__heading" id="${headingID}"><i class="fas fa-comment"></i>${heading}</h2>
         <hr>
         <p class="cbp-modal__description" id="${describedByID}">If you're experiencing a system error or application problem please contact the Technology Service Desk.</p>
         <form id="modal-form">
@@ -134,14 +134,14 @@ SimpleModal.args = {
 SimpleModal.argTypes = {
   ariaLabel: {
     name: 'ARIA Label',
-    description: 'Accessible label used when a modal title/heading is not present'
+    description: 'Accessible label used when a modal heading is not present'
   },
-  title: {
+  heading: {
     table: {
       disable: true
     }
   },
-  titleID: {
+  headingID: {
     table: {
       disable: true
     }
@@ -150,40 +150,40 @@ SimpleModal.argTypes = {
 
 export const AcknowledgementModal = AcknowledgementModalTemplate.bind({});
 AcknowledgementModal.args = {
-  title: 'Terms of Service Update',
+  heading: 'Terms of Service Update',
   modalID: 'acknowledge-modal',
-  titleID: 'acknowledge-modal-title',
+  headingID: 'acknowledge-modal-heading',
   describedByID: 'acknowledge-modal-description'
 }
 
 export const ConfirmationModal = ConfirmationModalTemplate.bind({});
 ConfirmationModal.args = {
-  title: 'Confirm',
+  heading: 'Confirm',
   modalID: 'confirmation',
-  titleID: 'confirmation-modal-title',
+  headingID: 'confirmation-modal-heading',
   describedByID: 'confirmation-modal-description'
 }
 
 export const DangerModal = DangerModalTemplate.bind({});
 DangerModal.args = {
-  title: 'Warning',
+  heading: 'Warning',
   modalID: 'danger',
-  titleID: 'danger-modal-title',
+  headingID: 'danger-modal-heading',
   describedByID: 'danger-modal-description'
 }
 
 export const MultiChoiceModal = MultiChoiceModalTemplate.bind({});
 MultiChoiceModal.args = {
-  title: 'Document Changes',
+  heading: 'Document Changes',
   modalID: 'multi',
-  titleID: 'multi-modal-title',
+  headingID: 'multi-modal-heading',
   describedByID: 'multi-modal-description'
 }
 
 export const FormModal = FormModalTemplate.bind({});
 FormModal.args = {
-  title: 'Feedback',
+  heading: 'Feedback',
   modalID: 'form-modal',
-  titleID: 'form-modal-title',
+  headingID: 'form-modal-heading',
   describedByID: 'form-modal-description'
 }

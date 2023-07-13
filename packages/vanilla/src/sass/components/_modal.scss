@@ -19,7 +19,7 @@ dialog,
   }
 }
 
-.cbp-modal__title {
+.cbp-modal__heading {
   color: var(--cbp-color-text-darker);
   font-size: var(--cbp-font-size-heading-lg);
   font-weight: var(--cbp-font-weight-medium);
@@ -29,10 +29,10 @@ dialog,
     font-size: var(--cbp-font-size-heading-md);
     margin-right: var(--cbp-space-4x);
   }
+}
 
-  &--danger {
-    color: var(--cbp-color-danger-base);
-  }
+.cbp-modal__heading--danger {
+  color: var(--cbp-color-danger-base);
 }
 
 .cbp-modal__content {

@@ -1,15 +1,15 @@
 export default {
   title: 'Patterns/Modal',
   argTypes: {
-    title: {
-      name: 'Modal Title',
-      description: 'Title of the modal component'
+    heading: {
+      name: 'Modal Heading',
+      description: 'Heading of the modal component'
     },
     modalID: {
       name: 'Modal ID',
       description: 'Sets the ID of the `<dialog>` element associated with the `data-modal` attribute on the control that opens the modal'
     },
-    titleID: {
+    headingID: {
       name: 'ARIA Labelledby ID',
       description: 'The modals accessible title, associated with the title/heading element within the modal'
     },
@@ -51,12 +51,12 @@ const renderControls = (layout) => {
   }
 };
 
-const ModalTemplate = ({ title, modalID, titleID, describedByID, controlsLayout }) => {
+const ModalTemplate = ({ heading, modalID, headingID, describedByID, controlsLayout }) => {
   return `
     <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Model</button>
-    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${titleID}" aria-describedby="${describedByID}">
+    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
-        <h2 class="cbp-modal__title" id="${titleID}">${title}</h2>
+        <h2 class="cbp-modal__title" id="${headingID}">${heading}</h2>
         <hr>
         <p class="cbp-modal__description" id="${describedByID}">Description text that describes the modal content.</p>
       </div>
@@ -67,9 +67,9 @@ const ModalTemplate = ({ title, modalID, titleID, describedByID, controlsLayout 
 
 export const Modal = ModalTemplate.bind({});
 Modal.args = {
-  title: 'Modal Title',
+  heading: 'Modal Heading',
   modalID: 'modal-id',
-  titleID: 'modal-title-id',
+  headingID: 'modal-title-id',
   describedByID: 'modal-description-id',
   controlsLayout: 'single'
 }
