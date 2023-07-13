@@ -8,13 +8,15 @@ export default {
   },
   argTypes: {
     title: {
-      name: 'Card Title',
+      name: 'Title',
+      description: 'Set the title of the card',
       control: 'text'
     },
     modifier: {
-      name: 'Card Modifier',
+      name: 'Modifier',
+      description: 'Set the modifier class of the card',
       control: 'select',
-      options: ['', 'cbp-card--info', 'cbp-card--success', 'cbp-card--danger']
+      options: ['default', 'info', 'success', 'danger']
     }
   }
 };
@@ -22,7 +24,7 @@ export default {
 const DefaultGeneralCardTemplate = ({ title, modifier }) => {
   return `
     <div class="wrapper" style="display: grid; grid-template-columns: 432px">
-      <div class="cbp-card ${modifier}">
+      <div class="cbp-card ${modifier != 'default' ? `cbp-card--${modifier}` : ''}">
         <div class="cbp-card__content">
           <div class="cbp-card__header">
             <h4 class="cbp-card__title"><i class="fas fa-info-circle cbp-margin-right-2x"></i>${title}</h4>
@@ -68,20 +70,20 @@ const SmallGeneralCardTemplate = ({ title, modifier }) => {
 export const DefaultGeneralCard = DefaultGeneralCardTemplate.bind({});
 DefaultGeneralCard.args = {
   title: 'General Card',
-  modifier: ''
+  modifier: 'default'
 };
 DefaultGeneralCard.storyName = 'Default';
 
 export const GeneralCardMedia = GeneralCardMediaTemplate.bind({});
 GeneralCardMedia.args = {
   title: 'General Card',
-  modifier: ''
+  modifier: 'default'
 };
 GeneralCardMedia.storyName = 'With Media';
 
 export const SmallGeneralCard = SmallGeneralCardTemplate.bind({});
 SmallGeneralCard.args = {
   title: 'General Card',
-  modifier: ''
+  modifier: 'default'
 };
 SmallGeneralCard.storyName = 'Small Size';
