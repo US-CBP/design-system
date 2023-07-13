@@ -1,0 +1,26 @@
+{
+  "name": "ux-guidelines",
+  "version": "0.1.0",
+  "description": "UX guidelines that compliments the CBP Design System",
+  "main": "index.js",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/US-CBP/design-system.git"
+  },
+  "author": "Creative Services <CreativeServices@cbp.dhs.gov>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/US-CBP/design-system/issues"
+  },
+  "homepage": "https://github.com/US-CBP/design-system#readme",
+  "keywords": [
+    "CBP",
+    "CBP UX Guidelines"
+  ]
+}

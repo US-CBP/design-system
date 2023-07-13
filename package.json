@@ -28,7 +28,8 @@
     "node": ">=16.0.0"
   },
   "workspaces": [
-    "packages/vanilla"
+    "packages/vanilla",
+    "packages/ux-guidelines"
   ],
   "devDependencies": {
     "eslint": "^8.33.0",
