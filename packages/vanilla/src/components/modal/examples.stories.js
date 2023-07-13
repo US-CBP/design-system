@@ -11,7 +11,7 @@ export default {
     },
     headingID: {
       name: 'ARIA Labelledby ID',
-      description: 'The modals accessible title, associated with the title/heading element within the modal'
+      description: 'The modals accessible heading, associated with the heading element within the modal'
     },
     describedByID: {
       name: 'ARIA Describedby ID',

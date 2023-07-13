@@ -11,7 +11,7 @@ export default {
     },
     headingID: {
       name: 'ARIA Labelledby ID',
-      description: 'The modals accessible title, associated with the title/heading element within the modal'
+      description: 'The modals accessible heading, associated with the heading element within the modal'
     },
     describedByID: {
       name: 'ARIA Describedby ID',
@@ -56,7 +56,7 @@ const ModalTemplate = ({ heading, modalID, headingID, describedByID, controlsLay
     <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Model</button>
     <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
-        <h2 class="cbp-modal__title" id="${headingID}">${heading}</h2>
+        <h2 class="cbp-modal__heading" id="${headingID}">${heading}</h2>
         <hr>
         <p class="cbp-modal__description" id="${describedByID}">Description text that describes the modal content.</p>
       </div>
@@ -69,7 +69,7 @@ export const Modal = ModalTemplate.bind({});
 Modal.args = {
   heading: 'Modal Heading',
   modalID: 'modal-id',
-  headingID: 'modal-title-id',
+  headingID: 'modal-heading-id',
   describedByID: 'modal-description-id',
   controlsLayout: 'single'
 }
