@@ -38,24 +38,30 @@ const renderActions = (layout) => {
     return `
       <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card__actions">
-        <button class="cbp-btn__secondary" type="button"><i class="fas fa-info-circle"></i>App Info</button>
-        <a href="#" class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</a>
+        <button class="cbp-btn__secondary" type="button" aria-describedby="card-heading-1">
+          <i class="fas fa-info-circle"></i>App Info
+        </button>
+        <a href="#" class="cbp-btn__primary" aria-describedby="card-heading-1">
+          <i class="fas fa-external-link-alt"></i>Go To App
+        </a>
       </div>
     `;
   } else if (layout === 'triple') {
     return `
       <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card__actions">
-        <button class="cbp-btn__danger" type="button"><i class="fas fa-trash-alt"></i>Delete</button>
-        <button class="cbp-btn__secondary" type="button"><i class="fas fa-times"></i>Cancel</button>
-        <button class="cbp-btn__primary" type="button"><i class="fas fa-save"></i>Publish</button>
+        <button class="cbp-btn__danger" type="button" aria-describedby="card-heading-1"><i class="fas fa-trash-alt"></i>Delete</button>
+        <button class="cbp-btn__secondary" type="button" aria-describedby="card-heading-1"><i class="fas fa-times"></i>Cancel</button>
+        <button class="cbp-btn__primary" type="button" aria-describedby="card-heading-1"><i class="fas fa-save"></i>Publish</button>
       </div>
     `;
   } else {
     return `
       <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card__actions">
-        <a href="#" class="cbp-btn__primary"><i class="fas fa-external-link-alt"></i>Go To App</a>
+        <a href="#" class="cbp-btn__primary" aria-describedby="card-heading-1">
+          <i class="fas fa-external-link-alt"></i>Go To App
+        </a>
       </div>
     `;
   }
@@ -67,7 +73,7 @@ const DefaultDecisionCardTemplate = ({ title, actionsLayout, danger }) => {
       <div class="cbp-card__content">
         <div class="cbp-card__header">
           <h4 class="cbp-card__title"><i class="fas fa-circle cbp-margin-right-2x"></i>${title}</h4>
-          <button class="cbp-btn-square cbp-btn__secondary-ghost">
+          <button class="cbp-btn-square cbp-btn__secondary-ghost" aria-label="Checked">
             <i class="fas fa-clipboard-check"></i>
           </button>
         </div>
@@ -91,7 +97,9 @@ const ProfileCardTemplate = ({ title, danger, actionsLayout }) => {
       <div class="cbp-card__content cbp-padding-0">
         <img src="assets/images/profile-page/passenge-photo-v2.jpg" class="cbp-card__img-top" alt="portrait image of person" width="312px" />
         <div class="cbp-card__header cbp-card__header--flag">
-          <h4 class="cbp-card__title"><i class="fas fa-exclamation-triangle cbp-margin-right-2x"></i>${title}</h4>
+          <h4 class="cbp-card__title" id="card-heading-1" id="card-heading-1">
+            <i class="fas fa-exclamation-triangle cbp-margin-right-2x"></i>${title}
+          </h4>
         </div>
         <div class="cbp-padding-4x">
           <div class="cbp-margin-bottom-2x" style="display: flex;">
@@ -119,7 +127,6 @@ export const DecisionCard = DefaultDecisionCardTemplate.bind({});
 DecisionCard.args = {
   title: 'Decision Card 1',
   actionsLayout: 'single',
-  danger: false
 };
 DecisionCard.storyName = 'Default';
 
@@ -127,6 +134,5 @@ export const ProfileCard = ProfileCardTemplate.bind({});
 ProfileCard.args = {
   title: 'Jimbo Thompson',
   actionsLayout: 'single',
-  danger: false
 };
 ProfileCard.storyName = 'Example Profile Card';
