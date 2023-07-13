@@ -11,6 +11,9 @@ const fileUtil = {
 
     fileName.innerText = name;
     cancelIcon.className = 'fa fa-times';
+    cancelBtn.setAttribute('type','button');
+    cancelBtn.classList.add('cbp-btn');
+    cancelBtn.classList.add('cbp-btn__secondary-ghost');
     cancelBtn.appendChild(cancelIcon);
 
     cancelBtn.onclick = (e) => {
@@ -39,6 +42,9 @@ const fileUtil = {
     errorUpload.id = `${key}_${name}`;
     errorFile.innerText = name;
     cancelIcon.className = 'fa fa-times';
+    cancelBtn.setAttribute('type','button');
+    cancelBtn.classList.add('cbp-btn');
+    cancelBtn.classList.add('cbp-btn__secondary-ghost');
     cancelBtn.appendChild = cancelIcon;
 
     errorIcon.className = 'fas fa-exclamation-triangle';
