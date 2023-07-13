@@ -1,28 +1,30 @@
 export default {
   title: 'Patterns/Drawer',
+  parameters: {
+    layout: 'centered',
+  },
+  argTypes: {
+    drawerPosition: {
+      name: 'Drawer Position',
+      description: 'The positioning of the drawer relative to the viewport.',
+      control: 'radio',
+        options: [
+          'Left',
+          'Right',
+        ],
+    },
+  }
 };
 
-const Template = () => {
+// cbp-hamburger
+const Template = ({drawerPosition}) => {
+
   return `
-    <nav class="cbp-application-header">
-      <button class="nav-home">Application Name</button>
-      <div class="cbp-nav-menu">
-        <div class="cbp-application-menus dh-sm-none">
-          <button class="cbp-menu-dropdown">Child Page 1<i class="fas fa-chevron-down"></i></button>
-          <button class="cbp-menu-dropdown">Child Page 2<i class="fas fa-chevron-down"></i></button>
-          <button class="cbp-menu-dropdown">Child Page 3<i class="fas fa-chevron-down"></i></button>
-        </div>
-        <div>
-          <!-- <button class="cbp-hamburger dh-sm-none">
-            <i class="fas fa-search"></i>
-          </button> -->
-          <button aria-label="Open Drawer" class="cbp-hamburger" data-drawer="open">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-      </div>
-    </nav>
-    <nav class="cbp-drawer" data-drawer-align="left">
+    <button aria-label="Open Drawer" class="cbp-btn cbp-btn__secondary-outline" data-drawer="open">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="cbp-drawer" data-drawer-align="${drawerPosition.toLowerCase()}">
       <div class="cbp-drawer__header">
         <div>
           <i class="fas fa-filter"></i>
@@ -32,7 +34,7 @@ const Template = () => {
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
-      <section class="cbp-drawer__content">
+      <nav class="cbp-drawer__content">
         <ul class="cbp-drawer__nav">
           <li class="cbp-drawer__nav-item--a">
             <button>
@@ -83,10 +85,12 @@ const Template = () => {
             <button>Sibling Page 3 (A)</button>
           </li>
         </ul>
-      </section>
-    </nav>
+      </nav>
+    </div>
   `;
 };
 
 export const Drawer = Template.bind({});
-Drawer.args = {};
+Drawer.args = {
+  drawerPosition: "Left"
+};
