@@ -1,7 +1,7 @@
 {
   "name": "ux-guidelines",
   "version": "0.1.0",
-  "description": "UX guidelines that compliments the CBP Design System",
+  "description": "UX guidelines that compliments the CBP Design System and provides guidance and examples of patterns and design tokens.",
   "main": "index.js",
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1"
