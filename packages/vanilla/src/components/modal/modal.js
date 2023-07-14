@@ -13,6 +13,19 @@ class Modal {
         this.modal.close();
       })
     });
+
+    this.modal.addEventListener('click', (e) => {
+      const rect = e.target.getBoundingClientRect();
+
+      if (
+        rect.left > e.clientX ||
+        rect.right < e.clientX ||
+        rect.top > e.clientY ||
+        rect.bottom < e.clientY
+      ) {
+        this.modal.close();
+      }
+    })
   }
 }
 
