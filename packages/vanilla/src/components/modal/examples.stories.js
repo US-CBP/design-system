@@ -22,7 +22,7 @@ export default {
 
 const SimpleModalTemplate = ({ modalID, ariaLabel, describedByID }) => {
   return `
-    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Simple Modal</button>
+    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}" aria-haspopup="dialog">Open Simple Modal</button>
     <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-label="${ariaLabel}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
         <p class="cbp-modal__description" id="${describedByID}">Are you sure you want to add this user to the list?</p>
@@ -37,7 +37,7 @@ const SimpleModalTemplate = ({ modalID, ariaLabel, describedByID }) => {
 
 const AcknowledgementModalTemplate = ({ heading, modalID, headingID, describedByID }) => {
   return `
-    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Acknowledgement Model</button>
+    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}" aria-haspopup="dialog">Open Acknowledgement Model</button>
     <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
         <h2 class="cbp-modal__heading" id="${headingID}">${heading}</h2>
@@ -53,7 +53,7 @@ const AcknowledgementModalTemplate = ({ heading, modalID, headingID, describedBy
 
 const ConfirmationModalTemplate = ({ heading, modalID, headingID, describedByID }) => {
   return `
-    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Confirmation Modal</button>
+    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}" aria-haspopup="dialog">Open Confirmation Modal</button>
     <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
         <h2 class="cbp-modal__heading" id="${headingID}"><i class="fas fa-check"></i>${heading}</h2>
@@ -70,7 +70,7 @@ const ConfirmationModalTemplate = ({ heading, modalID, headingID, describedByID 
 
 const DangerModalTemplate = ({ heading, modalID, headingID, describedByID }) => {
   return `
-    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Danger Modal</button>
+    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}" aria-haspopup="dialog">Open Danger Modal</button>
     <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
         <h2 class="cbp-modal__heading cbp-modal__heading--danger" id="${headingID}"><i class="fas fa-exclamation-triangle"></i>${heading}</h2>
@@ -87,7 +87,7 @@ const DangerModalTemplate = ({ heading, modalID, headingID, describedByID }) => 
 
 const MultiChoiceModalTemplate = ({ heading, modalID, headingID, describedByID }) => {
   return `
-    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Multi-Choice Modal</button>
+    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}" aria-haspopup="dialog">Open Multi-Choice Modal</button>
     <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
         <h2 class="cbp-modal__heading" id="${headingID}"><i class="fas fa-file-alt"></i>${heading}</h2>
@@ -98,28 +98,6 @@ const MultiChoiceModalTemplate = ({ heading, modalID, headingID, describedByID }
         <button type="button" class="cbp-btn cbp-btn__secondary" data-modal-close><i class="fas fa-times"></i>cancel</button>
         <button type="button" class="cbp-btn cbp-btn__primary"><i class="fas fa-save"></i>save</button>
         <button type="button" class="cbp-btn cbp-btn__primary"><i class="fas fa-paper-plane"></i>publish</button>
-      </div>
-    </dialog>
-  `
-}
-
-const FormModalTemplate = ({ heading, modalID, headingID, describedByID }) => {
-  return `
-    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Form Modal</button>
-    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
-      <div class="cbp-modal__content">
-        <h2 class="cbp-modal__heading" id="${headingID}"><i class="fas fa-comment"></i>${heading}</h2>
-        <hr>
-        <p class="cbp-modal__description" id="${describedByID}">If you're experiencing a system error or application problem please contact the Technology Service Desk.</p>
-        <form id="modal-form">
-          <label for="description" class="cbp-input__label">Description</label>
-          <textarea class="cbp-input" name="description" id="description" placeholder="Enter a description"></textarea>
-          <p class="cbp-input__description">Required. Please describe the issue or feedback you would like the team to know about. 200/200 Characters remaining.</p>
-        </form>
-      </div>
-      <div class="cbp-modal__controls">
-        <button class="cbp-btn cbp-btn__secondary" form="modal-form" formmethod="dialog"><i class="fas fa-times"></i>cancel</button>
-        <button class="cbp-btn cbp-btn__primary" form="modal-form" value="default"><i class="fas fa-paper-plane"></i>send</button>
       </div>
     </dialog>
   `
@@ -178,12 +156,4 @@ MultiChoiceModal.args = {
   modalID: 'multi',
   headingID: 'multi-modal-heading',
   describedByID: 'multi-modal-description'
-}
-
-export const FormModal = FormModalTemplate.bind({});
-FormModal.args = {
-  heading: 'Feedback',
-  modalID: 'form-modal',
-  headingID: 'form-modal-heading',
-  describedByID: 'form-modal-description'
 }

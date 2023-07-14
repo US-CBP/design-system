@@ -53,7 +53,7 @@ const renderControls = (layout) => {
 
 const ModalTemplate = ({ heading, modalID, headingID, describedByID, controlsLayout }) => {
   return `
-    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Modal</button>
+    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}" aria-haspopup="dialog">Open Modal</button>
     <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
         <h2 class="cbp-modal__heading" id="${headingID}">${heading}</h2>
@@ -65,6 +65,28 @@ const ModalTemplate = ({ heading, modalID, headingID, describedByID, controlsLay
   `
 }
 
+const FormModalTemplate = ({ heading, modalID, headingID, describedByID }) => {
+  return `
+    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}" aria-haspopup="dialog">Open Form Modal</button>
+    <dialog class="cbp-modal" id="${modalID}" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
+      <div class="cbp-modal__content">
+        <h2 class="cbp-modal__heading" id="${headingID}"><i class="fas fa-comment"></i>${heading}</h2>
+        <hr>
+        <p class="cbp-modal__description" id="${describedByID}">If you're experiencing a system error or application problem please contact the Technology Service Desk.</p>
+        <form id="modal-form">
+          <label for="description" class="cbp-input__label">Description</label>
+          <textarea class="cbp-input" name="description" id="description" placeholder="Enter a description"></textarea>
+          <p class="cbp-input__description">Required. Please describe the issue or feedback you would like the team to know about. 200/200 Characters remaining.</p>
+        </form>
+      </div>
+      <div class="cbp-modal__controls">
+        <button class="cbp-btn cbp-btn__secondary" form="modal-form" formmethod="dialog"><i class="fas fa-times"></i>cancel</button>
+        <button class="cbp-btn cbp-btn__primary" form="modal-form" value="default"><i class="fas fa-paper-plane"></i>send</button>
+      </div>
+    </dialog>
+  `
+}
+
 export const Modal = ModalTemplate.bind({});
 Modal.args = {
   heading: 'Modal Heading',
@@ -72,4 +94,12 @@ Modal.args = {
   headingID: 'modal-heading-id',
   describedByID: 'modal-description-id',
   controlsLayout: 'single'
+}
+
+export const FormModal = FormModalTemplate.bind({});
+FormModal.args = {
+  heading: 'Feedback',
+  modalID: 'form-modal',
+  headingID: 'form-modal-heading',
+  describedByID: 'form-modal-description'
 }
