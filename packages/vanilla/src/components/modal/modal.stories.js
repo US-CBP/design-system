@@ -51,10 +51,10 @@ const renderControls = (layout) => {
   }
 };
 
-const ModalTemplate = ({ heading, modalID, headingID, describedByID, controlsLayout }) => {
+const ModalTemplate = ({ heading, modalID, headingID, describedByID, controlsLayout, setAlertDialog }) => {
   return `
     <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}" aria-haspopup="dialog">Open Modal</button>
-    <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
+    <dialog class="cbp-modal" id="${modalID}" ${setAlertDialog ? 'role="alertdialog"' : ''} aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
         <h2 class="cbp-modal__heading" id="${headingID}">${heading}</h2>
         <hr>
@@ -93,7 +93,14 @@ Modal.args = {
   modalID: 'modal-id',
   headingID: 'modal-heading-id',
   describedByID: 'modal-description-id',
-  controlsLayout: 'single'
+  controlsLayout: 'single',
+  setAlertDialog: true
+}
+Modal.argTypes = {
+  setAlertDialog: {
+    name: 'ARIA Alert Dialog',
+    control: 'boolean'
+  }
 }
 
 export const FormModal = FormModalTemplate.bind({});
