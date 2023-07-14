@@ -134,11 +134,13 @@
     height: var(--cbp-space-7x);
     position: absolute;
     right: var(--cbp-space-3x);
-    width: var(--cbp-space-7x);
+    //width: var(--cbp-space-7x);
+    letter-spacing: unset;
 
     & > i {
       color: var(--cbp-color-interactive-neutral-dark);
       vertical-align: middle;
+      margin: 0;
     }
 
     progress {

@@ -3,6 +3,13 @@
 
 @forward 'nav';
 
+button[data-drawer] {
+  i {
+    margin: 0;
+    letter-spacing: initial;
+  }
+}
+
 /* Default Drawer Direction: 'left' */
 .cbp-drawer {
   // display: none;
