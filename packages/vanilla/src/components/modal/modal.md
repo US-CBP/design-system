@@ -8,7 +8,7 @@
 
 - *Non-modal dialogs allow interaction with content outside of the dialog*
 
-### Functional Requirements
+### Technical Specifications
 
 - The control to open the Modal should have a `data-modal` attribute with a value of the `id` of the `<dialog>` element.
 - The control in the Modal to close the Modal should have a `data-close-modal` attribute without a value to indicate that it closes the modal

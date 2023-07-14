@@ -53,7 +53,7 @@ const renderControls = (layout) => {
 
 const ModalTemplate = ({ heading, modalID, headingID, describedByID, controlsLayout }) => {
   return `
-    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Model</button>
+    <button type="button" class="cbp-btn cbp-btn__primary" data-modal="${modalID}">Open Modal</button>
     <dialog class="cbp-modal" id="${modalID}" role="alertdialog" aria-labelledby="${headingID}" aria-describedby="${describedByID}">
       <div class="cbp-modal__content">
         <h2 class="cbp-modal__heading" id="${headingID}">${heading}</h2>
