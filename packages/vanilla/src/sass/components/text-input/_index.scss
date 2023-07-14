@@ -23,7 +23,7 @@
 
 .cbp-input {
   background-color: var(--cbp-color-white);
-  border-color: var(--cbp-color-interactive-neutral-base);
+  border-color: var(--cbp-color-interactive-secondary-base);
   border-style: solid;
   border-width: var(--cbp-border-size-md);
   border-radius: var(--cbp-border-radius-soft);
@@ -43,7 +43,7 @@
   }
 
   &:hover {
-    border-color: var(--cbp-color-interactive-neutral-darker);
+    border-color: var(--cbp-color-interactive-secondary-darker);
   }
 
   &:focus {
@@ -52,13 +52,13 @@
   }
 
   &:read-only {
-    background-color: var(--cbp-color-interactive-neutral-lighter);
-    border-color: var(--cbp-color-interactive-neutral-light);
+    background-color: var(--cbp-color-interactive-secondary-lighter);
+    border-color: var(--cbp-color-interactive-secondary-light);
     cursor: not-allowed;
 
     &:hover,
     &:focus {
-      border-color: var(--cbp-color-interactive-neutral-light);
+      border-color: var(--cbp-color-interactive-secondary-light);
     }
   }
 
@@ -67,7 +67,7 @@
     border-color: var(--cbp-color-interactive-disabled-dark);
 
     &:hover {
-      border-color: var(--cbp-color-interactive-neutral-darker);
+      border-color: var(--cbp-color-interactive-secondary-darker);
     }
 
     &:focus {
@@ -149,7 +149,7 @@ textarea.cbp-input {
   
   & > div:first-child {
     align-items: center;
-    border-color: var(--cbp-color-interactive-neutral-dark);
+    border-color: var(--cbp-color-interactive-secondary-dark);
     border-radius: var(--cbp-border-radius-softer);
     border-style: solid;
     border-width: var(--cbp-border-size-md);
@@ -158,7 +158,7 @@ textarea.cbp-input {
     width: 100%;
 
     &:hover {
-      border-color: var(--cbp-color-interactive-neutral-darker)
+      border-color: var(--cbp-color-interactive-secondary-darker)
     }
 
     &:focus-within {
@@ -175,8 +175,8 @@ textarea.cbp-input {
     }
 
     &:has(.cbp-input:read-only) {
-      background-color: var(--cbp-color-interactive-neutral-lighter);
-      border-color: var(--cbp-color-interactive-neutral-light);
+      background-color: var(--cbp-color-interactive-secondary-lighter);
+      border-color: var(--cbp-color-interactive-secondary-light);
     }
 
     &:has(.cbp-input:invalid) {
@@ -208,7 +208,7 @@ textarea.cbp-input {
   }
 
   & > div:first-child:has(.cbp-input:read-only)::after {
-    background-color: var(--cbp-color-interactive-neutral-lighter);
+    background-color: var(--cbp-color-interactive-secondary-lighter);
   }
   
   & > div:first-child:has(.cbp-input:invalid)::after {

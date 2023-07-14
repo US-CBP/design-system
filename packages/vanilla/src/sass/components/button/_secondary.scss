@@ -1,27 +1,27 @@
 @use 'mixins' as *;
 
 .cbp-btn__secondary {
-  background-color: var(--cbp-color-interactive-neutral-dark);
-  border-color: var(--cbp-color-interactive-neutral-dark);
+  background-color: var(--cbp-color-interactive-secondary-dark);
+  border-color: var(--cbp-color-interactive-secondary-dark);
   color: var(--cbp-color-text-lightest);
 
   &:hover {
-    background-color: var(--cbp-color-interactive-neutral-darker);
-    border-color: var(--cbp-color-interactive-neutral-darker);
+    background-color: var(--cbp-color-interactive-secondary-darker);
+    border-color: var(--cbp-color-interactive-secondary-darker);
   }
   @include btn-active-solid-pseudo;
 }
 
 .cbp-btn__secondary-outline {
   background-color: var(--cbp-color-white);
-  border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-neutral-dark);
-  color: var(--cbp-color-interactive-neutral-dark);
+  border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-secondary-dark);
+  color: var(--cbp-color-interactive-secondary-dark);
   padding-top: var(--cbp-space-2x);
   padding-bottom: var(--cbp-space-2x);
   
   &:hover {
-    background-color: var(--cbp-color-interactive-neutral-darker);
-    border-color: var(--cbp-color-interactive-neutral-darker);
+    background-color: var(--cbp-color-interactive-secondary-darker);
+    border-color: var(--cbp-color-interactive-secondary-darker);
     color: var(--cbp-color-text-lightest);
   }
 
@@ -31,10 +31,10 @@
 .cbp-btn__secondary-ghost {
   background-color: transparent;
   border-color: transparent;
-  color: var(--cbp-color-interactive-neutral-dark);
+  color: var(--cbp-color-interactive-secondary-dark);
 
   &:hover {
-    background-color: var(--cbp-color-interactive-neutral-lighter);
+    background-color: var(--cbp-color-interactive-secondary-lighter);
   }
 
   &:disabled {
@@ -54,8 +54,8 @@
 }
 
 .cbp-btn__secondary-float {
-  background-color: var(--cbp-color-interactive-neutral-dark);
-  border-color: var(--cbp-color-interactive-neutral-dark);
+  background-color: var(--cbp-color-interactive-secondary-dark);
+  border-color: var(--cbp-color-interactive-secondary-dark);
   border-radius: var(--cbp-border-radius-circle);
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
   color: var(--cbp-color-text-lightest);
@@ -71,8 +71,8 @@
   }
 
   &:hover {
-    background-color: var(--cbp-color-interactive-neutral-darker);
-    border-color: var(--cbp-color-interactive-neutral-darker);
+    background-color: var(--cbp-color-interactive-secondary-darker);
+    border-color: var(--cbp-color-interactive-secondary-darker);
   }
 
   &:active {
@@ -82,13 +82,13 @@
 
 [data-cbp-theme="dark"] {
   & .cbp-btn__secondary {
-    background-color: var(--cbp-color-interactive-neutral-lighter);
-    border-color: var(--cbp-color-interactive-neutral-lighter);
+    background-color: var(--cbp-color-interactive-secondary-lighter);
+    border-color: var(--cbp-color-interactive-secondary-lighter);
     color: var(--cbp-color-text-darkest);
 
     &:hover {
-      background-color: var(--cbp-color-interactive-neutral-light);
-      border-color: var(--cbp-color-interactive-neutral-light);
+      background-color: var(--cbp-color-interactive-secondary-light);
+      border-color: var(--cbp-color-interactive-secondary-light);
     }
 
     @include btn-active-solid-pseudo($darkMode: true);
@@ -96,12 +96,12 @@
 
   & .cbp-btn__secondary-outline {
     background-color: var(--cbp-color-base-neutral-darker);
-    border-color: var(--cbp-color-interactive-neutral-lighter);
-    color: var(--cbp-color-interactive-neutral-lighter);
+    border-color: var(--cbp-color-interactive-secondary-lighter);
+    color: var(--cbp-color-interactive-secondary-lighter);
 
     &:hover {
-      background-color: var(--cbp-color-interactive-neutral-light);
-      border-color: var(--cbp-color-interactive-neutral-light);
+      background-color: var(--cbp-color-interactive-secondary-light);
+      border-color: var(--cbp-color-interactive-secondary-light);
       color: var(--cbp-color-text-darkest);
     }
 
@@ -109,11 +109,11 @@
   }
 
   & .cbp-btn__secondary-ghost {
-    color: var(--cbp-color-interactive-neutral-lighter);
+    color: var(--cbp-color-interactive-secondary-lighter);
 
     &:hover {
-      background-color: var(--cbp-color-interactive-neutral-darker);
-      color: var(--cbp-color-interactive-neutral-lighter);
+      background-color: var(--cbp-color-interactive-secondary-darker);
+      color: var(--cbp-color-interactive-secondary-lighter);
     }
 
     &:disabled {
@@ -122,13 +122,13 @@
   }
 
   & .cbp-btn__secondary-float {
-    background-color: var(--cbp-color-interactive-neutral-lighter);
-    border-color: var(--cbp-color-interactive-neutral-lighter);
+    background-color: var(--cbp-color-interactive-secondary-lighter);
+    border-color: var(--cbp-color-interactive-secondary-lighter);
     color: var(--cbp-color-text-darkest);
   
     &:hover {
-      background-color: var(--cbp-color-interactive-neutral-light);
-      border-color: var(--cbp-color-interactive-neutral-light);
+      background-color: var(--cbp-color-interactive-secondary-light);
+      border-color: var(--cbp-color-interactive-secondary-light);
       color: var(--cbp-color-text-darkest);
     }
   }

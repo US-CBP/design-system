@@ -256,7 +256,7 @@
         }
       },
 
-      "neutral": {
+      "secondary": {
         "lighter": {
           "value": "{ color.gray.warm.10.value }",
           "attributes": { "use": "theme", "type": "neutral" }

@@ -2,9 +2,9 @@
 
 $track-height: 4px;
 $track-width: 100%;
-$track-background-color: var(--cbp-color-interactive-neutral-light);
+$track-background-color: var(--cbp-color-interactive-secondary-light);
 
-$thumb-background-color: var(--cbp-color-interactive-neutral-dark);
+$thumb-background-color: var(--cbp-color-interactive-secondary-dark);
 $thumb-height: 20px;
 $thumb-width: $thumb-height;
 $thumb-margin: calc(($track-height / 2) - ($thumb-height / 2));

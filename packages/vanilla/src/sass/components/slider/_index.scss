@@ -133,11 +133,11 @@ input[type='range'] {
     }
 
     &::-moz-range-thumb {
-      background: var(--cbp-color-interactive-neutral-light);
+      background: var(--cbp-color-interactive-secondary-light);
     }
 
     &::-moz-range-thumb:hover {
-      background: var(--cbp-color-interactive-neutral-darker);
+      background: var(--cbp-color-interactive-secondary-darker);
     }
 
     &::-moz-range-thumb:focus {
@@ -149,11 +149,11 @@ input[type='range'] {
     }
 
     &::-webkit-slider-thumb {
-      background: var(--cbp-color-interactive-neutral-light);
+      background: var(--cbp-color-interactive-secondary-light);
     }
 
     &::-webkit-slider-thumb:hover {
-      background: var(--cbp-color-interactive-neutral-darker);
+      background: var(--cbp-color-interactive-secondary-darker);
     }
 
     &::-webkit-slider-thumb:focus {

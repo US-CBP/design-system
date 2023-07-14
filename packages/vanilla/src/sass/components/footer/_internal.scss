@@ -29,11 +29,11 @@
   list-style: none;
 
   & a[href] {
-    color: var(--cbp-color-interactive-neutral-lighter);
+    color: var(--cbp-color-interactive-secondary-lighter);
     display: inline-block;
 
     &:hover {
-      background-color: var(--cbp-color-interactive-neutral-darker);
+      background-color: var(--cbp-color-interactive-secondary-darker);
       color: var(--cbp-color-text-lightest);
     }
 

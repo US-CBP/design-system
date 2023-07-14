@@ -5,7 +5,7 @@
   position: relative;
   
   background-color: transparent;
-  border: var(--cbp-border-size-md) dashed var(--cbp-color-interactive-neutral-base);
+  border: var(--cbp-border-size-md) dashed var(--cbp-color-interactive-secondary-base);
   border-radius: var(--cbp-border-radius-soft);
   cursor: pointer;
 
@@ -54,12 +54,12 @@
   }
 
   &:hover {
-    border: var(--cbp-border-size-md) dashed var(--cbp-color-interactive-neutral-darker);
-    outline: var(--cbp-border-size-xl) solid var(--cbp-color-interactive-neutral-light);
+    border: var(--cbp-border-size-md) dashed var(--cbp-color-interactive-secondary-darker);
+    outline: var(--cbp-border-size-xl) solid var(--cbp-color-interactive-secondary-light);
     outline-offset: calc(-1 * var(--cbp-space-3x) / 2);
 
     & > .cbp-btn__secondary {
-      background-color: var(--cbp-color-interactive-neutral-darker);
+      background-color: var(--cbp-color-interactive-secondary-darker);
     }
   }
 
@@ -137,7 +137,7 @@
     width: var(--cbp-space-7x);
 
     & > i {
-      color: var(--cbp-color-interactive-neutral-dark);
+      color: var(--cbp-color-interactive-secondary-dark);
       vertical-align: middle;
     }
 
@@ -173,16 +173,16 @@
     }
 
     &:hover {
-      background-color: var(--cbp-color-interactive-neutral-darker);
+      background-color: var(--cbp-color-interactive-secondary-darker);
 
       & > i {
-        color: var(--cbp-color-interactive-neutral-lighter);
+        color: var(--cbp-color-interactive-secondary-lighter);
       }
     }
 
     &:focus {
       & > i {
-        color: var(--cbp-color-interactive-neutral-lighter);
+        color: var(--cbp-color-interactive-secondary-lighter);
       }
     }
   }
@@ -231,17 +231,17 @@
       }
 
       &:hover {
-        background-color: var(--cbp-color-interactive-neutral-darker);
+        background-color: var(--cbp-color-interactive-secondary-darker);
 
         & > i {
-          color: var(--cbp-color-interactive-neutral-lighter);
+          color: var(--cbp-color-interactive-secondary-lighter);
         }
       }
 
       &:focus {
 
         & > i {
-          color: var(--cbp-color-interactive-neutral-lighter);
+          color: var(--cbp-color-interactive-secondary-lighter);
         }
       }
     }

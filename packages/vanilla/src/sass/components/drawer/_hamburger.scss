@@ -3,18 +3,18 @@
 
 @mixin hamburger-menu {
   background-color: transparent;
-  border: 2px solid var(--cbp-color-interactive-neutral-darker);
+  border: 2px solid var(--cbp-color-interactive-secondary-darker);
   border-radius: 3px;
   font-size: 14px;
   height: 36px;
   width: 36px;
 
   & > i {
-    color: var(--cbp-color-interactive-neutral-darker);
+    color: var(--cbp-color-interactive-secondary-darker);
   }
 
   &:hover {
-    background-color: var(--cbp-color-interactive-neutral-darker);
+    background-color: var(--cbp-color-interactive-secondary-darker);
 
     & > i {
       color: var(--cbp-color-text-lightest);
