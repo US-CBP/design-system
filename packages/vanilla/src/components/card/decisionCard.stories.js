@@ -72,7 +72,7 @@ const DefaultDecisionCardTemplate = ({ title, actionsLayout, danger }) => {
     <div class="cbp-card ${danger ? 'cbp-card--danger' : ''} cbp-card--decision">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
-          <h4 class="cbp-card__title"><i class="fas fa-circle cbp-margin-right-2x"></i>${title}</h4>
+          <h4 class="cbp-card__title" id="card-heading-1"><i class="fas fa-circle cbp-margin-right-2x"></i>${title}</h4>
           <button class="cbp-btn-square cbp-btn__secondary-ghost" aria-label="Checked">
             <i class="fas fa-clipboard-check"></i>
           </button>
