@@ -15,6 +15,7 @@ import NumberCounter from './components/text-input/numberCounter';
 import SegmentedButtonGroup from './components/segmented-button-group/segmented-button-group';
 import Tabset from './components/tabs/tabs';
 import IndeterminateCheckbox from './components/checkbox/indeterminate';
+import Modal from './components/modal/modal';
 //import UniversalHeader from './components/header/header';
 
 import DarkMode from './utilities/darkMode';
@@ -149,6 +150,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
   
   SelectorEngine.findAll("[data-checkbox='indeterminate']").forEach(checkbox => {
     addOrInstantiate(IndeterminateCheckbox, checkbox);
+  })
+
+  SelectorEngine.findAll(".cbp-modal").forEach(modal => {
+    addOrInstantiate(Modal, modal);
   })
   
   SelectorEngine.findAll('[data-theme-toggle]').forEach((themeToggle) => {
