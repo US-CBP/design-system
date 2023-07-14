@@ -11,7 +11,7 @@
 .cbp-accordion__control {
   display: flex;
   align-items: center;
-  background: var(--cbp-color-interactive-neutral-lighter);
+  background: var(--cbp-color-interactive-secondary-lighter);
   border: none;
   color: var(--cbp-color-text-darkest);
   justify-content: space-between;
@@ -32,7 +32,7 @@
   }
 
   &:hover {
-    background-color: var(--cbp-color-interactive-neutral-light);
+    background-color: var(--cbp-color-interactive-secondary-light);
   }
 
   &:focus {

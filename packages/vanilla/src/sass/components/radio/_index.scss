@@ -2,7 +2,7 @@
   -moz-appearance: none;
   -webkit-appearance: none;
   -o-appearance: none;
-  border-color: var(--cbp-color-interactive-neutral-base);
+  border-color: var(--cbp-color-interactive-secondary-base);
   border-style: solid;
   border-width: var(--cbp-border-size-md);
   border-radius: var(--cbp-border-radius-circle);
@@ -26,7 +26,7 @@
 	}
 
   &:hover {
-    box-shadow: 0 0 0 8px var(--cbp-color-interactive-neutral-lighter);
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-secondary-lighter);
   }
 	
 	&:focus {
@@ -87,13 +87,13 @@
       box-shadow: 0 0 0 8px var(--cbp-color-interactive-disabled-light);
 
       &::before {
-        background: var(--cbp-color-interactive-neutral-base);
+        background: var(--cbp-color-interactive-secondary-base);
       }
     }
   }
   
   &:hover {
     box-shadow: 0 0 0 8px var(--cbp-color-interactive-disabled-light);
-    border-color: var(--cbp-color-interactive-neutral-base);
+    border-color: var(--cbp-color-interactive-secondary-base);
   }
 }

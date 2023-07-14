@@ -8,7 +8,7 @@
   width: fit-content;
 
   &:hover > button {
-    background-color: var(--cbp-color-interactive-neutral-darker);
+    background-color: var(--cbp-color-interactive-secondary-darker);
 
     & > i {
       color: var(--cbp-color-white);
@@ -27,7 +27,7 @@
     }
 
     & > i {
-      color: var(--cbp-color-interactive-neutral-darker);
+      color: var(--cbp-color-interactive-secondary-darker);
       transform: rotate(0);
       transition: transform var(--cbp-motion-duration-shortest) cubic-bezier(var(--cbp-motion-easing-standard-accelerate));
     }

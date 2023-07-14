@@ -6,7 +6,7 @@
 .cbp-dropdown__custom {
   align-items: center;
   background-color: transparent;
-  border: 1px solid var(--cbp-color-interactive-neutral-base);
+  border: 1px solid var(--cbp-color-interactive-secondary-base);
   border-radius: 3px;
   border-right: 0;
   cursor: inherit;
@@ -22,12 +22,12 @@
   width: 100%;
 
   &:hover {
-    border: 2px solid var(--cbp-color-interactive-neutral-darker);
+    border: 2px solid var(--cbp-color-interactive-secondary-darker);
     border-right: 0;
   }
   
   &:hover::after {
-    background-color: var(--cbp-color-interactive-neutral-darker);
+    background-color: var(--cbp-color-interactive-secondary-darker);
     // border: 2px solid $cbp-ui-neutral-darker;
   }
 
@@ -44,12 +44,12 @@
     }
 
     &:hover {
-      border: 2px solid var(--cbp-color-interactive-neutral-darker);
+      border: 2px solid var(--cbp-color-interactive-secondary-darker);
       border-right: 0;
     }
 
     &:disabled:hover::after {
-      background-color: var(--cbp-color-interactive-neutral-darker);
+      background-color: var(--cbp-color-interactive-secondary-darker);
       // border: 2px solid $cbp-ui-neutral-darker;
     }
   }
@@ -64,7 +64,7 @@
 /* Down Caret */
 .cbp-dropdown__custom::after {
   align-items: center;
-  background-color: var(--cbp-color-interactive-neutral-base);
+  background-color: var(--cbp-color-interactive-secondary-base);
   // border: 2px solid $cbp-ui-neutral-base;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
@@ -97,7 +97,7 @@
 /* Dropdown Menu */
 .cbp-dropdown {
   background-color: var(--cbp-color-white);
-  border: 1px solid var(--cbp-color-interactive-neutral-base);
+  border: 1px solid var(--cbp-color-interactive-secondary-base);
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   border-bottom-left-radius: 3px;
@@ -126,13 +126,13 @@
     text-decoration: none;
 
     &:hover:not([disabled]) {
-      background-color: var(--cbp-color-interactive-neutral-darker);
+      background-color: var(--cbp-color-interactive-secondary-darker);
       color: var(--cbp-color-text-lightest);
       cursor: pointer;
       font-weight: 700;
 
       &::after {
-        border-bottom: 1px solid var(--cbp-color-interactive-neutral-darker);
+        border-bottom: 1px solid var(--cbp-color-interactive-secondary-darker);
       }
     }
 
@@ -145,14 +145,14 @@
       &::after {
         content: "";
         display: none;
-        border-bottom: 1px solid var(--cbp-color-interactive-neutral-darker);
+        border-bottom: 1px solid var(--cbp-color-interactive-secondary-darker);
       }
     }
 
     /* Hacky solution due to width property (right margin) of separating line */
     &::after {
       content: "";
-      border-bottom: 1px solid var(--cbp-color-interactive-neutral-lighter);
+      border-bottom: 1px solid var(--cbp-color-interactive-secondary-lighter);
       display: block;
       height: 1px;
       left: 12px;
@@ -185,7 +185,7 @@
 
     &:hover:not([disabled]) {
       background-color: inherit;
-      border-color: var(--cbp-color-interactive-neutral-lighter);
+      border-color: var(--cbp-color-interactive-secondary-lighter);
       box-shadow: initial;
       clip-path: initial;
     }
@@ -205,7 +205,7 @@
     }
 
     &:focus {
-      border: 2px solid var(--cbp-color-interactive-neutral-lighter);
+      border: 2px solid var(--cbp-color-interactive-secondary-lighter);
       box-shadow: initial;
       clip-path: initial;
       outline: 0 !important; // Overriding style from _focus.scss??
@@ -220,7 +220,7 @@
   /* Hacky solution due to width property (right margin) of separating line */
   &::after {
     content: "";
-    border-bottom: 1px solid var(--cbp-color-interactive-neutral-lighter);
+    border-bottom: 1px solid var(--cbp-color-interactive-secondary-lighter);
     display: block;
     height: 1px;
     left: 12px;

@@ -87,12 +87,12 @@ $drawer-sizes: (
   width: 36px;
 
   & > i {
-    color: var(--cbp-color-interactive-neutral-lighter);
+    color: var(--cbp-color-interactive-secondary-lighter);
     font-size: 14px;
   }
 
   &:hover {
-    background-color: var(--cbp-color-interactive-neutral-dark);
+    background-color: var(--cbp-color-interactive-secondary-dark);
 
     & > i {
       color: var(--cbp-color-text-lightest);
@@ -121,7 +121,7 @@ $drawer-sizes: (
   border-color: transparent;
   border-style: solid;
   border-bottom: 1px solid var(--cbp-color-base-neutral-light);
-  color: var(--cbp-color-interactive-neutral-darker);
+  color: var(--cbp-color-interactive-secondary-darker);
   display: flex;
   font-size: $font-size;
   font-weight: 500;
@@ -137,8 +137,8 @@ $drawer-sizes: (
   }
   
   &:hover {
-    background-color: var(--cbp-color-interactive-neutral-lighter);
-    border-color: var(--cbp-color-interactive-neutral-darker);
+    background-color: var(--cbp-color-interactive-secondary-lighter);
+    border-color: var(--cbp-color-interactive-secondary-darker);
     border-bottom-color: var(--cbp-color-base-neutral-light);
     color: var(--cbp-color-text-darkest);
 

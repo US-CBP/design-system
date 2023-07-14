@@ -97,7 +97,7 @@
   & > a[href] {
     display: inline-block;
     border-radius: var(--cbp-border-radius-softest);
-    color: var(--cbp-color-interactive-neutral-lighter);
+    color: var(--cbp-color-interactive-secondary-lighter);
     font-weight: var(--cbp-font-weight-medium);
     margin-top: var(--cbp-space-4x);
     text-decoration: none;
@@ -109,8 +109,8 @@
     }
 
     &:hover {
-      background-color: var(--cbp-color-interactive-neutral-darker);
-      color: var(--cbp-color-interactive-neutral-lighter);
+      background-color: var(--cbp-color-interactive-secondary-darker);
+      color: var(--cbp-color-interactive-secondary-lighter);
       font-weight: var(--cbp-font-weight-bold);
     }
 

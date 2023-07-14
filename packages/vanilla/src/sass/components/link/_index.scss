@@ -29,7 +29,7 @@
     text-decoration: underline;
   
     &:hover {
-      color: var(--cbp-color-interactive-neutral-dark);
+      color: var(--cbp-color-interactive-secondary-dark);
     }
   
     &:focus {
@@ -68,7 +68,7 @@
     color: var(--cbp-color-interactive-disabled-light);
   
     &:hover {
-      color: var(--cbp-color-interactive-neutral-light);
+      color: var(--cbp-color-interactive-secondary-light);
     }
   
     &:focus {

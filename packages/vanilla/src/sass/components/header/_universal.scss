@@ -42,7 +42,7 @@
   justify-content: center;
   min-height: 36px;
   min-width: 36px;
-  color: var(--cbp-color-interactive-neutral-lighter);
+  color: var(--cbp-color-interactive-secondary-lighter);
   background-color: transparent;
   border: 0;
   border-radius: var(--cbp-border-radius-soft);
@@ -56,7 +56,7 @@
   }
 
   &:hover {
-    background-color: var(--cbp-color-interactive-neutral-dark);
+    background-color: var(--cbp-color-interactive-secondary-dark);
   }
 
   &:focus {

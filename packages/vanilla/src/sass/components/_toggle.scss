@@ -60,7 +60,7 @@
   }
 
   &:disabled:hover + .slider {
-    background-color: var(--cbp-color-interactive-neutral-dark);
+    background-color: var(--cbp-color-interactive-secondary-dark);
   }
 
   &:disabled:focus + .slider {
@@ -78,7 +78,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--cbp-color-interactive-neutral-light);
+  background-color: var(--cbp-color-interactive-secondary-light);
   border-radius: var(--cbp-border-radius-pill);
   cursor: pointer;
 
@@ -97,7 +97,7 @@
   }
 
   &:hover {
-    background-color: var(--cbp-color-interactive-neutral-dark);
+    background-color: var(--cbp-color-interactive-secondary-dark);
 
     &::before {
       background-color: transparent;
