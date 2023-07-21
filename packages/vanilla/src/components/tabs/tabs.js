@@ -4,15 +4,15 @@ class Tabset {
     this.tabs = this.tabset.querySelectorAll('button');
     this.focusIndex=0;
 
+    // Set the initial active state
+    this.initTabset();
+    
     // Set event listeners on each tab control
     this.tabs.forEach(el => {
       el.addEventListener('click', (e) => {
         this.handleTabClick(e);
       });
     });
-
-    // Set the initial active state
-    this.initTabset();
 
     // Listen for arrow keys within the tabset
     this.tabset.addEventListener('keydown', (e) => {
