@@ -2,7 +2,8 @@ class Tabset {
   constructor(tabset) {
     this.tabset = tabset;
     this.tabs = this.tabset.querySelectorAll('button');
-    
+    this.focusIndex=0;
+
     // Set event listeners on each tab control
     this.tabs.forEach(el => {
       el.addEventListener('click', (e) => {
@@ -12,6 +13,11 @@ class Tabset {
 
     // Set the initial active state
     this.initTabset();
+
+    // Listen for arrow keys within the tabset
+    this.tabset.addEventListener('keydown', (e) => {
+      this.handleNavigation(e);
+    });
   }
 
   initTabset() {
@@ -25,7 +31,7 @@ class Tabset {
   }
 
   setActiveTab(activatedTab){
-    this.tabs.forEach(tab => {
+    this.tabs.forEach( (tab, index) => {
       let panelid=tab.getAttribute('aria-controls');
       let panel=document.querySelector(`#${panelid}`);
 
@@ -36,10 +42,13 @@ class Tabset {
 
       if(activatedTab === tab) {
         tab.setAttribute('aria-selected','true');
+        tab.setAttribute('tabindex', '0');
+        this.focusIndex = index;
         panel.removeAttribute('hidden');
       }
       else {
         tab.setAttribute('aria-selected','false');
+        tab.setAttribute('tabindex', '-1');
         panel.setAttribute('hidden','');
       }
     });
@@ -58,6 +67,31 @@ class Tabset {
       }
     });
     this.tabset.dispatchEvent(tabActivatedEvent);
+  }
+
+
+  handleNavigation(e) {
+    e.key == 'ArrowRight' && this.keyboardNavigateForward(e);
+    e.key == 'ArrowLeft' && this.keyboardNavigateBackward(e);
+    e.key == 'Home' && this.focusTab(0);
+    e.key == 'End' && this.focusTab(this.tabs.length - 1);
+  }
+
+  keyboardNavigateForward(e) {
+    this.focusIndex == this.tabs.length - 1
+      ? this.focusTab(0)
+      : this.focusTab(this.focusIndex + 1);
+  }
+
+  keyboardNavigateBackward(e) {
+    this.focusIndex == 0
+      ? this.focusTab(this.tabs.length - 1)
+      : this.focusTab(this.focusIndex - 1);
+  }
+
+  focusTab(i) {
+    this.focusIndex = i;
+    this.tabs[i].focus();
   }
 
 }
