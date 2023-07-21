@@ -57,7 +57,7 @@
         "attributes": { "use": "typography", "type": "font" }
       },
       "subhead": {
-        "value": "0.766rem",
+        "value": "0.75rem",
         "attributes": { "use": "typography", "type": "font" }
       }
     },
