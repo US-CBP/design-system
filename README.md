@@ -13,9 +13,10 @@ The CBP Design System (1.0) exists to provide a unifying user experience and red
 
 ## Contents
 
-| Package Name                          | Description                                   |
-|---------------------------------------|-----------------------------------------------|
-| @cbpds/vanilla <small>(_WIP_)</small> | HTML patterns, css/scss styles and vanilla js |
+| Package Name           | Description                                         |
+|------------------------|-----------------------------------------------------|
+| @cbpds/vanilla (_WIP_) | HTML patterns, css/scss styles and vanilla js       |
+| ux-guidelines  (_WIP_) | Guidance for patterns, components and design tokens |
 
 ## Contributing
 

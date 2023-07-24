@@ -113,6 +113,9 @@ dist
 # Storybook static generated files
 storybook-static/
 
+# 11ty _site build
+_site
+
 # FuseBox cache
 .fusebox/
 
