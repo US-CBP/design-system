@@ -1,0 +1,20 @@
+.cbp-structured-list__header {
+  background-color: var(--cbp-color-gray-50);
+  padding: var(--cbp-space-2x) var(--cbp-space-4x);
+}
+
+.cbp-structured-list__list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.cbp-structured-list__item {
+  border-bottom-width: var(--cbp-border-size-md);
+  border-bottom-style: solid;
+  border-bottom-color: var(--cbp-color-gray-50);
+  padding: var(--cbp-space-4x);
+}
+
+.cbp-structured-list__list--striped > li:nth-of-type(even) {
+  background-color: var(--cbp-color-gray-20);
+}
