@@ -16,41 +16,33 @@
     margin-right: var(--cbp-space-2x);
   }
 
-  &:focus {
-    background: var(--cbp-color-interactive-focus-dark);
-    border-color: var(--cbp-color-interactive-focus-dark);
-    border-style: solid;
-    color: var(--cbp-color-text-lightest);
-    outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
-    outline-offset: calc(-1 * var(--cbp-space-1x));
-  }
-
   &:hover {
     background-color: var(--cbp-color-interactive-focus-dark);
     border-color: var(--cbp-color-interactive-focus-dark);
     color: var(--cbp-color-text-lightest);
   }
-  
-  // TODO: why are disabled buttons interactive? Ask Jeremy
-  &:disabled {
-    background-color: var(--cbp-color-interactive-disabled-dark);
-    border-color: var(--cbp-color-interactive-disabled-dark);
-    color: var(--cbp-color-interactive-disabled-light);
-    font-style: italic;
-  
-    // font-weight property does not apply in :disabled pseudo-class
-    &:hover {
-      background-color: var(--cbp-color-interactive-disabled-dark);
-      border-color: var(--cbp-color-interactive-disabled-dark);
-      color: var(--cbp-color-text-darkest);
-    }
+
+  &:focus {
+    background: var(--cbp-color-interactive-focus-dark);
+    border-color: var(--cbp-color-interactive-focus-dark);
+    color: var(--cbp-color-text-lightest);
+    outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
+    outline-offset: calc(-1 * var(--cbp-space-1x));
   }
 
   &:active {
     background-color: var(--cbp-color-interactive-active-dark);
     border-color: var(--cbp-color-interactive-active-dark);
-    font-style: italic;
   }
+
+  &:disabled {
+    background-color: var(--cbp-color-interactive-disabled-dark);
+    border-color: var(--cbp-color-interactive-disabled-dark);
+    color: var(--cbp-color-interactive-disabled-light);
+    font-style: italic;
+    cursor: not-allowed;
+  }
+
 }
 
 .cbp-btn-square {
@@ -77,10 +69,18 @@
   }
 }
 
+
+/* Dark Mode */
 [data-cbp-theme='dark'] {
   .cbp-btn {
     &:hover {
       color: var(--cbp-color-text-lightest);
+    }
+
+    &:hover {
+      background-color: var(--cbp-color-interactive-focus-light);
+      border-color: var(--cbp-color-interactive-focus-light);
+      color: var(--cbp-color-text-darkest);
     }
 
     &:focus {
@@ -89,24 +89,12 @@
       color: var(--cbp-color-text-darkest);
       outline: var(--cbp-border-size-md) solid var(--cbp-color-black);
       outline-offset: calc(-1 * var(--cbp-space-1x));
-
-      &:hover {
-        background-color: var(--cbp-color-interactive-focus-light);
-        border-color: var(--cbp-color-interactive-focus-light);
-        color: var(--cbp-color-text-darkest);
-      }
     }
-
+  
     &:disabled {
       background-color: var(--cbp-color-interactive-disabled-dark);
       border-color: var(--cbp-color-interactive-disabled-dark);
       color: var(--cbp-color-interactive-disabled-light);
-
-      &:hover {
-        background-color: var(--cbp-color-interactive-disabled-light);
-        border-color: var(--cbp-color-interactive-disabled-light);
-        color: var(--cbp-color-text-darker);
-      }
     }
   }
 }
