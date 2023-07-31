@@ -5,8 +5,8 @@
 
   & .cbp-card__content {
     border: var(--cbp-border-size-md) solid var(--cbp-color-base-neutral-lighter);
-    border-top-left-radius: var(--cbp-border-radius-softest);
-    border-top-right-radius: var(--cbp-border-radius-softest);
+    border-top-left-radius: var(--cbp-border-radius-softer);
+    border-top-right-radius: var(--cbp-border-radius-softer);
     border-bottom: 0;
   }
 }
@@ -26,12 +26,12 @@
 
   & > button:first-child,
   & > a[href]:first-child {
-    border-bottom-left-radius: var(--cbp-border-radius-softest);
+    border-bottom-left-radius: var(--cbp-border-radius-softer);
   }
 
   & > button:last-child,
   & > a[href]:last-child {
-    border-bottom-right-radius: var(--cbp-border-radius-softest);
+    border-bottom-right-radius: var(--cbp-border-radius-softer);
   }
 }
 
