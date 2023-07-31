@@ -10,6 +10,8 @@
     "vanilla-dev": "npm run dev -w packages/vanilla",
     "vanilla-build": "npm run build -w packages/vanilla",
     "vanilla-sb": "npm run storybook -w packages/vanilla",
+    "ux-dev": "npm run dev -w packages/ux-guidelines",
+    "ux-build": "npm run build -w packages/ux-guidelines",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,7 +30,8 @@
     "node": ">=16.0.0"
   },
   "workspaces": [
-    "packages/vanilla"
+    "packages/vanilla",
+    "packages/ux-guidelines"
   ],
   "devDependencies": {
     "eslint": "^8.33.0",

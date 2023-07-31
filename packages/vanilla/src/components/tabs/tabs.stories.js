@@ -14,20 +14,16 @@ const TabsTemplate = ({tabsObj: { tab1, tab2, tab3, tab4 }}) => {
   return `
     <div class="cbp-tabset" role="tablist">
       <button class="cbp-tab ${tab1.danger ? 'cbp-tab--danger' : ''}" type="button" role="tab" aria-controls=${tab1.panelid}>
-        ${tab1.danger ? '<i class="fas fa-exclamation-triangle"></i>' : ''}
-        ${tab1.label}
+        ${tab1.danger ? '<i class="fas fa-exclamation-triangle"></i>' : ''}${tab1.label}
       </button>
       <button class="cbp-tab ${tab2.danger ? 'cbp-tab--danger' : ''}" type="button" role="tab" aria-controls=${tab2.panelid}>
-        ${tab2.danger ? '<i class="fas fa-exclamation-triangle"></i>' : ''}
-        ${tab2.label}
+        ${tab2.danger ? '<i class="fas fa-exclamation-triangle"></i>' : ''}${tab2.label}
       </button>
       <button class="cbp-tab ${tab3.danger ? 'cbp-tab--danger' : ''}" type="button" role="tab" aria-controls=${tab3.panelid}>
-        ${tab3.danger ? '<i class="fas fa-exclamation-triangle"></i>' : ''}
-        ${tab3.label}
+        ${tab3.danger ? '<i class="fas fa-exclamation-triangle"></i>' : ''}${tab3.label}
       </button>
       <button class="cbp-tab ${tab4.danger ? 'cbp-tab--danger' : ''}" type="button" role="tab" aria-controls=${tab4.panelid}>
-        ${tab4.danger ? '<i class="fas fa-exclamation-triangle"></i>' : ''}
-        ${tab4.label}
+        ${tab4.danger ? '<i class="fas fa-exclamation-triangle"></i>' : ''}${tab4.label}
       </button>
     </div>
 
