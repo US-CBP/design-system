@@ -33,7 +33,7 @@
     max-width: 100%;
     margin: 0 5% var(--cbp-space-6x);
     padding: 0;
-    border-radius: var(--cbp-border-radius-softest);
+    border-radius: var(--cbp-border-radius-softer);
     box-shadow: var(--cbp-shadow-level-1-down);
     list-style-type: none;
     z-index: var(--cbp-z-index-level-0); // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
@@ -55,8 +55,8 @@
     background-color: var(--cbp-color-base-neutral-darker);
 
     &:first-child {
-      border-top-left-radius: var(--cbp-border-radius-softest);
-      border-top-right-radius: var(--cbp-border-radius-softest);
+      border-top-left-radius: var(--cbp-border-radius-softer);
+      border-top-right-radius: var(--cbp-border-radius-softer);
 
       a {
         border-top-left-radius: inherit;
@@ -65,7 +65,7 @@
     }
 
     &:last-child {
-      border-radius: 0 0 var(--cbp-border-radius-softest) var(--cbp-border-radius-softest);
+      border-radius: 0 0 var(--cbp-border-radius-softer) var(--cbp-border-radius-softer);
       
       a, button {
         border-bottom-left-radius: inherit;
