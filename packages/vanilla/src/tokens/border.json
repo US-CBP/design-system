@@ -29,11 +29,11 @@
         "attributes": { "use": "border" }
       },
       "softer": {
-        "value": "0.25rem",
+        "value": "0.3125rem",
         "attributes": { "use": "border" }
       },
       "softest": {
-        "value": "0.313rem",
+        "value": "0.625rem",
         "attributes": { "use": "border" }
       },
       "pill": {
