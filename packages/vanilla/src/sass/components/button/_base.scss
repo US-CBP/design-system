@@ -16,7 +16,7 @@
     margin-right: var(--cbp-space-2x);
   }
 
-  &:hover {
+  &:hover:not(:focus):not(:disabled) {
     background-color: var(--cbp-color-interactive-focus-dark);
     border-color: var(--cbp-color-interactive-focus-dark);
     color: var(--cbp-color-text-lightest);
@@ -73,11 +73,7 @@
 /* Dark Mode */
 [data-cbp-theme='dark'] {
   .cbp-btn {
-    &:hover {
-      color: var(--cbp-color-text-lightest);
-    }
-
-    &:hover {
+    &:hover:not(:focus):not(:disabled) {
       background-color: var(--cbp-color-interactive-focus-light);
       border-color: var(--cbp-color-interactive-focus-light);
       color: var(--cbp-color-text-darkest);

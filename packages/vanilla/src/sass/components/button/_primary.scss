@@ -5,7 +5,7 @@
   border-color: var(--cbp-color-interactive-primary-dark);
   color: var(--cbp-color-text-lightest);
 
-  &:hover {
+  &:hover:not(:focus):not(:disabled) {
     background-color: var(--cbp-color-interactive-primary-darker);
     border-color: var(--cbp-color-interactive-primary-darker);
   }
@@ -20,7 +20,7 @@
   padding-top: var(--cbp-space-2x);
   padding-bottom: var(--cbp-space-2x);
 
-  &:hover {
+  &:hover:not(:focus):not(:disabled) {
     background-color: var(--cbp-color-interactive-primary-darker);
     border-color: var(--cbp-color-interactive-primary-darker);
     color: var(--cbp-color-text-lightest);
@@ -34,17 +34,22 @@
   border-color: transparent;
   color: var(--cbp-color-interactive-primary-dark);
 
-  &:hover {
+  &:hover:not(:focus):not(:disabled) {
+    color: var(--cbp-color-interactive-primary-dark);
     background-color: var(--cbp-color-interactive-primary-lighter);
+    border-color: transparent;
   }
 
   &:active {
     background-color: transparent;
+    border-color: transparent;
+    outline: 0;
     color: var(--cbp-color-interactive-active-dark);
   }
 
   &:disabled {
     background-color: transparent;
+    border-color: transparent;
     color: var(--cbp-color-interactive-disabled-dark);
   }
 }
@@ -53,20 +58,21 @@
   background-color: var(--cbp-color-interactive-primary-dark);
   border-color: var(--cbp-color-interactive-primary-dark);
   border-radius: var(--cbp-border-radius-circle);
-  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: var(--cbp-shadow-level-2-center);
   color: var(--cbp-color-text-lightest);
   height: 3.5rem;
-  font-size: var(--cbp-font-size-heading-xl);
+  font-size: var(--cbp-space-6x);
   letter-spacing: unset;
   position: absolute;
   width: 3.5rem;
-  z-index: var(--cbp-z-index-level-4);
+  z-index: var(--cbp-z-index-level-2);
 
   & > i {
+    font-size: inherit;
     margin-right: 0;
   }
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--cbp-color-interactive-primary-darker);
     border-color: var(--cbp-color-interactive-primary-darker);
   }

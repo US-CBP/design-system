@@ -4,6 +4,11 @@
   background-color: var(--cbp-color-danger-base);
   border-color: var(--cbp-color-danger-base);
   color: var(--cbp-color-text-lightest);
+
+  &:hover:not(:focus):not(:disabled) {
+    background-color: var(--cbp-color-danger-dark);
+    border-color: var(--cbp-color-danger-dark);
+  }
 }
 
 .cbp-btn__danger-outline {
@@ -13,9 +18,20 @@
   padding-top: var(--cbp-space-2x);
   padding-bottom: var(--cbp-space-2x);
 
+  &:hover:not(:focus):not(:disabled) {
+    background-color: var(--cbp-color-danger-dark);
+    border-color: var(--cbp-color-danger-dark);
+    color: var(--cbp-color-text-lightest);
+  }
+
   &:active {
-    background-color: transparent;
+    background-color: var(--cbp-color-white);
     color: var(--cbp-color-interactive-active-dark);
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: var(--cbp-color-interactive-disabled-dark);
   }
 }
 
@@ -24,19 +40,21 @@
   border-color: transparent;
   color: var(--cbp-color-danger-base);
 
-  &:hover {
-    background-color: var(--cbp-color-danger-lighter);
+  &:hover:not(:focus):not(:disabled) {
     color: var(--cbp-color-danger-darker);
-  }
-
-  &:disabled {
-    background-color: transparent;
-    color: var(--cbp-color-interactive-disabled-dark);
+    background-color: var(--cbp-color-danger-light);
+    border-color: var(--cbp-color-danger-light);
   }
 
   &:active {
     background-color: transparent;
     color: var(--cbp-color-interactive-active-dark);
+  }
+
+  &:disabled {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--cbp-color-interactive-disabled-dark);
   }
 }
 
@@ -62,13 +80,14 @@
   .cbp-btn__danger-ghost {
     color: var(--cbp-color-danger-light);
 
-    &:hover {
+    &:hover:not(:focus):not(:disabled) {
       background-color: var(--cbp-color-danger-base);
       color: var(--cbp-color-text-lightest);
     }
 
     &:disabled {
       background-color: transparent;
+      border-color: transparent;
     }
   }
 }
