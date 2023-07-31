@@ -4,6 +4,17 @@ export default {
     layout: 'centered',
   },
   argTypes: {
+    type: {
+      name: 'Button Type',
+      description: 'The `type` attribute of the button.',
+      defaultValue: 'button',
+      control: 'radio',
+      options: [
+        'submit',
+        'reset',
+        'button'
+      ]
+    },
     disabled: {
       name: 'Disabled',
       description: 'When `[disabled="true"]` attribute is present, specifies that the button should be disabled. A disabled button is unusable and un-clickable.',
@@ -67,7 +78,6 @@ Default.args = {
   fill: 'solid',
   label: 'Default',
   type: 'button',
-  disabled: false,
   ariaLabel: ''
 };
 Default.argTypes = {
@@ -102,17 +112,6 @@ Default.argTypes = {
       'ghost'
     ],
   },
-  type: {
-    name: 'Button Type Attribute',
-    description: 'The `type` attribute sets the default behavior of the button',
-    defaultValue: 'button',
-    control: 'radio',
-    options: [
-      'submit',
-      'reset',
-      'button'
-    ]
-  },
   ariaLabel: { 
     name: 'Aria Label Attribute',
     description: 'When a button displays an icon without a label, `aria-label` should be set to define the accessible label.',
@@ -123,8 +122,8 @@ Default.argTypes = {
 export const FloatingActionButton = FloatingActionTemplate.bind({});
 FloatingActionButton.args = {
   color: 'primary',
+  type: 'button',
   ariaLabel: 'back to top',
-  disabled: false
 };
 FloatingActionButton.argTypes = {
   color: {
@@ -147,7 +146,7 @@ FloatingActionButton.storyName = 'Floating Action';
 export const CTAButton = CTATemplate.bind({});
 CTAButton.args = {
   label: 'Call-To-Action',
-  disabled: false
+  type: 'button',
 };
 CTAButton.argTypes = {
   label: {

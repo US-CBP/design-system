@@ -34,7 +34,7 @@
       "warm": {
         "1": { "value": "#fcfcfb", "attributes": { "use": "color" } },
         "2": { "value": "#f9f9f7", "attributes": { "use": "color" } },
-        "3": { "value": "#f6f9f7", "attributes": { "use": "color" } },
+        "3": { "value": "#f6f6f2", "attributes": { "use": "color" } },
         "4": { "value": "#f5f5f0", "attributes": { "use": "color" } },
         "5": { "value": "#f0f0ec", "attributes": { "use": "color" } },
         "10": { "value": "#e6e6e2", "attributes": { "use": "color" } },

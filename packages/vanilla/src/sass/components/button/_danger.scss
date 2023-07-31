@@ -5,12 +5,10 @@
   border-color: var(--cbp-color-danger-base);
   color: var(--cbp-color-text-lightest);
 
-  &:hover {
+  &:hover:not(:focus):not(:disabled) {
     background-color: var(--cbp-color-danger-dark);
     border-color: var(--cbp-color-danger-dark);
   }
-
-  @include btn-outline-pseudo;
 }
 
 .cbp-btn__danger-outline {
@@ -19,14 +17,22 @@
   color: var(--cbp-color-danger-base);
   padding-top: var(--cbp-space-2x);
   padding-bottom: var(--cbp-space-2x);
-  
-  &:hover {
+
+  &:hover:not(:focus):not(:disabled) {
     background-color: var(--cbp-color-danger-dark);
     border-color: var(--cbp-color-danger-dark);
     color: var(--cbp-color-text-lightest);
   }
 
-  @include btn-outline-pseudo;
+  &:active {
+    background-color: var(--cbp-color-white);
+    color: var(--cbp-color-interactive-active-dark);
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: var(--cbp-color-interactive-disabled-dark);
+  }
 }
 
 .cbp-btn__danger-ghost {
@@ -34,37 +40,31 @@
   border-color: transparent;
   color: var(--cbp-color-danger-base);
 
-  &:hover {
-    background-color: var(--cbp-color-danger-lighter);
-    color: var(--cbp-color-danger-dark);
-  }
-
-  &:disabled {
-    background-color: transparent;
-    color: var(--cbp-color-interactive-disabled-dark);
-
-    &:hover {
-      background-color: var(--cbp-color-interactive-disabled-light);
-      color: var(--cbp-color-text-darker);
-    }
+  &:hover:not(:focus):not(:disabled) {
+    color: var(--cbp-color-danger-darker);
+    background-color: var(--cbp-color-danger-light);
+    border-color: var(--cbp-color-danger-light);
   }
 
   &:active {
     background-color: transparent;
     color: var(--cbp-color-interactive-active-dark);
   }
+
+  &:disabled {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--cbp-color-interactive-disabled-dark);
+  }
 }
 
+
+/* Dark Mode */
 [data-cbp-theme="dark"] {
   & .cbp-btn__danger {
     background-color: var(--cbp-color-danger-light);
     border-color: var(--cbp-color-danger-light);
     color: var(--cbp-color-danger-darker);
-  
-    &:hover {
-      background-color: var(--cbp-color-danger-base);
-      border-color: var(--cbp-color-danger-base);
-    }
 
     @include btn-outline-pseudo($darkMode: true);
   }
@@ -74,24 +74,20 @@
     border-color: var(--cbp-color-danger-light);
     color: var(--cbp-color-danger-light);
 
-    &:hover {
-      background-color: var(--cbp-color-danger-base);
-      border-color: var(--cbp-color-danger-base);
-    }
-
     @include btn-outline-pseudo($darkMode: true);
   }
 
   .cbp-btn__danger-ghost {
     color: var(--cbp-color-danger-light);
 
-    &:hover {
+    &:hover:not(:focus):not(:disabled) {
       background-color: var(--cbp-color-danger-base);
       color: var(--cbp-color-text-lightest);
     }
 
     &:disabled {
       background-color: transparent;
+      border-color: transparent;
     }
   }
 }
