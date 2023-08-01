@@ -1,6 +1,6 @@
 .cbp-modal {
   background-color: var(--cbp-color-white);
-  border-radius: var(--cbp-border-radius-softest);
+  border-radius: var(--cbp-border-radius-softer);
   border-width: 0;
   box-shadow: var(--cbp-shadow-level-1-down);
   width: 22rem;
@@ -57,11 +57,11 @@
     height: var(--cbp-space-11x);
     
     &:first-child {
-      border-bottom-left-radius: var(--cbp-border-radius-softest);
+      border-bottom-left-radius: var(--cbp-border-radius-softer);
     }
 
     &:last-child {
-      border-bottom-right-radius: var(--cbp-border-radius-softest);
+      border-bottom-right-radius: var(--cbp-border-radius-softer);
     }
   }
 }
