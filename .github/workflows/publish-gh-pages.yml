@@ -34,11 +34,19 @@ jobs:
               echo "Unable to determine package manager"
               exit 1
             fi
+
       - name: Setup Node.js
       - uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: "16.16.0"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+      - run: npm ci # runs clean-install
+      - run: npm run build-all # build all static sites in all packages
 
-
-  
+      # Current artifacts ["/packages/vanilla/storybook-static", "/packages/ux-guidelines/_site"]
+      - uses: actions/upload-artifact@v3
+        with:
+          name: github-pages
+          path: |
+            packages/vanilla/storybook-static
+            packages/ux-guidelines/_site

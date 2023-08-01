@@ -12,7 +12,8 @@
     "vanilla-sb": "npm run storybook -w packages/vanilla",
     "ux-dev": "npm run dev -w packages/ux-guidelines",
     "ux-build": "npm run build -w packages/ux-guidelines",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-all": "npm run build-tokens && npm run vanilla-build && npm run build-storybook -w packages/vanilla && npm run ux-build"
   },
   "repository": {
     "type": "git",
