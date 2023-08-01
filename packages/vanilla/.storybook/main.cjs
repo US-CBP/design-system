@@ -1,7 +1,9 @@
+const { dirname, join } = require('path');
+
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    '@whitespace/storybook-addon-html',
+    getAbsolutePath('@whitespace/storybook-addon-html'),
     {
       name: '@storybook/addon-essentials',
       options: {
@@ -10,20 +12,28 @@ module.exports = {
         outline: false,
       },
     },
-    '@storybook/addon-styling',
-    '@storybook/addon-interactions',
-    '@storybook/addon-links',
-    '@storybook/addon-a11y',
+    getAbsolutePath('@storybook/addon-styling'),
+    getAbsolutePath('@storybook/addon-interactions'),
+    getAbsolutePath('@storybook/addon-links'),
+    getAbsolutePath('@storybook/addon-a11y'),
   ],
   staticDirs: ['../dist', '../assets'],
   framework: {
-    name: '@storybook/html-vite',
+    name: getAbsolutePath('@storybook/html-vite'),
     options: {},
   },
   core: {
     disableTelemetry: true, // 👈 Disables telemetry
   },
+
   features: {
     storyStoreV7: true,
-  }
+  },
 };
+/**
+ * This function is used to resolve the absolute path of a package.
+ * It is needed in projects that use Yarn PnP or are set up within a monorepo.
+ */
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, 'package.json')));
+}
