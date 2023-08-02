@@ -10,6 +10,6 @@ export default {
 
 export const Default = {
   args: {
-    children: 'Default Button'
+    children: 'Default'
   }
 }
