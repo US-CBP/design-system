@@ -1,3 +1,4 @@
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -10,7 +11,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/main.js'),
       name: 'MyLib',
       // the proper extensions will be added
-      fileName: 'my-lib',
+      fileName: 'index',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
@@ -20,8 +21,7 @@ export default defineConfig({
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM'
+          react: 'React'
         },
       },
     },

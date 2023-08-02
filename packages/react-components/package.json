@@ -2,7 +2,9 @@
   "name": "@cbpds/react-components",
   "version": "0.1.0",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/my-lib.umd.cjs",
   "module": "./dist/my-lib.js",
   "exports": {

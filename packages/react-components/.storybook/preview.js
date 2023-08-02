@@ -1,3 +1,5 @@
+import '@cbpds/vanilla/dist/style.css';
+
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
