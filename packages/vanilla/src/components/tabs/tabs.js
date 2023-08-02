@@ -67,8 +67,9 @@ class Tabset {
       }
     });
     this.tabset.dispatchEvent(tabActivatedEvent);
+    // Set focus manually because Safari doesn't do this automatically, which breaks the keyboard navigation event listeners
+    clickedButton.focus();
   }
-
 
   handleNavigation(e) {
     e.key == 'ArrowRight' && this.keyboardNavigateForward(e);
