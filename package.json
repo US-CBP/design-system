@@ -12,6 +12,8 @@
     "vanilla-sb": "npm run storybook -w packages/vanilla",
     "ux-dev": "npm run dev -w packages/ux-guidelines",
     "ux-build": "npm run build -w packages/ux-guidelines",
+    "react-sb": "npm run storybook -w packages/react-components",
+    "react-build": "npm run build -w packages/react-components",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,7 +33,8 @@
   },
   "workspaces": [
     "packages/vanilla",
-    "packages/ux-guidelines"
+    "packages/ux-guidelines",
+    "packages/react-components"
   ],
   "devDependencies": {
     "eslint": "^8.33.0",
