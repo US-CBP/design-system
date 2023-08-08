@@ -1,25 +1,25 @@
 export default {
-  title: 'Patterns/List'
+  title: 'Patterns'
 };
 
 const Template = () => (
   `
-    <div class="cbp-structured-list">
+    <div class="cbp-structured-list__wrapper">
       <div class="cbp-structured-list__header">
-        <span>56 Results</span>
+        <span>56 Results - 3 Filters Applied Updated: 11/20/2020 10:10:00 EST</span>
       </div>
-      <ul class="cbp-structured-list__list cbp-structured-list__list--striped">
+      <ul class="cbp-structured-list">
         <li class="cbp-structured-list__item">
-          <p>Some Content</p>
+          LIST CONTENT
         </li>
         <li class="cbp-structured-list__item">
-          <p>Some Content</p>
+          LIST CONTENT
         </li>
         <li class="cbp-structured-list__item">
-          <p>Some Content</p>
+          LIST CONTENT
         </li>
         <li class="cbp-structured-list__item">
-          <p>Some Content</p>
+          LIST CONTENT
         </li>
       </ul>
     </div>
