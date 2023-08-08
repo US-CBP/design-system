@@ -55,6 +55,9 @@
 }
 
 .cbp-btn__primary-float {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--cbp-color-interactive-primary-dark);
   border-color: var(--cbp-color-interactive-primary-dark);
   border-radius: var(--cbp-border-radius-circle);

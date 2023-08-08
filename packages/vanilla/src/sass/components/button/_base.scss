@@ -1,13 +1,17 @@
 // Base Button CSS
 .cbp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-width: var(--cbp-border-size-md);
   border-style: solid;
   border-radius: var(--cbp-border-radius-soft);
   cursor: pointer;
   font-weight: var(--cbp-font-weight-medium);
-  letter-spacing: var(--cbp-letter-spacing-loose); // Replace with CSS Variables after all letter-spacing sizes confirmed
+  letter-spacing: var(--cbp-letter-spacing-loose);
+  text-decoration: none;
+  text-transform: uppercase;  
   padding: var(--cbp-space-2x) var(--cbp-space-3x);
-  text-transform: uppercase;
   transition: all var(--cbp-motion-duration-shorter);
   min-height: 2.25rem;
 
@@ -65,6 +69,7 @@
   min-height: 3.25rem;
 
   & > i {
+    margin-top: -1px;
     margin-right: var(--cbp-space-3x);
   }
 }

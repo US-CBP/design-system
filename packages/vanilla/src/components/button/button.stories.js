@@ -4,9 +4,19 @@ export default {
     layout: 'centered',
   },
   argTypes: {
+    element: {
+      name: 'Semantic Element',
+      description: 'The semantic element rendered; even when visually styled like a button, it is important to use links for navigation and buttons for submitting forms and on-page UI actions.',
+      defaultValue: 'button',
+      control: 'radio',
+      options: [
+        'button',
+        'anchor (link)'
+      ]
+    },
     type: {
       name: 'Button Type',
-      description: 'The `type` attribute of the button.',
+      description: 'The `type` attribute of the button. (not valid for anchors/links)',
       defaultValue: 'button',
       control: 'radio',
       options: [
@@ -14,6 +24,11 @@ export default {
         'reset',
         'button'
       ]
+    },
+    ariaLabel: {
+      name: 'ARIA Label',
+      description: 'The accessible label when the link does not contain text or it is not sufficiently and uniquely descriptive.',
+      type: 'string'
     },
     disabled: {
       name: 'Disabled',
@@ -33,46 +48,82 @@ const setBtnFill = (color, fill) => {
   }
 }
 
-const Template = ({ variant, color, fill, label, disabled, type, ariaLabel }) => (
-  `
-    <button
-      class="${variant === 'default' ? 'cbp-btn' : 'cbp-btn-square'} ${setBtnFill(color, fill)}"
-      type=${type}
-      ${disabled ? "disabled='true'" : ''}
-      ${variant === 'default' ? '' : 'aria-label=' + ariaLabel}
-    >
-      <i class="fas fa-clipboard-check"></i>${variant === 'default' ? label : ''}
-    </button>
-  `
-);
+const Template = ({ element, variant, color, fill, label, disabled, type, ariaLabel }) => {
+  const el = (element == 'button') ? 'button' : 'a';
+  return (element=='button') ?
+    ` 
+      <button
+        class="${variant === 'default' ? 'cbp-btn' : 'cbp-btn-square'} ${setBtnFill(color, fill)}"
+        type=${type}
+        ${disabled ? "disabled" : ''}
+        ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
+      >
+        <i class="fas fa-clipboard-check"></i>${variant === 'default' ? label : ''}
+      </button>
+    `
+    : `  
+      <a
+        ${disabled ? 'role="link" aria-disabled="true"' : 'href="#"'}
+        class="${variant === 'default' ? 'cbp-btn' : 'cbp-btn-square'} ${setBtnFill(color, fill)}"
+        ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
+      >
+        <i class="fas fa-clipboard-check"></i>${variant === 'default' ? label : ''}
+      </a>
+    `
+}
 
-const FloatingActionTemplate = ({ color, disabled, ariaLabel }) => (
+const FloatingActionTemplate = ({ element, color, disabled, type, ariaLabel }) => {
+  const el = (element == 'button') ? 'button' : 'a';
+  return (element=='button') ?
   `
     <button 
       class="cbp-btn cbp-btn__${color}-float"
-      type="button"
-      aria-label="${ariaLabel}"
+      type=${type}
+      ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
       ${disabled ? "disabled='true'" : ''}
     >
       <i class="fas fa-arrow-up"></i>
     </button>
   `
-)
+  : `  
+      <a
+        ${disabled ? 'role="link" aria-disabled="true"' : 'href="#"'}
+        class="cbp-btn cbp-btn__${color}-float"
+        ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
+      >
+      <i class="fas fa-arrow-up"></i>
+      </a>
+    `
+}
 
-const CTATemplate = ({ label, disabled, type }) => (
+const CTATemplate = ({ element, label, disabled, type, ariaLabel }) => {
+  const el = (element == 'button') ? 'button' : 'a';
+  return (element=='button') ?
   `
     <button
       class="cbp-btn-cta cbp-btn__primary"
       type=${type}
+      ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
       ${disabled ? "disabled='true'" : ''}
     >
       <i class="fas fa-clipboard-check"></i>${label}
     </button>
   `
-);
+  : `  
+      <a
+        ${disabled ? 'role="link" aria-disabled="true"' : 'href="#"'}
+        class="cbp-btn-cta cbp-btn__primary"
+        ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
+      >
+        <i class="fas fa-clipboard-check"></i>${label}
+      </a>
+    `
+}
+
 
 export const Default = Template.bind({});
 Default.args = {
+  element: 'button',
   variant: 'default',
   color: 'primary',
   fill: 'solid',
@@ -111,21 +162,18 @@ Default.argTypes = {
       'outline',
       'ghost'
     ],
-  },
-  ariaLabel: { 
-    name: 'Aria Label Attribute',
-    description: 'When a button displays an icon without a label, `aria-label` should be set to define the accessible label.',
-    control: 'text'
   }
 }
 
 export const FloatingActionButton = FloatingActionTemplate.bind({});
 FloatingActionButton.args = {
+  element: 'button',
   color: 'primary',
   type: 'button',
   ariaLabel: 'back to top',
 };
 FloatingActionButton.argTypes = {
+  element: 'button',
   color: {
     name: 'Button Color',
     description: 'The floating action button is reserved for actions that must be accessible above all other content because of the nature of what they do.',
@@ -134,17 +182,13 @@ FloatingActionButton.argTypes = {
       'primary',
       'secondary'
     ]
-  },
-  ariaLabel: { 
-    name: 'Aria Label Attribute',
-    description: 'When a button displays an icon without a label, `aria-label` should be set to define the accessible label.',
-    control: 'text'
   }
 }
 FloatingActionButton.storyName = 'Floating Action';
 
 export const CTAButton = CTATemplate.bind({});
 CTAButton.args = {
+  element: 'button',
   label: 'Call-To-Action',
   type: 'button',
 };
