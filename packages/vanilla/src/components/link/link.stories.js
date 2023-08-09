@@ -18,11 +18,14 @@ export default {
 };
 
 const LinkTemplate = ({ label, ariaLabel, definition }) => (
-  `<a href="#" class="cbp-link ${definition ? 'cbp-link--definition' : '' }" aria-label=${ariaLabel}>${label}</a>`
+  `<a href="#" 
+      class="cbp-link ${definition ? 'cbp-link--definition' : ''}"
+      ${ariaLabel ? 'aria-label="' + ariaLabel + '"' : ''}
+    >${label}</a>`
 )
 
 const DisabledLinkTemplate = ({ label, ariaLabel }) => (
-  `<a class="cbp-link" role="link" aria-disabled="true" aria-label=${ariaLabel}>${label}</a>`
+  `<a class="cbp-link" role="link" aria-disabled="true" ${ariaLabel ? 'aria-label="' + ariaLabel + '"' : ''}>${label}</a>`
 )
 
 export const Link = LinkTemplate.bind({});

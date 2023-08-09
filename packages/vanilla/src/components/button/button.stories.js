@@ -49,14 +49,13 @@ const setBtnFill = (color, fill) => {
 }
 
 const Template = ({ element, variant, color, fill, label, disabled, type, ariaLabel }) => {
-  const el = (element == 'button') ? 'button' : 'a';
-  return (element=='button') ?
+  return (element == 'button') ?
     ` 
       <button
         class="${variant === 'default' ? 'cbp-btn' : 'cbp-btn-square'} ${setBtnFill(color, fill)}"
         type=${type}
         ${disabled ? "disabled" : ''}
-        ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
+        ${ariaLabel ? 'aria-label="' + ariaLabel + '"' : ''}
       >
         <i class="fas fa-clipboard-check"></i>${variant === 'default' ? label : ''}
       </button>
@@ -65,7 +64,7 @@ const Template = ({ element, variant, color, fill, label, disabled, type, ariaLa
       <a
         ${disabled ? 'role="link" aria-disabled="true"' : 'href="#"'}
         class="${variant === 'default' ? 'cbp-btn' : 'cbp-btn-square'} ${setBtnFill(color, fill)}"
-        ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
+        ${ariaLabel ? 'aria-label="' + ariaLabel + '"' : ''}
       >
         <i class="fas fa-clipboard-check"></i>${variant === 'default' ? label : ''}
       </a>
@@ -73,23 +72,22 @@ const Template = ({ element, variant, color, fill, label, disabled, type, ariaLa
 }
 
 const FloatingActionTemplate = ({ element, color, disabled, type, ariaLabel }) => {
-  const el = (element == 'button') ? 'button' : 'a';
-  return (element=='button') ?
-  `
+  return (element == 'button') ?
+    `
     <button 
       class="cbp-btn cbp-btn__${color}-float"
       type=${type}
-      ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
+      ${ariaLabel ? 'aria-label="' + ariaLabel + '"' : ''}
       ${disabled ? "disabled='true'" : ''}
     >
       <i class="fas fa-arrow-up"></i>
     </button>
   `
-  : `  
+    : `  
       <a
         ${disabled ? 'role="link" aria-disabled="true"' : 'href="#"'}
         class="cbp-btn cbp-btn__${color}-float"
-        ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
+        ${ariaLabel ? 'aria-label="' + ariaLabel + '"' : ''}
       >
       <i class="fas fa-arrow-up"></i>
       </a>
@@ -97,23 +95,22 @@ const FloatingActionTemplate = ({ element, color, disabled, type, ariaLabel }) =
 }
 
 const CTATemplate = ({ element, label, disabled, type, ariaLabel }) => {
-  const el = (element == 'button') ? 'button' : 'a';
-  return (element=='button') ?
-  `
+  return (element == 'button') ?
+    `
     <button
       class="cbp-btn-cta cbp-btn__primary"
       type=${type}
-      ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
+      ${ariaLabel ? 'aria-label="' + ariaLabel + '"' : ''}
       ${disabled ? "disabled='true'" : ''}
     >
       <i class="fas fa-clipboard-check"></i>${label}
     </button>
   `
-  : `  
+    : `  
       <a
         ${disabled ? 'role="link" aria-disabled="true"' : 'href="#"'}
         class="cbp-btn-cta cbp-btn__primary"
-        ${ariaLabel ? 'aria-label="'+ariaLabel+'"' : ''}
+        ${ariaLabel ? 'aria-label="' + ariaLabel + '"' : ''}
       >
         <i class="fas fa-clipboard-check"></i>${label}
       </a>
