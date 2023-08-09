@@ -2,11 +2,11 @@ export default {
   title: 'Patterns'
 };
 
-const Template = () => (
+const Template = ({ headerText }) => (
   `
     <div class="cbp-structured-list__wrapper">
       <div class="cbp-structured-list__header">
-        <span>56 Results - 3 Filters Applied Updated: 11/20/2020 10:10:00 EST</span>
+        <span>${headerText}</span>
       </div>
       <ul class="cbp-structured-list">
         <li class="cbp-structured-list__item">
@@ -28,5 +28,13 @@ const Template = () => (
 
 
 export const StructuredList = Template.bind({});
-StructuredList.args = {};
-StructuredList.argTypes = {}
+StructuredList.args = {
+  headerText: '56 Results'
+};
+StructuredList.argTypes = {
+  headerText: {
+    name: 'Header Text',
+    description: 'Text for the structured list header',
+    type: { name: 'string' }
+  }
+}

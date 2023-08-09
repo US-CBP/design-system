@@ -1,8 +1,10 @@
 .cbp-structured-list__header {
   align-items: center;
   background-color: var(--cbp-color-gray-cool-30);
+  color: var(--cbp-color-text-darkest);
   display: flex;
   font-style: italic;
+  font-size: var(--cbp-font-size-body);
   font-weight: var(--cbp-font-weight-bold);
   height: var(--cbp-space-13x);
   padding: 0 var(--cbp-space-3x);
