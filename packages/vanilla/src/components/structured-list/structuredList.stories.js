@@ -1,5 +1,12 @@
 export default {
-  title: 'Patterns'
+  title: 'Patterns',
+  argTypes: {
+    headerText: {
+      name: 'Header Text',
+      description: 'Text for the structured list header',
+      type: { name: 'string' }
+    }
+  }
 };
 
 const Template = ({ headerText }) => (
@@ -26,15 +33,7 @@ const Template = ({ headerText }) => (
   `
 )
 
-
 export const StructuredList = Template.bind({});
 StructuredList.args = {
   headerText: '56 Results'
 };
-StructuredList.argTypes = {
-  headerText: {
-    name: 'Header Text',
-    description: 'Text for the structured list header',
-    type: { name: 'string' }
-  }
-}
