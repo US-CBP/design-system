@@ -23,7 +23,8 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "storybook-static": "npm run build && npm run build-storybook && copy dist storybook-static/assets && npx http-server storybook-static"
+    "storybook-static": "npm run build && npm run build-storybook && copy dist storybook-static/assets && npx http-server storybook-static",
+    "build-pages": "storybook build -o ../../.public/vanilla-sb"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
