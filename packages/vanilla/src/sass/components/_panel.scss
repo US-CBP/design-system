@@ -1,0 +1,34 @@
+.cbp-panel {
+  border-style: none;
+  border-radius: var(--cbp-border-radius-soft);
+
+  .cbp-panel-header {
+    color: var(--cbp-color-text-lighter);
+    background-color: var(--cbp-color-gray-cool-50);
+    padding: var(--cbp-space-5x);
+    border-bottom: solid 4px var(--cbp-color-gray-cool-60);
+    border-radius: var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0;
+    
+    & :where(h1,h2,h3,h4,h5,h6) {
+      color: inherit;
+      font-size: var(--cbp-font-size-heading-lg);
+      font-weight: normal;
+      line-height: var(--cbp-space-7x);
+    }
+  }
+
+  .cbp-panel-content {
+    background-color: var(--cbp-color-white);
+    padding: var(--cbp-space-5x);
+    border-style: solid;
+    border-color: var(--cbp-color-gray-cool-10);
+    border-width: var(--cbp-border-size-md);
+    border-top-style: none;
+    border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
