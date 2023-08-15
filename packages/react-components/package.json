@@ -19,7 +19,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6007",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "build-pages": "storybook build -o ../../.public/react-sb"
   },
   "dependencies": {
     "react": "^18.2.0",
