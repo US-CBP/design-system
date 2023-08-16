@@ -1,12 +1,10 @@
 .cbp-panel {
-  border-style: none;
-  border-radius: var(--cbp-border-radius-soft);
 
-  .cbp-panel-header {
+  .cbp-panel__header {
     color: var(--cbp-color-text-lighter);
     background-color: var(--cbp-color-gray-cool-50);
     padding: var(--cbp-space-5x);
-    border-bottom: solid 4px var(--cbp-color-gray-cool-60);
+    border-bottom: solid var(--cbp-border-size-xl) var(--cbp-color-gray-cool-60);
     border-radius: var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0;
     
     & :where(h1,h2,h3,h4,h5,h6) {
@@ -17,7 +15,7 @@
     }
   }
 
-  .cbp-panel-content {
+  .cbp-panel__content {
     background-color: var(--cbp-color-white);
     padding: var(--cbp-space-5x);
     border-style: solid;
@@ -25,10 +23,10 @@
     border-width: var(--cbp-border-size-md);
     border-top-style: none;
     border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
-  }
-
-  & > :last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
+    
+    > :last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
   }
 }

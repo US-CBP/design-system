@@ -8,7 +8,7 @@ export default {
       options: ['section', 'aside'],
     },
     headingLevel: {
-      name: 'Header Text',
+      name: 'Heading Level',
       description:
         'The heading level used as the panel header (e.g., `h2`-`h6`) as appropriate for the document structure.',
       control: 'select',
@@ -22,11 +22,11 @@ export default {
     headerId: {
       name: 'Heading ID',
       description:
-        'The `id` of the heading tag used to label the wrapping landmark element via `aria-labelledby`. Specifying this `id` will override any `aria-label`.',
+        'The `id` of the heading tag used to label the wrapping landmark element via `aria-labelledby`. Specifying this `id` will override any `aria-label` on the landmark tag.',
       control: 'text',
     },
     content: {
-      name: 'Panel contents',
+      name: 'Panel Content',
       description:
         'Placeholder text representing the panel contents, which can include HTML markup not supported in this story.',
       control: 'text',
@@ -52,13 +52,13 @@ const PanelTemplate = ({tag, headingLevel, header, headerId, content, ariaLabel,
       ${headerId ? 'aria-labelledby="' + headerId + '"' : ''}
       ${ariaLabel ? 'aria-label="' + ariaLabel + '"' : ''}
     >
-      <div class="cbp-panel-header">
+      <div class="cbp-panel__header">
         <${headingLevel}
           ${headerId ? 'id="' + headerId + '"' : ''}
         >${showIcon ? '<i class="fas fa-address-book cbp-margin-right-4x"></i>': ''}${header}
         </${headingLevel}>
       </div>
-      <div class="cbp-panel-content">
+      <div class="cbp-panel__content">
         <p>${content}</p>
       </div>
     </${tag}>
