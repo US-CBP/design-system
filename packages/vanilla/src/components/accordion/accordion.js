@@ -6,7 +6,7 @@ class Accordion {
 
     this.accordionControl.setAttribute('aria-expanded', false)
 
-    this.accordionNode.addEventListener('click', () => {
+    this.accordionControl.addEventListener('click', () => {
       this.toggle()
     });
   }
