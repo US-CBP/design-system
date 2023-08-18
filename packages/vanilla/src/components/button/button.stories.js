@@ -1,8 +1,5 @@
 export default {
   title: 'Patterns/Button',
-  parameters: {
-    layout: 'centered',
-  },
   argTypes: {
     element: {
       name: 'Semantic Element',
