@@ -12,7 +12,7 @@
   min-height: var(--cbp-space-9x);
   outline: 0;
   padding-left: var(--cbp-space-2x);
-  width: 100%;
+  min-width: 100%;
 
   &:hover {
     border-color: var(--cbp-color-base-neutral-darker);
