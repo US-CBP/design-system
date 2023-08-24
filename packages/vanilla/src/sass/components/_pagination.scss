@@ -11,7 +11,7 @@
     @extend .cbp-input__select;
   }
   
-  & .cbp-pagination__results {
+  & .cbp-pagination__items {
     align-items: inherit;
     display: inherit;
     gap: var(--cbp-space-2x);
@@ -57,7 +57,7 @@
 
 
 @media (min-width: 37.5em)  {
-  .cbp-pagination .cbp-pagination__results select {
+  .cbp-pagination .cbp-pagination__items select {
     display: unset;
   }
   

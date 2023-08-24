@@ -2,9 +2,11 @@
 
 ## Purpose
 
-Pagination is used for splitting up content or data into several pages with a control for navigating to the next or previous page. A select element within the pagination component allows the user to select the desired page of results. 
+Pagination is used for splitting up content or data into several pages with a control for navigating to the next or previous page. 
 
-Pagination includes a select element to change the **amount** of results displayed from the paginated data. 
+Two select elements within the pagination component allows the user to select the desired page of results and the amount of items to be displayed.
+
+A text element provides the current set of paged data being displayed over the total number of items. 
 
 ## Functional Requirements
 
@@ -24,7 +26,6 @@ Selecting from the result dropdown will change the amount of paged data displaye
 ### Responsiveness
 
 The results dropdown is used along side the pagination component to select the amount of results displayed on the page. This results dropdown is hidden in the SM breakpoints and only the pagination component is shown.
-
 
 ### Accessibility
 
