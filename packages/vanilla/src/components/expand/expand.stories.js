@@ -27,8 +27,8 @@ const ExpandTemplate = ({ title }) => {
         <span>${title}</span>
       </div>
       <div class="cbp-expand__content">
-        <p class="cbp-text-body">There are different species of frogs and some make great pets!</p>
-        <p class="cbp-text-body cbp-margin-top-2x">Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com" class="cbp-text-link" target="_blank" rel="noopener noreferrer">petstore.com</a></p>
+        <p>There are different species of frogs and some make great pets!</p>
+        <p>Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com" class="cbp-text-link" target="_blank" rel="noopener noreferrer">petstore.com</a></p>
       </div>
     </div>
   `;
@@ -44,8 +44,8 @@ const ExpandLongTitleTemplate = ({ title }) => {
         <span id="expand-title">${title}</span>
       </div>
       <div class="cbp-expand__content">
-        <p class="cbp-text-body">There are different species of frogs and some make great pets!</p>
-        <p class="cbp-text-body cbp-margin-top-2x">Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com" class="cbp-text-link" target="_blank" rel="noopener noreferrer">petstore.com</a></p>
+        <p>There are different species of frogs and some make great pets!</p>
+        <p>Frogs can be bought at any pet store really. Here's a link to one <a href="http://petstore.com" class="cbp-text-link" target="_blank" rel="noopener noreferrer">petstore.com</a></p>
       </div>
     </div>
   `;
