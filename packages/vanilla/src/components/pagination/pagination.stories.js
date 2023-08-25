@@ -1,5 +1,5 @@
 export default {
-  title: 'Patterns/Pagination'
+  title: 'Patterns/Pagination',
 };
 
 const Template = () => {
@@ -33,8 +33,8 @@ const Template = () => {
         </button>
       </div>
     </div>
-  `
-}
+  `;
+};
 
 export const Pagination = Template.bind({});
 Pagination.args = {};
