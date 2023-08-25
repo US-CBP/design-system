@@ -4,13 +4,13 @@
 
 Pagination is used for splitting up content or data into several pages with a control for navigating to the next or previous page. 
 
-Two select elements within the pagination component allows the user to select the desired page of results and the amount of items to be displayed.
-
-A text element provides the current set of paged data being displayed over the total number of items. 
-
 ## Functional Requirements
 
 When the page dropdown is selected on a value that does not have a previous/next option to navigate to, the corresponding previous/next button will be disabled. 
+
+Two select elements within the pagination component allows the user to select the desired page of results and the amount of items to be displayed.
+
+A text element provides the current set of paged data being displayed over the total number of items. 
 
 ## Technical Specifications
 

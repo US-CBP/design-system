@@ -6,7 +6,7 @@ const Template = () => {
   return `
     <div class="cbp-pagination">
       <div class="cbp-pagination__items">
-        <select aria-label="Select Item Amount">
+        <select aria-label="Items per page">
           <option value="">10/Page</option>
           <option value="25">25 Per Page</option>
           <option value="50">50 Per Page</option>
@@ -22,11 +22,11 @@ const Template = () => {
           <i class="fas fa-chevron-left"></i>
         </button>
         <select aria-label="Select Page">
-          <option value="1">Pg. 1 of 1000</option>
-          <option value="2">Pg. 2 of 1000</option>
-          <option value="3">Pg. 3 of 1000</option>
-          <option value="4">Pg. 4 of 1000</option>
-          <option value="5">Pg. 5 of 1000</option>
+          <option value="1">Page 1 of 1000</option>
+          <option value="2">Page 2 of 1000</option>
+          <option value="3">Page 3 of 1000</option>
+          <option value="4">Page 4 of 1000</option>
+          <option value="5">Page 5 of 1000</option>
         </select>
         <button class="cbp-pagination__next" type="button" aria-label="Next Page">
           <i class="fas fa-chevron-right"></i>
