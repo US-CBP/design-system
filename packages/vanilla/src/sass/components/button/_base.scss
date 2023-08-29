@@ -1,55 +1,52 @@
 // Base Button CSS
 .cbp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-width: var(--cbp-border-size-md);
   border-style: solid;
   border-radius: var(--cbp-border-radius-soft);
   cursor: pointer;
   font-weight: var(--cbp-font-weight-medium);
-  letter-spacing: var(--cbp-letter-spacing-loose); // Replace with CSS Variables after all letter-spacing sizes confirmed
+  letter-spacing: var(--cbp-letter-spacing-loose);
+  text-decoration: none;
+  text-transform: uppercase;  
   padding: var(--cbp-space-2x) var(--cbp-space-3x);
-  text-transform: uppercase;
   transition: all var(--cbp-motion-duration-shorter);
   min-height: 2.25rem;
 
   & > i {
+    //font-size: 1rem; // Revisit when converting to SVG icons
     margin-right: var(--cbp-space-2x);
+  }
+
+  &:hover:not(:focus):not(:disabled) {
+    background-color: var(--cbp-color-interactive-focus-dark);
+    border-color: var(--cbp-color-interactive-focus-dark);
+    color: var(--cbp-color-text-lightest);
   }
 
   &:focus {
     background: var(--cbp-color-interactive-focus-dark);
     border-color: var(--cbp-color-interactive-focus-dark);
-    border-style: solid;
     color: var(--cbp-color-text-lightest);
-    outline: var(--cbp-border-size-sm) solid var(--cbp-color-white);
+    outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
     outline-offset: calc(-1 * var(--cbp-space-1x));
-  
-    &:hover {
-      background-color: var(--cbp-color-interactive-focus-dark);
-      border-color: var(--cbp-color-interactive-focus-dark);
-      color: var(--cbp-color-text-lightest);
-    }
-  }
-
-  // TODO: why are disabled buttons interactive? Ask Jeremy
-  &:disabled {
-    background-color: var(--cbp-color-interactive-disabled-light);
-    border-color: var(--cbp-color-interactive-disabled-light);
-    color: var(--cbp-color-interactive-disabled-dark);
-    font-style: italic;
-  
-    // font-weight property does not apply in :disabled pseudo-class
-    &:hover {
-      background-color: var(--cbp-color-interactive-disabled-dark);
-      border-color: var(--cbp-color-interactive-disabled-dark);
-      color: var(--cbp-color-text-darkest);
-    }
   }
 
   &:active {
     background-color: var(--cbp-color-interactive-active-dark);
     border-color: var(--cbp-color-interactive-active-dark);
-    font-style: italic;
   }
+
+  &:disabled {
+    background-color: var(--cbp-color-interactive-disabled-dark);
+    border-color: var(--cbp-color-interactive-disabled-dark);
+    color: var(--cbp-color-interactive-disabled-light);
+    font-style: italic;
+    cursor: not-allowed;
+  }
+
 }
 
 .cbp-btn-square {
@@ -72,14 +69,19 @@
   min-height: 3.25rem;
 
   & > i {
+    margin-top: -1px;
     margin-right: var(--cbp-space-3x);
   }
 }
 
+
+/* Dark Mode */
 [data-cbp-theme='dark'] {
   .cbp-btn {
-    &:hover {
-      color: var(--cbp-color-text-lightest);
+    &:hover:not(:focus):not(:disabled) {
+      background-color: var(--cbp-color-interactive-focus-light);
+      border-color: var(--cbp-color-interactive-focus-light);
+      color: var(--cbp-color-text-darkest);
     }
 
     &:focus {
@@ -88,24 +90,12 @@
       color: var(--cbp-color-text-darkest);
       outline: var(--cbp-border-size-md) solid var(--cbp-color-black);
       outline-offset: calc(-1 * var(--cbp-space-1x));
-
-      &:hover {
-        background-color: var(--cbp-color-interactive-focus-light);
-        border-color: var(--cbp-color-interactive-focus-light);
-        color: var(--cbp-color-text-darkest);
-      }
     }
-
+  
     &:disabled {
       background-color: var(--cbp-color-interactive-disabled-dark);
       border-color: var(--cbp-color-interactive-disabled-dark);
       color: var(--cbp-color-interactive-disabled-light);
-
-      &:hover {
-        background-color: var(--cbp-color-interactive-disabled-light);
-        border-color: var(--cbp-color-interactive-disabled-light);
-        color: var(--cbp-color-text-darker);
-      }
     }
   }
 }

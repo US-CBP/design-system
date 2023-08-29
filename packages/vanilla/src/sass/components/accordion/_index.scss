@@ -8,6 +8,21 @@
   margin-bottom: var(--cbp-space-3x);
 }
 
+.cbp-accordion__title {
+  align-items: center;
+  display: flex;
+  font-weight: var(--cbp-font-weight-medium);
+  font-size: var(--cbp-font-size-heading-sm);
+}
+
+.cbp-accordion__content {
+  background: var(--cbp-color-white);
+  border: var(--cbp-border-size-xl) solid var(--cbp-color-gray-cool-60);
+  border-top: 0;
+  padding: var(--cbp-space-4x);
+}
+
+
 .cbp-accordion__control {
   display: flex;
   align-items: center;
@@ -22,15 +37,6 @@
   transition: all 300ms;
   width: 100%;
 
-  & i {
-    font-size: var(--cbp-font-size-heading-md);
-
-    &:first-child {
-      margin-right: var(--cbp-space-2x);
-      transition: transform var(--cbp-motion-duration-shortest) ease-in-out;
-    }
-  }
-
   &:hover {
     background-color: var(--cbp-color-interactive-secondary-light);
   }
@@ -43,31 +49,34 @@
     outline-color: var(--cbp-color-white);
     outline-offset: calc(-1 * var(--cbp-space-2x));
 
-    & > .cbp-badge {
+    .cbp-badge,
+    .cbp-tag {
       background-color: var(--cbp-color-white);
-      color: var(--cbp-color-base-secondary-base);
+      color: var(--cbp-color-gray-cool-60);
+    }
+  }
+
+  .cbp-accordion__title {
+    i {
+      font-size: var(--cbp-font-size-heading-md);
+
+      &:first-child {
+        margin-right: var(--cbp-space-2x);
+        transition: transform var(--cbp-motion-duration-shortest) ease-in-out;
+      }
     }
   }
 }
 
 .cbp-accordion__control[aria-expanded="true"] {
-  background-color: var(--cbp-color-base-secondary-base);
+  background-color: var(--cbp-color-gray-cool-60);
   color: var(--cbp-color-text-lightest);
 
-  & i:first-child {
-    transform: rotate(-180deg);
-  }
-
-  & .cbp-badge {
-    background-color: var(--cbp-color-white);
-    color: var(--cbp-color-base-secondary-base);
-  }
-
   &:hover {
-    background-color: var(--cbp-color-base-secondary-dark);
+    background-color: var(--cbp-color-interactive-secondary-darker);
 
     & + .cbp-accordion__content {
-      border-color: var(--cbp-color-base-secondary-dark);
+      border-color: var(--cbp-color-interactive-secondary-darker);
     }
   }
 
@@ -78,23 +87,18 @@
       border-color: var(--cbp-color-interactive-focus-dark);
     }
   }
+
+  .cbp-accordion__title i:first-child {
+    transform: rotate(-180deg);
+  }
+
+  .cbp-badge,
+  .cbp-tag {
+    background-color: var(--cbp-color-white);
+    color: var(--cbp-color-gray-cool-60);
+  }
+
 }
-
-.cbp-accordion__title {
-  align-items: center;
-  display: flex;
-  font-weight: var(--cbp-font-weight-medium);
-  font-size: var(--cbp-font-size-heading-sm);
-}
-
-.cbp-accordion__content {
-  background: var(--cbp-color-white);
-  border: var(--cbp-border-size-xl) solid var(--cbp-color-base-secondary-base);
-  border-top: 0;
-  padding: var(--cbp-space-4x);
-}
-
-
 
 .cbp-accordion__item--danger > .cbp-accordion__control {
   background: var(--cbp-color-danger-base);

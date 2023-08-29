@@ -12,7 +12,10 @@
     "vanilla-sb": "npm run storybook -w packages/vanilla",
     "ux-dev": "npm run dev -w packages/ux-guidelines",
     "ux-build": "npm run build -w packages/ux-guidelines",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "react-sb": "npm run storybook -w packages/react-components",
+    "react-build": "npm run build -w packages/react-components",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-all": "npm run vanilla-build && npm run build-pages -w packages/ux-guidelines && npm run build-pages -w packages/vanilla && npm run build-pages -w packages/react-components"
   },
   "repository": {
     "type": "git",
@@ -31,7 +34,8 @@
   },
   "workspaces": [
     "packages/vanilla",
-    "packages/ux-guidelines"
+    "packages/ux-guidelines",
+    "packages/react-components"
   ],
   "devDependencies": {
     "eslint": "^8.33.0",

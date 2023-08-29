@@ -16,6 +16,7 @@ export default {
 const Template = ({ defaultAccordion, badgeAccordion, iconAccordion }) => {
   return `
     <div class="cbp-accordion">
+
       <div class="cbp-accordion__item ${defaultAccordion.danger ? 'cbp-accordion__item--danger' : ''}">
         <button class="cbp-accordion__control" id="accordion1"  aria-controls="accordion-content-1">
           <span class="cbp-accordion__title">
@@ -56,6 +57,7 @@ const Template = ({ defaultAccordion, badgeAccordion, iconAccordion }) => {
           <p class="cbp-font-style-italic">Content Area</p>
         </div>
       </div>
+
     </div>
   `;
 };

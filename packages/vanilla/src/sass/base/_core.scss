@@ -20,6 +20,11 @@ ol:not(ol ol):not(ol ul) {
   margin-bottom: var(--cbp-space-4x);
 }
 
+// TODO: Should this include blockquote and list items?
+p {
+  line-height: 1.25rem;
+}
+
 a[href],
 button {
   cursor: pointer;

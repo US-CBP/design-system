@@ -28,13 +28,11 @@ $font-weight-roboto-mono: (
   "bold": 700
 );
 
-
 .cbp-text-body {
-  color: var(--cbp-color-text-darkest);
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 20px;
-  max-width: 75em;
+  font-weight: var(--cbp-font-weight-regular);
+  font-size: var(--cbp-font-size-body);
+  line-height: var(--cbp-space-5x);
+  max-width: var(--cbp-line-length-longer);
 }
 
 .cbp-text-button {
@@ -49,8 +47,7 @@ h1,
   color: var(--cbp-color-text-darker);
   font-weight: 300; // light
   font-size: 2.027rem;
-  line-height: 36px;
-  letter-spacing: 0.12px;
+  line-height: var(--cbp-space-9x);
 }
 
 h2,
@@ -58,8 +55,7 @@ h2,
   color: var(--cbp-color-text-darker);
   font-weight: 400; // regular
   font-size: 1.802rem;
-  line-height: 32px;
-  letter-spacing: 0.12px;
+  line-height: var(--cbp-space-8x);
 }
 
 h3,
@@ -67,8 +63,7 @@ h3,
   color: var(--cbp-color-text-darker);
   font-weight: 400; // regular
   font-size: 1.602rem;
-  line-height: 28px;
-  letter-spacing: 0.12px;
+  line-height: var(--cbp-space-7x);
 }
 
 h4,
@@ -76,8 +71,7 @@ h4,
   color: var(--cbp-color-text-darker);
   font-weight: 500; // medium
   font-size: 1.424rem;
-  line-height: 24px;
-  letter-spacing: 0.12px;
+  line-height: var(--cbp-space-6x);
 }
 
 h5,
@@ -85,8 +79,7 @@ h5,
   color: var(--cbp-color-text-darker);
   font-weight: 500; // medium
   font-size: 1.266rem;
-  line-height: 24px;
-  letter-spacing: 0.12px;
+  line-height: var(--cbp-space-6x);
 }
 
 h6,
@@ -94,14 +87,13 @@ h6,
   color: var(--cbp-color-text-darker);
   font-weight: 700; // bold
   font-size: 1rem;
-  line-height: 20px;
-  letter-spacing: 0.12px;
+  line-height: var(--cbp-space-5x);
 }
 
 .cbp-text-masthead-1 {
   font-weight: 100;
   size: 2.566rem;
-  line-height: 44px;
+  line-height: var(--cbp-space-11x);
   letter-spacing: 0.12;
   color: var(--cbp-color-text-darker);
 }
@@ -109,7 +101,7 @@ h6,
 .cbp-text-masthead-2 {
   font-weight: 100;
   size: 2.281rem;
-  line-height: 40px;
+  line-height: var(--cbp-space-10x);
   letter-spacing: 0.12;
   color: var(--cbp-color-text-darker);
 }
@@ -117,7 +109,7 @@ h6,
 .cbp-text-subhead {
   font-size: 0.889rem;
   font-weight: 500;
-  line-height: 20px;
+  line-height: var(--cbp-space-5x);
   letter-spacing: 0.05em;
 }
 

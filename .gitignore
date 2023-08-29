@@ -137,3 +137,6 @@ _site
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# .public folder holds all static builds of /packages for github pages artifact
+.public
