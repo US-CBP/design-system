@@ -16,23 +16,23 @@ const UniversalHeaderTemplate = ({ username }) => {
       </div>
       <ul class="cbp-universal-header__list">
         <li>
-          <a href="#" class="cbp-universal-header__item" target="_blank" rel="noopener noreferrer">
+          <a href="#" class="cbp-universal-header__item" target="_blank" rel="noopener noreferrer" aria-labelledby="application-directory">
             <i class="fas fa-book"></i>
-            <span>
+            <span id="application-directory">
               App Directory
             </span>
           </a>
         </li>
         <li>
-          <button class="cbp-universal-header__item">
+          <button class="cbp-universal-header__item" aria-labelledby="feedback">
             <i class="fas fa-comment"></i>
-            <span>
+            <span id="feedback">
               Feedback
             </span>
           </button>
         </li>
         <li>
-          <button class="cbp-universal-header__item">
+          <button class="cbp-universal-header__item" aria-label="User Login">
             <i class="fas fa-user"></i>
             <span>
               ${username}
