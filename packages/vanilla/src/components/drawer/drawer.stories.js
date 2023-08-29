@@ -28,7 +28,7 @@ const Template = ({drawerPosition}) => {
       <div class="cbp-drawer__header">
         <div>
           <i class="fas fa-filter"></i>
-          <h6>Filter</h6>
+          <h3>Filter</h3>
         </div>
         <button aria-label="Close">
           <i class="fas fa-times-circle"></i>
