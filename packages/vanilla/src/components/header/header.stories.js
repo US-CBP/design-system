@@ -24,7 +24,7 @@ const UniversalHeaderTemplate = ({ username }) => {
           </a>
         </li>
         <li>
-          <button class="cbp-universal-header__item" aria-labelledby="feedback">
+          <button class="cbp-universal-header__item" aria-labelledby="feedback" aria-haspopup="dialog">
             <i class="fas fa-comment"></i>
             <span id="feedback">
               Feedback
@@ -32,9 +32,9 @@ const UniversalHeaderTemplate = ({ username }) => {
           </button>
         </li>
         <li>
-          <button class="cbp-universal-header__item" aria-label="User Login">
+          <button class="cbp-universal-header__item" aria-labelledby="user-info">
             <i class="fas fa-user"></i>
-            <span>
+            <span id="user-info">
               ${username}
             </span>
           </button>
