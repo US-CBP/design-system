@@ -1,20 +1,19 @@
 @use '../../tokens/breakpoints' as *;
 
-
 .cbp-universal-header {
+  align-items: center;
+  background-color: var(--cbp-color-branding-dhs-blue);
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
-  width: 100%;
   min-height: var(--cbp-space-15x);
   padding: 0 var(--cbp-space-4x);
-  background-color: var(--cbp-color-branding-dhs-blue);
+  width: 100%;
 }
 
 .cbp-universal-header__brand {
-  display: flex;
   align-items: center;
+  display: flex;
 
   &::after {
     content: "CBP";
@@ -34,19 +33,19 @@
 
 // Button/Link - Secondary Ghost Button (Dark) styling
 .cbp-universal-header__item {
-  display: flex;
-  gap: var(--cbp-space-2x);
   align-items: center;
-  justify-content: center;
-  min-height: var(--cbp-space-9x);
-  min-width: var(--cbp-space-9x);
-  color: var(--cbp-color-interactive-secondary-lighter);
   background-color: transparent;
   border: 0;
   border-radius: var(--cbp-border-radius-soft);
+  color: var(--cbp-color-interactive-secondary-lighter);
   cursor: pointer;
+  display: flex;
   font-weight: var(--cbp-font-weight-medium);
-  padding: 0 var(--cbp-space-3x);
+  gap: var(--cbp-space-2x);
+  justify-content: center;
+  letter-spacing: var(--cbp-letter-spacing-loose);
+  min-height: var(--cbp-space-9x);
+  min-width: var(--cbp-space-9x);
   text-decoration: none;
   text-transform: uppercase;
 
@@ -84,8 +83,12 @@
 }
 
 @media (min-width: $cbp-breakpoint-lg) {
-  .cbp-universal-header__item > span {
-    display: unset;
+  .cbp-universal-header__item {
+    padding: 0 var(--cbp-space-3x);
+
+    & > span {
+      display: unset;
+    }
   }
 }
 
