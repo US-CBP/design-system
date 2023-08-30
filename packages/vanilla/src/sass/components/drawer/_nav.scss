@@ -36,7 +36,7 @@
 .cbp-drawer__nav li:has(.active),
 .cbp-drawer__nav li:has([aria-pressed=true]),
 .cbp-drawer__nav li:has([aria-selected=true]),
-.cbp-drawer__nav li:has([aria-current~="true page step location date time"]) {
+.cbp-drawer__nav li:has([aria-current=true]) {
   & > a,
   & > button {
     border-left-width: var(--cbp-border-size-xl);
