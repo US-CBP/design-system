@@ -17,7 +17,7 @@ $spacing: (
 
 @each $name, $space in $spacing {
   .cbp-margin-#{$name} {
-    margin-left: #{$space} !important;
+    margin: #{$space} !important;
   }
 
   .cbp-margin-top-#{$name} {
