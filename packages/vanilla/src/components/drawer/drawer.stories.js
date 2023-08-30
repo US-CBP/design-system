@@ -20,7 +20,7 @@ export default {
 const Template = ({drawerPosition}) => {
 
   return `
-    <button aria-label="Open Drawer" class="cbp-btn cbp-btn__secondary-outline" data-drawer="open">
+    <button type="button" aria-label="Open Drawer" class="cbp-btn cbp-btn__secondary-outline" data-drawer="open">
       <i class="fas fa-bars"></i>
     </button>
 
@@ -28,16 +28,17 @@ const Template = ({drawerPosition}) => {
       <div class="cbp-drawer__header">
         <div>
           <i class="fas fa-filter"></i>
-          <h6>Filter</h6>
+          <h3>Filter</h3>
         </div>
         <button aria-label="Close">
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
+
       <nav class="cbp-drawer__content">
         <ul class="cbp-drawer__nav">
           <li class="cbp-drawer__nav-item--a">
-            <button>
+            <button type="button">
               <span>
                 <i class="fas fa-home"></i>
                 Default/Home Page (A)
@@ -46,43 +47,43 @@ const Template = ({drawerPosition}) => {
             </button>
             <ul>
               <li>
-                <button>Child Page 1 (B)</button>
+                <button type="button">Child Page 1 (B)</button>
               </li>
               <li>
-                <button>Child Page 2 (B)<i class="fas fa-angle-up"></i></button>
+                <button type="button">Child Page 2 (B)<i class="fas fa-angle-up"></i></button>
                 <ul>
                   <li>
-                    <button>
+                    <button type="button">
                       Grandchild Page 1 (C)
                       <i class="fas fa-caret-up"></i>
                     </button>
                     <ul>
                       <li>
-                        <button>Great-Grandchild Page 1 (D)</button>
+                        <button type="button" aria-selected="true">Great-Grandchild Page 1 (D)</button>
                       </li>
                       <li>
-                        <button>Great-Grandchild Page 2 (D)</button>
+                        <button type="button">Great-Grandchild Page 2 (D)</button>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    <button>Grandchild Page 2 (C)</button>
+                    <button type="button">Grandchild Page 2 (C)</button>
                   </li>
                 </ul>
               </li>
             </ul>
           </li>
           <li>
-            <button>
+            <button type="button">
               Sibling Page 1 (A)
               <i class="fas fa-angle-up"></i>
             </button>
           </li>
           <li>
-            <button>Sibling Page 2 (A)</button>
+            <button type="button">Sibling Page 2 (A)</button>
           </li>
           <li>
-            <button>Sibling Page 3 (A)</button>
+            <button type="button">Sibling Page 3 (A)</button>
           </li>
         </ul>
       </nav>

@@ -12,38 +12,39 @@ button[data-drawer] {
 
 /* Default Drawer Direction: 'left' */
 .cbp-drawer {
-  // display: none;
-  min-height: min-content;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 101%; // this prevents edge cases where the drawer disappears on smaller viewports when scrolling to the end
   position: fixed;
-  overflow-x: hidden;
+  overflow-y: auto;
   transition: 0.5s;
   width: 100%;
-  z-index: 9999;
+  background-color: var(--cbp-color-white);
+  z-index: var(--cbp-z-index-level-top);
 }
 
+// Revisit whether this is needed or should leverage Panel markup/CSS
 .cbp-drawer__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 72px;
+  min-height: 4.5rem;
   color: var(--cbp-color-text-lightest);
-  background-color: var(--cbp-color-base-secondary-base);
-  border-bottom: 4px solid var(--cbp-color-base-secondary-dark);
-
+  background-color: var(--cbp-color-gray-cool-60);
+  border-bottom: var(--cbp-border-size-xl) solid var(--cbp-color-gray-cool-70);
 
   div:first-child {
     display: inherit;
 
     i {
       font-size: 22px;
-      margin-right: 16px;
+      margin-right: var(--cbp-space-4x);
     }
 
-    h6 {
+    & :where(h1,h2,h3,h4,h5,h6) {
       color: var(--cbp-color-text-lightest);
-      font-weight: 700;
-      font-size: 1.602rem;
+      font-size: var(--cbp-font-size-heading-lg);
+      font-weight: var(--cbp-font-weight-bold);
     }
   }
 
@@ -66,8 +67,8 @@ button[data-drawer] {
 @include drawer-left;
 @include drawer-right;
 
-@media only screen and (min-width : 600px) {
+@media only screen and (min-width : 37.5em) {
   .cbp-drawer {
-    width: 400px;
+    width: 25rem;
   }
 }
