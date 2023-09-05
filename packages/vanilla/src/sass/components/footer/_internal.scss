@@ -1,4 +1,5 @@
 @use '../../tokens/breakpoints' as *;
+@use '../../layout/container' as *;
 
 // Styling for Link pattern (Dark) move to link SCSS after merge.
 @mixin footer-links {
@@ -46,7 +47,6 @@
   }
 }
 
-
 .cbp-footer > nav {
   background-color: var(--cbp-color-gray-cool-60);
 
@@ -61,6 +61,7 @@
     text-transform: uppercase;
     width: 100%;
 
+    // Causes bouncing
     &:hover,
     &:focus {
       font-weight: var(--cbp-font-weight-bold);
@@ -82,11 +83,13 @@
 }
 
 .cbp-footer__info {
+  @extend .cbp-fluid-container;
   display: flex;
   flex-direction: column;
   gap: var(--cbp-space-6x);
   background-color: var(--cbp-color-gray-cool-70);
-  padding: var(--cbp-space-4x) var(--cbp-space-5x);
+  padding-bottom: var(--cbp-space-5x);
+  padding-top: var(--cbp-space-5x);
 }
 
 .cbp-footer__support {
@@ -158,7 +161,8 @@
   }
 
   .cbp-footer__info {
-    padding: var(--cbp-space-4x) var(--cbp-space-8x);
+    padding-top: var(--cbp-space-4x);
+    padding-bottom: var(--cbp-space-4x);
   }
 
   .cbp-footer__support > ul {
@@ -185,13 +189,13 @@
   }
 }
 
-@media (min-width : $cbp-breakpoint-xl) {
+@media (min-width: $cbp-breakpoint-xl) {
   .cbp-footer > nav > ul {
     padding-left: var(--cbp-space-11x);
+    padding-right: var(--cbp-space-11x);
   }
 
   .cbp-footer__info {
     justify-content: space-between;
-    padding: var(--cbp-space-4x) var(--cbp-space-11x);
   }
 }
