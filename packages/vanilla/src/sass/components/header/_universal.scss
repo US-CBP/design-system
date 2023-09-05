@@ -1,53 +1,51 @@
-@use '../../typography/fonts' as *;
 @use '../../tokens/breakpoints' as *;
 
-
 .cbp-universal-header {
+  align-items: center;
+  background-color: var(--cbp-color-branding-dhs-blue);
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
+  min-height: var(--cbp-space-15x);
+  padding: 0 var(--cbp-space-4x);
   width: 100%;
-  min-height: 60px;
-  padding: 0 var(--cbp-space-3x);
-  background-color: var(--cbp-color-branding-dhs-blue);
-  transition: top var(--cbp-motion-duration-medium) ease-in-out;
 }
 
 .cbp-universal-header__brand {
-  display: flex;
   align-items: center;
+  display: flex;
 
   &::after {
-    @extend .cbp-heading-l;
     content: "CBP";
     color: var(--cbp-color-text-lightest);
+    font-size: var(--cbp-font-size-heading-xl);
     margin-left: var(--cbp-space-2x);
   }
 }
 
 .cbp-universal-header__list {
   display: flex;
-  gap: 1rem;
+  gap: var(--cbp-space-4x);
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-// TODO: Add Secondary Ghost Button Mixin
+// Button/Link - Secondary Ghost Button (Dark) styling
 .cbp-universal-header__item {
-  display: flex;
-  gap: var(--cbp-space-2x);
   align-items: center;
-  justify-content: center;
-  min-height: 36px;
-  min-width: 36px;
-  color: var(--cbp-color-interactive-secondary-lighter);
   background-color: transparent;
   border: 0;
   border-radius: var(--cbp-border-radius-soft);
+  color: var(--cbp-color-interactive-secondary-lighter);
   cursor: pointer;
+  display: flex;
   font-weight: var(--cbp-font-weight-medium);
+  gap: var(--cbp-space-2x);
+  justify-content: center;
+  letter-spacing: var(--cbp-letter-spacing-loose);
+  min-height: var(--cbp-space-9x);
+  min-width: var(--cbp-space-9x);
   text-decoration: none;
   text-transform: uppercase;
 
@@ -63,7 +61,7 @@
     background: var(--cbp-color-interactive-focus-light);
     color: var(--cbp-color-text-darkest);
     font-weight: --cbp-font-weight-bold;
-    outline: 2px solid var(--cbp-color-black);
+    outline: var(--cbp-border-size-md) solid var(--cbp-color-black);
     outline-offset: calc(var(--cbp-space-1x) * -1);
   
     &:hover {
@@ -73,41 +71,29 @@
   }
 }
 
-@media (min-width: $cbp-breakpoint-sm) {
+@media (min-width: $cbp-breakpoint-md) {
   .cbp-universal-header {
-    min-height: 88px;
-    padding-left: var(--cbp-space-5x);
-    padding-right: var(--cbp-space-5x);
+    min-height: 5.5rem;
+    padding: 0 var(--cbp-space-8x);
   }
 
   .cbp-universal-header__brand::after {
     content: none;
   }
-
-  .cbp-universal-header__item {
-    padding: 0 var(--cbp-space-3x);
-    width: unset;
-
-    & > i {
-      pointer-events: none;
-    }
-  }
 }
 
 @media (min-width: $cbp-breakpoint-lg) {
-  .cbp-universal-header {
-    padding: 0 var(--cbp-space-5x);
-  }
-
   .cbp-universal-header__item {
+    padding: 0 var(--cbp-space-3x);
+
     & > span {
-      display: inline;
+      display: unset;
     }
   }
 }
 
 @media (min-width: $cbp-breakpoint-xl) {
   .cbp-universal-header {
-    padding: 0 var(--cbp-space-7x);
+    padding: 0 var(--cbp-space-11x);
   }
 }

@@ -3,11 +3,11 @@
 
 @mixin hamburger-menu {
   background-color: transparent;
-  border: 2px solid var(--cbp-color-interactive-secondary-darker);
-  border-radius: 3px;
-  font-size: 14px;
-  height: 36px;
-  width: 36px;
+  border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-secondary-darker);
+  border-radius: var(--cbp-border-radius-soft);
+  font-size: var(--cbp-font-size-body);
+  height: var(--cbp-space-9x);
+  width: var(--cbp-space-9x);
 
   & > i {
     color: var(--cbp-color-interactive-secondary-darker);

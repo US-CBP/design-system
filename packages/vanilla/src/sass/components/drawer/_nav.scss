@@ -1,4 +1,4 @@
-//@use '../../base/colors' as *;
+// TechDebt: this should be a separate pattern from the drawer.
 @use 'mixins' as *;
 
 /* Drawer Nav Menu Tree */
@@ -23,34 +23,53 @@
 // }
 
 .cbp-drawer__nav {
-  border-top: 1px solid var(--cbp-color-base-neutral-light);
+  border-bottom: var(--cbp-border-size-sm) solid var(--cbp-color-base-neutral-light);
   height: fit-content;
 }
 
+// Taking this border off the controls makes the CSS much more manageable
+.cbp-drawer__nav li {
+  border-top: var(--cbp-border-size-sm) solid var(--cbp-color-base-neutral-light);
+}
+
+// Controls belonging to parents of selected items get the left-border
+.cbp-drawer__nav li:has(.active),
+.cbp-drawer__nav li:has([aria-pressed=true]),
+.cbp-drawer__nav li:has([aria-selected=true]),
+.cbp-drawer__nav li:has([aria-current=true]) {
+  & > a,
+  & > button {
+    border-left-width: var(--cbp-border-size-xl);
+    border-left-color: var(--cbp-color-interactive-active-dark);
+  }
+}
+
+// TechDebt: These styles should be broken into standalone patterns and not tied to the drawer, which is a container.
+// Not all font sizes passed below are represented by tokens.
 .cbp-drawer__nav > li { // A
   & > button,
   & > a {
-    @include drawer-nav-btn(20px, 12px);
+    @include drawer-nav-btn(1.25rem, var(--cbp-space-3x));
   }
 }
 
 .cbp-drawer__nav > li > ul > li { // B
   & > button,
   & > a {
-    @include drawer-nav-btn(18px, 20px);
+    @include drawer-nav-btn(1.125rem, var(--cbp-space-5x));
   }
 }
 
 .cbp-drawer__nav > li > ul > li > ul > li { // C
   & > button,
   & > a {
-    @include drawer-nav-btn(16px, 28px);
+    @include drawer-nav-btn(1rem, var(--cbp-space-7x));
   }
 }
 
 .cbp-drawer__nav > li > ul > li > ul > li > ul > li { // D
   & > button,
   & > a {
-    @include drawer-nav-btn(14px, 36px);
+    @include drawer-nav-btn(.875rem, var(--cbp-space-9x));
   }
 }

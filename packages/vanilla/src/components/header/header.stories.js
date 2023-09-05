@@ -5,7 +5,7 @@ export default {
   },
 };
 
-const UniversalHeaderTemplate = ({ username }) => {
+const UniversalHeaderTemplate = ({ username, isLoggedIn }) => {
   return `
     <header class="cbp-universal-header">
       <div class="cbp-universal-header__brand">
@@ -15,30 +15,41 @@ const UniversalHeaderTemplate = ({ username }) => {
         </picture>
       </div>
       <ul class="cbp-universal-header__list">
+        ${isLoggedIn ? `
         <li>
-          <a href="#" class="cbp-universal-header__item" target="_blank" rel="noopener noreferrer">
+          <button class="cbp-universal-header__item" aria-labelledby="application-directory">
             <i class="fas fa-book"></i>
-            <span>
+            <span id="application-directory">
               App Directory
             </span>
-          </a>
+          </button>
         </li>
         <li>
-          <button class="cbp-universal-header__item">
+          <button class="cbp-universal-header__item" aria-labelledby="feedback" aria-haspopup="dialog">
             <i class="fas fa-comment"></i>
-            <span>
+            <span id="feedback">
               Feedback
             </span>
           </button>
         </li>
         <li>
-          <button class="cbp-universal-header__item">
+          <button class="cbp-universal-header__item" aria-labelledby="user-info">
             <i class="fas fa-user"></i>
-            <span>
+            <span id="user-info">
               ${username}
             </span>
           </button>
         </li>
+        ` : `
+        <li>
+          <a href="#" class="cbp-universal-header__item" aria-labelledby="log-in">
+            <i class="fas fa-sign-in-alt"></i>
+            <span id="log-in">
+              Login
+            </span>
+          </a>
+        </li>
+        `}
       </ul>
     </header>
   `;
@@ -116,16 +127,19 @@ const ApplicationHeaderTemplate = () => {
 export const UniversalHeader = UniversalHeaderTemplate.bind({});
 UniversalHeader.args = {
   username: 'John Smithington',
+  isLoggedIn: true
 };
 UniversalHeader.argTypes = {
   username: {
     name: 'User Name',
     type: { name: 'string', required: true },
-    description: 'Name of user to be displayed in the Universal Header',
-    control: {
-      type: 'text',
-    },
+    description: 'Name of user to be displayed in the Universal Header'
   },
+  isLoggedIn: {
+    name: 'User Log In',
+    type: { name: 'boolean' },
+    description: 'Display Universal Header controls for user log in/out'
+  }
 };
 
 export const ApplicationHeader = ApplicationHeaderTemplate.bind({});

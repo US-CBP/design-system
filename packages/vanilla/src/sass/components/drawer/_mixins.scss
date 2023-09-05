@@ -19,31 +19,31 @@ $drawer-sizes: (
     left: -100%;
 
     &.active {
-      box-shadow: 5px 0px 25px 5px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--cbp-shadow-level-4-right); //5px 0px 25px 5px rgba(0, 0, 0, 0.5);
       left: 0;
     }
 
     .cbp-drawer__header {
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-left: var(--cbp-space-5x);
+      padding-right: var(--cbp-space-5x);
     }
 
     .cbp-drawer__content {
-      padding-top: 16px;
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-top: var(--cbp-space-4x);
+      padding-left: var(--cbp-space-5x);
+      padding-right: var(--cbp-space-5x);
     }
 
     @media only screen and (min-width : 600px) {
       .cbp-drawer__header {
-        padding-left: 44px;
-        padding-right: 20px;
+        padding-left: var(--cbp-space-11x);
+        padding-right: var(--cbp-space-5x);
       }
   
       .cbp-drawer__content {
-        padding-top: 16px;
-        padding-left: 44px;
-        padding-right: 20px;
+        padding-top: var(--cbp-space-4x);
+        padding-left: var(--cbp-space-11x);
+        padding-right: var(--cbp-space-5x);
       }
     }
 
@@ -56,20 +56,20 @@ $drawer-sizes: (
     right: -100%;
 
     &.active {
-      box-shadow: 5px 0px 25px 5px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--cbp-shadow-level-4-left);
       right: 0;
       left: unset;
     }
 
     .cbp-drawer__header {
-      padding-left: 20px;
-      padding-right: 44px;
+      padding-left: var(--cbp-space-5x);
+      padding-right: var(--cbp-space-11x);
     }
 
     .cbp-drawer__content {
-      padding-top: 16px;
-      padding-right: 44px;
-      padding-left: 20px;
+      padding-top: var(--cbp-space-4x);
+      padding-right: var(--cbp-space-11x);
+      padding-left: var(--cbp-space-5x);
     }
   }
 }
@@ -78,17 +78,17 @@ $drawer-sizes: (
 @mixin drawer-close-btn {
   align-items: center;
   background-color: transparent;
-  border-radius: 3px;
+  border-radius: var(--cbp-border-radius-soft);
   border: 0;
   cursor: pointer;
   display: flex;
-  height: 36px;
+  height: var(--cbp-space-9x);
   justify-content: center;
-  width: 36px;
+  width: var(--cbp-space-9x);
 
   & > i {
     color: var(--cbp-color-interactive-secondary-lighter);
-    font-size: 14px;
+    font-size: var(--cbp-font-size-body);
   }
 
   &:hover {
@@ -101,7 +101,7 @@ $drawer-sizes: (
 
   &:focus {
     background-color: var(--cbp-color-interactive-focus-light);
-    outline: 2px solid var(--cbp-color-black);
+    outline: var(--cbp-border-size-md) solid var(--cbp-color-black);
     outline-offset: -4px;
 
     & > i {
@@ -114,18 +114,18 @@ $drawer-sizes: (
   }
 }
 
+
 @mixin drawer-nav-btn($font-size, $pad-left) {
   align-items: center;
   background-color: transparent;
-  border-width: 0 0 var(--cbp-border-size-sm) var(--cbp-border-size-lg);
+  border-width: 0;
   border-color: transparent;
   border-style: solid;
-  border-bottom: 1px solid var(--cbp-color-base-neutral-light);
   color: var(--cbp-color-interactive-secondary-darker);
   display: flex;
   font-size: $font-size;
-  font-weight: 500;
-  height: 56px;
+  font-weight: var(--cbp-font-weight-medium);
+  height: var(--cbp-space-14x);
   justify-content: space-between;
   padding-left: $pad-left;
   text-align: left;
@@ -135,48 +135,41 @@ $drawer-sizes: (
   & > i {
     @include nav-caret;
   }
-  
+
   &:hover {
     background-color: var(--cbp-color-interactive-secondary-lighter);
-    border-color: var(--cbp-color-interactive-secondary-darker);
-    border-bottom-color: var(--cbp-color-base-neutral-light);
     color: var(--cbp-color-text-darkest);
 
     & > span {
       color: var(--cbp-color-text-darkest);
-      font-weight: 700;
+      font-weight: var(--cbp-font-weight-bold);
     }
   }
 
+  &:focus,
   &:active {
-    background-color: var(--cbp-color-interactive-active-light);
-    border-left: 4px solid var(--cbp-color-interactive-active-dark);
-    color: var(--cbp-color-interactive-active-dark);
-    font-style: italic;
-
-    &:hover {
-      color: var(--cbp-color-interactive-active-dark);
-    }
-
-    &:focus {
-      color: var(--cbp-color-text-lightest);
-      border-left: unset;
-    }
-  }
-
-  &:focus {
     background-color: var(--cbp-color-interactive-focus-dark);
     color: var(--cbp-color-text-lightest);
-    outline: 2px solid var(--cbp-color-white);
-    outline-offset: -4px;
+    outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
+    outline-offset: calc(var(--cbp-space-1x) * -1);
 
     & > span {
       color: var(--cbp-color-text-lightest);
-      font-weight: 700;
+      font-weight: var(--cbp-font-weight-bold);
     }
+  }
 
+  // TechDebt: with implementation undecided, this selector is covering all the bases
+  .active,
+  &[aria-pressed=true],
+  &[aria-selected=true],
+  &[aria-current=true] {
+    background-color: var(--cbp-color-interactive-active-light);
+    color: var(--cbp-color-interactive-active-dark);
+    font-style: italic;
+  
     &:hover {
-      border-left: 0;
+      color: var(--cbp-color-interactive-active-dark);
     }
   }
 }
@@ -184,7 +177,7 @@ $drawer-sizes: (
 @mixin nav-caret {
   align-items: center;
   display: flex;
-  height: 36px;
+  height: var(--cbp-space-9x);
   justify-content: center;
-  width: 36px;
+  width: var(--cbp-space-9x);
 }
