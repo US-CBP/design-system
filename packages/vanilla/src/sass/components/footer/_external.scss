@@ -1,18 +1,19 @@
 @use './internal' as *;
 @use '../../tokens/breakpoints' as *;
+@use '../../layout/container' as *;
 
 .cbp-external-footer {
-  
   section {
     background-color: var(--cbp-color-gray-cool-60);
   }
 
   & > section:first-child {
+    @extend .cbp-fluid-container;
     display: flex;
     flex-direction: column;
 
     & > .cbp-footer__heading {
-      padding: var(--cbp-space-3x) 0 var(--cbp-space-3x) var(--cbp-space-5x);
+      padding: var(--cbp-space-3x) 0;
     }
   }
 
@@ -24,7 +25,6 @@
 .cbp-external-footer__social {
   @include footer-nav-bar;
   display: flex;
-  padding-left: var(--cbp-space-5x);
 
   a[href] {
     font-size: var(--cbp-font-size-heading-md);
@@ -131,10 +131,6 @@
       flex-direction: row;
     }
 
-    & > section:first-child > .cbp-footer__heading {
-      padding-left: var(--cbp-space-8x);
-    }
-
     & .cbp-external-footer__social {
       flex-grow: 1;
       padding-left: var(--cbp-space-4x);
@@ -170,10 +166,6 @@
 }
 
 @media (min-width: $cbp-breakpoint-xl) {
-  .cbp-external-footer > section:first-child > .cbp-footer__heading {
-    padding-left: var(--cbp-space-11x);
-  }
-
   .cbp-external-footer__links {
     column-count: 3;
   }
