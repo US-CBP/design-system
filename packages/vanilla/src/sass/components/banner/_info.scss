@@ -2,18 +2,21 @@
 @use 'mixin' as *;
 
 .cbp-banner__info {
+
   @include banner-info(var(--cbp-color-info-dark)) {
+
     & > div > i {
+      display: flex;
       align-items: center;
+      flex-shrink: 0;
+      color: var(--cbp-color-info-darker);
       background-color: var(--cbp-color-info-light);
       border-radius: 50%;
-      color: var(--cbp-color-info-darker);
-      display: flex;
-      font-size: 24px;
-      height: 48px;
+      font-size: var(--cbp-font-size-masthead-2);
+      height: var(--cbp-space-12x);
       justify-content: center;
-      margin-right: 16px;
-      width: 48px;
+      margin-right: var(--cbp-space-4x);
+      width: var(--cbp-space-12x);
     }
   }
 
@@ -54,7 +57,7 @@
 
   .cbp-banner__info .cbp-banner__text {
     margin-bottom: 0;
-    margin-top: 12px;
+    margin-top: var(--cbp-space-3x);
   }
 
 

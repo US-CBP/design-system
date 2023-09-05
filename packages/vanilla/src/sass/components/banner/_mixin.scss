@@ -3,24 +3,24 @@
 
 @mixin banner-info($bg-color) {
   background-color: $bg-color;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: var(--cbp-space-4x);
+  padding-bottom: var(--cbp-space-4x);
 
   & > div {
     @content;
-    margin: 0 16px;
+    margin: 0 var(--cbp-space-4x);  // TechDebt: this should use a standard responsive spacing utility 
 
     & > div:first-child {
       display: flex;
       flex-shrink: 0;
     }
 
-    @media (min-width: 600px) and (max-width: 1439px) {
-      margin: 0 20px;
+    @media (min-width: 37.5em) and (max-width: 90em) {
+      margin: 0 var(--cbp-space-5x);
     }
 
-    @media (min-width: 1440px) {
-      margin: 0 28px;
+    @media (min-width: 90em) {
+      margin: 0 var(--cbp-space-7x);
     }
   }
 }
@@ -29,17 +29,17 @@
   color: $text-color;
   font-size: 14px;
   font-weight: 400;
-  line-height: 1.5;
-  margin-top: 16px;
-  margin-bottom: 16px;
-  max-width: 1024px;
+  line-height: var(--cbp-line-height-sm);
+  margin-top: var(--cbp-space-4x);
+  margin-bottom: var(--cbp-space-4x);
+  max-width: 100%; //1024px??
 }
 
 @mixin banner-title($text-color) {
   color: $text-color;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.5;
+  font-size: var(--cbp-font-size-masthead-2);
+  font-weight: var(--cbp-font-weight-medium);
+  line-height: var(--cbp-line-height-sm);
 
   &::first-line {
     line-height: initial;
