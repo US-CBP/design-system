@@ -61,7 +61,7 @@
     text-transform: uppercase;
     width: 100%;
 
-    // Causes bouncing
+    // TODO: fix bouncing
     &:hover,
     &:focus {
       font-weight: var(--cbp-font-weight-bold);
@@ -154,6 +154,7 @@
   .cbp-footer > nav > ul {
     display: flex;
     padding-left: var(--cbp-space-8x);
+    padding-right: var(--cbp-space-8x);
 
     a[href] {
       padding: var(--cbp-font-size-button) var(--cbp-space-3x); // no spacing token for 0.875 height of button = 44px
