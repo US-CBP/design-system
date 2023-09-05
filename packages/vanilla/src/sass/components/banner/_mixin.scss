@@ -1,5 +1,4 @@
-//@use '../../base/colors' as *;
-// @use '../button' as *;
+@use '../../layout/container' as *;
 
 @mixin banner-info($bg-color) {
   background-color: $bg-color;
@@ -8,19 +7,11 @@
 
   & > div {
     @content;
-    margin: 0 var(--cbp-space-4x);  // TechDebt: this should use a standard responsive spacing utility 
+    @extend .cbp-fluid-container;
 
     & > div:first-child {
       display: flex;
       flex-shrink: 0;
-    }
-
-    @media (min-width: 37.5em) and (max-width: 90em) {
-      margin: 0 var(--cbp-space-5x);
-    }
-
-    @media (min-width: 90em) {
-      margin: 0 var(--cbp-space-7x);
     }
   }
 }
@@ -32,7 +23,7 @@
   line-height: var(--cbp-line-height-sm);
   margin-top: var(--cbp-space-4x);
   margin-bottom: var(--cbp-space-4x);
-  max-width: 100%; //1024px??
+  max-width: 100%; 
 }
 
 @mixin banner-title($text-color) {
@@ -47,7 +38,5 @@
 }
 
 @mixin banner-dismiss($text-color) {
-  // @extend .cbp-btn;
-  // @extend .cbp-btn__secondary--ghost;
   color: $text-color;
 }
