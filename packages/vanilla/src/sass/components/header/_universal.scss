@@ -1,13 +1,14 @@
 @use '../../tokens/breakpoints' as *;
+@use '../../layout/container' as *;
 
 .cbp-universal-header {
+  @extend .cbp-fluid-container;
   align-items: center;
   background-color: var(--cbp-color-branding-dhs-blue);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   min-height: var(--cbp-space-15x);
-  padding: 0 var(--cbp-space-4x);
   width: 100%;
 }
 
@@ -74,7 +75,6 @@
 @media (min-width: $cbp-breakpoint-md) {
   .cbp-universal-header {
     min-height: 5.5rem;
-    padding: 0 var(--cbp-space-8x);
   }
 
   .cbp-universal-header__brand::after {
@@ -89,11 +89,5 @@
     & > span {
       display: unset;
     }
-  }
-}
-
-@media (min-width: $cbp-breakpoint-xl) {
-  .cbp-universal-header {
-    padding: 0 var(--cbp-space-11x);
   }
 }
