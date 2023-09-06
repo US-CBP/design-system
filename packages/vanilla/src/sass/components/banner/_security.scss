@@ -4,11 +4,11 @@
 .cbp-banner__security {
   @include banner-info(var(--cbp-color-warning-base)) {
     & > div > img {
-      align-items: center;
       display: flex;
-      height: 48px;
+      align-items: center;
+      height: var(--cbp-space-12x);
       justify-content: center;
-      margin-right: 16px;
+      margin-right: var(--cbp-space-4x);
     }
   }
 
@@ -25,11 +25,13 @@
   }
 }
 
+
+// TechDebt: These look like generic utility classes and don't belong here
 .cbp-text-bold {
-  font-weight: 700 !important;
+  font-weight: var(--cbp-font-weight-bold);
 }
 .cbp-text-italic {
-  font-style: italic !important;
+  font-style: italic;
 }
 
 @media only screen and (min-width : 599px) {
@@ -39,7 +41,7 @@
 
   .cbp-banner__security .cbp-banner__text {
     margin-bottom: 0;
-    margin-top: 12px;
+    margin-top: var(--cbp-space-3x);
   }
 
   .cbp-banner__security button {
