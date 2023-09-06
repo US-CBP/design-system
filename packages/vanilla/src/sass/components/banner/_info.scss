@@ -12,7 +12,7 @@
       color: var(--cbp-color-info-darker);
       background-color: var(--cbp-color-info-light);
       border-radius: 50%;
-      font-size: var(--cbp-font-size-masthead-2);
+      font-size: var(--cbp-space-8x); // This is actually the icon size, so use space token instead of font
       height: var(--cbp-space-12x);
       justify-content: center;
       margin-right: var(--cbp-space-4x);

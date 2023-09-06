@@ -29,14 +29,14 @@ const SecurityBannerTemplate = ({headingLevel, headingText, bannerText}) => {
       <div>
         <div>
           <img src="../assets/images/cbp-icon/SECURITY ICON - TS SCI.svg" alt="security logo">
-          <h6 class="cbp-banner__info-title d-none-lg">
-            <i class="fas fa-exclamation-triangle"></i> Infosec Classification: TS/SCI
-          </h6>
+          <${headingLevel} class="cbp-banner__info-title d-none-lg">
+            <i class="fas fa-exclamation-triangle"></i> ${headingText}
+          </${headingLevel}>
         </div>
         <div>
-          <h6 class="cbp-banner__info-title d-none-sm">
-            <i class="fas fa-exclamation-triangle"></i> Infosec Classification: TS/SCI
-          </h6>
+          <${headingLevel} class="cbp-banner__info-title d-none-sm">
+            <i class="fas fa-exclamation-triangle"></i> ${headingText}
+          </${headingLevel}>
           <p class="cbp-banner__text">
             ${bannerText ? bannerText : `This page contains information, in whole or part, that is marked <span class="cbp-text-bold cbp-text-italic">CLASSIFIED: TOP SECRET (TS)</span>. 
             If you are accessing this information from a non-classified device, stop what you are doing 
@@ -144,5 +144,5 @@ SecurityBanner.argTypes = {
 };
 SecurityBanner.args = {
   headingLevel: 'h2',
-  headingText: 'Scheduled Maintenance Notice'
+  headingText: 'Infosec Classification: TS/SCI'
 };
