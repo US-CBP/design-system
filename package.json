@@ -1,7 +1,7 @@
 {
   "name": "design-system",
   "version": "1.0.0",
-  "description": "",
+  "description": "A design system for the U.S. Customs & Border Protection that provides components, patterns and guidelines to create consistent and cohesive user interfaces.",
   "main": "index.js",
   "scripts": {
     "style-lint": "npx stylelint '**/*.scss'",
@@ -21,16 +21,20 @@
     "type": "git",
     "url": "https://github.com/US-CBP/design-system.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "CBP",
+    "CBP Design System",
+    "CBP Theme"
+  ],
+  "author": "Creative Services <CreativeServices@cbp.dhs.gov>",
   "license": "CC0-1.0",
   "bugs": {
     "url": "https://github.com/US-CBP/design-system/issues"
   },
   "homepage": "https://github.com/US-CBP/design-system",
   "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=16.0.0"
+    "npm": ">=8.0.0",
+    "node": ">=18.0.0"
   },
   "workspaces": [
     "packages/vanilla",
