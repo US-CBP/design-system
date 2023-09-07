@@ -99,7 +99,7 @@
 // 433px is the inline size where the text wraps
 @container usa-banner (min-width: 433px) {
   .cbp-banner__title {
-    max-height: 32px;
+    max-height: var(--cbp-space-8x);
     line-height: unset;
   }
 }
