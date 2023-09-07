@@ -9,18 +9,19 @@
   @extend .cbp-fluid-container;
   color: var(--cbp-usa-banner-color);
   background-color: var(--cbp-usa-banner-background-color);
+  container-type: inline-size;
+  container-name: usa-banner;
 }
 
 .cbp-banner__title {
   display: flex;
   align-items: baseline;
   gap: var(--cbp-space-2x);
-  min-height: var(--cbp-space-8x);
   padding-bottom: var(--cbp-space-2x);
   padding-top: var(--cbp-space-2x);
   font-size: var(--cbp-font-size-subhead);
   font-weight: var(--cbp-font-weight-medium);
-  margin-bottom: var(--cbp-space-3x);
+  line-height: 1.5;
 }
 
 .cbp-banner__toggle {
@@ -31,13 +32,15 @@
   text-decoration: underline;
 
   & > i {
+    font-size: var(--cbp-font-size-heading-xs);
     margin-left: var(--cbp-space-1x);
     text-decoration: none;
+    transition: transform var(--cbp-motion-duration-short);
+    vertical-align: middle;
   }
 
   &[aria-expanded='true'] > i {
-    transform: rotate(180deg);
-    top: -2px;
+    transform: rotate(-180deg);
   }
 
   &:hover {
@@ -57,7 +60,7 @@
   color: var(--cbp-usa-banner-color);
   gap: var(--cbp-space-8x);
   max-width: 64rem;
-  padding-bottom: var(--cbp-space-3x);
+  padding: var(--cbp-space-3x) 0;
   line-height: 1.6;
 
   & > div {
@@ -91,4 +94,12 @@
 .banner-active {
   display: flex;
   flex-wrap: wrap;
+}
+
+// 433px is the inline size where the text wraps
+@container usa-banner (min-width: 433px) {
+  .cbp-banner__title {
+    max-height: 32px;
+    line-height: unset;
+  }
 }
