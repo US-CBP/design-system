@@ -96,8 +96,8 @@
   flex-wrap: wrap;
 }
 
-// 433px is the inline size where the text wraps
-@container usa-banner (min-width: 433px) {
+// 27.063rem is the inline size where the text wraps
+@container usa-banner (min-width: 27.063rem) {
   .cbp-banner__title {
     max-height: var(--cbp-space-8x);
     line-height: unset;
