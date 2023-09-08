@@ -56,20 +56,17 @@ const UsaBannerTemplate = () => {
   return `
     <section aria-label="Official website of the United States government">
       <header class="cbp-banner">
-        <div class="cbp-grid-container cbp-banner__title">
+        <div class="cbp-banner__title">
           <img src="../assets/images/us_flag_small.png" height="11" width="16" alt="usa logo" />
           <div>
             <span>An official website of the United States government.</span>
             <button class="cbp-banner__toggle" aria-controls="gov-banner">
-              <span>Here&#39;s how you know<i class="fas fa-angle-down"></i></span>
-              <div class="cbp-usa-banner__dismiss">
-                <i class="fas fa-times"></i>
-              </div>
+              Here&#39;s how you know<i class="fas fa-angle-down"></i>
             </button>
           </div>
         </div>
 
-        <div class="cbp-banner__content cbp-grid-container" id="gov-banner">
+        <div class="cbp-banner__content" id="gov-banner">
           <div>
             <i class="fas fa-landmark"></i>
             <div>

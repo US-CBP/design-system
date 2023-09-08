@@ -1,4 +1,4 @@
-@use '../../grid/breakpoints' as *;
+@use '../../layout/container' as *;
 
 :root {
   --cbp-usa-banner-color: var(--cbp-color-text-lightest);
@@ -6,20 +6,22 @@
 }
 
 .cbp-banner {
-  position: relative;
+  @extend .cbp-fluid-container;
   color: var(--cbp-usa-banner-color);
   background-color: var(--cbp-usa-banner-background-color);
+  container-type: inline-size;
+  container-name: usa-banner;
 }
 
 .cbp-banner__title {
-  position: relative;
   display: flex;
   align-items: baseline;
   gap: var(--cbp-space-2x);
-  min-height: var(--cbp-space-8x);
-  padding: var(--cbp-space-2x) 0;
+  padding-bottom: var(--cbp-space-2x);
+  padding-top: var(--cbp-space-2x);
   font-size: var(--cbp-font-size-subhead);
   font-weight: var(--cbp-font-weight-medium);
+  line-height: 1.5;
 }
 
 .cbp-banner__toggle {
@@ -29,19 +31,16 @@
   padding: 0;
   text-decoration: underline;
 
-  .cbp-usa-banner__dismiss {
-    display: none;
-  }
-
-  & > span > i {
-    position: relative;
+  & > i {
+    font-size: var(--cbp-font-size-heading-xs);
     margin-left: var(--cbp-space-1x);
     text-decoration: none;
+    transition: transform var(--cbp-motion-duration-short);
+    vertical-align: middle;
   }
 
-  &[aria-expanded='true'] span > i {
-    transform: rotate(180deg);
-    top: -2px;
+  &[aria-expanded='true'] > i {
+    transform: rotate(-180deg);
   }
 
   &:hover {
@@ -50,8 +49,7 @@
 
   &:focus {
     color: var(--cbp-color-interactive-focus-light);
-    outline: var(--cbp-border-size-md) solid
-      var(--cbp-color-interactive-focus-light);
+    outline: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-light);
     outline-offset: var(--cbp-space-half-x);
   }
 }
@@ -60,18 +58,22 @@
   display: none;
   background-color: var(--cbp-usa-banner-background-color);
   color: var(--cbp-usa-banner-color);
+  gap: var(--cbp-space-8x);
   max-width: 64rem;
+  padding: var(--cbp-space-3x) 0;
   line-height: 1.6;
-  margin-top: var(--cbp-space-6x);
 
   & > div {
     display: flex;
     flex-basis: 20rem;
     flex-grow: 1;
     gap: var(--cbp-space-3x);
-    padding: 0 var(--cbp-space-3x);
-    margin-bottom: var(--cbp-space-8x);
 
+    & p {
+      margin-bottom: 0;
+    }
+
+    // TODO: switch with SVG when available
     & > i {
       display: flex;
       flex-shrink: 0;
@@ -92,4 +94,12 @@
 .banner-active {
   display: flex;
   flex-wrap: wrap;
+}
+
+// 27.063rem is the inline size where the text wraps
+@container usa-banner (min-width: 27.063rem) {
+  .cbp-banner__title {
+    max-height: var(--cbp-space-8x);
+    line-height: unset;
+  }
 }
