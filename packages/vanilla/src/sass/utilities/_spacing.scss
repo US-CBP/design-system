@@ -26,44 +26,44 @@ $spacing: (
 
 @each $name, $space in $spacing {
   .cbp-margin-#{$name} {
-    margin: #{$space} !important;
+    margin: #{$space};
   }
 
   .cbp-margin-top-#{$name} {
-    margin-top: #{$space} !important;;
+    margin-top: #{$space};
   }
 
   .cbp-margin-bottom-#{$name} {
-    margin-bottom: #{$space} !important;;
+    margin-bottom: #{$space};
   }
 
   .cbp-margin-right-#{$name} {
-    margin-right: #{$space} !important;;
+    margin-right: #{$space};
   }
 
   .cbp-margin-left-#{$name} {
-    margin-left: #{$space} !important;;
+    margin-left: #{$space};
   }
 }
 
 @each $name, $space in $spacing {
   .cbp-padding-#{$name} {
-    padding: #{$space} !important;;
+    padding: #{$space};
   }
 
   .cbp-padding-top-#{$name} {
-    padding-top: #{$space} !important;;
+    padding-top: #{$space};
   }
 
   .cbp-padding-bottom-#{$name} {
-    padding-bottom: #{$space} !important;;
+    padding-bottom: #{$space};
   }
 
   .cbp-padding-right-#{$name} {
-    padding-right: #{$space} !important;;
+    padding-right: #{$space};
   }
 
   .cbp-padding-left-#{$name} {
-    padding-left: #{$space} !important;;
+    padding-left: #{$space};
   }
 }
