@@ -20,7 +20,7 @@ export default {
 const Template = ({drawerPosition}) => {
 
   return `
-    <button type="button" aria-label="Open Drawer" class="cbp-btn cbp-btn__secondary-outline" data-drawer="open">
+    <button type="button" aria-label="Open Drawer" class="cbp-btn-square cbp-btn__secondary-outline" data-drawer="open">
       <i class="fas fa-bars"></i>
     </button>
 

@@ -66,7 +66,7 @@ const ApplicationHeaderTemplate = () => {
           <a href="#" class="cbp-nav-item">Child Page 3</a>
         </div>
         <div>
-          <button class="cbp-hamburger" data-drawer="open" id="cbp-nav-drawer-control" aria-label="Open navigation drawer">
+          <button class="cbp-btn-square cbp-btn__secondary-outline" data-drawer="open" id="cbp-nav-drawer-control" aria-label="Open navigation drawer">
             <i class="fas fa-bars"></i>
           </button>
         </div>
