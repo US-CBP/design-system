@@ -5,22 +5,11 @@
 
   // The Control uses and inherits from button classes to reduce duplication
   .cbp-menu__control {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-width: var(--cbp-space-6x);
     min-height: var(--cbp-space-6x);
     padding: 0;
-    letter-spacing: unset;
     
-    i {
-      font-size: var(--cbp-font-size-body);
-      margin-right: unset;
-    }
 
-    &:hover:not(:focus) {
-      background-color: var(--cbp-color-interactive-secondary-light);
-    }
   }
 
   /* The actual menu, positioned for mobile-first */

@@ -1,5 +1,4 @@
 // @use '../button/states' as *;
-@use '../drawer/hamburger' as *;
 @use '../../tokens/breakpoints' as *;
 
 @mixin menu-hover {
@@ -85,13 +84,6 @@
     font-weight: var(--cbp-font-weight-bold);
     padding: 0 var(--cbp-space-4x) 0 var(--cbp-space-4x);
   }
-}
-
-
-
-
-.cbp-hamburger {
-  @include hamburger-menu;
 }
 
 @media (min-width: $cbp-breakpoint-md) {

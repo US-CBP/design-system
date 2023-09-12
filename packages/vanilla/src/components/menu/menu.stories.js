@@ -65,7 +65,7 @@ const OverflowMenuTemplate = ({buttonFill, menuPosition, controlLabel, controlAr
         aria-controls="${menuID}"
         aria-label="${controlAriaLabel}"
         id="${controlID}"
-        class="cbp-menu__control cbp-btn cbp-btn__secondary-${buttonFill}"
+        class="cbp-menu__control cbp-btn-square cbp-btn__secondary-${buttonFill}"
       >
         <i class="fas fa-ellipsis-v"></i>${controlLabel!=undefined ? controlLabel : ''}
       </button>
@@ -106,7 +106,7 @@ const OverflowMenuOptionsTemplate = ({buttonFill, menuPosition, controlLabel, co
         aria-controls="${menuID}"
         aria-label="${controlAriaLabel}"
         id="menubutton2"
-        class="cbp-menu__control cbp-btn cbp-btn__secondary-${buttonFill}"
+        class="cbp-menu__control cbp-btn-square cbp-btn__secondary-${buttonFill}"
       >
         <i class="fas fa-ellipsis-v"></i>${controlLabel!=undefined ? controlLabel : ''}
       </button>
