@@ -12,6 +12,16 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/bundle.js",
+      "require": "./dist/bundle.umd.cjs"
+    },
+    "./dist/": {
+      "import": "./dist/",
+      "require": "./dist/"
+    }
+  },
   "homepage": "https://github.com/US-CBP/design-system/tree/develop/packages/vanilla",
   "bugs": {
     "url": "https://github.com/US-CBP/design-system/issues"
