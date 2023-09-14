@@ -1,7 +1,7 @@
 import { addons } from '@storybook/addons';
 import { create } from '@storybook/theming'
 
-import cbpLogo from '@cbpds/vanilla/assets/images/CBP_SEAL.svg'
+import cbpLogo from '@cbpds/vanilla/dist/assets/images/CBP_SEAL.svg'
 
 const theme =  create({
   base: 'light',
