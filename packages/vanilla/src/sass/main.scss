@@ -10,9 +10,6 @@
 // CBP Typography
 @use "typography";
 
-// CBP Utilities
-@use "utilities";
-
 // CBP Grid
 @use "grid";
 
@@ -24,3 +21,6 @@
 
 // Demo SCSS - figure out a way to exclude these files from compile
 //@use "demo";
+
+// CBP Utilities
+@use "utilities";
