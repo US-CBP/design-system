@@ -44,6 +44,16 @@ $spacing: (
   .cbp-margin-left-#{$name} {
     margin-left: #{$space};
   }
+
+  .cbp-margin-x-#{$name} {
+    margin-left: #{$space};
+    margin-right: #{$space};
+  }
+
+  .cbp-margin-y-#{$name} {
+    margin-top: #{$space};
+    margin-bottom: #{$space};
+  }
 }
 
 @each $name, $space in $spacing {
@@ -65,5 +75,15 @@ $spacing: (
 
   .cbp-padding-left-#{$name} {
     padding-left: #{$space};
+  }
+
+  .cbp-padding-x-#{$name} {
+    padding-left: #{$space};
+    padding-right: #{$space};
+  }
+
+  .cbp-padding-y-#{$name} {
+    padding-top: #{$space};
+    padding-bottom: #{$space};
   }
 }
