@@ -1,8 +1,8 @@
 @use './../tokens/breakpoints' as *;
 
 .cbp-fluid-container {
-  padding-left: var(--cbp-space-4x);
-  padding-right: var(--cbp-space-4x);
+  padding-left: var(--cbp-space-5x);
+  padding-right: var(--cbp-space-5x);
 
   @media (min-width: $cbp-breakpoint-md) and (max-width: $cbp-breakpoint-xl) {
     padding-left: var(--cbp-space-8x);

@@ -4,9 +4,7 @@
 @mixin menu-hover {
   color: var(--cbp-color-text-darkest);
   background-color: var(--cbp-color-interactive-secondary-lighter);
-  //border-style: solid;
   border-color: var(--cbp-color-interactive-secondary-darker);
-  //border-width: 0 0 var(--cbp-border-size-md) 0;
 }
 
 .cbp-application-header {
@@ -82,7 +80,8 @@
   .nav-home {
     font-size: var(--cbp-font-size-heading-sm);
     font-weight: var(--cbp-font-weight-bold);
-    padding: 0 var(--cbp-space-4x) 0 var(--cbp-space-4x);
+    padding-left: var(--cbp-space-5x);
+    padding-right: var(--cbp-space-5x);
   }
 }
 
