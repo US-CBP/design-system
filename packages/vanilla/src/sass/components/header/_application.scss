@@ -1,52 +1,31 @@
-// @use '../button/states' as *;
 @use '../../tokens/breakpoints' as *;
 
-@mixin menu-hover {
-  color: var(--cbp-color-text-darkest);
-  background-color: var(--cbp-color-interactive-secondary-lighter);
-  //border-style: solid;
-  border-color: var(--cbp-color-interactive-secondary-darker);
-  //border-width: 0 0 var(--cbp-border-size-md) 0;
-}
-
 .cbp-application-header {
-  display: flex;
   align-items: center;
-  height: 56px;
-  width: 100%;
-  position: sticky;
-  top: -1px;
   background-color: var(--cbp-color-white);
-  box-shadow: 0px 5px 5px -3px var(--cbp-color-interactive-secondary-dark);
+  box-shadow: var(--cbp-shadow-level-1-down);
+  display: flex;
+  height: var(--cbp-space-14x);
+  justify-content: space-between;
   padding-right: var(--cbp-space-4x);
+  position: sticky;
+  top: calc(-1 * var(--cbp-space-half-x));
+  width: 100%;
   z-index: var(--cbp-z-index-level-1);
 
-  nav {
-    a {
-      text-decoration: none;
-    }
-  }
-
-  .cbp-nav-menu {
+  & div:first-child {
     display: flex;
     align-items: center;
-    justify-content: end;
     height: 100%;
-    width: 100%;
+    text-decoration: none;
 
-    @media (min-width: 768px) {
-      justify-content: space-between;
+    & > a[href].cbp-application-header__app {
+      padding-left: var(--cbp-space-5x);
     }
   }
 
-  .cbp-application-menus {
-    display: flex;
-    height: 100%;
-  }
-
-  .nav-home,
-  .cbp-nav-item,
-  .cbp-menu-dropdown {
+  & div:first-child a[href],
+  & div:first-child button {
     display: flex;
     align-items: center;
     height: 100%;
@@ -62,46 +41,63 @@
     border-width: 0 0 var(--cbp-border-size-md) 0;
     
     & > i {
-      margin-left: 8px;
+      margin-left: var(--cbp-space-2x);
     }
-
+  
     &:hover {
-      @include menu-hover;
-    }
-
-    &:focus {
-      // @include btn-focus;
-      border-bottom: 0;
+      color: var(--cbp-color-text-darkest);
+      background-color: var(--cbp-color-interactive-secondary-lighter);
+      border-color: var(--cbp-color-interactive-secondary-darker);
     }
 
     &:active {
-      // this is supposed to be the same as focus but with an animation.
+      background-color: var(--cbp-color-interactive-active-dark);
+      color: var(--cbp-color-text-lightest);
+    }
+  
+    &:focus {
+      background-color: var(--cbp-color-interactive-focus-dark);
+      color: var(--cbp-color-text-lightest);
+      outline-color: var(--cbp-color-white);
+      outline-style: solid;
+      outline-width: var(--cbp-border-size-md);
+      outline-offset: calc(-1 * var(--cbp-space-1x));
     }
   }
+}
 
-  .nav-home {
-    font-size: var(--cbp-font-size-heading-sm);
-    font-weight: var(--cbp-font-weight-bold);
-    padding: 0 var(--cbp-space-4x) 0 var(--cbp-space-4x);
+.cbp-application-header__controls {
+  display: inherit;
+  align-items: inherit;
+  height: 100%;
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+
+  & li {
+    height: inherit;
+  }
+
+  @media (max-width: $cbp-breakpoint-lg) {
+    display: none;
   }
 }
 
 @media (min-width: $cbp-breakpoint-md) {
   .cbp-application-header {
-    padding-right: var(--cbp-space-8x);
+    padding-right: var(--cbp-space-8x); 
     
-    .nav-home {
+    & div:first-child > a[href].cbp-application-header__app {
       padding-left: var(--cbp-space-8x);
     }
   }
-
 }
 
 @media (min-width: $cbp-breakpoint-xl) {
   .cbp-application-header {
     padding-right: var(--cbp-space-11x);
-
-    .nav-home {
+    
+    & div:first-child > a[href].cbp-application-header__app {
       padding-left: var(--cbp-space-11x);
     }
   }

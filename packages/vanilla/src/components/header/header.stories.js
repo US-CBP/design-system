@@ -58,18 +58,24 @@ const UniversalHeaderTemplate = ({ username, isLoggedIn }) => {
 const ApplicationHeaderTemplate = () => {
   return `
     <nav class="cbp-application-header">
-      <a href="/" class="nav-home">Application Name</a>
-      <div class="cbp-nav-menu">
-        <div class="cbp-application-menus dh-sm-none">
-          <button type="button" class="cbp-nav-item cbp-menu-dropdown" data-target="cbp-nav-drawer-control" data-controls="cbp-nav-drawer">Child Page 1<i class="fas fa-chevron-down"></i></button>
-          <button type="button" class="cbp-nav-item cbp-menu-dropdown" data-target="cbp-nav-drawer-control" data-controls="cbp-nav-drawer">Child Page 2<i class="fas fa-chevron-down"></i></button>
-          <a href="#" class="cbp-nav-item">Child Page 3</a>
-        </div>
-        <div>
-          <button class="cbp-btn-square cbp-btn__secondary-outline" data-drawer="open" id="cbp-nav-drawer-control" aria-label="Open navigation drawer">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
+      <div>
+        <a href="/" class="cbp-application-header__app">Application Name</a>
+        <ul class="cbp-application-header__controls">
+          <li>
+            <button type="button" data-target="cbp-nav-drawer-control" data-controls="cbp-nav-drawer">Child Page 1<i class="fas fa-chevron-down"></i></button>
+          </li>
+          <li>
+            <button type="button" data-target="cbp-nav-drawer-control" data-controls="cbp-nav-drawer">Child Page 2<i class="fas fa-chevron-down"></i></button>
+          </li>
+          <li>
+            <a href="#">Child Page 3</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <button class="cbp-btn-square cbp-btn__secondary-outline" data-drawer="open" id="cbp-nav-drawer-control" aria-label="Open navigation drawer">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </nav>
 
