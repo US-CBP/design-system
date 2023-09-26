@@ -4,20 +4,18 @@
 @mixin menu-hover {
   color: var(--cbp-color-text-darkest);
   background-color: var(--cbp-color-interactive-secondary-lighter);
-  //border-style: solid;
   border-color: var(--cbp-color-interactive-secondary-darker);
-  //border-width: 0 0 var(--cbp-border-size-md) 0;
 }
 
 .cbp-application-header {
   display: flex;
   align-items: center;
-  height: 56px;
+  height: var(--cbp-space-14x);
   width: 100%;
   position: sticky;
-  top: -1px;
+  top: calc(-1 * var(--cbp-space-half-x));
   background-color: var(--cbp-color-white);
-  box-shadow: 0px 5px 5px -3px var(--cbp-color-interactive-secondary-dark);
+  box-shadow: var(--cbp-shadow-level-1-down);
   padding-right: var(--cbp-space-4x);
   z-index: var(--cbp-z-index-level-1);
 
@@ -62,7 +60,7 @@
     border-width: 0 0 var(--cbp-border-size-md) 0;
     
     & > i {
-      margin-left: 8px;
+      margin-left: var(--cbp-space-2x);
     }
 
     &:hover {
@@ -82,7 +80,8 @@
   .nav-home {
     font-size: var(--cbp-font-size-heading-sm);
     font-weight: var(--cbp-font-weight-bold);
-    padding: 0 var(--cbp-space-4x) 0 var(--cbp-space-4x);
+    padding-left: var(--cbp-space-5x);
+    padding-right: var(--cbp-space-5x);
   }
 }
 
