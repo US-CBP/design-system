@@ -5,3 +5,15 @@
 <link rel="stylesheet" href="font-awesome/all.css">
 
 <script type="module" src="bundle.js"></script>
+
+
+<!-- This is an example of how one might call cbpdsInit() manually from their application, but it doesn't seem to work in Storybook
+<script type="module">
+    import { cbpdsInit } from "bundle";
+    window.cbpdsInit = cbpdsInit;
+    // This could be any event, such as the return of a promise after fetching data that updated the page significantly
+    document.addEventListener('DOMContentLoaded', (event) => {
+        window.cbpdsInit();
+    });
+</script>
+-->
