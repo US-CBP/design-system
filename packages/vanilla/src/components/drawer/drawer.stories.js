@@ -35,58 +35,7 @@ const Template = ({drawerPosition}) => {
         </button>
       </div>
 
-      <nav class="cbp-drawer__content">
-        <ul class="cbp-drawer__nav">
-          <li class="cbp-drawer__nav-item--a">
-            <button type="button">
-              <span>
-                <i class="fas fa-home"></i>
-                Default/Home Page (A)
-              </span>
-              <i class="fas fa-angle-up"></i>
-            </button>
-            <ul>
-              <li>
-                <button type="button">Child Page 1 (B)</button>
-              </li>
-              <li>
-                <button type="button">Child Page 2 (B)<i class="fas fa-angle-up"></i></button>
-                <ul>
-                  <li>
-                    <button type="button">
-                      Grandchild Page 1 (C)
-                      <i class="fas fa-caret-up"></i>
-                    </button>
-                    <ul>
-                      <li>
-                        <button type="button" aria-selected="true">Great-Grandchild Page 1 (D)</button>
-                      </li>
-                      <li>
-                        <button type="button">Great-Grandchild Page 2 (D)</button>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <button type="button">Grandchild Page 2 (C)</button>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <button type="button">
-              Sibling Page 1 (A)
-              <i class="fas fa-angle-up"></i>
-            </button>
-          </li>
-          <li>
-            <button type="button">Sibling Page 2 (A)</button>
-          </li>
-          <li>
-            <button type="button">Sibling Page 3 (A)</button>
-          </li>
-        </ul>
-      </nav>
+      <div class="cbp-drawer__content"></div>
     </div>
   `;
 };

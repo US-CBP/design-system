@@ -1,8 +1,6 @@
-//@use '../../base/colors' as *;
 @use 'mixins' as *;
 
 @forward 'nav';
-
 
 /* Default Drawer Direction: 'left' */
 .cbp-drawer {
@@ -50,12 +48,6 @@
 .cbp-drawer__content {
   background-color: var(--cbp-color-white);
   height: 100%;
-
-  ul, ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
 }
 
 @include drawer-left;
