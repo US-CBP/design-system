@@ -16,7 +16,7 @@ export default {
       name: 'Actions Layout',
       description: 'Choose actions layout of the card component',
       control: 'radio',
-      options: ['single', 'double', 'triple']
+      options: ['single', 'double', 'triple', 'quadruple']
     },
     danger: {
       name: 'Danger',
@@ -38,10 +38,10 @@ const renderActions = (layout) => {
     return `
       <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card__actions">
-        <button class="cbp-btn__secondary" type="button" aria-describedby="card-heading-1">
+        <button class="cbp-btn cbp-btn__secondary" type="button" aria-describedby="card-heading-1">
           <i class="fas fa-info-circle"></i>App Info
         </button>
-        <a href="#" class="cbp-btn__primary" aria-describedby="card-heading-1">
+        <a href="#" class="cbp-btn cbp-btn__primary" aria-describedby="card-heading-1">
           <i class="fas fa-external-link-alt"></i>Go To App
         </a>
       </div>
@@ -50,16 +50,26 @@ const renderActions = (layout) => {
     return `
       <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card__actions">
-        <button class="cbp-btn__danger" type="button" aria-describedby="card-heading-1"><i class="fas fa-trash-alt"></i>Delete</button>
-        <button class="cbp-btn__secondary" type="button" aria-describedby="card-heading-1"><i class="fas fa-times"></i>Cancel</button>
-        <button class="cbp-btn__primary" type="button" aria-describedby="card-heading-1"><i class="fas fa-save"></i>Publish</button>
+        <button class="cbp-btn cbp-btn__danger" type="button" aria-describedby="card-heading-1"><i class="fas fa-trash-alt"></i>Delete</button>
+        <button class="cbp-btn cbp-btn__secondary" type="button" aria-describedby="card-heading-1"><i class="fas fa-times"></i>Cancel</button>
+        <button class="cbp-btn cbp-btn__primary" type="button" aria-describedby="card-heading-1"><i class="fas fa-save"></i>Publish</button>
+      </div>
+    `;
+  } else if (layout === 'quadruple') {
+    return `
+      <!-- Card Decision actions can contain both Button and Link elements -->
+      <div class="cbp-card__actions">
+        <button class="cbp-btn cbp-btn__danger" type="button" aria-describedby="card-heading-1"><i class="fas fa-trash-alt"></i>Delete</button>
+        <button class="cbp-btn cbp-btn__secondary" type="button" aria-describedby="card-heading-1"><i class="fas fa-times"></i>Cancel</button>
+        <button class="cbp-btn cbp-btn__tertiary" type="button" aria-describedby="card-heading-1"><i class="fas fa-save"></i>Tertiary</button>
+        <button class="cbp-btn cbp-btn__primary" type="button" aria-describedby="card-heading-1"><i class="fas fa-save"></i>Publish</button>
       </div>
     `;
   } else {
     return `
       <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card__actions">
-        <a href="#" class="cbp-btn__primary" aria-describedby="card-heading-1">
+        <a href="#" class="cbp-btn cbp-btn__primary" aria-describedby="card-heading-1">
           <i class="fas fa-external-link-alt"></i>Go To App
         </a>
       </div>

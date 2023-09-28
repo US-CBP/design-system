@@ -14,14 +14,17 @@
 .cbp-card__actions {
   display: flex;
 
-  & > button,
-  & > a[href] {
-    @extend .cbp-btn;
+  & .cbp-btn {
     border-radius: 0;
     padding: var(--cbp-space-3x) 0;
     text-align: center;
     text-decoration: none;
     width: 100%;
+  }
+
+  & .cbp-btn__tertiary {
+    background-color: var(--cbp-color-interactive-secondary-base);
+    color: var(--cbp-color-text-lightest);
   }
 
   & > button:first-child,
