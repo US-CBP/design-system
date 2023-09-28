@@ -307,7 +307,7 @@
           "attributes": { "use": "theme", "type": "focus" }
         },
         "dark": {
-          "value": "{ color.blue.60.value }",
+          "value": "{ color.blue.warm.70.value }",
           "attributes": { "use": "theme", "type": "focus" }
         }
       },
