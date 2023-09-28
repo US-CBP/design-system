@@ -35,11 +35,7 @@ const Template = ({drawerPosition}) => {
         </button>
       </div>
 
-      <nav class="cbp-drawer__content">
-        <section style="height: 100%; display: flex; justify-content: center; align-items: center;">
-          <p class="cbp-text-italic">Drawer Content</p>
-        </section>
-      </nav>
+      <div class="cbp-drawer__content"></div>
     </div>
   `;
 };
