@@ -5,7 +5,7 @@
   border-color: var(--cbp-color-interactive-primary-dark);
   color: var(--cbp-color-text-lightest);
 
-  &:hover {
+  &:hover:not(:focus):not(:disabled) {
     background-color: var(--cbp-color-interactive-primary-darker);
     border-color: var(--cbp-color-interactive-primary-darker);
   }
