@@ -16,24 +16,31 @@
 
   & .cbp-btn {
     border-radius: 0;
-    padding: var(--cbp-space-3x) 0;
-    text-align: center;
-    text-decoration: none;
+    padding-top: var(--cbp-space-3x);
+    padding-bottom: var(--cbp-space-3x);
     width: 100%;
   }
 
   & .cbp-btn__tertiary {
     background-color: var(--cbp-color-interactive-secondary-base);
     color: var(--cbp-color-text-lightest);
+
+    &:hover:not(:focus):not(:disabled) {
+      background-color: var(--cbp-color-interactive-secondary-darker);
+      border-color: var(--cbp-color-interactive-secondary-darker);
+    }
+
+    // Without this set, .cbp-btn:focus gets overridden by .cbp-card__actions.cbp-btn__tertiary background-color property
+    &:focus {
+      background-color: var(--cbp-color-interactive-focus-dark);
+    }
   }
 
-  & > button:first-child,
-  & > a[href]:first-child {
+  & .cbp-btn:first-child {
     border-bottom-left-radius: var(--cbp-border-radius-softer);
   }
 
-  & > button:last-child,
-  & > a[href]:last-child {
+  & .cbp-btn:last-child {
     border-bottom-right-radius: var(--cbp-border-radius-softer);
   }
 }

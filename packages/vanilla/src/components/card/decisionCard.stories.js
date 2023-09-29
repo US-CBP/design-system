@@ -2,14 +2,16 @@ export default {
   title: 'Patterns/Card/Decision Card',
   parameters: {
     layout: 'centered',
-    html: {
-      root: '.wrapper'
-    }
   },
   argTypes: {
     title: {
       name: 'Card Title',
       description: 'Title of the Card component to display',
+      type: { name: 'string', required: false }
+    },
+    body: {
+      name: 'Card Body',
+      description: 'Card body content area',
       type: { name: 'string', required: false }
     },
     actionsLayout: {
@@ -23,14 +25,7 @@ export default {
       description: 'Display the "danger" state modifier of the card',
       control: 'boolean'
     }
-  },
-  decorators: [
-    (Story) => `
-      <div class="wrapper" style="display: grid; grid-template-columns: 312px">
-        ${Story().outerHTML || Story()}
-      </div>
-    `
-  ]
+  }
 };
 
 const renderActions = (layout) => {
@@ -77,24 +72,14 @@ const renderActions = (layout) => {
   }
 };
 
-const DefaultDecisionCardTemplate = ({ title, actionsLayout, danger }) => {
+const DefaultDecisionCardTemplate = ({ title, body, actionsLayout, danger }) => {
   return `
     <div class="cbp-card ${danger ? 'cbp-card--danger' : ''} cbp-card--decision">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
-          <h4 class="cbp-card__title" id="card-heading-1"><i class="fas fa-circle cbp-margin-right-2x"></i>${title}</h4>
-          <button class="cbp-btn-square cbp-btn__secondary-ghost" aria-label="Checked">
-            <i class="fas fa-clipboard-check"></i>
-          </button>
+          <h4 class="cbp-card__title" id="card-heading-1">${title}</h4>
         </div>
-        <p class="cbp-text-body cbp-margin-top-4x">
-          The card has this passage of example text to emphasize
-          truncation and reveal functionality and some other things...
-        </p>
-        <button class="cbp-btn cbp-btn__secondary-ghost cbp-margin-top-4x" type="button">
-          <i class="fas fa-angle-down"></i>
-          More
-        </button>
+        <p class="cbp-text-body cbp-margin-top-4x">${body}</p>
       </div>
       ${renderActions(actionsLayout)}
     </div>
@@ -135,7 +120,8 @@ const ProfileCardTemplate = ({ title, danger, actionsLayout }) => {
 
 export const DecisionCard = DefaultDecisionCardTemplate.bind({});
 DecisionCard.args = {
-  title: 'Decision Card 1',
+  title: 'Card Title',
+  body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.',
   actionsLayout: 'single',
 };
 DecisionCard.storyName = 'Default';
