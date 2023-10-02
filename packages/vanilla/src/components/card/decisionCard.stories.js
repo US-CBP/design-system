@@ -121,7 +121,7 @@ const ProfileCardTemplate = ({ title, danger, actionsLayout }) => {
 export const DecisionCard = DefaultDecisionCardTemplate.bind({});
 DecisionCard.args = {
   title: 'Card Title',
-  body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.',
+  body: 'Some quick example text to display the card body content.',
   actionsLayout: 'single',
 };
 DecisionCard.storyName = 'Default';

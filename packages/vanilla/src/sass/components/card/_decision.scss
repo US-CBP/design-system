@@ -4,7 +4,9 @@
   border: 0;
 
   & .cbp-card__content {
-    border: var(--cbp-border-size-md) solid var(--cbp-color-base-neutral-lighter);
+    border-width: var(--cbp-border-size-md);
+    border-style: solid;
+    border-color: var(--cbp-color-base-neutral-lighter);
     border-top-left-radius: var(--cbp-border-radius-softer);
     border-top-right-radius: var(--cbp-border-radius-softer);
     border-bottom: 0;
@@ -49,12 +51,12 @@
 .cbp-card--danger.cbp-card--decision {
   & .cbp-card__content {
     background-color: var(--cbp-color-danger-lighter);
-    border: var(--cbp-border-size-md) solid var(--cbp-color-danger-base);
+    border-color: var(--cbp-color-danger-base);
     border-bottom: 0;
   }
   
   & .cbp-card__title {
-    color: var(--cbp-color-danger-base);
+    color: var(--cbp-color-text-darker);
   }
 
   & .cbp-card__header--flag {
@@ -71,7 +73,7 @@
     border: 0;
     
     & .cbp-card__content {
-      border: var(--cbp-border-size-md) solid var(--cbp-color-base-neutral-base);
+      border-color: var(--cbp-color-base-neutral-base);
       border-bottom: 0;
     }
   }
@@ -83,7 +85,7 @@
   
     & .cbp-card__content {
       background-color: var(--cbp-color-danger-darker);
-      border: var(--cbp-border-size-md) solid var(--cbp-color-danger-light);
+      border-color: var(--cbp-color-danger-light);
       border-bottom: 0;
     }
   
