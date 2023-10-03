@@ -25,7 +25,7 @@ const util = {
 
 class Dropdown {
   constructor(domNode) {
-    this.dropdownNode = domNode;
+    this.dropdownNode = domNode; // button[data-toggle="dropdown"]
     this.dropdownMenuNode = this.dropdownNode.nextElementSibling;
     this.selected;
     this.selectionCount = 0;
@@ -33,10 +33,12 @@ class Dropdown {
     this.chips = [];
     this.placeHolder = this.dropdownNode.querySelector(".cbp-dropdown__placeholder");
 
+    // Listen for clicks on the dropdown control
     this.dropdownNode.addEventListener("click", (e) => {
       this.handleClick(e, this);
     });
 
+    // Listen for keypresses for keyboard navigation
     this.dropdownNode.addEventListener("keydown", (e) => {
       this.handleKeydown(e, this);
     });
@@ -63,11 +65,11 @@ class Dropdown {
 
   handleOutsideClick(e) {
     const isMultiChoice =
-      e.target.classList.contains("cbp-dropdown__item--multiselect") ||
+      e.target.closest('.cbp-dropdown__item--multiselect') ||
       e.target.type === "checkbox";
     const insideClick =
-      e.target.classList.contains("cbp-dropdown__custom") ||
-      e.target.classList.contains("cbp-dropdown__item");
+      e.target.closest('.cbp-dropdown__custom') ||
+      e.target.closest('.cbp-dropdown__item');
     if (insideClick || isMultiChoice) {
       return;
     } else {
@@ -80,13 +82,15 @@ class Dropdown {
       util.openDropdowns.push(dropdown);
       util.getCurrentMenu().dropdownNode.classList.add("cbp-dropdown--open");
       window.addEventListener("click", this.handleOutsideClick, true);
-    } else if (dropdown.dropdownNode != util.getCurrentMenu().dropdownNode) {
-      util.getCurrentMenu().close();
+    } 
+    else if (dropdown.dropdownNode != util.getCurrentMenu().dropdownNode) {
+      util.getCurrentMenu().close();  
       util.openDropdowns.pop();
       util.openDropdowns.push(dropdown);
       util.getCurrentMenu().dropdownNode.classList.add("cbp-dropdown--open");
       window.addEventListener("click", this.handleOutsideClick, true);
-    } else {
+    }
+    else {
       this.close();
     }
   }
@@ -94,9 +98,11 @@ class Dropdown {
   handleClick(e, dropdown) {
     const { target } = e;
     e.preventDefault();
-    if (target != this.dropdownNode) {
+
+    if (target.closest('.fa-times')) {
       this.removeCount(e);
-    } else {
+    }
+    else if (target.closest('button[data-toggle="dropdown"]')) {
       this.toggle(dropdown);
     }
   }
@@ -222,15 +228,15 @@ class Dropdown {
             this.dropdownNode.insertBefore(this.createChip(this.selectionCount), this.placeHolder);
           } else {
             this.selectionCount++;
-            this.dropdownNode.querySelector('.cbp-chips').firstElementChild.innerHTML = this.selectionCount;
+            this.dropdownNode.querySelector('.cbp-chip').firstElementChild.innerHTML = this.selectionCount;
           }
         } else {
           this.chips = this.chips.filter((val) => val != element.firstElementChild.value);
           this.selectionCount--;
           if (this.selectionCount == 0) {
-            this.dropdownNode.querySelector('.cbp-chips').remove();
+            this.dropdownNode.querySelector('.cbp-chip').remove();
           } else {
-            this.dropdownNode.querySelector('.cbp-chips').firstElementChild.innerHTML = this.selectionCount;
+            this.dropdownNode.querySelector('.cbp-chip').firstElementChild.innerHTML = this.selectionCount;
           }
         }
       });
@@ -240,10 +246,11 @@ class Dropdown {
   createChip(val) {
     const chip = document.createElement("div");
     const text = document.createElement("span");
+    text.className="cbp-chip__label";
     const iconWrapper = document.createElement("div");
     const icon = document.createElement("i");
-    chip.className = "cbp-chips margin-right-1";
-    iconWrapper.className = "plus-border";
+    chip.className = "cbp-chip cbp-margin-right-1x";
+    iconWrapper.className = "cbp-chip__icon";
     icon.className = "fas fa-times";
 
     chip.appendChild(text);
@@ -275,7 +282,7 @@ class Dropdown {
   removeCount(e) {
     this.chips = [];
     this.selectionCount = 0;
-    this.dropdownNode.querySelector('.cbp-chips').remove();
+    this.dropdownNode.querySelector('.cbp-chip').remove();
     this.dropdownMenuNode.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
       checkbox.checked = false;
     });
