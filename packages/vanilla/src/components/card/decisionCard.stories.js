@@ -18,11 +18,11 @@ export default {
       name: 'Actions Layout',
       description: 'Choose actions layout of the card component',
       control: 'radio',
-      options: ['single', 'double', 'triple', 'quadruple']
+      options: ['single', 'double', 'triple']
     },
     actionsConfig: {
       name: 'Configure Actions Layout',
-      description: 'Configure card button labels and types. <br /> Available button types: `primary`, `secondary`, `tertiary` and `danger`',
+      description: 'Configure card button labels and colors. <br /> Available button colors: `primary`, `secondary`, `tertiary` and `danger`',
       control: 'object'
     },
     danger: {
@@ -37,14 +37,14 @@ const disableBtn = (isDisabled) => {
   return isDisabled ? 'disabled' : '';
 };
 
-const renderActions = (layout, { btn1, btn2, btn3, btn4 }) => {
+const renderActions = (layout, { btn1, btn2, btn3 }) => {
   if (layout === 'double') {
     return `
       <div class="cbp-card__actions">
-        <button class="cbp-btn cbp-btn__${btn2.type}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn2.disabled)}>
+        <button class="cbp-btn cbp-btn__${btn2.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn2.disabled)}>
           <i class="fas fa-eye"></i>${btn2.label}
         </button>
-        <button class="cbp-btn cbp-btn__${btn1.type}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn1.disabled)}>
+        <button class="cbp-btn cbp-btn__${btn1.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn1.disabled)}>
           <i class="fas fa-eye"></i>${btn1.label}
         </button>
       </div>
@@ -52,24 +52,15 @@ const renderActions = (layout, { btn1, btn2, btn3, btn4 }) => {
   } else if (layout === 'triple') {
     return `
       <div class="cbp-card__actions">
-        <button class="cbp-btn cbp-btn__${btn3.type}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn4.disabled)}><i class="fas fa-eye"></i>${btn3.label}</button>
-        <button class="cbp-btn cbp-btn__${btn2.type}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn3.disabled)}><i class="fas fa-eye"></i>${btn2.label}</button>
-        <button class="cbp-btn cbp-btn__${btn1.type}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn2.disabled)}><i class="fas fa-eye"></i>${btn1.label}</button>
-      </div>
-    `;
-  } else if (layout === 'quadruple') {
-    return `
-      <div class="cbp-card__actions">
-        <button class="cbp-btn cbp-btn__${btn4.type}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn4.disabled)}><i class="fas fa-eye"></i>${btn4.label}</button>
-        <button class="cbp-btn cbp-btn__${btn3.type}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn3.disabled)}><i class="fas fa-eye"></i>${btn3.label}</button>
-        <button class="cbp-btn cbp-btn__${btn2.type}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn2.disabled)}><i class="fas fa-eye"></i>${btn2.label}</button>
-        <button class="cbp-btn cbp-btn__${btn1.type}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn1.disabled)}><i class="fas fa-eye"></i>${btn1.label}</button>
+        <button class="cbp-btn cbp-btn__${btn3.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn3.disabled)}><i class="fas fa-eye"></i>${btn3.label}</button>
+        <button class="cbp-btn cbp-btn__${btn2.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn2.disabled)}><i class="fas fa-eye"></i>${btn2.label}</button>
+        <button class="cbp-btn cbp-btn__${btn1.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn1.disabled)}><i class="fas fa-eye"></i>${btn1.label}</button>
       </div>
     `;
   } else {
     return `
       <div class="cbp-card__actions">
-        <button class="cbp-btn cbp-btn__${btn1.type}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn1.disabled)}>
+        <button class="cbp-btn cbp-btn__${btn1.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn1.disabled)}>
           <i class="fas fa-eye"></i>${btn1.label}
         </button>
       </div>
@@ -96,7 +87,7 @@ const ProfileCardTemplate = ({ title, danger, actionsLayout, actionsConfig }) =>
   return `
     <div class="cbp-card ${danger ? 'cbp-card--danger' : ''} cbp-card--decision">
       <div class="cbp-card__content cbp-padding-0">
-        <img src="assets/images/profile-page/passenge-photo-v2.jpg" class="cbp-card__img-top" alt="portrait image of person" style="width: 100%" />
+        <img src="assets/images/profile-page/passenge-photo-v2.jpg" class="cbp-card__img-top" alt="portrait image of person" />
         <div class="cbp-card__header cbp-card__header--flag">
           <h4 class="cbp-card__title" id="card-heading-1" id="card-heading-1">
             <i class="fas fa-exclamation-triangle cbp-margin-right-2x"></i>${title}
@@ -127,22 +118,17 @@ const ProfileCardTemplate = ({ title, danger, actionsLayout, actionsConfig }) =>
 const actionsConfig = {
   btn1: {
     label: 'Label',
-    type: 'primary',
+    color: 'primary',
     disabled: false
   },
   btn2: {
     label: 'Label',
-    type: 'secondary',
+    color: 'secondary',
     disabled: false
   },
   btn3: {
     label: 'Label',
-    type: 'danger',
-    disabled: false
-  },
-  btn4: {
-    label: 'Label',
-    type: 'tertiary',
+    color: 'tertiary',
     disabled: false
   },
 }
