@@ -1,11 +1,6 @@
 import PropTypes from 'prop-types';
 
-const Button = ({
-  attributes,
-  children,
-  'aria-label': ariaLabel,
-  disabled,
-}) => {
+export const Button = ({ attributes, children, 'aria-label': ariaLabel, disabled, }) => {
   return (
     <button
       className="cbp-btn cbp-btn__primary"
@@ -23,5 +18,3 @@ Button.propTypes = {
   'aria-label': PropTypes.string,
   disabled: PropTypes.bool,
 };
-
-export default Button;
