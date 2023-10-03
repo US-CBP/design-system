@@ -84,7 +84,7 @@ const DefaultDecisionCardTemplate = ({ title, body, actionsLayout, danger, actio
         <div class="cbp-card__header">
           <h4 class="cbp-card__title" id="card-heading-1">${title}</h4>
         </div>
-        <p class="cbp-text-body cbp-margin-top-4x cbp-margin-bottom-0">${body}</p>
+        <p class="cbp-text-body cbp-margin-top-4x">${body}</p>
       </div>
       <!-- Decision Card actions can contain both <button> and <a href="#"> elements -->
       ${renderActions(actionsLayout, actionsConfig)}
@@ -114,7 +114,7 @@ const ProfileCardTemplate = ({ title, danger, actionsLayout, actionsConfig }) =>
           <p class="cbp-margin-bottom-2x">
             <span class="cbp-font-weight-bold">Citizenship:</span>&nbsp;United States of American
           </p>
-          <p class="cbp-margin-bottom-2x">
+          <p>
             <span class="cbp-font-weight-bold">Place of Birth:</span>&nbsp;New York, New York USA
           </p>
         </div>

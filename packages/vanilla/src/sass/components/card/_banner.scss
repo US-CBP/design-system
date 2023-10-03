@@ -39,16 +39,33 @@
   border-bottom-left-radius: var(--cbp-border-radius-softer);
   border-bottom-right-radius: var(--cbp-border-radius-softer);
   padding: var(--cbp-space-4x) var(--cbp-space-4x) var(--cbp-space-5x) var(--cbp-space-4x);
+
+  :last-child {
+    margin-bottom: 0;
+  }
 }
 
+// TODO: DRY with sass:map
 .cbp-card__banner--info {
-  @include card-banner-modifier(var(--cbp-color-info-dark), var(--cbp-color-info-lighter), var(--cbp-color-info-light));
+  @include card-banner-modifier(
+    $title-background-color: var(--cbp-color-info-dark),
+    $body-background-color: var(--cbp-color-info-lighter),
+    $body-border-color: var(--cbp-color-info-light)
+  );
 }
 
 .cbp-card__banner--success {
-  @include card-banner-modifier(var(--cbp-color-success-base), var(--cbp-color-success-lighter), var(--cbp-color-success-light));
+  @include card-banner-modifier(
+    $title-background-color: var(--cbp-color-success-base),
+    $body-background-color: var(--cbp-color-success-lighter),
+    $body-border-color: var(--cbp-color-success-light)
+  );
 }
 
 .cbp-card__banner--danger {
-  @include card-banner-modifier(var(--cbp-color-danger-base), var(--cbp-color-danger-lighter), var(--cbp-color-danger-light));
+  @include card-banner-modifier(
+    $title-background-color: var(--cbp-color-danger-base),
+    $body-background-color: var(--cbp-color-danger-lighter),
+    $body-border-color: var(--cbp-color-danger-light)
+  );
 }

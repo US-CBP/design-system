@@ -23,6 +23,10 @@
   background-color: var(--cbp-color-white);
   padding: var(--cbp-space-5x) var(--cbp-space-4x);
   width: 100%;
+
+  :last-child {
+    margin-bottom: 0;
+  }
 }
 
 .cbp-card__header--flag {
