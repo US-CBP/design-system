@@ -7,7 +7,6 @@
   width: fit-content;
 
   button {
-    @extend .cbp-btn;
     background-color: var(--cbp-color-white);
     border-style: solid;
     border-color: var(--cbp-color-interactive-secondary-dark);
