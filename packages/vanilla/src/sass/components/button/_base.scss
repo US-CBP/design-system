@@ -20,14 +20,8 @@
     margin-right: var(--cbp-space-2x);
   }
 
-  &:hover:not(:focus):not(:disabled) {
-    background-color: var(--cbp-color-interactive-focus-dark);
-    border-color: var(--cbp-color-interactive-focus-dark);
-    color: var(--cbp-color-text-lightest);
-  }
-
   &:focus {
-    background: var(--cbp-color-interactive-focus-dark);
+    background-color: var(--cbp-color-interactive-focus-dark);
     border-color: var(--cbp-color-interactive-focus-dark);
     color: var(--cbp-color-text-lightest);
     outline: var(--cbp-border-size-md) solid var(--cbp-color-white);

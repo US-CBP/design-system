@@ -4,7 +4,9 @@
   border: 0;
 
   & .cbp-card__content {
-    border: var(--cbp-border-size-md) solid var(--cbp-color-base-neutral-lighter);
+    border-width: var(--cbp-border-size-md);
+    border-style: solid;
+    border-color: var(--cbp-color-base-neutral-lighter);
     border-top-left-radius: var(--cbp-border-radius-softer);
     border-top-right-radius: var(--cbp-border-radius-softer);
     border-bottom: 0;
@@ -14,23 +16,39 @@
 .cbp-card__actions {
   display: flex;
 
-  & > button,
-  & > a[href] {
-    @extend .cbp-btn;
+  & .cbp-btn {
     border-radius: 0;
-    padding: var(--cbp-space-3x) 0;
-    text-align: center;
-    text-decoration: none;
+    padding-top: var(--cbp-space-3x);
+    padding-bottom: var(--cbp-space-3x);
     width: 100%;
   }
 
-  & > button:first-child,
-  & > a[href]:first-child {
+  // Tertiary Button is *ONLY* used in Decision Cards
+  & .cbp-btn__tertiary {
+    background-color: var(--cbp-color-interactive-secondary-base);
+    color: var(--cbp-color-text-lightest);
+
+    &:hover:not(:focus):not(:disabled) {
+      background-color: var(--cbp-color-interactive-secondary-darker);
+      border-color: var(--cbp-color-interactive-secondary-darker);
+    }
+
+    // Without this set, .cbp-btn:focus gets overridden by .cbp-card__actions.cbp-btn__tertiary background-color property
+    &:focus {
+      background-color: var(--cbp-color-interactive-focus-dark);
+    }
+
+    &:disabled {
+      background-color: var(--cbp-color-interactive-disabled-dark);
+      color: var(--cbp-color-interactive-disabled-light);
+    }
+  }
+
+  & .cbp-btn:first-child {
     border-bottom-left-radius: var(--cbp-border-radius-softer);
   }
 
-  & > button:last-child,
-  & > a[href]:last-child {
+  & .cbp-btn:last-child {
     border-bottom-right-radius: var(--cbp-border-radius-softer);
   }
 }
@@ -39,12 +57,12 @@
 .cbp-card--danger.cbp-card--decision {
   & .cbp-card__content {
     background-color: var(--cbp-color-danger-lighter);
-    border: var(--cbp-border-size-md) solid var(--cbp-color-danger-base);
+    border-color: var(--cbp-color-danger-base);
     border-bottom: 0;
   }
   
   & .cbp-card__title {
-    color: var(--cbp-color-danger-base);
+    color: var(--cbp-color-text-darker);
   }
 
   & .cbp-card__header--flag {
@@ -61,7 +79,7 @@
     border: 0;
     
     & .cbp-card__content {
-      border: var(--cbp-border-size-md) solid var(--cbp-color-base-neutral-base);
+      border-color: var(--cbp-color-base-neutral-base);
       border-bottom: 0;
     }
   }
@@ -73,7 +91,7 @@
   
     & .cbp-card__content {
       background-color: var(--cbp-color-danger-darker);
-      border: var(--cbp-border-size-md) solid var(--cbp-color-danger-light);
+      border-color: var(--cbp-color-danger-light);
       border-bottom: 0;
     }
   

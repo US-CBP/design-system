@@ -2,14 +2,16 @@ export default {
   title: 'Patterns/Card/Decision Card',
   parameters: {
     layout: 'centered',
-    html: {
-      root: '.wrapper'
-    }
   },
   argTypes: {
     title: {
       name: 'Card Title',
       description: 'Title of the Card component to display',
+      type: { name: 'string', required: false }
+    },
+    body: {
+      name: 'Card Body',
+      description: 'Card body content area',
       type: { name: 'string', required: false }
     },
     actionsLayout: {
@@ -18,84 +20,74 @@ export default {
       control: 'radio',
       options: ['single', 'double', 'triple']
     },
+    actionsConfig: {
+      name: 'Configure Actions Layout',
+      description: 'Configure card button labels and colors. <br /> Available button colors: `primary`, `secondary`, `tertiary` and `danger`',
+      control: 'object'
+    },
     danger: {
       name: 'Danger',
       description: 'Display the "danger" state modifier of the card',
       control: 'boolean'
     }
-  },
-  decorators: [
-    (Story) => `
-      <div class="wrapper" style="display: grid; grid-template-columns: 312px">
-        ${Story().outerHTML || Story()}
-      </div>
-    `
-  ]
+  }
 };
 
-const renderActions = (layout) => {
+const disableBtn = (isDisabled) => {
+  return isDisabled ? 'disabled' : '';
+};
+
+const renderActions = (layout, { btn1, btn2, btn3 }) => {
   if (layout === 'double') {
     return `
-      <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card__actions">
-        <button class="cbp-btn__secondary" type="button" aria-describedby="card-heading-1">
-          <i class="fas fa-info-circle"></i>App Info
+        <button class="cbp-btn cbp-btn__${btn2.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn2.disabled)}>
+          <i class="fas fa-eye"></i>${btn2.label}
         </button>
-        <a href="#" class="cbp-btn__primary" aria-describedby="card-heading-1">
-          <i class="fas fa-external-link-alt"></i>Go To App
-        </a>
+        <button class="cbp-btn cbp-btn__${btn1.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn1.disabled)}>
+          <i class="fas fa-eye"></i>${btn1.label}
+        </button>
       </div>
     `;
   } else if (layout === 'triple') {
     return `
-      <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card__actions">
-        <button class="cbp-btn__danger" type="button" aria-describedby="card-heading-1"><i class="fas fa-trash-alt"></i>Delete</button>
-        <button class="cbp-btn__secondary" type="button" aria-describedby="card-heading-1"><i class="fas fa-times"></i>Cancel</button>
-        <button class="cbp-btn__primary" type="button" aria-describedby="card-heading-1"><i class="fas fa-save"></i>Publish</button>
+        <button class="cbp-btn cbp-btn__${btn3.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn3.disabled)}><i class="fas fa-eye"></i>${btn3.label}</button>
+        <button class="cbp-btn cbp-btn__${btn2.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn2.disabled)}><i class="fas fa-eye"></i>${btn2.label}</button>
+        <button class="cbp-btn cbp-btn__${btn1.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn1.disabled)}><i class="fas fa-eye"></i>${btn1.label}</button>
       </div>
     `;
   } else {
     return `
-      <!-- Card Decision actions can contain both Button and Link elements -->
       <div class="cbp-card__actions">
-        <a href="#" class="cbp-btn__primary" aria-describedby="card-heading-1">
-          <i class="fas fa-external-link-alt"></i>Go To App
-        </a>
+        <button class="cbp-btn cbp-btn__${btn1.color}" type="button" aria-describedby="card-heading-1" ${disableBtn(btn1.disabled)}>
+          <i class="fas fa-eye"></i>${btn1.label}
+        </button>
       </div>
     `;
   }
 };
 
-const DefaultDecisionCardTemplate = ({ title, actionsLayout, danger }) => {
+const DefaultDecisionCardTemplate = ({ title, body, actionsLayout, danger, actionsConfig }) => {
   return `
     <div class="cbp-card ${danger ? 'cbp-card--danger' : ''} cbp-card--decision">
       <div class="cbp-card__content">
         <div class="cbp-card__header">
-          <h4 class="cbp-card__title" id="card-heading-1"><i class="fas fa-circle cbp-margin-right-2x"></i>${title}</h4>
-          <button class="cbp-btn-square cbp-btn__secondary-ghost" aria-label="Checked">
-            <i class="fas fa-clipboard-check"></i>
-          </button>
+          <h4 class="cbp-card__title" id="card-heading-1">${title}</h4>
         </div>
-        <p class="cbp-text-body cbp-margin-top-4x">
-          The card has this passage of example text to emphasize
-          truncation and reveal functionality and some other things...
-        </p>
-        <button class="cbp-btn cbp-btn__secondary-ghost cbp-margin-top-4x" type="button">
-          <i class="fas fa-angle-down"></i>
-          More
-        </button>
+        <p class="cbp-text-body cbp-margin-top-4x">${body}</p>
       </div>
-      ${renderActions(actionsLayout)}
+      <!-- Decision Card actions can contain both <button> and <a href="#"> elements -->
+      ${renderActions(actionsLayout, actionsConfig)}
     </div>
   `;
 };
 
-const ProfileCardTemplate = ({ title, danger, actionsLayout }) => {
+const ProfileCardTemplate = ({ title, danger, actionsLayout, actionsConfig }) => {
   return `
     <div class="cbp-card ${danger ? 'cbp-card--danger' : ''} cbp-card--decision">
       <div class="cbp-card__content cbp-padding-0">
-        <img src="assets/images/profile-page/passenge-photo-v2.jpg" class="cbp-card__img-top" alt="portrait image of person" width="312px" />
+        <img src="assets/images/profile-page/passenge-photo-v2.jpg" class="cbp-card__img-top" alt="portrait image of person" />
         <div class="cbp-card__header cbp-card__header--flag">
           <h4 class="cbp-card__title" id="card-heading-1" id="card-heading-1">
             <i class="fas fa-exclamation-triangle cbp-margin-right-2x"></i>${title}
@@ -103,30 +95,50 @@ const ProfileCardTemplate = ({ title, danger, actionsLayout }) => {
         </div>
         <div class="cbp-padding-4x">
           <div class="cbp-margin-bottom-2x" style="display: flex;">
-            <p class="cbp-margin-right-4x">
+            <p class="cbp-margin-right-4x cbp-margin-bottom-0">
               <span class="cbp-font-weight-bold">Sex:</span>&nbsp;Male
             </p>
-            <p class="cbp-margin-right-4x">
+            <p class="cbp-margin-right-4x cbp-margin-bottom-0">
               <span class="cbp-font-weight-bold">DOB:</span>&nbsp;01/01/1980
             </p>
           </div>
           <p class="cbp-margin-bottom-2x">
             <span class="cbp-font-weight-bold">Citizenship:</span>&nbsp;United States of American
           </p>
-          <p class="cbp-margin-bottom-2x">
+          <p>
             <span class="cbp-font-weight-bold">Place of Birth:</span>&nbsp;New York, New York USA
           </p>
         </div>
       </div>
-      ${renderActions(actionsLayout)}
+      ${renderActions(actionsLayout, actionsConfig)}
     </div>
   `;
 };
 
+const actionsConfig = {
+  btn1: {
+    label: 'Label',
+    color: 'primary',
+    disabled: false
+  },
+  btn2: {
+    label: 'Label',
+    color: 'secondary',
+    disabled: false
+  },
+  btn3: {
+    label: 'Label',
+    color: 'tertiary',
+    disabled: false
+  },
+}
+
 export const DecisionCard = DefaultDecisionCardTemplate.bind({});
 DecisionCard.args = {
-  title: 'Decision Card 1',
+  title: 'Card Title',
+  body: 'Some quick example text to display the card body content.',
   actionsLayout: 'single',
+  actionsConfig
 };
 DecisionCard.storyName = 'Default';
 
@@ -134,5 +146,6 @@ export const ProfileCard = ProfileCardTemplate.bind({});
 ProfileCard.args = {
   title: 'Jimbo Thompson',
   actionsLayout: 'single',
+  actionsConfig
 };
 ProfileCard.storyName = 'Example Profile Card';

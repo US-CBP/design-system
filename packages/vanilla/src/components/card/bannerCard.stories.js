@@ -40,7 +40,7 @@ const BannerCardTemplate = ({ title, variant, showIcon }) => {
     <div class="cbp-card__banner ${variant != 'default' ? `cbp-card__banner--${variant}` : ''}">
       <h4 class="cbp-card__banner-title">${showIcon ? icons[variant] : ''}${title}</h4>
       <div class="cbp-card__banner-content">
-        <p class="cbp-text-body cbp-margin-bottom-0">
+        <p class="cbp-text-body">
           Here is an example of some supplementary text for this purely informational card
         </p>
       </div>
