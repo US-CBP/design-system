@@ -32,6 +32,7 @@
   & a[href] {
     color: var(--cbp-color-interactive-secondary-lighter);
     display: inline-block;
+    border: 0;
 
     &:hover {
       background-color: var(--cbp-color-interactive-secondary-darker);
@@ -55,17 +56,9 @@
   }
 
   a[href] {
-    font-weight: var(--cbp-font-weight-medium);
     padding: var(--cbp-font-size-button) 0 var(--cbp-font-size-button) var(--cbp-space-5x); // no spacing token for 0.875 height of button = 44px
-    text-decoration: none;
-    text-transform: uppercase;
+    border-radius: 0;
     width: 100%;
-
-    // TODO: fix bouncing
-    &:hover,
-    &:focus {
-      font-weight: var(--cbp-font-weight-bold);
-    }
   }
 }
 
@@ -150,6 +143,7 @@
   }
 }
 
+/* Medium breakpoint or larger */
 @media (min-width: $cbp-breakpoint-md) {
   .cbp-footer > nav > ul {
     display: flex;
@@ -159,11 +153,6 @@
     a[href] {
       padding: var(--cbp-font-size-button) var(--cbp-space-3x); // no spacing token for 0.875 height of button = 44px
     }
-  }
-
-  .cbp-footer__info {
-    padding-top: var(--cbp-space-4x);
-    padding-bottom: var(--cbp-space-4x);
   }
 
   .cbp-footer__support > ul {
@@ -183,6 +172,7 @@
   }
 }
 
+/* Large breakpoint or larger */
 @media (min-width: $cbp-breakpoint-lg) {
   .cbp-footer__info {
     display: flex;
@@ -190,6 +180,7 @@
   }
 }
 
+/* XL breakpoint or larger */
 @media (min-width: $cbp-breakpoint-xl) {
   .cbp-footer > nav > ul {
     padding-left: var(--cbp-space-11x);
