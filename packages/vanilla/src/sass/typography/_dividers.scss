@@ -1,0 +1,75 @@
+.cbp-divider-text {
+  border-bottom-color: var(--cbp-color-gray-cool-30);
+  border-bottom-style: solid;
+  border-bottom-width: var(--cbp-border-size-md);
+  color: var(--cbp-color-text-darker);
+  font-weight: var(--cbp-font-weight-regular);
+  padding: var(--cbp-space-3x) var(--cbp-space-3x) var(--cbp-space-3x) 0;
+}
+
+.cbp-divider-text--xl {
+  font-size: var(--cbp-font-size-heading-xl);
+}
+
+.cbp-divider-text--lg {
+  font-size: var(--cbp-font-size-heading-lg);
+}
+
+.cbp-divider-text--md {
+  font-size: var(--cbp-font-size-heading-md);
+  font-weight: var(--cbp-font-weight-medium);
+  padding-top: var(--cbp-space-2x);
+  padding-bottom: var(--cbp-space-2x);
+}
+
+.cbp-divider-text--sm {
+  border-bottom-width: var(--cbp-border-size-sm);
+  font-size: var(--cbp-font-size-heading-sm);
+  font-weight: var(--cbp-font-weight-medium);
+  padding-top: var(--cbp-space-1x);
+  padding-bottom: var(--cbp-space-1x);
+}
+.cbp-divider-text--xs {
+  border-bottom-width: var(--cbp-border-size-sm);
+  font-size: var(--cbp-font-size-heading-xs);
+  font-weight: var(--cbp-font-weight-bold);
+  padding-top: var(--cbp-space-1x);
+  padding-bottom: var(--cbp-space-1x);
+  padding-right: var(--cbp-space-2x);
+}
+
+.cbp-divider-fill {
+  background-color: var(--cbp-color-gray-cool-10);
+  border-radius: var(--cbp-border-radius-soft);
+  color: var(--cbp-color-text-darker);
+  font-size: var(--cbp-font-size-heading-xl);
+  font-weight: var(--cbp-font-weight-regular);
+  padding: var(--cbp-space-3x);
+}
+
+.cbp-divider-fill--xl {
+  font-size: var(--cbp-font-size-heading-xl);
+}
+
+.cbp-divider-fill--lg {
+  font-size: var(--cbp-font-size-heading-lg);
+}
+
+.cbp-divider-fill--md {
+  font-size: var(--cbp-font-size-heading-md);
+  font-weight: var(--cbp-font-weight-medium);
+  padding-top: var(--cbp-space-2x);
+  padding-bottom: var(--cbp-space-2x);
+}
+.cbp-divider-fill--sm {
+  font-size: var(--cbp-font-size-heading-sm);
+  font-weight: var(--cbp-font-weight-medium);
+  padding-top: var(--cbp-space-1x);
+  padding-bottom: var(--cbp-space-1x);
+}
+
+.cbp-divider-fill--xs {
+  font-size: var(--cbp-font-size-heading-xs);
+  font-weight: var(--cbp-font-weight-bold);
+  padding: var(--cbp-space-1x) var(--cbp-space-2x);
+}
