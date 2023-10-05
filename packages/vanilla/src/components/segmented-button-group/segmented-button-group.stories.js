@@ -12,13 +12,11 @@ export default {
 
 
 function generateButtons(buttons) {
-  let html=[];
-  buttons.forEach( ({ label, value, disabled }, i) => {
-    html=[...html, `<button type="button" class="cbp-btn" value="${value}" ${disabled==true ? 'disabled' : ''}>${label}</button>`];
-  });
-  return [...html].join("");
+  const html = buttons.map(({ label, value, selected, disabled}) => {
+    return `<button type="button" class="cbp-btn" value="${value}" ${selected==true ? 'aria-pressed="true"' : ''} ${disabled==true ? 'disabled' : ''}>${label}</button>`
+  })
+  return html.join("")
 };
-
 
 
 const SingleSelectTemplate = ( {buttons, selection} ) => {
@@ -65,16 +63,19 @@ SingleSelect.args = {
       {
         label: "Small",
         value: "sm",
+        selected: false,
         disabled: false
       },
       {
         label: "Medium",
         value: "md",
+        selected: false,
         disabled: false
       },
       {
         label: "Large",
         value: "lg",
+        selected: false,
         disabled: false
       }
     ],
@@ -94,21 +95,25 @@ MultiSelect.args = {
     {
       label: "Sauce",
       value: "sauce",
+      selected: false,
       disabled: false
     },
     {
       label: "Cheese",
       value: "cheese",
+      selected: false,
       disabled: false
     },
     {
       label: "Crust",
       value: "crust",
+      selected: false,
       disabled: false
     },
     {
       label: "Toppings",
       value: "toppings",
+      selected: false,
       disabled: false
     },
   ],
