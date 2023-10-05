@@ -10,10 +10,10 @@ const InternalTemplate = () => {
     <footer class="cbp-footer">
       <nav>
         <ul>
-          <li><a href="#" class="cbp-btn">App Overview</a></li>
-          <li><a href="#" class="cbp-btn">Trainings</a></li>
-          <li><a href="#" class="cbp-btn">FAQ's</a></li>
-          <li><a href="#" class="cbp-btn">Release Notes</a></li>
+          <li><a href="#">App Overview</a></li>
+          <li><a href="#">Trainings</a></li>
+          <li><a href="#">FAQ's</a></li>
+          <li><a href="#">Release Notes</a></li>
         </ul>
       </nav>
       <div class="cbp-footer__info">
