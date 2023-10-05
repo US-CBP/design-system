@@ -56,8 +56,11 @@
   }
 
   a[href] {
+    font-weight: var(--cbp-font-weight-medium);
     padding: var(--cbp-font-size-button) 0 var(--cbp-font-size-button) var(--cbp-space-5x); // no spacing token for 0.875 height of button = 44px
-    border-radius: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: var(--cbp-letter-spacing-loose);
     width: 100%;
   }
 }
