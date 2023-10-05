@@ -77,7 +77,6 @@
 
     &:hover {
       color: var(--cbp-color-interactive-primary-lighter);
-      font-weight: var(--cbp-font-weight-bold);
       text-decoration: underline;
     }
 
@@ -111,7 +110,6 @@
     &:hover {
       background-color: var(--cbp-color-interactive-secondary-darker);
       color: var(--cbp-color-interactive-secondary-lighter);
-      font-weight: var(--cbp-font-weight-bold);
     }
 
     // Remove !important color during Link component refactor
