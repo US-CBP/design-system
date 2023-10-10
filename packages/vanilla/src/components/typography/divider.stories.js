@@ -1,5 +1,5 @@
 export default {
-  title: 'Foundations/Typography/Divider',
+  title: 'Patterns/Divider',
   argTypes: {
     title: { 
       name: 'Divider Title',

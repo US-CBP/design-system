@@ -7,37 +7,6 @@
   padding: var(--cbp-space-3x) var(--cbp-space-3x) var(--cbp-space-3x) 0;
 }
 
-.cbp-divider-text--xl {
-  font-size: var(--cbp-font-size-heading-xl);
-}
-
-.cbp-divider-text--lg {
-  font-size: var(--cbp-font-size-heading-lg);
-}
-
-.cbp-divider-text--md {
-  font-size: var(--cbp-font-size-heading-md);
-  font-weight: var(--cbp-font-weight-medium);
-  padding-top: var(--cbp-space-2x);
-  padding-bottom: var(--cbp-space-2x);
-}
-
-.cbp-divider-text--sm {
-  border-bottom-width: var(--cbp-border-size-sm);
-  font-size: var(--cbp-font-size-heading-sm);
-  font-weight: var(--cbp-font-weight-medium);
-  padding-top: var(--cbp-space-1x);
-  padding-bottom: var(--cbp-space-1x);
-}
-.cbp-divider-text--xs {
-  border-bottom-width: var(--cbp-border-size-sm);
-  font-size: var(--cbp-font-size-heading-xs);
-  font-weight: var(--cbp-font-weight-bold);
-  padding-top: var(--cbp-space-1x);
-  padding-bottom: var(--cbp-space-1x);
-  padding-right: var(--cbp-space-2x);
-}
-
 .cbp-divider-fill {
   background-color: var(--cbp-color-gray-cool-10);
   border-radius: var(--cbp-border-radius-soft);
@@ -47,25 +16,43 @@
   padding: var(--cbp-space-3x);
 }
 
+.cbp-divider-text--xl,
 .cbp-divider-fill--xl {
   font-size: var(--cbp-font-size-heading-xl);
 }
 
+.cbp-divider-text--lg,
 .cbp-divider-fill--lg {
   font-size: var(--cbp-font-size-heading-lg);
 }
 
+.cbp-divider-text--md,
 .cbp-divider-fill--md {
   font-size: var(--cbp-font-size-heading-md);
   font-weight: var(--cbp-font-weight-medium);
   padding-top: var(--cbp-space-2x);
   padding-bottom: var(--cbp-space-2x);
 }
+
+.cbp-divider-text--sm,
 .cbp-divider-fill--sm {
   font-size: var(--cbp-font-size-heading-sm);
   font-weight: var(--cbp-font-weight-medium);
   padding-top: var(--cbp-space-1x);
   padding-bottom: var(--cbp-space-1x);
+}
+
+.cbp-divider-text--sm {
+  border-bottom-width: var(--cbp-border-size-sm);
+}
+
+.cbp-divider-text--xs {
+  border-bottom-width: var(--cbp-border-size-sm);
+  font-size: var(--cbp-font-size-heading-xs);
+  font-weight: var(--cbp-font-weight-bold);
+  padding-top: var(--cbp-space-1x);
+  padding-bottom: var(--cbp-space-1x);
+  padding-right: var(--cbp-space-2x);
 }
 
 .cbp-divider-fill--xs {
