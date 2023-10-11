@@ -11,7 +11,10 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "emitDeclarationOnly": true,
+    "outDir": "./dist/types",
     "jsx": "react-jsx",
 
     /* Linting */
@@ -21,5 +24,6 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
+  "exclude": ["src/stories/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

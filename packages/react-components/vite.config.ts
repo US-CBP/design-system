@@ -1,18 +1,18 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react({
-    babel: {
-      plugins: ['babel-plugin-typescript-to-proptypes']
-    }
-  })],
+  plugins: [
+    react(),
+    dts({rollupTypes: true})
+  ],
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points
-      entry: resolve(__dirname, 'src/main.tsx'),
+      entry: resolve(__dirname, 'src/main.ts'),
       name: 'MyLib',
       // the proper extensions will be added
       fileName: 'index',
@@ -25,9 +25,9 @@ export default defineConfig({
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
-          react: 'React'
+          react: 'React',
         },
       },
     },
   },
-})
+});

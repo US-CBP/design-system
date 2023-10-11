@@ -1,7 +1,9 @@
-type ButtonProps = {
-  attributes: object,
+import { ReactNode } from "react";
+
+interface ButtonProps {
+  attributes?: object,
   'aria-label'?: string,
-  children: any,
+  children: ReactNode,
   disabled?: boolean,
 };
 
