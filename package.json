@@ -44,6 +44,9 @@
   "devDependencies": {
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
     "postcss-scss": "^4.0.6",
     "prettier": "^2.8.3",
     "stylelint": "^14.16.1",
@@ -56,18 +59,35 @@
       "browser": true,
       "es2021": true
     },
+    "plugins": [
+      "react",
+      "react-refresh"
+    ],
     "extends": [
       "eslint:recommended",
-      "prettier"
+      "prettier",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:react/jsx-runtime"
     ],
+    "ignorePatterns": ["dist"],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+  },
     "overrides": [],
-    "requireConfigFile": false,
-    "rules": {}
+    "rules": {
+      "semi": ["error", "always"],
+      "quotes": ["error", "single"],
+      "react-refresh/only-export-components": "warn"
+    }
   },
   "prettier": {
     "trailingComma": "es5",
     "tabWidth": 2,
-    "singleQuote": true
+    "singleQuote": true,
+    "max_line_length": 120
   },
   "stylelint": {
     "extends": [

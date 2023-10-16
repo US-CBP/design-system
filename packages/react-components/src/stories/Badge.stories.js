@@ -1,4 +1,4 @@
-import { default as BadgeComponent } from '.';
+import { Badge as BadgeComponent } from '../components/Badge';
 
 export default {
   title: 'Components/Badges, Chips, and Tags',
