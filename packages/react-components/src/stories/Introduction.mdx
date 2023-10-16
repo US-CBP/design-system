@@ -1,11 +1,15 @@
-import { Meta } from "@storybook/blocks";
-import cbpSeal from "@cbpds/vanilla/dist/assets/images/CBP_SEAL.svg";
+import { Meta } from '@storybook/blocks'
+import cbpSeal from '@cbpds/vanilla/dist/assets/images/CBP_SEAL.svg'
+import reactIcon from '../../assets/react-icon.svg'
 
-<Meta title="Foundations/Introduction" />
+<Meta title='Foundations/Introduction' />
 
-<img src={cbpSeal} height="245" width="245" style={{ marginBottom: "2rem", marginLeft: 'auto', marginRight: 'auto' }} />
-
-<h1 style={{ textAlign: "center" }}>CBP Design System - React Components</h1>
+<div style={{ display: 'flex', marginBottom: '2rem', justifyContent: 'center', alignItems: 'center' }}>
+  <img src={cbpSeal} height='245' width='245' />
+  <span style={{ fontSize: '2.5rem', fontWeight: 'bold', marginLeft: '2rem', marginRight: '2rem' }}>+</span>
+  <img src={reactIcon} height='245' width='245' />
+</div>
+<h1 style={{ textAlign: 'center' }}>CBP Design System - React Components</h1>
 
 ## Work in Progress
 
