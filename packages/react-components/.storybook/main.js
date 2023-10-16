@@ -29,6 +29,7 @@ const config = {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
+  staticDirs: ['../assets'],
   docs: {
     autodocs: false,
   },
