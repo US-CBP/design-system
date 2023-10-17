@@ -215,7 +215,7 @@
     border-bottom: 1px solid var(--cbp-color-interactive-secondary-lighter);
     display: block;
     height: 1px;
-    left: 12px;
+    left: var(--cbp-space-3x);
     bottom: 0;
     position: absolute;
     width: calc(100% - 24px);
