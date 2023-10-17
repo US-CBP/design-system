@@ -36,8 +36,8 @@ export default {
     (Story, context) => `
       <div class="cbp-input-pattern">
         <label for=${context.args.labelFor} class="cbp-input__label">${context.args.label}</label>
-        <p class="cbp-input__description">${context.args.inputDescription}</p>
-        <p class="cbp-input__description cbp-input__description--error" hidden="true"><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>
+        <div class="cbp-input__description">${context.args.inputDescription}</div>
+        <div class="cbp-input__description cbp-input__description--error" hidden="true"><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</div>
         ${Story().outerHTML || Story()}
       </div>
     `
