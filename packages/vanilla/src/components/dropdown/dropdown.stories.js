@@ -5,10 +5,11 @@ export default {
 
 const Template = () => {
   return `
-    <div class="cbp-form-wrapper">
-      <label for="pod2" class="cbp-form__label">Variant Selector</label>
-      <span class="cbp-form__description cbp-form__description--error" hidden><i
-          class="fas fa-exclamation-triangle"></i>&nbsp;This field is required.</span>
+    <div class="cbp-input-pattern">
+      <label for="pod2" class="cbp-input__label">Variant Selector</label>
+      <div class="cbp-input__description cbp-form__description--error" hidden>
+        <i class="fas fa-exclamation-triangle"></i> This field is required.
+      </div>
       <div class="cbp-dropdown__wrapper" id="dropdown-demo-2">
         <button class="cbp-dropdown__custom" id="port-dropdown" data-toggle="dropdown">
           <span class="cbp-dropdown__placeholder">Choose Variant</span>

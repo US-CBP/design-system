@@ -1,10 +1,5 @@
 export default {
   title: 'Patterns',
-  parameters: {
-    html: {
-      root: '.cbp-form'
-    }
-  },
   argTypes: {
     label: {
       name: 'Input Label',
@@ -39,23 +34,23 @@ export default {
   },
   decorators: [
     (Story, context) => `
-      <form class="cbp-form">
+      <div class="cbp-input-pattern">
         <label for=${context.args.labelFor} class="cbp-input__label">${context.args.label}</label>
         <p class="cbp-input__description">${context.args.inputDescription}</p>
         <p class="cbp-input__description cbp-input__description--error" hidden="true"><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>
         ${Story().outerHTML || Story()}
-      </form>
+      </div>
     `
   ]
 };
 
-const TextAreaTemplate = ({ labelFor, inputName, disabled }) => `<textarea class="cbp-input" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} placeholder="Enter a description"></textarea>`
+const TextAreaTemplate = ({ labelFor, inputName, disabled }) => `<textarea class="cbp-input" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''}></textarea>`
 
 export const TextArea = TextAreaTemplate.bind({});
 TextArea.args = {
   label: 'Task Description',
   labelFor: 'description',
-  inputDescription: 'Required. 500/500 Characters remaining.',
+  inputDescription: 'Required.',
   inputName: 'description',
   errorMessage: 'You must enter a description.'
 }

@@ -53,12 +53,12 @@ export default {
 
 const FileInputTemplate = ({label, description, inputName, inputId, accept, multiple, disabled, required}) => {
   return `
-    <div class="cbp-file-input ${disabled ? 'disabled' : ''}">
+    <div class="cbp-input-pattern cbp-file-input ${disabled ? 'disabled' : ''}">
       <label for="${inputId}" class="cbp-input__label">
         ${label}
       </label>
       <div class="cbp-input__description cbp-form__label--error" hidden>
-        <i class="fas fa-exclamation-triangle"></i>&nbsp;Upload Files
+        <i class="fas fa-exclamation-triangle"></i> Upload Files
       </div>
       <div class="cbp-input__description">
         ${required ? 'Required.' : ''} ${description}
