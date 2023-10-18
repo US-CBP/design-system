@@ -145,11 +145,13 @@ const TextfieldButtonGroupTemplate = ({ square, labelFor, inputType, tags, input
 // TODO: Predictive search functionality
 const SearchFieldTemplate = ({ labelFor, inputName, disabled, required, readonly }) => (
   `\
-    <div class="cbp-input-group">
+    <div class="cbp-input__wrapper">
       <input class="cbp-input" type="search" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} />
-      <button type="button" class="cbp-btn-square ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" ${disabled || readonly ? 'disabled' : ''} aria-label="search"  aria-controls=${labelFor}>
-        <i class="fas fa-search"></i>
-      </button>
+      <span class="cbp-input__overlay-right">
+        <button type="button" class="cbp-btn-square ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" ${disabled || readonly ? 'disabled' : ''} aria-label="search"  aria-controls=${labelFor}>
+          <i class="fas fa-search"></i>
+        </button>
+      </span>
     </div>
   `
 )
