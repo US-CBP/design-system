@@ -26,8 +26,8 @@ export default {
     (Story, context) => `
       <fieldset class="cbp-fieldset ${context.args.displayInline ? 'cbp-fieldset--inline' : ''}" ${context.args.disabled ? 'disabled' : ''}>
         <legend class="cbp-legend">${context.args.legend}</legend>
-        <p class="cbp-input__description">${context.args.inputDescription}</p>
-        <p class="cbp-input__description cbp-input__description--error" hidden><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>
+        <div class="cbp-input__description">${context.args.inputDescription}</div>
+        <div class="cbp-input__description cbp-input__description--error" hidden><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</div>
         ${Story().outerHTML || Story()}
       </fieldset>
     `

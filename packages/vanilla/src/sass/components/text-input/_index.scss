@@ -1,3 +1,10 @@
+.cbp-input-pattern {
+  break-inside: avoid; // don't split up an input pattern if used in multi-col layout
+  max-width: 100%;
+  margin-bottom: var(--cbp-space-4x);
+}
+
+
 // Can be used on both <label> and <legend> elements
 .cbp-input__label,
 .cbp-legend {
@@ -6,7 +13,7 @@
   font-size: var(--cbp-font-size-body);
   font-style: italic;
   font-weight: var(--cbp-font-weight-bold);
-  margin-bottom: var(--cbp-space-2x);
+  line-height: var(--cbp-line-height-xs);
 }
 
 .cbp-input__description {
@@ -14,7 +21,7 @@
   font-size: var(--cbp-font-size-subhead);
   font-style: italic;
   font-weight: var(--cbp-font-weight-medium);
-  margin-bottom: var(--cbp-space-2x);
+  line-height: var(--cbp-line-height-xs);
 
   &--error {
     color: var(--cbp-color-danger-base);
@@ -34,7 +41,7 @@
   min-height: 2.25rem;
   padding: var(--cbp-space-2x);
   
-  &:not([size]) {
+  &:not(textarea):not([size]) {
     width: 100%;
   }
 
@@ -48,7 +55,7 @@
 
   &:focus {
     border-color: var(--cbp-color-interactive-focus-dark);
-    outline: 0;
+    outline: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-dark);
   }
 
   &:read-only {
@@ -67,13 +74,14 @@
     border-color: var(--cbp-color-interactive-disabled-dark);
 
     &:hover {
-      border-color: var(--cbp-color-interactive-secondary-darker);
+      border-color: var(--cbp-color-interactive-disabled-dark);
     }
 
     &:focus {
-      border-color: var(--cbp-color-interactive-focus-dark);
+      border-color: var(--cbp-color-interactive-disabled-dark);
     }
   }
+
 
   &:invalid {
     background-color: var(--cbp-color-danger-lighter);
@@ -110,28 +118,31 @@ textarea.cbp-input {
   }
 }
 
-// Inputs with <button> attached to the end
-.cbp-input-group {
-  display: flex;
+.cbp-input__wrapper {
+  position: relative;
+  max-width: 100%;
 
-  & > .cbp-input {
-    border-right: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    flex: 1 1 auto;
+  .cbp-input__overlay-left {
+    position: absolute;
+    left: 0;
 
-    & + button {
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 0;
-      white-space: nowrap;
-    }
-
-    & + button:disabled {
-      border-color: var(--cbp-color-interactive-disabled-dark);
-      background-color: var(--cbp-color-interactive-disabled-dark);
-      color: var(--cbp-color-interactive-disabled-light);
+    button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
     }
   }
+
+  .cbp-input__overlay-right {
+    position: absolute;
+    right: 0;
+
+    button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+  }
+
 }
 
 .cbp-input__numeric-counter {
@@ -141,12 +152,25 @@ textarea.cbp-input {
   & > .cbp-input {
     -moz-appearance: textfield; // Removes the default increment arrows in Firefox 
   }
+
+  & > button {
+    flex-shrink: 0;
+  }
 }
 
 .cbp-input__numeric-switch {
   display: flex;
   gap: var(--cbp-space-4x);
+
+  &:has(input:not([size])) {
+    width: 100%;
+
+    .cbp-input__wrapper {
+      width: 100%;
+    }
+  }
   
+  /*
   & > div:first-child {
     align-items: center;
     border-color: var(--cbp-color-interactive-secondary-dark);
@@ -214,7 +238,7 @@ textarea.cbp-input {
   & > div:first-child:has(.cbp-input:invalid)::after {
     background-color: var(--cbp-color-danger-lighter);
   }
-
+  */
 }
 
 // TODO: Refactor when <select> and Dropdown patterns are refactored.

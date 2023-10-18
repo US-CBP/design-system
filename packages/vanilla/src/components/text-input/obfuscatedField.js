@@ -1,7 +1,7 @@
 class ObfuscatedField {
   constructor(component) {
     this.input = component;
-    this.btn = component.nextElementSibling;
+    this.btn = component.nextElementSibling.querySelector('button');
 
     if (this.btn) {
       this.btn.setAttribute('aria-pressed', false);

@@ -2,6 +2,7 @@
   border: 0;
   padding: 0;
   margin: 0;
+  margin-bottom: var(--cbp-space-4x);
 
   &:disabled label {
     font-style: italic;

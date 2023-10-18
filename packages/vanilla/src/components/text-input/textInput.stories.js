@@ -1,10 +1,5 @@
 export default {
   title: 'Patterns/Text Inputs',
-  parameters: {
-    html: {
-      root: '.cbp-form'
-    }
-  },
   argTypes: {
     label: {
       name: 'Label Element',
@@ -49,30 +44,34 @@ export default {
   },
   decorators: [
     (Story, context) => `
-      <form class="cbp-form">
+      <div class="cbp-input-pattern">
         <label for=${context.args.labelFor} class="cbp-input__label">${context.args.label}</label>
-        <p class="cbp-input__description" ${!context.args.required ? '' : 'hidden'}>${context.args.inputDescription}</p>
-        <p class="cbp-input__description ${context.args.required ? 'cbp-input__description--error': ''}" ${context.args.required ? '' : 'hidden'}><i class="fas fa-exclamation-triangle"></i>${context.args.errorMessage}</p>
+        <div class="cbp-input__description" ${!context.args.required ? '' : 'hidden'}>
+          ${context.args.inputDescription}
+        </div>
+        <div class="cbp-input__description ${context.args.required ? 'cbp-input__description--error': ''}" ${context.args.required ? '' : 'hidden'}>
+          <i class="fas fa-exclamation-triangle"></i> ${context.args.errorMessage}
+        </div>
         ${Story().outerHTML || Story()}
-      </form>
+      </div>
     `
   ]
 };
 
 const tagsExample = () => `
   <div class="cbp-display-flex cbp-padding-top-2x">
-  <button type="button" class="cbp-chip cbp-margin-right-2x" aria-pressed="false">
-    <span class="cbp-chip__label">Pepperoni</span>
-    <div class="cbp-chip__icon">
-      <i class="fas fa-plus"></i>
-    </div>
-  </button>
-  <button type="button" class="cbp-chip" aria-pressed="false">
-    <span class="cbp-chip__label">Mushroom</span>
-    <div class="cbp-chip__icon">
-      <i class="fas fa-plus"></i>
-    </div>
-  </button>
+    <button type="button" class="cbp-chip cbp-margin-right-2x" aria-pressed="false">
+      <span class="cbp-chip__label">Pepperoni</span>
+      <div class="cbp-chip__icon">
+        <i class="fas fa-plus"></i>
+      </div>
+    </button>
+    <button type="button" class="cbp-chip" aria-pressed="false">
+      <span class="cbp-chip__label">Mushroom</span>
+      <div class="cbp-chip__icon">
+        <i class="fas fa-plus"></i>
+      </div>
+    </button>
   </div>
 `
 
@@ -86,7 +85,6 @@ const TextfieldTemplate = ({ labelFor, inputType, inputName, disabled, required,
       ${disabled ? 'disabled' : ''}
       ${required ? 'required' : ''}
       ${readonly ? 'readonly' : ''}
-      placeholder="Enter first name."
     /> 
   `
 ) 
@@ -94,9 +92,11 @@ const TextfieldTemplate = ({ labelFor, inputType, inputName, disabled, required,
 // '\' Removes line break shown in Storybook HTML preview
 const PasswordFieldTemplate = ({ inputName, labelFor, disabled, required, readonly }) => (
   `\
-    <div class="cbp-input-group">
-      <input class="cbp-input" type="password" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Enter password" />
-      <button class="cbp-btn-square cbp-btn__secondary" type="button" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}><i class="fas fa-eye-slash"></i></button>
+    <div class="cbp-input__wrapper">
+      <input class="cbp-input" type="password" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} />
+      <span class="cbp-input__overlay-right">
+        <button class="cbp-btn-square cbp-btn__secondary" type="button" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}><i class="fas fa-eye-slash"></i></button>
+      </span>
     </div>  
   `
 )
@@ -104,7 +104,7 @@ const PasswordFieldTemplate = ({ inputName, labelFor, disabled, required, readon
 const NumericCounterFieldTemplate = ({ labelFor, inputName, disabled, required, readonly }) => (
   `\
     <div class="cbp-input__numeric-counter" id="number-counter">
-      <input class="cbp-input" type="number" name=${inputName} id=${labelFor}  ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Enter Number of Fish"></input>
+      <input class="cbp-input" type="number" name=${inputName} id=${labelFor}  ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} />
       <button class="cbp-btn-square cbp-btn__secondary" type="button" id="decrement"  ${disabled || readonly ? 'disabled' : ''} aria-label="decrement" aria-controls=${labelFor}>
         <i class="fas fa-minus"></i>
       </button>
@@ -118,12 +118,13 @@ const NumericCounterFieldTemplate = ({ labelFor, inputName, disabled, required, 
 const NumericSwitchTemplate = ({ labelFor, inputName, disabled, required, readonly }) => (
   `\
     <div class="cbp-input__numeric-switch">
-      <div>
-        <input class="cbp-input" type="number" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Enter Weight"></input>
+      <div class="cbp-input__wrapper">
+        <input class="cbp-input" type="number" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} />
+        <span class="cbp-input__overlay-right cbp-margin-right-4x" style="line-height:var(--cbp-space-9x)">lbs</span>
       </div>
       <div class="cbp-btn--segment" data-segmented-button-type="single">
-        <button type="button" value="lbs" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>LBS</button>
-        <button type="button" value="kg" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>KG</button>
+        <button class="cbp-btn" type="button" value="lbs" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>LBS</button>
+        <button class="cbp-btn" type="button" value="kg" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>KG</button>
       </div>
     </div>
   `
@@ -131,9 +132,11 @@ const NumericSwitchTemplate = ({ labelFor, inputName, disabled, required, readon
 
 const TextfieldButtonGroupTemplate = ({ square, labelFor, inputType, tags, inputName, disabled, buttonLabel, required, readonly }) => (
   `\
-    <div class="cbp-input-group">
-      <input class="cbp-input" type=${inputType} name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Add Person" />
-      <button class="${square ? 'cbp-btn-square' : 'cbp-btn'} ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" type="button" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>${square ? '<i class="fas fa-plus"></i>' : buttonLabel}</button>
+    <div class="cbp-input__wrapper">
+      <input class="cbp-input" type=${inputType} name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} />
+      <span class="cbp-input__overlay-right">
+        <button class="${square ? 'cbp-btn-square' : 'cbp-btn'} ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" type="button" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>${square ? '<i class="fas fa-plus"></i>' : buttonLabel}</button>
+      </span>
     </div>
     ${tags ? tagsExample() : ''}
   `
@@ -142,11 +145,13 @@ const TextfieldButtonGroupTemplate = ({ square, labelFor, inputType, tags, input
 // TODO: Predictive search functionality
 const SearchFieldTemplate = ({ labelFor, inputName, disabled, required, readonly }) => (
   `\
-    <div class="cbp-input-group">
-      <input class="cbp-input" type="search" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} placeholder="Enter Search Criteria"></input>
-      <button type="button" class="cbp-btn-square ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" ${disabled || readonly ? 'disabled' : ''} aria-label="search"  aria-controls=${labelFor}>
-        <i class="fas fa-search"></i>
-      </button>
+    <div class="cbp-input__wrapper">
+      <input class="cbp-input" type="search" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} />
+      <span class="cbp-input__overlay-right">
+        <button type="button" class="cbp-btn-square ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" ${disabled || readonly ? 'disabled' : ''} aria-label="search"  aria-controls=${labelFor}>
+          <i class="fas fa-search"></i>
+        </button>
+      </span>
     </div>
   `
 )
