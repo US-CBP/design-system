@@ -125,37 +125,24 @@ textarea.cbp-input {
   .cbp-input__overlay-left {
     position: absolute;
     left: 0;
+
+    button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
   }
 
   .cbp-input__overlay-right {
     position: absolute;
     right: 0;
-  }
 
-}
-
-// Inputs with <button> attached to the end
-.cbp-input-group {
-  display: flex;
-
-  & > .cbp-input {
-    border-right: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    flex: 1 1 auto;
-
-    & + button {
-      border-bottom-left-radius: 0;
+    button {
       border-top-left-radius: 0;
-      white-space: nowrap;
+      border-bottom-left-radius: 0;
     }
 
-    & + button:disabled {
-      border-color: var(--cbp-color-interactive-disabled-dark);
-      background-color: var(--cbp-color-interactive-disabled-dark);
-      color: var(--cbp-color-interactive-disabled-light);
-    }
   }
+
 }
 
 .cbp-input__numeric-counter {
