@@ -1,26 +1,20 @@
 .cbp-link {
   &:link {
-    color: var(--cbp-color-interactive-primary-base);
+    color: var(--cbp-color-interactive-primary-dark);
   }
 
   &:visited {
     color:  var(--cbp-color-interactive-visited-dark);
   }
+
+  &:hover:not(:focus):not(:disabled) {
+    color:  var(--cbp-color-interactive-primary-darker);
+  }
   
   &:focus {
     color: var(--cbp-color-interactive-focus-dark);
-    font-weight: var(--cbp-font-weight-bold);
     outline: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-dark);
     outline-offset: var(--cbp-border-size-sm);
-
-    &:hover {
-      color: var(--cbp-color-interactive-focus-dark);
-    }
-  }
-
-  &:hover {
-    color:  var(--cbp-color-interactive-primary-dark);
-    font-weight: var(--cbp-font-weight-bold);
   }
 
   &[aria-disabled=true] {
@@ -28,12 +22,8 @@
     font-style: italic;
     text-decoration: underline;
   
-    &:hover {
+    &:hover:not(:focus):not(:disabled) {
       color: var(--cbp-color-interactive-secondary-dark);
-    }
-  
-    &:focus {
-      color: var(--cbp-color-interactive-focus-dark);
     }
   }
 }
@@ -51,28 +41,21 @@
     color: var(--cbp-color-interactive-visited-light);
   }
 
-  &:focus {
-    color: var(--cbp-color-interactive-focus-light);
-    outline: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-light);
-
-    &:hover {
-      color: var(--cbp-color-interactive-focus-light);
-    }
-  }
-
-  &:hover {
+  &:hover:not(:focus):not(:disabled) {
     color:  var(--cbp-color-interactive-primary-base);
   }
+
+  &:focus {
+    color: var(--cbp-color-interactive-focus-light);
+    outline-color: var(--cbp-color-interactive-focus-light);
+  }
+
 
   &[aria-disabled=true] {
     color: var(--cbp-color-interactive-disabled-light);
   
-    &:hover {
+    &:hover:not(:focus):not(:disabled) {
       color: var(--cbp-color-interactive-secondary-light);
-    }
-  
-    &:focus {
-      color: var(--cbp-color-interactive-focus-light);
     }
   }
 }
