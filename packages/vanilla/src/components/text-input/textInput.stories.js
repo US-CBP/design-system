@@ -11,19 +11,24 @@ export default {
       description: 'Instructions or supplementary information regarding the input element. Placed below the <label> element.',
       control: { type: 'text' }
     },
-    labelFor: {
-      name: 'Label `for` Attribute',
-      description: 'When used on a <label> element it indicates the form element that this label describes and has the value which is the `id` of the form element it relates to.',
-      control: { type: 'text' }
-    },
     errorMessage: {
       name: 'Error Message',
       description: 'A message in the input description that a problem has occurred.',
       control: { type: 'text' }
     },
+    value: {
+      name: 'Input `value` attribute',
+      description: 'The value of the input, submitted with the form data as part of a name/value pair.',
+      control: { type: 'text' }
+    },
     inputName: {
       name: 'Input `name` Attribute',
       description: 'Name of the form control in the input element. Submitted with the form as part of a name/value pair.',
+      control: { type: 'text' }
+    },
+    inputId: {
+      name: 'Input `id` Attribute',
+      description: 'The `input`\'s `id` used to associate the `label` and `input` tags, as well as generate related pattern `id`s for ARIA associations.',
       control: { type: 'text' }
     },
     disabled: {
@@ -45,8 +50,8 @@ export default {
   decorators: [
     (Story, context) => `
       <div class="cbp-input-pattern">
-        <label for=${context.args.labelFor} class="cbp-input__label">${context.args.label}</label>
-        <div class="cbp-input__description" ${!context.args.required ? '' : 'hidden'}>
+        <label for=${context.args.inputId} class="cbp-input__label">${context.args.label}</label>
+        <div id=${context.args.inputId+'-description'} class="cbp-input__description" ${!context.args.required ? '' : 'hidden'}>
           ${context.args.inputDescription}
         </div>
         <div class="cbp-input__description ${context.args.required ? 'cbp-input__description--error': ''}" ${context.args.required ? '' : 'hidden'}>
@@ -75,67 +80,70 @@ const tagsExample = () => `
   </div>
 `
 
-const TextfieldTemplate = ({ labelFor, inputType, inputName, disabled, required, readonly }) => (
+const TextfieldTemplate = ({ inputId, inputType, inputName, value, disabled, required, readonly }) => (
   `\
     <input
-      type=${inputType}
+      type="${inputType}"
+      value="${value}"
       class="cbp-input"
-      name=${inputName}
-      id=${labelFor}
+      name="${inputName}"
+      id="${inputId}"
+
       ${disabled ? 'disabled' : ''}
       ${required ? 'required' : ''}
       ${readonly ? 'readonly' : ''}
+      aria-describedby="${inputId+'-description'}"
     /> 
   `
 ) 
 
 // '\' Removes line break shown in Storybook HTML preview
-const PasswordFieldTemplate = ({ inputName, labelFor, disabled, required, readonly }) => (
+const PasswordFieldTemplate = ({ inputName, inputId, value, disabled, required, readonly }) => (
   `\
     <div class="cbp-input__wrapper">
-      <input class="cbp-input" type="password" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} />
+      <input class="cbp-input" type="password" name="${inputName}" id="${inputId}" value="${value}" ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} aria-describedby="${inputId+'-description'}" />
       <span class="cbp-input__overlay-right">
-        <button class="cbp-btn-square cbp-btn__secondary" type="button" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}><i class="fas fa-eye-slash"></i></button>
+        <button class="cbp-btn-square cbp-btn__secondary" type="button" ${disabled || readonly ? 'disabled' : ''} aria-controls=${inputId}><i class="fas fa-eye-slash"></i></button>
       </span>
     </div>  
   `
 )
 
-const NumericCounterFieldTemplate = ({ labelFor, inputName, disabled, required, readonly }) => (
+const NumericCounterFieldTemplate = ({ inputId, inputName, value, disabled, required, readonly }) => (
   `\
     <div class="cbp-input__numeric-counter" id="number-counter">
-      <input class="cbp-input" type="number" name=${inputName} id=${labelFor}  ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} />
-      <button class="cbp-btn-square cbp-btn__secondary" type="button" id="decrement"  ${disabled || readonly ? 'disabled' : ''} aria-label="decrement" aria-controls=${labelFor}>
+      <input class="cbp-input" type="number" value="${value}" name=${inputName} id=${inputId} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} aria-describedby="${inputId+'-description'}" />
+      <button class="cbp-btn-square cbp-btn__secondary" type="button" id="decrement" ${disabled || readonly ? 'disabled' : ''} aria-label="decrement" aria-controls=${inputId}>
         <i class="fas fa-minus"></i>
       </button>
-      <button class="cbp-btn-square cbp-btn__secondary" type="button" id="increment"  ${disabled || readonly ? 'disabled' : ''} aria-label="increment" aria-controls=${labelFor}>
+      <button class="cbp-btn-square cbp-btn__secondary" type="button" id="increment" ${disabled || readonly ? 'disabled' : ''} aria-label="increment" aria-controls=${inputId}>
         <i class="fas fa-plus"></i>
       </button>
     </div>
   `
 )
 
-const NumericSwitchTemplate = ({ labelFor, inputName, disabled, required, readonly }) => (
+const NumericSwitchTemplate = ({ inputId, inputName, value, disabled, required, readonly }) => (
   `\
     <div class="cbp-input__numeric-switch">
       <div class="cbp-input__wrapper">
-        <input class="cbp-input" type="number" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} />
+        <input class="cbp-input" type="number" name="${inputName}" id="${inputId}" value="${value}" ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} aria-describedby="${inputId+'-description'}" />
         <span class="cbp-input__overlay-right cbp-margin-right-4x" style="line-height:var(--cbp-space-9x)">lbs</span>
       </div>
       <div class="cbp-btn--segment" data-segmented-button-type="single">
-        <button class="cbp-btn" type="button" value="lbs" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>LBS</button>
-        <button class="cbp-btn" type="button" value="kg" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>KG</button>
+        <button class="cbp-btn" type="button" value="lbs" ${disabled || readonly ? 'disabled' : ''} aria-controls=${inputId}>LBS</button>
+        <button class="cbp-btn" type="button" value="kg" ${disabled || readonly ? 'disabled' : ''} aria-controls=${inputId}>KG</button>
       </div>
     </div>
   `
 )
 
-const TextfieldButtonGroupTemplate = ({ square, labelFor, inputType, tags, inputName, disabled, buttonLabel, required, readonly }) => (
+const TextfieldButtonGroupTemplate = ({ square, inputId, inputType, value, tags, inputName, disabled, buttonLabel, required, readonly }) => (
   `\
     <div class="cbp-input__wrapper">
-      <input class="cbp-input" type=${inputType} name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} />
+      <input class="cbp-input" type="${inputType}" name="${inputName}" id="${inputId}" value="${value}" ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} aria-describedby="${inputId+'-description'}" />
       <span class="cbp-input__overlay-right">
-        <button class="${square ? 'cbp-btn-square' : 'cbp-btn'} ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" type="button" ${disabled || readonly ? 'disabled' : ''} aria-controls=${labelFor}>${square ? '<i class="fas fa-plus"></i>' : buttonLabel}</button>
+        <button class="${square ? 'cbp-btn-square' : 'cbp-btn'} ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" type="button" ${disabled || readonly ? 'disabled' : ''} aria-controls=${inputId}>${square ? '<i class="fas fa-plus"></i>' : buttonLabel}</button>
       </span>
     </div>
     ${tags ? tagsExample() : ''}
@@ -143,12 +151,12 @@ const TextfieldButtonGroupTemplate = ({ square, labelFor, inputType, tags, input
 )
 
 // TODO: Predictive search functionality
-const SearchFieldTemplate = ({ labelFor, inputName, disabled, required, readonly }) => (
+const SearchFieldTemplate = ({ inputId, inputName, value, disabled, required, readonly }) => (
   `\
     <div class="cbp-input__wrapper">
-      <input class="cbp-input" type="search" name=${inputName} id=${labelFor} ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} />
+      <input class="cbp-input" type="search" name="${inputName}" id="${inputId}" value="${value}" ${disabled ? 'disabled' : ''} ${required ? 'required' : ''} ${readonly ? 'readonly' : ''} aria-describedby="${inputId+'-description'}" />
       <span class="cbp-input__overlay-right">
-        <button type="button" class="cbp-btn-square ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" ${disabled || readonly ? 'disabled' : ''} aria-label="search"  aria-controls=${labelFor}>
+        <button type="button" class="cbp-btn-square ${required ? 'cbp-btn__danger' : 'cbp-btn__secondary'}" ${disabled || readonly ? 'disabled' : ''} aria-label="search"  aria-controls=${inputId}>
           <i class="fas fa-search"></i>
         </button>
       </span>
@@ -161,9 +169,10 @@ TextField.args = {
   label: 'First Name',
   inputDescription: 'Required. 250/250 Characters remaining.',
   errorMessage: 'This field is required.',
-  labelFor: 'firstName',
+  inputId: 'firstName',
   inputType: 'text',
-  inputName: 'firstName'
+  inputName: 'firstName',
+  value: '',
 };
 TextField.argTypes = {
   inputType: {
@@ -178,37 +187,43 @@ export const PasswordField = PasswordFieldTemplate.bind({});
 PasswordField.args = {
   label: 'Password',
   inputDescription: 'Required',
-  labelFor: 'password',
+  inputId: 'password',
   inputName: 'password',
-  errorMessage: 'This password does not match our records.'
+  errorMessage: 'This password does not match our records.',
+  value: '',
 }
 
 export const NumericCounterField = NumericCounterFieldTemplate.bind({});
 NumericCounterField.args = {
   label: 'Number of Fish',
   inputDescription: 'Required. 1,000 fish maximum.',
-  labelFor: 'numberOfFish',
+  inputId: 'numberOfFish',
   inputName: 'numberOfFish',
-  errorMessage: 'This field is required.'
+  errorMessage: 'This field is required.',
+  value: '',
 };
 
+/*
 export const NumericSwitchField = NumericSwitchTemplate.bind({});
 NumericSwitchField.args = {
   label: 'Your Weight',
   inputDescription: 'Required.',
-  labelFor: 'weight',
+  inputId: 'weight',
   inputName: 'weight',
-  errorMessage: 'This field is required.'
+  errorMessage: 'This field is required.',
+  value: '',
 }
+*/
 
 export const TextfieldButtonGroup = TextfieldButtonGroupTemplate.bind({});
 TextfieldButtonGroup.args = {
   square: false,
   label: 'Add Tags',
   inputDescription: 'Required.',
-  labelFor: 'tags',
+  inputId: 'tags',
   inputType: 'text',
   inputName: 'addPerson',
+  value: '',
   errorMessage: 'This field is required.',
   buttonLabel: 'Add Person',
   chips: false
@@ -242,7 +257,8 @@ export const SearchField = SearchFieldTemplate.bind({});
 SearchField.args = {
   label: 'Search',
   inputDescription: 'Required.',
-  labelFor: 'search',
+  inputId: 'search',
   inputName: 'search',
-  errorMessage: 'This field is required.'
+  errorMessage: 'This field is required.',
+  value: '',
 }
