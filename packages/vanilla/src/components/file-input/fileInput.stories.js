@@ -51,7 +51,7 @@ export default {
   },
 };
 
-const FileInputTemplate = ({label, description, inputName, inputId, accept, multiple, disabled, required}) => {
+const FileInputTemplate = ({label, description, inputName, inputId, accept, disabled, required}) => {
   return `
     <div class="cbp-input-pattern cbp-file-input ${disabled ? 'disabled' : ''}">
       <label for="${inputId}" class="cbp-input__label">
@@ -60,13 +60,13 @@ const FileInputTemplate = ({label, description, inputName, inputId, accept, mult
       <div class="cbp-input__description cbp-form__label--error" hidden>
         <i class="fas fa-exclamation-triangle"></i> Upload Files
       </div>
-      <div class="cbp-input__description">
+      <div class="cbp-input__description" id="${inputId+'-description'}">
         ${required ? 'Required.' : ''} ${description}
       </div>
       
       <div class="cbp-file-input__wrapper">
         <i class="fas fa-file-alt"></i>
-        Drag & Drop File${multiple ? 's' : ''} Here or
+        Drag & Drop File Here or
         <button class="cbp-btn cbp-btn__secondary" tabindex="-1">
           <i class="fas fa-upload"></i>
           browse
@@ -77,7 +77,9 @@ const FileInputTemplate = ({label, description, inputName, inputId, accept, mult
           accept="${accept}"
           ${multiple ? 'multiple' : ''}
           ${required ? 'aria-required="true"' : ''}
-          ${disabled ? 'disabled' : ''}>
+          ${disabled ? 'disabled' : ''}
+          aria-describedby="${inputId+'-description'}"
+        >
       </div>
     </div>
   `;
