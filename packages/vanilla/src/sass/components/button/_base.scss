@@ -33,14 +33,14 @@
     border-color: var(--cbp-color-interactive-active-dark);
   }
 
-  &:disabled {
+  // Prevents active state appearing when clicking on disabled buttons
+  &:disabled:not(:enabled) {
     background-color: var(--cbp-color-interactive-disabled-dark);
     border-color: var(--cbp-color-interactive-disabled-dark);
     color: var(--cbp-color-interactive-disabled-light);
     font-style: italic;
     cursor: not-allowed;
   }
-
 }
 
 .cbp-btn-square {
@@ -86,7 +86,8 @@
       outline-offset: calc(-1 * var(--cbp-space-1x));
     }
   
-    &:disabled {
+    // Prevents active state appearing when clicking on disabled buttons
+    &:disabled:not(:enabled) {
       background-color: var(--cbp-color-interactive-disabled-dark);
       border-color: var(--cbp-color-interactive-disabled-dark);
       color: var(--cbp-color-interactive-disabled-light);
