@@ -56,6 +56,7 @@ class Dropdown {
 
   close() {
     if (this.isOpen()) {
+      util.getCurrentMenu().dropdownNode.setAttribute('aria-expanded','false');
       util.getCurrentMenu().dropdownNode.classList.remove("cbp-dropdown--open");
       util.openDropdowns.pop();
       this.dropdownNode.focus();
@@ -81,6 +82,7 @@ class Dropdown {
     if (typeof util.getCurrentMenu() === "undefined" || util.openDropdowns.length <= 0) {
       util.openDropdowns.push(dropdown);
       util.getCurrentMenu().dropdownNode.classList.add("cbp-dropdown--open");
+      util.getCurrentMenu().dropdownNode.setAttribute('aria-expanded','true');
       window.addEventListener("click", this.handleOutsideClick, true);
     } 
     else if (dropdown.dropdownNode != util.getCurrentMenu().dropdownNode) {

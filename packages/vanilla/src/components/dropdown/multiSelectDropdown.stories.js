@@ -6,8 +6,8 @@ export default {
 const Template = () => {
   return `
     <div class="cbp-input-pattern">
-      <label for="pod2" class="cbp-input__label">Port(s) of Departure</label>
-      <div class="cbp-input__description">
+      <label for="ports-dropdown" class="cbp-input__label">Port(s) of Departure</label>
+      <div class="cbp-input__description" id="port-dropdown-description">
         Required.
       </div>
       <div class="cbp-form__description cbp-form__description--error" hidden>
@@ -15,7 +15,16 @@ const Template = () => {
       </div>
       
       <div class="cbp-dropdown__wrapper" id="dropdown-demo-3">
-        <button class="cbp-dropdown__custom" id="ports-dropdown" data-toggle="dropdown">
+        <button
+          class="cbp-dropdown__custom"
+          id="ports-dropdown"
+          data-toggle="dropdown"
+          role="combobox"
+          aria-controls="listbox1"
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-describedby="port-dropdown-description"
+        >
           <span class="cbp-dropdown__placeholder">Choose Ports</span>
         </button>
 
