@@ -75,7 +75,6 @@ const FileInputTemplate = ({label, description, inputName, inputId, accept, disa
           name="${inputName}"
           id="${inputId}"
           accept="${accept}"
-          ${multiple ? 'multiple' : ''}
           ${required ? 'aria-required="true"' : ''}
           ${disabled ? 'disabled' : ''}
           aria-describedby="${inputId+'-description'}"
