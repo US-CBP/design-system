@@ -26,6 +26,7 @@
   // Tertiary Button is *ONLY* used in Decision Cards
   & .cbp-btn__tertiary {
     background-color: var(--cbp-color-interactive-secondary-base);
+    border-color: var(--cbp-color-interactive-secondary-base);
     color: var(--cbp-color-text-lightest);
 
     &:hover:not(:focus):not(:disabled) {
@@ -36,10 +37,12 @@
     // Without this set, .cbp-btn:focus gets overridden by .cbp-card__actions.cbp-btn__tertiary background-color property
     &:focus {
       background-color: var(--cbp-color-interactive-focus-dark);
+      border-color: var(--cbp-color-interactive-focus-dark);
     }
 
     &:disabled {
       background-color: var(--cbp-color-interactive-disabled-dark);
+      border-color: var(--cbp-color-interactive-disabled-dark);
       color: var(--cbp-color-interactive-disabled-light);
     }
   }
