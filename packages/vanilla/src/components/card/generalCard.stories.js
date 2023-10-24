@@ -52,21 +52,6 @@ const GeneralCardMediaTemplate = ({ title, modifier }) => {
   `;
 };
 
-const SmallGeneralCardTemplate = ({ title, modifier }) => {
-  return `
-    <div class="wrapper" style="display: grid; grid-template-columns: 312px">
-      <div class="cbp-card ${modifier}">
-        <div class="cbp-card__content">
-          <div class="cbp-card__header">
-            <h4 class="cbp-card__title"><i class="fas fa-info-circle cbp-margin-right-2x"></i>${title}</h4>
-          </div>
-          <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
-        </div>
-      </div>
-    </div>
-  `;
-};
-
 export const DefaultGeneralCard = DefaultGeneralCardTemplate.bind({});
 DefaultGeneralCard.args = {
   title: 'General Card',
@@ -80,10 +65,3 @@ GeneralCardMedia.args = {
   modifier: 'default'
 };
 GeneralCardMedia.storyName = 'With Media';
-
-export const SmallGeneralCard = SmallGeneralCardTemplate.bind({});
-SmallGeneralCard.args = {
-  title: 'General Card',
-  modifier: 'default'
-};
-SmallGeneralCard.storyName = 'Small Size';
