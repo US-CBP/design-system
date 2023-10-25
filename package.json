@@ -39,7 +39,8 @@
   "workspaces": [
     "packages/vanilla",
     "packages/ux-guidelines",
-    "packages/react-components"
+    "packages/react-components",
+    "packages/web-components"
   ],
   "devDependencies": {
     "eslint": "^8.33.0",
