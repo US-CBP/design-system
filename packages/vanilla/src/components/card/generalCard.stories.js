@@ -22,11 +22,16 @@ export default {
       name: 'Show Icon',
       description: 'Show an icon in the title',
       control: 'boolean'
+    },
+    bodyText: {
+      name: 'Body Text',
+      description: 'Set the body text of the card',
+      control: 'text'
     }
   }
 };
 
-const DefaultGeneralCardTemplate = ({ title, modifier, showIcon }) => {
+const DefaultGeneralCardTemplate = ({ title, modifier, showIcon, bodyText }) => {
   return `
     <div class="wrapper" style="display: grid; grid-template-columns: 432px">
       <div class="cbp-card ${modifier != 'default' ? `cbp-card--${modifier}` : ''}">
@@ -37,14 +42,14 @@ const DefaultGeneralCardTemplate = ({ title, modifier, showIcon }) => {
               ${title}
             </h4>
           </div>
-          <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
+          <p class="cbp-text-body cbp-margin-top-4x">${bodyText}</p>
         </div>
       </div>
     </div>
   `;
 };
 
-const GeneralCardMediaTemplate = ({ title, modifier, showIcon }) => {
+const GeneralCardMediaTemplate = ({ title, modifier, showIcon, bodyText }) => {
   return `
     <div class="wrapper" style="display: grid; grid-template-columns: 486px">
       <div class="cbp-card ${modifier != 'default' ? `cbp-card--${modifier}` : ''} cbp-display-flex">
@@ -56,7 +61,7 @@ const GeneralCardMediaTemplate = ({ title, modifier, showIcon }) => {
               ${title}
             </h4>
           </div>
-          <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
+          <p class="cbp-text-body cbp-margin-top-4x">${bodyText}</p>
         </div>
       </div>
     </div>
@@ -66,13 +71,15 @@ const GeneralCardMediaTemplate = ({ title, modifier, showIcon }) => {
 export const DefaultGeneralCard = DefaultGeneralCardTemplate.bind({});
 DefaultGeneralCard.args = {
   title: 'General Card',
-  modifier: 'default'
+  modifier: 'default',
+  bodyText: 'Here is an example of some supplementary text for this purely informational card'
 };
 DefaultGeneralCard.storyName = 'Default';
 
 export const GeneralCardMedia = GeneralCardMediaTemplate.bind({});
 GeneralCardMedia.args = {
   title: 'General Card',
-  modifier: 'default'
+  modifier: 'default',
+  bodyText: 'Here is an example of some supplementary text for this purely informational card'
 };
 GeneralCardMedia.storyName = 'With Media';
