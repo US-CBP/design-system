@@ -17,17 +17,25 @@ export default {
       description: 'Set the modifier class of the card',
       control: 'select',
       options: ['default', 'info', 'success', 'danger', 'warning']
+    },
+    showIcon: {
+      name: 'Show Icon',
+      description: 'Show an icon in the title',
+      control: 'boolean'
     }
   }
 };
 
-const DefaultGeneralCardTemplate = ({ title, modifier }) => {
+const DefaultGeneralCardTemplate = ({ title, modifier, showIcon }) => {
   return `
     <div class="wrapper" style="display: grid; grid-template-columns: 432px">
       <div class="cbp-card ${modifier != 'default' ? `cbp-card--${modifier}` : ''}">
         <div class="cbp-card__content">
           <div class="cbp-card__header">
-            <h4 class="cbp-card__title"><i class="fas fa-info-circle cbp-margin-right-2x"></i>${title}</h4>
+            <h4 class="cbp-card__title">
+              ${showIcon ? '<i class="fas fa-info-circle cbp-margin-right-2x"></i>' : ''}
+              ${title}
+            </h4>
           </div>
           <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
         </div>
@@ -36,14 +44,17 @@ const DefaultGeneralCardTemplate = ({ title, modifier }) => {
   `;
 };
 
-const GeneralCardMediaTemplate = ({ title, modifier }) => {
+const GeneralCardMediaTemplate = ({ title, modifier, showIcon }) => {
   return `
     <div class="wrapper" style="display: grid; grid-template-columns: 486px">
-      <div class="cbp-card ${modifier} cbp-display-flex">
+      <div class="cbp-card ${modifier != 'default' ? `cbp-card--${modifier}` : ''} cbp-display-flex">
         <img src="assets/images/profile-page/passenge-photo-v2.jpg" class="cbp-card__img-left" alt="portrait of a person" height="127" width="116">
         <div class="cbp-card__content">
           <div class="cbp-card__header">
-            <h4 class="cbp-card__title"><i class="fas fa-info-circle cbp-margin-right-2x"></i>${title}</h4>
+            <h4 class="cbp-card__title">
+              ${showIcon ? '<i class="fas fa-info-circle cbp-margin-right-2x"></i>' : ''}
+              ${title}
+            </h4>
           </div>
           <p class="cbp-text-body cbp-margin-top-4x">Here is an example of some supplementary text for this purely informational card</p>
         </div>
