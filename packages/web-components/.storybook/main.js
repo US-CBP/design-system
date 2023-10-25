@@ -12,16 +12,33 @@ function getAbsolutePath(value) {
 const config = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
+    getAbsolutePath('@whitespace/storybook-addon-html'),
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        backgrounds: false,
+        measure: false,
+        outline: false,
+      },
+    },
+    getAbsolutePath('@storybook/addon-styling'),
+    getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('@storybook/addon-interactions')
+    getAbsolutePath('@storybook/addon-a11y'),
+  ],
+  staticDirs: [
+    '../dist',
+    '../assets'
   ],
   framework: {
     name: getAbsolutePath('@storybook/html-vite'),
     options: {},
   },
   core: {
-    disableTelemetry: true,
+    disableTelemetry: true, // 👈 Disables telemetry
+  },
+  features: {
+    storyStoreV7: true,
   },
   docs: {
     autodocs: 'tag',

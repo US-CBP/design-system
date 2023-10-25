@@ -56,19 +56,9 @@ export default {
   }
 };
 
-const setBtnFill = (color, fill) => {
-  const btnColor = `cbp-btn__${color}`
-
-  if (fill === 'solid') {
-    return btnColor;
-  } else {
-    return `${btnColor}-${fill}`
-  }
-}
-
-const Template = ({ element, variant, color, fill, label, disabled, type, ariaLabel }) => { 
+const Template = ({ label, type }) => { 
   return ` 
-      <cbp-button {...args}
+      <cbp-button
         type=${type}
       >
         ${label}
@@ -78,7 +68,6 @@ const Template = ({ element, variant, color, fill, label, disabled, type, ariaLa
 
 export const Button = Template.bind({});
 Button.args = {
-  element: 'button',
   variant: 'default',
   color: 'primary',
   fill: 'solid',
