@@ -16,7 +16,7 @@ export default {
       name: 'Modifier',
       description: 'Set the modifier class of the card',
       control: 'select',
-      options: ['default', 'info', 'success', 'danger']
+      options: ['default', 'info', 'success', 'danger', 'warning']
     }
   }
 };
