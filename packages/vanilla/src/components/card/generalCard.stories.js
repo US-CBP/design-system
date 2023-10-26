@@ -37,10 +37,7 @@ const DefaultGeneralCardTemplate = ({ title, modifier, showIcon, bodyText }) => 
       <div class="cbp-card ${modifier != 'default' ? `cbp-card--${modifier}` : ''}">
         <div class="cbp-card__content">
           <div class="cbp-card__header">
-            <h4 class="cbp-card__title">
-              ${showIcon ? '<i class="fas fa-info-circle cbp-margin-right-2x"></i>' : ''}
-              ${title}
-            </h4>
+            <h4 class="cbp-card__title">${showIcon ? '<i class="fas fa-info-circle cbp-margin-right-2x"></i>' : ''}${title}</h4>
           </div>
           <p class="cbp-text-body cbp-margin-top-4x">${bodyText}</p>
         </div>
@@ -56,10 +53,7 @@ const GeneralCardMediaTemplate = ({ title, modifier, showIcon, bodyText }) => {
         <img src="assets/images/profile-page/passenge-photo-v2.jpg" class="cbp-card__img-left" alt="portrait of a person" height="127" width="116">
         <div class="cbp-card__content">
           <div class="cbp-card__header">
-            <h4 class="cbp-card__title">
-              ${showIcon ? '<i class="fas fa-info-circle cbp-margin-right-2x"></i>' : ''}
-              ${title}
-            </h4>
+            <h4 class="cbp-card__title">${showIcon ? '<i class="fas fa-info-circle cbp-margin-right-2x"></i>' : ''}${title}</h4>
           </div>
           <p class="cbp-text-body cbp-margin-top-4x">${bodyText}</p>
         </div>
