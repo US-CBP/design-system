@@ -1,5 +1,5 @@
 .cbp-card {
-  border-color: var(--cbp-color-base-neutral-lighter);
+  border-color: var(--cbp-color-gray-cool-10);
   border-style: solid;
   border-width: var(--cbp-border-size-md);
   border-radius: var(--cbp-border-radius-softer);
@@ -79,7 +79,15 @@
 .cbp-card--danger {
   @include card-general-modifier(
     $background-color: var(--cbp-color-danger-lighter),
-    $border-color: var(--cbp-color-danger-light),
+    $border-color: var(--cbp-color-danger-base),
+    $title-color: var(--cbp-color-text-darker)
+  );
+}
+
+.cbp-card--warning {
+  @include card-general-modifier(
+    $background-color: var(--cbp-color-warning-lighter),
+    $border-color: var(--cbp-color-warning-base),
     $title-color: var(--cbp-color-text-darker)
   );
 }
