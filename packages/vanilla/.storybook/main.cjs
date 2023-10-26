@@ -12,7 +12,7 @@ module.exports = {
         outline: false,
       },
     },
-    getAbsolutePath('@storybook/addon-styling'),
+    getAbsolutePath('@storybook/addon-themes'),
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-a11y'),
