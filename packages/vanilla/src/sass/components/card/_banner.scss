@@ -17,7 +17,7 @@
   align-items: center;
   background-color: var(--cbp-color-gray-cool-60);
   border-top-left-radius: var(--cbp-border-radius-softer);
-  border-top-right-radius: var(--cbp-border-radius-softer);;
+  border-top-right-radius: var(--cbp-border-radius-softer);
   color: var(--cbp-color-text-lighter);
   display: flex;
   font-size: var(--cbp-font-size-heading-md);
@@ -57,6 +57,17 @@
     $title-background-color: var(--cbp-color-success-base),
     $body-background-color: var(--cbp-color-success-lighter)
   );
+}
+
+.cbp-card__banner--warning {
+  @include card-banner-modifier(
+    $title-background-color: var(--cbp-color-warning-base),
+    $body-background-color: var(--cbp-color-warning-lighter)
+  );
+
+  .cbp-card__banner-title {
+    color:var(--cbp-color-text-darker);
+  }
 }
 
 .cbp-card__banner--danger {

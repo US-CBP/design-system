@@ -16,7 +16,8 @@ export default {
       options: [
         'default',
         'info',  
-        'success', 
+        'success',
+        'warning',
         'danger'
       ]
     },
@@ -32,6 +33,7 @@ const icons = {
   default: '<i class="fas fa-info"></i>',
   info: '<i class="fas fa-info-circle"></i>',  
   success: '<i class="fas fa-check"></i>',
+  warning: '<i class="fas fa-exclamation-circle"></i>',
   danger: '<i class="fas fa-exclamation-triangle"></i>'
 }
 
