@@ -54,7 +54,7 @@
 
 .cbp-card__banner--success {
   @include card-banner-modifier(
-    $title-background-color: var(--cbp-color-success-base),
+    $title-background-color: var(--cbp-color-success-dark),
     $body-background-color: var(--cbp-color-success-lighter)
   );
 }

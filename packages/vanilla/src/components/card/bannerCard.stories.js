@@ -26,6 +26,11 @@ export default {
       description: 'Show an icon in the title',
       control: 'boolean'
     },
+    bodyText: {
+      name: 'Body Text',
+      description: 'Set the body text of the card',
+      control: 'text'
+    }
   }
 };
 
@@ -37,14 +42,12 @@ const icons = {
   danger: '<i class="fas fa-exclamation-triangle"></i>'
 }
 
-const BannerCardTemplate = ({ title, variant, showIcon }) => {
+const BannerCardTemplate = ({ title, variant, showIcon, bodyText }) => {
   return `
     <div class="cbp-card__banner ${variant != 'default' ? `cbp-card__banner--${variant}` : ''}">
       <h4 class="cbp-card__banner-title">${showIcon ? icons[variant] : ''}${title}</h4>
       <div class="cbp-card__banner-content">
-        <p class="cbp-text-body">
-          Here is an example of some supplementary text for this purely informational card
-        </p>
+        <p class="cbp-text-body">${bodyText}</p>
       </div>
     </div>
   `;
@@ -53,6 +56,7 @@ const BannerCardTemplate = ({ title, variant, showIcon }) => {
 export const BannerCard = BannerCardTemplate.bind({});
 BannerCard.args = {
   title: 'Banner Card',
-  variant: 'default'
+  variant: 'default',
+  bodyText: 'Here is an example of some supplementary text for this purely informational card'
 };
 
