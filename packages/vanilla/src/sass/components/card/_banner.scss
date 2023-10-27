@@ -1,11 +1,11 @@
-@mixin card-banner-modifier($title-background-color, $body-background-color, $body-border-color) {
+@mixin card-banner-modifier($title-background-color, $body-background-color) {
   & .cbp-card__banner-title {
     background-color: $title-background-color;
   }
 
   & .cbp-card__banner-content {
     background-color: $body-background-color;
-    border-color: $body-border-color;
+    border-color: $title-background-color;
   }
 }
 
@@ -18,7 +18,7 @@
   background-color: var(--cbp-color-gray-cool-60);
   border-top-left-radius: var(--cbp-border-radius-softer);
   border-top-right-radius: var(--cbp-border-radius-softer);;
-  color: var(--cbp-color-text-lightest);
+  color: var(--cbp-color-text-lighter);
   display: flex;
   font-size: var(--cbp-font-size-heading-md);
   font-weight: var(--cbp-font-weight-medium);
@@ -31,8 +31,8 @@
 }
 
 .cbp-card__banner-content {
-  background-color: var(--cbp-color-gray-cool-10);
-  border-color: var(--cbp-color-gray-cool-30);
+  background-color: var(--cbp-color-white);
+  border-color: var(--cbp-color-gray-cool-60);
   border-style: solid;
   border-width: var(--cbp-border-size-md);
   border-top: 0;
@@ -45,27 +45,23 @@
   }
 }
 
-// TODO: DRY with sass:map
 .cbp-card__banner--info {
   @include card-banner-modifier(
     $title-background-color: var(--cbp-color-info-dark),
-    $body-background-color: var(--cbp-color-info-lighter),
-    $body-border-color: var(--cbp-color-info-light)
+    $body-background-color: var(--cbp-color-info-lighter)
   );
 }
 
 .cbp-card__banner--success {
   @include card-banner-modifier(
     $title-background-color: var(--cbp-color-success-base),
-    $body-background-color: var(--cbp-color-success-lighter),
-    $body-border-color: var(--cbp-color-success-light)
+    $body-background-color: var(--cbp-color-success-lighter)
   );
 }
 
 .cbp-card__banner--danger {
   @include card-banner-modifier(
     $title-background-color: var(--cbp-color-danger-base),
-    $body-background-color: var(--cbp-color-danger-lighter),
-    $body-border-color: var(--cbp-color-danger-light)
+    $body-background-color: var(--cbp-color-danger-lighter)
   );
 }
