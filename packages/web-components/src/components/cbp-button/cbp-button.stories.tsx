@@ -48,10 +48,15 @@ export default {
       description: 'Renders the button in a disabled state. A disabled button is non-interactive and unusable.',
       control: 'boolean'
     },
+    sx: {
+      description: 'Supports adding inline styles as an object.',
+      control: 'object'
+    },
+    
   }
 };
 
-const Template = ({ label, type, fill, color, variant, accessibilityText, disabled }) => { 
+const Template = ({ label, type, fill, color, variant, accessibilityText, disabled, sx }) => { 
   return ` 
       <cbp-app>
       <cbp-button
@@ -61,6 +66,7 @@ const Template = ({ label, type, fill, color, variant, accessibilityText, disabl
         ${variant ? 'variant="'+variant+'"' : ''}
         ${accessibilityText ? 'accessibility-text="'+accessibilityText+'"' : ''}
         ${disabled ? 'disabled="'+disabled+'"' : ''}
+        ${sx ? 'sx='+JSON.stringify(sx) : ''}
       >
         ${label}
       </cbp-button>
