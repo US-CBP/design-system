@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 @Component({
@@ -17,6 +17,17 @@ export class CbpButton {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+  @Event() buttonClick!: EventEmitter;
+  handleClick = ({target}) => {
+    const button = target.closest('button');
+    this.buttonClick.emit({
+      host: this.host,
+      button: button,
+      value: button.value
+    });
+  }
+  
+
   componentWillLoad() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
@@ -25,6 +36,8 @@ export class CbpButton {
       ...this.sx,
     });
   }
+  
+  
 
   render() {
     return (
@@ -33,6 +46,7 @@ export class CbpButton {
           type={this.type}
           aria-label={this.accessibilityText}
           disabled={this.disabled}
+          onClick={this.handleClick}
         >
           <slot />
         </button>
