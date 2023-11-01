@@ -1,13 +1,13 @@
 export default {
   title: 'Patterns/Button',
+  tags: ['autodocs'],
   argTypes: {
     label: {
-      name: 'Button Label',
+      name: 'label (slotted)',
       description: 'Label text in the `<button>` element and used to describe the action when clicked.',
       control: 'text'
     },
     type: {
-      name: 'Button Type',
       description: 'The `type` attribute of the button. (not valid for anchors/links)',
       defaultValue: 'button',
       control: 'radio',
@@ -18,7 +18,6 @@ export default {
       ]
     },
     fill: {
-      name: 'Button Fill',
       description: 'Displays button fill in the overall button hierarchy. Available options are: `Solid`, `Outline` and `Ghost`.',
       control: 'select',
       options: [
@@ -28,7 +27,6 @@ export default {
       ],
     },
     color: {
-      name: 'Button Color',
       description: '`primary` is generally the dominant action among their peer buttons, `secondary` is the most common to appear but is not the dominant action over its peers, `danger` can indicate an action that cannot easily be undone.',
       control: 'radio',
       options: [
@@ -38,40 +36,43 @@ export default {
       ]
     },
     variant: {
-      name: 'Button Variant',
       description: 'Choose button variant',
       control: 'radio',
-      options: ['default', 'square']
+      options: ['square', 'cta']
     },
-    ariaLabel: {
-      name: 'ARIA Label',
-      description: 'The accessible label when the link does not contain text or it is not sufficiently and uniquely descriptive.',
+    accessibilityText: {
+      description: 'Accessibility text is applied as an `aria-label` and should be supplied when the button does not contain text or it is not sufficiently and uniquely descriptive.',
       type: 'string'
     },
     disabled: {
-      name: 'Disabled',
-      description: 'When `[disabled="true"]` attribute is present, specifies that the button should be disabled. A disabled button is unusable and un-clickable.',
+      description: 'Renders the button in a disabled state. A disabled button is non-interactive and unusable.',
       control: 'boolean'
     },
   }
 };
 
-const Template = ({ label, type }) => { 
+const Template = ({ label, type, fill, color, variant, accessibilityText, disabled }) => { 
   return ` 
+      <cbp-app>
       <cbp-button
-        type=${type}
+        type="${type}"
+        fill="${fill}"
+        color="${color}"
+        ${variant ? 'variant="'+variant+'"' : ''}
+        ${accessibilityText ? 'accessibilityText="'+accessibilityText+'"' : ''}
+        ${disabled ? 'disabled="'+disabled+'"' : ''}
       >
         ${label}
       </cbp-button>
+      </cbp-app>
     `
 }
 
 export const Button = Template.bind({});
 Button.args = {
+  label: 'Default',
+  type: 'button',
   variant: 'default',
   color: 'primary',
   fill: 'solid',
-  label: 'Default',
-  type: 'button',
-  ariaLabel: ''
 };
