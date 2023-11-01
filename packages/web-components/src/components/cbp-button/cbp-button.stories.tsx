@@ -49,7 +49,7 @@ export default {
       control: 'boolean'
     },
     sx: {
-      description: 'Supports adding inline styles as an object.',
+      description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object'
     },
     
