@@ -28,7 +28,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@stencil/core": "^4.0.0",
+    "@stencil/core": "^4.7.0",
     "npm": "^10.2.1"
   },
   "devDependencies": {
