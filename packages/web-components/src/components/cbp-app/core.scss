@@ -1,0 +1,43 @@
+html {
+  font-size: 100%;
+}
+
+body {
+  color: var(--cbp-color-text-darkest);
+  background-color: var(--cbp-color-branding-cbp-light);
+  font: var(--cbp-font-size-body)/1rem var(--cbp-font-family-roboto);
+}
+
+[data-cbp-theme="dark"] body {
+  color: var(--cbp-color-text-lightest);
+  background-color: var(--cbp-color-branding-cbp-dark);
+}
+
+p,
+blockquote,
+ul:not(ul ul):not(ul ol),
+ol:not(ol ol):not(ol ul) {
+  margin-bottom: var(--cbp-space-4x);
+}
+
+// TODO: Should this include blockquote and list items?
+p {
+  line-height: 1.25rem;
+}
+
+a[href],
+button {
+  cursor: pointer;
+}
+
+[aria-disabled=true],
+:disabled,
+input:read-only:not([type="checkbox"], [type="radio"], [type="file"], [type="range"], [type="color"]),
+textarea:read-only {
+  cursor: not-allowed;
+}
+
+/* Ensure that `hidden` is not overridden by other selectors setting display, such as flex or grid */
+[hidden] {
+  display: none !important;
+}
