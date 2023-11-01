@@ -27,7 +27,6 @@ export class CbpButton {
     });
   }
   
-
   componentWillLoad() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
@@ -37,8 +36,6 @@ export class CbpButton {
     });
   }
   
-  
-
   render() {
     return (
       <Host>
