@@ -24,3 +24,7 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 .env
+
+# Generated files that will cause constant conflicts
+components.d.ts
+readme.md
