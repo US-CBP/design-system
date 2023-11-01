@@ -59,7 +59,7 @@ const Template = ({ label, type, fill, color, variant, accessibilityText, disabl
         fill="${fill}"
         color="${color}"
         ${variant ? 'variant="'+variant+'"' : ''}
-        ${accessibilityText ? 'accessibilityText="'+accessibilityText+'"' : ''}
+        ${accessibilityText ? 'accessibility-text="'+accessibilityText+'"' : ''}
         ${disabled ? 'disabled="'+disabled+'"' : ''}
       >
         ${label}
