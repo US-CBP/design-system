@@ -15,7 +15,9 @@
     "react-sb": "npm run storybook -w packages/react-components",
     "react-build": "npm run build -w packages/react-components",
     "stencil-build": "npm run build -w packages/web-components",
+    "stencil-start": "npm run start -w packages/web-components",
     "stencil-sb": "npm run storybook -w packages/web-components",
+    "stencil-generate": "npm run generate -w packages/web-components",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-all": "npm run vanilla-build && npm run build-pages -w packages/ux-guidelines && npm run build-pages -w packages/vanilla && npm run build-pages -w packages/react-components"
   },

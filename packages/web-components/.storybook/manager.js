@@ -3,7 +3,7 @@
 import { addons } from '@storybook/addons';
 import { create } from '@storybook/theming';
 
-import cbpLogo from '../assets/images/CBP_SEAL.svg';
+import cbpLogo from '../assets/images/cbp-seal.svg';
 
 const theme =  create({
   base: 'light',
