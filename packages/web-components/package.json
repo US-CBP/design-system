@@ -15,8 +15,7 @@
     "url": "https://github.com/ionic-team/stencil-component-starter.git"
   },
   "files": [
-    "dist/",
-    "loader/"
+    "dist/"
   ],
   "scripts": {
     "build": "stencil build --docs",
@@ -24,7 +23,7 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "storybook": "storybook dev -p 6008",
+    "storybook": "stencil build --docs && storybook dev -p 6008",
     "build-storybook": "storybook build"
   },
   "dependencies": {
