@@ -6,7 +6,7 @@
 
   --cbp-button-color-fill: var(--cbp-color-interactive-primary-dark);
   --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-darker);
-  --cbp-button-color-fill-focus: var(--cbp-color-interactive-primary-darker);
+  --cbp-button-color-fill-focus: var(--cbp-color-interactive-focus-dark);
   --cbp-button-color-fill-active: var(--cbp-color-interactive-active-dark);
   
   --cbp-button-color-border: var(--cbp-color-interactive-primary-dark);
@@ -17,24 +17,22 @@
   --cbp-button-color-outline-focus: var(--cbp-color-white);
 }
 
-
 cbp-button {
-
-  button {
+  button, a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-width: var(--cbp-border-size-md);
     border-style: solid;
     border-radius: var(--cbp-border-radius-soft);
-    cursor: pointer;
     font-weight: var(--cbp-font-weight-medium);
+    text-transform: uppercase;
     letter-spacing: var(--cbp-letter-spacing-loose);
     text-decoration: none;
-    text-transform: uppercase;  
     padding: var(--cbp-space-2x) var(--cbp-space-3x);
     transition: all var(--cbp-motion-duration-shorter);
     min-height: 2.25rem;
+    cursor: pointer;
 
     color: var(--cbp-button-color-text);
     background-color: var(--cbp-button-color-fill);
@@ -87,9 +85,9 @@ cbp-button {
     }
 
     &[color=tertiary] {
-      --cbp-button-color-fill: var(--cbp-color-interactive-secondary-dark);
+      --cbp-button-color-fill: var(--cbp-color-interactive-secondary-base);
       --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-darker);
-      --cbp-button-color-border: var(--cbp-color-interactive-secondary-dark);
+      --cbp-button-color-border: var(--cbp-color-interactive-secondary-base);
       --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-darker);
     }
 
@@ -100,7 +98,8 @@ cbp-button {
       --cbp-button-color-border-hover: var(--cbp-color-danger-dark);
     }
 
-    button:disabled {
+    button:disabled,
+    a[aria-disabled=true] {
       --cbp-button-color-text: var(--cbp-color-interactive-disabled-light);
       --cbp-button-color-text-hover: var(--cbp-button-color-text);
       --cbp-button-color-text-focus: var(--cbp-button-color-text);
@@ -133,13 +132,6 @@ cbp-button {
       --cbp-button-color-border: var(--cbp-color-interactive-secondary-darker);
       --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-darker);
     }
-    
-    &[color=tertiary] {
-      --cbp-button-color-text: var(--cbp-color-text-lightest);
-      --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-darker);
-      --cbp-button-color-border: var(--cbp-color-interactive-primary-dark);
-      --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-darker);
-    }
 
     &[color=danger] {
       --cbp-button-color-text: var(--cbp-color-danger-base);
@@ -148,7 +140,8 @@ cbp-button {
       --cbp-button-color-border-hover: var(--cbp-color-danger-dark);
     }
 
-    button:disabled {
+    button:disabled,
+    a[aria-disabled=true] {
       --cbp-button-color-text: var(--cbp-color-interactive-disabled-dark);
       --cbp-button-color-text-hover: var(--cbp-button-color-text);
       --cbp-button-color-text-focus: var(--cbp-button-color-text);
@@ -184,19 +177,8 @@ cbp-button {
       --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-lighter);
       --cbp-button-color-border: transparent;
       --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-lighter);
-
     }
     
-    &[color=tertiary] {
-      --cbp-button-color-text: var(--cbp-color-text-lightest);
-      --cbp-button-color-text-hover: var(--cbp-color-text-lightest);
-      --cbp-button-color-fill: var(--cbp-color-interactive-primary-dark);
-      --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-darker);
-      --cbp-button-color-border: var(--cbp-color-interactive-primary-dark);
-      --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-darker);
-
-    }
-
     &[color=danger] {
       --cbp-button-color-text: var(--cbp-color-danger-base);
       --cbp-button-color-text-hover: var(--cbp-color-danger-darker);
@@ -206,7 +188,8 @@ cbp-button {
       --cbp-button-color-border-hover: var(--cbp-color-danger-light);
     }
   
-    button:disabled {
+    button:disabled,
+    a[aria-disabled=true] {
       --cbp-button-color-text: var(--cbp-color-interactive-disabled-dark);
       --cbp-button-color-text-hover: var(--cbp-button-color-text);
       --cbp-button-color-text-focus: var(--cbp-button-color-text);
@@ -222,7 +205,26 @@ cbp-button {
     }
   }
 
-  button:disabled {
+  &[variant=square] {
+    button, a {
+      padding: unset;
+      letter-spacing: unset;
+      height: 2.25rem;
+      width: 2.25rem;
+    }
+  }
+
+  &[variant=cta] {
+    button, a {
+      font-size: var(--cbp-font-size-heading-sm);
+      padding-left: var(--cbp-space-4x);
+      padding-right: var(--cbp-space-4x);
+      min-height: 3.25rem;
+    }
+  }
+
+  button:disabled,
+  a[aria-disabled=true] {
     font-style: italic;
     outline: 0;
     cursor: not-allowed;
