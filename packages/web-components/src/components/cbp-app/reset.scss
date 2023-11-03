@@ -1,7 +1,20 @@
-/* 
-  https://github.com/Andy-set-studio/modern-css-reset
-  License: MIT
-*/
+/* Prevent iPhones from messing up the font size in landscape mode */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
 
 /* Box sizing rules */
 *,
@@ -36,17 +49,6 @@ ol[role="list"] {
   padding: 0;
 }
 
-/* Set core root defaults */
-html:focus-within {
-  scroll-behavior: smooth;
-}
-
-/* Set core body defaults */
-body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
-}
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
@@ -62,14 +64,6 @@ picture {
 img[width][height] {
   height: auto; /* Preserve aspect ratio */
 }
-/* Let SVG scale without boundaries */
-/*
-img[src$=".svg"] {
-  width: 100%;
-  height: auto;
-  max-width: none;
-}
-*/
 
 /* Inherit fonts for inputs and buttons */
 input,
@@ -82,16 +76,15 @@ address {
   word-spacing: inherit;
 }
 
-/* Add scroll margin to all elements that can be targeted */
-[id],
-[tabindex] {
-  scroll-margin-top: 2ex;
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
 }
 
 /* Remove all animations and transitions for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-   scroll-behavior: auto;
+  html {
+   scroll-behavior: initial;
   }
   *,
   *::before,

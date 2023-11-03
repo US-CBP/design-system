@@ -8,10 +8,17 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpButton {
   @Element() host: HTMLElement;
 
+  @Prop() tag: 'button' | 'a' = 'button';
   @Prop() type: 'button' | 'submit' | 'reset' = 'button';
   @Prop({ reflect: true }) fill: 'solid' | 'outline' | 'ghost' = 'solid';
   @Prop({ reflect: true }) color: 'primary' | 'secondary' | 'danger' = 'primary';
   @Prop({ reflect: true }) variant: 'square' | 'cta';
+  
+  @Prop() href: string;
+  @Prop() rel: string;
+  @Prop() target: string;
+  @Prop() download: boolean;
+
   @Prop() accessibilityText: string;
   @Prop() disabled: boolean;
   /** Supports adding inline styles as an object */
@@ -19,11 +26,11 @@ export class CbpButton {
 
   @Event() buttonClick!: EventEmitter;
   handleClick = ({target}) => {
-    const button = target.closest('button');
+    const button = target.closest('button,a');
     this.buttonClick.emit({
       host: this.host,
-      button: button,
-      value: button.value
+      el: button,
+      value: button.value || null
     });
   }
   
@@ -37,17 +44,51 @@ export class CbpButton {
   }
   
   render() {
-    return (
-      <Host>
-        <button
-          type={this.type}
-          aria-label={this.accessibilityText}
-          disabled={this.disabled}
-          onClick={this.handleClick}
-        >
-          <slot />
-        </button>
-      </Host>
-    );
+    const {
+      type,
+      disabled,
+      rel,
+      target,
+      href,
+      download
+    } = this;
+
+    const attrs =
+      this.tag === 'button'
+      ? { type, disabled }
+      : {
+          download,
+          href,
+          rel,
+          target,
+        };
+
+    if (this.tag === 'button') {
+      return (
+        <Host>
+          <button {...attrs}
+            aria-label={this.accessibilityText}
+            onClick={this.handleClick}
+          >
+            <slot />
+          </button>
+        </Host>
+      )
+    }
+    else {
+      return (
+        <Host>
+          <a {...attrs}
+            aria-label={this.accessibilityText}
+            role={disabled ? "link" : null}
+            aria-disabled={disabled ? "true" : null}
+            onClick={this.handleClick}
+          >
+            <slot />
+          </a>
+        </Host>
+      )
+    }
   }
+  
 }

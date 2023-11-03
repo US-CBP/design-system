@@ -11,23 +11,32 @@ function getAbsolutePath(value) {
 /** @type { import('@storybook/html-vite').StorybookConfig } */
 const config = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: [getAbsolutePath('@whitespace/storybook-addon-html'), {
-    name: '@storybook/addon-essentials',
-    options: {
-      backgrounds: false,
-      measure: false,
-      outline: false
-    }
-  }, getAbsolutePath('@storybook/addon-themes'), getAbsolutePath('@storybook/addon-interactions'), getAbsolutePath('@storybook/addon-links'), getAbsolutePath('@storybook/addon-a11y')],
-  staticDirs: ['../dist', '../assets'],
+  addons: [
+    getAbsolutePath('@whitespace/storybook-addon-html'), 
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        backgrounds: false,
+        measure: false,
+        outline: false
+      }
+    }, 
+    getAbsolutePath('@storybook/addon-themes'), 
+    getAbsolutePath('@storybook/addon-interactions'), 
+    getAbsolutePath('@storybook/addon-links'), 
+    getAbsolutePath('@storybook/addon-a11y')
+  ],
+  staticDirs: [
+    '../dist',
+    '../assets'
+  ],
   framework: {
     name: getAbsolutePath('@storybook/html-vite'),
     options: {}
   },
   core: {
-    disableTelemetry: true // 👈 Disables telemetry
+    disableTelemetry: true
   },
-
   features: {
     storyStoreV7: true
   },
