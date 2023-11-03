@@ -111,13 +111,4 @@ const Template = ({ label, tag, type, href, rel, target, download, fill, color, 
 }
 
 export const Button = Template.bind({});
-/*
-Button.args = {
-  label: 'Default',
-  tag: 'button',
-  type: 'button',
-  variant: 'default',
-  color: 'primary',
-  fill: 'solid',
-};
-*/
+
