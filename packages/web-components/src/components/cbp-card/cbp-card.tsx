@@ -25,9 +25,9 @@ export class CbpCard {
   render() {
     return (
       <Host>
-        <slot name="cardbody">
-          <slot name="cardtitle" />
-        </slot>
+        {/* <slot name="cardbannertitle" /> */}
+        <slot name="cardtitle" />
+        <slot name="cardbody" />
         <slot name="cardactions" />
       </Host>
     );
