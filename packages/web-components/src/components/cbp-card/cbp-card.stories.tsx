@@ -12,6 +12,10 @@ export default {
       description: 'Set the body text of the card',
       control: 'text',
     },
+    sx: {
+      description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
+      control: 'object'
+    },
   },
 };
 
@@ -40,10 +44,10 @@ const renderActions = (layout, { btn1, btn2, btn3 }) => {
   }
 };
 
-const GeneralTemplate = ({ color, title, bodyText }) => {
+const GeneralTemplate = ({ color, title, bodyText, sx }) => {
   return ` 
     <cbp-app>
-      <cbp-card ${color ? `color=${color}` : ''}>
+      <cbp-card ${color ? `color=${color}` : ''} ${sx ? 'sx='+JSON.stringify(sx) : ''}>
         <h4 slot="cbp-card-title">${title}</h4>
         <p>${bodyText}</p>
       </cbp-card>
@@ -51,10 +55,10 @@ const GeneralTemplate = ({ color, title, bodyText }) => {
   `;
 };
 
-const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig }) => {
+const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig, sx }) => {
   return ` 
       <cbp-app>
-        <cbp-card variant="decision"  ${color ? `color=${color}` : ''}>
+        <cbp-card variant="decision"  ${color ? `color=${color}` : ''} ${sx ? 'sx='+JSON.stringify(sx) : ''}>
           <h4 slot="cbp-card-title" id="card-heading-1">${title}</h4>
           <p>${bodyText}</p>  
           ${renderActions(actionsLayout, actionsConfig)}
@@ -63,10 +67,10 @@ const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig
     `;
 };
 
-const BannerTemplate = ({ title, color, bodyText }) => {
+const BannerTemplate = ({ title, color, bodyText, sx }) => {
   return ` 
     <cbp-app>
-      <cbp-card variant="banner" ${color ? `color=${color}` : ''}>
+      <cbp-card variant="banner" ${color ? `color=${color}` : ''} ${sx ? 'sx='+JSON.stringify(sx) : ''}>
         <h4 slot="cbp-card-title">${title}</h4>
         <p>${bodyText}</p>  
       </cbp-card>
