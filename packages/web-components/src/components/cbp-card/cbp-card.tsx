@@ -8,7 +8,7 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpCard {
   @Element() host: HTMLElement;
 
-  @Prop({ reflect: true }) color: 'danger';
+  @Prop({ reflect: true }) color: 'info' | 'success' | 'warning' | 'danger';
   @Prop({ reflect: true }) variant: 'banner' | 'decision';
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
