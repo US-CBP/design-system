@@ -1,14 +1,23 @@
 :root {
-  --cbp-card-background-color: var(--cbp-color-white);
+  --cbp-card-color-background: var(--cbp-color-white);
+  --cbp-card-color-border: var(--cbp-color-gray-cool-10);
+  --cbp-card-color-title: var(--cbp-color-text-darker);
+  
+  --cbp-banner-card-color: var(--cbp-color-gray-cool-60);
+  --cbp-banner-card-color-title: var(--cbp-color-text-lighter);
+  --cbp-banner-card-color-body-background: var(--cbp-color-white);
 }
 
 cbp-card {
   display: block;
-  background-color: var(--cbp-card-background-color);
+  background-color: var(--cbp-card-color-background);
   border-radius: var(--cbp-border-radius-softer);
+  border-color: var(--cbp-card-color-border);
+  border-style: solid;
+  border-width: var(--cbp-border-size-md);
 
-  [slot=cardbody] {
-    padding: var(--cbp-space-5x) var(--cbp-space-4x);
+  .cardbody {
+    padding: var(--cbp-space-4x);
     width: 100%;
 
     :last-child {
@@ -17,24 +26,39 @@ cbp-card {
   }
 
   [slot=cardtitle] {
-    color: var(--cbp-color-text-darker);
+    color: var(--cbp-card-color-title);
     font-weight: var(--cbp-font-weight-medium);
     font-size: var(--cbp-font-size-heading-lg);
     line-height: var(--cbp-line-height-sm);
   }
 
-  // General Card Variant
-  &[variant=general] {
-    border-color: var(--cbp-color-gray-cool-10);
-    border-style: solid;
-    border-width: var(--cbp-border-size-md);
+  &[color=info] {
+    --cbp-card-color-background: var(--cbp-color-info-lighter);
+    --cbp-card-color-border: var(--cbp-color-info-light);
+    --cbp-card-color-title: var(--cbp-color-info-darker);
+  }
+
+  &[color=success] {
+    --cbp-card-color-background: var(--cbp-color-success-lighter);
+    --cbp-card-color-border: var(--cbp-color-success-light);
+    --cbp-card-color-title: var(--cbp-color-success-darker);
+  }
+
+  &[color=warning] {
+    --cbp-card-color-background: var(--cbp-color-warning-lighter);
+    --cbp-card-color-border: var(--cbp-color-warning-light);
+  }
+
+  &[color=danger] {
+    --cbp-card-color-background: var(--cbp-color-danger-lighter);
+    --cbp-card-color-border: var(--cbp-color-danger-light);
   }
 
   // Decision Card Variant
   &[variant=decision] {
     border: 0;
 
-    & [slot=cardbody] {
+    & .cardbody {
       border-width: var(--cbp-border-size-md);
       border-style: solid;
       border-color: var(--cbp-color-base-neutral-lighter);
@@ -64,6 +88,47 @@ cbp-card {
       & cbp-button:last-child button {
         border-bottom-right-radius: var(--cbp-border-radius-softer);
       }
+    }
+
+    &[color=danger] .cardbody {
+      border-color: var(--cbp-color-danger-base);
+    }
+  }
+
+  &[variant=banner] {
+    border-color: var(--cbp-banner-card-color);
+
+    & [slot=cardtitle] {
+      background-color: var(--cbp-banner-card-color);
+      color: var(--cbp-banner-card-color-title);
+      font-size: var(--cbp-font-size-heading-md);
+      font-weight: var(--cbp-font-weight-medium);
+      padding: var(--cbp-space-3x) var(--cbp-space-4x);
+    }
+
+    & .cardbody {
+      background-color: var(--cbp-banner-card-color-body-background);
+    }
+
+    &[color=info] {
+      --cbp-banner-card-color: var(--cbp-color-info-dark);
+      --cbp-banner-card-color-body-background: var(--cbp-color-info-lighter);
+    }
+
+    &[color=success] {
+      --cbp-banner-card-color: var(--cbp-color-success-dark);
+      --cbp-banner-card-color-body-background: var(--cbp-color-success-lighter);
+    }
+
+    &[color=warning] {
+      --cbp-banner-card-color: var(--cbp-color-warning-base);
+      --cbp-banner-card-color-body-background: var(--cbp-color-warning-lighter);
+      --cbp-banner-card-color-title: var(--cbp-color-text-darker);
+    }
+
+    &[color=danger] {
+      --cbp-banner-card-color: var(--cbp-color-danger-base);
+      --cbp-banner-card-color-body-background: var(--cbp-color-danger-lighter);
     }
   }
 }

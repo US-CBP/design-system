@@ -9,7 +9,7 @@ export class CbpCard {
   @Element() host: HTMLElement;
 
   @Prop({ reflect: true }) color: 'default' | 'danger' = 'default';
-  @Prop({ reflect: true }) variant: 'general' | 'banner' | 'decision' = 'decision';
+  @Prop({ reflect: true }) variant: 'banner' | 'decision';
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
@@ -25,12 +25,13 @@ export class CbpCard {
   render() {
     return (
       <Host>
-        {/* <slot name="cardbannertitle" /> */}
-        <slot name="cardtitle" />
-        <slot name="cardbody" />
+        {this.variant === 'banner' && <slot name="cardtitle" />}
+        <div class="cardbody">
+          {this.variant !== 'banner' && <slot name="cardtitle" />}
+          <slot />
+        </div>
         <slot name="cardactions" />
       </Host>
     );
   }
-
 }
