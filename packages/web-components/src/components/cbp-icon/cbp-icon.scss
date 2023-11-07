@@ -1,0 +1,14 @@
+:root {
+  --cbp-icon-color: currentColor;
+  --cbp-icon-size: 1em;
+}
+cbp-icon {
+  display: inline-block;
+
+  svg {
+    width: var(--cbp-icon-size);
+    height: var(--cbp-icon-size);
+    fill: var(--cbp-icon-color);
+    vertical-align: top;
+  }
+}
