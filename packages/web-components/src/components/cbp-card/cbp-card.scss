@@ -16,7 +16,7 @@ cbp-card {
   border-style: solid;
   border-width: var(--cbp-border-size-md);
 
-  .cardbody {
+  .cbp-card-body {
     padding: var(--cbp-space-4x);
     width: 100%;
 
@@ -25,7 +25,8 @@ cbp-card {
     }
   }
 
-  [slot=cardtitle] {
+  [slot=cbp-card-title] {
+    display: block;
     color: var(--cbp-card-color-title);
     font-weight: var(--cbp-font-weight-medium);
     font-size: var(--cbp-font-size-heading-lg);
@@ -58,7 +59,7 @@ cbp-card {
   &[variant=decision] {
     border: 0;
 
-    & .cardbody {
+    & .cbp-card-body {
       border-width: var(--cbp-border-size-md);
       border-style: solid;
       border-color: var(--cbp-color-base-neutral-lighter);
@@ -67,7 +68,7 @@ cbp-card {
       border-bottom: 0;
     }
 
-    & [slot=cardactions] {
+    & [slot=cbp-card-actions] {
       display: flex;
 
       & cbp-button {
@@ -90,7 +91,7 @@ cbp-card {
       }
     }
 
-    &[color=danger] .cardbody {
+    &[color=danger] .cbp-card-body {
       border-color: var(--cbp-color-danger-base);
     }
   }
@@ -98,7 +99,7 @@ cbp-card {
   &[variant=banner] {
     border-color: var(--cbp-banner-card-color);
 
-    & [slot=cardtitle] {
+    & [slot=cbp-card-title] {
       background-color: var(--cbp-banner-card-color);
       color: var(--cbp-banner-card-color-title);
       font-size: var(--cbp-font-size-heading-md);
@@ -106,7 +107,7 @@ cbp-card {
       padding: var(--cbp-space-3x) var(--cbp-space-4x);
     }
 
-    & .cardbody {
+    & .cbp-card-body {
       background-color: var(--cbp-banner-card-color-body-background);
     }
 

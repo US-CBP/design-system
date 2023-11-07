@@ -25,12 +25,12 @@ export class CbpCard {
   render() {
     return (
       <Host>
-        {this.variant === 'banner' && <slot name="cardtitle" />}
-        <div class="cardbody">
-          {this.variant !== 'banner' && <slot name="cardtitle" />}
+        {this.variant === 'banner' && <slot name="cbp-card-title" />}
+        <div class="cbp-card-body">
+          {this.variant !== 'banner' && <slot name="cbp-card-title" />}
           <slot />
         </div>
-        <slot name="cardactions" />
+        <slot name="cbp-card-actions" />
       </Host>
     );
   }
