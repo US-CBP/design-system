@@ -30,22 +30,22 @@ const renderActions = (layout, { btn1, btn2, btn3 }) => {
   if (layout === 'double') {
     return `
       <div slot="cardactions">
-        <cbp-button type="button" fill="solid" color="${btn2.color}">${btn2.label}</cbp-button>
-        <cbp-button type="button" fill="solid" color="${btn1.color}">${btn1.label}</cbp-button>
+        <cbp-button type="button" fill="solid" color="${btn2.color}" aria-describedby="card-heading-1">${btn2.label}</cbp-button>
+        <cbp-button type="button" fill="solid" color="${btn1.color}" aria-describedby="card-heading-1">${btn1.label}</cbp-button>
       </div>
     `;
   } else if (layout === 'triple') {
     return `
       <div slot="cardactions">
-        <cbp-button type="button" fill="solid" color="${btn3.color}">${btn3.label}</cbp-button>
-        <cbp-button type="button" fill="solid" color="${btn2.color}">${btn2.label}</cbp-button>
-        <cbp-button type="button" fill="solid" color="${btn1.color}">${btn1.label}</cbp-button>
+        <cbp-button type="button" fill="solid" color="${btn3.color}" aria-describedby="card-heading-1">${btn3.label}</cbp-button>
+        <cbp-button type="button" fill="solid" color="${btn2.color}" aria-describedby="card-heading-1">${btn2.label}</cbp-button>
+        <cbp-button type="button" fill="solid" color="${btn1.color}" aria-describedby="card-heading-1">${btn1.label}</cbp-button>
       </div>
     `;
   } else {
     return `
       <div slot="cardactions">
-        <cbp-button type="button" fill="solid" color="${btn1.color}">${btn1.label}</cbp-button>
+        <cbp-button type="button" fill="solid" color="${btn1.color}" aria-describedby="card-heading-1">${btn1.label}</cbp-button>
       </div>
     `;
   }
@@ -55,7 +55,7 @@ const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig
   return ` 
       <cbp-app>
         <cbp-card variant="decision"  ${color ? `color=${color}` : ''}>
-          <h4 slot="cardtitle">${title}</h4>
+          <h4 slot="cardtitle" id="card-heading-1">${title}</h4>
           <p>${bodyText}</p>  
           ${renderActions(actionsLayout, actionsConfig)}
         </cbp-card>
