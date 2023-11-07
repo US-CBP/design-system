@@ -5,26 +5,15 @@ export default {
     title: {
       name: 'Title',
       description: 'Set the title in the banner area of the card',
-      control: 'text'
+      control: 'text',
     },
     bodyText: {
       name: 'Body Text',
       description: 'Set the body text of the card',
-      control: 'text'
-    }
-  }
+      control: 'text',
+    },
+  },
 };
-
-const GeneralTemplate = ({ color, title, bodyText }) => {
-  return ` 
-    <cbp-app>
-      <cbp-card ${color ? `color=${color}` : ''}>
-        <h4 slot="cardtitle">${title}</h4>
-        <p>${bodyText}</p>
-      </cbp-card>
-    </cbp-app>
-  `
-}
 
 const renderActions = (layout, { btn1, btn2, btn3 }) => {
   if (layout === 'double') {
@@ -51,6 +40,17 @@ const renderActions = (layout, { btn1, btn2, btn3 }) => {
   }
 };
 
+const GeneralTemplate = ({ color, title, bodyText }) => {
+  return ` 
+    <cbp-app>
+      <cbp-card ${color ? `color=${color}` : ''}>
+        <h4 slot="cardtitle">${title}</h4>
+        <p>${bodyText}</p>
+      </cbp-card>
+    </cbp-app>
+  `;
+};
+
 const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig }) => {
   return ` 
       <cbp-app>
@@ -60,8 +60,8 @@ const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig
           ${renderActions(actionsLayout, actionsConfig)}
         </cbp-card>
       </cbp-app>
-    `
-}
+    `;
+};
 
 const BannerTemplate = ({ title, color, bodyText }) => {
   return ` 
@@ -71,28 +71,22 @@ const BannerTemplate = ({ title, color, bodyText }) => {
         <p>${bodyText}</p>  
       </cbp-card>
     </cbp-app>
-  `
-}
+  `;
+};
 
 export const GeneralCard = GeneralTemplate.bind({});
 GeneralCard.args = {
   title: 'General Card',
-  bodyText: 'Here is an example of some supplementary text for this purely informational card'
-}
+  bodyText: 'Here is an example of some supplementary text for this purely informational card',
+};
 GeneralCard.argTypes = {
   color: {
     name: 'Color',
     description: 'Set the color of the card',
     control: 'select',
-    options: [
-      'default',
-      'info',  
-      'success',
-      'warning',
-      'danger'
-    ]
-  }
-}
+    options: ['default', 'info', 'success', 'warning', 'danger'],
+  },
+};
 
 export const DecisionCard = DecisionTemplate.bind({});
 DecisionCard.args = {
@@ -102,57 +96,48 @@ DecisionCard.args = {
   actionsConfig: {
     btn1: {
       label: 'Label',
-      color: 'tertiary'
+      color: 'tertiary',
     },
     btn2: {
       label: 'Label',
-      color: 'secondary'
+      color: 'secondary',
     },
     btn3: {
       label: 'label',
-      color: 'primary'
-    }
-  }
-}
+      color: 'primary',
+    },
+  },
+};
 DecisionCard.argTypes = {
   color: {
     name: 'Color',
     description: 'Set the color of the card',
     control: 'select',
-    options: [
-      'default',
-      'danger'
-    ]
+    options: ['default', 'danger'],
   },
   actionsLayout: {
     name: 'Actions Layout',
     description: 'Choose actions layout of the card component',
     control: 'radio',
-    options: ['single', 'double', 'triple']
+    options: ['single', 'double', 'triple'],
   },
   actionsConfig: {
     name: 'Decision Card Actions',
     description: 'Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`',
-    control: 'object'
-  }
-}
+    control: 'object',
+  },
+};
 
 export const BannerCard = BannerTemplate.bind({});
 BannerCard.args = {
   title: 'Banner Card',
-  bodyText: 'Here is an example of some supplementary text for this purely informational card'
-}
+  bodyText: 'Here is an example of some supplementary text for this purely informational card',
+};
 BannerCard.argTypes = {
   color: {
     name: 'Color',
     description: 'Set the color of the card',
     control: 'select',
-    options: [
-      'default',
-      'info',  
-      'success',
-      'warning',
-      'danger'
-    ]
-  }
-}
+    options: ['default', 'info', 'success', 'warning', 'danger'],
+  },
+};
