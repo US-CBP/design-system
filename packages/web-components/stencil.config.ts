@@ -1,9 +1,15 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import { reactOutputTarget } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'cbp-web-components',
   outputTargets: [
+    reactOutputTarget({
+      componentCorePackage: 'cbp-web-components',
+      //proxiesFile: '../cbp-web-components-react/src/components.ts',
+      proxiesFile: '../web-components-react/src/components/stencil-generated/index.ts',
+    }),
     {
       type: 'dist',
       esmLoaderPath: 'loader',

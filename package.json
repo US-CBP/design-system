@@ -1,5 +1,5 @@
 {
-  "name": "design-system",
+  "name": "cbp-design-system",
   "version": "1.0.0",
   "description": "A design system for the U.S. Customs & Border Protection that provides components, patterns and guidelines to create consistent and cohesive user interfaces.",
   "main": "index.js",
@@ -44,7 +44,8 @@
     "packages/vanilla",
     "packages/ux-guidelines",
     "packages/react-components",
-    "packages/web-components"
+    "packages/web-components",
+    "packages/web-components-react"
   ],
   "devDependencies": {
     "eslint": "^8.33.0",
