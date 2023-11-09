@@ -1,11 +1,24 @@
 {
-  "name": "web-components-react",
-  "version": "1.0.0",
+  "name": "@cbpds/react-components",
+  "version": "0.1.0",
   "description": "React components encapsulating the CBP Design System web components.",
-  "main": "index.js",
-  "devDependencies": {},
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "devDependencies": {
+    "@types/react": "^18.2.37",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.2.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run tsc",
+    "tsc": "tsc -p . --outDir ./dist"
+  },
+  "files": ["dist"],
+  "publishConfig": {
+    "access": "public"
   },
   "author": "",
   "license": "ISC"
