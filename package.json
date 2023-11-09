@@ -12,8 +12,6 @@
     "vanilla-sb": "npm run storybook -w packages/vanilla",
     "ux-dev": "npm run dev -w packages/ux-guidelines",
     "ux-build": "npm run build -w packages/ux-guidelines",
-    "react-sb": "npm run storybook -w packages/react-components",
-    "react-build": "npm run build -w packages/react-components",
     "stencil-build": "npm run build -w packages/web-components",
     "stencil-start": "npm run start -w packages/web-components",
     "stencil-sb": "npm run storybook -w packages/web-components",
@@ -43,11 +41,11 @@
   "workspaces": [
     "packages/vanilla",
     "packages/ux-guidelines",
-    "packages/react-components",
     "packages/web-components",
     "packages/web-components-react"
   ],
   "devDependencies": {
+    "@types/node": "^20.9.0",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-react": "^7.33.2",
@@ -58,7 +56,8 @@
     "stylelint": "^14.16.1",
     "stylelint-config-prettier": "^9.0.4",
     "stylelint-config-recommended": "^9.0.0",
-    "stylelint-scss": "^4.3.0"
+    "stylelint-scss": "^4.3.0",
+    "typescript": "^5.2.2"
   },
   "eslintConfig": {
     "env": {
@@ -77,15 +76,23 @@
       "plugin:react-hooks/recommended",
       "plugin:react/jsx-runtime"
     ],
-    "ignorePatterns": ["dist"],
+    "ignorePatterns": [
+      "dist"
+    ],
     "parserOptions": {
       "ecmaVersion": "latest",
       "sourceType": "module"
-  },
+    },
     "overrides": [],
     "rules": {
-      "semi": ["error", "always"],
-      "quotes": ["error", "single"],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
       "react-refresh/only-export-components": "warn"
     }
   },
