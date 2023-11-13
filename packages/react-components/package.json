@@ -2,9 +2,9 @@
   "name": "@cbpds/react-components",
   "version": "0.1.0",
   "description": "React components encapsulating the CBP Design System web components.",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "dist/lib/index.js",
+  "module": "dist/lib/index.js",
+  "types": "dist/types/lib/index.d.ts",
   "devDependencies": {
     "@types/react": "^18.2.37",
     "react": "^18.2.0",
