@@ -8,7 +8,7 @@ export const config: Config = {
     reactOutputTarget({
       componentCorePackage: 'cbp-web-components',
       //proxiesFile: '../cbp-web-components-react/src/components.ts',
-      proxiesFile: '../web-components-react/components/stencil-generated/index.ts',
+      proxiesFile: '../react-components/components/stencil-generated/index.ts',
     }),
     {
       type: 'dist',
