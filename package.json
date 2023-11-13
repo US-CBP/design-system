@@ -42,7 +42,7 @@
     "packages/vanilla",
     "packages/ux-guidelines",
     "packages/web-components",
-    "packages/web-components-react"
+    "packages/react-components"
   ],
   "devDependencies": {
     "@types/node": "^20.9.0",
