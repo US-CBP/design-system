@@ -12,6 +12,7 @@
     "vanilla-sb": "npm run storybook -w packages/vanilla",
     "ux-dev": "npm run dev -w packages/ux-guidelines",
     "ux-build": "npm run build -w packages/ux-guidelines",
+    "react-build": "npm run build -w packages/react-components",
     "stencil-build": "npm run build -w packages/web-components",
     "stencil-start": "npm run start -w packages/web-components",
     "stencil-sb": "npm run storybook -w packages/web-components",
