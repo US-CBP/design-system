@@ -3,7 +3,7 @@
 /* auto-generated react proxies */
 import { createReactComponent } from './react-component-lib';
 
-import type { JSX } from 'cbp-web-components';
+import type { JSX } from '@cbpds/web-components';
 
 
 
