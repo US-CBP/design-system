@@ -37,11 +37,11 @@ export default {
     return ` 
         <cbp-app>
         <cbp-container
-          ${background ? 'background="'+background+'"' : ''}
-          ${textColor ? 'text-color="'+textColor+'"' : ''}
-          ${width ? 'width="'+width+'"' : ''}
-          ${margins ? 'margins="'+margins+'"' : ''}
-          ${sx ? 'sx='+JSON.stringify(sx) : ''}
+          ${background ? `background=${background}` : ''}
+          ${textColor ? `text-color=${textColor}` : ''}
+          ${width ? `width=${width}` : ''}
+          ${margins ? `margins=${margins}` : ''}
+          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
           ${content}
         </cbp-container>
