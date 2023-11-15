@@ -1,0 +1,24 @@
+:root {
+  --cbp-container-color-text: var(--cbp-color-text-darkest);
+  --cbp-container-color-background: transparent;
+  --cbp-container-color-inner-background: var(--cbp-container-color-background);
+
+  --cbp-container-content-padding: 0;
+  --cbp-container-inner-width: auto;
+}
+
+cbp-container {
+  display: block;
+  color: var(--cbp-container-color-text);
+  background: var(--cbp-container-color-background);
+  padding: var(--cbp-container-content-padding);
+  max-width: 100%;
+
+  .cbp-container--inner {
+    display: block;
+    background: var(--cbp-container-color-inner-background);
+    margin: auto;
+    width: var(--cbp-container-inner-width);
+  }
+}
+
