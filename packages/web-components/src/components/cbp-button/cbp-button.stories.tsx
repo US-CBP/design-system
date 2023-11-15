@@ -1,5 +1,5 @@
 export default {
-  title: 'Patterns/Button',
+  title: 'Components/Button',
   tags: ['autodocs'],
   argTypes: {
     label: {
@@ -91,18 +91,18 @@ const Template = ({ label, tag, type, href, rel, target, download, fill, color, 
   return ` 
       <cbp-app>
       <cbp-button
-        ${tag !== 'button' ? 'tag="'+tag+'"' : ''}
+        ${tag !== 'button' ? `tag=${tag}` : ''}
         type="${type}"
-        ${href ? 'href="'+href+'"' : ''}
-        ${rel ? 'rel="'+rel+'"' : ''}
-        ${target ? 'target="'+target+'"' : ''}
-        ${download ? 'download="'+download+'"' : ''}
+        ${href ? `href=${href}` : ''}
+        ${rel ? `rel=${rel}` : ''}
+        ${target ? `target=${target}` : ''}
+        ${download ? `download=${download}` : ''}
         fill="${fill}"
         color="${color}"
-        ${variant !== 'default' ? 'variant="'+variant+'"' : ''}
-        ${accessibilityText ? 'accessibility-text="'+accessibilityText+'"' : ''}
-        ${disabled ? 'disabled="'+disabled+'"' : ''}
-        ${sx ? 'sx='+JSON.stringify(sx) : ''}
+        ${variant !== 'default' ? `variant=${variant}` : ''}
+        ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+        ${disabled ? `disabled=${disabled}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
         ${label}
       </cbp-button>

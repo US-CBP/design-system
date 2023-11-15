@@ -1,5 +1,5 @@
 export default {
-  title: 'Patterns/Card',
+  title: 'Components/Card',
   tags: ['autodocs'],
   argTypes: {
     title: {
