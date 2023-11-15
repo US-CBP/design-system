@@ -1,5 +1,3 @@
-@use '../../global/styles/index.scss' as *;
-
 /* Additional high level and utilities variables not represented by design tokens */
 :root {
   // Using clamp is a more modern way of implementing this, but gives a variable size between the min and max points.
