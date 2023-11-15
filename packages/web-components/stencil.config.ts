@@ -4,11 +4,10 @@ import { reactOutputTarget } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'cbp-web-components',
-  globalStyle: 'src/global/styles/index.scss',
+  //globalStyle: 'src/global/styles/index.scss',
   outputTargets: [
     reactOutputTarget({
       componentCorePackage: '@cbpds/web-components',
-      //proxiesFile: '../cbp-web-components-react/src/components.ts',
       proxiesFile: '../react-components/components/stencil-generated/index.ts',
     }),
     {
@@ -36,7 +35,11 @@ export const config: Config = {
     },
   ],
   plugins: [
-    sass()
+    sass({
+      injectGlobalPaths: [
+        "src/global/styles/index.scss",
+      ]
+    })
   ],
   testing: {
     browserHeadless: "new",
