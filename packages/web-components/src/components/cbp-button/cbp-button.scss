@@ -1,3 +1,4 @@
+/* TechDebt: Buttons get customized and overridden a lot and may benefit from a fully fleshed-out CSS API */
 :root {
   --cbp-button-color-text: var(--cbp-color-text-lightest);
   --cbp-button-color-text-hover: var(--cbp-color-text-lightest);
@@ -15,16 +16,22 @@
   --cbp-button-color-border-active: var(--cbp-color-interactive-active-dark);
   
   --cbp-button-color-outline-focus: var(--cbp-color-white);
+
+  --cbp-button-border-width: var(--cbp-border-size-md);
+  --cbp-button-border-style: solid;
+  --cbp-button-border-radius: var(--cbp-border-radius-soft);
 }
 
 cbp-button {
+  display: inline-block;
+
   button, a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-width: var(--cbp-border-size-md);
+    border-width: var(--cbp-button-border-width);
     border-style: solid;
-    border-radius: var(--cbp-border-radius-soft);
+    border-radius: var(--cbp-button-border-radius);
     font-weight: var(--cbp-font-weight-medium);
     text-transform: uppercase;
     letter-spacing: var(--cbp-letter-spacing-loose);
