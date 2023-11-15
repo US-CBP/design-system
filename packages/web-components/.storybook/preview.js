@@ -1,5 +1,5 @@
 /** @type { import('@storybook/html').Preview } */
-import { withThemeByDataAttribute } from '@storybook/addon-styling';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import {defineCustomElements} from '../dist/loader';
 
 defineCustomElements();

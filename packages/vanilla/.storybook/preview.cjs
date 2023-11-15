@@ -1,4 +1,4 @@
-import { withThemeByDataAttribute } from '@storybook/addon-styling';
+import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
 import '../src/sass/main.scss';
 
