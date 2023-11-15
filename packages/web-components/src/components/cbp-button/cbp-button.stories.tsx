@@ -1,5 +1,5 @@
 export default {
-  title: 'Patterns/Button',
+  title: 'Components/Button',
   tags: ['autodocs'],
   argTypes: {
     label: {
