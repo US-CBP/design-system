@@ -33,8 +33,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@stencil/core": "^4.7.0",
-    "npm": "^10.2.1"
+    "@stencil/core": "^4.7.0"
   },
   "devDependencies": {
     "@stencil/react-output-target": "^0.5.3",
