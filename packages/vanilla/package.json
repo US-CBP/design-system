@@ -1,6 +1,6 @@
 {
   "name": "@cbpds/vanilla",
-  "version": "0.1.0",
+  "version": "0.1.0-develop.0",
   "description": "Vanilla UI pattern library for the U.S. Customs & Border Protection",
   "type": "module",
   "license": "CC0-1.0",
