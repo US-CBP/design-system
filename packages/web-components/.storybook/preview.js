@@ -73,16 +73,22 @@ export const parameters = {
     viewports: CUSTOM_VIEWPORTS,
   },
   html: {
+    root: "cbp-app", // default: #root
+    removeComments: true,
+    removeEmptyComments: true,
     prettier: {
+      parser: 'html',
       tabWidth: 2,
       useTabs: false,
-      htmlWhitespaceSensitivity: 'strict',
-      removeEmptyComments: true,
-      removeComments: /^\s*remove me\s*$/,
+      htmlWhitespaceSensitivity: 'css',
+      proseWrap: "always",
+      bracketSameLine: true,
+      singleAttributePerLine: true,
     },
     highlighter: {
       showLineNumbers: true,
       wrapLines: true,
+      language: 'html'
     },
     transform: (code) => {
       // DEG: keeping this as an example because it may solve other issues I've encountered
@@ -92,7 +98,14 @@ export const parameters = {
   },
 };
 
+
+// Wrap every story with `cbp-app` component, which brings in the high level CSS resets, settings, and variables.
+const withWrapper = (story) => {
+  return `<cbp-app>${story()}</cbp-app>`;
+};
+
 export const decorators = [
+  withWrapper,
   withThemeByDataAttribute({
     themes: {
       light: 'light',

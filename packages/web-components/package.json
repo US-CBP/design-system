@@ -40,6 +40,7 @@
     "@storybook/html": "^7.5.1",
     "@storybook/html-vite": "^7.5.1",
     "@storybook/testing-library": "^0.2.2",
+    "@whitespace/storybook-addon-html": "^5.1.6",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.11",
     "jest": "^27.5.1",
