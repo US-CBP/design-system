@@ -1,7 +1,7 @@
 {
   "name": "@cbpds/web-components",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "Web components for the CBP Design System.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.js",
@@ -10,9 +10,15 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/web-components/web-components.esm.js",
+  "license": "CC0-1.0",
+  "author": "Creative Services <CreativeServices@cbp.dhs.gov>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "https://github.com/US-CBP/design-system"
+  },
+  "homepage": "https://github.com/US-CBP/design-system/tree/develop/packages/web-components",
+  "bugs": {
+    "url": "https://github.com/US-CBP/design-system/issues"
   },
   "files": [
     "dist/"
@@ -49,5 +55,8 @@
     "react-dom": "^18.2.0",
     "storybook": "^7.5.1"
   },
-  "license": "MIT"
+  "keywords": [
+    "CBP",
+    "CBP Design System"
+  ]
 }

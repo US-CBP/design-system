@@ -1,10 +1,20 @@
 {
   "name": "@cbpds/react-components",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "React components encapsulating the CBP Design System web components.",
   "main": "dist/lib/index.js",
   "module": "dist/lib/index.js",
   "types": "dist/types/lib/index.d.ts",
+  "license": "CC0-1.0",
+  "author": "Creative Services <CreativeServices@cbp.dhs.gov>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/US-CBP/design-system"
+  },
+  "homepage": "https://github.com/US-CBP/design-system/tree/develop/packages/react-components",
+  "bugs": {
+    "url": "https://github.com/US-CBP/design-system/issues"
+  },
   "devDependencies": {
     "@types/react": "^18.2.37",
     "react": "^18.2.0",
@@ -20,6 +30,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "CBP",
+    "CBP Design System"
+  ]
 }
