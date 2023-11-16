@@ -35,17 +35,15 @@ export default {
   
   const Template = ({ content, background, textColor, width, margins, sx }) => { 
     return ` 
-        <cbp-app>
-        <cbp-container
-          ${background ? `background=${background}` : ''}
-          ${textColor ? `text-color=${textColor}` : ''}
-          ${width ? `width=${width}` : ''}
-          ${margins ? `margins=${margins}` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-        >
-          ${content}
-        </cbp-container>
-        </cbp-app>
+      <cbp-container
+        ${background ? `background=${background}` : ''}
+        ${textColor ? `text-color=${textColor}` : ''}
+        ${width ? `width=${width}` : ''}
+        ${margins ? `margins=${margins}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+        ${content}
+      </cbp-container>
       `
   }
   

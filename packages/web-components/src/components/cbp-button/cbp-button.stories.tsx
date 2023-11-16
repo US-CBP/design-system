@@ -89,7 +89,6 @@ export default {
 
 const Template = ({ label, tag, type, href, rel, target, download, fill, color, variant, accessibilityText, disabled, sx }) => { 
   return ` 
-      <cbp-app>
       <cbp-button
         ${tag !== 'button' ? `tag=${tag}` : ''}
         type="${type}"
@@ -106,7 +105,6 @@ const Template = ({ label, tag, type, href, rel, target, download, fill, color, 
       >
         ${label}
       </cbp-button>
-      </cbp-app>
     `
 }
 

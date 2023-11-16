@@ -3,12 +3,12 @@ export default {
     tags: ['autodocs'],
     parameters: {
       layout: 'fullscreen',
+      root: '#custom-root'
     },
   };
   
   const UniversalHeaderTemplate = ({ username, isLoggedIn }) => {
     return `
-      <cbp-app>
       <cbp-universal-header>
         <ul>
           ${isLoggedIn ? `
@@ -36,7 +36,6 @@ export default {
           `}
         </ul>
       </cbp-universal-header>
-      </cbp-app>
     `;
   };
   
