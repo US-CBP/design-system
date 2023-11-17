@@ -1,6 +1,6 @@
 {
   "name": "ux-guidelines",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "UX guidelines that compliments the CBP Design System and provides guidance and examples of patterns and design tokens.",
   "private": true,
   "main": "index.js",
