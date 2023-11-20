@@ -7,7 +7,7 @@
   "author": "Creative Services <CreativeServices@cbp.dhs.gov>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/US-CBP/design-system"
+    "url": "git+https://github.com/US-CBP/design-system.git"
   },
   "files": [
     "dist"

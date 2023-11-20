@@ -9,7 +9,7 @@
   "author": "Creative Services <CreativeServices@cbp.dhs.gov>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/US-CBP/design-system"
+    "url": "git+https://github.com/US-CBP/design-system.git"
   },
   "homepage": "https://github.com/US-CBP/design-system/tree/develop/packages/react-components",
   "bugs": {
@@ -26,7 +26,9 @@
     "build": "npm run tsc",
     "tsc": "tsc -p . --outDir ./dist"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
   },
