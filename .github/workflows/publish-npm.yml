@@ -1,0 +1,29 @@
+name: Publish Package to NPM
+run-name: Design System Packages are being published to NPM
+on:
+  workflow_dispatch:
+
+  push:
+    tags:
+      - '*'
+
+  permissions:
+    contents: write # for checkout
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          # downloads latest LTS version
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      # build packages before publishing
+      - run: npm run build-all
+      - name: Publish to npm
+        run: lerna publish from-package --yes
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

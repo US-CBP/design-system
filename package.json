@@ -18,7 +18,8 @@
     "stencil-sb": "npm run storybook -w packages/web-components",
     "stencil-generate": "npm run generate -w packages/web-components",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-all": "npm run vanilla-build && npm run build-pages -w packages/ux-guidelines && npm run build-pages -w packages/vanilla && npm run build-pages -w packages/react-components"
+    "build-pages": "npm run vanilla-build && npm run build-pages -w packages/vanilla && npm run build-pages -w packages/ux-guidelines",
+    "build-all": "npm run vanilla-build && npm run stencil-build && npm run react-build"
   },
   "repository": {
     "type": "git",
@@ -52,6 +53,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "lerna": "^7.4.2",
     "postcss-scss": "^4.0.6",
     "prettier": "^2.8.3",
     "stylelint": "^14.16.1",
@@ -116,5 +118,6 @@
       "at-rule-no-unknown": null,
       "scss/at-rule-no-unknown": true
     }
-  }
+  },
+  "dependencies": {}
 }
