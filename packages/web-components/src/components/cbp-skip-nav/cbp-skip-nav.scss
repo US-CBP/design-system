@@ -1,0 +1,26 @@
+cbp-skip-nav {
+  a {
+    display: inline-block;
+    padding: .75rem 1.25rem;
+    border-radius: var(--cbp-border-radius-softest);
+    position: absolute;
+    top: -1000rem;
+    left: var(--cbp-space-1x);
+    background-color: var(--cbp-color-black);
+    color: var(--cbp-color-text-lightest);
+    font-size: 1rem;
+    font-weight: var(--cbp-font-weight-bold);
+    font-family: inherit;
+  }
+
+  a:active, 
+  a:focus {
+    top: var(--cbp-space-1x);
+    text-decoration: none;
+    outline-style: solid;
+    outline-width: var(--cbp-border-size-md);
+    outline-color: var(--cbp-button-color-outline-focus);
+    outline-offset: calc(-1 * var(--cbp-space-1x));
+    z-index: var(-cbp-z-index-level-top);
+  }
+}
