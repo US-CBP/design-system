@@ -20,8 +20,6 @@ export default {
       control: 'object'
     },
   },
-  args: {
-  }
 };
 
 const Template = ({ text, targetId, shortcutKey, sx }) => { 
