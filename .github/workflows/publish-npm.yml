@@ -24,6 +24,6 @@ jobs:
       # build packages before publishing
       - run: npm run build-all
       - name: Publish to npm
-        run: lerna publish from-package --yes
+        run: npx lerna publish from-package --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
