@@ -8,6 +8,7 @@ import type { JSX } from '@cbpds/web-components';
 
 
 export const CbpApp = /*@__PURE__*/createReactComponent<JSX.CbpApp, HTMLCbpAppElement>('cbp-app');
+export const CbpAppHeader = /*@__PURE__*/createReactComponent<JSX.CbpAppHeader, HTMLCbpAppHeaderElement>('cbp-app-header');
 export const CbpButton = /*@__PURE__*/createReactComponent<JSX.CbpButton, HTMLCbpButtonElement>('cbp-button');
 export const CbpCard = /*@__PURE__*/createReactComponent<JSX.CbpCard, HTMLCbpCardElement>('cbp-card');
 export const CbpContainer = /*@__PURE__*/createReactComponent<JSX.CbpContainer, HTMLCbpContainerElement>('cbp-container');
