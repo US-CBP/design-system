@@ -95,6 +95,8 @@ const InternalTemplate = ({isLoggedIn, username}) => {
 
 export const Internal = InternalTemplate.bind({});
 
+
+/*
 const ExternalTemplate = () => {
   return ` 
         TODO
@@ -102,3 +104,4 @@ const ExternalTemplate = () => {
 };
 
 export const External = ExternalTemplate.bind({});
+*/
