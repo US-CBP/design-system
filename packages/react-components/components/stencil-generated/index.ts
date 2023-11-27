@@ -18,5 +18,6 @@ export const CbpGrid = /*@__PURE__*/createReactComponent<JSX.CbpGrid, HTMLCbpGri
 export const CbpGridItem = /*@__PURE__*/createReactComponent<JSX.CbpGridItem, HTMLCbpGridItemElement>('cbp-grid-item');
 export const CbpSection = /*@__PURE__*/createReactComponent<JSX.CbpSection, HTMLCbpSectionElement>('cbp-section');
 export const CbpSkipNav = /*@__PURE__*/createReactComponent<JSX.CbpSkipNav, HTMLCbpSkipNavElement>('cbp-skip-nav');
+export const CbpTypography = /*@__PURE__*/createReactComponent<JSX.CbpTypography, HTMLCbpTypographyElement>('cbp-typography');
 export const CbpUniversalHeader = /*@__PURE__*/createReactComponent<JSX.CbpUniversalHeader, HTMLCbpUniversalHeaderElement>('cbp-universal-header');
 export const CbpVisuallyhidden = /*@__PURE__*/createReactComponent<JSX.CbpVisuallyhidden, HTMLCbpVisuallyhiddenElement>('cbp-visuallyhidden');
