@@ -8,7 +8,7 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpTypography {
   @Element() host: HTMLElement;
 
-  @Prop() variant: 'masthead-1' | 'masthead-2' | 'xxl' | 'xl' | 'l' | 'md' | 'sm' | 'xs';
+  @Prop() variant: 'masthead-1' | 'masthead-2' | 'xxl' | 'xl' | 'l' | 'md' | 'sm' | 'xs' | 'text-body' | 'text-subhead';
   @Prop() divider: 'text' | 'fill';
   @Prop() sx: any = {};
 

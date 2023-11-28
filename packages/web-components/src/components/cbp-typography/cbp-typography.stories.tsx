@@ -15,20 +15,38 @@ export default {
         'p',
       ]
     },
+    variant: {
+      title: 'Variant',
+      control: 'select',
+      options: [
+        'masthead-1',
+        'masthead-2',
+        'xxl',
+        'xl',
+        'l',
+        'md',
+        'sm',
+        'xs',
+        'text-body',
+        'text-subhead'
+      ]
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object'
     },
   },
-  args: {
-    tag: 'h1'
-  }
 };
 
-const Template = ({ sx, tag }) => { 
+const Template = ({ sx, tag, variant }) => {
   return ` 
-      <cbp-typography ${sx ? `sx=${JSON.stringify(sx)}` : ''}>
-        <${tag}>Hello World</${tag}>
+      <cbp-typography
+        ${variant ? `variant=${variant}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+        ${tag ? `<${tag}>` : ''}
+          Hello World
+        ${tag ? `</${tag}>` : ''}
       </cbp-typography>
     `
 }

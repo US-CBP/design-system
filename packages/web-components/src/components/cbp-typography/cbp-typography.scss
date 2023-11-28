@@ -1,52 +1,64 @@
 cbp-typography {
   display: block;
 
-  h1 {
-    color: var(--cbp-color-text-darker);
+  &[variant=masthead-1] {
+    font-weight: var(--cbp-font-weight-thin);
+    font-size: var(--cbp-font-size-masthead-1);
+    line-height: var(--cbp-space-11x);
+  }
+
+  &[variant=masthead-2] {
+    font-weight: var(--cbp-font-weight-thin);
+    font-size: var(--cbp-font-size-masthead-2);
+    line-height: var(--cbp-space-10x);
+  }
+
+  &[variant=xxl], h1 {
     font-weight: var(--cbp-font-weight-light);
     font-size: var(--cbp-font-size-masthead-2);
     line-height: var(--cbp-space-9x);
   }
 
-  h2 {
-    color: var(--cbp-color-text-darker);
+  &[variant=xl], h2 {
     font-weight: var(--cbp-font-weight-regular);
     font-size: var(--cbp-font-size-heading-xxl);
     line-height: var(--cbp-space-8x);
   }
 
-  h3 {
-    color: var(--cbp-color-text-darker);
+  &[variant=l], h3 {
     font-weight: var(--cbp-font-weight-regular);
     font-size: var(--cbp-font-size-heading-xl);
     line-height: var(--cbp-space-7x);
   }
 
-  h4 {
-    color: var(--cbp-color-text-darker);
+  &[variant=md], h4 {
     font-weight: var(--cbp-font-weight-medium);
     font-size: var(--cbp-font-size-heading-lg);
     line-height: var(--cbp-space-6x);
   }
 
-  h5 {
-    color: var(--cbp-color-text-darker);
+  &[variant=sm], h5 {
     font-weight: var(--cbp-font-weight-medium);
     font-size: var(--cbp-font-size-heading-md);
     line-height: var(--cbp-space-6x);
   }
 
-  h6 {
-    color: var(--cbp-color-text-darker);
+  &[variant=xs], h6 {
     font-weight: var(--cbp-font-weight-bold);
     font-size: var(--cbp-font-size-heading-xs);
     line-height: var(--cbp-space-5x);
   }
 
-  p {
+  &[variant=text-body], p {
     font-weight: var(--cbp-font-weight-regular);
     font-size: var(--cbp-font-size-body);
     line-height: var(--cbp-space-5x);
     max-width: var(--cbp-line-length-longer);
+  }
+
+  &[variant=subhead] {
+    font-size: var(--cbp-font-size-subhead);
+    font-weight: var(--cbp-font-weight-medium);
+    line-height: var(--cbp-space-5x);
   }
 }
