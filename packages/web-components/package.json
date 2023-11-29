@@ -55,6 +55,7 @@
     "puppeteer": "21.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-syntax-highlighter": "^15.5.0",
     "storybook": "^7.5.1"
   },
   "keywords": [
