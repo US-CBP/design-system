@@ -7,6 +7,8 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpButton {
   
+  private button: any; // HTMLButtonElement or HTMLAnchorElement
+
   @Element() host: HTMLElement;
 
   @Prop() tag: 'button' | 'a' = 'button';
@@ -20,18 +22,23 @@ export class CbpButton {
   @Prop() target: string;
   @Prop() download: boolean;
 
+  @Prop() pressed: boolean;
+  @Prop() expanded: boolean;
+  @Prop() controls: string;
+
   @Prop() accessibilityText: string;
   @Prop() disabled: boolean;
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
   @Event() buttonClick!: EventEmitter;
-  handleClick = ({target}) => {
-    const button = target.closest('button,a');
+  @Event() componentLoad!: EventEmitter;
+
+  handleClick = () => {
     this.buttonClick.emit({
       host: this.host,
-      el: button,
-      value: button.value || null
+      nativeElement: this.button,
+      value: this.button.tagName=='button' ? this.button.value : null
     });
   }
   
@@ -44,9 +51,20 @@ export class CbpButton {
     });
   }
   
+  componentDidLoad() {
+    this.componentLoad.emit({
+      host: this.host,
+      nativeElement: this.button,
+      value: this.button.tagName=='button' ? this.button.value : null
+    });
+  }
+
   render() {
     const {
       type,
+      pressed,
+      expanded,
+      controls,
       disabled,
       rel,
       target,
@@ -56,8 +74,13 @@ export class CbpButton {
 
     const attrs =
       this.tag === 'button'
-      ? { type, disabled }
+      ? { 
+          type, 
+          controls, 
+          disabled 
+        }
       : {
+          controls,   
           download,
           href,
           rel,
@@ -69,21 +92,30 @@ export class CbpButton {
         <Host>
           <button {...attrs}
             aria-label={this.accessibilityText}
+            aria-pressed={pressed ? "true" : null}
+            aria-expanded={expanded ? "true" : null}
+            aria-controls={this.controls}
             onClick={this.handleClick}
+            ref={(el) => this.button = el} 
           >
             <slot />
           </button>
         </Host>
       )
     }
+
     else {
       return (
         <Host>
           <a {...attrs}
             aria-label={this.accessibilityText}
+            aria-pressed={pressed ? "true" : null}
+            aria-expanded={expanded ? "true" : null}
+            aria-controls={this.controls}
             role={disabled ? "link" : null}
             aria-disabled={disabled ? "true" : null}
             onClick={this.handleClick}
+            ref={(el) => this.button = el} 
           >
             <slot />
           </a>

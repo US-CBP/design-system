@@ -16,6 +16,10 @@
     "jsx": "react",
     "jsxFactory": "h"
   },
+  "paths": {
+    "@assets/*": ["./assets/*"],
+    "@components/*": ["./components/*"],
+  },
   "include": [
     "src"
   ],
