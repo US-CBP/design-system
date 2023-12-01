@@ -1,7 +1,7 @@
 {
-  "name": "web-components",
-  "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "name": "@cbpds/web-components",
+  "version": "0.0.1-develop.1",
+  "description": "Web components for the CBP Design System.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.js",
@@ -10,9 +10,15 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/web-components/web-components.esm.js",
+  "license": "CC0-1.0",
+  "author": "Creative Services <CreativeServices@cbp.dhs.gov>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "git+https://github.com/US-CBP/design-system.git"
+  },
+  "homepage": "https://github.com/US-CBP/design-system/tree/develop/packages/web-components",
+  "bugs": {
+    "url": "https://github.com/US-CBP/design-system/issues"
   },
   "files": [
     "dist/"
@@ -27,10 +33,10 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@stencil/core": "^4.7.0",
-    "npm": "^10.2.1"
+    "@stencil/core": "^4.8.0"
   },
   "devDependencies": {
+    "@stencil/react-output-target": "^0.5.3",
     "@stencil/sass": "^3.0.7",
     "@storybook/addon-essentials": "^7.5.1",
     "@storybook/addon-interactions": "^7.5.1",
@@ -39,6 +45,7 @@
     "@storybook/html": "^7.5.1",
     "@storybook/html-vite": "^7.5.1",
     "@storybook/testing-library": "^0.2.2",
+    "@whitespace/storybook-addon-html": "^5.1.6",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.11",
     "jest": "^27.5.1",
@@ -48,5 +55,8 @@
     "react-dom": "^18.2.0",
     "storybook": "^7.5.1"
   },
-  "license": "MIT"
+  "keywords": [
+    "CBP",
+    "CBP Design System"
+  ]
 }

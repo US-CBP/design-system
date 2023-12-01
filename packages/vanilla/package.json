@@ -1,13 +1,13 @@
 {
   "name": "@cbpds/vanilla",
-  "version": "0.1.0",
+  "version": "0.1.0-develop.0",
   "description": "Vanilla UI pattern library for the U.S. Customs & Border Protection",
   "type": "module",
   "license": "CC0-1.0",
   "author": "Creative Services <CreativeServices@cbp.dhs.gov>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/US-CBP/design-system"
+    "url": "git+https://github.com/US-CBP/design-system.git"
   },
   "files": [
     "dist"

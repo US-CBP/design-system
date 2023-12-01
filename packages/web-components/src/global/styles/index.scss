@@ -1,0 +1,5 @@
+/* 
+ * Caution: "global styles" get injected into every component and can cause file size bloat.
+ * These should only include SASS variables and mixins that are not written out to CSS directly
+ */
+@forward 'breakpoints';

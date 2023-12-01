@@ -4,9 +4,8 @@ on:
   workflow_dispatch:
 
   push:
-    branches:
-      - main
-
+    tags: 
+      - '*'
 
 # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
 permissions:
@@ -27,7 +26,7 @@ jobs:
           node-version: "18.x"
           cache: npm
       - run: npm ci # runs clean-install
-      - run: npm run build-all # build all static sites in all packages
+      - run: npm run build-pages # build all static sites in all packages
 
       - name: Archive artifact
         shell: sh

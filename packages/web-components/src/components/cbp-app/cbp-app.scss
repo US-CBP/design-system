@@ -1,4 +1,2 @@
-@use 'reset.scss';
-@use 'roboto.scss';
-@use 'css-variables.scss';
-@use 'core.scss';
+/* Temporary workaround for verified Stencil bug; can use @use due to compilation error */
+@import 'reset', 'roboto', 'css-variables', 'core';
