@@ -6,6 +6,7 @@ import { setCSSProps } from '../../utils/utils';
   styleUrl: 'cbp-button.scss',
 })
 export class CbpButton {
+  
   @Element() host: HTMLElement;
 
   @Prop() tag: 'button' | 'a' = 'button';
