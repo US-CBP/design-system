@@ -3,32 +3,41 @@ export default {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen'
+  },
+  argTypes: {
+    footerNav: {
+      name: 'Footer Navigation',
+      description: 'Configure various aspects of the footer navigation shown.',
+      control: 'object'
+    },
   }
 };
 
-const InternalTemplate = () => {
+
+function generateFooterNav(footerNav) {
+  const html = footerNav.map(({ label, href}) => {
+    return `
+      <cbp-flex-item role="list-item">  
+        <cbp-button tag="a" href=${href}>${label}</cbp-button>
+      </cbp-flex-item>
+    `
+  });
+  return html.join("")
+};
+
+
+const InternalTemplate = ({footerNav}) => {
   return `
     <cbp-footer>
       <nav slot="cbp-footer-nav">
         <cbp-flex role="list">
-          <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">App Overview</cbp-button>
-          </cbp-flex-item>
-          <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">Trainings</cbp-button>
-          </cbp-flex-item>
-          <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">FAQ's</cbp-button>
-          </cbp-flex-item>
-          <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">Release Notes</cbp-button>
-          </cbp-flex-item>
+          ${generateFooterNav(footerNav)}
         <cbp-flex role="list">
       </nav>
 
       <section>
-        <h6>Application Support</h6>
-        <p>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</p>
+        <cbp-typography tag="h6" variant="heading-md" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
+        <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
         <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
           <span>Having an issue?</span>
           <span>Email: <a href="#">this-application-support@abc.def.gov</a></span>
@@ -41,6 +50,26 @@ const InternalTemplate = () => {
 
 
 export const InternalFooter = InternalTemplate.bind({});
-InternalFooter.args = {};
+InternalFooter.args = {
+  footerNav: [
+      {
+        label: "App Overview",
+        href: "#",
+      },
+      {
+        label: "Trainings",
+        href: "#",
+      },
+      {
+        label: "FAQ's",
+        href: "#",
+      },
+      {
+        label: "Release Notes",
+        href: "#",
+      },
+    ],
+};
+
 InternalFooter.storyName = 'Internal';
 

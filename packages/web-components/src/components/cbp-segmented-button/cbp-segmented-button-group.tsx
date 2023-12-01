@@ -37,7 +37,7 @@ export class SegmentedButtonGroup {
     // if a button was toggled to "pressed," toggle the rest unpressed for groups that only allow a single buttons pressed.
     if(!this.multiple && host.pressed) {
       this.buttongroup.forEach(el => {
-        if(el != element){
+        if(el != host){
           el.pressed=false;
         }
       });
