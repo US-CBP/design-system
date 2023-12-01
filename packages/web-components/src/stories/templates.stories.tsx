@@ -81,8 +81,8 @@ const InternalTemplate = ({isLoggedIn, username}) => {
       </nav>
 
       <section>
-        <h6>Application Support</h6>
-        <p>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</p>
+        <cbp-typography tag="h6" variant="heading-md" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
+        <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
         <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
           <span>Having an issue?</span>
           <span>Email: <a href="#">this-application-support@abc.def.gov</a></span>
