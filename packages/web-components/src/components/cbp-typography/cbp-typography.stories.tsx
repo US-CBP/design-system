@@ -2,9 +2,14 @@ export default {
   title: 'Components/Typography',
   tags: ['autodocs'],
   argTypes: {
+    text: {
+      name: "text (slotted)",
+      description: 'The text content wrapped by the specified semantic tag and styles.',
+      control: 'text',
+    },
     tag: {
-      title: 'Tag',
       control: 'select',
+      description: 'The semantic element wrapping the content.',
       options: [
         'h1',
         'h2',
@@ -13,22 +18,34 @@ export default {
         'h5',
         'h6',
         'p',
+        'div',
+        'span'
       ]
     },
     variant: {
-      title: 'Variant',
       control: 'select',
+      description: 'An optional variant used for styling the semantic element and its contents.',
       options: [
+        'none',
         'masthead-1',
         'masthead-2',
-        'xxl',
-        'xl',
-        'l',
-        'md',
-        'sm',
-        'xs',
-        'text-body',
-        'text-subhead'
+        'heading-xxl',
+        'heading-xl',
+        'heading-lg',
+        'heading-md',
+        'heading-sm',
+        'heading-xs',
+        'body-text',
+        'subhead',
+      ]
+    },
+    divider: {
+      control: 'select',
+      description: 'An optional styling of the content to provide a visual divider.',
+      options: [
+        'none',
+        'underline',
+        'fill',
       ]
     },
     sx: {
@@ -36,20 +53,25 @@ export default {
       control: 'object'
     },
   },
+  args: {
+    text: 'Hello World',
+    tag: 'span',
+    variant: 'none',
+    divider: 'none'
+  }
 };
 
-const Template = ({ sx, tag, variant }) => {
+const Template = ({ text, tag, variant, divider, sx }) => {
   return ` 
       <cbp-typography
-        ${variant ? `variant=${variant}` : ''}
+        ${tag ? `tag=${tag}` : ''}
+        ${variant!='none' ? `variant=${variant}` : ''}
+        ${divider!='none' ? `divider=${divider}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${tag ? `<${tag}>` : ''}
-          Hello World
-        ${tag ? `</${tag}>` : ''}
+        ${text}
       </cbp-typography>
     `
 }
 
 export const Typography = Template.bind({});
-
