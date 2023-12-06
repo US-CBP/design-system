@@ -19,9 +19,10 @@ export class CbpTypography {
   componentWillLoad() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
+      //console.log('sx=',this.sx);
     }
     setCSSProps(this.renderedTag, {
-      ...this.sx,
+      ...this.sx
     });
   }
 

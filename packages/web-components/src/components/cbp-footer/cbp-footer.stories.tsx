@@ -61,7 +61,7 @@ InternalFooter.args = {
         href: "#",
       },
       {
-        label: "FAQ's",
+        label: "FAQs",
         href: "#",
       },
       {

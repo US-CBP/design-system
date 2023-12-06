@@ -11,6 +11,8 @@ cbp-app-header {
   box-shadow: var(--cbp-shadow-level-1-down);
   z-index: var(--cbp-z-index-level-1);
 
+  // Style all nav items consistently, whether links or button controls for menu/dropdown. 
+  // This may need to be refactored or pulled out and placed into a new component, e.g., cbp-nav-item
   //.nav-home,
   //.cbp-nav-item,
   //.cbp-menu-dropdown, 
@@ -29,7 +31,7 @@ cbp-app-header {
     border-color: transparent;
     border-style: solid;
     border-width: 0 0 var(--cbp-border-size-md) 0;
-    
+
     &:hover {
       color: var(--cbp-color-text-darkest);
       background-color: var(--cbp-color-interactive-secondary-lighter);
@@ -42,6 +44,7 @@ cbp-app-header {
     font-weight: var(--cbp-font-weight-bold);
     padding-left: var(--cbp-space-5x);
     padding-right: var(--cbp-space-5x);
+    margin-left: calc(-1 * var(--cbp-space-5x));
   }
 
 }

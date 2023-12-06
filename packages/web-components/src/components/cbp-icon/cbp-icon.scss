@@ -1,0 +1,18 @@
+:root {
+  --cbp-icon-color: currentColor;
+  --cbp-icon-size: 1em;
+}
+cbp-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  // TechDebt: figure out what makes for the most consistent display since icons are not square proportions
+  svg {
+    //width: var(--cbp-icon-size);
+    width: auto;
+    height: var(--cbp-icon-size);
+    fill: var(--cbp-icon-color);
+    vertical-align: top;
+  }
+}

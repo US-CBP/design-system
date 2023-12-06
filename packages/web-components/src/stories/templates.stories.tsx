@@ -2,6 +2,9 @@ export default {
   title: 'Patterns/Page Templates',
   parameters: {
     layout: 'fullscreen',
+    html: {
+      root: '#storybook-root'
+    },
   },
   argTypes: {
     username: {
@@ -18,7 +21,7 @@ export default {
   args: {
     username: 'John Smithington',
     isLoggedIn: true
-  }
+  },
 };
 
 const InternalTemplate = ({isLoggedIn, username}) => {
