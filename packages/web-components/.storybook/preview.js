@@ -13,6 +13,12 @@ export const preview = {
         date: /Date$/i,
       },
     },
+    options: {
+      storySort: {
+        //method: 'alphabetical',
+        order: ['Foundations','Components','Patterns'],
+      },
+    },
   },
 };
 
@@ -54,7 +60,7 @@ export const CUSTOM_VIEWPORTS = {
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
-    expanded: true,
+    expanded: false,
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
@@ -73,7 +79,7 @@ export const parameters = {
     viewports: CUSTOM_VIEWPORTS,
   },
   html: {
-    root: "cbp-app", // default: #root
+    root: "cbp-app", // default: #storybook-root
     removeComments: true,
     removeEmptyComments: true,
     prettier: {
