@@ -1,10 +1,34 @@
 export default {
   title: 'Components/Icon',
-  tags: ['autodocs'],
+  // TechDebt: autodocs not working here for some reason - throwing Vite error
+  //tags: ['autodocs'],
   argTypes: {
-    use: {
-      description: 'Specify the `id` if the built-in icon to use from the embedded sprite-sheet.',
-      control: 'text'
+    name: {
+      description: 'Named icons that are built-in to the component.',
+      control: 'select',
+      options: [
+        'angle-down',
+        'arrow-right',
+        'bars',
+        'chevron-right',
+        'circle-info',
+        'circle-xmark',
+        'ellipsis-vertical',
+        'envelope',
+        'eye',
+        'eye-slash',
+        'magnifying-glass',
+        'minus',
+        'plus',
+        'times',
+        'triangle-exclamation',
+        'up-right-from-square',
+        'filter',
+        'sort-asc',
+        'sort-desc',
+        'star',
+        'user',
+      ]
     },
     color: {
       description: 'The color of the icon. Defaults to `currentColor`, which represents the inherited font color of the icon\'s parent element.',
@@ -14,6 +38,11 @@ export default {
       description: 'The size of the icon, including CSS units. Defaults to `1em`, which matches the size of the text in the icon\'s parent element.',
       type: 'string'
     },
+    rotate: {
+      description: 'You can reuse many icons by rotating one instance to other orientations. Specified as a number representing degrees.',
+      type: 'number'
+    },
+    
     accessibilityText: {
       description: 'Accessibility text is applied as an `aria-label` and should be supplied when the button does not contain text or it is not sufficiently and uniquely descriptive.',
       type: 'string'
@@ -23,19 +52,21 @@ export default {
       control: 'object'
     },    
   },
+  args: {
+    name: 'user',
+  }
 };
 
-const Template = ({ use, color, size, accessibilityText, sx }) => {
+const Template = ({ name, color, size, rotate, accessibilityText, sx }) => {
   return ` 
-    <cbp-app>
-      <cbp-icon
-        ${use ? 'use="'+use+'"' : ''}
-        ${color ? 'color="'+color+'"' : ''}
-        ${size ? 'size="'+size+'"' : ''}
-        ${accessibilityText ? 'accessibility-text="'+accessibilityText+'"' : ''}
-        ${sx ? 'sx='+JSON.stringify(sx) : ''}
-        ></cbp-icon>
-    </cbp-app>
+    <cbp-icon
+      ${name ? `name=${name}` : ''}
+      ${color ? `color=${color}` : ''}
+      ${size ? `size=${size}` : ''}
+      ${rotate ? `rotate=${rotate}` : ''}
+      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    ></cbp-icon>
   `
 }
 export const Icon = Template.bind({});

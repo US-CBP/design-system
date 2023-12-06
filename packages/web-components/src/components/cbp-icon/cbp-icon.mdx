@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Icon/Specifications" />
+
+# cbp-icon
+
+## Purpose
+
+The Icon component represents a standard API for embedding accessible Scalable Vector Graphics (SVG) icons into applications/documents.
+
+## Functional Requirements
+
+* The Icon component packages all icons used within the design system that can be referenced by name.
+* Icons may also be loaded by specifying an external `src` property pointing to the SVG file.
+
+## Technical Specifications
+
+### User Interactions
+
+* Icons themselves are not interactive but may be slotted inside of interactive controls. See accessibility concerns.
+
+### Responsiveness
+
+* SVG files are scalable and work well at all screen sizes.
+* Icons are sized by height and the width is set to `auto` based on the `viewbox` of the individual SVG icon.
+* The icon's default size is 1em, which means an icon can be placed next to other content and sized accordingly, even when using dynamic font sizing.
+
+### Accessibility
+
+* Specifying alternate text via the `accessibilityText` property renders this text as an `aria-label` on the `svg` element.
+* `accessibilityText` is required when an icon is not accompanied by text content in a control (e.g., link or button) unless an accessible label is provided on the control itself (e.g., via `aria-label` or `aria-labelledby`).
+* `accessibilityText` should be specified any time the icon is not purely decorative and this descriptive text is not redundant with a text label.
+* Not specifying `accessibilityText` defaults to treating the icon as decorative and the component renders the `svg` tag with `role="presentation"` and `aria-hidden="true"`.
+
+### Additional Notes and Considerations
+
+* TODO: implement loading of external icons
+* TODO: investigate and implement caching of externally requested icons
