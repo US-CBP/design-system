@@ -1,0 +1,55 @@
+:root {
+  --cbp-link-color: var(--cbp-color-interactive-primary-dark);
+  --cbp-link-color-visited: var(--cbp-color-interactive-visited-dark);
+  --cbp-link-color-hover: var(--cbp-color-interactive-primary-darker);
+  --cbp-link-color-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-link-color-active: var(--cbp-color-interactive-primary-dark);
+  --cbp-link-color-disabled: var(--cbp-color-interactive-disabled-dark);
+  --cbp-link-outline-color-focus: var(--cbp-color-interactive-focus-dark);
+}
+
+
+[data-cbp-theme=dark],
+[data-container-theme=dark] {
+  --cbp-link-color: var(--cbp-color-interactive-primary-light);
+  --cbp-link-color-visited: var(--cbp-color-interactive-visited-light);
+  --cbp-link-color-hover: var(--cbp-color-interactive-primary-base);
+  --cbp-link-color-focus: var(--cbp-color-interactive-focus-light);
+  --cbp-link-color-active: var(--cbp-color-interactive-primary-light);
+  --cbp-link-color-disabled: var(--cbp-color-interactive-disabled-light);
+  --cbp-link-outline-color-focus: var(--cbp-color-interactive-focus-light);
+}
+
+cbp-link {
+  a {
+    &:link {
+      color: var(--cbp-link-color);
+    }
+  
+    &:visited {
+      color: var(--cbp-link-color-visited);
+    }
+  
+    &:hover {
+      color: var(--cbp-link-color-hover);
+    }
+    
+    &:focus {
+      color: var(--cbp-link-color-focus);
+      outline: var(--cbp-border-size-md) solid var(--cbp-link-outline-color-focus);
+      outline-offset: var(--cbp-space-1x);
+    }
+  
+    &[aria-disabled=true] {
+      color: var(--cbp-link-color-disabled);
+      font-style: italic;
+      text-decoration: underline;
+    }
+  }
+
+  // TechDebt: ???
+  .cbp-link--definition:link {
+    text-decoration-style: dotted;
+  }
+
+}
