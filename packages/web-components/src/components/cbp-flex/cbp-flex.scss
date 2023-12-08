@@ -1,7 +1,7 @@
-cbp-flex:not[hidden] {
-    display: flex;
+cbp-flex:not([hidden]) {
+  display: flex;
 
-    &[display="inline-flex"] {
-        display: inline-flex;
-    }
+  &[display='inline-flex'] {
+    display: inline-flex;
+  }
 }

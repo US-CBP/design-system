@@ -5,7 +5,7 @@ import { setCSSProps } from '../../utils/utils';
     tag: 'cbp-flex-item',
     styleUrl: 'cbp-flex-item.scss',
 })
-export class MtlFlexItem {
+export class CbpFlexItem {
 
     @Element() host: HTMLElement;
 

@@ -5,7 +5,7 @@ import { setCSSProps } from '../../utils/utils';
     tag: 'cbp-grid-item',
     styleUrl: 'cbp-grid-item.scss',
 })
-export class MtlGridItem {
+export class CbpGridItem {
 
     @Element() host: HTMLElement;
 
