@@ -18,6 +18,7 @@ export const CbpFooter = /*@__PURE__*/createReactComponent<JSX.CbpFooter, HTMLCb
 export const CbpGrid = /*@__PURE__*/createReactComponent<JSX.CbpGrid, HTMLCbpGridElement>('cbp-grid');
 export const CbpGridItem = /*@__PURE__*/createReactComponent<JSX.CbpGridItem, HTMLCbpGridItemElement>('cbp-grid-item');
 export const CbpIcon = /*@__PURE__*/createReactComponent<JSX.CbpIcon, HTMLCbpIconElement>('cbp-icon');
+export const CbpLink = /*@__PURE__*/createReactComponent<JSX.CbpLink, HTMLCbpLinkElement>('cbp-link');
 export const CbpSection = /*@__PURE__*/createReactComponent<JSX.CbpSection, HTMLCbpSectionElement>('cbp-section');
 export const CbpSegmentedButtonGroup = /*@__PURE__*/createReactComponent<JSX.CbpSegmentedButtonGroup, HTMLCbpSegmentedButtonGroupElement>('cbp-segmented-button-group');
 export const CbpSkipNav = /*@__PURE__*/createReactComponent<JSX.CbpSkipNav, HTMLCbpSkipNavElement>('cbp-skip-nav');

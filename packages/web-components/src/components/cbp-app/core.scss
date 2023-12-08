@@ -1,5 +1,7 @@
 /* Additional high level and utilities variables not represented by design tokens */
 :root {
+  color-scheme: light dark;
+  --cbp-app-color-scheme: light;
 
   --cbp-color-body-text: var(--cbp-color-text-darkest);
   --cbp-color-body-background: var(--cbp-color-branding-cbp-light);
@@ -18,6 +20,12 @@
 @media (min-width: $cbp-breakpoint-xl) {
   :root {
     --cbp-responsive-spacing-outer: var(--cbp-space-11x);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    --cbp-app-color-scheme: dark;
   }
 }
 
