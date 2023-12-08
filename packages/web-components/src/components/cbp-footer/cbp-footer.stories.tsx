@@ -28,9 +28,9 @@ function generateFooterNav(footerNav) {
 
 const InternalTemplate = ({footerNav}) => {
   return `
-    <cbp-footer>
+    <cbp-footer data-container-theme="dark">
       <nav slot="cbp-footer-nav">
-        <cbp-flex role="list">
+        <cbp-flex role="list" breakpoint="37.5rem">
           ${generateFooterNav(footerNav)}
         <cbp-flex role="list">
       </nav>
@@ -40,8 +40,8 @@ const InternalTemplate = ({footerNav}) => {
         <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
         <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
           <span>Having an issue?</span>
-          <span>Email: <a href="#">this-application-support@abc.def.gov</a></span>
-          <span>CBP Helpdesk: (555) 555-5555</span>
+          <span>Email: <cbp-link href="mailto:somebody@example.com">this-application-support@abc.def.gov</cbp-link></span>
+          <span>CBP Helpdesk: <cbp-link href="tel:555-555-5555">(555) 555-5555</cbp-link></span>
         </cbp-flex>
       </section>
     </cbp-footer>
