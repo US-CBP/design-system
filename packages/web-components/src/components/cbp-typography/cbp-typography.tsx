@@ -16,10 +16,9 @@ export class CbpTypography {
   @Prop({ reflect: true }) divider: 'underline' | 'fill';
   @Prop() sx: any = {};
 
-  componentWillLoad() {
+  componentDidLoad() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
-      //console.log('sx=',this.sx);
     }
     setCSSProps(this.renderedTag, {
       ...this.sx
