@@ -1,0 +1,31 @@
+cbp-tag {
+  display: inline-block;
+  color: var(--cbp-color-info-lighter);
+  background-color: var(--cbp-color-info-dark);
+  border-radius: var(--cbp-border-radius-pill);
+  cursor: default;
+  padding: 0 var(--cbp-space-3x);
+  text-align: center;
+  line-height: var(--cbp-space-7x);
+
+  /*
+  & > i::after {
+    content: '\a0\a0';
+  }
+*/
+
+  &[color=warning] {
+    color: var(--cbp-color-text-darker);
+    background-color: var(--cbp-color-warning-base);
+  }
+
+  &[color=success] {
+    color: var(--cbp-color-success-lighter);
+    background-color: var(--cbp-color-success-dark);
+  }
+
+  &[color=danger] {
+    color: var(--cbp-color-text-lightest);
+    background-color: var(--cbp-color-danger-dark);
+  }
+}
