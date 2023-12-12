@@ -17,7 +17,7 @@ export default {
     },
     type: {
       description: 'The `type` attribute of the button. (not valid for anchors/links)',
-      control: 'select',
+      control: 'select', if: { arg: 'tag', neq: 'a' }, 
       options: [
         'button',
         'submit',
@@ -26,19 +26,19 @@ export default {
     },
     href: {
       description: 'Specifies the `href` attribute for anchor buttons. Not valid on actual `button` tags.',
-      control: 'text'
+      control: 'text', if: { arg: 'tag', eq: 'a' }
     },
     rel: {
       description: 'Specifies the `rel` attribute for anchor buttons. Not valid on actual `button` tags.',
-      control: 'text'
+      control: 'text', if: { arg: 'tag', eq: 'a' }
     },
     target: {
       description: 'Specifies the `target` attribute for anchor buttons. Not valid on actual `button` tags.',
-      control: 'text'
+      control: 'text', if: { arg: 'tag', eq: 'a' }
     },
     download: {
       description: 'Indicates whether the `download` attribute is placed on the rendered anchor tag as a browser hint indicating that the linked contents specified in the `href` should be downloaded rather than navigated to. Not valid on actual `button` tags.',
-      control: 'boolean'
+      control: 'boolean', if: { arg: 'tag', eq: 'a' }
     },
     fill: {
       description: 'Displays button fill in the overall button hierarchy. Available options are: `Solid`, `Outline` and `Ghost`.',
