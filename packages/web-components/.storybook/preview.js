@@ -16,7 +16,8 @@ export const preview = {
     options: {
       storySort: {
         //method: 'alphabetical',
-        order: ['Foundations','Components','Patterns'],
+        order: ['Introduction','Components', 'Patterns'],
+        //includeNames: true,
       },
     },
   },

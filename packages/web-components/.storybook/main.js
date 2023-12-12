@@ -10,6 +10,10 @@ function getAbsolutePath(value) {
 
 /** @type { import('@storybook/html-vite').StorybookConfig } */
 const config = {
+  framework: {
+    name: getAbsolutePath('@storybook/html-vite'),
+    options: {}
+  },
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     getAbsolutePath('@whitespace/storybook-addon-html'), 
@@ -26,22 +30,24 @@ const config = {
     getAbsolutePath('@storybook/addon-links'), 
     getAbsolutePath('@storybook/addon-a11y')
   ],
+  docs: {
+    autodocs: 'tag'
+  },
+  typescript: {
+    // Overrides the default Typescript configuration to allow multi-package components to be documented via Autodocs.
+    reactDocgen: 'react-docgen',
+    skipBabel: true,
+    check: false,
+  },
   staticDirs: [
     '../dist',
     '../assets'
   ],
-  framework: {
-    name: getAbsolutePath('@storybook/html-vite'),
-    options: {}
-  },
   core: {
     disableTelemetry: true
   },
   features: {
     storyStoreV7: true
   },
-  docs: {
-    autodocs: 'tag'
-  }
 };
 export default config;
