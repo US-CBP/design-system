@@ -47,20 +47,20 @@
     "packages/react-components"
   ],
   "devDependencies": {
-    "@types/node": "^20.9.0",
-    "eslint": "^8.33.0",
-    "eslint-config-prettier": "^8.6.0",
+    "@types/node": "^20.10.4",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
+    "eslint-plugin-react-refresh": "^0.4.5",
     "lerna": "^7.4.2",
-    "postcss-scss": "^4.0.6",
-    "prettier": "^2.8.3",
+    "postcss-scss": "^4.0.9",
+    "prettier": "^2.8.8",
     "stylelint": "^14.16.1",
-    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-recommended": "^9.0.0",
-    "stylelint-scss": "^4.3.0",
-    "typescript": "^5.2.2"
+    "stylelint-scss": "^4.7.0",
+    "typescript": "^5.3.3"
   },
   "eslintConfig": {
     "env": {
@@ -118,6 +118,5 @@
       "at-rule-no-unknown": null,
       "scss/at-rule-no-unknown": true
     }
-  },
-  "dependencies": {}
+  }
 }

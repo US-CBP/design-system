@@ -16,7 +16,7 @@ export const preview = {
     options: {
       storySort: {
         //method: 'alphabetical',
-        order: ['Introduction','Components', 'Patterns'],
+        order: (a, b) => a[1].id.localeCompare(b[1].id), //['Introduction','Components', 'Patterns'],
         //includeNames: true,
       },
     },
