@@ -13,6 +13,8 @@ const theme =  create({
   brandTarget: '_self',
 });
 
+
+// Investigate: You (or an addon) are using the 'config' preset field. This has been replaced by 'previewAnnotations' and will be removed in 8.0
 addons.setConfig({
   theme,
   toolbar: {
