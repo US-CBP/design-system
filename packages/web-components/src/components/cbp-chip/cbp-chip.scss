@@ -1,0 +1,70 @@
+:root {
+  --cbp-chip-color-text: var(--cbp-color-text-lightest);
+  --cbp-chip-color-text-focus: var(--cbp-color-text-lightest);
+  --cbp-chip-color-text-pressed: var(--cbp-color-text-lightest);
+  
+  --cbp-chip-color-background: var(--cbp-color-interactive-secondary-base);
+  --cbp-chip-color-background-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-chip-color-background-pressed: var(--cbp-color-interactive-selected-dark);
+}
+
+cbp-chip {
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 0 0 0 var(--cbp-space-3x);
+    color: var(--cbp-chip-color-text);
+    background-color: var(--cbp-chip-color-background);
+    border-width: 0;
+    border-radius: var(--cbp-border-radius-pill);
+    text-transform: uppercase;
+    line-height: var(--cbp-space-7x);
+    
+    .cbp-chip__label + cbp-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: var(--cbp-space-7x);
+      min-height: var(--cbp-space-7x);
+      border-width: 0;
+      border-radius: var(--cbp-border-radius-pill);
+      margin-left: 4px;
+      
+      svg {
+        transition: var(--cbp-motion-duration-shortest);
+      }
+    }
+    
+    // Selected
+    &[aria-pressed=true] {
+      background-color: var(--cbp-color-interactive-selected-dark);
+    
+      .cbp-chip__label + cbp-icon>svg {
+        transform: rotate(-135deg);
+      }
+
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .cbp-chip__label + cbp-icon {
+        background-color: #454540; // ToDo
+      }
+    }
+
+    &:focus-visible {
+      background-color: var(--cbp-color-interactive-focus-dark);
+      outline: 0;
+
+      > .cbp-chip__label + cbp-icon {
+        background-color: transparent;
+        border-color: var(--cbp-color-white);
+        outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
+        outline-offset: -4px;
+      }
+    }
+  }
+}

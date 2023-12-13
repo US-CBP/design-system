@@ -1,0 +1,16 @@
+cbp-badge {
+  display: inline-block;
+  width: var(--cbp-space-6x);
+  height: var(--cbp-space-6x);
+  color: var(--cbp-color-text-lightest);
+  background-color: var(--cbp-color-info-base);
+  border-radius: var(--cbp-border-radius-pill);
+  cursor: default;
+  font-size: .625rem;
+  text-align: center;
+  line-height: var(--cbp-space-6x);
+
+  &[color=danger] {
+    background-color: var(--cbp-color-danger-base);
+  }
+}
