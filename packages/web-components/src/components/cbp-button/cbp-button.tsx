@@ -1,5 +1,6 @@
 import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
+//import state from './store';
 
 @Component({
   tag: 'cbp-button',
@@ -8,6 +9,7 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpButton {
   
   private button: any; // HTMLButtonElement or HTMLAnchorElement
+  private controlTarget: any;
 
   @Element() host: HTMLElement;
 
@@ -25,6 +27,8 @@ export class CbpButton {
   @Prop() pressed: boolean;
   @Prop() expanded: boolean;
   @Prop() controls: string;
+  @Prop() controlProp: "pressed" | "expanded";
+  @Prop() targetProp: string; // A prop on the controlled element such as "open" 
 
   @Prop() accessibilityText: string;
   @Prop() disabled: boolean;
@@ -35,14 +39,33 @@ export class CbpButton {
   @Event() componentLoad!: EventEmitter;
 
   handleClick = () => {
+    // If this is a control for something, manage state through stencil store
+    if(this.controls) {
+      // If the controlled element wasn't found, try to find it again
+      if(!this.controlTarget){
+        this.controlTarget = this.controls ? document.querySelector(`#${this.controls}`) : undefined;
+      }
+      if(this.controlTarget){
+        this.controlTarget[this.targetProp]=!this.controlTarget[this.targetProp];
+      }
+      else {
+        console.warn('cbp-button configuration error: the control target referenced by ID by the `control` property could not be found.');
+      }
+    }
+    
     this.buttonClick.emit({
       host: this.host,
       nativeElement: this.button,
+      controls: this.controls ? this.controls : null,
+      pressed: this.pressed,
+      expanded: this.expanded,
       value: this.button.tagName=='button' ? this.button.value : null
     });
   }
-  
+
   componentWillLoad() {
+    this.controlTarget = this.controls ? document.querySelector(`#${this.controls}`) : undefined;
+
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
     }
@@ -58,6 +81,7 @@ export class CbpButton {
       value: this.button.tagName=='button' ? this.button.value : null
     });
   }
+
 
   render() {
     const {
