@@ -7,9 +7,9 @@ import { Component, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'cbp-app',
-  styleUrl: 'cbp-app.scss'
-   //this is not working: appears to be a Stencil bug - verify
-  //styleUrls: ['reset.scss', 'roboto.scss', 'css-variables.scss', 'core.scss']
+  //styleUrl: 'cbp-app.scss'
+  //this is not working: appears to be a Stencil bug - verify
+  styleUrls: ['reset.scss', 'roboto.scss', 'css-variables.scss', 'core.scss']
 })
 export class CbpApp {
 
