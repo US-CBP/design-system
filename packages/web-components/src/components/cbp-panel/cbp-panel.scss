@@ -1,0 +1,38 @@
+:root {
+  --cbp-panel-border-radius: var(--cbp-border-radius-soft);
+  --cbp-panel-border-width: var(--cbp-border-size-md);
+}
+
+cbp-panel {
+  display: block;
+
+  .cbp-panel__header {
+    color: var(--cbp-color-text-lighter);
+    background-color: var(--cbp-color-gray-cool-50);
+    padding: var(--cbp-space-5x);
+    border-bottom: solid var(--cbp-border-size-xl) var(--cbp-color-gray-cool-60);
+    border-radius: var(--cbp-panel-border-radius) var(--cbp-panel-border-radius) 0 0;
+    
+    & :where(h1,h2,h3,h4,h5,h6) {
+      color: inherit;
+      font-size: var(--cbp-font-size-heading-lg);
+      font-weight: normal;
+      line-height: var(--cbp-space-7x);
+    }
+  }
+
+  .cbp-panel__content {
+    background-color: var(--cbp-color-white);
+    padding: var(--cbp-space-5x);
+    border-style: solid;
+    border-color: var(--cbp-color-gray-cool-10);
+    border-width: var(--cbp-panel-border-width);
+    border-top-style: none;
+    border-radius: 0 0 var(--cbp-panel-border-radius) var(--cbp-panel-border-radius);
+    
+    > :last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+}

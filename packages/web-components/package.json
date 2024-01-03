@@ -38,6 +38,7 @@
   "devDependencies": {
     "@stencil/react-output-target": "^0.5.3",
     "@stencil/sass": "^3.0.7",
+    "@stencil/store": "^2.0.12",
     "@storybook/addon-essentials": "^7.6.4",
     "@storybook/addon-interactions": "^7.6.4",
     "@storybook/addon-links": "^7.6.4",
