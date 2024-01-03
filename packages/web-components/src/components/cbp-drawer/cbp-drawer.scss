@@ -15,6 +15,14 @@ cbp-drawer {
     transition: 0.5s;
     height: 100%;
     background-color: var(--cbp-color-white);
+
+    .cbp-drawer__close-button {
+      --cbp-button-color-text: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-border-radius: var(--cbp-border-radius-circle);
+      position:absolute;
+      right:0;
+      top: 1em;
+    }
   }
 
   &[open] {
@@ -44,14 +52,6 @@ cbp-drawer {
           right: 0;
         }
       }
-    }
-
-    .cbp-drawer__close-button {
-      --cbp-button-color-text: var(--cbp-color-interactive-secondary-lighter);
-      --cbp-button-border-radius: var(--cbp-border-radius-circle);
-      position:absolute;
-      right:0;
-      top: 1em;
     }
   }
 
