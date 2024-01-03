@@ -1,0 +1,65 @@
+cbp-drawer {
+  
+  --cbp-panel-border-radius: 0;
+  --cbp-panel-border-width: 0;
+
+  .cbp-drawer__content {
+    display: none;
+    position: fixed;
+    top: 0;
+    overflow-y: auto;
+    z-index: var(--cbp-z-index-level-top);
+    width: 100%;
+    height: 101%; // this prevents edge cases where the drawer disappears on smaller viewports when scrolling to the end
+  
+    transition: 0.5s;
+    height: 100%;
+    background-color: var(--cbp-color-white);
+  }
+
+  &[open] {
+    
+    .cbp-drawer__content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &[position=left] {
+      .cbp-drawer__content {
+        left: -100%;
+        box-shadow: var(--cbp-shadow-level-4-right);
+
+        &.cbp-drawer--open {
+          left: 0;
+        }
+      }
+    }
+
+    &[position=right] {
+      .cbp-drawer__content {
+        right: -100%;
+        box-shadow: var(--cbp-shadow-level-4-left);
+
+        &.cbp-drawer--open {
+          right: 0;
+        }
+      }
+    }
+
+    .cbp-drawer__close-button {
+      --cbp-button-color-text: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-border-radius: var(--cbp-border-radius-circle);
+      position:absolute;
+      right:0;
+      top: 1em;
+    }
+  }
+
+  @media (min-width : 37.5em) {
+    .cbp-drawer__content {
+      width: 25rem;
+    }
+  }
+
+}
+
