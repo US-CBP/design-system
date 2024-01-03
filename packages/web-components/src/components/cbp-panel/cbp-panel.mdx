@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Panel/Specifications" />
+
+# cbp-panel
+
+## Purpose
+
+A panel is a styled container for displaying information within the main page content area or to either side.
+
+## Functional Requirements
+
+* In addition to providing visual styles, panels may provide semantic meaning to the content areas they define.
+* Panels shall contain a heading tag (`h2`-`h6`) appropriate to the document outline.
+* The panel heading shall be styled in a consistent manner regardless of heading level.
+
+## Technical Specifications
+
+### User Interactions
+
+* All user interactions are governed by the content placed within the panel.
+
+### Responsiveness
+
+* Panels should not be given a fixed width larger than the smallest supported screen size.
+* In most cases, a panel's size is defined by its parent and/or a parent-level CSS Grid or Flexbox structure.
+
+### Accessibility
+
+* The wrapping component tag itself (`cbp-panel`) may have a `role` assigned to it, such as `role="section"` or `role="complementary"` (for sidebars), to provide additional semantics.
+* The above instances may be identified as document landmarks if they have an accessible name, which may be achieved by adding an `aria-label` or `aria-labelledby` referencing the panel heading. 
+* If the panel contains navigation, you may wrap the slotted navigation links inside of a `<nav>` tag to specify this. If this does not represent the primary navigation, an accessible name should also be provided using the same methods previously outlined.
+* Panels shall contain a heading tag (`h2-h6`) appropriate to the document outline, which may be used to label the landmark. This heading should be styled with the `--cbp-font-size-heading-lg` design token, regardless of level.
+
+### Usage Notes and Additional Considerations
+
+* Panels should not be confused with cards. If an interface uses multiple similarly formatted items, consider cards.
