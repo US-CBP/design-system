@@ -11,6 +11,7 @@ export default {
         'arrow-right',
         'bars',
         'chevron-right',
+        'circle',
         'circle-info',
         'circle-xmark',
         'ellipsis-vertical',
@@ -26,7 +27,9 @@ export default {
         'filter',
         'sort-asc',
         'sort-desc',
+        'square',
         'star',
+        'star-solid',
         'user',
       ]
     },
