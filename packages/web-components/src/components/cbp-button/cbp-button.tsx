@@ -18,7 +18,8 @@ export class CbpButton {
   @Prop({ reflect: true }) fill: 'solid' | 'outline' | 'ghost' = 'solid';
   @Prop({ reflect: true }) color: 'primary' | 'secondary' | 'danger' = 'primary';
   @Prop({ reflect: true }) variant: 'square' | 'cta';
-  
+  @Prop() value: string;
+
   @Prop() href: string;
   @Prop() rel: string;
   @Prop() target: string;
@@ -86,6 +87,7 @@ export class CbpButton {
   render() {
     const {
       type,
+      value,
       pressed,
       expanded,
       controls,
@@ -100,6 +102,7 @@ export class CbpButton {
       this.tag === 'button'
       ? { 
           type, 
+          value,
           controls, 
           disabled 
         }
