@@ -1,0 +1,35 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Grid/Specifications" />
+
+# cbp-grid and cbp-grid-item
+
+## Purpose
+
+The Grid component is a wrapper that invokes a CSS Grid context, acting as the grid parent.
+
+## Functional Requirements
+
+* The Grid component is a container and its contents are provided by the application (slotted).
+* Immediate children are automatically considered "Grid items" per the CSS Grid specification and inherit certain layout properties.
+* Optionally, the Grid Item component may be used as an immediate child of the Grid component to give granular control over that child's behavior.
+* The Grid component implements the CSS Grid API as a component API (sans shorthand properties).
+* The Grid Item component implements the CSS Grid child API as a component API (sans shorthand properties).
+
+## Technical Specifications
+
+### User Interactions
+
+* As a non-interactive layout component, there are no explicit user interactions. However, the component should respond to changes in the device or viewport that affect content sizing according to the CSS Grid layout specification.
+
+### Responsiveness
+
+* The parent Grid component accepts a `breakpoint` property that defines (in responsive CSS units) the viewport width at which the grid items linearize vertically.
+
+### Accessibility
+
+* Using `grid-auto-flow` of `row dense` or `column dense` may cause items to appear out of source order and cause accessibility failures. Use this technique sparingly, if at all.
+
+### Additional Notes and Considerations
+
+* Text nodes inserted as direct descendants of the grid will yield unexpected results; While use of the cbp-grid-item component is optional, grid items are expected to be DOM nodes and should be wrapped in a tag such as `div` or `span`.

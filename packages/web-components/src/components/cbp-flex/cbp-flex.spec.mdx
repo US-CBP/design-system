@@ -1,0 +1,36 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Flex/Specifications" />
+
+# cbp-flex and cbp-flex-item
+
+## Purpose
+
+The Flex component is a wrapper that invokes a CSS Flexbox context, acting as the flex parent.
+
+## Functional Requirements
+
+* The Flex component is a container and its contents are provided by the application (slotted).
+* Immediate children are automatically considered "flex children" per the CSS Flexbox specification and inherit certain layout properties.
+* Optionally, the Flex Item component may be used as an immediate child of the Flex component to give granular control over that child's flex behavior.
+* The Flex component implements the CSS Flexbox API as a component API (sans shorthand properties).
+* The Flex Item component implements the CSS Flexbox child API as a component API (sans shorthand properties).
+
+## Technical Specifications
+
+### User Interactions
+
+* As a non-interactive layout component, there are no explicit user interactions. However, the component should respond to changes in the device or viewport that affect content sizing according to the CSS Flexbox layout specification.
+
+### Responsiveness
+
+* Flexbox is by default responsive, especially when wrapping is allowed.
+* The parent Flex component accepts a `breakpoint` property that defines (in responsive CSS units) the viewport width at which the flex children linearize vertically.
+
+### Accessibility
+
+* Using `flex-direction` of `row-reverse` or `column-reverse` may cause accessibility failures by presenting information in a different order than the source and keyboard navigation (tab) order. Use this technique sparingly, if at all.
+
+### Additional Notes and Considerations
+
+* Text nodes inserted as direct descendants of the flex parent will yield unexpected results; While use of the cbp-flex-item component is optional, flex children are expected to be DOM nodes and should be wrapped in a tag such as `div` or `span`.
