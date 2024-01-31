@@ -13,9 +13,14 @@ The CBP Design System (1.0) exists to provide a unifying user experience and red
 
 ## Contents
 
+This project is set up as a monorepo, containing multiple packages. Current efforts are focused on the web components package as the single source of truth from which the React components are generated during the build process.
+
+`npm install` should be run within each of the packages subdirectories you wish to run locally.
+
 | Package Name                    | Description                                         |
 |---------------------------------|-----------------------------------------------------|
 | @cbpds/vanilla (_WIP_)          | HTML patterns, css/scss styles and vanilla js       |
+| @cbpds/web-components (_WIP_)   | Web components library                              |
 | @cbpds/react-components (_WIP_) | React components library                            |
 | ux-guidelines  (_WIP_)          | Guidance for patterns, components and design tokens |
 
