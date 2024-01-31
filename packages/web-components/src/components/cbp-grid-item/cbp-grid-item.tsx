@@ -27,13 +27,13 @@ export class CbpGridItem {
             this.sx = JSON.parse(this.sx) || {}
         }
         setCSSProps(this.host, {
-            "grid-column-start": this.gridColumnStart,
-            "grid-column-end": this.gridColumnEnd,
-            "grid-row-start": this.gridRowStart,
-            "grid-row-end": this.gridRowEnd,
-            "align-self": this.alignSelf,
-            "justify-self": this.justifySelf,
-            "grid-area": this.gridArea,
+            'grid-column-start': this.gridColumnStart,
+            'grid-column-end': this.gridColumnEnd,
+            'grid-row-start': this.gridRowStart,
+            'grid-row-end': this.gridRowEnd,
+            'align-self': this.alignSelf,
+            'justify-self': this.justifySelf,
+            'grid-area': this.gridArea,
             ...this.sx
         });
     }
