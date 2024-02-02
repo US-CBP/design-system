@@ -4,10 +4,13 @@ export const setCSSProps = <T extends { [key: string]: any }>(host: HTMLElement,
   
     Object.entries(props).forEach(([key, value]): void => {
     try {
-      //console.log('setCSSProps: ',{key},{value});
+      //console.log('setCSSProps: ',{host},{key},{value}, typeof value);
+      // Any value other than undefined is coerced into a string?
+      //host.style.setProperty(key, value != undefined ? value : '');
+    
       (typeof value == 'string')
         ? host.style.setProperty(key, value) 
-        : host.style.setProperty(key, `{value != undefined ? ${value} : ''}`);
+        : host.style.setProperty(key, value != undefined ? `${value}` : '');
     }
     catch(e) {
       console.log('Error in setCSSProps: ', {host}, {key}, {value}, {e});
