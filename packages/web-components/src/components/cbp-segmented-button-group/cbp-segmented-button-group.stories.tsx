@@ -25,8 +25,8 @@ export default {
 
 
 function generateButtons(buttons) {
-  const html = buttons.map(({ label, value, selected, disabled}) => {
-    return `<cbp-button type="button" value="${value}" ${selected==true ? 'aria-pressed="true"' : ''} ${disabled==true ? 'disabled' : ''}>${label}</cbp-button>`
+  const html = buttons.map(({ label, value, pressed, disabled}) => {
+    return `<cbp-button type="button" value="${value}" ${pressed==true ? 'pressed' : ''} ${disabled==true ? 'disabled' : ''}>${label}</cbp-button>`
   })
   return html.join("")
 };
@@ -51,19 +51,19 @@ SegmentedButtonGroup.args = {
       {
         label: "Small",
         value: "sm",
-        selected: false,
+        pressed: false,
         disabled: false
       },
       {
         label: "Medium",
         value: "md",
-        selected: false,
+        pressed: false,
         disabled: false
       },
       {
         label: "Large",
         value: "lg",
-        selected: false,
+        pressed: false,
         disabled: false
       }
     ],
