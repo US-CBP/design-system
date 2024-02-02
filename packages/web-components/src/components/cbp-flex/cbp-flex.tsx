@@ -11,7 +11,7 @@ export class CbpFlex {
   @Prop({ reflect: true }) display: 'flex' | 'inline-flex' = 'flex';
   @Prop() wrap: 'nowrap' | 'wrap' | 'wrap-reverse';
   @Prop() direction: 'row' | 'row-reverse' | 'column' | 'column-reverse' = 'row';
-  @Prop() alignItems: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'stretch' = 'stretch';
+  @Prop() alignItems: 'auto' | 'stretch' | 'flex-start' | 'flex-end' | 'center' | 'baseline' = 'stretch';
   @Prop() alignContent: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'stretch' = 'stretch';
   @Prop() justifyContent: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly' = 'flex-start';
   @Prop() gap: string;

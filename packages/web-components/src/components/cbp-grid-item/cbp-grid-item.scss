@@ -1,4 +1,5 @@
 cbp-grid-item:not([hidden]) {
-    display: block;
-    position: relative;
+  display: inherit; 
+  position: relative;
+  max-width: 100%;
 }

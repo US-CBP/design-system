@@ -24,6 +24,10 @@ export default {
         'reset',
       ]
     },
+    value: {
+      description: 'Specifies the `value` attribute of the rendered button. Not valid on link buttons.',
+      control: 'text', if: { arg: 'tag', neq: 'a' }
+    },
     href: {
       description: 'Specifies the `href` attribute for anchor buttons. Not valid on actual `button` tags.',
       control: 'text', if: { arg: 'tag', eq: 'a' }
@@ -87,11 +91,12 @@ export default {
   }
 };
 
-const Template = ({ label, tag, type, href, rel, target, download, fill, color, variant, accessibilityText, disabled, sx }) => { 
+const Template = ({ label, tag, type, value, href, rel, target, download, fill, color, variant, accessibilityText, disabled, sx }) => { 
   return ` 
       <cbp-button
         ${tag !== 'button' ? `tag=${tag}` : ''}
         type="${type}"
+        value="${value}"
         ${href ? `href=${href}` : ''}
         ${rel ? `rel=${rel}` : ''}
         ${target ? `target=${target}` : ''}
