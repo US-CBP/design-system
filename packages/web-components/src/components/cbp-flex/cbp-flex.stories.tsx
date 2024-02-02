@@ -16,7 +16,7 @@ export default {
     },
     alignItems: {
       control: 'select',
-      options: ['flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'stretch'],
+      options: ['auto', 'stretch', 'flex-start', 'flex-end', 'center', 'baseline'],
     },
     alignContent: {
       control: 'select',
