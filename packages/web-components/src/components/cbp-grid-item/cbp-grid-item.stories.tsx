@@ -3,16 +3,16 @@ export default {
   //tags: ['autodocs'],
   argTypes: {
     gridColumnStart: {
-      control: 'number',
+      control: 'text',
     },
     gridColumnEnd: {
-      control: 'number',
+      control: 'text',
     },
     gridRowStart: {
-      control: 'number',
+      control: 'text',
     },
     gridRowEnd: {
-      control: 'number',
+      control: 'text',
     },
     alignSelf: {
       control: 'select',
@@ -40,12 +40,13 @@ export default {
   },
 };
 
-
+// TechDebt: I can't figure out why it is not setting the CSS props for gridColumnStart, gridColumnEnd, gridRowStart, gridRowEnd
 const Template = ({ gridColumnStart, gridColumnEnd, gridRowStart, gridRowEnd, alignSelf, justifySelf, gridArea, content, sx }) => {
   return ` 
     <cbp-grid
       grid-template-columns="repeat(5,1fr)"
       gap="1rem"
+      sx='{"min-height":"200px"}'
     >
       <cbp-grid-item
         ${gridColumnStart ? `grid-column-start=${gridColumnStart}` : ''}
@@ -64,8 +65,8 @@ const Template = ({ gridColumnStart, gridColumnEnd, gridRowStart, gridRowEnd, al
       <div>Grid Item 4</div>
       <div>Grid Item 5</div>
     </cbp-grid>
-      `;
+  `;
 };
 
 export const GridItem = Template.bind({});
-GridItem.args = {}
+//GridItem.args = {}
