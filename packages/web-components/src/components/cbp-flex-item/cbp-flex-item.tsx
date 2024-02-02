@@ -13,7 +13,7 @@ export class CbpFlexItem {
     @Prop() order: number;
     @Prop() flexGrow: number;
     @Prop() flexShrink: number;
-    @Prop() flexBasis: number;
+    @Prop() flexBasis: string;
     /** Supports adding inline styles as an object */
     @Prop() sx: any = {};
 
@@ -23,11 +23,11 @@ export class CbpFlexItem {
             this.sx = JSON.parse(this.sx) || {}
         }
         setCSSProps(this.host, {
-            "align-self": this.alignSelf,
-            "order": this.order,
-            "flex-grow": this.flexGrow,
-            "flex-shrink": this.flexShrink,
-            "flex-basis": this.flexBasis,
+            'align-self': this.alignSelf,
+            'order': this.order,
+            'flex-grow': this.flexGrow,
+            'flex-shrink': this.flexShrink,
+            'flex-basis': this.flexBasis,
             ...this.sx
         });
     }
