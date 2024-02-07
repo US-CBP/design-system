@@ -14,6 +14,10 @@ export default {
       description: 'Specifies whether the drawer is open or closed.',
       control: 'boolean'
     },
+    uid: {
+      description: 'A unique `id` applied to the drawer and referenced by the control.',
+      control: 'text'
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object'
@@ -22,14 +26,14 @@ export default {
 };
 
 
-const Template = ({position, open, accessibilityText, sx}) => {
+const Template = ({position, open, uid, accessibilityText, sx}) => {
   return `
     <cbp-button
       type="button"
       color="secondary"
       accessibility-text="Open Drawer"
       target-prop="open"
-      controls="drawer"
+      controls=${uid}
     >
       <cbp-icon name="bars"></cbp-icon>
     </cbp-button>
@@ -39,7 +43,7 @@ const Template = ({position, open, accessibilityText, sx}) => {
       ${open ? `open=${open}` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      id="drawer"
+      ${uid ? `uid=${uid}` : ''}
     >
       <cbp-panel
         aria-labelledby="panelheader"
@@ -61,7 +65,8 @@ const Template = ({position, open, accessibilityText, sx}) => {
 
 export const Drawer = Template.bind({});
 Drawer.args = {
-  position: "left"
+  position: "left",
+  uid: "drawer"
 };
 
 
