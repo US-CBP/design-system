@@ -66,6 +66,7 @@ export class CbpDrawer {
         this.focusableElements=getFocusableElements(this.host);  
       }
       this.focusableElements[0]?.focus()
+      //console.log(this.focusableElements,document.activeElement);
     },100);
   }
 
