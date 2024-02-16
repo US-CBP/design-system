@@ -6,6 +6,7 @@
 
   .cbp-tab {
     all: unset;
+    color: var(--cbp-color-interactive-secondary-darker);
     box-sizing: border-box;
     min-height: var(--cbp-space-14x);
     padding: 0 var(--cbp-space-3x);
@@ -23,12 +24,12 @@
     }
 
     &[aria-selected='true'] {
-      color: var(--cbp-color-interactive-secondary-darker);
+      color: var(--cbp-color-interactive-active-dark);
       border-bottom-color: var(--cbp-color-interactive-active-dark);
       font-style: italic;
     }
 
-    &:hover {
+    &:hover:not([aria-selected='true'])  {
       background-color: var(--cbp-color-interactive-secondary-lighter);
       border-bottom-color: var(--cbp-color-interactive-secondary-darker);
     }
@@ -45,7 +46,7 @@
   .cbp-tab--danger {
     color: var(--cbp-color-danger-base);
 
-    &:hover {
+    &:hover:not([aria-selected='true'])  {
       color: var(--cbp-color-danger-dark);
       background-color: var(--cbp-color-danger-lighter);
       border-color: var(--cbp-color-danger-dark);
