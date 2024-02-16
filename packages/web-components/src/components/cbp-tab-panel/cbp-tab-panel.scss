@@ -1,0 +1,7 @@
+cbp-tab-panel {
+  display: none;
+
+  &[selected]{
+    display: block;
+  }
+}
