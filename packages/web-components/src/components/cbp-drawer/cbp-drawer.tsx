@@ -6,20 +6,27 @@ import { setCSSProps, getFocusableElements } from '../../utils/utils';
   styleUrl: 'cbp-drawer.scss',
 })
 export class CbpDrawer {
+  
   private drawer: HTMLElement;
   private focusableElements: any[];
 
   @Element() host: HTMLElement;
 
+  /** Specifies the position of the drawer (left or right) */
   @Prop({ reflect: true }) position: 'left' | 'right' = 'left';
-  @Prop({ reflect: true }) open: boolean;
-  @Prop() uid: string;
-  @Prop() accessibilityText: string;
-  //@Prop() breakpoint: string;
 
+  /** When set, specifies that the drawer is open */
+  @Prop({ reflect: true }) open: boolean;
+  
+  /** Specifies a unique `ID` for the drawer, used to wire up the controls and accessibility features. */
+  @Prop() uid: string;
+  
+  /** Creates an accessible label for the drawer (dialog). */
+  @Prop() accessibilityText: string;
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
+
 
   /** Custom event fired when the drawer is opened. */
   @Event() drawerOpen!: EventEmitter;
@@ -32,16 +39,7 @@ export class CbpDrawer {
     newValue==true ? this.setFocus() : this.closeDrawer();
   }
 
-  /*
-  drawerDidUpdate() {
-    this.drawerUpdate.emit({
-      open: this.open
-    });
-    this.setFocusElement();
-  }
-  
-*/
-
+  /** A public method for opening the drawer. */
   @Method()
   async openDrawer() {
     this.open=true;
@@ -51,6 +49,7 @@ export class CbpDrawer {
     });
   }
 
+  /** A public method for closing the drawer. */
   @Method()
   async closeDrawer() {
     this.open=false;
@@ -120,7 +119,7 @@ export class CbpDrawer {
             fill="ghost"
             accessibility-text="Close"
             target-prop="open"
-            controls="drawer"
+            controls={this.uid}
           >
             <cbp-icon name="circle-xmark"></cbp-icon>
           </cbp-button>

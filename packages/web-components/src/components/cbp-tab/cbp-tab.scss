@@ -1,10 +1,6 @@
-.cbp-tabset {
-  display: flex;
-  align-items: flex-end;
-  border-bottom: var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-30);
-  margin-bottom: var(--cbp-space-4x);
-
-  .cbp-tab {
+cbp-tab {
+  
+  button {
     all: unset;
     color: var(--cbp-color-interactive-secondary-darker);
     box-sizing: border-box;
@@ -14,22 +10,15 @@
     border-bottom: var(--cbp-border-size-xl) solid transparent;
     font-size: var(--cbp-font-size-heading-xs);
     font-weight: var(--cbp-font-weight-medium);
-
-    // TODO: no margin for icon-only tabs edge-case (or should this use a modifier class in the story?)
-    i {
-      font-size: var(--cbp-space-3x);
-      vertical-align: middle;
-      line-height: var(--cbp-space-4x);
-      margin-right: var(--cbp-space-2x)
-    }
-
+    
     &[aria-selected='true'] {
-      color: var(--cbp-color-interactive-active-dark);
+      color: var(--cbp-color-interactive-active-darker);
       border-bottom-color: var(--cbp-color-interactive-active-dark);
       font-style: italic;
     }
 
-    &:hover:not([aria-selected='true'])  {
+    &:hover:not([aria-selected='true']):not(:focus) {
+      //color: var(--cbp-color-interactive-secondary-darker);
       background-color: var(--cbp-color-interactive-secondary-lighter);
       border-bottom-color: var(--cbp-color-interactive-secondary-darker);
     }
@@ -46,7 +35,7 @@
   .cbp-tab--danger {
     color: var(--cbp-color-danger-base);
 
-    &:hover:not([aria-selected='true'])  {
+    &:hover:not([aria-selected='true']) {
       color: var(--cbp-color-danger-dark);
       background-color: var(--cbp-color-danger-lighter);
       border-color: var(--cbp-color-danger-dark);
@@ -59,9 +48,5 @@
       outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
       outline-offset: calc(-1 * var(--cbp-space-1x));
     }
-
-  
-  }
-
-
+  }  
 }
