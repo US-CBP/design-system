@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Skip Nav/Specifications" />
+
+# cbp-skip-nav
+
+## Purpose
+
+The Skip Navigation link (or "Skip Nav") is an essential accessibility feature that allows screen reader users to skip repetitive portions of the page and get right to the main content.
+
+## Functional Requirements
+
+* The Skip Nav link is visually hidden until it receives focus.
+* The Skip Nav link should be the first element in the tab navigation order on the page.
+* The Skip Nav link should ideally send focus to the `<main>` landmark element, or any other element that contains the main content.
+* The default verbiage of "skip to main content" is preferable due to pronunciation.
+
+## Technical Specifications
+
+### User Interactions
+
+* When a user keyboard navigates to the Skip Nav link, the link becomes visible when it obtains focus.
+* Activating the link should send focus to the target element on the page, which must not be hidden from view.
+
+### Responsiveness
+
+* The parent Grid component accepts a `breakpoint` property that defines (in responsive CSS units) the viewport width at which the grid items linearize vertically.
+
+### Accessibility
+
+* The target element of the Skip Nav link should have a `tabindex="-1"` applied to it if it is not a natively interactive element.
+* If the target is not a landmark element, it must have an accessible name.
+* The target element must not be hidden from view in any way.
+
+### Additional Notes and Considerations
+
+* Multiple Skip Nav links may be present on complex sites, targeting different elements.
+* In such a case, the default text of each Skip Nav link should be made uniquely descriptive.
