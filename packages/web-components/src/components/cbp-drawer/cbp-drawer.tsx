@@ -120,7 +120,7 @@ export class CbpDrawer {
             fill="ghost"
             accessibility-text="Close"
             target-prop="open"
-            controls="drawer"
+            controls={this.uid}
           >
             <cbp-icon name="circle-xmark"></cbp-icon>
           </cbp-button>
