@@ -1,0 +1,179 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Design Tokens" />
+
+# Design Tokens
+
+Design tokens are a framework and platform agnostic representation of atomic design decisions. Design tokens are represented in JSON format, which can be used in many different applications. However, for the purpose of web development, they are converted into CSS custom properties (aka CSS variables).
+
+## Theme Colors
+
+--cbp-color-interactive-visited-dark: var(--cbp-color-blue-cool-70)
+--cbp-color-interactive-visited-light: var(--cbp-color-blue-cool-20)
+--cbp-color-interactive-selected-dark: var(--cbp-color-blue-warm-60)
+--cbp-color-interactive-selected-light: var(--cbp-color-blue-warm-20)
+--cbp-color-interactive-focus-dark: var(--cbp-color-blue-warm-70)
+--cbp-color-interactive-focus-light: var(--cbp-color-blue-20)
+--cbp-color-interactive-disabled-dark: var(--cbp-color-gray-40)
+--cbp-color-interactive-disabled-light: var(--cbp-color-gray-10)
+--cbp-color-interactive-active-dark: var(--cbp-color-blue-warm-80)
+--cbp-color-interactive-active-light: var(--cbp-color-blue-warm-10)
+--cbp-color-interactive-secondary-darker: var(--cbp-color-gray-warm-70)
+--cbp-color-interactive-secondary-dark: var(--cbp-color-gray-warm-60)
+--cbp-color-interactive-secondary-base: var(--cbp-color-gray-warm-50)
+--cbp-color-interactive-secondary-light: var(--cbp-color-gray-warm-30)
+--cbp-color-interactive-secondary-lighter: var(--cbp-color-gray-warm-10)
+--cbp-color-interactive-primary-darker: var(--cbp-color-blue-70)
+--cbp-color-interactive-primary-dark: var(--cbp-color-blue-60)
+--cbp-color-interactive-primary-base: var(--cbp-color-blue-50)
+--cbp-color-interactive-primary-light: var(--cbp-color-blue-30)
+--cbp-color-interactive-primary-lighter: var(--cbp-color-blue-10)
+--cbp-color-base-neutral-darkest: var(--cbp-color-gray-cool-90)
+--cbp-color-base-neutral-darker: var(--cbp-color-gray-cool-80)
+--cbp-color-base-neutral-dark: var(--cbp-color-gray-cool-60)
+--cbp-color-base-neutral-base: var(--cbp-color-gray-cool-50)
+--cbp-color-base-neutral-light: var(--cbp-color-gray-cool-30)
+--cbp-color-base-neutral-lighter: var(--cbp-color-gray-cool-10)
+--cbp-color-base-neutral-lightest: var(--cbp-color-gray-cool-4)
+--cbp-color-base-secondary-darker: var(--cbp-color-mint-cool-70)
+--cbp-color-base-secondary-dark: var(--cbp-color-mint-cool-60)
+--cbp-color-base-secondary-base: var(--cbp-color-mint-cool-50)
+--cbp-color-base-secondary-light: var(--cbp-color-mint-cool-30)
+--cbp-color-base-secondary-lighter: var(--cbp-color-mint-cool-10)
+--cbp-color-base-primary-darker: var(--cbp-color-blue-cool-70)
+--cbp-color-base-primary-dark: var(--cbp-color-blue-cool-60)
+--cbp-color-base-primary-base: var(--cbp-color-blue-cool-50)
+--cbp-color-base-primary-light: var(--cbp-color-blue-cool-30)
+--cbp-color-base-primary-lighter: var(--cbp-color-blue-cool-10)
+--cbp-color-background-dark: var(--cbp-color-gray-cool-80)
+--cbp-color-background-light: var(--cbp-color-gray-cool-3)
+--cbp-color-text-darkest: var(--cbp-color-gray-90)
+--cbp-color-text-darker: var(--cbp-color-gray-70)
+--cbp-color-text-dark: var(--cbp-color-gray-50)
+--cbp-color-text-base: var(--cbp-color-gray-30)
+--cbp-color-text-light: var(--cbp-color-gray-20)
+--cbp-color-text-lighter: var(--cbp-color-gray-5)
+--cbp-color-text-lightest: var(--cbp-color-gray-1)
+--cbp-color-danger-darker: var(--cbp-color-red-70)
+--cbp-color-danger-dark: var(--cbp-color-red-60)
+--cbp-color-danger-base: var(--cbp-color-red-50)
+--cbp-color-danger-light: var(--cbp-color-red-30)
+--cbp-color-danger-lighter: var(--cbp-color-red-10)
+--cbp-color-warning-darker: var(--cbp-color-gold-50)
+--cbp-color-warning-dark: var(--cbp-color-gold-30)
+--cbp-color-warning-base: var(--cbp-color-gold-20)
+--cbp-color-warning-light: var(--cbp-color-gold-10)
+--cbp-color-warning-lighter: var(--cbp-color-gold-5)
+--cbp-color-success-darker: var(--cbp-color-green-70)
+--cbp-color-success-dark: var(--cbp-color-green-60)
+--cbp-color-success-base: var(--cbp-color-green-50)
+--cbp-color-success-light: var(--cbp-color-green-30)
+--cbp-color-success-lighter: var(--cbp-color-green-10)
+--cbp-color-info-darker: var(--cbp-color-blue-cool-70)
+--cbp-color-info-dark: var(--cbp-color-blue-cool-60)
+--cbp-color-info-base: var(--cbp-color-blue-cool-50)
+--cbp-color-info-light: var(--cbp-color-blue-cool-30)
+--cbp-color-info-lighter: var(--cbp-color-blue-cool-10)
+--cbp-color-branding-cbp-dark: var(--cbp-color-gray-cool-80)
+--cbp-color-branding-cbp-light: var(--cbp-color-gray-cool-3)
+
+## Additional Colors
+
+TBD
+
+## Typography
+
+TBD
+
+## Spacing
+
+--cbp-space-16x: 4rem
+--cbp-space-15x: 3.75rem
+--cbp-space-14x: 3.5rem
+--cbp-space-13x: 3.25rem
+--cbp-space-12x: 3rem
+--cbp-space-11x: 2.75rem
+--cbp-space-10x: 2.5rem
+--cbp-space-9x: 2.25rem
+--cbp-space-8x: 2rem
+--cbp-space-7x: 1.75rem
+--cbp-space-6x: 1.5rem
+--cbp-space-5x: 1.25rem
+--cbp-space-4x: 1rem
+--cbp-space-3x: .75rem
+--cbp-space-2x: .5rem
+--cbp-space-1x: .25rem
+--cbp-space-half-x: .125rem
+
+## Elevation
+
+--cbp-z-index-level-top: 999
+--cbp-z-index-level-4: 400
+--cbp-z-index-level-3: 300
+--cbp-z-index-level-2: 200
+--cbp-z-index-level-1: 100
+--cbp-z-index-level-0: 1
+--cbp-shadow-level-5-left: -10px 0px 22px 3px rgba(0, 0, 0, 0.25)
+--cbp-shadow-level-5-right: 10px 0px 22px 3px rgba(0, 0, 0, 0.25)
+--cbp-shadow-level-5-down: 0px 10px 22px 3px rgba(0, 0, 0, 0.25)
+--cbp-shadow-level-5-up: 0px -10px 22px 3px rgba(0, 0, 0, 0.25)
+--cbp-shadow-level-5-center: 0px 0px 22px 3px rgba(0, 0, 0, 0.25)
+--cbp-shadow-level-4-left: -7px 0px 18px 2px rgba(0, 0, 0, 0.3)
+--cbp-shadow-level-4-right: 7px 0px 18px 2px rgba(0, 0, 0, 0.3)
+--cbp-shadow-level-4-down: 0px 7px 18px 2px rgba(0, 0, 0, 0.3)
+--cbp-shadow-level-4-up: 0px -7px 18px 2px rgba(0, 0, 0, 0.3)
+--cbp-shadow-level-4-center: 0px 0px 18px 2px rgba(0, 0, 0, 0.3)
+--cbp-shadow-level-3-left: -5px 0px 10px 2px rgba(0, 0, 0, 0.35)
+--cbp-shadow-level-3-right: 5px 0px 10px 2px rgba(0, 0, 0, 0.35)
+--cbp-shadow-level-3-down: 0px 5px 10px 2px rgba(0, 0, 0, 0.35)
+--cbp-shadow-level-3-up: 0px -5px 10px 2px rgba(0, 0, 0, 0.35)
+--cbp-shadow-level-3-center: 0px 0px 10px 2px rgba(0, 0, 0, 0.35)
+--cbp-shadow-level-2-left: -3px 0px 6px 1px rgba(0, 0, 0, 0.4)
+--cbp-shadow-level-2-right: 3px 0px 6px 1px rgba(0, 0, 0, 0.4)
+--cbp-shadow-level-2-down: 0px 3px 6px 1px rgba(0, 0, 0, 0.4)
+--cbp-shadow-level-2-up: 0px -3px 6px 1px rgba(0, 0, 0, 0.4)
+--cbp-shadow-level-2-center: 0px 0px 6px 1px rgba(0, 0, 0, 0.4)
+--cbp-shadow-level-1-left: -2px 0px 4px 0px rgba(0, 0, 0, 0.5)
+--cbp-shadow-level-1-right: 2px 0px 4px 0px rgba(0, 0, 0, 0.5)
+--cbp-shadow-level-1-down: 0px 2px 4px 0px rgba(0, 0, 0, 0.5)
+--cbp-shadow-level-1-up: 0px -2px 4px 0px rgba(0, 0, 0, 0.5)
+--cbp-shadow-level-1-center: 0px 0px 4px 0px rgba(0, 0, 0, 0.5)
+
+## Responsive Breakpoints
+
+--cbp-breakpoint-xl: 90em
+--cbp-breakpoint-lg: 64em
+--cbp-breakpoint-md: 37.5em
+--cbp-breakpoint-sm: 37.5em
+
+## Borders
+
+--cbp-border-radius-circle: 100%
+--cbp-border-radius-pill: 9999px
+--cbp-border-radius-softest: 0.625rem
+--cbp-border-radius-softer: 0.3125rem
+--cbp-border-radius-soft: 0.1875rem
+--cbp-border-radius-sharp: 0
+--cbp-border-size-xl: .25rem
+--cbp-border-size-lg: .1875rem
+--cbp-border-size-md: .125rem
+--cbp-border-size-sm: .0625rem
+
+## Animation
+
+--cbp-motion-easing-motion-path: linear
+--cbp-motion-easing-emphasized-decelerate: 0.05, 0.7, 0.1, 1
+--cbp-motion-easing-emphasized-accelerate: 0.3, 0, 0.8, 0.15
+--cbp-motion-easing-emphasized: 0.2, 0, 0, 1
+--cbp-motion-easing-standard-decelerate: 0, 0, 0, 1
+--cbp-motion-easing-standard-accelerate: 0.3, 0, 1, 1
+--cbp-motion-easing-standard: 0.2, 0, 0, 1
+--cbp-motion-easing-linear: 0, 0, 1, 1
+--cbp-motion-duration-longest: 2s
+--cbp-motion-duration-longer: 1s
+--cbp-motion-duration-long: 750ms
+--cbp-motion-duration-medium: 500ms
+--cbp-motion-duration-short: 400ms
+--cbp-motion-duration-shorter: 300ms
+--cbp-motion-duration-shortest: 200ms
+--cbp-motion-duration-instant: 1ms
