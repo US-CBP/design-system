@@ -157,7 +157,7 @@ export class CbpTabs {
           onClick={ () => this.responsiveNav('previous')}
           ref={el => (this.previousControl = el)}
         >
-          <cbp-icon name="chevron-right" rotate={180}></cbp-icon>
+          <cbp-icon name="chevron-right" size="var(--cbp-space-5x)" rotate={180}></cbp-icon>
         </cbp-button>
 
         <div
@@ -179,7 +179,7 @@ export class CbpTabs {
           onClick={ () => this.responsiveNav('next')}
           ref={el => (this.nextControl = el)}
         >
-          <cbp-icon name="chevron-right"></cbp-icon>
+          <cbp-icon name="chevron-right" size="var(--cbp-space-5x)"></cbp-icon>
         </cbp-button>
       </Host>
     );
