@@ -1,6 +1,23 @@
 cbp-tabs {
   display: flex;
-  align-items: flex-end;
-  border-bottom: var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-30);
-  margin-bottom: var(--cbp-space-4x);
+  max-width: 100%;
+  overflow: hidden;
+  //align-items: flex-end;
+  //border-bottom: var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-30);
+  //margin-bottom: var(--cbp-space-4x);
+
+  cbp-button {
+    align-self: flex-start;
+  }
+
+  .cbp-tabs-wrapper {
+    display: inline-flex;
+    align-items: flex-end;
+    flex-grow: 5;
+    flex-shrink: 5;
+    border-bottom: var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-30);
+    margin-bottom: var(--cbp-space-4x);
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
 }

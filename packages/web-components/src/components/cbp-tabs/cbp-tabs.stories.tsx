@@ -86,6 +86,20 @@ Tabs.args = {
       panelContent: "Tab panel 4 content.",
       selected: false,
     },
+    {
+      name: "tab5",
+      label: "Tab 5",
+      accessibilityText: "",
+      panelContent: "Tab panel 5 content.",
+      selected: false,
+    },
+    {
+      name: "tab6",
+      label: "Tab 6",
+      accessibilityText: "",
+      panelContent: "Tab panel 6 content.",
+      selected: false,
+    },
   ],
   accessibilityText: 'Tabs Example'
 }
