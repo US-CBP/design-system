@@ -39,6 +39,11 @@ export class CbpButton {
    */
   @Prop() download: boolean;
 
+  /** Specifies the (min-)width of the button (in CSS units) when different from the default size. */
+  @Prop() width: string;
+  /** Specifies the (min-)height of the button (in CSS units) when different from the default size. */
+  @Prop() height: string;
+
   /** Specifies if the button is pressed and results in `aria-pressed="true"` being placed on the button when true. */
   @Prop() pressed: boolean;
   /** Specifies if a controlled UI widget is expanded and results in `aria-pressed="true"` being placed on the button when true.
@@ -59,6 +64,10 @@ export class CbpButton {
    * or a sufficiently unique label. This text overrides the default label and is not additive to it.
    */
   @Prop() accessibilityText: string;
+
+  /** Internal use: Specifies that a button should not be keyboard navigable by setting its tabindex to -1. This property should only be used in very specific cases. */
+  @Prop() pointerOnly: boolean;
+
   /** Marks the rendered button/link in a disabled state when specified. */
   @Prop() disabled: boolean;
   /** Supports adding inline styles as an object */
@@ -105,6 +114,11 @@ export class CbpButton {
   }
 
   componentDidLoad() {
+    setCSSProps(this.button, {
+      'min-width': this.width,
+      'min-height': this.height
+    });
+
     this.componentLoad.emit({
       host: this.host,
       nativeElement: this.button,
@@ -136,6 +150,7 @@ export class CbpButton {
         <Host>
           <button
             {...attrs}
+            tabindex={this.pointerOnly || this.disabled ? -1 : 0}
             aria-label={this.accessibilityText}
             aria-pressed={pressed ? 'true' : null}
             aria-expanded={expanded ? 'true' : null}
@@ -147,11 +162,13 @@ export class CbpButton {
           </button>
         </Host>
       );
-    } else {
+    } 
+    else {
       return (
         <Host>
           <a
             {...attrs}
+            tabindex={this.pointerOnly || this.disabled ? -1 : 0}
             aria-label={this.accessibilityText}
             aria-pressed={pressed ? 'true' : null}
             aria-expanded={expanded ? 'true' : null}
