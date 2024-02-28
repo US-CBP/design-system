@@ -2,21 +2,21 @@ cbp-tabs {
   display: flex;
   max-width: 100%;
   overflow: hidden;
-  //align-items: flex-end;
-  //border-bottom: var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-30);
-  //margin-bottom: var(--cbp-space-4x);
+  background: linear-gradient(to top, var(--cbp-color-gray-cool-30) var(--cbp-border-size-md), transparent var(--cbp-border-size-md));
+  margin-bottom: var(--cbp-space-4x);
 
   cbp-button {
     align-self: flex-start;
+    --cbp-button-color-fill: var(--cbp-color-background-light) !important;
+    --cbp-button-color-border: var(--cbp-color-gray-cool-30) !important;
+    --cbp-button-border-radius: 0;
   }
 
   .cbp-tabs-wrapper {
-    display: inline-flex;
+    display: flex;
     align-items: flex-end;
     flex-grow: 5;
     flex-shrink: 5;
-    border-bottom: var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-30);
-    margin-bottom: var(--cbp-space-4x);
     overflow: hidden;
     scroll-snap-align: start;
   }
