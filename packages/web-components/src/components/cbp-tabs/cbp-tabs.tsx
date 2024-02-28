@@ -50,6 +50,7 @@ export class CbpTabs {
         tab.selected = true;
         this.selectedIndex = this.focusIndex = index;
         panel.selected = true;
+        button.scrollIntoView({ behavior: "smooth", inline: 'start' });
       } else {
         tab.selected = false;
         panel.selected = false;
