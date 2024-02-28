@@ -115,7 +115,6 @@ export class CbpTabs {
 
     // Only set up a ResizeObserver if the checklist is specified as a horizontal mode (inline or series)
     this.observer = new ResizeObserver(([{ contentRect: { width } }]) => {
-      //console.log({width}, 'tabs width: ',this.wrapper.scrollWidth);
       // When using browser zoom, the numbers reported back are sometimes sub-pixel and trigger a flickering of the controls; adding +1 fixes this.
       if (width+1 > this.wrapper.scrollWidth) {
         this.previousControl.setAttribute('hidden','');

@@ -57,7 +57,6 @@ export class CbpTab {
       tab: this.button,
       parent: this.parent
     });
-    console.log('Tab loaded:', this.host, this.tabLoaded);
   }
 
   render() {
