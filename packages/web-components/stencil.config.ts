@@ -34,6 +34,10 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
+  extras: {
+    experimentalSlotFixes: true,
+    experimentalScopedSlotChanges: true
+  },
   plugins: [
     sass({
       injectGlobalPaths: [
