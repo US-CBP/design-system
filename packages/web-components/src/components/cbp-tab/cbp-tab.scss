@@ -1,52 +1,50 @@
 cbp-tab {
-  
+
+  &[color=danger] {
+    button {
+      color: var(--cbp-color-danger-base);
+
+      &:hover:not([aria-selected='true']):not(:focus) {
+        background-color: var(--cbp-color-danger-lighter);
+        border-color: var(--cbp-color-danger-dark);
+      }
+    }
+  }
+
   button {
     all: unset;
     color: var(--cbp-color-interactive-secondary-darker);
     box-sizing: border-box;
     min-height: var(--cbp-space-14x);
     padding: 0 var(--cbp-space-3x);
-    margin-bottom: calc(var(--cbp-space-half-x) * -1);
     border-bottom: var(--cbp-border-size-xl) solid transparent;
     font-size: var(--cbp-font-size-heading-xs);
     font-weight: var(--cbp-font-weight-medium);
+    white-space: nowrap;
     
-    &[aria-selected='true'] {
-      color: var(--cbp-color-interactive-active-darker);
-      border-bottom-color: var(--cbp-color-interactive-active-dark);
-      font-style: italic;
-    }
-
     &:hover:not([aria-selected='true']):not(:focus) {
-      //color: var(--cbp-color-interactive-secondary-darker);
       background-color: var(--cbp-color-interactive-secondary-lighter);
       border-bottom-color: var(--cbp-color-interactive-secondary-darker);
     }
 
-    &:focus-visible {
+    &[aria-selected='true'] {
+      color: var(--cbp-color-interactive-active-dark);
+      border-color: var(--cbp-color-interactive-active-dark);
+      font-style: italic;
+    }
+
+    &:focus {
       color: var(--cbp-color-text-lightest);
       background: var(--cbp-color-interactive-focus-dark);
       border-color: var(--cbp-color-interactive-focus-dark);
       outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
       outline-offset: calc(-1 * var(--cbp-space-1x));
+    }
+
+    &:active {
+      color: var(--cbp-color-text-lightest);
+      background-color: var(--cbp-color-interactive-active-dark);
+      outline: none;
     }
   }
-
-  .cbp-tab--danger {
-    color: var(--cbp-color-danger-base);
-
-    &:hover:not([aria-selected='true']) {
-      color: var(--cbp-color-danger-dark);
-      background-color: var(--cbp-color-danger-lighter);
-      border-color: var(--cbp-color-danger-dark);
-    }
-
-    &:focus-visible {
-      color: var(--cbp-color-text-lightest);
-      background: var(--cbp-color-interactive-focus-dark);
-      border-color: var(--cbp-color-interactive-focus-dark);
-      outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
-      outline-offset: calc(-1 * var(--cbp-space-1x));
-    }
-  }  
 }

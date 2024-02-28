@@ -9,8 +9,14 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpTabs {
 
   private tabs: HTMLCbpTabElement[] = [];
-  private selectedIndex: number = 0;
-  private focusIndex: number = 0;
+  private selectedIndex: number = 0; // index of the selected tab
+  private focusIndex: number = 0; // index of the focused tab, used for keyboard nav
+
+  private observer: ResizeObserver;
+  private observedEl: Element
+  private wrapper: HTMLElement;
+  private previousControl: HTMLElement;
+  private nextControl: HTMLElement;
   
   @Element() host: HTMLElement;
 
@@ -44,6 +50,7 @@ export class CbpTabs {
         tab.selected = true;
         this.selectedIndex = this.focusIndex = index;
         panel.selected = true;
+        button.scrollIntoView({ behavior: "smooth", inline: 'start' });
       } else {
         tab.selected = false;
         panel.selected = false;
@@ -60,16 +67,37 @@ export class CbpTabs {
       End: l,
       Tab: this.focusIndex=this.selectedIndex, // reset the focusIndex when tabbing out of the tablist
     }[key];
-    if (n !== undefined) {
-      this.tabs[n].querySelector('button').focus();
+    const d= (key == 'ArrowLeft') ?  'end' : 'start';
+    if (n !== undefined && key !== 'Tab') {
+      this.tabs[n].scrollIntoView({ behavior: "smooth", inline: d });
+      setTimeout(() => {
+        this.tabs[n].querySelector('button').focus();
+      }, 20);
       this.focusIndex = n;
+    }
+  }
+
+  responsiveNav(direction) {
+    const l = this.tabs.length - 1;
+    if(direction == 'next') {
+      this.focusIndex = l + 1 > this.focusIndex + 1 ? this.focusIndex + 1 : 0;
+      this.tabs[this.focusIndex].scrollIntoView({ behavior: "smooth", inline: "start" });
+      setTimeout(() => {
+        this.tabs[this.focusIndex].querySelector('button').focus();
+      }, 20);
+    }
+    if(direction == 'previous') {
+      this.focusIndex = -1 < this.focusIndex + -1 ? this.focusIndex + -1 : l;
+      this.tabs[this.focusIndex].scrollIntoView({ behavior: "smooth", inline: "end" });
+      setTimeout(() => {
+        this.tabs[this.focusIndex].querySelector('button').focus();
+      }, 20);
     }
   }
 
   componentWillLoad() {
     // get all children, taking into account nested tabs
     this.tabs = Array.from(this.host.querySelectorAll('cbp-tab')).filter(tab => tab.closest('cbp-tabs') == this.host);
-    console.log('this.tabs: ', this.tabs);
 
     // Attach event listeners to the child tabs
     this.tabs.forEach(tab => {
@@ -84,6 +112,28 @@ export class CbpTabs {
 
   componentDidLoad() {
     this.initTabset();
+
+    // Only set up a ResizeObserver if the checklist is specified as a horizontal mode (inline or series)
+    this.observer = new ResizeObserver(([{ contentRect: { width } }]) => {
+      // When using browser zoom, the numbers reported back are sometimes sub-pixel and trigger a flickering of the controls; adding +1 fixes this.
+      if (width+1 > this.wrapper.scrollWidth) {
+        this.previousControl.setAttribute('hidden','');
+        this.nextControl.setAttribute('hidden','');
+      }
+      else {
+        this.previousControl.removeAttribute('hidden');
+        this.nextControl.removeAttribute('hidden');
+      }
+    });
+      this.observedEl = this.host; //this.host.querySelector('uef-checklist>uef-input-styles');
+      this.observer.observe(this.observedEl);
+  }
+
+  disconnectedCallback() {
+    // remove the ResizeObserver if the component is removed from the DOM
+    if (this.observer) {
+      this.observer.unobserve(this.observedEl);
+    }
   }
 
   render() {
@@ -95,7 +145,42 @@ export class CbpTabs {
           this.keyboardNav(key);
         }}
       >
-        <slot />
+        <cbp-button
+          type="button"
+          color="secondary"
+          fill="outline"
+          variant="square"
+          pointerOnly={true}
+          aria-label="Previous Tab"
+          width='3.5rem'
+          height='3.5rem'
+          onClick={ () => this.responsiveNav('previous')}
+          ref={el => (this.previousControl = el)}
+        >
+          <cbp-icon name="chevron-right" size="var(--cbp-space-5x)" rotate={180}></cbp-icon>
+        </cbp-button>
+
+        <div
+          class="cbp-tabs-wrapper"
+          ref={el => (this.wrapper = el)}
+        >
+          <slot />
+        </div>
+
+        <cbp-button
+          type="button"
+          color="secondary"
+          fill="outline"
+          variant="square"
+          pointerOnly={true}
+          aria-label="Next Tab"
+          width='3.5rem'
+          height='3.5rem'
+          onClick={ () => this.responsiveNav('next')}
+          ref={el => (this.nextControl = el)}
+        >
+          <cbp-icon name="chevron-right" size="var(--cbp-space-5x)"></cbp-icon>
+        </cbp-button>
       </Host>
     );
   }

@@ -18,10 +18,11 @@ export default {
 };
 
 function createTabs(tabs) {
-  const html = tabs.map(({ name, label, accessibilityText, selected}) => {
+  const html = tabs.map(({ name, label, color, accessibilityText, selected}) => {
     return `
       <cbp-tab 
         name="${name}"
+        ${color !== 'default' ? `color=${color}` : ''}
         ${accessibilityText ? `accessibility-text=${accessibilityText}}` : ''}
         ${selected == true ? 'selected' : ''}
       >
@@ -62,6 +63,7 @@ Tabs.args = {
       name: "tab1",
       label: "Tab 1",
       accessibilityText: "",
+      color: "default",
       panelContent: "Tab panel 1 content.",
       selected: false,
     },
@@ -69,6 +71,7 @@ Tabs.args = {
       name: "tab2",
       label: "Tab 2",
       accessibilityText: "",
+      color: "default",
       panelContent: "Tab panel 2 content.",
       selected: false,
     },
@@ -76,6 +79,7 @@ Tabs.args = {
       name: "tab3",
       label: "Tab 3",
       accessibilityText: "",
+      color: "default",
       panelContent: "Tab panel 3 content.",
       selected: false,
     },
@@ -83,7 +87,24 @@ Tabs.args = {
       name: "tab4",
       label: "Tab 4",
       accessibilityText: "",
+      color: "default",
       panelContent: "Tab panel 4 content.",
+      selected: false,
+    },
+    {
+      name: "tab5",
+      label: "Tab 5",
+      accessibilityText: "",
+      color: "default",
+      panelContent: "Tab panel 5 content.",
+      selected: false,
+    },
+    {
+      name: "tab6",
+      label: "Tab 6",
+      accessibilityText: "",
+      color: "default",
+      panelContent: "Tab panel 6 content.",
       selected: false,
     },
   ],
