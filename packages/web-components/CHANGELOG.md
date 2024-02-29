@@ -4,11 +4,12 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
-## [Unreleased]
+## [0.0.1-develop.5] 02-29-2024
 
-* First cut of tabs: cbp-tabs, cbp-tab, cbp-tab-panel.
+* First cut of tabs with responsive behavior: cbp-tabs, cbp-tab, cbp-tab-panel.
+* Updates to cbp-button to support responsive tabs controls.
 * Fixed cbp-drawer close control.
-* Upgraded Stencil to v4.12.3.
+* Upgraded Stencil to v4.12.3 and enabled new `slot` fixes.
 
 ## [0.0.1-develop.4] 01-08-2024
 
