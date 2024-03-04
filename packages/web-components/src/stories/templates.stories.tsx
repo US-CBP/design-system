@@ -32,17 +32,29 @@ const InternalTemplate = ({isLoggedIn, username}) => {
         ${isLoggedIn ? `
         <li>
           <cbp-button fill="ghost" accessibility-text="App Directory">
-              App Directory
+            <cbp-icon name="star-solid"></cbp-icon>
+            <cbp-hide
+              hide-at="max-width: 64em"
+              sx='{"margin-left":"var(--cbp-space-2x)"}'
+            >App Directory</cbp-hide>
           </cbp-button>
         </li>
         <li>
           <cbp-button fill="ghost" accessibility-text="Feedback">
-              Feedback
+            <cbp-icon name="envelope"></cbp-icon>  
+            <cbp-hide
+              visually-hide-at="max-width: 64em"
+              sx='{"margin-left":"var(--cbp-space-2x)"}'
+            >Feedback</cbp-hide>
           </cbp-button>
         </li>
         <li>
           <cbp-button fill="ghost" accessibility-text=${username}>
-              ${username}
+            <cbp-icon name="user"></cbp-icon>
+            <cbp-hide
+              visually-hide-at="max-width: 64em"
+              sx='{"margin-left":"var(--cbp-space-2x)"}'
+            >${username}</cbp-hide>
           </cbp-button>
         </li>
         ` : `
