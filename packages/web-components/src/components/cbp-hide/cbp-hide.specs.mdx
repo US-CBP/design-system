@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Hide/Specifications" />
+
+# cbp-hide
+
+## Purpose
+
+The Hide component represents a component-based implementation for programatically hiding (or visually hiding) content based on application logic or media query.
+
+## Functional Requirements
+
+* The Hide component represents a manipulatable component-based implementation of toggling visibility based on media queries with a visually hidden utility as well.
+* The Hide component is a container and its contents are provided by the application (slotted).
+* The component's contents may be hidden or visually hidden.
+* The hidden/visually hidden states may be toggled directly via property or specified as a media query.
+* In case the default tag's display needs to be something other than the default of `inline`, it may also be specified.
+
+## Technical Specifications
+
+### User Interactions
+
+* There are no explicit user interactions. However, the component should respond to changes in the device or viewport that affect media query status.
+
+### Responsiveness
+
+* When specifying a media query for the `hideAt` or `visuallyHideAt` properties, a media query and callback handler are defined, which is responsive to viewport size and orientation changes.
+
+### Accessibility
+
+* When text content that makes up the accessible name (label) of an interactive element (e.g., button, link) is dynamically hidden, choose the visually hidden option, which allows the content to remain accessible to screen readers.
+* When referencing a node by `id` to label an element (e.g., using `aria-labelledby` or `aria-describedby`), fully hidden content (e.g., using `display:none`) will still be read by screen readers. In this case, you may use `hide`/`hideAt` properties rather than `visuallyHide`/`visuallyHideAt`. This technique should still be used with caution and avoided for the primary label if it is not easily inferred.
+
+### Additional Notes and Considerations
+
+* Toggling the HTML5 `hidden` attribute or a visually hidden class will always be more performant than using this component.
+* If you are using this component in repeatable, high-level templates, it may be more maintainable and performant to implement that functionality directly in CSS.
+* This component should *never* be used for security purposes. Content being hidden may easily be toggled visible in the browser tools.
+* TODO: Investigate the possibilities of container queries (in addition to media queries).
+* TODO: Investigate the possibility of overflow detection or create a POC interfacing a resize observer with this component.
