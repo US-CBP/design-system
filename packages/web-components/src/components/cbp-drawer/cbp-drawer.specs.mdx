@@ -11,7 +11,7 @@ The Drawer is a container that may be hidden and revealed, sliding in from eithe
 ## Functional Requirements
 
 * The Drawer is a container and its contents are provided by the application (slotted).
-* The contents of the drawer are typically held within a nest Panel component, which provides a standard heading and content area.
+* The contents of the drawer are typically held within a nested Panel component, which provides a standard heading and content area.
 * The Drawer is hidden by default and can be revealed by a control.
 * The Drawer may slide in from either the left or right side of the viewport, taking up the full height of the viewport.
 * A backdrop covers the visible portion of the page behind the drawer.
@@ -32,7 +32,7 @@ The Drawer is a container that may be hidden and revealed, sliding in from eithe
 
 ### Accessibility
 
-* A Drawer is essentially a modal dialog (that is positioned at the edge of the screen) and has a `role="dialog"`
+* A Drawer is essentially a modal dialog (that is positioned at the edge of the screen) and has a `role="dialog"`.
 * The drawer has `aria-modal="true"` applied, which tells screen readers that all other content outside of the dialog is inert.
 * The control references the drawer by `id` with an `aria-controls` attribute.
 * Drawers should always have at least one focusable control. 
@@ -42,6 +42,6 @@ The Drawer is a container that may be hidden and revealed, sliding in from eithe
 
 ### Additional Notes and Considerations
 
-TODO: Implement keyboard trap within drawer.
-TODO: Implement focus management (return to control when closed)
-TODO: Implement State store to handle the connection of the control and drawer more elegantly
+* TODO: Implement keyboard trap within drawer.
+* TODO: Implement focus management (return to control when closed)
+* TODO: Implement State store to handle the connection of the control and drawer more elegantly

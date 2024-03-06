@@ -40,7 +40,7 @@ Tabs are a common UI pattern of progressive disclosure mimicking the real world 
 * The parent `cbp-tabs` component has a `role="tablist"`.
 * Each tab control (button) has a `role="tab"`.
 * Each `cbp-tab-panel` component has a `role="tabpanel"`.
-* Buttons without accessible label text, such as icon buttons, should use the `aria-label` attribute on the button to specify an accessible label.
+* Tabs without accessible label text (such as icon buttons) should use the `accessibilityText` property, which renders an `aria-label` attribute on the control, to specify an accessible label.
 * Each tab control (button) has an `aria-controls` attribute referencing the corresponding tab panel's `id`.
 * Each tab control has an `aria-selected` attribute, which is automatically set to `false` except for the active tab control.
 * The `aria-selected` attribute is updated for all tabs in the tabset when a tab is activated.
