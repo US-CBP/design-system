@@ -31,8 +31,8 @@ const InternalTemplate = ({isLoggedIn, username}) => {
       <ul>
         ${isLoggedIn ? `
         <li>
-          <cbp-button fill="ghost" accessibility-text="App Directory">
-            <cbp-icon name="star-solid"></cbp-icon>
+          <cbp-button fill="ghost">
+            <cbp-icon name="book"></cbp-icon>
             <cbp-hide
               hide-at="max-width: 64em"
               sx='{"margin-left":"var(--cbp-space-2x)"}'
@@ -40,8 +40,8 @@ const InternalTemplate = ({isLoggedIn, username}) => {
           </cbp-button>
         </li>
         <li>
-          <cbp-button fill="ghost" accessibility-text="Feedback">
-            <cbp-icon name="envelope"></cbp-icon>  
+          <cbp-button fill="ghost">
+            <cbp-icon name="comment"></cbp-icon>  
             <cbp-hide
               visually-hide-at="max-width: 64em"
               sx='{"margin-left":"var(--cbp-space-2x)"}'
@@ -49,7 +49,7 @@ const InternalTemplate = ({isLoggedIn, username}) => {
           </cbp-button>
         </li>
         <li>
-          <cbp-button fill="ghost" accessibility-text=${username}>
+          <cbp-button fill="ghost">
             <cbp-icon name="user"></cbp-icon>
             <cbp-hide
               visually-hide-at="max-width: 64em"
@@ -59,7 +59,8 @@ const InternalTemplate = ({isLoggedIn, username}) => {
         </li>
         ` : `
         <li>
-          <cbp-button tag="a" href="#" fill="ghost" accessibility-text="Login">
+          <cbp-button tag="a" href="#" fill="ghost">
+          <cbp-icon name="right-to-bracket" sx='{"margin-right":"var(--cbp-space-2x)"}'></cbp-icon>
             Login
           </cbp-button>
         </li>
