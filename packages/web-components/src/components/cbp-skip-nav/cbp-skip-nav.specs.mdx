@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="Components/Skip Nav/Specifications" />
+<Meta title="Components/Skip Navigation Link/Specifications" />
 
 # cbp-skip-nav
 
@@ -24,13 +24,14 @@ The Skip Navigation link (or "Skip Nav") is an essential accessibility feature t
 
 ### Responsiveness
 
-* The parent Grid component accepts a `breakpoint` property that defines (in responsive CSS units) the viewport width at which the grid items linearize vertically.
+* The Skip Nav link text should be concise enough that it is possible to read it on a small device when zoomed in or otherwise enlarged.
 
 ### Accessibility
 
 * The target element of the Skip Nav link should have a `tabindex="-1"` applied to it if it is not a natively interactive element.
 * If the target is not a landmark element, it must have an accessible name.
-* The target element must not be hidden from view in any way.
+* The target element must not be hidden from view in any way (beware of floating navbars, footers, and other overlays).
+* The default verbiage of "skip to main content" is preferable due to pronunciation and should only be changed when using multiple Skip Nav links in order to differentiate them.
 
 ### Additional Notes and Considerations
 
