@@ -4,6 +4,12 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
+## [Unreleased]
+
+* First cut of cbp-hide, a component that allows content to be programatically hidden (or visually hidden) based on property or media query.
+* Deprecated/removed cbp-visuallyhidden since its functionality was included in cbp-hide.
+* Updated Template and Universal Header stories to use cbp-hide.
+
 ## [0.0.1-develop.5] 02-29-2024
 
 * First cut of tabs with responsive behavior: cbp-tabs, cbp-tab, cbp-tab-panel.

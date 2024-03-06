@@ -31,23 +31,36 @@ const InternalTemplate = ({isLoggedIn, username}) => {
       <ul>
         ${isLoggedIn ? `
         <li>
-          <cbp-button fill="ghost" accessibility-text="App Directory">
-              App Directory
+          <cbp-button fill="ghost">
+            <cbp-icon name="book"></cbp-icon>
+            <cbp-hide
+              hide-at="max-width: 64em"
+              sx='{"margin-left":"var(--cbp-space-2x)"}'
+            >App Directory</cbp-hide>
           </cbp-button>
         </li>
         <li>
-          <cbp-button fill="ghost" accessibility-text="Feedback">
-              Feedback
+          <cbp-button fill="ghost">
+            <cbp-icon name="comment"></cbp-icon>  
+            <cbp-hide
+              visually-hide-at="max-width: 64em"
+              sx='{"margin-left":"var(--cbp-space-2x)"}'
+            >Feedback</cbp-hide>
           </cbp-button>
         </li>
         <li>
-          <cbp-button fill="ghost" accessibility-text=${username}>
-              ${username}
+          <cbp-button fill="ghost">
+            <cbp-icon name="user"></cbp-icon>
+            <cbp-hide
+              visually-hide-at="max-width: 64em"
+              sx='{"margin-left":"var(--cbp-space-2x)"}'
+            >${username}</cbp-hide>
           </cbp-button>
         </li>
         ` : `
         <li>
-          <cbp-button tag="a" href="#" fill="ghost" accessibility-text="Login">
+          <cbp-button tag="a" href="#" fill="ghost">
+          <cbp-icon name="right-to-bracket" sx='{"margin-right":"var(--cbp-space-2x)"}'></cbp-icon>
             Login
           </cbp-button>
         </li>
