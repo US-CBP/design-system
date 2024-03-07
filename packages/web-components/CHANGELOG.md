@@ -9,6 +9,7 @@ The React components are wrappers generated from this package and will share the
 * First cut of cbp-hide, a component that allows content to be programatically hidden (or visually hidden) based on property or media query.
 * Deprecated/removed cbp-visuallyhidden since its functionality was included in cbp-hide.
 * Updated Template and Universal Header stories to use cbp-hide.
+* Set the Stencil config setting `enableImportInjection: true` to support projects using Vite as a bundler and allow lazy loading of components.
 
 ## [0.0.1-develop.5] 02-29-2024
 
