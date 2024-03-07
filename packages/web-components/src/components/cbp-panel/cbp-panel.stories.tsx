@@ -8,6 +8,7 @@ export default {
       options: ['h2', 'h3', 'h4', 'h5', 'h6'],
     },
     header: {
+      name: "header (slotted)",
       description: 'Text used as the panel header.',
       control: 'text',
     },
@@ -22,6 +23,7 @@ export default {
       control: 'boolean',
     },
     content: {
+      name: "content (slotted)",
       description:
         'Placeholder text representing the panel contents, which can include HTML markup not supported in this story.',
       control: 'text',

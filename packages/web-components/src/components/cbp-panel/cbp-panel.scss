@@ -1,4 +1,19 @@
+/**
+ * @Prop --cbp-panel-header-color: var(--cbp-color-text-lighter)
+ * @Prop --cbp-panel-header-color-background: var(--cbp-color-base-neutral-dark);
+ * @Prop --cbp-panel-header-color-bottom-border: var(--cbp-color-gray-cool-70);
+ * @Prop --cbp-panel-content-color-background: var(--cbp-color-white);
+ * @Prop --cbp-panel-content-color-border: var(--cbp-color-gray-cool-10);
+ * @Prop --cbp-panel-border-radius: var(--cbp-border-radius-soft);
+ * @Prop --cbp-panel-border-width: var(--cbp-border-size-md);
+ */
 :root {
+  --cbp-panel-header-color: var(--cbp-color-text-lighter);
+  --cbp-panel-header-color-background: var(--cbp-color-base-neutral-dark);
+  --cbp-panel-header-color-bottom-border: var(--cbp-color-gray-cool-70);
+  //--cbp-panel-content-color: var(--cbp-color-text-lighter);
+  --cbp-panel-content-color-background: var(--cbp-color-white);
+  --cbp-panel-content-color-border: var(--cbp-color-gray-cool-10);
   --cbp-panel-border-radius: var(--cbp-border-radius-soft);
   --cbp-panel-border-width: var(--cbp-border-size-md);
 }
@@ -7,10 +22,10 @@ cbp-panel {
   display: block;
 
   .cbp-panel__header {
-    color: var(--cbp-color-text-lighter);
-    background-color: var(--cbp-color-gray-cool-50);
+    color: var(--cbp-panel-header-color);
+    background-color: var(--cbp-panel-header-color-background);
     padding: var(--cbp-space-5x);
-    border-bottom: solid var(--cbp-border-size-xl) var(--cbp-color-gray-cool-60);
+    border-bottom: solid var(--cbp-border-size-xl) var(--cbp-panel-header-color-bottom-border);
     border-radius: var(--cbp-panel-border-radius) var(--cbp-panel-border-radius) 0 0;
     
     & :where(h1,h2,h3,h4,h5,h6) {
@@ -22,10 +37,10 @@ cbp-panel {
   }
 
   .cbp-panel__content {
-    background-color: var(--cbp-color-white);
+    background-color: var(--cbp-panel-content-color-background);
     padding: var(--cbp-space-5x);
     border-style: solid;
-    border-color: var(--cbp-color-gray-cool-10);
+    border-color: var(--cbp-panel-content-color-border);
     border-width: var(--cbp-panel-border-width);
     border-top-style: none;
     border-radius: 0 0 var(--cbp-panel-border-radius) var(--cbp-panel-border-radius);
