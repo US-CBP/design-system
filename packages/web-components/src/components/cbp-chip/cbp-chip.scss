@@ -1,16 +1,24 @@
+/**
+ * @Prop --cbp-chip-color-text: var(--cbp-color-text-lightest);
+ * @Prop --cbp-chip-color-text-focus: var(--cbp-color-text-lightest);
+ * @Prop --cbp-chip-color-text-pressed: var(--cbp-color-text-lightest);
+ * @Prop --cbp-chip-color-background: var(--cbp-color-interactive-secondary-dark);
+ * @Prop --cbp-chip-color-background-focus: var(--cbp-color-interactive-focus-dark);
+ * @Prop --cbp-chip-color-background-pressed: var(--cbp-color-interactive-selected-dark);
+ */
 :root {
   --cbp-chip-color-text: var(--cbp-color-text-lightest);
   --cbp-chip-color-text-focus: var(--cbp-color-text-lightest);
   --cbp-chip-color-text-pressed: var(--cbp-color-text-lightest);
   
-  --cbp-chip-color-background: var(--cbp-color-interactive-secondary-base);
+  --cbp-chip-color-background: var(--cbp-color-interactive-secondary-dark);
   --cbp-chip-color-background-focus: var(--cbp-color-interactive-focus-dark);
   --cbp-chip-color-background-pressed: var(--cbp-color-interactive-selected-dark);
 }
 
 cbp-chip {
   button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     width: fit-content;
@@ -21,7 +29,17 @@ cbp-chip {
     border-radius: var(--cbp-border-radius-pill);
     text-transform: uppercase;
     line-height: var(--cbp-space-7x);
+    font-weight: var(--cbp-font-weight-medium);
+    max-width: 100%;
+    white-space: nowrap;
     
+    .cbp-chip__label {
+      max-width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
     .cbp-chip__label + cbp-icon {
       display: flex;
       align-items: center;
@@ -31,7 +49,7 @@ cbp-chip {
       border-width: 0;
       border-radius: var(--cbp-border-radius-pill);
       margin-left: 4px;
-      
+
       svg {
         transition: var(--cbp-motion-duration-shortest);
       }
