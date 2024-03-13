@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Universal Header/Specifications" />
+
+# cbp-universal-header
+
+## Purpose
+
+The Universal Header component establishes CBP branding, displaying the seal in a standard DHS blue header.
+
+## Functional Requirements
+
+* The Universal Header component displays the CBP seal on a DHS blue background, making up the site header.
+* The Universal Header component contains a default slot for application-specific links or content.
+
+## Technical Specifications
+
+### User Interactions
+
+* The Universal Header component itself is not interactive, but may contain interactive elements via slotted content.
+
+### Responsiveness
+
+* The Universal Header toggles the seal to a compact version with only "CBP" at smaller screen sizes.
+* At the medium or small breakpoints, any list of two or more application-specific links shall collapse to only icons.
+  * This is not a direct function of the Universal Header, but rather a design specification.
+  * This functionality is achieved by leveraging the `cbp-hide` component in that slotted content.
+* The horizontal/inline padding within the Universal Header is responsive and is larger in larger viewport breakpoints.
+
+### Accessibility
+
+* The Universal Header does not render a `<header>` landmark tag or contain a header role since a full page header is usually comprised of the Universal Header in addition to the Application Header.
+* It is recommended that your page markup wrap the Universal Header and Application Header in the HTML5 `<header>` tags to identify it as a header landmark in the accessibility tree.
+* The accessibility of any content slotted into this component is the responsibility of the application developer.
+* The default story content uses the `visuallyHideAt` property of `cbp-hide` to hide the text labels in a screen reader-friendly, accessibile manner at small screen sizes.
+
+### Additional Notes and Considerations
+
+* Links placed in a list as the slotted content will automatically be laid out using Flexbox and aligned to the right.
+* However, any content may be placed in this area as defined by the application design.

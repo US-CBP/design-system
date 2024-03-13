@@ -6,22 +6,23 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-The Typography component encapsulates predefined styles for different kinds of text that makes up a website, merging design language with CSS and HTML.
+The Typography component encapsulates predefined styles for different kinds of text that makes up a website, merging design language with CSS and HTML implementations.
 
 ## Functional Requirements
 
-* The Typography component contains styles for heading tags and corresponding variants that decouple those styles from the semantic tags.
-* The Typography component can also be used to customize other also defines As the highest level container of the application, system-wide functionality may be hoisted to this tag, such as dark mode, performance monitoring, debugging, etc. (TBD)
+* The Typography component contains the basic styles for most forms of text content defined by the design system, including headings, labels, and text.
+* The Typography component decouples specific heading styles from their semantic tags, removing the need to choose a tag based on its size or appearance.
+* The Typography component can also set a piece of content to act as a divider, either with a faux-underline (bottom-border) or as a shaded block.
 
 ## Technical Specifications
 
 ### User Interactions
 
-n/a
+* The Typography component itself is not interactive, but may be placed inside of interactive elements when needed.
 
 ### Responsiveness
 
-n/a
+* By default, all text wrapped in the Typography component should wrap and behave as regular text would at any viewport size.
 
 ### Accessibility
 
@@ -29,4 +30,4 @@ n/a
 
 ### Additional Notes and Considerations
 
-* TODO: investigate options for dark mode, debugging, performance, etc.
+n/a

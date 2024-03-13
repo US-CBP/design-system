@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Badge/Specifications" />
+
+# cbp-badge
+
+## Purpose
+
+The Badge component is generally used for emphasizing a numeric characteristic of an object (e.g., the number of unread items in a folder).
+
+## Functional Requirements
+
+* Badges use a default color and have only a danger variant.
+* Badges are non-interactive elements and may be used within other interactive elements, such as tabs, accordion controls, buttons, and links.
+
+## Technical Specifications
+
+### User Interactions
+
+* As non-interactive elements, there are no user interactions.
+
+### Responsiveness
+
+* Badges are responsive to browser zoom and changes to the default font sizing.
+* Badges are round and meant to hold small pieces of content, such as 1-2 digit numbers. Long content will overflow and appear visibly broken.
+
+### Accessibility
+
+* Badges are non-interactive elements and any accessibility concerns are dependent on the content slotted within the component.
+
+### Additional Notes and Considerations
+
+* For numbers over 100, it is recommended to display "99+" on the badge. This can be achieve through application code and is not built into the component.

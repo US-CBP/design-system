@@ -1,0 +1,43 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Chip/Specifications" />
+
+# cbp-chip
+
+## Purpose
+
+The Chip component acts like an interactive version of Tags and is typically used for selecting or filtering.
+
+## Functional Requirements
+
+* Chips render a button and toggle its "pressed" state.
+* Since Chips are interactive, they may *not* be used within other interactive elements (e.g., buttons or links).
+* Chips use a default color for each state (pressed and not pressed) and do not have any variants.
+
+## Technical Specifications
+
+### User Interactions
+
+* A chip renders a `button` element and may be toggled with the pointer or keyboard.
+* The chip has visible pressed and not pressed states.
+* Any behavior based on toggling the state of the chip is application-defined.
+
+### Responsiveness
+
+* Chips are responsive to browser zoom and changes to the default font sizing.
+* Chips do not wrap, but rather will hide any overflow and show an ellipsis in the case that they cannot fit the complete label in the given space.
+
+### Accessibility
+
+* Chips render a button that is fully mouse and keyboard accessible with the required visible focus indicator.
+* Chips should always contain a visible text label.
+
+### Additional Notes and Considerations
+
+* Activating or toggling the chip emits a custom `chipClick` event
+* A custom event of `tabActivated` is emitted from the tab control (button), which bubbles and may be listened for at a higher level, such as the tabset. The custom event's `details` contain the following keys:
+  * `host`: a DOM reference to the button element activated
+  * `name`: the name of the tab, derived from the `name` attribute of the button, or barring that, the innerText of the button element. For tabs with only icons, the button's `name` attribute should always be used.
+  * `value`: the value of the chip, derived from the `value` attribute of the button, or barring that, the innerText of the button element.
+  * `active`: a Boolean corresponding to the pressed state (pressed = active).
+  * `nativeEvent`: the full native `click` event from the activated button
