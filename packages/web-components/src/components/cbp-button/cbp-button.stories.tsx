@@ -95,14 +95,14 @@ const Template = ({ label, tag, type, value, href, rel, target, download, fill, 
   return ` 
       <cbp-button
         ${tag !== 'button' ? `tag=${tag}` : ''}
-        type="${type}"
-        value="${value}"
+        ${type ? `type=${type}` : ''}
+        ${value ? `value=${value}` : ''}
         ${href ? `href=${href}` : ''}
         ${rel ? `rel=${rel}` : ''}
         ${target ? `target=${target}` : ''}
         ${download ? `download=${download}` : ''}
-        fill="${fill}"
-        color="${color}"
+        ${fill ? `fill=${fill}` : ''}
+        ${color ? `color=${color}` : ''}
         ${variant !== 'default' ? `variant=${variant}` : ''}
         ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
         ${disabled ? `disabled=${disabled}` : ''}

@@ -1,5 +1,3 @@
-//@use '../../global/styles/index.scss' as *;
-
 cbp-universal-header {
   display: block;
 
@@ -14,22 +12,21 @@ cbp-universal-header {
     min-height: var(--cbp-space-15x);
     width: 100%;
     padding: 0 var(--cbp-responsive-spacing-outer);
-    
+
     .cbp-universal-header__brand {
       align-items: center;
       display: flex;
-    
+
       &::after {
-        content: "CBP";
-        //color: var(--cbp-color-text-lightest);
+        content: 'CBP';
         font-size: var(--cbp-font-size-heading-xl);
         margin-left: var(--cbp-space-2x);
       }
     }
-    
+
     .cbp-universal-header__content {
-    
-      ul, ol {
+      ul,
+      ol {
         display: flex;
         gap: var(--cbp-space-4x);
         list-style: none;
@@ -53,7 +50,7 @@ cbp-universal-header {
           --cbp-button-color-text-hover: var(--cbp-color-interactive-secondary-lighter);
           --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-dark);
         }
-      
+
         :focus {
           --cbp-button-color-text-focus: var(--cbp-color-text-darkest);
           --cbp-button-color-fill-focus: var(--cbp-color-interactive-focus-light);
@@ -67,32 +64,21 @@ cbp-universal-header {
         }
       }
     }
-
-
-
   }
 }
 
+@media (min-width: $cbp-breakpoint-md) {
+  cbp-universal-header > header {
+    min-height: 5.5rem;
 
-  // $cbp-breakpoint-md
-  @media (min-width: $cbp-breakpoint-md) { 
-    cbp-universal-header > header {
-      min-height: 5.5rem;
-
-      .cbp-universal-header__brand::after {
-        content: "";
-      }
+    .cbp-universal-header__brand::after {
+      content: '';
     }
-  
   }
-  
-  //$cbp-breakpoint-lg
-  @media (min-width: $cbp-breakpoint-lg) {
-    .cbp-universal-header__content cbp-button {
-        padding: 0 var(--cbp-space-3x);
-      }
+}
+
+@media (min-width: $cbp-breakpoint-lg) {
+  .cbp-universal-header__content cbp-button {
+    padding: 0 var(--cbp-space-3x);
   }
-  
-
-
- 
+}
