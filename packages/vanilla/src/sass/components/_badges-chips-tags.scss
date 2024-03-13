@@ -8,6 +8,7 @@
   border-radius: var(--cbp-border-radius-pill);
   cursor: default;
   font-size: .625rem;
+  font-weight: var(--cbp-font-weight-black);
   text-align: center;
   line-height: var(--cbp-space-6x);
 
@@ -25,6 +26,7 @@
   cursor: default;
   padding: 0 var(--cbp-space-3x);
   text-align: center;
+  font-weight: var(--cbp-font-weight-medium);
   line-height: var(--cbp-space-7x);
 
   & > i::after {
@@ -43,7 +45,7 @@
 
   &--danger {
     color: var(--cbp-color-text-lightest);
-    background-color: var(--cbp-color-danger-dark);
+    background-color: var(--cbp-color-danger-base);
   }
 }
 
@@ -55,11 +57,12 @@
   width: fit-content;
   padding: 0 0 0 var(--cbp-space-3x);
   color: var(--cbp-color-text-lightest);
-  background-color: var(--cbp-color-interactive-secondary-base); // --cbp-color-interactive-secondary-dark does not exist
+  background-color: var(--cbp-color-interactive-secondary-dark);
   border-width: 0;
   border-radius: var(--cbp-border-radius-pill);
   text-transform: uppercase;
   line-height: var(--cbp-space-7x);
+  font-weight: var(--cbp-font-weight-medium);
   
   & > .cbp-chip__label + .cbp-chip__icon {
     display: flex;
@@ -80,7 +83,6 @@
     & > .cbp-chip__label + .cbp-chip__icon {
       transform: rotate(-135deg);
     }
-
   }
 
   &:hover {
