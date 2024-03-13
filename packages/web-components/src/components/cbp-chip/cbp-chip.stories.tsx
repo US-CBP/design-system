@@ -7,6 +7,12 @@ export default {
       description: 'The visible text within the chip.',
       control: 'text'
     },
+    name: {
+      control: 'text'
+    },
+    value: {
+      control: 'text'
+    },
     pressed: {
       description: 'The initial active/selected state.',
       control: 'boolean',
@@ -22,9 +28,11 @@ export default {
 };
 
 
-const Template = ({ label, pressed, sx }) => { 
+const Template = ({ label, name, value, pressed, sx }) => { 
   return ` 
       <cbp-chip
+        ${name ? `name="${name}"` : ''}
+        ${value ? `value="${value}"` : ''}
         ${pressed ? 'pressed' : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
