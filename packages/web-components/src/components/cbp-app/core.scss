@@ -1,7 +1,7 @@
 /* Additional high level and utilities variables not represented by design tokens */
 :root {
-  color-scheme: light dark;
-  --cbp-app-color-scheme: light;
+  color-scheme: light;
+  --cbp-app-color-scheme: light; // Is this needed?
 
   --cbp-color-body-text: var(--cbp-color-text-darkest);
   --cbp-color-body-background: var(--cbp-color-branding-cbp-light);
@@ -23,25 +23,28 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root{
-    --cbp-app-color-scheme: dark;
-  }
+[data-cbp-theme=light] {
+  color-scheme: light;
+  --cbp-app-color-scheme: light; 
 }
+
+[data-cbp-theme=dark] {
+  color-scheme: dark;
+  --cbp-app-color-scheme: dark;
+  --cbp-color-body-text: var(--cbp-color-text-lightest);
+  --cbp-color-body-background: var(--cbp-color-branding-cbp-dark);
+}
+
 
 html {
   font-size: 100%;
+  //color-scheme: light dark;
 }
 
 body {
   color: var(--cbp-color-body-text);
   background-color: var(--cbp-color-body-background);
   font: var(--cbp-font-size-body) / 1rem var(--cbp-font-family-roboto);
-}
-
-[data-cbp-theme='dark'] body {
-  color: var(--cbp-color-text-lightest);
-  background-color: var(--cbp-color-branding-cbp-dark);
 }
 
 p,
@@ -72,3 +75,13 @@ textarea:read-only {
 [hidden] {
   display: none !important;
 }
+
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cbp-app-color-scheme: dark;
+    --cbp-color-body-text: var(--cbp-color-text-lightest);
+    --cbp-color-body-background: var(--cbp-color-branding-cbp-dark);
+  }
+}
+*/

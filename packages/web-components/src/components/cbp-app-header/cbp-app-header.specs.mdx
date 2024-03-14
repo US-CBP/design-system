@@ -1,0 +1,36 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Application Header/Specifications" />
+
+# cbp-app-header
+
+## Purpose
+
+The Application Header component is meant to contain the primary navigation accompanied by a "home" link.
+
+## Functional Requirements
+
+- The Application Header should always contain a link back to the application/site home page.
+- Additional links/buttons may be slotted to make up the primary navigation.
+- Navigation items that contain child options will trigger the opening of the full navigation in a drawer.
+
+## Technical Specifications
+
+### User Interactions
+
+- The Application Header component contains buttons and links, whose behavior are application-defined.
+
+### Responsiveness
+
+- TBD
+
+### Accessibility
+
+- The Application Header does not render a `header` landmark tag or contain a header role since a full page header is usually comprised of the Universal Header in addition to the Application Header.
+- It is recommended that your page markup wrap the Universal Header and Application Header in the HTML5 `header` tags to identify it as a header landmark in the accessibility tree.
+- The accessibility of any content slotted into this component is the responsibility of the application developer.
+- Any links slotted within this component should have visible text to label them.
+
+### Additional Notes and Considerations
+
+- TBD

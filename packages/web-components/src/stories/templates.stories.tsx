@@ -3,7 +3,7 @@ export default {
   parameters: {
     layout: 'fullscreen',
     html: {
-      root: '#storybook-root'
+      root: '#storybook-root',
     },
   },
   argTypes: {
@@ -16,61 +16,68 @@ export default {
       name: 'User Log In',
       description: 'Display Universal Header controls for user log in/out',
       type: { name: 'boolean' },
-    }
+    },
   },
   args: {
     username: 'John Smithington',
-    isLoggedIn: true
+    isLoggedIn: true,
   },
 };
 
-const InternalTemplate = ({isLoggedIn, username}) => {
+const InternalTemplate = ({ isLoggedIn, username }) => {
   return ` 
     <cbp-skip-nav></cbp-skip-nav>
-    <cbp-universal-header>
-      <ul>
-        ${isLoggedIn ? `
-        <li>
-          <cbp-button fill="ghost">
-            <cbp-icon name="book"></cbp-icon>
-            <cbp-hide
-              hide-at="max-width: 64em"
-              sx='{"margin-left":"var(--cbp-space-2x)"}'
-            >App Directory</cbp-hide>
-          </cbp-button>
-        </li>
-        <li>
-          <cbp-button fill="ghost">
-            <cbp-icon name="comment"></cbp-icon>  
-            <cbp-hide
-              visually-hide-at="max-width: 64em"
-              sx='{"margin-left":"var(--cbp-space-2x)"}'
-            >Feedback</cbp-hide>
-          </cbp-button>
-        </li>
-        <li>
-          <cbp-button fill="ghost">
-            <cbp-icon name="user"></cbp-icon>
-            <cbp-hide
-              visually-hide-at="max-width: 64em"
-              sx='{"margin-left":"var(--cbp-space-2x)"}'
-            >${username}</cbp-hide>
-          </cbp-button>
-        </li>
-        ` : `
-        <li>
-          <cbp-button tag="a" href="#" fill="ghost">
-          <cbp-icon name="right-to-bracket" sx='{"margin-right":"var(--cbp-space-2x)"}'></cbp-icon>
-            Login
-          </cbp-button>
-        </li>
-        `}
-      </ul>
-    </cbp-universal-header>
 
-    <cbp-app-header>
-      <a slot="cbp-home" href="/" class="nav-home">Application Name</a>
-    </cbp-app-header>
+    <header>
+      <cbp-universal-header>
+        <ul>
+          ${
+            isLoggedIn
+              ? `
+          <li>
+            <cbp-button fill="ghost">
+              <cbp-icon name="book"></cbp-icon>
+              <cbp-hide
+                hide-at="max-width: 64em"
+                sx='{"margin-left":"var(--cbp-space-2x)"}'
+              >App Directory</cbp-hide>
+            </cbp-button>
+          </li>
+          <li>
+            <cbp-button fill="ghost">
+              <cbp-icon name="comment"></cbp-icon>  
+              <cbp-hide
+                visually-hide-at="max-width: 64em"
+                sx='{"margin-left":"var(--cbp-space-2x)"}'
+              >Feedback</cbp-hide>
+            </cbp-button>
+          </li>
+          <li>
+            <cbp-button fill="ghost">
+              <cbp-icon name="user"></cbp-icon>
+              <cbp-hide
+                visually-hide-at="max-width: 64em"
+                sx='{"margin-left":"var(--cbp-space-2x)"}'
+              >${username}</cbp-hide>
+            </cbp-button>
+          </li>
+          `
+              : `
+          <li>
+            <cbp-button tag="a" href="#" fill="ghost">
+            <cbp-icon name="right-to-bracket" sx='{"margin-right":"var(--cbp-space-2x)"}'></cbp-icon>
+              Login
+            </cbp-button>
+          </li>
+          `
+          }
+        </ul>
+      </cbp-universal-header>
+
+      <cbp-app-header>
+        <a slot="cbp-home" href="/" class="nav-home">Application Name</a>
+      </cbp-app-header>
+    </header>
 
     <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
       <main id="main" tabindex="-1">
@@ -113,7 +120,6 @@ const InternalTemplate = ({isLoggedIn, username}) => {
 };
 
 export const Internal = InternalTemplate.bind({});
-
 
 /*
 const ExternalTemplate = () => {

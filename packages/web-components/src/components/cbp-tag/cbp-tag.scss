@@ -1,31 +1,37 @@
+/**
+ * @Prop --cbp-tag-color: var(--cbp-color-text-lighter);
+ * @Prop --cbp-tag-color-background: var(--cbp-tag-color-background);
+ */
+ :root{
+  --cbp-tag-color: var(--cbp-color-info-lighter);
+  --cbp-tag-color-background: var(--cbp-color-info-dark);
+}
 cbp-tag {
-  display: inline-block;
-  color: var(--cbp-color-info-lighter);
-  background-color: var(--cbp-color-info-dark);
+  display: inline-flex;
+  color: var(--cbp-tag-color);
+  background-color: var(--cbp-tag-color-background);
   border-radius: var(--cbp-border-radius-pill);
   cursor: default;
   padding: 0 var(--cbp-space-3x);
   text-align: center;
+  font-weight: var(--cbp-font-weight-medium);
   line-height: var(--cbp-space-7x);
-
-  /*
-  & > i::after {
-    content: '\a0\a0';
-  }
-*/
-
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  
   &[color=warning] {
-    color: var(--cbp-color-text-darker);
-    background-color: var(--cbp-color-warning-base);
+    --cbp-tag-color: var(--cbp-color-text-darker);
+    --cbp-tag-color-background: var(--cbp-color-warning-base);
   }
 
   &[color=success] {
-    color: var(--cbp-color-success-lighter);
-    background-color: var(--cbp-color-success-dark);
+    --cbp-tag-color: var(--cbp-color-success-lighter);
+    --cbp-tag-color-background: var(--cbp-color-success-dark);
   }
 
   &[color=danger] {
-    color: var(--cbp-color-text-lightest);
-    background-color: var(--cbp-color-danger-dark);
+    --cbp-tag-color: var(--cbp-color-text-lightest);
+    --cbp-tag-color-background: var(--cbp-color-danger-base);
   }
 }

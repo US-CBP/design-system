@@ -1,5 +1,8 @@
 import { Component, Host, h } from '@stencil/core';
 
+/**
+ * @slot - The default slot may contain any application-specific markup placed to the right of the CBP seal, usually a list of links.
+ */
 @Component({
   tag: 'cbp-universal-header',
   styleUrl: 'cbp-universal-header.scss',

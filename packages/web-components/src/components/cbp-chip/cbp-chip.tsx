@@ -1,6 +1,9 @@
 import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * @slot - The default slot defines the chip's label.
+ */
 @Component({
   tag: 'cbp-chip',
   styleUrl: 'cbp-chip.scss'
@@ -12,11 +15,17 @@ export class CbpChip {
 
   @Element() host: HTMLElement;
 
+  /** Specifies the `name` attribute of the rendered button */
+  @Prop() name: string;
+  /** Specifies the `value` attribute of the rendered button */
+  @Prop() value: string;
+  /** Specifies the pressed state of the button and `aria-pressed` attribute of the rendered button */
   @Prop() pressed: boolean;
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+  /** A custom event emitted when the chip is activated/toggled. */
   @Event() chipClick!: EventEmitter;
   
   handleClick = (e) => {
@@ -27,7 +36,8 @@ export class CbpChip {
 
     this.chipClick.emit({
       host: this.host,
-      label: this.host.innerText,
+      name: this.name,
+      value: this.value || this.button.innerText,
       active: this.ariaPressed,
       nativeEvent: e,
     });

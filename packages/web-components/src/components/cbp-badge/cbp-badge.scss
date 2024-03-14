@@ -1,16 +1,25 @@
+/**
+ * @Prop --cbp-badge-color: var(--cbp-color-text-lightest);
+ * @Prop --cbp-badge-color-background: var(--cbp-color-info-base);
+ */
+:root{
+  --cbp-badge-color: var(--cbp-color-text-lightest);
+  --cbp-badge-color-background: var(--cbp-color-info-base);
+}
 cbp-badge {
   display: inline-block;
   width: var(--cbp-space-6x);
   height: var(--cbp-space-6x);
-  color: var(--cbp-color-text-lightest);
-  background-color: var(--cbp-color-info-base);
+  color: var(--cbp-badge-color);
+  background-color: var(--cbp-badge-color-background);
   border-radius: var(--cbp-border-radius-pill);
   cursor: default;
   font-size: .625rem;
+  font-weight: var(--cbp-font-weight-black);
   text-align: center;
   line-height: var(--cbp-space-6x);
 
   &[color=danger] {
-    background-color: var(--cbp-color-danger-base);
+    --cbp-badge-color-background: var(--cbp-color-danger-base);
   }
 }

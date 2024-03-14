@@ -2,9 +2,9 @@
 
   .cbp-panel__header {
     color: var(--cbp-color-text-lighter);
-    background-color: var(--cbp-color-gray-cool-50);
+    background-color: var(--cbp-color-base-neutral-dark);
     padding: var(--cbp-space-5x);
-    border-bottom: solid var(--cbp-border-size-xl) var(--cbp-color-gray-cool-60);
+    border-bottom: solid var(--cbp-border-size-xl) var(--cbp-color-gray-cool-70);
     border-radius: var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0;
     
     & :where(h1,h2,h3,h4,h5,h6) {
