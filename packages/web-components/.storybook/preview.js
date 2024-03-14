@@ -107,8 +107,9 @@ export const parameters = {
 
 
 // Wrap every story with `cbp-app` component, which brings in the high level CSS resets, settings, and variables.
+// DEG: 3/14/2024 - Adding theme=light temporarily until dark mode is implemented properly
 const withWrapper = (story) => {
-  return `<cbp-app>${story()}</cbp-app>`;
+  return `<cbp-app theme="light">${story()}</cbp-app>`;
 };
 
 export const decorators = [
