@@ -134,7 +134,8 @@ const Template = () => {
       <tbody>
         ${outputTableRow(contents)}
       </tbody>
-    </table>`
+    </table>
+    <br /><br />`
   });
 
   return `

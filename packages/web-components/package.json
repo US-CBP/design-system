@@ -1,6 +1,6 @@
 {
   "name": "@cbpds/web-components",
-  "version": "0.0.1-develop.5",
+  "version": "0.0.1-develop.6",
   "description": "Web components for the CBP Design System.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
