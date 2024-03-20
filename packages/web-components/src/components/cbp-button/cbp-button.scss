@@ -41,13 +41,6 @@
   --cbp-button-border-radius: var(--cbp-border-radius-soft);
 }
 
-@media (prefers-color-scheme: dark) {
-  cbp-button {
-    --cbp-button-color-fill: pink !important;
-    --cbp-button-color-text: black !important;
-  }
-}
-
 cbp-button {
   display: inline-block;
 
