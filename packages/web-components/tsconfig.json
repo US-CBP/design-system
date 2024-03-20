@@ -14,7 +14,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "react",
-    "jsxFactory": "h"
+    "jsxFactory": "h",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
   },
   "paths": {
     "@assets/*": ["./assets/*"],
