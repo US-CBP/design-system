@@ -1,3 +1,22 @@
+/**
+ * @Prop --cbp-button-color-text: var(--cbp-color-text-lightest);
+ * @Prop --cbp-button-color-text-hover: var(--cbp-color-text-lightest);
+ * @Prop --cbp-button-color-text-focus: var(--cbp-color-text-lightest);
+ * @Prop --cbp-button-color-text-active: var(--cbp-color-text-lightest);
+ * @Prop --cbp-button-color-fill: var(--cbp-color-interactive-primary-dark);
+ * @Prop --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-darker);
+ * @Prop --cbp-button-color-fill-focus: var(--cbp-color-interactive-focus-dark);
+ * @Prop --cbp-button-color-fill-active: var(--cbp-color-interactive-active-dark);
+ * @Prop --cbp-button-color-border: var(--cbp-color-interactive-primary-dark);
+ * @Prop --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-darker);
+ * @Prop --cbp-button-color-border-focus: var(--cbp-color-interactive-focus-dark);
+ * @Prop --cbp-button-color-border-active: var(--cbp-color-interactive-active-dark);
+ * @Prop --cbp-button-color-outline-focus: var(--cbp-color-white);
+ * @Prop --cbp-button-border-width: var(--cbp-border-size-md);
+ * @Prop --cbp-button-border-style: solid;
+ * @Prop --cbp-button-border-radius: var(--cbp-border-radius-soft);
+ */
+
 /* Buttons get customized and overridden often within the design system and may benefit from a fully fleshed-out CSS API */
 :root {
   --cbp-button-color-text: var(--cbp-color-text-lightest);
@@ -20,6 +39,13 @@
   --cbp-button-border-width: var(--cbp-border-size-md);
   --cbp-button-border-style: solid;
   --cbp-button-border-radius: var(--cbp-border-radius-soft);
+}
+
+@media (prefers-color-scheme: dark) {
+  cbp-button {
+    --cbp-button-color-fill: pink !important;
+    --cbp-button-color-text: black !important;
+  }
 }
 
 cbp-button {
