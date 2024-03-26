@@ -84,7 +84,7 @@ h5,
 
 h6,
 .cbp-heading-xs {
-  color: var(--cbp-color-text-darker);
+  color: var(--cbp-color-text-darkest);
   font-weight: 700; // bold
   font-size: 1rem;
   line-height: var(--cbp-space-5x);
@@ -100,7 +100,7 @@ h6,
 
 .cbp-text-masthead-2 {
   font-weight: 100;
-  size: 2.281rem;
+  font-size: 2.281rem;
   line-height: var(--cbp-space-10x);
   letter-spacing: 0.12;
   color: var(--cbp-color-text-darker);
