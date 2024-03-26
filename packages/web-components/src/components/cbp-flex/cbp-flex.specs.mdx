@@ -33,4 +33,5 @@ The Flex component is a wrapper that invokes a CSS Flexbox context, acting as th
 
 ### Additional Notes and Considerations
 
+* Because Flexbox has a parent-child relationship, be aware that nesting Flex children inside of any component (e.g., `<router-outlet>`) that is present in the DOM will affect this behavior and the intended flex children may not be displayed as intended.
 * Text nodes inserted as direct descendants of the flex parent will yield unexpected results; While use of the cbp-flex-item component is optional, flex children are expected to be DOM nodes and should be wrapped in a tag such as `div` or `span`.

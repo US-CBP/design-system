@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Card/Specifications" />
+
+# cbp-card
+
+## Purpose
+
+The Card component is a visual treatment for a container meant for similarly-sized, repeated chunks of content.
+
+## Functional Requirements
+
+* The Card is a generic wrapper that supports several variants.
+* The Card defines several color variants as well, based on design tokens (info, success, warning, danger).
+* The Card may optionally contain a title and/or actions in the form of buttons (or links).
+
+## Technical Specifications
+
+### User Interactions
+
+* Activating any of the buttons within the group toggles the `pressed` property and likewise `aria-pressed` value on the button element.
+* If the group allows only one button to be active, when pressing a button, all others will be programmatically "unpressed."
+* When a button within the group is activated (either pressed state) by user interaction, both the Button and the Segmented Button Group components emit custom events that can be listened for.
+
+### Responsiveness
+
+* As a container that is often repeated in rows, the Card works best when it inherits sizing constraints from a surrounding CSS Grid or Flexbox context rather than being given a fixed width or height.
+* In some cases, the parent CSS Grid or Flexbox may be used to stretch cards to be equal height. In others, the `stretch` property may be needed, which causes the card "body" to expand to fill extra space allotted by the card's parent container.
+
+### Accessibility
+
+* It is highly recommended that the cards contain a title, using the appropriate level heading.
+
+### Additional Notes and Considerations
+
+* While the Button component is capable of rendering both anchors and buttons, only the semantic `button` tag should be used within a Segmented Button Group, as that is the only context in which `aria-pressed` is valid.
+* Since the `button` element does not convey data to the `formData` object upon form submission, applications will have to rely on the custom events to get the button states and values, if needed.

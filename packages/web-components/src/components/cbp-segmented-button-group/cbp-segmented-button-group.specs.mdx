@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Segmented Button Group/Specifications" />
+
+# cbp-segmented-button-group
+
+## Purpose
+
+The Segmented Button Group component wraps multiple buttons and can be used as multi-option toggle or group of controls.
+
+## Functional Requirements
+
+* The Segmented Button Group is a wrapper for child Button components.
+* The group may allow only one option to be selected (pressed) at a time, or multiple items to be selected.
+* The Footer component may optionally contain footer navigation.
+* The contents of the footer are supplied by the application (slotted), but should be standard across most applications.
+
+## Technical Specifications
+
+### User Interactions
+
+* Activating any of the buttons within the group toggles the `pressed` property and likewise `aria-pressed` value on the button element.
+* If the group allows only one button to be active, when pressing a button, all others will be programmatically "unpressed."
+* When a button within the group is activated (either pressed state) by user interaction, both the Button and the Segmented Button Group components emit custom events that can be listened for.
+
+### Responsiveness
+
+* TBD
+
+### Accessibility
+
+* The segmented Button Group has a `role="group"`.
+* The group should be named with the `accessibilityText` property, which is applied as an `aria-label` to the group. This label gives added context to the buttons within the group.
+* Each Button within the group should have an accessible label.
+
+### Additional Notes and Considerations
+
+* While the Button component is capable of rendering both anchors and buttons, only the semantic `button` tag should be used within a Segmented Button Group, as that is the only context in which `aria-pressed` is valid.
+* Since the `button` element does not convey data to the `formData` object upon form submission, applications will have to rely on the custom events to get the button states and values, if needed.

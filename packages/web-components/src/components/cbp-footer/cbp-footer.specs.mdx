@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Footer/Specifications" />
+
+# cbp-footer
+
+## Purpose
+
+The Footer component serves site visitors who arrive at the bottom of a page without finding what they want, typically containing information about the agency and navigation links.
+
+## Functional Requirements
+
+* The Footer component renders the HTML5 landmark `footer` tag.
+* The Footer component may optionally contain footer navigation.
+* The contents of the footer are supplied by the application (slotted), but should be standard across most applications.
+
+## Technical Specifications
+
+### User Interactions
+
+* Primarily a wrapper component, user interactions will be handled by its contents.
+
+### Responsiveness
+
+* Padding varies at different device/viewport sizes by using the `--cbp-responsive-spacing-outer` CSS variable or a similar implementation.
+* The contents of the footer and footer navigation should be designed using Flex or Grid components to be responsive at smaller device/viewport sizes.
+
+### Accessibility
+
+* The footer renders the landmark `footer` tag.
+* If footer navigation is specified, it should be wrapped in a `nav` tag.
+* Footer navigation should also be given a unique accessible label, such as `aria-label="footer navigation"` to differentiate this landmark from the primary navigation.
+* Primarily a wrapper component, all other accessibility concerns for are the responsibility of the content slotted within.
+
+### Additional Notes and Considerations
+
+* None at this time.
