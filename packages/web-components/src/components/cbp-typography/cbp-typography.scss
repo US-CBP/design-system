@@ -44,6 +44,7 @@ cbp-typography {
   }
 
   &[variant=heading-xs] > *, h6 {
+    color: var(--cbp-color-text-darkest);
     font-size: var(--cbp-font-size-heading-xs);
     font-weight: var(--cbp-font-weight-bold);
     line-height: var(--cbp-space-5x);

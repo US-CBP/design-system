@@ -44,7 +44,7 @@ export class CbpButton {
   /** Specifies the (min-)height of the button (in CSS units) when different from the default size. */
   @Prop() height: string;
 
-  /** Specifies if the button is pressed and results in `aria-pressed="true"` being placed on the button when true. */
+  /** Specifies if the button is pressed and results in `aria-pressed="true"` being placed on the button when true. Only valid on actual `button` elements. */
   @Prop() pressed: boolean;
   /** Specifies if a controlled UI widget is expanded and results in `aria-pressed="true"` being placed on the button when true.
    * This property is usually used for progressive disclosure patterns such as accordions, menus, expand/collapse, etc., where

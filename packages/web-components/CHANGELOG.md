@@ -4,6 +4,10 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
+## [Unreleased]
+
+* Add props to `cbp-universal-header` to specify locations of images.
+
 ## [0.0.1-develop.6] 03-20-2024
 
 * Set the Stencil config setting `enableImportInjection: true` to support projects using Vite as a bundler and allow lazy loading of components.

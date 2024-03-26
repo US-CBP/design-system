@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Container/Specifications" />
+
+# cbp-container
+
+## Purpose
+
+The Container component is a building block component for wrapping content and providing visual treatment such as a background image or color.
+
+## Functional Requirements
+
+* The Container component is a generic building-block component, sufficient for building a "hero image" pattern with content and/or call-to-action within.
+* The Container component provides outer and inner wrapping elements, allowing for a background image or color to cover the entire viewport width while displaying the content in the inner wrapper.
+
+## Technical Specifications
+
+### User Interactions
+
+* As a simple wrapper, there are no explicit user interactions for the Container component.
+
+### Responsiveness
+
+* Padding my vary at different device sizes by using the `--cbp-responsive-spacing-outer` CSS variable or a similar implementation.
+
+### Accessibility
+
+* As a simple wrapper, there are no explicit accessibility concerns for the Container component.
+* The container is not meant to be generic and not replace or replicate landmark tags, but if applicable, an appropriate `role` may be applied to the host tag.
+
+### Additional Notes and Considerations
+
+* None at this time.

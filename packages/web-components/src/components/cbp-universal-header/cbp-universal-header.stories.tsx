@@ -3,13 +3,28 @@ export default {
     tags: ['autodocs'],
     parameters: {
       layout: 'fullscreen',
-      root: '#custom-root'
+      //root: '#custom-root'
     },
+    argTypes: {
+      logoSrcLg: {
+        description: 'The src to the large-viewport seal/branding.',
+        control: 'text',
+      },
+      logoSrcSm: {
+        description: 'The src to the small-viewport seal/branding.',
+        control: 'text',
+      },
+    }
+
+    
   };
   
-  const UniversalHeaderTemplate = ({ username, isLoggedIn }) => {
+  const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn }) => {
     return `
-      <cbp-universal-header>
+      <cbp-universal-header
+        ${logoSrcLg ? `logo-src-lg=${logoSrcLg}` : ''}
+        ${logoSrcSm ? `logo-src-sm=${logoSrcSm}` : ''}
+      >
         <ul>
           ${isLoggedIn ? `
           

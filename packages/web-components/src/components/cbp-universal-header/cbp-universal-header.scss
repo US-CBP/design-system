@@ -1,74 +1,71 @@
 cbp-universal-header {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 
-  & > header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  color: var(--cbp-color-text-lightest);
+  background-color: var(--cbp-color-branding-dhs-blue);
+  min-height: var(--cbp-space-15x);
+  width: 100%;
+  padding: 0 var(--cbp-responsive-spacing-outer);
+
+  .cbp-universal-header__brand {
     align-items: center;
+    display: flex;
 
-    color: var(--cbp-color-text-lightest);
-    background-color: var(--cbp-color-branding-dhs-blue);
-    min-height: var(--cbp-space-15x);
-    width: 100%;
-    padding: 0 var(--cbp-responsive-spacing-outer);
+    &::after {
+      content: 'CBP';
+      font-size: var(--cbp-font-size-heading-xl);
+      margin-left: var(--cbp-space-2x);
+    }
+  }
 
-    .cbp-universal-header__brand {
-      align-items: center;
+  .cbp-universal-header__content {
+    ul,
+    ol {
       display: flex;
+      gap: var(--cbp-space-4x);
+      list-style: none;
+      margin: 0;
+      padding: 0;
 
-      &::after {
-        content: 'CBP';
-        font-size: var(--cbp-font-size-heading-xl);
-        margin-left: var(--cbp-space-2x);
+      li {
+        display: inline;
       }
     }
 
-    .cbp-universal-header__content {
-      ul,
-      ol {
-        display: flex;
-        gap: var(--cbp-space-4x);
-        list-style: none;
-        margin: 0;
-        padding: 0;
+    // Button/Link - Secondary (custom) Ghost Button (Dark) styling
+    // [fill] is only present for specificity
+    // TechDebt: Try to adjust these contextually. Should not need pseudo classes at this level.
+    cbp-button[fill] {
+      //align-items: center;
+      --cbp-button-border-width: 0;
+      --cbp-button-color-text: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-fill: transparent;
 
-        li {
-          display: inline;
-        }
+      :hover {
+        --cbp-button-color-text-hover: var(--cbp-color-interactive-secondary-lighter);
+        --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-dark);
       }
 
-      // Button/Link - Secondary (custom) Ghost Button (Dark) styling
-      // [fill] is only present for specificity
-      cbp-button[fill] {
-        //align-items: center;
-        --cbp-button-border-width: 0;
-        --cbp-button-color-text: var(--cbp-color-interactive-secondary-lighter);
-        --cbp-button-color-fill: transparent;
+      :focus {
+        --cbp-button-color-text-focus: var(--cbp-color-text-darkest);
+        --cbp-button-color-fill-focus: var(--cbp-color-interactive-focus-light);
+        --cbp-button-color-outline-focus: var(--cbp-color-black);
+      }
 
-        :hover {
-          --cbp-button-color-text-hover: var(--cbp-color-interactive-secondary-lighter);
-          --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-dark);
-        }
-
-        :focus {
-          --cbp-button-color-text-focus: var(--cbp-color-text-darkest);
-          --cbp-button-color-fill-focus: var(--cbp-color-interactive-focus-light);
-          --cbp-button-color-outline-focus: var(--cbp-color-black);
-        }
-
-        :active {
-          --cbp-button-color-text-active: var(--cbp-color-text-darkest);
-          --cbp-button-color-fill-active: var(--cbp-color-interactive-focus-light);
-          --cbp-button-color-outline-active: var(--cbp-color-black);
-        }
+      :active {
+        --cbp-button-color-text-active: var(--cbp-color-text-darkest);
+        --cbp-button-color-fill-active: var(--cbp-color-interactive-focus-light);
+        --cbp-button-color-outline-active: var(--cbp-color-black);
       }
     }
   }
 }
 
 @media (min-width: $cbp-breakpoint-md) {
-  cbp-universal-header > header {
+  cbp-universal-header {
     min-height: 5.5rem;
 
     .cbp-universal-header__brand::after {
