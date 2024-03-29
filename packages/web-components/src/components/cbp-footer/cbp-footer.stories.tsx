@@ -2,31 +2,29 @@ export default {
   title: 'Components/Footer',
   tags: ['autodocs'],
   parameters: {
-    layout: 'fullscreen'
+    layout: 'fullscreen',
   },
   argTypes: {
     footerNav: {
       name: 'Footer Navigation',
       description: 'Configure various aspects of the footer navigation shown.',
-      control: 'object'
+      control: 'object',
     },
-  }
+  },
 };
 
-
 function generateFooterNav(footerNav) {
-  const html = footerNav.map(({ label, href}) => {
+  const html = footerNav.map(({ label, href }) => {
     return `
       <cbp-flex-item role="list-item">  
         <cbp-button tag="a" href=${href}>${label}</cbp-button>
       </cbp-flex-item>
-    `
+    `;
   });
-  return html.join("")
-};
+  return html.join('');
+}
 
-
-const InternalTemplate = ({footerNav}) => {
+const InternalTemplate = ({ footerNav }) => {
   return `
     <cbp-footer data-container-theme="dark">
       <nav slot="cbp-footer-nav">
@@ -48,28 +46,26 @@ const InternalTemplate = ({footerNav}) => {
   `;
 };
 
-
 export const InternalFooter = InternalTemplate.bind({});
 InternalFooter.args = {
   footerNav: [
-      {
-        label: "App Overview",
-        href: "#",
-      },
-      {
-        label: "Trainings",
-        href: "#",
-      },
-      {
-        label: "FAQs",
-        href: "#",
-      },
-      {
-        label: "Release Notes",
-        href: "#",
-      },
-    ],
+    {
+      label: 'App Overview',
+      href: '#',
+    },
+    {
+      label: 'Trainings',
+      href: '#',
+    },
+    {
+      label: 'FAQs',
+      href: '#',
+    },
+    {
+      label: 'Release Notes',
+      href: '#',
+    },
+  ],
 };
 
 InternalFooter.storyName = 'Internal';
-

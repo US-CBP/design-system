@@ -5,28 +5,24 @@ export default {
     position: {
       description: 'The positioning of the drawer relative to the viewport.',
       control: 'radio',
-        options: [
-          'left',
-          'right',
-        ],
+      options: ['left', 'right'],
     },
     open: {
       description: 'Specifies whether the drawer is open or closed.',
-      control: 'boolean'
+      control: 'boolean',
     },
     uid: {
       description: 'A unique `id` applied to the drawer and referenced by the control.',
-      control: 'text'
+      control: 'text',
     },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
-      control: 'object'
+      control: 'object',
     },
-  }
+  },
 };
 
-
-const Template = ({position, open, uid, accessibilityText, sx}) => {
+const Template = ({ position, open, uid, accessibilityText, sx }) => {
   return `
     <cbp-button
       type="button"
@@ -65,10 +61,9 @@ const Template = ({position, open, uid, accessibilityText, sx}) => {
 
 export const Drawer = Template.bind({});
 Drawer.args = {
-  position: "left",
-  uid: "drawer"
+  position: 'left',
+  uid: 'drawer',
 };
-
 
 /*
       <div class="cbp-drawer__header">

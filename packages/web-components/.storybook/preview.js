@@ -1,27 +1,7 @@
-/** @type { import('@storybook/html').Preview } */
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import {defineCustomElements} from '../dist/loader';
 
 defineCustomElements();
-
-export const preview = {
-  parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
-    options: {
-      storySort: {
-        //method: 'alphabetical',
-        order: (a, b) => a[1].id.localeCompare(b[1].id), //['Introduction','Components', 'Patterns'],
-        //includeNames: true,
-      },
-    },
-  },
-};
 
 export const CUSTOM_VIEWPORTS = {
   mobile: {
@@ -58,52 +38,49 @@ export const CUSTOM_VIEWPORTS = {
   },
 };
 
-export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
-  controls: {
-    expanded: false,
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
+
+
+/** @type { import('@storybook/web-components').Preview } */
+const preview = {
+  parameters: {
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
     },
-  },
-  backgrounds: {
-    grid: {
-      disable: true,
+    // DEG: Enabling custom viewports seems to be linked to the HTML tab showing generated code instead of source/story code. Disabling custom viewports for further testing.
+    viewport: {
+      //viewports: CUSTOM_VIEWPORTS,
     },
-  },
-  previewTabs: {
-    canvas: { hidden: true },
-    'storybook/docs/panel': { hidden: true }
-  },
-  viewport: {
-    viewports: CUSTOM_VIEWPORTS,
-  },
-  html: {
-    root: "cbp-app", // default: #storybook-root
-    removeComments: true,
-    removeEmptyComments: true,
-    prettier: {
-      parser: 'html',
-      tabWidth: 2,
-      useTabs: false,
-      htmlWhitespaceSensitivity: 'css',
-      proseWrap: "always",
-      bracketSameLine: true,
-      singleAttributePerLine: true,
-    },
-    highlighter: {
-      showLineNumbers: true,
-      wrapLines: true,
-      language: 'html'
-    },
-    transform: (code) => {
-      // DEG: keeping this as an example because it may solve other issues I've encountered
-      // Remove attributes `_nghost` and `ng-reflect` injected by Angular:
-      return code.replace(/(?:_nghost|ng-reflect).*?="[\S\s]*?"/g, '');
+    html: {
+      root: "cbp-app", // default: #storybook-root
+      removeComments: true,
+      removeEmptyComments: true,
+      prettier: {
+        parser: 'html',
+        tabWidth: 2,
+        useTabs: false,
+        htmlWhitespaceSensitivity: 'css',
+        proseWrap: "always",
+        bracketSameLine: false,
+        singleAttributePerLine: true,
+      },
+      highlighter: {
+        showLineNumbers: true,
+        wrapLines: true,
+        language: 'html'
+      },
+      transform: (code) => {
+        // DEG: keeping this as an example because it may solve other issues I've encountered
+        // Remove attributes `_nghost` and `ng-reflect` injected by Angular:
+        return code.replace(/(?:_nghost|ng-reflect).*?="[\S\s]*?"/g, '');
+      },
     },
   },
 };
+
+export default preview;
 
 
 // Wrap every story with `cbp-app` component, which brings in the high level CSS resets, settings, and variables.
@@ -112,8 +89,10 @@ const withWrapper = (story) => {
   return `<cbp-app theme="light">${story()}</cbp-app>`;
 };
 
+//https://storybook.js.org/addons/storybook-addon-themes
 export const decorators = [
   withWrapper,
+  /*
   withThemeByDataAttribute({
     themes: {
       light: 'light',
@@ -122,4 +101,6 @@ export const decorators = [
     defaultTheme: 'light',
     attributeName: 'data-cbp-theme',
   }),
+  */
 ];
+

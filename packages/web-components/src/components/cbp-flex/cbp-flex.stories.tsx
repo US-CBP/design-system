@@ -45,30 +45,30 @@ export default {
   args: {
     content: [
       {
-        text: "Flex Item 1",
+        text: 'Flex Item 1',
       },
       {
-        text: "Flex Item 2",
+        text: 'Flex Item 2',
       },
       {
-        text: "Flex Item 3",
+        text: 'Flex Item 3',
       },
       {
-        text: "Flex Item 4",
+        text: 'Flex Item 4',
       },
       {
-        text: "Flex Item 5",
+        text: 'Flex Item 5',
       },
     ],
   },
 };
 
 function createChildren(children) {
-  const html = children.map(({ text}) => {
-    return `<div>${text}</div>`
-  })
-  return html.join("")
-};
+  const html = children.map(({ text }) => {
+    return `<div>${text}</div>`;
+  });
+  return html.join('');
+}
 
 const Template = ({ display, wrap, direction, alignItems, alignContent, justifyContent, gap, breakpoint, content, sx }) => {
   return ` 
@@ -90,4 +90,4 @@ const Template = ({ display, wrap, direction, alignItems, alignContent, justifyC
 };
 
 export const Flex = Template.bind({});
-Flex.args = {}
+Flex.args = {};

@@ -39,7 +39,23 @@ export default {
     },
     justifyItems: {
       control: 'select',
-      options: ['legacy', 'normal', 'stretch', 'center', 'safe center', 'unsafe center', 'start', 'end', 'self-start', 'self-end', 'left', 'right', 'baseline', 'first baseline', 'last baseline'],
+      options: [
+        'legacy',
+        'normal',
+        'stretch',
+        'center',
+        'safe center',
+        'unsafe center',
+        'start',
+        'end',
+        'self-start',
+        'self-end',
+        'left',
+        'right',
+        'baseline',
+        'first baseline',
+        'last baseline',
+      ],
     },
     gap: {
       control: 'text',
@@ -60,32 +76,48 @@ export default {
   args: {
     content: [
       {
-        text: "Grid Item 1",
+        text: 'Grid Item 1',
       },
       {
-        text: "Grid Item 2",
+        text: 'Grid Item 2',
       },
       {
-        text: "Grid Item 3",
+        text: 'Grid Item 3',
       },
       {
-        text: "Grid Item 4",
+        text: 'Grid Item 4',
       },
       {
-        text: "Grid Item 5",
+        text: 'Grid Item 5',
       },
     ],
   },
 };
 
 function createChildren(children) {
-  const html = children.map(({ text}) => {
-    return `<div>${text}</div>`
-  })
-  return html.join("")
-};
+  const html = children.map(({ text }) => {
+    return `<div>${text}</div>`;
+  });
+  return html.join('');
+}
 
-const Template = ({ display, gridTemplateAreas, gridTemplateColumns, gridTemplateRows, gridAutoFlow, gridAutoColumns, gridAutoRows, alignItems, alignContent, justifyItems, justifyContent, gap, breakpoint, content, sx }) => {
+const Template = ({
+  display,
+  gridTemplateAreas,
+  gridTemplateColumns,
+  gridTemplateRows,
+  gridAutoFlow,
+  gridAutoColumns,
+  gridAutoRows,
+  alignItems,
+  alignContent,
+  justifyItems,
+  justifyContent,
+  gap,
+  breakpoint,
+  content,
+  sx,
+}) => {
   return ` 
         <cbp-grid
           ${display ? `display=${display}` : ''}
@@ -110,6 +142,6 @@ const Template = ({ display, gridTemplateAreas, gridTemplateColumns, gridTemplat
 
 export const Grid = Template.bind({});
 Grid.args = {
-  gridTemplateColumns: "repeat(5,1fr)",
-  gap: "1rem",
-}
+  gridTemplateColumns: 'repeat(5,1fr)',
+  gap: '1rem',
+};

@@ -20,7 +20,23 @@ export default {
     },
     justifySelf: {
       control: 'select',
-      options: ['legacy', 'normal', 'stretch', 'center', 'safe center', 'unsafe center', 'start', 'end', 'self-start', 'self-end', 'left', 'right', 'baseline', 'first baseline', 'last baseline'],
+      options: [
+        'legacy',
+        'normal',
+        'stretch',
+        'center',
+        'safe center',
+        'unsafe center',
+        'start',
+        'end',
+        'self-start',
+        'self-end',
+        'left',
+        'right',
+        'baseline',
+        'first baseline',
+        'last baseline',
+      ],
     },
     gridArea: {
       control: 'text',
@@ -36,7 +52,7 @@ export default {
     },
   },
   args: {
-    content: "Controlled Grid Item"
+    content: 'Controlled Grid Item',
   },
 };
 
