@@ -29,7 +29,7 @@ export default {
     },
   },
   args: {
-    content: 'Controlled Flex Item'
+    content: 'Controlled Flex Item',
   },
 };
 
@@ -59,4 +59,4 @@ const Template = ({ order, alignSelf, flexGrow, flexShrink, flexBasis, content, 
 };
 
 export const FlexItem = Template.bind({});
-FlexItem.args = {}
+FlexItem.args = {};

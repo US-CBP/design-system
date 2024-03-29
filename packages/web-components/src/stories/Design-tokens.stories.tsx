@@ -21,12 +21,10 @@ import { default as Violet } from '../../../vanilla/src/tokens/color/violet.json
 import { default as White } from '../../../vanilla/src/tokens/color/white.json';
 import { default as Yellow } from '../../../vanilla/src/tokens/color/yellow.json';
 
-
-
 export default {
   title: 'Design Tokens',
-  parameters: { 
-    options: { showPanel: false } 
+  parameters: {
+    options: { showPanel: false },
   },
 };
 
@@ -60,23 +58,65 @@ export default {
 //const AllTokens=[Theme,Typography,Space,Border,Elevation,Animation,Breakpoints];
 //const AllTokenNames=['Theme','Typography','Space','Border','Elevation','Animation','Breakpoints'];
 
-const AllTokens=[Theme,Typography,Space,Border,Elevation,Animation,Breakpoints,Black,Blue,Cyan,Gold,Gray,Green,Indigo,Magenta,Mint,Orange,Red,Violet,White,Yellow];
-const AllTokenNames=['Theme','Typography','Space','Border','Elevation','Animation','Breakpoints','Black','Blue','Cyan','Gold','Gray','Green','Indigo','Magenta','Mint','Orange','Red','Violet','White','Yellow'];
+const AllTokens = [
+  Theme,
+  Typography,
+  Space,
+  Border,
+  Elevation,
+  Animation,
+  Breakpoints,
+  Black,
+  Blue,
+  Cyan,
+  Gold,
+  Gray,
+  Green,
+  Indigo,
+  Magenta,
+  Mint,
+  Orange,
+  Red,
+  Violet,
+  White,
+  Yellow,
+];
+const AllTokenNames = [
+  'Theme',
+  'Typography',
+  'Space',
+  'Border',
+  'Elevation',
+  'Animation',
+  'Breakpoints',
+  'Black',
+  'Blue',
+  'Cyan',
+  'Gold',
+  'Gray',
+  'Green',
+  'Indigo',
+  'Magenta',
+  'Mint',
+  'Orange',
+  'Red',
+  'Violet',
+  'White',
+  'Yellow',
+];
 
-let output=[];
-let currentObj=[];
+let output = [];
+let currentObj = [];
 
-function iterateObj(obj){
+function iterateObj(obj) {
   for (const property in obj) {
     if (property == 'value') {
-      output= [...output, `${currentObj.join('.')}=${obj[property]}`];
+      output = [...output, `${currentObj.join('.')}=${obj[property]}`];
       currentObj.pop(); // remove the last item in the array when we've found the value
-    }
-    else if (property == 'attributes') {
+    } else if (property == 'attributes') {
       return;
-    }
-    else if(typeof obj[property] == 'object'){
-      currentObj=[...currentObj, property];
+    } else if (typeof obj[property] == 'object') {
+      currentObj = [...currentObj, property];
       iterateObj(obj[property]);
     }
   }
@@ -85,44 +125,43 @@ function iterateObj(obj){
 }
 
 function tokenToCSS(str) {
-  return '--cbp-'+str.replaceAll('.','-');
+  return '--cbp-' + str.replaceAll('.', '-');
 }
 
 function sanitizeTokenValue(str) {
   // If it's referencing a token value, convert that to a CSS variable
-  if(/{.+}/.test(str)){
-    let cssVar = str.replace(/[{} ]/g,''); //(/{}/g,'');
-    cssVar = cssVar.replace(/\.value/g,'');
-    return `var(--cbp-${cssVar.replaceAll('.','-')})`;
-  }
-  else return str;
+  if (/{.+}/.test(str)) {
+    let cssVar = str.replace(/[{} ]/g, ''); //(/{}/g,'');
+    cssVar = cssVar.replace(/\.value/g, '');
+    return `var(--cbp-${cssVar.replaceAll('.', '-')})`;
+  } else return str;
 }
 
 function outputTableRow(arr) {
   let rows = '';
-  arr.forEach( (item) => {
-    let token=item.split('=')[0];
-    let value=sanitizeTokenValue(item.split('=')[1]);
+  arr.forEach(item => {
+    let token = item.split('=')[0];
+    let value = sanitizeTokenValue(item.split('=')[1]);
     let css = tokenToCSS(token);
-    rows+=`
+    rows += `
     <tr>
       <td>${token}</td>
       <td>${css}</td>
       <td>${value}</td>
-    </tr>`
+    </tr>`;
   });
   return rows;
 }
 
 const Template = () => {
-  let pageContents='';
-  
+  let pageContents = '';
+
   AllTokens.forEach((item, index) => {
     let contents = iterateObj(item);
-    output=[];
-    currentObj=[];
+    output = [];
+    currentObj = [];
 
-    pageContents+=`
+    pageContents += `
     <h2>${AllTokenNames[index]}</h2>
     <table>
       <caption hidden>${AllTokenNames[index]}</caption>
@@ -135,7 +174,7 @@ const Template = () => {
         ${outputTableRow(contents)}
       </tbody>
     </table>
-    <br /><br />`
+    <br /><br />`;
   });
 
   return `

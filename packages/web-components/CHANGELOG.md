@@ -7,6 +7,8 @@ The React components are wrappers generated from this package and will share the
 ## [Unreleased]
 
 * Add props to `cbp-universal-header` to specify locations of images.
+* Upgraded web component package to Stencil 4.13.0 and Storybook 8.
+* Added design token documentation to Storybook.
 
 ## [0.0.1-develop.6] 03-20-2024
 

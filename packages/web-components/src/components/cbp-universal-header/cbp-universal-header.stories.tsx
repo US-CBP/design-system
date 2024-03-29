@@ -1,32 +1,32 @@
 export default {
-    title: 'Components/Universal Header',
-    tags: ['autodocs'],
-    parameters: {
-      layout: 'fullscreen',
-      //root: '#custom-root'
+  title: 'Components/Universal Header',
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'fullscreen',
+    //root: '#custom-root'
+  },
+  argTypes: {
+    logoSrcLg: {
+      description: 'The src to the large-viewport seal/branding.',
+      control: 'text',
     },
-    argTypes: {
-      logoSrcLg: {
-        description: 'The src to the large-viewport seal/branding.',
-        control: 'text',
-      },
-      logoSrcSm: {
-        description: 'The src to the small-viewport seal/branding.',
-        control: 'text',
-      },
-    }
+    logoSrcSm: {
+      description: 'The src to the small-viewport seal/branding.',
+      control: 'text',
+    },
+  },
+};
 
-    
-  };
-  
-  const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn }) => {
-    return `
+const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn }) => {
+  return `
       <cbp-universal-header
         ${logoSrcLg ? `logo-src-lg=${logoSrcLg}` : ''}
         ${logoSrcSm ? `logo-src-sm=${logoSrcSm}` : ''}
       >
         <ul>
-          ${isLoggedIn ? `
+          ${
+            isLoggedIn
+              ? `
           
           <li>
           <cbp-button fill="ghost">
@@ -55,34 +55,35 @@ export default {
           >${username}</cbp-hide>
         </cbp-button>
           </li>
-          ` : `
+          `
+              : `
           <li>
             <cbp-button tag="a" href="#" fill="ghost">
             <cbp-icon name="right-to-bracket" sx='{"margin-right":"var(--cbp-space-2x)"}'></cbp-icon>
             Login
             </cbp-button>
           </li>
-          `}
+          `
+          }
         </ul>
       </cbp-universal-header>
     `;
-  };
-  
-  export const UniversalHeader = UniversalHeaderTemplate.bind({});
-  UniversalHeader.args = {
-    username: 'John Smithington',
-    isLoggedIn: true
-  };
-  UniversalHeader.argTypes = {
-    username: {
-      name: 'User Name',
-      type: { name: 'string', required: true },
-      description: 'Name of user to be displayed in the Universal Header'
-    },
-    isLoggedIn: {
-      name: 'User Log In',
-      type: { name: 'boolean' },
-      description: 'Display Universal Header controls for user log in/out'
-    }
-  };
-  
+};
+
+export const UniversalHeader = UniversalHeaderTemplate.bind({});
+UniversalHeader.args = {
+  username: 'John Smithington',
+  isLoggedIn: true,
+};
+UniversalHeader.argTypes = {
+  username: {
+    name: 'User Name',
+    type: { name: 'string', required: true },
+    description: 'Name of user to be displayed in the Universal Header',
+  },
+  isLoggedIn: {
+    name: 'User Log In',
+    type: { name: 'boolean' },
+    description: 'Display Universal Header controls for user log in/out',
+  },
+};

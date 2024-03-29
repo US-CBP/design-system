@@ -8,36 +8,28 @@ function getAbsolutePath(value) {
   return dirname(require.resolve(join(value, 'package.json')));
 }
 
-/** @type { import('@storybook/html-vite').StorybookConfig } */
+/** @type { import('@storybook/web-components-vite').StorybookConfig } */
 const config = {
-  framework: {
-    name: getAbsolutePath('@storybook/html-vite'),
-    options: {}
-  },
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: [
-    getAbsolutePath('@whitespace/storybook-addon-html'), 
-    {
-      name: '@storybook/addon-essentials',
-      options: {
-        backgrounds: false,
-        measure: false,
-        outline: false
-      }
-    }, 
-    getAbsolutePath('@storybook/addon-themes'), 
-    getAbsolutePath('@storybook/addon-interactions'), 
-    getAbsolutePath('@storybook/addon-links'), 
-    getAbsolutePath('@storybook/addon-a11y')
-  ],
-  docs: {
-    autodocs: 'tag'
+  addons: [getAbsolutePath('@storybook/addon-links'), {
+    name: '@storybook/addon-essentials',
+    options: {
+      actions: false,
+    },
+  }, //getAbsolutePath('@storybook/addon-essentials'), 
+  {
+    name: '@whitespace/storybook-addon-html', 
+    title: 'Code',
+  }, //getAbsolutePath('@chromatic-com/storybook'),
+  //getAbsolutePath('@storybook/addon-themes'), 
+  //getAbsolutePath('@storybook/addon-interactions'), 
+  getAbsolutePath('@storybook/addon-a11y'), getAbsolutePath("@storybook/addon-mdx-gfm")],
+  framework: {
+    name: getAbsolutePath('@storybook/web-components-vite'),
+    options: {},
   },
-  typescript: {
-    // Overrides the default Typescript configuration to allow multi-package components to be documented via Autodocs.
-    reactDocgen: 'react-docgen',
-    skipBabel: true,
-    check: false,
+  docs: {
+    autodocs: 'tag',
   },
   staticDirs: [
     '../dist',
@@ -45,9 +37,6 @@ const config = {
   ],
   core: {
     disableTelemetry: true
-  },
-  features: {
-    storyStoreV7: true
   },
 };
 export default config;

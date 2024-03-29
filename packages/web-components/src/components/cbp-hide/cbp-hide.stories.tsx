@@ -32,7 +32,6 @@ export default {
   },
 };
 
-
 const Template = ({ display, hide, visuallyHide, hideAt, visuallyHideAt, content, sx }) => {
   return ` 
         <cbp-hide
@@ -49,4 +48,4 @@ const Template = ({ display, hide, visuallyHide, hideAt, visuallyHideAt, content
 };
 
 export const Hide = Template.bind({});
-Hide.args = {}
+Hide.args = {};

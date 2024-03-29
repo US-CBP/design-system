@@ -2,13 +2,12 @@ export default {
   title: 'Components/Panel',
   argTypes: {
     headingLevel: {
-      description:
-        'The heading level used as the panel header (e.g., `h2`-`h6`) as appropriate for the document structure.',
+      description: 'The heading level used as the panel header (e.g., `h2`-`h6`) as appropriate for the document structure.',
       control: 'select',
       options: ['h2', 'h3', 'h4', 'h5', 'h6'],
     },
     header: {
-      name: "header (slotted)",
+      name: 'header (slotted)',
       description: 'Text used as the panel header.',
       control: 'text',
     },
@@ -18,34 +17,27 @@ export default {
       control: 'text',
     },
     showIcon: {
-      description:
-        'Show an icon in the panel header as an example. This icon could be swapped out for any other.',
+      description: 'Show an icon in the panel header as an example. This icon could be swapped out for any other.',
       control: 'boolean',
     },
     content: {
-      name: "content (slotted)",
-      description:
-        'Placeholder text representing the panel contents, which can include HTML markup not supported in this story.',
+      name: 'content (slotted)',
+      description: 'Placeholder text representing the panel contents, which can include HTML markup not supported in this story.',
       control: 'text',
     },
     role: {
       description: 'The optional role applied to the panel component',
       control: 'select',
-      options: [
-        'none',
-        'section',
-        'complementary'
-      ],
+      options: ['none', 'section', 'complementary'],
     },
     ariaLabel: {
-      description:
-        'An accessible label may be provided if the text within the header is not sufficiently descriptive or unique. In such a case, omit the heading `id`.',
+      description: 'An accessible label may be provided if the text within the header is not sufficiently descriptive or unique. In such a case, omit the heading `id`.',
       control: 'text',
     },
   },
 };
 
-const PanelTemplate = ({role, headingLevel, header, headerId, content, ariaLabel, showIcon}) =>
+const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabel, showIcon }) =>
   `
     <cbp-panel
       ${headerId ? `aria-labelledby="${headerId}"` : ''}
@@ -59,7 +51,7 @@ const PanelTemplate = ({role, headingLevel, header, headerId, content, ariaLabel
         variant="heading-lg"
         ${headerId ? `id="${headerId}"` : ''}
       >
-        ${showIcon ? '<cbp-icon name="star" sx=\'{"margin-right":"var(--cbp-space-4x)"}\'></cbp-icon>': ''}${header}
+        ${showIcon ? '<cbp-icon name="star" sx=\'{"margin-right":"var(--cbp-space-4x)"}\'></cbp-icon>' : ''}${header}
       </cbp-typography
       <div class="cbp-panel__content">
         <p>${content}</p>

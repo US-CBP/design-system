@@ -29,32 +29,32 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "storybook": "stencil build --docs && storybook dev -p 6008",
+    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@stencil/core": "^4.12.3"
+    "@stencil/core": "^4.13.0"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.2.25",
     "@stencil/react-output-target": "^0.5.3",
     "@stencil/sass": "^3.0.7",
     "@stencil/store": "^2.0.12",
-    "@storybook/addon-essentials": "^7.6.4",
-    "@storybook/addon-interactions": "^7.6.4",
-    "@storybook/addon-links": "^7.6.4",
-    "@storybook/blocks": "^7.5.1",
-    "@storybook/html": "^7.5.1",
-    "@storybook/html-vite": "^7.6.4",
-    "@storybook/testing-library": "^0.2.2",
+    "@storybook/addon-essentials": "^8.0.5",
+    "@storybook/addon-links": "^8.0.5",
+    "@storybook/addon-mdx-gfm": "^8.0.5",
+    "@storybook/blocks": "^8.0.5",
+    "@storybook/test": "^8.0.5",
+    "@storybook/web-components": "^8.0.5",
+    "@storybook/web-components-vite": "^8.0.5",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.11",
-    "@whitespace/storybook-addon-html": "^5.1.6",
+    "@whitespace/storybook-addon-html": "^6.0.2",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
+    "lit": "^3.1.2",
     "puppeteer": "21.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "storybook": "^7.6.4"
+    "storybook": "^8.0.5"
   },
   "keywords": [
     "CBP",
