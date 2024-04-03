@@ -77,6 +77,15 @@ const preview = {
         return code.replace(/(?:_nghost|ng-reflect).*?="[\S\s]*?"/g, '');
       },
     },
+    /*
+    decorators: [
+      (Story) => (
+        <ThemeProvider theme="default">
+          <Story />
+        </ThemeProvider>
+      ),
+    ],
+    */
   },
 };
 
@@ -89,9 +98,30 @@ const withWrapper = (story) => {
   return `<cbp-app theme="light">${story()}</cbp-app>`;
 };
 
+/*
+const stencilWrapper = (storyFn, context) => {
+  const host = document.createElement('div');
+  stencilClient.renderVdom(
+    {
+      $ancestorComponent$: undefined,
+      $flags$: 0,
+      $modeName$: undefined,
+      $cmpMeta$: {
+        $flags$: 0,
+        $tagName$: 'div',  
+      },
+      $hostElement$: host,
+    },
+    storyFn(context)
+  );
+  return host.children[0];
+}
+*/
+
 //https://storybook.js.org/addons/storybook-addon-themes
 export const decorators = [
   withWrapper,
+  //stencilWrapper,
   /*
   withThemeByDataAttribute({
     themes: {

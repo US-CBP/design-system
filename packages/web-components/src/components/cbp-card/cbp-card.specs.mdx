@@ -18,9 +18,7 @@ The Card component is a visual treatment for a container meant for similarly-siz
 
 ### User Interactions
 
-* Activating any of the buttons within the group toggles the `pressed` property and likewise `aria-pressed` value on the button element.
-* If the group allows only one button to be active, when pressing a button, all others will be programmatically "unpressed."
-* When a button within the group is activated (either pressed state) by user interaction, both the Button and the Segmented Button Group components emit custom events that can be listened for.
+* Cards are essentially containers and any user interactions will be handled by slotted content and components.
 
 ### Responsiveness
 
@@ -33,5 +31,4 @@ The Card component is a visual treatment for a container meant for similarly-siz
 
 ### Additional Notes and Considerations
 
-* While the Button component is capable of rendering both anchors and buttons, only the semantic `button` tag should be used within a Segmented Button Group, as that is the only context in which `aria-pressed` is valid.
-* Since the `button` element does not convey data to the `formData` object upon form submission, applications will have to rely on the custom events to get the button states and values, if needed.
+* TBD

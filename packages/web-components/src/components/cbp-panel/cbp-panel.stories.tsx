@@ -1,5 +1,6 @@
 export default {
   title: 'Components/Panel',
+  tags: ['autodocs'],
   argTypes: {
     headingLevel: {
       description: 'The heading level used as the panel header (e.g., `h2`-`h6`) as appropriate for the document structure.',
