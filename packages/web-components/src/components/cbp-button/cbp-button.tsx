@@ -65,7 +65,7 @@ export class CbpButton {
    */
   @Prop() accessibilityText: string;
 
-  /** Internal use: Specifies that a button should not be keyboard navigable by setting its tabindex to -1. This property should only be used in very specific cases. */
+  /** @Internal Specifies that a button should not be keyboard navigable by setting its tabindex to -1. This property should only be used in very specific cases. */
   @Prop() pointerOnly: boolean;
 
   /** Marks the rendered button/link in a disabled state when specified. */
@@ -127,18 +127,16 @@ export class CbpButton {
   }
 
   render() {
-    const { type, value, pressed, expanded, controls, disabled, rel, target, href, download } = this;
+    const { type, value, pressed, expanded, disabled, rel, target, href, download } = this;
 
     const attrs =
       this.tag === 'button'
         ? {
             type,
             value,
-            controls,
             disabled,
           }
         : {
-            controls,
             download,
             href,
             rel,
