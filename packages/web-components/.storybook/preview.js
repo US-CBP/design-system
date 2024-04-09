@@ -1,7 +1,17 @@
+import { setCustomElementsManifest } from "@storybook/web-components";
+import customElements from "../custom-elements.json";
+import { setWcStorybookHelpersConfig } from "wc-storybook-helpers";
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import {defineCustomElements} from '../dist/loader';
 
 defineCustomElements();
+setWcStorybookHelpersConfig({
+  //hideArgRef: true,
+  setComponentVariable: true,
+  renderDefaultValues: false,
+  hideArgRef: false,
+});
+setCustomElementsManifest(customElements);
 
 export const CUSTOM_VIEWPORTS = {
   mobile: {
@@ -43,7 +53,9 @@ export const CUSTOM_VIEWPORTS = {
 /** @type { import('@storybook/web-components').Preview } */
 const preview = {
   parameters: {
+    //actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
+      //expanded: true,
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,

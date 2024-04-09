@@ -18,7 +18,8 @@
     "stencil-sb": "npm run storybook -w packages/web-components",
     "stencil-generate": "npm run generate -w packages/web-components",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-pages": "npm run vanilla-build && npm run build-pages -w packages/vanilla && npm run build-pages -w packages/ux-guidelines",
+    "build-pages": "npm run vanilla-build && npm run build-pages -w packages/vanilla && npm run stencil-build && npm run build-pages -w packages/web-components",
+    "build-pages-old": "npm run vanilla-build && npm run build-pages -w packages/vanilla && npm run build-pages -w packages/ux-guidelines",
     "build-all": "npm run vanilla-build && npm run stencil-build && npm run react-build"
   },
   "repository": {
