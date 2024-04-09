@@ -1,6 +1,3 @@
-/* @jsx h */
-//import { h } from '@stencil/core';
-
 export default {
   title: 'Components/Section',
   tags: ['autodocs'],
@@ -30,11 +27,10 @@ export default {
   },
 };
 
-
 const Template = ({ text, tag, accessibilityText, sx }) => {
   return ` 
       <cbp-section
-        ${tag !== 'none' ? `tag=${tag}` : ''}
+        ${tag && tag !== 'none' ? `tag=${tag}` : ''}
         ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
@@ -43,7 +39,7 @@ const Template = ({ text, tag, accessibilityText, sx }) => {
     `;
 };
 
-/*
+/* JSX format?
 const Template = ({ text }, props) => {
   return h(
     <cbp-section {...props}>
