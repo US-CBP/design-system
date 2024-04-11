@@ -1,0 +1,35 @@
+import type { Meta, StoryObj } from "@storybook/web-components";
+import { getWcStorybookHelpers } from "wc-storybook-helpers";
+import { CbpSection } from './cbp-section';
+
+const { events, args, argTypes, template } = getWcStorybookHelpers("cbp-section");
+
+const meta: Meta<CbpSection> = {
+  title: 'Components/Section',
+  tags: ['autodocs'],
+  component: "cbp-section",
+  args, // <- default values for Storybook v7
+  argTypes,
+  parameters: {
+    actions: {
+      handles: events,
+    },
+  },
+};
+export default meta;
+
+
+/**
+ * create Story type that will provide autocomplete and docs for `args`,
+ * but also allow for namespaced args like CSS Shadow Parts and Slots
+ */
+type Story = StoryObj<CbpSection & typeof args>;
+
+export const Default: Story = {
+  render: (args) => template(args),
+  args: {
+    "default-slot": 'Section content here.',
+  },
+};
+
+

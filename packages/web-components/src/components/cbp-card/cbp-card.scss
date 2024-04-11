@@ -88,18 +88,22 @@ cbp-card {
       display: flex;
 
       cbp-button {
+        --cbp-button-border-radius: 0;
         width: 100%;
 
-        &:first-child button {
-          border-bottom-left-radius: var(--cbp-border-radius-softer);
+        &:first-child {
+          --cbp-button-border-radius: 0 0 0 var(--cbp-border-radius-softer);
         }
   
-        &:last-child button {
-          border-bottom-right-radius: var(--cbp-border-radius-softer);
+        &:last-child {
+          --cbp-button-border-radius: 0 0 var(--cbp-border-radius-softer) 0;
         }
 
+        &:first-child:last-child {
+          --cbp-button-border-radius: 0 0 var(--cbp-border-radius-softer) var(--cbp-border-radius-softer);
+        }
+  
         button, a {
-          border-radius: 0;
           padding-block: var(--cbp-space-3x);
           width: 100%;
         }

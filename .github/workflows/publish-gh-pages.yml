@@ -1,11 +1,12 @@
-name: Deploy Github Pages
-run-name: ${{ github.actor }} is deploying the design system to Github Pages
-on: 
-  workflow_dispatch:
+# Workflow name
+name: Build and Publish Storybook to GitHub Pages
+run-name: ${{ github.actor }} is deploying the CBP Design System documentation packages to Github Pages
 
+# Event for the workflow to run on
+on: 
   push:
-    tags: 
-      - '*'
+    branches:
+      - 'develop'
 
 # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
 permissions:
@@ -13,51 +14,24 @@ permissions:
   pages: write      # to deploy to Pages
   id-token: write   # to verify the deployment originates from an appropriate source
 
-jobs: 
-  build: 
-    name: build static content
-    timeout-minutes: 15
+# List of jobs
+jobs:
+  deploy:
     runs-on: ubuntu-latest
-
+    # Job steps
     steps:
+      # Manual Checkout
       - uses: actions/checkout@v3
+
+      # Set up Node
       - uses: actions/setup-node@v3
         with:
-          node-version: "18.x"
-          cache: npm
-      - run: npm ci # runs clean-install
-      - run: npm run build-pages # build all static sites in all packages
+          node-version: '18.x'
 
-      - name: Archive artifact
-        shell: sh
-        if: runner.os == 'Linux'
-        run: |
-          tar \
-            --dereference --hard-dereference \
-            --directory ".public" \
-            -cvf "$RUNNER_TEMP/artifact.tar" \
-            --exclude=.git \
-            --exclude=.github \
-            .
-
-      - uses: actions/upload-artifact@v3
+      #👇 Add Storybook build and deploy to GitHub Pages as a step in the workflow
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
         with:
-          name: github-pages
-          path: ${{ runner.temp }}/artifact.tar
-          retention-days: "1"
-          if-no-files-found: error
-
-  deploy:
-    needs: build
-
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    # Specify runner + deployment step
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+          install_command: npm ci # default: npm ci
+          build_command: npm run build-pages # default: npm run build-storybook
+          path: .public # default: dist/storybook
+          checkout: false # default: true

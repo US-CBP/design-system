@@ -1,7 +1,17 @@
+import { setCustomElementsManifest } from "@storybook/web-components";
+import customElements from "../custom-elements.json";
+import { setWcStorybookHelpersConfig } from "wc-storybook-helpers";
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import {defineCustomElements} from '../dist/loader';
 
 defineCustomElements();
+setWcStorybookHelpersConfig({
+  //hideArgRef: true,
+  setComponentVariable: true,
+  renderDefaultValues: false,
+  hideArgRef: false,
+});
+setCustomElementsManifest(customElements);
 
 export const CUSTOM_VIEWPORTS = {
   mobile: {
@@ -43,7 +53,9 @@ export const CUSTOM_VIEWPORTS = {
 /** @type { import('@storybook/web-components').Preview } */
 const preview = {
   parameters: {
+    //actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
+      //expanded: true,
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
@@ -77,6 +89,15 @@ const preview = {
         return code.replace(/(?:_nghost|ng-reflect).*?="[\S\s]*?"/g, '');
       },
     },
+    /*
+    decorators: [
+      (Story) => (
+        <ThemeProvider theme="default">
+          <Story />
+        </ThemeProvider>
+      ),
+    ],
+    */
   },
 };
 
@@ -89,9 +110,30 @@ const withWrapper = (story) => {
   return `<cbp-app theme="light">${story()}</cbp-app>`;
 };
 
+/*
+const stencilWrapper = (storyFn, context) => {
+  const host = document.createElement('div');
+  stencilClient.renderVdom(
+    {
+      $ancestorComponent$: undefined,
+      $flags$: 0,
+      $modeName$: undefined,
+      $cmpMeta$: {
+        $flags$: 0,
+        $tagName$: 'div',  
+      },
+      $hostElement$: host,
+    },
+    storyFn(context)
+  );
+  return host.children[0];
+}
+*/
+
 //https://storybook.js.org/addons/storybook-addon-themes
 export const decorators = [
   withWrapper,
+  //stencilWrapper,
   /*
   withThemeByDataAttribute({
     themes: {

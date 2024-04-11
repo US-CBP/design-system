@@ -61,9 +61,26 @@ export default {
       options: ['default', 'square', 'cta'],
     },
     accessibilityText: {
-      description:
-        'Accessibility text is applied as an `aria-label` and should be supplied when the button does not contain text or it is not sufficiently and uniquely descriptive.',
-      type: 'string',
+      description: 'Accessibility text is applied as an `aria-label` and should be supplied when the button does not contain text or it is not sufficiently and uniquely descriptive.',
+      control: 'text',
+    },
+    controls: {
+      description: 'The `id` of the element the button is controlling (e.g., for accordions, menus, dialogs, etc.), rendered as an `aria-controls` attribute on the `button` tag.',
+      control: 'text',
+    },
+    targetProp: {
+      description: 'Specifies the property on the target element being toggled by the button/control (e.g., open).',
+      control: 'text',
+    },
+    expanded: {
+      description: 'Indicates that the button acting as a control has been pressed and the controlled element expanded, such as in the case of accordions, menus, etc., rendered as `aria-expanded` on the `button` tag',
+      control: 'boolean',
+      if: { arg: 'tag', neq: 'a' },
+    },
+    pressed: {
+      description: 'Indicates that the button is pressed and renders `aria-pressed="true"` on the `button` tag. This property should only be used for stateful/toggle buttons such as in the segmented button group.',
+      control: 'boolean',
+      if: { arg: 'tag', neq: 'a' },
     },
     disabled: {
       description: 'Renders the button in a disabled state. A disabled button is non-interactive and unusable.',
@@ -84,7 +101,7 @@ export default {
   },
 };
 
-const Template = ({ label, tag, type, value, href, rel, target, download, fill, color, variant, accessibilityText, disabled, sx }) => {
+const Template = ({ label, tag, type, value, href, rel, target, download, fill, color, variant, accessibilityText, controls, targetProp, pressed, expanded, disabled, sx }) => {
   return ` 
       <cbp-button
         ${tag !== 'button' ? `tag=${tag}` : ''}
@@ -98,6 +115,10 @@ const Template = ({ label, tag, type, value, href, rel, target, download, fill, 
         ${color ? `color=${color}` : ''}
         ${variant !== 'default' ? `variant=${variant}` : ''}
         ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+        ${controls ? `controls=${controls}` : ''}
+        ${targetProp ? `target-prop=${targetProp}` : ''}
+        ${pressed ? `pressed=${pressed}` : ''}
+        ${expanded ? `expanded=${expanded}` : ''}
         ${disabled ? `disabled=${disabled}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
