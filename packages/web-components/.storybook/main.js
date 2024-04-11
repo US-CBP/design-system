@@ -29,7 +29,6 @@ const config = {
     //getAbsolutePath('@storybook/addon-interactions'), 
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath("@storybook/addon-mdx-gfm"),
-    getAbsolutePath("@storybook/addon-mdx-gfm")
   ],
   framework: {
     name: getAbsolutePath('@storybook/web-components-vite'),
