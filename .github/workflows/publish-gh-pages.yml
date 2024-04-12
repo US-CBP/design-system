@@ -37,5 +37,5 @@ jobs:
         with:
           install_command: npm ci # default: npm ci
           build_command: npm run build-wc-package # default: npm run build-storybook
-          path: .public/web-components-sb # default: dist/storybook
-          checkout: false # default: true
+          path: packages/web-components/storybook-static # default: dist/storybook
+          checkout: false # default: true   
