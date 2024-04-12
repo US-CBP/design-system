@@ -1,6 +1,6 @@
 # Workflow name
 name: Build and Publish Storybook to GitHub Pages
-run-name: ${{ github.actor }} is deploying the CBP Design System documentation packages to Github Pages
+run-name: ${{ github.actor }} is deploying the CBP-DS Web Component documentation to Github Pages
 
 # Event for the workflow to run on
 on: 
