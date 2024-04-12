@@ -34,7 +34,7 @@
     "generate": "stencil generate",
     "storybook": "stencil build --docs && storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build-pages": "storybook build --output-dir ../../.public/web-components-sb"
+    "build-pages": "storybook build --output-dir storybook-static"
   },
   "dependencies": {
     "@stencil/core": "^4.15.0"
