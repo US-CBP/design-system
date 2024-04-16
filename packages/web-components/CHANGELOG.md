@@ -4,12 +4,14 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
-## [Unreleased]
+## [0.0.1-develop.7] 04-16-2024
 
 * Add props to `cbp-universal-header` to specify locations of images.
-* Upgraded web component package to Stencil 4.13.0 and Storybook 8.
-* Added Web Component Analyzer and Web Component Storybook helpers to the web components package.
+* Fixed rounded corners on anchors in decision cards.
+* Upgraded web component package to Stencil 4.15.0 and Storybook 8.x.
+* Added Custom Element Component Analyzer and Web Component Storybook helpers to the web components package.
 * Added design token documentation to Storybook.
+* Fixed auto-deployment of Web Components Storybook to GitHub pages.
 
 ## [0.0.1-develop.6] 03-20-2024
 
