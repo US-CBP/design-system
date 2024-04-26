@@ -36,6 +36,7 @@
   
   --cbp-button-color-outline-focus: var(--cbp-color-white);
 
+  --cbp-button-padding: var(--cbp-space-2x) var(--cbp-space-3x);
   --cbp-button-border-width: var(--cbp-border-size-md);
   --cbp-button-border-style: solid;
   --cbp-button-border-radius: var(--cbp-border-radius-soft);
@@ -55,7 +56,7 @@ cbp-button {
     text-transform: uppercase;
     letter-spacing: var(--cbp-letter-spacing-loose);
     text-decoration: none;
-    padding: var(--cbp-space-2x) var(--cbp-space-3x);
+    padding: var(--cbp-button-padding);
     transition: all var(--cbp-motion-duration-shorter);
     min-height: 2.25rem;
     cursor: pointer;
