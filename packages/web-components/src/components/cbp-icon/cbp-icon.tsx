@@ -177,7 +177,8 @@ export class CbpIcon {
     },
   }
 
-  componentWillLoad() {
+  // These properties need to be reactive, so process on every render
+  componentWillRender() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
     }
