@@ -25,6 +25,9 @@ The Grid component is a wrapper that invokes a CSS Grid context, acting as the g
 ### Responsiveness
 
 * The parent Grid component accepts a `breakpoint` property that defines (in responsive CSS units) the viewport width at which the grid items linearize vertically.
+* Always use relative CSS units such as `fr` or `rem`. Using pixels is fragile and may break if users have custom text sizing or spacing.
+  * `fr` (fractional) units mix with fixed sizes well, unlike percentages.
+  * Use `grid-template-columns` to create a flexible grid with variable columns based on the size of the parent, leveraging CSS functions such as `repeat` and values such as `auto-fill` and `auto-fit` within. E.g., `grid-template-columns: repeat(auto-fill, 10rem)`
 
 ### Accessibility
 

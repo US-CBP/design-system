@@ -26,6 +26,7 @@ The Flex component is a wrapper that invokes a CSS Flexbox context, acting as th
 
 * Flexbox is by default responsive, especially when wrapping is allowed.
 * The parent Flex component accepts a `breakpoint` property that defines (in responsive CSS units) the viewport width at which the flex children linearize vertically.
+* Always use relative CSS units such as `fr` or `rem`. Using pixels is fragile and may break if users have custom text sizing or spacing.
 
 ### Accessibility
 
