@@ -6,14 +6,12 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-The Segmented Button Group component wraps multiple buttons and can be used as multi-option toggle or group of controls.
+The Segmented Button Group component wraps multiple buttons and can be used as a multi-option toggle or group of controls.
 
 ## Functional Requirements
 
 * The Segmented Button Group is a wrapper for child Button components.
 * The group may allow only one option to be selected (pressed) at a time, or multiple items to be selected.
-* The Footer component may optionally contain footer navigation.
-* The contents of the footer are supplied by the application (slotted), but should be standard across most applications.
 
 ## Technical Specifications
 
@@ -25,7 +23,8 @@ The Segmented Button Group component wraps multiple buttons and can be used as m
 
 ### Responsiveness
 
-* TBD
+* Segmented Button Groups do not wrap and should be tested at small device sizes to make sure they are not truncated.
+* If icons are intuitive and appropriate, the `cbp-hide` component may be leveraged to visually hide the text labels and show only icons at small screen sizes.
 
 ### Accessibility
 

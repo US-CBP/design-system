@@ -35,7 +35,9 @@
   --cbp-button-color-border-active: var(--cbp-color-interactive-active-dark);
   
   --cbp-button-color-outline-focus: var(--cbp-color-white);
+  --cbp-button-focus-outline-width: var(--cbp-border-size-md);
 
+  --cbp-button-padding: var(--cbp-space-2x) var(--cbp-space-3x);
   --cbp-button-border-width: var(--cbp-border-size-md);
   --cbp-button-border-style: solid;
   --cbp-button-border-radius: var(--cbp-border-radius-soft);
@@ -55,7 +57,7 @@ cbp-button {
     text-transform: uppercase;
     letter-spacing: var(--cbp-letter-spacing-loose);
     text-decoration: none;
-    padding: var(--cbp-space-2x) var(--cbp-space-3x);
+    padding: var(--cbp-button-padding);
     transition: all var(--cbp-motion-duration-shorter);
     min-height: 2.25rem;
     cursor: pointer;
@@ -78,7 +80,7 @@ cbp-button {
       color: var(--cbp-button-color-text-focus);
       background-color: var(--cbp-button-color-fill-focus);
       border-color: var(--cbp-button-color-border-focus);
-      outline-width: var(--cbp-border-size-md);
+      outline-width: var(--cbp-button-focus-outline-width);
     }
   
     &:active {

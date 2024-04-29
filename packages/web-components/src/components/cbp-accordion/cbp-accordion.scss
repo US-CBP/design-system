@@ -1,0 +1,12 @@
+/**
+ * @prop --cbp-accordion-gap: --cbp-space-3x
+ */
+:root{
+  --cbp-accordion-gap: var(--cbp-space-3x);
+}
+
+cbp-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cbp-accordion-gap);
+}

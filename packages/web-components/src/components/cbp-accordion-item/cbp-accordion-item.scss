@@ -1,0 +1,188 @@
+/**
+ *
+ */
+:root {
+  --cbp-accordion-item-border-width: var(--cbp-border-width-xs);
+  --cbp-accordion-item-border-style: solid;
+  --cbp-accordion-item-border-color: var(--cbp-color-interactive-default-light-secondary);
+  --cbp-accordion-item-border-radius: var(--cbp-border-radius-sharp, 0);
+
+  --cbp-accordion-item-color: var(--cbp-color-text-darker);
+  --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-10);
+
+  --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
+  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
+
+  --cbp-accordion-item-control-gap: var(--cbp-space-3x);
+  --cbp-accordion-item-control-padding: var(--cbp-space-3x);
+  --uef-accordion-item-control-direction: row;
+
+  --cbp-accordion-item-content-font-size: var(--cbp-font-size-md);
+  --cbp-accordion-item-content-font-family: inherit;
+  --cbp-accordion-item-content-font-weight: var(--cbp-font-weight-regular);
+  --cbp-accordion-item-content-padding: var(--cbp-space-3x);
+  --cbp-accordion-item-toggle-color: var(--cbp-color-black, #000);
+}
+
+cbp-accordion-item {
+  display: flex;
+  flex-direction: column;
+
+  &[open] {
+    --cbp-accordion-item-color: var(--cbp-color-text-lighter);
+    --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-60);
+
+    .cbp-accordion-item--control {
+      --cbp-accordion-rotate-icon: rotate(270deg);
+      --cbp-accordion-toggle: expandTo 500ms;
+      //--cbp-accordion-item-color-border: var(--cbp-color-gray-cool-60);
+
+      .cbp-accordion-item--toggle {
+        --cbp-button-color-text: var(--cbp-color-text-lighter);
+      }
+
+      &:hover:not(:focus-within):not(:active) {
+        --cbp-accordion-item-color: var(--cbp-color-text-lighter);
+        --cbp-accordion-item-color-fill: var(--cbp-color-interactive-secondary-darker);
+
+        .cbp-accordion-item--toggle {
+          --cbp-button-color-text: var(--cbp-color-text-lighter);
+        }
+
+        + .cbp-accordion-item--content {
+          --cbp-accordion-item-color-fill: var(--cbp-color-interactive-secondary-darker);
+        }
+      }
+    }
+  }
+
+  .cbp-accordion-item--control {
+    display: block;
+    flex-direction: var(--cbp-accordion-item-control-direction, row);
+    gap: var(--cbp-accordion-item-control-gap);
+    min-height: var(--cbp-space-13x);
+    color: var(--cbp-accordion-item-color);
+    --cbp-button-color-text: var(--cbp-accordion-item-color);
+    background-color: var(--cbp-accordion-item-color-fill);
+    font-size: var(--cbp-accordion-item-control-font-size);
+    font-weight: var(--cbp-accordion-item-control-font-weight);
+    padding: var(--cbp-accordion-item-control-padding);
+    cursor: pointer;
+
+    &:hover {
+      --cbp-accordion-item-color: var(--cbp-color-text-darkest);
+      --cbp-accordion-item-color-fill: var(--cbp-color-interactive-secondary-light);
+
+      + .cbp-accordion-item--content {
+        --cbp-accordion-item-color-fill: var(--cbp-button-color-border-hover);
+      }
+    }
+
+    &:focus-within {
+      --cbp-accordion-item-color: var(--cbp-button-color-text-focus);
+      --cbp-accordion-item-color-fill: var(--cbp-button-color-fill-focus);
+      outline-style: solid;
+      outline-color: var(--cbp-button-color-outline-focus);
+      outline-width: var(--cbp-border-size-md);
+      outline-offset: calc(-1 * var(--cbp-space-1x));
+
+      .cbp-accordion-item--toggle {
+        --cbp-button-color-text: var(--cbp-button-color-text-focus) !important;
+      }
+
+      + .cbp-accordion-item--content {
+        --cbp-accordion-item-color-fill: var(--cbp-button-color-fill-focus);
+      }
+    }
+
+    &:active {
+      --cbp-accordion-item-color: var(--cbp-button-color-text-active);
+      --cbp-accordion-item-color-fill: var(--cbp-button-color-fill-active);
+
+      .cbp-accordion-item--toggle {
+        --cbp-button-color-text: var(--cbp-button-color-text-active) !important;
+      }
+
+      + .cbp-accordion-item--content {
+        --cbp-accordion-item-color-fill: var(--cbp-button-color-border-active);
+      }
+    }
+
+    .cbp-accordion-item--toggle {
+      --cbp-button-padding: 0;
+      --cbp-button-border-width: 0;
+      --cbp-button-focus-outline-width: 0;
+
+      --cbp-button-color-text: var(--cbp-accordion-item-color) !important;
+      --cbp-button-color-text-hover: var(--cbp-accordion-item-color) !important;
+      --cbp-button-color-text-focus: var(--cbp-accordion-item-color) !important;
+      --cbp-button-color-text-active: var(--cbp-accordion-item-color) !important;
+    
+      --cbp-button-color-fill: transparent !important;
+      --cbp-button-color-fill-hover: transparent !important;
+      --cbp-button-color-fill-focus: transparent !important;
+      --cbp-button-color-fill-active: transparent !important;
+
+      cbp-icon svg {
+        transition: transform 150ms;
+        transform: var(--cbp-accordion-rotate-icon);
+      }
+    }
+  }
+
+  .cbp-accordion-item--content {
+    padding: var(--cbp-space-4x) var(--cbp-space-3x);
+    border-width: var(--cbp-border-size-xl);
+    border-style: var(--cbp-accordion-item-border-style);
+    border-color: var(--cbp-accordion-item-color-fill);
+    border-top: 0;
+
+    animation: var(--cbp-accordion-toggle);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 10);
+    animation-iteration-count: revert;
+    animation-fill-mode: forwards;
+    overflow: hidden;
+  }
+
+  &:not([open]) {
+    --cbp-accordion-rotate-icon: rotate(90deg);
+  }
+
+  &:not([open]) .cbp-accordion-item--content {
+    display: none;
+  }
+
+  &[color=danger],
+  &[color=danger][open] {
+    --cbp-accordion-item-color: var(--cbp-color-text-lighter);
+    --cbp-accordion-item-color-fill: var(--cbp-color-danger-base);
+
+    .cbp-accordion-item--control {
+      .cbp-accordion-item--toggle {
+        --cbp-button-color-text: var(--cbp-color-text-lighter);
+      }
+
+      &:hover:not(:focus-within):not(:active) {
+        --cbp-accordion-item-color: var(--cbp-color-text-lightest);
+        --cbp-accordion-item-color-fill: var(--cbp-color-danger-dark);
+
+        + .cbp-accordion-item--content {
+          --cbp-accordion-item-color-fill: var(--cbp-color-danger-dark);
+        }
+
+        .cbp-accordion-item--toggle {
+          --cbp-button-color-text: var(--cbp-color-text-lightest);
+        }
+      }
+    }
+  }
+}
+
+@keyframes expandTo {
+  from {
+    max-height: 0px;
+  }
+  to {
+    max-height: 5000px;
+  }
+}
