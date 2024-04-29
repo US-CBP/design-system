@@ -17,33 +17,11 @@
   --cbp-accordion-item-control-padding: var(--cbp-space-3x);
   --uef-accordion-item-control-direction: row;
 
-  --cbp-accordion-item-content-font-size: var(--cbp-font-size-md, 1rem);
+  --cbp-accordion-item-content-font-size: var(--cbp-font-size-md);
   --cbp-accordion-item-content-font-family: inherit;
-  --cbp-accordion-item-content-font-weight: var(--cbp-font-weight-regular, 400);
-  --cbp-accordion-item-content-padding: var(--cbp-space-4x);
+  --cbp-accordion-item-content-font-weight: var(--cbp-font-weight-regular);
+  --cbp-accordion-item-content-padding: var(--cbp-space-3x);
   --cbp-accordion-item-toggle-color: var(--cbp-color-black, #000);
-
-  --cbp-button-color-text: var(--cbp-color-text-lightest);
-  --cbp-button-color-text-hover: var(--cbp-color-text-lightest);
-  --cbp-button-color-text-focus: var(--cbp-color-text-lightest);
-  --cbp-button-color-text-active: var(--cbp-color-text-lightest);
-
-  --cbp-button-color-fill: var(--cbp-color-interactive-primary-dark);
-  --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-darker);
-  --cbp-button-color-fill-focus: var(--cbp-color-interactive-focus-dark);
-  --cbp-button-color-fill-active: var(--cbp-color-interactive-active-dark);
-
-  --cbp-button-color-border: var(--cbp-color-interactive-primary-dark);
-  --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-darker);
-  --cbp-button-color-border-focus: var(--cbp-color-interactive-focus-dark);
-  --cbp-button-color-border-active: var(--cbp-color-interactive-active-dark);
-
-  --cbp-button-color-outline-focus: var(--cbp-color-white);
-
-  --cbp-button-padding: var(--cbp-space-2x) var(--cbp-space-3x);
-  --cbp-button-border-width: var(--cbp-border-size-md);
-  --cbp-button-border-style: solid;
-  --cbp-button-border-radius: var(--cbp-border-radius-soft);
 }
 
 cbp-accordion-item {
@@ -51,19 +29,16 @@ cbp-accordion-item {
   flex-direction: column;
 
   &[open] {
+    --cbp-accordion-item-color: var(--cbp-color-text-lighter);
+    --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-60);
+
     .cbp-accordion-item--control {
       --cbp-accordion-rotate-icon: rotate(270deg);
       --cbp-accordion-toggle: expandTo 500ms;
-      --cbp-accordion-item-color: var(--cbp-color-text-lighter);
-      --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-60);
-      --cbp-accordion-item-color-border: var(--cbp-color-gray-cool-60);
+      //--cbp-accordion-item-color-border: var(--cbp-color-gray-cool-60);
 
       .cbp-accordion-item--toggle {
         --cbp-button-color-text: var(--cbp-color-text-lighter);
-      }
-
-      + .cbp-accordion-item--content {
-        --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-60);
       }
 
       &:hover:not(:focus-within):not(:active) {
@@ -82,7 +57,7 @@ cbp-accordion-item {
   }
 
   .cbp-accordion-item--control {
-    cursor: pointer;
+    display: block;
     flex-direction: var(--cbp-accordion-item-control-direction, row);
     gap: var(--cbp-accordion-item-control-gap);
     min-height: var(--cbp-space-13x);
@@ -92,6 +67,7 @@ cbp-accordion-item {
     font-size: var(--cbp-accordion-item-control-font-size);
     font-weight: var(--cbp-accordion-item-control-font-weight);
     padding: var(--cbp-accordion-item-control-padding);
+    cursor: pointer;
 
     &:hover {
       --cbp-accordion-item-color: var(--cbp-color-text-darkest);
@@ -133,7 +109,19 @@ cbp-accordion-item {
     }
 
     .cbp-accordion-item--toggle {
-      --cbp-button-padding: revert;
+      --cbp-button-padding: 0;
+      --cbp-button-border-width: 0;
+      --cbp-button-focus-outline-width: 0;
+
+      --cbp-button-color-text: var(--cbp-accordion-item-color) !important;
+      --cbp-button-color-text-hover: var(--cbp-accordion-item-color) !important;
+      --cbp-button-color-text-focus: var(--cbp-accordion-item-color) !important;
+      --cbp-button-color-text-active: var(--cbp-accordion-item-color) !important;
+    
+      --cbp-button-color-fill: transparent !important;
+      --cbp-button-color-fill-hover: transparent !important;
+      --cbp-button-color-fill-focus: transparent !important;
+      --cbp-button-color-fill-active: transparent !important;
 
       cbp-icon svg {
         transition: transform 150ms;
@@ -162,6 +150,31 @@ cbp-accordion-item {
 
   &:not([open]) .cbp-accordion-item--content {
     display: none;
+  }
+
+  &[color=danger],
+  &[color=danger][open] {
+    --cbp-accordion-item-color: var(--cbp-color-text-lighter);
+    --cbp-accordion-item-color-fill: var(--cbp-color-danger-base);
+
+    .cbp-accordion-item--control {
+      .cbp-accordion-item--toggle {
+        --cbp-button-color-text: var(--cbp-color-text-lighter);
+      }
+
+      &:hover:not(:focus-within):not(:active) {
+        --cbp-accordion-item-color: var(--cbp-color-text-lightest);
+        --cbp-accordion-item-color-fill: var(--cbp-color-danger-dark);
+
+        + .cbp-accordion-item--content {
+          --cbp-accordion-item-color-fill: var(--cbp-color-danger-dark);
+        }
+
+        .cbp-accordion-item--toggle {
+          --cbp-button-color-text: var(--cbp-color-text-lightest);
+        }
+      }
+    }
   }
 }
 

@@ -16,16 +16,30 @@ export class CbpAccordionItem {
 
   @Element() host: HTMLElement;
 
+  /**
+   * Specifies an optional `id` for the accordion item heading, also used to generate an `id` for 
+   * the accordion item content wrapper. If this property is not specified, a unique string will 
+   * automatically be generated. 
+   */
   @Prop() headingId: string = createNamespaceKey('cbp-accordion-item');
+  
+  /** Specifies whether the accordion is open. */
   @Prop({ reflect: true }) open: boolean;
+  
+  /** The accordion control label. */
   @Prop() label: string;
+
+  /** The heading level of the accordion item control. Defaults to h3. */
   @Prop() headingLevel: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = 'h3';
+  
+  /** Specifies an optional color variant of the accordion item. */
+  @Prop({reflect:true}) color: 'danger';
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+  /** A custom event emitted when the accordion item control is activated. */
   @Event() accordionItemClick: EventEmitter;
-
   handleClick() {
     this.open = !this.open;
     this.accordionItemClick.emit({
@@ -76,7 +90,7 @@ export class CbpAccordionItem {
           <cbp-flex-item id={this.headingId} flex-grow="1">
             { this.host.querySelector('[slot="cbp-accordion-label"]')
               ? <slot name="cbp-accordion-label" />
-              : this.label
+              : <cbp-typography tag={this.headingLevel} variant="heading-sm">{this.label}</cbp-typography>
             }
           </cbp-flex-item>
         </cbp-flex>

@@ -21,21 +21,29 @@ export default {
         {
           label: 'Accordion Item 1',
           open: false,
+          headingLevel: '',
+          color: 'default',
           content: 'Accordion item 1 content.',
         },
         {
           label: 'Accordion Item 2',
           open: false,
+          headingLevel: '',
+          color: 'default',
           content: 'Accordion item 2 content.',
         },
         {
           label: 'Accordion Item 3',
           open: false,
+          headingLevel: '',
+          color: 'danger',
           content: 'Accordion item 3 content.',
         },
         {
           label: 'Accordion Item 4',
           open: false,
+          headingLevel: '',
+          color: 'default',
           content: 'Accordion item 4 content.',
         },
       ],
@@ -44,11 +52,13 @@ export default {
   
 
   function generateChildren(items) {
-    const html = items.map(({ label, content, open }) => {
+    const html = items.map(({ label, content, open, color, headingLevel }) => {
       return `
         <cbp-accordion-item
           ${label ? `label="${label}"` : ''}  
           ${open == true ? 'open' : ''}
+          ${color === 'danger' ? `color=${color}` : ''}
+          ${headingLevel ? `heading-level=${headingLevel}` : ''}
         >
           ${content}
         </cbp-accordion-item>
@@ -61,7 +71,7 @@ export default {
   const Template = ({ items, multiple, sx }) => {
     return ` 
         <cbp-accordion
-            ${multiple ? `multiple` : ''}  
+            ${multiple ? `multiple` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
             ${generateChildren(items)}
