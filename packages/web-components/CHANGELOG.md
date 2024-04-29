@@ -4,6 +4,12 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
+## [0.0.1-develop.8] 04-29-2024
+
+* First cut of `cbp-accordion` and `cbp-accordion-item` components.
+* Fixed reactivity of the `rotate` property on `cbp-icon`.
+* Updates to `cbp-button` in support of the Accordion.
+
 ## [0.0.1-develop.7] 04-16-2024
 
 * Add props to `cbp-universal-header` to specify locations of images.
