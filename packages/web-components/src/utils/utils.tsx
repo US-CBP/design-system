@@ -52,3 +52,14 @@ export const debounce = <T extends { [key: string]: any }>({ callback, ms, preve
     timer = setTimeout(callback, ms, ...args);
   };
 };
+
+export const getElementAttrs = (el: HTMLElement): { [key: string]: any } => {
+  let attrs = {};
+  Array.from(el?.attributes || []).forEach(({ name, value }) => {
+    attrs = {
+      ...attrs,
+      [name]: value,
+    };
+  });
+  return attrs;
+};
