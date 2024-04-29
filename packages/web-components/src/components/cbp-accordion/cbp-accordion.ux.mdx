@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Accordion/UX Guidance" />
+
+# Accordion
+
+## Overview
+
+The Accordion component provides a way to organize large amounts of content in vertical sections that can be expanded or collapsed.
+
+## UX Guidance
+
+### Description
+
+The Accordion component is an element that allows us to organize large amounts of content in a more space-efficient manner through progressive disclosure. This can help users digest information more easily by breaking it up into more manageable chunks that can be expanded or collapsed at their discretion. 
+
+### Anatomy
+
+Each Accordion section should have a heading with a title and the chevron icon. The direction of the chevron icon should indicate down, for expand, or up for collapse (the direction the content will go). 
+
+The Accordion heading uses the `$cbp-font-size-heading-s` sizing (1.125rem/18px) and should not be altered. When considering the character length of the heading title for each section remember that heading area allows for two lines of text, but not three, as the height of the heading does not change. It is recommended that you test at the smallest viewport sizes to ensure proper heading titles are at an appropriate length. 
+
+Upon expansion, the chevron icon on the heading should rotate up and the content should reveal itself underneath the heading. The content in the expanded area is contained within a border with an internal padding of `$cbp-space-4x` (16px). Generally, the content of the accordion sections is entirely up to the development team, as long as proper interior spacing inside the accordion is maintained.
+
+### Behavior
+
+Clicking/tapping anywhere on the heading will either expand or collapse that section of content. Users can navigate between Accordion sections by pressing `Tab` or `Shift-Tab`. Users can expand or collapse a section by pressing `Enter` or `Space` while the header area has focus.
+
+Depending on your particular situation, you can set up the default state of your accordions to be all collapsed, or have the first section be expanded (but never all sections expanded). Optionally you can add a button to the top of this component area to expand all sections. 
+
+### States
+
+The Accordion component is an interactive element and as such has several interactive states. There may be slight visual differences between an element’s interactive state depending on whether it is collapsed or expanded.
+
+**Enabled:** *The default state of this element.* 
+
+**Hover:** *This state is revealed upon the user hovering over the element with a mouse or cursor. It is not visible with touch-based devices.*
+
+**Focus:** *This state indicates the element has been selected via a keyboard or assistive device, or is the last interactive element that has been interacted with.*
+
+**Disabled:** *This state indicates that this Accordion element is currently unavailable due to some constraint or other control has made it disabled. For example, a section contains sensitive information and the user lacks sufficient permissions to view it.* 
+
+**Danger:** *This state indicates that the Accordion element contains derogatory information, or depending on use case may indicate that the section contains an element in an error state.*
+
+### Placement
+
+Accordions can be placed within the page using the layout grid, or within other container elements such as a Card or Drawer. All Accordion sections within a group should be aligned to each other and be the same length. Each Accordion section should have spacing between them of `$cbp-space-3x` (12px) and this should not be altered. 
+
+When placing multiple sets of Accordion groups in a page it is recommended that each group be placed inside a container element and have a clear group title for each grouping. 
+
+### **Variants**
+
+There are two variants of the Accordion component including the default, or with a Badge (counter) that rests in the right side of the heading bar. 
+
+### **When to Use**
+
+Development teams should consider using the Accordion component in situations where the page’s content has become excessively long, and where scrolling has a negative effect on user information retention. 
+
+- Accordions should have at least 5 sections for it to really make sense for their use.
+- The information contained in your Accordion sections should be related.
+- Generally, they should be used where it is not absolutely crucial for all content to be read in full to make a decision or action. For example, organizing sections of content related to a person’s profile would make sense.
+- Do not nest another Accordion component inside of another.
+
+### **When to Consider Using a Different Component**
+
+Given that Accordions purposely hide content they should not be used in situations where it is expected that the user will need to read every single piece of content contained in the page in order to make an informed action. As such, they should not be used to organize sections of a form, or where it is expected that a user should read every line of content present.
+
+### Related Components
+
+- **Tabs:** *Consider using Tabs when you only have a few sections.*
+- **Structured List:** *Consider using the Structured list when it is expected for the user to ingest every piece of content present and where there are too many sections to accommodate horizontal tabs.*
+- **Progress Indicator:** *Consider using a progress indicator when trying to break up portions of a long form.*
+- **Tree View:** *Consider using Tree View when you need to nest multiple levels of information within in each other, or you are emulating a file structure.*
+
+## Feedback
+
+See something wrong or broken? Want to help us improve this component in the future? Please provide your feedback to the team, or ask any questions you may have by leaving a comment on our [Github page](https://github.com/US-CBP/design-system). Please note that our team may be limited to providing assistance to teams that are internal to US Customs and Border Protection clients.
