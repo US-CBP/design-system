@@ -6,34 +6,41 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-The Link  component renders (or wraps) an anchor for navigation styled in accordance to the design system.
+The Link component renders (or wraps) an anchor for navigation styled in accordance to the design system.
 
 ## Functional Requirements
 
-* The Link component Expand component is made up of a heading control and content.
-* By default the content is hidden, but the Expand component may be specified as `open` via property.
+* The Link component API should support native anchor functionality and accessibility.
+* An anchor may be supplied as slotted content rather than rendered by the web component.
+* The styling provided by the Link component is meant for standard in-content links; not special cases such as navigation links, which may be styled differently and may have more appropriate components built for those situations.
  
 ## Technical Specifications
 
 ### User Interactions
 
-* Accordion Items are toggled via its heading.
-  * While the entire heading is not a button, clicking anywhere on it will toggle its content.
-  * When using keyboard navigation, the actual chevron button will gain focus and activation will toggle the accordion item.
+* A link is meant for navigation via http-get, which can be to a new page, to an element on the same page (in-page anchor), or a router event.
+  * The first two options are native functionality determined by the `href` property or overridden by a custom event handler.
+  * Routing must be handled by application logic and is not built into this web component.
+* The Link component emits a custom `linkClick` event when activated.
+* In the event that a navigation event needs to be canceled, this must be done via the anchor's native `click` event.
+* A disabled link is represented by `aria-hidden="true"` with a `role="link"` and contains no `href` attribute.
 
 ### Responsiveness
 
-* Accordion Item headings should remain brief enough to prevent wrapping into more than two lines on the smallest device profile.
+* Links are inline elements by default and should wrap, making them flexible at any screen size.
 
 ### Accessibility
 
-* Accordion Item headings default to `h3` tags, but should use the appropriate heading level for the document structure.
-* When the Accordion Item heading is activated, whether content is expanded or collapsed, focus is sent to the actual button control.
-* The button control has the `aria-expanded` attribute applied to convey statefulness of the Accordion Item.
-* The button control also contains the `aria-controls` attribute, referencing the `id` of the Accordion Item content wrapper.
+* A disabled link is represented by `aria-hidden="true"` with a `role="link"` and contains no `href` attribute.
+* An anchor with no `href` is a non-interactive element. It cannot be focused, is not styled like a link, and often presents accessibility issues.
+* Specifying alternate text via the `accessibilityText` property renders this text as an `aria-label` on the anchor.
+* `accessibilityText` is required when a link contains only an icon (without its own accessible label) or when the link text is not sufficiently descriptive and uniquely identifiable.
 
 ### Additional Notes and Considerations
 
-* If manually setting multiple Accordion Items to open via the property, the component will not force only one open even if `multiple` is not specified.
-  * So, you could specify all items open by default, regardless of this property.
-  * If `multiple` is not set to true, all Accordion Items will be closed when one is toggled to `open` via user interaction.
+* An anchor may be supplied as slotted content rather than rendered by the web component. This requirement supports frameworks that use component-based routers, such as React or Vue.
+* TODO: need clarification on "definition" variant and expected functionality.
+* TODO: investigate side effects and edge cases pertaining to "disabled" links.
+  * Are any interactive styles still inherited?
+  * Does a mouse click still emit a click event?
+  * How can this support a slotted link?
