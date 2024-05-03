@@ -83,7 +83,7 @@ export class CbpAccordionItem {
               aria-describedby={this.headingId}
               ref={el => (this.control = el)}
             >
-              <cbp-icon name="chevron-right" color="currentColor" class="hydrated"></cbp-icon>
+              <cbp-icon name="chevron-right"></cbp-icon>
             </cbp-button>
           </cbp-flex-item>
 
