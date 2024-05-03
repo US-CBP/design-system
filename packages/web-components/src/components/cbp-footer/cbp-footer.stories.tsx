@@ -26,7 +26,7 @@ function generateFooterNav(footerNav) {
 
 const InternalTemplate = ({ footerNav }) => {
   return `
-    <cbp-footer data-container-theme="dark">
+    <cbp-footer data-cbp-container-context="dark">
       <nav slot="cbp-footer-nav">
         <cbp-flex role="list" breakpoint="37.5rem">
           ${generateFooterNav(footerNav)}
