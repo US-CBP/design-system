@@ -17,6 +17,7 @@ export const CbpCard = /*@__PURE__*/createReactComponent<JSX.CbpCard, HTMLCbpCar
 export const CbpChip = /*@__PURE__*/createReactComponent<JSX.CbpChip, HTMLCbpChipElement>('cbp-chip');
 export const CbpContainer = /*@__PURE__*/createReactComponent<JSX.CbpContainer, HTMLCbpContainerElement>('cbp-container');
 export const CbpDrawer = /*@__PURE__*/createReactComponent<JSX.CbpDrawer, HTMLCbpDrawerElement>('cbp-drawer');
+export const CbpExpand = /*@__PURE__*/createReactComponent<JSX.CbpExpand, HTMLCbpExpandElement>('cbp-expand');
 export const CbpFlex = /*@__PURE__*/createReactComponent<JSX.CbpFlex, HTMLCbpFlexElement>('cbp-flex');
 export const CbpFlexItem = /*@__PURE__*/createReactComponent<JSX.CbpFlexItem, HTMLCbpFlexItemElement>('cbp-flex-item');
 export const CbpFooter = /*@__PURE__*/createReactComponent<JSX.CbpFooter, HTMLCbpFooterElement>('cbp-footer');

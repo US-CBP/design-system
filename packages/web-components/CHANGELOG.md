@@ -4,6 +4,11 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
+## [unreleased] TBD
+
+* First cut of `cbp-expand`.
+* Renamed `data-container-theme` to `data-cbp-container-context` to convey that a specific container/DOM node is being displayed light or dark.
+
 ## [0.0.1-develop.8] 04-29-2024
 
 * First cut of `cbp-accordion` and `cbp-accordion-item` components.
