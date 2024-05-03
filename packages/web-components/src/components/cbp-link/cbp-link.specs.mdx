@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Link/Specifications" />
+
+# cbp-link
+
+## Purpose
+
+The Link  component renders (or wraps) an anchor for navigation styled in accordance to the design system.
+
+## Functional Requirements
+
+* The Link component Expand component is made up of a heading control and content.
+* By default the content is hidden, but the Expand component may be specified as `open` via property.
+ 
+## Technical Specifications
+
+### User Interactions
+
+* Accordion Items are toggled via its heading.
+  * While the entire heading is not a button, clicking anywhere on it will toggle its content.
+  * When using keyboard navigation, the actual chevron button will gain focus and activation will toggle the accordion item.
+
+### Responsiveness
+
+* Accordion Item headings should remain brief enough to prevent wrapping into more than two lines on the smallest device profile.
+
+### Accessibility
+
+* Accordion Item headings default to `h3` tags, but should use the appropriate heading level for the document structure.
+* When the Accordion Item heading is activated, whether content is expanded or collapsed, focus is sent to the actual button control.
+* The button control has the `aria-expanded` attribute applied to convey statefulness of the Accordion Item.
+* The button control also contains the `aria-controls` attribute, referencing the `id` of the Accordion Item content wrapper.
+
+### Additional Notes and Considerations
+
+* If manually setting multiple Accordion Items to open via the property, the component will not force only one open even if `multiple` is not specified.
+  * So, you could specify all items open by default, regardless of this property.
+  * If `multiple` is not set to true, all Accordion Items will be closed when one is toggled to `open` via user interaction.

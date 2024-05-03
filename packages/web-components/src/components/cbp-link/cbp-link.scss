@@ -8,9 +8,8 @@
   --cbp-link-outline-color-focus: var(--cbp-color-interactive-focus-dark);
 }
 
-
 [data-cbp-theme=dark],
-[data-container-theme=dark] {
+[data-cbp-container-context=dark] {
   --cbp-link-color: var(--cbp-color-interactive-primary-light);
   --cbp-link-color-visited: var(--cbp-color-interactive-visited-light);
   --cbp-link-color-hover: var(--cbp-color-interactive-primary-lighter);
