@@ -21,7 +21,7 @@ export const getFocusableElements = (scope: HTMLElement) => {
     `[contenteditable]${not.inert}${not.negTabIndex}`,
     `[tabindex]${not.inert}${not.negTabIndex}`,
   ];
-  console.log(Array.from(scope.querySelectorAll(selectors.join(','))));
+  //console.log(Array.from(scope.querySelectorAll(selectors.join(','))));
   return Array.from(scope.querySelectorAll(selectors.join(',')));
   //return Array.from(scope.querySelectorAll('[tabindex="0"],a[href],button,input,textarea,select'));
 };
@@ -62,4 +62,8 @@ export const getElementAttrs = (el: HTMLElement): { [key: string]: any } => {
     };
   });
   return attrs;
+};
+
+export const clamp = (min: number, n: number, max: number) => {
+  return Math.max(min, Math.min(n, max));
 };
