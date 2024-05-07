@@ -1,5 +1,5 @@
 import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
-import { setCSSProps } from '../../utils/utils';
+import { setCSSProps, getElementAttrs } from '../../utils/utils';
 //import state from './store';
 
 /**
@@ -13,8 +13,10 @@ export class CbpButton {
   private button: any; // HTMLButtonElement or HTMLAnchorElement
   private controlTarget: any;
 
-  @Element() host: HTMLElement;
+  private persistedAttrs: any;
 
+  @Element() host: HTMLElement;
+  
   /** Specifies whether the button is a true button element or "link button." */
   @Prop() tag: 'button' | 'a' = 'button';
   /** The `type` attribute of the button: button, submit, or reset. Defaults to "button." */
@@ -111,6 +113,20 @@ export class CbpButton {
     setCSSProps(this.host, {
       ...this.sx,
     });
+
+    /* 
+     * For internal use primarily:
+     * Persist aria-* (and role) attributes on the host down to the rendered element, then remove them from the host.
+     * This is done once and is not reactive.
+     * Needs testing and possibly refinement/refactoring.
+     */
+    let hostattrs=getElementAttrs(this.host);
+    //console.log('Host Attributes: ',getElementAttrs(this.host));
+    this.persistedAttrs = Object.fromEntries(
+      Object.entries(hostattrs).filter(
+        ([key]) => ( key.includes('aria') || key == 'role' )
+      )
+    );
   }
 
   componentDidLoad() {
@@ -118,6 +134,11 @@ export class CbpButton {
       'min-width': this.width,
       'min-height': this.height
     });
+
+    // Remove any persisted aria-* attributes from the host because they don't really make sense there.
+    for (const [key] of Object.entries(this.persistedAttrs)) {
+      this.host.removeAttribute(key);
+    };
 
     this.componentLoad.emit({
       host: this.host,
@@ -147,6 +168,7 @@ export class CbpButton {
       return (
         <Host>
           <button
+            {...this.persistedAttrs}
             {...attrs}
             tabindex={this.pointerOnly || this.disabled ? -1 : 0}
             aria-label={this.accessibilityText}
@@ -165,6 +187,7 @@ export class CbpButton {
       return (
         <Host>
           <a
+            {...this.persistedAttrs}
             {...attrs}
             tabindex={this.pointerOnly || this.disabled ? -1 : 0}
             aria-label={this.accessibilityText}

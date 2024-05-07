@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Expand/Specifications" />
+
+# cbp-expand
+
+## Purpose
+
+The Expand component is a standalone component used for progressive disclosure, organizing content under a relevant heading which is used as a control for revealing and hiding its content.
+
+## Functional Requirements
+
+* The Expand component is made up of a heading, control, and content.
+* While the entire heading is not a button, clicking anywhere on it will toggle its content.
+* The "caret" icon button will gain focus when using the keyboard for navigation.
+* By default the content is hidden, but the Expand component may be specified as `open` via property.
+ 
+## Technical Specifications
+
+### User Interactions
+
+* The Expand component's content is toggled via its heading.
+  * While the entire heading is not a button, clicking anywhere on it will toggle its content.
+  * When using keyboard navigation, the actual caret button will gain focus and activation will toggle the content visibility.
+
+### Responsiveness
+
+* The component heading and content will wrap as needed based on the viewport/device.
+
+### Accessibility
+
+* Expand component headings default to `h4` tags, but should use the appropriate heading level for the document structure.
+* When the component heading is activated, whether content is expanded or collapsed, focus is sent to the actual button control.
+* The button control has the `aria-expanded` attribute applied to convey statefulness of the control.
+* The button control also contains the `aria-controls` attribute, referencing the `id` of the content wrapper.
+
+### Additional Notes and Considerations
+
+* The Expand component may be used inside of an Accordion Item, but an Accordion should never be placed inside of the Expand component.

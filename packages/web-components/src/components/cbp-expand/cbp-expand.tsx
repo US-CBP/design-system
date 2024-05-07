@@ -1,48 +1,45 @@
 import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
-
 /**
- * @slot - Accordion Item content is placed in the default slot.
- * @slot cbp-accordion-label - Optionally, an Accordion Item heading with markup may be placed in this slot rather than via the labal property.
+ * @slot - Hidden/revealed content is placed in the default slot.
+ * @slot cbp-expand-label - Optionally the component label/heading may be slotted via named slot if it contains markup rather than plain text.
  */
 @Component({
-  tag: 'cbp-accordion-item',
-  styleUrl: 'cbp-accordion-item.scss',
+  tag: 'cbp-expand',
+  styleUrl: 'cbp-expand.scss'
 })
-export class CbpAccordionItem {
+export class CbpExpand {
   private control: HTMLElement;
   private button: HTMLButtonElement;
 
   @Element() host: HTMLElement;
 
   /**
-   * Specifies an optional `id` for the accordion item heading, also used to generate an `id` for 
-   * the accordion item content wrapper. If this property is not specified, a unique string will 
+   * Specifies an optional `id` for the component item heading, also used to generate an `id` for 
+   * the content wrapper. If this property is not specified, a unique string will 
    * automatically be generated. 
    */
-  @Prop() headingId: string = createNamespaceKey('cbp-accordion-item');
+  @Prop() headingId: string = createNamespaceKey('cbp-expand');
   
-  /** Specifies whether the accordion is open. */
+  /** Specifies whether the content is expanded and visible. */
   @Prop({ reflect: true }) open: boolean;
   
-  /** The accordion control label. */
+  /** The component control label. */
   @Prop() label: string;
 
   /** The heading level of the accordion item control. Defaults to h3. */
-  @Prop() headingLevel: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = 'h3';
+  @Prop() headingLevel: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = 'h4';
   
-  /** Specifies an optional color variant of the accordion item. */
-  @Prop({reflect:true}) color: 'danger';
-
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+
   /** A custom event emitted when the accordion item control is activated. */
-  @Event() accordionItemClick: EventEmitter;
+  @Event() expandClick: EventEmitter;
   handleClick() {
     this.open = !this.open;
-    this.accordionItemClick.emit({
+    this.expandClick.emit({
       host: this.host,
       button: this.button,
       open: this.open,
@@ -67,38 +64,49 @@ export class CbpAccordionItem {
     return (
       <Host>
         <cbp-flex
-          class="cbp-accordion-item--control"
-          align-items="center"
+          class="cbp-expand--control"
+          align-items="start"
+          gap="var(--cbp-space-1x)"
           onClick={() => this.handleClick()}
         >
           <cbp-flex-item>
             <cbp-button
               type="button"
-              class="cbp-accordion-item--toggle"
+              class="cbp-expand--toggle"
               fill="ghost"
               color="secondary"
+              width="var(--cbp-space-6x)"
+              height="var(--cbp-space-6x)"
               controls={`${this.headingId}-content`}
               expanded={this.open}
-              accessibilityText="Toggle Accordion Item"
+              accessibilityText="Expand/collapse"
               aria-describedby={this.headingId}
               ref={el => (this.control = el)}
             >
-              <cbp-icon name="chevron-right"></cbp-icon>
+              <cbp-icon name="caret-down" color="currentColor"></cbp-icon>
             </cbp-button>
           </cbp-flex-item>
 
           <cbp-flex-item id={this.headingId} flex-grow="1">
-            { this.host.querySelector('[slot="cbp-accordion-label"]')
-              ? <slot name="cbp-accordion-label" />
-              : <cbp-typography tag={this.headingLevel} variant="heading-sm">{this.label}</cbp-typography>
+            { this.host.querySelector('[slot="cbp-expand-label"]')
+              ? <slot name="cbp-expand-label" />
+              : <cbp-typography 
+                  tag={this.headingLevel} 
+                  variant="heading-xs"
+                  sx='{"line-height":"var(--cbp-space-6x)"}'
+                >
+                  {this.label}
+                </cbp-typography>
             }
           </cbp-flex-item>
         </cbp-flex>
 
-        <div id={`${this.headingId}-content`} class="cbp-accordion-item--content">
+        <div id={`${this.headingId}-content`} class="cbp-expand--content">
           <slot />
         </div>
       </Host>
+
     );
   }
+
 }

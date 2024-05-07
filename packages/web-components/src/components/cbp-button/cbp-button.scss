@@ -186,9 +186,6 @@ cbp-button {
   }
 
   &[fill=ghost] {
-    --cbp-button-color-fill-active: transparent;
-    --cbp-button-color-border-active: transparent;
-    
     &[color=primary] {
       --cbp-button-color-text: var(--cbp-color-interactive-primary-dark);
       --cbp-button-color-text-hover: var(--cbp-color-interactive-primary-dark);

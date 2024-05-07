@@ -8,11 +8,12 @@ cbp-app-header {
   min-height: var(--cbp-space-14x);
   padding: 0 var(--cbp-responsive-spacing-outer);
   background-color: var(--cbp-color-white);
-  box-shadow: var(--cbp-shadow-level-1-down);
+  box-shadow: var(--cbp-shadow-level-3-down);
   z-index: var(--cbp-z-index-level-1);
 
   // Style all nav items consistently, whether links or button controls for menu/dropdown. 
-  // This may need to be refactored or pulled out and placed into a new component, e.g., cbp-nav-item
+  // This may need to be refactored or pulled out and placed into a new component, e.g., cbp-nav-item.
+  // Actually rendering them as cbp-button components would cut down on the redundant CSS and support most cases as drawer controls and links.
   //.nav-home,
   //.cbp-nav-item,
   //.cbp-menu-dropdown, 
@@ -30,12 +31,29 @@ cbp-app-header {
     white-space: nowrap;
     border-color: transparent;
     border-style: solid;
-    border-width: 0 0 var(--cbp-border-size-md) 0;
+    border-width: 0 0 var(--cbp-border-size-xl) 0;
+    outline-color: var(--cbp-color-white);
+    outline-style: solid;
+    outline-width: 0;
+    outline-offset: calc(-1 * var(--cbp-space-1x));
+    cursor: pointer;
 
     &:hover {
-      color: var(--cbp-color-text-darkest);
+      color: var(--cbp-color-interactive-secondary-darker);
       background-color: var(--cbp-color-interactive-secondary-lighter);
       border-color: var(--cbp-color-interactive-secondary-darker);
+    }
+
+    &:focus {
+      color: var(--cbp-color-text-lightest);
+      background-color: var(--cbp-color-interactive-focus-dark);
+      border-color: var(--cbp-color-interactive-focus-dark);
+      outline-width: var(--cbp-border-size-md);
+    }
+
+    &:active {
+      background-color: var(--cbp-color-interactive-active-dark);
+      border-color: var(--cbp-color-interactive-active-dark);
     }
   }
   

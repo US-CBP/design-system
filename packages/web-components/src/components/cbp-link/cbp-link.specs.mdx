@@ -6,14 +6,14 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-The Link component can either render a link(anchor tag) or act as a wrapper, providing consistent styling meant for in-content links.
+The Link component renders (or wraps) an anchor for navigation styled in accordance to the design system.
 
 ## Functional Requirements
 
 * The Link component API should support native anchor functionality and accessibility.
 * An anchor may be supplied as slotted content rather than rendered by the web component.
 * The styling provided by the Link component is meant for standard in-content links; not special cases such as navigation links, which may be styled differently and may have more appropriate components built for those situations.
-
+ 
 ## Technical Specifications
 
 ### User Interactions
@@ -27,10 +27,11 @@ The Link component can either render a link(anchor tag) or act as a wrapper, pro
 
 ### Responsiveness
 
-* There are no special responsive design concerns pertaining to links. By default, link text should wrap as needed.
+* Links are inline elements by default and should wrap, making them flexible at any screen size.
 
 ### Accessibility
 
+* A disabled link is represented by `aria-hidden="true"` with a `role="link"` and contains no `href` attribute.
 * An anchor with no `href` is a non-interactive element. It cannot be focused, is not styled like a link, and often presents accessibility issues.
 * Specifying alternate text via the `accessibilityText` property renders this text as an `aria-label` on the anchor.
 * `accessibilityText` is required when a link contains only an icon (without its own accessible label) or when the link text is not sufficiently descriptive and uniquely identifiable.

@@ -15,14 +15,13 @@
 
   --cbp-accordion-item-control-gap: var(--cbp-space-3x);
   --cbp-accordion-item-control-padding: var(--cbp-space-3x);
-  --uef-accordion-item-control-direction: row;
+  --cbp-accordion-item-control-direction: row;
 
   --cbp-accordion-item-content-font-size: var(--cbp-font-size-md);
   --cbp-accordion-item-content-font-family: inherit;
   --cbp-accordion-item-content-font-weight: var(--cbp-font-weight-regular);
   --cbp-accordion-item-content-padding: var(--cbp-space-3x);
-  --cbp-accordion-item-toggle-color: var(--cbp-color-black, #000);
-}
+  }
 
 cbp-accordion-item {
   display: flex;

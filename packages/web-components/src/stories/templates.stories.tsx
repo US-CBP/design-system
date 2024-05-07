@@ -88,7 +88,7 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
       </main>
     </cbp-container>
 
-    <cbp-footer data-container-theme="dark">
+    <cbp-footer data-cbp-container-context="dark">
       <nav slot="cbp-footer-nav">
         <cbp-flex role="list" breakpoint="37.5rem">
           <cbp-flex-item role="list-item">
