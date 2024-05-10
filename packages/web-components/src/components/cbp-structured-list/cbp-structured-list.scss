@@ -1,0 +1,52 @@
+:root {
+  --cbp-structured-list-item-padding: var(--cbp-space-4x);
+}
+cbp-structured-list {
+  display: block;
+
+
+  [slot] {
+    display: flex;
+    align-items: center;
+    padding: var(--cbp-space-1x) var(--cbp-space-3x);
+    min-height: var(--cbp-space-13x);
+    font-weight: var(--cbp-font-weight-bold);
+  }
+  
+  [slot=cbp-structured-list-header] {
+    color: var(--cbp-color-text-darkest);
+    background-color: var(--cbp-color-gray-cool-30);
+    font-style: italic;
+  }
+
+  [slot=cbp-structured-list-footer] {
+    color: var(--cbp-color-text-lightest);
+    background-color: var(--cbp-color-gray-cool-70);
+  }
+
+  &[striped] div[role=list] > *:nth-child(even) {
+    background-color: var(--cbp-color-gray-cool-4);
+  }
+
+  // Style all list items regardless of the element used to wrap/define them (don't leave this to cbp-structured-list-item)
+  div[role=list] > * {
+    display: block;
+    padding: var(--cbp-structured-list-item-padding);
+    border-bottom-style: solid;
+    border-bottom-width: var(--cbp-border-size-md);
+    border-bottom-color: var(--cbp-color-gray-cool-30);
+
+    &:hover {
+      background-color: var(--cbp-color-gray-cool-10) !important;
+    }
+  }
+
+  /*
+  &[selectable] {
+    div[role=list] > *:hover {
+      background-color: var(--cbp-color-gray-cool-10);
+    }
+  }
+  */
+
+}
