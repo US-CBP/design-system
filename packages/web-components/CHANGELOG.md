@@ -4,7 +4,7 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
-## [unreleased] TBD
+## [0.0.1-develop.9] 05-13-2024
 
 * First cut of `cbp-expand`.
 * First cut of `cbp-structured-list` and `cbp-structured-list-item`.
