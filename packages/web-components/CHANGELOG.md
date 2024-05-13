@@ -7,6 +7,8 @@ The React components are wrappers generated from this package and will share the
 ## [unreleased] TBD
 
 * First cut of `cbp-expand`.
+* First cut of `cbp-structured-list` and `cbp-structured-list-item`.
+* Updates to `cbp-icon` and `cbp-button` in support of Expand and Accordion components.
 * Renamed `data-container-theme` to `data-cbp-container-context` to convey that a specific container/DOM node is being displayed light or dark.
 
 ## [0.0.1-develop.8] 04-29-2024

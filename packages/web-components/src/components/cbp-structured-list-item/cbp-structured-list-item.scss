@@ -1,0 +1,11 @@
+cbp-structured-list-item {
+  display: block;
+
+  &[color=danger]:not([selected]) {
+    background-color: var(--cbp-color-danger-lighter) !important;
+  }
+
+  &[selected] {
+    background-color: var(--cbp-color-interactive-selected-light) !important;
+  }
+}

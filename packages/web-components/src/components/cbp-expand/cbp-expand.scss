@@ -4,10 +4,12 @@
   --cbp-expand-control-gap: var(--cbp-space-1x);
   --cbp-expand-control-padding: var(--cbp-space-3x);
   --cbp-expand-content-padding: var(--cbp-space-3x);
+  --cbp-expand-margin-bottom: var(--cbp-space-2x);
 }
 
 cbp-expand {
   display: block;
+  margin-bottom: var(--cbp-expand-margin-bottom);
 
   &:not([open]) {
     --cbp-expand-rotate-icon: rotate(-90deg);

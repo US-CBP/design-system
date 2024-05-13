@@ -1,0 +1,53 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Structured List/Specifications" />
+
+# cbp-structured-list and cbp-structured-list-item
+
+## Purpose
+
+Structured lists are a way of displaying long lists of data where the user is not directly comparing raw data one row at a time.
+
+## Functional Requirements
+
+* The parent Structured List component renders a `div` with `role="list"`, with optional slots for header and footer information before and after it respectively.
+* The Structured List may contain plain `li` elements slotted within the default slot.
+* Optionally, the Structured List Item component (`cbp-structured-list-item`) may be slotted within the default slot if additional functionality will be used, such as:
+  * Selecting of items
+  * Shading of rows in a `danger` color.
+
+## Technical Specifications
+
+### User Interactions
+
+* The Structured List supports styling for selected list items. 
+* The actual user interactions and implementation of checkboxes and buttons via slotted content is provided by the application code.
+
+### Responsiveness
+
+* The Structured List is semantically an unordered list. However, its contents may be complex and arranged in a grid with faux columns.
+  * Because each list item is separate, an overarching grid context that takes queues from content length cannot be established to lay out the list.
+  * Creating equal width columns can only be achieved using CSS Grid or the `cbp-grid` component within each list item.
+  * These grid columns should be explicitly defined and not determined by content length, since each row/item is independent and columns may not line up across rows/items.
+  * A responsive grid that wraps, containing equal sized (but flexible) columns may be achieved using some variant of `grid-template-columns` with `autofit`, 
+        e.g., `grid-template-columns="repeat(auto-fit, minmax(5rem, 1fr))"`.
+  * For grids that require more granular definition of each column, the `cbp-grid` component's `breakpoint` property may be used to linearize the grid at a specified viewport size.
+
+### Accessibility
+
+* The Structured List should be recognizable as a semantic list, regardless of how it is marked up.
+  * The parent `cbp-structured-list` component renders a `div` with `role="list"`.
+  * The immediate children slotted within the default slot of the parent should be one of the following:
+    * `li` elements
+    * `cbp-structured-list-item` components
+    * any other container with a `role="listitem"`.
+* The `cbp-structured-list-item` component applies a `role="listitem"` to its host tag, acting as a proper list item.
+* The Structured List component should have a value specified for its `accessibilityText` property, which describes the list and is applied via `aria-label`.
+* If the Structured List has a header (content in the `cbp-structured-list-header` named slot), this element should be given an `id`, which is also specified as the `headerId` property
+  and used to link the header to the list via the `aria-describedby` attribute, providing additional context for the list to screen readers.
+* The Structured List is not a table and has no column headings. If you feel the need for column headings, you should use a table instead.
+
+### Additional Notes and Considerations
+
+* The named slot `cbp-structured-list-footer` is intended for an action bar when items are selected and should not be used otherwise.
+* TODO: integrating the `cbp-structured-list-item` `selected` property with user interaction with a checkbox may take additional work and testing.
