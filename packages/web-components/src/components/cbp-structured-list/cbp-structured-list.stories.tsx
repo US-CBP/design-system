@@ -5,23 +5,50 @@ export default {
     showHeader: {
       control: 'boolean',
     },
+    headerId: {
+      control: 'text',
+    },
     showFooter: {
       control: 'boolean',
     },
     striped: {
       control: 'boolean',
     },
+    /*
     selectable: {
       control: 'boolean',
     },
+    */
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
     },
   },
+  args: {
+    showHeader: true,
+    headerId: 'list-header',
+  }
 };
 
-const StructuredListTemplate = ({ striped, selectable, showHeader, showFooter, sx }) => {
+
+function generateLIs(items) {
+  const html = items.map(({ content }) => {
+    return `<li>${content}</li>`;
+  });
+  return html.join('');
+}
+
+function generateItems(items) {
+  const html = items.map(({ content, color, selected }) => {
+    return `<cbp-structured-list-item ${color != 'default' ? `color="${color}"` : ''} ${selected ? `selected` : ''}>${content}</cbp-structured-list-item>`;
+  });
+  return html.join('');
+}
+
+
+
+
+const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, sx }) => {
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
@@ -29,20 +56,54 @@ const StructuredListTemplate = ({ striped, selectable, showHeader, showFooter, s
           header-id="list-header"
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
-          ${showHeader ? `<div slot="cbp-structured-list-header" id="list-header"># of Results, etc.</div>` : ''}
-          <li>Structured list content here.</li>
-          <li>Structured list content here.</li>
-          <li>Structured list content here.</li>
-          <li>Structured list content here.</li>
-          <li>Structured list content here.</li>
-          ${showFooter ? `<div slot="cbp-structured-list-footer">Some footer info and/or action buttons here.</div>` : ''}
+          ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
+
+          ${generateLIs(listItems)}
+
+          ${showFooter
+            ? `
+                <div slot="cbp-structured-list-footer">
+                  <cbp-flex align-items="center" justify-content="space-between">  
+                    <div>0 items selected.</div>
+                    <div>
+                      <cbp-button fill="ghost" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" accessibility-text="Compare selected items">Compare</cbp-button>
+                    </div>
+                </div>
+              ` 
+            : ''}
         </cbp-structured-list>
       `;
 };
 export const StructuredList = StructuredListTemplate.bind({});
+StructuredList.argTypes = {
+  listItems: {
+    description: 'Configure various aspects of the list items within the structured list.',
+    control: 'object',
+  },
+}
+StructuredList.args = {
+  listItems: [
+    {
+      content: 'Structured list item 1'
+    },
+    {
+      content: 'Structured list item 2'
+    },
+    {
+      content: 'Structured list item 3'
+    },
+    {
+      content: 'Structured list item 4'
+    },
+    {
+      content: 'Structured list item 5'
+    },
+  ]
+}
 
 
-const StructuredListItemsTemplate = ({ striped, selectable, showHeader, showFooter, sx }) => {
+const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, sx }) => {
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
@@ -50,20 +111,64 @@ const StructuredListItemsTemplate = ({ striped, selectable, showHeader, showFoot
           header-id="list-header"
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
-          ${showHeader ? `<div slot="cbp-structured-list-header" id="list-header"># of Results, etc.</div>` : ''}
-          <cbp-structured-list-item>Structured list content here.</cbp-structured-list-item>
-          <cbp-structured-list-item>Structured list content here.</cbp-structured-list-item>
-          <cbp-structured-list-item>Structured list content here.</cbp-structured-list-item>
-          <cbp-structured-list-item>Structured list content here.</cbp-structured-list-item>
-          <cbp-structured-list-item>Structured list content here.</cbp-structured-list-item>
-          ${showFooter ? `<div slot="cbp-structured-list-footer">Some footer info and/or action buttons here.</div>` : ''}
+        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
+
+        ${generateItems(listItems)}
+
+        ${showFooter
+            ? `
+                <div slot="cbp-structured-list-footer">
+                  <cbp-flex align-items="center" justify-content="space-between">  
+                    <div>0 items selected.</div>
+                    <div>
+                      <cbp-button fill="ghost" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" accessibility-text="Compare selected items">Compare</cbp-button>
+                    </div>
+                </div>
+              ` 
+            : ''}
         </cbp-structured-list>
       `;
 };
 export const StructuredListItems = StructuredListItemsTemplate.bind({});
+StructuredListItems.argTypes = {
+  listItems: {
+    description: 'Configure various aspects of the list items within the structured list.',
+    control: 'object',
+  },
+}
+StructuredListItems.args = {
+  listItems: [
+    {
+      content: 'Structured list item 1',
+      color: 'default',
+      selected: false
+    },
+    {
+      content: 'Structured list item 2',
+      color: 'default',
+      selected: false
+    },
+    {
+      content: 'Structured list item 3',
+      color: 'default',
+      selected: false
+    },
+    {
+      content: 'Structured list item 4',
+      color: 'danger',
+      selected: false
+    },
+    {
+      content: 'Structured list item 5',
+      color: 'default',
+      selected: false
+    },
+  ]
+}
 
 
-const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, showFooter, sx }) => {
+const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, headerId, showFooter, sx }) => {
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
@@ -71,11 +176,11 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, showF
           header-id="list-header"
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
-          ${showHeader ? `<div slot="cbp-structured-list-header" id="list-header"># of Results, etc.</div>` : ''}
+          ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">3 Results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
 
           <cbp-structured-list-item>
             <cbp-grid
-              gap="var(--cbp-space-2x)"
+              gap="var(--cbp-space-4x)"
               grid-template-columns="repeat(auto-fit, minmax(5rem, 1fr))"
             >
               <cbp-grid-item>
@@ -95,7 +200,7 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, showF
 
           <cbp-structured-list-item>
             <cbp-grid
-              gap="var(--cbp-space-2x)"
+              gap="var(--cbp-space-4x)"
               grid-template-columns="repeat(auto-fit, minmax(5rem, 1fr))"
             >
               <cbp-grid-item>
@@ -105,7 +210,7 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, showF
                 Grid Item 2
               </cbp-grid-item>
               <cbp-grid-item>
-                Grid Item 3 is a whole lot longer blah blah blah blah blah blah blah blah blah.
+                Grid Item 3 is a whole lot longer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </cbp-grid-item>
               <cbp-grid-item>
                 Grid Item 4
@@ -115,7 +220,7 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, showF
 
           <cbp-structured-list-item>
             <cbp-grid
-              gap="var(--cbp-space-2x)"
+              gap="var(--cbp-space-4x)"
               grid-template-columns="repeat(auto-fit, minmax(5rem, 1fr))"
             >
               <cbp-grid-item>
@@ -133,7 +238,18 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, showF
             </cbp-grid>
           </cbp-structured-list-item>
 
-          ${showFooter ? `<div slot="cbp-structured-list-footer">Some footer info and/or action buttons here.</div>` : ''}
+          ${showFooter
+            ? `
+                <div slot="cbp-structured-list-footer">
+                  <cbp-flex align-items="center" justify-content="space-between">  
+                    <div>0 items selected.</div>
+                    <div>
+                      <cbp-button fill="ghost" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" accessibility-text="Compare selected items">Compare</cbp-button>
+                    </div>
+                </div>
+              ` 
+            : ''}
         </cbp-structured-list>
       `;
 };

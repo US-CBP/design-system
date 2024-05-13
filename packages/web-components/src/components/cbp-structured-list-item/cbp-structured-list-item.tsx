@@ -10,7 +10,11 @@ export class CbpStructuredListItem {
 
   @Element() host: HTMLElement;
 
+  /** Optionally specifies a color variant based on design tokens. */
   @Prop({ reflect: true }) color: 'danger';
+  
+  /** Specifies whether the item is selected. */
+  @Prop({ reflect: true }) selected: boolean;
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
