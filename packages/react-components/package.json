@@ -1,6 +1,6 @@
 {
   "name": "@cbpds/react-components",
-  "version": "0.0.1-develop.8",
+  "version": "0.0.1-develop.9",
   "description": "React components encapsulating the CBP Design System web components.",
   "main": "dist/lib/index.js",
   "module": "dist/lib/index.js",
