@@ -1,3 +1,5 @@
+import { themes } from '@storybook/theming';
+
 import { setCustomElementsManifest } from "@storybook/web-components";
 import customElements from "../custom-elements.json";
 import { setWcStorybookHelpersConfig } from "wc-storybook-helpers";
@@ -49,11 +51,13 @@ export const CUSTOM_VIEWPORTS = {
 };
 
 
-
 /** @type { import('@storybook/web-components').Preview } */
 const preview = {
   parameters: {
     //actions: { argTypesRegex: '^on[A-Z].*' },
+    docs: {
+      theme: globalThis.matchMedia('(prefers-color-scheme: dark)').matches ? themes.dark : themes.light,
+    },
     controls: {
       //expanded: true,
       matchers: {
@@ -107,7 +111,8 @@ export default preview;
 // Wrap every story with `cbp-app` component, which brings in the high level CSS resets, settings, and variables.
 // DEG: 3/14/2024 - Adding theme=light temporarily until dark mode is implemented properly
 const withWrapper = (story) => {
-  return `<cbp-app theme="light">${story()}</cbp-app>`;
+  //return `<cbp-app theme="light">${story()}</cbp-app>`;
+  return `<cbp-app>${story()}</cbp-app>`;
 };
 
 /*
