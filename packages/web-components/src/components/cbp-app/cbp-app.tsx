@@ -10,7 +10,7 @@ import { Component, Prop, Host, h } from '@stencil/core';
  */
 @Component({
   tag: 'cbp-app',
-  styleUrls: ['reset.scss', 'roboto.scss', 'css-variables.scss', 'core.scss']
+  styleUrls: ['reset.scss', 'roboto.scss', 'css-variables.scss', 'core.scss', 'cbp-app.scss']
 })
 export class CbpApp {
 

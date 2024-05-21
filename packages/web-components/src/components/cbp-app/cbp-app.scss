@@ -1,2 +1,15 @@
 /* Temporary workaround for verified Stencil bug; can use @use due to compilation error */
-@import 'reset', 'roboto', 'css-variables', 'core';
+//@import 'reset', 'roboto', 'css-variables', 'core';
+
+cbp-app {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  color: var(--cbp-color-body-text);
+  background-color: var(--cbp-color-body-background);
+
+  &[data-cbp-theme=dark] {
+    --cbp-color-body-text: var(--cbp-color-text-lightest);
+    --cbp-color-body-background: var(--cbp-color-branding-cbp-dark);
+  }
+}
