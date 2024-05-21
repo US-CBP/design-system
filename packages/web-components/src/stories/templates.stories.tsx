@@ -92,22 +92,22 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
       <nav slot="cbp-footer-nav">
         <cbp-flex role="list" breakpoint="37.5rem">
           <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">App Overview</cbp-button>
+            <cbp-button tag="a" href="#" fill="ghost" context="dark-always">App Overview</cbp-button>
           </cbp-flex-item>
           <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">Trainings</cbp-button>
+            <cbp-button tag="a" href="#" fill="ghost" context="dark-always">Trainings</cbp-button>
           </cbp-flex-item>
           <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">FAQs</cbp-button>
+            <cbp-button tag="a" href="#" fill="ghost" context="dark-always">FAQs</cbp-button>
           </cbp-flex-item>
           <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">Release Notes</cbp-button>
+            <cbp-button tag="a" href="#" fill="ghost" context="dark-always">Release Notes</cbp-button>
           </cbp-flex-item>
         <cbp-flex role="list">
       </nav>
 
       <section>
-        <cbp-typography tag="h6" variant="heading-md" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
+        <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
         <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
         <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
           <span>Having an issue?</span>

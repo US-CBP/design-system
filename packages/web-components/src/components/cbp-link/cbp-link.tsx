@@ -34,6 +34,10 @@ export class CbpLink {
   @Prop() accessibilityText: string;
   /** Specifies whether the anchor is "disabled". Creating disabled anchors may introduce accessibility concerns - use with caution. */
   @Prop({ reflect: true }) disabled: boolean;
+  
+  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-invert" and does not have to be specified. */
+  @Prop({ reflect: true }) context: "light-invert" | "light-always" | "dark-inverts" | "dark-always";
+
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 

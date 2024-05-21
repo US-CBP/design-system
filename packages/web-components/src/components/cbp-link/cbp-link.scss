@@ -1,3 +1,29 @@
+/*
+
+Dark mode vs dark context
+
+Do dark context elements change styles when light/dark mode is toggled?
+
+
+:root {
+  defaults for light mode
+}
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-link[context*=dark],
+[data-cbp-theme=dark] cbp-link:not([context=light-always]),
+[data-cbp-theme=dark] cbp-link:not([context=dark-inverts]),
+//cbp-link[context=dark-always],
+
+
+{
+  defaults for dark mode and inverted cases.
+  inverted = dark
+  does not evaluate as a toggle based on theme?
+}
+
+*/
+
 :root {
   --cbp-link-color: var(--cbp-color-interactive-primary-dark);
   --cbp-link-color-visited: var(--cbp-color-interactive-visited-dark);
@@ -8,8 +34,14 @@
   --cbp-link-outline-color-focus: var(--cbp-color-interactive-focus-dark);
 }
 
-[data-cbp-theme=dark],
-[data-cbp-container-context=dark] {
+//[data-cbp-theme=dark] cbp-link:not([inverted]),
+//[data-cbp-theme=light] cbp-link[inverted] {
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-link[context*=dark],
+[data-cbp-theme=dark] cbp-link:not([context=light-always]),
+[data-cbp-theme=dark] cbp-link:not([context=dark-inverts]) {
+  //--cbp-link-color: pink;
   --cbp-link-color: var(--cbp-color-interactive-primary-light);
   --cbp-link-color-visited: var(--cbp-color-interactive-visited-light);
   --cbp-link-color-hover: var(--cbp-color-interactive-primary-lighter);

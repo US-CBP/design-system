@@ -16,8 +16,8 @@ export default {
 function generateFooterNav(footerNav) {
   const html = footerNav.map(({ label, href }) => {
     return `
-      <cbp-flex-item role="list-item">  
-        <cbp-button tag="a" href=${href}>${label}</cbp-button>
+      <cbp-flex-item role="list-item">
+        <cbp-button tag="a" href=${href} context="dark-always">${label}</cbp-button>
       </cbp-flex-item>
     `;
   });
@@ -34,12 +34,12 @@ const InternalTemplate = ({ footerNav }) => {
       </nav>
 
       <section>
-        <cbp-typography tag="h6" variant="heading-md" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
+        <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
         <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
         <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
           <span>Having an issue?</span>
-          <span>Email: <cbp-link href="mailto:somebody@example.com">this-application-support@abc.def.gov</cbp-link></span>
-          <span>CBP Helpdesk: <cbp-link href="tel:555-555-5555">(555) 555-5555</cbp-link></span>
+          <span>Email: <cbp-link href="mailto:somebody@example.com" context="dark-always">this-application-support@abc.def.gov</cbp-link></span>
+          <span>CBP Helpdesk: <cbp-link href="tel:555-555-5555" context="dark-always">(555) 555-5555</cbp-link></span>
         </cbp-flex>
       </section>
     </cbp-footer>

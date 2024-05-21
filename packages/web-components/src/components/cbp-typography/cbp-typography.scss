@@ -1,6 +1,43 @@
+:root {
+  --cbp-typography-color-text: inherit;
+  --cbp-typography-color-small-text: var(--cbp-color-text-darkest);
+  --cbp-typography-color-large-text: var(--cbp-color-text-darker);
+
+  --cbp-color-divider-fill: var(--cbp-color-gray-cool-10);
+  --cbp-color-divider-underline: var(--cbp-color-gray-cool-30);
+}
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-typography[context*=dark],
+[data-cbp-theme=dark] cbp-typography:not([context=light-always]),
+[data-cbp-theme=dark] cbp-typography:not([context=dark-inverts]) {
+  --cbp-typography-color-small-text: var(--cbp-color-text-lightest);
+  --cbp-typography-color-large-text: var(--cbp-color-text-lighter);
+  --cbp-typography-color-divider-fill: var(--cbp-color-gray-cool-10);
+  --cbp-typography-color-divider-underline: var(--cbp-color-gray-cool-30);
+}
+
+/* Inherits body text:
+    var(--cbp-color-text-lightest)
+    var(--cbp-color-text-darkest)
+
+    h6 is same as body text, all others are lighter/darker
+*/
 cbp-typography {
   color: inherit;
   
+  &[variant=masthead-1] > *,
+  &[variant=masthead-2] > *,
+  &[variant=heading-xxl] > *, h1,
+  &[variant=heading-xl] > *, h2,
+  &[variant=heading-lg] > *, h3,
+  &[variant=heading-md] > *, h4,
+  &[variant=heading-sm] > *, h5 {
+    color: var(--cbp-typography-color-large-text);
+  }
+
+
+
   &[variant=masthead-1] > * {
     font-size: var(--cbp-font-size-masthead-1);
     font-weight: var(--cbp-font-weight-thin);
@@ -44,13 +81,14 @@ cbp-typography {
   }
 
   &[variant=heading-xs] > *, h6 {
-    color: var(--cbp-color-text-darkest);
+    color: var(--cbp-typography-color-small-text);
     font-size: var(--cbp-font-size-heading-xs);
     font-weight: var(--cbp-font-weight-bold);
     line-height: var(--cbp-space-5x);
   }
 
   &[variant=body-text] > *, p {
+    color: var(--cbp-typography-color-small-text);
     font-size: var(--cbp-font-size-body);
     font-weight: var(--cbp-font-weight-regular);
     line-height: var(--cbp-space-5x);
