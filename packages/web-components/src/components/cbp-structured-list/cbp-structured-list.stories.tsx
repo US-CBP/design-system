@@ -66,8 +66,8 @@ const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, he
                   <cbp-flex align-items="center" justify-content="space-between">  
                     <div>0 items selected.</div>
                     <div>
-                      <cbp-button fill="ghost" accessibility-text="Delete selected items">Delete</cbp-button>
-                      <cbp-button fill="ghost" accessibility-text="Compare selected items">Compare</cbp-button>
+                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Compare selected items">Compare</cbp-button>
                     </div>
                 </div>
               ` 
@@ -121,8 +121,8 @@ const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeade
                   <cbp-flex align-items="center" justify-content="space-between">  
                     <div>0 items selected.</div>
                     <div>
-                      <cbp-button fill="ghost" accessibility-text="Delete selected items">Delete</cbp-button>
-                      <cbp-button fill="ghost" accessibility-text="Compare selected items">Compare</cbp-button>
+                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Compare selected items">Compare</cbp-button>
                     </div>
                 </div>
               ` 
@@ -244,8 +244,8 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
                   <cbp-flex align-items="center" justify-content="space-between">  
                     <div>0 items selected.</div>
                     <div>
-                      <cbp-button fill="ghost" accessibility-text="Delete selected items">Delete</cbp-button>
-                      <cbp-button fill="ghost" accessibility-text="Compare selected items">Compare</cbp-button>
+                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Compare selected items">Compare</cbp-button>
                     </div>
                 </div>
               ` 
