@@ -3,8 +3,8 @@
   --cbp-typography-color-small-text: var(--cbp-color-text-darkest);
   --cbp-typography-color-large-text: var(--cbp-color-text-darker);
 
-  --cbp-color-divider-fill: var(--cbp-color-gray-cool-10);
-  --cbp-color-divider-underline: var(--cbp-color-gray-cool-30);
+  --cbp-typography-color-divider-fill: var(--cbp-color-gray-cool-10);
+  --cbp-typography-color-divider-underline: var(--cbp-color-gray-cool-30);
 }
 
 // Displays dark design based on mode or context
@@ -13,8 +13,8 @@
 [data-cbp-theme=dark] cbp-typography:not([context=dark-inverts]) {
   --cbp-typography-color-small-text: var(--cbp-color-text-lightest);
   --cbp-typography-color-large-text: var(--cbp-color-text-lighter);
-  --cbp-typography-color-divider-fill: var(--cbp-color-gray-cool-10);
-  --cbp-typography-color-divider-underline: var(--cbp-color-gray-cool-30);
+  --cbp-typography-color-divider-fill: var(--cbp-color-gray-cool-70);
+  --cbp-typography-color-divider-underline: var(--cbp-color-gray-cool-50);
 }
 
 /* Inherits body text:
@@ -104,7 +104,7 @@ cbp-typography {
 
   &[divider=underline] {
     & > * {
-      border-bottom-color: var(--cbp-color-gray-cool-30);
+      border-bottom-color: var(--cbp-typography-color-divider-underline);
       border-bottom-style: solid;
       border-bottom-width: var(--cbp-border-size-md);
       padding: var(--cbp-space-3x) 0;
@@ -123,7 +123,7 @@ cbp-typography {
 
   &[divider=fill] {
     & > * {
-      background-color: var(--cbp-color-gray-cool-10);
+      background-color: var(--cbp-typography-color-divider-fill);
       border-radius: var(--cbp-border-radius-soft);
       padding: var(--cbp-space-3x);
     }
