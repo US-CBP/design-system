@@ -29,7 +29,7 @@ const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn })
               ? `
           
           <li>
-          <cbp-button fill="ghost">
+          <cbp-button color="secondary" fill="ghost" context="dark-always">
           <cbp-icon name="book"></cbp-icon>
           <cbp-hide
             hide-at="max-width: 64em"
@@ -38,7 +38,7 @@ const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn })
         </cbp-button>
       </li>
       <li>
-        <cbp-button fill="ghost">
+        <cbp-button color="secondary" fill="ghost" context="dark-always">
           <cbp-icon name="comment"></cbp-icon>  
           <cbp-hide
             visually-hide-at="max-width: 64em"
@@ -47,7 +47,7 @@ const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn })
         </cbp-button>
       </li>
       <li>
-        <cbp-button fill="ghost">
+        <cbp-button color="secondary" fill="ghost" context="dark-always">
           <cbp-icon name="user"></cbp-icon>
           <cbp-hide
             visually-hide-at="max-width: 64em"
@@ -58,7 +58,7 @@ const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn })
           `
               : `
           <li>
-            <cbp-button tag="a" href="#" fill="ghost">
+            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
             <cbp-icon name="right-to-bracket" sx='{"margin-right":"var(--cbp-space-2x)"}'></cbp-icon>
             Login
             </cbp-button>

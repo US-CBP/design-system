@@ -39,6 +39,7 @@ cbp-universal-header {
     // Button/Link - Secondary (custom) Ghost Button (Dark) styling
     // [fill] is only present for specificity
     // TechDebt: Try to adjust these contextually. Should not need pseudo classes at this level.
+    /*
     cbp-button[fill] {
       //align-items: center;
       --cbp-button-border-width: 0;
@@ -62,6 +63,7 @@ cbp-universal-header {
         --cbp-button-color-outline-active: var(--cbp-color-black);
       }
     }
+  */
   }
 }
 
