@@ -41,7 +41,6 @@ Do dark context elements change styles when light/dark mode is toggled?
 [data-cbp-theme=light] cbp-link[context*=dark],
 [data-cbp-theme=dark] cbp-link:not([context=light-always]),
 [data-cbp-theme=dark] cbp-link:not([context=dark-inverts]) {
-  //--cbp-link-color: pink;
   --cbp-link-color: var(--cbp-color-interactive-primary-light);
   --cbp-link-color-visited: var(--cbp-color-interactive-visited-light);
   --cbp-link-color-hover: var(--cbp-color-interactive-primary-lighter);
