@@ -22,6 +22,7 @@ cbp-universal-header {
     }
   }
 
+  // Tech Debt: this should probably be replaced with cbp-flex in the story to achieve this functionality explicitly
   .cbp-universal-header__content {
     ul,
     ol {
@@ -35,35 +36,6 @@ cbp-universal-header {
         display: inline;
       }
     }
-
-    // Button/Link - Secondary (custom) Ghost Button (Dark) styling
-    // [fill] is only present for specificity
-    // TechDebt: Try to adjust these contextually. Should not need pseudo classes at this level.
-    /*
-    cbp-button[fill] {
-      //align-items: center;
-      --cbp-button-border-width: 0;
-      --cbp-button-color-text: var(--cbp-color-interactive-secondary-lighter);
-      --cbp-button-color-fill: transparent;
-
-      :hover {
-        --cbp-button-color-text-hover: var(--cbp-color-interactive-secondary-lighter);
-        --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-dark);
-      }
-
-      :focus {
-        --cbp-button-color-text-focus: var(--cbp-color-text-darkest);
-        --cbp-button-color-fill-focus: var(--cbp-color-interactive-focus-light);
-        --cbp-button-color-outline-focus: var(--cbp-color-black);
-      }
-
-      :active {
-        --cbp-button-color-text-active: var(--cbp-color-text-darkest);
-        --cbp-button-color-fill-active: var(--cbp-color-interactive-focus-light);
-        --cbp-button-color-outline-active: var(--cbp-color-black);
-      }
-    }
-  */
   }
 }
 
