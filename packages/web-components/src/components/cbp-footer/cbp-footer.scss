@@ -12,12 +12,13 @@ cbp-footer {
     // Button/Link - Secondary (custom) Ghost Button (Dark) styling
     // [fill] is only present for specificity
     cbp-button[fill] {
-      --cbp-button-border-width: 0;
-      --cbp-button-color-text: var(--cbp-color-interactive-secondary-lighter);
-      --cbp-button-color-fill: transparent;
+      //--cbp-button-border-width: 0;
+      //--cbp-button-color-text: var(--cbp-color-interactive-secondary-lighter); same as secondary ghost button
+      //--cbp-button-color-fill: transparent;
       --cbp-button-border-radius: 0;
 
       // TechDebt: This should be handled by the button component's dark mode
+      /*
       :hover {
         --cbp-button-color-text-hover: var(--cbp-color-interactive-secondary-lighter);
         --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-darker);
@@ -34,6 +35,7 @@ cbp-footer {
         --cbp-button-color-fill-active: var(--cbp-color-interactive-focus-light);
         --cbp-button-color-outline-active: var(--cbp-color-black);
       }
+      */
     }
   }
 

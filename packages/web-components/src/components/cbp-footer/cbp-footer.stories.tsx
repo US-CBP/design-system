@@ -17,7 +17,7 @@ function generateFooterNav(footerNav) {
   const html = footerNav.map(({ label, href }) => {
     return `
       <cbp-flex-item role="list-item">
-        <cbp-button tag="a" href=${href} context="dark-always">${label}</cbp-button>
+        <cbp-button tag="a" href=${href} color="secondary" fill="ghost" context="dark-always">${label}</cbp-button>
       </cbp-flex-item>
     `;
   });
