@@ -285,8 +285,7 @@ cbp-button {
  * Dark Mode - display dark design based on mode or context
  */
 [data-cbp-theme=light] cbp-button[context*=dark],
-[data-cbp-theme=dark] cbp-button:not([context=light-always]),
-[data-cbp-theme=dark] cbp-button:not([context=dark-inverts]) {
+[data-cbp-theme=dark] cbp-button:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-button-color-text: var(--cbp-color-text-darkest);
   --cbp-button-color-text-hover: var(--cbp-color-text-darkest);
   --cbp-button-color-text-focus: var(--cbp-color-text-darkest);

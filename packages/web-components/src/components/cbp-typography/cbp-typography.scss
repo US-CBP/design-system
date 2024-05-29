@@ -8,9 +8,10 @@
 }
 
 // Displays dark design based on mode or context
+// 0,2,1
+// 0,3,1
 [data-cbp-theme=light] cbp-typography[context*=dark],
-[data-cbp-theme=dark] cbp-typography:not([context=light-always]),
-[data-cbp-theme=dark] cbp-typography:not([context=dark-inverts]) {
+[data-cbp-theme=dark] cbp-typography:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-typography-color-small-text: var(--cbp-color-text-lightest);
   --cbp-typography-color-large-text: var(--cbp-color-text-lighter);
   --cbp-typography-color-divider-fill: var(--cbp-color-gray-cool-70);
@@ -25,7 +26,12 @@
 */
 cbp-typography {
   color: inherit;
+  color: var(--cbp-typography-color-small-text);
   
+  & > * {
+    color: var(--cbp-typography-color-small-text);
+  }
+
   &[variant=masthead-1] > *,
   &[variant=masthead-2] > *,
   &[variant=heading-xxl] > *, h1,
@@ -88,7 +94,6 @@ cbp-typography {
   }
 
   &[variant=body-text] > *, p {
-    color: var(--cbp-typography-color-small-text);
     font-size: var(--cbp-font-size-body);
     font-weight: var(--cbp-font-weight-regular);
     line-height: var(--cbp-space-5x);
