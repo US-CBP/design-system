@@ -41,6 +41,12 @@
   --cbp-button-border-width: var(--cbp-border-size-md);
   --cbp-button-border-style: solid;
   --cbp-button-border-radius: var(--cbp-border-radius-soft);
+
+  --cbp-button-min-width: auto;
+  --cbp-button-min-height: 2.25rem;
+  --cbp-button-width: auto;
+  --cbp-button-height: auto;
+
 }
 
 // Displays dark design based on mode or context
@@ -83,7 +89,10 @@ cbp-button {
     text-decoration: none;
     padding: var(--cbp-button-padding);
     transition: all var(--cbp-motion-duration-shorter);
-    min-height: 2.25rem;
+    min-width: var(--cbp-button-min-width);
+    min-height: var(--cbp-button-min-height);
+    width: var(--cbp-button-width);
+    height: var(--cbp-button-height);
     cursor: pointer;
 
     color: var(--cbp-button-color-text);
@@ -256,10 +265,12 @@ cbp-button {
 
   &[variant=square] {
     button, a {
+      --cbp-button-height: 2.25rem; 
+      --cbp-button-width: var(--cbp-button-height); 
+      //height: 2.25rem;
+      //width: 2.25rem;
       padding: unset;
       letter-spacing: unset;
-      height: 2.25rem;
-      width: 2.25rem;
     }
   }
 
