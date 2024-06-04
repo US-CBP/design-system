@@ -153,10 +153,10 @@ cbp-button {
     }
 
     &[color=danger] {
-      --cbp-button-color-fill: var(--cbp-color-danger-base);
-      --cbp-button-color-fill-hover: var(--cbp-color-danger-dark);
-      --cbp-button-color-border: var(--cbp-color-danger-base);
-      --cbp-button-color-border-hover: var(--cbp-color-danger-dark);
+      --cbp-button-color-fill: var(--cbp-color-danger-dark);
+      --cbp-button-color-fill-hover: var(--cbp-color-danger-darker);
+      --cbp-button-color-border: var(--cbp-color-danger-dark);
+      --cbp-button-color-border-hover: var(--cbp-color-danger-darker);
     }
 
     button:disabled,
@@ -195,10 +195,10 @@ cbp-button {
     }
 
     &[color=danger] {
-      --cbp-button-color-text: var(--cbp-color-danger-base);
-      --cbp-button-color-fill-hover: var(--cbp-color-danger-dark);
-      --cbp-button-color-border: var(--cbp-color-danger-base);
-      --cbp-button-color-border-hover: var(--cbp-color-danger-dark);
+      --cbp-button-color-text: var(--cbp-color-danger-dark);
+      --cbp-button-color-fill-hover: var(--cbp-color-danger-darker);
+      --cbp-button-color-border: var(--cbp-color-danger-dark);
+      --cbp-button-color-border-hover: var(--cbp-color-danger-darker);
     }
 
     button:disabled,
@@ -229,7 +229,7 @@ cbp-button {
     }
 
     &[color=secondary] {
-      --cbp-button-color-text: var(--cbp-color-interactive-secondary-dark);
+      --cbp-button-color-text: var(--cbp-color-interactive-secondary-darker);
       --cbp-button-color-text-hover: var(--cbp-color-interactive-secondary-darker);
       --cbp-button-color-fill: transparent;
       --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-lighter);
@@ -238,7 +238,7 @@ cbp-button {
     }
     
     &[color=danger] {
-      --cbp-button-color-text: var(--cbp-color-danger-base);
+      --cbp-button-color-text: var(--cbp-color-danger-dark);
       --cbp-button-color-text-hover: var(--cbp-color-danger-darker);
       --cbp-button-color-fill: transparent;
       --cbp-button-color-fill-hover: var(--cbp-color-danger-light);
