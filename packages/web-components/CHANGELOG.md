@@ -6,7 +6,8 @@ The React components are wrappers generated from this package and will share the
 
 ## [unpublished] TBD
 
-* Dark mode implemented for buttons, links, typography, accordion and in stories such as footer, universal header, and template.
+* Implemented dark mode for buttons, links, typography, and accordion, comprised of additional CSS and a `context` property to trigger a specific design contextually and specify whether it inverts or remains constant.
+* Updated stories for footer, universal header, and template with dark mode-related changes.
 
 ## [0.0.1-develop.9] 05-13-2024
 
