@@ -6,7 +6,7 @@ The React components are wrappers generated from this package and will share the
 
 ## [unpublished] TBD
 
-* Dark mode
+* Dark mode implemented for buttons, links, typography, accordion and in stories such as footer, universal header, and template.
 
 ## [0.0.1-develop.9] 05-13-2024
 
