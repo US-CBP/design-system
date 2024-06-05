@@ -86,6 +86,10 @@ export default {
       description: 'Renders the button in a disabled state. A disabled button is non-interactive and unusable.',
       control: 'boolean',
     },
+    context : {
+      control: 'select',
+      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -101,7 +105,7 @@ export default {
   },
 };
 
-const Template = ({ label, tag, type, value, href, rel, target, download, fill, color, variant, accessibilityText, controls, targetProp, pressed, expanded, disabled, sx }) => {
+const Template = ({ label, tag, type, value, href, rel, target, download, fill, color, variant, accessibilityText, controls, targetProp, pressed, expanded, disabled, context, sx }) => {
   return ` 
       <cbp-button
         ${tag !== 'button' ? `tag=${tag}` : ''}
@@ -120,6 +124,7 @@ const Template = ({ label, tag, type, value, href, rel, target, download, fill, 
         ${pressed ? `pressed=${pressed}` : ''}
         ${expanded ? `expanded=${expanded}` : ''}
         ${disabled ? `disabled=${disabled}` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
         ${label}

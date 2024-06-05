@@ -22,6 +22,10 @@ export default {
       description: 'An optional styling of the content to provide a visual divider.',
       options: ['none', 'underline', 'fill'],
     },
+    context : {
+      control: 'select',
+      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -35,12 +39,13 @@ export default {
   },
 };
 
-const Template = ({ text, tag, variant, divider, sx }) => {
+const Template = ({ text, tag, variant, divider, context, sx }) => {
   return ` 
       <cbp-typography
         ${tag ? `tag=${tag}` : ''}
         ${variant != 'none' ? `variant=${variant}` : ''}
         ${divider != 'none' ? `divider=${divider}` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
         ${text}

@@ -1,0 +1,10 @@
+/* Set the Storybook canvas body according to the cbp-app's theme */
+body:has(cbp-app[data-cbp-theme="light"]) {
+  /*--cbp-color-body-background: var(--cbp-color-branding-cbp-light);*/
+  background-color: var(--cbp-color-branding-cbp-light);
+}
+
+body:has(cbp-app[data-cbp-theme="dark"]) {
+  /*--cbp-color-body-background: var(--cbp-color-branding-cbp-dark);*/
+  background-color: var(--cbp-color-branding-cbp-dark);
+}

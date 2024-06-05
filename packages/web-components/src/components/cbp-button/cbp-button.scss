@@ -41,7 +41,37 @@
   --cbp-button-border-width: var(--cbp-border-size-md);
   --cbp-button-border-style: solid;
   --cbp-button-border-radius: var(--cbp-border-radius-soft);
+
+  --cbp-button-min-width: auto;
+  --cbp-button-min-height: 2.25rem;
+  --cbp-button-width: auto;
+  --cbp-button-height: auto;
+
 }
+
+// Displays dark design based on mode or context
+/*
+[data-cbp-theme=light] cbp-button[context*=dark],
+[data-cbp-theme=dark] cbp-button:not([context=light-always]),
+[data-cbp-theme=dark] cbp-button:not([context=dark-inverts]) {
+  --cbp-button-color-text: var(--cbp-color-text-darkest);
+  --cbp-button-color-text-hover: var(--cbp-color-text-darkest);
+  --cbp-button-color-text-focus: var(--cbp-color-text-darkest);
+  --cbp-button-color-text-active: var(--cbp-color-text-darkest);
+
+  --cbp-button-color-fill: var(--cbp-color-interactive-primary-base);
+  --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-lighter);
+  --cbp-button-color-fill-focus: var(--cbp-color-interactive-focus-light);
+  --cbp-button-color-fill-active: var(--cbp-color-interactive-active-light);
+  
+  --cbp-button-color-border: var(--cbp-color-interactive-primary-base);
+  --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-lighter);
+  --cbp-button-color-border-focus: var(--cbp-color-interactive-focus-light);
+  --cbp-button-color-border-active: var(--cbp-color-interactive-active-light);
+  
+  --cbp-button-color-outline-focus: var(--cbp-color-black);
+}
+*/
 
 cbp-button {
   display: inline-block;
@@ -59,7 +89,10 @@ cbp-button {
     text-decoration: none;
     padding: var(--cbp-button-padding);
     transition: all var(--cbp-motion-duration-shorter);
-    min-height: 2.25rem;
+    min-width: var(--cbp-button-min-width);
+    min-height: var(--cbp-button-min-height);
+    width: var(--cbp-button-width);
+    height: var(--cbp-button-height);
     cursor: pointer;
 
     color: var(--cbp-button-color-text);
@@ -120,10 +153,10 @@ cbp-button {
     }
 
     &[color=danger] {
-      --cbp-button-color-fill: var(--cbp-color-danger-base);
-      --cbp-button-color-fill-hover: var(--cbp-color-danger-dark);
-      --cbp-button-color-border: var(--cbp-color-danger-base);
-      --cbp-button-color-border-hover: var(--cbp-color-danger-dark);
+      --cbp-button-color-fill: var(--cbp-color-danger-dark);
+      --cbp-button-color-fill-hover: var(--cbp-color-danger-darker);
+      --cbp-button-color-border: var(--cbp-color-danger-dark);
+      --cbp-button-color-border-hover: var(--cbp-color-danger-darker);
     }
 
     button:disabled,
@@ -162,10 +195,10 @@ cbp-button {
     }
 
     &[color=danger] {
-      --cbp-button-color-text: var(--cbp-color-danger-base);
-      --cbp-button-color-fill-hover: var(--cbp-color-danger-dark);
-      --cbp-button-color-border: var(--cbp-color-danger-base);
-      --cbp-button-color-border-hover: var(--cbp-color-danger-dark);
+      --cbp-button-color-text: var(--cbp-color-danger-dark);
+      --cbp-button-color-fill-hover: var(--cbp-color-danger-darker);
+      --cbp-button-color-border: var(--cbp-color-danger-dark);
+      --cbp-button-color-border-hover: var(--cbp-color-danger-darker);
     }
 
     button:disabled,
@@ -196,7 +229,7 @@ cbp-button {
     }
 
     &[color=secondary] {
-      --cbp-button-color-text: var(--cbp-color-interactive-secondary-dark);
+      --cbp-button-color-text: var(--cbp-color-interactive-secondary-darker);
       --cbp-button-color-text-hover: var(--cbp-color-interactive-secondary-darker);
       --cbp-button-color-fill: transparent;
       --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-lighter);
@@ -205,7 +238,7 @@ cbp-button {
     }
     
     &[color=danger] {
-      --cbp-button-color-text: var(--cbp-color-danger-base);
+      --cbp-button-color-text: var(--cbp-color-danger-dark);
       --cbp-button-color-text-hover: var(--cbp-color-danger-darker);
       --cbp-button-color-fill: transparent;
       --cbp-button-color-fill-hover: var(--cbp-color-danger-light);
@@ -232,10 +265,12 @@ cbp-button {
 
   &[variant=square] {
     button, a {
+      --cbp-button-height: 2.25rem; 
+      --cbp-button-width: var(--cbp-button-height); 
+      //height: 2.25rem;
+      //width: 2.25rem;
       padding: unset;
       letter-spacing: unset;
-      height: 2.25rem;
-      width: 2.25rem;
     }
   }
 
@@ -254,6 +289,187 @@ cbp-button {
     outline: 0;
     cursor: not-allowed;
   }
+}
+
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+[data-cbp-theme=light] cbp-button[context*=dark],
+[data-cbp-theme=dark] cbp-button:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-button-color-text: var(--cbp-color-text-darkest);
+  --cbp-button-color-text-hover: var(--cbp-color-text-darkest);
+  --cbp-button-color-text-focus: var(--cbp-color-text-darkest);
+  --cbp-button-color-text-active: var(--cbp-color-text-darkest);
+
+  --cbp-button-color-fill: var(--cbp-color-interactive-primary-base);
+  --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-light);
+  --cbp-button-color-fill-focus: var(--cbp-color-interactive-focus-light);
+  --cbp-button-color-fill-active: var(--cbp-color-interactive-active-light);
   
+  --cbp-button-color-border: var(--cbp-color-interactive-primary-base);
+  --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-light);
+  --cbp-button-color-border-focus: var(--cbp-color-interactive-focus-light);
+  --cbp-button-color-border-active: var(--cbp-color-interactive-active-light);
+  
+  --cbp-button-color-outline-focus: var(--cbp-color-black);
+/*
+  &:hover {
+    color: var(--cbp-button-color-text-hover);
+    background-color: var(--cbp-button-color-fill-hover);
+    border-color: var(--cbp-button-color-border-hover);
+  }
+
+  &:focus {
+    color: var(--cbp-button-color-text-focus);
+    background-color: var(--cbp-button-color-fill-focus);
+    border-color: var(--cbp-button-color-border-focus);
+    outline-width: var(--cbp-button-focus-outline-width);
+  }
+
+  &:active {
+    color: var(--cbp-button-color-text-active);
+    background-color: var(--cbp-button-color-fill-active);
+    border-color: var(--cbp-button-color-border-active);
+  }
+*/
+
+  &[fill=solid] {
+    --cbp-button-color-text: var(--cbp-color-text-darkest);
+    --cbp-button-color-text-hover: var(--cbp-color-text-darkest);
+
+    &[color=primary] {
+      --cbp-button-color-fill: var(--cbp-color-interactive-primary-light);
+      --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-lighter);
+      --cbp-button-color-border: var(--cbp-color-interactive-primary-light);
+      --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-lighter);
+    }
+
+    &[color=secondary] {
+      --cbp-button-color-fill: var(--cbp-color-interactive-secondary-light);
+      --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-border: var(--cbp-color-interactive-secondary-light);
+      --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-lighter);
+    }
+
+    &[color=tertiary] {
+      --cbp-button-color-text: var(--cbp-color-text-lightest);
+      //--cbp-button-color-text-hover: var(--cbp-color-text-darkest);
+      --cbp-button-color-fill: var(--cbp-color-interactive-secondary-base);
+      --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-border: var(--cbp-color-interactive-secondary-base);
+      --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-lighter);
+    }
+
+    &[color=danger] {
+      --cbp-button-color-fill: var(--cbp-color-danger-light);
+      --cbp-button-color-fill-hover: var(--cbp-color-danger-lighter);
+      --cbp-button-color-border: var(--cbp-color-danger-light);
+      --cbp-button-color-border-hover: var(--cbp-color-danger-lighter);
+    }
+
+    button:disabled,
+    a[aria-disabled=true] {
+      --cbp-button-color-text: var(--cbp-color-interactive-disabled-dark);
+      --cbp-button-color-text-hover: var(--cbp-button-color-text);
+      --cbp-button-color-text-focus: var(--cbp-button-color-text);
+      --cbp-button-color-text-active: var(--cbp-button-color-text);
+      --cbp-button-color-fill: var(--cbp-color-interactive-disabled-light);
+      --cbp-button-color-fill-hover: var(--cbp-button-color-fill);
+      --cbp-button-color-fill-focus: var(--cbp-button-color-fill);
+      --cbp-button-color-fill-active: var(--cbp-button-color-fill);
+      --cbp-button-color-border: var(--cbp-button-color-fill);
+      --cbp-button-color-border-hover: var(--cbp-button-color-fill);
+      --cbp-button-color-border-focus: var(--cbp-button-color-fill);
+      --cbp-button-color-border-active: var(--cbp-button-color-fill);
+    }
+  }
+
+  &[fill=outline] {
+    --cbp-button-color-fill: var(--cbp-color-gray-cool-80);
+    --cbp-button-color-text-hover: var(--cbp-color-text-darkest);
+
+    &[color=primary] {
+      --cbp-button-color-text: var(--cbp-color-interactive-primary-light);
+      --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-light);
+      --cbp-button-color-border: var(--cbp-color-interactive-primary-light);
+      --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-light);
+    }
+
+    &[color=secondary] {
+      --cbp-button-color-text: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-lighter);
+      --cbp-button-color-border: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+    }
+
+    &[color=danger] {
+      --cbp-button-color-text: var(--cbp-color-danger-light);
+      --cbp-button-color-fill-hover: var(--cbp-color-danger-light);
+      --cbp-button-color-border: var(--cbp-color-danger-light);
+      --cbp-button-color-border-hover: var(--cbp-color-danger-light);
+    }
+
+    button:disabled,
+    a[aria-disabled=true] {
+      --cbp-button-color-text: var(--cbp-color-interactive-disabled-light);
+      --cbp-button-color-text-hover: var(--cbp-button-color-text);
+      --cbp-button-color-text-focus: var(--cbp-button-color-text);
+      --cbp-button-color-text-active: var(--cbp-button-color-text);
+      --cbp-button-color-fill: var(--cbp-button-color-fill);
+      --cbp-button-color-fill-hover: var(--cbp-button-color-fill);
+      --cbp-button-color-fill-focus: var(--cbp-button-color-fill);
+      --cbp-button-color-fill-active: var(--cbp-button-color-fill);
+      --cbp-button-color-border: var(--cbp-color-interactive-disabled-light);
+      --cbp-button-color-border-hover: var(--cbp-button-color-border);
+      --cbp-button-color-border-focus: var(--cbp-button-color-border);
+      --cbp-button-color-border-active: var(--cbp-button-color-border);
+    }
+  }
+
+  &[fill=ghost] {
+    &[color=primary] {
+      --cbp-button-color-text: var(--cbp-color-interactive-primary-light);
+      --cbp-button-color-text-hover: var(--cbp-color-interactive-primary-lighter);
+      --cbp-button-color-fill: transparent;
+      --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-darker);
+      --cbp-button-color-border: transparent;
+      --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-darker); // not transparent;
+    }
+
+    &[color=secondary] {
+      --cbp-button-color-text: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-text-hover: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-fill: transparent;
+      --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-darker);
+      --cbp-button-color-border: transparent;
+      --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+    }
+    
+    &[color=danger] {
+      --cbp-button-color-text: var(--cbp-color-danger-light);
+      --cbp-button-color-text-hover: var(--cbp-color-danger-lighter);
+      --cbp-button-color-fill: transparent;
+      --cbp-button-color-fill-hover: var(--cbp-color-danger-darker);
+      --cbp-button-color-border: transparent;
+      --cbp-button-color-border-hover: var(--cbp-color-danger-darker);
+    }
+  
+    button:disabled,
+    a[aria-disabled=true] {
+      --cbp-button-color-text: var(--cbp-color-interactive-disabled-light);
+      --cbp-button-color-text-hover: var(--cbp-button-color-text);
+      --cbp-button-color-text-focus: var(--cbp-button-color-text);
+      --cbp-button-color-text-active: var(--cbp-button-color-text);
+      --cbp-button-color-fill: transparent;
+      --cbp-button-color-fill-hover: transparent;
+      --cbp-button-color-fill-focus: transparent;
+      --cbp-button-color-fill-active: transparent;
+      --cbp-button-color-border: transparent;
+      --cbp-button-color-border-hover: transparent;
+      --cbp-button-color-border-focus: transparent;
+      --cbp-button-color-border-active: transparent;
+    }
+  }
 }
 

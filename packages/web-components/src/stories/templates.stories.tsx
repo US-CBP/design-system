@@ -31,11 +31,10 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
     <header>
       <cbp-universal-header>
         <ul>
-          ${
-            isLoggedIn
-              ? `
+        ${ isLoggedIn
+          ? `
           <li>
-            <cbp-button fill="ghost">
+            <cbp-button color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="book"></cbp-icon>
               <cbp-hide
                 hide-at="max-width: 64em"
@@ -44,7 +43,7 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
             </cbp-button>
           </li>
           <li>
-            <cbp-button fill="ghost">
+            <cbp-button color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="comment"></cbp-icon>  
               <cbp-hide
                 visually-hide-at="max-width: 64em"
@@ -53,7 +52,7 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
             </cbp-button>
           </li>
           <li>
-            <cbp-button fill="ghost">
+            <cbp-button color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="user"></cbp-icon>
               <cbp-hide
                 visually-hide-at="max-width: 64em"
@@ -62,15 +61,15 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
             </cbp-button>
           </li>
           `
-              : `
+          : `
           <li>
-            <cbp-button tag="a" href="#" fill="ghost">
+            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
             <cbp-icon name="right-to-bracket" sx='{"margin-right":"var(--cbp-space-2x)"}'></cbp-icon>
-              Login
+            Login
             </cbp-button>
           </li>
           `
-          }
+        }
         </ul>
       </cbp-universal-header>
 
@@ -92,27 +91,27 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
       <nav slot="cbp-footer-nav">
         <cbp-flex role="list" breakpoint="37.5rem">
           <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">App Overview</cbp-button>
+            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
           </cbp-flex-item>
           <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">Trainings</cbp-button>
+            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Trainings</cbp-button>
           </cbp-flex-item>
           <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">FAQs</cbp-button>
+            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">FAQs</cbp-button>
           </cbp-flex-item>
           <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" fill="ghost">Release Notes</cbp-button>
+            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
           </cbp-flex-item>
         <cbp-flex role="list">
       </nav>
 
       <section>
-        <cbp-typography tag="h6" variant="heading-md" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
+        <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
         <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
         <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
           <span>Having an issue?</span>
-          <span>Email: <cbp-link href="mailto:somebody@example.com">this-application-support@abc.def.gov</cbp-link></span>
-          <span>CBP Helpdesk: <cbp-link href="tel:555-555-5555">(555) 555-5555</cbp-link></span>
+          <span>Email: <cbp-link href="mailto:somebody@example.com" context="dark-always">this-application-support@abc.def.gov</cbp-link></span>
+          <span>CBP Helpdesk: <cbp-link href="tel:555-555-5555" context="dark-always">(555) 555-5555</cbp-link></span>
         </cbp-flex>
       </section>
     </cbp-footer>

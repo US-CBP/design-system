@@ -4,7 +4,7 @@ cbp-segmented-button-group {
 
   // attribute selectors included for specificity
   cbp-button[fill][color] {
-    --cbp-button-color-text: var(--cbp-color-text-darkest);
+    --cbp-button-color-text: var(--cbp-color-interactive-secondary-darker);
     --cbp-button-color-text-hover: var(--cbp-color-text-lightest);
     --cbp-button-color-text-focus: var(--cbp-color-text-lightest);
     --cbp-button-color-text-active: var(--cbp-color-text-lightest);

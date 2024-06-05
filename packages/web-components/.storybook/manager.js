@@ -13,9 +13,9 @@ const theme =  create({
   brandTarget: '_self',
 });
 
-
 addons.setConfig({
-  theme,
+  //theme,
+  theme: themes.dark,
   toolbar: {
     //zoom: { hidden: true }
   }

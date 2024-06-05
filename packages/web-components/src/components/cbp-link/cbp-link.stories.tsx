@@ -43,6 +43,10 @@ export default {
       description: 'Renders the anchor in a disabled state. A disabled anchor is non-interactive and unusable.',
       control: 'boolean',
     },
+    context : {
+      control: 'select',
+      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -55,7 +59,7 @@ export default {
   },
 };
 
-const Template = ({ label, href, rel, target, download, language, shortcutKey, accessibilityText, disabled, sx }) => {
+const Template = ({ label, href, rel, target, download, language, shortcutKey, accessibilityText, disabled, context, sx }) => {
   return ` 
         <cbp-link
           ${href ? `href=${href}` : ''}
@@ -66,6 +70,7 @@ const Template = ({ label, href, rel, target, download, language, shortcutKey, a
           ${language ? `lang=${language}` : ''}
           ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
           ${disabled ? `disabled=${disabled}` : ''}
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
           ${label}
