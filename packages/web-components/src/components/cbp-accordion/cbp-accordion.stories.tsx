@@ -72,10 +72,11 @@ export default {
   }
   
 
-  const Template = ({ items, multiple, sx }) => {
+  const Template = ({ items, multiple, context, sx }) => {
     return ` 
         <cbp-accordion
             ${multiple ? `multiple` : ''}
+            ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
             ${generateChildren(items)}
