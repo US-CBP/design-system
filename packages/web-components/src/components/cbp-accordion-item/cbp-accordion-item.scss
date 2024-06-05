@@ -53,6 +53,7 @@
   --cbp-accordion-item-control-padding: var(--cbp-space-3x);
   --cbp-accordion-item-control-direction: row;
 
+  --cbp-accordion-item-color-content: var(--cbp-color-text-darkest);
   --cbp-accordion-item-color-fill-content: var(--cbp-color-white);
   --cbp-accordion-item-content-font-size: var(--cbp-font-size-md);
   --cbp-accordion-item-content-font-family: inherit;
@@ -164,7 +165,8 @@ cbp-accordion-item {
   }
 
   .cbp-accordion-item--content {
-    background-color: var(--cbp-accordion-item-color-content-fill);
+    color: var(--cbp-accordion-item-color-content);
+    background-color: var(--cbp-accordion-item-color-fill-content);
     padding: var(--cbp-space-4x) var(--cbp-space-3x);
     border-width: var(--cbp-border-size-xl);
     border-style: var(--cbp-accordion-item-border-style);
@@ -226,6 +228,7 @@ cbp-accordion-item {
    --cbp-accordion-item-color-active: var(--cbp-color-text-darkest);
    --cbp-accordion-item-color-fill-active: var(--cbp-color-interactive-active-light);
 
+   --cbp-accordion-item-color-content: var(--cbp-color-text-lightest);
    --cbp-accordion-item-color-fill-content: var(--cbp-color-gray-cool-90);
 
   cbp-accordion-item {
