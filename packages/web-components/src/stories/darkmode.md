@@ -38,7 +38,7 @@ Interactive states may also invert from light to dark and vice versa (on hover, 
 
 * How do these selectors for dark mode and dark context affect CSS specificity and the ability to override styles with the CSS API?
 * The specificity for the selectors (below) is 0,2,1 and 0,3,1 respectively.
-  * Investigate using `@layer` to manage specificity at a higher level.
+  * Investigate using `@layer` to manage specificity at a higher level. (too new - support still limited)
   * Investigate using `:where()` to reduce specificity.
   * How does this interact with styles specified via the sx property? Colors specified via sx would likely only apply to one mode unless the CSS API contains root-level variables for both modes.
 
@@ -74,7 +74,7 @@ The following CSS selectors are used for defining the component's dark mode desi
 
 ## Results
 
-The specificity of the above "dark mode" selectors is 0,2,1 and 0,3,1 respectively. While this has not been problematic as yet, these values are a little high and I would like to further investigate using `where()` and/or `@layer` to manage the specificity.
+The specificity of the above "dark mode" selectors is 0,2,1 and 0,3,1 respectively. While this has not been problematic as yet, these values are a little high and I would like to further investigate using `:where()` and/or `@layer` to manage the specificity.
 
 Another important factor in managing specificity is to make sure each component has color variables set at the `:root` level (component CSS API). This makes overriding them with the dark mode selectors (or within another component using the component CSS API) much simpler than if colors are set directly in deeper selectors. This includes (especially) states such as hover, focus, active, etc., as those can be especially difficult and tedious to override with their high specificity. 
 

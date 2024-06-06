@@ -1,21 +1,34 @@
 /**
  * @Prop --cbp-panel-header-color: var(--cbp-color-text-lighter)
- * @Prop --cbp-panel-header-color-background: var(--cbp-color-base-neutral-dark);
+ * @Prop --cbp-panel-header-color-bg: var(--cbp-color-base-neutral-dark);
  * @Prop --cbp-panel-header-color-bottom-border: var(--cbp-color-gray-cool-70);
- * @Prop --cbp-panel-content-color-background: var(--cbp-color-white);
+ * @Prop --cbp-panel-content-color-bg: var(--cbp-color-white);
  * @Prop --cbp-panel-content-color-border: var(--cbp-color-gray-cool-10);
  * @Prop --cbp-panel-border-radius: var(--cbp-border-radius-soft);
  * @Prop --cbp-panel-border-width: var(--cbp-border-size-md);
  */
 :root {
   --cbp-panel-header-color: var(--cbp-color-text-lighter);
-  --cbp-panel-header-color-background: var(--cbp-color-base-neutral-dark);
+  --cbp-panel-header-color-bg: var(--cbp-color-base-neutral-dark);
   --cbp-panel-header-color-bottom-border: var(--cbp-color-gray-cool-70);
-  //--cbp-panel-content-color: var(--cbp-color-text-lighter);
-  --cbp-panel-content-color-background: var(--cbp-color-white);
+  --cbp-panel-content-color: var(--cbp-color-text-darkest);
+  --cbp-panel-content-color-bg: var(--cbp-color-white);
   --cbp-panel-content-color-border: var(--cbp-color-gray-cool-10);
   --cbp-panel-border-radius: var(--cbp-border-radius-soft);
   --cbp-panel-border-width: var(--cbp-border-size-md);
+}
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+[data-cbp-theme=light] cbp-panel[context*=dark],
+[data-cbp-theme=dark] cbp-panel:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-panel-header-color: var(--cbp-color-text-lighter);
+  --cbp-panel-header-color-bg: var(--cbp-color-branding-dhs-blue);
+  --cbp-panel-header-color-bottom-border: var(--cbp-color-gray-cool-50);
+  --cbp-panel-content-color: var(--cbp-color-text-lightest);
+  --cbp-panel-content-color-bg: var(--cbp-color-gray-cool-70);
+  --cbp-panel-content-color-border: var(--cbp-color-gray-cool-60);
 }
 
 cbp-panel {
@@ -23,7 +36,7 @@ cbp-panel {
 
   .cbp-panel__header {
     color: var(--cbp-panel-header-color);
-    background-color: var(--cbp-panel-header-color-background);
+    background-color: var(--cbp-panel-header-color-bg);
     padding: var(--cbp-space-5x);
     border-bottom: solid var(--cbp-border-size-xl) var(--cbp-panel-header-color-bottom-border);
     border-radius: var(--cbp-panel-border-radius) var(--cbp-panel-border-radius) 0 0;
@@ -37,7 +50,8 @@ cbp-panel {
   }
 
   .cbp-panel__content {
-    background-color: var(--cbp-panel-content-color-background);
+    color: var(--cbp-panel-content-color);
+    background-color: var(--cbp-panel-content-color-bg);
     padding: var(--cbp-space-5x);
     border-style: solid;
     border-color: var(--cbp-panel-content-color-border);
