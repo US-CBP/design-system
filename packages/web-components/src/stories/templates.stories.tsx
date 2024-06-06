@@ -29,7 +29,10 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
     <cbp-skip-nav></cbp-skip-nav>
 
     <header>
-      <cbp-universal-header>
+      <cbp-universal-header
+        logo-src-lg="./assets/images/cbp-header-logo.svg"
+        logo-src-sm="./assets/images/cbp-seal.svg"
+      >
         <ul>
         ${ isLoggedIn
           ? `
