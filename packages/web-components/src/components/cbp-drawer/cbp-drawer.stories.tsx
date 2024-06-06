@@ -15,6 +15,10 @@ export default {
       description: 'A unique `id` applied to the drawer and referenced by the control.',
       control: 'text',
     },
+    context : {
+      control: 'select',
+      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -22,7 +26,7 @@ export default {
   },
 };
 
-const Template = ({ position, open, uid, accessibilityText, sx }) => {
+const Template = ({ position, open, uid, accessibilityText, context, sx }) => {
   return `
     <cbp-button
       type="button"
@@ -38,12 +42,14 @@ const Template = ({ position, open, uid, accessibilityText, sx }) => {
       ${position ? `position=${position}` : ''}
       ${open ? `open=${open}` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       ${uid ? `uid=${uid}` : ''}
     >
       <cbp-panel
         aria-labelledby="panelheader"
         role="complementary"
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
       >
         <cbp-typography
           slot="cbp-panel-header"
@@ -63,19 +69,52 @@ export const Drawer = Template.bind({});
 Drawer.args = {
   position: 'left',
   uid: 'drawer',
+  context: 'light-always'
 };
 
-/*
-      <div class="cbp-drawer__header">
-        <div>
-          <cbp-icon name="filter"></cbp-icon>
-          <h3>Filter</h3>
-        </div>
-        <cbp-button aria-label="Close">
-          <cbp-icon name="circle-xmark"></cbp-icon>
-        </cbp-button>
-      </div>
 
-      <div class="cbp-drawer__content"></div>
+const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, context, sx }) => {
+  return `
+    <cbp-button
+      type="button"
+      color="secondary"
+      accessibility-text="Open Drawer"
+      target-prop="open"
+      controls=${uid}
+    >
+      <cbp-icon name="bars"></cbp-icon>
+    </cbp-button>
 
-*/
+    <cbp-drawer
+      ${position ? `position=${position}` : ''}
+      ${open ? `open=${open}` : ''}
+      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${uid ? `uid=${uid}` : ''}
+    >
+      <cbp-panel
+        aria-labelledby="panelheader"
+        role="complementary"
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      >
+        <cbp-typography
+          slot="cbp-panel-header"
+          tag="h3"
+          variant="heading-lg"
+          id="panelheader"
+        >
+          Sidebar Header
+        </cbp-typography>
+        <p>Sidebar Content</p>
+      </cbp-panel>
+    </cbp-drawer>
+  `;
+};
+
+export const UserPreferences = UserPreferencesTemplate.bind({});
+UserPreferences.args = {
+  position: 'right',
+  uid: 'drawer',
+  context: 'dark-always'
+};

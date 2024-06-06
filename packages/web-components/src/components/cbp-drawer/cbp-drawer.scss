@@ -1,12 +1,28 @@
+/*
+ *
+ */
+:root {
+  //--cbp-drawer-color: ;
+  --cbp-drawer-color-bg: var(--cbp-color-white);
+}
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+[data-cbp-theme=light] cbp-drawer[context*=dark],
+[data-cbp-theme=dark] cbp-drawer:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-drawer-color-bg: var(--cbp-color-gray-cool-70);
+}
+ 
+
 cbp-drawer {
   all: unset;
   display: none;
+  --cbp-panel-border-radius: 0;
+  --cbp-panel-border-width: 0;
 }
 
 cbp-drawer[open] {
-  --cbp-panel-border-radius: 0;
-  --cbp-panel-border-width: 0;
-
   display: block;
   position: fixed;
   top: 0;
@@ -15,7 +31,7 @@ cbp-drawer[open] {
   left: 0;
   z-index: calc(var(--cbp-z-index-level-top) - 1);
   overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3); // backdrop
 
   .cbp-drawer__content {
     display: flex;
@@ -35,10 +51,9 @@ cbp-drawer[open] {
 
     transition: 0.5s;
     height: 100%;
-    background-color: var(--cbp-color-white);
+    background-color: var(--cbp-drawer-color-bg);
 
     .cbp-drawer__close-button {
-      --cbp-button-color-text: var(--cbp-color-interactive-secondary-lighter);
       position: absolute;
       right: 1rem;
       top: 1em;
