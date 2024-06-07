@@ -56,6 +56,7 @@ const Template = ({ position, open, uid, accessibilityText, context, sx }) => {
           tag="h3"
           variant="heading-lg"
           id="panelheader"
+          context="dark-always"
         >
           Sidebar Header
         </cbp-typography>
@@ -103,6 +104,7 @@ const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, conte
           tag="h3"
           variant="heading-lg"
           id="panelheader"
+          context="dark-always"
         >
           Sidebar Header
         </cbp-typography>
