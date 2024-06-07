@@ -35,16 +35,26 @@ export default {
       description: 'An accessible label may be provided if the text within the header is not sufficiently descriptive or unique. In such a case, omit the heading `id`.',
       control: 'text',
     },
+    context : {
+      control: 'select',
+      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+    },
+    sx: {
+      description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
+      control: 'object',
+    },
   },
 };
 
-const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabel, showIcon }) =>
+const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabel, showIcon, context, sx }) =>
   `
     <cbp-panel
       ${headerId ? `aria-labelledby="${headerId}"` : ''}
       ${role != 'none' ? `role="${role}"` : ''}
       ${ariaLabel ? `aria-label="${ariaLabel}"` : ''}
       ${headerId ? `aria-labelledby="${headerId}"` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
       <cbp-typography
         slot="cbp-panel-header"

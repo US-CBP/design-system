@@ -24,9 +24,11 @@ export class CbpDrawer {
   /** Creates an accessible label for the drawer (dialog). */
   @Prop() accessibilityText: string;
 
+  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
+  @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
+
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
-
 
   /** Custom event fired when the drawer is opened. */
   @Event() drawerOpen!: EventEmitter;
@@ -117,9 +119,10 @@ export class CbpDrawer {
             type="button"
             color="secondary"
             fill="ghost"
-            accessibility-text="Close"
-            target-prop="open"
+            accessibilityText="Close"
+            targetProp="open"
             controls={this.uid}
+            context="dark-always"
           >
             <cbp-icon name="circle-xmark"></cbp-icon>
           </cbp-button>
