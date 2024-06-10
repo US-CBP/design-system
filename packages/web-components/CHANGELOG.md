@@ -4,7 +4,7 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
-## [unpublished] TBD
+## [0.0.1-develop.10] 06-10-2024
 
 * Implemented dark mode for buttons, links, typography, accordion, drawer, and panel comprised of additional CSS and a `context` property to trigger a specific design contextually and specify whether it inverts or remains constant.
 * Updated stories for footer, universal header, segmented list (footer/action bar), drawer, and template with dark mode-related changes.
