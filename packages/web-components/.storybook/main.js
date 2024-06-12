@@ -29,14 +29,14 @@ const config = {
     //getAbsolutePath('@storybook/addon-interactions'), 
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath("@storybook/addon-mdx-gfm"),
+    getAbsolutePath("@storybook/addon-mdx-gfm"),
+    '@chromatic-com/storybook'
   ],
   framework: {
     name: getAbsolutePath('@storybook/web-components-vite'),
     options: {},
   },
-  docs: {
-    autodocs: 'tag',
-  },
+  docs: {},
   staticDirs: [
     '../dist',
     '../assets'
