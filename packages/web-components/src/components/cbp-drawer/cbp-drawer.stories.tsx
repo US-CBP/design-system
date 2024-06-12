@@ -106,9 +106,9 @@ const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, conte
           id="panelheader"
           context="dark-always"
         >
-          Sidebar Header
+          User Preferences
         </cbp-typography>
-        <p>Sidebar Content</p>
+        <p>Drawer Content</p>
       </cbp-panel>
     </cbp-drawer>
   `;
