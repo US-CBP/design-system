@@ -9,10 +9,12 @@ export default {
 const Template = () => {
     return `
     <cbp-app>
-        <img src="assets/images/cbp-seal.svg" height="245" width="245" style={{ display: "block", marginBottom: "2rem", marginLeft: 'auto', marginRight: 'auto' }} />
+        <img src="assets/images/cbp-seal.svg" height="245" width="245" style="margin-bottom: 2rem; margin-inline: auto" />
 
-        <h1 style={{ textAlign: "center" }}>CBP Design System</h1>
-        <h2>Work in Progress</h2>
+        <cbp-typography tag="h1" sx='{"text-align":"center","margin-bottom":"1rem"}'>CBP Design System</cbp-typography>
+
+        <cbp-typography tag="h2" sx='{"margin-bottom":"1rem"}'>Work in Progress</cbp-typography>
+
         <p>
             The CBP Design System (1.0) is still in a stage of **very active development**.
             As such, much of the code base is still somewhat fragile and may break at any time. 
