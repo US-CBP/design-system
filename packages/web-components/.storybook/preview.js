@@ -65,6 +65,21 @@ const preview = {
         date: /Date$/i,
       },
     },
+    options: {
+      storySort: {
+        //method: 'alphabetical',
+        order: [
+          'Introduction',
+          'Design Tokens',
+          'About Dark Mode',
+          'Components',
+          'Patterns',
+            [
+              'Page Templates',
+            ]
+        ]
+      }
+    },
     // DEG: Enabling custom viewports seems to be linked to the HTML tab showing generated code instead of source/story code. Disabling custom viewports for further testing.
     viewport: {
       //viewports: CUSTOM_VIEWPORTS,
@@ -109,7 +124,6 @@ export default preview;
 
 
 // Wrap every story with `cbp-app` component, which brings in the high level CSS resets, settings, and variables.
-// DEG: 3/14/2024 - Adding theme=light temporarily until dark mode is implemented properly
 const withWrapper = (story) => {
   //return `<cbp-app theme="light">${story()}</cbp-app>`;
   return `<cbp-app>${story()}</cbp-app>`;
