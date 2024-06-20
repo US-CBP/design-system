@@ -26,7 +26,7 @@ export default {
     },
     color: {
       control: 'select',
-      options: ['default', 'info', 'success', 'warning', 'danger'],
+      options: ['default', 'danger'],
     },
     actionsLayout: {
       name: 'Actions Layout',
@@ -38,10 +38,6 @@ export default {
       name: 'Dialog Actions',
       description: 'Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`',
       control: 'object',
-    },
-    context : {
-      control: 'select',
-      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
     },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
@@ -76,7 +72,7 @@ const renderActions = (layout, { btn1, btn2, btn3 }) => {
   }
 };
 
-const Template = ({ title, content, open, uid, accessibilityText, actionsLayout, actionsConfig, context, sx }) => {
+const Template = ({ title, content, color, open, uid, accessibilityText, actionsLayout, actionsConfig, sx }) => {
   return `
     <cbp-button
       type="button"
@@ -91,7 +87,7 @@ const Template = ({ title, content, open, uid, accessibilityText, actionsLayout,
     <cbp-dialog
       ${open ? `open=${open}` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${color && color != 'default' ? `color=${color}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       ${uid ? `uid=${uid}` : ''}
     >

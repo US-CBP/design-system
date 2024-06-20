@@ -14,19 +14,7 @@ export class CbpDialog {
 
   @Element() host: HTMLElement;
 
-/*
-    this.dialogUpdate = createEvent(this, "dialogUpdate", 7);
-    this.width = undefined;
-    this.height = undefined;
-    this.open = undefined;
-    this.closeButton = undefined;
-    this.backdrop = undefined;
-    this.actionRequired = undefined;
-    this.accessibilityText = undefined;
-    this.breakpoint = undefined;
-*/
-
-/** When set, specifies that the dialog is open */
+  /** When set, specifies that the dialog is open */
   @Prop({ reflect: true }) open: boolean;
   
   /** Specifies a unique `ID` for the dialog, used to wire up the controls and accessibility features. */
@@ -35,46 +23,11 @@ export class CbpDialog {
   /** Creates an accessible label for the dialog. */
   @Prop() accessibilityText: string;
 
-  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
-  @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
+  /** Optionally specifies a card color (different from the default color) based on predefined design token values. */
+  @Prop({ reflect: true }) color: 'info' | 'success' | 'warning' | 'danger';
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
-
-
-  /*
-  escKeyHandler({ key }) {
-    if (!this.actionRequired && key == "Escape") {
-      this.open = false;
-    }
-  }
-  openHandler(open) {
-    this.dialogUpdate.emit({
-      host: this.host, open: open
-    });
-  }
-  setFocusElement() {
-    var _a, _b;
-    if (!this.open && this.trigger) {
-      (_a = this.trigger) === null || _a === void 0 ? void 0 : _a.focus();
-    }
-    else {
-      (_b = this.dialog) === null || _b === void 0 ? void 0 : _b.focus();
-    }
-  }
-  async doOpen() {
-    this.open = true;
-  }
-  async doClose() {
-    this.open = false;
-  }
-
-  componentDidUpdate() {
-    this.setFocusElement();
-  }
-
-  */
-
 
   /** Custom event fired when the drawer is opened. */
   @Event() dialogOpen!: EventEmitter;
@@ -119,7 +72,10 @@ export class CbpDialog {
 
 
   handleBackdropClick({target}) {
-    !target.closest('[role=dialog]') && this.closeDialog();
+    //!target.closest('[role=dialog]') && this.closeDialog();
+    if(!target.closest('[role=dialog]')) {
+      return;
+    }
   }
 
 

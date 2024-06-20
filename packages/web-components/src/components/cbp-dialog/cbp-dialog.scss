@@ -1,6 +1,10 @@
 :root {
   --cbp-dialog-color: var(--cbp-color-text-darkest);
+  --cbp-dialog-color-dark: var(--cbp-color-text-lightest);
+
   --cbp-dialog-color-bg: var(--cbp-color-white);
+  --cbp-dialog-color-bg-dark: var(--cbp-color-gray-cool-60);
+
   --cbp-dialog-padding: var(--cbp-space-5x);
   --cbp-dialog-border-radius: var(--cbp-border-radius-softer);
   --cbp-dialog-shadow: var(--cbp-shadow-level-5-center);
@@ -13,8 +17,8 @@
  */
 [data-cbp-theme=light] cbp-dialog[context*=dark],
 [data-cbp-theme=dark] cbp-dialog:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-dialog-color: var(--cbp-color-text-lightest);
-  --cbp-dialog-color-bg: var(--cbp-color-gray-cool-60);
+  --cbp-dialog-color: var(--cbp-dialog-color-dark);
+  --cbp-dialog-color-bg: var(--cbp-dialog-color-bg-dark);
 }
 
 cbp-dialog {
@@ -27,7 +31,7 @@ cbp-dialog {
   z-index: 999;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3); // backdrop
-  
+
   &[open] {
     display: flex;
     justify-content: center;
@@ -35,11 +39,17 @@ cbp-dialog {
     overflow: hidden;
   }
 
+  &[color=danger] {
+    --cbp-dialog-color-bg: var(--cbp-color-danger-lighter);
+    --cbp-dialog-color-bg-dark: var(--cbp-color-danger-darker);
+  }
+
   div[role=dialog] {
     opacity: 1;
     display: flex;
     flex-direction: column;
     position: fixed;
+    overflow-y: auto;
     z-index: 9;
     width: var(--cbp-dialog-width);
     height: var(--cbp-dialog-height);
@@ -47,11 +57,10 @@ cbp-dialog {
     max-height: 90vh;
     box-shadow: var(--cbp-dialog-shadow);
     border-radius: var(--cbp-dialog-border-radius);
-    
+
     .cbp-dialog-body {
       color: var(--cbp-dialog-color);
       background-color: var(--cbp-dialog-color-bg);
-      //font-weight: var(--cbp-font-weight-bold);
       padding: var(--cbp-dialog-padding);
       border-radius: var(--cbp-dialog-border-radius) var(--cbp-dialog-border-radius) 0 0;
     }
@@ -66,7 +75,7 @@ cbp-dialog {
         &:first-child {
           --cbp-button-border-radius: 0 0 0 var(--cbp-border-radius-softer);
         }
-  
+
         &:last-child {
           --cbp-button-border-radius: 0 0 var(--cbp-border-radius-softer) 0;
         }
@@ -74,8 +83,9 @@ cbp-dialog {
         &:first-child:last-child {
           --cbp-button-border-radius: 0 0 var(--cbp-border-radius-softer) var(--cbp-border-radius-softer);
         }
-  
-        button, a {
+
+        button,
+        a {
           padding-block: var(--cbp-space-3x);
           width: 100%;
         }
@@ -83,21 +93,14 @@ cbp-dialog {
     }
   }
 }
-  
-  
-  /*
-  div[role=dialog]:focus-visible {
-    outline-style: var(--cbp-dialog-outline-style);
-    outline-color: var(--cbp-dialog-outline-color);
-    outline-width: var(--cbp-dialog-outline-width)
-  }
-  */
 
-@media (max-width: 37.5em) {  
+
+@media (max-width: 37.5em) {
   cbp-dialog {
     &[open] {
       align-items: end;
     }
+
     div[role=dialog] {
       margin-bottom: var(--cbp-space-5x);
     }
@@ -115,68 +118,3 @@ cbp-dialog {
     background-color: var(--cbp-dialog-background-color)
   }
 }
-
-/*
-:root {
-  --uef-dialog-backdrop-color: var(--uef-color-gray-overlay-dark, #1b1a1a60);
-  --uef-dialog-background-color: var(--uef-color-background-primary-default-light, #fff);
-  --uef-dialog-padding: var(--uef-space-inset-4x, 1rem);
-  --uef-dialog-elevation: var(--uef-elevation-dialog, 1rem);
-  --uef-dialog-border-radius: var(--uef-border-radius-softer, 8px);
-  --uef-dialog-title-font-size: var(--uef-font-size-lg, 1.25rem);
-  --uef-dialog-title-font-weight: var(--uef-font-weight-semibold, 600);
-  --uef-dialog-body-font-size: var(--uef-font-size-md, 1rem);
-  --uef-dialog-body-font-color: var(--uef-color-text-primary-on-light, #1a1a1a);
-  --uef-dialog-outline-width: var(--uef-input-border-width-m, 4px);
-  --uef-dialog-outline-color: var(--uef-color-interactive-primary-focus, #2491FF);
-  --uef-dialog-outline-style: solid;
-  --uef-dialog-close-control-color: var(--uef-color-text-primary-on-light, #1b1b1b)
-}
-
-
-
-uef-dialog div[role=dialog] .uef-dialog-header {
-  position: relative;
-  margin-bottom: var(--uef-space-stack-5x);
-  font-size: var(--uef-dialog-title-font-size);
-  font-weight: var(--uef-dialog-title-font-weight)
-}
-
-uef-dialog div[role=dialog] .uef-dialog-body {
-  flex: 1;
-  position: relative;
-  overflow-y: auto;
-  font-size: var(--uef-dialog-body-font-size);
-  color: var(--uef-dialog-body-font-color)
-}
-
-uef-dialog div[role=dialog] .uef-dialog-footer {
-  position: relative;
-  margin-top: var(--uef-space-stack-4x)
-}
-
-uef-dialog.uef-dialog--responsive div[role=dialog] {
-  width: 100%;
-  height: 100%
-}
-
-uef-dialog iframe {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  overflow-y: visible;
-  border: 0
-}
-
-@media print {
-  uef-dialog[open] div[role=dialog] {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 999;
-    background-color: var(--uef-dialog-background-color)
-  }
-}
-*/
