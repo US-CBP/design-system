@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Dialog/Specifications" />
+
+# cbp-dialog
+
+## Purpose
+
+The Dialog component represents a dialog overlaid on top of the web page, which can be used similar to an alert/confirm dialog or contain a small form.
+
+## Functional Requirements
+
+* The Dialog component will cover the page in the background with a translucent backdrop to put visual focus on the dialog, which is centered in the display on larger screens.
+* At small screen sizes, the Dialog shall be positioned near the bottom of the screen.
+* Furthermore, the underlying page will not be accessible while the dialog is open.
+* The Dialog component defines several color variants as well, based on design tokens (info, success, warning, danger).
+* The Dialog may optionally contain a title and/or actions in the form of buttons (or links).
+
+## Technical Specifications
+
+### User Interactions
+
+* A control on the page should be visible to reveal the Dialog. This is typically a Button component and is not part of the dialog component.
+* When a button is activated by user interaction it emits a custom event that can be listened for..
+
+### Responsiveness
+
+* Under 600px (37.5rem), the dialog will be positioned near the bottom of the viewport for easier thumb access.
+* The dialog has `max-width: 100%` and `max-height: 90vh` so that it will never stretch larger than the viewport.
+
+### Accessibility
+
+* The dialog has `role="dialog"` and `aria-modal="true"` applied to it automatically.
+* The dialog should have an accessible label specified via the `accessibilityText` property, which applies an aria-label on the `role="dialog"` element.
+* When the dialog is opened, or if it is open by default on page load, focus will be sent to the first focusable element within the dialog.
+* TODO: When the dialog is open, focus shall be trapped within the dialog and the background page is not accessible.
+* TODO: When the dialog is closed, focus shall be sent back to the control used to open it.
+
+### Additional Notes and Considerations
+
+TBD.
