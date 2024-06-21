@@ -15,6 +15,10 @@ export default {
       description: 'A unique `id` applied to the drawer and referenced by the control.',
       control: 'text',
     },
+    accessibilityText: {
+      description: 'Accessibility text is required to label the drawer (dialog) and is applied as an `aria-label`.',
+      control: 'text',
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]

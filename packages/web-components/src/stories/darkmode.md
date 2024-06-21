@@ -66,22 +66,21 @@ The following CSS selectors are used for defining the component's dark mode desi
 ```
 [data-cbp-theme=light] cbp-link[context*=dark],
 [data-cbp-theme=dark] cbp-link:not([context=dark-inverts]):not([context=light-always]) {  
-
   /* CSS variable overrides for dark design */
-
+  --cbp-link-color: var(--cbp-color-interactive-primary-light);
+  --cbp-link-color-visited: var(--cbp-color-interactive-visited-light);
+  --cbp-link-color-hover: var(--cbp-color-interactive-primary-lighter);
+  --cbp-link-color-focus: var(--cbp-color-interactive-focus-light);
+  --cbp-link-color-active: var(--cbp-color-interactive-primary-light);
+  --cbp-link-color-disabled: var(--cbp-color-interactive-disabled-light);
+  --cbp-link-outline-color-focus: var(--cbp-color-interactive-focus-light);
 }
 ```
 
 ## Results
 
+A big advantage of defining a component CSS API at the `:root` level is that it flattens your CSS specificity to a very low level. This makes overriding values with the dark mode selectors (or within another component using the component CSS API) much simpler than if CSS properties are set directly in deeper selectors. This includes (especially) states such as hover, focus, active, etc., as those can be especially difficult and tedious to override with their high specificity.
+
 The specificity of the above "dark mode" selectors is 0,2,1 and 0,3,1 respectively. While this has not been problematic as yet, these values are a little high and I would like to further investigate using `:where()` and/or `@layer` to manage the specificity.
-
-Another important factor in managing specificity is to make sure each component has color variables set at the `:root` level (component CSS API). This makes overriding them with the dark mode selectors (or within another component using the component CSS API) much simpler than if colors are set directly in deeper selectors. This includes (especially) states such as hover, focus, active, etc., as those can be especially difficult and tedious to override with their high specificity. 
-
-## Results
-
-The specificity of the above "dark mode" selectors is 0,2,1 and 0,3,1 respectively. While this has not been problematic as yet, these values are a little high and I would like to further investigate using `where()` and/or `@layer` to manage the specificity.
-
-Another important factor in managing specificity is to make sure each component has color variables set at the `:root` level (component CSS API). This makes overriding them with the dark mode selectors (or within another component using the component CSS API) much simpler than if colors are set directly in deeper selectors. This includes (especially) states such as hover, focus, active, etc., as those can be especially difficult and tedious to override with their high specificity. 
 
 So far, the above implementation is working. However, some refactoring of component CSS has been needed to make sure the component CSS API is robust enough to handle dark mode.
