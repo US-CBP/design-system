@@ -23,7 +23,6 @@
  */
 [data-cbp-theme=light] cbp-panel[context*=dark],
 [data-cbp-theme=dark] cbp-panel:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-panel-header-color: var(--cbp-color-text-lighter);
   --cbp-panel-header-color-bg: var(--cbp-color-branding-dhs-blue);
   --cbp-panel-header-color-bottom-border: var(--cbp-color-gray-cool-50);
   --cbp-panel-content-color: var(--cbp-color-text-lightest);
