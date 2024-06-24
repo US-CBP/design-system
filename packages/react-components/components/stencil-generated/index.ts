@@ -12,6 +12,7 @@ export const CbpAccordionItem = /*@__PURE__*/createReactComponent<JSX.CbpAccordi
 export const CbpApp = /*@__PURE__*/createReactComponent<JSX.CbpApp, HTMLCbpAppElement>('cbp-app');
 export const CbpAppHeader = /*@__PURE__*/createReactComponent<JSX.CbpAppHeader, HTMLCbpAppHeaderElement>('cbp-app-header');
 export const CbpBadge = /*@__PURE__*/createReactComponent<JSX.CbpBadge, HTMLCbpBadgeElement>('cbp-badge');
+export const CbpBanner = /*@__PURE__*/createReactComponent<JSX.CbpBanner, HTMLCbpBannerElement>('cbp-banner');
 export const CbpButton = /*@__PURE__*/createReactComponent<JSX.CbpButton, HTMLCbpButtonElement>('cbp-button');
 export const CbpCard = /*@__PURE__*/createReactComponent<JSX.CbpCard, HTMLCbpCardElement>('cbp-card');
 export const CbpChip = /*@__PURE__*/createReactComponent<JSX.CbpChip, HTMLCbpChipElement>('cbp-chip');
