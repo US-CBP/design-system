@@ -1,9 +1,14 @@
 :root {
-  --cbp-typography-color-text: inherit;
+  --cbp-typography-color: inherit;
+  --cbp-typography-color-dark: inherit;
   --cbp-typography-color-small-text: var(--cbp-color-text-darkest);
+  --cbp-typography-color-small-text-dark: var(--cbp-color-text-lightest);
   --cbp-typography-color-large-text: var(--cbp-color-text-darker);
+  --cbp-typography-color-large-text-dark: var(--cbp-color-text-lighter);
   --cbp-typography-color-divider-fill: var(--cbp-color-gray-cool-10);
+  --cbp-typography-color-divider-fill-dark: var(--cbp-color-gray-cool-70);
   --cbp-typography-color-divider-underline: var(--cbp-color-gray-cool-30);
+  --cbp-typography-color-divider-underline-dark: var(--cbp-color-gray-cool-50);
 }
 
 // Displays dark design based on mode or context
@@ -11,10 +16,10 @@
 // 0,3,1
 [data-cbp-theme=light] cbp-typography[context*=dark],
 [data-cbp-theme=dark] cbp-typography:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-typography-color-small-text: var(--cbp-color-text-lightest);
-  --cbp-typography-color-large-text: var(--cbp-color-text-lighter);
-  --cbp-typography-color-divider-fill: var(--cbp-color-gray-cool-70);
-  --cbp-typography-color-divider-underline: var(--cbp-color-gray-cool-50);
+  --cbp-typography-color-small-text: var(--cbp-typography-color-small-text-dark);
+  --cbp-typography-color-large-text: var(--cbp-typography-color-large-text-dark);
+  --cbp-typography-color-divider-fill: var(--cbp-typography-color-divider-fill-dark);
+  --cbp-typography-color-divider-underline: var(--cbp-typography-color-divider-underline-dark);
 }
 
 /* Inherits body text:
@@ -24,11 +29,10 @@
     h6 is same as body text, all others are lighter/darker
 */
 cbp-typography {
-  color: inherit;
-  color: var(--cbp-typography-color-small-text);
+  color: var(--cbp-typography-color);
   
   & > * {
-    color: var(--cbp-typography-color-small-text);
+    color: var(--cbp-typography-color);
   }
 
   &[variant=masthead-1] > *,
@@ -38,7 +42,7 @@ cbp-typography {
   &[variant=heading-lg] > *, h3,
   &[variant=heading-md] > *, h4,
   &[variant=heading-sm] > *, h5 {
-    color: var(--cbp-typography-color-large-text);
+    --cbp-typography-color: var(--cbp-typography-color-large-text);
   }
 
   
