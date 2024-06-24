@@ -15,6 +15,10 @@ export default {
       description: 'A unique `id` applied to the drawer and referenced by the control.',
       control: 'text',
     },
+    accessibilityText: {
+      description: 'Accessibility text is required to label the drawer (dialog) and is applied as an `aria-label`.',
+      control: 'text',
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -56,7 +60,6 @@ const Template = ({ position, open, uid, accessibilityText, context, sx }) => {
           tag="h3"
           variant="heading-lg"
           id="panelheader"
-          context="dark-always"
         >
           Sidebar Header
         </cbp-typography>
@@ -104,7 +107,6 @@ const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, conte
           tag="h3"
           variant="heading-lg"
           id="panelheader"
-          context="dark-always"
         >
           User Preferences
         </cbp-typography>
