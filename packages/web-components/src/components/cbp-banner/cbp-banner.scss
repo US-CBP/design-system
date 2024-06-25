@@ -1,0 +1,33 @@
+
+:root {
+  --cbp-banner-color-bg: var(--cbp-color-info-dark);
+  --cbp-banner-color: var(--cbp-color-text-lightest);
+}
+
+cbp-banner {
+  display: flex;
+  flex-direction: row;
+  gap: var(--cbp-space-4x);
+  padding: var(--cbp-space-4x) var(--cbp-responsive-spacing-outer);
+  background-color: var(--cbp-banner-color-bg);
+  
+
+  .cbp-banner-icon-container{
+    align-content: center;
+  }
+
+  .cbp-banner-text-container{
+    display: flex;  
+    flex-grow: 1;
+    flex-direction: column;
+    color: var(--cbp-banner-color); 
+  }
+
+  /** Info Banner*/
+  &[color='info']{
+    --cbp-banner-color-bg: var(--cbp-color-info-dark);
+    --cbp-banner-color: var(--cbp-color-text-lightest);
+  }
+  
+}
+
