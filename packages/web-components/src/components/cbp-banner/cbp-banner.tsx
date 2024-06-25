@@ -24,12 +24,12 @@ export class CbpBanner {
     return (
       <Host>
           <cbp-icon  
-            class='cbp-banner__icon-container'
+            class='cbp-banner-icon-container'
             name='exclamation-circle'
             color='var(--cbp-color-text-lighter)'
             size='3rem'
             />
-        <div class='cbp-banner__text-container'>
+        <div class='cbp-banner-text-container'>
           <slot name='cbp-banner-title' /> 
           <p>
             <slot />

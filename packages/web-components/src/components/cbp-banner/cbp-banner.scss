@@ -12,11 +12,11 @@ cbp-banner {
   background-color: var(--cbp-banner-color-bg);
   
 
-  .cbp-banner__icon-container{
+  .cbp-banner-icon-container{
     align-content: center;
   }
 
-  .cbp-banner__text-container{
+  .cbp-banner-text-container{
     display: flex;  
     flex-grow: 1;
     flex-direction: column;
