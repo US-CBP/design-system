@@ -1,78 +1,88 @@
-/*
-
-Dark mode vs dark context
-
-Do dark context elements change styles when light/dark mode is toggled?
-
-
-:root {
-  defaults for light mode
-}
-
-// Displays dark design based on mode or context
-[data-cbp-theme=light] cbp-link[context*=dark],
-[data-cbp-theme=dark] cbp-link:not([context=light-always]),
-[data-cbp-theme=dark] cbp-link:not([context=dark-inverts]),
-//cbp-link[context=dark-always],
-
-
-{
-  defaults for dark mode and inverted cases.
-  inverted = dark
-  does not evaluate as a toggle based on theme?
-}
-
+/**
+ * @prop --cbp-link-color: var(--cbp-color-interactive-primary-dark);
+ * @prop --cbp-link-color-dark: var(--cbp-color-interactive-primary-light);
+ * @prop --cbp-link-color-visited: var(--cbp-color-interactive-visited-dark);
+ * @prop --cbp-link-color-visited-dark: var(--cbp-color-interactive-visited-light);
+ * @prop --cbp-link-color-hover: var(--cbp-color-interactive-primary-darker);
+ * @prop --cbp-link-color-hover-dark: var(--cbp-color-interactive-primary-lighter);
+ * @prop --cbp-link-color-focus: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-link-color-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-link-color-active: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-link-color-active-dark: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-link-color-outline-focus: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-link-color-outline-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-link-color-disabled: var(--cbp-color-interactive-disabled-dark);
+ * @prop --cbp-link-color-disabled-dark: var(--cbp-color-interactive-disabled-light);
 */
-
 :root {
   --cbp-link-color: var(--cbp-color-interactive-primary-dark);
-  --cbp-link-color-visited: var(--cbp-color-interactive-visited-dark);
-  --cbp-link-color-hover: var(--cbp-color-interactive-primary-darker);
-  --cbp-link-color-focus: var(--cbp-color-interactive-focus-dark);
-  --cbp-link-color-active: var(--cbp-color-interactive-primary-dark);
-  --cbp-link-color-disabled: var(--cbp-color-interactive-disabled-dark);
-  --cbp-link-outline-color-focus: var(--cbp-color-interactive-focus-dark);
-}
+  --cbp-link-color-dark: var(--cbp-color-interactive-primary-light);
 
-//[data-cbp-theme=dark] cbp-link:not([inverted]),
-//[data-cbp-theme=light] cbp-link[inverted] {
+  --cbp-link-color-visited: var(--cbp-color-interactive-visited-dark);
+  --cbp-link-color-visited-dark: var(--cbp-color-interactive-visited-light);
+
+  --cbp-link-color-hover: var(--cbp-color-interactive-primary-darker);
+  --cbp-link-color-hover-dark: var(--cbp-color-interactive-primary-lighter);
+
+  --cbp-link-color-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-link-color-focus-dark: var(--cbp-color-interactive-focus-light);
+
+  --cbp-link-color-active: var(--cbp-color-interactive-focus-dark);
+  --cbp-link-color-active-dark: var(--cbp-color-interactive-focus-light);
+
+  --cbp-link-color-outline-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-link-color-outline-focus-dark: var(--cbp-color-interactive-focus-light);
+
+  --cbp-link-color-disabled: var(--cbp-color-interactive-disabled-dark);
+  --cbp-link-color-disabled-dark: var(--cbp-color-interactive-disabled-light);
+}
 
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-link[context*=dark],
 [data-cbp-theme=dark] cbp-link:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-link-color: var(--cbp-color-interactive-primary-light);
-  --cbp-link-color-visited: var(--cbp-color-interactive-visited-light);
-  --cbp-link-color-hover: var(--cbp-color-interactive-primary-lighter);
-  --cbp-link-color-focus: var(--cbp-color-interactive-focus-light);
-  --cbp-link-color-active: var(--cbp-color-interactive-primary-light);
-  --cbp-link-color-disabled: var(--cbp-color-interactive-disabled-light);
-  --cbp-link-outline-color-focus: var(--cbp-color-interactive-focus-light);
+  --cbp-link-color: var(--cbp-link-color-dark);
+  --cbp-link-color-visited: var(--cbp-link-color-visited-dark);
+  --cbp-link-color-hover: var(--cbp-link-color-hover-dark);
+  --cbp-link-color-focus: var(--cbp-link-color-focus-dark);
+  --cbp-link-color-active: var(--cbp-link-color-active-dark);
+  --cbp-link-color-outline-focus: var(--cbp-link-color-outline-focus-dark);
+  --cbp-link-color-disabled: var(--cbp-link-color-disabled-dark);
 }
 
 cbp-link {
   a {
+    color: var(--cbp-link-color);
+    outline-width: 0;
+    outline-style: solid;
+    outline-color: var(--cbp-link-color-outline-focus);
+    outline-offset: var(--cbp-space-1x);
+
     &:link {
-      color: var(--cbp-link-color);
+      text-decoration: underline;
     }
-  
+
     &:visited {
-      color: var(--cbp-link-color-visited);
+      --cbp-link-color: var(--cbp-link-color-visited);
     }
-  
+
     &:hover {
-      color: var(--cbp-link-color-hover);
+      --cbp-link-color: var(--cbp-link-color-hover);
     }
-    
+
     &:focus {
-      color: var(--cbp-link-color-focus);
-      outline: var(--cbp-border-size-md) solid var(--cbp-link-outline-color-focus);
-      outline-offset: var(--cbp-space-1x);
+      --cbp-link-color: var(--cbp-link-color-focus);
+      outline-width: var(--cbp-border-size-md);
     }
-  
+
+    &:active {
+      --cbp-link-color: var(--cbp-link-color-active);
+    }
+
     &[aria-disabled=true] {
-      color: var(--cbp-link-color-disabled);
+      --cbp-link-color: var(--cbp-link-color-disabled);
       font-style: italic;
       text-decoration: underline;
+      cursor: not-allowed;
     }
   }
 
