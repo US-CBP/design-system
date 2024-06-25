@@ -1,29 +1,27 @@
 
 :root {
   --cbp-banner-color-bg: var(--cbp-color-info-dark);
-  --cbp-banner-color-fg: var(--cbp-color-text-lightest)
+  --cbp-banner-color: var(--cbp-color-text-lightest)
 }
+
 cbp-banner {
   display: flex;
   flex-direction: row;
-
-  &[aria-color="infoBanner"]{
-    background-color: var(--cbp-banner-color-bg);
-  }
-
-  .iconContainer{
+  gap: var(--cbp-space-4x);
+  background-color: var(--cbp-banner-color-bg);
+  
+  .cbp-banner__icon-container{
     align-content: center;
-    padding-inline: var(--cbp-space-4x);
   }
 
-  .textContainer{
+  .cbp-banner__text-container{
     display: flex;  
     flex-grow: 1;
     flex-direction: column;
     padding-block: var(--cbp-space-3x);
 
     .cbp-banner-content{
-      color: var(--cbp-banner-color-fg);
+      color: var(--cbp-banner-color);
       margin-block-end: var(--cbp-space-3x);
     }
   }

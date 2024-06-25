@@ -17,21 +17,18 @@ export class CbpBanner {
 
   render() {
     return (
-      <Host aria-color={this.color}>
-        <div class='iconContainer'>
+      <Host>
           <cbp-icon  
+            class='cbp-banner__icon-container'
             name='exclamation-circle'
             color='var(--cbp-color-text-lighter)'
             size='3rem'
             />
-        </div>
-        <div class='textContainer'>
+        <div class='cbp-banner__text-container'>
           <slot name='cbp-banner-title' /> 
-          {/* typography component has max width that is causing overflow in larger cases *discussion for later* */}
           <span class='cbp-banner-content'>
             <slot />
           </span>
-          {/*TODO: hook up button behavior, use hidden attribute need to import event and event emitter decorators*/}
           <cbp-button 
             type='button'
             fill='solid'
@@ -39,7 +36,6 @@ export class CbpBanner {
             context='dark-always'
             onButtonClick={ () => {this.handleDismiss()}}
           >
-            {/* sx command doesn't seem to be working, probably syntax issue: use stringafied json sx='{"":""}' */}
             <cbp-icon 
               name='times'
               sx={{"margin-inline-end": "var(--cbp-space-1x)"}}

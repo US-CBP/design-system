@@ -25,7 +25,7 @@ export default {
         >
             <cbp-typography 
                 slot='cbp-banner-title'
-                tag='h2'
+                tag='div'
                 variant='heading-lg'
                 context='dark-always'
             >

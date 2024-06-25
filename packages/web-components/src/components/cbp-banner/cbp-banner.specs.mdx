@@ -11,15 +11,8 @@ The Banner is a container spanning the entire viewport meant to highlight urgent
 ## Functional Requirements
 
 * Informational banners are the only supported variation of banner currently supported for web Components.
-  * These banners contain an icon as well as a heading followed by descriptive text.
-  * These banners contain a button to dismiss the banner.
-
-## Technical Specifications
-
-### User Interactions
-
-* Pressing the "Dismiss" button will hide banner from view (but not remove it from the DOM).
-* Clicking the backdrop or the designated close button will close (hide) the drawer.
+  * These banner contain an icon as well as a heading followed by descriptive text.
+  * These banner contain a button to dismiss the banner.
 
 ### Responsiveness
 
@@ -27,7 +20,6 @@ The Banner is a container spanning the entire viewport meant to highlight urgent
 
 ### Accessibility
 
-* Within your banner, use the appropriate heading level according to your document structure.
 * Ideally, only one banner should be present at a time.
 * In the event that more than one banner is present, the "dismiss" buttons will need to be uniquely labelled. Adding an `id` to the heading element and referencing the respective heading `id` as the value of an `aria-describedby` attribute on the dismiss button is recommended.
 
