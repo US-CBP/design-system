@@ -1,4 +1,4 @@
-import { Component, Host, Prop, Element,  h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, h, Host} from '@stencil/core';
 
 @Component({
   tag: 'cbp-banner',
@@ -8,11 +8,16 @@ export class CbpBanner {
 
   @Element() host: HTMLElement;
 
-  @Prop() color: string = 'infoBanner'; //intended to be used for different statuses (error, warning, etc)
+  /** Specifies a color variant for the banner. */
+  @Prop({reflect: true}) color: 'info' = 'info'; //intended to be used for different statuses (error, warning, etc)
 
-  handleDismiss() {
-    this.host.setAttribute('hidden', '');
-    //call event emitter for app to piggy back (need Event, EventEmitter ?)
+  /** A custom event emitted with the Banner is dismissed. */
+  @Event() bannerDismiss: EventEmitter;
+    handleDismiss() {
+      this.host.setAttribute('hidden', '');
+      this.bannerDismiss.emit({
+        host: this.host
+    }) 
   }
 
   render() {
@@ -26,9 +31,9 @@ export class CbpBanner {
             />
         <div class='cbp-banner__text-container'>
           <slot name='cbp-banner-title' /> 
-          <span class='cbp-banner-content'>
+          <p>
             <slot />
-          </span>
+          </p>
           <cbp-button 
             type='button'
             fill='solid'

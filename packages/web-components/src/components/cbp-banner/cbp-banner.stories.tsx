@@ -19,10 +19,7 @@ export default {
   
   const Template = ({ bannerTitle, bannerContent}) => {
     return ` 
-        <cbp-banner 
-            bannerTitle= ${bannerTitle}
-            bannerContent= ${bannerContent}
-        >
+        <cbp-banner>
             <cbp-typography 
                 slot='cbp-banner-title'
                 tag='div'
@@ -36,9 +33,8 @@ export default {
       `;
   };
 
-  export const Default = Template.bind({});
-    Default.args = {
+  export const Banner = Template.bind({});
+    Banner.args = {
         bannerTitle: 'Scheduled Maintenance Notice',
-        bannerContent: 'This application will be undergoing scheduled maintenance from 10/5/XXXX to 10/31/XXXX from 12am - 3am and wil be unavaliable during these times'
+        bannerContent: 'This application will be undergoing scheduled maintenance from 10/5/XXXX to 10/31/XXXX from 12am - 3am and wil be unavaliable during these times.'
     };
-    Default.storyName = 'Default';

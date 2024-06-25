@@ -8,8 +8,9 @@ cbp-banner {
   display: flex;
   flex-direction: row;
   gap: var(--cbp-space-4x);
-  background-color: var(--cbp-banner-color-bg);
+  padding: var(--cbp-space-4x) var(--cbp-responsive-spacing-outer);
   
+
   .cbp-banner__icon-container{
     align-content: center;
   }
@@ -18,12 +19,16 @@ cbp-banner {
     display: flex;  
     flex-grow: 1;
     flex-direction: column;
-    padding-block: var(--cbp-space-3x);
+  }
 
-    .cbp-banner-content{
-      color: var(--cbp-banner-color);
-      margin-block-end: var(--cbp-space-3x);
+  /** Info Banner*/
+  &[color='info']{
+    background-color: var(--cbp-banner-color-bg);
+
+    .cbp-banner__text-container{
+      color: var(--cbp-banner-color); 
     }
   }
+  
 }
 
