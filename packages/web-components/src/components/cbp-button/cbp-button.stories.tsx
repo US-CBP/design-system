@@ -133,3 +133,28 @@ const Template = ({ label, tag, type, value, href, rel, target, download, fill, 
 };
 
 export const Button = Template.bind({});
+
+
+const SlottedButtonTemplate = ({ label, tag, href, fill, color, variant, context, sx }) => {
+  return ` 
+      <cbp-button
+        ${tag !== 'button' ? `tag=${tag}` : ''}
+        ${href ? `href=${href}` : ''}
+        ${fill ? `fill=${fill}` : ''}
+        ${color ? `color=${color}` : ''}
+        ${variant !== 'default' ? `variant=${variant}` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+        <button 
+          slot="cbp-button-custom"
+          type="button"
+          value="Custom Button Value"
+        >
+          ${label}
+        </button>
+      </cbp-button>
+    `;
+};
+
+export const SlottedButton = SlottedButtonTemplate.bind({});
