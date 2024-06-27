@@ -22,6 +22,10 @@ export default {
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
+    },    
+    context : {
+      control: 'select',
+      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
     },
   },
 };
@@ -51,9 +55,9 @@ const renderActions = (layout, { btn1, btn2, btn3 }) => {
   }
 };
 
-const GeneralTemplate = ({ color, title, bodyText, sx }) => {
+const GeneralTemplate = ({ color, title, bodyText, sx, context }) => {
   return ` 
-    <cbp-card ${color ? `color=${color}` : ''} ${sx ? 'sx=' + JSON.stringify(sx) : ''}>
+    <cbp-card ${color ? `color=${color}` : ''} ${sx ? 'sx=' + JSON.stringify(sx) : ''}${context && context != 'light-inverts' ? `context=${context}` : ''}>
       <h4 slot="cbp-card-title">${title}</h4>
       <p>${bodyText}</p>
     </cbp-card>

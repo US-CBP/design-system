@@ -21,7 +21,9 @@
   --cbp-card-color-border-dark: var(--cbp-color-gray-cool-50);
   --cbp-card-color-title: var(--cbp-color-text-darker);
   --cbp-card-color-title-dark: var(--cbp-color-text-lighter);
-  
+  --cbp-card-color-text: var(--cbp-color-text-darker);
+  --cbp-card-color-text-dark: var(--cbp-color-text-lightest);
+
   --cbp-banner-card-color: var(--cbp-color-gray-cool-60);
   --cbp-banner-card-color-dark: var(--cbp-color-gray-cool-20); 
   --cbp-banner-card-color-title: var(--cbp-color-text-lighter);
@@ -38,7 +40,8 @@
   --cbp-card-color-background: var(--cbp-card-color-background-dark);
   --cbp-card-color-border: var(--cbp-card-color-border-dark);
   --cbp-card-color-title: var(--cbp-card-color-title-dark);
-  
+  --cbp-card-color-text: var(--cbp-card-color-text-dark);
+
   --cbp-banner-card-color: var(--cbp-banner-card-color-dark);
   --cbp-banner-card-color-title: var(--cbp-banner-card-color-title-dark);
   --cbp-banner-card-color-body-background: var(--cbp-banner-card-color-body-background-dark);
@@ -64,6 +67,10 @@ cbp-card {
     :last-child {
       margin-bottom: 0;
     }
+
+     > p {
+      color: var(--cbp-card-color-text);
+     }
   }
 
   &[stretch] {
