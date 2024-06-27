@@ -57,6 +57,7 @@ cbp-card {
   border-color: var(--cbp-card-color-border);
   border-style: solid;
   border-width: var(--cbp-border-size-md);
+  color: var(--cbp-card-color-text);
 
   .cbp-card-body {
     padding: var(--cbp-space-4x);
@@ -67,10 +68,6 @@ cbp-card {
     :last-child {
       margin-bottom: 0;
     }
-
-     > p {
-      color: var(--cbp-card-color-text);
-     }
   }
 
   &[stretch] {
