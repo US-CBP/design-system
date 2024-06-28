@@ -55,18 +55,22 @@ const renderActions = (layout, { btn1, btn2, btn3 }) => {
   }
 };
 
-const GeneralTemplate = ({ color, title, bodyText, sx, context }) => {
+const GeneralTemplate = ({ color, title, bodyText, context, sx }) => {
   return ` 
-    <cbp-card ${color ? `color=${color}` : ''} ${sx ? 'sx=' + JSON.stringify(sx) : ''}${context && context != 'light-inverts' ? `context=${context}` : ''}>
+    <cbp-card ${color ? `color=${color}` : ''} ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
       <h4 slot="cbp-card-title">${title}</h4>
       <p>${bodyText}</p>
     </cbp-card>
   `;
 };
 
-const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig, sx }) => {
+const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig, context, sx }) => {
   return ` 
-      <cbp-card variant="decision"  ${color ? `color=${color}` : ''} ${sx ? 'sx=' + JSON.stringify(sx) : ''}>
+      <cbp-card variant="decision"  ${color ? `color=${color}` : ''} ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      >
         <h4 slot="cbp-card-title" id="card-heading-1">${title}</h4>
         <p>${bodyText}</p>  
         ${renderActions(actionsLayout, actionsConfig)}
@@ -74,9 +78,11 @@ const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig
     `;
 };
 
-const BannerTemplate = ({ title, color, bodyText, sx }) => {
+const BannerTemplate = ({ title, color, bodyText, context, sx }) => {
   return ` 
-    <cbp-card variant="banner" ${color ? `color=${color}` : ''} ${sx ? 'sx=' + JSON.stringify(sx) : ''}>
+    <cbp-card variant="banner" ${color ? `color=${color}` : ''} ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
       <h4 slot="cbp-card-title">${title}</h4>
       <p>${bodyText}</p>  
     </cbp-card>
