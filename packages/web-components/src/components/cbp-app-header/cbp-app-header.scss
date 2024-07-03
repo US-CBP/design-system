@@ -1,3 +1,100 @@
+/** 
+   /*** Base variables ***
+ * @Prop --cbp-app-header-color-background: var(--cbp-color-white) 
+ * @Prop --cbp-app-header-color-background-dark: var(--cbp-color-base-neutral-dark);
+
+   /*** Child variables ***
+ * @Prop --cbp-app-header-child-color: var(--cbp-color-interactive-secondary-darker); 
+ * @Prop --cbp-app-header-child-color-dark: var(--cbp-color-interactive-secondary-lighter);
+ * @Prop --cbp-app-header-child-color-background: transparent;
+ * @Prop --cbp-app-header-child-color-background-dark: transparent;
+ * @Prop --cbp-app-header-child-color-border: transparent;
+ * @Prop --cbp-app-header-child-color-border-dark: transparent;
+ * @Prop --cbp-app-header-child-color-outline: var(--cbp-color-white);
+ * @Prop --cbp-app-header-child-color-outline-dark: transparent;
+
+   /*** Hover variables ***
+ * @Prop --cbp-app-header-child-color-text-hover: var(--cbp-color-interactive-secondary-darker);
+ * @Prop --cbp-app-header-child-color-text-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ * @Prop --cbp-app-header-child-color-background-hover: var(--cbp-color-interactive-secondary-lighter);
+ * @Prop --cbp-app-header-child-color-background-hover-dark: var(--cbp-color-interactive-secondary-darker);
+ * @Prop --cbp-app-header-child-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+ * @Prop --cbp-app-header-child-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+
+  /*** Focus variables ***
+ * @Prop --cbp-app-header-child-color-text-focus: var(--cbp-color-text-lightest);
+ * @Prop --cbp-app-header-child-color-text-focus-dark: var(--cbp-color-text-darkest);
+ * @Prop --cbp-app-header-child-color-background-focus: var(--cbp-color-interactive-focus-dark);
+ * @Prop --cbp-app-header-child-color-background-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @Prop --cbp-app-header-child-color-border-focus: var(--cbp-color-interactive-focus-dark);
+ * @Prop --cbp-app-header-child-color-border-focus-dark: transparent;
+ * @Prop --cbp-app-header-child-color-outline-focus: var(--cbp-color-white);
+ * @Prop --cbp-app-header-child-color-outline-focus-dark: var(--cbp-color-black);
+  
+  /*** Active variables ***
+ * @Prop --cbp-app-header-child-color-background-active: var(--cbp-color-interactive-active-dark);
+ * @Prop --cbp-app-header-child-color-background-active-dark: var(--cbp-color-interactive-focus-light);
+ * @Prop --cbp-app-header-child-color-border-active: var(--cbp-color-interactive-active-dark);
+ * @Prop --cbp-app-header-child-color-border-active-dark: var(--cbp-color-text-darkest);
+ * */
+
+:root {
+  --cbp-app-header-color-background: var(--cbp-color-white);
+  --cbp-app-header-color-background-dark: var(--cbp-color-base-neutral-dark);
+
+  --cbp-app-header-child-color: var(--cbp-color-interactive-secondary-darker); 
+  --cbp-app-header-child-color-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-app-header-child-color-background: transparent;
+  --cbp-app-header-child-color-background-dark: transparent;
+  --cbp-app-header-child-color-border: transparent;
+  --cbp-app-header-child-color-border-dark: transparent;
+  --cbp-app-header-child-color-outline: var(--cbp-color-white);
+  --cbp-app-header-child-color-outline-dark: transparent;
+
+  --cbp-app-header-child-color-text-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-app-header-child-color-text-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-app-header-child-color-background-hover: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-app-header-child-color-background-hover-dark: var(--cbp-color-interactive-secondary-darker);
+  --cbp-app-header-child-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-app-header-child-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  
+  --cbp-app-header-child-color-text-focus: var(--cbp-color-text-lightest);
+  --cbp-app-header-child-color-text-focus-dark: var(--cbp-color-text-darkest);
+  --cbp-app-header-child-color-background-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-app-header-child-color-background-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-app-header-child-color-border-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-app-header-child-color-border-focus-dark: transparent;
+  --cbp-app-header-child-color-outline-focus: var(--cbp-color-white);
+  --cbp-app-header-child-color-outline-focus-dark: var(--cbp-color-black);
+    
+  --cbp-app-header-child-color-background-active: var(--cbp-color-interactive-active-dark);
+  --cbp-app-header-child-color-background-active-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-app-header-child-color-border-active: var(--cbp-color-interactive-active-dark);
+  --cbp-app-header-child-color-border-active-dark: var(--cbp-color-text-darkest);
+}
+
+[data-cbp-theme=light] cbp-app-header[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-app-header:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-app-header-color-background: var(--cbp-app-header-color-background-dark);
+
+  --cbp-app-header-child-color: var(--cbp-app-header-child-color-dark);
+  --cbp-app-header-child-color-background: var(--cbp-app-header-child-color-background-dark);
+  --cbp-app-header-child-color-border: var(--cbp-app-header-child-color-border-dark);
+  --cbp-app-header-child-color-outline: var(--cbp-app-header-child-color-outline-dark);
+
+  --cbp-app-header-child-color-text-hover: var(--cbp-app-header-child-color-text-hover-dark);
+  --cbp-app-header-child-color-background-hover: var(--cbp-app-header-child-color-background-hover-dark);
+  --cbp-app-header-child-color-border-hover: var(--cbp-app-header-child-color-border-hover-dark);
+
+  --cbp-app-header-child-color-text-focus: var(--cbp-app-header-child-color-text-focus-dark);
+  --cbp-app-header-child-color-background-focus: var(--cbp-app-header-child-color-background-focus-dark);
+  --cbp-app-header-child-color-border-focus: var(--cbp-app-header-child-color-border-focus-dark);
+  --cbp-app-header-child-color-outline-focus: var(--cbp-app-header-child-color-outline-focus-dark);
+  
+  --cbp-app-header-child-color-background-active: var(--cbp-app-header-child-color-background-active-dark);
+  --cbp-app-header-child-color-border-active: var(--cbp-app-header-child-color-border-active-dark);
+}
+
 cbp-app-header {
   display: flex;
   align-items: center;
@@ -7,7 +104,7 @@ cbp-app-header {
   width: 100%;
   min-height: var(--cbp-space-14x);
   padding: 0 var(--cbp-responsive-spacing-outer);
-  background-color: var(--cbp-color-white);
+  background-color: var(--cbp-app-header-color-background);
   box-shadow: var(--cbp-shadow-level-3-down);
   z-index: var(--cbp-z-index-level-1);
 
@@ -23,37 +120,39 @@ cbp-app-header {
     height: 100%;
     min-height: var(--cbp-space-14x);
     padding: 0 var(--cbp-space-3x);
-    color: var(--cbp-color-interactive-secondary-darker);
-    background-color: transparent;
+    color: var(--cbp-app-header-child-color);
+    background-color: var(--cbp-app-header-child-color-background);
     font-size: var(--cbp-font-size-heading-xs);
     font-weight: var(--cbp-font-weight-medium);
     text-decoration: none;
     white-space: nowrap;
-    border-color: transparent;
+    border-color: var(--cbp-app-header-child-color-border);
     border-style: solid;
     border-width: 0 0 var(--cbp-border-size-xl) 0;
-    outline-color: var(--cbp-color-white);
+    outline-color: var(--cbp-app-header-child-color-outline);
     outline-style: solid;
     outline-width: 0;
     outline-offset: calc(-1 * var(--cbp-space-1x));
     cursor: pointer;
 
     &:hover {
-      color: var(--cbp-color-interactive-secondary-darker);
-      background-color: var(--cbp-color-interactive-secondary-lighter);
-      border-color: var(--cbp-color-interactive-secondary-darker);
+      color: var(--cbp-app-header-child-color-text-hover);
+      background-color: var(--cbp-app-header-child-color-background-hover);
+      border-color: var(--cbp-app-header-child-color-border-hover);
     }
 
     &:focus {
-      color: var(--cbp-color-text-lightest);
-      background-color: var(--cbp-color-interactive-focus-dark);
-      border-color: var(--cbp-color-interactive-focus-dark);
+      color: var(--cbp-app-header-child-color-text-focus);
+      background-color: var(--cbp-app-header-child-color-background-focus);
+      border-color: var(--cbp-app-header-child-color-border-focus);
       outline-width: var(--cbp-border-size-md);
+      outline-color: var(--cbp-app-header-child-color-outline-focus);
+      
     }
 
     &:active {
-      background-color: var(--cbp-color-interactive-active-dark);
-      border-color: var(--cbp-color-interactive-active-dark);
+      background-color: var(--cbp-app-header-child-color-background-active);
+      border: var(--cbp-app-header-child-color-border-active);
     }
   }
   
