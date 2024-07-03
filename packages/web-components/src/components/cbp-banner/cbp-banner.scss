@@ -21,6 +21,10 @@ cbp-banner {
     flex-grow: 1;
     flex-direction: column;
     color: var(--cbp-banner-color); 
+
+    & > p{
+      margin-block-end: var(--cbp-space-3x);
+    }
   }
 
   /** Info Banner*/
