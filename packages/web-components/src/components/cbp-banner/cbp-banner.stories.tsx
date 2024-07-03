@@ -23,7 +23,7 @@ export default {
             <cbp-typography 
                 slot='cbp-banner-title'
                 tag='div'
-                variant='heading-lg'
+                variant='heading-md'
                 context='dark-always'
             >
                 ${bannerTitle}
