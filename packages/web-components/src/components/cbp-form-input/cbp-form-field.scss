@@ -1,0 +1,215 @@
+/**
+ *
+ */
+:root{
+  --cbp-form-field-color: var(--cbp-color-text-darkest);
+  --cbp-form-field-color-bg: var(--cbp-color-white);
+  --cbp-form-field-color-border: var(--cbp-color-interactive-secondary-base);
+  --cbp-form-field-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-form-field-color-border-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-form-field-color-label: var(--cbp-color-text-darkest);
+  --cbp-form-field-color-description: var(--cbp-color-text-darkest);
+  --cbp-form-field-color-placeholder: var(--cbp-color-text-dark);
+
+
+  --cbp-form-field-color-dark: var(--cbp-color-text-lightest);
+  --cbp-form-field-color-bg-dark: var(--cbp-color-gray-cool-70);
+  --cbp-form-field-color-border-dark: var(--cbp-color-interactive-secondary-light);
+  --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-form-field-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-form-field-color-label-dark: var(--cbp-color-text-lightest);
+  --cbp-form-field-color-description-dark: var(--cbp-color-text-lightest);
+  --cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
+
+  --cbp-form-field-margin-bottom: var(--cbp-space-4x);
+}
+
+
+
+cbp-form-field {
+  display: block;
+  margin-bottom: var(--cbp-form-field-margin-bottom);
+
+  .cbp-form-field-label {
+    display: block;
+    color: var(--cbp-form-field-color-label);
+    font-size: var(--cbp-font-size-body);
+    font-weight: var(--cbp-font-weight-bold);
+    font-style: italic;
+    line-height: var(--cbp-line-height-xs);
+    //margin-bottom: var(--cbp-space-1x);
+  }
+
+  .cbp-form-field-description {
+    display: block;
+    color: var(--cbp-form-field-color-description);
+    font-size: var(--cbp-font-size-subhead);
+    font-weight: var(--cbp-font-weight-medium);
+    font-style: italic;
+    line-height: var(--cbp-line-height-xs);
+    //margin-bottom: var(--cbp-space-1x);
+  }
+
+  .cbp-form-field-container {
+    position: relative;
+
+    /* This is hacky and doesn't activate the dropdown */
+    /*
+    &:has(select) {
+      &::after {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        content: "▼";
+        width: var(--cbp-space-9x);
+        height: var(--cbp-space-9x);
+        background-color: var(--cbp-form-field-color-border);
+        font-size: .75rem;
+        top: 0;
+        right: 0;
+        position: absolute;
+      }
+    }
+    */
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    max-width: 100%;
+    min-height: var(--cbp-space-9x);
+    padding-inline: var(--cbp-space-2x);
+    font-family: inherit;
+    font-size: var(--cbp-font-size-body);
+    line-height: var(--cbp-line-height-xs);
+
+    color: var(--cbp-form-field-color);
+    background-color: var(--cbp-form-field-color-bg);
+    border-style: solid;
+    border-width: var(--cbp-border-size-md);
+    border-color: var(--cbp-form-field-color-border);
+    border-radius: var(--cbp-border-radius-soft);
+    outline-style: solid;
+    outline-width: 0;
+    outline-color: var(--cbp-form-field-color-border-focus);
+
+    &:hover {
+      --cbp-form-field-color-border: var(--cbp-form-field-color-border-hover);
+    }
+
+    &:focus {
+      --cbp-form-field-color-border: var(--cbp-form-field-color-border-focus);
+      outline-width: var(--cbp-border-size-md);
+    }
+
+
+    //:read-only:where(input,textarea) {
+    &[readonly] {
+      --cbp-form-field-color-bg: var(--cbp-color-gray-cool-10);
+      --cbp-form-field-color-border: var(--cbp-color-interactive-secondary-light);
+      --cbp-form-field-color-border-hover: var(--cbp-color-interactive-secondary-light);
+      --cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-light);
+      --cbp-form-field-color-bg-dark: var(--cbp-color-gray-cool-80);
+      --cbp-form-field-color-border-dark: var(--cbp-color-interactive-secondary-dark);
+      --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-secondary-dark);
+      --cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-dark);
+      --cbp-form-field-color-placeholder: transparent;
+      font-style: italic;
+      cursor: not-allowed;
+    }
+
+    &:disabled {
+      --cbp-form-field-color: var(--cbp-color-interactive-disabled-dark);
+      --cbp-form-field-color-bg: var(--cbp-color-interactive-disabled-light);
+      --cbp-form-field-color-border: var(--cbp-color-interactive-disabled-dark);
+      --cbp-form-field-color-border-hover: var(--cbp-color-interactive-disabled-dark);
+      //--cbp-form-field-color-border-focus: var(--cbp-color-interactive-disabled-dark);
+      --cbp-form-field-color-dark: var(--cbp-color-interactive-disabled-light);
+      --cbp-form-field-color-bg-dark: var(--cbp-color-interactive-disabled-dark);
+      --cbp-form-field-color-border-dark: var(--cbp-color-interactive-disabled-light);
+      --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-disabled-light);
+      //--cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-dark);
+      --cbp-form-field-color-placeholder: transparent;
+      font-style: italic;
+      cursor: not-allowed;
+    }
+  }
+  
+  input::placeholder {
+    color: var(--cbp-form-field-color-placeholder);
+    font-style: italic;
+  }
+
+  textarea { 
+    min-height: 5rem;
+    max-height: 90vh;
+    padding-block: var(--cbp-space-2x);
+    scrollbar-width: thin;
+    scrollbar-color: var(--cbp-form-field-color-border) var(--cbp-form-field-color-bg);
+    resize: vertical;
+  }
+
+  select {
+    //appearance: none;
+    text-overflow: ellipsis;
+    //padding-inline: var(--cbp-space-2x) var(--cbp-space-3x);
+
+    option {
+      // only allows color and bgcolor to be changed in most browsers
+      padding-inline: var(--cbp-space-4x);
+      border-bottom: solid 1px var(--cbp-color-gray-50);
+    }
+  }
+
+  &[error] {
+    //--cbp-form-field-color: var(--cbp-color-text-darkest);
+    --cbp-form-field-color-bg: var(--cbp-color-danger-lighter);
+    --cbp-form-field-color-border: var(--cbp-color-danger-dark);
+    --cbp-form-field-color-border-hover: var(--cbp-color-danger-darker);
+    //--cbp-form-field-color-border-focus: var(--cbp-color-interactive-focus-dark);
+    //--cbp-form-field-color-label: var(--cbp-color-text-darkest);
+    --cbp-form-field-color-description: var(--cbp-color-danger-dark);
+    //--cbp-form-field-color-placeholder: var(--cbp-color-text-dark);
+    
+    //--cbp-form-field-color-dark: var(--cbp-color-text-lightest);
+    --cbp-form-field-color-bg-dark: var(--cbp-color-danger-darker);
+    --cbp-form-field-color-border-dark: var(--cbp-color-danger-light);
+    --cbp-form-field-color-border-hover-dark: var(--cbp-color-danger-lighter);
+    //--cbp-form-field-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
+    //--cbp-form-field-color-label-dark: var(--cbp-color-text-lightest);
+    --cbp-form-field-color-description-dark: var(--cbp-color-text-light);
+    //--cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
+  }
+
+  input[type=checkbox],
+  input[type=radio]{
+    cursor: pointer;
+  }
+
+}
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-form-field[context*=dark],
+[data-cbp-theme=dark] cbp-form-field:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-form-field-color-label: var(--cbp-form-field-color-label-dark);
+  --cbp-form-field-color-description: var(--cbp-form-field-color-description-dark);
+  --cbp-form-field-color-placeholder: var(--cbp-form-field-color-placeholder-dark);
+
+  input, select, textarea {
+    --cbp-form-field-color: var(--cbp-form-field-color-dark);
+    --cbp-form-field-color-bg: var(--cbp-form-field-color-bg-dark);
+    --cbp-form-field-color-border: var(--cbp-form-field-color-border-dark);
+    --cbp-form-field-color-border-hover: var(--cbp-form-field-color-border-hover-dark);
+    --cbp-form-field-color-border-focus: var(--cbp-form-field-color-border-focus-dark);
+  }
+}
+
+
+/*
+look out for:
+
+input:-internal-autofill-selected {
+
+
+*/

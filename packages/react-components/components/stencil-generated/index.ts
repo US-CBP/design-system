@@ -22,6 +22,7 @@ export const CbpExpand = /*@__PURE__*/createReactComponent<JSX.CbpExpand, HTMLCb
 export const CbpFlex = /*@__PURE__*/createReactComponent<JSX.CbpFlex, HTMLCbpFlexElement>('cbp-flex');
 export const CbpFlexItem = /*@__PURE__*/createReactComponent<JSX.CbpFlexItem, HTMLCbpFlexItemElement>('cbp-flex-item');
 export const CbpFooter = /*@__PURE__*/createReactComponent<JSX.CbpFooter, HTMLCbpFooterElement>('cbp-footer');
+export const CbpFormField = /*@__PURE__*/createReactComponent<JSX.CbpFormField, HTMLCbpFormFieldElement>('cbp-form-field');
 export const CbpGrid = /*@__PURE__*/createReactComponent<JSX.CbpGrid, HTMLCbpGridElement>('cbp-grid');
 export const CbpGridItem = /*@__PURE__*/createReactComponent<JSX.CbpGridItem, HTMLCbpGridItemElement>('cbp-grid-item');
 export const CbpHide = /*@__PURE__*/createReactComponent<JSX.CbpHide, HTMLCbpHideElement>('cbp-hide');
