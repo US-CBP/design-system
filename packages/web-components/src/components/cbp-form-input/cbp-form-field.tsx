@@ -1,5 +1,5 @@
 import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
-import { setCSSProps } from '../../utils/utils';
+import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
 /**
@@ -13,25 +13,20 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpFormField {
 
-  private formControl: any;
+  private formField: any;
+  private hasDescription: boolean;
   
   @Element() host: HTMLElement;
-
 
   @Prop() label: string;
   @Prop() description: string;
   
+  /** Optionally specify the ID of the field here, which is used to generate related pattern node IDs and associate everything for accessibility */
+  @Prop() fieldId: string = createNamespaceKey('cbp-formfield');
+  
   @Prop({ reflect: true }) error: boolean;
   
   @Prop() errorMessages: string | any;
-
-  /** Marks the rendered button/link in a readonly state when specified. */
-  //@Prop() readonly: boolean;
-
-  /** Marks the rendered button/link in a disabled state when specified. */
-  //@Prop() disabled: boolean;
-
-  
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
@@ -42,18 +37,17 @@ export class CbpFormField {
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() valueChange!: EventEmitter;
-  /** A custom event emitted when the component has completed loading and its internal lifecycles. */
-  @Event() componentLoad!: EventEmitter;
+  /* A custom event emitted when the component has completed loading and its internal lifecycles. */
+  //@Event() componentLoad!: EventEmitter;
 
 
   handleChange() {
     this.valueChange.emit({
       host: this.host,
-      nativeElement: this.formControl,
-      value: this.formControl.value,
+      nativeElement: this.formField,
+      value: this.formField.value,
     });
   }
-
 
   componentWillLoad() {
     if (typeof this.sx == 'string') {
@@ -64,34 +58,45 @@ export class CbpFormField {
     });
   }
 
-
   componentDidLoad() {
-    // If the button was not defined by ref in the render lifecycle, query the DOM for one that may have been slotted and attach an event listener to it
-    if (!this.formControl) {
-      const slotted = (this.formControl = this.host.querySelector('button,a'));
+    this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
+
+    // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
+    if (!this.formField) {
+      const slotted = (this.formField = this.host.querySelector('input,select,textarea'));
       if (slotted) {
-        this.formControl = slotted;
-        this.formControl.addEventListener('change', this.handleChange);
+        this.formField = slotted;
+        this.formField.setAttribute('id',`${this.fieldId}`);
+        this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
+        this.formField.addEventListener('change', this.handleChange);
       }
     }
-
+    /*
     this.componentLoad.emit({
       host: this.host,
-      nativeElement: this.formControl,
-      value: this.formControl.value,
+      nativeElement: this.formField,
+      value: this.formField.value,
     });
+    */
   }
 
 
   render() {
     return (
       <Host>
-        <label htmlFor="id" class="cbp-form-field-label">
+        <label 
+          htmlFor={this.fieldId} 
+          id={`${this.fieldId}-label`}
+          class="cbp-form-field-label"
+        >
           {this.label}
           <slot name="cbp-form-field-label" />
         </label>
 
-        <div class="cbp-form-field-description">
+        <div
+          id={`${this.fieldId}-description`}
+          class="cbp-form-field-description"
+        >
           {this.description}
           <slot name="cbp-form-field-description" />
         </div>

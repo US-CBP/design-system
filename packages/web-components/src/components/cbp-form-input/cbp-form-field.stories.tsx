@@ -8,10 +8,15 @@ export default {
     description: {
       control: 'text',
     },
+    fieldId: {
+      control: 'text',
+    },
     error: {
       control: 'boolean',
     },
-
+    readonly: {
+      control: 'boolean',
+    },
     disabled: {
       control: 'boolean',
     },
@@ -30,11 +35,12 @@ export default {
   },
 };
 
-const TextInputTemplate = ({ label, description, error, readonly, disabled, value, context, sx }) => {
+const TextInputTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -45,46 +51,17 @@ const TextInputTemplate = ({ label, description, error, readonly, disabled, valu
 };
 
 export const TextInput = TextInputTemplate.bind({});
-TextInput.argTypes = {
-  readonly: {
-    control: 'boolean',
-  },
-}
 TextInput.args = {
   value: '',
 };
 
 
-const SelectTemplate = ({ label, description, error, disabled, context, sx }) => {
+const TextareaTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-    >
-      <select name="select" ${disabled ? `disabled` : ''}>
-        <option value=""></option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-      </select>
-    </cbp-form-field>
-  `;
-};
-
-export const Select = SelectTemplate.bind({});
-Select.args = {
-  //label: 'Text Input Label',
-};
-
-
-const TextareaTemplate = ({ label, description, error, readonly, disabled, value, context, sx }) => {
-  return ` 
-    <cbp-form-field
-      ${label ? `label="${label}"` : ''}
-      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -95,11 +72,122 @@ const TextareaTemplate = ({ label, description, error, readonly, disabled, value
 };
 
 export const Textarea = TextareaTemplate.bind({});
-Textarea.argTypes = {
-  readonly: {
-    control: 'boolean',
-  },
-}
 Textarea.args = {
   value: '',
 };
+
+
+
+const SelectTemplate = ({ label, description, fieldId, error, disabled, context, sx }) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      <select name="select" ${disabled ? `disabled` : ''}>
+        <option value=""></option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+        <!--
+        <optgroup label="Group A">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+        <optgroup label="Group B">
+          <option value="10">Option 10</option>
+          <option value="11">Option 11</option>
+          <option value="12">Option 12</option>
+          <option value="13">Option 13</option>
+          <option value="14">Option 14</option>
+          <option value="15">Option 15</option>
+          <option value="16">Option 16</option>
+          <option value="17">Option 17</option>
+          <option value="18">Option 18</option>
+          <option value="19">Option 19</option>
+          <option value="20">Option 20</option>
+          <option value="21">Option 21</option>
+          <option value="22">Option 22</option>
+          <option value="23">Option 23</option>
+          <option value="24">Option 24</option>
+          <option value="25">Option 25</option>
+          <option value="26">Option 26</option>
+          <option value="27">Option 27</option>
+          <option value="28">Option 28</option>
+        </optgroup>
+        -->
+      </select>
+    </cbp-form-field>
+  `;
+};
+
+export const Select = SelectTemplate.bind({});
+Select.args = {
+  
+};
+
+/* //For testing purposes only
+const MultiSelectTemplate = ({ label, description, fieldId, error, disabled, context, sx }) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      <select name="select" size="5" multiple ${disabled ? `disabled` : ''}>
+        <option value=""></option>
+        <option value="1">Option 1</option>
+        <hr />
+        <option value="2">Option 2</option>
+        <hr />
+        <option value="3">Option 3</option>
+        <hr />
+        <optgroup label="Group A">
+          <option value="4">Option 4</option>
+          <option value="5">Option 5</option>
+          <option value="6">Option 6</option>
+          <option value="7">Option 7</option>
+          <option value="8">Option 8</option>
+          <option value="9">Option 9</option>
+        </optgroup>
+        <optgroup label="Group B">
+          <option value="10">Option 10</option>
+          <option value="11">Option 11</option>
+          <option value="12">Option 12</option>
+          <option value="13">Option 13</option>
+          <option value="14">Option 14</option>
+          <option value="15">Option 15</option>
+          <option value="16">Option 16</option>
+          <option value="17">Option 17</option>
+          <option value="18">Option 18</option>
+          <option value="19">Option 19</option>
+          <option value="20">Option 20</option>
+          <option value="21">Option 21</option>
+          <option value="22">Option 22</option>
+          <option value="23">Option 23</option>
+          <option value="24">Option 24</option>
+          <option value="25">Option 25</option>
+          <option value="26">Option 26</option>
+          <option value="27">Option 27</option>
+          <option value="28">Option 28</option>
+        </optgroup>
+      </select>
+    </cbp-form-field>
+  `;
+};
+
+export const MultiSelect = MultiSelectTemplate.bind({});
+MultiSelect.args = {
+};
+*/
