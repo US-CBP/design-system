@@ -11,7 +11,6 @@
   --cbp-form-field-color-description: var(--cbp-color-text-darkest);
   --cbp-form-field-color-placeholder: var(--cbp-color-text-dark);
 
-
   --cbp-form-field-color-dark: var(--cbp-color-text-lightest);
   --cbp-form-field-color-bg-dark: var(--cbp-color-gray-cool-70);
   --cbp-form-field-color-border-dark: var(--cbp-color-interactive-secondary-light);
@@ -24,7 +23,21 @@
   --cbp-form-field-margin-bottom: var(--cbp-space-4x);
 }
 
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-form-field[context*=dark],
+[data-cbp-theme=dark] cbp-form-field:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-form-field-color-label: var(--cbp-form-field-color-label-dark);
+  --cbp-form-field-color-description: var(--cbp-form-field-color-description-dark);
 
+  //input, select, textarea {
+    --cbp-form-field-color: var(--cbp-form-field-color-dark);
+    --cbp-form-field-color-bg: var(--cbp-form-field-color-bg-dark);
+    --cbp-form-field-color-border: var(--cbp-form-field-color-border-dark);
+    --cbp-form-field-color-border-hover: var(--cbp-form-field-color-border-hover-dark);
+    --cbp-form-field-color-border-focus: var(--cbp-form-field-color-border-focus-dark);
+    --cbp-form-field-color-placeholder: var(--cbp-form-field-color-placeholder-dark);
+  //}
+}
 
 cbp-form-field {
   display: block;
@@ -93,14 +106,35 @@ cbp-form-field {
     outline-style: solid;
     outline-width: 0;
     outline-color: var(--cbp-form-field-color-border-focus);
+    outline-offset: -1px; // TechDebt: testing for Safari
 
-    &:hover {
-      --cbp-form-field-color-border: var(--cbp-form-field-color-border-hover);
+    scrollbar-width: thin;
+    scrollbar-color: var(--cbp-form-field-color-border) var(--cbp-form-field-color-bg);
+
+    // TechDebt: if Safari scrollbar values don't work on selects, set them directly on textareas only
+    &::-webkit-scrollbar {
+      width: var(--cbp-space-1x);
     }
 
-    &:focus {
-      --cbp-form-field-color-border: var(--cbp-form-field-color-border-focus);
+    &::-webkit-scrollbar-track {
+      background-color: var(--cbp-form-field-color-bg);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--cbp-form-field-color-border);
+      //border: 2px solid pink; // testing safari
+    }
+
+    &:hover {
+      --cbp-form-field-color-border: var(--cbp-form-field-color-border-hover); // this makes the scrollbars update dynamically
+      border-color: var(--cbp-form-field-color-border-hover);
+    }
+
+    &:focus,
+    &:focus-visible {
+      --cbp-form-field-color-border: var(--cbp-form-field-color-border-focus); // this makes the scrollbars update dynamically
       outline-width: var(--cbp-border-size-md);
+      border-color: var(--cbp-form-field-color-border-focus);
     }
 
 
@@ -142,25 +176,26 @@ cbp-form-field {
   }
 
   textarea { 
-    min-height: 5rem;
-    max-height: 90vh;
+    min-height: 6.75rem;
+    max-height: 80vh;
     padding-block: var(--cbp-space-2x);
-    scrollbar-width: thin;
-    scrollbar-color: var(--cbp-form-field-color-border) var(--cbp-form-field-color-bg);
     resize: vertical;
   }
 
   select {
     //appearance: none;
     text-overflow: ellipsis;
-    //padding-inline: var(--cbp-space-2x) var(--cbp-space-3x);
+    padding-block: calc(var(--cbp-space-2x) - 1px) ; // Fixes Firefox vertical alignment
 
     option {
-      // only allows color and bgcolor to be changed in most browsers
-      padding-inline: var(--cbp-space-4x);
-      border-bottom: solid 1px var(--cbp-color-gray-50);
+      // only allows color and bgcolor to be changed in most browsers - these seem to be inherited in Chrome and Firefox already (not safari)
+      color: var(--cbp-form-field-color);
+      background-color: var(--cbp-form-field-color-bg);
+      line-height: 2rem;
     }
   }
+
+
 
   &[error] {
     //--cbp-form-field-color: var(--cbp-color-text-darkest);
@@ -182,29 +217,7 @@ cbp-form-field {
     //--cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
   }
 
-  input[type=checkbox],
-  input[type=radio]{
-    cursor: pointer;
-  }
-
 }
-
-// Displays dark design based on mode or context
-[data-cbp-theme=light] cbp-form-field[context*=dark],
-[data-cbp-theme=dark] cbp-form-field:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-form-field-color-label: var(--cbp-form-field-color-label-dark);
-  --cbp-form-field-color-description: var(--cbp-form-field-color-description-dark);
-  --cbp-form-field-color-placeholder: var(--cbp-form-field-color-placeholder-dark);
-
-  input, select, textarea {
-    --cbp-form-field-color: var(--cbp-form-field-color-dark);
-    --cbp-form-field-color-bg: var(--cbp-form-field-color-bg-dark);
-    --cbp-form-field-color-border: var(--cbp-form-field-color-border-dark);
-    --cbp-form-field-color-border-hover: var(--cbp-form-field-color-border-hover-dark);
-    --cbp-form-field-color-border-focus: var(--cbp-form-field-color-border-focus-dark);
-  }
-}
-
 
 /*
 look out for:
