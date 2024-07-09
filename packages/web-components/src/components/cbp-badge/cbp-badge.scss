@@ -1,11 +1,30 @@
 /**
  * @Prop --cbp-badge-color: var(--cbp-color-text-lightest);
+ * @Prop --cbp-badge-color: var(--cbp-color-text-lightest);
+ * @Prop --cbp-badge-color-dark: var(--cbp-color-text-darkest);
  * @Prop --cbp-badge-color-background: var(--cbp-color-info-base);
+ * @Prop --cbp-badge-color-background-dark: var( --cbp-color-interactive-secondary-lighter); 
+ * @Prop --cbp-badge-color-background-danger: var(--cbp-color-danger-dark);
+ * @Prop --cbp-badge-color-background-danger-dark: var(--cbp-color-danger-light);
  */
 :root{
   --cbp-badge-color: var(--cbp-color-text-lightest);
+  --cbp-badge-color-dark: var(--cbp-color-text-darkest);
   --cbp-badge-color-background: var(--cbp-color-info-base);
+  --cbp-badge-color-background-dark: var( --cbp-color-interactive-secondary-lighter); 
+  
+  --cbp-badge-color-background-danger: var(--cbp-color-danger-dark);
+  --cbp-badge-color-background-danger-dark: var(--cbp-color-danger-light);
 }
+
+[data-cbp-theme=light] cbp-badge[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-badge:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-badge-color: var(--cbp-badge-color-dark);
+  --cbp-badge-color-background: var(--cbp-badge-color-background-dark);
+  
+  --cbp-badge-color-background-danger: var(--cbp-badge-color-background-danger-dark);
+}
+
 cbp-badge {
   display: inline-block;
   width: var(--cbp-space-6x);
@@ -20,6 +39,6 @@ cbp-badge {
   line-height: var(--cbp-space-6x);
 
   &[color=danger] {
-    --cbp-badge-color-background: var(--cbp-color-danger-base);
+    background-color: var(--cbp-badge-color-background-danger);
   }
 }

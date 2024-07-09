@@ -1,19 +1,63 @@
-/**
+/** //todo: update doc with finialized var mapping
  * @Prop --cbp-chip-color-text: var(--cbp-color-text-lightest);
- * @Prop --cbp-chip-color-text-focus: var(--cbp-color-text-lightest);
- * @Prop --cbp-chip-color-text-pressed: var(--cbp-color-text-lightest);
- * @Prop --cbp-chip-color-background: var(--cbp-color-interactive-secondary-dark);
- * @Prop --cbp-chip-color-background-focus: var(--cbp-color-interactive-focus-dark);
- * @Prop --cbp-chip-color-background-pressed: var(--cbp-color-interactive-selected-dark);
+ * @Prop  --cbp-chip-color-text: var(--cbp-color-text-lightest);
+ * @Prop  --cbp-chip-color-text-dark: var(--cbp-color-text-darker);
+ * @Prop  --cbp-chip-color-text-hover: var(--cbp-color-text-lightest);
+ * @Prop  --cbp-chip-color-text-hover-dark: var(--cbp-color-text-lightest);
+ * @Prop  --cbp-chip-color-text-focus: var(--cbp-color-text-lightest);
+ * @Prop  --cbp-chip-color-text-focus-dark: var(--cbp-color-text-darkest);
+ * @Prop  --cbp-chip-color-text-pressed: var(--cbp-color-text-lightest);
+ * @Prop  --cbp-chip-color-text-pressed-dark: var(--cbp-color-text-lightest);
+ * @Prop  --cbp-chip-color-background: var(--cbp-color-interactive-secondary-dark);
+ * @Prop  --cbp-chip-color-background-dark:  var(--cbp-color-interactive-secondary-lighter);
+ * @Prop  --cbp-chip-color-background-hover: var(--cbp-color-interactive-secondary-darker);
+ * @Prop  --cbp-chip-color-background-hover-dark:  var(--cbp-color-interactive-secondary-base);
+ * @Prop  --cbp-chip-color-background-focus: var(--cbp-color-interactive-focus-dark);
+ * @Prop  --cbp-chip-color-background-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @Prop  --cbp-chip-color-background-pressed: var(--cbp-color-interactive-selected-dark);
+ * @Prop  --cbp-chip-color-background-pressed-dark: var(--cbp-color-interactive-focus-dark);
  */
-:root {
+:root { 
   --cbp-chip-color-text: var(--cbp-color-text-lightest);
+  --cbp-chip-color-text-dark: var(--cbp-color-text-darker);
+  --cbp-chip-color-text-hover: var(--cbp-color-text-lightest);
+  --cbp-chip-color-text-hover-dark: var(--cbp-color-text-lightest);
   --cbp-chip-color-text-focus: var(--cbp-color-text-lightest);
+  --cbp-chip-color-text-focus-dark: var(--cbp-color-text-darkest);
   --cbp-chip-color-text-pressed: var(--cbp-color-text-lightest);
+  --cbp-chip-color-text-pressed-dark: var(--cbp-color-text-darkest);
+  
   
   --cbp-chip-color-background: var(--cbp-color-interactive-secondary-dark);
+  --cbp-chip-color-background-dark:  var(--cbp-color-interactive-secondary-lighter);
+  --cbp-chip-color-background-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-chip-color-background-hover-dark:  var(--cbp-color-interactive-secondary-base);
   --cbp-chip-color-background-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-chip-color-background-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-chip-icon-color-background-focus: transparent;
+  --cbp-chip-icon-color-background-focus-dark: var(--cbp-color-interactive-focus-dark);
   --cbp-chip-color-background-pressed: var(--cbp-color-interactive-selected-dark);
+  --cbp-chip-color-background-pressed-dark: var(--cbp-color-interactive-focus-light);
+  
+  --cbp-chip-icon-color-outline-focus: var(--cbp-color-white);
+  --cbp-chip-icon-color-outline-focus-dark: transparent;
+}
+
+[data-cbp-theme=light] cbp-chip[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-chip:not([context=dark-inverts]):not([context=light-always]) {
+  
+  --cbp-chip-color-text: var(--cbp-chip-color-text-dark);
+  --cbp-chip-color-text-hover: var(--cbp-chip-color-text-hover-dark);
+  --cbp-chip-color-text-focus: var(--cbp-chip-color-text-focus-dark);
+  --cbp-chip-color-text-pressed: var(--cbp-chip-color-text-pressed-dark);
+  
+  --cbp-chip-color-background: var(--cbp-chip-color-background-dark); 
+  --cbp-chip-color-background-hover: var(--cbp-chip-color-background-hover-dark);
+  --cbp-chip-color-background-focus: var(--cbp-chip-color-background-focus-dark);
+  --cbp-chip-icon-color-background-focus: var(--cbp-chip-icon-color-background-focus-dark);
+  --cbp-chip-color-background-pressed: var(--cbp-chip-color-background-pressed-dark);
+
+  --cbp-chip-icon-color-outline-focus: var(--cbp-chip-icon-color-outline-focus-dark);
 }
 
 cbp-chip {
@@ -57,8 +101,9 @@ cbp-chip {
     
     // Selected
     &[aria-pressed=true] {
-      background-color: var(--cbp-color-interactive-selected-dark);
-    
+      background-color: var(--cbp-chip-color-background-pressed);
+      color: var(--cbp-chip-color-text-pressed);
+
       .cbp-chip__label + cbp-icon>svg {
         transform: rotate(-135deg);
       }
@@ -69,18 +114,20 @@ cbp-chip {
       cursor: pointer;
 
       .cbp-chip__label + cbp-icon {
-        background-color: #454540; // ToDo
+        color: var(--cbp-chip-color-text-hover);
+        background-color: var(--cbp-chip-color-background-hover);
       }
     }
 
     &:focus-visible {
-      background-color: var(--cbp-color-interactive-focus-dark);
+      background-color: var(--cbp-chip-color-background-focus);
       outline: 0;
 
       > .cbp-chip__label + cbp-icon {
-        background-color: transparent;
+        background-color: var(--cbp-chip-icon-color-background-focus);
         border-color: var(--cbp-color-white);
-        outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
+        outline: var(--cbp-border-size-md) solid var(--cbp-chip-icon-color-outline-focus);
+        color: var(--cbp-color-text-lightest);
         outline-offset: -4px;
       }
     }
