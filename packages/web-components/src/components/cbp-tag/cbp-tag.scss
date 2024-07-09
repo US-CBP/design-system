@@ -50,7 +50,7 @@ cbp-tag {
 
   &[color=danger] {
     --cbp-tag-color: var(--cbp-color-text-lightest);
-    --cbp-tag-color-dark: var(-cbp-color-text-darkest);
+    --cbp-tag-color-dark: var(--cbp-color-text-darkest);
 
     --cbp-tag-color-background: var(--cbp-color-danger-base);
     --cbp-tag-color-background-dark: var(--cbp-color-danger-light);
