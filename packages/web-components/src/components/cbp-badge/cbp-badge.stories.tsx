@@ -12,6 +12,10 @@ export default {
       control: { type: 'select' },
       options: ['default', 'danger'],
     },
+    context : {
+      control: 'select',
+      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -22,10 +26,11 @@ export default {
   },
 };
 
-const BadgeTemplate = ({ label, color, sx }) => {
+const BadgeTemplate = ({ label, color, context, sx }) => {
   return ` 
     <cbp-badge
       ${color ? `color=${color}` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
       ${label}
