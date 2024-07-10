@@ -24,12 +24,12 @@
 
   // TechDebt: Ideally, it would be better if the icon could inherit the text color, but I can't seem to get this working so we have 2 copies with different colors
   // On light bg
-  //--cbp-form-field-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 512 512" fill="%231b1b1b"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
-  //--cbp-form-field-select-chevron-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 512 512" fill="%23fcfcfc"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
+  //--cbp-form-field-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="%231b1b1b"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
+  //--cbp-form-field-select-chevron-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="%23fcfcfc"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
   
   // On dark "button" background
-  --cbp-form-field-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 512 512" fill="%23fcfcfc"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
-  --cbp-form-field-select-chevron-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 512 512" fill="%231b1b1b"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
+  --cbp-form-field-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="%23fcfcfc"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
+  --cbp-form-field-select-chevron-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="%231b1b1b"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
 
 }
 
@@ -194,7 +194,7 @@ cbp-form-field {
     //padding-inline-end: var(--cbp-space-5x);
 
     // Chevron on a colored background (via linear gradient)
-    background: right var(--cbp-space-2x) top var(--cbp-space-3x) no-repeat var(--cbp-form-field-select-chevron), 
+    background: right calc(1.125rem - 8px) top var(--cbp-space-3x) no-repeat var(--cbp-form-field-select-chevron), 
                 right 0px top 0px repeat-y linear-gradient( 90deg, var(--cbp-form-field-color-bg) calc(100% - var(--cbp-space-9x)), var(--cbp-form-field-color-border) var(--cbp-space-9x) );
     padding-inline-end: var(--cbp-space-9x);
     
