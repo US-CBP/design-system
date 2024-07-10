@@ -71,13 +71,6 @@ export class CbpFormField {
         this.formField.addEventListener('change', this.handleChange);
       }
     }
-    /*
-    this.componentLoad.emit({
-      host: this.host,
-      nativeElement: this.formField,
-      value: this.formField.value,
-    });
-    */
   }
 
 
