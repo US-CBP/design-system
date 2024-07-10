@@ -194,7 +194,7 @@ cbp-form-field {
     //padding-inline-end: var(--cbp-space-5x);
 
     // Chevron on a colored background (via linear gradient)
-    background: right calc(1.125rem - 8px) top var(--cbp-space-3x) no-repeat var(--cbp-form-field-select-chevron), 
+    background: right calc(1.125rem - 8px) top calc(1.125rem - 8px) no-repeat var(--cbp-form-field-select-chevron), 
                 right 0px top 0px repeat-y linear-gradient( 90deg, var(--cbp-form-field-color-bg) calc(100% - var(--cbp-space-9x)), var(--cbp-form-field-color-border) var(--cbp-space-9x) );
     padding-inline-end: var(--cbp-space-9x);
     
