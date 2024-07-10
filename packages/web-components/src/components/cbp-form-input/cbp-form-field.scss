@@ -36,19 +36,15 @@
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-form-field[context*=dark],
 [data-cbp-theme=dark] cbp-form-field:not([context=dark-inverts]):not([context=light-always]) {
-
   --cbp-form-field-color-label: var(--cbp-form-field-color-label-dark);
   --cbp-form-field-color-description: var(--cbp-form-field-color-description-dark);
-
-  //input,select,textarea {
-    --cbp-form-field-color: var(--cbp-form-field-color-dark);
-    --cbp-form-field-color-bg: var(--cbp-form-field-color-bg-dark);
-    --cbp-form-field-color-border: var(--cbp-form-field-color-border-dark);
-    --cbp-form-field-color-border-hover: var(--cbp-form-field-color-border-hover-dark);
-    --cbp-form-field-color-border-focus: var(--cbp-form-field-color-border-focus-dark);
-    --cbp-form-field-color-placeholder: var(--cbp-form-field-color-placeholder-dark);
-    --cbp-form-field-select-chevron: var(--cbp-form-field-select-chevron-dark);
-  //}
+  --cbp-form-field-color: var(--cbp-form-field-color-dark);
+  --cbp-form-field-color-bg: var(--cbp-form-field-color-bg-dark);
+  --cbp-form-field-color-border: var(--cbp-form-field-color-border-dark);
+  --cbp-form-field-color-border-hover: var(--cbp-form-field-color-border-hover-dark);
+  --cbp-form-field-color-border-focus: var(--cbp-form-field-color-border-focus-dark);
+  --cbp-form-field-color-placeholder: var(--cbp-form-field-color-placeholder-dark);
+  --cbp-form-field-select-chevron: var(--cbp-form-field-select-chevron-dark);
 }
 
 cbp-form-field {
@@ -221,7 +217,7 @@ cbp-form-field {
     --cbp-form-field-color-border-hover-dark: var(--cbp-color-danger-lighter);
     //--cbp-form-field-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
     //--cbp-form-field-color-label-dark: var(--cbp-color-text-lightest);
-    --cbp-form-field-color-description-dark: var(--cbp-color-text-light);
+    --cbp-form-field-color-description-dark: var(--cbp-color-danger-light);
     //--cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
   }
 }
