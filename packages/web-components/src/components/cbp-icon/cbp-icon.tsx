@@ -11,14 +11,22 @@ export class CbpIcon {
 
   /** Specifies which icon to use from the built-in set of icons. */
   @Prop({ reflect: true }) name: string;
+  
   /** Specifies the exact `src` of an SVG file to use. */
   @Prop() src: string;
 
+  /** Optionally specifies the size of the icon, which defaults to `1em`, matching the context of nearby text. */
   @Prop() size: string = '1em';
+
+  /** Optionally specifies the color of the icon (ideally using design-token-based CSS variables). Defaults to "currentColor." */
   @Prop() color: string = "currentColor";
+
+  /** Optionally specify the degrees of rotation. */
   @Prop() rotate: number = 0;
 
+  /** For icons that are not decorative, accessibilityText is rendered as an `aria-label` on the `svg` tag. */
   @Prop() accessibilityText: string;
+
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
