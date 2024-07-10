@@ -36,15 +36,19 @@
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-form-field[context*=dark],
 [data-cbp-theme=dark] cbp-form-field:not([context=dark-inverts]):not([context=light-always]) {
+
   --cbp-form-field-color-label: var(--cbp-form-field-color-label-dark);
   --cbp-form-field-color-description: var(--cbp-form-field-color-description-dark);
-  --cbp-form-field-color: var(--cbp-form-field-color-dark);
-  --cbp-form-field-color-bg: var(--cbp-form-field-color-bg-dark);
-  --cbp-form-field-color-border: var(--cbp-form-field-color-border-dark);
-  --cbp-form-field-color-border-hover: var(--cbp-form-field-color-border-hover-dark);
-  --cbp-form-field-color-border-focus: var(--cbp-form-field-color-border-focus-dark);
-  --cbp-form-field-color-placeholder: var(--cbp-form-field-color-placeholder-dark);
-  --cbp-form-field-select-chevron: var(--cbp-form-field-select-chevron-dark);
+
+  //input,select,textarea {
+    --cbp-form-field-color: var(--cbp-form-field-color-dark);
+    --cbp-form-field-color-bg: var(--cbp-form-field-color-bg-dark);
+    --cbp-form-field-color-border: var(--cbp-form-field-color-border-dark);
+    --cbp-form-field-color-border-hover: var(--cbp-form-field-color-border-hover-dark);
+    --cbp-form-field-color-border-focus: var(--cbp-form-field-color-border-focus-dark);
+    --cbp-form-field-color-placeholder: var(--cbp-form-field-color-placeholder-dark);
+    --cbp-form-field-select-chevron: var(--cbp-form-field-select-chevron-dark);
+  //}
 }
 
 cbp-form-field {
@@ -123,40 +127,41 @@ cbp-form-field {
       //border-color: var(--cbp-form-field-color-border-focus);
     }
 
-
-    //:read-only:where(input,textarea) {
-    &[readonly] {
-      --cbp-form-field-color-bg: var(--cbp-color-gray-cool-10);
-      --cbp-form-field-color-border: var(--cbp-color-interactive-secondary-light);
-      --cbp-form-field-color-border-hover: var(--cbp-color-interactive-secondary-light);
-      --cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-light);
-      --cbp-form-field-color-bg-dark: var(--cbp-color-gray-cool-80);
-      --cbp-form-field-color-border-dark: var(--cbp-color-interactive-secondary-dark);
-      --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-secondary-dark);
-      --cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-dark);
-      --cbp-form-field-color-placeholder: transparent;
-      font-style: italic;
-      cursor: not-allowed;
-    }
-
+    &[readonly],
     &:disabled {
-      --cbp-form-field-color: var(--cbp-color-interactive-disabled-dark);
-      --cbp-form-field-color-bg: var(--cbp-color-interactive-disabled-light);
-      --cbp-form-field-color-border: var(--cbp-color-interactive-disabled-dark);
-      --cbp-form-field-color-border-hover: var(--cbp-color-interactive-disabled-dark);
-      //--cbp-form-field-color-border-focus: var(--cbp-color-interactive-disabled-dark);
-      --cbp-form-field-color-dark: var(--cbp-color-interactive-disabled-light);
-      --cbp-form-field-color-bg-dark: var(--cbp-color-interactive-disabled-dark);
-      --cbp-form-field-color-border-dark: var(--cbp-color-interactive-disabled-light);
-      --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-disabled-light);
-      //--cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-dark);
-      --cbp-form-field-color-placeholder: transparent;
       font-style: italic;
       cursor: not-allowed;
     }
   }
   
-  input::placeholder {
+  // These overrides need to be set at the component host level to work properly in dark mode
+  &:has(*[readonly]) {
+    --cbp-form-field-color-bg: var(--cbp-color-gray-cool-10);
+    --cbp-form-field-color-border: var(--cbp-color-interactive-secondary-light);
+    --cbp-form-field-color-border-hover: var(--cbp-color-interactive-secondary-light);
+    --cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-light);
+    --cbp-form-field-color-bg-dark: var(--cbp-color-gray-cool-80);
+    --cbp-form-field-color-border-dark: var(--cbp-color-interactive-secondary-dark);
+    --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-secondary-dark);
+    --cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-dark);
+    --cbp-form-field-color-placeholder: transparent;
+  }
+
+  &:has(*:disabled) {
+    --cbp-form-field-color: var(--cbp-color-interactive-disabled-dark);
+    --cbp-form-field-color-bg: var(--cbp-color-interactive-disabled-light);
+    --cbp-form-field-color-border: var(--cbp-color-interactive-disabled-dark);
+    --cbp-form-field-color-border-hover: var(--cbp-color-interactive-disabled-dark);
+    //--cbp-form-field-color-border-focus: var(--cbp-color-interactive-disabled-dark);
+    --cbp-form-field-color-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-form-field-color-bg-dark: var(--cbp-color-interactive-disabled-dark);
+    --cbp-form-field-color-border-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-disabled-light);
+    //--cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-dark);
+    --cbp-form-field-color-placeholder: transparent;
+  }
+
+  ::placeholder {
     color: var(--cbp-form-field-color-placeholder);
     font-style: italic;
   }
@@ -194,7 +199,7 @@ cbp-form-field {
     //padding-inline-end: var(--cbp-space-5x);
 
     // Chevron on a colored background (via linear gradient)
-    background: right calc(1.125rem - 8px) top calc(1.125rem - 8px) no-repeat var(--cbp-form-field-select-chevron), 
+    background: right calc(1.125rem - 8px) top calc(1rem - 8px) no-repeat var(--cbp-form-field-select-chevron), 
                 right 0px top 0px repeat-y linear-gradient( 90deg, var(--cbp-form-field-color-bg) calc(100% - var(--cbp-space-9x)), var(--cbp-form-field-color-border) var(--cbp-space-9x) );
     padding-inline-end: var(--cbp-space-9x);
     
