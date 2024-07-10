@@ -173,7 +173,7 @@ cbp-form-field {
     //-moz-appearance: none;
     appearance: none;
     text-overflow: ellipsis;
-    padding-block: calc(var(--cbp-space-2x) - 1px) ; // Fixes Firefox vertical alignment
+    padding-block: calc(var(--cbp-space-2x) - 2px) ; // Fixes Firefox vertical alignment
 
     option {
       // only allows color and bgcolor to be changed in most browsers - these seem to be inherited in Chrome and Firefox already (not safari)
