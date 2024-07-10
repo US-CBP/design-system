@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Form Field/Specifications" />
+
+# cbp-form-field
+
+## Purpose
+
+The Form Field component represents a generic, reusable pattern for form fields of all types.
+
+## Functional Requirements
+
+* The Form Field component enforces the structure of an input pattern, containing:
+  * A label
+  * Description (or errors)
+  * The native form control (input, select, textarea, etc.)
+* The Form Field component encapsulates styles for all types of HTML form fields that may be slotted within, including various states such as:
+  * readonly
+  * disabled
+  * error state
+* TODO: The Form Field component can handle single fields or groups such as checklists, radio lists, or compound input patterns (e.g., phone, address).
+
+## Technical Specifications
+
+### User Interactions
+
+* When a Form Field is activated by user interaction it emits a custom event that can be listened for.
+* All `textarea` tags are resizable vertically up to a maximum of `80vh` (it should never exceed the screen height, which causes usability issues due to double scroll bars).
+
+### Responsiveness
+
+* Form controls such as text input, textarea, and selects are styled at 100% of their container by default, with a max-width of 100% so that they cannot break out of their container.
+
+### Accessibility
+
+* Disabled form controls and buttons are non-interactive and cannot be navigated to using the keyboard and should be used with caution (if at all).
+* Placeholder text should rarely, if ever, be used.
+  * Especially in forms where the user is expected to enter data, placeholder text with sufficient contrast to the background color may be mistaken as entered input.
+  * In high contrast mode, placeholder text is displayed exactly the same as entered text, making this issue more likely.
+  * Placeholder text disappears when the user starts typing in the field, creating more cognitive load than necessary.
+
+### Additional Notes and Considerations
+
+* This component is essentially required for bringing in the style for all form controls/inputs. It should be flexible enough for various cases such as:
+  * when the label is hidden
+* Overlays and attached buttons may be better handled by another component, e.g., `cbp-form-input-extras`
+  * Right aligned overlays need to still work with inputs that have button controls attached to the right. This might get tricky. 
+* Handling of groups of inputs can be done via role=group or a legend tag. The legend tag can accept a disabled attribute, which is an advantage.
+* Needs to handle an error state
+* When autocomplete/autofill is used to fill the field, the browser adds styling...
+* Textareas now support `field-sizing: content`, which causes the textarea to expand vertically to the size of its content (within the bounds of min- and max-heights). This may not be desireable as a default, but could make a useful option.

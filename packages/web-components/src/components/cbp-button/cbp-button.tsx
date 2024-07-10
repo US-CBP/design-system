@@ -4,6 +4,7 @@ import { setCSSProps, getElementAttrs } from '../../utils/utils';
 
 /**
  * @slot - The button's label, which may contain markup such as icons, is placed in the default slot.
+ * @slot - cbp-button-custom - Custom buttons/anchors may be slotted via named-slot, which prevents the web component from rendering its own tag. In such a case, component properties that render attributes directly onto the rendered button will have no effect, as they are expected to be supplied directly on the slotted custom element.
  */
 @Component({
   tag: 'cbp-button',
@@ -16,7 +17,7 @@ export class CbpButton {
   private persistedAttrs: any;
 
   @Element() host: HTMLElement;
-  
+
   /** Specifies whether the button is a true button element or "link button." */
   @Prop() tag: 'button' | 'a' = 'button';
   /** The `type` attribute of the button: button, submit, or reset. Defaults to "button." */
@@ -74,7 +75,7 @@ export class CbpButton {
   @Prop() disabled: boolean;
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
-  @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
+  @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
@@ -118,14 +119,13 @@ export class CbpButton {
       ...this.sx,
     });
 
-    /* 
+    /*
      * For internal use primarily:
      * Persist aria-* (and role) attributes on the host down to the rendered element, then remove them from the host.
      * This is done once and is not reactive.
      * Needs testing and possibly refinement/refactoring.
      */
-    let hostattrs=getElementAttrs(this.host);
-    //console.log('Host Attributes: ',getElementAttrs(this.host));
+    let hostattrs = getElementAttrs(this.host);
     this.persistedAttrs = Object.fromEntries(
       Object.entries(hostattrs).filter(
         ([key]) => ( key.includes('aria') || key == 'role' )
@@ -134,15 +134,24 @@ export class CbpButton {
   }
 
   componentDidLoad() {
+    // If the button was not defined by ref in the render lifecycle, query the DOM for one that may have been slotted and attach an event listener to it
+    if (!this.button) {
+      const slottedButton = (this.button = this.host.querySelector('button,a'));
+      if (slottedButton) {
+        this.button = slottedButton;
+        this.button.addEventListener('click', this.handleClick);
+      }
+    }
+
     setCSSProps(this.button, {
       'min-width': this.width,
-      'min-height': this.height
+      'min-height': this.height,
     });
 
     // Remove any persisted aria-* attributes from the host because they don't really make sense there.
     for (const [key] of Object.entries(this.persistedAttrs)) {
       this.host.removeAttribute(key);
-    };
+    }
 
     this.componentLoad.emit({
       host: this.host,
@@ -168,7 +177,14 @@ export class CbpButton {
             target,
           };
 
-    if (this.tag === 'button') {
+    if (this.host.querySelector('[slot=cbp-button-custom]')) {
+      return (
+        <Host>
+          <slot name="cbp-button-custom" />
+        </Host>
+      );
+    } 
+    else if (this.tag === 'button') {
       return (
         <Host>
           <button

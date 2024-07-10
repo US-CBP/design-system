@@ -50,7 +50,7 @@ Using `@media (prefers-color-scheme: dark)` is virtually useless and results in 
 
 The `cbp-app` component detects the preferred color scheme and sets this as a `data-cbp-theme` attribute on its host tag, which can then be used as a CSS selector and combined with other relevant parent and/or component-level selectors.
 
-### Step 2 (Testing/Verifying)
+### Step 2
 
 Because components may be placed within a dark or light context, they'll need one or more properties to control this. I initially considered two Booleans - one for dark mode and one for behavior (invertable or static). But l decided to move forward with a single `context` property that contains enumerated values (more correctly a string union) of:
 
@@ -61,26 +61,82 @@ Because components may be placed within a dark or light context, they'll need on
 
 The default behavior is "light-inverts" and does not require any property to be set. This describes both the context (light/dark) and the behavior (inverts to the opposing design or doesn't) and is easier to understand and harder to forget a second, related property when defining the component's visual behavior.
 
-The following CSS selectors are used for defining the component's dark mode design:
+After a few iterations and testing, the actual dark mode/context implementation relies on a few conditions:
+
+* Set all colors as variables in the `:root` selector - both light (default) and dark colors. The exception being specific color-variant overrides.
+* Only set the actual color property (color, background-color, border-color, outline-color, etc.) in **one selector**.
+* All other selectors modify the values of the appropriate CSS variables, both light and dark versions where it makes sense.
+
+The following CSS implements dark mode (and context) design for the link component:
 
 ```
+:root {
+  --cbp-link-color: var(--cbp-color-interactive-primary-dark);
+  --cbp-link-color-dark: var(--cbp-color-interactive-primary-light);
+
+  --cbp-link-color-visited: var(--cbp-color-interactive-visited-dark);
+  --cbp-link-color-visited-dark: var(--cbp-color-interactive-visited-light);
+
+  --cbp-link-color-hover: var(--cbp-color-interactive-primary-darker);
+  --cbp-link-color-hover-dark: var(--cbp-color-interactive-primary-lighter);
+
+  --cbp-link-color-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-link-color-focus-dark: var(--cbp-color-interactive-focus-light);
+
+  --cbp-link-color-active: var(--cbp-color-interactive-focus-dark);
+  --cbp-link-color-active-dark: var(--cbp-color-interactive-focus-light);
+
+  --cbp-link-color-outline-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-link-color-outline-focus-dark: var(--cbp-color-interactive-focus-light);
+}
+
 [data-cbp-theme=light] cbp-link[context*=dark],
 [data-cbp-theme=dark] cbp-link:not([context=dark-inverts]):not([context=light-always]) {  
   /* CSS variable overrides for dark design */
-  --cbp-link-color: var(--cbp-color-interactive-primary-light);
-  --cbp-link-color-visited: var(--cbp-color-interactive-visited-light);
-  --cbp-link-color-hover: var(--cbp-color-interactive-primary-lighter);
-  --cbp-link-color-focus: var(--cbp-color-interactive-focus-light);
-  --cbp-link-color-active: var(--cbp-color-interactive-primary-light);
-  --cbp-link-color-disabled: var(--cbp-color-interactive-disabled-light);
-  --cbp-link-outline-color-focus: var(--cbp-color-interactive-focus-light);
+  --cbp-link-color: var(--cbp-link-color-dark);
+  --cbp-link-color-visited: var(--cbp-link-color-visited-dark);
+  --cbp-link-color-hover: var(--cbp-link-color-hover-dark);
+  --cbp-link-color-focus: var(--cbp-link-color-focus-dark);
+  --cbp-link-color-active: var(--cbp-link-color-active-dark);
+  --cbp-link-color-outline-focus: var(--cbp-link-color-outline-focus-dark);
+}
+
+cbp-link {
+  a {
+    color: var(--cbp-link-color);
+    outline-width: 0;
+    outline-style: solid;
+    outline-color: var(--cbp-link-color-outline-focus);
+    outline-offset: var(--cbp-space-1x);
+
+    &:visited {
+      --cbp-link-color: var(--cbp-link-color-visited);
+    }
+  
+    &:hover {
+      --cbp-link-color: var(--cbp-link-color-hover);
+    }
+    
+    &:focus {
+      --cbp-link-color: var(--cbp-link-color-focus);
+      outline-width: var(--cbp-border-size-md);
+    }
+
+    &:active {
+      --cbp-link-color: var(--cbp-link-color-active);
+    } 
+  }
 }
 ```
+
+This method may seem a little verbose, setting "color" to "color-dark" instead of a value directly. But this method flattens CSS specificity and assures that:
+
+1) Your dark values are part of the component's CSS API - without this, it's not possible to override the dark values easily from within another component or as a one-off via `sx` (an issue I stumbled on and refactored around) and
+2) You are always working within the component API rather than overriding property values directly, which quickly turns into a specificity and maintenance nightmare.
+
 
 ## Results
 
 A big advantage of defining a component CSS API at the `:root` level is that it flattens your CSS specificity to a very low level. This makes overriding values with the dark mode selectors (or within another component using the component CSS API) much simpler than if CSS properties are set directly in deeper selectors. This includes (especially) states such as hover, focus, active, etc., as those can be especially difficult and tedious to override with their high specificity.
 
 The specificity of the above "dark mode" selectors is 0,2,1 and 0,3,1 respectively. While this has not been problematic as yet, these values are a little high and I would like to further investigate using `:where()` and/or `@layer` to manage the specificity.
-
-So far, the above implementation is working. However, some refactoring of component CSS has been needed to make sure the component CSS API is robust enough to handle dark mode.
