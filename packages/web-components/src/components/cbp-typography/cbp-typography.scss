@@ -1,3 +1,15 @@
+/**
+ * @prop --cbp-typography-color: inherit;
+ * @prop --cbp-typography-color-dark: inherit;
+ * @prop --cbp-typography-color-small-text: var(--cbp-color-text-darkest);
+ * @prop --cbp-typography-color-small-text-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-typography-color-large-text: var(--cbp-color-text-darker);
+ * @prop --cbp-typography-color-large-text-dark: var(--cbp-color-text-lighter);
+ * @prop --cbp-typography-color-divider-fill: var(--cbp-color-gray-cool-10);
+ * @prop --cbp-typography-color-divider-fill-dark: var(--cbp-color-gray-cool-70);
+ * @prop --cbp-typography-color-divider-underline: var(--cbp-color-gray-cool-30);
+ * @prop --cbp-typography-color-divider-underline-dark: var(--cbp-color-gray-cool-50);
+ */
 :root {
   --cbp-typography-color: inherit;
   --cbp-typography-color-dark: inherit;
@@ -12,8 +24,6 @@
 }
 
 // Displays dark design based on mode or context
-// 0,2,1
-// 0,3,1
 [data-cbp-theme=light] cbp-typography[context*=dark],
 [data-cbp-theme=dark] cbp-typography:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-typography-color-small-text: var(--cbp-typography-color-small-text-dark);
@@ -48,20 +58,24 @@ cbp-typography {
   
   &[divider=underline] {
     & > * {
-      border-bottom-color: var(--cbp-typography-color-divider-underline);
-      border-bottom-style: solid;
-      border-bottom-width: var(--cbp-border-size-md);
-      padding: var(--cbp-space-3x) 0;
+      border-block-end: var(--cbp-typography-color-divider-underline) solid var(--cbp-border-size-md);
+      padding-block: var(--cbp-space-3x);
+    }
+
+    &[variant*=masthead] > *,
+    &[variant=heading-xxl] > * {
+      padding-block-end: var(--cbp-space-4x);
+      border-block-end-width: var(--cbp-border-size-xl);
     }
 
     &[variant=heading-sm] > *, h5 {
-      border-bottom-width: var(--cbp-border-size-sm);
+      border-block-end-width: var(--cbp-border-size-sm);
     }
     
     &[variant=heading-xs] > *, h6 {
-      padding-top: var(--cbp-space-1x);
-      padding-bottom: var(--cbp-space-1x);
-      padding-right: var(--cbp-space-2x);
+      border-block-end-width: var(--cbp-border-size-sm);
+      padding-block: var(--cbp-space-1x);
+      padding-inline-end: var(--cbp-space-2x);
     }
   }
 
@@ -72,18 +86,17 @@ cbp-typography {
       padding: var(--cbp-space-3x);
     }
     &[variant=heading-xs] > * , h6 {
-      padding: var(--cbp-space-1x) var(--cbp-space-2x);
+      padding-block: var(--cbp-space-1x);
+      padding-inline: var(--cbp-space-2x);
     }
   }
 
   &[divider] {
     &[variant=heading-md] > *, h4 {
-      padding-top: var(--cbp-space-2x);
-      padding-bottom: var(--cbp-space-2x);
+      padding-block: var(--cbp-space-2x);
     }
     &[variant=heading-sm] > *, h5 {
-      padding-top: var(--cbp-space-1x);
-      padding-bottom: var(--cbp-space-1x);
+      padding-block: var(--cbp-space-1x);
     }
   }
 
@@ -156,7 +169,7 @@ cbp-typography {
     font-weight: var(--cbp-font-weight-bold);
     line-height: var(--cbp-line-height-md);
     padding: 0;
-    padding-bottom: var(--cbp-space-2x);
-    margin-bottom: var(--cbp-space-2x);
+    padding-block-end: var(--cbp-space-2x);
+    margin-block-end: var(--cbp-space-2x);
   }
 }
