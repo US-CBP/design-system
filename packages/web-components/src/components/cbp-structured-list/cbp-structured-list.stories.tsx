@@ -19,6 +19,10 @@ export default {
       control: 'boolean',
     },
     */
+    context : {
+      control: 'select',
+      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -48,12 +52,13 @@ function generateItems(items) {
 
 
 
-const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, sx }) => {
+const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, context, sx }) => {
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
           ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
@@ -103,12 +108,13 @@ StructuredList.args = {
 }
 
 
-const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, sx }) => {
+const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, context, sx }) => {
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
         ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
@@ -168,12 +174,13 @@ StructuredListItems.args = {
 }
 
 
-const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, headerId, showFooter, sx }) => {
+const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, headerId, showFooter, context, sx }) => {
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
           ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">3 Results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
