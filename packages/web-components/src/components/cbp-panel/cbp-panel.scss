@@ -2,8 +2,19 @@
  * @Prop --cbp-panel-header-color: var(--cbp-color-text-lighter)
  * @Prop --cbp-panel-header-color-bg: var(--cbp-color-base-neutral-dark);
  * @Prop --cbp-panel-header-color-bottom-border: var(--cbp-color-gray-cool-70);
+ * @Prop --cbp-panel-content-color: var(--cbp-color-text-darkest);
  * @Prop --cbp-panel-content-color-bg: var(--cbp-color-white);
  * @Prop --cbp-panel-content-color-border: var(--cbp-color-gray-cool-10);
+ * @Prop --cbp-panel-border-radius: var(--cbp-border-radius-soft);
+ * @Prop --cbp-panel-border-width: var(--cbp-border-size-md);
+
+ * @Prop --cbp-panel-header-color-dark: var(--cbp-color-text-darker);
+ * @Prop --cbp-panel-header-color-bg-dark: var(--cbp-color-gray-cool-10);
+ * @Prop --cbp-panel-header-color-bottom-border-dark: var(--cbp-color-gray-cool-40);
+ * @Prop --cbp-panel-content-color-dark: var(--cbp-color-text-lightest);
+ * @Prop --cbp-panel-content-color-bg-dark: var(--cbp-color-gray-cool-70);
+ * @Prop --cbp-panel-content-color-border-dark: var(--cbp-color-gray-cool-60);
+
  * @Prop --cbp-panel-border-radius: var(--cbp-border-radius-soft);
  * @Prop --cbp-panel-border-width: var(--cbp-border-size-md);
  */
@@ -14,6 +25,14 @@
   --cbp-panel-content-color: var(--cbp-color-text-darkest);
   --cbp-panel-content-color-bg: var(--cbp-color-white);
   --cbp-panel-content-color-border: var(--cbp-color-gray-cool-10);
+  
+  --cbp-panel-header-color-dark: var(--cbp-color-text-darker);
+  --cbp-panel-header-color-bg-dark: var(--cbp-color-gray-cool-10);
+  --cbp-panel-header-color-bottom-border-dark: var(--cbp-color-gray-cool-40);
+  --cbp-panel-content-color-dark: var(--cbp-color-text-lightest);
+  --cbp-panel-content-color-bg-dark: var(--cbp-color-gray-cool-70);
+  --cbp-panel-content-color-border-dark: var(--cbp-color-gray-cool-60);
+  
   --cbp-panel-border-radius: var(--cbp-border-radius-soft);
   --cbp-panel-border-width: var(--cbp-border-size-md);
 }
@@ -23,11 +42,12 @@
  */
 [data-cbp-theme=light] cbp-panel[context*=dark],
 [data-cbp-theme=dark] cbp-panel:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-panel-header-color-bg: var(--cbp-color-branding-dhs-blue);
-  --cbp-panel-header-color-bottom-border: var(--cbp-color-gray-cool-50);
-  --cbp-panel-content-color: var(--cbp-color-text-lightest);
-  --cbp-panel-content-color-bg: var(--cbp-color-gray-cool-70);
-  --cbp-panel-content-color-border: var(--cbp-color-gray-cool-60);
+  --cbp-panel-header-color: var(--cbp-panel-header-color-dark);
+  --cbp-panel-header-color-bg: var(--cbp-panel-header-color-bg-dark);
+  --cbp-panel-header-color-bottom-border: var(--cbp-panel-header-color-bottom-border-dark);
+  --cbp-panel-content-color: var(--cbp-panel-content-color-dark);
+  --cbp-panel-content-color-bg: var(--cbp-panel-content-color-bg-dark);
+  --cbp-panel-content-color-border: var(--cbp-panel-content-color-border-dark);
 }
 
 cbp-panel {
@@ -52,10 +72,8 @@ cbp-panel {
     color: var(--cbp-panel-content-color);
     background-color: var(--cbp-panel-content-color-bg);
     padding: var(--cbp-space-5x);
-    border-style: solid;
-    border-color: var(--cbp-panel-content-color-border);
-    border-width: var(--cbp-panel-border-width);
-    border-top-style: none;
+    border: solid var(--cbp-panel-border-width) var(--cbp-panel-content-color-border);
+    border-block-start-style: none;
     border-radius: 0 0 var(--cbp-panel-border-radius) var(--cbp-panel-border-radius);
     
     > :last-child {
