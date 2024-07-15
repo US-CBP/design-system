@@ -9,6 +9,8 @@
  * @prop --cbp-structured-list-color-background-hover-dark: var(--cbp-color-gray-cool-90);
  * @prop --cbp-structured-list-color: var(--cbp-color-text-darkest);
  * @prop --cbp-structured-list-color-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
+ * @prop --cbp-structured-list-border-color-dark: var(--cbp-color-gray-cool-50);
 
  * @prop --cbp-structured-list-header-color-background: var(--cbp-color-gray-cool-30);
  * @prop --cbp-structured-list-header-color-background-dark: var(--cbp-color-gray-cool-60);
@@ -31,6 +33,8 @@
   --cbp-structured-list-color-background-hover-dark: var(--cbp-color-gray-cool-90);
   --cbp-structured-list-color: var(--cbp-color-text-darkest);
   --cbp-structured-list-color-dark: var(--cbp-color-text-lightest);
+  --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
+  --cbp-structured-list-border-color-dark: var(--cbp-color-gray-cool-50);
 
   --cbp-structured-list-header-color-background: var(--cbp-color-gray-cool-30);
   --cbp-structured-list-header-color-background-dark: var(--cbp-color-gray-cool-60);
@@ -51,7 +55,7 @@
   --cbp-structured-list-color-striped-background: var(--cbp-structured-list-color-striped-background-dark);
   --cbp-structured-list-color-background-hover: var(--cbp-structured-list-color-background-hover-dark);
   --cbp-structured-list-color: var(--cbp-structured-list-color-dark);
-
+  --cbp-structured-list-border-color: var(--cbp-structured-list-border-color-dark);
   --cbp-structured-list-header-color-background: var(--cbp-structured-list-header-color-background-dark);
   --cbp-structured-list-header-color: var(--cbp-structured-list-header-color-dark);
 
@@ -83,6 +87,8 @@ cbp-structured-list {
     font-style: italic;
   }
 
+
+ 
   [slot=cbp-structured-list-footer] {
     color: var(--cbp-structured-list-footer-color);
     background-color: var(--cbp-structured-list-footer-color-background);
@@ -98,11 +104,18 @@ cbp-structured-list {
     padding: var(--cbp-structured-list-item-padding);
     border-bottom-style: solid;
     border-bottom-width: var(--cbp-border-size-md);
-    border-bottom-color: var(--cbp-color-gray-cool-30);
+    border-bottom-color: var(--cbp-structured-list-border-color);
 
     &:hover {
       background-color: var(--cbp-structured-list-color-background-hover) !important;
     }
   }
 
+  /* 
+    *Collection 
+  */
+  
+  div[role=list]:only-child > cbp-structured-list-item:first-of-type {
+    border-top: 1px solid var(--cbp-structured-list-border-color);
+  }
 }

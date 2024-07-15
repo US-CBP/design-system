@@ -65,14 +65,15 @@ const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, he
 
           ${generateLIs(listItems)}
 
+          
           ${showFooter
             ? `
                 <div slot="cbp-structured-list-footer">
                   <cbp-flex align-items="center" justify-content="space-between">  
                     <div>0 items selected.</div>
                     <div>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Delete selected items">Delete</cbp-button>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Compare selected items">Compare</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
                     </div>
                 </div>
               ` 
@@ -127,8 +128,8 @@ const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeade
                   <cbp-flex align-items="center" justify-content="space-between">  
                     <div>0 items selected.</div>
                     <div>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Delete selected items">Delete</cbp-button>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Compare selected items">Compare</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
                     </div>
                 </div>
               ` 
@@ -251,8 +252,8 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
                   <cbp-flex align-items="center" justify-content="space-between">  
                     <div>0 items selected.</div>
                     <div>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Delete selected items">Delete</cbp-button>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Compare selected items">Compare</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
                     </div>
                 </div>
               ` 
@@ -260,4 +261,59 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
         </cbp-structured-list>
       `;
 };
+
+const StructuredListCollectionTemplate = ({ listItems, striped, selectable, context, sx }) => {
+  return ` 
+        <cbp-structured-list
+          ${striped ? `striped` : ''}
+          ${selectable ? `selectable` : ''}
+          header-id="list-header"
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        >
+        
+        ${generateItems(listItems)}
+
+        
+        </cbp-structured-list>
+      `;
+};
+export const StructuredListCollection = StructuredListCollectionTemplate.bind({});
+StructuredListCollection.argTypes = {
+  listItems: {
+    description: 'Configure various aspects of the list items within the structured list.',
+    control: 'object',
+  },
+}
+StructuredListCollection.args = {
+  listItems: [
+    {
+      content: "<div style='display:flex;flex-direction: column; gap: 0.5rem;'><span><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></span><span>Description text</span><span> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></span><cbp-tag class='hydrated' style='width: 50px'> Tag </cbp-tag></div>",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "<div style='display:flex;flex-direction: column; gap: 0.5rem;'><span><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></span><span>Description text</span><span> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></span><cbp-tag class='hydrated' style='width: 50px'> Tag </cbp-tag></div>",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "<div style='display:flex;flex-direction: column; gap: 0.5rem;'><span><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></span><span>Description text</span><span> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></span><cbp-tag class='hydrated' style='width: 50px'> Tag </cbp-tag></div>",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "<div style='display:flex;flex-direction: column; gap: 0.5rem;'><span><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></span><span>Description text</span><span> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></span><cbp-tag class='hydrated' style='width: 50px'> Tag </cbp-tag></div>",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "<div style='display:flex;flex-direction: column; gap: 0.5rem;'><span><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></span><span>Description text</span><span> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></span><cbp-tag class='hydrated' style='width: 50px'> Tag </cbp-tag></div>",
+      color: 'default',
+      selected: false
+    },
+  ]
+}
+
+
 export const StructuredListWithGrid = StructuredListWithGridTemplate.bind({});

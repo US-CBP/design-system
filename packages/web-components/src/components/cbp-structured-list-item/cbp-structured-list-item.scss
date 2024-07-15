@@ -1,5 +1,12 @@
 /** todo: update doc
- * @prop 
+ * @prop --cbp-structured-list-item-padding: var(--cbp-space-4x);
+
+ * @prop  --cbp-structured-list-item-color-background-danger: var(--cbp-color-danger-lighter);
+ * @prop  --cbp-structured-list-item-color-background-danger-dark: var(--cbp-color-danger-darker);
+
+ * @prop  --cbp-structured-list-item-color-background-selected: var(--cbp-color-interactive-selected-light);
+ * @prop  --cbp-structured-list-item-color-background-selected-dark: var(--cbp-color-interactive-selected-dark);
+
 */
 :root {
   --cbp-structured-list-item-padding: var(--cbp-space-4x);
@@ -21,11 +28,11 @@
 cbp-structured-list-item {
   display: block;
 
-  &[color=danger]:not([selected]) { //todo: update to component vars
+  &[color=danger]:not([selected]) { //techdebt: update to component vars
     background-color: var(--cbp-structured-list-item-color-background-danger) !important;
   }
 
-  &[selected] { //todo: update to component vars
+  &[selected] { //techdebt: update to component vars
     background-color: var(--cbp-structured-list-item-color-background-selected) !important;
   }
 }
