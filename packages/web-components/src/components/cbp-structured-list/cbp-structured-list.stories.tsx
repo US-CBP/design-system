@@ -289,27 +289,27 @@ StructuredListCollection.args = {
   showHeader: false,
   listItems: [
     {
-      content: "<div style='display:flex;flex-direction: column; gap: 0.5rem;'><span><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></span><span>Description text</span><span> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></span><cbp-tag style='width: 50px'> Tag </cbp-tag></div>",
+      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag class='hydrated'> Tag </cbp-tag>",
       color: 'default',
       selected: false
     },
     {
-      content: "<div style='display:flex;flex-direction: column; gap: 0.5rem;'><span><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></span><span>Description text</span><span> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></span><cbp-tag style='width: 50px'> Tag </cbp-tag></div>",
+      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag class='hydrated'> Tag </cbp-tag>",
       color: 'default',
       selected: false
     },
     {
-      content: "<div style='display:flex;flex-direction: column; gap: 0.5rem;'><span><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></span><span>Description text</span><span> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></span><cbp-tag style='width: 50px'> Tag </cbp-tag></div>",
+      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag class='hydrated'> Tag </cbp-tag>",
       color: 'default',
       selected: false
     },
     {
-      content: "<div style='display:flex;flex-direction: column; gap: 0.5rem;'><span><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></span><span>Description text</span><span> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></span><cbp-tag  style='width: 50px'> Tag </cbp-tag></div>",
+      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag class='hydrated'> Tag </cbp-tag>",
       color: 'default',
       selected: false
     },
     {
-      content: "<div style='display:flex;flex-direction: column; gap: 0.5rem;'><span><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></span><span>Description text</span><span> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></span><cbp-tag style='width: 50px'> Tag </cbp-tag></div>",
+      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag class='hydrated'> Tag </cbp-tag>",
       color: 'default',
       selected: false
     },
