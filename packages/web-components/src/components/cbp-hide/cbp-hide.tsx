@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
@@ -9,6 +9,9 @@ import { setCSSProps } from '../../utils/utils';
   styleUrl: 'cbp-hide.scss'
 })
 export class CbpHide {
+  
+  private hidden=false;
+
   @Element() host: HTMLElement;
 
   /** Specifies the host's display when visible. The default is `inline`, which is the default display of a custom element. */
@@ -28,12 +31,44 @@ export class CbpHide {
   @Prop() sx: any = {};
 
 
+  /** A custom event emitted when the accordion item control is activated. */
+  @Event({
+    eventName: 'hideToggle',
+    cancelable: true,
+    bubbles: true,
+  }) hideToggle: EventEmitter;
+
   // Callback functions for the media query event listeners
   doHideAt(mql) {
-    mql.matches ? this.host.style.setProperty('display', 'none') : this.host.style.setProperty('display', this.display);
+    if (mql.matches) {
+      this.host.style.setProperty('display', 'none')
+      this.hidden=true;
+    }
+    else {
+      this.host.style.setProperty('display', this.display);
+      this.hidden=false;
+    }
+
+    this.hideToggle.emit({
+      host: this.host,
+      hidden: this.hidden,
+    });
   }
+
   doVisuallyHideAt(mql) {
-    mql.matches ? this.host.classList.add('cbp-visually-hidden') : this.host.classList.remove('cbp-visually-hidden');
+    if (mql.matches) {
+      this.host.classList.add('cbp-visually-hidden')
+      this.hidden=true;
+    }
+    else {
+      this.host.classList.remove('cbp-visually-hidden');
+      this.hidden=false;
+    }
+
+    this.hideToggle.emit({
+      host: this.host,
+      hidden: this.hidden,
+    });
   }
 
 
