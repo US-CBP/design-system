@@ -114,8 +114,8 @@ cbp-structured-list {
   /* 
     *Collection 
   */
-  
-  div[role=list]:only-child > cbp-structured-list-item:first-of-type {
-    border-top: 1px solid var(--cbp-structured-list-border-color);
+
+  div[role=list]:only-child > *:first-child {
+    border-top: var(--cbp-border-size-md) solid var(--cbp-structured-list-border-color);
   }
 }
