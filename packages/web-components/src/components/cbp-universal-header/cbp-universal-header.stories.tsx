@@ -17,6 +17,7 @@ export default {
   },
 };
 
+
 const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn }) => {
   return `
       <cbp-universal-header
@@ -47,7 +48,11 @@ const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn })
         </cbp-button>
       </li>
       <li>
-        <cbp-button color="secondary" fill="ghost" context="dark-always">
+        <cbp-button
+          color="secondary"
+          fill="ghost"
+          context="dark-always"
+        >
           <cbp-icon name="user"></cbp-icon>
           <cbp-hide
             visually-hide-at="max-width: 64em"
@@ -72,7 +77,7 @@ const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn })
 
 export const UniversalHeader = UniversalHeaderTemplate.bind({});
 UniversalHeader.args = {
-  username: 'John Smithington',
+  username: 'HASHIDX',
   isLoggedIn: true,
 };
 UniversalHeader.argTypes = {
