@@ -1,11 +1,38 @@
+/** todo: update doc
+ * @prop --cbp-structured-list-item-padding: var(--cbp-space-4x);
+
+ * @prop  --cbp-structured-list-item-color-background-danger: var(--cbp-color-danger-lighter);
+ * @prop  --cbp-structured-list-item-color-background-danger-dark: var(--cbp-color-danger-darker);
+
+ * @prop  --cbp-structured-list-item-color-background-selected: var(--cbp-color-interactive-selected-light);
+ * @prop  --cbp-structured-list-item-color-background-selected-dark: var(--cbp-color-interactive-selected-dark);
+
+*/
+:root {
+  --cbp-structured-list-item-padding: var(--cbp-space-4x);
+
+  --cbp-structured-list-item-color-background-danger: var(--cbp-color-danger-lighter);
+  --cbp-structured-list-item-color-background-danger-dark: var(--cbp-color-danger-darker);
+
+  --cbp-structured-list-item-color-background-selected: var(--cbp-color-interactive-selected-light);
+  --cbp-structured-list-item-color-background-selected-dark: var(--cbp-color-interactive-selected-dark);
+
+}
+
+[data-cbp-theme=light] cbp-structured-list[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-structured-list:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-structured-list-item-color-background-danger: var(--cbp-structured-list-item-color-background-danger-dark);  
+  --cbp-structured-list-item-color-background-selected: var(--cbp-structured-list-item-color-background-selected-dark);
+}
+
 cbp-structured-list-item {
   display: block;
 
-  &[color=danger]:not([selected]) {
-    background-color: var(--cbp-color-danger-lighter) !important;
+  &[color=danger]:not([selected]) { //techdebt: update to component vars
+    background-color: var(--cbp-structured-list-item-color-background-danger) !important;
   }
 
-  &[selected] {
-    background-color: var(--cbp-color-interactive-selected-light) !important;
+  &[selected] { //techdebt: update to component vars
+    background-color: var(--cbp-structured-list-item-color-background-selected) !important;
   }
 }

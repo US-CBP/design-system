@@ -19,6 +19,10 @@ export default {
       control: 'boolean',
     },
     */
+    context : {
+      control: 'select',
+      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -48,26 +52,28 @@ function generateItems(items) {
 
 
 
-const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, sx }) => {
+const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, context, sx }) => {
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
           ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
 
           ${generateLIs(listItems)}
 
+          
           ${showFooter
             ? `
                 <div slot="cbp-structured-list-footer">
                   <cbp-flex align-items="center" justify-content="space-between">  
                     <div>0 items selected.</div>
                     <div>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Delete selected items">Delete</cbp-button>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Compare selected items">Compare</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
                     </div>
                 </div>
               ` 
@@ -103,12 +109,13 @@ StructuredList.args = {
 }
 
 
-const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, sx }) => {
+const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, context, sx }) => {
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
         ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
@@ -121,8 +128,8 @@ const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeade
                   <cbp-flex align-items="center" justify-content="space-between">  
                     <div>0 items selected.</div>
                     <div>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Delete selected items">Delete</cbp-button>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Compare selected items">Compare</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
                     </div>
                 </div>
               ` 
@@ -168,12 +175,13 @@ StructuredListItems.args = {
 }
 
 
-const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, headerId, showFooter, sx }) => {
+const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, headerId, showFooter, context, sx }) => {
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
           ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">3 Results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
@@ -244,8 +252,8 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
                   <cbp-flex align-items="center" justify-content="space-between">  
                     <div>0 items selected.</div>
                     <div>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Delete selected items">Delete</cbp-button>
-                      <cbp-button fill="ghost" context="dark-always" accessibility-text="Compare selected items">Compare</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+                      <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
                     </div>
                 </div>
               ` 
@@ -253,4 +261,60 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
         </cbp-structured-list>
       `;
 };
+
+const StructuredListCollectionTemplate = ({ listItems, striped, selectable, context, sx }) => {
+  return ` 
+        <cbp-structured-list
+          ${striped ? `striped` : ''}
+          ${selectable ? `selectable` : ''}
+          header-id="list-header"
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        >
+        
+        ${generateItems(listItems)}
+
+        
+        </cbp-structured-list>
+      `;
+};
+export const StructuredListCollection = StructuredListCollectionTemplate.bind({});
+StructuredListCollection.argTypes = {
+  listItems: {
+    description: 'Configure various aspects of the list items within the structured list.',
+    control: 'object',
+  },
+}
+StructuredListCollection.args = {
+  showHeader: false,
+  listItems: [
+    {
+      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user' size='1rem'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
+      color: 'default',
+      selected: false
+    },
+  ]
+}
+
+
 export const StructuredListWithGrid = StructuredListWithGridTemplate.bind({});
