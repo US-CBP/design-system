@@ -6,11 +6,11 @@ export default {
       actionBarContent:{
         name: 'Action Bar Content',
         description: 'Buttons, links, or action items to populate the action bar',
-        control: 'string',
+        control: 'text',
       },
       variant: {
         control: 'select',
-        options: ['inline', 'sticky'],
+        options: ['inline', 'floating'],
       },
       context : {
         control: 'select',
@@ -25,10 +25,11 @@ export default {
     },
   };
   
-  const Template = ({actionBarInfo, actionBarContent, variant}) => {
+  const Template = ({actionBarInfo, variant, context}) => {
      return ` 
         <cbp-action-bar 
         ${variant ? `variant=${variant}` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}   
         >
           <cbp-typography 
             slot='cbp-action-bar-info'
@@ -36,7 +37,20 @@ export default {
           >
               ${actionBarInfo}
           </cbp-typography>
-          ${actionBarContent}
+            <cbp-button 
+            ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+            fill="ghost"
+            accessibility-text="Action 1"
+            >
+              Action 1
+            </cbp-button>
+            <cbp-button 
+              ${context && context != 'light-inverts' ? `context=${context}` : ''}     
+              fill="ghost"
+              accessibility-text="Action 2"
+            >
+              Action 2
+            </cbp-button>
         </cbp-action-bar>
       `;
   };
@@ -44,7 +58,9 @@ export default {
   export const ActionBar = Template.bind({});
       ActionBar.args = {
         actionBarInfo: `0 items selected.`,
-        actionBarContent: ` <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Action 1">Action 1</cbp-button>
-                            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Action 2">Action 2</cbp-button>
-                            `,
-    };
+      };
+
+    /* todo: update the slot content to use the context of the parent
+    not working due to arguements prop not be accessed
+    ${Template.arguments.context && Template.arguments.context != 'light-inverts' ? `context=${Template.arguments.context}` : ''}   
+    */

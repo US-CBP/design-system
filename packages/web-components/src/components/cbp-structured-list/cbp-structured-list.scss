@@ -87,12 +87,16 @@ cbp-structured-list {
     font-style: italic;
   }
 
+  [slot=cbp-structured-list-footer]{
+    padding: 0;
+  }
+
   &[striped] [role=list] > *:nth-child(even) {
     background-color: var(--cbp-structured-list-color-striped-background);
   }
 
   // Style all list items regardless of the element used to wrap/define them (don't leave this to cbp-structured-list-item)
-  div[role=list] > *:not(cbp-action-bar) {
+  div[role=list] > * {
     display: block;
     padding: var(--cbp-structured-list-item-padding);
     border-bottom-style: solid;
