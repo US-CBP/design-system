@@ -3,11 +3,6 @@ export default {
     tags: ['autodocs'],
     argTypes: {
     
-      actionBarContent:{
-        name: 'Action Bar Content',
-        description: 'Buttons, links, or action items to populate the action bar',
-        control: 'text',
-      },
       variant: {
         control: 'select',
         options: ['inline', 'floating'],
