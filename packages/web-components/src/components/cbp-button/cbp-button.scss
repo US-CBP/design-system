@@ -17,7 +17,10 @@
  * @Prop --cbp-button-border-radius: var(--cbp-border-radius-soft);
  */
 
-/* Buttons get customized and overridden often within the design system and may benefit from a fully fleshed-out CSS API */
+/* 
+ * TechDebt: This dark-mode implementation is not up to speed with the latest techniques
+ * Buttons get customized and overridden often within the design system and may benefit from a fully fleshed-out CSS API
+ */
 :root {
   --cbp-button-color-text: var(--cbp-color-text-lightest);
   --cbp-button-color-text-hover: var(--cbp-color-text-lightest);

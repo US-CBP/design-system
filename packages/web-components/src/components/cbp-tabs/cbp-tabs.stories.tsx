@@ -10,6 +10,10 @@ export default {
     accessibilityText: {
       control: 'text',
     },
+    context : {
+      control: 'select',
+      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -43,10 +47,11 @@ function createTabPanels(tabs) {
   return html.join('');
 }
 
-const Template = ({ tabs, accessibilityText, sx }) => {
+const Template = ({ tabs, accessibilityText, context, sx }) => {
   return ` 
     <cbp-tabs
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
       ${createTabs(tabs)}

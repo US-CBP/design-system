@@ -1,50 +1,86 @@
+/* 
+ * Dark Mode - display dark design based on mode or context
+ * CSS API originates in parent cbp-tabs component; dark mode override happens here due to color=danger variant.
+ */
+ [data-cbp-theme=light] cbp-tabs[context*=dark] cbp-tab,
+ [data-cbp-theme=dark] cbp-tabs:not([context=dark-inverts]):not([context=light-always]) cbp-tab {
+  --cbp-tab-color: var(--cbp-tab-color-dark);
+  --cbp-tab-color-hover: var(--cbp-tab-color-hover-dark);
+  --cbp-tab-color-focus: var(--cbp-tab-color-focus-dark);
+  --cbp-tab-color-active: var(--cbp-tab-color-active-dark);
+  --cbp-tab-color-selected: var(--cbp-tab-color-selected-dark);
+
+  --cbp-tab-color-bg: var(--cbp-tab-color-bg-dark);
+  --cbp-tab-color-bg-hover: var(--cbp-tab-color-bg-hover-dark);
+  --cbp-tab-color-bg-focus: var(--cbp-tab-color-bg-focus-dark);
+  --cbp-tab-color-bg-active: var(--cbp-tab-color-bg-active-dark);
+  --cbp-tab-color-bg-selected: var(--cbp-tab-color-bg-selected-dark);
+
+  --cbp-tab-color-border: var(--cbp-tab-color-border-dark);
+  --cbp-tab-color-border-hover: var(--cbp-tab-color-border-hover-dark);
+  --cbp-tab-color-border-focus: var(--cbp-tab-color-border-focus-dark);
+  --cbp-tab-color-border-active: var(--cbp-tab-color-border-active-dark);
+  --cbp-tab-color-border-selected: var(--cbp-tab-color-border-selected-dark);
+}
+
 cbp-tab {
-
-  &[color=danger] {
-    button {
-      color: var(--cbp-color-danger-base);
-
-      &:hover:not([aria-selected='true']):not(:focus) {
-        background-color: var(--cbp-color-danger-lighter);
-        border-color: var(--cbp-color-danger-dark);
-      }
-    }
-  }
-
   button {
     all: unset;
-    color: var(--cbp-color-interactive-secondary-darker);
+    color: var(--cbp-tab-color);
+    background-color: var(--cbp-tab-color-bg);
     box-sizing: border-box;
     min-height: var(--cbp-space-14x);
     padding: 0 var(--cbp-space-3x);
-    border-bottom: var(--cbp-border-size-xl) solid transparent;
     font-size: var(--cbp-font-size-heading-xs);
     font-weight: var(--cbp-font-weight-medium);
     white-space: nowrap;
+    border-bottom: var(--cbp-border-size-xl) solid var(--cbp-tab-color-border);
+    border-radius: var(--cbp-tab-border-radius);
+    outline-width: var(--cbp-border-size-md);
+    outline-style: none;
+    outline-color: var(--cbp-button-color-outline-focus);
+    outline-offset: calc(-1 * var(--cbp-space-1x));
     
-    &:hover:not([aria-selected='true']):not(:focus) {
-      background-color: var(--cbp-color-interactive-secondary-lighter);
-      border-bottom-color: var(--cbp-color-interactive-secondary-darker);
+    // The selected tab should appear non-interactive on the surface because selecting it again won't do anything
+    &:hover {
+      --cbp-tab-color: var(--cbp-tab-color-hover);
+      --cbp-tab-color-bg: var(--cbp-tab-color-bg-hover);
+      --cbp-tab-color-border: var(--cbp-tab-color-border-hover);
     }
 
     &[aria-selected='true'] {
-      color: var(--cbp-color-interactive-active-dark);
-      border-color: var(--cbp-color-interactive-active-dark);
+      --cbp-tab-color: var(--cbp-tab-color-selected);
+      --cbp-tab-color-bg: var(--cbp-tab-color-bg-selected);
+      --cbp-tab-color-border: var(--cbp-tab-color-border-selected);
       font-style: italic;
     }
 
     &:focus {
-      color: var(--cbp-color-text-lightest);
-      background: var(--cbp-color-interactive-focus-dark);
-      border-color: var(--cbp-color-interactive-focus-dark);
-      outline: var(--cbp-border-size-md) solid var(--cbp-color-white);
-      outline-offset: calc(-1 * var(--cbp-space-1x));
+      --cbp-tab-color: var(--cbp-tab-color-focus);
+      --cbp-tab-color-bg: var(--cbp-tab-color-bg-focus);
+      --cbp-tab-color-border: var(--cbp-tab-color-border-focus);
+      outline-style: solid;
     }
 
     &:active {
-      color: var(--cbp-color-text-lightest);
-      background-color: var(--cbp-color-interactive-active-dark);
+      --cbp-tab-color: var(--cbp-tab-color-active);
+      --cbp-tab-color-bg: var(--cbp-tab-color-bg-active);
+      --cbp-tab-color-border: var(--cbp-tab-color-border-active);
       outline: none;
     }
+  }
+
+  &[color=danger] {
+    --cbp-tab-color: var(--cbp-color-danger-base);
+    --cbp-tab-color-dark: var(--cbp-color-danger-light);
+
+    --cbp-tab-color-hover: var(--cbp-color-danger-base);
+    --cbp-tab-color-hover-dark: var(--cbp-color-danger-lighter);
+    
+    --cbp-tab-color-bg-hover: var(--cbp-color-danger-lighter);
+    --cbp-tab-color-bg-hover-dark: var(--cbp-color-danger-darker);
+    
+    --cbp-tab-color-border-hover: var(--cbp-color-danger-dark);
+    --cbp-tab-color-border-hover-dark: var(--cbp-color-danger-lighter);
   }
 }

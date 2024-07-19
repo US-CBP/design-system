@@ -23,6 +23,9 @@ export class CbpTabs {
   /** The accessible label of the tablist. Required unless `aria-labelledby` is specified on the host tag directly. */
   @Prop() accessibilityText: string;
 
+  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
+  @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
+
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
@@ -146,18 +149,23 @@ export class CbpTabs {
         }}
       >
         <cbp-button
-          type="button"
           color="secondary"
           fill="outline"
           variant="square"
-          pointerOnly={true}
-          aria-label="Previous Tab"
-          width='3.5rem'
-          height='3.5rem'
+          width="3.5rem"
+          height="3.5rem"
+          context={this.context}
           onClick={ () => this.responsiveNav('previous')}
           ref={el => (this.previousControl = el)}
         >
-          <cbp-icon name="chevron-right" size="var(--cbp-space-5x)" rotate={180}></cbp-icon>
+          <button
+            type="button"
+            tabindex="-1"
+            aria-label="Previous Tab"
+            slot="cbp-button-custom"
+          >
+            <cbp-icon name="chevron-right" size="var(--cbp-space-5x)" rotate={180}></cbp-icon>
+          </button>
         </cbp-button>
 
         <div
@@ -168,18 +176,23 @@ export class CbpTabs {
         </div>
 
         <cbp-button
-          type="button"
           color="secondary"
           fill="outline"
           variant="square"
-          pointerOnly={true}
-          aria-label="Next Tab"
-          width='3.5rem'
-          height='3.5rem'
+          width="3.5rem"
+          height="3.5rem"
+          context={this.context}
           onClick={ () => this.responsiveNav('next')}
           ref={el => (this.nextControl = el)}
         >
-          <cbp-icon name="chevron-right" size="var(--cbp-space-5x)"></cbp-icon>
+          <button
+            type="button"
+            tabindex="-1"
+            aria-label="Next Tab"
+            slot="cbp-button-custom"
+          >
+            <cbp-icon name="chevron-right" size="var(--cbp-space-5x)"></cbp-icon>
+          </button>
         </cbp-button>
       </Host>
     );
