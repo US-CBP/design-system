@@ -9,6 +9,7 @@ import type { JSX } from '@cbpds/web-components';
 
 export const CbpAccordion = /*@__PURE__*/createReactComponent<JSX.CbpAccordion, HTMLCbpAccordionElement>('cbp-accordion');
 export const CbpAccordionItem = /*@__PURE__*/createReactComponent<JSX.CbpAccordionItem, HTMLCbpAccordionItemElement>('cbp-accordion-item');
+export const CbpActionBar = /*@__PURE__*/createReactComponent<JSX.CbpActionBar, HTMLCbpActionBarElement>('cbp-action-bar');
 export const CbpApp = /*@__PURE__*/createReactComponent<JSX.CbpApp, HTMLCbpAppElement>('cbp-app');
 export const CbpAppHeader = /*@__PURE__*/createReactComponent<JSX.CbpAppHeader, HTMLCbpAppHeaderElement>('cbp-app-header');
 export const CbpBadge = /*@__PURE__*/createReactComponent<JSX.CbpBadge, HTMLCbpBadgeElement>('cbp-badge');
