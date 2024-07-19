@@ -68,8 +68,8 @@ export class CbpButton {
    */
   @Prop() accessibilityText: string;
 
-  /** @Internal Specifies that a button should not be keyboard navigable by setting its tabindex to -1. This property should only be used in very specific cases. */
-  @Prop() pointerOnly: boolean;
+  /* @Internal Specifies that a button should not be keyboard navigable by setting its tabindex to -1. This property should only be used in very specific cases. */
+  //@Prop() pointerOnly: boolean;
 
   /** Marks the rendered button/link in a disabled state when specified. */
   @Prop() disabled: boolean;
@@ -79,6 +79,7 @@ export class CbpButton {
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
+
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() buttonClick!: EventEmitter;
@@ -128,7 +129,7 @@ export class CbpButton {
     let hostattrs = getElementAttrs(this.host);
     this.persistedAttrs = Object.fromEntries(
       Object.entries(hostattrs).filter(
-        ([key]) => ( key.includes('aria') || key == 'role' )
+        ([key]) => ( key.includes('aria-') || key == 'role' )
       )
     );
   }
@@ -190,7 +191,7 @@ export class CbpButton {
           <button
             {...this.persistedAttrs}
             {...attrs}
-            tabindex={this.pointerOnly || this.disabled ? -1 : 0}
+            //tabindex={this.pointerOnly || this.disabled ? -1 : 0}
             aria-label={this.accessibilityText}
             aria-pressed={pressed ? 'true' : null}
             aria-expanded={expanded ? 'true' : null}
@@ -209,7 +210,7 @@ export class CbpButton {
           <a
             {...this.persistedAttrs}
             {...attrs}
-            tabindex={this.pointerOnly || this.disabled ? -1 : 0}
+            //tabindex={this.pointerOnly || this.disabled ? -1 : 0}
             aria-label={this.accessibilityText}
             aria-pressed={pressed ? 'true' : null}
             aria-expanded={expanded ? 'true' : null}
