@@ -154,6 +154,7 @@ export class CbpTabs {
           variant="square"
           width="3.5rem"
           height="3.5rem"
+          context={this.context}
           onClick={ () => this.responsiveNav('previous')}
           ref={el => (this.previousControl = el)}
         >
@@ -180,6 +181,7 @@ export class CbpTabs {
           variant="square"
           width="3.5rem"
           height="3.5rem"
+          context={this.context}
           onClick={ () => this.responsiveNav('next')}
           ref={el => (this.nextControl = el)}
         >

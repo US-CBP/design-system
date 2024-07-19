@@ -104,12 +104,14 @@ cbp-tabs {
   // TechDebt - dark colors CSS API not yet implemented in cbp-button
   cbp-button:not(#fakeId) {
     align-self: flex-start;
+    /* Restore this when button CSS API is fixed
     --cbp-button-color-text: var(--cbp-tab-color);
     --cbp-button-color-text-dark: var(--cbp-tab-color-dark);
     --cbp-button-color-fill: var(--cbp-color-background-light);
     --cbp-button-color-fill-dark: var(--cbp-color-background-dark);
     --cbp-button-color-border: var(--cbp-color-gray-cool-30);
     --cbp-button-color-border-dark: var(--cbp-color-gray-cool-60);
+    */
     --cbp-button-border-radius: 0;
   }
 
