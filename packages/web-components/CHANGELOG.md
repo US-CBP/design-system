@@ -4,16 +4,21 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
-## [unpublished] TBD
+## [0.0.1-develop.11] 07-19-2024
 
-* Storybook upgrade and updates.
+* First cut of `cbp-form-field`, a wrapper for form controls.
+* First cut of `cbp-banner`, implementing the informational variant.
+* First cut of `cbp-dialog` (may be renamed to `cbp-modal`).
+* Updated `cbp-hide` to emit an event when its state is toggled.
 * Fixed `cbp-app` so that its dark mode detection is reactive to changes of the user's preferences.
-
+* Implemented dark mode for tabs, structured list, cards, badges, chips, and tags.
+* Additional bug fixes per design review.
+* Storybook upgrade and updates.
 
 ## [0.0.1-develop.10] 06-10-2024
 
 * Implemented dark mode for buttons, links, typography, accordion, drawer, and panel comprised of additional CSS and a `context` property to trigger a specific design contextually and specify whether it inverts or remains constant.
-* Updated stories for footer, universal header, segmented list (footer/action bar), drawer, and template with dark mode-related changes.
+* Updated stories for footer, universal header, structured list (footer/action bar), drawer, and template with dark mode-related changes.
 
 ## [0.0.1-develop.9] 05-13-2024
 
