@@ -2,14 +2,14 @@
  * @prop --cbp-action-bar-color-background: var(--cbp-color-grey-cool-70);
  * @prop--cbp-action-bar-color-background-dark: var(--cbp-color-grey-cool-5);
 */
-
+//todo: swap light and dark values so context works correctly
 :root {
- --cbp-action-bar-color-background: var(--cbp-color-gray-cool-70);
- --cbp-action-bar-color-background-dark: var(--cbp-color-gray-cool-5);
+--cbp-action-bar-color-background: var(--cbp-color-gray-cool-5);
+--cbp-action-bar-color-background-dark: var(--cbp-color-gray-cool-70);
 
- --cbp-action-bar-color: var(--cbp-color-text-lightest);
- --cbp-action-bar-color-dark: var(--cbp-color-text-darkest);
-  
+--cbp-action-bar-color: var(--cbp-color-text-darkest);
+--cbp-action-bar-color-dark: var(--cbp-color-text-lightest);
+
 }
 
 [data-cbp-theme=light] cbp-action-bar[context*=dark]:not([context=light-always]),

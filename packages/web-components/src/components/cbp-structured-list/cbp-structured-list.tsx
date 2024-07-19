@@ -45,7 +45,7 @@ export class CbpStructuredList {
       ...this.sx,
     });
   }
-  
+
   render() {
     return (
       <Host>
@@ -57,9 +57,7 @@ export class CbpStructuredList {
         >
           <slot />
         </div>
-        <div class='cbp-structured-list-footer'>
-          <slot name="cbp-structured-list-footer" />
-        </div>
+        <slot name="cbp-structured-list-footer" />
         </Host>
     );
   }

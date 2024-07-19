@@ -68,7 +68,7 @@ const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, he
           
           ${showFooter      
             ? ` <div slot="cbp-structured-list-footer">
-                  <cbp-action-bar variant='inline'>
+                  <cbp-action-bar variant='inline' context="dark-inverts">
                     <div slot='cbp-action-bar-info'>0 items selected.</div>
                     <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
                     <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
@@ -123,7 +123,7 @@ const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeade
         ${showFooter
             ? `
             <div slot="cbp-structured-list-footer">
-              <cbp-action-bar variant='inline'>
+              <cbp-action-bar variant='inline' context="dark-inverts">
                 <div slot='cbp-action-bar-info'>0 items selected.</div>
                 <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
                 <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
@@ -246,7 +246,7 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
           ${showFooter
             ? `
             <div slot="cbp-structured-list-footer">
-              <cbp-action-bar variant='inline'>
+              <cbp-action-bar variant='inline' context="dark-inverts">
                 <div slot='cbp-action-bar-info'>0 items selected.</div>
                 <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
                 <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
