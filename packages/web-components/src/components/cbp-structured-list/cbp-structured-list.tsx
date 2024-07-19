@@ -45,7 +45,7 @@ export class CbpStructuredList {
       ...this.sx,
     });
   }
-//todo: wrap the header & footer in a div to keep seperate form the generric slot
+  
   render() {
     return (
       <Host>
