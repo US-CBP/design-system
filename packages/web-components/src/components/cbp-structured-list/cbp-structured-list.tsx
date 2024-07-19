@@ -49,7 +49,7 @@ export class CbpStructuredList {
   render() {
     return (
       <Host>
-        <slot name="cbp-structured-list-header" />
+        <slot name="cbp-structured-list-header" /> 
  
         <div role="list"
           aria-label={this.accessibilityText}
@@ -57,9 +57,8 @@ export class CbpStructuredList {
         >
           <slot />
         </div>
- 
         <slot name="cbp-structured-list-footer" />
-      </Host>
+        </Host>
     );
   }
 

@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Action bar/Specifications" />
+
+# cbp-action-bar
+
+## Purpose
+
+The Action bar serves several purposes, the most common use case is a submission bar in a form page. Alternatively the bar can be used to
+ contain tools that affect the content of the page the user is on.
+
+## Functional Requirements
+
+* The Action bar is a container with slots for a status or text description of the action bar and a slot for the buttons/links to be displayed
+* Action bar comes with 2 variants, inline & floating.
+    *inline: is rendered inplace. Primarily for supporting Forms, strucutred list footer, grids, etc 
+    *floating: is rendered at bottom of viewport, used for containing tools that affect the content of the whole page the user is viewing
+
+### Responsiveness
+
+* Since content is slotted into the action bar the end user can alter/add items to hide, alter as needed for Responsiveness
+* Inline variant is designed to follow the overall responsiveness of the control/container it is in so that behavior does not conflict 
+    with these other controls
+* Sticky variant utilizes responsive padding variables to adjust as per overall design system breakpoints
+
+### Accessibility
+
+* Action bar as a container does not recieve focus, it also does not inhibit the native Accessibility of any of the slotted content.
+    Thus consumers will need to ensure that any slotted content is accessibile (CBP components will come with this natively) 
+
+### Additional Notes and Considerations
+
+* it is not advised to use both inline and floating action bar on the same page to avoid user confusion
