@@ -67,8 +67,8 @@ cbp-structured-list {
   display: block; 
   background-color: var(--cbp-structured-list-color-background);
   color: var(--cbp-structured-list-color);
-  
-  [slot] {
+
+  & > [slot] { 
     display: flex;
     align-items: center;
     padding: var(--cbp-space-3x);
@@ -85,10 +85,6 @@ cbp-structured-list {
     color: var(--cbp-structured-list-header-color);
     background-color: var(--cbp-structured-list-header-color-background);
     font-style: italic;
-  }
-
-  [slot=cbp-structured-list-footer]{
-    padding: 0;
   }
 
   &[striped] [role=list] > *:nth-child(even) {
@@ -112,7 +108,7 @@ cbp-structured-list {
     *Collection 
   */
 
-  div[role=list]:only-child > *:first-child {
+  div[role=list] > *:first-child {
     border-top: var(--cbp-border-size-md) solid var(--cbp-structured-list-border-color);
   }
 }

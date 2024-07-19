@@ -45,11 +45,11 @@ export class CbpStructuredList {
       ...this.sx,
     });
   }
-
+//todo: wrap the header & footer in a div to keep seperate form the generric slot
   render() {
     return (
       <Host>
-        <slot name="cbp-structured-list-header" />
+        <slot name="cbp-structured-list-header" /> 
  
         <div role="list"
           aria-label={this.accessibilityText}
@@ -57,9 +57,10 @@ export class CbpStructuredList {
         >
           <slot />
         </div>
- 
-        <slot name="cbp-structured-list-footer" />
-      </Host>
+        <div class='cbp-structured-list-footer'>
+          <slot name="cbp-structured-list-footer" />
+        </div>
+        </Host>
     );
   }
 

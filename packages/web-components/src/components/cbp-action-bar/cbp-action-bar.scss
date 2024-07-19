@@ -28,11 +28,7 @@ cbp-action-bar {
   padding: var(--cbp-space-3x);
   color: var(--cbp-action-bar-color);
   background-color: var(--cbp-action-bar-color-background);
-
-
-   & > *{
-    padding-left: 0;
-   }
+  gap: var(--cbp-space-3x);
 
    & > *[slot="cbp-action-bar-info"]{
     margin-inline-end: auto;
@@ -44,7 +40,7 @@ cbp-action-bar {
     position: fixed;
     bottom: 0;
     left: 0;
-    padding: var(--cbp-responsive-spacing-outer);
+    padding-inline: var(--cbp-responsive-spacing-outer);
     box-shadow: var(--cbp-shadow-level-3-up);
    }
 }

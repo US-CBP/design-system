@@ -59,8 +59,3 @@ export default {
       ActionBar.args = {
         actionBarInfo: `0 items selected.`,
       };
-
-    /* todo: update the slot content to use the context of the parent
-    not working due to arguements prop not be accessed
-    ${Template.arguments.context && Template.arguments.context != 'light-inverts' ? `context=${Template.arguments.context}` : ''}   
-    */
