@@ -149,12 +149,9 @@ export class CbpTabs {
         }}
       >
         <cbp-button
-          //type="button"
           color="secondary"
           fill="outline"
           variant="square"
-          //pointerOnly={true}
-          //aria-label="Previous Tab"
           width="3.5rem"
           height="3.5rem"
           onClick={ () => this.responsiveNav('previous')}
@@ -178,12 +175,9 @@ export class CbpTabs {
         </div>
 
         <cbp-button
-          //type="button"
           color="secondary"
           fill="outline"
           variant="square"
-          //pointerOnly={true}
-          //aria-label="Next Tab"
           width="3.5rem"
           height="3.5rem"
           onClick={ () => this.responsiveNav('next')}
