@@ -191,7 +191,7 @@ cbp-accordion-item {
 
   &[color=danger],
   &[color=danger][open] {
-    --cbp-accordion-item-color: var(--cbp-color-text-lighter);
+    --cbp-accordion-item-color: var(--cbp-color-text-lightest);
     --cbp-accordion-item-color-fill: var(--cbp-color-danger-base);
 
     .cbp-accordion-item--control:hover:not(:focus-within):not(:active) {
@@ -214,7 +214,7 @@ cbp-accordion-item {
 
    --cbp-accordion-item-color: var(--cbp-color-text-lighter);
    --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-50);
-   --cbp-accordion-item-color-open: var(--cbp-color-text-lighter);
+   --cbp-accordion-item-color-open: var(--cbp-color-text-lightest);
    --cbp-accordion-item-color-fill-open: var(--cbp-color-gray-cool-60);
  
    --cbp-accordion-item-color-hover: var(--cbp-color-text-darkest);
