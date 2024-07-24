@@ -10,7 +10,7 @@ cbp-footer {
     --cbp-button-height: var(--cbp-space-11x);
     --cbp-button-border-radius: 0;
     background-color: var(--cbp-color-gray-cool-60);
-     & cbp-flex-item > cbp-button {
+    cbp-button {
       width: 100%; 
       --cbp-button-width: 100%; 
     }
@@ -24,11 +24,5 @@ cbp-footer {
     line-height: var(--cbp-line-height-xs);
     padding-bottom: var(--cbp-space-5x);
     padding-top: var(--cbp-space-5x);
-  }
-}
-
-@media (min-width: $cbp-breakpoint-md) {
-  cbp-footer {
-    --cbp-button-width: auto;
   }
 }
