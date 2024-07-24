@@ -39,23 +39,23 @@ export const SimpleList = Template.bind({});
     SimpleList.args = {
         listItems: [
             {
-              content: "<li> List Item 1</li>",
+              content: "List Item 1",
               // selected: false
             },
             {
-              content: "<li> List Item 2</li>",
+              content: "List Item 2",
               // selected: false
             },
             {
-              content: "<li> List Item 3</li>",
+              content: "List Item 3",
               // selected: false
             },
             {
-              content: "<li> List Item 4</li>",
+              content: "List Item 4",
               // selected: false
             },
             {
-              content: "<li> List Item 5</li>",
+              content: "List Item 5",
               // selected: false
             },
           ]

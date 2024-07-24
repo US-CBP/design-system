@@ -19,7 +19,9 @@ export class CbpList {
   render() {
     return (
       <Host>
-        <slot />
+        <ul>
+          <slot />
+        </ul>
       </Host>
     );
   }
