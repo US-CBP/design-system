@@ -13,6 +13,9 @@ cbp-footer {
     cbp-button {
       width: 100%; 
       --cbp-button-width: 100%; 
+      & > a{
+        justify-content: flex-start;
+      }
     }
   }
 
