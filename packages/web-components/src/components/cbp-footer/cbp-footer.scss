@@ -10,10 +10,17 @@ cbp-footer {
     --cbp-button-height: var(--cbp-space-11x);
     --cbp-button-border-radius: 0;
     background-color: var(--cbp-color-gray-cool-60);
+    cbp-button {
+      width: 100%; 
+      --cbp-button-width: 100%; 
+      *{
+        justify-content: flex-start;
+      }
+    }
   }
 
   .cbp-footer-content {
-    color: var(--cbp-color-text-lightest);
+    color: var(--cbp-color-text-lighter);
     background-color: var(--cbp-color-gray-cool-70);
     font-size: var(--cbp-font-size-body);
     font-weight: var(--cbp-font-weight-regular);
