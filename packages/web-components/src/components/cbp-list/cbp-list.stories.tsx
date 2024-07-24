@@ -5,7 +5,7 @@ export default {
 
         variant: {
         control: 'select',
-        options: ['unstyled', 'bullet'],
+        options: ['unordered', 'ordered'],
         },
         context : {
         control: 'select',
@@ -21,15 +21,18 @@ export default {
 };
 
 function generateItems(items) {
-    const html = items.map(({ content,selected }) => {
-      return `<cbp-list-item  ${selected ? `selected` : ''}>${content}</cbp-list-item>`;
+    const html = items.map(({ content, indent}) => {
+      return `<cbp-list-item ${indent ? `aria-indent=${indent}`: ''}>${content}</cbp-list-item>`;
     });
     return html.join('');
   }
   
-const Template = ({listItems}) => {
+const Template = ({listItems, variant, context }) => {
     return ` 
-    <cbp-list>
+    <cbp-list
+      ${variant !== 'unordered' ? `variant=${variant}` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
         ${generateItems(listItems)}
     </cbp-list>
     `;
@@ -40,23 +43,29 @@ export const SimpleList = Template.bind({});
         listItems: [
             {
               content: "List Item 1",
-              // selected: false
             },
             {
               content: "List Item 2",
-              // selected: false
             },
             {
               content: "List Item 3",
-              // selected: false
             },
             {
               content: "List Item 4",
-              // selected: false
             },
             {
               content: "List Item 5",
-              // selected: false
+            },
+            {//todo: example of sublist
+              content: `
+              <cbp-list>
+                <cbp-list-item>List Sub-Item 1</cbp-list-item>
+                <cbp-list-item>List Sub-Item 2</cbp-list-item>
+                <cbp-list-item>List Sub-Item 3</cbp-list-item>
+                <cbp-list-item>List Sub-Item 4</cbp-list-item>
+                <cbp-list-item>List Sub-Item 5</cbp-list-item>
+              </cbp-list>`,
+              indent: true,
             },
           ]
 };

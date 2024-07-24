@@ -7,6 +7,11 @@ import { Component, Host, Prop, Element, h } from '@stencil/core';
 export class CbpListItem {
     @Element() host: HTMLElement;
     
+    @Prop ({ reflect: true }) indent: boolean
+
+    /** Specifies whether the item is selected. */
+    // @Prop({ reflect: true }) selected: boolean;
+
     /** Supports adding inline styles as an object */
     @Prop() sx: any = {};
 
@@ -16,10 +21,10 @@ export class CbpListItem {
     //todo: need to figure out how to handle sub-list/nested lists
   render() {
     return (
-      <Host>
-        <li>
+      <Host aria-indent={this.indent}>
+        {/* <li> */}
           <slot />
-        </li>
+        {/* </li> */}
       </Host>
     );
   }

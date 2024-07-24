@@ -1,3 +1,16 @@
 cbp-list-item {
-  border: 1px solid red;
+  color: var(--cbp-color-text-darkest);
+  font-size: var(--cbp-font-size-body);
+  font-weight: var(--cbp-font-weight-bold);
+  display: list-item;
+
+  //todo: need to put this in something other than the aria, find a better option
+  &[aria-indent=true]{
+    display: inline;
+
+    //todo: not correct value, should be &mdash in UL, not sure this is great for OL. maybe look at a :before{content: '-'} style of decorator here? unclear on best way to distinquish correct content though
+    // cbp-list-item{
+    //   list-style-type: square;
+    // }
+  }
 }

@@ -8,7 +8,9 @@ export class CbpList {
   @Element() host: HTMLElement;
   
   /** Specifies optional variants with difference from the default card. */
-  @Prop({ reflect: true }) variant: 'unstyled' | 'bullet';
+  @Prop({ reflect: true }) variant: 'unordered' | 'ordered';
+
+  // @Prop({ reflect: true }) bullet: ''
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
@@ -17,13 +19,25 @@ export class CbpList {
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
   
   render() {
-    return (
-      <Host>
-        <ul>
-          <slot />
-        </ul>
-      </Host>
-    );
+    if(this.variant == 'ordered'){
+      return (
+        <Host>
+          <ol>
+            <slot />
+          </ol>
+        </Host>
+      );
+    } else {
+      return (
+        <Host>
+          <ul>
+            <slot />
+          </ul>
+        </Host>
+      );
+    }
+
+    
   }
 
 }
