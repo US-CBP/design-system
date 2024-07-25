@@ -1,3 +1,6 @@
+/**
+ *  @Prop  --cbp-accordion-item-color: var(--cbp-color-text-darker);
+ */
 :root {
   --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
   --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
@@ -5,7 +8,28 @@
   --cbp-expand-control-padding: var(--cbp-space-3x);
   --cbp-expand-content-padding: var(--cbp-space-3x);
   --cbp-expand-margin-bottom: var(--cbp-space-2x);
+
+  --cbp-expand-button-color-text: var(--cbp-color-text-lightest);
+  --cbp-expand-button-color-text-dark: var(--cbp-color-text-darkest);
+  --cbp-expand-button-color-fill: var(--cbp-color-interactive-secondary-darker);
+  --cbp-expand-button-color-fill-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-expand-button-color-text-hover: var(--cbp-color-text-lightest);
+  --cbp-expand-button-color-text-hover-dark: var(--cbp-color-text-darkest);
+  --cbp-expand-button-color-fill-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-expand-button-color-fill-hover-dark: var(--cbp-color-interactive-secondary-lighter);
 }
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+ [data-cbp-theme='light'] cbp-expand[context*='dark'],
+ [data-cbp-theme='dark'] cbp-expand:not([context='dark-inverts']):not([context='light-always']) {
+
+  --cbp-expand-button-color-text: var(--cbp-expand-button-color-text-dark);
+  --cbp-expand-button-color-fill: var(--cbp-expand-button-color-fill-dark);
+  --cbp-expand-button-color-text-hover: var(--cbp-expand-button-color-text-hover-dark);
+  --cbp-expand-button-color-fill-hover: var(--cbp-expand-button-color-fill-hover-dark);
+ }
 
 cbp-expand {
   display: block;
@@ -18,10 +42,10 @@ cbp-expand {
   &:not([open]) .cbp-expand--content {
     display: none;
   }
-
+  //todo: variablize this?
   &[open] {
-    --cbp-expand-color: var(--cbp-color-text-lighter);
-    --cbp-expand-color-fill: var(--cbp-color-gray-cool-60);
+    // --cbp-expand-color: var(--cbp-color-text-lighter);
+    // --cbp-expand-color-fill: var(--cbp-color-gray-cool-60);
 
     .cbp-expand--control {
       --cbp-accordion-rotate-icon: rotate(90deg);
@@ -49,11 +73,12 @@ cbp-expand {
       }
     }
 
-    &:hover .cbp-expand--toggle {
-      --cbp-button-color-text: var(--cbp-color-text-lightest);
-      --cbp-button-color-fill: var(--cbp-color-interactive-secondary-darker);
-      --cbp-button-color-text-hover: var(--cbp-color-text-lightest);
-      --cbp-button-color-fill-hover: var(--cbp-color-interactive-secondary-darker);
+    //todo:  issue with default dark mode button overriding? is this correct? up specificity here?
+    &:hover .cbp-expand--toggle { 
+      --cbp-button-color-text: var(--cbp-expand-button-color-text) !important;
+      --cbp-button-color-fill: var(--cbp-expand-button-color-fill) !important;
+      --cbp-button-color-text-hover: var(--cbp-expand-button-color-text-hover) !important;
+      --cbp-button-color-fill-hover: var(--cbp-expand-button-color-fill-hover) !important;
     }
   }
 
@@ -62,5 +87,3 @@ cbp-expand {
   }
 
 }
-
-
