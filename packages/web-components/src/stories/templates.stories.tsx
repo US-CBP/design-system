@@ -86,8 +86,10 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
         <cbp-typography tag="h1" divider="underline" sx='{"margin-bottom":"var(--cbp-space-5x)"}'>
           Page Title
         </cbp-typography>
+
         <p>Main content here.</p>
-      </main>
+
+        </main>
     </cbp-container>
 
     <cbp-footer data-cbp-container-context="dark">

@@ -2,23 +2,38 @@ cbp-segmented-button-group {
   display: flex;
   width: fit-content;
 
-  // attribute selectors included for specificity
-  cbp-button[fill][color] {
-    --cbp-button-color-text: var(--cbp-color-interactive-secondary-darker);
-    --cbp-button-color-text-hover: var(--cbp-color-text-lightest);
-    --cbp-button-color-text-focus: var(--cbp-color-text-lightest);
-    --cbp-button-color-text-active: var(--cbp-color-text-lightest);
+  /* attribute selectors included for specificity 
+   * :not(#fakeId) too much specificity and overrides the button dark mode
+   * focus and active states inherited from button component
+   */
+  cbp-button[color][fill] {
+    // Light
+    --cbp-button-color: var(--cbp-color-interactive-secondary-darker);
+    --cbp-button-color-hover: var(--cbp-color-text-lightest);
   
-    --cbp-button-color-fill: var(--cbp-color-white);
-    --cbp-button-color-fill-hover: var(--cbp-color-interactive-primary-darker);
-    --cbp-button-color-fill-focus: var(--cbp-color-interactive-focus-dark);
-    --cbp-button-color-fill-active: var(--cbp-color-interactive-active-dark);
-    
+    --cbp-button-color-bg: var(--cbp-color-white);
+    --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
+
+    // borders are unchanging in segmented button groups even in interactive states
     --cbp-button-color-border: var(--cbp-color-interactive-secondary-dark);
-    --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-darker);
-    --cbp-button-color-border-focus: var(--cbp-color-interactive-focus-dark);
-    --cbp-button-color-border-active: var(--cbp-color-interactive-active-dark);
-      
+    --cbp-button-color-border-hover: var(--cbp-button-color-border);
+    --cbp-button-color-border-focus: var(--cbp-button-color-border);
+    --cbp-button-color-border-active: var(--cbp-button-color-border);
+
+    
+    // Dark
+    --cbp-button-color-dark: var(--cbp-color-interactive-secondary-lighter);
+    --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
+  
+    --cbp-button-color-bg-dark: var(--cbp-color-gray-cool-80);
+    --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-light);
+    
+      // borders are unchanging in segmented button groups even in interactive states
+    --cbp-button-color-border-dark: var(--cbp-color-interactive-secondary-lighter);
+    --cbp-button-color-border-hover-dark: var(--cbp-button-color-border-dark);
+    --cbp-button-color-border-focus-dark: var(--cbp-button-color-border-dark);
+    --cbp-button-color-border-active-dark: var(--cbp-button-color-border-dark);
+
     --cbp-button-border-width: var(--cbp-border-size-md) calc(var(--cbp-border-size-md) / 2);
     --cbp-button-border-style: solid;
     --cbp-button-border-radius: 0;
@@ -32,10 +47,12 @@ cbp-segmented-button-group {
       --cbp-button-border-width: var(--cbp-border-size-md) var(--cbp-border-size-md) var(--cbp-border-size-md) calc(var(--cbp-border-size-md) / 2);
     }
 
-    [aria-pressed='true'] {
-      --cbp-button-color-text: var(--cbp-color-white);
-      --cbp-button-color-fill: var(--cbp-color-interactive-selected-dark);
-      --cbp-button-color-border: var(--cbp-color-interactive-selected-dark);
+    &:has([aria-pressed='true']) {
+      --cbp-button-color: var(--cbp-color-white);
+      --cbp-button-color-bg: var(--cbp-color-interactive-selected-dark);
+      
+      --cbp-button-color-dark: var(--cbp-color-text-darkest);
+      --cbp-button-color-bg-dark: var(--cbp-color-interactive-selected-light);
     }
   }
 }
