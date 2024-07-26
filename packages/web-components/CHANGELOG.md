@@ -4,6 +4,12 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
+## [unpublished] TBD
+
+* Implement dark mode for segmented button
+* Refactored button CSS API to expose dark mode variables.
+* Additional bug fixes per design review.
+
 ## [0.0.1-develop.11] 07-19-2024
 
 * First cut of `cbp-form-field`, a wrapper for form controls.
