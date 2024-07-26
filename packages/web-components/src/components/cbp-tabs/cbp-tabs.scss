@@ -41,7 +41,6 @@
  * @prop --cbp-tab-border-radius: 0;
 */
 :root {
-
   --cbp-tabs-color-border: var(--cbp-color-gray-cool-30);
   --cbp-tabs-color-border-dark: var(--cbp-color-gray-cool-60);
 
@@ -58,7 +57,7 @@
   --cbp-tab-color-bg-selected: transparent;
 
   --cbp-tab-color-border: transparent;
-  --cbp-tab-color-border-hover: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-tab-color-border-hover: var(--cbp-color-interactive-secondary-darker);
   --cbp-tab-color-border-focus: var(--cbp-color-interactive-focus-dark);
   --cbp-tab-color-border-active: var(--cbp-color-interactive-active-dark);
   --cbp-tab-color-border-selected: var(--cbp-color-interactive-active-dark);
@@ -101,10 +100,8 @@ cbp-tabs {
   margin-bottom: var(--cbp-space-4x);
 
   // overrides for responsive controls
-  // TechDebt - dark colors CSS API not yet implemented in cbp-button
-  cbp-button:not(#fakeId) {
+  cbp-button[fill][color] {
     align-self: flex-start;
-    // Restore this when button CSS API is fixed
     --cbp-button-color: var(--cbp-tab-color);
     --cbp-button-color-dark: var(--cbp-tab-color-dark);
     --cbp-button-color-bg: var(--cbp-color-background-light);
