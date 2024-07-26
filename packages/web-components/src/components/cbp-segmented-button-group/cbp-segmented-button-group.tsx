@@ -15,6 +15,7 @@ export class SegmentedButtonGroup {
   @Prop() multiple: boolean;
   @Prop() accessibilityText: string;
   @Prop() disabled: boolean;
+  
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
