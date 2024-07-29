@@ -5,7 +5,7 @@ export default {
 
         variant: {
         control: 'select',
-        options: ['unordered', 'ordered'],
+        options: ['unordered', 'ordered', 'descriptive'],
         },
         context : {
         control: 'select',
@@ -20,9 +20,19 @@ export default {
     },
 };
 
-function generateItems(items) {
-    const html = items.map(({ content, indent}) => {
-      return `<cbp-list-item ${indent ? `aria-indent=${indent}`: ''}>${content}</cbp-list-item>`;
+function generateItems(items, variant) {
+    const html = items.map(({ content, indent }) => {
+      console.log(variant);
+          if(indent && variant == 'ordered'){
+            return `<ol>${content}</ol>`
+          }else if(indent && variant == 'unordered'){
+            return `<ul>${content}</ul>`  
+          }else if(indent && variant == 'descriptive'){
+            return `<dl>${content}</dl>` 
+          }else {
+            return `<li>${content}</li>`;
+          }
+          
     });
     return html.join('');
   }
@@ -30,10 +40,10 @@ function generateItems(items) {
 const Template = ({listItems, variant, context }) => {
     return ` 
     <cbp-list
-      ${variant !== 'unordered' ? `variant=${variant}` : ''}
+      ${variant ? `variant=${variant}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
     >
-        ${generateItems(listItems)}
+        ${generateItems(listItems, variant)}
     </cbp-list>
     `;
 };
@@ -58,14 +68,13 @@ export const SimpleList = Template.bind({});
             },
             {//todo: example of sublist
               content: `
-              <cbp-list>
-                <cbp-list-item>List Sub-Item 1</cbp-list-item>
-                <cbp-list-item>List Sub-Item 2</cbp-list-item>
-                <cbp-list-item>List Sub-Item 3</cbp-list-item>
-                <cbp-list-item>List Sub-Item 4</cbp-list-item>
-                <cbp-list-item>List Sub-Item 5</cbp-list-item>
-              </cbp-list>`,
-              indent: true,
+                  <li>List Sub-Item 1</li>
+                  <li>List Sub-Item 2</li>
+                  <li>List Sub-Item 3</li>
+                  <li>List Sub-Item 4</li>
+                  <li>List Sub-Item 5</li>
+                `,
+                indent: true,
             },
           ]
 };

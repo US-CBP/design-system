@@ -1,4 +1,63 @@
+/**
+ * @prop --cbp-list-item-color: var(--cbp-color-text-darkest);
+ * @prop --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
+*/
+
+:root {
+  --cbp-list-item-color: var(--cbp-color-text-darkest);
+  --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
+
+  // --cbp-list-item-bullet: '-';
+}
+
+
+[data-cbp-theme=light] cbp-list[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-list:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-list-item-color: var(--cbp-list-item-color-dark);
+}
 
 cbp-list {
   line-height: var(--cbp-line-height-sm);
+
+  li {
+    color: var(--cbp-list-item-color);
+    font-size: var(--cbp-font-size-body);
+    font-weight: var(--cbp-font-weight-bold);
+    display: list-item;
+
+    
+    // list-style-type: none;
+  
+    // &[indent]{
+    //   list-style-type: none;
+    //   display: inline;
+    // }
+  
+    // &:not([indent]):before{
+    //   content: var(--cbp-list-item-bullet);
+    //   padding: var(--cbp-space-2x);
+    // }
+  }
+
+  //Unordered nested lists
+  ul ul{
+    padding-inline-start: 3ch;
+    li{
+      list-style-type: '- ';
+    }
+  }
+
+  //Ordered nested lists
+    ol ol{
+      padding-inline-start: 3ch;
+        li{ //Ordered list 1st sublist
+        list-style-type: upper-alpha; 
+        }
+        ol li{ //Ordered list 2nd sublist
+          list-style-type: decimal; 
+        }
+        ol ol li{ //Ordered list 3rd sublist
+          list-style-type: lower-alpha;
+        }   
+    }
 }
