@@ -20,6 +20,10 @@ export default {
       description: 'Indicates whether the component is in an "open" or "closed" state affecting content visibility.',
       control: 'boolean',
     },
+    context : {
+      control: 'select',
+      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -31,12 +35,13 @@ export default {
   },
 };
 
-const Template = ({ label, content, open, headingLevel, sx }) => {
+const Template = ({ label, content, open, headingLevel, context, sx }) => {
   return ` 
         <cbp-expand
           ${label ? `label="${label}"` : ''}
           ${headingLevel ? `heading-level="${headingLevel}"` : ''}
           ${open ? `open` : ''}
+          ${context ? `context="${context}"` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
             ${content}

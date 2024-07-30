@@ -31,6 +31,9 @@ export class CbpExpand {
   /** The heading level of the accordion item control. Defaults to h3. */
   @Prop() headingLevel: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = 'h4';
   
+  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
+  @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
+  
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
@@ -77,6 +80,7 @@ export class CbpExpand {
               color="secondary"
               width="var(--cbp-space-6x)"
               height="var(--cbp-space-6x)"
+              context={this.context}
               controls={`${this.headingId}-content`}
               expanded={this.open}
               accessibilityText="Expand/collapse"
@@ -93,6 +97,7 @@ export class CbpExpand {
               : <cbp-typography 
                   tag={this.headingLevel} 
                   variant="heading-xs"
+                  context={this.context}
                   sx='{"line-height":"var(--cbp-space-6x)"}'
                 >
                   {this.label}
