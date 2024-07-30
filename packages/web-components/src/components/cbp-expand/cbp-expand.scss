@@ -1,3 +1,22 @@
+/**
+ *  @Prop --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
+ *  @Prop  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
+ *  @Prop  --cbp-expand-control-gap: var(--cbp-space-1x);
+ *  @Prop  --cbp-expand-control-padding: var(--cbp-space-3x);
+ *  @Prop  --cbp-expand-content-padding: var(--cbp-space-3x);
+ *  @Prop  --cbp-expand-margin-bottom: var(--cbp-space-2x);
+
+ *  @Prop  --cbp-expand-color: var(--cbp-color-text-darkest);
+ *  @Prop  --cbp-expand-color-dark: var(--cbp-color-text-lightest);
+ *  @Prop  --cbp-expand-button-color-text: var(--cbp-color-text-lightest);
+ *  @Prop  --cbp-expand-button-color-text-dark: var(--cbp-color-text-darkest);
+ *  @Prop  --cbp-expand-button-color-fill: var(--cbp-color-interactive-secondary-darker);
+ *  @Prop  --cbp-expand-button-color-fill-dark: var(--cbp-color-interactive-secondary-lighter);
+ *  @Prop  --cbp-expand-button-color-text-hover: var(--cbp-color-text-lightest);
+ *  @Prop  --cbp-expand-button-color-text-hover-dark: var(--cbp-color-text-darkest);
+ *  @Prop  --cbp-expand-button-color-fill-hover: var(--cbp-color-interactive-secondary-darker);
+ *  @Prop  --cbp-expand-button-color-fill-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ */
 :root {
   --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
   --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
@@ -5,12 +24,33 @@
   --cbp-expand-control-padding: var(--cbp-space-3x);
   --cbp-expand-content-padding: var(--cbp-space-3x);
   --cbp-expand-margin-bottom: var(--cbp-space-2x);
+
+  --cbp-expand-color: var(--cbp-color-text-darkest);
+  --cbp-expand-color-dark: var(--cbp-color-text-lightest);
+  --cbp-expand-button-color-text: var(--cbp-color-text-lightest);
+  --cbp-expand-button-color-text-dark: var(--cbp-color-text-darkest);
+  --cbp-expand-button-color-fill: var(--cbp-color-interactive-secondary-darker);
+  --cbp-expand-button-color-fill-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-expand-button-color-text-hover: var(--cbp-color-text-lightest);
+  --cbp-expand-button-color-text-hover-dark: var(--cbp-color-text-darkest);
+  --cbp-expand-button-color-fill-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-expand-button-color-fill-hover-dark: var(--cbp-color-interactive-secondary-lighter);
 }
 
+// /* 
+//  * Dark Mode - display dark design based on mode or context
+//  */
+ [data-cbp-theme='light'] cbp-expand[context*='dark'],
+ [data-cbp-theme='dark'] cbp-expand:not([context='dark-inverts']):not([context='light-always']) {
+  
+  --cbp-expand-color: var(--cbp-expand-color-dark);
+  
+ }
 
 cbp-expand {
   display: block;
   margin-bottom: var(--cbp-expand-margin-bottom);
+  color:var(--cbp-expand-color);
 
   &:not([open]) {
     --cbp-expand-rotate-icon: rotate(-90deg);
@@ -26,12 +66,7 @@ cbp-expand {
   }
   
   .cbp-expand--control {
-    //display: flex;
-    //gap: var(--cbp-expand-control-gap);
-    //min-height: var(--cbp-space-13x);
     font-size: var(--cbp-expand-control-font-size);
-    //font-weight: var(--cbp-expand-control-font-weight);
-    //padding: var(--cbp-expand-control-padding);
     cursor: pointer;
 
     .cbp-expand--toggle {
@@ -45,14 +80,14 @@ cbp-expand {
     }
 
     &:hover .cbp-expand--toggle { 
-      --cbp-button-color: var(--cbp-color-text-lightest);
-      --cbp-button-color-dark: var(--cbp-color-text-darkest);
-      --cbp-button-color-bg: var(--cbp-color-interactive-secondary-darker);
-      --cbp-button-color-bg-dark: var(--cbp-color-interactive-secondary-lighter);
-      --cbp-button-color-hover: var(--cbp-color-text-lightest);
-      --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
-      --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
-      --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color: var(--cbp-expand-button-color-text);
+      --cbp-button-color-dark: var(--cbp-expand-button-color-text-dark);
+      --cbp-button-color-bg: var(--cbp-expand-button-color-fill);
+      --cbp-button-color-bg-dark: var(--cbp-expand-button-color-fill-dark);
+      --cbp-button-color-hover: var(--cbp-expand-button-color-text-hover);
+      --cbp-button-color-hover-dark: var(--cbp-expand-button-color-text-hover-dark);
+      --cbp-button-color-bg-hover: var(--cbp-expand-button-color-fill-hover);
+      --cbp-button-color-bg-hover-dark: var(--cbp-expand-button-color-fill-hover-dark);
     }
   }
 
