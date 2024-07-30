@@ -80,6 +80,7 @@ export class CbpExpand {
               color="secondary"
               width="var(--cbp-space-6x)"
               height="var(--cbp-space-6x)"
+              context={this.context}
               controls={`${this.headingId}-content`}
               expanded={this.open}
               accessibilityText="Expand/collapse"
@@ -96,6 +97,7 @@ export class CbpExpand {
               : <cbp-typography 
                   tag={this.headingLevel} 
                   variant="heading-xs"
+                  context={this.context}
                   sx='{"line-height":"var(--cbp-space-6x)"}'
                 >
                   {this.label}
