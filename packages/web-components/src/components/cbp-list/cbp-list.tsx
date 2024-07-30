@@ -10,8 +10,9 @@ export class CbpList {
   
   private renderedTag: HTMLElement;
   
+  //todo: rename this to Tag, using the typography as example for update. should be able to use this.tag for the render, drop the DL
   /** Specifies optional variants with difference from the default card. */
-  @Prop({ reflect: true }) variant: 'unordered' | 'ordered' | 'descriptive';
+  @Prop({ reflect: true }) variant: 'unordered' | 'ordered' | 'descriptive'; 
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
@@ -31,6 +32,7 @@ export class CbpList {
 
   render() {
     
+    //todo: this should be unnessecary after prop update
     var Tag;
     switch (this,this.variant){
       case 'ordered':

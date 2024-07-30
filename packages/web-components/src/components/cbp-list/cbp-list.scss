@@ -47,6 +47,7 @@ cbp-list {
     }
   }
 
+  //todo: need to simplify and account for alternating nested lists
   //Ordered nested lists
     ol ol{
       padding-inline-start: 3ch;

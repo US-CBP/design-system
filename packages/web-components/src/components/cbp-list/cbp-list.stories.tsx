@@ -5,7 +5,7 @@ export default {
 
         variant: {
         control: 'select',
-        options: ['unordered', 'ordered', 'descriptive'],
+        options: ['unordered', 'ordered', 'descriptive'], //todo: remove DL
         },
         context : {
         control: 'select',
@@ -19,7 +19,7 @@ export default {
     args: {
     },
 };
-
+//todo: refactor to simplify
 function generateItems(items, variant) {
     const html = items.map(({ content, indent }) => {
       console.log(variant);
@@ -74,7 +74,7 @@ export const SimpleList = Template.bind({});
                   <li>List Sub-Item 4</li>
                   <li>List Sub-Item 5</li>
                 `,
-                indent: true,
+                indent: true, //todo: remove indent as prop
             },
           ]
 };
