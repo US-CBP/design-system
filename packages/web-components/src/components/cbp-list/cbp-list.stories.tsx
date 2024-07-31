@@ -2,10 +2,10 @@ export default {
     title: 'Components/Simple List',
     tags: ['autodocs'],
     argTypes: {
-
-        variant: {
-        control: 'select',
-        options: ['unordered', 'ordered', 'descriptive'], //todo: remove DL
+        tag: {
+          control: 'select',
+          description: 'Type of List',
+          options: ['ul', 'ol'],
         },
         context : {
         control: 'select',
@@ -17,33 +17,28 @@ export default {
         },
     },   
     args: {
+      tag: 'ul',
     },
 };
-//todo: refactor to simplify
-function generateItems(items, variant) {
-    const html = items.map(({ content, indent }) => {
-      console.log(variant);
-          if(indent && variant == 'ordered'){
-            return `<ol>${content}</ol>`
-          }else if(indent && variant == 'unordered'){
-            return `<ul>${content}</ul>`  
-          }else if(indent && variant == 'descriptive'){
-            return `<dl>${content}</dl>` 
-          }else {
-            return `<li>${content}</li>`;
-          }
-          
+
+function generateItems(items) {
+    const html = items.map(({ content, sublist}) => {
+      if(sublist){
+        return `${content}`;
+      }else{
+        return `<li>${content}</li>`;      
+      }
     });
     return html.join('');
   }
   
-const Template = ({listItems, variant, context }) => {
+const Template = ({listItems, tag, context }) => {
     return ` 
     <cbp-list
-      ${variant ? `variant=${variant}` : ''}
+      ${tag ? `tag=${tag}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
     >
-        ${generateItems(listItems, variant)}
+        ${generateItems(listItems)}
     </cbp-list>
     `;
 };
@@ -63,18 +58,47 @@ export const SimpleList = Template.bind({});
             {
               content: "List Item 4",
             },
-            {
-              content: "List Item 5",
-            },
-            {//todo: example of sublist
+           
+            {//example of ul sublist
               content: `
+                <ul>
                   <li>List Sub-Item 1</li>
                   <li>List Sub-Item 2</li>
                   <li>List Sub-Item 3</li>
                   <li>List Sub-Item 4</li>
                   <li>List Sub-Item 5</li>
+
+                </ul>
                 `,
-                indent: true, //todo: remove indent as prop
+              sublist: true
+            }, {
+              content: "List Item 5",
+            },
+            {//example of ol sublist
+              content: `
+                <ol>
+                  <li>List Sub-Item 1</li>
+                  <li>List Sub-Item 2</li>
+                  <li>List Sub-Item 3</li>
+                  <li>List Sub-Item 4</li>
+                  <li>List Sub-Item 5</li>
+                  <ol>
+                    <li>List Sub-Item 1</li>
+                    <li>List Sub-Item 2</li>
+                    <li>List Sub-Item 3</li>
+                    <li>List Sub-Item 4</li>
+                    <li>List Sub-Item 5</li>
+                    <ol>
+                      <li>List Sub-Item 1</li>
+                      <li>List Sub-Item 2</li>
+                      <li>List Sub-Item 3</li>
+                      <li>List Sub-Item 4</li>
+                      <li>List Sub-Item 5</li>
+                    </ol>
+                  </ol>  
+                </ol>
+                `,
+              sublist: true
             },
           ]
 };

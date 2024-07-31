@@ -24,30 +24,16 @@ cbp-list {
     font-size: var(--cbp-font-size-body);
     font-weight: var(--cbp-font-weight-bold);
     display: list-item;
-
-    
-    // list-style-type: none;
-  
-    // &[indent]{
-    //   list-style-type: none;
-    //   display: inline;
-    // }
-  
-    // &:not([indent]):before{
-    //   content: var(--cbp-list-item-bullet);
-    //   padding: var(--cbp-space-2x);
-    // }
   }
 
   //Unordered nested lists
-  ul ul{
+  li + ul{
     padding-inline-start: 3ch;
     li{
       list-style-type: '- ';
     }
   }
 
-  //todo: need to simplify and account for alternating nested lists
   //Ordered nested lists
     ol ol{
       padding-inline-start: 3ch;
