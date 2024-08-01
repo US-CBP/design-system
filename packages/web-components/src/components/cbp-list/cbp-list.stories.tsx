@@ -37,8 +37,7 @@ const Template = ({listItems, tag, context, accessibilityText }) => {
     <cbp-list
       ${tag ? `tag=${tag}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${accessibilityText ? `accessibilityText=${accessibilityText}` : ''}
-      
+      accessibilityText=${accessibilityText}
     >
         ${generateItems(listItems)}
     </cbp-list>
@@ -78,23 +77,21 @@ export const List = Template.bind({});
                   <li>List Sub-Item 2</li>
                   <li>List Sub-Item 3</li>
                   <li>List Sub-Item 4</li>
-                  <li>List Sub-Item 5
+                  <li>List Sub-Item 5</li>
+                  <ol>
+                    <li>List Sub-Item 1</li>
+                    <li>List Sub-Item 2</li>
+                    <li>List Sub-Item 3</li>
+                    <li>List Sub-Item 4</li>
+                    <li>List Sub-Item 5</li>
                     <ol>
                       <li>List Sub-Item 1</li>
                       <li>List Sub-Item 2</li>
                       <li>List Sub-Item 3</li>
                       <li>List Sub-Item 4</li>
-                      <li>List Sub-Item 5
-                        <ol>
-                          <li>List Sub-Item 1</li>
-                          <li>List Sub-Item 2</li>
-                          <li>List Sub-Item 3</li>
-                          <li>List Sub-Item 4</li>
-                          <li>List Sub-Item 5</li>
-                        </ol>
-                      </li>
-                    </ol> 
-                  </li> 
+                      <li>List Sub-Item 5</li>
+                    </ol>
+                  </ol>  
                 </ol>
                 `,
               sublist: true

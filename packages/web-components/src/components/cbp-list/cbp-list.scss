@@ -7,7 +7,7 @@
   --cbp-list-item-color: var(--cbp-color-text-darkest);
   --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
   --cbp-list-padding: var(--cbp-space-4x);
-  --cbp-list-item-padding: 2px;
+  --cbp-list-item-padding: var(--cbp-space-half-x);
   // --cbp-list-item-bullet: '-';
 }
 
@@ -47,22 +47,30 @@ cbp-list {
 
     ol li{ //Ordered list 1st sublist
       list-style-type: upper-alpha; 
-    
-      ol li{ //Ordered list 2nd sublist
-        list-style-type: decimal; 
-    
-        ol{
-          counter-reset: count;
-    
-          li{//Ordered list 3rd sublist
+  
+      ol{
+        counter-reset: count;
+  
+        li{//Ordered list 3rd sublist
+          counter-increment: count;
+            
+          &::marker{ 
+            content: counter(count, decimal) ") ";
+          }
+
+          ol{
+            counter-reset: count;
+      
+          li{//Ordered list 34th sublist
             counter-increment: count;
-             
+              
             &::marker{ 
-              content: counter(count, decimal) ") ";
+              content: counter(count, lower-alpha) ". ";
             }
           }
-        }   
+        }
       }
     }
   }
+}
 }
