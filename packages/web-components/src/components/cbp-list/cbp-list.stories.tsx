@@ -1,5 +1,5 @@
 export default {
-    title: 'Components/Simple List',
+    title: 'Components/List',
     tags: ['autodocs'],
     argTypes: {
         tag: {
@@ -22,12 +22,8 @@ export default {
 };
 
 function generateItems(items) {
-    const html = items.map(({ content, sublist}) => {
-      if(sublist){
-        return `${content}`;
-      }else{
+    const html = items.map(({ content}) => {
         return `<li>${content}</li>`;      
-      }
     });
     return html.join('');
   }
@@ -43,8 +39,8 @@ const Template = ({listItems, tag, context }) => {
     `;
 };
 
-export const SimpleList = Template.bind({});
-    SimpleList.args = {
+export const List = Template.bind({});
+    List.args = {
         listItems: [
             {
               content: "List Item 1",
@@ -55,27 +51,22 @@ export const SimpleList = Template.bind({});
             {
               content: "List Item 3",
             },
-            {
-              content: "List Item 4",
-            },
-           
             {//example of ul sublist
               content: `
+              List Item 4
                 <ul>
                   <li>List Sub-Item 1</li>
                   <li>List Sub-Item 2</li>
                   <li>List Sub-Item 3</li>
                   <li>List Sub-Item 4</li>
                   <li>List Sub-Item 5</li>
-
                 </ul>
                 `,
               sublist: true
-            }, {
-              content: "List Item 5",
             },
             {//example of ol sublist
               content: `
+                list Item 5
                 <ol>
                   <li>List Sub-Item 1</li>
                   <li>List Sub-Item 2</li>

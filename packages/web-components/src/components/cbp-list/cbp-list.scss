@@ -7,6 +7,8 @@
   --cbp-list-item-color: var(--cbp-color-text-darkest);
   --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
 
+  --cbp-list-item-sublist-padding: 3ch;
+
   // --cbp-list-item-bullet: '-';
 }
 
@@ -23,17 +25,23 @@ cbp-list {
     color: var(--cbp-list-item-color);
     font-size: var(--cbp-font-size-body);
     font-weight: var(--cbp-font-weight-bold);
-    display: list-item;
   }
 
-  //Unordered nested lists
-  li + ul{
-    padding-inline-start: 3ch;
-    li{
+  ul ul,
+  ul ol, 
+  ol ul, 
+  ol ol{
+    padding-inline-start: var(--cbp-list-item-sublist-padding);
+  }
+  
+  // //Unordered nested lists
+  ul li{
+    list-style-type: disc;
+   
+    ul li{ //Unordered list 1st sublist
       list-style-type: '- ';
     }
   }
-
   //Ordered nested lists
     ol ol{
       padding-inline-start: 3ch;

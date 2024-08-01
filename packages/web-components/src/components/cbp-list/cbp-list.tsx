@@ -11,7 +11,13 @@ export class CbpList {
   private renderedTag: HTMLElement;
 
   /** Specifies the semantic tag to be rendered. */
-  @Prop() tag!: 'ul' | 'ol' ;
+  @Prop() tag: 'ul' | 'ol' = 'ul';
+
+  /** 
+  * Specifies an accessible label for the list as an `aria-label`, similar to a table `caption`. 
+  * Since the structured list contains significant amount of data, it is advised to always specify a label describing the list.
+  */
+  @Prop() accessibilityText: string;
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
@@ -34,7 +40,10 @@ export class CbpList {
     const Tag = this.tag;
     return (
       <Host>
-        <Tag ref={(el) => this.renderedTag = el}>
+        <Tag 
+          ref={(el) => this.renderedTag = el} 
+          aria-label={this.accessibilityText}
+        >
           <slot />
         </Tag>
       </Host>
