@@ -6,9 +6,8 @@
 :root {
   --cbp-list-item-color: var(--cbp-color-text-darkest);
   --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
-
-  --cbp-list-item-sublist-padding: 3ch;
-
+  --cbp-list-padding: var(--cbp-space-4x);
+  --cbp-list-item-padding: 2px;
   // --cbp-list-item-bullet: '-';
 }
 
@@ -19,40 +18,51 @@
 }
 
 cbp-list {
-  line-height: var(--cbp-line-height-sm);
+  line-height: var(--cbp-line-height-xs);
 
+  ol, ul{
+    padding-inline-start: var(--cbp-list-padding);
+  }
+  
   li {
     color: var(--cbp-list-item-color);
     font-size: var(--cbp-font-size-body);
     font-weight: var(--cbp-font-weight-bold);
+    padding-block: var(--cbp-list-item-padding);
   }
 
-  ul ul,
-  ul ol, 
-  ol ul, 
-  ol ol{
-    padding-inline-start: var(--cbp-list-item-sublist-padding);
-  }
   
   // //Unordered nested lists
-  ul li{
+  ul > li{
     list-style-type: disc;
    
     ul li{ //Unordered list 1st sublist
       list-style-type: '- ';
     }
   }
+    
   //Ordered nested lists
-    ol ol{
-      padding-inline-start: 3ch;
-        li{ //Ordered list 1st sublist
-        list-style-type: upper-alpha; 
-        }
-        ol li{ //Ordered list 2nd sublist
-          list-style-type: decimal; 
-        }
-        ol ol li{ //Ordered list 3rd sublist
-          list-style-type: lower-alpha;
+  ol > li{
+    list-style-type: decimal;
+
+    ol li{ //Ordered list 1st sublist
+      list-style-type: upper-alpha; 
+    
+      ol li{ //Ordered list 2nd sublist
+        list-style-type: decimal; 
+    
+        ol{
+          counter-reset: count;
+    
+          li{//Ordered list 3rd sublist
+            counter-increment: count;
+             
+            &::marker{ 
+              content: counter(count, decimal) ") ";
+            }
+          }
         }   
+      }
     }
+  }
 }

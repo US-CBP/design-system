@@ -13,10 +13,7 @@ export class CbpList {
   /** Specifies the semantic tag to be rendered. */
   @Prop() tag: 'ul' | 'ol' = 'ul';
 
-  /** 
-  * Specifies an accessible label for the list as an `aria-label`, similar to a table `caption`. 
-  * Since the structured list contains significant amount of data, it is advised to always specify a label describing the list.
-  */
+  /** Specifies an accessible label for the list as an `aria-label`, similar to a table `caption`. */
   @Prop() accessibilityText: string;
 
   /** Supports adding inline styles as an object */

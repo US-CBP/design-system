@@ -7,13 +7,17 @@ export default {
           description: 'Type of List',
           options: ['ul', 'ol'],
         },
+        accessibilityText: {
+          description: 'Support for accessibility text',
+          control: 'text',
+        },
         context : {
-        control: 'select',
-        options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+          control: 'select',
+          options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
         },
         sx: {
-        description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
-        control: 'object',
+          description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
+          control: 'object',
         },
     },   
     args: {
@@ -28,11 +32,13 @@ function generateItems(items) {
     return html.join('');
   }
   
-const Template = ({listItems, tag, context }) => {
+const Template = ({listItems, tag, context, accessibilityText }) => {
     return ` 
     <cbp-list
       ${tag ? `tag=${tag}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${accessibilityText ? `accessibilityText=${accessibilityText}` : ''}
+      
     >
         ${generateItems(listItems)}
     </cbp-list>
@@ -72,21 +78,23 @@ export const List = Template.bind({});
                   <li>List Sub-Item 2</li>
                   <li>List Sub-Item 3</li>
                   <li>List Sub-Item 4</li>
-                  <li>List Sub-Item 5</li>
-                  <ol>
-                    <li>List Sub-Item 1</li>
-                    <li>List Sub-Item 2</li>
-                    <li>List Sub-Item 3</li>
-                    <li>List Sub-Item 4</li>
-                    <li>List Sub-Item 5</li>
+                  <li>List Sub-Item 5
                     <ol>
                       <li>List Sub-Item 1</li>
                       <li>List Sub-Item 2</li>
                       <li>List Sub-Item 3</li>
                       <li>List Sub-Item 4</li>
-                      <li>List Sub-Item 5</li>
-                    </ol>
-                  </ol>  
+                      <li>List Sub-Item 5
+                        <ol>
+                          <li>List Sub-Item 1</li>
+                          <li>List Sub-Item 2</li>
+                          <li>List Sub-Item 3</li>
+                          <li>List Sub-Item 4</li>
+                          <li>List Sub-Item 5</li>
+                        </ol>
+                      </li>
+                    </ol> 
+                  </li> 
                 </ol>
                 `,
               sublist: true
