@@ -33,7 +33,7 @@ The Form Field component represents a generic, reusable pattern for form fields 
 
 ### Accessibility
 
-* Disabled form controls and buttons are non-interactive and cannot be navigated to using the keyboard and should be used with caution (if at all).
+* Overlays may Disabled form controls and buttons are non-interactive and cannot be navigated to using the keyboard and should be used with caution (if at all).
 * Placeholder text should rarely, if ever, be used.
   * Especially in forms where the user is expected to enter data, placeholder text with sufficient contrast to the background color may be mistaken as entered input.
   * In high contrast mode, placeholder text is displayed exactly the same as entered text, making this issue more likely.
@@ -43,7 +43,7 @@ The Form Field component represents a generic, reusable pattern for form fields 
 
 * This component is essentially required for bringing in the style for all form controls/inputs. It should be flexible enough for various cases such as:
   * when the label is hidden
-* Overlays and attached buttons may be better handled by another component, e.g., `cbp-form-input-extras`
+* Overlays and attached buttons may be better handled by another component, e.g., `cbp-form-field-wrapper`
   * Right aligned overlays need to still work with inputs that have button controls attached to the right. This might get tricky. 
 * Handling of groups of inputs can be done via role=group or a legend tag. The legend tag can accept a disabled attribute, which is an advantage.
 * Needs to handle an error state

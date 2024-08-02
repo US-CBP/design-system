@@ -1,0 +1,55 @@
+/*
+ * @prop --cbp-form-field-wrapper-padding-start: inherit; 
+ * @prop --cbp-form-field-wrapper-padding-end: inherit;
+ */
+:root {
+  --cbp-form-field-wrapper-padding-start: var(--cbp-form-field-padding-inline);
+  --cbp-form-field-wrapper-padding-end: var(--cbp-form-field-padding-inline);
+
+  --cbp-form-field-overlay-start-width: 0;
+  --cbp-form-field-overlay-end-width: 0;
+  --cbp-form-field-attached-buttons-width: 0;
+
+}
+
+cbp-form-field-wrapper {
+  //display: block;
+  position: relative;
+
+  .cbp-form-field-wrapper-shrinkwrap {
+    display: block;
+    position: relative;
+
+    // Override the input padding based on overlay size to prevent input text from being obscured
+    input {
+      padding-inline-start: calc(var(--cbp-form-field-overlay-start-width) + var(--cbp-form-field-wrapper-padding-start));
+      padding-inline-end: calc(var(--cbp-form-field-overlay-end-width) + var(--cbp-form-field-wrapper-padding-end));
+    }
+
+    // All named slots within the shrinkwrap element are overlays
+    [slot] {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      color: var(--cbp-form-field-color);
+    }
+
+    [slot="cbp-form-field-overlay-start"] {
+      inset-inline-start: var(--cbp-space-2x);
+      font-weight: var(--cbp-font-weight-bold);
+      font-style: italic;
+    }
+
+    [slot="cbp-form-field-overlay-end"] {
+      inset-inline-end: calc(var(--cbp-form-field-attached-buttons-width) + var(--cbp-space-2x)); //var(--cbp-space-2x);
+      font-style: italic;
+    }
+
+    // Attached buttons act like an overlay in order to wrap the input focus highlight around them.
+    [slot="cbp-form-field-attached-buttons"] {
+      --cbp-button-border-radius: 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0;
+      inset-inline-end: 0;
+    }
+  }
+}

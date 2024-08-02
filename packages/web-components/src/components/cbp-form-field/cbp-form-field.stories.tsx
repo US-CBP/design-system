@@ -191,3 +191,33 @@ export const MultiSelect = MultiSelectTemplate.bind({});
 MultiSelect.args = {
 };
 */
+
+
+
+const PasswordTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      <cbp-form-field-wrapper>
+        <input 
+          type="password" 
+          name="hashedinput" 
+          ${value ? `value="${value}"` : ''}  
+          ${readonly ? `readonly` : ''} 
+          ${disabled ? `disabled` : ''}
+        />
+      </cbp-form-field-wrapper>
+    </cbp-form-field>
+  `;
+};
+
+export const Password = PasswordTemplate.bind({});
+Password.args = {
+  value: '',
+};

@@ -20,6 +20,7 @@
   --cbp-form-field-color-description-dark: var(--cbp-color-text-lightest);
   --cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
 
+  --cbp-form-field-padding-inline: var(--cbp-space-2x);
   --cbp-form-field-margin-bottom: var(--cbp-space-4x);
 
   // TechDebt: Ideally, it would be better if the icon could inherit the text color, but I can't seem to get this working so we have 2 copies with different colors
@@ -80,7 +81,7 @@ cbp-form-field {
     width: 100%;
     max-width: 100%;
     min-height: var(--cbp-space-9x);
-    padding-inline: var(--cbp-space-2x);
+    padding-inline: var(--cbp-form-field-padding-inline);
     font-family: inherit;
     font-size: var(--cbp-font-size-body);
     line-height: var(--cbp-line-height-xs);

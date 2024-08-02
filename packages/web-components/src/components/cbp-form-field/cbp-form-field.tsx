@@ -25,8 +25,14 @@ export class CbpFormField {
   @Prop() fieldId: string = createNamespaceKey('cbp-formfield');
   
   @Prop({ reflect: true }) error: boolean;
-  
+
   @Prop() errorMessages: string | any;
+
+  /** Specifies that the field is readonly; sets all form fields as readonly and related button controls to disabled.  */
+  @Prop({ reflect: true }) readonly: boolean;
+  
+  /** Specifies that the field is disabled; sets all form fields and button controls as disabled. */
+  @Prop({ reflect: true }) disabled: boolean;
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
@@ -73,6 +79,18 @@ export class CbpFormField {
     }
   }
 
+  componentDidRender() {
+    // Manage disabled/readonly/error states after each render because this potentially cascades down across multiple slotted controls.
+    this.formField.forEach( el => {
+      el.setAttribute('disabled', this.disabled);
+      el.setAttribute('readonly', this.readonly);
+    });
+
+    const buttons: any = this.host.querySelector('cbp-button');
+    buttons.forEach( el => {
+      el.setAttribute('disabled', this.disabled || this.readonly);
+    });
+  }
 
   render() {
     return (
