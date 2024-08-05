@@ -10,8 +10,14 @@ export class CbpList {
   
   private renderedTag: HTMLElement;
 
+  /** Specifies the variant of list (simple, link, special) */
+  @Prop() variant: 'simple' | 'link-internal' | 'link-external'; 
+  
   /** Specifies the semantic tag to be rendered. */
   @Prop() tag: 'ul' | 'ol' = 'ul';
+
+  /** Specifies the font size for the list */
+  @Prop() size: 'sm' | 'lg';
 
   /** Specifies an accessible label for the list as an `aria-label`, similar to a table `caption`. */
   @Prop() accessibilityText: string;
@@ -35,17 +41,18 @@ export class CbpList {
   render() {
     
     const Tag = this.tag;
-    return (
-      <Host>
-        <Tag 
-          ref={(el) => this.renderedTag = el} 
-          aria-label={this.accessibilityText}
-        >
-          <slot />
-        </Tag>
-      </Host>
-    );
+      return (
+        <Host>
+          <Tag 
+            ref={(el) => this.renderedTag = el}
+            // aria-size={this.size} 
+            aria-label={this.accessibilityText}
+          >
+            <slot />
+          </Tag>
+        </Host>
+      );
+    }
+    
     
   }
-
-}

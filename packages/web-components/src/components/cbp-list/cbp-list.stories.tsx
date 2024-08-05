@@ -2,10 +2,20 @@ export default {
     title: 'Components/List',
     tags: ['autodocs'],
     argTypes: {
+        // variant: {
+        //   control: 'select',
+        //   description: 'Variant of List',
+        //   options: ['simple' , 'link-internal' , 'link-external'],
+        // },
         tag: {
           control: 'select',
           description: 'Type of List',
           options: ['ul', 'ol'],
+        },
+        size: {
+          control: 'select',
+          description: 'Font size of list text',
+          options: ['sm', 'lg'],
         },
         accessibilityText: {
           description: 'Support for accessibility text',
@@ -31,13 +41,16 @@ function generateItems(items) {
     });
     return html.join('');
   }
+
+
   
-const Template = ({listItems, tag, context, accessibilityText }) => {
+const Template = ({listItems, tag, size, accessibilityText, context,}) => {
     return ` 
     <cbp-list
       ${tag ? `tag=${tag}` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${size ? `size=${size}` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
       
     >
         ${generateItems(listItems)}
@@ -100,4 +113,70 @@ export const List = Template.bind({});
               sublist: true
             },
           ]
+};
+
+function generateLinkListItems(items, size, parentVariant) {
+  if(size == 'sm'){
+    const html = items.map(({ content}) => {
+      return `<li>
+                <cbp-icon ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
+                  class='linkListIcon'
+                > </cbp-icon>
+                <cbp-link href='#' target='_self'>${content}</cbp-link>
+              </li>`;      
+    });
+    return html.join('');
+  } else {  //size == 'lg'
+    
+    const html = items.map(({ content}) => {
+      return `<li>
+                <cbp-icon ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
+                  class='linkListIcon'
+                > </cbp-icon>
+                <cbp-link href='#' target='_self'>${content}</cbp-link>
+                ${parentVariant == 'link-external' ? '<br /><cbp-icon name="globe" /> </cbp-icon><span class="linkListDescription"> ' + content + ' description </span>' : ''}
+              </li>`;      
+    });
+    return html.join('');
+  } 
+}
+
+const LinkListTemplate = ({linkListItems, size, accessibilityText, context,}) => {
+  return ` 
+  <cbp-typography tag="h3"> Internal Link List: </cbp-typography>
+  <cbp-list
+    variant='link-internal' 
+    ${size ? `size=${size}` : ''}
+    ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+    ${context && context != 'light-inverts' ? `context=${context}` : ''}
+  >
+      ${generateLinkListItems(linkListItems, size, 'link-internal')}
+  </cbp-list>
+
+  <br />
+  <cbp-typography tag="h3"> External Link List: </cbp-typography>
+  <cbp-list
+  variant='link-external' 
+  ${size ? `size=${size}` : ''}
+  ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+  ${context && context != 'light-inverts' ? `context=${context}` : ''}
+>
+    ${generateLinkListItems(linkListItems, size, 'link-external')}
+</cbp-list>
+  `;
+};
+
+export const LinkList = LinkListTemplate.bind({});
+  LinkList.args = {
+      linkListItems: [
+          {
+            content: "List Link Item 1",
+          },
+          {
+            content: "List Link Item 2",
+          },
+          {
+            content: "List Link Item 3",
+          },
+        ]
 };

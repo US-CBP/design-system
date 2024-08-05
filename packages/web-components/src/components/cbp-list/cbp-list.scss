@@ -6,19 +6,52 @@
 :root {
   --cbp-list-item-color: var(--cbp-color-text-darkest);
   --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
+  
   --cbp-list-padding: var(--cbp-space-4x);
-  --cbp-list-item-padding: var(--cbp-space-half-x);
-  // --cbp-list-item-bullet: '-';
+  // --cbp-list-item-padding: var(--cbp-space-half-x);
+  --cbp-list-item-small-padding: var(--cbp-space-half-x);
+  // --cbp-list-item-small-line-height: var(--cbp-line-height-sm);
+  --cbp-list-item-large-padding: var(--cbp-space-1x);
+  // --cbp-list-item-large-line-height: var(--cbp-line-height-md);
+
+  --cbp-list-font-small: var(--cbp-font-size-body);
+  --cbp-list-font-large: var(--cbp-font-size-heading-sm);
+
+  --cbp-link-list-icon-color: var(--cbp-color-interactive-primary-dark);
+  --cbp-link-list-icon-color-dark: var(--cbp-color-interactive-primary-dark);
+
+  --cbp-link-list-description-color: var(--cbp-color-text-darkest);
+  --cbp-link-list-description-color-dark: var(--cbp-color-text-lightest);
 }
 
 
 [data-cbp-theme=light] cbp-list[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-list:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-list-item-color: var(--cbp-list-item-color-dark);
+  --cbp-link-list-icon-color: var(--cbp-link-list-icon-color-dark);
+  --cbp-link-list-description-color: var(--cbp-link-list-description-color-dark);
 }
 
 cbp-list {
   line-height: var(--cbp-line-height-xs);
+
+  &[size="sm"]:not([variant="link-internal"]):not([variant="link-external"]){
+    font-size: var(--cbp-list-font-small);
+  
+    li{
+      line-height: var(--cbp-list-item-small-line-height);
+      padding-block: var(--cbp-list-item-small-padding);
+    }
+  }
+
+  &[size="lg"]:not([variant="link-internal"]):not([variant="link-external"]){
+    font-size: var(--cbp-list-font-large);
+  
+    li{
+      line-height: var(--cbp-list-item-large-line-height);
+      padding-block: var(--cbp-list-item-large-padding);
+    }
+  }
 
   ol, ul{
     padding-inline-start: var(--cbp-list-padding);
@@ -73,4 +106,25 @@ cbp-list {
     }
   }
 }
+
+  //Link List
+
+  &[variant="link-internal"] li,
+  &[variant="link-external"] li{
+    list-style-type: none;
+
+    .linkListIcon{
+      color: var(--cbp-link-list-icon-color);
+    }          
+  }
+
+  &[variant="link-external"]{
+
+    .linkListDescription{
+      color: var(--cbp-link-list-description-color);
+      font-style: italic;
+      font-size: var(--cbp-font-size-body);
+    }
+  }
+  
 }
