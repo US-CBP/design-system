@@ -47,8 +47,8 @@ export class CbpFormField {
   handleChange() {
     this.valueChange.emit({
       host: this.host,
-      //nativeElement: this.formField,
-      //value: this.formField.value,
+      nativeElement: this.formField,
+      value: this.formField.value,
     });
   }
 
