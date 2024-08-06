@@ -26,7 +26,7 @@ cbp-tag {
   cursor: default;
   padding: 0 var(--cbp-space-3x);
   text-align: center;
-  font-weight: var(--cbp-font-weight-medium);
+  font-weight: var(--cbp-font-size-subhead);
   line-height: var(--cbp-space-7x);
   max-width: 100%;
   overflow: hidden;
@@ -34,7 +34,7 @@ cbp-tag {
   
   &[color=warning] {
     --cbp-tag-color: var(--cbp-color-text-darker);
-    --cbp-tag-color-dark: var(--cbp-color-info-darker);
+    --cbp-tag-color-dark: var(--cbp-color-text-darker);
 
     --cbp-tag-color-background: var(--cbp-color-warning-base);
     --cbp-tag-color-background-dark: var(--cbp-color-warning-light);
@@ -42,17 +42,17 @@ cbp-tag {
 
   &[color=success] {
     --cbp-tag-color: var(--cbp-color-success-lighter);
-    --cbp-tag-color-dark: var(-cbp-color-success-darker);
+    --cbp-tag-color-dark: var(--cbp-color-success-dark);
 
-    --cbp-tag-color-background: var(--cbp-color-info-dark);
-    --cbp-tag-color-background-dark: var(--cbp-color-success-light);
+    --cbp-tag-color-background: var(--cbp-color-success-dark);
+    --cbp-tag-color-background-dark: var(--cbp-color-success-lighter);
   }
 
   &[color=danger] {
     --cbp-tag-color: var(--cbp-color-text-lightest);
     --cbp-tag-color-dark: var(--cbp-color-text-darkest);
 
-    --cbp-tag-color-background: var(--cbp-color-danger-base);
+    --cbp-tag-color-background: var(--cbp-color-danger-dark);
     --cbp-tag-color-background-dark: var(--cbp-color-danger-light);
   }
 }
