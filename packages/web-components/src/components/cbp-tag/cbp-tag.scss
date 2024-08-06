@@ -26,7 +26,8 @@ cbp-tag {
   cursor: default;
   padding: 0 var(--cbp-space-3x);
   text-align: center;
-  font-weight: var(--cbp-font-size-subhead);
+  font-weight: var(--cbp-font-weight-medium);
+  font-size: var(--cbp-font-size-subhead);
   line-height: var(--cbp-space-7x);
   max-width: 100%;
   overflow: hidden;
