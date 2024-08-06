@@ -145,7 +145,7 @@ const LinkListTemplate = ({linkListItems, size, accessibilityText, context,}) =>
   return ` 
   <cbp-typography tag="h3"> Internal Link List: </cbp-typography>
   <cbp-list
-    variant='link-internal' 
+    variant='link' 
     ${size ? `size=${size}` : ''}
     ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
     ${context && context != 'light-inverts' ? `context=${context}` : ''}
@@ -156,7 +156,7 @@ const LinkListTemplate = ({linkListItems, size, accessibilityText, context,}) =>
   <br />
   <cbp-typography tag="h3"> External Link List: </cbp-typography>
   <cbp-list
-  variant='link-external' 
+  variant='link' 
   ${size ? `size=${size}` : ''}
   ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
   ${context && context != 'light-inverts' ? `context=${context}` : ''}

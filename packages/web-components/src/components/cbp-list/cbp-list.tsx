@@ -11,7 +11,7 @@ export class CbpList {
   private renderedTag: HTMLElement;
 
   /** Specifies the variant of list (simple, link, special) */
-  @Prop() variant: 'simple' | 'link-internal' | 'link-external'; 
+  @Prop() variant: 'simple' | 'link'; 
   
   /** Specifies the semantic tag to be rendered. */
   @Prop() tag: 'ul' | 'ol' = 'ul';

@@ -109,8 +109,7 @@ cbp-list {
 
   //Link List
 
-  &[variant="link-internal"] li,
-  &[variant="link-external"] li{
+  &[variant="link"] li{
     list-style-type: none;
 
     .linkListIcon{
