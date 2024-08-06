@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
@@ -14,6 +14,7 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 export class CbpFormField {
 
   private formField: any;
+  private buttons: any;
   private hasDescription: boolean;
   
   @Element() host: HTMLElement;
@@ -42,17 +43,61 @@ export class CbpFormField {
 
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
-  @Event() valueChange!: EventEmitter;
-  /* A custom event emitted when the component has completed loading and its internal lifecycles. */
-  //@Event() componentLoad!: EventEmitter;
-
-
+  @Event() valueChange: EventEmitter;
   handleChange() {
     this.valueChange.emit({
       host: this.host,
-      nativeElement: this.formField,
-      value: this.formField.value,
+      //nativeElement: this.formField,
+      //value: this.formField.value,
     });
+  }
+
+  /*
+   * Manage the disabled/readonly/error state of slotted form fields and buttons
+   * These are implemented as individual Watches so that they don't override direct management of disabled/readonly states on the slotted inputs
+   */
+  @Watch('readonly')
+  watchReadonlyHandler(newValue: boolean) {
+    if (this.formField) {
+        (newValue) 
+          ? this.formField.setAttribute('readonly', '')
+          : this.formField.removeAttribute('readonly');
+    }
+    if(this.buttons) {
+      this.buttons.forEach( (el) => {
+        el.disabled = this.disabled || this.readonly;
+      });
+    }
+  }
+
+  @Watch('disabled')
+  watchDisabledHandler(newValue: boolean) {
+    if (this.formField) {
+      (newValue) 
+        ? this.formField.setAttribute('disabled', '')
+        : this.formField.removeAttribute('disabled');
+    }
+    if(this.buttons) {
+      this.buttons.forEach( (el) => {
+        el.disabled= this.disabled || this.readonly;
+      });
+    }
+  }
+
+  @Watch('error')
+  watchErrorHandler(newValue: boolean) {
+    if (this.formField) {
+      (newValue) 
+        ? this.formField.setAttribute('aria-invalid', 'true')
+        : this.formField.removeAttribute('aria-invalid');
+    }
+    if(this.buttons) {
+      this.buttons.forEach( (el) => {
+        (newValue) 
+          ? el.color="danger"
+          : el.color="secondary";
+      });
+    }
   }
 
   componentWillLoad() {
@@ -62,35 +107,35 @@ export class CbpFormField {
     setCSSProps(this.host, {
       ...this.sx,
     });
-  }
-
-  componentDidLoad() {
-    this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
 
     // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
-    if (!this.formField) {
-      const slotted = (this.formField = this.host.querySelector('input,select,textarea'));
-      if (slotted) {
-        this.formField = slotted;
-        this.formField.setAttribute('id',`${this.fieldId}`);
-        this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
-        this.formField.addEventListener('change', this.handleChange);
-      }
+    this.formField = this.host.querySelector('input,select,textarea');
+    this.buttons = this.host.querySelectorAll('cbp-button');
+    this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
+
+    if (this.formField) {
+      this.formField.setAttribute('id',`${this.fieldId}`); // TechDebt: this requires more thought for compound inputs
+      this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
+      this.formField.addEventListener('change', this.handleChange());
     }
   }
 
-  componentDidRender() {
-    // Manage disabled/readonly/error states after each render because this potentially cascades down across multiple slotted controls.
-    this.formField.forEach( el => {
-      el.setAttribute('disabled', this.disabled);
-      el.setAttribute('readonly', this.readonly);
-    });
-
-    const buttons: any = this.host.querySelector('cbp-button');
-    buttons.forEach( el => {
-      el.setAttribute('disabled', this.disabled || this.readonly);
-    });
+  componentDidLoad() {
+    // The Watch decorators only listen for changes.
+    // Set the disabled/readonly/error states on load only if true.
+    if (!!this.formField) {
+      if (this.readonly) this.formField.setAttribute('readonly', '');
+      if (this.disabled) this.formField.setAttribute('disabled', '');
+      if (this.error) this.formField.setAttribute('aria-invalid', 'true');
+    }
+    if (!!this.buttons) {
+      this.buttons.forEach( (el) => {
+        if (this.disabled || this.readonly) el.disabled=true;
+        if (this.error) el.color="danger";
+      });
+    }
   }
+
 
   render() {
     return (
@@ -123,3 +168,4 @@ export class CbpFormField {
   }
 
 }
+

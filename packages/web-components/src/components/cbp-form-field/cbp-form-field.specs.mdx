@@ -41,11 +41,15 @@ The Form Field component represents a generic, reusable pattern for form fields 
 
 ### Additional Notes and Considerations
 
-* This component is essentially required for bringing in the style for all form controls/inputs. It should be flexible enough for various cases such as:
+* This component is required for bringing in the style for all form controls/inputs. It should be flexible enough for various cases such as:
   * when the label is hidden
-* Overlays and attached buttons may be better handled by another component, e.g., `cbp-form-field-wrapper`
-  * Right aligned overlays need to still work with inputs that have button controls attached to the right. This might get tricky. 
-* Handling of groups of inputs can be done via role=group or a legend tag. The legend tag can accept a disabled attribute, which is an advantage.
-* Needs to handle an error state
-* When autocomplete/autofill is used to fill the field, the browser adds styling...
+* This component may manage the form field (and associated buttons) disabled/readonly/error states, but does its best to get out of the way if the application wants to manage those states directly on the slotted elements.
+* Overlays and attached buttons are currently handled by child component, `cbp-form-field-wrapper`
+* TODO: Handling of groups of inputs can be done via role=group or a legend tag. The legend tag can accept a disabled attribute, which is an advantage.
+* When autocomplete/autofill is used to fill the field, the browser adds styling (only visible in light mode).
 * Textareas now support `field-sizing: content`, which causes the textarea to expand vertically to the size of its content (within the bounds of min- and max-heights). This may not be desireable as a default, but could make a useful option.
+* Additional notes on slotted form fields and their use, since these are not strictly controlled by the design system:
+  * Some input types, such as `email`, `tel`, and `url`, should not be used because they invoke browser-based validation, which is inconsistent across browsers and with the design system, and not always accessible.
+  * Use `inputmode` instead of HTML5 input types to provide a browser hint for the proper virtual keyboard on mobile devices without side effects noted above.
+  * The `select` with `multiple` (and `size`) attribute should not be used, as they have terrible usability. Use our `cbp-multiselect` (coming soon) instead.
+  * Input types such as `date`, `datetime` (deprecated), `datetime-local`, `month`, `week`, `time` may also vary by browser and not be styleable in accordance with the design system.

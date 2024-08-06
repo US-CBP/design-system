@@ -201,6 +201,8 @@ const PasswordTemplate = ({ label, description, fieldId, error, readonly, disabl
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
+      ${readonly ? `readonly` : ''} 
+      ${disabled ? `disabled` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
@@ -209,8 +211,6 @@ const PasswordTemplate = ({ label, description, fieldId, error, readonly, disabl
           type="password" 
           name="hashedinput" 
           ${value ? `value="${value}"` : ''}  
-          ${readonly ? `readonly` : ''} 
-          ${disabled ? `disabled` : ''}
         />
       </cbp-form-field-wrapper>
     </cbp-form-field>
