@@ -77,6 +77,8 @@ const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn })
 
 export const UniversalHeader = UniversalHeaderTemplate.bind({});
 UniversalHeader.args = {
+  logoSrcLg: "./assets/images/cbp-header-logo.svg",
+  logoSrcSm: "./assets/images/cbp-seal.svg",
   username: 'HASHIDX',
   isLoggedIn: true,
 };
