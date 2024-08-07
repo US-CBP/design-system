@@ -19,6 +19,9 @@ export default {
     stretch: {
       control: 'boolean',
     },
+    withIcon: {
+      control: 'boolean',
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -55,13 +58,14 @@ const renderActions = (layout, context, { btn1, btn2, btn3 }) => {
   }
 };
 
-const GeneralTemplate = ({ color, title, bodyText, context, sx }) => {
+const GeneralTemplate = ({ color, title, bodyText, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       ${color ? `color=${color}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}      
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
+      ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}
       <h4 slot="cbp-card-title">${title}</h4>
       <p>${bodyText}</p>
     </cbp-card>

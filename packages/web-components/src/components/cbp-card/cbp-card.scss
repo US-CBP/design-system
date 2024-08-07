@@ -76,46 +76,53 @@ cbp-card {
   }
 
   [slot=cbp-card-title] {
-    display: block;
+    display: inline-block;
     color: var(--cbp-card-color-title);
     font-weight: var(--cbp-font-weight-medium);
     font-size: var(--cbp-font-size-heading-lg);
     line-height: var(--cbp-line-height-sm);
+    margin-bottom: var(--cbp-space-2x);
   }
 
   &[color=info] {
     --cbp-card-color-background: var(--cbp-color-info-lighter);
     --cbp-card-color-border: var(--cbp-color-info-light);
-    --cbp-card-color-title: var(--cbp-color-info-darker);
+    --cbp-card-color-title: var(--cbp-color-text-darker);
+    --cbp-card-color-text: var(--cbp-color-text-darkest);
 
     --cbp-card-color-background-dark: var(--cbp-color-info-darker);
-    --cbp-card-color-border-dark: var(--cbp-color-info-light);
+    --cbp-card-color-border-dark: var(--cbp-color-info-dark);
     --cbp-card-color-title-dark: var(--cbp-color-text-lighter);
+    --cbp-card-color-text-dark: var(--cbp-color-text-lightest);
   }
 
   &[color=success] {
     --cbp-card-color-background: var(--cbp-color-success-lighter);
-    --cbp-card-color-border: var(--cbp-card-success-color-border);
-    --cbp-card-color-title: var(--cbp-color-success-darker);
+    --cbp-card-color-border: var(--cbp-color-success-light);
+    --cbp-card-color-title: var(--cbp-color-text-darker);
+    --cbp-card-color-text: var(--cbp-color-text-darkest);
 
     --cbp-card-color-background-dark: var(--cbp-color-success-darker);
-    --cbp-card-color-border-dark: var(--cbp-color-success-light);
+    --cbp-card-color-border-dark: var(--cbp-color-success-dark);
     --cbp-card-color-title-dark: var(--cbp-color-text-lighter);
+    --cbp-card-color-text-dark: var(--cbp-color-text-lightest);
   } 
  
   &[color=warning] {
     --cbp-card-color-background: var(--cbp-color-warning-lighter);
-    --cbp-card-color-border: var(--cbp-color-warning-light);
+    --cbp-card-color-border: var(--cbp-color-warning-base);
+    --cbp-card-color-text: var(--cbp-color-text-darkest);
 
     --cbp-card-color-background-dark: var(--cbp-color-warning-base);
     --cbp-card-color-border-dark: var(--cbp-color-warning-light);
     --cbp-card-color-title-dark: var(--cbp-color-text-darker);
-    --cbp-card-color-text-dark: var(--cbp-color-text-darker);
+    --cbp-card-color-text-dark: var(--cbp-color-text-darkest);
   }
 
   &[color=danger] {
     --cbp-card-color-background: var(--cbp-color-danger-lighter);
-    --cbp-card-color-border: var(--cbp-color-danger-light);
+    --cbp-card-color-border: var(--cbp-color-danger-base);
+    --cbp-card-color-text: var(--cbp-color-text-darkest);
 
     --cbp-card-color-background-dark: var(--cbp-color-danger-darker);
     --cbp-card-color-border-dark: var(--cbp-color-danger-base);
