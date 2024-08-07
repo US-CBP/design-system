@@ -5,7 +5,7 @@ export default {
         // variant: {
         //   control: 'select',
         //   description: 'Variant of List',
-        //   options: ['simple' , 'link-internal' , 'link-external'],
+        //   options: ['unstyled' , 'link-internal' , 'link-external'],
         // },
         tag: {
           control: 'select',
@@ -15,7 +15,7 @@ export default {
         size: {
           control: 'select',
           description: 'Font size of list text',
-          options: ['sm', 'lg'],
+          options: ['normal', 'lg'],
         },
         accessibilityText: {
           description: 'Support for accessibility text',
@@ -116,7 +116,7 @@ export const List = Template.bind({});
 };
 
 function generateLinkListItems(items, size, parentVariant) {
-  if(size == 'sm'){
+  if(size == 'normal'){
     const html = items.map(({ content}) => {
       return `<li>
                 <cbp-icon ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
@@ -134,7 +134,7 @@ function generateLinkListItems(items, size, parentVariant) {
                   class='linkListIcon'
                 > </cbp-icon>
                 <cbp-link href='#' target='_self'>${content}</cbp-link>
-                ${parentVariant == 'link-external' ? '<br /><cbp-icon name="globe" /> </cbp-icon><span class="linkListDescription"> ' + content + ' description </span>' : ''}
+                ${parentVariant == 'link-external' ? '<br /><cbp-icon class="linkListDescriptionIcon" name="globe" /> </cbp-icon><span class="linkListDescription"> ' + content + ' description </span>' : ''}
               </li>`;      
     });
     return html.join('');

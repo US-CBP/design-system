@@ -18,6 +18,7 @@ export default {
         'circle-xmark',
         'ellipsis-vertical',
         'envelope',
+        'external-link-alt',
         'eye',
         'eye-slash',
         'filter',

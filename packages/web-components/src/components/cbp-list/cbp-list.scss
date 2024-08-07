@@ -1,22 +1,29 @@
 /**
- * @prop --cbp-list-item-color: var(--cbp-color-text-darkest);
- * @prop --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-list-padding: var(--cbp-space-4x);
+   @prop --cbp-list-font-size: var(--cbp-font-size-body);
+   @prop --cbp-list-item-line-height: var(--cbp-line-height-sm);
+   @prop --cbp-list-item-padding-block: var(--cbp-space-half-x);
+
+   @prop --cbp-list-item-color: var(--cbp-color-text-darkest);
+   @prop --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
+  
+   @prop --cbp-link-list-icon-color: var(--cbp-color-interactive-primary-dark);
+   @prop --cbp-link-list-icon-color-dark: var(--cbp-color-interactive-primary-dark);
+
+   @prop --cbp-link-list-description-color: var(--cbp-color-text-darkest);
+   @prop --cbp-link-list-description-color-dark: var(--cbp-color-text-lightest);
 */
 
 :root {
+  
+  --cbp-list-padding: var(--cbp-space-4x);
+  --cbp-list-font-size: var(--cbp-font-size-body);
+  --cbp-list-item-line-height: var(--cbp-line-height-sm);
+  --cbp-list-item-padding-block: var(--cbp-space-half-x);
+
   --cbp-list-item-color: var(--cbp-color-text-darkest);
   --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
   
-  --cbp-list-padding: var(--cbp-space-4x);
-  // --cbp-list-item-padding: var(--cbp-space-half-x);
-  --cbp-list-item-small-padding: var(--cbp-space-half-x);
-  // --cbp-list-item-small-line-height: var(--cbp-line-height-sm);
-  --cbp-list-item-large-padding: var(--cbp-space-1x);
-  // --cbp-list-item-large-line-height: var(--cbp-line-height-md);
-
-  --cbp-list-font-small: var(--cbp-font-size-body);
-  --cbp-list-font-large: var(--cbp-font-size-heading-sm);
-
   --cbp-link-list-icon-color: var(--cbp-color-interactive-primary-dark);
   --cbp-link-list-icon-color-dark: var(--cbp-color-interactive-primary-dark);
 
@@ -33,37 +40,28 @@
 }
 
 cbp-list {
-  line-height: var(--cbp-line-height-xs);
-
-  &[size="sm"]:not([variant="link-internal"]):not([variant="link-external"]){
-    font-size: var(--cbp-list-font-small);
+  font-size: var(--cbp-list-font-size);
   
-    li{
-      line-height: var(--cbp-list-item-small-line-height);
-      padding-block: var(--cbp-list-item-small-padding);
+    li{  
+      color: var(--cbp-list-item-color);
+      font-weight: var(--cbp-font-weight-bold);
+      padding-block: var(--cbp-list-item-padding);
+      line-height: var(--cbp-list-item-line-height);
+      padding-block: var(--cbp-list-item-padding-block);
     }
-  }
 
-  &[size="lg"]:not([variant="link-internal"]):not([variant="link-external"]){
-    font-size: var(--cbp-list-font-large);
+  &[size="lg"]:not([variant="link"]){
+    --cbp-list-font-size: var(--cbp-font-size-heading-sm);
   
     li{
-      line-height: var(--cbp-list-item-large-line-height);
-      padding-block: var(--cbp-list-item-large-padding);
+      --cbp-list-item-line-height: var(--cbp-line-height-md);
+      --cbp-list-item-padding-block: var(--cbp-space-1x);
     }
   }
 
   ol, ul{
     padding-inline-start: var(--cbp-list-padding);
   }
-  
-  li {
-    color: var(--cbp-list-item-color);
-    font-size: var(--cbp-font-size-body);
-    font-weight: var(--cbp-font-weight-bold);
-    padding-block: var(--cbp-list-item-padding);
-  }
-
   
   // //Unordered nested lists
   ul > li{
@@ -108,22 +106,26 @@ cbp-list {
 }
 
   //Link List
-
-  &[variant="link"] li{
-    list-style-type: none;
-
-    .linkListIcon{
-      color: var(--cbp-link-list-icon-color);
-    }          
-  }
-
-  &[variant="link-external"]{
-
-    .linkListDescription{
-      color: var(--cbp-link-list-description-color);
-      font-style: italic;
-      font-size: var(--cbp-font-size-body);
-    }
-  }
+  &[variant="link"]{
+    padding-inline-start: var(--cbp-space-8x);
+    
+    li{
+      list-style-type: none;
   
+      .linkListIcon, 
+      .linkListDescriptionIcon{
+        margin-inline-start: calc(var(--cbp-space-4x) * -1);
+      }
+  
+      .linkListIcon{
+        color: var(--cbp-link-list-icon-color);
+      }
+
+      .linkListDescription{
+        color: var(--cbp-link-list-description-color);
+        font-style: italic;
+        font-size: var(--cbp-font-size-body);
+      }        
+    }
+  } 
 }
