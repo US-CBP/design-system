@@ -20,6 +20,7 @@
   --cbp-form-field-color-description-dark: var(--cbp-color-text-lightest);
   --cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
 
+  --cbp-form-field-padding-inline: var(--cbp-space-2x);
   --cbp-form-field-margin-bottom: var(--cbp-space-4x);
 
   // TechDebt: Ideally, it would be better if the icon could inherit the text color, but I can't seem to get this working so we have 2 copies with different colors
@@ -80,7 +81,7 @@ cbp-form-field {
     width: 100%;
     max-width: 100%;
     min-height: var(--cbp-space-9x);
-    padding-inline: var(--cbp-space-2x);
+    padding-inline: var(--cbp-form-field-padding-inline);
     font-family: inherit;
     font-size: var(--cbp-font-size-body);
     line-height: var(--cbp-line-height-xs);
@@ -131,18 +132,7 @@ cbp-form-field {
   }
   
   // These overrides need to be set at the component host level to work properly in dark mode
-  &:has(*[readonly]) {
-    --cbp-form-field-color-bg: var(--cbp-color-gray-cool-10);
-    --cbp-form-field-color-border: var(--cbp-color-interactive-secondary-light);
-    --cbp-form-field-color-border-hover: var(--cbp-color-interactive-secondary-light);
-    --cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-light);
-    --cbp-form-field-color-bg-dark: var(--cbp-color-gray-cool-80);
-    --cbp-form-field-color-border-dark: var(--cbp-color-interactive-secondary-dark);
-    --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-secondary-dark);
-    --cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-dark);
-    --cbp-form-field-color-placeholder: transparent;
-  }
-
+  &[disabled],
   &:has(*:disabled) {
     --cbp-form-field-color: var(--cbp-color-interactive-disabled-dark);
     --cbp-form-field-color-bg: var(--cbp-color-interactive-disabled-light);
@@ -155,6 +145,31 @@ cbp-form-field {
     --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-disabled-light);
     //--cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-dark);
     --cbp-form-field-color-placeholder: transparent;
+  }
+
+  &[readonly],
+  &:has(*[readonly]) {
+    --cbp-form-field-color-bg: var(--cbp-color-gray-cool-10);
+    --cbp-form-field-color-border: var(--cbp-color-interactive-secondary-light);
+    --cbp-form-field-color-border-hover: var(--cbp-color-interactive-secondary-light);
+    --cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-light);
+    --cbp-form-field-color-bg-dark: var(--cbp-color-gray-cool-80);
+    --cbp-form-field-color-border-dark: var(--cbp-color-interactive-secondary-dark);
+    --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-secondary-dark);
+    --cbp-form-field-color-border-focus: var(--cbp-color-interactive-secondary-dark);
+    --cbp-form-field-color-placeholder: transparent;
+
+    // For readonly inputs, attached buttons become disabled but with different styling.
+    // These overrides are fairly minimal because the disabled state already sets the interactive states to the base color.
+    cbp-button:has(button:disabled) {
+      --cbp-button-color: var(--cbp-color-text-lightest);
+      --cbp-button-color-bg: var(--cbp-color-interactive-secondary-light);
+      --cbp-button-color-border: var(--cbp-color-interactive-secondary-light);
+
+      --cbp-button-color-dark: var(--cbp-color-text-base);
+      --cbp-button-color-bg-dark: var(--cbp-color-interactive-secondary-dark);
+      --cbp-button-color-border-dark: var(--cbp-color-interactive-secondary-dark);
+    }
   }
 
   ::placeholder {
@@ -170,8 +185,6 @@ cbp-form-field {
   }
 
   select {
-    //-webkit-appearance: none;
-    //-moz-appearance: none;
     appearance: none;
     text-overflow: ellipsis;
     padding-block: calc(var(--cbp-space-2x) - 2px) ; // Fixes Firefox vertical alignment
@@ -201,6 +214,7 @@ cbp-form-field {
     
   }
 
+  // Leave commented styles until verified everything's correct. If so, these are being inherited and can be removed.
   &[error] {
     //--cbp-form-field-color: var(--cbp-color-text-darkest);
     --cbp-form-field-color-bg: var(--cbp-color-danger-lighter);

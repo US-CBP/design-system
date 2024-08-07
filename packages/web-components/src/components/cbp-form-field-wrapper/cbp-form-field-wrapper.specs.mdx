@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Form Field Wrapper/Specifications" />
+
+# cbp-form-field-wrapper
+
+## Purpose
+
+The Form Field Wrapper component offers means for applying overlays and button controls to inputs in accordance with design requirements.
+
+## Functional Requirements
+
+* The Form Field Wrapper component is meant to be used in the default slot of the `cbp-form-field` component, wrapping the native input.
+* The Form Field Wrapper component provides a structured way to add additional overlays and related controls to an input field via named slots:
+  * A left-aligned overlay (e.g., "$")
+  * A right-aligned overlay (e.g., "kg")
+  * Buttons that appear attached to the input (e.g., search or password toggle)
+  * Buttons that appear next to the input, but not attached (e.g., increment/decrement on numeric inputs)
+
+## Technical Specifications
+
+### User Interactions
+
+* The Form Field Wrapper component does not provide any native interactions.
+* Any user interactions based on the slotted button controls are application-specified.
+
+### Responsiveness
+
+* Form controls such as text input, textarea, and selects are styled at 100% of their container by default, with a max-width of 100% so that they cannot break out of their container.
+
+### Accessibility
+
+* TBD
+
+### Additional Notes and Considerations
+
+* TBD

@@ -1,0 +1,54 @@
+/*
+ * @prop --cbp-form-field-wrapper-padding-start: inherit; 
+ * @prop --cbp-form-field-wrapper-padding-end: inherit;
+ */
+:root {
+  --cbp-form-field-wrapper-padding-start: var(--cbp-form-field-padding-inline);
+  --cbp-form-field-wrapper-padding-end: var(--cbp-form-field-padding-inline);
+
+  // These are used by the component and are not intended to be used by consumers
+  --cbp-form-field-overlay-start-width: 0;
+  --cbp-form-field-overlay-end-width: 0;
+  --cbp-form-field-attached-button-width: 0;
+}
+
+cbp-form-field-wrapper {
+  position: relative;
+
+  .cbp-form-field-wrapper-shrinkwrap {
+    display: block;
+    position: relative;
+
+    // Override the input padding based on overlay size to prevent input text from being obscured (text may still be obscured if there's not enough space for it)
+    input {
+      padding-inline-start: calc(var(--cbp-form-field-overlay-start-width) + var(--cbp-form-field-wrapper-padding-start));
+      padding-inline-end: calc(var(--cbp-form-field-overlay-end-width) + var(--cbp-form-field-wrapper-padding-end));
+    }
+
+    // All named slots within the shrinkwrap element are overlays
+    [slot] {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      color: var(--cbp-form-field-color);
+    }
+
+    [slot="cbp-form-field-overlay-start"] {
+      inset-inline-start: var(--cbp-space-2x);
+      font-weight: var(--cbp-font-weight-bold);
+      font-style: italic;
+    }
+
+    [slot="cbp-form-field-overlay-end"] {
+      inset-inline-end: calc(var(--cbp-form-field-attached-button-width) + var(--cbp-space-2x));
+      font-style: italic;
+    }
+
+    // Attached buttons act like an overlay in order to wrap the input focus highlight around them.
+    [slot="cbp-form-field-attached-button"] {
+      --cbp-button-border-radius: 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0;
+      inset-inline-end: 0;
+    }
+  }
+}
