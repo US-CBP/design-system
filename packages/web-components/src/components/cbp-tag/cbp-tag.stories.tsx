@@ -44,7 +44,7 @@ const Template = ({ label, color, withIcon, context, sx }) => {
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      ${Icon ? `<cbp-icon name="${Icon}" sx='{"margin-right":"var(--cbp-space-2x)"}'></cbp-icon>` : ''}
+      ${Icon ? `<cbp-icon name="${Icon}" sx='{"margin-right":"var(--cbp-space-1x)"}'></cbp-icon>` : ''}
       ${label}
     </cbp-tag>
   `;
