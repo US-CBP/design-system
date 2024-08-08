@@ -65,14 +65,16 @@ const GeneralTemplate = ({ color, title, bodyText, withIcon, context, sx }) => {
       ${context && context != 'light-inverts' ? `context=${context}` : ''}      
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
-      ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}
-      <h4 slot="cbp-card-title">${title}</h4>
+      <h4 slot="cbp-card-title">
+        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.5rem' sx='{"display":"inline"}'></cbp-icon>` : ''}
+        ${title}
+      </h4>
       <p>${bodyText}</p>
     </cbp-card>
   `;
 };
 
-const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig, context, sx }) => {
+const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       variant="decision" 
@@ -80,14 +82,17 @@ const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
-      <h4 slot="cbp-card-title" id="card-heading-1">${title}</h4>
+      <h4 slot="cbp-card-title" id="card-heading-1">
+        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.5rem' sx='{"display":"inline"}'></cbp-icon>` : ''}
+        ${title}
+      </h4>
       <p>${bodyText}</p>  
       ${renderActions(actionsLayout, context, actionsConfig)}
     </cbp-card>
   `;
 };
 
-const BannerTemplate = ({ title, color, bodyText, context, sx }) => {
+const BannerTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       variant="banner"
@@ -95,7 +100,10 @@ const BannerTemplate = ({ title, color, bodyText, context, sx }) => {
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
-      <h4 slot="cbp-card-title">${title}</h4>
+      <h4 slot="cbp-card-title">
+        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.5rem' sx='{"display":"inline"}'></cbp-icon>` : ''}
+        ${title}
+      </h4>
       <p>${bodyText}</p>  
     </cbp-card>
   `;
