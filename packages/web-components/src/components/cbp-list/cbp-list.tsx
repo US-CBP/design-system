@@ -17,7 +17,7 @@ export class CbpList {
   @Prop() tag: 'ul' | 'ol' = 'ul';
 
   /** Specifies the font size for the list */
-  @Prop() size: 'normal' | 'lg' = 'normal';
+  @Prop() size: 'normal' | 'large' = 'normal';
 
   /** Specifies an accessible label for the list as an `aria-label`, similar to a table `caption`. */
   @Prop() accessibilityText: string;
@@ -46,8 +46,6 @@ export class CbpList {
           <Tag 
             ref={(el) => this.renderedTag = el} 
             aria-label={this.accessibilityText}
-            aria-size={this.size} 
-            aria-variant={this.variant}
           >
             <slot />
           </Tag>

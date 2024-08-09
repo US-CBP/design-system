@@ -2,11 +2,6 @@ export default {
     title: 'Components/List',
     tags: ['autodocs'],
     argTypes: {
-        // variant: {
-        //   control: 'select',
-        //   description: 'Variant of List',
-        //   options: ['unstyled' , 'link-internal' , 'link-external'],
-        // },
         tag: {
           control: 'select',
           description: 'Type of List',
@@ -15,7 +10,7 @@ export default {
         size: {
           control: 'select',
           description: 'Font size of list text',
-          options: ['normal', 'lg'],
+          options: ['normal', 'large'],
         },
         accessibilityText: {
           description: 'Support for accessibility text',
@@ -120,18 +115,18 @@ function generateLinkListItems(items, size, parentVariant) {
     const html = items.map(({ content}) => {
       return `<li>
                 <cbp-icon ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
-                  class='linkListIcon'
+                  sx='{"color":"var(--cbp-link-list-icon-color)"}'
                 > </cbp-icon>
                 <cbp-link href='#' target='_self'>${content}</cbp-link>
               </li>`;      
     });
     return html.join('');
-  } else {  //size == 'lg'
+  } else {  //size == 'large'
     
     const html = items.map(({ content}) => {
       return `<li>
                 <cbp-icon ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
-                  class='linkListIcon'
+                sx='{"color":"var(--cbp-link-list-icon-color)"}'
                 > </cbp-icon>
                 <cbp-link href='#' target='_self'>${content}</cbp-link>
                 ${parentVariant == 'link-external' ? '<br /><cbp-icon class="linkListDescriptionIcon" name="globe" /> </cbp-icon><span class="linkListDescription"> ' + content + ' description </span>' : ''}

@@ -45,18 +45,14 @@ cbp-list {
     li{  
       color: var(--cbp-list-item-color);
       font-weight: var(--cbp-font-weight-bold);
-      padding-block: var(--cbp-list-item-padding);
       line-height: var(--cbp-list-item-line-height);
       padding-block: var(--cbp-list-item-padding-block);
     }
 
-  &[size="lg"]:not([variant="link"]){
+    &[size="large"]{
     --cbp-list-font-size: var(--cbp-font-size-heading-sm);
-  
-    li{
-      --cbp-list-item-line-height: var(--cbp-line-height-md);
-      --cbp-list-item-padding-block: var(--cbp-space-1x);
-    }
+    --cbp-list-item-line-height: var(--cbp-line-height-md);
+    --cbp-list-item-padding-block: var(--cbp-space-1x);
   }
 
   ol, ul{
@@ -109,16 +105,17 @@ cbp-list {
   &[variant="link"]{
     padding-inline-start: var(--cbp-space-8x);
     
+    &[size="large"]{
+      --cbp-list-font-size: var(--cbp-font-size-body);
+      --cbp-list-item-line-height: var(--cbp-line-height-sm);
+      --cbp-list-item-padding-block: var(--cbp-space-1x);
+    }
+
     li{
       list-style-type: none;
   
-      .linkListIcon, 
-      .linkListDescriptionIcon{
+      cbp-icon{
         margin-inline-start: calc(var(--cbp-space-4x) * -1);
-      }
-  
-      .linkListIcon{
-        color: var(--cbp-link-list-icon-color);
       }
 
       .linkListDescription{
