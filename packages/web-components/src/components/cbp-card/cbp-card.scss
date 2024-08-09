@@ -76,7 +76,7 @@ cbp-card {
   }
 
   [slot=cbp-card-title] {
-    display: inline-block;//todo: revert
+    display: block;
     color: var(--cbp-card-color-title);
     font-weight: var(--cbp-font-weight-medium);
     font-size: var(--cbp-font-size-heading-lg);
