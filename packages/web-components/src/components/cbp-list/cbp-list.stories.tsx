@@ -136,33 +136,21 @@ function generateLinkListItems(items, size, parentVariant) {
   } 
 }
 
-const LinkListTemplate = ({linkListItems, size, accessibilityText, context,}) => {
+const InternalLinkListTemplate = ({linkListItems, size, accessibilityText, context,}) => {
   return ` 
   <cbp-typography tag="h3"> Internal Link List: </cbp-typography>
   <cbp-list
-    variant='link' 
+    variant='icon' 
     ${size ? `size=${size}` : ''}
     ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
     ${context && context != 'light-inverts' ? `context=${context}` : ''}
   >
       ${generateLinkListItems(linkListItems, size, 'link-internal')}
-  </cbp-list>
-
-  <br />
-  <cbp-typography tag="h3"> External Link List: </cbp-typography>
-  <cbp-list
-  variant='link' 
-  ${size ? `size=${size}` : ''}
-  ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-  ${context && context != 'light-inverts' ? `context=${context}` : ''}
->
-    ${generateLinkListItems(linkListItems, size, 'link-external')}
-</cbp-list>
-  `;
+  </cbp-list>`;
 };
 
-export const LinkList = LinkListTemplate.bind({});
-  LinkList.args = {
+export const InternalLinkList = InternalLinkListTemplate.bind({});
+  InternalLinkList.args = {
       linkListItems: [
           {
             content: "List Link Item 1",
@@ -172,6 +160,79 @@ export const LinkList = LinkListTemplate.bind({});
           },
           {
             content: "List Link Item 3",
+          },
+        ]
+};
+
+const ExternalLinkListTemplate = ({linkListItems, size, accessibilityText, context,}) => {
+  return ` 
+  <cbp-typography tag="h3"> External Link List: </cbp-typography>
+    <cbp-list
+    variant='icon' 
+    ${size ? `size=${size}` : ''}
+    ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+    ${context && context != 'light-inverts' ? `context=${context}` : ''}
+  >
+      ${generateLinkListItems(linkListItems, size, 'link-external')}
+  </cbp-list>
+  `;
+};
+
+export const ExternalLinkList = ExternalLinkListTemplate.bind({});
+  ExternalLinkList.args = {
+      linkListItems: [
+          {
+            content: "List Link Item 1",
+          },
+          {
+            content: "List Link Item 2",
+          },
+          {
+            content: "List Link Item 3",
+          },
+        ]
+};
+
+function generateIconItems(items) {
+  const html = items.map(({ content, icon, color}) => {
+      return `<li>
+                <cbp-icon name='${icon}' color='${color}'></cbp-icon>
+                ${content}
+              </li>`;      
+  });
+  return html.join('');
+}
+
+const IconListTemplate = ({linkListItems, accessibilityText, context,}) => {
+  return ` 
+  <cbp-typography tag="h3"> Icon Link List: </cbp-typography>
+    <cbp-list
+    variant='icon' 
+    ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+    ${context && context != 'light-inverts' ? `context=${context}` : ''}
+  >
+      ${generateIconItems(linkListItems)}
+  </cbp-list>
+  `;
+};
+
+export const IconLinkList = IconListTemplate.bind({});
+  IconLinkList.args = {
+      linkListItems: [
+          {
+            content: "List Link Item 1",
+            icon: "plus",
+            color: "var(--cbp-color-green-cool-50)",
+          },
+          {
+            content: "List Link Item 2",
+            icon: "book",
+            color: "var(--cbp-color-green-cool-50)",
+          },
+          {
+            content: "List Link Item 3",
+            icon: "exclamation-circle",
+            color: "var(--cbp-color-red-50)",
           },
         ]
 };

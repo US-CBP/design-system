@@ -10,14 +10,14 @@ export class CbpList {
   
   private renderedTag: HTMLElement;
 
-  /** Specifies the variant of list (unstyled, link, special) */
-  @Prop() variant: 'unstyled' | 'link' = 'unstyled'; 
+  /** Specifies the variant of list (unstyled, icon, special) */
+  @Prop() variant: 'unstyled' | 'icon' = 'unstyled'; 
   
   /** Specifies the semantic tag to be rendered. */
   @Prop() tag: 'ul' | 'ol' = 'ul';
 
   /** Specifies the font size for the list */
-  @Prop() size: 'normal' | 'large' = 'normal';
+  @Prop({ reflect: true }) size: 'normal' | 'large' = 'normal';
 
   /** Specifies an accessible label for the list as an `aria-label`, similar to a table `caption`. */
   @Prop() accessibilityText: string;
