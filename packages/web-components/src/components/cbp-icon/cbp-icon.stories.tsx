@@ -22,6 +22,7 @@ export default {
         'eye',
         'eye-slash',
         'filter',
+        'globe',
         'magnifying-glass',
         'minus',
         'plus',

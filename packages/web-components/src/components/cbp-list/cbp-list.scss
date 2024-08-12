@@ -9,9 +9,6 @@
   
    @prop --cbp-link-list-icon-color: var(--cbp-color-interactive-primary-dark);
    @prop --cbp-link-list-icon-color-dark: var(--cbp-color-interactive-primary-dark);
-
-   @prop --cbp-link-list-description-color: var(--cbp-color-text-darkest);
-   @prop --cbp-link-list-description-color-dark: var(--cbp-color-text-lightest);
 */
 
 :root {
@@ -26,9 +23,6 @@
   
   --cbp-link-list-icon-color: var(--cbp-color-interactive-primary-dark);
   --cbp-link-list-icon-color-dark: var(--cbp-color-interactive-primary-dark);
-
-  --cbp-link-list-description-color: var(--cbp-color-text-darkest);
-  --cbp-link-list-description-color-dark: var(--cbp-color-text-lightest);
 }
 
 
@@ -36,7 +30,6 @@
 [data-cbp-theme=dark] cbp-list:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-list-item-color: var(--cbp-list-item-color-dark);
   --cbp-link-list-icon-color: var(--cbp-link-list-icon-color-dark);
-  --cbp-link-list-description-color: var(--cbp-link-list-description-color-dark);
 }
 
 cbp-list {
@@ -101,6 +94,11 @@ cbp-list {
   }
 }
 
+  //unstyled
+  &[variant="unstyled"] li{
+      list-style-type: none;
+  }
+
   //Link List
   &[variant="icon"]{
     padding-inline-start: var(--cbp-space-8x);
@@ -116,13 +114,7 @@ cbp-list {
   
       cbp-icon{
         margin-inline-start: calc(var(--cbp-space-4x) * -1);
-      }
-
-      .linkListDescription{
-        color: var(--cbp-link-list-description-color);
-        font-style: italic;
-        font-size: var(--cbp-font-size-body);
-      }        
+      }     
     }
   } 
 }

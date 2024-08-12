@@ -39,14 +39,14 @@ function generateItems(items) {
 
 
   
-const Template = ({listItems, tag, size, accessibilityText, context,}) => {
+const Template = ({listItems, tag, size, accessibilityText, context, sx}) => {
     return ` 
     <cbp-list
       ${tag ? `tag=${tag}` : ''}
       ${size ? `size=${size}` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      
+      ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
         ${generateItems(listItems)}
     </cbp-list>
@@ -110,6 +110,47 @@ export const List = Template.bind({});
           ]
 };
 
+//Unstyled
+
+const UnstyledTemplate = ({listItems, tag, size, accessibilityText, context, sx}) => {
+  return ` 
+  <cbp-list
+    variant= 'unstyled'
+    ${tag ? `tag=${tag}` : ''}
+    ${size ? `size=${size}` : ''}
+    ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+    ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+  >
+      ${generateItems(listItems)}
+  </cbp-list>
+  `;
+};
+
+export const UnstyledList = UnstyledTemplate.bind({});
+UnstyledList.args = {
+      listItems: [
+          {
+            content: "List Item 1",
+          },
+          {
+            content: "List Item 2",
+          },
+          {
+            content: "List Item 3",
+          },
+          {
+            content: "List Item 4",
+          },
+          {
+            content: "List Item 5",
+          },
+          {
+            content: "List Item 6",
+          },
+      ]
+    };
+
 function generateLinkListItems(items, size, parentVariant) {
   if(size == 'normal'){
     const html = items.map(({ content}) => {
@@ -129,21 +170,21 @@ function generateLinkListItems(items, size, parentVariant) {
                 sx='{"color":"var(--cbp-link-list-icon-color)"}'
                 > </cbp-icon>
                 <cbp-link href='#' target='_self'>${content}</cbp-link>
-                ${parentVariant == 'link-external' ? '<br /><cbp-icon class="linkListDescriptionIcon" name="globe" /> </cbp-icon><span class="linkListDescription"> ' + content + ' description </span>' : ''}
+                ${parentVariant == 'link-external' ? '<br /><cbp-icon name="globe" /> </cbp-icon><cbp-typography tag="span" variant="body-text" sx="{"color":"var(--cbp-link-list-icon-color)"}"><i> ' + content + ' description </i></cbp-typography>' : ''}
               </li>`;      
     });
     return html.join('');
   } 
 }
 
-const InternalLinkListTemplate = ({linkListItems, size, accessibilityText, context,}) => {
+const InternalLinkListTemplate = ({linkListItems, size, accessibilityText, context, sx}) => {
   return ` 
-  <cbp-typography tag="h3"> Internal Link List: </cbp-typography>
   <cbp-list
     variant='icon' 
     ${size ? `size=${size}` : ''}
     ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
     ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    ${sx ? 'sx=' + JSON.stringify(sx) : ''}
   >
       ${generateLinkListItems(linkListItems, size, 'link-internal')}
   </cbp-list>`;
@@ -164,14 +205,14 @@ export const InternalLinkList = InternalLinkListTemplate.bind({});
         ]
 };
 
-const ExternalLinkListTemplate = ({linkListItems, size, accessibilityText, context,}) => {
+const ExternalLinkListTemplate = ({linkListItems, size, accessibilityText, context, sx}) => {
   return ` 
-  <cbp-typography tag="h3"> External Link List: </cbp-typography>
     <cbp-list
     variant='icon' 
     ${size ? `size=${size}` : ''}
     ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
     ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    ${sx ? 'sx=' + JSON.stringify(sx) : ''}
   >
       ${generateLinkListItems(linkListItems, size, 'link-external')}
   </cbp-list>
@@ -203,13 +244,13 @@ function generateIconItems(items) {
   return html.join('');
 }
 
-const IconListTemplate = ({linkListItems, accessibilityText, context,}) => {
+const IconListTemplate = ({linkListItems, accessibilityText, context, sx}) => {
   return ` 
-  <cbp-typography tag="h3"> Icon Link List: </cbp-typography>
     <cbp-list
     variant='icon' 
     ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
     ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    ${sx ? 'sx=' + JSON.stringify(sx) : ''}
   >
       ${generateIconItems(linkListItems)}
   </cbp-list>
