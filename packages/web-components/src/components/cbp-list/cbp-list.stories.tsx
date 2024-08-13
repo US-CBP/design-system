@@ -39,7 +39,7 @@ function generateItems(items) {
 
 
   
-const Template = ({listItems, tag, size, accessibilityText, context, sx}) => {
+const Template = ({UnorderedListItems, OrderedListItems, tag, size, accessibilityText, context, sx}) => {
     return ` 
     <cbp-list
       ${tag ? `tag=${tag}` : ''}
@@ -48,14 +48,18 @@ const Template = ({listItems, tag, size, accessibilityText, context, sx}) => {
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
-        ${generateItems(listItems)}
+      ${tag == 'ol' ? 
+        generateItems(OrderedListItems)
+        :
+        generateItems(UnorderedListItems)
+      }
     </cbp-list>
     `;
 };
 
 export const List = Template.bind({});
     List.args = {
-        listItems: [
+        UnorderedListItems: [
             {
               content: "List Item 1",
             },
@@ -78,35 +82,37 @@ export const List = Template.bind({});
                 `,
               sublist: true
             },
-            // {//example of ol sublist
-            //   content: `
-            //     list Item 5
-            //     <ol>
-            //       <li>List Sub-Item 1</li>
-            //       <li>List Sub-Item 2</li>
-            //       <li>List Sub-Item 3</li>
-            //       <li>List Sub-Item 4</li>
-            //       <li>List Sub-Item 5
-            //       <ol>
-            //         <li>List Sub-Item 1</li>
-            //         <li>List Sub-Item 2</li>
-            //         <li>List Sub-Item 3</li>
-            //         <li>List Sub-Item 4</li>
-            //         <li>List Sub-Item 5
-            //         <ol>
-            //           <li>List Sub-Item 1</li>
-            //           <li>List Sub-Item 2</li>
-            //           <li>List Sub-Item 3</li>
-            //           <li>List Sub-Item 4</li>
-            //           <li>List Sub-Item 5</li>
-            //         </ol>
-            //         </li>
-            //       </ol>
-            //       </li>  
-            //     </ol>
-            //     `,
-            //   sublist: true
-            // },
+        ],
+        OrderedListItems: [
+            {//example of ol sublist
+              content: `
+                list Item 5
+                <ol>
+                  <li>List Sub-Item 1</li>
+                  <li>List Sub-Item 2</li>
+                  <li>List Sub-Item 3</li>
+                  <li>List Sub-Item 4</li>
+                  <li>List Sub-Item 5
+                  <ol>
+                    <li>List Sub-Item 1</li>
+                    <li>List Sub-Item 2</li>
+                    <li>List Sub-Item 3</li>
+                    <li>List Sub-Item 4</li>
+                    <li>List Sub-Item 5
+                    <ol>
+                      <li>List Sub-Item 1</li>
+                      <li>List Sub-Item 2</li>
+                      <li>List Sub-Item 3</li>
+                      <li>List Sub-Item 4</li>
+                      <li>List Sub-Item 5</li>
+                    </ol>
+                    </li>
+                  </ol>
+                  </li>  
+                </ol>
+                `,
+              sublist: true
+            },
           ],
       size: 'normal'
 };
@@ -157,8 +163,17 @@ UnstyledList.args = {
           {
             content: "List Item 6",
           },
-      ]
+      ],
+      size: 'normal'
     };
+
+    UnstyledList.argTypes ={
+      size: {
+          control: 'select',
+          description: 'Font size of list text',
+          options: ['normal', 'large'],
+        },
+    }
 
 function generateLinkListItems(items, size, parentVariant) {
   if(size != 'normal'){
@@ -169,7 +184,7 @@ function generateLinkListItems(items, size, parentVariant) {
                 sx='{"color":"var(--cbp-link-list-icon-color)"}'
                 > </cbp-icon>
                 <cbp-link href='#' target='_self'>${content}</cbp-link>
-                ${parentVariant == 'link-external' ? `<br /><cbp-icon name="globe" /> </cbp-icon><cbp-typography tag="span" variant="body-text" sx='{"color":"var(--cbp-link-list-icon-color)"}'><i> ` + content + ` description </i></cbp-typography>` : ''} 
+                ${parentVariant == 'link-external' ? `<br /><cbp-icon name="globe" size="1rem"/> </cbp-icon><cbp-typography tag="span" variant="body-text" sx='{"color":"var(--cbp-link-list-icon-color)"}'><i> ` + content + ` description </i></cbp-typography>` : ''} 
               </li>`;      
     });
     return html.join('');

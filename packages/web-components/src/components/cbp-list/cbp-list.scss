@@ -116,6 +116,10 @@ cbp-list {
 
     li{
       list-style-type: none;
+      
+      cbp-icon{
+        padding-inline-end: var(--cbp-space-1x);
+      }
     }
   }
   
