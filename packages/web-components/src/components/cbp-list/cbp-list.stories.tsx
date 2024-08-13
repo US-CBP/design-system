@@ -7,11 +7,11 @@ export default {
           description: 'Type of List',
           options: ['ul', 'ol'],
         },
-        size: {
-          control: 'select',
-          description: 'Font size of list text',
-          options: ['normal', 'large'],
-        },
+        // size: {
+        //   control: 'select',
+        //   description: 'Font size of list text',
+        //   options: ['normal', 'large'],
+        // },
         accessibilityText: {
           description: 'Support for accessibility text',
           control: 'text',
@@ -78,37 +78,46 @@ export const List = Template.bind({});
                 `,
               sublist: true
             },
-            {//example of ol sublist
-              content: `
-                list Item 5
-                <ol>
-                  <li>List Sub-Item 1</li>
-                  <li>List Sub-Item 2</li>
-                  <li>List Sub-Item 3</li>
-                  <li>List Sub-Item 4</li>
-                  <li>List Sub-Item 5
-                  <ol>
-                    <li>List Sub-Item 1</li>
-                    <li>List Sub-Item 2</li>
-                    <li>List Sub-Item 3</li>
-                    <li>List Sub-Item 4</li>
-                    <li>List Sub-Item 5
-                    <ol>
-                      <li>List Sub-Item 1</li>
-                      <li>List Sub-Item 2</li>
-                      <li>List Sub-Item 3</li>
-                      <li>List Sub-Item 4</li>
-                      <li>List Sub-Item 5</li>
-                    </ol>
-                    </li>
-                  </ol>
-                  </li>  
-                </ol>
-                `,
-              sublist: true
-            },
-          ]
+            // {//example of ol sublist
+            //   content: `
+            //     list Item 5
+            //     <ol>
+            //       <li>List Sub-Item 1</li>
+            //       <li>List Sub-Item 2</li>
+            //       <li>List Sub-Item 3</li>
+            //       <li>List Sub-Item 4</li>
+            //       <li>List Sub-Item 5
+            //       <ol>
+            //         <li>List Sub-Item 1</li>
+            //         <li>List Sub-Item 2</li>
+            //         <li>List Sub-Item 3</li>
+            //         <li>List Sub-Item 4</li>
+            //         <li>List Sub-Item 5
+            //         <ol>
+            //           <li>List Sub-Item 1</li>
+            //           <li>List Sub-Item 2</li>
+            //           <li>List Sub-Item 3</li>
+            //           <li>List Sub-Item 4</li>
+            //           <li>List Sub-Item 5</li>
+            //         </ol>
+            //         </li>
+            //       </ol>
+            //       </li>  
+            //     </ol>
+            //     `,
+            //   sublist: true
+            // },
+          ],
+      size: 'normal'
 };
+
+List.argTypes ={
+  size: {
+      control: 'select',
+      description: 'Font size of list text',
+      options: ['normal', 'large'],
+    },
+}
 
 //Unstyled
 
@@ -152,7 +161,19 @@ UnstyledList.args = {
     };
 
 function generateLinkListItems(items, size, parentVariant) {
-  if(size == 'normal'){
+  if(size != 'normal'){
+    
+    const html = items.map(({ content}) => {
+      return `<li>
+                <cbp-icon ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
+                sx='{"color":"var(--cbp-link-list-icon-color)"}'
+                > </cbp-icon>
+                <cbp-link href='#' target='_self'>${content}</cbp-link>
+                ${parentVariant == 'link-external' ? `<br /><cbp-icon name="globe" /> </cbp-icon><cbp-typography tag="span" variant="body-text" sx='{"color":"var(--cbp-link-list-icon-color)"}'><i> ` + content + ` description </i></cbp-typography>` : ''} 
+              </li>`;      
+    });
+    return html.join('');
+  } else {  //size == 'normal'
     const html = items.map(({ content}) => {
       return `<li>
                 <cbp-icon ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
@@ -161,26 +182,14 @@ function generateLinkListItems(items, size, parentVariant) {
                 <cbp-link href='#' target='_self'>${content}</cbp-link>
               </li>`;      
     });
-    return html.join('');
-  } else {  //size == 'large'
-    
-    const html = items.map(({ content}) => {
-      return `<li>
-                <cbp-icon ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
-                sx='{"color":"var(--cbp-link-list-icon-color)"}'
-                > </cbp-icon>
-                <cbp-link href='#' target='_self'>${content}</cbp-link>
-                ${parentVariant == 'link-external' ? '<br /><cbp-icon name="globe" /> </cbp-icon><cbp-typography tag="span" variant="body-text" sx="{"color":"var(--cbp-link-list-icon-color)"}"><i> ' + content + ' description </i></cbp-typography>' : ''}
-              </li>`;      
-    });
-    return html.join('');
+    return html.join('');    
   } 
 }
-
+              
 const InternalLinkListTemplate = ({linkListItems, size, accessibilityText, context, sx}) => {
   return ` 
   <cbp-list
-    variant='icon' 
+    variant='link' 
     ${size ? `size=${size}` : ''}
     ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
     ${context && context != 'light-inverts' ? `context=${context}` : ''}
@@ -208,7 +217,7 @@ export const InternalLinkList = InternalLinkListTemplate.bind({});
 const ExternalLinkListTemplate = ({linkListItems, size, accessibilityText, context, sx}) => {
   return ` 
     <cbp-list
-    variant='icon' 
+    variant='link' 
     ${size ? `size=${size}` : ''}
     ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
     ${context && context != 'light-inverts' ? `context=${context}` : ''}
@@ -231,13 +240,25 @@ export const ExternalLinkList = ExternalLinkListTemplate.bind({});
           {
             content: "List Link Item 3",
           },
-        ]
+        ],
+      size: 'normal'
 };
+ExternalLinkList.argTypes ={
+  size: {
+      control: 'select',
+      description: 'Font size of list text',
+      options: ['normal', 'large'],
+    },
+}
 
 function generateIconItems(items) {
   const html = items.map(({ content, icon, color}) => {
       return `<li>
-                <cbp-icon name='${icon}' color='${color}'></cbp-icon>
+                <cbp-icon 
+                  name='${icon}' 
+                  color='${color}'
+                  size='var(--cbp-space-5x)'
+                ></cbp-icon>
                 ${content}
               </li>`;      
   });
@@ -261,17 +282,17 @@ export const IconLinkList = IconListTemplate.bind({});
   IconLinkList.args = {
       linkListItems: [
           {
-            content: "List Link Item 1",
+            content: "List Item 1",
             icon: "plus",
             color: "var(--cbp-color-green-cool-50)",
           },
           {
-            content: "List Link Item 2",
+            content: "List Item 2",
             icon: "book",
             color: "var(--cbp-color-green-cool-50)",
           },
           {
-            content: "List Link Item 3",
+            content: "List Item 3",
             icon: "exclamation-circle",
             color: "var(--cbp-color-red-50)",
           },

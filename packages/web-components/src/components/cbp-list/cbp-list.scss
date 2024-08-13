@@ -94,26 +94,43 @@ cbp-list {
   }
 }
 
-  //unstyled
-  &[variant="unstyled"] li{
-      list-style-type: none;
+  //Unstyled
+  &[variant="unstyled"] ul,
+  &[variant="unstyled"] ol{
+    padding-inline: 0;
+    li{
+        list-style-type: none;
+    }
   }
 
-  //Link List
-  &[variant="icon"]{
+  
+  // Link List
+
+  &[variant="link"]{
     padding-inline-start: var(--cbp-space-8x);
     
     &[size="large"]{
-      --cbp-list-font-size: var(--cbp-font-size-body);
       --cbp-list-item-line-height: var(--cbp-line-height-sm);
       --cbp-list-item-padding-block: var(--cbp-space-1x);
     }
 
     li{
       list-style-type: none;
+    }
+  }
+  
+
+  // Icon List
+  &[variant="icon"]{
+    padding-inline-start: var(--cbp-space-8x);
+    font-size: var(--cbp-font-size-heading-sm);
+    
+    li{
+      list-style-type: none;
   
       cbp-icon{
         margin-inline-start: calc(var(--cbp-space-4x) * -1);
+        padding-inline-end: var(--cbp-space-3x);
       }     
     }
   } 

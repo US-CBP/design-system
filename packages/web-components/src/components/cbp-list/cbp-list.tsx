@@ -11,7 +11,7 @@ export class CbpList {
   private renderedTag: HTMLElement;
 
   /** Specifies the variant of list (unstyled, icon, special) */
-  @Prop() variant: 'unstyled' | 'icon'; 
+  @Prop() variant: 'unstyled' | 'link' | 'icon'; 
   
   /** Specifies the semantic tag to be rendered. */
   @Prop() tag: 'ul' | 'ol' = 'ul';
