@@ -15,6 +15,8 @@ export class CbpFormField {
 
   private formField: any;
   private buttons: any;
+  private attachedButtons: any;
+  //private unattachedButtons: any;
   private hasDescription: boolean;
   
   @Element() host: HTMLElement;
@@ -111,6 +113,8 @@ export class CbpFormField {
     // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
     this.formField = this.host.querySelector('input,select,textarea');
     this.buttons = this.host.querySelectorAll('cbp-button');
+    this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
+    //this.unattachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-unattached-buttons] cbp-button');
     this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
 
     if (this.formField) {
@@ -131,6 +135,11 @@ export class CbpFormField {
     if (!!this.buttons) {
       this.buttons.forEach( (el) => {
         if (this.disabled || this.readonly) el.disabled=true;
+      });
+    }
+    // only attached buttons inherit the danger color when errors are present
+    if (!!this.attachedButtons) {
+      this.attachedButtons.forEach( (el) => {
         if (this.error) el.color="danger";
       });
     }
