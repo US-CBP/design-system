@@ -21,6 +21,7 @@
   --cbp-list-item-color: var(--cbp-color-text-darkest);
   --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
   
+  --cbp-link-list-gutter: var(--cbp-space-9x);
   --cbp-link-list-icon-color: var(--cbp-color-interactive-primary-dark);
   --cbp-link-list-icon-color-dark: var(--cbp-color-interactive-primary-dark);
 }
@@ -107,21 +108,26 @@ cbp-list {
   // Link List
 
   &[variant="link"]{
-    padding-inline-start: var(--cbp-space-8x);
+    
+    ul{
+      padding-inline-start: var(--cbp-link-list-gutter);
+      
+      li{
+        list-style-type: none;
+        
+        cbp-icon{
+          margin-inline-start: calc(var(--cbp-space-4x) * -1);
+          padding-inline-end: var(--cbp-space-1x);
+        }
+      }
+    }
     
     &[size="large"]{
+      --cbp-link-list-gutter: var(--cbp-space-11x);
       --cbp-list-item-line-height: var(--cbp-line-height-sm);
       --cbp-list-item-padding-block: var(--cbp-space-1x);
     }
-
-    li{
-      list-style-type: none;
-      
-      cbp-icon{
-        margin-inline-start: calc(var(--cbp-space-4x) * -1);
-        padding-inline-end: var(--cbp-space-1x);
-      }
-    }
+    
   }
   
 
