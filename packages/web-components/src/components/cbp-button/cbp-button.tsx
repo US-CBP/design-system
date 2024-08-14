@@ -103,7 +103,7 @@ export class CbpButton {
       }
     }
 
-    console.log('this.button',this.button);
+    //console.log('this.button',this.button);
 
     this.buttonClick.emit({
       host: this.host,
