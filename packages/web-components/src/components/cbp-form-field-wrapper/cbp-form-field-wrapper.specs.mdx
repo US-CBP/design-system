@@ -32,6 +32,18 @@ The Form Field Wrapper component offers means for applying overlays and button c
 
 * TBD
 
+### Specific Pattern Requirements (implemented by application logic)
+
+* Password/Obfuscated field toggle:
+  * The field should include an `input type="password"` with an attached button showing the `eye` icon.
+  * Upon activating the button, the icon is toggled to `eye-slash` and the input changed to an appropriate type (usually `type="text"`).
+* Numeric Counter field:
+  * The field should include an `input type="number"` with an unattached decrement and increment buttons per the story.
+  * Clicking either button should increment/decrement by the defined `step` attribute on the input.
+    * If no step is defined, default it to 1.
+    * If no value is defined, default it to 0.
+    * Remember that even for `input type="number"` the input value is a string and must be converted to a number to perform arithmetic on. The `Number()` function works great, as does `parseInt()` for integers.
+
 ### Additional Notes and Considerations
 
 * TBD
