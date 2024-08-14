@@ -16,7 +16,6 @@ export class CbpFormField {
   private formField: any;
   private buttons: any;
   private attachedButtons: any;
-  //private unattachedButtons: any;
   private hasDescription: boolean;
   
   @Element() host: HTMLElement;
@@ -114,7 +113,6 @@ export class CbpFormField {
     this.formField = this.host.querySelector('input,select,textarea');
     this.buttons = this.host.querySelectorAll('cbp-button');
     this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
-    //this.unattachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-unattached-buttons] cbp-button');
     this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
 
     if (this.formField) {
