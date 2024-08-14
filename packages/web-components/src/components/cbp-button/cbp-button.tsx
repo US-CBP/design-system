@@ -28,7 +28,10 @@ export class CbpButton {
   @Prop({ reflect: true }) color: 'primary' | 'secondary' | 'danger' = 'primary';
   /** Specifies a variant of the buttons, such as square for buttons with only an icon and call-to-action button. */
   @Prop({ reflect: true }) variant: 'square' | 'cta';
-  /** The `value` attribute of the button, which is passed as part of formData for the the pressed submit button. */
+
+  /** The `name` attribute of the button, which is passed as part of formData (as a key) for the the pressed submit button. */
+  @Prop() name: string;
+  /** The `value` attribute of the button, which is passed as part of formData (as a value) for the the pressed submit button. */
   @Prop() value: string;
 
   /** The `href` attribute of a link button. */
@@ -100,13 +103,16 @@ export class CbpButton {
       }
     }
 
+    //console.log('this.button',this.button);
+
     this.buttonClick.emit({
       host: this.host,
       nativeElement: this.button,
       controls: this.controls ? this.controls : null,
       pressed: this.pressed,
       expanded: this.expanded,
-      value: this.button.tagName == 'button' ? this.button.value : null,
+      name: this.button.tagName == 'BUTTON' ? this.button.name : null,
+      value: this.button.tagName == 'BUTTON' ? this.button.value : null,
     });
   }
 
@@ -157,17 +163,19 @@ export class CbpButton {
     this.componentLoad.emit({
       host: this.host,
       nativeElement: this.button,
-      value: this.button.tagName == 'button' ? this.button.value : null,
+      name: this.button.tagName == 'BUTTON' ? this.button.name : null,
+      value: this.button.tagName == 'BUTTON' ? this.button.value : null,
     });
   }
 
   render() {
-    const { type, value, pressed, expanded, disabled, rel, target, href, download } = this;
+    const { type, name, value, pressed, expanded, disabled, rel, target, href, download } = this;
 
     const attrs =
       this.tag === 'button'
         ? {
             type,
+            name,
             value,
             disabled,
           }

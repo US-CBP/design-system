@@ -14,10 +14,13 @@
 
 cbp-form-field-wrapper {
   position: relative;
+  display: flex;
+  gap: var(--cbp-space-4x);
 
   .cbp-form-field-wrapper-shrinkwrap {
-    display: block;
     position: relative;
+    display: block;
+    flex-basis: 100%; // for child flex context
 
     // Override the input padding based on overlay size to prevent input text from being obscured (text may still be obscured if there's not enough space for it)
     input {
@@ -50,5 +53,10 @@ cbp-form-field-wrapper {
       --cbp-button-border-radius: 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0;
       inset-inline-end: 0;
     }
+  }
+
+  [slot="cbp-form-field-unattached-buttons"] {
+    display: flex;
+    gap: var(--cbp-space-4x);
   }
 }
