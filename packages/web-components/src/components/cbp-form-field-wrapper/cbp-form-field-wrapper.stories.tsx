@@ -87,8 +87,6 @@ const NumericCounterTemplate = ({ label, description, inputType,  overlayStart, 
     const input: HTMLInputElement = document.querySelector(`#${fieldId}`) || document.querySelector('input');
     const step:number = Number(input.getAttribute('step')) || 1;
 
-    //console.log({e});
-
     let value:number = Number(input.value) || 0;
     if(button.getAttribute('name')==="increment") {
       input.value = `${value + step}`;
@@ -174,8 +172,6 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
     const buttonIcon = buttonComponent.querySelector('cbp-icon');
     const input = document.querySelector(`#${fieldId}`) || document.querySelector('input');
     const type = input.getAttribute('type');
-
-    //console.log({e});
 
     if(button.getAttribute('name')==="togglepw") {
       // Toggle the input type
