@@ -25,6 +25,11 @@
   --cbp-link-list-icon-margin: calc(var(--cbp-space-5x) * -1);
   --cbp-link-list-icon-color: var(--cbp-color-interactive-primary-dark);
   --cbp-link-list-icon-color-dark: var(--cbp-color-interactive-primary-dark);
+
+  --cbp-desc-list-color: var(--cbp-color-text-darker);
+  --cbp-desc-list-color-dark: var(--cbp-color-text-lighter);
+  --cbp-desc-list-description-color: var(--cbp-color-text-darkest);
+  --cbp-desc-list-description-color-dark: var(--cbp-color-text-lightest);
 }
 
 
@@ -32,6 +37,8 @@
 [data-cbp-theme=dark] cbp-list:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-list-item-color: var(--cbp-list-item-color-dark);
   --cbp-link-list-icon-color: var(--cbp-link-list-icon-color-dark);
+  --cbp-desc-list-color: var(--cbp-desc-list-color-dark);
+  --cbp-desc-list-description-color: var(--cbp-desc-list-description-color-dark);
 }
 
 cbp-list {
@@ -148,5 +155,33 @@ cbp-list {
         padding-inline-end: var(--cbp-space-3x);
       }     
     }
+  }
+  
+  //Description List
+
+  dl{
+    padding-inline-start: var(--cbp-space-12x);
+
+    dt{
+      color: var(--cbp-desc-list-color);
+      font-size: var(--cbp-font-size-heading-sm);
+      font-weight: var(--cbp-font-weight-medium);
+      line-height: var(--cbp-line-height-sm);
+      padding-block-end: var(--cbp-space-2x);
+
+      cbp-icon{
+        margin-inline-start: calc(var(--cbp-space-9x) * -1);
+        padding-inline-end: var(--cbp-space-3x);
+      }
+    }
+
+    dd{
+      color: var(--cbp-desc-list-description-color);
+      font-size: var(--cbp-font-size-body);
+      font-weight: var(--cbp-font-weight-regular);
+      line-height: var(--cbp-line-height-xs);
+      padding-block-end: var(--cbp-space-6x);
+    }
   } 
 }
+

@@ -5,7 +5,7 @@ export default {
         tag: {
           control: 'select',
           description: 'Type of List',
-          options: ['ul', 'ol'],
+          options: ['ul', 'ol', 'dl'],
         },
         // size: {
         //   control: 'select',
@@ -308,6 +308,57 @@ export const IconLinkList = IconListTemplate.bind({});
           },
           {
             content: "List Item 3",
+            icon: "exclamation-circle",
+            color: "var(--cbp-color-red-50)",
+          },
+        ]
+};
+
+function generateDescriptionItems(items) {
+  const html = items.map(({ content, description, icon, color}) => {
+      return `
+              <dt>
+                <cbp-icon name='${icon}' color='${color}' size='1.25rem'></cbp-icon>
+                ${content}
+              </dt>
+              <dd>
+                ${description}
+              </dd>
+              `;      
+  });
+  return html.join('');
+}
+
+const DescriptionListTemplate = ({linkListItems, accessibilityText, context,}) => {
+  return ` 
+    <cbp-list
+      tag='dl' 
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
+      ${generateDescriptionItems(linkListItems)}
+  </cbp-list>
+  `;
+};
+
+export const DescriptionLinkList = DescriptionListTemplate.bind({});
+  DescriptionLinkList.args = {
+      linkListItems: [
+          {
+            content: "Always pay with Cash.",
+            description: "When shopping for extremely good deals, alwasy be prepared to pay with cash. Cash lets you have a powerful negotiating tool when trying to get the best price possible for your new pet turtle",
+            icon: "plus",
+            color: "var(--cbp-color-green-cool-50)",
+          },
+          {
+            content: "Make sure to get a receipt.",
+            description: "Don't leave the pet shop or other location without a receipt for your new turtle. Otherwise getting a refund or exchange later will be pretty hard to acheive.",
+            icon: "book",
+            color: "var(--cbp-color-green-cool-50)",
+          },
+          {
+            content: "Call our 24-hour, 7-day-a-week hotline for all your burning, turtle-related questions.",
+            description: "What do turtles eat? Why won't he come out of his shell? I bathed my turtle in radioactive fluid and he's not deeloping martial arts skills. In fact he's stopping moving entirely. get thes important questions answered by calling our hotline anytime, anywhere",
             icon: "exclamation-circle",
             color: "var(--cbp-color-red-50)",
           },
