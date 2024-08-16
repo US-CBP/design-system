@@ -2,11 +2,11 @@ export default {
     title: 'Components/List',
     tags: ['autodocs'],
     argTypes: {
-        tag: {
-          control: 'select',
-          description: 'Type of List',
-          options: ['ul', 'ol', 'dl'],
-        },
+        // tag: {
+        //   control: 'select',
+        //   description: 'Type of List',
+        //   options: ['ul', 'ol'],
+        // },
         // size: {
         //   control: 'select',
         //   description: 'Font size of list text',
@@ -25,9 +25,9 @@ export default {
           control: 'object',
         },
     },   
-    args: {
-      tag: 'ul',
-    },
+    // args: {
+    //   tag: 'ul',
+    // },
 };
 
 function generateItems(items) {
@@ -123,15 +123,19 @@ List.argTypes ={
       description: 'Font size of list text',
       options: ['normal', 'large'],
     },
+    tag: {
+      control: 'select',
+      description: 'Type of List',
+      options: ['ul', 'ol'],
+    },
 }
 
 //Unstyled
 
-const UnstyledTemplate = ({listItems, tag, size, accessibilityText, context, sx}) => {
+const UnstyledTemplate = ({listItems, size, accessibilityText, context, sx}) => {
   return ` 
   <cbp-list
     variant= 'unstyled'
-    ${tag ? `tag=${tag}` : ''}
     ${size ? `size=${size}` : ''}
     ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
     ${context && context != 'light-inverts' ? `context=${context}` : ''}
@@ -329,12 +333,13 @@ function generateDescriptionItems(items) {
   return html.join('');
 }
 
-const DescriptionListTemplate = ({linkListItems, accessibilityText, context,}) => {
+const DescriptionListTemplate = ({linkListItems, accessibilityText, context, sx}) => {
   return ` 
     <cbp-list
       tag='dl' 
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
       ${generateDescriptionItems(linkListItems)}
   </cbp-list>
