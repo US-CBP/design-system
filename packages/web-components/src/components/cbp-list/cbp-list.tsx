@@ -14,7 +14,7 @@ export class CbpList {
   @Prop({ reflect: true }) variant: 'unstyled' | 'link' | 'icon'; 
   
   /** Specifies the semantic tag to be rendered. */
-  @Prop() tag: 'ul' | 'ol' = 'ul';
+  @Prop() tag: 'ul' | 'ol' | 'dl' = 'ul';
 
   /** Specifies the font size for the list */
   @Prop({ reflect: true }) size: 'normal' | 'large' = 'normal';
