@@ -116,7 +116,10 @@ export class CbpFormField {
     this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
 
     if (this.formField) {
-      this.formField.setAttribute('id',`${this.fieldId}`); // TechDebt: this requires more thought for compound inputs
+      // If the slotted form field has an ID, use it; otherwise, set it.
+      this.formField.getAttribute('id')
+        ? this.fieldId = this.formField.getAttribute('id')
+        : this.formField.setAttribute('id', `${this.fieldId}`);
       this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
       this.formField.addEventListener('change', this.handleChange());
     }
