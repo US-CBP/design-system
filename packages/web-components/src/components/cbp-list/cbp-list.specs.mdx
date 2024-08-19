@@ -5,12 +5,13 @@ import { Meta } from '@storybook/addon-docs';
 # cbp-list
 
 ## Purpose
-The list renders unordered and ordered lists in accordance with the design system
+The list renders unordered and ordered lists in accordance with the design system. in addition to supporting lists with custom/user defined icons and description lists
 
 ## Functional Requirements
 
-* the List componenet API should support native UL/OL functionality and accessibility
-* the List maybe supplied slotted content for list items and nested lists 
+* the List componenet API should support native UL/OL/DL functionality and accessibility
+* the List maybe supplied slotted content for list items and nested lists
+* the List supports the option of user defined icons as list item bullets 
 
 ## Technical Specifications
 
@@ -24,8 +25,9 @@ The list renders unordered and ordered lists in accordance with the design syste
 
 ### Accessibility
 
-* [BETA] Lists do not currently have any additional a11y support. to be added before full release
+* LIst supports use of screen reader text via the accessibilityText property
 
 ### Additional Notes and Considerations
 
-* List currently only support the unordered and ordered lists, more variants to be added in time
+* Icons for list are designed to support use of the cbp-icon, other instances of svg's or icons may need additional styling to match look & feel
+* Unstyled list support both ordered list & unordered list semantically but the list style type will not be visible
