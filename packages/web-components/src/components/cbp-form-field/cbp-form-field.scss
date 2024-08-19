@@ -1,7 +1,7 @@
 /**
  *
  */
-:root{
+ :root{
   --cbp-form-field-color: var(--cbp-color-text-darkest);
   --cbp-form-field-color-bg: var(--cbp-color-white);
   --cbp-form-field-color-border: var(--cbp-color-interactive-secondary-base);
@@ -208,6 +208,7 @@ cbp-form-field {
     // Safari is lacking in contrast, so these need to be manually set
     optgroup {
       color: var(--cbp-form-field-color);
+      background-color: var(--cbp-form-field-color-bg);
       font-weight: var(--cbp-font-weight-bold);
     }
   }
@@ -244,17 +245,27 @@ cbp-form-field {
     --cbp-form-field-color-description-dark: var(--cbp-color-danger-light);
     //--cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
   }
+
+  // Auto-filled input background color is set by the user agent stylesheet, so unfortunately there’s no way to override it.
+  // Instead of styling the background color, use an inner box shadow that covers the background and use -webkit-text-fill-color to set the text color.
+  input:is(:-webkit-autofill, :autofill),
+  input:is(:-webkit-autofill, :autofill):focus {
+    box-shadow: 0 0 0 1000px var(--cbp-form-field-color-bg) inset;
+    -webkit-text-fill-color: var(--cbp-form-field-color);
+  }
 }
+
 
 /*
-need to work on overriding/styling auto-filled fields:
-//https://medium.com/@landonschropp/styling-autocompleted-inputs-in-chrome-and-safari-de83d7bd1d8a
-input:-webkit-autofill, input:-webkit-autofill:focus {
-  box-shadow: 0 0 0 1000px white inset;
-  -webkit-text-fill-color: #333;
-}
+  // This removes the default increment arrows in the number input field
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; // Margins still appear even if hidden
+  }
 
-chrome:
-input:-internal-autofill-selected {}
+  input[type=number] {
+    -moz-appearance: textfield; // Removes the default increment arrows in Firefox 
+  }
 
 */
