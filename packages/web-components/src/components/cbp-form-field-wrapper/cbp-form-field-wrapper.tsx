@@ -15,23 +15,34 @@ import { setCSSProps } from '../../utils/utils';
 
 export class CbpFormFieldWrapper {
 
+  private parent: HTMLCbpFormFieldElement;
+  private formField: any;
+  private attachedButton: any;
+
+  private overlayStart: HTMLElement;
+  private overlayEnd: HTMLElement;
+
   private overlayStartWidth;
   private overlayEndWidth;
   private attachedButtonWidth;
-    
+  
   @Element() host: HTMLElement;
+
+  componentWillLoad() {
+    // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
+    this.parent = this.host.closest('cbp-form-field');
+    this.formField = this.host.querySelector('input,select,textarea');
+    this.attachedButton = this.host.querySelector('[slot=cbp-form-field-attached-button] cbp-button');
+    this.overlayStart = this.host.querySelector('[slot=cbp-form-field-overlay-start]');
+    this.overlayEnd = this.host.querySelector('[slot=cbp-form-field-overlay-end]');
+  }
 
   componentDidLoad() {
     // Calculate the size of the overlays to set the input padding accordingly
     // TechDebt: as a first cut, this is not reactive. How reactive does it need to be?
-    const overlayStart: HTMLElement = this.host.querySelector('[slot="cbp-form-field-overlay-start"]');
-    this.overlayStartWidth = overlayStart ? overlayStart.offsetWidth + 8 : 0;
-
-    const overlayEnd: HTMLElement = this.host.querySelector('[slot="cbp-form-field-overlay-end"]');
-    this.overlayEndWidth = overlayEnd ? overlayEnd.offsetWidth + 8 : 0;
-
-    const attachedButton: HTMLElement = this.host.querySelector('[slot="cbp-form-field-attached-button"]');
-    this.attachedButtonWidth = attachedButton ? attachedButton.offsetWidth : 0;
+    this.overlayStartWidth = this.overlayStart ? this.overlayStart.offsetWidth + 8 : 0;
+    this.overlayEndWidth = this.overlayEnd ? this.overlayEnd.offsetWidth + 8 : 0;
+    this.attachedButtonWidth = this.attachedButton ? this.attachedButton.offsetWidth : 0;
 
     // Update this with the buttons size
     this.overlayEndWidth = this.overlayEndWidth +  this.attachedButtonWidth
@@ -41,6 +52,32 @@ export class CbpFormFieldWrapper {
       "--cbp-form-field-overlay-end-width": `${this.overlayEndWidth}px`,
       "--cbp-form-field-attached-button-width": `${this.attachedButtonWidth}px`,
     });
+
+    // Set the IDs on the slotted overlays (if needed) and assign them to the native input's `aria-describedby` attribute.
+    let overlayids = '';
+    const overlays = ["overlayStart", "overlayEnd"];
+    overlays.forEach( (overlay) => {
+      if (this[overlay]) {
+        let id = `${overlay}ID`;
+        if (this[overlay].getAttribute('id')) {
+          id = this[overlay].getAttribute('id');
+        }
+        else {
+          id = `${this.parent.fieldId}-${overlay}`;
+          this[overlay].setAttribute('id',`${id}`);
+        }
+        overlayids 
+          ? overlayids+=` ${id}` 
+          : overlayids=id;
+          }
+    });
+
+    if (overlayids){
+      let ariadescribedby = this.formField.getAttribute('aria-describedby');
+      ariadescribedby
+        ? this.formField.setAttribute('aria-describedby', `${ariadescribedby} ${overlayids}`)
+        : this.formField.setAttribute('aria-describedby', `${overlayids}`);
+    }
   }
 
   render() {
