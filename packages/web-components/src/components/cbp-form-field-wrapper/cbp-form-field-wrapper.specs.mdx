@@ -30,7 +30,9 @@ The Form Field Wrapper component offers means for applying overlays and button c
 
 ### Accessibility
 
-* TBD
+* Any slotted buttons should have an accessible label.
+* Slotted buttons should also specify `aria-describedby` referencing the form field's label for additional context as long as that label is not identical to the button's accessible label. E.g., a search field labelled as "Search" with a button labelled as "Search" should not use `aria-describedby`.
+* Any slotted overlays (not buttons) shall be added to the field's accessible description.
 
 ### Specific Pattern Requirements (implemented by application logic)
 
@@ -38,7 +40,8 @@ The Form Field Wrapper component offers means for applying overlays and button c
   * The field should include an `input type="password"` with an attached button showing the `eye` icon.
   * Upon activating the button, the icon is toggled to `eye-slash` and the input changed to an appropriate type (usually `type="text"`).
 * Numeric Counter field:
-  * The field should include an `input type="number"` with an unattached decrement and increment buttons per the story.
+  * The field should include an `input type="number"` or `input type="text"` with an unattached decrement and increment buttons per the story.
+    * Note: Safari does not restrict non-numeric input for `input type="number"` like Chrome does, so validation is always required regardless of the type specified.
   * Clicking either button should increment/decrement by the defined `step` attribute on the input.
     * If no step is defined, default it to 1.
     * If no value is defined, default it to 0.
