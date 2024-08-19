@@ -33,11 +33,23 @@ The Form Field component represents a generic, reusable pattern for form fields 
 
 ### Accessibility
 
-* Overlays may Disabled form controls and buttons are non-interactive and cannot be navigated to using the keyboard and should be used with caution (if at all).
+* According to CBP Design System guidance, required fields should indicate "Required" in the field description in plain text.
+  * The `required` attribute should not be used on the native form field because 1. screen readers would read "required" twice and 2. this attribute triggers browser-based validation, which will not behave consistently with application/custom validation.
+  * Do not place `aria-required` on the native form field, as screen readers would read "required" twice.
+* Disabled form controls and buttons are non-interactive and cannot be navigated to using the keyboard and should be used with caution (if at all).
 * Placeholder text should rarely, if ever, be used.
   * Especially in forms where the user is expected to enter data, placeholder text with sufficient contrast to the background color may be mistaken as entered input.
   * In high contrast mode, placeholder text is displayed exactly the same as entered text, making this issue more likely.
   * Placeholder text disappears when the user starts typing in the field, creating more cognitive load than necessary.
+* Form input patterns using this component and the optional `cbp-form-field-wrapper` component will be read in the following order by screen readers:
+  1. Field label
+  2. Form field
+    * "Edit" or similar control description (e.g., "Spin Button")
+    * If aria-invalid, reads "invalid entry"
+    * "Editable" state
+  3. Accessible Description (via aria-describedby or title if the former does not exist):
+    * Description prop
+  4. Field value
 
 ### Additional Notes and Considerations
 

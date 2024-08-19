@@ -8,7 +8,7 @@ import { Meta } from '@storybook/addon-docs';
 
 The CBP Design System components support both light and dark modes, as indicated by a user's operating system preferences. There is nothing required by the developer for regular light and dark mode toggling based on user preferences.
 
-A developer who wishes to create an application-based toggle, which would override the system settings, can do so by togging the `cbp-app` component's `theme` property between "light" and "dark" values. The `cbp-app` component should wrap the entire site (as in the template story) and is meant for hoisting site or page-wide functionality such as light and dark modes.
+A developer wishing to create an application-based toggle, which would override the system settings, can do so by togging the `cbp-app` component's `theme` property between "light" and "dark" values. The `cbp-app` component should wrap the entire site (as in the template story) and is meant for hoisting site or page-wide functionality such as light and dark modes.
 
 ## Dark context
 
@@ -16,12 +16,12 @@ Supporting user preferences is only one facet of a robust dark mode. Another fac
 
 Even in "light mode" (via system preferences), when a section of the page has a dark background, the components placed within that area need to provide appropriate (accessible) contrast. Most components have a `context` property for this purpose. The `context` property describes both the default design (in light mode) and the behavior when switching to dark mode using the following values:
 
-* light-inverts (default and does not need to be explicitly set)
-* light-always
-* dark-inverts
-* dark-always
+* `light-inverts` (default and does not need to be explicitly set)
+* `light-always`
+* `dark-inverts`
+* `dark-always`
 
-These values support a range of possibilities to meet various design requirements, because it is not a correct assumption that something with a dark appearance or background in light mode would automatically invert to a light appearance in dark mode.
+These values support a range of possibilities to meet various design requirements, because it is a false assumption that something with a dark appearance or background in light mode would automatically invert to a light appearance in dark mode.
 
 The values "light-always" and "dark-always" specify a visual design that does not change based on light or dark mode. However, "light-inverts" (the default value) and "dark-inverts" specify a visual design in light mode that inverts when changing to dark mode.
 

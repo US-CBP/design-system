@@ -77,7 +77,6 @@ Textarea.args = {
 };
 
 
-
 const SelectTemplate = ({ label, description, fieldId, error, disabled, context, sx }) => {
   return ` 
     <cbp-form-field
@@ -93,20 +92,50 @@ const SelectTemplate = ({ label, description, fieldId, error, disabled, context,
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
         <option value="3">Option 3</option>
-        <!--
+        <option value="4">Option 4</option>
+        <option value="5">Option 5</option>
+        <option value="6">Option 6</option>
+        <option value="7">Option 7</option>
+        <option value="8">Option 8</option>
+      </select>
+    </cbp-form-field>
+  `;
+};
+
+export const Select = SelectTemplate.bind({});
+Select.args = {};
+
+// For testing: May be commented out later.
+const SelectWithOptgroupTemplate = ({ label, description, fieldId, error, disabled, context, sx }) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      <select name="select" ${disabled ? `disabled` : ''}>
+        <option value=""></option>
         <optgroup label="Group A">
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </optgroup>
+        <optgroup label="Group B">
           <option value="4">Option 4</option>
           <option value="5">Option 5</option>
-          <option value="6">Option 6</option>
+          <option value="6">Option 6 has a longer label</option>
           <option value="7">Option 7</option>
           <option value="8">Option 8</option>
           <option value="9">Option 9</option>
         </optgroup>
-        <optgroup label="Group B">
+        <optgroup label="Group C">
           <option value="10">Option 10</option>
           <option value="11">Option 11</option>
           <option value="12">Option 12</option>
-          <option value="13">Option 13</option>
+          <option value="13">Option 13 has a really really really really long label that might truncate. Test on mobile.</option>
           <option value="14">Option 14</option>
           <option value="15">Option 15</option>
           <option value="16">Option 16</option>
@@ -123,16 +152,14 @@ const SelectTemplate = ({ label, description, fieldId, error, disabled, context,
           <option value="27">Option 27</option>
           <option value="28">Option 28</option>
         </optgroup>
-        -->
       </select>
     </cbp-form-field>
   `;
 };
 
-export const Select = SelectTemplate.bind({});
-Select.args = {
-  
-};
+export const SelectWithOptgroup = SelectWithOptgroupTemplate.bind({});
+SelectWithOptgroup.args = {};
+
 
 /* //For testing purposes only
 const MultiSelectTemplate = ({ label, description, fieldId, error, disabled, context, sx }) => {
@@ -191,33 +218,3 @@ export const MultiSelect = MultiSelectTemplate.bind({});
 MultiSelect.args = {
 };
 */
-
-
-
-const PasswordTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
-  return ` 
-    <cbp-form-field
-      ${label ? `label="${label}"` : ''}
-      ${description ? `description="${description}"` : ''}
-      ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${readonly ? `readonly` : ''} 
-      ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-    >
-      <cbp-form-field-wrapper>
-        <input 
-          type="password" 
-          name="hashedinput" 
-          ${value ? `value="${value}"` : ''}  
-        />
-      </cbp-form-field-wrapper>
-    </cbp-form-field>
-  `;
-};
-
-export const Password = PasswordTemplate.bind({});
-Password.args = {
-  value: '',
-};
