@@ -22,7 +22,7 @@
   --cbp-card-color-border-dark: var(--cbp-color-gray-cool-50);
   --cbp-card-color-title: var(--cbp-color-text-darker);
   --cbp-card-color-title-dark: var(--cbp-color-text-lighter);
-  --cbp-card-color-text: var(--cbp-color-text-darker);
+  --cbp-card-color-text: var(--cbp-color-text-darkest);
   --cbp-card-color-text-dark: var(--cbp-color-text-lightest);
   
   --cbp-banner-card-color: var(--cbp-color-gray-cool-60);
@@ -209,15 +209,16 @@ cbp-card {
       --cbp-banner-card-color-body-background: var(--cbp-color-warning-lighter);
       --cbp-banner-card-color-title: var(--cbp-color-text-darker);
     
-      --cbp-banner-card-color-dark: var(--cbp-color-warning-light);
+      --cbp-banner-card-color-dark: var(--cbp-color-warning-lighter);
       --cbp-banner-card-color-body-background-dark: var(--cbp-color-warning-base);
       --cbp-banner-card-color-title-dark: var(--cbp-color-text-darker);
     }
 
     &[color=danger] {
-      --cbp-banner-card-color: var(--cbp-color-danger-base);
+      --cbp-banner-card-color: var(--cbp-color-danger-dark);
       --cbp-banner-card-color-body-background: var(--cbp-color-danger-lighter);
-    
+      --cbp-banner-card-color-title: var(--cbp-color-text-darkest);
+
       --cbp-banner-card-color-dark: var(--cbp-color-danger-light);
       --cbp-banner-card-color-body-background-dark: var(--cbp-color-danger-darker);
     }
