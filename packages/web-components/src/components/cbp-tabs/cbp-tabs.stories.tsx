@@ -82,7 +82,7 @@ Tabs.args = {
     },
     {
       name: 'tab3',
-      label: 'Tab 3',
+      label: 'Tab 3 is longer',
       accessibilityText: '',
       color: 'default',
       panelContent: 'Tab panel 3 content.',
@@ -110,6 +110,14 @@ Tabs.args = {
       accessibilityText: '',
       color: 'default',
       panelContent: 'Tab panel 6 content.',
+      selected: false,
+    },
+    {
+      name: 'tab7',
+      label: 'Tab 7',
+      accessibilityText: '',
+      color: 'default',
+      panelContent: 'Tab panel 7 content.',
       selected: false,
     },
   ],

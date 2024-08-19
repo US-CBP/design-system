@@ -13,7 +13,8 @@ export default {
     },
     inputType:{
       control: 'select',
-      options: [ "text", "number", "password", "search"] // additional types: email, tel, url, color, range, date, datetime-local, month, week, time
+      //options: [ "text", "number", "password", "search"]
+      options: [ "text", "number", "password", "search", "email", "tel", "url", "color", "range", "date", "datetime-local", "month", "week", "time", "file"]
     },
     error: {
       control: 'boolean',
@@ -127,8 +128,9 @@ const NumericCounterTemplate = ({ label, description, inputType,  overlayStart, 
             fill="outline"
             color="secondary"
             variant="square"
-            accessibility-text="Toggle visibility"
-            aria-controls="${fieldId}"
+            accessibility-text="Decrement"
+            controls="${fieldId}"
+            aria-describedby="${fieldId}-label"
           >
             <cbp-icon name="minus" size="1rem"></cbp-icon>
           </cbp-button>
@@ -139,8 +141,9 @@ const NumericCounterTemplate = ({ label, description, inputType,  overlayStart, 
             fill="outline"
             color="secondary"
             variant="square"
-            accessibility-text="Toggle visibility"
-            aria-controls="${fieldId}"
+            accessibility-text="Increment"
+            controls="${fieldId}"
+            aria-describedby="${fieldId}-label"
           >
             <cbp-icon name="plus" size="1rem"></cbp-icon>
           </cbp-button>
@@ -216,7 +219,8 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
             color="secondary"
             variant="square"
             accessibility-text="Toggle visibility"
-            aria-controls="${fieldId}"
+            controls="${fieldId}"
+            aria-describedby="${fieldId}-label"
           >
             <cbp-icon name="eye" size="1rem"></cbp-icon>
           </cbp-button>
