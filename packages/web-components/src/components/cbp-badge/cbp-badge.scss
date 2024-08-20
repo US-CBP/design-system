@@ -34,6 +34,7 @@ cbp-badge {
   line-height: var(--cbp-space-6x);
 
   &[color=danger] {
+    --cbp-badge-color-dark: var(--cbp-color-danger-darker);
     --cbp-badge-color-background: var(--cbp-color-danger-dark);
     --cbp-badge-color-background-dark: var(--cbp-color-danger-light);
   }
