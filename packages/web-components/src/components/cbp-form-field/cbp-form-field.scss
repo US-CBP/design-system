@@ -253,6 +253,11 @@ cbp-form-field {
     box-shadow: 0 0 0 1000px var(--cbp-form-field-color-bg) inset;
     -webkit-text-fill-color: var(--cbp-form-field-color);
   }
+
+  // Hide Edge's built-in password reveal control
+  ::-ms-reveal {
+    display: none;
+  }
 }
 
 
