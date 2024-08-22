@@ -48,9 +48,7 @@ body {
 }
 
 p,
-blockquote,
-ul:not(ul ul):not(ul ol),
-ol:not(ol ol):not(ol ul) {
+blockquote {
   margin-bottom: var(--cbp-space-4x);
 }
 
