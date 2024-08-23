@@ -11,10 +11,14 @@
   //--cbp-responsive-spacing-outer: clamp( var(--cbp-space-5x), 0.179rem + 2.857vw, var(--cbp-space-11x));
   --cbp-responsive-spacing-outer: var(--cbp-space-5x);
   --cbp-responsive-spacing-inner: var(--cbp-responsive-spacing-outer); // temporary - for discussion
+
+  --cbp-responsive-spacing-gap: var(--cbp-space-4x);
+
 }
 @media (min-width: $cbp-breakpoint-md) {
   :root {
     --cbp-responsive-spacing-outer: var(--cbp-space-8x);
+    --cbp-responsive-spacing-gap: var(--cbp-space-7x);
   }
 }
 @media (min-width: $cbp-breakpoint-xl) {
@@ -48,9 +52,7 @@ body {
 }
 
 p,
-blockquote,
-ul:not(ul ul):not(ul ol),
-ol:not(ol ol):not(ol ul) {
+blockquote {
   margin-bottom: var(--cbp-space-4x);
 }
 

@@ -63,8 +63,10 @@ The Form Field component represents a generic, reusable pattern for form fields 
 * Additional notes on slotted form fields and their use, since these are not strictly controlled by the design system:
   * Some input types, such as `email`, `tel`, and `url`, should not be used because they invoke browser-based validation, which is inconsistent across browsers and with the design system, and not always accessible.
   * Use `inputmode` instead of HTML5 input types to provide a browser hint for the proper virtual keyboard on mobile devices without side effects noted above.
-  * The `select` with `multiple` (and `size`) attribute should not be used, as they have terrible usability. Use our `cbp-multiselect` (coming soon) instead.
-  * Input types such as `date`, `datetime` (deprecated), `datetime-local`, `month`, `week`, `time` may also vary by browser and not be styleable in accordance with the design system.
+  * While the `input type="number"` restricts non-numeric input on Chrome, this is not the case in Safari and Firefox. Implement validation appropriately with the knowledge that non-numeric characters may still be entered.
+  * The `select` with `multiple` (and `size`) attribute should not be used, as they have poor usability. Use our `cbp-multiselect` (coming soon) instead.
+  * Input types such as `date`, `datetime-local`, `month`, `week`, `time` may also vary by browser and not be fully customized in accordance with the design system.
+  * Some input types such as `month` and `week` are not supported in Safari and Firefox and should not be used.
   * Use of the `size` attribute is discouraged as it does not represent a linear/consistent scale across input sizes and browsers.
     * Furthermore, `size` is not valid on some input types such as `type="number"`.
     * When necessary, it is recommended to use CSS to style the width of form fields (using a relative unit such as `ch` or `rem`) separate from their containers.

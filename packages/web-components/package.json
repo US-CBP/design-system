@@ -37,7 +37,8 @@
     "build-pages": "storybook build --output-dir storybook-static"
   },
   "dependencies": {
-    "@stencil/core": "^4.15.0"
+    "@stencil/core": "^4.15.0",
+    "lerna": "8.1.8"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.5.0",
@@ -54,11 +55,11 @@
     "@storybook/web-components-vite": "^8.1.6",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.11",
-    "@whitespace/storybook-addon-html": "^6.0.5",
+    "@whitespace/storybook-addon-html": "^6.1.1",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
     "lit": "^3.1.2",
-    "puppeteer": "21.1.1",
+    "puppeteer": "^23.1.1",
     "storybook": "^8.1.6",
     "wc-storybook-helpers": "^2.0.1"
   },
