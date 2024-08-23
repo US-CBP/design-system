@@ -81,6 +81,9 @@ cbp-card {
     font-weight: var(--cbp-font-weight-medium);
     font-size: var(--cbp-font-size-heading-lg);
     line-height: var(--cbp-line-height-sm);
+  }
+
+  &[variant=decision] [slot=cbp-card-title] {
     margin-bottom: var(--cbp-space-2x);
   }
 
@@ -161,7 +164,7 @@ cbp-card {
         }
   
         button, a {
-          padding-block: var(--cbp-space-3x);
+          padding-block: var(--cbp-space-2x);
           width: 100%;
         }
       }
@@ -217,7 +220,7 @@ cbp-card {
     &[color=danger] {
       --cbp-banner-card-color: var(--cbp-color-danger-dark);
       --cbp-banner-card-color-body-background: var(--cbp-color-danger-lighter);
-      --cbp-banner-card-color-title: var(--cbp-color-text-darkest);
+      --cbp-banner-card-color-title: var(--cbp-color-text-lighter);
 
       --cbp-banner-card-color-dark: var(--cbp-color-danger-light);
       --cbp-banner-card-color-body-background-dark: var(--cbp-color-danger-darker);

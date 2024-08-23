@@ -63,7 +63,7 @@ cbp-panel {
     & :where(h1,h2,h3,h4,h5,h6) {
       color: inherit;
       font-size: var(--cbp-font-size-heading-lg);
-      font-weight: normal;
+      font-weight: var(--cbp-font-weight-medium);
       line-height: var(--cbp-space-7x);
     }
   }

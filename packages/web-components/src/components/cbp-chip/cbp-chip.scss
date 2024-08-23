@@ -22,7 +22,7 @@
  */
 :root { 
   --cbp-chip-color-text: var(--cbp-color-text-lightest);
-  --cbp-chip-color-text-dark: var(--cbp-color-text-darker);
+  --cbp-chip-color-text-dark: var(--cbp-color-text-darkest);
   --cbp-chip-color-text-hover: var(--cbp-color-text-lightest);
   --cbp-chip-color-text-hover-dark: var(--cbp-color-text-lightest);
   --cbp-chip-color-text-focus: var(--cbp-color-text-lightest);
@@ -40,7 +40,7 @@
   --cbp-chip-icon-color-background-focus: transparent;
   --cbp-chip-icon-color-background-focus-dark: var(--cbp-color-interactive-focus-dark);
   --cbp-chip-color-background-pressed: var(--cbp-color-interactive-selected-dark);
-  --cbp-chip-color-background-pressed-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-chip-color-background-pressed-dark: var(--cbp-color-interactive-selected-light);
   
   --cbp-chip-icon-color-outline-focus: var(--cbp-color-white);
   --cbp-chip-icon-color-outline-focus-dark: transparent;
@@ -76,6 +76,7 @@ cbp-chip {
     border-radius: var(--cbp-border-radius-pill);
     text-transform: uppercase;
     line-height: var(--cbp-space-7x);
+    font-size: var(--cbp-font-size-subhead);
     font-weight: var(--cbp-font-weight-medium);
     max-width: 100%;
     white-space: nowrap;
@@ -128,8 +129,9 @@ cbp-chip {
 
       > .cbp-chip__label + cbp-icon {
         background-color: var(--cbp-chip-icon-color-background-focus);
-        border-color: var(--cbp-color-white);
-        outline: var(--cbp-border-size-md) solid var(--cbp-chip-icon-color-outline-focus);
+        // border-color: var(--cbp-color-white);
+        border: var(--cbp-space-half-x) solid var(--cbp-chip-color-background-focus);
+        // outline: var(--cbp-border-size-md) solid var(--cbp-chip-icon-color-outline-focus);
         color: var(--cbp-color-text-lightest);
         outline-offset: -4px;
       }
