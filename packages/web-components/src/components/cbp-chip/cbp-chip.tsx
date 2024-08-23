@@ -70,7 +70,7 @@ export class CbpChip {
           <span class="cbp-chip__label">
             <slot />
           </span>
-          <cbp-icon name="plus"></cbp-icon>
+          <cbp-icon name="plus" size='var(--cbp-space-3x)'></cbp-icon>
         </button>
       </Host>
     );
