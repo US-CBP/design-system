@@ -129,9 +129,9 @@ cbp-chip {
 
       > .cbp-chip__label + cbp-icon {
         background-color: var(--cbp-chip-icon-color-background-focus);
-        // border-color: var(--cbp-color-white);
+        border-color: var(--cbp-color-white);
         border: var(--cbp-space-half-x) solid var(--cbp-chip-color-background-focus);
-        // outline: var(--cbp-border-size-md) solid var(--cbp-chip-icon-color-outline-focus);
+        outline: var(--cbp-border-size-md) solid var(--cbp-chip-icon-color-outline-focus);
         color: var(--cbp-color-text-lightest);
         outline-offset: -4px;
       }

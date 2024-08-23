@@ -40,11 +40,11 @@ const renderActions = (layout, color, context, withIcon, { btn1, btn2, btn3 }) =
     return `
       <div slot="cbp-card-actions">
         <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn2.color}" context="${context}" aria-describedby="card-heading-1">
-          ${withIcon ? `<cbp-icon name='arrow-right' sx='{"display":"inline", "padding-inline-end":"0.5rem"}'></cbp-icon>` : ''}
+          ${withIcon ? `<cbp-icon name='arrow-right' sx='{"display":"inline", "padding-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>` : ''}
           ${btn2.label}
         </cbp-button>
         <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
-          ${withIcon ? `<cbp-icon name='check' sx='{"display":"inline", "padding-inline-end":"0.5rem"}'></cbp-icon>` : ''}
+          ${withIcon ? `<cbp-icon name='check' sx='{"display":"inline", "padding-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
       </div>
@@ -53,15 +53,15 @@ const renderActions = (layout, color, context, withIcon, { btn1, btn2, btn3 }) =
     return `
       <div slot="cbp-card-actions">
         <cbp-button tag="${btn3.tag}" ${btn3.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn3.color}" context="${context}" aria-describedby="card-heading-1">
-          ${withIcon ? `<cbp-icon name='eye' sx='{"display":"inline", "padding-inline-end":"0.5rem"}'></cbp-icon>` : ''} 
+          ${withIcon ? `<cbp-icon name='eye' sx='{"display":"inline", "padding-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>` : ''} 
           ${btn3.label}
         </cbp-button>
         <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn2.color}" context="${context}" aria-describedby="card-heading-1">
-          ${withIcon ? `<cbp-icon name='arrow-right' sx='{"display":"inline", "padding-inline-end":"0.5rem"}'></cbp-icon>` : ''}
+          ${withIcon ? `<cbp-icon name='arrow-right' sx='{"display":"inline", "padding-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>` : ''}
           ${btn2.label}
         </cbp-button>
         <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
-          ${withIcon ? `<cbp-icon name='check' sx='{"display":"inline", "padding-inline-end":"0.5rem"}'></cbp-icon>` : ''}
+          ${withIcon ? `<cbp-icon name='check' sx='{"display":"inline", "padding-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
       </div>
@@ -70,7 +70,7 @@ const renderActions = (layout, color, context, withIcon, { btn1, btn2, btn3 }) =
     return `
       <div slot="cbp-card-actions">
         <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
-          ${withIcon ? `<cbp-icon name='check' sx='{"display":"inline", "padding-inline-end":"0.5rem"}'></cbp-icon>` : ''}
+          ${withIcon ? `<cbp-icon name='check' sx='{"display":"inline", "padding-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
       </div>

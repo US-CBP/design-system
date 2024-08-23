@@ -62,7 +62,7 @@ cbp-link {
     }
 
     &:visited {
-      --cbp-link-color: var(--cbp-link-color-visited);
+      color: var(--cbp-link-color-visited); //:visited restricts what properties can be set for security reasons , setting color directly to support visible change
     }
 
     &:hover {
