@@ -2,7 +2,7 @@
 
 ## Thesis
 
-We're testing the concept of Bring Your Own Input (BYOI) and Bring Your Own Button (BYOB). The core idea is that a generic wrapper component is created (`cbp-button` or `cbp-form input`), which can accept any sort of native HTML form input/control slotted within it rather than rendered by it.
+We're testing the concept of Bring Your Own Input (BYOI). The core idea is that a generic wrapper component is created, `cbp-form-input`, which can accept any sort of native HTML form input/control slotted within it rather than rendered by it. This wrapper ties the label and description/error messages together to form a predictable, accessible input pattern.
 
 The precedent has already been set in two regards:
 
@@ -21,14 +21,16 @@ Furthermore, this concept is inline with recent discussions of "HTML web compone
 
 ### Advantages
 
-* Lessens the need to develop a web component or functional component duplicating every native form control.
-* Web components duplicating form controls usually only implement a portion of the API because the number of attributes is HUGE and often conditional on other attributes (e.g., `input type="number"` adds more attributes like `min` and `max`, while making others such as `maxlength` invalid). This leaves it up to the consuming developer to improvise when the web component falls short of the native HTML spec, or forces the developer to add an extremely large number of properties to the component to duplicate each of the attributes (e.g., the `input` tag accepts 34 attributes *not counting* 40+ global HTML and ARIA attributes).
 * Direct access to the interactive controls alleviates a common pain point working with web components. Frameworks like Angular, Vue, and HTMX want to place attributes/directives directly on the DOM elements, which is not easily done when those elements are rendered behind an asynchronously loaded web component that has its own internal rendering lifecycle.
-* Native HTML elements automatically work with the web platform (e.g., native form post). This is often not the case with custom widgets/components.
+* Slotting native HTML form controls lessens the need to develop and maintain dozens of web components and/or functional components duplicating every form control or input pattern.
+  * Web components duplicating form controls usually only implement a portion of the API because the number of attributes is HUGE and often conditional on other attributes (e.g., `input type="number"` adds more attributes like `min` and `max`, while making others such as `maxlength` invalid).
+  * This leaves it up to the consuming developer to improvise when the web component falls short of the native HTML spec, or forces the developer to add an extremely large number of properties to the component to duplicate each of the attributes (e.g., the `input` tag accepts 34 attributes *not counting* 40+ global HTML and ARIA attributes).
+  * Native HTML elements automatically work with the web platform (e.g., native form post and `FormData()`). This is often not the case with custom widgets/components.
+  * Native HTML elements handle user interactions and mobile transformations automatically, requiring significant effort to duplicated them within custom web components, if possible at all.
 
 ### Disadvantages
 
 * Loose coupling with the inputs means more DOM manipulation instead of direct control inside of the component's reactive properties and rendering pipeline.
+  * DOM manipulation may present challenges with component reactivity.
+  * The amount of DOM manipulation seems minimal at this time, only affecting the form field `id` and `aria-` attributes that are dependent on component-specific generated `id`s.
 * Using native HTML elements means the consuming app may need to manipulate the native elements and attributes in some cases rather than reactive web component properties.
-
-
