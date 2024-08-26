@@ -58,7 +58,7 @@ const renderActions = (layout, { btn1, btn2, btn3 }) => {
   } else if (layout === 'triple') {
     return `
       <div slot="cbp-dialog-actions">
-        <cbp-button tag="${btn3.tag}" ${btn3.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn3.color}" aria-describedby="card-heading-1" sx='{"--cbp-button-color":"var(--cbp-color-text-lightest)"}'>${btn3.label}</cbp-button>
+        <cbp-button tag="${btn3.tag}" ${btn3.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn3.color}" aria-describedby="card-heading-1">${btn3.label}</cbp-button>
         <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn2.color}" aria-describedby="card-heading-1">${btn2.label}</cbp-button>
         <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn1.color}" aria-describedby="card-heading-1">${btn1.label}</cbp-button>
       </div>
