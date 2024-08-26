@@ -7,6 +7,7 @@ export default {
       description: 'Named icons that are built-in to the component.',
       control: 'select',
       options: [
+        'address-book',
         'angle-down',
         'arrow-right',
         'bars',
@@ -25,6 +26,7 @@ export default {
         'globe',
         'magnifying-glass',
         'minus',
+        'pen-to-square',
         'plus',
         'right-to-bracket',
         'right-from-bracket',
