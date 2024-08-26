@@ -28,7 +28,7 @@ cbp-dialog {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 999;
+  z-index: var(--cbp-z-index-level-top);
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3); // backdrop
 
@@ -114,7 +114,7 @@ cbp-dialog {
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: 999;
+    z-index: var(--cbp-z-index-level-top);
     background-color: var(--cbp-dialog-background-color)
   }
 }
