@@ -41,7 +41,7 @@ export class CbpTabs {
   setActiveTab(activatedTab) {
     this.tabs.forEach((tab: HTMLCbpTabElement, index) => {
       let button = tab.querySelector('button');
-      let panelid = button.getAttribute('aria-controls');
+      let panelid = tab.name;
       let panel: HTMLCbpTabPanelElement = document.querySelector(`#${panelid}`);
 
       if (!panel) {
@@ -53,7 +53,7 @@ export class CbpTabs {
         tab.selected = true;
         this.selectedIndex = this.focusIndex = index;
         panel.selected = true;
-        button.scrollIntoView({ behavior: "smooth", inline: 'start' });
+        button?.scrollIntoView({ behavior: "smooth", inline: 'start' }); // Do nothing if the button hasn't been fully rendered yet - this is desired behavior on initial load.
       } else {
         tab.selected = false;
         panel.selected = false;
