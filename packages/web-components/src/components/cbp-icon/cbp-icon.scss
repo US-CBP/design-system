@@ -7,10 +7,8 @@ cbp-icon {
   align-items: center;
   justify-content: center;
 
-  // TechDebt: figure out what makes for the most consistent display since icons are not square proportions
   svg {
-    //width: var(--cbp-icon-size);
-    width: auto;
+    width: var(--cbp-icon-size);
     height: var(--cbp-icon-size);
     fill: var(--cbp-icon-color);
     vertical-align: top;

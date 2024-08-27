@@ -87,7 +87,7 @@ export class CbpExpand {
               aria-describedby={this.headingId}
               ref={el => (this.control = el)}
             >
-              <cbp-icon name="caret-down" color="currentColor"></cbp-icon>
+              <cbp-icon name="caret-up" color="currentColor"></cbp-icon>
             </cbp-button>
           </cbp-flex-item>
 

@@ -86,7 +86,7 @@ const GeneralTemplate = ({ color, title, bodyText, withIcon, context, sx }) => {
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
       <h4 slot="cbp-card-title">
-        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.5rem' sx='{"display":"inline"}'></cbp-icon>` : ''}
+        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.25rem' sx='{"display":"inline"}'></cbp-icon>` : ''}
         ${title}
       </h4>
       <p>${bodyText}</p>
@@ -103,7 +103,7 @@ const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
       <h4 slot="cbp-card-title" id="card-heading-1">
-        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.5rem' sx='{"display":"inline"}'></cbp-icon>` : ''}
+        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.25rem' sx='{"display":"inline"}'></cbp-icon>` : ''}
         ${title}
       </h4>
       <p>${bodyText}</p>  
@@ -121,7 +121,7 @@ const BannerTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
       <h4 slot="cbp-card-title">
-        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.5rem' sx='{"display":"inline"}'></cbp-icon>` : ''}
+        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.25rem' sx='{"display":"inline"}'></cbp-icon>` : ''}
         ${title}
       </h4>
       <p>${bodyText}</p>  

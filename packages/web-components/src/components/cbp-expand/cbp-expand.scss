@@ -53,7 +53,7 @@ cbp-expand {
   color:var(--cbp-expand-color);
 
   &:not([open]) {
-    --cbp-expand-rotate-icon: rotate(-90deg);
+    --cbp-expand-rotate-icon: rotate(-180deg);
   }
 
   &:not([open]) .cbp-expand--content {

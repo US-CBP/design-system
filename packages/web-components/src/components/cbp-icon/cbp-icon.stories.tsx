@@ -12,6 +12,8 @@ export default {
         'arrow-right',
         'bars',
         'book',
+        'caret-down',
+        'caret-up',
         'check',
         'chevron-right',
         'circle',

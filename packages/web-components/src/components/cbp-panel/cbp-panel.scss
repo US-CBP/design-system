@@ -60,7 +60,7 @@ cbp-panel {
     border-bottom: solid var(--cbp-border-size-xl) var(--cbp-panel-header-color-bottom-border);
     border-radius: var(--cbp-panel-border-radius) var(--cbp-panel-border-radius) 0 0;
     
-    & :where(h1,h2,h3,h4,h5,h6) {
+    & cbp-typography :where(h1,h2,h3,h4,h5,h6) {
       color: inherit;
       font-size: var(--cbp-font-size-heading-lg);
       font-weight: var(--cbp-font-weight-medium);

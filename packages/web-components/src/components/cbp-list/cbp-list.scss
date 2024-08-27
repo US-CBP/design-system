@@ -51,6 +51,10 @@ cbp-list {
       padding-block: var(--cbp-list-item-padding-block);
     }
 
+    cbp-icon{
+      vertical-align: text-top;
+    }
+
     &[size="large"]{
     --cbp-list-font-size: var(--cbp-font-size-heading-sm);
     --cbp-list-item-line-height: var(--cbp-line-height-md);
@@ -125,7 +129,7 @@ cbp-list {
         
         cbp-icon{
           margin-inline-start: var(--cbp-link-list-icon-margin);
-          padding-inline-end: var(--cbp-space-1x);
+          margin-inline-end: var(--cbp-space-1x);
         }
       }
     }
