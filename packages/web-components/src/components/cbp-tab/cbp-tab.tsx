@@ -18,6 +18,7 @@ export class CbpTab {
   /** Specifies whether this is the selected tab. Only one tab per tabset should be marked as selected.*/
   @Prop({ reflect: true }) selected: boolean;
 
+  /** An optional color variant. */
   @Prop({ reflect: true }) color: 'danger';
 
   /** For tabs without a visible text label (e.g., icon tabs) or a label that is insufficiently unique/descriptive, you may provide accessibility text, which is rendered as an `aria-label` on the tab control (button element). */
@@ -78,5 +79,4 @@ export class CbpTab {
       </Host>
     );
   }
-
 }
