@@ -81,7 +81,7 @@ Drawer.args = {
 };
 
 
-const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, context, sx }) => {
+const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, withIcon, context, sx }) => {
   return `
     <cbp-button
       type="button"
@@ -112,6 +112,8 @@ const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, conte
           variant="heading-lg"
           id="panelheader"
         >
+        
+          ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}
           User Preferences
         </cbp-typography>
         <p>Drawer Content</p>
