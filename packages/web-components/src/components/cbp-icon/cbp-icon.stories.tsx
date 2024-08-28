@@ -13,7 +13,6 @@ export default {
         'bars',
         'book',
         'caret-down',
-        'caret-up',
         'check',
         'chevron-right',
         'circle',

@@ -6,6 +6,7 @@ cbp-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  vertical-align: text-top;
 
   svg {
     width: var(--cbp-icon-size);

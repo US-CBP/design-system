@@ -52,7 +52,8 @@ cbp-expand {
   margin-bottom: var(--cbp-expand-margin-bottom);
   color:var(--cbp-expand-color);
 
-  &:not([open]) {
+  // &:not([open]) {
+  &[open] {
     --cbp-expand-rotate-icon: rotate(-180deg);
   }
 
