@@ -19,6 +19,9 @@ export default {
       description: 'Accessibility text is required to label the drawer (dialog) and is applied as an `aria-label`.',
       control: 'text',
     },
+    withIcon: {
+      control: 'boolean',
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -30,7 +33,7 @@ export default {
   },
 };
 
-const Template = ({ position, open, uid, accessibilityText, context, sx }) => {
+const Template = ({ position, withIcon, open, uid, accessibilityText, context, sx }) => {
   return `
     <cbp-button
       type="button"
@@ -61,6 +64,7 @@ const Template = ({ position, open, uid, accessibilityText, context, sx }) => {
           variant="heading-lg"
           id="panelheader"
         >
+          ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}
           Sidebar Header
         </cbp-typography>
         <p>Sidebar Content</p>
@@ -77,7 +81,7 @@ Drawer.args = {
 };
 
 
-const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, context, sx }) => {
+const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, withIcon, context, sx }) => {
   return `
     <cbp-button
       type="button"
@@ -108,6 +112,8 @@ const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, conte
           variant="heading-lg"
           id="panelheader"
         >
+        
+          ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}
           User Preferences
         </cbp-typography>
         <p>Drawer Content</p>
