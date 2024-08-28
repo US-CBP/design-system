@@ -179,7 +179,7 @@ cbp-card {
     border-color: var(--cbp-banner-card-color);
 
 
-    [slot=cbp-card-title] {
+    [slot=cbp-card-title] > * {
       background-color: var(--cbp-banner-card-color);
       color: var(--cbp-banner-card-color-title);
       font-size: var(--cbp-font-size-heading-md);
