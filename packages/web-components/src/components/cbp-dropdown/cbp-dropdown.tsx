@@ -91,6 +91,14 @@ export class CbpDropdown {
   }
 
 
+  /*
+   aria-haspopup, aria-controls, aria-activedescendant, and aria-autocomplete.
+
+   Comboboxes have an implicit aria-haspopup value of listbox, so including this attribute is optional if the popup is a listbox.
+
+   One common convention is that Down Arrow moves focus from the input to the first focusable descendant of the popup element.
+   */
+
 
   render() {
     return (
@@ -120,7 +128,11 @@ export class CbpDropdown {
           ref={el => (this.formField = el)}
         />
 
-        <div class="cbp-dropdown-menu" id={`${this.fieldId}-menu`}>
+        <div 
+          role="listbox"
+          class="cbp-dropdown-menu"
+          id={`${this.fieldId}-menu`}
+        >
           <slot />
         </div>
       </Host>

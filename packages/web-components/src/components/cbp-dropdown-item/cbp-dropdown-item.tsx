@@ -40,7 +40,7 @@ export class CbpDropdownItem {
   render() {
     return (
       <Host
-        role="??"
+        role="option"
         tabindex={ !this.disabled ? 0 : -1 }
         onClick={ () => this.handleClick()}
         onKeyUp={e => this.handleKeyUp(e)}
