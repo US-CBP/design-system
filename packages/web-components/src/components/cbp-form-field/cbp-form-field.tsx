@@ -14,6 +14,7 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 export class CbpFormField {
 
   private formField: any;
+  private formFieldComponent: any;
   private buttons: any;
   private attachedButtons: any;
   private hasDescription: boolean;
@@ -60,9 +61,12 @@ export class CbpFormField {
   @Watch('readonly')
   watchReadonlyHandler(newValue: boolean) {
     if (this.formField) {
-        (newValue) 
-          ? this.formField.setAttribute('readonly', '')
-          : this.formField.removeAttribute('readonly');
+      (newValue) 
+        ? this.formField.setAttribute('readonly', '')
+        : this.formField.removeAttribute('readonly');
+    }
+    if (this.formFieldComponent) {
+      this.formFieldComponent.readonly = newValue;
     }
     if(this.buttons) {
       this.buttons.forEach( (el) => {
@@ -78,6 +82,9 @@ export class CbpFormField {
         ? this.formField.setAttribute('disabled', '')
         : this.formField.removeAttribute('disabled');
     }
+    if (this.formFieldComponent) {
+      this.formFieldComponent.disabled = newValue;
+    }
     if(this.buttons) {
       this.buttons.forEach( (el) => {
         el.disabled= this.disabled || this.readonly;
@@ -91,6 +98,9 @@ export class CbpFormField {
       (newValue) 
         ? this.formField.setAttribute('aria-invalid', 'true')
         : this.formField.removeAttribute('aria-invalid');
+    }
+    if (this.formFieldComponent) {
+      this.formFieldComponent.error = newValue;
     }
     if(this.buttons) {
       this.buttons.forEach( (el) => {
@@ -111,6 +121,8 @@ export class CbpFormField {
 
     // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
     this.formField = this.host.querySelector('input,select,textarea');
+    // Treat nested components separately, as it's hard to modify their rendered content directly
+    this.formFieldComponent = this.host.querySelector('cbp-dropdown');
     this.buttons = this.host.querySelectorAll('cbp-button');
     this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
     this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
@@ -146,7 +158,7 @@ export class CbpFormField {
     }
   }
 
-
+  
   render() {
     return (
       <Host>

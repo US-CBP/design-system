@@ -1,0 +1,52 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Dropdown/Specifications" />
+
+# cbp-dropdown and cbp-dropdown-item
+
+## Purpose
+
+The Dropdown component offers an alternative to the native select element that can be fully styled and support additional variants.
+
+## Functional Requirements
+
+* The Dropdown component can replace the native `select` element (with caveats*)
+* The Dropdown component will render an `input type="hidden"` element to pass the field value in a native form submission.
+* The Dropdown component is meant to be used in the default slot of the `cbp-form-field` component, like a native form field would, providing:
+  * Form field styles without duplication
+  * An accessible form field pattern
+* The Dropdown options will consist of slotted child `cbp-dropdown-item` components.
+  * Dropdown items may have individual values specified, separate from the visiable label (similar to a native select option element).
+  * Dropdown items may be disabled.
+* The Dropdown and dropdown items must support keyboard navigation similar to a native select or menu widget.
+
+## Technical Specifications
+
+### User Interactions
+
+* Clicking on the Dropdown label or control will open the dropdown menu and place focus on the selected element or the first available item.
+* Dropdown Items may be activated either by clicking with the mouse or pressing Enter on the focused item (same as a native `select` element).
+* Activating a Dropdown Item will do the following:
+  * Emit an event, which is listened for by the parent Dropdown component
+  * Update the visible selected value on the Dropdown control to that of the activated Dropdown Item
+  * Update the value of the hidden input field to the value of the clicked Dropdown Item. If no value is explicitly set, then the item's `innerText` will be used as the value.
+* Disabled Dropdown Items cannot be activated.
+
+### Responsiveness
+
+* Since it inherits the same default styling as other form fields, the Dropdown is styled at 100% of its container by default, with a max-width of 100% so it cannot break out of its container.
+* If the control label (of the selected item) overflows the control, it will truncate with an ellipsis.
+* Drop Down Items: TBD
+
+### Accessibility
+
+* The associated label and `aria-describedby` are provided by the parent `cbp-form-field` component.
+* The Dropdown control is actually a button with a `role="combobox"`.
+
+### Additional Notes and Considerations
+
+* While visually more consistent with the CBP Design System, the Dropdown component has some drawbacks compared to a native `select` element:
+  * A native `select` allows you to press the initial letter multiple times to cycle through those options that begin with that letter. This creates familiar interactions for common patterns such as State and Country selection where the lists are well-known.
+  * On mobile devices, a native `select` will be presented by an enlarged overlay of radio options, which is drastically more usable in this context.
+* TODO: Requires additional testing with `cbp-form-field-wrapper`.
+* TODO: How should Dropdown Items handle wrapping or multi-line text?

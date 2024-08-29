@@ -1,0 +1,102 @@
+/**
+ *
+ */
+
+:root {
+  --cbp-dropdown-item-color: var(--cbp-dropdown-menu-color);
+  --cbp-dropdown-item-color-bg: var(--cbp-dropdown-menu-color-bg);
+  --cbp-dropdown-item-color-border: var(--cbp-color-gray-cool-50);
+
+  --cbp-dropdown-item-color-dark: var(--cbp-dropdown-menu-color-dark);
+  --cbp-dropdown-item-color-bg-dark: var(--cbp-dropdown-menu-color-bg-dark);
+  --cbp-dropdown-item-color-border-dark: var(--cbp-color-gray-cool-50);
+
+  /*
+  --cbp-dropdown-item-color: var(--cbp-dropdown-color);
+  --cbp-dropdown-item-color-bg: var(--cbp-dropdown-color-bg);
+  --cbp-dropdown-item-color-border: var(--cbp-color-gray-cool-50);
+  
+  --cbp-dropdown-item-color-dark: var(--cbp-dropdown-color-dark);
+  --cbp-dropdown-item-color-bg-dark: var(--cbp-dropdown-color-bg-dark);
+  --cbp-dropdown-item-color-border-dark: var(--cbp-color-gray-cool-50);
+  */
+}
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+ [data-cbp-theme=light] cbp-dropdown[context*=dark] cbp-dropdown-item,
+ [data-cbp-theme=dark] cbp-dropdown:not([context=dark-inverts]):not([context=light-always]) cbp-dropdown-item {
+  --cbp-dropdown-item-color: var(--cbp-dropdown-item-color-dark);
+  --cbp-dropdown-item-color-bg: var(--cbp-dropdown-item-color-bg-dark);
+  --cbp-dropdown-item-color-border: var(--cbp-dropdown-item-color-border-dark);
+ }
+
+cbp-dropdown-item {
+  /*
+  --cbp-dropdown-item-color: var(--cbp-dropdown-color);
+  --cbp-dropdown-item-color-bg: var(--cbp-dropdown-color-bg);
+  --cbp-dropdown-item-color-border: var(--cbp-color-gray-cool-50);
+  --cbp-dropdown-item-color-dark: var(--cbp-dropdown-color-dark);
+  --cbp-dropdown-item-color-bg-dark: var(--cbp-dropdown-color-bg-dark);
+  --cbp-dropdown-item-color-border-dark: var(--cbp-color-gray-cool-50);
+*/
+
+  display: block;
+  border-block-end: var(--cbp-border-size-sm) solid var(--cbp-dropdown-item-color-border);
+  //white-space: nowrap;
+  //text-overflow: clip;
+
+
+
+  // This nested div is required for applying this weird indent to the bottom border and text, while extending the background color across the full width
+  .cbp-dropdown-item-content {
+    display: flex;
+    align-items: center;
+    margin-inline-start: calc(var(--cbp-space-3x) * -1);
+
+    //width: 100%;
+    min-height: var(--cbp-space-9x);
+    //margin-inline-start: calc(var(--cbp-space-3x) * -1);
+    //text-indent: var(--cbp-space-1x);
+    padding-inline-start: var(--cbp-space-4x);
+    //border-block-end: var(--cbp-border-size-sm) solid var(--cbp-dropdown-item-color-border);
+
+    color: var(--cbp-dropdown-item-color);
+    background: var(--cbp-dropdown-item-color-bg);
+  }
+
+  &:last-of-type {
+    border-block-end-width: 0;
+  }
+
+  &[selected] {
+    --cbp-dropdown-item-color: var(--cbp-dropdown-color);
+    --cbp-dropdown-item-color-bg: var(--cbp-dropdown-color-bg);
+    --cbp-dropdown-item-color-dark: var(--cbp-dropdown-color-dark);
+    --cbp-dropdown-item-color-bg-dark: var(--cbp-dropdown-color-bg-dark);
+  }
+
+  &:hover {
+    --cbp-dropdown-item-color: var(--cbp-color-text-lightest);
+    --cbp-dropdown-item-color-bg: var(--cbp-color-interactive-secondary-darker);
+    --cbp-dropdown-item-color-dark: var(--cbp-color-text-darkest);
+    --cbp-dropdown-item-color-bg-dark: var(--cbp-color-interactive-secondary-light);
+  }
+
+  &:focus {
+    --cbp-dropdown-item-color: var(--cbp-color-text-lightest);
+    --cbp-dropdown-item-color-bg: var(--cbp-color-interactive-focus-dark);
+    --cbp-dropdown-item-color-dark: var(--cbp-color-text-darkest);
+    --cbp-dropdown-item-color-bg-dark: var(--cbp-color-interactive-focus-light);
+    outline: 0;
+  }
+
+  &[disabled] {
+    font-style: italic;
+    --cbp-dropdown-item-color: var(--cbp-color-text-dark);
+    --cbp-dropdown-item-color-dark: var(--cbp-color-text-light);
+    cursor: not-allowed;
+  }
+
+}
