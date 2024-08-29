@@ -16,7 +16,7 @@ The Dropdown component offers an alternative to the native select element that c
   * Form field styles without duplication
   * An accessible form field pattern
 * The Dropdown options will consist of slotted child `cbp-dropdown-item` components.
-  * Dropdown items may have individual values specified, separate from the visiable label (similar to a native select option element).
+  * Dropdown items may have individual values specified, separate from the visible label (similar to a native select option element).
   * Dropdown items may be disabled.
 * The Dropdown and dropdown items must support keyboard navigation similar to a native select or menu widget.
 
@@ -28,7 +28,8 @@ The Dropdown component offers an alternative to the native select element that c
 * Dropdown Items may be activated either by clicking with the mouse or pressing Enter on the focused item (same as a native `select` element).
 * Activating a Dropdown Item will do the following:
   * Emit an event, which is listened for by the parent Dropdown component
-  * Update the visible selected value on the Dropdown control to that of the activated Dropdown Item
+  * Set the `selected` property for all other Dropdown Items to `false`.
+  * Update the visible selected value on the Dropdown control to that of the activated Dropdown Item.
   * Update the value of the hidden input field to the value of the clicked Dropdown Item. If no value is explicitly set, then the item's `innerText` will be used as the value.
   * Close the dropdown menu
   * Return focus to the control
@@ -43,7 +44,11 @@ The Dropdown component offers an alternative to the native select element that c
 ### Accessibility
 
 * The associated label and `aria-describedby` are provided by the parent `cbp-form-field` component.
-* The Dropdown control is actually a button with a `role="combobox"`.
+* The Dropdown control is actually a button with a `role="combobox"` (for single select variant).
+* The Dropdown menu has a `role="listbox"`.
+* The Dropdown Items have `role="option"`.
+* Keyboard navigation:
+  * TBD
 
 ### Additional Notes and Considerations
 
