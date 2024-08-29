@@ -7,9 +7,9 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 })
 export class CbpDropdown {
 
-  private formField: any;
-  private buttons: any;
-  //private parent: HTMLCbpFormFieldElement;
+  private control: HTMLButtonElement;
+  private formField: HTMLInputElement;
+  private dropdownitems: HTMLCbpDropdownItemElement[];
     
   @Element() host: HTMLElement;
 
@@ -56,14 +56,27 @@ export class CbpDropdown {
     if (!this.readonly && !this.disabled) this.open=!this.open;
   }
 
+  handleKeyUp(e) {
+    if (e.key == 'Escape') {
+      this.open=false;
+      this.control.focus();
+    }
+  }
 
   @Listen('dropdownItemClick')
   handleDropdownItemClick(e) {
-    //console.log({e});
+    // Unselect all items except the one that was activated
+    this.dropdownitems=Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
+    this.dropdownitems.forEach( (item) => {
+      if (item !== e.detail.host) {
+        item.selected=false;
+      }
+    });
+    // Update values at this level, close the menu, and return focus to the control
     this.selectedLabel=e.detail.label;
     this.value=e.detail.value;
-    //console.log(this.label, this.value);
     this.open=false;
+    this.control.focus();
   }
 
   componentWillLoad() {
@@ -78,20 +91,6 @@ export class CbpDropdown {
   }
 
 
-  componentDidLoad() {
-    // The Watch decorators only listen for changes.
-    // Set the disabled/readonly/error states on load only if true.
-    if (!!this.formField) {
-      if (this.readonly) this.formField.setAttribute('readonly', '');
-      if (this.disabled) this.formField.setAttribute('disabled', '');
-      if (this.error) this.formField.setAttribute('aria-invalid', 'true');
-    }
-    if (!!this.buttons) {
-      this.buttons.forEach( (el) => {
-        if (this.disabled || this.readonly) el.disabled=true;
-      });
-    }
-  }
 
   render() {
     return (
@@ -105,6 +104,8 @@ export class CbpDropdown {
           aria-haspopup="listbox"
           disabled={this.disabled || this.readonly}
           onClick={ () => this.handleClick()}
+          onKeyUp={e => this.handleKeyUp(e)}
+          ref={el => (this.control = el)}
         >
           <div class="cbp-dropdown-label">
             {this.selectedLabel}
@@ -116,6 +117,7 @@ export class CbpDropdown {
           id={`${this.fieldId}-field`}
           name={this.name}
           value={this.value}
+          ref={el => (this.formField = el)}
         />
 
         <div class="cbp-dropdown-menu" id={`${this.fieldId}-menu`}>
