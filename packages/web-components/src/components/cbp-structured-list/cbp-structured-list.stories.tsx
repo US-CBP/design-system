@@ -314,3 +314,55 @@ StructuredListCollection.args = {
 
 
 export const StructuredListWithGrid = StructuredListWithGridTemplate.bind({});
+
+
+/*<------------------------------------Media---------------------------------------->*/
+
+const StructuredListMediaTemplate = ({ listItems, striped, selectable, context, sx }) => {
+  return ` 
+        <cbp-structured-list
+          ${striped ? `striped` : ''}
+          ${selectable ? `selectable` : ''}
+          header-id="list-header"
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        >
+        
+        ${generateItems(listItems)}
+
+        
+        </cbp-structured-list>
+      `;
+};
+export const StructuredListMedia = StructuredListMediaTemplate.bind({});
+StructuredListMedia.argTypes = {
+  listItems: {
+    description: 'Configure various aspects of the list items within the structured list.',
+    control: 'object',
+  },
+}
+StructuredListMedia.args = {
+  showHeader: false,
+  listItems: [
+    {
+      content: "<cbp-grid grid-template-columns='1fr 3fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' /></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "<cbp-grid grid-template-columns='1fr 3fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' /></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "<cbp-grid grid-template-columns='1fr 3fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' /></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "<cbp-grid grid-template-columns='1fr 3fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' /></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      color: 'default',
+      selected: false
+    },
+  ]
+}
