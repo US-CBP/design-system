@@ -4,6 +4,15 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
+## [0.0.1-develop.13] 09-03-2024
+
+* Added variants to the `cbp-list` component.
+* Fixed a JavaScript error in Tabs when one tab is marked selected.
+* Updated `cbp-icon` with additional icons and assuring that all icons are rendered as square. This fixes numerous sizing and alignment issues with lists and buttons using icons.
+* Added `--cbp-responsive-spacing-gap` token/variable to core.css in `cbp-app`.
+* Audited and improved accessibility of patterns built with `cbp-form-field` and optionally `cbp-form-field-wrapper` components.
+* Additional bug fixes per design review.
+
 ## [0.0.1-develop.12] 08-07-2024
 
 * First cut of `cbp-form-field-wrapper`, a child component to wrap text inputs, supporting overlays and attached buttons required for numerous input patterns.
