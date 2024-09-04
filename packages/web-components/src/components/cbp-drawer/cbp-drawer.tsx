@@ -116,7 +116,7 @@ export class CbpDrawer {
             controls={this.uid}
             context="dark-always"
           >
-            <cbp-icon name="circle-xmark"></cbp-icon>
+            <cbp-icon name="circle-xmark" size="1rem"></cbp-icon>
           </cbp-button>
 
           <slot />
