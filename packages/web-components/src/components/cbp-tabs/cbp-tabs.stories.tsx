@@ -62,7 +62,7 @@ const Template = ({ tabs, accessibilityText, withIcon, withBadge,context, sx }) 
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      ${createTabs(tabs, withIcon, withBadge,)}
+      ${createTabs(tabs, withIcon, withBadge)}
     </cbp-tabs>
     ${createTabPanels(tabs)}
  `;
@@ -86,7 +86,7 @@ Tabs.args = {
       name: 'tab2',
       label: 'Tab 2',
       accessibilityText: '',
-      color: 'danger',
+      color: 'default',
       panelContent: 'Tab panel 2 content.',
       selected: false,
     },
