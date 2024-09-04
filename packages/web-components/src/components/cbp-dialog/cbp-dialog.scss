@@ -50,7 +50,7 @@ cbp-dialog {
     flex-direction: column;
     position: fixed;
     overflow-y: auto;
-    z-index: 9;
+    z-index: var(--cbp-z-index-level-top);
     width: var(--cbp-dialog-width);
     height: var(--cbp-dialog-height);
     max-width: 100%;

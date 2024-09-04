@@ -21,6 +21,9 @@
   --cbp-tab-color-border-focus: var(--cbp-tab-color-border-focus-dark);
   --cbp-tab-color-border-active: var(--cbp-tab-color-border-active-dark);
   --cbp-tab-color-border-selected: var(--cbp-tab-color-border-selected-dark);
+
+  --cbp-tab-color-outline-focus: var(--cbp-tab-color-outline-focus-dark);
+
 }
 
 cbp-tab {
@@ -59,6 +62,7 @@ cbp-tab {
       --cbp-tab-color: var(--cbp-tab-color-focus);
       --cbp-tab-color-bg: var(--cbp-tab-color-bg-focus);
       --cbp-tab-color-border: var(--cbp-tab-color-border-focus);
+      --cbp-button-color-outline-focus: var(--cbp-tab-color-outline-focus);
       outline-style: solid;
     }
 
@@ -71,7 +75,7 @@ cbp-tab {
   }
 
   &[color=danger] {
-    --cbp-tab-color: var(--cbp-color-danger-base);
+    --cbp-tab-color: var(--cbp-color-danger-dark);
     --cbp-tab-color-dark: var(--cbp-color-danger-light);
 
     --cbp-tab-color-hover: var(--cbp-color-danger-base);

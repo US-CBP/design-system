@@ -10,6 +10,12 @@ export default {
     accessibilityText: {
       control: 'text',
     },
+    withIcon: {
+      control: 'boolean',
+    },
+    withBadge: {
+      control: 'boolean',
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -21,8 +27,8 @@ export default {
   },
 };
 
-function createTabs(tabs) {
-  const html = tabs.map(({ name, label, color, accessibilityText, selected }) => {
+function createTabs(tabs, withIcon, withBadge,) {
+  const html = tabs.map(({ name, label, color, accessibilityText,  selected }) => {
     return `
       <cbp-tab 
         name="${name}"
@@ -30,7 +36,9 @@ function createTabs(tabs) {
         ${accessibilityText ? `accessibility-text=${accessibilityText}}` : ''}
         ${selected == true ? 'selected' : ''}
       >
+        ${withIcon ? `<cbp-icon name='check' sx='{"padding-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>` : ''}
         ${label}
+        ${withBadge ? `<cbp-badge sx='{"margin-inline-start":"var(--cbp-space-2x)"}'>22</cbp-badge>` : ''}
       </cbp-tab>
     `;
   });
@@ -47,14 +55,14 @@ function createTabPanels(tabs) {
   return html.join('');
 }
 
-const Template = ({ tabs, accessibilityText, context, sx }) => {
+const Template = ({ tabs, accessibilityText, withIcon, withBadge,context, sx }) => {
   return ` 
     <cbp-tabs
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      ${createTabs(tabs)}
+      ${createTabs(tabs, withIcon, withBadge)}
     </cbp-tabs>
     ${createTabPanels(tabs)}
  `;
@@ -71,6 +79,8 @@ Tabs.args = {
       color: 'default',
       panelContent: 'Tab panel 1 content.',
       selected: false,
+      withIcon: true,
+      withBadge: true
     },
     {
       name: 'tab2',
