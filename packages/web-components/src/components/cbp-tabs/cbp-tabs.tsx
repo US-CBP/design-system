@@ -45,7 +45,7 @@ export class CbpTabs {
       let panel: HTMLCbpTabPanelElement = document.querySelector(`#${panelid}`);
 
       if (!panel) {
-        console.error(`Error: cbp-tab does not reference valid tab panel with id ${panelid}`);
+        console?.warn(`Warning: cbp-tab does not reference valid tab panel with id ${panelid}`);
         return;
       }
 
@@ -99,7 +99,7 @@ export class CbpTabs {
   }
 
   componentWillLoad() {
-    // get all children, taking into account nested tabs
+    // get all children, taking into account nested tab sets
     this.tabs = Array.from(this.host.querySelectorAll('cbp-tab')).filter(tab => tab.closest('cbp-tabs') == this.host);
 
     // Attach event listeners to the child tabs
