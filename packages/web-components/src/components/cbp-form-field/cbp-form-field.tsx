@@ -21,14 +21,20 @@ export class CbpFormField {
   
   @Element() host: HTMLElement;
 
+
+  /** Provide a visible/accessible label for the form field/group. */
   @Prop() label: string;
+  
+  /** Provide additional details about the field, including whether it's required, which is applied to the form field via `aria-describedby`. */
   @Prop() description: string;
   
   /** Optionally specify the ID of the field here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-formfield');
   
+  /** Specifies that the field has an error (and sets aria-invalid accordingly). */
   @Prop({ reflect: true }) error: boolean;
 
+  /** Specifies the error message(s) to replace the description text while in an error state. */
   @Prop() errorMessages: string | any;
 
   /** Specifies that the field is readonly; sets all form fields as readonly and related button controls to disabled.  */
@@ -138,12 +144,16 @@ export class CbpFormField {
   }
 
   componentDidLoad() {
-    // The Watch decorators only listen for changes.
-    // Set the disabled/readonly/error states on load only if true.
+    // Set the disabled/readonly/error states on load only if true. (The Watch decorators only listen for changes, not initial state)
     if (!!this.formField) {
       if (this.readonly) this.formField.setAttribute('readonly', '');
       if (this.disabled) this.formField.setAttribute('disabled', '');
       if (this.error) this.formField.setAttribute('aria-invalid', 'true');
+    }
+    if (this.formFieldComponent) {
+      if (this.readonly) this.formFieldComponent.readonly=true;
+      if (this.disabled) this.formFieldComponent.disabled=true;
+      if (this.error) this.formFieldComponent.error=true;
     }
     if (!!this.buttons) {
       this.buttons.forEach( (el) => {
@@ -158,7 +168,7 @@ export class CbpFormField {
     }
   }
 
-  
+
   render() {
     return (
       <Host>
