@@ -14,20 +14,27 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 export class CbpFormField {
 
   private formField: any;
+  private formFieldComponent: any;
   private buttons: any;
   private attachedButtons: any;
   private hasDescription: boolean;
   
   @Element() host: HTMLElement;
 
+
+  /** Provide a visible/accessible label for the form field/group. */
   @Prop() label: string;
+  
+  /** Provide additional details about the field, including whether it's required, which is applied to the form field via `aria-describedby`. */
   @Prop() description: string;
   
   /** Optionally specify the ID of the field here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-formfield');
   
+  /** Specifies that the field has an error (and sets aria-invalid accordingly). */
   @Prop({ reflect: true }) error: boolean;
 
+  /** Specifies the error message(s) to replace the description text while in an error state. */
   @Prop() errorMessages: string | any;
 
   /** Specifies that the field is readonly; sets all form fields as readonly and related button controls to disabled.  */
@@ -60,9 +67,12 @@ export class CbpFormField {
   @Watch('readonly')
   watchReadonlyHandler(newValue: boolean) {
     if (this.formField) {
-        (newValue) 
-          ? this.formField.setAttribute('readonly', '')
-          : this.formField.removeAttribute('readonly');
+      (newValue) 
+        ? this.formField.setAttribute('readonly', '')
+        : this.formField.removeAttribute('readonly');
+    }
+    if (this.formFieldComponent) {
+      this.formFieldComponent.readonly = newValue;
     }
     if(this.buttons) {
       this.buttons.forEach( (el) => {
@@ -78,6 +88,9 @@ export class CbpFormField {
         ? this.formField.setAttribute('disabled', '')
         : this.formField.removeAttribute('disabled');
     }
+    if (this.formFieldComponent) {
+      this.formFieldComponent.disabled = newValue;
+    }
     if(this.buttons) {
       this.buttons.forEach( (el) => {
         el.disabled= this.disabled || this.readonly;
@@ -91,6 +104,9 @@ export class CbpFormField {
       (newValue) 
         ? this.formField.setAttribute('aria-invalid', 'true')
         : this.formField.removeAttribute('aria-invalid');
+    }
+    if (this.formFieldComponent) {
+      this.formFieldComponent.error = newValue;
     }
     if(this.buttons) {
       this.buttons.forEach( (el) => {
@@ -111,6 +127,8 @@ export class CbpFormField {
 
     // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
     this.formField = this.host.querySelector('input,select,textarea');
+    // Treat nested components separately, as it's hard to modify their rendered content directly
+    this.formFieldComponent = this.host.querySelector('cbp-dropdown');
     this.buttons = this.host.querySelectorAll('cbp-button');
     this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
     this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
@@ -126,12 +144,16 @@ export class CbpFormField {
   }
 
   componentDidLoad() {
-    // The Watch decorators only listen for changes.
-    // Set the disabled/readonly/error states on load only if true.
+    // Set the disabled/readonly/error states on load only if true. (The Watch decorators only listen for changes, not initial state)
     if (!!this.formField) {
       if (this.readonly) this.formField.setAttribute('readonly', '');
       if (this.disabled) this.formField.setAttribute('disabled', '');
       if (this.error) this.formField.setAttribute('aria-invalid', 'true');
+    }
+    if (this.formFieldComponent) {
+      if (this.readonly) this.formFieldComponent.readonly=true;
+      if (this.disabled) this.formFieldComponent.disabled=true;
+      if (this.error) this.formFieldComponent.error=true;
     }
     if (!!this.buttons) {
       this.buttons.forEach( (el) => {

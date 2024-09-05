@@ -1,0 +1,108 @@
+/**
+ *  @prop --cbp-dropdown-menu-color: var(--cbp-form-field-color);
+ *  @prop --cbp-dropdown-menu-color-bg: var(--cbp-form-field-color-bg);
+ *  @prop --cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
+ *  @prop --cbp-dropdown-menu-color-dark: var(--cbp-form-field-color-dark);
+ *  @prop --cbp-dropdown-menu-color-bg-dark: var(--cbp-form-field-color-bg-dark);
+ *  @prop --cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
+ */
+:root {
+  // TechDebt: need to weigh this dependency/inheritance vs standalone functionality
+  --cbp-dropdown-menu-color: var(--cbp-form-field-color);
+  //--cbp-dropdown-menu-color-bg: var(--cbp-color-white);
+  //--cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
+  --cbp-dropdown-menu-color-bg: var(--cbp-form-field-color-bg);
+  --cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
+
+  --cbp-dropdown-menu-color-dark: var(--cbp-form-field-color-dark);
+  //--cbp-dropdown-menu-color-bg-dark: var(--cbp-color-gray-cool-70);
+  //--cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
+  --cbp-dropdown-menu-color-bg-dark: var(--cbp-form-field-color-bg-dark);
+  --cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
+}
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+ [data-cbp-theme=light] cbp-dropdown[context*=dark],
+ [data-cbp-theme=dark] cbp-dropdown:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-dropdown-menu-color: var(--cbp-dropdown-menu-color-dark);
+  --cbp-dropdown-menu-color-bg: var(--cbp-dropdown-menu-color-bg-dark);
+  --cbp-dropdown-menu-color-border: var(--cbp-dropdown-menu-color-border-dark);
+ }
+
+cbp-dropdown {
+  display: block;
+
+  button {
+    appearance: none;
+
+    .cbp-dropdown-label {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  .cbp-dropdown-menu {
+    display: none;
+    position: absolute;
+    z-index: var(--cbp-z-index-level-4);
+
+    color: var(--cbp-dropdown-menu-color);
+    background-color: var(--cbp-dropdown-menu-color-bg);
+    border: var(--cbp-border-size-md) solid var(--cbp-dropdown-menu-color-border);
+    border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
+    height: fit-content;
+    max-height: 13.5rem; // TechDebt: What's the reasoning for this magic number?
+    width: 100%; //calc(100% - 2px);
+
+    overflow-y: auto;
+
+    // TechDebt: verify across browsers (FF and Safari)
+    scrollbar-width: thin;
+    scrollbar-color: var(--cbp-dropdown-menu-color-border) var(--cbp-form-field-color-bg);
+
+
+    &:hover {
+      --cbp-form-field-color-border: var(--cbp-form-field-color-border-hover);
+    }
+
+    &:focus-within {
+      --cbp-form-field-color-border: var(--cbp-form-field-color-border-focus);
+    }
+
+  }
+
+  &[error] {
+    // TechDebt: need to weigh this dependency/inheritance vs standalone functionality
+    //--cbp-dropdown-menu-color-bg: var(--cbp-color-danger-lighter);
+    //--cbp-dropdown-menu-color-border: var(--cbp-color-danger-dark);
+
+    //--cbp-dropdown-menu-color-bg-dark: var(--cbp-color-danger-darker);
+    //--cbp-dropdown-menu-color-border-dark: var(--cbp-color-danger-light);
+
+    --cbp-dropdown-menu-color-bg: var(--cbp-form-field-color-bg);
+    --cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
+
+    --cbp-dropdown-menu-color-bg-dark: var(--cbp-form-field-color-bg-dark);
+    --cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
+
+
+  }
+
+  &[open] {
+    --cbp-form-field-border-radius: var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0;
+
+    .cbp-dropdown-menu {
+      display: block;
+    }
+  }
+
+  // Keep focus style on the control when a dropdown menu has focus
+  /*
+  &:has(.cbp-dropdown-menu:focus-within) .cbp-custom-form-control {
+    outline-width: var(--cbp-border-size-lg); // This is set to 3px because of the 1px inset, overlapping the border; border+outline = 4px total.
+  }
+  */
+}
