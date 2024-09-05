@@ -41,33 +41,32 @@ export default {
   },
 };
 
-const DropdownTemplate = ({ label, description, fieldId, name, error, readonly, disabled, value, context, sx }) => {
+function generateItems(buttons) {
+  const html = buttons.map(({ label, value, selected }) => {
+    return `<cbp-dropdown-item  value="${value}" ${selected == true ? 'selected' : ''}>${label}</cbp-dropdown-item>`;
+  });
+  return html.join('');
+}
+
+const DropdownTemplate = ({ label, description, fieldId, name, error, readonly, disabled, value, context, sx, items }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}  
         ${fieldId ? `field-id="${fieldId}"` : ''}
         ${value ? `value="${value}"` : ''}
-        ${readonly ? `readonly` : ''}
-        ${disabled ? `disabled` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        <cbp-dropdown-item value="1">Option 1</cbp-dropdown-item>
-        <cbp-dropdown-item value="2">Option 2</cbp-dropdown-item>
-        <cbp-dropdown-item value="3">Option 3</cbp-dropdown-item>
-        <cbp-dropdown-item value="4">Option 4 has a longer label</cbp-dropdown-item>
-        <cbp-dropdown-item value="5">Option 5</cbp-dropdown-item>
-        <cbp-dropdown-item value="6">Option 6</cbp-dropdown-item>
-        <cbp-dropdown-item value="7" disabled>Option 7 is disabled</cbp-dropdown-item>
-        <cbp-dropdown-item value="8">Option 8</cbp-dropdown-item>
-        <cbp-dropdown-item value="9">Option 9</cbp-dropdown-item>
-        <cbp-dropdown-item>Option 10 has no value specified</cbp-dropdown-item>
+         ${generateItems(items)}
       </ul>
       </cbp-dropdown>
     </cbp-form-field>
@@ -82,52 +81,52 @@ Dropdown.args = {
     {
       label: 'Option 1',
       value: '1',
-      disabled: false
+      selected: false,
     },
     {
       label: 'Option 2',
       value: '2',
-      disabled: false
+      selected: false,
     },   
     {
       label: 'Option 3',
       value: '3',
-      disabled: false
+      selected: false,
     },    
     {
       label: 'Option 4 has a longer label',
       value: '4',
-      disabled: false
+      selected: false,
     },    
     {
       label: 'Option 5',
       value: '5',
-      disabled: false
+      selected: false,
     },    
     {
       label: 'Option 6',
       value: '6',
-      disabled: false
+      selected: false,
     },    
     {
-      label: 'Option 7 is idisabled',
+      label: 'Option 7',
       value: '7',
-      disabled: true
+      selected: false,
     },    
     {
       label: 'Option 8',
       value: '8',
-      disabled: false
+      selected: false,
     },    
     {
       label: 'Option 9',
       value: '9',
-      disabled: false
+      selected: false,
     },    
     {
       label: 'Option 10 has no value specified',
       value: undefined,
-      disabled: false
+      selected: false,
     },
   ]
 };

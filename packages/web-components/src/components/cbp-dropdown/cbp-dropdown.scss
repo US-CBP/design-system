@@ -1,34 +1,24 @@
 /**
- *  
+ *  @prop --cbp-dropdown-menu-color: var(--cbp-form-field-color);
+ *  @prop --cbp-dropdown-menu-color-bg: var(--cbp-form-field-color-bg);
+ *  @prop --cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
+ *  @prop --cbp-dropdown-menu-color-dark: var(--cbp-form-field-color-dark);
+ *  @prop --cbp-dropdown-menu-color-bg-dark: var(--cbp-form-field-color-bg-dark);
+ *  @prop --cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
  */
 :root {
-  --cbp-dropdown-menu-color: var(--cbp-color-text-darkest);
-  --cbp-dropdown-menu-color-bg: var(--cbp-color-white);
+  // TechDebt: need to weigh this dependency/inheritance vs standalone functionality
+  --cbp-dropdown-menu-color: var(--cbp-form-field-color);
+  //--cbp-dropdown-menu-color-bg: var(--cbp-color-white);
+  //--cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
+  --cbp-dropdown-menu-color-bg: var(--cbp-form-field-color-bg);
   --cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
 
-  --cbp-dropdown-menu-color-dark: var(--cbp-color-text-lightest);
-  --cbp-dropdown-menu-color-bg-dark: var(--cbp-color-gray-cool-70);
+  --cbp-dropdown-menu-color-dark: var(--cbp-form-field-color-dark);
+  //--cbp-dropdown-menu-color-bg-dark: var(--cbp-color-gray-cool-70);
+  //--cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
+  --cbp-dropdown-menu-color-bg-dark: var(--cbp-form-field-color-bg-dark);
   --cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
-
-  /*
-  --cbp-form-field-color: var(--cbp-color-text-darkest);
-  --cbp-form-field-color-bg: var(--cbp-color-white);
-  --cbp-form-field-color-border: var(--cbp-color-interactive-secondary-base);
-  --cbp-form-field-color-border-hover: var(--cbp-color-interactive-secondary-darker);
-  --cbp-form-field-color-border-focus: var(--cbp-color-interactive-focus-dark);
-  --cbp-form-field-color-label: var(--cbp-color-text-darkest);
-  --cbp-form-field-color-description: var(--cbp-color-text-darkest);
-  --cbp-form-field-color-placeholder: var(--cbp-color-text-dark);
-
-  --cbp-form-field-color-dark: var(--cbp-color-text-lightest);
-  --cbp-form-field-color-bg-dark: var(--cbp-color-gray-cool-70);
-  --cbp-form-field-color-border-dark: var(--cbp-color-interactive-secondary-light);
-  --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
-  --cbp-form-field-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
-  --cbp-form-field-color-label-dark: var(--cbp-color-text-lightest);
-  --cbp-form-field-color-description-dark: var(--cbp-color-text-lightest);
-  --cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
-  */
 }
 
 /* 
@@ -38,6 +28,7 @@
  [data-cbp-theme=dark] cbp-dropdown:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-dropdown-menu-color: var(--cbp-dropdown-menu-color-dark);
   --cbp-dropdown-menu-color-bg: var(--cbp-dropdown-menu-color-bg-dark);
+  --cbp-dropdown-menu-color-border: var(--cbp-dropdown-menu-color-border-dark);
  }
 
 cbp-dropdown {
@@ -47,12 +38,10 @@ cbp-dropdown {
     appearance: none;
 
     .cbp-dropdown-label {
-      //width: calc(100% - var(--cbp-space-9x)); // Make sure the label doesn't overrun the faux dropdown control(background image)
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
     }
-
   }
 
   .cbp-dropdown-menu {
@@ -60,20 +49,19 @@ cbp-dropdown {
     position: absolute;
     z-index: var(--cbp-z-index-level-4);
 
-    color: var(--cbp-form-field-color); //var(--cbp-dropdown-menu-color);
-    background-color: var(--cbp-form-field-color-bg); //var(--cbp-dropdown-menu-color-bg);
-    border: var(--cbp-border-size-md) solid var( --cbp-form-field-color-border);
+    color: var(--cbp-dropdown-menu-color);
+    background-color: var(--cbp-dropdown-menu-color-bg);
+    border: var(--cbp-border-size-md) solid var(--cbp-dropdown-menu-color-border);
     border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
     height: fit-content;
     max-height: 13.5rem; // TechDebt: What's the reasoning for this magic number?
     width: 100%; //calc(100% - 2px);
-    padding-inline-start: var(--cbp-space-3x);
 
     overflow-y: auto;
 
     // TechDebt: verify across browsers (FF and Safari)
     scrollbar-width: thin;
-    scrollbar-color: var(--cbp-form-field-color-border) var(--cbp-form-field-color-bg);
+    scrollbar-color: var(--cbp-dropdown-menu-color-border) var(--cbp-form-field-color-bg);
 
 
     &:hover {
@@ -86,6 +74,23 @@ cbp-dropdown {
 
   }
 
+  &[error] {
+    // TechDebt: need to weigh this dependency/inheritance vs standalone functionality
+    //--cbp-dropdown-menu-color-bg: var(--cbp-color-danger-lighter);
+    //--cbp-dropdown-menu-color-border: var(--cbp-color-danger-dark);
+
+    //--cbp-dropdown-menu-color-bg-dark: var(--cbp-color-danger-darker);
+    //--cbp-dropdown-menu-color-border-dark: var(--cbp-color-danger-light);
+
+    --cbp-dropdown-menu-color-bg: var(--cbp-form-field-color-bg);
+    --cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
+
+    --cbp-dropdown-menu-color-bg-dark: var(--cbp-form-field-color-bg-dark);
+    --cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
+
+
+  }
+
   &[open] {
     --cbp-form-field-border-radius: var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0;
 
@@ -94,266 +99,10 @@ cbp-dropdown {
     }
   }
 
-  // Keep focus on the control when a dropdown menu has focus
+  // Keep focus style on the control when a dropdown menu has focus
   /*
   &:has(.cbp-dropdown-menu:focus-within) .cbp-custom-form-control {
     outline-width: var(--cbp-border-size-lg); // This is set to 3px because of the 1px inset, overlapping the border; border+outline = 4px total.
   }
   */
 }
-
-
-
-/*
-
-.cbp-dropdown {
-  background-color: var(--cbp-color-white);
-  border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-secondary-base);
-  border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
-  display: none;
-  max-height: 216px; // TechDebt: What's the reasoning for this magic number?
-  overflow-y: scroll;
-  position: absolute;
-  width: calc(100% - 2px);
-  z-index: var(--cbp-z-index-level-4);
-
-  &:hover {
-    border-top: 0;
-  }
-
-  &__item {
-    align-items: center;
-    border-bottom: 0;
-    border-top: 0;
-    color: var(--cbp-color-text-darkest);
-    display: flex;
-    font-size: 1rem;
-    height: var(--cbp-space-9x);
-    padding-left: var(--cbp-space-4x);
-    position: relative;
-    text-decoration: none;
-
-    &:hover:not([disabled]) {
-      background-color: var(--cbp-color-interactive-secondary-darker);
-      color: var(--cbp-color-text-lightest);
-      cursor: pointer;
-
-      &::after {
-        border-bottom: 1px solid var(--cbp-color-interactive-secondary-darker);
-      }
-    }
-
-    &:focus:not([disabled]) {
-      background-color: var(--cbp-color-interactive-focus-dark);
-      color: var(--cbp-color-white);
-      outline: 0;
-
-      &::after {
-        content: "";
-        display: none;
-        border-bottom: 1px solid var(--cbp-color-interactive-secondary-darker);
-      }
-    }
-
-    // Hacky solution due to width property (right margin) of separating line 
-    &::after {
-      content: "";
-      border-bottom: 1px solid var(--cbp-color-interactive-secondary-lighter);
-      display: block;
-      height: 1px;
-      left: var(--cbp-space-3x);
-      bottom: 0;
-      position: absolute;
-      width: calc(100% - 24px);
-    }
-
-    &:visited {
-      color: var(--cbp-color-text-darkest);
-    }
-  }
-  
-  &:focus {
-    outline: 0;
-  }
-  
-  &__item:last-child {
-    &::after {
-      content: "";
-      border-bottom: 0;
-      height: 0;
-    }
-  }
-}
-
-.cbp-dropdown__item--multiselect {
-  & > input[type="checkbox"] {
-    border-radius: 12px;
-
-    &:hover:not([disabled]) {
-      background-color: inherit;
-      border-color: var(--cbp-color-interactive-secondary-lighter);
-      box-shadow: initial;
-      clip-path: initial;
-    }
-
-    &:checked {
-      &:hover {
-        background-color: var(--cbp-color-interactive-selected-light);
-
-        &::before {
-          border-right: 3px solid var(--cbp-color-text-darkest);
-          border-bottom: 3px solid var(--cbp-color-text-darkest);
-          height: 70%;
-          width: 30%;
-          transform: rotate(45deg) translateY(-10%) translateX(-10%);
-        }
-      }
-    }
-
-    &:focus {
-      border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-secondary-lighter);
-      box-shadow: initial;
-      clip-path: initial;
-      outline: 0 !important; // Overriding style from _focus.scss??
-  
-      &:hover:not([disabled]) {
-        box-shadow: initial;
-        clip-path: initial;
-      }
-    }
-  }
-
-  // Hacky solution due to width property (right margin) of separating line 
-  &::after {
-    content: "";
-    border-bottom: 1px solid var(--cbp-color-interactive-secondary-lighter);
-    display: block;
-    height: 1px;
-    left: var(--cbp-space-3x);
-    bottom: 0;
-    position: absolute;
-    width: calc(100% - 24px);
-
-    &:hover {
-      border-bottom: 0;
-    }
-  }
-
-  &:focus-within {
-    background-color: var(--cbp-color-interactive-focus-dark);
-    color: var(--cbp-color-text-lighter);
-
-    &::after {
-      border-bottom: 0;
-    }
-  }
-}
-
-// Custom Dropdown Error State 
-.cbp-dropdown__custom--error {
-  background-color: var(--cbp-color-danger-lighter);
-  // TechDebt: this is why you would break border down into border-style, width, color. Less repetition.
-  border: var(--cbp-border-size-md) solid var(--cbp-color-danger-base);
-  border-right: 0;
-
-  &::after {
-    border: var(--cbp-border-size-md) solid var(--cbp-color-danger-base) !important;
-    background-color: var(--cbp-color-danger-base) !important;
-  }
-
-  &:hover {
-    // TechDebt - same
-    border: var(--cbp-border-size-md) solid var(--cbp-color-danger-dark);
-    border-right: 0;
-
-    &::after {
-      border: var(--cbp-border-size-md) solid var(--cbp-color-danger-dark) !important;
-      background-color: var(--cbp-color-danger-dark) !important;
-    }
-  }
-
-  &:focus:not([disabled]) {
-    border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-dark);
-    outline: 0;
-
-    &::after {
-      border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-dark) !important;
-      background-color: var(--cbp-color-interactive-focus-dark) !important;
-    }
-  }
-
-  & + .cbp-dropdown {
-    background-color: var(--cbp-color-danger-lighter);
-    border: var(--cbp-border-size-md) solid var(--cbp-color-danger-base);
-    border-top: 0;
-    border-bottom-left-radius: var(--cbp-border-radius-soft);
-    border-bottom-right-radius: var(--cbp-border-radius-soft);
-
-    &:hover {
-      border-top: 0;
-    }
-
-    &:focus {
-      border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-dark);
-      border-top: 0;
-      //border-bottom-left-radius: var(--cbp-border-radius-soft);
-      //border-bottom-right-radius: var(--cbp-border-radius-soft);
-      outline: 0;
-    }
-  }
-
-  // Caret Button 
-  &::after {
-    background-color: var(--cbp-color-danger-base);
-    border: var(--cbp-border-size-md) solid var(--cbp-color-danger-base);
-  }
-}
-
-// Open Custom Dropdown 
-.cbp-dropdown--open {
-  border-bottom-left-radius: 0px;
-
-  & + .cbp-dropdown {
-    border-top: 0;
-    display: block !important;
-  }
-
-  &::after {
-    content: '\f106';
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-  }
-}
-
-// When hover over custom select, apply hover to dropdown menu 
-.cbp-dropdown__custom:hover + .cbp-dropdown {
-  // border: 2px solid $cbp-ui-neutral-darker;
-  border-top: 0;
-}
-
-// Hover over error custom select, apply hover to dropdown menu 
-.cbp-dropdown__custom--error:hover + .cbp-dropdown {
-  // border: 2px solid $cbp-ui-danger-dark;
-  border-top: 0;
-}
-
-//Focus State 
-.cbp-dropdown__custom:focus:not([disabled]) {
-  //border: 2px solid var(--cbp-color-interactive-focus-dark);
-  //border-right: 0;
-  //outline: 0;
-}
-
-// Focus Caret State 
-.cbp-dropdown__custom:focus-within::after {
-  //background-color: var(--cbp-color-interactive-focus-dark);
-  // border: 2px solid $cbp-focus-dark;
-}
-
-// Focus on Select and Dropdown Menu
-.cbp-dropdown--open:focus + .cbp-dropdown {
-  // border: 2px solid $cbp-focus-dark;
-  border-top: 0;
-}  
-
-*/

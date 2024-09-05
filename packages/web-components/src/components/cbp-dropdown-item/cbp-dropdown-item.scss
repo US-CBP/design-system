@@ -1,16 +1,23 @@
 /**
- *
+ * @prop --cbp-dropdown-item-color: var(--cbp-dropdown-menu-color);
+ * @prop --cbp-dropdown-item-color-bg: transparent;
+ * @prop --cbp-dropdown-item-color-border: var(--cbp-color-gray-cool-50);
+ * @prop --cbp-dropdown-item-color-dark: var(--cbp-dropdown-menu-color-dark);
+ * @prop --cbp-dropdown-item-color-bg-dark: transparent;
+ * @prop --cbp-dropdown-item-color-border-dark: var(--cbp-color-gray-cool-50);
+ * @prop --cbp-dropdown-item-border-size: var(--cbp-border-size-sm);
  */
 
 :root {
   --cbp-dropdown-item-color: var(--cbp-dropdown-menu-color);
-  --cbp-dropdown-item-color-bg: var(--cbp-dropdown-menu-color-bg);
+  --cbp-dropdown-item-color-bg: transparent;
   --cbp-dropdown-item-color-border: var(--cbp-color-gray-cool-50);
 
   --cbp-dropdown-item-color-dark: var(--cbp-dropdown-menu-color-dark);
-  --cbp-dropdown-item-color-bg-dark: var(--cbp-dropdown-menu-color-bg-dark);
+  --cbp-dropdown-item-color-bg-dark: transparent;
   --cbp-dropdown-item-color-border-dark: var(--cbp-color-gray-cool-50);
 
+  --cbp-dropdown-item-border-size: var(--cbp-border-size-sm);
   /*
   --cbp-dropdown-item-color: var(--cbp-dropdown-color);
   --cbp-dropdown-item-color-bg: var(--cbp-dropdown-color-bg);
@@ -33,7 +40,7 @@
  }
 
 cbp-dropdown-item {
-  /*
+  /* TechDebt: can we inherit from here rather than the root selector? Needs more testing.
   --cbp-dropdown-item-color: var(--cbp-dropdown-color);
   --cbp-dropdown-item-color-bg: var(--cbp-dropdown-color-bg);
   --cbp-dropdown-item-color-border: var(--cbp-color-gray-cool-50);
@@ -43,27 +50,20 @@ cbp-dropdown-item {
 */
 
   display: block;
-  border-block-end: var(--cbp-border-size-sm) solid var(--cbp-dropdown-item-color-border);
-  //white-space: nowrap;
-  //text-overflow: clip;
 
-
+  //border-block-end: var(--cbp-border-size-sm) solid var(--cbp-dropdown-item-color-border);
+  color: var(--cbp-dropdown-item-color);
+  background: var(--cbp-dropdown-item-color-bg);
+  line-height: var(--cbp-line-height-xs);
+  outline: 0;
 
   // This nested div is required for applying this weird indent to the bottom border and text, while extending the background color across the full width
   .cbp-dropdown-item-content {
-    display: flex;
-    align-items: center;
-    margin-inline-start: calc(var(--cbp-space-3x) * -1);
-
-    //width: 100%;
-    min-height: var(--cbp-space-9x);
-    //margin-inline-start: calc(var(--cbp-space-3x) * -1);
-    //text-indent: var(--cbp-space-1x);
-    padding-inline-start: var(--cbp-space-4x);
-    //border-block-end: var(--cbp-border-size-sm) solid var(--cbp-dropdown-item-color-border);
-
-    color: var(--cbp-dropdown-item-color);
-    background: var(--cbp-dropdown-item-color-bg);
+    margin-inline-start: var(--cbp-space-3x);
+    padding-inline-start: var(--cbp-space-1x);
+    padding-block: var(--cbp-space-2x);
+    
+    border-block-end: var(--cbp-dropdown-item-border-size) solid var(--cbp-dropdown-item-color-border);
   }
 
   &:last-of-type {
@@ -71,32 +71,26 @@ cbp-dropdown-item {
   }
 
   &[selected] {
-    --cbp-dropdown-item-color: var(--cbp-dropdown-color);
-    --cbp-dropdown-item-color-bg: var(--cbp-dropdown-color-bg);
-    --cbp-dropdown-item-color-dark: var(--cbp-dropdown-color-dark);
-    --cbp-dropdown-item-color-bg-dark: var(--cbp-dropdown-color-bg-dark);
+    font-style: italic;
+    --cbp-dropdown-item-color: var(--cbp-color-text-dark);
+    --cbp-dropdown-item-color-dark: var(--cbp-color-text-light);
   }
 
   &:hover {
     --cbp-dropdown-item-color: var(--cbp-color-text-lightest);
     --cbp-dropdown-item-color-bg: var(--cbp-color-interactive-secondary-darker);
+    --cbp-dropdown-item-color-border: transparent;
     --cbp-dropdown-item-color-dark: var(--cbp-color-text-darkest);
     --cbp-dropdown-item-color-bg-dark: var(--cbp-color-interactive-secondary-light);
+    --cbp-dropdown-item-color-border-dark: transparent;
   }
 
   &:focus {
     --cbp-dropdown-item-color: var(--cbp-color-text-lightest);
     --cbp-dropdown-item-color-bg: var(--cbp-color-interactive-focus-dark);
+    --cbp-dropdown-item-color-border: transparent;
     --cbp-dropdown-item-color-dark: var(--cbp-color-text-darkest);
     --cbp-dropdown-item-color-bg-dark: var(--cbp-color-interactive-focus-light);
-    outline: 0;
+    --cbp-dropdown-item-color-border-dark: transparent;
   }
-
-  &[disabled] {
-    font-style: italic;
-    --cbp-dropdown-item-color: var(--cbp-color-text-dark);
-    --cbp-dropdown-item-color-dark: var(--cbp-color-text-light);
-    cursor: not-allowed;
-  }
-
 }
