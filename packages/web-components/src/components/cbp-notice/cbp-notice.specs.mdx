@@ -6,11 +6,11 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-    * The Notice component allows persistent (does not time out and cannot be dismissed) information that expands or gives extra insight into a particular content area
+    * The Notice component allows persistent (does not time out and cannot be dismissed) information that expands or gives extra insight into a particular content area.
 
 ## Functional Requirements
 
-    * The Notice is a wrapper with slots to display a title and content
+    * The Notice is a wrapper with slots to display a title and content.
     * The Notice defines several color variants as well, based on design tokens (info, success, warning, danger).
 
 ## Technical Specifications
@@ -20,10 +20,10 @@ import { Meta } from '@storybook/addon-docs';
     
 ### Responsiveness
 
-    * Notice as a container will scale to parent's size and internal slots will follow overflow/responsiveness of inputed elements
+    * Padding my vary at different device sizes by using the `--cbp-responsive-spacing-outer` CSS variable or a similar implementation.
     
 ### Accessibility
 
-    * Notice's internal slots will follow Accessibility of inputed elements
+    * As a simple wrapper, there are no explicit accessibility concerns for the Notice component.
     
 ### Additional Notes and Considerations

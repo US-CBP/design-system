@@ -2,13 +2,18 @@ export default {
     title: 'Components/Notice',
     tags: ['autodocs'],
     argTypes: {
-      label: {
-        name: 'label (slotted)',
-        description: 'The visible text within the badge.',
+      title: {
+        name: 'Title (slotted)',
+        description: 'The visible text within the notice.',
+        control: 'text',
+      },
+      content: {
+        name: 'content (slotted)',
+        description: 'The visible text within the notice.',
         control: 'text',
       },
       color: {
-        description: 'The color of the badge.',
+        description: 'The color of the notice.',
         control: { type: 'select' },
         options: ['info', 'success', 'warning', 'danger'],
       },
@@ -24,10 +29,6 @@ export default {
         control: 'object',
       },
     },
-    // args: {
-    //   title: 'Notice Title',
-    //   label: 'Notice: This is default text',
-    // },
   };
   
   const NoticeTemplate = ({ title, withIcon, content, color, context, sx }) => {
@@ -37,7 +38,7 @@ export default {
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        <cbp-typography tag='h4' slot="cbp-notice-title">
+        <cbp-typography tag='h4' slot="cbp-notice-title" context=${context}>
             ${withIcon ? `<cbp-icon name='circle-info' size='1.25rem'></cbp-icon>` : ''}
             ${title}
         </cbp-typography>
