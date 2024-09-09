@@ -5,24 +5,24 @@
 :root {  
   --cbp-notice-color-text: var(--cbp-color-text-darkest);
   --cbp-notice-color-text-dark: var(--cbp-color-text-lightest);
-  --cbp-notice-background: var(--cbp-color-info-lighter);
-  --cbp-notice-background-dark: var(--cbp-color-info-dark);
-  --cbp-notice-border-color: var(--cbp-color-info-base);//todo: rename to match naming convention better
-  --cbp-notice-border-color-dark: var(--cbp-color-info-light);
+  --cbp-notice-color-background: var(--cbp-color-info-lighter);
+  --cbp-notice-color-background-dark: var(--cbp-color-info-dark);
+  --cbp-notice-color-border: var(--cbp-color-info-base);
+  --cbp-notice-color-border--dark: var(--cbp-color-info-light);
 }
 
 
 [data-cbp-theme=light] cbp-notice[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-notice:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-notice-color-text: var(--cbp-notice-color-text-dark);
-  --cbp-notice-background: var(--cbp-notice-background-dark);
-  --cbp-notice-border-color: var(--cbp-notice-border-color-dark);
+  --cbp-notice-color-background: var(--cbp-notice-color-background-dark);
+  --cbp-notice-color-border: var(--cbp-notice-color-border-dark);
 }
 
 cbp-notice {
   display: block;
-  background-color: var(--cbp-notice-background);
-  border-left: var(--cbp-space-2x) solid var(--cbp-notice-border-color);
+  background-color: var(--cbp-notice-color-background);
+  border-left: var(--cbp-space-2x) solid var(--cbp-notice-color-border);
   border-radius: var(--cbp-border-radius-softer);
   color: var(--cbp-notice-color-text);
   padding: var(--cbp-space-3x);
@@ -33,27 +33,27 @@ cbp-notice {
   }
 
   &[color="success"]{
-    --cbp-notice-background: var(--cbp-color-success-lighter);
-    --cbp-notice-background-dark: var(--cbp-color-success-dark);   
+    --cbp-notice-color-background: var(--cbp-color-success-lighter);
+    --cbp-notice-color-background-dark: var(--cbp-color-success-dark);   
     
-    --cbp-notice-border-color: var(--cbp-color-success-base);
-    --cbp-notice-border-color-dark: var(--cbp-color-success-light);
+    --cbp-notice-color-border: var(--cbp-color-success-base);
+    --cbp-notice-color-border-dark: var(--cbp-color-success-light);
   }
 
   
   &[color="warning"]{
-    --cbp-notice-background: var(--cbp-color-warning-lighter);
-    --cbp-notice-background-dark: var(--cbp-color-warning-darker);   
+    --cbp-notice-color-background: var(--cbp-color-warning-lighter);
+    --cbp-notice-color-background-dark: var(--cbp-color-warning-darker);   
     
-    --cbp-notice-border-color: var(--cbp-color-warning-base);
-    --cbp-notice-border-color-dark: var(--cbp-color-warning-base);
+    --cbp-notice-color-border: var(--cbp-color-warning-base);
+    --cbp-notice-color-border-dark: var(--cbp-color-warning-base);
   }
 
   &[color="danger"]{
-    --cbp-notice-background: var(--cbp-color-danger-lighter);
-    --cbp-notice-background-dark: var(--cbp-color-danger-dark);   
+    --cbp-notice-color-background: var(--cbp-color-danger-lighter);
+    --cbp-notice-color-background-dark: var(--cbp-color-danger-dark);   
     
-    --cbp-notice-border-color: var(--cbp-color-danger-base);
-    --cbp-notice-border-color-dark: var(--cbp-color-danger-light);
+    --cbp-notice-color-border: var(--cbp-color-danger-base);
+    --cbp-notice-color-border-dark: var(--cbp-color-danger-light);
   }
 }

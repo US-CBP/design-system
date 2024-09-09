@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Host, Element, Prop, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 @Component({
@@ -7,8 +7,8 @@ import { setCSSProps } from '../../utils/utils';
 
 })
 export class CbpNotice {
-  
-  private renderedTag: HTMLElement;
+
+  @Element() host: HTMLElement;
 
   /** Optionally specifies a card color (different from the default color) based on predefined design token values. */
   @Prop({ reflect: true }) color: 'info' | 'success' | 'warning' | 'danger' = 'info';
@@ -20,12 +20,12 @@ export class CbpNotice {
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
     
 
-  componentDidLoad() {
+  componentWillLoad() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
     }
-    setCSSProps(this.renderedTag, {
-      ...this.sx
+    setCSSProps(this.host, {
+      ...this.sx,
     });
   }
 
