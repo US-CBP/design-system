@@ -23,13 +23,13 @@ cbp-notice {
   .notice-container{
     background-color: var(--cbp-notice-background);
     border-left: var(--cbp-space-2x) solid var(--cbp-notice-border-left-color);
-    border-radius: var(--cbp-border-radius-softer); //0px 0px var(--cbp-border-radius-softer) var(--cbp-border-radius-softer);
+    border-radius: var(--cbp-border-radius-softer);
 
     padding: var(--cbp-space-3x);
 
     [slot=cbp-notice-title]{
       display: inline-block;
-      margin-block-end: var(--cbp-space-2x); //todo: not working as expected but rendering in DOM
+      margin-block-end: var(--cbp-space-2x); 
     }
   }
 
