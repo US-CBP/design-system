@@ -261,7 +261,7 @@ cbp-button {
       --cbp-button-color: var(--cbp-color-interactive-primary-dark);
       --cbp-button-color-bg-hover: var(--cbp-color-interactive-primary-dark);
       --cbp-button-color-border: var(--cbp-color-interactive-primary-dark);
-      --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-darker);
+      --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-dark);
 
       --cbp-button-color-dark: var(--cbp-color-interactive-primary-light);
       --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-primary-light);
@@ -278,7 +278,7 @@ cbp-button {
       --cbp-button-color-dark: var(--cbp-color-interactive-secondary-lighter);
       --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-lighter);
       --cbp-button-color-border-dark: var(--cbp-color-interactive-secondary-lighter);
-      --cbp-button-color-border-hover-dark: var(--cbp-color-interactive-secondary-darker);
+      --cbp-button-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
     }
 
     &[color=tertiary] {
