@@ -64,7 +64,7 @@ export class CbpCheckbox {
     });
 
     // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
-    this.formField = this.host.querySelector('input,select,textarea');
+    this.formField = this.host.querySelector('input[type=checkbox]');
 
     if (this.formField) {
       this.formField.addEventListener('change', this.handleChange());
