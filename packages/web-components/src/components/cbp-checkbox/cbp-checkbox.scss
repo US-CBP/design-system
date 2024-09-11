@@ -1,0 +1,259 @@
+/**
+ *
+ */
+:root {
+  --cbp-checkbox-color: var(--cbp-color-text-lightest);
+  --cbp-checkbox-color-bg: var(--cbp-color-white);
+  --cbp-checkbox-color-border: var(--cbp-color-interactive-secondary-dark);
+  --cbp-checkbox-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-checkbox-color-border-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-checkbox-color-halo: transparent;
+  --cbp-checkbox-color-halo-hover: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-checkbox-color-halo-focus: var(--cbp-color-interactive-focus-light);
+  --cbp-checkbox-color-bg-checked: var(--cbp-color-interactive-selected-dark);
+  --cbp-checkbox-color-bg-checked-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-checkbox-color-border-checked: var(--cbp-color-interactive-selected-dark);
+  --cbp-checkbox-color-border-checked-hover: var(--cbp-color-interactive-selected-dark);
+  --cbp-checkbox-color-border-checked-focus: var(--cbp-color-white);
+  --cbp-checkbox-color-halo-checked-hover: var(--cbp-color-interactive-selected-light);
+  --cbp-checkbox-color-halo-checked-focus: var(--cbp-color-interactive-focus-light);
+  --cbp-checkbox-color-label: var(--cbp-color-text-darkest);
+
+
+  --cbp-checkbox-color-dark: var(--cbp-color-text-darkest);
+  --cbp-checkbox-color-bg-dark: var(--cbp-color-gray-cool-70);
+  --cbp-checkbox-color-border-dark: var(--cbp-color-interactive-secondary-light);
+  --cbp-checkbox-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-checkbox-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-checkbox-color-halo-dark: transparent;
+  --cbp-checkbox-color-halo-hover-dark: var(--cbp-color-text-darker);
+  --cbp-checkbox-color-halo-focus-dark: var(--cbp-color-interactive-focus-dark);
+  --cbp-checkbox-color-bg-checked-dark: var(--cbp-color-interactive-selected-light);
+  --cbp-checkbox-color-bg-checked-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-checkbox-color-border-checked-dark: var(--cbp-color-interactive-selected-light);
+  --cbp-checkbox-color-border-checked-hover-dark: var(--cbp-color-interactive-selected-light);
+  --cbp-checkbox-color-border-checked-focus-dark: var(--cbp-color-black);
+  --cbp-checkbox-color-halo-checked-hover-dark: var(--cbp-color-interactive-selected-dark);
+  --cbp-checkbox-color-halo-checked-focus-dark: var(--cbp-color-interactive-focus-dark);
+  --cbp-checkbox-color-label-dark: var(--cbp-color-text-lightest);
+
+  --cbp-checkbox-margin: 0 0 var(--cbp-space-1x) 0;
+}
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-checkbox[context*=dark],
+[data-cbp-theme=dark] cbp-checkbox:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-checkbox-color: var(--cbp-checkbox-color-dark);
+  --cbp-checkbox-color-bg: var(--cbp-checkbox-color-bg-dark);
+  --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-dark);
+  --cbp-checkbox-color-border-hover: var(--cbp-checkbox-color-border-hover-dark);
+  --cbp-checkbox-color-border-focus: var(--cbp-checkbox-color-border-focus-dark);
+  --cbp-checkbox-color-halo: var(--cbp-checkbox-color-halo-dark);
+  --cbp-checkbox-color-halo-hover: var(--cbp-checkbox-color-halo-hover-dark);
+  --cbp-checkbox-color-halo-focus: var(--cbp-checkbox-color-halo-focus-dark);
+
+  --cbp-checkbox-color-bg-checked: var(--cbp-checkbox-color-bg-checked-dark);
+  --cbp-checkbox-color-bg-checked-focus: var(--cbp-checkbox-color-bg-checked-focus-dark);
+  --cbp-checkbox-color-border-checked: var(--cbp-checkbox-color-border-checked-dark);
+  --cbp-checkbox-color-border-checked-hover: var(--cbp-checkbox-color-border-checked-hover-dark);
+  --cbp-checkbox-color-border-checked-focus: var(--cbp-checkbox-color-border-checked-focus-dark);
+  --cbp-checkbox-color-halo-checked-hover: var(--cbp-checkbox-color-halo-checked-hover-dark);
+  --cbp-checkbox-color-halo-checked-focus: var(--cbp-checkbox-color-halo-checked-focus-dark);
+
+  --cbp-checkbox-color-label: var(--cbp-checkbox-color-label-dark);
+}
+
+cbp-checkbox {
+  display: block;
+  margin: var(--cbp-checkbox-margin);
+  //min-height: var(--cbp-space-11x);
+
+  label {
+    display: flex;
+    align-items: center;
+    //gap: var(--cbp-space-2x);
+    min-height: var(--cbp-space-11x);
+    font-weight: var(--cbp-font-weight-bold);
+    color: var(--cbp-checkbox-color-label);
+  }
+
+  input[type=checkbox] {
+    position: relative;
+    flex-shrink: 0;
+    appearance: none; // checkboxes do not accept styling per design specs
+    color: var(--cbp-checkbox-color);
+    background-color: var(--cbp-checkbox-color-bg);
+    border-color: var(--cbp-checkbox-color-border);
+    border-style: solid;
+    border-width: var(--cbp-border-size-md);
+    border-radius: var(--cbp-border-radius-soft);
+    height: var(--cbp-space-6x);
+    width: var(--cbp-space-6x);
+    margin: 0;
+    margin-inline-end: var(--cbp-space-2x);
+    outline: 0;
+    box-shadow: 0 0 0 calc(var(--cbp-space-5x) / 2) var(--cbp-checkbox-color-halo);
+    clip-path: circle(80%);
+
+    // Check Mark
+    &::before {
+      content: '';
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      top: 0;
+      border-right: solid 0px var(--cbp-checkbox-color);
+      border-bottom: solid 0px var(--cbp-checkbox-color);
+    }
+
+    // Verified: only need to set the base variables with higher level tokens that are swapped for dark mode
+    &:hover {
+      --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-hover);
+      --cbp-checkbox-color-halo: var(--cbp-checkbox-color-halo-hover);
+    }
+
+    &:focus {
+      --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-focus);
+      --cbp-checkbox-color-halo: var(--cbp-checkbox-color-halo-focus);
+    }
+
+    &:checked {
+      --cbp-checkbox-color-bg: var(--cbp-checkbox-color-bg-checked);
+      --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-checked);
+
+      // Check Mark
+      &::before {
+        border-right-width: var(--cbp-border-size-lg);
+        border-bottom-width: var(--cbp-border-size-lg);
+        height: 70%;
+        width: 30%;
+        transform: rotate(45deg) translateY(-10%) translateX(-10%);
+      }
+
+      &:hover {
+        --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-checked-hover);
+        --cbp-checkbox-color-halo: var(--cbp-checkbox-color-halo-checked-hover);
+      }
+
+      &:focus {
+        --cbp-checkbox-color-bg: var(--cbp-checkbox-color-bg-checked-focus);
+        --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-checked-focus);
+        --cbp-checkbox-color-halo: var(--cbp-checkbox-color-halo-checked-focus);
+      }
+    }
+  }
+
+
+  &[disabled],
+  &:has(*:disabled) {
+    cursor: not-allowed;
+
+    label {
+      font-style: italic;
+    }
+  }
+
+  // These overrides need to be set at the component host level to work properly in dark mode
+  &[disabled],
+  &:has(*:disabled) {
+    // No focus for disabled form controls, hover state still exists so it must be invisible since this is a non-interactive element
+    --cbp-checkbox-color: var(--cbp-color-interactive-disabled-light);
+    --cbp-checkbox-color-bg: var(--cbp-color-interactive-disabled-light);
+    --cbp-checkbox-color-border: var(--cbp-color-interactive-disabled-dark);
+    --cbp-checkbox-color-border-hover: var(--cbp-color-interactive-disabled-dark);
+    --cbp-checkbox-color-bg-checked: var(--cbp-color-interactive-disabled-dark);
+    --cbp-checkbox-color-border-checked: var(--cbp-color-interactive-disabled-dark);
+    --cbp-checkbox-color-border-checked-hover: var(--cbp-color-interactive-disabled-dark);
+    --cbp-checkbox-color-halo-hover: transparent;
+    --cbp-checkbox-color-halo-checked-hover: transparent;
+    --cbp-checkbox-color-label: var(--cbp-color-interactive-disabled-dark);
+    
+    --cbp-checkbox-color-dark: var(--cbp-color-interactive-disabled-dark);
+    --cbp-checkbox-color-bg-dark: var(--cbp-color-interactive-disabled-dark);
+    --cbp-checkbox-color-border-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-checkbox-color-border-hover-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-checkbox-color-bg-checked-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-checkbox-color-border-checked-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-checkbox-color-border-checked-hover-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-checkbox-color-halo-hover-dark: transparent;
+    --cbp-checkbox-color-halo-checked-hover-dark: transparent;
+    --cbp-checkbox-color-label-dark: var(--cbp-color-interactive-disabled-light);
+  }
+}
+
+
+/*
+  &:has(input:hover) {
+    --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-hover);
+    //--cbp-checkbox-color-border-dark: var(--cbp-checkbox-color-border-hover-dark);
+    --cbp-checkbox-color-halo: var(--cbp-checkbox-color-halo-hover);
+    //--cbp-checkbox-color-halo-dark: var(--cbp-checkbox-color-border-hover-dark);
+  }
+
+  &:has(input:focus) {
+    --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-focus);
+    //--cbp-checkbox-color-border-dark: var(--cbp-checkbox-color-border-focus-dark);
+    --cbp-checkbox-color-halo: var(--cbp-checkbox-color-halo-focus);
+    //--cbp-checkbox-color-halo-dark: var(--cbp-checkbox-color-border-focus-dark);
+    //border-color: var(--cbp-color-interactive-focus-dark);
+    //box-shadow: 0 0 0 8px var(--cbp-color-interactive-focus-light);
+    //clip-path: circle(80%);
+    //outline: 0;
+  }
+*/
+
+/*
+    //vertical-align: middle;
+
+    &:checked {
+      border-color: var(--cbp-color-interactive-selected-dark);
+      background-color: var(--cbp-color-interactive-selected-dark);
+      color: var(--cbp-color-white);
+
+      // Check Mark
+      &::before {
+        border-right-color: var(--cbp-color-white);
+        border-right-style: solid;
+        border-right-width: var(--cbp-border-size-lg);
+        border-bottom-color: (--cbp-color-white);
+        border-bottom-style: solid;
+        border-bottom-width: var(--cbp-border-size-lg);
+        height: 70%;
+        width: 30%;
+        transform: rotate(45deg) translateY(-10%) translateX(-10%);
+      }
+
+      &:hover {
+        box-shadow: 0 0 0 8px var(--cbp-color-interactive-selected-light);
+        clip-path: circle(80%);
+      }
+
+      &:focus {
+        background-color: var(--cbp-color-interactive-focus-dark);
+        border-color: var(--cbp-color-white); // TODO: Discuss color change for this
+      }
+
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 8px rgba(230, 230, 226, 0.5); // $cbp-ui-neutral-lighter
+    clip-path: circle(80%);
+  }
+  
+  &:focus {
+    border-color: var(--cbp-color-interactive-focus-dark);
+    box-shadow: 0 0 0 8px var(--cbp-color-interactive-focus-light);
+    clip-path: circle(80%);
+    outline: 0;
+
+    &:hover {
+      box-shadow: 0 0 0 8px var(--cbp-color-interactive-focus-light);
+      clip-path: circle(80%);
+    }
+	}
+}
+*/
