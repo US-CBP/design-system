@@ -65,3 +65,40 @@ SegmentedButtonGroup.args = {
     },
   ],
 };
+
+const IconTemplate = ({ buttons, multiple, accessibilityText, disabled, sx }) => {
+  return ` 
+        <cbp-segmented-button-group
+          ${multiple ? `multiple=${multiple}` : ''}
+          ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+          ${disabled ? `disabled=${disabled}` : ''}
+          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        >
+          ${generateButtons(buttons)}
+        </cbp-segmented-button-group>
+      `;
+};
+
+export const SegmentedButtonGroupIcons = IconTemplate.bind({});
+SegmentedButtonGroupIcons.args = {
+  buttons: [
+    {
+      label: '<cbp-icon name="user"></cbp-icon>',
+      value: '1',
+      pressed: false,
+      disabled: false,
+    },
+    {
+      label: '<cbp-icon name="pen-to-square"></cbp-icon>',
+      value: '2',
+      pressed: false,
+      disabled: false,
+    },
+    {
+      label: '<cbp-icon name="filter"></cbp-icon>',
+      value: '3',
+      pressed: false,
+      disabled: false,
+    },
+  ],
+};

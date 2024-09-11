@@ -54,5 +54,16 @@ cbp-segmented-button-group {
       --cbp-button-color-dark: var(--cbp-color-text-darkest);
       --cbp-button-color-bg-dark: var(--cbp-color-interactive-selected-light);
     }
+
+    
+    //Disabled
+    [type='button'][disabled]  {
+      --cbp-button-color: var(--cbp-color-interactive-disabled-dark);
+      --cbp-button-color-bg: var(--cbp-color-interactive-disabled-light);
+      --cbp-button-color-border: var(--cbp-color-interactive-secondary-dark);
+    }
+
+    //read-only
+    
   }
 }
