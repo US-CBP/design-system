@@ -23,8 +23,8 @@ export default {
 };
 
 function generateButtons(buttons) {
-  const html = buttons.map(({ label, value, pressed, disabled }) => {
-    return `<cbp-button type="button" value="${value}" ${pressed == true ? 'pressed' : ''} ${disabled == true ? 'disabled' : ''}>${label}</cbp-button>`;
+  const html = buttons.map(({ label, value, pressed, disabled, variant }) => {
+    return `<cbp-button type="button" value="${value}" ${pressed == true ? 'pressed' : ''} ${disabled == true ? 'disabled' : ''} variant="${variant ? variant : 'default'}">${label}</cbp-button>`;
   });
   return html.join('');
 }
@@ -87,18 +87,21 @@ SegmentedButtonGroupIcons.args = {
       value: '1',
       pressed: false,
       disabled: false,
+      variant: "square"
     },
     {
       label: '<cbp-icon name="pen-to-square"></cbp-icon>',
       value: '2',
       pressed: false,
       disabled: false,
+      variant: "square"
     },
     {
       label: '<cbp-icon name="filter"></cbp-icon>',
       value: '3',
       pressed: false,
       disabled: false,
+      variant: "square"
     },
   ],
 };
