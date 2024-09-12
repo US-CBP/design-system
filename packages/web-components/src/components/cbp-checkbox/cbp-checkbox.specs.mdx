@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Checkbox/Specifications" />
+
+# cbp-checkbox
+
+## Purpose
+
+The Checkbox component wraps the slotted native form control (`input type="checkbox"`) and label text, providing cross-browser styling.
+
+## Functional Requirements
+
+* The Checkbox component accepts the native form control (`input type="checkbox"`) and its label as slotted content, wrapping them in an implicit label.
+* The Checkbox component provides cross-browser styling for the form control in its various states, including hover, focus, disabled, and checked states.
+
+## Technical Specifications
+
+### User Interactions
+
+* The user interactions are that of a native checkbox (`input type="checkbox"`) element:
+  * Clicking anywhere on the form control or label text will place focus on the control and toggle its state.
+  * Checkboxes are keyboard accessible by tabbing onto them in either direction, placing focus onto the native form control.
+  * Pressing the spacebar will toggle the focused checkbox state, also emitting a custom event.
+
+### Responsiveness
+
+* The checkbox label will wrap as needed.
+
+### Accessibility
+
+* The native checkbox (`input type="checkbox"`) element and label text are wrapped within a `label` tag, forming an implicit label association (no `id` needed).
+* Full keyboard navigation is supported, as detailed under "User Interactions" above.
+
+### Additional Notes and Considerations
+
+* This component may manage the checkbox's disabled state, but does its best to get out of the way if the application wants to manage those states directly on the slotted elements.
+* A checkbox's value is only included in the submitted form data if the checkbox is checked. If it is, then the value of the checkbox's value attribute is reported as the input's value, or "on" if no value is set.
+* Firefox (alone) persists the dynamic checked state of an `input` across page loads. Use the autocomplete attribute to control this feature.
+* Native checkbox elements may not be `readonly` - only `disabled`.

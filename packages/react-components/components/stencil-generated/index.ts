@@ -16,6 +16,7 @@ export const CbpBadge = /*@__PURE__*/createReactComponent<JSX.CbpBadge, HTMLCbpB
 export const CbpBanner = /*@__PURE__*/createReactComponent<JSX.CbpBanner, HTMLCbpBannerElement>('cbp-banner');
 export const CbpButton = /*@__PURE__*/createReactComponent<JSX.CbpButton, HTMLCbpButtonElement>('cbp-button');
 export const CbpCard = /*@__PURE__*/createReactComponent<JSX.CbpCard, HTMLCbpCardElement>('cbp-card');
+export const CbpCheckbox = /*@__PURE__*/createReactComponent<JSX.CbpCheckbox, HTMLCbpCheckboxElement>('cbp-checkbox');
 export const CbpChip = /*@__PURE__*/createReactComponent<JSX.CbpChip, HTMLCbpChipElement>('cbp-chip');
 export const CbpContainer = /*@__PURE__*/createReactComponent<JSX.CbpContainer, HTMLCbpContainerElement>('cbp-container');
 export const CbpDialog = /*@__PURE__*/createReactComponent<JSX.CbpDialog, HTMLCbpDialogElement>('cbp-dialog');
