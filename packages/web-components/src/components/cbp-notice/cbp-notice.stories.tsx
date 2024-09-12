@@ -38,8 +38,8 @@ export default {
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        <cbp-typography tag='h4' slot="cbp-notice-title" context=${context}>
-            ${withIcon ? `<cbp-icon name='circle-info' size='1.25rem'></cbp-icon>` : ''}
+        <cbp-typography tag='p' slot="cbp-notice-title" context=${context}>
+            ${withIcon ? `<cbp-icon name='circle-info' size='1.25rem' sx='{"vertical-align":"bottom"}'></cbp-icon>` : ''}
             ${title}
         </cbp-typography>
         ${content}
