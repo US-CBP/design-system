@@ -226,4 +226,8 @@ cbp-card {
       --cbp-banner-card-color-body-background-dark: var(--cbp-color-danger-darker);
     }
   }
+
+  .cbp-card-flag{
+    border: 1px solid red !important;//todo: local testing, remove before commit
+  }
 }

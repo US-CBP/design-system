@@ -133,6 +133,23 @@ const BannerTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
   `;
 };
 
+const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
+  return ` 
+    <cbp-card
+      flag='true'
+      ${color ? `color=${color}` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+    >
+      <cbp-typography tag='h4' slot="cbp-card-title">
+        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.25rem'></cbp-icon>` : ''}
+        ${title}
+      </cbp-typography>
+      <p>${bodyText}</p>  
+    </cbp-card>
+  `;
+};
+
 // For testing only:
 /*
 const CardsGridTemplate = ({ title, color, stretch, bodyText, actionsLayout, actionsConfig, sx }) => {
@@ -279,4 +296,18 @@ export const BannerCard = BannerTemplate.bind({});
 BannerCard.args = {
   title: 'Banner Card Title',
   bodyText: 'Here is an example of some supplementary text for this purely informational card',
+};
+
+export const FlagCard = FlagTemplate.bind({});
+FlagCard.args = {
+  title: 'Card Title',
+  bodyText: 'Here is an example of some body text for this purely informational card',
+};
+FlagCard.argTypes = {
+  color: {
+    name: 'Color',
+    description: 'Set the color of the card',
+    control: 'select',
+    options: ['default', 'danger'],
+  },
 };
