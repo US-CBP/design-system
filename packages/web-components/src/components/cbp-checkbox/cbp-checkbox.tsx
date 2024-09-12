@@ -12,7 +12,7 @@ import { setCSSProps} from '../../utils/utils';
 export class CbpCheckbox {
 
   //private checkbox: any; // HTMLButtonElement or HTMLAnchorElement
-  private formField: any;
+  private formField: HTMLInputElement;
 
   @Element() host: HTMLElement;
 
@@ -25,6 +25,9 @@ export class CbpCheckbox {
   /** Marks the checkbox as checked by default when specified. */
   @Prop() checked: boolean;
 
+  /** Marks the checkbox as checked by default when specified. */
+  @Prop() indeterminate: boolean;
+
   /** Marks the checkbox in a disabled state when specified. */
   @Prop() disabled: boolean;
 
@@ -35,9 +38,12 @@ export class CbpCheckbox {
   @Prop() sx: any = {};
 
 
+  //this.formField.indeterminate=true;
+
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() stateChanged: EventEmitter;
   handleChange() {
+    this.checked=this.formField.checked;
     this.stateChanged.emit({
       host: this.host,
       nativeElement: this.formField,
@@ -55,6 +61,11 @@ export class CbpCheckbox {
     }
   }
 
+  @Watch('indeterminate')
+  watchIndeterminateHandler(newValue: boolean) {
+    if (this.formField) this.formField.indeterminate=newValue;
+  }
+
   componentWillLoad() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
@@ -67,13 +78,14 @@ export class CbpCheckbox {
     this.formField = this.host.querySelector('input[type=checkbox]');
 
     if (this.formField) {
-      this.formField.addEventListener('change', this.handleChange());
+      this.formField.addEventListener('change', () => this.handleChange());
     }
   }
 
   componentDidLoad() {
-    // Set the disabled state on load only if true. (The Watch decorators only listen for changes, not initial state)
+    // Set the disabled/indeterminate states on load only if true. (The Watch decorators only listen for changes, not initial state)
     if (!!this.formField) {
+      if (this.indeterminate) this.formField.indeterminate=this.indeterminate;
       if (this.disabled) this.formField.setAttribute('disabled', '');
     }
   }

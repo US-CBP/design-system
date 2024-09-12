@@ -126,7 +126,7 @@ cbp-checkbox {
     box-shadow: 0 0 0 calc(var(--cbp-space-5x) / 2) var(--cbp-checkbox-color-halo);
     clip-path: circle(80%);
 
-    // Check Mark
+    // Check Mark/Dash
     &::before {
       content: '';
       position: absolute;
@@ -136,8 +136,6 @@ cbp-checkbox {
       bottom: 0;
       overflow: hidden;
       top: 0;
-      border-right: solid 0px var(--cbp-checkbox-color);
-      border-bottom: solid 0px var(--cbp-checkbox-color);
     }
 
     // Verified: only need to set the base variables with higher level tokens that are swapped for dark mode
@@ -151,18 +149,11 @@ cbp-checkbox {
       --cbp-checkbox-color-halo: var(--cbp-checkbox-color-halo-focus);
     }
 
-    &:checked {
+    
+    &:checked,
+    &:indeterminate {
       --cbp-checkbox-color-bg: var(--cbp-checkbox-color-bg-checked);
       --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-checked);
-
-      // Check Mark
-      &::before {
-        border-right-width: var(--cbp-border-size-lg);
-        border-bottom-width: var(--cbp-border-size-lg);
-        height: 70%;
-        width: 30%;
-        transform: rotate(45deg) translateY(-10%) translateX(-10%);
-      }
 
       &:hover {
         --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-checked-hover);
@@ -175,6 +166,27 @@ cbp-checkbox {
         --cbp-checkbox-color-halo: var(--cbp-checkbox-color-halo-checked-focus);
       }
     }
+
+    &:checked {
+      // Check Mark
+      &::before {
+        border-right: solid var(--cbp-border-size-lg) var(--cbp-checkbox-color);
+        border-bottom: solid var(--cbp-border-size-lg) var(--cbp-checkbox-color);
+        height: 70%;
+        width: 30%;
+        transform: rotate(45deg) translateY(-10%) translateX(-10%);
+      }
+    }
+    
+    &:indeterminate {
+      // Indeterminate dash
+      &::before {
+        border: solid var(--cbp-border-size-sm) var(--cbp-checkbox-color);
+        height: 0;
+        width: 60%;
+      }
+    }
+
   }
 
 
