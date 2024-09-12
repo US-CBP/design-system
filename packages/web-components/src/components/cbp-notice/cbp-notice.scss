@@ -5,6 +5,8 @@
 :root {  
   --cbp-notice-color-text: var(--cbp-color-text-darkest);
   --cbp-notice-color-text-dark: var(--cbp-color-text-lightest);
+  --cbp-notice-color-title: var(--cbp-color-text-darker);
+  --cbp-notice-color-title-dark: var(--cbp-color-text-lighter);
   --cbp-notice-color-background: var(--cbp-color-info-lighter);
   --cbp-notice-color-background-dark: var(--cbp-color-info-dark);
   --cbp-notice-color-border: var(--cbp-color-info-base);
@@ -15,6 +17,7 @@
 [data-cbp-theme=light] cbp-notice[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-notice:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-notice-color-text: var(--cbp-notice-color-text-dark);
+  --cbp-notice-color-title: var(--cbp-notice-color-title-dark);
   --cbp-notice-color-background: var(--cbp-notice-color-background-dark);
   --cbp-notice-color-border: var(--cbp-notice-color-border-dark);
 }
@@ -30,6 +33,12 @@ cbp-notice {
   [slot=cbp-notice-title]{
     display: inline-block;
     margin-block-end: var(--cbp-space-2x); 
+    
+    *{
+      font-weight: var(--cbp-font-weight-bold);
+      color: var(--cbp-notice-color-title);
+      margin-bottom: 0;
+    }
   }
 
   &[color="success"]{
