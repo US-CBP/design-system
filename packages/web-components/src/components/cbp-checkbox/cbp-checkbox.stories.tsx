@@ -19,6 +19,10 @@ export default {
       description: 'Specifies the `checked` attribute of the slotted checkbox, which represents its initial checked state only.',
       control: 'boolean',
     },
+    indeterminate: {
+      description: 'Sets the checkbox to indeterminate, which is only relevant to checkbox groupings.',
+      control: 'boolean',
+    },
     disabled: {
       description: 'Renders the checkbox in a disabled state. A disabled form control does not pass a value on native submit.',
       control: 'boolean',
@@ -34,11 +38,13 @@ export default {
   },
 };
 
-const Template = ({ label, name, value, checked, disabled, context, sx }) => {
+const Template = ({ label, name, value, checked, indeterminate, disabled, context, sx }) => {
   return ` 
       <cbp-checkbox
         ${value ? `value=${value}` : ''}
         ${disabled ? `disabled=${disabled}` : ''}
+        ${checked ? `checked=${checked}` : ''}
+        ${indeterminate ? `indeterminate=${indeterminate}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
@@ -55,5 +61,7 @@ const Template = ({ label, name, value, checked, disabled, context, sx }) => {
 
 export const Checkbox = Template.bind({});
 Checkbox.args = {
-  label: "Checkbox label"
+  label: "Checkbox label",
+  name: "checkbox",
+  value: "1",
 }
