@@ -4,6 +4,13 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
+## [0.0.1-develop.14] 09-16-2024
+
+* First cut of `cbp-notice`.
+* First cut of `cbp-dropdown`.
+* First cut of `cbp-checkbox`.
+* Additional bug fixes per design review.
+
 ## [0.0.1-develop.13] 09-03-2024
 
 * Added variants to the `cbp-list` component.
