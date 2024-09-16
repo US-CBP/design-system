@@ -133,7 +133,7 @@ const BannerTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
   `;
 };
 
-const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
+const FlagTemplate = ({ title, color, flag, bodyText, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       flag='true'
@@ -141,6 +141,9 @@ const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
+      <div slot='cbp-card-flag'>
+        ${flag}
+      </div>
       <cbp-typography tag='h4' slot="cbp-card-title">
         ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.25rem'></cbp-icon>` : ''}
         ${title}
@@ -300,6 +303,8 @@ BannerCard.args = {
 
 export const FlagCard = FlagTemplate.bind({});
 FlagCard.args = {
+  // flag: '<cbp-icon name="globe" size="3rem"> </cbp-icon>',
+  flag: '<img src="https://api.dicebear.com/9.x/pixel-art/svg" />', //documentation for dicebear https://www.dicebear.com/how-to-use/http-api/
   title: 'Card Title',
   bodyText: 'Here is an example of some body text for this purely informational card',
 };
@@ -308,6 +313,6 @@ FlagCard.argTypes = {
     name: 'Color',
     description: 'Set the color of the card',
     control: 'select',
-    options: ['default', 'danger'],
+    options: ['default', 'info', 'success', 'warning', 'danger'],
   },
 };
