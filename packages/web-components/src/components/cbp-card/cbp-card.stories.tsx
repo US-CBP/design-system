@@ -136,7 +136,7 @@ const BannerTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
 const FlagTemplate = ({ title, color, flag, bodyText, withIcon, context, sx }) => {
   return ` 
     <cbp-card
-      flag='true'
+      variant='flag'
       ${color ? `color=${color}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
@@ -304,7 +304,7 @@ BannerCard.args = {
 export const FlagCard = FlagTemplate.bind({});
 FlagCard.args = {
   // flag: '<cbp-icon name="globe" size="3rem"> </cbp-icon>',
-  flag: '<img src="https://api.dicebear.com/9.x/pixel-art/svg" />', //documentation for dicebear https://www.dicebear.com/how-to-use/http-api/
+  flag: '<img src="https://api.dicebear.com/9.x/personas/svg" />', //documentation for dicebear https://www.dicebear.com/how-to-use/http-api/
   title: 'Card Title',
   bodyText: 'Here is an example of some body text for this purely informational card',
 };

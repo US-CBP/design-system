@@ -13,6 +13,12 @@
  * @prop --cbp-banner-card-color-body-background-dark: var(--cbp-color-gray-cool-60);
  * @prop --cbp-banner-card-color-border: var(--cbp-color-base-neutral-lighter);
  * @prop --cbp-banner-card-color-border-dark: var(--cbp-color-gray-cool-50);
+
+ * @prop  --cbp-flag-card-min-width: 7rem;
+ * @prop  --cbp-flag-card-color: var(--cbp-color-text-lighter);
+ * @prop  --cbp-flag-card-color-dark: var(--cbp-color-text-darker);
+ * @prop  --cbp-flag-card-color-background: var(--cbp-color-gray-cool-60);
+ * @prop  --cbp-flag-card-color-background-dark: var(--cbp-color-gray-cool-30);
 */
 
 :root {
@@ -34,6 +40,7 @@
   --cbp-banner-card-color-border: var(--cbp-color-base-neutral-lighter);
   --cbp-banner-card-color-border-dark: var(--cbp-color-gray-cool-50);
 
+  --cbp-flag-card-min-width: 7rem;
   --cbp-flag-card-color: var(--cbp-color-text-lighter);
   --cbp-flag-card-color-dark: var(--cbp-color-text-darker);
   --cbp-flag-card-color-background: var(--cbp-color-gray-cool-60);
@@ -73,6 +80,7 @@ cbp-card {
     width: 100%;
     max-width: 100%;
     flex-grow: 1;
+    overflow: auto;
 
     :last-child {
       margin-bottom: 0;
@@ -239,11 +247,11 @@ cbp-card {
     }
   }
 
-  &[flag]{
+  &[variant=flag]{
     flex-direction: row;
     
     .cbp-card-flag{
-      width: 7rem;
+      min-width: var(--cbp-flag-card-min-width);
       align-content: center;
       text-align: center;
       color: var(--cbp-flag-card-color);
