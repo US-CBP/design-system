@@ -13,6 +13,12 @@
  * @prop --cbp-banner-card-color-body-background-dark: var(--cbp-color-gray-cool-60);
  * @prop --cbp-banner-card-color-border: var(--cbp-color-base-neutral-lighter);
  * @prop --cbp-banner-card-color-border-dark: var(--cbp-color-gray-cool-50);
+
+ * @prop  --cbp-flag-card-min-width: 7rem;
+ * @prop  --cbp-flag-card-color: var(--cbp-color-text-lighter);
+ * @prop  --cbp-flag-card-color-dark: var(--cbp-color-text-darker);
+ * @prop  --cbp-flag-card-color-background: var(--cbp-color-gray-cool-60);
+ * @prop  --cbp-flag-card-color-background-dark: var(--cbp-color-gray-cool-30);
 */
 
 :root {
@@ -33,6 +39,12 @@
   --cbp-banner-card-color-body-background-dark: var(--cbp-color-gray-cool-60);
   --cbp-banner-card-color-border: var(--cbp-color-base-neutral-lighter);
   --cbp-banner-card-color-border-dark: var(--cbp-color-gray-cool-50);
+
+  --cbp-flag-card-min-width: 7rem;
+  --cbp-flag-card-color: var(--cbp-color-text-lighter);
+  --cbp-flag-card-color-dark: var(--cbp-color-text-darker);
+  --cbp-flag-card-color-background: var(--cbp-color-gray-cool-60);
+  --cbp-flag-card-color-background-dark: var(--cbp-color-gray-cool-30);
 }
 
 
@@ -47,6 +59,9 @@
   --cbp-banner-card-color-title: var(--cbp-banner-card-color-title-dark);
   --cbp-banner-card-color-body-background: var(--cbp-banner-card-color-body-background-dark);
   --cbp-banner-card-color-border: var(--cbp-banner-card-color-border-dark);
+
+  --cbp-flag-card-color: var(--cbp-flag-card-color-dark);
+  --cbp-flag-card-color-background: var(--cbp-flag-card-color-background-dark);
 }
 
 cbp-card {
@@ -65,6 +80,7 @@ cbp-card {
     width: 100%;
     max-width: 100%;
     flex-grow: 1;
+    overflow: auto;
 
     :last-child {
       margin-bottom: 0;
@@ -81,6 +97,10 @@ cbp-card {
     font-weight: var(--cbp-font-weight-medium);
     font-size: var(--cbp-font-size-heading-lg);
     line-height: var(--cbp-line-height-sm);
+    
+     > *{
+      color: var(--cbp-card-color-text);
+    }
   }
 
   &[variant=decision] [slot=cbp-card-title] {
@@ -226,4 +246,39 @@ cbp-card {
       --cbp-banner-card-color-body-background-dark: var(--cbp-color-danger-darker);
     }
   }
+
+  &[variant=flag]{
+    flex-direction: row;
+    
+    .cbp-card-flag{
+      min-width: var(--cbp-flag-card-min-width);
+      align-content: center;
+      text-align: center;
+      color: var(--cbp-flag-card-color);
+      background-color: var(--cbp-flag-card-color-background);
+    }
+
+    
+    &[color=info] {   
+      --cbp-flag-card-color-dark: (--cbp-color-text-lighter);
+      --cbp-flag-card-color-background: var(--cbp-color-info-base);
+      --cbp-flag-card-color-background-dark: var(--cbp-color-info-dark);
+    }
+    
+    &[color=success] {
+      --cbp-flag-card-color-dark: (--cbp-color-text-lighter);
+      --cbp-flag-card-color-background: var(--cbp-color-success-base);
+      --cbp-flag-card-color-background-dark: var(--cbp-color-success-dark);
+    }
+
+    &[color=warning] {
+      --cbp-flag-card-color-background: var(--cbp-color-warning-dark);
+      --cbp-flag-card-color-background-dark: var(--cbp-color-warning-light);
+    }
+
+    &[color=danger] {
+      --cbp-flag-card-color-background: var(--cbp-color-danger-base);
+      --cbp-flag-card-color-background-dark: var(--cbp-color-danger-light);
+    }
+}
 }

@@ -17,7 +17,10 @@ export class CbpCard {
   @Prop({ reflect: true }) color: 'info' | 'success' | 'warning' | 'danger';
   
   /** Specifies optional variants with difference from the default card. */
-  @Prop({ reflect: true }) variant: 'banner' | 'decision';
+  @Prop({ reflect: true }) variant: 'banner' | 'decision' | 'flag';
+
+  /** When present, the card will have a slot avaliable to display an img/icon flag for the card  */
+  // @Prop({ reflect: true }) flag: boolean = false;
 
   /** When present, the card will stretch vertically to fill its parent container; most useful when placed in an equally sized grid or row of cards. */
   @Prop({ reflect: true }) stretch: boolean = false;
@@ -40,6 +43,12 @@ export class CbpCard {
   render() {
     return (
       <Host>
+        {/* {this.variant == 'flag' ? 
+        <div class='cbp-card-flag'>
+          <slot name='cbp-card-flag'/>
+        </div>
+           : ''} */}
+        {this.variant === 'flag' && <div class='cbp-card-flag'><slot name='cbp-card-flag'/></div>}   
         {this.variant === 'banner' && <slot name="cbp-card-title" />}
         <div class="cbp-card-body">
           {this.variant !== 'banner' && <slot name="cbp-card-title" />}
