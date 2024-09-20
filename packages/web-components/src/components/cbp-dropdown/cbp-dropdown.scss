@@ -5,6 +5,11 @@
  *  @prop --cbp-dropdown-menu-color-dark: var(--cbp-form-field-color-dark);
  *  @prop --cbp-dropdown-menu-color-bg-dark: var(--cbp-form-field-color-bg-dark);
  *  @prop --cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
+
+ *  @prop --cbp-dropdown-menu-color-counter: var(--cbp-form-field-color-dark);
+ *  @prop --cbp-dropdown-menu-color-bg-counter: var(--cbp-form-field-color-border);
+ *  @prop --cbp-dropdown-menu-color-counter-dark: var(--cbp-form-field-color);
+ *  @prop --cbp-dropdown-menu-color-bg-counter-dark: var(--cbp-color-interactive-secondary-light);
  */
 :root {
   // TechDebt: need to weigh this dependency/inheritance vs standalone functionality
@@ -14,8 +19,6 @@
   //--cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
   --cbp-dropdown-menu-color-bg: var(--cbp-form-field-color-bg);
   --cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
-  --cbp-dropdown-menu-color-counter: var(--cbp-color-text-lightest);
-  --cbp-dropdown-menu-color-bg-counter: var(--cbp-color-interactive-secondary-dark);
 
   --cbp-dropdown-menu-color-dark: var(--cbp-form-field-color-dark);
   --cbp-dropdown-menu-color-placeholder-dark: var(--cbp-form-field-color-placeholder-dark);
@@ -23,8 +26,20 @@
   //--cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
   --cbp-dropdown-menu-color-bg-dark: var(--cbp-form-field-color-bg-dark);
   --cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
-  --cbp-dropdown-menu-color-counter-dark: var(--cbp-color-text-darkest);
+
+  // Leverage form field colors for the multi-select counter control
+  //--cbp-dropdown-menu-color-counter: var(--cbp-color-text-lightest);
+  //--cbp-dropdown-menu-color-bg-counter: var(--cbp-color-interactive-secondary-dark);
+  --cbp-dropdown-menu-color-counter: var(--cbp-form-field-color-dark);
+  --cbp-dropdown-menu-color-bg-counter: var(--cbp-form-field-color-border);
+
+  //--cbp-dropdown-menu-color-counter-dark: var(--cbp-color-text-darkest);
+  //--cbp-dropdown-menu-color-bg-counter-dark: var(--cbp-color-interactive-secondary-light);
+  --cbp-dropdown-menu-color-counter-dark: var(--cbp-form-field-color);
   --cbp-dropdown-menu-color-bg-counter-dark: var(--cbp-color-interactive-secondary-light);
+
+  --cbp-dropdown-menu-color-counter-outline-focus: var(--cbp-color-white);
+  --cbp-dropdown-menu-color-counter-outline-focus-dark: var(--cbp-form-field-color-border);
 }
 
 /* 
@@ -38,6 +53,7 @@
   --cbp-dropdown-menu-color-border: var(--cbp-dropdown-menu-color-border-dark);
   --cbp-dropdown-menu-color-counter: var(--cbp-dropdown-menu-color-counter-dark);
   --cbp-dropdown-menu-color-bg-counter: var(--cbp-dropdown-menu-color-bg-counter-dark);
+  --cbp-dropdown-menu-color-counter-outline-focus: var(--cbp-dropdown-menu-color-counter-outline-focus-dark)
  }
 
 cbp-dropdown {
@@ -69,6 +85,19 @@ cbp-dropdown {
       padding: var(--cbp-space-1x) var(--cbp-space-2x);
       margin-inline: var(--cbp-space-1x) var(--cbp-space-3x);
       border-radius: var(--cbp-border-radius-pill);
+      outline: 0px solid var(--cbp-dropdown-menu-color-counter-outline-focus);
+      outline-offset: calc(-1 * (var(--cbp-space-1x) - 1px));
+
+      &:hover {
+        --cbp-dropdown-menu-color-bg-counter: var(--cbp-form-field-color-border-hover);
+        --cbp-dropdown-menu-color-bg-counter-dark: var(--cbp-form-field-color-border-hover-dark);
+      }
+
+      &:focus {
+        --cbp-dropdown-menu-color-bg-counter: var(--cbp-form-field-color-border-focus);
+        --cbp-dropdown-menu-color-bg-counter-dark: var(--cbp-form-field-color-border-focus-dark);
+        outline-width: var(--cbp-border-size-md);
+      }
     }
 
   }

@@ -66,7 +66,7 @@ export class CbpDropdown {
 
     // multi-select behavior
     if(this.multiple) {
-      // TechDebt: this needs to be async/promise
+      // TechDebt: this should ideally be async/promise. Update: Made selectedItems a State, so this might be fine now. Needs testing.
       host.selected=!host.selected; // toggle the selected state of the item
 
       setTimeout( () => {
@@ -74,8 +74,9 @@ export class CbpDropdown {
         this.placeholder=this.selectedItems.length != 1 ? 'Selected Items' : 'Selected Item';
       }, 50);
 
-      this.value = []; // make an array of the values of selected items
+      this.value = []; // TODO: make an array of the values of selected items
     }
+
     // single select
     else {
       this.dropdownitems=Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
@@ -159,7 +160,6 @@ export class CbpDropdown {
 
   handleCounterClick(e) {
     this.clearSelections();
-    //e.preventDefault();
     e.stopImmediatePropagation();
     this.counterControl.focus();
   }
@@ -175,11 +175,9 @@ export class CbpDropdown {
 
   // This handles activating the button via Space or Enter as well (as long ).
   handleDropdownClick() {
-    //console.log('handleDropdownClick: ',{e});
-    //if (!e.target.closest('.cbp-dropdown-multiselect-counter')) {
-      if (!this.readonly && !this.disabled) this.open=!this.open;
-    //}
+    if (!this.readonly && !this.disabled) this.open=!this.open;
   }
+
   handleKeyUp({key}) {
     // Close the menu when pressing ESC anywhere in the component and send focus back to the control
     if (key == 'Escape') {
@@ -292,6 +290,7 @@ export class CbpDropdown {
                       role="button"
                       tabindex={0}
                       class="cbp-dropdown-multiselect-counter" 
+                      aria-description={`Clear ${this.selectedItems.length} Selections`}
                       onClick={ (e) => this.handleCounterClick(e)}
                       onKeyDown={ (e) => this.handleCounterKeydown(e)}
                       ref={ el => this.counterControl = el}
