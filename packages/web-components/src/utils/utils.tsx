@@ -67,3 +67,44 @@ export const getElementAttrs = (el: HTMLElement): { [key: string]: any } => {
 export const clamp = (min: number, n: number, max: number) => {
   return Math.max(min, Math.min(n, max));
 };
+
+
+// TechDebt: Can this be simplified by leveraging e.composedPath() ?
+export const clickAwayListener = (host: HTMLElement, callback: any) => {
+  const tagName = host === null || host === void 0 ? void 0 : host.tagName.toLowerCase();
+  if (!tagName) return;
+  
+  const events = ['click', 'touchend'];
+  const eventHandler = ({ target }) => {
+    const parentElement = target.closest(tagName);
+    if (!parentElement) {
+      callback({
+        flag: false
+      });
+      cancelEvents();
+    }
+    else if (!parentElement.contains(host)) {
+      if (!(parentElement === null || parentElement === void 0 ? void 0 : parentElement.parentElement.closest(tagName))) {
+        callback({
+          flag: true
+        });
+      }
+    }
+    else {
+      if (parentElement.closest(tagName) != host) {
+        callback({
+          flag: true
+        });
+      }
+    }
+  };
+
+  const cancelEvents = () => {
+    events.forEach(e => {
+      document.removeEventListener(e, eventHandler, false);
+    });
+  };
+  events.forEach(e => {
+    document.addEventListener(e, eventHandler);
+  });
+};

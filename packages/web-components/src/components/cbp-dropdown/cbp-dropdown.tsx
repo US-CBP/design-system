@@ -1,5 +1,5 @@
 import { Component, Prop, State, Element, Event, EventEmitter, Method, Listen, Watch, Host, h } from '@stencil/core';
-import { setCSSProps, createNamespaceKey } from '../../utils/utils';
+import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/utils';
 
 @Component({
   tag: 'cbp-dropdown',
@@ -12,6 +12,7 @@ export class CbpDropdown {
   private dropdownitems: HTMLCbpDropdownItemElement[];
   private selectedItem: HTMLCbpDropdownItemElement;
   private focusIndex: number;
+  private counterControl: HTMLElement;
     
   @Element() host: HTMLElement;
 
@@ -117,6 +118,11 @@ export class CbpDropdown {
       else this.focusIndex = this.dropdownitems.indexOf(this.selectedItem) || 0;
 
       this.setFocus();
+
+      // Set up a clickaway listener to close the menu
+      clickAwayListener(this.host, _ => {
+          this.open = false;
+      });
     }
   }
 
@@ -155,6 +161,7 @@ export class CbpDropdown {
     this.clearSelections();
     //e.preventDefault();
     e.stopImmediatePropagation();
+    this.counterControl.focus();
   }
 
   handleCounterKeydown(e) {
@@ -162,6 +169,7 @@ export class CbpDropdown {
     if (key == ' ' || key == 'Enter') {
       this.clearSelections();
       e.preventDefault();
+      this.counterControl.focus();
     }
   }
 
@@ -286,6 +294,7 @@ export class CbpDropdown {
                       class="cbp-dropdown-multiselect-counter" 
                       onClick={ (e) => this.handleCounterClick(e)}
                       onKeyDown={ (e) => this.handleCounterKeydown(e)}
+                      ref={ el => this.counterControl = el}
                     >
                       {this.selectedItems.length}
                       <cbp-icon
