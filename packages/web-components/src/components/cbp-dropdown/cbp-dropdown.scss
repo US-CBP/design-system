@@ -46,13 +46,11 @@ cbp-dropdown {
   button {
     appearance: none;
     white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
 
-    .cbp-dropdown-label {
-      //white-space: nowrap;
-      //text-overflow: ellipsis;
-      //overflow: hidden;
+    .cbp-dropdown-label,
+    .cbp-dropdown-placeholder {
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     .cbp-dropdown-placeholder {
