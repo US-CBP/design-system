@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'cbp-dropdown-item',
@@ -6,6 +6,9 @@ import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil
 })
 export class CbpDropdownItem {
   
+  private checkbox: HTMLInputElement;
+  private parent: HTMLCbpDropdownElement;
+
   @Element() host: HTMLElement;
 
   /** Specifies an optional value to be passed in the FormData instead of the display text/label. */
@@ -19,21 +22,41 @@ export class CbpDropdownItem {
 
 
   @Event() dropdownItemClick: EventEmitter;
-  handleClick() {
-    const label=(this.host.querySelector('.cbp-dropdown-item-content') as HTMLElement).innerText;
-    this.dropdownItemClick.emit({
-      host: this.host,
-      label: label,
-      value: (this.value) ? this.value : label
-    });
-    this.selected=true;
+  handleClick({target}) {
+    // Ignore a click on the label because it will fire a click on the input as well
+    if(target.tagName != "LABEL") {
+      console.log({target});
+      const label=(this.host.querySelector('.cbp-dropdown-item-content') as HTMLElement).innerText;
+      this.dropdownItemClick.emit({
+        host: this.host,
+        target: target,
+        label: label,
+        value: (this.value) ? this.value : label
+      });
+    }
+    //this.selected=true; delegate this to the parent level because we don't know if this is single or multiselect here
   }
   
+  @Watch('selected')
+  watchSelected(newValue) {
+    if (this.checkbox) this.checkbox.checked=newValue; // sync a slotted checkbox (if any) with the selected state
+    if (newValue && this.parent.open) this.host.focus(); // If the dropdown is open, send focus to the selected dropdown item (not its children)
+  }
+
   handleKeyUp(e) {
     if (e.key == 'Enter') {
-      this.handleClick();
+      this.handleClick(e);
       return false;
     }
+  }
+
+  componentWillLoad() {
+    this.parent=this.host.closest('cbp-dropdown');
+    this.checkbox = this.host.querySelector('input[type=checkbox]');
+  }
+
+  componentDidLoad() {
+    if (this.selected) this.checkbox.checked=true;
   }
 
   render() {
@@ -41,7 +64,7 @@ export class CbpDropdownItem {
       <Host
         role="option"
         tabindex={-1}
-        onClick={ () => this.handleClick()}
+        onClick={ (e) => this.handleClick(e)}
         onKeyDown={e => this.handleKeyUp(e)}
         aria-selected={this.selected ? "true" : "false"}
       >

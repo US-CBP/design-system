@@ -9,16 +9,22 @@
 :root {
   // TechDebt: need to weigh this dependency/inheritance vs standalone functionality
   --cbp-dropdown-menu-color: var(--cbp-form-field-color);
+  --cbp-dropdown-menu-color-placeholder: var(--cbp-form-field-color-placeholder);
   //--cbp-dropdown-menu-color-bg: var(--cbp-color-white);
   //--cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
   --cbp-dropdown-menu-color-bg: var(--cbp-form-field-color-bg);
   --cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
+  --cbp-dropdown-menu-color-counter: var(--cbp-color-text-lightest);
+  --cbp-dropdown-menu-color-bg-counter: var(--cbp-color-interactive-secondary-dark);
 
   --cbp-dropdown-menu-color-dark: var(--cbp-form-field-color-dark);
+  --cbp-dropdown-menu-color-placeholder-dark: var(--cbp-form-field-color-placeholder-dark);
   //--cbp-dropdown-menu-color-bg-dark: var(--cbp-color-gray-cool-70);
   //--cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
   --cbp-dropdown-menu-color-bg-dark: var(--cbp-form-field-color-bg-dark);
   --cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
+  --cbp-dropdown-menu-color-counter-dark: var(--cbp-color-text-darkest);
+  --cbp-dropdown-menu-color-bg-counter-dark: var(--cbp-color-interactive-secondary-light);
 }
 
 /* 
@@ -27,8 +33,11 @@
  [data-cbp-theme=light] cbp-dropdown[context*=dark],
  [data-cbp-theme=dark] cbp-dropdown:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-dropdown-menu-color: var(--cbp-dropdown-menu-color-dark);
+  --cbp-dropdown-menu-color-placeholder: var(--cbp-dropdown-menu-color-placeholder-dark);
   --cbp-dropdown-menu-color-bg: var(--cbp-dropdown-menu-color-bg-dark);
   --cbp-dropdown-menu-color-border: var(--cbp-dropdown-menu-color-border-dark);
+  --cbp-dropdown-menu-color-counter: var(--cbp-dropdown-menu-color-counter-dark);
+  --cbp-dropdown-menu-color-bg-counter: var(--cbp-dropdown-menu-color-bg-counter-dark);
  }
 
 cbp-dropdown {
@@ -36,12 +45,34 @@ cbp-dropdown {
 
   button {
     appearance: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     .cbp-dropdown-label {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
+      //white-space: nowrap;
+      //text-overflow: ellipsis;
+      //overflow: hidden;
     }
+
+    .cbp-dropdown-placeholder {
+      color: var(--cbp-dropdown-menu-color-placeholder);
+      font-style: italic;
+    }
+
+    .cbp-dropdown-multiselect-counter {
+      display: inline-block;
+      color: var(--cbp-dropdown-menu-color-counter);
+      background-color: var(--cbp-dropdown-menu-color-bg-counter);
+      font-size: var(--cbp-font-size-subhead);
+      font-weight: var(--cbp-font-weight-medium);
+      font-style: normal;
+      line-height: var(--cbp-space-3x);
+      padding: var(--cbp-space-1x) var(--cbp-space-2x);
+      margin-inline: var(--cbp-space-1x) var(--cbp-space-3x);
+      border-radius: var(--cbp-border-radius-pill);
+    }
+
   }
 
   .cbp-dropdown-menu {
@@ -75,13 +106,6 @@ cbp-dropdown {
   }
 
   &[error] {
-    // TechDebt: need to weigh this dependency/inheritance vs standalone functionality
-    //--cbp-dropdown-menu-color-bg: var(--cbp-color-danger-lighter);
-    //--cbp-dropdown-menu-color-border: var(--cbp-color-danger-dark);
-
-    //--cbp-dropdown-menu-color-bg-dark: var(--cbp-color-danger-darker);
-    //--cbp-dropdown-menu-color-border-dark: var(--cbp-color-danger-light);
-
     --cbp-dropdown-menu-color-bg: var(--cbp-form-field-color-bg);
     --cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
 
@@ -99,10 +123,22 @@ cbp-dropdown {
     }
   }
 
+
+
   // Keep focus style on the control when a dropdown menu has focus
   /*
   &:has(.cbp-dropdown-menu:focus-within) .cbp-custom-form-control {
     outline-width: var(--cbp-border-size-lg); // This is set to 3px because of the 1px inset, overlapping the border; border+outline = 4px total.
   }
   */
+
+  &[multiple] {
+    --cbp-dropdown-item-padding-inline-start: 0;
+    --cbp-dropdown-item-padding-block: var(--cbp-space-1x);
+    --cbp-dropdown-item-font-style-selected: normal;
+
+    cbp-checkbox {
+    --cbp-checkbox-color-label: var(--cbp-color-text-darkest);
+    }
+  }
 }
