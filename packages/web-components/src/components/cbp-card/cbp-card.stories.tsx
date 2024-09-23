@@ -12,10 +12,10 @@ export default {
       description: 'Set the body text of the card',
       control: 'text',
     },
-    color: {
-      control: 'select',
-      options: ['default', 'info', 'success', 'warning', 'danger'],
-    },
+    // color: {
+    //   control: 'select',
+    //   options: ['default', 'info', 'success', 'warning', 'danger'],
+    // },
     stretch: {
       control: 'boolean',
     },
@@ -133,7 +133,8 @@ const BannerTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
   `;
 };
 
-const FlagTemplate = ({ title, color, flag, bodyText, withIcon, context, sx }) => {
+//documentation for dicebear(image generator in below) https://www.dicebear.com/how-to-use/http-api/
+const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       variant='flag'
@@ -142,8 +143,30 @@ const FlagTemplate = ({ title, color, flag, bodyText, withIcon, context, sx }) =
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
       <div slot='cbp-card-flag'>
-        ${flag}
+          <img src="https://api.dicebear.com/9.x/personas/svg" />
       </div>
+      <cbp-typography tag='h4' slot="cbp-card-title">
+        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.25rem'></cbp-icon>` : ''}
+        ${title}
+      </cbp-typography>
+      <p>${bodyText}</p>  
+    </cbp-card>
+  `;
+};
+
+const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, interactive, href, variant, context, sx }) => {
+  return ` 
+    <cbp-card
+      ${variant !=='general' ? `variant=` + variant : ''}
+      ${interactive ? `interactive=${interactive}` : ''}
+      ${href ? `href=${href}` : ''}
+      ${disabled ? `disabled=${disabled}` : ''}
+      ${color ? `color=${color}` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+    >
+      
+      ${variant=== 'flag' ? `<div slot='cbp-card-flag'><img src="https://api.dicebear.com/9.x/personas/svg" /></div>` : ''}
       <cbp-typography tag='h4' slot="cbp-card-title">
         ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.25rem'></cbp-icon>` : ''}
         ${title}
@@ -303,8 +326,6 @@ BannerCard.args = {
 
 export const FlagCard = FlagTemplate.bind({});
 FlagCard.args = {
-  // flag: '<cbp-icon name="globe" size="3rem"> </cbp-icon>',
-  flag: '<img src="https://api.dicebear.com/9.x/personas/svg" />', //documentation for dicebear https://www.dicebear.com/how-to-use/http-api/
   title: 'Card Title',
   bodyText: 'Here is an example of some body text for this purely informational card',
 };
@@ -314,5 +335,38 @@ FlagCard.argTypes = {
     description: 'Set the color of the card',
     control: 'select',
     options: ['default', 'info', 'success', 'warning', 'danger'],
+  },
+};
+
+export const InteractiveCard = InteractiveTemplate.bind({});
+InteractiveCard.args = {
+  title: 'Banner Card Title',
+  bodyText: 'Here is an example of some supplementary text for this purely informational card',
+  interactive: 'clickable',
+  variant: 'general'
+};
+
+InteractiveCard.argTypes = {
+  interactive: {
+    name: 'Interactive',
+    description: 'Set the interactivity of the card',
+    control: 'select',
+    options: ['clickable', 'select', 'multi'],
+  },
+  href:{
+    control: 'text'
+  },
+  disabled: {
+    control: 'boolean',
+  },
+  color: {
+    control: 'select',
+    options: ['default', 'danger'],
+  },
+  variant: {
+    name: 'Variant',
+    description: 'set Variant of the card',
+    control: 'select',
+    options: ['general', 'decision', 'flag']
   },
 };
