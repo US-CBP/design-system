@@ -86,6 +86,7 @@ export class CbpCheckbox {
     // Set the disabled/indeterminate states on load only if true. (The Watch decorators only listen for changes, not initial state)
     if (!!this.formField) {
       if (this.indeterminate) this.formField.indeterminate=this.indeterminate;
+      if (this.checked) this.formField.checked=this.checked;
       if (this.disabled) this.formField.setAttribute('disabled', '');
     }
   }

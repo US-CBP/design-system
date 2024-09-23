@@ -76,9 +76,9 @@ cbp-form-field {
     position: relative;
   }
 
-  input,
+  input:not([type=checkbox]):not([type=radio]),
   textarea,
-  select,
+  select, 
   .cbp-custom-form-control {
     width: 100%;
     max-width: 100%;
