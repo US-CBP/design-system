@@ -101,16 +101,6 @@ cbp-card {
     :last-child {
       margin-bottom: 0;
     }
-
-    .cbp-card-select{
-      label{
-        min-height: var(--cbp-space-4x);
-      }
-    
-      input{
-        margin-left: auto;
-      } 
-    }
   }
 
   &[stretch] {
@@ -398,6 +388,12 @@ cbp-card {
     }
 
     &[disabled]{
+
+      a{
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+
       --cbp-card-color-background: var(--cbp-color-interactive-disabled-light);
       --cbp-card-color-border: var(--cbp-color-interactive-disabled-dark);
       --cbp-card-color-title: var(--cbp-color-interactive-disabled-dark);

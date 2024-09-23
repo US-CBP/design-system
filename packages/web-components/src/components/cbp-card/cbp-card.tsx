@@ -47,56 +47,31 @@ export class CbpCard {
   }
 
   render() {
-    return (
-      <Host>
-        {this.interactive === 'clickable' && 
+    if(this.interactive === 'clickable'){
+      return(
+        <Host>
           <a class='cbp-card-clickable' href={this.href}>
-            {this.variant === 'flag' && <div class='cbp-card-flag'><slot name='cbp-card-flag'></slot></div>}   
-            {this.variant === 'banner' && <slot name="cbp-card-title" />}
-            <div class="cbp-card-body">
-            {this.variant !== 'banner' && <slot name="cbp-card-title" />}
-              <slot />
+              {this.variant === 'flag' && <div class='cbp-card-flag'><slot name='cbp-card-flag'></slot></div>}   
+              {this.variant === 'banner' && <slot name="cbp-card-title" />}
+              <div class="cbp-card-body">
+              {this.variant !== 'banner' && <slot name="cbp-card-title" />}
+                <slot />
+              </div>
+            <slot name="cbp-card-actions" />
+            </a>
+        </Host>
+      );
+    }else {
+      return(
+        <Host>
+          {this.variant === 'banner' && <slot name="cbp-card-title" />}
+            {this.variant === 'flag' && <div class='cbp-card-flag'><slot name='cbp-card-flag'/></div>}
+              <div class="cbp-card-body">
+                {(this.variant !== 'banner') && <slot name="cbp-card-title" />}
+                <slot />
             </div>
-          <slot name="cbp-card-actions" />
-          </a>
-        }      
-        {this.variant === 'banner' && <slot name="cbp-card-title" />}
-        {this.interactive !== 'clickable' && <div>
-          {this.variant === 'flag' && <div class='cbp-card-flag'><slot name='cbp-card-flag'/></div>}
-            <div class="cbp-card-body">
-              {(this.variant !== 'banner' && (this.interactive !='multi' && this.interactive !='select')) && <slot name="cbp-card-title" />}
-              {this.interactive === 'multi' && 
-                <cbp-checkbox 
-                    class='cbp-card-select'
-                    value="1">           
-                  {this.variant !== 'banner' && <slot name="cbp-card-title" />}
-                  <input
-                    type="checkbox"
-                  />
-                </cbp-checkbox>
-              }
-              
-              {/* todo: Radio button not ready for consumption
-              {this.interactive === 'select' && 
-                <div> 
-                  <cbp-form-field>
-                    {this.variant !== 'banner' && <slot name="cbp-card-title" />}
-                    <cbp-form-field-wrapper>
-                      <input
-                        class='cbp-card-select'
-                        type="radio"
-                      />
-                    </cbp-form-field-wrapper>
-                  </cbp-form-field>
-                </div>
-              } */}
-              <slot />
-            </div>
-          </div>
-        } 
-        
-        <slot name="cbp-card-actions" />
-      </Host>
-    );
+        </Host>
+      )
+    }
   }
 }

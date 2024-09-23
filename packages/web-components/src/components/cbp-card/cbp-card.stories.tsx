@@ -167,10 +167,24 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
     >
       
       ${variant=== 'flag' ? `<div slot='cbp-card-flag'><img src="https://api.dicebear.com/9.x/personas/svg" /></div>` : ''}
-      <cbp-typography tag='h4' slot="cbp-card-title">
-        ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.25rem'></cbp-icon>` : ''}
-        ${title}
-      </cbp-typography>
+      ${interactive === 'multi' ? `
+        <cbp-checkbox value="1" slot="cbp-card-title">
+          <cbp-typography tag='h4' >
+              ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.25rem'></cbp-icon>` : ''}
+              ${title}
+          </cbp-typography>
+          <input
+            type="checkbox"
+            name="multiCard"
+            value="1"
+            style="margin-left: auto"
+          />
+        </cbp-checkbox>
+      ` 
+      :   `<cbp-typography tag='h4' slot="cbp-card-title">
+            ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.25rem'></cbp-icon>` : ''}
+            ${title}
+          </cbp-typography>`}
       <p>${bodyText}</p>  
     </cbp-card>
   `;
