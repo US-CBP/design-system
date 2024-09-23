@@ -67,14 +67,15 @@ export class CbpDropdown {
     // multi-select behavior
     if(this.multiple) {
       // TechDebt: this should ideally be async/promise. Update: Made selectedItems a State, so this might be fine now. Needs testing.
-      host.selected=!host.selected; // toggle the selected state of the item
+      let newValue = host.selected = !host.selected; // toggle the selected state of the item
 
       setTimeout( () => {
         this.selectedItems=Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
         this.placeholder=this.selectedItems.length != 1 ? 'Selected Items' : 'Selected Item';
       }, 50);
 
-      this.value = []; // TODO: make an array of the values of selected items
+      // update the values array
+      newValue ? this.value = [...this.value, value] : this.value = this.value.filter( (item) => item !== value);
     }
 
     // single select
@@ -102,7 +103,7 @@ export class CbpDropdown {
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formField,
-      value: this.formField.value,
+      value: this.value,
       label: this.selectedLabel
     });
   }
@@ -142,7 +143,9 @@ export class CbpDropdown {
     this.selectedItems.forEach( (item) => {
       item.selected=false;
     });
-    this.formField.value=undefined;
+    
+    // reset the value
+    this.multiple ? this.value = [] : this.formField.value=undefined;
 
     // Update the selectedItems state after all of the items have been deselected
     setTimeout(() => {
@@ -153,7 +156,7 @@ export class CbpDropdown {
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formField,
-      value: this.formField.value,
+      value: this.value,
       label: undefined
     });
   }
@@ -230,6 +233,11 @@ export class CbpDropdown {
     // Look for any selected item to set the initial state, only if the value is not set
     this.selectedItems=Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
     if (this.multiple) {
+      this.value = []; // make an array of the values of selected items
+      this.selectedItems.forEach( (item) => {
+        const checkbox: HTMLInputElement = item.querySelector('input[type=checkbox]');
+        this.value = [...this.value, checkbox.value];
+      });
       this.placeholder=this.selectedItems.length != 1 ? 'Selected Items' : 'Selected Item';
     }
 
@@ -290,7 +298,7 @@ export class CbpDropdown {
                       role="button"
                       tabindex={0}
                       class="cbp-dropdown-multiselect-counter" 
-                      aria-description={`Clear ${this.selectedItems.length} Selections`}
+                      title={`Click to clear selections`}
                       onClick={ (e) => this.handleCounterClick(e)}
                       onKeyDown={ (e) => this.handleCounterKeydown(e)}
                       ref={ el => this.counterControl = el}
