@@ -25,7 +25,6 @@ export class CbpDropdownItem {
   handleClick({target}) {
     // Ignore a click on the label because it will fire a click on the input as well
     if(target.tagName != "LABEL") {
-      console.log({target});
       const label=(this.host.querySelector('.cbp-dropdown-item-content') as HTMLElement).innerText;
       this.dropdownItemClick.emit({
         host: this.host,
