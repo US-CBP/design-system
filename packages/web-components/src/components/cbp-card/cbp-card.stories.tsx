@@ -343,7 +343,8 @@ InteractiveCard.args = {
   title: 'Banner Card Title',
   bodyText: 'Here is an example of some supplementary text for this purely informational card',
   interactive: 'clickable',
-  variant: 'general'
+  variant: 'general',
+  href: 'https://us-cbp.github.io/design-system/?path=/story/introduction--introduction'
 };
 
 InteractiveCard.argTypes = {

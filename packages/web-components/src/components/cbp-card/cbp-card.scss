@@ -54,10 +54,10 @@
   --cbp-flag-card-color-background-dark: var(--cbp-color-gray-cool-30);
 
   //interactive
-  --cbp-interactive-card-outline-focus: var(--cbp-color-white);
-  --cbp-interactive-card-outline-focus-dark: var(--cbp-color-black);
-  --cbp-interactive-card-danger-outline-focus: var(--cbp-color-white);
-  --cbp-interactive-card-danger-outline-focus-dark: var(--cbp-color-black);
+  --cbp-interactive-card-outline-color-focus: var(--cbp-color-white);
+  --cbp-interactive-card-outline-color-focus-dark: var(--cbp-color-black);
+  --cbp-interactive-card-danger-outline-color-focus: var(--cbp-color-white);
+  --cbp-interactive-card-danger-outline-color-focus-dark: var(--cbp-color-black);
 }
 
 
@@ -76,8 +76,8 @@
   --cbp-flag-card-color: var(--cbp-flag-card-color-dark);
   --cbp-flag-card-color-background: var(--cbp-flag-card-color-background-dark);
 
-  --cbp-interactive-card-outline-focus: var(--cbp-interactive-card-outline-focus-dark);
-  --cbp-interactive-card-danger-outline-focus: var(--cbp-interactive-card-danger-outline-focus-dark);
+  --cbp-interactive-card-outline-color-focus: var(--cbp-interactive-card-outline-color-focus-dark);
+  --cbp-interactive-card-danger-outline-color-focus: var(--cbp-interactive-card-danger-outline-color-focus-dark);
 }
 
 cbp-card {
@@ -108,7 +108,6 @@ cbp-card {
       }
     
       input{
-        display: flex;
         margin-left: auto;
       } 
     }
@@ -321,6 +320,10 @@ cbp-card {
   // &[select],
   &[interactive="multi"]{
 
+    a{
+      color: var(--cbp-card-color-text); 
+    }
+
     &:hover{
       --cbp-card-color-background: var(--cbp-color-gray-cool-10);
       --cbp-card-color-border: var(--cbp-color-interactive-secondary-darker);
@@ -345,7 +348,7 @@ cbp-card {
       --cbp-card-color-text-dark: var(--cbp-color-text-darker);
     
       &:not(disabled) .cbp-card-body{
-        outline: 2px solid var(--cbp-interactive-card-outline-focus); 
+        outline: 2px solid var(--cbp-interactive-card-outline-color-focus); 
         outline-offset: -4px;
       }  
     }
@@ -388,7 +391,7 @@ cbp-card {
         --cbp-card-color-text-dark: var(--cbp-color-text-darker); 
   
         &:not(disabled) .cbp-card-body{
-          outline: 2px solid var(--cbp-interactive-card-danger-outline-focus); 
+          outline: 2px solid var(--cbp-interactive-card-danger-outline-color-focus); 
           outline-offset: -4px;
         }   
       }
