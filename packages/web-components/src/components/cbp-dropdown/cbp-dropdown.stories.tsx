@@ -14,6 +14,9 @@ export default {
     name: {
       control: 'text',
     },
+    placeholder: {
+      control: 'text',
+    },
     value: {
       control: 'text',
     },
@@ -48,7 +51,7 @@ function generateItems(buttons) {
   return html.join('');
 }
 
-const DropdownTemplate = ({ label, description, fieldId, name, error, readonly, disabled, value, context, sx, items }) => {
+const SingleSelectDropdownTemplate = ({ label, description, fieldId, name, placeholder, error, readonly, disabled, value, context, sx, items }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
@@ -60,8 +63,9 @@ const DropdownTemplate = ({ label, description, fieldId, name, error, readonly, 
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
     >
       <cbp-dropdown
-        ${name ? `name="${name}"` : ''}  
+        ${name ? `name="${name}"` : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${value ? `value="${value}"` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -73,8 +77,8 @@ const DropdownTemplate = ({ label, description, fieldId, name, error, readonly, 
   `;
 };
 
-export const Dropdown = DropdownTemplate.bind({});
-Dropdown.args = {
+export const SingleSelectDropdown = SingleSelectDropdownTemplate.bind({});
+SingleSelectDropdown.args = {
   value: '',
   fieldId: 'dropdown-id',
   items: [
@@ -131,3 +135,119 @@ Dropdown.args = {
   ]
 };
 
+
+
+
+
+function generateMultiSelectItems(buttons, context) {
+  const html = buttons.map(({ label, name, value, selected }) => {
+    return `<cbp-dropdown-item  value="${value}" ${selected == true ? 'selected' : ''}>
+              <cbp-checkbox 
+                ${context && context != 'light-inverts' ? `context=${context}` : ''}
+              >
+                <input 
+                  type="checkbox" 
+                  name="${name}"
+                  value="${value}"
+                />
+                ${label}
+              </cbp-checkbox>
+            </cbp-dropdown-item>
+    `;
+  });
+  return html.join('');
+}
+
+const MultiSelectDropdownTemplate = ({ label, description, fieldId, name, error, readonly, disabled, value, context, sx, items }) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
+      <cbp-dropdown
+        multiple
+        ${name ? `name="${name}"` : ''}  
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+         ${generateMultiSelectItems(items, context)}
+      </ul>
+      </cbp-dropdown>
+    </cbp-form-field>
+  `;
+};
+
+export const MultiSelectDropdown = MultiSelectDropdownTemplate.bind({});
+MultiSelectDropdown.args = {
+  value: '',
+  fieldId: 'dropdown-id',
+  items: [
+    {
+      label: 'Option 1',
+      name: 'multiselect',
+      value: '1',
+      selected: false,
+    },
+    {
+      label: 'Option 2',
+      name: 'multiselect',
+      value: '2',
+      selected: false,
+    },   
+    {
+      label: 'Option 3',
+      name: 'multiselect',
+      value: '3',
+      selected: false,
+    },    
+    {
+      label: 'Option 4 has a longer label',
+      name: 'multiselect',
+      value: '4',
+      selected: false,
+    },    
+    {
+      label: 'Option 5',
+      name: 'multiselect',
+      value: '5',
+      selected: false,
+    },    
+    {
+      label: 'Option 6',
+      name: 'multiselect',
+      value: '6',
+      selected: false,
+    },    
+    {
+      label: 'Option 7',
+      name: 'multiselect',
+      value: '7',
+      selected: false,
+    },    
+    {
+      label: 'Option 8',
+      name: 'multiselect',
+      value: '8',
+      selected: false,
+    },    
+    {
+      label: 'Option 9',
+      name: 'multiselect',
+      value: '9',
+      selected: false,
+    },    
+    {
+      label: 'Option 10 has no value specified',
+      name: 'multiselect',
+      value: undefined,
+      selected: false,
+    },
+  ]
+};

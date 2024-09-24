@@ -33,7 +33,9 @@
  * @prop --cbp-checkbox-color-halo-checked-focus-dark: var(--cbp-color-interactive-focus-dark);
  * @prop --cbp-checkbox-color-label-dark: var(--cbp-color-text-lightest);
 
+ * @prop --cbp-checkbox-min-height: var(--cbp-space-11x);
  * @prop --cbp-checkbox-margin: 0 0 var(--cbp-space-1x) 0;
+ * @prop --cbp-checkbox-font-weight-label: var(--cbp-font-weight-bold);
  */
 :root {
   --cbp-checkbox-color: var(--cbp-color-text-lightest);
@@ -70,7 +72,10 @@
   --cbp-checkbox-color-halo-checked-focus-dark: var(--cbp-color-interactive-focus-dark);
   --cbp-checkbox-color-label-dark: var(--cbp-color-text-lightest);
 
+  --cbp-checkbox-min-height: var(--cbp-space-11x);
   --cbp-checkbox-margin: 0 0 var(--cbp-space-1x) 0;
+  --cbp-checkbox-font-weight-label: var(--cbp-font-weight-bold);
+
 }
 
 // Displays dark design based on mode or context
@@ -103,8 +108,8 @@ cbp-checkbox {
   label {
     display: flex;
     align-items: center;
-    min-height: var(--cbp-space-11x);
-    font-weight: var(--cbp-font-weight-bold);
+    min-height: var(--cbp-checkbox-min-height);
+    font-weight: var(--cbp-checkbox-font-weight-label);
     color: var(--cbp-checkbox-color-label);
   }
 

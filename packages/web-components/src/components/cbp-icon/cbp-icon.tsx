@@ -31,8 +31,7 @@ export class CbpIcon {
   @Prop() sx: any = {};
 
 
-  // Keep fontawesome 6 naming, even though some icons share the same name between regular and solid. 
-  // If both are used, add "-solid" to the solid variation.
+  // Keep Font Awesome 6 naming, even though some icons share the same name between regular and solid; If both are used, add "-solid" to the solid variation.
   // TODO: Verify how well rotating directional icons works. Ideally, we don't need to store 4 versions of arrows, angles, chevrons, etc.
   private icons = {
     "address-book": {
@@ -252,7 +251,10 @@ export class CbpIcon {
       );
     }
     else {
-      //TODO: specifying the src for an icon
+      <Host>
+        {/* TODO: specifying the src for an icon */}
+        <slot />
+      </Host>
     }
   }
 

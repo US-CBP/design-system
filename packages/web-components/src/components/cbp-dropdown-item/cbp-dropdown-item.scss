@@ -18,15 +18,10 @@
   --cbp-dropdown-item-color-border-dark: var(--cbp-color-gray-cool-50);
 
   --cbp-dropdown-item-border-size: var(--cbp-border-size-sm);
-  /*
-  --cbp-dropdown-item-color: var(--cbp-dropdown-color);
-  --cbp-dropdown-item-color-bg: var(--cbp-dropdown-color-bg);
-  --cbp-dropdown-item-color-border: var(--cbp-color-gray-cool-50);
-  
-  --cbp-dropdown-item-color-dark: var(--cbp-dropdown-color-dark);
-  --cbp-dropdown-item-color-bg-dark: var(--cbp-dropdown-color-bg-dark);
-  --cbp-dropdown-item-color-border-dark: var(--cbp-color-gray-cool-50);
-  */
+  --cbp-dropdown-item-padding-block: var(--cbp-space-2x);
+  --cbp-dropdown-item-padding-inline-start: var(--cbp-space-1x);
+  --cbp-dropdown-item-font-style: normal;
+  --cbp-dropdown-item-font-style-selected: italic;
 }
 
 /* 
@@ -50,18 +45,17 @@ cbp-dropdown-item {
 */
 
   display: block;
-
-  //border-block-end: var(--cbp-border-size-sm) solid var(--cbp-dropdown-item-color-border);
   color: var(--cbp-dropdown-item-color);
   background: var(--cbp-dropdown-item-color-bg);
+  font-style: var(--cbp-dropdown-item-font-style);
   line-height: var(--cbp-line-height-xs);
   outline: 0;
 
   // This nested div is required for applying this weird indent to the bottom border and text, while extending the background color across the full width
   .cbp-dropdown-item-content {
     margin-inline-start: var(--cbp-space-3x);
-    padding-inline-start: var(--cbp-space-1x);
-    padding-block: var(--cbp-space-2x);
+    padding-inline-start: var(--cbp-dropdown-item-padding-inline-start);
+    padding-block: var(--cbp-dropdown-item-padding-block);
     
     border-block-end: var(--cbp-dropdown-item-border-size) solid var(--cbp-dropdown-item-color-border);
   }
@@ -71,9 +65,9 @@ cbp-dropdown-item {
   }
 
   &[selected] {
-    font-style: italic;
     --cbp-dropdown-item-color: var(--cbp-color-text-dark);
     --cbp-dropdown-item-color-dark: var(--cbp-color-text-light);
+    --cbp-dropdown-item-font-style: var(--cbp-dropdown-item-font-style-selected);
   }
 
   &:hover {
@@ -92,5 +86,76 @@ cbp-dropdown-item {
     --cbp-dropdown-item-color-dark: var(--cbp-color-text-darkest);
     --cbp-dropdown-item-color-bg-dark: var(--cbp-color-interactive-focus-light);
     --cbp-dropdown-item-color-border-dark: transparent;
+  }
+
+
+
+  /*
+    Multi-select: Requires overrides for checkboxes
+      Checkboxes in multi-select are inverted on interactive states
+      Note: this can be accomplished via the CSS API, but is complex because we need to 
+        apply styling of interactive checkbox states from the dropdown-item level and the 
+        checkbox interactive styles may still be present and need to be overridden.
+  */
+  cbp-checkbox {
+    --cbp-checkbox-min-height: var(--cbp-space-7x);
+    --cbp-checkbox-margin: 0;
+    --cbp-checkbox-color-halo-hover: transparent;
+    --cbp-checkbox-color-halo-focus: transparent;
+    --cbp-checkbox-color-halo-checked-hover: transparent;
+    --cbp-checkbox-color-halo-checked-focus: transparent;
+    --cbp-checkbox-color-halo-hover-dark: transparent;
+    --cbp-checkbox-color-halo-focus-dark: transparent;
+    --cbp-checkbox-color-halo-checked-hover-dark: transparent;
+    --cbp-checkbox-color-halo-checked-focus-dark: transparent;
+    --cbp-checkbox-font-weight-label: var(--cbp-font-weight-regular);
+  }
+
+  &:focus,
+  &:hover {
+    cbp-checkbox {
+      --cbp-checkbox-color-label: var(--cbp-color-text-lightest);
+      --cbp-checkbox-color-label-dark: var(--cbp-color-text-darkest);
+    }
+  }
+  
+  &:focus {
+    cbp-checkbox {
+      --cbp-checkbox-color: var(--cbp-color-text-lightest);
+      --cbp-checkbox-color-bg: var(--cbp-color-gray-cool-70);
+      --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-focus-dark);
+      --cbp-checkbox-color-border-hover: var(--cbp-checkbox-color-border-focus-dark);
+      --cbp-checkbox-color-bg-checked: var(--cbp-checkbox-color-bg-checked-focus);
+      --cbp-checkbox-color-border-checked: var(--cbp-checkbox-color-border-checked-focus);
+      --cbp-checkbox-color-border-checked-hover: var(--cbp-checkbox-color-border-checked-focus);
+
+      --cbp-checkbox-color-dark: var(--cbp-color-text-darkest);
+      --cbp-checkbox-color-bg-dark: var(--cbp-color-white);
+      --cbp-checkbox-color-border-dark: var(--cbp-color-interactive-secondary-dark);
+      --cbp-checkbox-color-border-hover-dark: var(--cbp-color-interactive-secondary-dark);
+      --cbp-checkbox-color-bg-checked-dark: var(--cbp-checkbox-color-bg-checked-focus-dark);
+      --cbp-checkbox-color-border-checked-dark: var(--cbp-checkbox-color-border-checked-focus-dark);
+      --cbp-checkbox-color-border-checked-hover-dark: var(--cbp-checkbox-color-border-checked-focus-dark);
+    }
+  }
+
+  &:hover:not(:focus) {
+    cbp-checkbox {
+      --cbp-checkbox-color: var(--cbp-color-text-darkest);
+      --cbp-checkbox-color-bg: var(--cbp-color-gray-cool-70);
+      --cbp-checkbox-color-border: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-checkbox-color-border-hover: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-checkbox-color-bg-checked: var(--cbp-color-interactive-selected-light);
+      --cbp-checkbox-color-border-checked: var(--cbp-color-interactive-selected-light);
+      --cbp-checkbox-color-border-checked-hover: var(--cbp-color-interactive-selected-light);
+
+      --cbp-checkbox-color-dark: var(--cbp-color-text-lightest);
+      --cbp-checkbox-color-bg-dark: var(--cbp-color-white);
+      --cbp-checkbox-color-border-dark: var(--cbp-color-interactive-secondary-dark);
+      --cbp-checkbox-color-border-hover-dark: var(--cbp-color-interactive-secondary-darker);
+      --cbp-checkbox-color-bg-checked-dark: var(--cbp-color-interactive-selected-dark);
+      --cbp-checkbox-color-border-checked-dark: var(--cbp-color-interactive-selected-dark);
+      --cbp-checkbox-color-border-checked-hover-dark: var(--cbp-color-interactive-selected-dark);
+    }
   }
 }

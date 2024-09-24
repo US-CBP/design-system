@@ -11,7 +11,9 @@ The Icon component represents a standard API for embedding accessible Scalable V
 ## Functional Requirements
 
 * The Icon component packages all icons used within the design system that can be referenced by name.
-* Icons may also be loaded by specifying an external `src` property pointing to the SVG file. (TODO)
+* External icons may be loaded by:
+  * Slotting component-based icons or native SVGs inside of the Icon component.
+  * Icons may also be loaded by specifying an external `src` property pointing to the SVG file. (TODO)
 
 ## Technical Specifications
 
@@ -22,8 +24,9 @@ The Icon component represents a standard API for embedding accessible Scalable V
 ### Responsiveness
 
 * SVG files are scalable and work well at all screen sizes.
-* Icons are sized by height and the width is set to `auto` based on the `viewbox` of the individual SVG icon.
+* Icons maintain a square form factor regardless of the aspect ratio of the `viewbox`. This leads to predictable spacing in lists, controls, and columns.
 * The icon's default size is 1em, which means an icon can be placed next to other content and sized accordingly, even when using dynamic font sizing.
+* The icon's size should always be specified in relative units, preferably using design tokens.
 
 ### Accessibility
 
@@ -34,10 +37,12 @@ The Icon component represents a standard API for embedding accessible Scalable V
 
 ### Additional Notes and Considerations
 
-* TODO: implement loading of external icons
+* The Icon component may be used as a wrapper for native SVG or component-based icons slotted within it, providing a consistent square form factor and styling hooks.
+* Additional component properties are not passed down to slotted icons at this time, however.
+* TODO: implement loading of external icons, including different slotting formats (component, SVG, `img` tag).
 * TODO: investigate and implement caching of externally requested icons
 * TODO: investigate robustness of sizing options and rotation as a replacement for directional variations (e.g., angle, arrow, caret, chevron, etc.)
-  * Should the wrapping component be fixed to a square shape?
-  * Does rotating a single instance of a directional icon work or have issues?
+  * Should the wrapping component be fixed to a square shape? Yes.
+  * Does rotating a single instance of a directional icon work or have issues? 
   
 
