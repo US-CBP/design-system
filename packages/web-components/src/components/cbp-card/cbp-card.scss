@@ -312,6 +312,11 @@ cbp-card {
 
     a{
       color: var(--cbp-card-color-text); 
+      flex-grow: 1;
+    }
+
+    cbp-checkbox > label{ //todo: look to define via the * @prop --cbp-checkbox-min-height: var(--cbp-space-11x);
+    min-height: var(--cbp-space-2x);
     }
 
     &:hover{
@@ -320,13 +325,14 @@ cbp-card {
       --cbp-card-color-title: var(--cbp-color-text-darker);
       --cbp-card-color-text: var(--cbp-color-text-darker);
   
-      --cbp-card-color-background-dark: var(--cbp-color-gray-cool-60);
+      --cbp-card-color-background-dark: var(--cbp-color-gray-cool-50); //todo: Confirm value change is good with Visual design
       --cbp-card-color-border-dark: var(--cbp-color-interactive-secondary-lighter);
       --cbp-card-color-title-dark: var(--cbp-color-text-lighter);
       --cbp-card-color-text-dark: var(--cbp-color-text-lighter);
     }      
 
-    &:focus{
+    &:focus,
+    &:focus-within{
       --cbp-card-color-background: var(--cbp-color-interactive-focus-dark);
       --cbp-card-color-border: var(--cbp-color-interactive-secondary-lighter);
       --cbp-card-color-title: var(--cbp-color-text-lighter);
@@ -357,7 +363,7 @@ cbp-card {
   
     &[color="danger"]{
       
-      &:hover{ //todo: selector overriding dark var remapping here. 
+      &:hover{
         --cbp-card-color-background: var(--cbp-color-danger-light);
         --cbp-card-color-border: var(--cbp-color-danger-base);
         --cbp-card-color-title: var(--cbp-color-text-darkest);
@@ -369,7 +375,8 @@ cbp-card {
         --cbp-card-color-text-dark: var(--cbp-color-text-lighter);      
       }
 
-      &:focus{ //todo: selector overriding dark var remapping here. 
+      &:focus,
+      &:focus-within{
         --cbp-card-color-background: var(--cbp-color-interactive-focus-dark);
         --cbp-card-color-border: var(--cbp-color-danger-light);
         --cbp-card-color-title: var(--cbp-color-text-lightest);
@@ -389,10 +396,10 @@ cbp-card {
 
     &[disabled]{
 
-      a{
-        pointer-events: none;
-        cursor: not-allowed;
-      }
+      // a{
+      //   pointer-events: none;
+      //   cursor: not-allowed;
+      // }
 
       --cbp-card-color-background: var(--cbp-color-interactive-disabled-light);
       --cbp-card-color-border: var(--cbp-color-interactive-disabled-dark);
