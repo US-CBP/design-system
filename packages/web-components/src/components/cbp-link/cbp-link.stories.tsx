@@ -65,11 +65,11 @@ const Template = ({ label, href, rel, target, download, language, shortcutKey, a
           ${href ? `href=${href}` : ''}
           ${rel ? `rel=${rel}` : ''}
           ${target ? `target=${target}` : ''}
-          ${download ? `download=${download}` : ''}
+          ${download ? `download` : ''}
           ${shortcutKey ? `accesskey=${shortcutKey}` : ''}
           ${language ? `lang=${language}` : ''}
           ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
-          ${disabled ? `disabled=${disabled}` : ''}
+          ${disabled ? `disabled` : ''}
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
