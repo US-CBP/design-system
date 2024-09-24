@@ -19,8 +19,14 @@ export class CbpCard {
   /** Specifies optional variants with difference from the default card. */
   @Prop({ reflect: true }) variant: 'banner' | 'decision' | 'flag';
 
-  /** When present, the card will have a slot avaliable to display an img/icon flag for the card  */
-  // @Prop({ reflect: true }) flag: boolean = false;
+  /** Specifies the interactivity of the card */
+  @Prop({ reflect: true}) interactive: 'clickable' | 'select' | 'multi';
+
+  /** Specifies the href for the 'clickable' setting of interactive cards */
+  @Prop() href: string
+
+  /** Marks the rendered card in a disabled state when specified. */
+  @Prop({ reflect: true}) disabled: boolean;
 
   /** When present, the card will stretch vertically to fill its parent container; most useful when placed in an equally sized grid or row of cards. */
   @Prop({ reflect: true }) stretch: boolean = false;
@@ -41,21 +47,31 @@ export class CbpCard {
   }
 
   render() {
-    return (
-      <Host>
-        {/* {this.variant == 'flag' ? 
-        <div class='cbp-card-flag'>
-          <slot name='cbp-card-flag'/>
-        </div>
-           : ''} */}
-        {this.variant === 'flag' && <div class='cbp-card-flag'><slot name='cbp-card-flag'/></div>}   
-        {this.variant === 'banner' && <slot name="cbp-card-title" />}
-        <div class="cbp-card-body">
-          {this.variant !== 'banner' && <slot name="cbp-card-title" />}
-          <slot />
-        </div>
-        <slot name="cbp-card-actions" />
-      </Host>
-    );
+    if(this.interactive === 'clickable'){
+      return(
+        <Host>
+          <a class='cbp-card-clickable' href={this.disabled ? null : this.href} aria-disabled={this.disabled}>
+              {this.variant === 'flag' && <div class='cbp-card-flag'><slot name='cbp-card-flag'></slot></div>}   
+              {this.variant === 'banner' && <slot name="cbp-card-title" />}
+              <div class="cbp-card-body">
+              {this.variant !== 'banner' && <slot name="cbp-card-title" />}
+                <slot />
+              </div>
+            <slot name="cbp-card-actions" />
+            </a>
+        </Host>
+      );
+    }else {
+      return(
+        <Host>
+          {this.variant === 'banner' && <slot name="cbp-card-title" />}
+            {this.variant === 'flag' && <div class='cbp-card-flag'><slot name='cbp-card-flag'/></div>}
+              <div class="cbp-card-body">
+                {(this.variant !== 'banner') && <slot name="cbp-card-title" />}
+                <slot />
+            </div>
+        </Host>
+      )
+    }
   }
 }

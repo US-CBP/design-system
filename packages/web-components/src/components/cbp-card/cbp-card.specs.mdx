@@ -13,12 +13,16 @@ The Card component is a visual treatment for a container meant for similarly-siz
 * The Card is a generic wrapper that supports several variants.
 * The Card defines several color variants as well, based on design tokens (info, success, warning, danger).
 * The Card may optionally contain a title and/or actions in the form of buttons (or links).
+* The Card has an optional property called 'interactive' which enables states (hover, focus, active) for the colors (default & danger)
+    * Using the 'clickable' option will wrap the card in an anchor tag and use the 'href' property to define what happens on click of the card
+    * Using the 'multi' option will add a checkbox for the card with the cbp-card-title slot as the label of the checkbox
+    * the 'select' option is currently in progress due to the radio button work being in process
 
 ## Technical Specifications
 
 ### User Interactions
 
-* Cards are essentially containers and any user interactions will be handled by slotted content and components.
+* Cards are essentially containers and any user interactions will be handled by slotted content and components. with the exception of the use of the interactive property which will enables states (hover, focus, active) for the colors (default & danger)
 
 ### Responsiveness
 
