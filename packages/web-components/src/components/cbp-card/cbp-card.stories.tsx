@@ -169,7 +169,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
       ${variant=== 'flag' ? `<div slot='cbp-card-flag'><img src="https://api.dicebear.com/9.x/personas/svg" /></div>` : ''}
       ${interactive === 'multi' ? `
         <cbp-checkbox value="1" slot="cbp-card-title">
-          <cbp-typography tag='h4' >
+          <cbp-typography tag='h4' sx='{"color":"var(--cbp-card-color-title)"}'>
               ${withIcon ? `<cbp-icon name='triangle-exclamation' size='1.25rem'></cbp-icon>` : ''}
               ${title}
           </cbp-typography>

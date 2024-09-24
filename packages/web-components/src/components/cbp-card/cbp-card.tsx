@@ -50,7 +50,7 @@ export class CbpCard {
     if(this.interactive === 'clickable'){
       return(
         <Host>
-          <a class='cbp-card-clickable' href={this.href} aria-disabled={this.disabled}>
+          <a class='cbp-card-clickable' href={this.disabled ? null : this.href} aria-disabled={this.disabled}>
               {this.variant === 'flag' && <div class='cbp-card-flag'><slot name='cbp-card-flag'></slot></div>}   
               {this.variant === 'banner' && <slot name="cbp-card-title" />}
               <div class="cbp-card-body">
