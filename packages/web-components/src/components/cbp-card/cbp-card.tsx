@@ -70,6 +70,7 @@ export class CbpCard {
                 {(this.variant !== 'banner') && <slot name="cbp-card-title" />}
                 <slot />
             </div>
+            {!this.interactive && <slot name='cbp-card-actions' />}
         </Host>
       )
     }
