@@ -1,0 +1,28 @@
+/**
+ * @Prop --cbp-tag-color: var(--cbp-color-text-lighter);
+
+ */
+ :root{
+  --cbp-usa-banner-background-color: var(--cbp-color-gray-cool-90);
+  --cbp-usa-banner-color: var(--cbp-color-text-lightest);
+}
+
+//todo: confirm dark mode values
+// [data-cbp-theme=light] cbp-tag[context*=dark]:not([context=light-always]),
+// [data-cbp-theme=dark] cbp-tag:not([context=dark-inverts]):not([context=light-always]) {
+//   --cbp-tag-color: var(--cbp-tag-color-dark);
+// }
+
+
+cbp-usa-banner {
+  background-color: var(--cbp-usa-banner-background-color);
+  color: var(--cbp-usa-banner-color);
+  display: inline-block;
+  width: 100%;
+  padding: var(--cbp-space-4x) var(--cbp-space-8x);
+
+  
+  &:not([open]) .cbp-usa-banner-content {
+    display: none;
+  }
+}
