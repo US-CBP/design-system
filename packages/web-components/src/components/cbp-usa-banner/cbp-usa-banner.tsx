@@ -38,6 +38,11 @@ export class CbpUsaBanner {
           Here is how you know<cbp-icon name='chevron-right' rotate={90}/**TODO: need to add a rotate*//>
         </cbp-link>
         <div class='cbp-usa-banner-content'>
+          <div >
+            <cbp-icon>
+              
+            </cbp-icon>
+          </div>
           <slot>  
           </slot>
         </div>
