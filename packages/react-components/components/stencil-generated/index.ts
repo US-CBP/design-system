@@ -48,3 +48,4 @@ export const CbpTabs = /*@__PURE__*/createReactComponent<JSX.CbpTabs, HTMLCbpTab
 export const CbpTag = /*@__PURE__*/createReactComponent<JSX.CbpTag, HTMLCbpTagElement>('cbp-tag');
 export const CbpTypography = /*@__PURE__*/createReactComponent<JSX.CbpTypography, HTMLCbpTypographyElement>('cbp-typography');
 export const CbpUniversalHeader = /*@__PURE__*/createReactComponent<JSX.CbpUniversalHeader, HTMLCbpUniversalHeaderElement>('cbp-universal-header');
+export const CbpUsaBanner = /*@__PURE__*/createReactComponent<JSX.CbpUsaBanner, HTMLCbpUsaBannerElement>('cbp-usa-banner');
