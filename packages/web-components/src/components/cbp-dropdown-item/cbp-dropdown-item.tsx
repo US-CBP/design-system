@@ -55,7 +55,7 @@ export class CbpDropdownItem {
   }
 
   componentDidLoad() {
-    if (this.selected) this.checkbox.checked=true;
+    if (this.selected && this.checkbox) this.checkbox.checked=true;
   }
 
   render() {
