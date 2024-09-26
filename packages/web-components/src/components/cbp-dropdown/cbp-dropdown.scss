@@ -67,6 +67,7 @@ cbp-dropdown {
     .cbp-dropdown-placeholder {
       text-overflow: ellipsis;
       overflow: hidden;
+      padding-inline-end: var(--cbp-space-2x);
     }
 
     .cbp-dropdown-placeholder {
