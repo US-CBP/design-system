@@ -1,28 +1,66 @@
 /**
- * @Prop --cbp-tag-color: var(--cbp-color-text-lighter);
-
+ * @Prop   --cbp-usa-banner-background-color: var(--cbp-color-gray-cool-90);
+ * @Prop   --cbp-usa-banner-color: var(--cbp-color-text-lightest);
  */
+ 
  :root{
   --cbp-usa-banner-background-color: var(--cbp-color-gray-cool-90);
   --cbp-usa-banner-color: var(--cbp-color-text-lightest);
 }
-
-//todo: confirm dark mode values
-// [data-cbp-theme=light] cbp-tag[context*=dark]:not([context=light-always]),
-// [data-cbp-theme=dark] cbp-tag:not([context=dark-inverts]):not([context=light-always]) {
-//   --cbp-tag-color: var(--cbp-tag-color-dark);
-// }
-
 
 cbp-usa-banner {
   background-color: var(--cbp-usa-banner-background-color);
   color: var(--cbp-usa-banner-color);
   display: inline-block;
   width: 100%;
-  padding: var(--cbp-space-4x) var(--cbp-space-8x);
+  padding-block: var(--cbp-space-4x);
+  padding-inline: var(--cbp-space-8x);
 
-  
+  --cbp-usa-banner-icon-rotate: rotate(90deg);
+
   &:not([open]) .cbp-usa-banner-content {
     display: none;
+  }
+
+  img{
+    display: inline;
+    margin-right: var(--cbp-space-3x);
+  }
+
+  .cbp-usa-banner-expand:not(#fakeId)  {
+    margin-left: var(--cbp-space-1x);
+
+    --cbp-link-color: var(--cbp-color-interactive-secondary-light);
+    --cbp-link-color-hover: var(--cbp-color-interactive-secondary-lighter);
+    --cbp-link-color-focus: var(--cbp-color-violet-30);
+    --cbp-link-color-outline-focus: var(--cbp-color-violet-30);
+    --cbp-link-color-visited: var(--cbp-color-violet-1S0);
+
+    cbp-icon svg{
+      transition: transform 150ms;
+      transform: var(--cbp-usa-banner-icon-rotate);
+      margin-left: var(--cbp-space-1x);
+    }
+  }
+
+  &[open]{
+    padding-block-end: 0;
+
+    --cbp-usa-banner-icon-rotate: rotate(270deg);
+    
+    .cbp-usa-banner-content{
+      display: flex;
+      flex-direction: row;
+      padding-block-start: var(--cbp-space-5x);
+      padding-block-end: var(--cbp-space-3x);
+
+      .cbp-banner-content-icon{
+        border: 1px solid var(--cbp-color-info-light);
+        border-radius: 50%;
+        height: var(--cbp-space-13x);
+        min-width: var(--cbp-space-13x);
+        margin-inline-end: var(--cbp-space-3x);
+      }
+    }
   }
 }

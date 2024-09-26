@@ -382,6 +382,6 @@ InteractiveCard.argTypes = {
     name: 'Variant',
     description: 'set Variant of the card',
     control: 'select',
-    options: ['general', 'decision', 'flag']
+    options: ['general', 'flag']
   },
 };
