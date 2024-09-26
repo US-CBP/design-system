@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Pagination/Specifications" />
+
+# cbp-pagination
+
+## Purpose
+
+The Section component represents a generic block that may be used for semantic meaning or as an generic container for styling.
+
+## Functional Requirements
+
+* The Section component may render either a `section` tag, a `div` tag, or no tag inside of the host element.
+* The Section component may be used to apply a background color or horizontal line similar to the Typography component, but for a larger blocks of content.
+
+## Technical Specifications
+
+### User Interactions
+
+* The Section component is a wrapper for content and is not itself interactive.
+
+### Responsiveness
+
+* The Section component is a container with a block context that has a width of 100% of its parent by default.
+
+### Accessibility
+
+* A `section` tag with an accessible label provided via the `accessibilityText` property becomes a landmark element. 
+* All other variants of the section component are generic containers with no semantic meaning.
+
+### Additional Notes and Considerations
+
+* TBD
