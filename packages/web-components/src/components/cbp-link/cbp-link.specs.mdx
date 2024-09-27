@@ -23,7 +23,7 @@ The Link component renders (or wraps) an anchor for navigation styled in accorda
   * Routing must be handled by application logic and is not built into this web component.
 * The Link component emits a custom `linkClick` event when activated.
 * In the event that a navigation event needs to be canceled, this must be done via the anchor's native `click` event.
-* A disabled link is represented by `aria-hidden="true"` with a `role="link"` and contains no `href` attribute.
+* A disabled link has its `href` attribute removed automatically and is a non-interactive element (i.e. it cannot be focused or activated).
 
 ### Responsiveness
 
@@ -31,7 +31,7 @@ The Link component renders (or wraps) an anchor for navigation styled in accorda
 
 ### Accessibility
 
-* A disabled link is represented by `aria-hidden="true"` with a `role="link"` and contains no `href` attribute.
+* A disabled link is represented by `aria-hidden="true"` with a `role="link"` and contains no `href` attribute. Setting the `disabled` property to true will automatically remove the `href` value and render the `aria-hidden` and `role` attributes.
 * An anchor with no `href` is a non-interactive element. It cannot be focused, is not styled like a link, and often presents accessibility issues.
 * Specifying alternate text via the `accessibilityText` property renders this text as an `aria-label` on the anchor.
 * `accessibilityText` is required when a link contains only an icon (without its own accessible label) or when the link text is not sufficiently descriptive and uniquely identifiable.
@@ -40,6 +40,5 @@ The Link component renders (or wraps) an anchor for navigation styled in accorda
 
 * An anchor may be supplied as slotted content rather than rendered by the web component. This requirement supports frameworks that use component-based routers, such as React or Vue.
 * TODO: investigate side effects and edge cases pertaining to "disabled" links.
-  * Are any interactive styles still inherited?
   * Does a mouse click still emit a click event?
   * How can this support a slotted link?
