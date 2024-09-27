@@ -13,9 +13,7 @@ export class CbpUsaBanner {
 
   // /** A custom event emitted when the banner link control is activated. */
   handleClick() {
-    // e.preventDefault();
     this.open = !this.open;
-    //set aria-expanded if it isn't comine with button
   }
 
   render() {
@@ -23,7 +21,11 @@ export class CbpUsaBanner {
       <Host>
          <section aria-label="Official website of the United States government">
            <div class="cbp-banner__title">
-              <img src="../assets/images/us_flag_small.png" height="11" width="16" alt="usa logo" />
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAMAAABBPP0LAAAAG1BMVEUdM7EeNLIeM7HgQCDaPh/bPh/bPx/////bPyBEby41AAAAUElEQVQI123MNw4CABDEwD3jC/9/MQ1BQrgeOSkIqYe2o2FZtthXgQLgbHVMZdlsfUQFQnHtjP1+8BUhBDKOqtmfot6ojqPzR7TjdU+f6vkED+IDPhTBcMAAAAAASUVORK5CYII="
+                height="11"
+                width="16"
+                alt="usa logo" 
+              />
               <span>
                 <span>Official website of the United States government.</span>
                 <cbp-button
@@ -70,5 +72,4 @@ export class CbpUsaBanner {
       </Host>
     );
   }
-
 }

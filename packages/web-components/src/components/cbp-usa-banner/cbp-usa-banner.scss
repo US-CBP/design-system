@@ -23,9 +23,13 @@ cbp-usa-banner {
     display: none;
   }
 
-  &[open] .cbp-usa-banner-content{
-    display: flex;
-  }
+  &[open]{
+    --cbp-usa-banner-icon-rotate: rotate(270deg);
+  
+    .cbp-usa-banner-content{
+      display: flex;;
+    }
+  } 
 
   img{
     display: inline;
