@@ -51,11 +51,10 @@ cbp-usa-banner {
     --cbp-button-color-bg-focus: transparent;
     --cbp-button-color-bg-active: transparent;
 
-    --cbp-letter-spacing-loose: none;
-    
     margin-left: var(--cbp-space-1x);
  
     > button{
+      letter-spacing: unset;
       text-transform: unset;
       text-decoration: underline;
       outline-offset:-1px;
@@ -83,6 +82,8 @@ cbp-usa-banner {
 
       > div{
         display: flex;
+        flex-basis: 20rem;
+        flex-grow: 1;
         gap: var(--cbp-space-3x); 
       }
       
@@ -100,108 +101,3 @@ cbp-usa-banner {
     }
   }
 }
-
-// vanilla styles, TODO: remove before push
-// :root {
-//   --cbp-usa-banner-color: var(--cbp-color-text-lightest);
-//   --cbp-usa-banner-background-color: var(--cbp-color-base-neutral-darkest);
-// }
-
-// .cbp-banner {
-//   // @extend .cbp-fluid-container;
-//   color: var(--cbp-usa-banner-color);
-//   background-color: var(--cbp-usa-banner-background-color);
-//   container-type: inline-size;
-//   container-name: usa-banner;
-// }
-
-// .cbp-banner__title {
-//   display: flex;
-//   align-items: baseline;
-//   gap: var(--cbp-space-2x);
-//   padding-bottom: var(--cbp-space-2x);
-//   padding-top: var(--cbp-space-2x);
-//   font-size: var(--cbp-font-size-subhead);
-//   font-weight: var(--cbp-font-weight-medium);
-//   line-height: 1.5;
-// }
-
-// .cbp-banner__toggle {
-//   background-color: transparent;
-//   border: 0;
-//   color: var(--cbp-color-interactive-secondary-light);
-//   padding: 0;
-//   text-decoration: underline;
-
-//   & > i {
-//     font-size: var(--cbp-font-size-heading-xs);
-//     margin-left: var(--cbp-space-1x);
-//     text-decoration: none;
-//     transition: transform var(--cbp-motion-duration-short);
-//     vertical-align: middle;
-//   }
-
-//   &[aria-expanded='true'] > i {
-//     transform: rotate(-180deg);
-//   }
-
-//   &:hover {
-//     color: var(--cbp-color-interactive-secondary-lighter);
-//   }
-
-//   &:focus {
-//     color: var(--cbp-color-interactive-focus-light);
-//     outline: var(--cbp-border-size-md) solid var(--cbp-color-interactive-focus-light);
-//     outline-offset: var(--cbp-space-half-x);
-//   }
-// }
-
-// .cbp-banner__content {
-//   display: none;
-//   background-color: var(--cbp-usa-banner-background-color);
-//   color: var(--cbp-usa-banner-color);
-//   gap: var(--cbp-space-8x);
-//   max-width: 64rem;
-//   padding: var(--cbp-space-3x) 0;
-//   line-height: 1.6;
-
-//   & > div {
-//     display: flex;
-//     flex-basis: 20rem;
-//     flex-grow: 1;
-//     gap: var(--cbp-space-3x);
-
-//     & p {
-//       margin-bottom: 0;
-//     }
-
-//     // TODO: switch with SVG when available
-//     & > i {
-//       display: flex;
-//       flex-shrink: 0;
-//       align-items: center;
-//       justify-content: center;
-//       height: 52px;
-//       width: 52px;
-//       border-width: var(--cbp-border-size-md);
-//       border-style: solid;
-//       border-color: var(--cbp-color-info-base);
-//       border-radius: var(--cbp-border-radius-pill);
-//       color: var(--cbp-color-info-light);
-//       font-size: var(--cbp-space-5x);
-//     }
-//   }
-// }
-
-// .banner-active {
-//   display: flex;
-//   flex-wrap: wrap;
-// }
-
-// // 27.063rem is the inline size where the text wraps
-// @container usa-banner (min-width: 27.063rem) {
-//   .cbp-banner__title {
-//     max-height: var(--cbp-space-8x);
-//     line-height: unset;
-//   }
-// }

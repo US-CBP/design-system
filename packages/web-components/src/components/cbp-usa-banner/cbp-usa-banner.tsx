@@ -34,8 +34,9 @@ export class CbpUsaBanner {
                 <cbp-button
                   class='cbp-usa-banner-expand'
                   fill='ghost'
-                  accessibility-text='open banner content'
                   target-prop="open"
+                  controls='gov-banner'
+                  expanded={this.open}
                   onClick={() => this.handleClick()}
                 >
                   Here is how you know<cbp-icon name='chevron-right'/>
