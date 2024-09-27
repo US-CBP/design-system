@@ -40,7 +40,7 @@ const Template = ({ records, pagesize, page, context, sx }) => {
           field-id="pagination_size"
         >
           <cbp-dropdown field-id="pagination_size">
-            <cbp-dropdown-item value="10" selected>10/Page</cbp-dropdown-item>
+            <cbp-dropdown-item value="10">10/Page</cbp-dropdown-item>
             <cbp-dropdown-item value="25">25/Page</cbp-dropdown-item>
             <cbp-dropdown-item value="50">50/Page</cbp-dropdown-item>
             <cbp-dropdown-item value="100">100/Page</cbp-dropdown-item>
@@ -54,17 +54,21 @@ const Template = ({ records, pagesize, page, context, sx }) => {
           field-id="pagination_pages"
         >
           <cbp-dropdown field-id="pagination_pages">
-            <cbp-dropdown-item value="1" selected>Page 1 of 5</cbp-dropdown-item>
-            <cbp-dropdown-item value="2">Page 2 of 5</cbp-dropdown-item>
-            <cbp-dropdown-item value="3">Page 3 of 5</cbp-dropdown-item>
-            <cbp-dropdown-item value="4">Page 4 of 5</cbp-dropdown-item>
-            <cbp-dropdown-item value="5">Page 5 of 5</cbp-dropdown-item>
           </cbp-dropdown>
         </cbp-form-field>
 
       </cbp-pagination>
     `;
 };
+
+/*
+            <cbp-dropdown-item value="1" selected>Page 1 of 5</cbp-dropdown-item>
+            <cbp-dropdown-item value="2">Page 2 of 5</cbp-dropdown-item>
+            <cbp-dropdown-item value="3">Page 3 of 5</cbp-dropdown-item>
+            <cbp-dropdown-item value="4">Page 4 of 5</cbp-dropdown-item>
+            <cbp-dropdown-item value="5">Page 5 of 5</cbp-dropdown-item>
+
+*/
 
 
 export const Pagination = Template.bind({});

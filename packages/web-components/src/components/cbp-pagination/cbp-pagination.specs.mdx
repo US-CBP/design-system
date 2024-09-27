@@ -6,28 +6,36 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-The Section component represents a generic block that may be used for semantic meaning or as an generic container for styling.
+The Pagination component presents a common UI pattern for displaying data sets broken up into smaller, more consumable (and performant) "pages."
 
 ## Functional Requirements
 
-* The Section component may render either a `section` tag, a `div` tag, or no tag inside of the host element.
-* The Section component may be used to apply a background color or horizontal line similar to the Typography component, but for a larger blocks of content.
+* The Pagination component accepts slotted controls for the number of items per page and page selection.
+  * The number of items per page dropdown may be customized by the application with whatever values are desired.
+  * The page selection dropdown is slotted by the application, but controlled (updated) by the pagination component based on the total records and number of items per page.
+* The text describing the items shown is determined by these values and generate by the pagination component.
+* The Pagination component does not handle displaying the data.
+  * The Pagination component emits events as hooks for application logic whenever the controls are changed.
+  * Changes to the component properties such as records, pagesize, and page are reactive and will cause the pagination component to re-render.
 
 ## Technical Specifications
 
 ### User Interactions
 
-* The Section component is a wrapper for content and is not itself interactive.
+* Changes to the "items per page" dropdown will cause the "items shown" text and "pages" dropdown to be recalculated.
+* Changes to the "pages" dropdown will cause the "items shown" text to be recalculated and emit an event to the application to update the data displayed.
 
 ### Responsiveness
 
-* The Section component is a container with a block context that has a width of 100% of its parent by default.
+* The Pagination component is a container with its children laid out using Flexbox and will expand and contract as needed.
+* When the viewport width is under 450px (28rem), the "items per page" dropdown will be hidden, as they cannot all fit horizontally on the screen.
 
 ### Accessibility
 
-* A `section` tag with an accessible label provided via the `accessibilityText` property becomes a landmark element. 
-* All other variants of the section component are generic containers with no semantic meaning.
+* TBD
 
 ### Additional Notes and Considerations
 
-* TBD
+* Applications with access to large data sets should never return the entire data set to the front-end framework or UI.
+  * "Chunking" data involves returning part of the data set (whether from a database or API) that is needed for display rather than the entire data set.
+  * When paginating such large data sets, the "All Records" options should be omitted from the items per page dropdown.

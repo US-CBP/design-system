@@ -39,3 +39,11 @@ cbp-pagination {
     font-style: italic;
   }
 }
+
+@media (max-width: 28rem) {
+  cbp-pagination {
+    [slot=cbp-pagination-items-per-page] {
+      display: none;
+    }
+  }
+}

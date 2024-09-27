@@ -15,6 +15,7 @@ export class CbpPagination {
 
   private pageSizeDropdown: HTMLCbpDropdownElement;
   private pagesDropdown: HTMLCbpDropdownElement;
+  private pages: number = 1;
 
   @Element() host: HTMLElement;
 
@@ -55,12 +56,31 @@ export class CbpPagination {
 
 
   handlePageSizeChange( {detail: {value}} ) {
-    console.log('Page Size: ', value);
     this.pageSize=value;
+    this.page=1; // always reset the current page to 1 when changing the page size
 
     // Recalculate and populate the pages dropdown
+    if (value == "all" ) {
+      this.pages=1;
+      this.pagesDropdown.setAttribute('hidden',''); // if "All" is selected, hide the pages dropdown
+    }
+    else {
+      this.pages=Math.ceil(this.records/Number(this.pageSize))
+      this.pagesDropdown.removeAttribute('hidden');
+    }
 
-    // if "All" is selected, hide the pages dropdown
+    // Generate a new array of dropdown-items and replace them in the pages dropdown
+    this.pagesDropdownItems=[];
+    for (let i=1; i <= this.pages; i++ ) {
+      let newItem: HTMLCbpDropdownItemElement = document.createElement("cbp-dropdown-item");
+      newItem.value=`${i}`;
+      newItem.innerText=`Page ${i} of ${this.pages}`;
+      if (i == 1) newItem.selected=true;
+      this.pagesDropdownItems=[...this.pagesDropdownItems, newItem];
+    }
+    this.pagesDropdown.querySelector('[role=listbox]').replaceChildren(...this.pagesDropdownItems);
+    
+    console.log('Page Size: ', value, 'Pages: ', this.pages);
 
   }
 
