@@ -1,0 +1,104 @@
+/**
+ * @Prop   --cbp-usa-banner-background-color: var(--cbp-color-gray-cool-90);
+ * @Prop   --cbp-usa-banner-color: var(--cbp-color-text-lightest);
+ */
+
+ :root{
+  --cbp-usa-banner-background-color: var(--cbp-color-gray-cool-90);
+  --cbp-usa-banner-color: var(--cbp-color-text-lightest);
+}
+
+cbp-usa-banner {
+  font-size: var(--cbp-font-size-subhead);
+  background-color: var(--cbp-usa-banner-background-color);
+  color: var(--cbp-usa-banner-color);
+  display: inline-block;
+  width: 100%;
+  padding-block: var(--cbp-space-2x);
+  padding-inline:var(--cbp-responsive-spacing-outer);
+
+  --cbp-usa-banner-icon-rotate: rotate(90deg);
+
+  .cbp-usa-banner-content {
+    display: none;
+  }
+
+  &[open]{
+    --cbp-usa-banner-icon-rotate: rotate(270deg);
+  
+    .cbp-usa-banner-content{
+      display: flex;;
+    }
+  } 
+
+  img{
+    display: inline;
+    margin-right: var(--cbp-space-3x);
+  }
+
+  .cbp-usa-banner-expand:not(#fakeId)  {
+    --cbp-button-height: 1rem;
+    --cbp-button-min-height: 1rem;
+
+    --cbp-button-padding: var(--cbp-space-2x);
+
+    --cbp-button-color: var(--cbp-color-interactive-secondary-light);
+    --cbp-button-color-hover: var(--cbp-color-interactive-secondary-lighter);
+    --cbp-button-color-focus: var(--cbp-color-violet-30);
+
+    --cbp-button-color-border-hover: transparent;
+    --cbp-button-color-border-focus: transparent;
+    --cbp-button-color-border-active: transparent;
+
+    --cbp-button-border-radius: 0;
+
+    --cbp-button-color-outline-focus: var(--cbp-color-violet-30);
+
+    --cbp-button-color-bg: transparent;
+    --cbp-button-color-bg-hover: transparent;
+    --cbp-button-color-bg-focus: transparent;
+    --cbp-button-color-bg-active: transparent;
+
+    margin-left: var(--cbp-space-1x);
+ 
+    > button{
+      letter-spacing: unset;
+      text-transform: unset;
+      text-decoration: underline;
+      outline-offset:-1px;
+    }
+
+    cbp-icon svg{
+      transition: transform 150ms;
+      transform: var(--cbp-usa-banner-icon-rotate);
+      margin-left: var(--cbp-space-1x);
+    }
+  }
+
+  .cbp-usa-banner-content{
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-block-start: var(--cbp-space-5x);
+    padding-block-end: var(--cbp-space-3x);
+    gap: var(--cbp-space-8x);
+    font-size: var(--cbp-font-size-body);
+
+    > div{
+      display: flex;
+      flex-basis: 20rem;
+      flex-grow: 1;
+      gap: var(--cbp-space-3x); 
+    }
+    
+    p{
+      margin-bottom: 0;
+    }
+
+    .cbp-banner-content-icon{
+      border: var(--cbp-border-size-sm) solid var(--cbp-color-info-light);
+      border-radius: var(--cbp-border-radius-circle);
+      height: var(--cbp-space-13x);
+      min-width: var(--cbp-space-13x);
+    }
+  }
+}

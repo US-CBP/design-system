@@ -25,6 +25,8 @@ export default {
         'eye-slash',
         'filter',
         'globe',
+        'landmark',
+        'lock',
         'magnifying-glass',
         'minus',
         'pen-to-square',
