@@ -75,6 +75,7 @@ cbp-usa-banner {
     .cbp-usa-banner-content{
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       padding-block-start: var(--cbp-space-5x);
       padding-block-end: var(--cbp-space-3x);
       gap: var(--cbp-space-8x);
