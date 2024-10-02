@@ -28,7 +28,7 @@ The Pagination component presents a common UI pattern for displaying data sets b
 ### Responsiveness
 
 * The Pagination component is a container with its children laid out using Flexbox and will expand and contract as needed.
-* When the viewport width is under 450px (28rem), the "items per page" dropdown will be hidden, as they cannot all fit horizontally on the screen.
+* When the viewport width is under 480px (30rem), the "items per page" dropdown will be hidden, as they cannot all fit horizontally on the screen.
 
 ### Accessibility
 
@@ -39,3 +39,4 @@ The Pagination component presents a common UI pattern for displaying data sets b
 * Applications with access to large data sets should never return the entire data set to the front-end framework or UI.
   * "Chunking" data involves returning part of the data set (whether from a database or API) that is needed for display rather than the entire data set.
   * When paginating such large data sets, the "All Records" options should be omitted from the items per page dropdown.
+  * If "All Records" is selected for a data set over 500 records, a warning will be posted to the browser console as a reminder.

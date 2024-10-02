@@ -3,10 +3,7 @@
  */
 :root {
   --cbp-pagination-color: var(--cbp-color-text-darkest);
-  --cbp-pagination-color-bg: var(--cbp-color-white);
-
   --cbp-pagination-color-dark: var(--cbp-color-text-lightest);
-  --cbp-pagination-color-bg-dark: var(--cbp-color-black);
 }
 
 /* 
@@ -15,7 +12,6 @@
  [data-cbp-theme=light] cbp-pagination[context*=dark],
  [data-cbp-theme=dark] cbp-pagination:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-pagination-color: var(--cbp-pagination-color-dark);
-  --cbp-pagination-color-bg: var(--cbp-pagination-color-bg-dark);
  }
 
 
@@ -40,7 +36,7 @@ cbp-pagination {
   }
 }
 
-@media (max-width: 28rem) {
+@media (max-width: 30rem) {
   cbp-pagination {
     [slot=cbp-pagination-items-per-page] {
       display: none;

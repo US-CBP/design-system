@@ -61,14 +61,7 @@ const Template = ({ records, pagesize, page, context, sx }) => {
     `;
 };
 
-/*
-            <cbp-dropdown-item value="1" selected>Page 1 of 5</cbp-dropdown-item>
-            <cbp-dropdown-item value="2">Page 2 of 5</cbp-dropdown-item>
-            <cbp-dropdown-item value="3">Page 3 of 5</cbp-dropdown-item>
-            <cbp-dropdown-item value="4">Page 4 of 5</cbp-dropdown-item>
-            <cbp-dropdown-item value="5">Page 5 of 5</cbp-dropdown-item>
-
-*/
-
-
 export const Pagination = Template.bind({});
+Pagination.args = {
+  records: 538,
+}
