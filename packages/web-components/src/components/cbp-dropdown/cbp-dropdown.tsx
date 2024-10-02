@@ -6,48 +6,47 @@ import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/
   styleUrl: 'cbp-dropdown.scss',
 })
 export class CbpDropdown {
-
   private control: HTMLButtonElement;
-  private formField: HTMLInputElement;
-  private dropdownitems: HTMLCbpDropdownItemElement[];
+  private formField: HTMLInputElement; // the hidden input that stores the dropdown value for form posts
+  //private dropdownitems: HTMLCbpDropdownItemElement[];
   private selectedItem: HTMLCbpDropdownItemElement;
   private focusIndex: number;
   private counterControl: HTMLElement;
-    
-  @Element() host: HTMLElement;
+
+  @Element() host: HTMLCbpDropdownElement;
 
   @Prop() label: string;
   @Prop() description: string;
-  
+
   /** Specifies whether multiple selections are supported, in which case checkboxes shall be slotted in accordance with the design system specified pattern. Defaults to false, which renders a single-select dropdown. */
-  @Prop({reflect: true}) multiple: boolean;
+  @Prop({ reflect: true }) multiple: boolean;
 
   /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-dropdown');
-  
+
   /** Specifies the name of the (hidden) form field */
   @Prop() name: string = this.fieldId;
-  
+
   /** Represents placeholder text on the dropdown control, displayed in a distinctive style from the selected item. Defaults to "Choose Item". Has no effect on multi-selects, as the component manages this text. */
-  @Prop({ mutable:true }) placeholder: string = "Choose Item";
+  @Prop({ mutable: true }) placeholder: string = 'Choose Item';
 
   /** Specifies the visible label on the dropdown control of the selected item. Primarily updated dynamically by the component. */
-  @Prop({ mutable:true }) selectedLabel: string;
+  @Prop({ mutable: true }) selectedLabel: string;
 
   /** Specifies the value of the hidden input holding the value (or barring one, the text label) of the selected item. Primarily updated dynamically by the component. */
-  @Prop({ mutable:true }) value: any;
-  
+  @Prop({ mutable: true }) value: any;
+
   /** Specifies whether the dropdown menu is open/visible. */
-  @Prop({ reflect: true, mutable:true }) open: boolean;
+  @Prop({ reflect: true, mutable: true }) open: boolean;
 
   /** Specifies that the field has an error (and sets aria-invalid accordingly). Primarily controlled by the parent `cbp-form-field` component. */
   @Prop({ reflect: true }) error: boolean;
 
   /** Specifies that the field is readonly. Primarily controlled by the parent `cbp-form-field` component. */
-  @Prop({ reflect: true }) readonly: boolean;
-  
+  @Prop({ reflect: true, mutable: true }) readonly: boolean;
+
   /** Specifies that the field is disabled. Primarily controlled by the parent `cbp-form-field` component. */
-  @Prop({ reflect: true }) disabled: boolean;
+  @Prop({ reflect: true, mutable: true }) disabled: boolean;
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
@@ -56,55 +55,55 @@ export class CbpDropdown {
   @Prop() sx: any = {};
 
 
+  @State() dropdownItems: HTMLCbpDropdownItemElement[];
   @State() selectedItems: HTMLCbpDropdownItemElement[];
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() valueChange: EventEmitter;
 
   @Listen('dropdownItemClick')
-  handleDropdownItemClick( {detail: { host, label, value} }) {
-
+  handleDropdownItemClick({ detail: { host, label, value } }) {
     // multi-select behavior
-    if(this.multiple) {
+    if (this.multiple) {
       // TechDebt: this should ideally be async/promise. Update: Made selectedItems a State, so this might be fine now. Needs testing.
-      let newValue = host.selected = !host.selected; // toggle the selected state of the item
+      let newValue = (host.selected = !host.selected); // toggle the selected state of the item
 
-      setTimeout( () => {
-        this.selectedItems=Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
-        this.placeholder=this.selectedItems.length != 1 ? 'Selected Items' : 'Selected Item';
+      setTimeout(() => {
+        this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
+        this.placeholder = this.selectedItems.length != 1 ? 'Selected Items' : 'Selected Item';
       }, 50);
 
       // update the values array
-      newValue ? this.value = [...this.value, value] : this.value = this.value.filter( (item) => item !== value);
+      newValue ? (this.value = [...this.value, value]) : (this.value = this.value.filter(item => item !== value));
     }
 
     // single select
     else {
-      this.dropdownitems=Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
+      this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
       // Unselect all items except the one that was activated
-      this.dropdownitems.forEach( (item) => {
-        if (item === host) item.selected=true;
-        else item.selected=false;
+      this.dropdownItems.forEach(item => {
+        if (item === host) item.selected = true;
+        else item.selected = false;
       });
       // Update values at this level, close the menu, and return focus to the control
-      this.selectedLabel=label;
-      this.value=value;
-      this.open=false;
+      this.selectedLabel = label;
+      this.value = value;
+      this.open = false;
       // Delay sending focus a bit to prevent enter from re-opening the dropdown (verified)
-      setTimeout( () => {
+      setTimeout(() => {
         this.control.focus();
       }, 100);
     }
 
     // Update the focusIndex for keyboard navigation
-    this.focusIndex=this.dropdownitems?.indexOf(host); // Update the focusIndex for keyboard navigation
+    this.focusIndex = this.dropdownItems?.indexOf(host); // Update the focusIndex for keyboard navigation
 
-    // Emit the custom event 
+    // Emit the custom event
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formField,
       value: this.value,
-      label: this.selectedLabel
+      label: this.selectedLabel,
     });
   }
 
@@ -112,24 +111,70 @@ export class CbpDropdown {
   watchOpen(newValue) {
     // If the menu was opened, give it time to render and set focus to the selected/first item
     if (newValue) {
-      this.dropdownitems=Array.from(this.host.querySelectorAll('cbp-dropdown-item')); // Get and set this array whenever the menu is opened
-      this.selectedItem=this.host.querySelector('cbp-dropdown-item[selected]'); // Get the first selected item (works for single and multi-select)
+      this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item')); // Get and set this array whenever the menu is opened
+      this.selectedItem = this.host.querySelector('cbp-dropdown-item[selected]'); // Get the first selected item (works for single and multi-select)
 
       // Update the focusIndex for keyboard navigation
-      if (this.multiple) this.focusIndex=0;
-      else this.focusIndex = this.dropdownitems.indexOf(this.selectedItem) || 0;
+      if (this.multiple) this.focusIndex = 0;
+      else this.focusIndex = this.dropdownItems.indexOf(this.selectedItem) || 0;
 
       this.setFocus();
 
       // Set up a clickaway listener to close the menu
       clickAwayListener(this.host, _ => {
-          this.open = false;
+        this.open = false;
       });
     }
   }
 
+  @Watch('value')
+  watchValue(newValue) {
+    //console.log('Value Watch on dropdown fired.');
+    // Only update the selection if the value is different from the hidden field's value (externally updated).
+    if (newValue != this.formField?.value) {
+      //console.log('Value Watch on dropdown fired - setting selected.');
+      this.setSelectedFromValue(newValue);
+    }
+    //else console.log('Value Watch on dropdown fired - component and form values already match, so no action needed.');
+  }
 
-/*
+
+  setSelectedFromValue(value) {
+    //console.log('Selecting items from parent dropdown value: ', value, typeof(value));
+    this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item')); // make sure this array is accurate
+
+    // if value is a number
+    //if ( typeof(this.value) == Number) {
+    
+    if(this.multiple) {
+
+    }
+
+    else {
+      /*
+      this.dropdownitems.forEach( item => {
+        console.log('Checking return value: ', item.value, item.value == this.value || item.innerText == this.value);
+      })
+      */
+      let itemsToSelect = this.dropdownItems.filter( item => item.value == value);
+      //console.log('Items to select: ', itemsToSelect)
+      itemsToSelect.forEach(item => {
+        item.selected = true;
+        if (!this.multiple) this.selectedLabel = item.innerText;
+      });
+    }
+
+      //}
+      // if value is an array
+    /*
+    let itemsToSelect = this.dropdownitems.filter(item => item.value == newValue);
+    itemsToSelect.forEach(item => {
+      item.selected = true;
+    });
+    */
+  }
+
+  /*
  Need public methods to:
   clear selections
   advance/select +1
@@ -139,26 +184,31 @@ export class CbpDropdown {
 
   @Method()
   async clearSelections() {
-    this.selectedItems=Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
-    this.selectedItems.forEach( (item) => {
-      item.selected=false;
+    this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
+    this.selectedItems.forEach(item => {
+      item.selected = false;
     });
-    
+
     // reset the value
-    this.multiple ? this.value = [] : this.formField.value=undefined;
+    this.multiple ? (this.value = []) : (this.formField.value = undefined);
 
     // Update the selectedItems state after all of the items have been deselected
     setTimeout(() => {
-      this.selectedItems=Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
-    }, 100)
+      this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
+    }, 100);
 
-    // Emit the custom valueChange event 
+    // Emit the custom valueChange event
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formField,
       value: this.value,
-      label: undefined
+      label: undefined,
     });
+  }
+
+
+  handleSlotChange(e) {
+    console.log('Dropdown Slot Change: ', e);
   }
 
   handleCounterClick(e) {
@@ -168,7 +218,7 @@ export class CbpDropdown {
   }
 
   handleCounterKeydown(e) {
-    const {key} = e;
+    const { key } = e;
     if (key == ' ' || key == 'Enter') {
       this.clearSelections();
       e.preventDefault();
@@ -176,35 +226,34 @@ export class CbpDropdown {
     }
   }
 
-  // This handles activating the button via Space or Enter as well (as long ).
+  // This handles activating the button via Space or Enter as well (as long as it's not readonly or disabled).
   handleDropdownClick() {
-    if (!this.readonly && !this.disabled) this.open=!this.open;
+    if (!this.readonly && !this.disabled) this.open = !this.open;
   }
 
-  handleKeyUp({key}) {
+  handleKeyUp({ key }) {
     // Close the menu when pressing ESC anywhere in the component and send focus back to the control
     if (key == 'Escape') {
-      this.open=false;
+      this.open = false;
       this.control.focus();
     }
     // Open the menu when ArrowDown, usually when focused on the control
     if (key == 'ArrowDown') {
       if (!this.readonly && !this.disabled && !this.open) {
-        !this.open ? this.open=true : this.setFocus();
+        !this.open ? (this.open = true) : this.setFocus();
       }
     }
   }
 
   // Detecting a Tab press has to be done on KeyDown, before focus has left the component
-  handleKeyDown({key}) {
+  handleKeyDown({ key }) {
     if (key == 'Tab') {
-      this.open=false;
+      this.open = false;
     }
   }
 
-
-  keyboardNav({key}) {
-    const l = this.dropdownitems.length - 1;
+  keyboardNav({ key }) {
+    const l = this.dropdownItems.length - 1;
     const n = {
       Home: 0,
       ArrowUp: -1 < this.focusIndex + -1 ? this.focusIndex + -1 : l,
@@ -213,7 +262,7 @@ export class CbpDropdown {
     }[key];
     if (n !== undefined && key !== 'Tab') {
       setTimeout(() => {
-        this.dropdownitems[n].focus();
+        this.dropdownItems[n].focus();
       }, 20);
       this.focusIndex = n;
     }
@@ -222,23 +271,31 @@ export class CbpDropdown {
   setFocus() {
     setTimeout(() => {
       if (!this.multiple && this.selectedItem) this.selectedItem.focus();
-      else this.dropdownitems[0].focus();
-    }, 100)
+      else this.dropdownItems[0].focus();
+    }, 100);
   }
 
-  
+
+
   componentWillLoad() {
     //this.parent = this.host.closest('cbp-form-field');
+    //console.log('Component will load')
 
+    this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
     // Look for any selected item to set the initial state, only if the value is not set
-    this.selectedItems=Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
+    this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
+    
+    // TechDebt: Use the dropdown values as they should match the checkbox values
     if (this.multiple) {
-      this.value = []; // make an array of the values of selected items
-      this.selectedItems.forEach( (item) => {
+      if (this.selectedItems) this.value=[];
+      //this.value = []; // make an array of the values of selected items
+      let temp=[]; // make an array of the values of selected items
+      this.selectedItems.forEach(item => {
         const checkbox: HTMLInputElement = item.querySelector('input[type=checkbox]');
-        this.value = [...this.value, checkbox.value];
+        temp = [...temp, checkbox.value];
       });
-      this.placeholder=this.selectedItems.length != 1 ? 'Selected Items' : 'Selected Item';
+      this.value=temp;
+      this.placeholder = this.selectedItems.length != 1 ? 'Selected Items' : 'Selected Item';
     }
 
     if (typeof this.sx == 'string') {
@@ -250,18 +307,26 @@ export class CbpDropdown {
   }
 
   componentDidLoad() {
+    //console.log('Dropdown Component Did Load. this.formField:', this.formField);
+
     // Getting values and innerText only works after rendering
     if (!this.multiple) {
       if (!this.value || !this.selectedLabel) {
-        this.selectedItem=this.host.querySelector('cbp-dropdown-item[selected]');
+        this.selectedItem = this.host.querySelector('cbp-dropdown-item[selected]');
         if (this.selectedItem) {
-          this.value=this.selectedItem.value || this.selectedItem?.innerText;
-          this.selectedLabel=this.selectedItem.innerText;
+          this.value = this.selectedItem.value || this.selectedItem?.innerText;
+          this.selectedLabel = this.selectedItem.innerText;
         }
       }
     }
-  }
 
+    // If there are no selected items, but a value is specified, set those items as selected
+    if (!this.selectedItems.length && this.value != undefined) {
+      //console.log('No selected items, but value is specified, so select the item(s). Value(s):', this.value, typeof this.value);
+      //this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item')); // make sure this array is accurate
+      this.setSelectedFromValue(this.value);
+    }
+  }
 
   /*
   Notes (keep until complete):
@@ -274,8 +339,8 @@ export class CbpDropdown {
   */
   render() {
     return (
-      <Host
-        onKeyUp={e => this.handleKeyUp(e)}
+      <Host 
+        onKeyUp={e => this.handleKeyUp(e)} 
         onKeyDown={e => this.handleKeyDown(e)}
       >
         <button
@@ -285,35 +350,36 @@ export class CbpDropdown {
           aria-controls={`${this.fieldId}-menu`}
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-invalid={this.error ? "true" : false}
-          disabled={this.disabled || this.readonly}
-          onClick={ () => this.handleDropdownClick()}
+          aria-invalid={this.error ? 'true' : false}
+          disabled={this.disabled || this.readonly || !this.dropdownItems.length}
+          onClick={() => this.handleDropdownClick()}
           ref={el => (this.control = el)}
         >
-            {this.selectedLabel 
-              ? <div class="cbp-dropdown-label">{this.selectedLabel}</div> 
-              : <div class="cbp-dropdown-placeholder">
-                  {this.multiple && 
-                    <span 
-                      role="button"
-                      tabindex={0}
-                      class="cbp-dropdown-multiselect-counter" 
-                      title={`Click to clear selections`}
-                      onClick={ (e) => this.handleCounterClick(e)}
-                      onKeyDown={ (e) => this.handleCounterKeydown(e)}
-                      ref={ el => this.counterControl = el}
-                    >
-                      {this.selectedItems.length}
-                      <cbp-icon
-                        name="circle-xmark" 
-                        size="var(--cbp-space-3x)" 
-                        sx={{'margin-inline-start':'var(--cbp-space-2x)'}}
-                      />
-                    </span>
-                  }
-                  {this.placeholder}
-                </div>
-            }
+          {this.selectedLabel ? (
+            <div class="cbp-dropdown-label">{this.selectedLabel}</div>
+          ) : (
+            <div class="cbp-dropdown-placeholder">
+              {this.multiple && (
+                <span
+                  role="button"
+                  tabindex={0}
+                  class="cbp-dropdown-multiselect-counter"
+                  title={`Click to clear selections`}
+                  onClick={e => this.handleCounterClick(e)}
+                  onKeyDown={e => this.handleCounterKeydown(e)}
+                  ref={el => (this.counterControl = el)}
+                >
+                  {this.selectedItems.length}
+                  <cbp-icon 
+                    name="circle-xmark" 
+                    size="var(--cbp-space-3x)" 
+                    sx={{ 'margin-inline-start': 'var(--cbp-space-2x)' }} 
+                  />
+                </span>
+              )}
+              {this.placeholder}
+            </div>
+          )}
         </button>
 
         <input
@@ -325,13 +391,13 @@ export class CbpDropdown {
           ref={el => (this.formField = el)}
         />
 
-        <div 
+        <div
           role="listbox"
           class="cbp-dropdown-menu"
           id={`${this.fieldId}-menu`}
           onKeyUp={e => this.keyboardNav(e)}
         >
-          <slot />
+          <slot onSlotchange ={ (e) => this.handleSlotChange(e)} />
         </div>
       </Host>
     );
