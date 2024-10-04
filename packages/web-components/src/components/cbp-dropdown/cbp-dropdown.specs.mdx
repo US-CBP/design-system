@@ -80,8 +80,30 @@ The Dropdown component offers an alternative to the native select element that c
   * A native `select` allows you to press the initial letter multiple times to cycle through those options that begin with that letter. This creates familiar interactions for common patterns such as State and Country selection where the lists are well-known.
   * On mobile devices, a native `select` will be presented by an enlarged overlay of radio options, which is drastically more usable in this context.
 * Since the main control is a button, it is disabled in "readonly" mode (while the hidden input may still submit the value). Does this cause issues in user expectations?
+* The `value` property should not be set explicitly if there are items marked as selected. But in the case that this occurs, the selected items will override the specified value; the value will be updated to match the selected items.
 * TODO: Requires additional testing with `cbp-form-field-wrapper`.
 * TODO: Dynamically shift menu opening top/bottom based on form field positioning in the viewport and viewport size.
 * TODO: Implement faux placeholder value.
 * TODO: How should Dropdown Items handle wrapping or multi-line text?
+
+#### Dropdown logic flow:
+
+* On Component Load:
+  * Look for selected children
+    * If there are selected items, set the component value, hidden form field value (via render), and display label
+    * If not, check if the `value` prop was set.
+      * If so, set the corresponding children as selected.
+        * Note: children must have a `value` property set for this to work (no guessing by text labels).
+        * For multi-select dropdowns, setting children as selected will also check the child checkbox.
+
+* On User Interaction (a dropdown item is clicked/activated):
+  * The dropdown item emits an event (containing host, target, label, and value), that is listened for by the parent dropdown.
+    * If no value is explicitly set, the value passed is derived from the text label (similar to a native select option with no value).
+    * Toggling the selected state is deferred to the parent dropdown
+  * Parent dropdown receives the event
+    * 
+
+* On Dropdown value property being updated externally (reactively):
+
+  
 

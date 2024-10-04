@@ -136,7 +136,7 @@ cbp-form-field {
   
   // These overrides need to be set at the component host level to work properly in dark mode
   &[disabled],
-  &:has(*:disabled) {
+  &:has(:not(button):disabled) {
     --cbp-form-field-color: var(--cbp-color-interactive-disabled-dark);
     --cbp-form-field-color-bg: var(--cbp-color-interactive-disabled-light);
     --cbp-form-field-color-border: var(--cbp-color-interactive-disabled-dark);

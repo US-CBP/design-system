@@ -40,6 +40,10 @@
 
   --cbp-dropdown-menu-color-counter-outline-focus: var(--cbp-color-white);
   --cbp-dropdown-menu-color-counter-outline-focus-dark: var(--cbp-form-field-color-border);
+
+  // These are used by the component and are not intended to be used by consumers
+  --cbp-dropdown-attached-button-start-width: 0;
+  --cbp-dropdown-attached-button-end-width: 0;
 }
 
 /* 
@@ -53,11 +57,55 @@
   --cbp-dropdown-menu-color-border: var(--cbp-dropdown-menu-color-border-dark);
   --cbp-dropdown-menu-color-counter: var(--cbp-dropdown-menu-color-counter-dark);
   --cbp-dropdown-menu-color-bg-counter: var(--cbp-dropdown-menu-color-bg-counter-dark);
-  --cbp-dropdown-menu-color-counter-outline-focus: var(--cbp-dropdown-menu-color-counter-outline-focus-dark)
+  --cbp-dropdown-menu-color-counter-outline-focus: var(--cbp-dropdown-menu-color-counter-outline-focus-dark);
+  
+  --cbp-form-field-select-chevron: var(--cbp-form-field-select-chevron-dark);
  }
 
 cbp-dropdown {
   display: block;
+
+  &:has([slot="cbp-dropdown-attached-button-start"]),
+  &:has([slot="cbp-dropdown-attached-button-end"]) {
+    --cbp-form-field-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%231b1b1b"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+    --cbp-form-field-select-chevron-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%23fcfcfc"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+    
+    .cbp-custom-form-control {
+      background: right calc(var(--cbp-dropdown-attached-button-end-width) + 1.125rem - 8px) top calc(1rem - 8px) no-repeat var(--cbp-form-field-select-chevron),
+        var(--cbp-form-field-color-bg);
+    }
+  }
+
+  .cbp-dropdown-shrinkwrap {
+    position: relative;
+    display: block;
+    flex-basis: 100%; // for child flex context
+
+    // Override the input padding based on overlay size to prevent input text from being obscured (text may still be obscured if there's not enough space for it)
+    .cbp-custom-form-control {
+      padding-inline-start: calc(var(--cbp-dropdown-attached-button-start-width) + var(--cbp-form-field-padding-inline));
+      padding-inline-end: calc(var(--cbp-dropdown-attached-button-end-width) + var(--cbp-form-field-padding-inline) + var(--cbp-space-9x));
+    }
+
+    // All named slots within the shrinkwrap element are overlays
+    [slot] {
+      position: absolute;
+      inset-block-start: 0; // Needed for Firefox
+    }
+
+    // Attached buttons act like an overlay in order to wrap the input focus highlight around them.
+    [slot="cbp-dropdown-attached-button-start"] {
+      --cbp-button-border-radius: var(--cbp-border-radius-soft) 0 0 var(--cbp-border-radius-soft);
+      inset-inline-start: 0;
+    }
+
+    [slot="cbp-dropdown-attached-button-end"] {
+      --cbp-button-border-radius: 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0;
+      inset-inline-end: 0;
+    }
+
+  }
+
 
   button {
     appearance: none;

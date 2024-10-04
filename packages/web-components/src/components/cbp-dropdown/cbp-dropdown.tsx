@@ -8,10 +8,15 @@ import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/
 export class CbpDropdown {
   private control: HTMLButtonElement;
   private formField: HTMLInputElement; // the hidden input that stores the dropdown value for form posts
-  //private dropdownitems: HTMLCbpDropdownItemElement[];
+  private dropdownItems: HTMLCbpDropdownItemElement[];
   private selectedItem: HTMLCbpDropdownItemElement;
   private focusIndex: number;
   private counterControl: HTMLElement;
+  
+  private attachedButtonStart: any;
+  private attachedButtonEnd: any;
+  private attachedButtonStartWidth;
+  private attachedButtonEndWidth;
 
   @Element() host: HTMLCbpDropdownElement;
 
@@ -55,8 +60,9 @@ export class CbpDropdown {
   @Prop() sx: any = {};
 
 
-  @State() dropdownItems: HTMLCbpDropdownItemElement[];
+  //@State() dropdownItems: HTMLCbpDropdownItemElement[];
   @State() selectedItems: HTMLCbpDropdownItemElement[];
+
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() valueChange: EventEmitter;
@@ -82,7 +88,10 @@ export class CbpDropdown {
       this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
       // Unselect all items except the one that was activated
       this.dropdownItems.forEach(item => {
-        if (item === host) item.selected = true;
+        if (item === host){
+          this.selectedItem = item;
+          item.selected = true;
+        }
         else item.selected = false;
       });
       // Update values at this level, close the menu, and return focus to the control
@@ -112,7 +121,7 @@ export class CbpDropdown {
     // If the menu was opened, give it time to render and set focus to the selected/first item
     if (newValue) {
       this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item')); // Get and set this array whenever the menu is opened
-      this.selectedItem = this.host.querySelector('cbp-dropdown-item[selected]'); // Get the first selected item (works for single and multi-select)
+      //this.selectedItem = this.host.querySelector('cbp-dropdown-item[selected]'); // Get the first selected item (works for single and multi-select)
 
       // Update the focusIndex for keyboard navigation
       if (this.multiple) this.focusIndex = 0;
@@ -138,7 +147,6 @@ export class CbpDropdown {
     //else console.log('Value Watch on dropdown fired - component and form values already match, so no action needed.');
   }
 
-
   setSelectedFromValue(value) {
     //console.log('Selecting items from parent dropdown value: ', value, typeof(value));
     this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item')); // make sure this array is accurate
@@ -160,7 +168,10 @@ export class CbpDropdown {
       //console.log('Items to select: ', itemsToSelect)
       itemsToSelect.forEach(item => {
         item.selected = true;
-        if (!this.multiple) this.selectedLabel = item.innerText;
+        if (!this.multiple) {
+          this.selectedItem = item;
+          this.selectedLabel = item.innerText;
+        }
       });
     }
 
@@ -285,6 +296,11 @@ export class CbpDropdown {
     // Look for any selected item to set the initial state, only if the value is not set
     this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
     
+    this.attachedButtonStart = this.host.querySelector('[slot=cbp-dropdown-attached-button-start]');
+    this.attachedButtonEnd = this.host.querySelector('[slot=cbp-dropdown-attached-button-end]');
+
+
+
     // TechDebt: Use the dropdown values as they should match the checkbox values
     if (this.multiple) {
       if (this.selectedItems) this.value=[];
@@ -309,6 +325,16 @@ export class CbpDropdown {
   componentDidLoad() {
     //console.log('Dropdown Component Did Load. this.formField:', this.formField);
 
+    // Update this with the buttons size
+    this.attachedButtonStartWidth = this.attachedButtonStart ? this.attachedButtonStart.offsetWidth : 0;
+    this.attachedButtonEndWidth = this.attachedButtonEnd ? this.attachedButtonEnd.offsetWidth : 0;
+    
+    setCSSProps(this.host, {
+      "--cbp-dropdown-attached-button-start-width": `${this.attachedButtonStartWidth}px`,
+      "--cbp-dropdown-attached-button-end-width": `${this.attachedButtonEndWidth}px`,
+    });
+
+
     // Getting values and innerText only works after rendering
     if (!this.multiple) {
       if (!this.value || !this.selectedLabel) {
@@ -328,6 +354,15 @@ export class CbpDropdown {
     }
   }
 
+  componentWillRender() {
+    console.log('Dropdown Component Will Render - how often is re-rendering happening?');
+
+    if (this.attachedButtonStart) this.attachedButtonStart.disabled=this.disabled || !this.dropdownItems.length;
+    if (this.attachedButtonEnd) this.attachedButtonEnd.disabled=this.disabled || !this.dropdownItems.length;
+
+
+  }
+
   /*
   Notes (keep until complete):
 
@@ -343,61 +378,72 @@ export class CbpDropdown {
         onKeyUp={e => this.handleKeyUp(e)} 
         onKeyDown={e => this.handleKeyDown(e)}
       >
-        <button
-          class="cbp-custom-form-control"
-          id={this.fieldId}
-          role="combobox"
-          aria-controls={`${this.fieldId}-menu`}
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-invalid={this.error ? 'true' : false}
-          disabled={this.disabled || this.readonly || !this.dropdownItems.length}
-          onClick={() => this.handleDropdownClick()}
-          ref={el => (this.control = el)}
-        >
-          {this.selectedLabel ? (
-            <div class="cbp-dropdown-label">{this.selectedLabel}</div>
-          ) : (
-            <div class="cbp-dropdown-placeholder">
-              {this.multiple && (
-                <span
-                  role="button"
-                  tabindex={0}
-                  class="cbp-dropdown-multiselect-counter"
-                  title={`Click to clear selections`}
-                  onClick={e => this.handleCounterClick(e)}
-                  onKeyDown={e => this.handleCounterKeydown(e)}
-                  ref={el => (this.counterControl = el)}
-                >
-                  {this.selectedItems.length}
-                  <cbp-icon 
-                    name="circle-xmark" 
-                    size="var(--cbp-space-3x)" 
-                    sx={{ 'margin-inline-start': 'var(--cbp-space-2x)' }} 
-                  />
-                </span>
-              )}
-              {this.placeholder}
-            </div>
-          )}
-        </button>
+        <div class="cbp-dropdown-shrinkwrap">
+          
+          <div>
+            <slot name="cbp-dropdown-attached-button-start" />
+          </div>
 
-        <input
-          type="hidden"
-          id={`${this.fieldId}-field`}
-          name={this.name}
-          value={this.value}
-          disabled={this.disabled}
-          ref={el => (this.formField = el)}
-        />
+          <button
+            class="cbp-custom-form-control"
+            id={this.fieldId}
+            role="combobox"
+            aria-controls={`${this.fieldId}-menu`}
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-invalid={this.error ? 'true' : false}
+            disabled={this.disabled || this.readonly || !this.dropdownItems.length}
+            onClick={() => this.handleDropdownClick()}
+            ref={el => (this.control = el)}
+          >
+            {this.selectedLabel ? (
+              <div class="cbp-dropdown-label">{this.selectedLabel}</div>
+            ) : (
+              <div class="cbp-dropdown-placeholder">
+                {this.multiple && (
+                  <span
+                    role="button"
+                    tabindex={0}
+                    class="cbp-dropdown-multiselect-counter"
+                    title={`Click to clear selections`}
+                    onClick={e => this.handleCounterClick(e)}
+                    onKeyDown={e => this.handleCounterKeydown(e)}
+                    ref={el => (this.counterControl = el)}
+                  >
+                    {this.selectedItems.length}
+                    <cbp-icon 
+                      name="circle-xmark" 
+                      size="var(--cbp-space-3x)" 
+                      sx={{ 'margin-inline-start': 'var(--cbp-space-2x)' }} 
+                    />
+                  </span>
+                )}
+                {this.placeholder}
+              </div>
+            )}
+          </button>
 
-        <div
-          role="listbox"
-          class="cbp-dropdown-menu"
-          id={`${this.fieldId}-menu`}
-          onKeyUp={e => this.keyboardNav(e)}
-        >
-          <slot onSlotchange ={ (e) => this.handleSlotChange(e)} />
+          <div>
+            <slot name="cbp-dropdown-attached-button-end" />
+          </div>
+
+          <input
+            type="hidden"
+            id={`${this.fieldId}-field`}
+            name={this.name}
+            value={this.value}
+            disabled={this.disabled}
+            ref={el => (this.formField = el)}
+          />
+
+          <div
+            role="listbox"
+            class="cbp-dropdown-menu"
+            id={`${this.fieldId}-menu`}
+            onKeyUp={e => this.keyboardNav(e)}
+          >
+            <slot onSlotchange ={ (e) => this.handleSlotChange(e)} />
+          </div>
         </div>
       </Host>
     );
