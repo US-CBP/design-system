@@ -17,16 +17,19 @@ export class CbpPagination {
   private pagesDropdown: HTMLCbpDropdownElement;
   private pages: number = 1;
 
+  private nextPageButton: HTMLCbpButtonElement;
+  private previousPageButton: HTMLCbpButtonElement;
+
   @Element() host: HTMLElement;
 
   /** Specifies the number of records in the entire data set (complete or filtered) to be paginated. */
   @Prop() records: number = 0;
 
   /** Specifies the number of items to show per page. Accepts any number or "all". Defaults to 10. */
-  @Prop() pageSize: number | "all" = 10;
+  @Prop({mutable: true}) pageSize: number | "all" = 10;
 
   /** Specifies the current page being viewed. Defaults to 1. */
-  @Prop() page: number = 1;
+  @Prop({mutable: true}) page: number = 1;
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
@@ -59,8 +62,8 @@ export class CbpPagination {
   }
 
 
-  handlePageSizeChange( value, page=1 ) {
-    //console.log('HandlePageSizeChange: ', value, page)
+  handlePageSizeChange( value ) {
+    console.log('HandlePageSizeChange: ', value)
     this.page=1; // always reset the current page to 1 when changing the page size
     
     
@@ -92,22 +95,35 @@ export class CbpPagination {
     this.pagesDropdown.querySelector('[role=listbox]').replaceChildren(...this.pagesDropdownItems);
     
     setTimeout( () => {
-      this.pagesDropdown.value= (page <= this.pages) ? page : 1;
+      this.pagesDropdown.value=1;
+      this.checkPageButtonStates();
     }, 100);
     //console.log('Page Size: ', value, 'Pages: ', this.pages);
-
+    //this.page=1; // always reset the current page to 1 when changing the page size
+    //this.pagesDropdown.value=1;
+    //this.checkPageButtonStates();
   }
-
   
   handlePageChange(value) {
-    //console.log('Page: ', value);
+    console.log('Page: ', value);
     this.page=value;
     // Recalculate the pagination text and pages dropdown
 
-    // if "All" is selected, hide the pages dropdown
-
+    this.checkPageButtonStates();
   }
 
+  checkPageButtonStates(){
+    console.log('Checking page button states:', this.page, this.pagesDropdownItems?.length);
+    console.log('Next button disable = ', this.nextPageButton, (this.page == this.pagesDropdownItems?.length));
+    console.log('Previous button disable = ', this.previousPageButton, (this.page == 1));
+    //setTimeout( () => {
+      if (this.nextPageButton) this.nextPageButton.disabled = this.page == this.pagesDropdownItems?.length || !this.pagesDropdownItems?.length;
+      //(this.nextPageButton && this.page == this.pagesDropdownItems?.length) ? this.nextPageButton.setAttribute('disabled','')  : this.nextPageButton?.removeAttribute('disabled');
+      if (this.previousPageButton) this.previousPageButton.disabled = this.page == 1 || !this.pagesDropdownItems?.length;
+      //(this.previousPageButton && this.page == 1) ? this.previousPageButton.setAttribute('disabled','')  : this.nextPageButton?.removeAttribute('disabled');
+    //},50);
+
+  }
 
 
   componentWillLoad() {
@@ -127,10 +143,13 @@ export class CbpPagination {
     this.pagesDropdown=this.host.querySelector('[slot=cbp-pagination-pages]').querySelector('cbp-dropdown');
     this.pagesDropdown.addEventListener('valueChange', ({detail: {value}}) => this.handlePageChange(value));
 
+    this.nextPageButton = this.host.querySelector('[slot=cbp-dropdown-attached-button-end] cbp-button');
+    this.previousPageButton = this.host.querySelector('[slot=cbp-dropdown-attached-button-start] cbp-button');
+
     // Update their values based on pagination props
     this.pageSizeDropdown.value=this.pageSize;
 
-    this.handlePageSizeChange(this.pageSize, this.page);
+    this.handlePageSizeChange(this.pageSize);
 
     // Setting the pagesDropdown value has no effect because it's not populated.
     //this.pagesDropdown.value=this.page;
@@ -139,8 +158,17 @@ export class CbpPagination {
   }
 
   componentWillUpdate() {
-    if (this.pageSize != "all") this.pageSize=Number(this.pageSize);
+    //if (this.pageSize != "all") this.pageSize=Number(this.pageSize);
   }
+
+  /*
+  componentDidRender() {
+    console.log('Pagination Component Did Render - how often is re-rendering happening?');
+
+    if (this.nextPageButton) this.nextPageButton.disabled = this.nextPageButton.disabled || this.page === this.pagesDropdownItems.length;
+    if (this.previousPageButton) this.previousPageButton.disabled = this.previousPageButton.disabled || this.page === 1;
+  }
+*/
 
   render() {
     // Set the pagination text
