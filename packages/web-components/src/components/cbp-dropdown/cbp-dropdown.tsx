@@ -1,6 +1,11 @@
 import { Component, Prop, State, Element, Event, EventEmitter, Method, Listen, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/utils';
 
+/**
+ * @slot - Only Dropdown Items should be placed in the default slot.
+ * @slot cbp-dropdown-attached-button-start - Allows for an optional button control to be slotted as an overlay at the start of the dropdown (such as a "previous" button).
+ * @slot cbp-dropdown-attached-button-end - Allows for an optional button control to be slotted as an overlay at the end of the dropdown (such as a "next" button).
+ */
 @Component({
   tag: 'cbp-dropdown',
   styleUrl: 'cbp-dropdown.scss',
@@ -86,7 +91,7 @@ export class CbpDropdown {
     // single select
     else {
       this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
-      // Unselect all items except the one that was activated
+      // Deselect all items except the one that was activated
       this.dropdownItems.forEach(item => {
         if (item === host){
           this.selectedItem = item;
@@ -138,60 +143,33 @@ export class CbpDropdown {
 
   @Watch('value')
   watchValue(newValue) {
-    //console.log('Value Watch on dropdown fired.');
     // Only update the selection if the value is different from the hidden field's value (externally updated).
     if (newValue != this.formField?.value) {
-      //console.log('Value Watch on dropdown fired - setting selected.');
       this.setSelectedFromValue(newValue);
     }
     //else console.log('Value Watch on dropdown fired - component and form values already match, so no action needed.');
   }
 
   setSelectedFromValue(value) {
-    //console.log('Selecting items from parent dropdown value: ', value, typeof(value));
     this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item')); // make sure this array is accurate
-
-    // if value is a number
-    //if ( typeof(this.value) == Number) {
     
     if(this.multiple) {
-
+      // TODO
     }
 
     else {
-      /*
-      this.dropdownitems.forEach( item => {
-        console.log('Checking return value: ', item.value, item.value == this.value || item.innerText == this.value);
-      })
-      */
-      let itemsToSelect = this.dropdownItems.filter( item => item.value == value);
-      //console.log('Items to select: ', itemsToSelect)
-      itemsToSelect.forEach(item => {
-        item.selected = true;
-        if (!this.multiple) {
+      // Select the item with the value and deselect the rest
+      this.dropdownItems.forEach( (item, index) => {
+        if (item.value == value){
           this.selectedItem = item;
           this.selectedLabel = item.innerText;
+          this.focusIndex = index;
+          item.selected = true;
         }
+        else item.selected = false;
       });
     }
-
-      //}
-      // if value is an array
-    /*
-    let itemsToSelect = this.dropdownitems.filter(item => item.value == newValue);
-    itemsToSelect.forEach(item => {
-      item.selected = true;
-    });
-    */
   }
-
-  /*
- Need public methods to:
-  clear selections
-  advance/select +1
-  backwards/select -1
-
-*/
 
   @Method()
   async clearSelections() {
@@ -290,8 +268,6 @@ export class CbpDropdown {
 
   componentWillLoad() {
     //this.parent = this.host.closest('cbp-form-field');
-    //console.log('Component will load')
-
     this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
     // Look for any selected item to set the initial state, only if the value is not set
     this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
@@ -323,8 +299,6 @@ export class CbpDropdown {
   }
 
   componentDidLoad() {
-    //console.log('Dropdown Component Did Load. this.formField:', this.formField);
-
     // Update this with the buttons size
     this.attachedButtonStartWidth = this.attachedButtonStart ? this.attachedButtonStart.offsetWidth : 0;
     this.attachedButtonEndWidth = this.attachedButtonEnd ? this.attachedButtonEnd.offsetWidth : 0;
@@ -348,19 +322,14 @@ export class CbpDropdown {
 
     // If there are no selected items, but a value is specified, set those items as selected
     if (!this.selectedItems.length && this.value != undefined) {
-      //console.log('No selected items, but value is specified, so select the item(s). Value(s):', this.value, typeof this.value);
-      //this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item')); // make sure this array is accurate
       this.setSelectedFromValue(this.value);
     }
   }
 
   componentWillRender() {
-    console.log('Dropdown Component Will Render - how often is re-rendering happening?');
-
+    //console.log('Dropdown Component Will Render - how often is re-rendering happening?');
     if (this.attachedButtonStart) this.attachedButtonStart.disabled=this.disabled || !this.dropdownItems.length;
     if (this.attachedButtonEnd) this.attachedButtonEnd.disabled=this.disabled || !this.dropdownItems.length;
-
-
   }
 
   /*
@@ -380,9 +349,7 @@ export class CbpDropdown {
       >
         <div class="cbp-dropdown-shrinkwrap">
           
-          <div>
-            <slot name="cbp-dropdown-attached-button-start" />
-          </div>
+          <slot name="cbp-dropdown-attached-button-start" />
 
           <button
             class="cbp-custom-form-control"
@@ -423,9 +390,7 @@ export class CbpDropdown {
             )}
           </button>
 
-          <div>
-            <slot name="cbp-dropdown-attached-button-end" />
-          </div>
+          <slot name="cbp-dropdown-attached-button-end" />
 
           <input
             type="hidden"

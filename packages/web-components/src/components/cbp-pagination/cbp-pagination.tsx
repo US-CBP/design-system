@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, Event, EventEmitter, Method, Listen, Host, h } from '@stencil/core';
+import { Component, Prop, State, Element, Event, EventEmitter, Listen, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
@@ -43,29 +43,18 @@ export class CbpPagination {
 
   
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
-  @Event() valueChange: EventEmitter;
+  @Event() paginationChange: EventEmitter;
 
 
-  @Listen('dropdownItemClick')
-  handleDropdownChange( ) {
-    // TODO
+  @Listen('buttonClick')
+  handlePagesButtonNav( {detail: {value} }  ) {
+    if (value == 'next') this.handlePageChange(this.page+1);
+    if (value == 'previous') this.handlePageChange(this.page-1);
   }
-
-  @Method()
-  async nextPage( ) {
-    // TODO
-  }
-
-  @Method()
-  async previousPage( ) {
-    // TODO
-  }
-
 
   handlePageSizeChange( value ) {
     console.log('HandlePageSizeChange: ', value)
     this.page=1; // always reset the current page to 1 when changing the page size
-    
     
     // Recalculate and populate the pages dropdown
     if (value == "all" ) {
@@ -75,10 +64,9 @@ export class CbpPagination {
       if (this.records > 500) console?.warn('cbp-pagination - Warning: the "show all" option should be disabled for large data sets. Pushing this amount of data to the user\'s browser is bad for performance, in addition to rendering a large number of DOM nodes to display it all at once.');
     }
     else {
-      this.pageSize=parseInt(value);
-      //console.log('Setting this.pages (which is coming back NaN): ', this.records, this.pageSize, Math.ceil(Number(this.records)/Number(this.pageSize)));
+      this.pageSize=parseInt(value); // coerce this into a number, since it also accepts a string and values sent from HTML will be strings
       this.pagesDropdown.value=0; // set to zero so that it will re-render/select after repopulation
-      this.pages=Math.ceil(this.records/this.pageSize)
+      this.pages=Math.ceil(this.records/this.pageSize);
       this.pagesDropdown.removeAttribute('hidden');
     }
 
@@ -98,31 +86,25 @@ export class CbpPagination {
       this.pagesDropdown.value=1;
       this.checkPageButtonStates();
     }, 100);
-    //console.log('Page Size: ', value, 'Pages: ', this.pages);
-    //this.page=1; // always reset the current page to 1 when changing the page size
-    //this.pagesDropdown.value=1;
-    //this.checkPageButtonStates();
   }
   
   handlePageChange(value) {
-    console.log('Page: ', value);
-    this.page=value;
-    // Recalculate the pagination text and pages dropdown
+    this.page = this.pagesDropdown.value = value; // updating this prop will cause a re-render, recalculating the pagination text
+
+    this.paginationChange.emit({
+      host: this.host,
+      records: this.records,
+      pageSize: this.pageSize,
+      page: this.page,
+      pages: this.pages
+    });
 
     this.checkPageButtonStates();
   }
 
   checkPageButtonStates(){
-    console.log('Checking page button states:', this.page, this.pagesDropdownItems?.length);
-    console.log('Next button disable = ', this.nextPageButton, (this.page == this.pagesDropdownItems?.length));
-    console.log('Previous button disable = ', this.previousPageButton, (this.page == 1));
-    //setTimeout( () => {
-      if (this.nextPageButton) this.nextPageButton.disabled = this.page == this.pagesDropdownItems?.length || !this.pagesDropdownItems?.length;
-      //(this.nextPageButton && this.page == this.pagesDropdownItems?.length) ? this.nextPageButton.setAttribute('disabled','')  : this.nextPageButton?.removeAttribute('disabled');
-      if (this.previousPageButton) this.previousPageButton.disabled = this.page == 1 || !this.pagesDropdownItems?.length;
-      //(this.previousPageButton && this.page == 1) ? this.previousPageButton.setAttribute('disabled','')  : this.nextPageButton?.removeAttribute('disabled');
-    //},50);
-
+    if (this.nextPageButton) this.nextPageButton.disabled = this.page == this.pagesDropdownItems?.length || !this.pagesDropdownItems?.length;
+    if (this.previousPageButton) this.previousPageButton.disabled = this.page == 1 || !this.pagesDropdownItems?.length;
   }
 
 
@@ -156,19 +138,6 @@ export class CbpPagination {
 
     //console.log(this.pagesDropdown, this.pageSizeDropdown);
   }
-
-  componentWillUpdate() {
-    //if (this.pageSize != "all") this.pageSize=Number(this.pageSize);
-  }
-
-  /*
-  componentDidRender() {
-    console.log('Pagination Component Did Render - how often is re-rendering happening?');
-
-    if (this.nextPageButton) this.nextPageButton.disabled = this.nextPageButton.disabled || this.page === this.pagesDropdownItems.length;
-    if (this.previousPageButton) this.previousPageButton.disabled = this.previousPageButton.disabled || this.page === 1;
-  }
-*/
 
   render() {
     // Set the pagination text

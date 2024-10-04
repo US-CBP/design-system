@@ -19,7 +19,9 @@ The Pagination component presents a common UI pattern for displaying data sets b
   * Changes to the component properties such as records, pagesize, and page are reactive and will cause the pagination component to re-render.
 * The "items per page" dropdown is application specified. It may be copied from Storybook as-is or modified.
 * The "pages" dropdown is managed by the Pagination component based on the number of records and page size (items per page) values. 
-* The empty `cbp-dropdown` with desired properties will be slotted by the application.
+* The empty `cbp-dropdown` with desired properties will be slotted by the application with the "next/previous" attached button controls.
+* The "previous" button will be disabled when the first item in the "pages" dropdown is selected.
+* The "next" button will be disabled when the last item in the "pages" dropdown is selected.
 
 ## Technical Specifications
 
@@ -27,6 +29,9 @@ The Pagination component presents a common UI pattern for displaying data sets b
 
 * Changes to the "items per page" dropdown will cause the "items shown" text and "pages" dropdown to be recalculated.
 * Changes to the "pages" dropdown will cause the "items shown" text to be recalculated and emit an event to the application to update the data displayed.
+* Clicking the "back/previous" button attached to the "pages" dropdown will decrement the page value and update the value and selection in the "pages" dropdown.
+* Clicking the "forward/next" button attached to the "pages" dropdown will increment the page value and update the value and selection in the "pages" dropdown.
+* Any user interaction resulting in the "items per page" or "page" values changing will emit a custom event (paginationChange), containing references to the host component, pageSize, records, page, and (total) pages, which may be listened for and acted upon by application logic.
 
 ### Responsiveness
 
