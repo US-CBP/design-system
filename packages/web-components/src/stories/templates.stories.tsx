@@ -92,7 +92,7 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
         </main>
     </cbp-container>
 
-    <cbp-footer context="dark-always">
+    <cbp-footer>
       <nav slot="cbp-footer-nav">
         <cbp-flex role="list" breakpoint="37.5rem">
           <cbp-flex-item role="list-item">
@@ -220,7 +220,7 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, contentGridSize, sideba
         </cbp-panel>
       </cbp-grid>
 
-      <cbp-footer context="dark-always">
+      <cbp-footer>
         <nav slot="cbp-footer-nav">
           <cbp-flex role="list" breakpoint="37.5rem">
             <cbp-flex-item role="list-item">
@@ -305,7 +305,7 @@ function generateCards(numberOfCards) {
 
 
 
-const InternalResponsiveCardsTemplate = ({ isLoggedIn, username, numberOfCards, cardMinWidth }) => {
+const InternalCardsLayoutTemplate = ({ isLoggedIn, username, numberOfCards, cardMinWidth }) => {
   return ` 
     <cbp-skip-nav></cbp-skip-nav>
     <cbp-flex
@@ -380,7 +380,7 @@ const InternalResponsiveCardsTemplate = ({ isLoggedIn, username, numberOfCards, 
         </main>
       </cbp-container>
 
-      <cbp-footer context="dark-always">
+      <cbp-footer>
         <nav slot="cbp-footer-nav">
           <cbp-flex role="list" breakpoint="37.5rem">
             <cbp-flex-item role="list-item">
@@ -412,8 +412,8 @@ const InternalResponsiveCardsTemplate = ({ isLoggedIn, username, numberOfCards, 
   `;
 };
 
-export const InternalResponsiveCards = InternalResponsiveCardsTemplate.bind({});
-InternalResponsiveCards.args = {
+export const InternalCardsLayout = InternalCardsLayoutTemplate.bind({});
+InternalCardsLayout.args = {
   numberOfCards: '15',
   cardMinWidth: '17rem'
 }

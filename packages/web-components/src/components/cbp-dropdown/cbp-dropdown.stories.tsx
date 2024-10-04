@@ -46,7 +46,7 @@ export default {
 
 function generateItems(buttons) {
   const html = buttons.map(({ label, value, selected }) => {
-    return `<cbp-dropdown-item  value="${value}" ${selected == true ? 'selected' : ''}>${label}</cbp-dropdown-item>`;
+    return `<cbp-dropdown-item  ${value ? `value=${value}` : ''} ${selected == true ? 'selected' : ''}>${label}</cbp-dropdown-item>`;
   });
   return html.join('');
 }
@@ -141,14 +141,14 @@ SingleSelectDropdown.args = {
 
 function generateMultiSelectItems(buttons, context) {
   const html = buttons.map(({ label, name, value, selected }) => {
-    return `<cbp-dropdown-item  value="${value}" ${selected == true ? 'selected' : ''}>
+    return `<cbp-dropdown-item  ${value ? `value=${value}` : ''} ${selected == true ? 'selected' : ''}>
               <cbp-checkbox 
                 ${context && context != 'light-inverts' ? `context=${context}` : ''}
               >
                 <input 
                   type="checkbox" 
                   name="${name}"
-                  value="${value}"
+                  ${value ? `value=${value}` : ''}
                 />
                 ${label}
               </cbp-checkbox>

@@ -12,26 +12,33 @@ import { setCSSProps } from '../../utils/utils';
   styleUrl: 'cbp-link.scss',
 })
 export class CbpLink {
+  
   private anchor: HTMLAnchorElement;
 
   @Element() host: HTMLElement;
 
   /** Specifies the `href` of the rendered anchor. */
   @Prop() href: string;
+  
   /** Specifies the `rel` attribute of the rendered anchor. */
   @Prop() rel: string;
+  
   /** Specifies the `target` attribute of the rendered anchor. */
   @Prop() target: string;
+  
   /** Specifies the `download` boolean attribute of the rendered anchor. */
   @Prop() download: boolean;
   //@Prop({ reflect: true }) variant: 'definition';
 
   /** Specifies the `lang` attribute of the rendered anchor. */
   @Prop() language: string;
+  
   /** Defines an `accesskey` attribute of the rendered anchor. */
   @Prop() shortcutKey: string;
+  
   /** Specifies the `rel` attribute of the rendered anchor. */
   @Prop() accessibilityText: string;
+
   /** Specifies whether the anchor is "disabled". Creating disabled anchors may introduce accessibility concerns - use with caution. */
   @Prop({ reflect: true }) disabled: boolean;
   
@@ -40,6 +47,7 @@ export class CbpLink {
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
+
 
   /** A custom event emitted with the anchor is activated/clicked. */
   @Event() linkClick!: EventEmitter;
@@ -78,11 +86,11 @@ export class CbpLink {
           <slot name="cbp-link-custom" />
         ) : (
           <a
-            href={this.href}
+            href={this.disabled ? null : this.href}
             lang={this.language}
             target={this.target}
-            download={this.download && this.href}
-            rel={this.target == '_blank' ? ' noopener noreferrer' : ''}
+            download={this.download}
+            rel={this.target == '_blank' ? ' noopener noreferrer' : null}
             aria-label={this.accessibilityText}
             aria-disabled={this.disabled ? 'true' : false}
             role={this.disabled ? 'link' : null}

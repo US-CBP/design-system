@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Pagination/Specifications" />
+
+# cbp-pagination
+
+## Purpose
+
+The Pagination component presents a common UI pattern for displaying data sets broken up into smaller, more consumable (and performant) "pages."
+
+## Functional Requirements
+
+* The Pagination component accepts slotted controls for the number of items per page and page selection.
+  * The number of items per page dropdown may be customized by the application with whatever values are desired.
+  * The page selection dropdown is slotted by the application, but controlled (updated) by the pagination component based on the total records and number of items per page.
+* The text describing the items shown is determined by these values and generate by the pagination component.
+* The Pagination component does not handle displaying the data.
+  * The Pagination component emits events as hooks for application logic whenever the controls are changed.
+  * Changes to the component properties such as records, pagesize, and page are reactive and will cause the pagination component to re-render.
+* The "items per page" dropdown is application specified. It may be copied from Storybook as-is or modified.
+* The "pages" dropdown is managed by the Pagination component based on the number of records and page size (items per page) values. 
+* The empty `cbp-dropdown` with desired properties will be slotted by the application with the "next/previous" attached button controls.
+* The "previous" button will be disabled when the first item in the "pages" dropdown is selected.
+* The "next" button will be disabled when the last item in the "pages" dropdown is selected.
+
+## Technical Specifications
+
+### User Interactions
+
+* Changes to the "items per page" dropdown will cause the "items shown" text and "pages" dropdown to be recalculated.
+* Changes to the "pages" dropdown will cause the "items shown" text to be recalculated and emit an event to the application to update the data displayed.
+* Clicking the "back/previous" button attached to the "pages" dropdown will decrement the page value and update the value and selection in the "pages" dropdown.
+* Clicking the "forward/next" button attached to the "pages" dropdown will increment the page value and update the value and selection in the "pages" dropdown.
+* Any user interaction resulting in the "items per page" or "page" values changing will emit a custom event (paginationChange), containing references to the host component, pageSize, records, page, and (total) pages, which may be listened for and acted upon by application logic.
+
+### Responsiveness
+
+* The Pagination component is a container with its children laid out using Flexbox and will expand and contract as needed.
+* When the viewport width is under 480px (30rem), the "items per page" dropdown will be hidden, as they cannot all fit horizontally on the screen.
+* As such, the default "items per page" value should be set to a (smaller) value that works well on mobile devices or left at the default value of "10".
+
+### Accessibility
+
+* TBD
+
+### Additional Notes and Considerations
+
+* Applications with access to large data sets should never return the entire data set to the front-end framework or UI.
+  * "Chunking" data involves returning part of the data set (whether from a database or API) that is needed for display rather than the entire data set.
+  * When paginating such large data sets, the "All Records" options should be omitted from the items per page dropdown.
+  * If "All Records" is selected for a data set over 500 records, a warning will be posted to the browser console as a reminder.

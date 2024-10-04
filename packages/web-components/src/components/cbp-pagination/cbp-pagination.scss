@@ -1,0 +1,45 @@
+/*
+ * @prop 
+ */
+:root {
+  --cbp-pagination-color: var(--cbp-color-text-darkest);
+  --cbp-pagination-color-dark: var(--cbp-color-text-lightest);
+}
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+ [data-cbp-theme=light] cbp-pagination[context*=dark],
+ [data-cbp-theme=dark] cbp-pagination:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-pagination-color: var(--cbp-pagination-color-dark);
+ }
+
+
+cbp-pagination {
+  --cbp-form-field-margin-bottom: 0;
+  
+  display: flex;
+  align-items: center;
+  gap: var(--cbp-space-2x);
+  color: var(--cbp-pagination-color);
+
+  [slot=cbp-pagination-items-per-page],
+  [slot=cbp-pagination-pages] {
+    label {
+      display: none;
+    }
+  }
+
+  .cbp-pagination-showing-text {
+    flex-grow: 1;
+    font-style: italic;
+  }
+}
+
+@media (max-width: 30rem) {
+  cbp-pagination {
+    [slot=cbp-pagination-items-per-page] {
+      display: none;
+    }
+  }
+}

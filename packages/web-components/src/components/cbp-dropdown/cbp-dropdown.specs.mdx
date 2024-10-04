@@ -11,12 +11,14 @@ The Dropdown component offers an alternative to the native select element that c
 ## Functional Requirements
 
 * The Dropdown component can replace the native `select` element (with caveats*)
+* The Dropdown component supports both single select and multi-select functionality.
 * The Dropdown component will render an `input type="hidden"` element to pass the field value in a native form submission.
 * The Dropdown component is meant to be used in the default slot of the `cbp-form-field` component, like a native form field would, providing:
   * Form field styles without duplication
   * An accessible form field pattern
 * The Dropdown options will consist of slotted child `cbp-dropdown-item` components.
-* Dropdown items may have individual values specified, separate from the visible label (similar to a native select option element).
+  * For single select dropdowns, dropdown items may have individual values specified, separate from the visible label (similar to a native select option element).
+  * For multi-select dropdowns, a `cbp-checkbox` is expected to be slotted within each dropdown item and a native checkbox control within the `cbp-checkbox`.
 * The Dropdown and dropdown items must support keyboard navigation similar to a native select or menu widget.
 
 ## Technical Specifications
@@ -39,14 +41,23 @@ The Dropdown component offers an alternative to the native select element that c
   * Pressing `Enter` will activate the focused item and mark is as selected (see below for more details) and close the menu.
 
 * Dropdown Items may be activated either by clicking with the mouse or pressing `Enter` on the focused item (same as a native `select` element).
-* Activating a Dropdown Item will do the following:
-  * Emit an event, which is listened for by the parent Dropdown component
+* Activating a Dropdown Item will do the following for single select dropdowns:
+  * Emit an event, which is listened for by the parent Dropdown component.
   * Set the activated item as `selected` (true).
   * Set the `selected` property for all other Dropdown Items to `false`.
   * Update the visible selected value on the Dropdown control to that of the activated Dropdown Item.
-  * Update the value of the hidden input field to the value of the clicked Dropdown Item. If no value is explicitly set, then the item's `innerText` will be used as the value.
-  * Close the dropdown menu
-  * Return focus to the control
+  * Update the value of the hidden input field to the value of the clicked Dropdown Item. If no value is explicitly set, then the item's `innerText` will be used as the value. For multi-select dropdowns, this field's value is an array of checkbox values of the selected items.
+  * Emit a valueChange event from the parent Dropdown component.
+  * Close the dropdown menu.
+  * Return focus to the control.
+
+* Activating a Dropdown Item will do the following for multi-select dropdowns:
+  * Emit an event, which is listened for by the parent Dropdown component.
+  * Toggle its `selected` value and checkbox's checked state.
+  * Update the Dropdown control to show the number of selected items.
+  * Update the value of the hidden input field to the value of the clicked Dropdown Item. For multi-select dropdowns, this field's value is an array of checkbox values of the selected items.
+  * Emit a valueChange event from the parent Dropdown component.
+  * The Dropdown remains open for additional navigation and selection.
 
 ### Responsiveness
 
@@ -69,8 +80,38 @@ The Dropdown component offers an alternative to the native select element that c
   * A native `select` allows you to press the initial letter multiple times to cycle through those options that begin with that letter. This creates familiar interactions for common patterns such as State and Country selection where the lists are well-known.
   * On mobile devices, a native `select` will be presented by an enlarged overlay of radio options, which is drastically more usable in this context.
 * Since the main control is a button, it is disabled in "readonly" mode (while the hidden input may still submit the value). Does this cause issues in user expectations?
+* The `value` property should not be set explicitly if there are items marked as selected. But in the case that this occurs, the selected items will override the specified value; the value will be updated to match the selected items.
 * TODO: Requires additional testing with `cbp-form-field-wrapper`.
 * TODO: Dynamically shift menu opening top/bottom based on form field positioning in the viewport and viewport size.
 * TODO: Implement faux placeholder value.
 * TODO: How should Dropdown Items handle wrapping or multi-line text?
+
+#### Dropdown logic flow:
+
+* On Component Load:
+  * Look for selected children
+    * If there are selected items, set the component value, hidden form field value (via render), and display label
+    * If not, check if the `value` prop was set.
+      * If so, set the corresponding children as selected.
+        * Note: children must have a `value` property set for this to work (no guessing by text labels).
+        * For multi-select dropdowns, setting children as selected will also check the child checkbox.
+
+* On User Interaction (a dropdown item is clicked/activated):
+  * The dropdown item emits an event (containing host, target, label, and value), that is listened for by the parent dropdown.
+    * If no value is explicitly set, the value passed is derived from the text label (similar to a native select option with no value).
+    * Toggling the selected state is deferred to the parent dropdown
+  * Parent dropdown receives the event
+    * 
+
+* On Dropdown value property being updated externally (reactively):
+  * Check if the new value is different from the old value. (if not, do nothing)
+  * If so: 
+    * select the specified dropdown item(s) based on value(s).
+    * Update the selectedItem reference.
+    * Update the dropdown's visible label (of the selected item).
+    * Update the focusIndex for tracking focus for keyboard navigation.
+    * For single-select dropdowns, deselect all other dropdown items.
+  * TODO: This has not yet been implemented for multi-select dropdowns.
+
+  
 
