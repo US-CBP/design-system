@@ -60,7 +60,7 @@ const Template = ({ records, pagesize, page, context, sx }) => {
               fill="solid"
               color="secondary"
               variant="square"
-              value="previous"
+              value="previous page"
               accessibility-text="Previous page"
             >
               <cbp-icon name="chevron-right" rotate="180" />
@@ -72,7 +72,7 @@ const Template = ({ records, pagesize, page, context, sx }) => {
               fill="solid"
               color="secondary"
               variant="square"
-              value="next"
+              value="next page"
               accessibility-text="Next page"
             >
               <cbp-icon name="chevron-right" />

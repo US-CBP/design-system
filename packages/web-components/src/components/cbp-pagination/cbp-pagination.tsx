@@ -48,12 +48,11 @@ export class CbpPagination {
 
   @Listen('buttonClick')
   handlePagesButtonNav( {detail: {value} }  ) {
-    if (value == 'next') this.handlePageChange(this.page+1);
-    if (value == 'previous') this.handlePageChange(this.page-1);
+    if (value == 'next page') this.handlePageChange(this.page+1);
+    if (value == 'previous page') this.handlePageChange(this.page-1);
   }
 
   handlePageSizeChange( value ) {
-    console.log('HandlePageSizeChange: ', value)
     this.page=1; // always reset the current page to 1 when changing the page size
     
     // Recalculate and populate the pages dropdown
