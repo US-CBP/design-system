@@ -3,8 +3,8 @@ import { setCSSProps } from '../../utils/utils';
 
 /**
  * @slot
- * @slot cbp-pagination-items-per-page - Slot a `cbp-dropdown` here with numeric values (or "All") defining the options for 
- * @slot cbp-pagination-pages - 
+ * @slot cbp-pagination-items-per-page - Slot a `cbp-dropdown` here with numeric values (or "All") defining the options for page size.
+ * @slot cbp-pagination-pages - Slot an empty `cbp-dropdown` here with next/previous controls for the page selection. The Pagination component will manage the items within this dropdown.
  */
 @Component({
   tag: 'cbp-pagination',

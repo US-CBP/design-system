@@ -104,6 +104,14 @@ The Dropdown component offers an alternative to the native select element that c
     * 
 
 * On Dropdown value property being updated externally (reactively):
+  * Check if the new value is different from the old value. (if not, do nothing)
+  * If so: 
+    * select the specified dropdown item(s) based on value(s).
+    * Update the selectedItem reference.
+    * Update the dropdown's visible label (of the selected item).
+    * Update the focusIndex for tracking focus for keyboard navigation.
+    * For single-select dropdowns, deselect all other dropdown items.
+  * TODO: This has not yet been implemented for multi-select dropdowns.
 
   
 
