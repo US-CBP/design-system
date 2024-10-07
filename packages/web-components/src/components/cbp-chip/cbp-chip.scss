@@ -48,7 +48,6 @@
 
 [data-cbp-theme=light] cbp-chip[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-chip:not([context=dark-inverts]):not([context=light-always]) {
-  
   --cbp-chip-color-text: var(--cbp-chip-color-text-dark);
   --cbp-chip-color-text-hover: var(--cbp-chip-color-text-hover-dark);
   --cbp-chip-color-text-focus: var(--cbp-chip-color-text-focus-dark);
@@ -108,7 +107,7 @@ cbp-chip {
       background-color: var(--cbp-chip-color-background-pressed);
       color: var(--cbp-chip-color-text-pressed);
 
-      .cbp-chip__label + cbp-icon>svg {
+      .cbp-chip__label + cbp-icon[name=plus]>svg {
         transform: rotate(-135deg);
       }
 
