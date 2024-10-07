@@ -3,7 +3,7 @@ import { setCSSProps } from '../../utils/utils';
 
 /**
  * @slot - The default slot defines the chip's label.
- * @slot cbp-chip-icon - 
+ * @slot cbp-chip-icon - Optionally slot a custom icon for the default state (will still show the x for removal when pressed).
  */
 @Component({
   tag: 'cbp-chip',
