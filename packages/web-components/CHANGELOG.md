@@ -4,7 +4,7 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
-## [0.0.1-develop.15] TBD
+## [0.0.1-develop.15] 10-07-2024
 
 * First cut of `cbp-pagination`.
 * First cut of `cbp-usa-banner`.
