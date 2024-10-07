@@ -3,6 +3,7 @@ import { setCSSProps } from '../../utils/utils';
 
 /**
  * @slot - The default slot defines the chip's label.
+ * @slot cbp-chip-icon - 
  */
 @Component({
   tag: 'cbp-chip',
@@ -11,14 +12,18 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpChip {
 
   private button: HTMLButtonElement;
+  private icon: HTMLCbpIconElement;
+  private iconName: string = "plus"; // default is "plus" but if customized, we need to keep track of it
   private ariaPressed: boolean;
 
   @Element() host: HTMLElement;
 
   /** Specifies the `name` attribute of the rendered button */
-  @Prop() name: string;
+  @Prop({ reflect: true }) name: string;
+  
   /** Specifies the `value` attribute of the rendered button */
   @Prop() value: string;
+  
   /** Specifies the pressed state of the button and `aria-pressed` attribute of the rendered button */
   @Prop() pressed: boolean;
 
@@ -31,11 +36,18 @@ export class CbpChip {
   /** A custom event emitted when the chip is activated/toggled. */
   @Event() chipClick!: EventEmitter;
   
-  handleClick = (e) => {
+  handleClick(e){
+    // We're using this variable rather than the property to avoid re-rendering, which would impact the animation
     this.ariaPressed=!this.ariaPressed;
 
     // toggle the aria-pressed attribute directly to allow for animation
-    this.button.setAttribute('aria-pressed', `${this.ariaPressed}`)
+    if (this.iconName == "plus" ) {
+      this.button.setAttribute('aria-pressed', `${this.ariaPressed}`)
+    }
+    else {
+      this.pressed = !this.pressed;
+      this.pressed ? this.icon.name="times" : this.icon.name=this.iconName;
+    }
 
     this.chipClick.emit({
       host: this.host,
@@ -57,23 +69,31 @@ export class CbpChip {
       ...this.sx,
     });
   }
-  
+
+  componentDidLoad() {
+    if (!this.icon) this.icon = this.host.querySelector('cbp-icon');
+    this.iconName = this.icon.name;
+  }
+
   render() {
     return (
       <Host>
         <button
           type="button"
+          value={this.value}
           aria-pressed={`${this.pressed}`}
           ref={(el) => this.button = el} 
-          onClick={ e => this.handleClick(e) }
+          onClick={ (e) => this.handleClick(e) }
         >
           <span class="cbp-chip__label">
             <slot />
           </span>
-          <cbp-icon name="plus" size='var(--cbp-space-3x)'></cbp-icon>
+          {this.host.querySelector('[slot=cbp-chip-icon]')
+            ? <slot name="cbp-chip-icon" />
+            : <cbp-icon name="plus" size='var(--cbp-space-3x)' ref={el => this.icon = el} />
+          }
         </button>
       </Host>
     );
   }
-
 }

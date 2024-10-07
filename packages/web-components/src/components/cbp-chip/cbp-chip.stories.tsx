@@ -45,3 +45,24 @@ const Template = ({ label, name, value, pressed, context, sx }) => {
     `;
 };
 export const Chip = Template.bind({});
+
+
+const ChipWithCustomIconTemplate = ({ label, name, value, icon, pressed, context, sx }) => {
+  return ` 
+      <cbp-chip
+        ${name ? `name="${name}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${icon ? `icon="${icon}"` : ''}
+        ${pressed ? 'pressed' : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+        <cbp-icon slot="cbp-chip-icon" name="${icon}" size="var(--cbp-space-3x)"></cbp-icon>
+        ${label}
+      </cbp-chip>
+    `;
+};
+export const ChipWithCustomIcon = ChipWithCustomIconTemplate.bind({});
+ChipWithCustomIcon.args = {
+  icon: 'filter'
+}
