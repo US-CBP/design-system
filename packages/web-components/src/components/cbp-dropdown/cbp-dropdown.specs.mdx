@@ -101,7 +101,13 @@ The Dropdown component offers an alternative to the native select element that c
     * If no value is explicitly set, the value passed is derived from the text label (similar to a native select option with no value).
     * Toggling the selected state is deferred to the parent dropdown
   * Parent dropdown receives the event
-    * 
+    * Set the item as selected.
+      * This will trigger checking the checkbox for multi-select dropdowns.
+    * For single-select dropdowns, deselect all other items.
+    * Update the selectedItems array (State) behind a delay.
+    * Update the hidden form field value.
+    * Update the dropdown's visible label.
+    * For single select dropdowns, close the dropdown and send focus back to the main control.
 
 * On Dropdown value property being updated externally (reactively):
   * Check if the new value is different from the old value. (if not, do nothing)

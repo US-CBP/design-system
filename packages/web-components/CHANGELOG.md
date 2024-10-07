@@ -4,6 +4,16 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
+## [0.0.1-develop.15] TBD
+
+* First cut of `cbp-pagination`.
+* First cut of `cbp-usa-banner`.
+* Added multi-select support to `cbp-dropdown`.
+* Added the ability to set Dropdown selections based on `value` (supports pagination).
+* Added the ability to slot a custom icon into the `cbp-chip` component.
+* Added interactive card variants and functionality.
+* Additional bug fixes per design review.
+
 ## [0.0.1-develop.14] 09-16-2024
 
 * First cut of `cbp-notice`.
