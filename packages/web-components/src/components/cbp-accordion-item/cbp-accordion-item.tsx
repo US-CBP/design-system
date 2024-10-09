@@ -64,6 +64,7 @@ export class CbpAccordionItem {
   }
 
   render() {
+    console.log(this.host.querySelector('[slot=cbp-accordion-label]'));
     return (
       <Host>
         <cbp-flex
@@ -88,7 +89,7 @@ export class CbpAccordionItem {
           </cbp-flex-item>
 
           <cbp-flex-item id={this.headingId} flex-grow="1">
-            { this.host.querySelector('[slot="cbp-accordion-label"]')
+            { this.host.querySelector('[slot=cbp-accordion-label]')
               ? <slot name="cbp-accordion-label" />
               : <cbp-typography tag={this.headingLevel} variant="heading-sm">{this.label}</cbp-typography>
             }

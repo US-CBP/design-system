@@ -13,13 +13,14 @@ The Dropdown component offers an alternative to the native select element that c
 * The Dropdown component can replace the native `select` element (with caveats*)
 * The Dropdown component supports both single select and multi-select functionality.
 * The Dropdown component will render an `input type="hidden"` element to pass the field value in a native form submission.
-* The Dropdown component is meant to be used in the default slot of the `cbp-form-field` component, like a native form field would, providing:
+* The Dropdown component is meant to be used in the default slot of the `cbp-form-field` component, like a native form field, providing:
   * Form field styles without duplication
   * An accessible form field pattern
 * The Dropdown options will consist of slotted child `cbp-dropdown-item` components.
   * For single select dropdowns, dropdown items may have individual values specified, separate from the visible label (similar to a native select option element).
   * For multi-select dropdowns, a `cbp-checkbox` is expected to be slotted within each dropdown item and a native checkbox control within the `cbp-checkbox`.
 * The Dropdown and dropdown items must support keyboard navigation similar to a native select or menu widget.
+* The single-select Dropdown may have default "placeholder" text specified when there is no selection.
 
 ## Technical Specifications
 
@@ -63,7 +64,7 @@ The Dropdown component offers an alternative to the native select element that c
 
 * Since it inherits the same default styling as other form fields, the Dropdown is styled at 100% of its container by default, with a max-width of 100% so it cannot break out of its container.
 * If the control label (of the selected item) overflows the control, it will truncate with an ellipsis.
-* Drop Down Items: TBD
+* Drop Down Items will wrap as needed. However, content should not be so long that it wraps more than two lines on a small screen such as a phone.
 
 ### Accessibility
 
@@ -82,9 +83,6 @@ The Dropdown component offers an alternative to the native select element that c
 * Since the main control is a button, it is disabled in "readonly" mode (while the hidden input may still submit the value). Does this cause issues in user expectations?
 * The `value` property should not be set explicitly if there are items marked as selected. But in the case that this occurs, the selected items will override the specified value; the value will be updated to match the selected items.
 * TODO: Requires additional testing with `cbp-form-field-wrapper`.
-* TODO: Dynamically shift menu opening top/bottom based on form field positioning in the viewport and viewport size.
-* TODO: Implement faux placeholder value.
-* TODO: How should Dropdown Items handle wrapping or multi-line text?
 
 #### Dropdown logic flow:
 

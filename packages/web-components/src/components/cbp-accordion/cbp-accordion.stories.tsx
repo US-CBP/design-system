@@ -70,7 +70,6 @@ export default {
     });
     return html.join('');
   }
-  
 
   const Template = ({ items, multiple, context, sx }) => {
     return ` 
@@ -86,3 +85,40 @@ export default {
 
   export const Accordion = Template.bind({});
   Accordion.args = {}
+
+
+
+
+
+  function generateSlottedChildren(items) {
+    const html = items.map(({ label, content, open, color, headingLevel }) => {
+      return `
+        <cbp-accordion-item
+          ${open == true ? 'open' : ''}
+          ${color === 'danger' ? `color=${color}` : ''}
+          ${headingLevel ? `heading-level=${headingLevel}` : ''}
+        >
+          <div slot="cbp-accordion-label">
+            <span>${label}</span> <cbp-badge>5</cbp-badge>
+          </div>
+          ${content}
+        </cbp-accordion-item>
+      `;
+    });
+    return html.join('');
+  }
+
+  const AccordionWithSlottedLabelTemplate = ({ items, multiple, context, sx }) => {
+    return ` 
+        <cbp-accordion
+            ${multiple ? `multiple` : ''}
+            ${context && context != 'light-inverts' ? `context=${context}` : ''}
+            ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        >
+            ${generateSlottedChildren(items)}
+        </cbp-accordion>
+      `;
+  };
+
+  export const AccordionWithSlottedLabel = AccordionWithSlottedLabelTemplate.bind({});
+  AccordionWithSlottedLabel.args = {}
