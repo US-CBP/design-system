@@ -153,15 +153,15 @@ const stencilWrapper = (storyFn, context) => {
 export const decorators = [
   withWrapper,
   //stencilWrapper,
-  /*
+
   withThemeByDataAttribute({
     themes: {
       light: 'light',
       dark: 'dark',
     },
-    defaultTheme: 'light',
+    //defaultTheme: 'light',
     attributeName: 'data-cbp-theme',
   }),
-  */
+  //*/
 ];
 
