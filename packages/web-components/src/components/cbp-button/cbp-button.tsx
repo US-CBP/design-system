@@ -89,6 +89,7 @@ export class CbpButton {
   /** A custom event emitted when the component has completed loading and its internal lifecycles. */
   @Event() componentLoad!: EventEmitter;
 
+
   handleClick() {
     // If this is a control for something, manage state through stencil store
     if (this.controls) {
@@ -103,9 +104,7 @@ export class CbpButton {
       }
     }
 
-    //console.log('this.button',this.button);
-
-    this.buttonClick.emit({
+    this.buttonClick?.emit({
       host: this.host,
       nativeElement: this.button,
       controls: this.controls ? this.controls : null,
