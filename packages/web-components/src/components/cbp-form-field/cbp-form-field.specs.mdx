@@ -12,7 +12,7 @@ The Form Field component represents a generic, reusable pattern for form fields 
 
 * The Form Field component enforces the structure of an input pattern, containing:
   * A label
-  * Description (or errors)
+  * An optional description (or errors)
   * The native form control (input, select, textarea, etc.)
 * The Form Field component encapsulates styles for all types of HTML form fields that may be slotted within, including various states such as:
   * readonly
@@ -57,7 +57,6 @@ The Form Field component represents a generic, reusable pattern for form fields 
   * when the label is hidden
 * This component may manage the form field (and associated buttons) disabled/readonly/error states, but does its best to get out of the way if the application wants to manage those states directly on the slotted elements.
 * Overlays and attached buttons are currently handled by child component, `cbp-form-field-wrapper`
-* TODO: Handling of groups of inputs can be done via role=group or a legend tag. The legend tag can accept a disabled attribute, which is an advantage.
 * When autocomplete/autofill is used to fill the field, the browser adds styling (only visible in light mode).
 * Textareas now support `field-sizing: content`, which causes the textarea to expand vertically to the size of its content (within the bounds of min- and max-heights). This may not be desireable as a default, but could make a useful option.
 * Additional notes on slotted form fields and their use, since these are not strictly controlled by the design system:
@@ -70,3 +69,4 @@ The Form Field component represents a generic, reusable pattern for form fields 
   * Use of the `size` attribute is discouraged as it does not represent a linear/consistent scale across input sizes and browsers.
     * Furthermore, `size` is not valid on some input types such as `type="number"`.
     * When necessary, it is recommended to use CSS to style the width of form fields (using a relative unit such as `ch` or `rem`) separate from their containers.
+* TODO: Handling of groups of inputs can be done via role=group or a legend tag. The legend tag can accept a disabled attribute, which is an advantage.

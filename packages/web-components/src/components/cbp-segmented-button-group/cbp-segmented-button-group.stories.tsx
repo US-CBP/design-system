@@ -24,7 +24,7 @@ export default {
 
 function generateButtons(buttons) {
   const html = buttons.map(({ label, value, pressed, disabled, variant }) => {
-    return `<cbp-button type="button" value="${value}" ${pressed == true ? 'pressed' : ''} ${disabled == true ? 'disabled' : ''} ${variant ? `variant=${variant}` : ''}">${label}</cbp-button>`;
+    return `<cbp-button type="button" value="${value}" ${pressed == true ? 'pressed' : ''} ${disabled == true ? 'disabled' : ''} ${variant ? `variant="${variant}"` : ''}>${label}</cbp-button>`;
   });
   return html.join('');
 }

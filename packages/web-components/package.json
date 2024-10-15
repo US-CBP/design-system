@@ -37,7 +37,7 @@
     "build-pages": "storybook build --output-dir storybook-static"
   },
   "dependencies": {
-    "@stencil/core": "^4.15.0",
+    "@stencil/core": "^4.22.0",
     "lerna": "8.1.8"
   },
   "devDependencies": {
