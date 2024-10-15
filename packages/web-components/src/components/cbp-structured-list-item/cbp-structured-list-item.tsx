@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Host, h, Listen } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 @Component({
@@ -26,6 +26,13 @@ export class CbpStructuredListItem {
     setCSSProps(this.host, {
       ...this.sx,
     });
+  }
+
+  //TODO: check just all of this, coded w/ a head cold
+  @Listen('stateChanged')
+  stateChangedHandler(){
+    console.log('state toggle for structured list item selected');
+    this.selected = !this.selected;
   }
 
   render() {
