@@ -119,4 +119,3 @@ const AccordionWithSlottedLabelTemplate = ({ items, multiple, context, sx }) => 
 
 export const AccordionWithSlottedLabel = AccordionWithSlottedLabelTemplate.bind({});
 AccordionWithSlottedLabel.args = {};
-AccordionWithSlottedLabel.storyName = 'with Slotted Labels';
