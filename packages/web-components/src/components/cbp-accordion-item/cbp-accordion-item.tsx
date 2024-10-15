@@ -4,7 +4,7 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 /**
  * @slot - Accordion Item content is placed in the default slot.
- * @slot cbp-accordion-label - Optionally, an Accordion Item heading with markup may be placed in this slot rather than via the labal property.
+ * @slot cbp-accordion-item-label - Optionally, an Accordion Item heading with markup may be placed in this slot rather than via the labal property.
  */
 @Component({
   tag: 'cbp-accordion-item',
@@ -64,37 +64,31 @@ export class CbpAccordionItem {
   }
 
   render() {
-    console.log(this.host.querySelector('[slot=cbp-accordion-label]'));
     return (
       <Host>
-        <cbp-flex
+        <div 
           class="cbp-accordion-item--control"
-          align-items="center"
           onClick={() => this.handleClick()}
         >
-          <cbp-flex-item>
-            <cbp-button
-              type="button"
-              class="cbp-accordion-item--toggle"
-              fill="ghost"
-              color="secondary"
-              controls={`${this.headingId}-content`}
-              expanded={this.open}
-              accessibilityText="Toggle Accordion Item"
-              aria-describedby={this.headingId}
-              ref={el => (this.control = el)}
-            >
-              <cbp-icon name="chevron-right"></cbp-icon>
-            </cbp-button>
-          </cbp-flex-item>
+          <cbp-button
+            type="button"
+            class="cbp-accordion-item--toggle"
+            fill="ghost"
+            color="secondary"
+            controls={`${this.headingId}-content`}
+            expanded={this.open}
+            accessibilityText="Toggle Accordion Item"
+            aria-describedby={this.headingId}
+            ref={el => (this.control = el)}
+          >
+            <cbp-icon name="chevron-right"></cbp-icon>
+          </cbp-button>
 
-          <cbp-flex-item id={this.headingId} flex-grow="1">
-            { this.host.querySelector('[slot=cbp-accordion-label]')
-              ? <slot name="cbp-accordion-label" />
-              : <cbp-typography tag={this.headingLevel} variant="heading-sm">{this.label}</cbp-typography>
-            }
-          </cbp-flex-item>
-        </cbp-flex>
+          <div id={this.headingId} class="cbp-accordion-item--heading">
+            <slot name="cbp-accordion-item-label" />
+            {this.label && <cbp-typography tag={this.headingLevel} variant="heading-sm">{this.label}</cbp-typography>}
+          </div>
+        </div>
 
         <div id={`${this.headingId}-content`} class="cbp-accordion-item--content">
           <slot />

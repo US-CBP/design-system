@@ -86,8 +86,9 @@ cbp-accordion-item {
   }
 
   .cbp-accordion-item--control {
-    display: block;
+    display: flex;
     flex-direction: var(--cbp-accordion-item-control-direction, row);
+    align-items: center;
     gap: var(--cbp-accordion-item-control-gap);
     min-height: var(--cbp-space-13x);
     color: var(--cbp-accordion-item-color);
@@ -101,6 +102,22 @@ cbp-accordion-item {
     outline-width: 0;
     outline-offset: calc(-1 * var(--cbp-space-1x));
     cursor: pointer;
+
+    .cbp-accordion-item--heading {
+      display: flex;
+      flex-grow: 1;
+      justify-content: space-between;
+
+      :first-child {
+        flex-grow: 1;
+      }
+
+      [slot="cbp-accordion-item-label"] {
+        display: flex;
+        align-items: center;
+      }
+
+    }
 
     /* TechDebt: having trouble with this override using CSS variables. */
     cbp-typography,
