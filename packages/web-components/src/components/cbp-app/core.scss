@@ -1,7 +1,7 @@
 /* Additional high level and utilities variables not represented by design tokens */
 :root {
   color-scheme: light;
-  interpolate-size: allow-keywords;
+  //interpolate-size: allow-keywords;
   --cbp-app-color-scheme: light; // Is this needed?
 
   --cbp-color-body-text: var(--cbp-color-text-darkest);

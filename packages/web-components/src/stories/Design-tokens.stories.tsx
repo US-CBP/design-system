@@ -173,14 +173,13 @@ const Template = () => {
       <tbody>
         ${outputTableRow(contents)}
       </tbody>
-    </table>
-    <br /><br />`;
+    </table>`;
   });
 
   return `
-    <cbp-app>
+    <main id="design-tokens">
       ${pageContents}
-    </cbp-app>
+    </main>
 `;
 };
 
