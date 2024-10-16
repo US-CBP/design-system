@@ -1,6 +1,7 @@
 /* Additional high level and utilities variables not represented by design tokens */
 :root {
   color-scheme: light;
+  interpolate-size: allow-keywords;
   --cbp-app-color-scheme: light; // Is this needed?
 
   --cbp-color-body-text: var(--cbp-color-text-darkest);
@@ -13,14 +14,15 @@
   --cbp-responsive-spacing-inner: var(--cbp-responsive-spacing-outer); // temporary - for discussion
 
   --cbp-responsive-spacing-gap: var(--cbp-space-4x);
-
 }
+
 @media (min-width: $cbp-breakpoint-md) {
   :root {
     --cbp-responsive-spacing-outer: var(--cbp-space-8x);
     --cbp-responsive-spacing-gap: var(--cbp-space-7x);
   }
 }
+
 @media (min-width: $cbp-breakpoint-xl) {
   :root {
     --cbp-responsive-spacing-outer: var(--cbp-space-11x);

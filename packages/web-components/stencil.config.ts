@@ -16,14 +16,22 @@ export const config: Config = {
       esmLoaderPath: 'loader',
       isPrimaryPackageOutputTarget: true,
       copy: [
-        { src: '../assets', dest: 'dist/assets' }
+        { 
+          src: '../assets', 
+          dest: 'dist/assets',
+          keepDirStructure: true
+        }
        ],
     },
     {
       type: 'dist-custom-elements',
       minify: true,
       copy: [
-        { src: '../assets', dest: 'dist/assets' }
+        { 
+          src: '../assets', 
+          dest: 'dist/assets',
+          keepDirStructure: true
+        }
       ],
     },
     {
@@ -32,7 +40,11 @@ export const config: Config = {
     {
       type: 'www',
       copy: [
-        { src: '../assets', dest: './assets' }
+        { 
+          src: '../assets', 
+          dest: './assets',
+          keepDirStructure: true
+        }
       ],
       serviceWorker: null, // disable service workers
     },
