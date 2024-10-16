@@ -8,3 +8,30 @@ body:has(cbp-app[data-cbp-theme="dark"]) {
   /*--cbp-color-body-background: var(--cbp-color-branding-cbp-dark);*/
   background-color: var(--cbp-color-branding-cbp-dark);
 }
+
+/* TechDebt: Remove when table component is added to design tokens story */
+#design-tokens h2 {
+  margin-block-end: 1rem;
+}
+
+#design-tokens table {
+  width: 100%;
+  border-collapse: collapse;
+  border: solid 1px #999;
+  margin-block-end: 2rem;
+}
+
+#design-tokens tr {
+  border-block-end: solid 1px #999;
+}
+
+
+#design-tokens th,
+#design-tokens td {
+  text-align: left;
+  width: 33.3%;
+  padding: .5rem;
+  margin: 0;
+  border: 0;
+  border-block-end: solid 1px #999;
+}
