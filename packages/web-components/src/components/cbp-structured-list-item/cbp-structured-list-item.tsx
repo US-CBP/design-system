@@ -29,9 +29,8 @@ export class CbpStructuredListItem {
   }
 
   @Listen('stateChanged')
-  stateChangedHandler(){
-    console.log('state toggle for structured list item selected');
-    this.selected = !this.selected;
+  stateChangedHandler({detail: {checked}}){
+    this.selected = checked;
   }
 
   render() {
