@@ -112,6 +112,10 @@ cbp-structured-list {
 
   /** Selectable */
 
+  &[selectable] [slot=cbp-structured-list-header] {
+    gap: var(--cbp-space-4x);
+  }
+
   &[selectable] cbp-structured-list-item{
     display: flex;
     flex-direction: row; 

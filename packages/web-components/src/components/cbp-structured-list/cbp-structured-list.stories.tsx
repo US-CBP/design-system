@@ -50,21 +50,18 @@ function generateItems(items) {
 }
 
 function generateSelectableItems(items, context){
-
   const html = items.map(({ content, color, selected }, index) => {
     return `<cbp-structured-list-item ${color != 'default' ? `color="${color}"` : ''} ${selected ? `selected` : ''} >
     <cbp-checkbox 
       value= ${index}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}   
     >
-      <label>
-        <input
-          type="checkbox"
-          name="checkbox"
-          value=${index}
-        />
-        <span style='display: none'>Checkbox ${index}</span>
-      </label>
+      <input
+        type="checkbox"
+        name="checkbox"
+        value=${index}
+      />
+      <span style='display: none'>Checkbox ${index}</span>
     </cbp-checkbox>
     ${content}
     </cbp-structured-list-item>`;
@@ -400,7 +397,7 @@ const StructuredListSelectableTemplate = ({ listItems, striped, showHeader, head
           ${context && context != 'light-inverts' ? `context=${context}` : ''}   
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
-        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox><label><input type="checkbox" /><span style='display: none'>check all</span></label></cbp-checkbox> <span>XX results - Y filters Applied Updated: XX/XX/XXXX XX:XX:XX EST</span></div>` : ''}
+        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox><input type="checkbox" /><span style='display: none'>check all</span></cbp-checkbox> <span>XX results - Y filters Applied Updated: XX/XX/XXXX XX:XX:XX EST</span></div>` : ''}
     
         ${generateSelectableItems(listItems, context)}
           <div slot="cbp-structured-list-footer">
