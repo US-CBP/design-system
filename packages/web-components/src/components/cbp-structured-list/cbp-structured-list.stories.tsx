@@ -370,16 +370,16 @@ StructuredListMedia.args = {
 
 /*<------------------------------------ Select ---------------------------------------->*/
 
-const StructuredListSelectableTemplate = ({ listItems, striped, selectable, showHeader, headerId, context, sx }) => {
+const StructuredListSelectableTemplate = ({ listItems, striped, showHeader, headerId, context, sx }) => {
   return ` 
        <cbp-structured-list
           ${striped ? `striped` : ''}
-          ${selectable ? `selectable` : ''}
+          selectable
           header-id="list-header"
           ${context && context != 'light-inverts' ? `context=${context}` : ''}   
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
-        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox value='1'> <input type='checkbox' name='checkbox' value='1' /></cbp-checkbox> XX results - Y filters Applied Updated: XX/XX/XXXX XX:XX:XX EST</div>` : ''}
+        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox value='1'> <input type='checkbox' name='checkbox' value='1' /></cbp-checkbox> <span>XX results - Y filters Applied Updated: XX/XX/XXXX XX:XX:XX EST</span></div>` : ''}
     
         ${generateItems(listItems)}
 
@@ -393,7 +393,7 @@ StructuredListSelectable.argTypes = {
     description: 'Configure various aspects of the list items within the structured list.',
     control: 'object',
   },
-  selectable: true
+  // selectable: true
 }
 StructuredListSelectable.args = {
   showHeader: false,
@@ -405,7 +405,7 @@ StructuredListSelectable.args = {
     },
     {
       content: "<cbp-checkbox value='1'> <input type='checkbox' name='checkbox' value='1' /></cbp-checkbox> <span>Structured List Selectable Item 2</span>",
-      color: 'default',
+      color: 'default', 
       selected: false
     },
     {
@@ -414,13 +414,13 @@ StructuredListSelectable.args = {
       selected: false
     },
     {
-      content: "<cbp-checkbox value='1'> <input type='checkbox' name='checkbox' value='1' /></cbp-checkbox> <span>Structured List Selectable Item 4</span>",
+      content: "<cbp-checkbox value='1'> <input type='checkbox' name='checkbox' value='1' /></cbp-checkbox> <span>Structured List Selectable Item 4: this is a very looooooooooooooooooong entry to show what some text wrap looks like with a while the structured list is in the selectable state</span>",
       color: 'default',
       selected: false
     },
     {
       content: "<cbp-checkbox value='1'> <input type='checkbox' name='checkbox' value='1' /></cbp-checkbox> <span>Structured List Selectable Item 5</span>",
-      color: 'default',
+      color: 'danger',
       selected: false
     },
 

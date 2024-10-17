@@ -28,7 +28,6 @@ export class CbpStructuredListItem {
     });
   }
 
-  //TODO: check just all of this, coded w/ a head cold
   @Listen('stateChanged')
   stateChangedHandler(){
     console.log('state toggle for structured list item selected');

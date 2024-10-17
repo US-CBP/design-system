@@ -80,7 +80,7 @@ cbp-structured-list {
     font-weight: var(--cbp-font-weight-bold);
 
     // Nesting 2 flex contexts will not take up 100% of the width
-    *:only-child:not(cbp-checkbox):not(input[type="checkbox"]) { //todo: confirm these :nots are needed
+     *:only-child:not(cbp-checkbox):not(input[type="checkbox"]) {
       flex-basis: 100%;
     }
   }
@@ -113,9 +113,21 @@ cbp-structured-list {
   /** Selectable */
   cbp-structured-list-item cbp-checkbox{
     display: inline-flex;
+
+    input[type=checkbox]{
+      margin-inline-end: var(--cbp-space-4x);
+    }
+  }
+
+  &[selectable] cbp-structured-list-item{
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+
   }
 
   cbp-structured-list-item[selected]{
+  
     --cbp-structured-list-color-background: var(--cbp-color-interactive-selected-light);
     --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
     --cbp-structured-list-color-background-dark: var(--cbp-color-interactive-selected-dark);
