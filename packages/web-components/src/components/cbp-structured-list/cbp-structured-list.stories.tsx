@@ -49,7 +49,25 @@ function generateItems(items) {
   return html.join('');
 }
 
-
+function generateSelectableItems(items, context){
+  const html = items.map(({ content, color, selected }, index) => {
+    return `<cbp-structured-list-item ${color != 'default' ? `color="${color}"` : ''} ${selected ? `selected` : ''} >
+    <cbp-checkbox 
+      value= ${index}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+    >
+      <input
+        type="checkbox"
+        name="checkbox"
+        value=${index}
+      />
+      <span style='display: none'>Checkbox ${index}</span>
+    </cbp-checkbox>
+    ${content}
+    </cbp-structured-list-item>`;
+  });
+  return html.join('');
+}
 
 
 const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, context, sx }) => {
@@ -364,5 +382,71 @@ StructuredListMedia.args = {
       color: 'default',
       selected: false
     },
+  ]
+}
+
+
+/*<------------------------------------ Select ---------------------------------------->*/
+
+const StructuredListSelectableTemplate = ({ listItems, striped, showHeader, headerId, context, sx }) => {
+  return ` 
+       <cbp-structured-list
+          ${striped ? `striped` : ''}
+          selectable
+          header-id="list-header"
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        >
+        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox><input type="checkbox" /><span style='display: none'>check all</span></cbp-checkbox> <span>XX results - Y filters Applied Updated: XX/XX/XXXX XX:XX:XX EST</span></div>` : ''}
+    
+        ${generateSelectableItems(listItems, context)}
+          <div slot="cbp-structured-list-footer">
+            <cbp-action-bar variant='inline' context="dark-inverts"> 
+              <div slot='cbp-action-bar-info'>XXX items selected.</div>
+              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+            </cbp-action-bar>
+          </div>
+      
+        </cbp-structured-list>
+      `;
+      
+};
+export const StructuredListSelectable = StructuredListSelectableTemplate.bind({});
+StructuredListSelectable.argTypes = {
+  listItems: {
+    description: 'Configure various aspects of the list items within the structured list.',
+    control: 'object',
+  },
+}
+StructuredListSelectable.args = {
+  showHeader: false,
+  listItems: [
+    {
+      content: "Structured List Selectable Item 1",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "Structured List Selectable Item 2",
+      color: 'default', 
+      selected: false
+    },
+    {
+      content: "Structured List Selectable Item 3",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "Structured List Selectable Item 4: this is a very looooooooooooooooooong entry to show what some text wrap looks like with a while the structured list is in the selectable state",
+      color: 'default',
+      selected: false
+    },
+    {
+      content: "Structured List Selectable Item 5",
+      color: 'danger',
+      selected: false
+    },
+
   ]
 }

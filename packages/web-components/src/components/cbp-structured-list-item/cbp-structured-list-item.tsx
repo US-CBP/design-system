@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Host, h, Listen } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 @Component({
@@ -26,6 +26,11 @@ export class CbpStructuredListItem {
     setCSSProps(this.host, {
       ...this.sx,
     });
+  }
+
+  @Listen('stateChanged')
+  stateChangedHandler({detail: {checked}}){
+    this.selected = checked;
   }
 
   render() {

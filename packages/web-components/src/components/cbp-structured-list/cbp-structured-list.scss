@@ -80,7 +80,7 @@ cbp-structured-list {
     font-weight: var(--cbp-font-weight-bold);
 
     // Nesting 2 flex contexts will not take up 100% of the width
-    *:only-child {
+    *:only-child{
       flex-basis: 100%;
     }
   }
@@ -108,5 +108,33 @@ cbp-structured-list {
 
   div[role=list]:only-child > *:first-child {
     border-top: var(--cbp-border-size-md) solid var(--cbp-structured-list-border-color);
+  }
+
+  /** Selectable */
+
+  &[selectable] [slot=cbp-structured-list-header] {
+    gap: var(--cbp-space-4x);
+  }
+
+  &[selectable] cbp-structured-list-item{
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    gap: var(--cbp-space-4x);
+  }
+
+  cbp-structured-list-item[selected]{
+  
+    --cbp-structured-list-color-background: var(--cbp-color-interactive-selected-light);
+    --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
+    --cbp-structured-list-color-background-dark: var(--cbp-color-interactive-selected-dark);
+    --cbp-structured-list-border-color-dark: var(--cbp-color-gray-cool-50);
+
+    &:hover{
+    --cbp-structured-list-color-background: var(--cbp-color-gray-cool-10);
+    --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
+    --cbp-structured-list-color-background-dark: var(--cbp-color-gray-cool-90);
+    --cbp-structured-list-border-color-dark: var(--cbp-color-gray-cool-50);
+    }
   }
 }
