@@ -76,7 +76,7 @@ cbp-form-field {
     position: relative;
   }
 
-  input:not([type=checkbox]):not([type=radio]),
+  input:not([type~="checkbox radio"]),
   textarea,
   select, 
   .cbp-custom-form-control {
