@@ -1,0 +1,237 @@
+/**
+ * @prop --cbp-radio-color: var(--cbp-color-text-lightest);
+ * @prop --cbp-radio-color-bg: var(--cbp-color-white);
+ * @prop --cbp-radio-color-border: var(--cbp-color-interactive-secondary-dark);
+ * @prop --cbp-radio-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-radio-color-border-focus: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-radio-color-halo: transparent;
+ * @prop --cbp-radio-color-halo-hover: var(--cbp-color-interactive-secondary-lighter);
+ * @prop --cbp-radio-color-halo-focus: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-radio-color-bg-checked: var(--cbp-color-interactive-selected-dark);
+ * @prop --cbp-radio-color-bg-checked-focus: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-radio-color-border-checked: var(--cbp-color-interactive-selected-dark);
+ * @prop --cbp-radio-color-border-checked-hover: var(--cbp-color-interactive-selected-dark);
+ * @prop --cbp-radio-color-border-checked-focus: var(--cbp-color-white);
+ * @prop --cbp-radio-color-halo-checked-hover: var(--cbp-color-interactive-selected-light);
+ * @prop --cbp-radio-color-halo-checked-focus: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-radio-color-label: var(--cbp-color-text-darkest);
+
+ * @prop --cbp-radio-color-dark: var(--cbp-color-text-darkest);
+ * @prop --cbp-radio-color-bg-dark: var(--cbp-color-gray-cool-70);
+ * @prop --cbp-radio-color-border-dark: var(--cbp-color-interactive-secondary-light);
+ * @prop --cbp-radio-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ * @prop --cbp-radio-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-radio-color-halo-dark: transparent;
+ * @prop --cbp-radio-color-halo-hover-dark: var(--cbp-color-text-darker);
+ * @prop --cbp-radio-color-halo-focus-dark: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-radio-color-bg-checked-dark: var(--cbp-color-interactive-selected-light);
+ * @prop --cbp-radio-color-bg-checked-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-radio-color-border-checked-dark: var(--cbp-color-interactive-selected-light);
+ * @prop --cbp-radio-color-border-checked-hover-dark: var(--cbp-color-interactive-selected-light);
+ * @prop --cbp-radio-color-border-checked-focus-dark: var(--cbp-color-black);
+ * @prop --cbp-radio-color-halo-checked-hover-dark: var(--cbp-color-interactive-selected-dark);
+ * @prop --cbp-radio-color-halo-checked-focus-dark: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-radio-color-label-dark: var(--cbp-color-text-lightest);
+
+ * @prop --cbp-radio-min-height: var(--cbp-space-11x);
+ * @prop --cbp-radio-margin: 0 0 var(--cbp-space-1x) 0;
+ * @prop --cbp-radio-font-weight-label: var(--cbp-font-weight-bold);
+ */
+ :root {
+  //--cbp-radio-color: var(--cbp-color-text-lightest);
+  --cbp-radio-color-bg: var(--cbp-color-white);
+  --cbp-radio-color-border: var(--cbp-color-interactive-secondary-dark);
+  --cbp-radio-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-radio-color-border-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-radio-color-halo: transparent;
+  --cbp-radio-color-halo-hover: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-radio-color-halo-focus: var(--cbp-color-interactive-focus-light);
+
+  --cbp-radio-color-checked: var(--cbp-color-interactive-selected-dark);
+  --cbp-radio-color-checked-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-radio-color-border-checked: var(--cbp-color-interactive-selected-dark);
+  --cbp-radio-color-border-checked-hover: var(--cbp-color-interactive-selected-dark);
+  --cbp-radio-color-border-checked-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-radio-color-halo-checked-hover: var(--cbp-color-interactive-selected-light);
+  --cbp-radio-color-halo-checked-focus: var(--cbp-color-interactive-focus-light);
+  --cbp-radio-color-label: var(--cbp-color-text-darkest);
+
+  //--cbp-radio-color-dark: var(--cbp-color-text-darkest);
+  --cbp-radio-color-bg-dark: var(--cbp-color-gray-cool-70);
+  --cbp-radio-color-border-dark: var(--cbp-color-interactive-secondary-light);
+  --cbp-radio-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-radio-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-radio-color-halo-dark: transparent;
+  --cbp-radio-color-halo-hover-dark: var(--cbp-color-interactive-secondary-dark);
+  --cbp-radio-color-halo-focus-dark: var(--cbp-color-interactive-focus-dark);
+
+  --cbp-radio-color-checked-dark: var(--cbp-color-interactive-selected-light);
+  --cbp-radio-color-checked-focus-dark: var(--cbp-color-white);
+  --cbp-radio-color-border-checked-dark: var(--cbp-color-interactive-selected-light);
+  --cbp-radio-color-border-checked-hover-dark: var(--cbp-color-interactive-selected-light);
+  --cbp-radio-color-border-checked-focus-dark: var(--cbp-color-white);
+  --cbp-radio-color-halo-checked-hover-dark: var(--cbp-color-interactive-selected-dark);
+  --cbp-radio-color-halo-checked-focus-dark: var(--cbp-color-interactive-focus-dark);
+  --cbp-radio-color-label-dark: var(--cbp-color-text-lightest);
+
+  --cbp-radio-min-height: var(--cbp-space-11x);
+  --cbp-radio-margin: 0 0 var(--cbp-space-1x) 0;
+  --cbp-radio-font-weight-label: var(--cbp-font-weight-bold);
+
+}
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-radio[context*=dark],
+[data-cbp-theme=dark] cbp-radio:not([context=dark-inverts]):not([context=light-always]) {
+  //--cbp-radio-color: var(--cbp-radio-color-dark);
+  --cbp-radio-color-bg: var(--cbp-radio-color-bg-dark);
+  --cbp-radio-color-border: var(--cbp-radio-color-border-dark);
+  --cbp-radio-color-border-hover: var(--cbp-radio-color-border-hover-dark);
+  --cbp-radio-color-border-focus: var(--cbp-radio-color-border-focus-dark);
+  --cbp-radio-color-halo: var(--cbp-radio-color-halo-dark);
+  --cbp-radio-color-halo-hover: var(--cbp-radio-color-halo-hover-dark);
+  --cbp-radio-color-halo-focus: var(--cbp-radio-color-halo-focus-dark);
+
+  --cbp-radio-color-checked: var(--cbp-radio-color-checked-dark);
+  --cbp-radio-color-checked-focus: var(--cbp-radio-color-checked-focus-dark);
+  --cbp-radio-color-bg-checked-focus: var(--cbp-radio-color-bg-checked-focus-dark);
+  --cbp-radio-color-border-checked: var(--cbp-radio-color-border-checked-dark);
+  --cbp-radio-color-border-checked-hover: var(--cbp-radio-color-border-checked-hover-dark);
+  --cbp-radio-color-border-checked-focus: var(--cbp-radio-color-border-checked-focus-dark);
+  --cbp-radio-color-halo-checked-hover: var(--cbp-radio-color-halo-checked-hover-dark);
+  --cbp-radio-color-halo-checked-focus: var(--cbp-radio-color-halo-checked-focus-dark);
+
+  --cbp-radio-color-label: var(--cbp-radio-color-label-dark);
+}
+
+cbp-radio {
+  display: block;
+  margin: var(--cbp-radio-margin);
+  position: relative;
+
+  label {
+    display: flex;
+    align-items: center;
+    min-height: var(--cbp-radio-min-height);
+    font-weight: var(--cbp-radio-font-weight-label);
+    color: var(--cbp-radio-color-label);
+  }
+
+  input[type=radio] {
+    position: relative;
+    flex-shrink: 0;
+    appearance: none; // radios do not accept styling per design specs
+    color: var(--cbp-radio-color);
+    background-color: var(--cbp-radio-color-bg);
+    border-color: var(--cbp-radio-color-border);
+    border-style: solid;
+    border-width: var(--cbp-border-size-md);
+    border-radius: var(--cbp-border-radius-circle);
+    //height: var(--cbp-space-7x);
+    //width: var(--cbp-space-7x);
+    height: calc(var(--cbp-space-7x) - 1px);
+    width: calc(var(--cbp-space-7x) - 1px);
+    margin: 0;
+    margin-inline-end: var(--cbp-space-2x);
+    outline: 0;
+    box-shadow: 0 0 0 calc(var(--cbp-space-5x) / 2) var(--cbp-radio-color-halo);
+    clip-path: circle(80%); // verified
+
+    // Check Mark/Dash
+    &::before {
+      content: '';
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      top: 0;
+      height: 0;
+      width: 0;
+      background-color: var(--cbp-radio-color-checked);
+      border-radius: var(--cbp-border-radius-circle);
+    }
+
+    // Verified: only need to set the base variables with higher level tokens that are swapped for dark mode
+    &:hover {
+      --cbp-radio-color-border: var(--cbp-radio-color-border-hover);
+      --cbp-radio-color-halo: var(--cbp-radio-color-halo-hover);
+    }
+
+    &:focus {
+      --cbp-radio-color-border: var(--cbp-radio-color-border-focus);
+      --cbp-radio-color-halo: var(--cbp-radio-color-halo-focus);
+    }
+
+    
+    &:checked {
+      //--cbp-radio-color-bg: var(--cbp-radio-color-bg-checked);
+      --cbp-radio-color-border: var(--cbp-radio-color-border-checked);
+
+      &:hover {
+        --cbp-radio-color-border: var(--cbp-radio-color-border-checked-hover);
+        --cbp-radio-color-halo: var(--cbp-radio-color-halo-checked-hover);
+      }
+
+      &:focus {
+        --cbp-radio-color-checked: var(--cbp-radio-color-checked-focus);
+        --cbp-radio-color-border: var(--cbp-radio-color-border-checked-focus);
+        --cbp-radio-color-halo: var(--cbp-radio-color-halo-checked-focus);
+      }
+    }
+
+    &:checked {
+      // Checked inner-circle
+      &::before {
+        height: var(--cbp-space-4x);
+        width: var(--cbp-space-4x);
+        //height: var(--cbp-space-6x);
+        //width: var(--cbp-space-6x);
+        //padding: var(--cbp-space-2x);
+        //transform: rotate(45deg) translateY(-10%) translateX(-10%);
+        transition: all var(--cbp-motion-duration-shortest) ease-in;
+      }
+    }
+
+  }
+
+
+  &[disabled],
+  &:has(*:disabled) {
+    cursor: not-allowed;
+
+    label {
+      font-style: italic;
+    }
+  }
+
+  // These overrides need to be set at the component host level to work properly in dark mode
+  &[disabled],
+  &:has(*:disabled) {
+    // No focus for disabled form controls, hover state still exists so it must be invisible since this is a non-interactive element
+    //--cbp-radio-color: var(--cbp-color-interactive-disabled-light);
+    --cbp-radio-color-bg: var(--cbp-color-interactive-disabled-light);
+    --cbp-radio-color-border: var(--cbp-color-interactive-disabled-dark);
+    --cbp-radio-color-border-hover: var(--cbp-color-interactive-disabled-dark);
+    --cbp-radio-color-bg-checked: var(--cbp-color-interactive-disabled-dark);
+    --cbp-radio-color-checked: var(--cbp-color-interactive-disabled-dark);
+    --cbp-radio-color-border-checked: var(--cbp-color-interactive-disabled-dark);
+    --cbp-radio-color-border-checked-hover: var(--cbp-color-interactive-disabled-dark);
+    --cbp-radio-color-halo-hover: transparent;
+    --cbp-radio-color-halo-checked-hover: transparent;
+    --cbp-radio-color-label: var(--cbp-color-interactive-disabled-dark);
+    
+    //--cbp-radio-color-dark: var(--cbp-color-interactive-disabled-dark);
+    --cbp-radio-color-bg-dark: var(--cbp-color-interactive-disabled-dark);
+    --cbp-radio-color-border-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-radio-color-border-hover-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-radio-color-checked-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-radio-color-bg-checked-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-radio-color-border-checked-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-radio-color-border-checked-hover-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-radio-color-halo-hover-dark: transparent;
+    --cbp-radio-color-halo-checked-hover-dark: transparent;
+    --cbp-radio-color-label-dark: var(--cbp-color-interactive-disabled-light);
+  }
+}
