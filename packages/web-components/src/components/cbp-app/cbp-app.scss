@@ -1,8 +1,6 @@
-/* Temporary workaround for verified Stencil bug; can use @use due to compilation error */
-//@import 'reset', 'roboto', 'css-variables', 'core';
-
 cbp-app {
   display: block;
+  position: relative;
   width: 100%;
   min-height: 100vh;
   color: var(--cbp-color-body-text);
