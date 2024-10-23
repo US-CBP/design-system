@@ -23,7 +23,7 @@ cbp-form-field-wrapper {
     flex-basis: 100%; // for child flex context
 
     // Override the input padding based on overlay size to prevent input text from being obscured (text may still be obscured if there's not enough space for it)
-    input {
+    input:not(#fakeId) {
       padding-inline-start: calc(var(--cbp-form-field-overlay-start-width) + var(--cbp-form-field-wrapper-padding-start));
       padding-inline-end: calc(var(--cbp-form-field-overlay-end-width) + var(--cbp-form-field-wrapper-padding-end));
     }
