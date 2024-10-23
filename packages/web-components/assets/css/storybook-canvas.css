@@ -10,10 +10,6 @@ body:has(cbp-app[data-cbp-theme="dark"]) {
 }
 
 /* TechDebt: Remove when table component is added to design tokens story */
-#design-tokens h2 {
-  margin-block-end: 1rem;
-}
-
 #design-tokens table {
   width: 100%;
   border-collapse: collapse;
