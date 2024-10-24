@@ -1,6 +1,5 @@
 /**
- * @prop --cbp-radio-color: var(--cbp-color-text-lightest);
- * @prop --cbp-radio-color-bg: var(--cbp-color-white);
+  * @prop --cbp-radio-color-bg: var(--cbp-color-white);
  * @prop --cbp-radio-color-border: var(--cbp-color-interactive-secondary-dark);
  * @prop --cbp-radio-color-border-hover: var(--cbp-color-interactive-secondary-darker);
  * @prop --cbp-radio-color-border-focus: var(--cbp-color-interactive-focus-dark);
@@ -16,7 +15,6 @@
  * @prop --cbp-radio-color-halo-checked-focus: var(--cbp-color-interactive-focus-light);
  * @prop --cbp-radio-color-label: var(--cbp-color-text-darkest);
 
- * @prop --cbp-radio-color-dark: var(--cbp-color-text-darkest);
  * @prop --cbp-radio-color-bg-dark: var(--cbp-color-gray-cool-70);
  * @prop --cbp-radio-color-border-dark: var(--cbp-color-interactive-secondary-light);
  * @prop --cbp-radio-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
@@ -121,16 +119,17 @@ cbp-radio {
     position: relative;
     flex-shrink: 0;
     appearance: none; // radios do not accept styling per design specs
-    color: var(--cbp-radio-color);
+    //color: var(--cbp-radio-color);
     background-color: var(--cbp-radio-color-bg);
     border-color: var(--cbp-radio-color-border);
     border-style: solid;
     border-width: var(--cbp-border-size-md);
     border-radius: var(--cbp-border-radius-circle);
-    //height: var(--cbp-space-7x);
-    //width: var(--cbp-space-7x);
-    height: calc(var(--cbp-space-7x) - 1px);
-    width: calc(var(--cbp-space-7x) - 1px);
+    // TechDebt: Testing which one works: seeing different results on different computers/base font sizes
+    height: var(--cbp-space-7x);
+    width: var(--cbp-space-7x);
+    //height: calc(var(--cbp-space-7x) - 1px);
+    //width: calc(var(--cbp-space-7x) - 1px);
     margin: 0;
     margin-inline-end: var(--cbp-space-2x);
     outline: 0;
@@ -144,9 +143,9 @@ cbp-radio {
       margin: auto;
       left: 0;
       right: 0;
+      top: 0;
       bottom: 0;
       overflow: hidden;
-      top: 0;
       height: 0;
       width: 0;
       background-color: var(--cbp-radio-color-checked);
@@ -186,11 +185,7 @@ cbp-radio {
       &::before {
         height: var(--cbp-space-4x);
         width: var(--cbp-space-4x);
-        //height: var(--cbp-space-6x);
-        //width: var(--cbp-space-6x);
-        //padding: var(--cbp-space-2x);
-        //transform: rotate(45deg) translateY(-10%) translateX(-10%);
-        transition: all var(--cbp-motion-duration-shortest) ease-in;
+        //transition: all var(--cbp-motion-duration-shortest) ease-in;
       }
     }
 

@@ -47,7 +47,7 @@ const Template = ({ label, name, value, checked, disabled, context, sx }) => {
           type="radio" 
           name="${name}"
           value="${value}"
-          ${checked ? `checked=${checked}` : ''}
+          ${checked ? `checked` : ''}
         />
         ${label}
       </cbp-radio>
@@ -60,3 +60,4 @@ Radio.args = {
   name: "radio",
   value: "1",
 }
+
