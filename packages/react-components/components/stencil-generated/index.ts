@@ -38,6 +38,7 @@ export const CbpList = /*@__PURE__*/createReactComponent<JSX.CbpList, HTMLCbpLis
 export const CbpNotice = /*@__PURE__*/createReactComponent<JSX.CbpNotice, HTMLCbpNoticeElement>('cbp-notice');
 export const CbpPagination = /*@__PURE__*/createReactComponent<JSX.CbpPagination, HTMLCbpPaginationElement>('cbp-pagination');
 export const CbpPanel = /*@__PURE__*/createReactComponent<JSX.CbpPanel, HTMLCbpPanelElement>('cbp-panel');
+export const CbpRadio = /*@__PURE__*/createReactComponent<JSX.CbpRadio, HTMLCbpRadioElement>('cbp-radio');
 export const CbpSection = /*@__PURE__*/createReactComponent<JSX.CbpSection, HTMLCbpSectionElement>('cbp-section');
 export const CbpSegmentedButtonGroup = /*@__PURE__*/createReactComponent<JSX.CbpSegmentedButtonGroup, HTMLCbpSegmentedButtonGroupElement>('cbp-segmented-button-group');
 export const CbpSkipNav = /*@__PURE__*/createReactComponent<JSX.CbpSkipNav, HTMLCbpSkipNavElement>('cbp-skip-nav');

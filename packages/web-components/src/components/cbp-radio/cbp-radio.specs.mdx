@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Radio/Specifications" />
+
+# cbp-radio
+
+## Purpose
+
+The Radio component wraps the slotted native form control (`input type="radio"`) and label text, providing cross-browser styling.
+
+## Functional Requirements
+
+* The Radio component accepts the native form control (`input type="radio"`) and its label as slotted content, wrapping them in an implicit label.
+* The Radio component provides cross-browser styling for the form control in its various states, including hover, focus, disabled, and checked states.
+* While there are valid uses for a standalone checkbox, radio buttons should always contain multiple options with the same `name` attribute.
+
+## Technical Specifications
+
+### User Interactions
+
+* The user interactions are that of a native Radio (`input type="radio"`) element:
+  * Clicking anywhere on the form control or label text will place focus on the control and mark it as the selected item.
+  * When a radio button is selected, any other previously selected radio button with the same name will be deselected automatically.
+  * Radio buttons are keyboard accessible by tabbing into the group and then navigating the list using the up and down arrows.
+    * Using the arrows changes the selection to the current radio button.
+    * Pressing tab within the group will exit the group and place focus on the next focusable element in the page.
+
+### Responsiveness
+
+* The radio button label will wrap as needed.
+* The radio button control is sized in relative units and will respond to changes in the user's default text size.
+
+### Accessibility
+
+* The native radio button (`input type="radio"`) element and label text are wrapped within a `label` tag, forming an implicit label association (no `id` needed).
+* Full keyboard navigation is supported, as detailed under "User Interactions" above.
+
+### Additional Notes and Considerations
+
+* This component may manage the radio's disabled state, but does its best to get out of the way if the application wants to manage those states directly on the slotted elements.
+* Radio buttons belonging to the same group/list should have the same `name` attribute.
+* A radio's value is only included in the submitted form data if:
+  1. A radio button is selected.
+  2. If the selected radio button has a `name` attribute.
+  3. If the selected radio button has a `value` defined. If no `value` is defined, then "on" will be passed as a value, which is not usually helpful in this context.
+* Firefox (alone) persists the dynamic checked state of an `input` across page loads. Use the autocomplete attribute to control this feature.
+* Native radio button elements may not be `readonly` - only `disabled`.
