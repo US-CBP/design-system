@@ -53,13 +53,9 @@ cbp-form-field {
   display: block;
   margin-bottom: var(--cbp-form-field-margin-bottom);
 
-  fieldset {
+  fieldset,
+  legend {
     all: unset;
-
-    legend {
-      all: unset;
-    }
-
   }
 
   .cbp-form-field-label {
