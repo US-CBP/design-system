@@ -53,6 +53,15 @@ cbp-form-field {
   display: block;
   margin-bottom: var(--cbp-form-field-margin-bottom);
 
+  fieldset {
+    all: unset;
+
+    legend {
+      all: unset;
+    }
+
+  }
+
   .cbp-form-field-label {
     display: block;
     color: var(--cbp-form-field-color-label);
@@ -76,7 +85,8 @@ cbp-form-field {
     position: relative;
   }
 
-  input:not([type~="checkbox radio"]),
+  //input:not([type~="checkbox radio"]),
+  input:not([type="checkbox"]):not([type="radio"]),
   textarea,
   select, 
   .cbp-custom-form-control {

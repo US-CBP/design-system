@@ -27,10 +27,13 @@ export class CbpFormField {
   
   /** Provide additional details about the field, including whether it's required, which is applied to the form field via `aria-describedby`. */
   @Prop() description: string;
-  
+
   /** Optionally specify the ID of the field here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-formfield');
-  
+
+  /** Specifies that this form field represents a group of (slotted) inputs, such as a radio list, checklist, or related inputs in a compound pattern. */
+  @Prop({ reflect: true }) group: boolean;
+
   /** Specifies that the field has an error (and sets aria-invalid accordingly). */
   @Prop({ reflect: true }) error: boolean;
 
@@ -170,34 +173,69 @@ export class CbpFormField {
 
 
   render() {
-    return (
-      <Host>
-        <label 
-          htmlFor={this.fieldId} 
-          id={`${this.fieldId}-label`}
-          class="cbp-form-field-label"
-        >
-          {this.label}
-          <slot name="cbp-form-field-label" />
-        </label>
 
-        <div
-          id={`${this.fieldId}-description`}
-          class="cbp-form-field-description"
-        >
-          {this.error && <cbp-icon name="triangle-exclamation" color="var(--cbp-form-field-color-description)" sx='{"margin-inline-end":"var(--cbp-space-1x)","vertical-align":"text-top"}'></cbp-icon>}
-          {this.description}
-          <slot name="cbp-form-field-description" />
-        </div>
+    // Grouped/compound form inputs
+    if (this.group) {
+      return (
+        <Host>
+          <fieldset aria-describedby={`${this.fieldId}-description`}>
+            <legend
+              id={`${this.fieldId}-grouplabel`}
+              class="cbp-form-field-label"
+            >
+              {this.label}
+              <slot name="cbp-form-field-label" />
+            </legend>
 
-        <div class="cbp-form-field-container">
-          <slot />
-        </div>
+            <div
+              id={`${this.fieldId}-description`}
+              class="cbp-form-field-description"
+            >
+              {this.error && <cbp-icon name="triangle-exclamation" color="var(--cbp-form-field-color-description)" sx='{"margin-inline-end":"var(--cbp-space-1x)","vertical-align":"text-top"}'></cbp-icon>}
+              {this.description}
+              <slot name="cbp-form-field-description" />
+            </div>
 
-        <slot name="cbp-form-field-extra" />
-      </Host>
-    );
+            <div class="cbp-form-field-container">
+              <slot />
+            </div>
+
+            <slot name="cbp-form-field-extra" />
+          </fieldset>
+        </Host>
+      );
+    }
+
+    // Single input patterns
+    else {
+      return (
+        <Host>
+
+          <label 
+            htmlFor={this.fieldId} 
+            id={`${this.fieldId}-label`}
+            class="cbp-form-field-label"
+          >
+            {this.label}
+            <slot name="cbp-form-field-label" />
+          </label>
+
+          <div
+            id={`${this.fieldId}-description`}
+            class="cbp-form-field-description"
+          >
+            {this.error && <cbp-icon name="triangle-exclamation" color="var(--cbp-form-field-color-description)" sx='{"margin-inline-end":"var(--cbp-space-1x)","vertical-align":"text-top"}'></cbp-icon>}
+            {this.description}
+            <slot name="cbp-form-field-description" />
+          </div>
+
+          <div class="cbp-form-field-container">
+            <slot />
+          </div>
+
+          <slot name="cbp-form-field-extra" />
+        </Host>
+      );
+    }
   }
-
 }
-

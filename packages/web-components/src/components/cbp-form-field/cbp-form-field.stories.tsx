@@ -35,6 +35,79 @@ export default {
   },
 };
 
+
+
+function generateCheckboxes(checkboxes) {
+  const html = checkboxes.map(({ label, name, value, checked, disabled }) => {
+    return `
+    <cbp-checkbox>
+      <input 
+        type="checkbox" 
+        name="${name}"
+        value="${value}"
+        ${checked ? `checked` : ''}
+        ${disabled ? `disabled` : ''}
+      />
+      ${label}
+    </cbp-checkbox>`;
+  });
+  return html.join('');
+}
+
+const ChecklistTemplate = ({ checkboxes, label, description, fieldId, group, error, context, sx }) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${group ? `group` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      ${generateCheckboxes(checkboxes)}
+    </cbp-radio>
+    `;
+};
+
+export const Checklist = ChecklistTemplate.bind({});
+Checklist.args = {
+  checkboxes: [
+    {
+      label: "Checkbox 1",
+      name: "checkbox",
+      value: "1",
+      checked: false,
+      disabled: false
+    },
+    {
+      label: "Checkbox 2",
+      name: "checkbox",
+      value: "2",
+      checked: false,
+      disabled: false
+    },
+    {
+      label: "Checkbox 3",
+      name: "checkbox",
+      value: "3",
+      checked: false,
+      disabled: false
+    },
+    {
+      label: "Checkbox 4",
+      name: "checkbox",
+      value: "4",
+      checked: false,
+      disabled: false
+    },
+  ],
+  label: "Checklist Group Label",
+  group: true
+}
+
+
+
 const TextInputTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
   return ` 
     <cbp-form-field
@@ -75,6 +148,79 @@ export const Textarea = TextareaTemplate.bind({});
 Textarea.args = {
   value: '',
 };
+
+
+
+
+function generateRadios(radios) {
+  const html = radios.map(({ label, name, value, checked, disabled }) => {
+    return `
+    <cbp-radio>
+      <input 
+        type="radio" 
+        name="${name}"
+        value="${value}"
+        ${checked ? `checked` : ''}
+        ${disabled ? `disabled` : ''}
+      />
+      ${label}
+    </cbp-radio>`;
+  });
+  return html.join('');
+}
+
+const RadioListTemplate = ({ radios, label, description, fieldId, group, error, context, sx }) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${group ? `group` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      ${generateRadios(radios)}
+    </cbp-radio>
+    `;
+};
+
+export const RadioList = RadioListTemplate.bind({});
+RadioList.args = {
+  radios: [
+    {
+      label: "Radio button 1",
+      name: "radio",
+      value: "1",
+      checked: false,
+      disabled: false
+    },
+    {
+      label: "Radio button 2",
+      name: "radio",
+      value: "2",
+      checked: false,
+      disabled: false
+    },
+    {
+      label: "Radio button 3",
+      name: "radio",
+      value: "3",
+      checked: false,
+      disabled: false
+    },
+    {
+      label: "Radio button 4",
+      name: "radio",
+      value: "4",
+      checked: false,
+      disabled: false
+    },
+  ],
+  label: "Radio List Group Label",
+  group: true
+}
+
 
 
 const SelectTemplate = ({ label, description, fieldId, error, disabled, context, sx }) => {
