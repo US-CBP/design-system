@@ -19,7 +19,7 @@ export class CbpCheckbox {
   /** The `name` attribute of the checkbox, which is passed as part of formData (as a key) only when the checkbox is checked. */
   @Prop() name: string;
 
-  /** The `value` attribute of the checkbox, which is passed as part of formData (as a value) only when the checkbox is checked. */
+  /** Optionally set the `value` attribute of the checkbox at the component level. Not needed if the slotted checkbox has a value. */
   @Prop() value: string;
 
   /** Marks the checkbox as checked by default when specified. */
@@ -64,6 +64,7 @@ export class CbpCheckbox {
   @Watch('indeterminate')
   watchIndeterminateHandler(newValue: boolean) {
     if (this.formField) this.formField.indeterminate=newValue;
+    if (newValue == true) this.checked = false;
   }
 
   componentWillLoad() {
@@ -85,9 +86,11 @@ export class CbpCheckbox {
   componentDidLoad() {
     // Set the disabled/indeterminate states on load only if true. (The Watch decorators only listen for changes, not initial state)
     if (!!this.formField) {
-      if (this.indeterminate) this.formField.indeterminate=this.indeterminate;
       if (this.checked) this.formField.checked=this.checked;
+      if (this.indeterminate && !this.checked) this.formField.indeterminate=this.indeterminate; // Checked takes precedence
       if (this.disabled) this.formField.setAttribute('disabled', '');
+      if (this.name) this.formField.name=this.name;
+      if (this.value) this.formField.value=this.value;
     }
   }
 
