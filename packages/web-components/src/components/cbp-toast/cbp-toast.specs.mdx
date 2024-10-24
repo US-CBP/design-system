@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Toast/Specifications" />
+
+# cbp-toast
+
+## Purpose
+
+* Toast is intended to temporarialy display messages to users such as error or warning messages about an form input, or confrimation of a file upload. It is the intent of the designer that for things
+like error messages to also be populated elsewhere in app so that they don't get 'lost'. 
+
+## Functional Requirements
+
+* Toast expects for users to define the below props/slots
+    *Props:
+        *Icon: sets the name prop for the icon in the sidebar. default value of 'user'
+        *timer: provides 3 options (3sec, 5sec, or 10sec) which determines how long the toast will be visible. if this is not set the toast will persist, which is intended for development, not final 
+            User experience
+        *color: provides 4 options (info, success, warning, & danger) defaulting to info. determines the color palette used for the background & text color for the toast
+    *Slots:
+        *title: Slot for the title section of the Toast, intended for text or typography tags
+        *content: Slot for the content of the toast, used for description of error or progress bar for example. 
+        *buttons: Slot intended for 1 or 2 buttons, UX design intended for these to be a dismiss (of the toast) and/or a button to link to log/more detailed section explaining the toast
+
+## Technical Specifications
+
+### User Interactions
+
+* Toast is intended to temporarialy draw attention to items/actions for the user as such they are meant to have an internal timer to display & have the displayed content in a log elsewhere for user to
+    review after the toast is gone. 
+
+### Responsiveness
+
+* Toast's width is set to the max-content of the toast, with a max-width on the toast of 50% of the viewportS 
+
+### Accessibility
+
+* Toast being on a timer is an Accessibility concern, which is why it is advised to have a log of toasts perserved elsewhere in the app as mentioned above
+* Slotted content is Accessibile via keyboard, primarily use being the slotted buttons
+
+### Additional Notes and Considerations
