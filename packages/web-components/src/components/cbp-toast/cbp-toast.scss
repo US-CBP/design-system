@@ -58,11 +58,11 @@ cbp-toast {
   display: flex;
   margin-inline-start: auto;
   margin-block-end: var(--cbp-space-6x);
-  width: min(100%, 500px);
+  width: min(100%, 30rem);
   background-color: var(--cbp-toast-color-bg);
   color: var(--cbp-toast-color);
   box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
+  border-radius: var(--cbp-border-radius-softer);
 
   animation: show 600ms 100ms ease-in-out forwards;
   
@@ -72,11 +72,15 @@ cbp-toast {
 
   .cbp-toast-sidebar{
     display: flex;
+    align-items: center;
     padding: var(--cbp-space-4x);
-    color: var(--cbp-toast-color-icon-sidebar);
     background-color: var(--cbp-toast-color-bg-sidebar);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+
+    cbp-icon{
+          color: var(--cbp-toast-color-icon-sidebar);
+    }
   }
 
   .cbp-toast-title{

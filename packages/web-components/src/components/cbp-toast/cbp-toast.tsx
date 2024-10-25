@@ -9,9 +9,6 @@ export class CbpToast {
 
   @Element() host: HTMLElement;
 
-  /** specifies the icon loaded into the sidebar */
-  @Prop() icon: string = 'user';
-
   /** specifies the color for the toast */
   @Prop({ reflect: true }) color: 'info' | 'danger' | 'success' | 'warning' = 'info';
 
@@ -53,10 +50,7 @@ export class CbpToast {
     return (
       <Host>
         <div class='cbp-toast-sidebar'>
-          <cbp-icon
-            size='2rem'
-            name={this.icon}
-            />
+            <slot name='cbp-toast-icon'></slot>
         </div>
         <div class='cbp-toast-container'>
           <div class='cbp-toast-title'>

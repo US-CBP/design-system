@@ -22,17 +22,18 @@ export default {
     },
   };
   
-  const Template = ({ open, icon, content, buttons, duration, color, context, sx }) => {
+  const Template = ({ open, icon, title, content, buttons, duration, color, context, sx }) => {
     return ` 
           <cbp-toast
-            ${open ? `open=${open}` : ''}
-            color=${color}
-            duration=${duration}
+            ${open ? `open` : ''}
+            ${color ? `color=${color}` : ''}
+            ${duration ? `duration=${duration}` : ''}
             ${icon ? `icon=${icon}` : ''}
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-          >
-            <div slot="cbp-toast-title"> Test Toast Title</div>
+          >  
+            <div slot="cbp-toast-icon">${icon}</div>
+            <div slot="cbp-toast-title">${title}</div>
             ${content}
             <div slot="cbp-toast-buttons">${buttons}</div>
           </cbp-toast>
@@ -43,12 +44,13 @@ export default {
   
   Toast.args = {
     open: true,
-    icon: 'user',
+    icon: `<cbp-icon size='2rem' name='user'/>`,
+    title: 'Test Toast Title',
     content: 'Notification Description - A rule you are following just fired.',
     buttons: `<cbp-button type="button" fill="ghost" color="secondary"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>`
   }
 
-  const MultiTemplate = ({ open, icon, content, buttons, duration, color, context, sx }) => {
+  const MultiTemplate = ({ open, icon, title, content, buttons, duration, color, context, sx }) => {
     return ` 
           <cbp-toast
             ${open ? `open=${open}` : ''}
@@ -58,7 +60,8 @@ export default {
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
           >
-            <div slot="cbp-toast-title"> Test Toast Title</div>
+            <div slot="cbp-toast-icon">${icon}</div>
+            <div slot="cbp-toast-title">${title}</div>
             ${content}
             <div slot="cbp-toast-buttons">${buttons}</div>
           </cbp-toast>
@@ -70,8 +73,9 @@ export default {
           ${icon ? `icon=${icon}` : ''}
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-        >
-          <div slot="cbp-toast-title"> Test Toast Title</div>
+        >       
+          <div slot="cbp-toast-icon">${icon}</div>
+          <div slot="cbp-toast-title">${title}</div>
           ${content}
           <div slot="cbp-toast-buttons">${buttons}</div>
         </cbp-toast>
@@ -83,8 +87,9 @@ export default {
           ${icon ? `icon=${icon}` : ''}
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-        >
-          <div slot="cbp-toast-title"> Test Toast Title</div>
+        >      
+          <div slot="cbp-toast-icon">${icon}</div>
+          <div slot="cbp-toast-title">${title}</div>
           ${content}
           <div slot="cbp-toast-buttons">${buttons}</div>
         </cbp-toast>
@@ -97,7 +102,8 @@ export default {
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        <div slot="cbp-toast-title"> Test Toast Title</div>
+        <div slot="cbp-toast-icon">${icon}</div>
+        <div slot="cbp-toast-title">${title}</div>
         ${content}
         <div slot="cbp-toast-buttons">${buttons}</div>
       </cbp-toast>
@@ -108,7 +114,8 @@ export default {
 
   MultipleToast.args = {
     open: true,
-    icon: 'user',
+    icon: `<cbp-icon size='2rem' name='user'/>`,
+    title: 'Test Toast Title',
     content: 'Notification Description - A rule you are following just fired.',
     buttons: '<cbp-button type="button" fill="ghost" color="secondary"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>'
   }
