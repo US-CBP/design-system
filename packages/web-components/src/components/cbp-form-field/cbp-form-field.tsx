@@ -13,6 +13,7 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 })
 export class CbpFormField {
 
+  // These are only set for non-group form fields and should be null for groups
   private formField: any;
   private formFieldComponent: any;
   private buttons: any;
@@ -27,10 +28,13 @@ export class CbpFormField {
   
   /** Provide additional details about the field, including whether it's required, which is applied to the form field via `aria-describedby`. */
   @Prop() description: string;
-  
+
   /** Optionally specify the ID of the field here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-formfield');
-  
+
+  /** Specifies that this form field represents a group of (slotted) inputs, such as a radio list, checklist, or related inputs in a compound pattern. */
+  @Prop({ reflect: true }) group: boolean;
+
   /** Specifies that the field has an error (and sets aria-invalid accordingly). */
   @Prop({ reflect: true }) error: boolean;
 
@@ -125,79 +129,118 @@ export class CbpFormField {
       ...this.sx,
     });
 
-    // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
-    this.formField = this.host.querySelector('input,select,textarea');
-    // Treat nested components separately, as it's hard to modify their rendered content directly
-    this.formFieldComponent = this.host.querySelector('cbp-dropdown');
-    this.buttons = this.host.querySelectorAll('cbp-button');
-    this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
-    this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
+    if (!this.group) {
+      // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
+      this.formField = this.host.querySelector('input,select,textarea');
+      // Treat nested components separately, as it's hard to modify their rendered content directly
+      this.formFieldComponent = this.host.querySelector('cbp-dropdown');
+      this.buttons = this.host.querySelectorAll('cbp-button');
+      this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
+      this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
 
-    if (this.formField) {
-      // If the slotted form field has an ID, use it; otherwise, set it.
-      this.formField.getAttribute('id')
-        ? this.fieldId = this.formField.getAttribute('id')
-        : this.formField.setAttribute('id', `${this.fieldId}`);
-      this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
-      this.formField.addEventListener('change', this.handleChange());
+      if (this.formField) {
+        // If the slotted form field has an ID, use it; otherwise, set it.
+        this.formField.getAttribute('id')
+          ? this.fieldId = this.formField.getAttribute('id')
+          : this.formField.setAttribute('id', `${this.fieldId}`);
+        this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
+        this.formField.addEventListener('change', this.handleChange());
+      }
     }
   }
 
   componentDidLoad() {
     // Set the disabled/readonly/error states on load only if true. (The Watch decorators only listen for changes, not initial state)
-    if (!!this.formField) {
-      if (this.readonly) this.formField.setAttribute('readonly', '');
-      if (this.disabled) this.formField.setAttribute('disabled', '');
-      if (this.error) this.formField.setAttribute('aria-invalid', 'true');
-    }
-    if (this.formFieldComponent) {
-      if (this.readonly) this.formFieldComponent.readonly=true;
-      if (this.disabled) this.formFieldComponent.disabled=true;
-      if (this.error) this.formFieldComponent.error=true;
-    }
-    if (!!this.buttons) {
-      this.buttons.forEach( (el) => {
-        if (this.disabled || this.readonly) el.disabled=true;
-      });
-    }
-    // only attached buttons inherit the danger color when errors are present
-    if (!!this.attachedButtons) {
-      this.attachedButtons.forEach( (el) => {
-        if (this.error) el.color="danger";
-      });
+    if (!this.group) {
+      if (!!this.formField) {
+        if (this.readonly) this.formField.setAttribute('readonly', '');
+        if (this.disabled) this.formField.setAttribute('disabled', '');
+        if (this.error) this.formField.setAttribute('aria-invalid', 'true');
+      }
+      if (this.formFieldComponent) {
+        if (this.readonly) this.formFieldComponent.readonly=true;
+        if (this.disabled) this.formFieldComponent.disabled=true;
+        if (this.error) this.formFieldComponent.error=true;
+      }
+      if (!!this.buttons) {
+        this.buttons.forEach( (el) => {
+          if (this.disabled || this.readonly) el.disabled=true;
+        });
+      }
+      // only attached buttons inherit the danger color when errors are present
+      if (!!this.attachedButtons) {
+        this.attachedButtons.forEach( (el) => {
+          if (this.error) el.color="danger";
+        });
+      }
     }
   }
 
 
   render() {
-    return (
-      <Host>
-        <label 
-          htmlFor={this.fieldId} 
-          id={`${this.fieldId}-label`}
-          class="cbp-form-field-label"
-        >
-          {this.label}
-          <slot name="cbp-form-field-label" />
-        </label>
 
-        <div
-          id={`${this.fieldId}-description`}
-          class="cbp-form-field-description"
-        >
-          {this.error && <cbp-icon name="triangle-exclamation" color="var(--cbp-form-field-color-description)" sx='{"margin-inline-end":"var(--cbp-space-1x)","vertical-align":"text-top"}'></cbp-icon>}
-          {this.description}
-          <slot name="cbp-form-field-description" />
-        </div>
+    // Grouped/compound form inputs
+    if (this.group) {
+      return (
+        <Host>
+          <fieldset aria-describedby={`${this.fieldId}-description`}>
+            <legend
+              id={`${this.fieldId}-grouplabel`}
+              class="cbp-form-field-label"
+            >
+              {this.label}
+              <slot name="cbp-form-field-label" />
+            </legend>
 
-        <div class="cbp-form-field-container">
-          <slot />
-        </div>
+            <div
+              id={`${this.fieldId}-description`}
+              class="cbp-form-field-description"
+            >
+              {this.error && <cbp-icon name="triangle-exclamation" color="var(--cbp-form-field-color-description)" sx='{"margin-inline-end":"var(--cbp-space-1x)","vertical-align":"text-top"}'></cbp-icon>}
+              {this.description}
+              <slot name="cbp-form-field-description" />
+            </div>
 
-        <slot name="cbp-form-field-extra" />
-      </Host>
-    );
+            <div class="cbp-form-field-container">
+              <slot />
+            </div>
+
+            <slot name="cbp-form-field-extra" />
+          </fieldset>
+        </Host>
+      );
+    }
+
+    // Single input patterns
+    else {
+      return (
+        <Host>
+
+          <label 
+            htmlFor={this.fieldId} 
+            id={`${this.fieldId}-label`}
+            class="cbp-form-field-label"
+          >
+            {this.label}
+            <slot name="cbp-form-field-label" />
+          </label>
+
+          <div
+            id={`${this.fieldId}-description`}
+            class="cbp-form-field-description"
+          >
+            {this.error && <cbp-icon name="triangle-exclamation" color="var(--cbp-form-field-color-description)" sx='{"margin-inline-end":"var(--cbp-space-1x)","vertical-align":"text-top"}'></cbp-icon>}
+            {this.description}
+            <slot name="cbp-form-field-description" />
+          </div>
+
+          <div class="cbp-form-field-container">
+            <slot />
+          </div>
+
+          <slot name="cbp-form-field-extra" />
+        </Host>
+      );
+    }
   }
-
 }
-

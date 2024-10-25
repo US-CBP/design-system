@@ -162,7 +162,7 @@ const Template = () => {
     currentObj = [];
 
     pageContents += `
-    <h2>${AllTokenNames[index]}</h2>
+    <cbp-typography tag="h2" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>${AllTokenNames[index]}</cbp-typography>
     <table>
       <caption hidden>${AllTokenNames[index]}</caption>
       <thead>
@@ -178,6 +178,23 @@ const Template = () => {
 
   return `
     <main id="design-tokens">
+      <cbp-typography tag="h1" sx='{"margin-bottom":"var(--cbp-space-4x)"}'>Design Tokens</cbp-typography>
+      <p>
+        Design tokens are a platform-agnostic way to represent design decisions, such as those pertaining to colors, typography, font and heading sizes, etc.
+        These tokens represent a two-tier system. 
+        The top tier consists of abstract colors and values from which to choose.
+        The second tier consists of tokens that reference the top-level tokens as their values, such as the "theme" layer.
+      </p>
+      <p>
+        For the web components, these tokens are translated to CSS custom properties (aka CSS variables) and feed directly into the web components' CSS APIs.
+        By wrapping your application in the <code>cbp-app</code> web component, these tokens are also exposed for the entire application to leverage.
+      </p>
+      <p>
+        Any web component properties that accept CSS units (as well as the sx property) should reference design tokens rather than "magic numbers."
+        Even when writing custom application CSS, design tokens should be used as values whenever possible.
+        This extra level of abstraction leads to more maintainable code, reduces design decisions that don't align with the design system, and results in fewer "one-offs."
+      </p>
+
       ${pageContents}
     </main>
 `;

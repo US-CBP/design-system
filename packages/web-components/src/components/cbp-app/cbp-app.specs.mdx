@@ -6,18 +6,23 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-The App component is a wrapper that packages high level design tokens, styles, and fonts as well as acting as top level control for things like dark mode within the design system/component library.
+The App component is a wrapper that packages high level design tokens (as CSS variables), styles, and fonts as well as acting as top level control for things like dark mode within the design system/component library.
 
 ## Functional Requirements
 
-* The App component contains necessary high-level CSS and fonts to remove the need for HTML tags referencing external dependencies.
-* As the highest level container of the application, system-wide functionality may be hoisted to this tag, such as dark mode, performance monitoring, debugging, etc. (TBD)
+* The App component contains necessary high-level CSS and fonts to remove the need for external dependencies referenced by HTML `link` tags.
+* As the highest level container of the application, system-wide functionality may be hoisted to this tag, such as dark mode, debugging, etc. (TBD)
 
 ## Technical Specifications
 
 ### User Interactions
 
-n/a
+* By setting the `theme` property, the application may be set to light or dark mode independently of the user's operating system settings.
+* By setting the `debug` property to true, debug info will be logged to the console, including:
+  * Application name, if specified
+  * Application version, if specified
+  * Design System version
+  * StencilJS version
 
 ### Responsiveness
 

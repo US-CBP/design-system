@@ -11,9 +11,14 @@ The Form Field component represents a generic, reusable pattern for form fields 
 ## Functional Requirements
 
 * The Form Field component enforces the structure of an input pattern, containing:
-  * A label
-  * An optional description (or errors)
-  * The native form control (input, select, textarea, etc.)
+  * A `label` tag.
+  * An optional description (or errors).
+  * The native form control (input, select, textarea, etc.) slotted.
+* For compound input patterns containing multiple form controls (e.g., checklist, radio list, etc.), this includes:
+  * A wrapping `fieldset` tag.
+  * A `legend` tag representing the pattern label.
+  * An optional description (or errors).
+  * The native form controls (input, select, textarea, etc.) slotted, with their own labels.
 * The Form Field component encapsulates styles for all types of HTML form fields that may be slotted within, including various states such as:
   * readonly
   * disabled
@@ -36,6 +41,13 @@ The Form Field component represents a generic, reusable pattern for form fields 
 * According to CBP Design System guidance, required fields should indicate "Required" in the field description in plain text.
   * The `required` attribute should not be used on the native form field because 1. screen readers would read "required" twice and 2. this attribute triggers browser-based validation, which will not behave consistently with application/custom validation.
   * Do not place `aria-required` on the native form field, as screen readers would read "required" twice.
+* For single-input form fields:
+  * The label is rendered within a semantic `label` tag referencing the slotted form control by `id`.
+  * The (optional) description is associated to the form control as a description via the `aria-describedby` attribute.
+* For multi-input form fields, such as radio lists or checklists:
+  * The entire patterns is wrapped within a `fieldset`, which provides an inherent "group" role.
+  * The component label is rendered as a `legend`, which provides the group's label.
+  * The (optional) description is associated to the `fieldset` via the `aria-describedby` attribute.
 * Disabled form controls and buttons are non-interactive and cannot be navigated to using the keyboard and should be used with caution (if at all).
 * Placeholder text should rarely, if ever, be used.
   * Especially in forms where the user is expected to enter data, placeholder text with sufficient contrast to the background color may be mistaken as entered input.
@@ -69,4 +81,4 @@ The Form Field component represents a generic, reusable pattern for form fields 
   * Use of the `size` attribute is discouraged as it does not represent a linear/consistent scale across input sizes and browsers.
     * Furthermore, `size` is not valid on some input types such as `type="number"`.
     * When necessary, it is recommended to use CSS to style the width of form fields (using a relative unit such as `ch` or `rem`) separate from their containers.
-* TODO: Handling of groups of inputs can be done via role=group or a legend tag. The legend tag can accept a disabled attribute, which is an advantage.
+* TODO: needs additional testing of nested `cbp-form-field` components, making up compound input patterns (e.g., phone, address).

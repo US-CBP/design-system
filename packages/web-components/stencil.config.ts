@@ -1,6 +1,9 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { reactOutputTarget } from '@stencil/react-output-target';
+import { version as pkgVersion } from './package.json';
+import { version as StencilVersion} from '@stencil/core/compiler';
+
 
 export const config: Config = {
   namespace: 'cbp-web-components',
@@ -64,4 +67,8 @@ export const config: Config = {
   testing: {
     browserHeadless: "new",
   },
+  env: {
+    version: pkgVersion,
+    stencil: StencilVersion
+  }
 };
