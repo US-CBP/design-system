@@ -37,10 +37,12 @@ export default {
 
 
 
-function generateCheckboxes(checkboxes) {
+function generateCheckboxes(context, checkboxes) {
   const html = checkboxes.map(({ label, name, value, checked, disabled }) => {
     return `
-    <cbp-checkbox>
+    <cbp-checkbox
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
       <input 
         type="checkbox" 
         name="${name}"
@@ -65,7 +67,7 @@ const ChecklistTemplate = ({ checkboxes, label, description, fieldId, group, err
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      ${generateCheckboxes(checkboxes)}
+      ${generateCheckboxes(context, checkboxes)}
     </cbp-radio>
     `;
 };
@@ -152,10 +154,12 @@ Textarea.args = {
 
 
 
-function generateRadios(radios) {
+function generateRadios(context, radios) {
   const html = radios.map(({ label, name, value, checked, disabled }) => {
     return `
-    <cbp-radio>
+    <cbp-radio
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
       <input 
         type="radio" 
         name="${name}"
@@ -180,7 +184,7 @@ const RadioListTemplate = ({ radios, label, description, fieldId, group, error, 
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      ${generateRadios(radios)}
+      ${generateRadios(context, radios)}
     </cbp-radio>
     `;
 };
