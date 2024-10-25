@@ -3,7 +3,7 @@ export default {
     tags: ['autodocs'],
     argTypes: {
       
-      timer: {
+      duration: {
         control: 'select',
         options: [3, 5, 10]
       },
@@ -22,11 +22,12 @@ export default {
     },
   };
   
-  const Template = ({ icon, content, buttons, timer, color, context, sx }) => {
+  const Template = ({ open, icon, content, buttons, duration, color, context, sx }) => {
     return ` 
           <cbp-toast
+            ${open ? `open=${open}` : ''}
             color=${color}
-            timer=${timer}
+            duration=${duration}
             ${icon ? `icon=${icon}` : ''}
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -41,16 +42,18 @@ export default {
   export const Toast = Template.bind({});
   
   Toast.args = {
+    open: true,
     icon: 'user',
     content: 'Notification Description - A rule you are following just fired.',
-    buttons: '<cbp-button type="button" fill="ghost" color="secondary"> Default </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>'
+    buttons: `<cbp-button type="button" fill="ghost" color="secondary"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>`
   }
 
-  const MultiTemplate = ({ icon, content, buttons, timer, color, context, sx }) => {
+  const MultiTemplate = ({ open, icon, content, buttons, duration, color, context, sx }) => {
     return ` 
           <cbp-toast
+            ${open ? `open=${open}` : ''}
             color=${color}
-            timer=${timer}
+            duration=${duration}
             ${icon ? `icon=${icon}` : ''}
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -60,9 +63,10 @@ export default {
             <div slot="cbp-toast-buttons">${buttons}</div>
           </cbp-toast>
         
-          <cbp-toast
+        <cbp-toast
+          ${open ? `open=${open}` : ''}
           color=${color}
-          timer=${timer}
+          duration=${duration}
           ${icon ? `icon=${icon}` : ''}
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -73,8 +77,22 @@ export default {
         </cbp-toast>
         
         <cbp-toast
+          ${open ? `open=${open}` : ''}
+          color=${color}
+          duration=${duration}
+          ${icon ? `icon=${icon}` : ''}
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}
+          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        >
+          <div slot="cbp-toast-title"> Test Toast Title</div>
+          ${content}
+          <div slot="cbp-toast-buttons">${buttons}</div>
+        </cbp-toast>
+
+      <cbp-toast
+        ${open ? `open=${open}` : ''}
         color=${color}
-        timer=${timer}
+        duration=${duration}
         ${icon ? `icon=${icon}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -83,25 +101,14 @@ export default {
         ${content}
         <div slot="cbp-toast-buttons">${buttons}</div>
       </cbp-toast>
-
-      <cbp-toast
-      color=${color}
-      timer=${timer}
-      ${icon ? `icon=${icon}` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-    >
-      <div slot="cbp-toast-title"> Test Toast Title</div>
-      ${content}
-      <div slot="cbp-toast-buttons">${buttons}</div>
-    </cbp-toast>
           `;
   };
 
   export const MultipleToast = MultiTemplate.bind({});
 
   MultipleToast.args = {
+    open: true,
     icon: 'user',
     content: 'Notification Description - A rule you are following just fired.',
-    buttons: '<cbp-button type="button" fill="ghost" color="secondary"> Default </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>'
+    buttons: '<cbp-button type="button" fill="ghost" color="secondary"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>'
   }

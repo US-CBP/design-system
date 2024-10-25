@@ -1,10 +1,13 @@
-import { Component, Prop, Host, Watch, h } from '@stencil/core';
+import { Component, Prop, Element, Host, Watch, h } from '@stencil/core';
+import { setCSSProps } from '../../utils/utils';
 
 @Component({
   tag: 'cbp-toast',
   styleUrl: 'cbp-toast.scss'
 })
 export class CbpToast {
+
+  @Element() host: HTMLElement;
 
   /** specifies the icon loaded into the sidebar */
   @Prop() icon: string = 'user';
@@ -13,10 +16,10 @@ export class CbpToast {
   @Prop({ reflect: true }) color: 'info' | 'danger' | 'success' | 'warning' = 'info';
 
   /** specifies time in seconds for the toast to be displayed */
-  @Prop() timer: 3 | 5 | 10;
+  @Prop() duration: 3 | 5 | 10;
 
   /** When set, specifies that the toast is open */
-  @Prop({ reflect: true }) open: boolean = true;
+  @Prop({ reflect: true }) open: boolean;
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
@@ -32,10 +35,19 @@ export class CbpToast {
       }
     }
 
+    componentWillLoad() {
+      if (typeof this.sx == 'string') {
+        this.sx = JSON.parse(this.sx) || {};
+      }
+      setCSSProps(this.host, {
+        ...this.sx,
+      });
+    }
+
   render() {
 
-    if(this.open && this.timer){
-      setTimeout(() => { this.open = false }, this.timer * 1000)
+    if(this.open && this.duration){
+      setTimeout(() => { this.open = false }, this.duration * 1000)
     }
     
     return (
@@ -47,9 +59,9 @@ export class CbpToast {
             />
         </div>
         <div class='cbp-toast-container'>
-          <span class='cbp-toast-title'>
+          <div class='cbp-toast-title'>
             <slot name='cbp-toast-title'></slot>
-          </span>
+          </div>
           <div class='cbp-toast-content'>
             <slot></slot>
           </div>
