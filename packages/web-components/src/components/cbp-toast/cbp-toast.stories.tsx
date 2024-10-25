@@ -32,7 +32,7 @@ export default {
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
           >  
-            <div slot="cbp-toast-icon">${icon}</div>
+            <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon}></cbp-icon></div>
             <div slot="cbp-toast-title">${title}</div>
             ${content}
             <div slot="cbp-toast-buttons">${buttons}</div>
@@ -44,7 +44,7 @@ export default {
   
   Toast.args = {
     open: true,
-    icon: `<cbp-icon size='2rem' name='user'/>`,
+    icon: `user`,
     title: 'Test Toast Title',
     content: 'Notification Description - A rule you are following just fired.',
     buttons: `<cbp-button type="button" fill="ghost" color="secondary"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>`
@@ -60,7 +60,7 @@ export default {
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
           >
-            <div slot="cbp-toast-icon">${icon}</div>
+            <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon}></cbp-icon></div>
             <div slot="cbp-toast-title">${title}</div>
             ${content}
             <div slot="cbp-toast-buttons">${buttons}</div>
@@ -74,7 +74,7 @@ export default {
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >       
-          <div slot="cbp-toast-icon">${icon}</div>
+          <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon}></cbp-icon></div>
           <div slot="cbp-toast-title">${title}</div>
           ${content}
           <div slot="cbp-toast-buttons">${buttons}</div>
@@ -88,7 +88,7 @@ export default {
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >      
-          <div slot="cbp-toast-icon">${icon}</div>
+          <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon}></cbp-icon></div>
           <div slot="cbp-toast-title">${title}</div>
           ${content}
           <div slot="cbp-toast-buttons">${buttons}</div>
@@ -102,7 +102,7 @@ export default {
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        <div slot="cbp-toast-icon">${icon}</div>
+        <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon}></cbp-icon></div>
         <div slot="cbp-toast-title">${title}</div>
         ${content}
         <div slot="cbp-toast-buttons">${buttons}</div>
@@ -114,7 +114,7 @@ export default {
 
   MultipleToast.args = {
     open: true,
-    icon: `<cbp-icon size='2rem' name='user'/>`,
+    icon: `user`,
     title: 'Test Toast Title',
     content: 'Notification Description - A rule you are following just fired.',
     buttons: '<cbp-button type="button" fill="ghost" color="secondary"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>'

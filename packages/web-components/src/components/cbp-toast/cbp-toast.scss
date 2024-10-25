@@ -78,7 +78,7 @@ cbp-toast {
     border-top-left-radius: var(--cbp-border-radius-softer);;
     border-bottom-left-radius: var(--cbp-border-radius-softer);;
 
-    cbp-icon{
+    [slot="cbp-toast-icon"]{
           color: var(--cbp-toast-color-icon-sidebar);
     }
   }
