@@ -43,7 +43,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^1.5.0",
     "@custom-elements-manifest/analyzer": "^0.9.4",
-    "@stencil/react-output-target": "^0.5.3",
+    "@stencil/react-output-target": "^0.7.4",
     "@stencil/sass": "^3.0.7",
     "@stencil/store": "^2.0.12",
     "@storybook/addon-essentials": "^8.1.6",

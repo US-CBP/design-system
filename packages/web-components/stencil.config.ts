@@ -13,6 +13,7 @@ export const config: Config = {
     reactOutputTarget({
       componentCorePackage: '@cbpds/web-components',
       proxiesFile: '../react-components/components/stencil-generated/index.ts',
+      outDir: '../react-components/components/stencil-generated/'
     }),
     {
       type: 'dist', // The dist type is to generate the component(s) as a reusable library that can be self-lazy loading
@@ -29,6 +30,7 @@ export const config: Config = {
     {
       type: 'dist-custom-elements',
       minify: true,
+      externalRuntime: false,
       copy: [
         { 
           src: '../assets', 
