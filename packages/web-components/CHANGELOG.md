@@ -4,6 +4,16 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
+## [0.0.1-develop.16] 10-28-2024
+* First cut of `cbp-checkbox`.
+* First cut of `cbp-radio`.
+* First cut of `cbp-toast`.
+* Updated `cbp-form-field` with the ability to handle input groups (e.g., checklist, radio list, compound inputs) with more than a single input.
+* Updated Structured list with selectable functionality.
+* Fixed the issue with slotted Accordion title being hidden.
+* Upgraded to Stencil 4.22.0 (from 4.15).
+* Upgraded to Storybook 8.3.5.
+
 ## [0.0.1-develop.15] 10-07-2024
 
 * First cut of `cbp-pagination`.
