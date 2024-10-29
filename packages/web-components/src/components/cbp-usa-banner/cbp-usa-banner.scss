@@ -19,6 +19,10 @@ cbp-usa-banner {
 
   --cbp-usa-banner-icon-rotate: rotate(90deg);
 
+  .cbp-banner__title{
+    font-weight: var(--cbp-font-weight-medium);
+  }
+
   .cbp-usa-banner-content {
     display: none;
   }
@@ -36,11 +40,13 @@ cbp-usa-banner {
     margin-right: var(--cbp-space-3x);
   }
 
-  .cbp-usa-banner-expand:not(#fakeId)  {
+  cbp-button.cbp-usa-banner-expand[fill='ghost'][color='primary']:not(#fakeId)  { 
+    //addition of fill & color in the selector is to up specificity to override button's dark mode var remapping correctly
+    
     --cbp-button-height: 1rem;
     --cbp-button-min-height: 1rem;
 
-    --cbp-button-padding: var(--cbp-space-2x);
+    --cbp-button-padding: var(--cbp-space-1x);
 
     --cbp-button-color: var(--cbp-color-interactive-secondary-light);
     --cbp-button-color-hover: var(--cbp-color-interactive-secondary-lighter);
