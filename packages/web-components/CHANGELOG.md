@@ -11,8 +11,6 @@ The React components are wrappers generated from this package and will share the
 * Updated `cbp-form-field` with the ability to handle input groups (e.g., checklist, radio list, compound inputs) with more than a single input.
 * Updated Structured list with selectable functionality.
 * Fixed the issue with slotted Accordion title being hidden.
-* Upgraded to Stencil 4.22.0 (from 4.15).
-* Upgraded to Storybook 8.3.5.
 
 ## [0.0.1-develop.15] 10-07-2024
 
