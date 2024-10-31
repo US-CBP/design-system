@@ -140,3 +140,6 @@ _site
 
 # .public folder holds all static builds of /packages for github pages artifact
 .public
+
+# Personal config files
+chromatic.config.json
