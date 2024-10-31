@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Segmented Button Group',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   argTypes: {
     buttons: {
       name: 'Buttons',

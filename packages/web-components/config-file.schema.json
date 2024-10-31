@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.chromatic.com/config-file.schema.json",
+  "additionalProperties": false,
+  "$defs": {
+    "string-or-boolean": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "array-of-strings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "description": "Configuration schema for visual testing tool Chromatic",
+  "title": "Chromatic Config File Schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "The schema file (https://www.chromatic.com/docs/chromatic-config.schema.json)"
+    },
+    "autoAcceptChanges": {
+      "$ref": "#/$defs/string-or-boolean",
+      "description": "If there are any changes to the build, automatically accept them. Only for given branch, if specified.",
+      "markdownDescription": "If there are any changes to the build, automatically accept them. Only for given branch, if specified.\n"
+    },
+    "buildCommand": {
+      "type": "string",
+      "description": "The command that builds your Storybook. Use this if your Storybook build command does not exist in the \"scripts\" field of your package.json.Requires --output-dir.",
+      "markdownDescription": "The command that builds your Storybook. Use this if your Storybook build command does not exist in the \"scripts\" field of your package.json.<br/>Requires `--output-dir`.\n"
+    },
+    "buildScriptName": {
+      "type": "string",
+      "description": "The npm script that builds your Storybook. Use this if your Storybook build script is named differently.",
+      "markdownDescription": "The npm script that builds your Storybook. Use this if your Storybook build script is named differently.\n",
+      "default": "build-storybook"
+    },
+    "debug": {
+      "type": "boolean",
+      "description": "Output verbose debugging information. This option implies interactive: false",
+      "markdownDescription": "Output verbose debugging information. This option implies `interactive: false`\n"
+    },
+    "diagnosticsFile": {
+      "$ref": "#/$defs/string-or-boolean",
+      "description": "When enabled, write process context information to a JSON file.Defaults to chromatic-diagnostics.json",
+      "markdownDescription": "When enabled, write process context information to a JSON file.<br/>Defaults to `chromatic-diagnostics.json`\n"
+    },
+    "exitOnceUploaded": {
+      "$ref": "#/$defs/string-or-boolean",
+      "description": "Exit with status 0 (OK) once the built version has been published to Chromatic. Only for given branch, if specified.",
+      "markdownDescription": "Exit with status `0` (OK) once the built version has been published to Chromatic. Only for given branch, if specified.\n"
+    },
+    "exitZeroOnChanges": {
+      "$ref": "#/$defs/string-or-boolean",
+      "description": "If all snapshots render, but there are visual changes, exit with code 0 rather than the usual exit code 1. Only for given branch, if specified.",
+      "markdownDescription": "If all snapshots render, but there are visual changes, exit with code `0` rather than the usual exit code `1`. Only for given branch, if specified.\n"
+    },
+    "externals": {
+      "$ref": "#/$defs/array-of-strings",
+      "description": "Disable TurboSnap when any of these files have changed since the baseline build.Requires onlyChanged.",
+      "markdownDescription": "Disable [TurboSnap](https://www.chromatic.com/docs/turbosnap) when any of these files have changed since the baseline build.<br/>Requires `onlyChanged`.\n"
+    },
+    "ignoreLastBuildOnBranch": {
+      "type": "string",
+      "description": "Do not use the last build on this branch as a baseline if it is no longer in history (i.e., the branch was rebased).",
+      "markdownDescription": "Do not use the last build on this branch as a baseline if it is no longer in history (i.e., the branch was rebased).\n"
+    },
+    "junitReport": {
+      "$ref": "#/$defs/string-or-boolean",
+      "description": "When enabled, write the build results to a JUnit XML file.Defaults to chromatic-build-{buildNumber}.xml where the {buildNumber} will be replaced with the actual build number.",
+      "markdownDescription": "When enabled, write the build results to a JUnit XML file.<br/>Defaults to `chromatic-build-{buildNumber}.xml` where the `{buildNumber}` will be replaced with the actual build number.\n"
+    },
+    "logFile": {
+      "$ref": "#/$defs/string-or-boolean",
+      "description": "Write CLI logs to a file. Defaults to chromatic.log",
+      "markdownDescription": "Write CLI logs to a file. Defaults to `chromatic.log`\n"
+    },
+    "fileHashing": {
+      "type": "boolean",
+      "description": "Enabling this option will turn off the built-in file hashing mechanism, leading to all the files being uploaded to Chromatic on every build.",
+      "markdownDescription": "Enabling this option will turn off the built-in file hashing mechanism, leading to all the files being uploaded to Chromatic on every build.\n"
+    },
+    "onlyChanged": {
+      "$ref": "#/$defs/string-or-boolean",
+      "description": "Enables TurboSnap.Runs Chromatic for stories affected by files and dependencies that have changed since the baseline build, including the specified branch if provided.",
+      "markdownDescription": "Enables [TurboSnap](https://www.chromatic.com/docs/turbosnap).<br/>Runs Chromatic for stories affected by files and dependencies that have changed since the baseline build, including the specified branch if provided.\n"
+    },
+    "onlyStoryFiles": {
+      "$ref": "#/$defs/array-of-strings",
+      "description": "Only run a single story or a subset of stories by their filename(s). Specify the full path to the story file relative to the root of your Storybook project.",
+      "markdownDescription": "Only run a single story or a subset of stories by their filename(s). Specify the full path to the story file relative to the root of your Storybook project.\n"
+    },
+    "onlyStoryNames": {
+      "$ref": "#/$defs/array-of-strings",
+      "description": "Only run a single story or a subset of stories by their name.",
+      "markdownDescription": "Only run a single story or a subset of stories by their name.\n"
+    },
+    "outputDir": {
+      "type": "string",
+      "description": "Relative path to target directory for building your Storybook. Use this if you want to preserve it for other tasks.",
+      "markdownDescription": "Relative path to target directory for building your Storybook. Use this if you want to preserve it for other tasks.\n"
+    },
+    "projectId": {
+      "type": "string",
+      "description": "The unique identifier for your project, sometimes referred to as appId.",
+      "markdownDescription": "The unique identifier for your project, sometimes referred to as `appId`.\n"
+    },
+    "projectToken": {
+      "type": "string",
+      "deprecated": true,
+      "description": "DEPRECATED The secret token for your project. Prefer to use CHROMATIC_PROJECT_TOKEN instead if you can.",
+      "markdownDescription": "DEPRECATED The secret token for your project. Prefer to use `CHROMATIC_PROJECT_TOKEN` instead if you can.\n"
+    },
+    "skip": {
+      "$ref": "#/$defs/string-or-boolean",
+      "description": "Skip Chromatic tests, but mark the commit as passing. It avoids blocking PRs due to required merge checks. Only for given branch, if specified.",
+      "markdownDescription": "Skip Chromatic tests, but mark the commit as passing. It avoids blocking PRs due to required merge checks. Only for given branch, if specified.\n"
+    },
+    "skipUpdateCheck": {
+      "type": "boolean",
+      "description": "Skips Chromatic CLI update check.",
+      "markdownDescription": "Skips Chromatic CLI update check.\n"
+    },
+    "storybookBaseDir": {
+      "type": "string",
+      "description": "Relative path from repository root to Storybook project root.Use with onlyChanged and storybookBuildDir when your Storybook is located in a subdirectory of your repository.",
+      "markdownDescription": "Relative path from repository root to Storybook project root.<br/>Use with `onlyChanged` and `storybookBuildDir` when your Storybook is located in a subdirectory of your repository.\n"
+    },
+    "storybookBuildDir": {
+      "type": "string",
+      "description": "If you have already built your Storybook, provide the path to the static build directory.",
+      "markdownDescription": "If you have already built your Storybook, provide the path to the static build directory.\n"
+    },
+    "storybookConfigDir": {
+      "type": "string",
+      "description": "Relative path from where you run Chromatic to your Storybook config directory.Use with onlyChanged and storybookBuildDir when using a custom --config-dir flag for Storybook.",
+      "markdownDescription": "Relative path from where you run Chromatic to your Storybook config directory.<br/>Use with `onlyChanged` and `storybookBuildDir` when using a custom [`--config-dir`](https://storybook.js.org/docs/api/cli-options#build) flag for Storybook.\n",
+      "default": ".storybook"
+    },
+    "storybookLogFile": {
+      "$ref": "#/$defs/string-or-boolean",
+      "description": "Write Storybook build logs to a custom file path.",
+      "markdownDescription": "Write Storybook build logs to a custom file path.\n",
+      "default": "build-storybook.log"
+    },
+    "traceChanged": {
+      "$ref": "#/$defs/string-or-boolean",
+      "description": "Print dependency trace for changed files to affected story files. Set to \"expanded\" to list individual modules.Requires onlyChanged.",
+      "markdownDescription": "Print dependency trace for changed files to affected story files. Set to \"expanded\" to list individual modules.<br/>Requires `onlyChanged`.\n"
+    },
+    "untraced": {
+      "$ref": "#/$defs/array-of-strings",
+      "description": "Disregard these files and their dependencies when tracing dependent stories for TurboSnap.Requires onlyChanged.",
+      "markdownDescription": "Disregard these files and their dependencies when tracing dependent stories for [TurboSnap](https://www.chromatic.com/docs/turbosnap).<br/>Requires `onlyChanged`.\n"
+    },
+    "uploadMetadata": {
+      "type": "boolean",
+      "description": "Upload Chromatic metadata files as part of the published Storybook. This option implies diagnosticsFile: true and logFile: true",
+      "markdownDescription": "Upload Chromatic metadata files as part of the published Storybook. This option implies `diagnosticsFile: true` and `logFile: true`\n"
+    },
+    "zip": {
+      "type": "boolean",
+      "description": "Publish your Storybook to Chromatic as a single zip file instead of individual content files.",
+      "markdownDescription": "Publish your Storybook to Chromatic as a single zip file instead of individual content files.\n"
+    },
+    "playwright": {
+      "type": "boolean",
+      "description": "Use your Playwright tests to power visual tests with Chromatic. Learn more",
+      "markdownDescription": "Use your Playwright tests to power visual tests with Chromatic. [Learn more](https://www.chromatic.com/docs/playwright)\n"
+    },
+    "cypress": {
+      "type": "boolean",
+      "description": "Use your Cypress tests to power visual tests with Chromatic. Learn more",
+      "markdownDescription": "Use your Cypress tests to power visual tests with Chromatic. [Learn more](https://www.chromatic.com/docs/cypress)\n"
+    }
+  }
+}

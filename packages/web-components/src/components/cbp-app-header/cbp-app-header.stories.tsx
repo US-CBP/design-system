@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Application Header',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },

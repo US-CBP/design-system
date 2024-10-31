@@ -67,7 +67,7 @@ const preview = {
     },
     options: {
       storySort: {
-        //method: 'alphabetical',
+        method: 'alphabetical',
         order: [
           'Introduction',
           'Design Tokens',

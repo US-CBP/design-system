@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Card',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   argTypes: {
     title: {
       name: 'Title (slotted)',

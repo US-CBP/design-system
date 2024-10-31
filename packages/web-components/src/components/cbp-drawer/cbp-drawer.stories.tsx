@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Drawer',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   argTypes: {
     position: {
       description: 'The positioning of the drawer relative to the viewport.',

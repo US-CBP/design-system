@@ -13,7 +13,7 @@ export const config: Config = {
     reactOutputTarget({
       componentCorePackage: '@cbpds/web-components',
       proxiesFile: '../react-components/components/stencil-generated/index.ts',
-      outDir: '../react-components/components/stencil-generated/'
+      //outDir: '../react-components/components/stencil-generated/'
     }),
     {
       type: 'dist', // The dist type is to generate the component(s) as a reusable library that can be self-lazy loading
@@ -41,6 +41,7 @@ export const config: Config = {
     },
     {
       type: 'docs-readme',
+      footer: '  ',
     },
     {
       type: 'www',
@@ -54,6 +55,7 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
+  preamble: 'CPB Design System web components - built with Stencil',
   extras: {
     enableImportInjection: true,
     experimentalSlotFixes: true,

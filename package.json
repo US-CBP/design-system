@@ -16,6 +16,7 @@
     "stencil-build": "npm run build -w packages/web-components",
     "stencil-start": "npm run start -w packages/web-components",
     "stencil-sb": "npm run storybook -w packages/web-components",
+    "stencil-build-sb": "npm run build-pages -w packages/web-components",
     "stencil-generate": "npm run generate -w packages/web-components",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-pages": "npm run vanilla-build && npm run build-pages -w packages/vanilla && npm run stencil-build && npm run build-pages -w packages/web-components",
@@ -25,14 +26,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/US-CBP/design-system.git"
+    "url": "git+https://github.com/US-CBP/design-system.git"
   },
   "keywords": [
     "CBP",
     "CBP Design System",
     "CBP Theme"
   ],
-  "author": "Creative Services <CreativeServices@cbp.dhs.gov>",
+  "author": {
+    "name": "Creative Services",
+    "email": "CreativeServices@cbp.dhs.gov"
+  },
   "license": "CC0-1.0",
   "bugs": {
     "url": "https://github.com/US-CBP/design-system/issues"

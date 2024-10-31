@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Dialog',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   argTypes: {
     uid: {
       description: 'A unique `id` applied to the dialog and referenced by the control.',

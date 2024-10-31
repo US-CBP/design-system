@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Skip Navigation Link',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   argTypes: {
     text: {
       name: 'text (slotted)',

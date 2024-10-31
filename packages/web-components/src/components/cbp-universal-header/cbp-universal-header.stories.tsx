@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Universal Header',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
     //root: '#custom-root'
