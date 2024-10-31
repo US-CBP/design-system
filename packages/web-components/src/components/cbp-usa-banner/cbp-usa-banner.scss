@@ -48,9 +48,9 @@ cbp-usa-banner {
 
     --cbp-button-padding: var(--cbp-space-1x);
 
-    --cbp-button-color: var(--cbp-color-interactive-secondary-light);
+    --cbp-button-color: var(--cbp-color-interactive-primary-light);
     --cbp-button-color-hover: var(--cbp-color-interactive-secondary-lighter);
-    --cbp-button-color-focus: var(--cbp-color-violet-30);
+    --cbp-button-color-focus: var(--cbp-color-interactive-focus-light);
 
     --cbp-button-color-border-hover: transparent;
     --cbp-button-color-border-focus: transparent;
@@ -58,7 +58,7 @@ cbp-usa-banner {
 
     --cbp-button-border-radius: 0;
 
-    --cbp-button-color-outline-focus: var(--cbp-color-violet-30);
+    --cbp-button-color-outline-focus: var(--cbp-color-interactive-focus-light);
 
     --cbp-button-color-bg: transparent;
     --cbp-button-color-bg-hover: transparent;

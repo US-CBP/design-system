@@ -363,22 +363,22 @@ StructuredListMedia.args = {
   showHeader: false,
   listItems: [
     {
-      content: "<cbp-grid grid-template-columns='1fr 5fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px'/></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px'/></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-grid grid-template-columns='1fr 5fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px'/></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px'/></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-grid grid-template-columns='1fr 3fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' /></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' /></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-grid grid-template-columns='1fr 3fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' /></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' /></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
       selected: false
     },
@@ -409,27 +409,205 @@ StructuredListMediaCalendar.argTypes = {
     control: 'object',
   },
 }
-StructuredListMediaCalendar.args = { //todo: update text in samples to match calendar text
+StructuredListMediaCalendar.args = {
   showHeader: false,
   listItems: [
     {
-      content: "<cbp-grid grid-template-columns='1fr 5fr' gap='1rem'><div class='cbp-structured-list-calendar-item'><span class='cbp-structured-list-calendar-item-month'>apr</span><span class='cbp-structured-list-calendar-item-day'>31</span></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Find the Hidden Beetle Training</cbp-link></cbp-typography><cbp-typography tag='p'>This training session will help you find those pesky hiding beetles. Inside boxes, on top of containers, or in someone's pocket, these bugs don't stand a chance of getting to America's sweet, delicious forests</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/beetles</i></cbp-typography></div><cbp-grid>",
+      content: `<cbp-grid grid-template-columns='1fr 5fr' gap='1rem'>
+                  <cbp-flex
+                  sx='{
+                        "width":"6.25rem",
+                        "height":"6.25rem",
+                        "display":"flex",
+                        "flex-direction":"column",
+                        "align-items":"center"
+                      }'
+                >
+                  <cbp-flex-item
+                  sx='{
+                        "width":"100%",
+                        "text-align":"center",
+                        "border-top-left-radius":"var(--cbp-border-radius-soft)",
+                        "border-top-right-radius":"var(--cbp-border-radius-soft)",
+                        "padding-block":"var(--cbp-space-2x)",
+                        "background-color":"var(--cbp-color-red-50)",
+                        "border":"1px solid var(--cbp-color-red-50)",
+                        "color":"var(--cbp-color-white)",
+                        "text-transform":"uppercase",
+                        "font-size":"var(--cbp-font-size-heading-xl)",
+                        "font-weight":"var(--cbp-font-weight-regular)"
+                      }'
+                  > 
+                    apr
+                  </cbp-flex-item>
+                  
+                  <cbp-flex-item
+                    sx='{
+                          "width":"100%",
+                          "height":"4.25rem",
+                          "text-align":"center",
+                          "border-bottom-left-radius":"var(--cbp-border-radius-soft)",
+                          "border-bottom-right-radius":"var(--cbp-border-radius-soft)",
+                          "border-width":"2px",
+                          "border-style":"solid",
+                          "border-color":"var(-cbp-color-gray-cool-40)",
+                          "border-top":"none",
+                          "color":"var(--cbp-structured-list-color)",
+                          "font-size":"var(--cbp-font-size-masthead-1)",
+                          "font-weight":"var(--cbp-font-weight-black)",
+                          "line-height":"1.75"
+                      }'
+                    >
+                    31
+                  </cbp-flex-item>
+                </cbp-flex>
+                  <div>
+                    <cbp-typography tag='p'>
+                      <cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon>
+                      <cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Find the Hidden Beetle Training</cbp-link>
+                    </cbp-typography>
+                    <cbp-typography tag='p'>This training session will help you find those pesky hiding beetles. Inside boxes, on top of containers, or in someone's pocket, these bugs don't stand a chance of getting to America's sweet, delicious forests</cbp-typography>
+                    <cbp-typography tag='p'>
+                      <cbp-icon name='globe' size='1rem'></cbp-icon>
+                      <i>https://www.cbp.dhs.gov/news/beetles</i>
+                    </cbp-typography>
+                  </div>
+                <cbp-grid>`,
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-grid grid-template-columns='1fr 5fr' gap='1rem'><div class='cbp-structured-list-calendar-item'><span class='cbp-structured-list-calendar-item-month'>mar</span><span class='cbp-structured-list-calendar-item-day'>15</span></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Agency Picnic</cbp-link></cbp-typography><cbp-typography tag='p'>Every year the Capital District CBP employees come together to have a nice (ant free) picnic</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/capital-picnic</i></cbp-typography></div><cbp-grid>",
+      content: `<cbp-grid grid-template-columns='1fr 5fr' gap='1rem'>
+                  <cbp-flex
+                  sx='{
+                        "width":"6.25rem",
+                        "height":"6.25rem",
+                        "display":"flex",
+                        "flex-direction":"column",
+                        "align-items":"center"
+                      }'
+                >
+                  <cbp-flex-item
+                  sx='{
+                        "width":"100%",
+                        "text-align":"center",
+                        "border-top-left-radius":"var(--cbp-border-radius-soft)",
+                        "border-top-right-radius":"var(--cbp-border-radius-soft)",
+                        "padding-block":"var(--cbp-space-2x)",
+                        "background-color":"var(--cbp-color-red-50)",
+                        "border":"1px solid var(--cbp-color-red-50)",
+                        "color":"var(--cbp-color-white)",
+                        "text-transform":"uppercase",
+                        "font-size":"var(--cbp-font-size-heading-xl)",
+                        "font-weight":"var(--cbp-font-weight-regular)"
+                      }'
+                  > 
+                    mar
+                  </cbp-flex-item>
+                  
+                  <cbp-flex-item
+                    sx='{
+                          "width":"100%",
+                          "height":"4.25rem",
+                          "text-align":"center",
+                          "border-bottom-left-radius":"var(--cbp-border-radius-soft)",
+                          "border-bottom-right-radius":"var(--cbp-border-radius-soft)",
+                          "border-width":"2px",
+                          "border-style":"solid",
+                          "border-color":"var(-cbp-color-gray-cool-40)",
+                          "border-top":"none",
+                          "color":"var(--cbp-structured-list-color)",
+                          "font-size":"var(--cbp-font-size-masthead-1)",
+                          "font-weight":"var(--cbp-font-weight-black)",
+                          "line-height":"1.75"
+                      }'
+                    >
+                    15
+                  </cbp-flex-item>
+                </cbp-flex>
+                  <div>
+                    <cbp-typography tag='p'>
+                      <cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon>
+                      <cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Agency Picnic</cbp-link>
+                    </cbp-typography>
+                    <cbp-typography tag='p'>Every year the Capital District CBP employees come together to have a nice (ant free) picnic</cbp-typography>
+                    <cbp-typography tag='p'>
+                      <cbp-icon name='globe' size='1rem'></cbp-icon>
+                      <i>https://www.cbp.dhs.gov/news/capital-picnic</i>
+                    </cbp-typography>
+                  </div>
+                <cbp-grid>
+      `,
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-grid grid-template-columns='1fr 5fr' gap='1rem'><div class='cbp-structured-list-calendar-item'><span class='cbp-structured-list-calendar-item-month'>feb</span><span class='cbp-structured-list-calendar-item-day'>3</span></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Commissioners Awards</cbp-link></cbp-typography><cbp-typography tag='p'>Join us in person or online to celebrate this past years CBP employees excellence awards.</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe' size='1rem'></cbp-icon> <i>https://www.cbp.dhs.gov/news/awards</i></cbp-typography></div><cbp-grid>",
+      content: `<cbp-grid grid-template-columns='1fr 5fr' gap='1rem'>
+                  <cbp-flex
+                  sx='{
+                        "width":"6.25rem",
+                        "height":"6.25rem",
+                        "display":"flex",
+                        "flex-direction":"column",
+                        "align-items":"center"
+                      }'
+                >
+                  <cbp-flex-item
+                  sx='{
+                        "width":"100%",
+                        "text-align":"center",
+                        "border-top-left-radius":"var(--cbp-border-radius-soft)",
+                        "border-top-right-radius":"var(--cbp-border-radius-soft)",
+                        "padding-block":"var(--cbp-space-2x)",
+                        "background-color":"var(--cbp-color-red-50)",
+                        "border":"1px solid var(--cbp-color-red-50)",
+                        "color":"var(--cbp-color-white)",
+                        "text-transform":"uppercase",
+                        "font-size":"var(--cbp-font-size-heading-xl)",
+                        "font-weight":"var(--cbp-font-weight-regular)"
+                      }'
+                  > 
+                    feb
+                  </cbp-flex-item>
+                  
+                  <cbp-flex-item
+                    sx='{
+                          "width":"100%",
+                          "height":"4.25rem",
+                          "text-align":"center",
+                          "border-bottom-left-radius":"var(--cbp-border-radius-soft)",
+                          "border-bottom-right-radius":"var(--cbp-border-radius-soft)",
+                          "border-width":"2px",
+                          "border-style":"solid",
+                          "border-color":"var(-cbp-color-gray-cool-40)",
+                          "border-top":"none",
+                          "color":"var(--cbp-structured-list-color)",
+                          "font-size":"var(--cbp-font-size-masthead-1)",
+                          "font-weight":"var(--cbp-font-weight-black)",
+                          "line-height":"1.75"
+                      }'
+                    >
+                    3
+                  </cbp-flex-item>
+                </cbp-flex>
+                  <div>
+                    <cbp-typography tag='p'>
+                      <cbp-icon name='arrow-right' color='var(--cbp-link-color)' size='1rem'></cbp-icon>
+                      <cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Commissioners Awards</cbp-link>
+                    </cbp-typography>
+                    <cbp-typography tag='p'>Join us in person or online to celebrate this past years CBP employees excellence awards.</cbp-typography>
+                    <cbp-typography tag='p'>
+                      <cbp-icon name='globe' size='1rem'></cbp-icon>
+                      <i>https://www.cbp.dhs.gov/news/awards</i>
+                    </cbp-typography>
+                  </div>
+                <cbp-grid>
+      `,
       color: 'default',
       selected: false
     }
   ]
 }
-
 
 /*<------------------------------------ Select ---------------------------------------->*/
 
