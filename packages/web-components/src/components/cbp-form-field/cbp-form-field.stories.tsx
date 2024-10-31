@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Form Fields',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   argTypes: {
     label: {
       control: 'text',

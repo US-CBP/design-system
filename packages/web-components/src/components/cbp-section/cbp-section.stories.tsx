@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Section',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   argTypes: {
     text: {
       name: 'text (slotted)',

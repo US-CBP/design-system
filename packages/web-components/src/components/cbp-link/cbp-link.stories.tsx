@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Link',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   argTypes: {
     label: {
       name: 'label (slotted)',

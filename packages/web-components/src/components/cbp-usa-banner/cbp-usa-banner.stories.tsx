@@ -1,6 +1,6 @@
 export default {
     title: 'Components/USA Banner',
-    tags: ['autodocs'],
+    //tags: ['autodocs'],
   };
   
   const Template = () => {

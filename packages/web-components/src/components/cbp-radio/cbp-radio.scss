@@ -103,7 +103,9 @@
 }
 
 cbp-radio {
-  display: block;
+  //display: block;
+  display: grid;
+  place-content: center;
   margin: var(--cbp-radio-margin);
   position: relative;
 
@@ -146,8 +148,11 @@ cbp-radio {
       top: 0;
       bottom: 0;
       overflow: hidden;
-      height: 0;
-      width: 0;
+      height: var(--cbp-space-4x);
+      width: var(--cbp-space-4x);
+      transform: scale(0);
+      //height: 0;
+      //width: 0;
       background-color: var(--cbp-radio-color-checked);
       border-radius: var(--cbp-border-radius-circle);
     }
@@ -183,9 +188,10 @@ cbp-radio {
     &:checked {
       // Checked inner-circle
       &::before {
-        height: var(--cbp-space-4x);
-        width: var(--cbp-space-4x);
-        //transition: all var(--cbp-motion-duration-shortest) ease-in;
+        //height: var(--cbp-space-4x);
+        //width: var(--cbp-space-4x);
+        transform: scale(1);
+        transition: all var(--cbp-motion-duration-shortest) ease-in-out;
       }
     }
 

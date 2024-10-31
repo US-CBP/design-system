@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Flex',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   argTypes: {
     display: {
       control: 'select',
