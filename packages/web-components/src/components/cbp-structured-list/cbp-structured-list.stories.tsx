@@ -413,25 +413,20 @@ StructuredListMediaCalendar.args = {
   showHeader: false,
   listItems: [
     {
-      content: `<cbp-grid grid-template-columns='1fr 5fr' gap='1rem'>
-                  <cbp-flex
-                  sx='{
-                        "width":"6.25rem",
-                        "height":"6.25rem",
-                        "display":"flex",
-                        "flex-direction":"column",
-                        "align-items":"center"
-                      }'
-                >
+      content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
+                  <cbp-flex  
+                    display="flex"
+                    direction="column"
+                    align-items="center"
+                  >
                   <cbp-flex-item
                   sx='{
                         "width":"100%",
                         "text-align":"center",
-                        "border-top-left-radius":"var(--cbp-border-radius-soft)",
-                        "border-top-right-radius":"var(--cbp-border-radius-soft)",
+                        "border-radius":"var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0",
                         "padding-block":"var(--cbp-space-2x)",
                         "background-color":"var(--cbp-color-red-50)",
-                        "border":"1px solid var(--cbp-color-red-50)",
+                        "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
                         "text-transform":"uppercase",
                         "font-size":"var(--cbp-font-size-heading-xl)",
@@ -443,20 +438,19 @@ StructuredListMediaCalendar.args = {
                   
                   <cbp-flex-item
                     sx='{
-                          "width":"100%",
-                          "height":"4.25rem",
-                          "text-align":"center",
-                          "border-bottom-left-radius":"var(--cbp-border-radius-soft)",
-                          "border-bottom-right-radius":"var(--cbp-border-radius-soft)",
-                          "border-width":"2px",
-                          "border-style":"solid",
-                          "border-color":"var(-cbp-color-gray-cool-40)",
-                          "border-top":"none",
-                          "color":"var(--cbp-structured-list-color)",
-                          "font-size":"var(--cbp-font-size-masthead-1)",
-                          "font-weight":"var(--cbp-font-weight-black)",
-                          "line-height":"1.75"
-                      }'
+                      "width":"100%",
+                      "height":"4.25rem",
+                      "text-align":"center",
+                      "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
+                      "border-width":"var(--cbp-border-size-md)",
+                      "border-style":"solid",
+                      "border-color":"var(--cbp-color-gray-cool-40)",
+                      "border-top":"none",
+                      "color":"var(--cbp-structured-list-color)",
+                      "font-size":"var(--cbp-font-size-masthead-1)",
+                      "font-weight":"var(--cbp-font-weight-black)",
+                      "line-height":"1.75"
+                  }'
                     >
                     31
                   </cbp-flex-item>
@@ -477,25 +471,20 @@ StructuredListMediaCalendar.args = {
       selected: false
     },
     {
-      content: `<cbp-grid grid-template-columns='1fr 5fr' gap='1rem'>
-                  <cbp-flex
-                  sx='{
-                        "width":"6.25rem",
-                        "height":"6.25rem",
-                        "display":"flex",
-                        "flex-direction":"column",
-                        "align-items":"center"
-                      }'
-                >
+      content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
+                  <cbp-flex  
+                    display="flex"
+                    direction="column"
+                    align-items="center"
+                  >
                   <cbp-flex-item
                   sx='{
                         "width":"100%",
                         "text-align":"center",
-                        "border-top-left-radius":"var(--cbp-border-radius-soft)",
-                        "border-top-right-radius":"var(--cbp-border-radius-soft)",
+                        "border-radius":"var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0",
                         "padding-block":"var(--cbp-space-2x)",
                         "background-color":"var(--cbp-color-red-50)",
-                        "border":"1px solid var(--cbp-color-red-50)",
+                        "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
                         "text-transform":"uppercase",
                         "font-size":"var(--cbp-font-size-heading-xl)",
@@ -510,11 +499,10 @@ StructuredListMediaCalendar.args = {
                           "width":"100%",
                           "height":"4.25rem",
                           "text-align":"center",
-                          "border-bottom-left-radius":"var(--cbp-border-radius-soft)",
-                          "border-bottom-right-radius":"var(--cbp-border-radius-soft)",
-                          "border-width":"2px",
+                          "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
+                          "border-width":"var(--cbp-border-size-md)",
                           "border-style":"solid",
-                          "border-color":"var(-cbp-color-gray-cool-40)",
+                          "border-color":"var(--cbp-color-gray-cool-40)",
                           "border-top":"none",
                           "color":"var(--cbp-structured-list-color)",
                           "font-size":"var(--cbp-font-size-masthead-1)",
@@ -542,25 +530,20 @@ StructuredListMediaCalendar.args = {
       selected: false
     },
     {
-      content: `<cbp-grid grid-template-columns='1fr 5fr' gap='1rem'>
-                  <cbp-flex
-                  sx='{
-                        "width":"6.25rem",
-                        "height":"6.25rem",
-                        "display":"flex",
-                        "flex-direction":"column",
-                        "align-items":"center"
-                      }'
-                >
+      content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
+                  <cbp-flex  
+                    display="flex"
+                    direction="column"
+                    align-items="center"
+                  >
                   <cbp-flex-item
                   sx='{
                         "width":"100%",
                         "text-align":"center",
-                        "border-top-left-radius":"var(--cbp-border-radius-soft)",
-                        "border-top-right-radius":"var(--cbp-border-radius-soft)",
+                        "border-radius":"var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0",
                         "padding-block":"var(--cbp-space-2x)",
                         "background-color":"var(--cbp-color-red-50)",
-                        "border":"1px solid var(--cbp-color-red-50)",
+                        "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
                         "text-transform":"uppercase",
                         "font-size":"var(--cbp-font-size-heading-xl)",
@@ -575,11 +558,10 @@ StructuredListMediaCalendar.args = {
                           "width":"100%",
                           "height":"4.25rem",
                           "text-align":"center",
-                          "border-bottom-left-radius":"var(--cbp-border-radius-soft)",
-                          "border-bottom-right-radius":"var(--cbp-border-radius-soft)",
-                          "border-width":"2px",
+                          "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
+                          "border-width":"var(--cbp-border-size-md)",
                           "border-style":"solid",
-                          "border-color":"var(-cbp-color-gray-cool-40)",
+                          "border-color":"var(--cbp-color-gray-cool-40)",
                           "border-top":"none",
                           "color":"var(--cbp-structured-list-color)",
                           "font-size":"var(--cbp-font-size-masthead-1)",
