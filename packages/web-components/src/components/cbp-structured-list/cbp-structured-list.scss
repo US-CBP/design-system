@@ -102,14 +102,12 @@ cbp-structured-list {
     }
   }
 
-  /* 
-    *Collection 
-  */
+  /**Collection */
 
   div[role=list]:only-child > *:first-child {
     border-top: var(--cbp-border-size-md) solid var(--cbp-structured-list-border-color);
   }
-
+  
   /** Selectable */
 
   &[selectable] [slot=cbp-structured-list-header] {
