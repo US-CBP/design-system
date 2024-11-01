@@ -35,9 +35,9 @@ export class CbpFlex {
   /** Specifies the size at which the flex children are linearized, specified in CSS units (preferably relative units such as rem). */
   @Prop() breakpoint: string;
 
-  /** @Internal - Not yet implemented */
+  /** Not yet implemented */
   @Prop() contentBreakpoint: string;
-  
+
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
