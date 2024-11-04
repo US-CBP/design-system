@@ -103,56 +103,43 @@
 }
 
 cbp-radio {
-  //display: block;
-  display: grid;
-  place-content: center;
+  display: block;
   margin: var(--cbp-radio-margin);
   position: relative;
 
   label {
-    display: flex;
+    display: grid;
+    grid-template-columns: var(--cbp-space-7x) 1fr;
     align-items: center;
+    gap: var(--cbp-space-2x);
     min-height: var(--cbp-radio-min-height);
     font-weight: var(--cbp-radio-font-weight-label);
     color: var(--cbp-radio-color-label);
   }
 
   input[type=radio] {
-    position: relative;
-    flex-shrink: 0;
+    display: grid;
+    place-content: center;
     appearance: none; // radios do not accept styling per design specs
-    //color: var(--cbp-radio-color);
     background-color: var(--cbp-radio-color-bg);
     border-color: var(--cbp-radio-color-border);
     border-style: solid;
     border-width: var(--cbp-border-size-md);
     border-radius: var(--cbp-border-radius-circle);
-    // TechDebt: Testing which one works: seeing different results on different computers/base font sizes
     height: var(--cbp-space-7x);
     width: var(--cbp-space-7x);
-    //height: calc(var(--cbp-space-7x) - 1px);
-    //width: calc(var(--cbp-space-7x) - 1px);
     margin: 0;
-    margin-inline-end: var(--cbp-space-2x);
     outline: 0;
     box-shadow: 0 0 0 calc(var(--cbp-space-5x) / 2) var(--cbp-radio-color-halo);
     clip-path: circle(80%); // verified
 
-    // Check Mark/Dash
+    // Radio marker
     &::before {
       content: '';
-      position: absolute;
-      margin: auto;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
       overflow: hidden;
       height: var(--cbp-space-4x);
       width: var(--cbp-space-4x);
       transform: scale(0);
-      //height: 0;
-      //width: 0;
       background-color: var(--cbp-radio-color-checked);
       border-radius: var(--cbp-border-radius-circle);
     }

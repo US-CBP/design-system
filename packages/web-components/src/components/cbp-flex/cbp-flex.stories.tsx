@@ -91,3 +91,8 @@ const Template = ({ display, wrap, direction, alignItems, alignContent, justifyC
 
 export const Flex = Template.bind({});
 Flex.args = {};
+
+
+/* For testing of sx and setCSSProps()
+    sx='{"border":"var(--cbp-border-size-lg) solid var(--cbp-color-red-20)","height":"200px","border-top-width":"0px"}'
+*/
