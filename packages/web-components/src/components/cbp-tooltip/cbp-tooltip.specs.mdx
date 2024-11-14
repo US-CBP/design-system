@@ -1,0 +1,31 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Tooltip/Specifications" />
+
+# cbp-tooltip
+
+## Purpose
+
+* Tooltip is intended to display additional content to clarify or provide detail for users
+
+## Functional Requirements
+
+* tooltip is designed to wrap a slotted control, the control can be anything but the click and focus functionality will be impeded since they are used to launch the tooltip
+* consumers will have to define the alignment of the tooltip. see the alignment prop for options
+
+## Technical Specifications
+
+### User Interactions
+
+* focusing or clicking on the tooltip makes the tooltip visible
+* once tooltip is open it will persist until the it is closed via clicking or focusing off of the close button in to left of content. once closed the focus will return to the tooltip control
+
+### Responsiveness
+
+* 
+
+### Accessibility
+
+* Tooltip is designed to be keyboard accessible
+
+### Additional Notes and Considerations
