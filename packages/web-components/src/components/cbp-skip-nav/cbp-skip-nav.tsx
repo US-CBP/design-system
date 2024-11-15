@@ -1,6 +1,9 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * @slot - The default slot accepts custom link text, which is only needed if multiple skip links are present. Otherwise, it is advised to use the default "Skip to main content", which has been validated for clarity and pronunciation.
+ */
 @Component({
   tag: 'cbp-skip-nav',
   styleUrl: 'cbp-skip-nav.scss'
@@ -11,8 +14,12 @@ export class CbpSkipNav {
 
   @Element() host: HTMLElement;
 
+  /** Specifies the target `id` where focus is sent when the "skip nav" link is activated. Defaults to "main". */
   @Prop() targetId: string = "main";
+
+  /** Specifies a shortcut key, which is applied as an `accessKey` attribute. */
   @Prop() shortcutKey: string;
+  
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 

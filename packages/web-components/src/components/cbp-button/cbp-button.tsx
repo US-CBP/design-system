@@ -52,7 +52,8 @@ export class CbpButton {
 
   /** Specifies if the button is pressed and results in `aria-pressed="true"` being placed on the button when true. Only valid on actual `button` elements. */
   @Prop() pressed: boolean;
-  /** Specifies if a controlled UI widget is expanded and results in `aria-pressed="true"` being placed on the button when true.
+  /** 
+   * Specifies if a controlled UI widget is expanded and results in `aria-pressed="true"` being placed on the button when true.
    * This property is usually used for progressive disclosure patterns such as accordions, menus, expand/collapse, etc., where
    * focus remains on the control after the user action.
    */
@@ -86,6 +87,7 @@ export class CbpButton {
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() buttonClick!: EventEmitter;
+  
   /** A custom event emitted when the component has completed loading and its internal lifecycles. */
   @Event() componentLoad!: EventEmitter;
 

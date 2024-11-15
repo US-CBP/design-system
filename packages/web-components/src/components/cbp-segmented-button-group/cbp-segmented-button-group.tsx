@@ -1,6 +1,7 @@
 import { Component, Prop, Element, Event, EventEmitter, Listen, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/** @slot - Only `cbp-button` components should be slotted within the default slot to make up the button group. */
 @Component({
   tag: 'cbp-segmented-button-group',
   styleUrl: 'cbp-segmented-button-group.scss'
@@ -12,8 +13,13 @@ export class SegmentedButtonGroup {
 
   @Element() host: HTMLElement;
 
+  /** Specifies whether multiple buttons may be activated at the same time. Defaults to false. */
   @Prop() multiple: boolean;
+
+  /** Specifies accessibility text used to label the group, applied to the group via aria-label. */
   @Prop() accessibilityText: string;
+
+  /* TODO: not yet implemented  */
   @Prop() disabled: boolean;
   
   /** Supports adding inline styles as an object */
