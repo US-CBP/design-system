@@ -127,6 +127,7 @@ cbp-button {
     min-height: var(--cbp-button-min-height);
     width: var(--cbp-button-width);
     height: var(--cbp-button-height);
+    white-space: nowrap;
     cursor: pointer;
 
     color: var(--cbp-button-color);
