@@ -14,8 +14,10 @@ export class CbpSection {
 
   /** Specifies the tag to render. Use `section` with the `accessibilityText` property to make an accessible landmark element. */
   @Prop() tag: 'div' | 'section' | 'none' = 'none';
-  /** Specifies an accessible label to make a `section` tag an accessible landmark element. Likely has no effect otherwise. */
+
+  /** Specifies an accessible label as `aria-label` to make a `section` tag an accessible landmark element. Likely has no effect otherwise. */
   @Prop() accessibilityText: string;
+  
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 

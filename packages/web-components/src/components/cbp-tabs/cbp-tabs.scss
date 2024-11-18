@@ -39,7 +39,10 @@
  * @prop --cbp-tab-color-border-selected-dark: var(--cbp-color-interactive-active-light);
 
  * @prop --cbp-tab-border-radius: 0;
-*/
+
+ * @prop --cbp-tab-color-outline-focus: var(--cbp-color-white);
+ * @prop --cbp-tab-color-outline-focus-dark: var(--cbp-color-black);
+ */
 :root {
   --cbp-tabs-color-border: var(--cbp-color-gray-cool-30);
   --cbp-tabs-color-border-dark: var(--cbp-color-gray-cool-60);

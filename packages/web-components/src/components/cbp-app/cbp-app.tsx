@@ -17,11 +17,16 @@ export class CbpApp {
   /** Optionally specifies light/dark mode. This is only needed if the application can change the theme separate from OS settings.  */
   @Prop({reflect: true}) theme: "light" | "dark" | "system" = "system"
 
+  /** Turning on debug mode will log the version of the design system package and Stencil version it was built with to the console, in addition to application name and version, if specified. */
   @Prop({reflect: true}) debug: boolean;
 
+  /** Specifies the application name for logging with debug information. */
   @Prop({reflect: true}) appName: string;
+
+  /** Specifies the application version for logging with debug information. This may be automated by importing it from the application's package.json, if used. */
   @Prop({reflect: true}) appVersion: string;
 
+  
   handleThemeChange(mql) {
     this.theme = mql.matches ? "dark" : "light";
   }

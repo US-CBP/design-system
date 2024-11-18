@@ -1,6 +1,9 @@
 import { Component, Element, Prop, Event, EventEmitter, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * @slot - The default slot holds the tab's label (rendered as a button label), which may include text as well as icons, badges, and tags.
+ */
 @Component({
   tag: 'cbp-tab',
   styleUrl: 'cbp-tab.scss'

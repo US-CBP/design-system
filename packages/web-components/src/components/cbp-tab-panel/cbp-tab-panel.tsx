@@ -1,6 +1,9 @@
 import { Component, Element, Prop, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * @slot - The default slot holds the contents of a tab panel, which may include any form of text, markup, and media elements.
+ */
 @Component({
   tag: 'cbp-tab-panel',
   styleUrl: 'cbp-tab-panel.scss'

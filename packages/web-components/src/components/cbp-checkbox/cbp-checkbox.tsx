@@ -3,7 +3,7 @@ import { setCSSProps} from '../../utils/utils';
 
 
 /**
- * @slot - the checkbox control and label text goes in the default slot, both of which are placed inside of the `label` element. The label should not include excessively long descriptive text.
+ * @slot - the checkbox control and label text are placed in the default slot, both of which are rendered inside of the `label` element. The label should not include excessively long descriptive text.
  */
 @Component({
   tag: 'cbp-checkbox',
@@ -40,7 +40,7 @@ export class CbpCheckbox {
 
   //this.formField.indeterminate=true;
 
-  /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
+  /** A custom event emitted when the checked state changes due to user interaction. */
   @Event() stateChanged: EventEmitter;
   handleChange() {
     this.checked=this.formField.checked;
@@ -77,7 +77,6 @@ export class CbpCheckbox {
 
     // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
     this.formField = this.host.querySelector('input[type=checkbox]');
-
     if (this.formField) {
       this.formField.addEventListener('change', () => this.handleChange());
     }
