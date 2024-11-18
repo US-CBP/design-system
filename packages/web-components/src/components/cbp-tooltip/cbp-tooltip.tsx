@@ -1,5 +1,5 @@
-import { Component, Prop, Element, Host, h } from '@stencil/core';
-import { setCSSProps } from '../../utils/utils';
+import { Component, Prop, Element, Host, h, Listen } from '@stencil/core';
+import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 @Component({
   tag: 'cbp-tooltip',
@@ -7,24 +7,26 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpTooltip {
 
-  
   @Element() host: HTMLElement;
   /** When set, specifies that the tooltip is open */
   @Prop({ reflect: true }) open: boolean = false;
- 
-  //todo: update from alignment to placement
+
+  /** used to set styles for the definition link for text controls*/
+  @Prop({ reflect: true }) definitionLinkStyle: boolean = false;
+
+  /** sets where the tooltip will be displayed and where the caret will be placed */
   @Prop({ reflect: true}) alignment: "top-left" | "top-center" | "top-left" | "right-top" | "right-center" | "right-bottom" | "bottom-left" | "bottom-center" | "bottom-right" | "left-top" | "left-center" | "left-bottom";
   
-  /** Specifies a unique `ID` for the tooltip, used to wire up the controls and accessibility features. */
-  @Prop() uid: string;
+  /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
+  @Prop() fieldId: string = createNamespaceKey('cbp-tooltip');
 
-   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
-   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
+  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
+  @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
    
-   /** Supports adding inline styles as an object */
-   @Prop() sx: any = {};
+  /** Supports adding inline styles as an object */
+  @Prop() sx: any = {};
 
-   componentWillLoad() {
+  componentWillLoad() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
     }
@@ -34,23 +36,32 @@ export class CbpTooltip {
   }
 
   dismissTooltip(){
-    console.log('oh no it blew up');
     this.host.focus();
     this.open =false;
   }
 
+  handleFocusOut({ key, shiftKey }) {
+    if(key == 'Tab' && !shiftKey) this.open = false
+  }
+
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent){
+    if( ev.key == 'Escape'){
+      this.dismissTooltip();
+    }
+  }
+
   render() {
-    
     return (
       <Host 
-        id={this.uid}
+        aria-describedby={this.fieldId}
         tabindex='0'  
         onfocus={() => this.open=true}
         onClick={() => this.host.focus()}
         role='button'
       >
         <slot></slot>
-        <div role='tooltip'>
+        <div role='tooltip' id={this.fieldId}>
           <div>
             <slot name='cbp-tooltip-content'></slot>
           </div>
@@ -59,10 +70,10 @@ export class CbpTooltip {
             type="button"
             fill="ghost"
             color="secondary" 
-            context={(this.context == 'dark-always' || this.context == 'dark-inverts')? "light-always":"dark-always"}
+            context={(document.getElementsByTagName("cbp-app")[0].theme == 'dark' || this.context == 'dark-always' || this.context == 'dark-inverts')? "light-always":"dark-always"}
             variant="square"
             onClick={() => this.dismissTooltip()}
-            onFocusout={() => this.dismissTooltip()}
+            onKeyDown={(e) => this.handleFocusOut(e)}
           >
             <cbp-icon name="circle-xmark"></cbp-icon>
           </cbp-button>

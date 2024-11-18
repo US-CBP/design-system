@@ -8,17 +8,16 @@
  * @Prop   --cbp-tooltip-padding: var(--cbp-space-inset-4x, 1rem);
  * @Prop   --cbp-tooltip-gap: 0px;
  * @Prop   --cbp-tooltip-offset: 0px;
- * @Prop   --cbp-tooltip-link-decoration: none;
  * @Prop   --cbp-tooltip-caret-size: 15px;
  * @Prop   --cbp-tooltip-caret-offset: calc(var(--cbp-tooltip-caret-size) / 2);
- * @Prop   --cbp-tooltip-color-hover: var(--cbp-color-interactive-secondary-darker);
- * @Prop   --cbp-tooltip-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
- * @Prop   --cbp-tooltip-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
- * @Prop   --cbp-tooltip-color-bg-hover-dark: var(--cbp-color-interactive-disabled-light);
- * @Prop   --cbp-tooltip-color-focus: var(--cbp-color-text-lightest);
- * @Prop   --cbp-tooltip-color-focus-dark: var(--cbp-color-text-darkest);
- * @Prop   --cbp-tooltip-color-bg-focus: var(--cbp-color-interactive-focus-dark);
- * @Prop   --cbp-tooltip-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @Prop   --cbp-tooltip-control-color-hover: var(--cbp-color-interactive-secondary-darker);
+ * @Prop   --cbp-tooltip-control-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ * @Prop   --cbp-tooltip-control-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
+ * @Prop   --cbp-tooltip-control-color-bg-hover-dark: var(--cbp-color-interactive-disabled-light);
+ * @Prop   --cbp-tooltip-control-color-focus: var(--cbp-color-text-lightest);
+ * @Prop   --cbp-tooltip-control-color-focus-dark: var(--cbp-color-text-darkest);
+ * @Prop   --cbp-tooltip-control-color-bg-focus: var(--cbp-color-interactive-focus-dark);
+ * @Prop   --cbp-tooltip-control-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
  */
  :root{
  
@@ -28,20 +27,27 @@
   --cbp-tooltip-color-bg-dark: var(--cbp-color-gray-cool-5);
   --cbp-tooltip-gap: 0px;
   --cbp-tooltip-offset: 0px;
-  --cbp-tooltip-link-decoration: none;
   --cbp-tooltip-caret-size: 15px;
   --cbp-tooltip-caret-offset: calc(var(--cbp-tooltip-caret-size) / 2);
 
-  --cbp-tooltip-color-hover: var(--cbp-color-interactive-secondary-darker);
-  --cbp-tooltip-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
-  --cbp-tooltip-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
-  --cbp-tooltip-color-bg-hover-dark: var(--cbp-color-interactive-disabled-light);
+  --cbp-tooltip-control-color-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-tooltip-control-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-tooltip-control-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-tooltip-control-color-bg-hover-dark: var(--cbp-color-interactive-disabled-light);
 
-  --cbp-tooltip-color-focus: var(--cbp-color-text-lightest);
-  --cbp-tooltip-color-focus-dark: var(--cbp-color-text-darkest);
-  --cbp-tooltip-color-bg-focus: var(--cbp-color-interactive-focus-dark);
-  --cbp-tooltip-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
-  
+  --cbp-tooltip-control-color-focus: var(--cbp-color-text-lightest);
+  --cbp-tooltip-control-color-focus-dark: var(--cbp-color-text-darkest);
+  --cbp-tooltip-control-color-bg-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-tooltip-control-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
+
+  --cbp-tooltip-definition-color: var(--cbp-color-interactive-primary-dark);
+  --cbp-tooltip-definition-color-dark: var(--cbp-color-interactive-primary-light);
+  --cbp-tooltip-definition-color-hover: var(--cbp-color-interactive-primary-darker);
+  --cbp-tooltip-definition-color-hover-dark: var(--cbp-color-interactive-primary-lighter);
+  --cbp-tooltip-definition-color-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-tooltip-definition-color-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-tooltip-definition-outline-focus: 2px solid var(--cbp-color-interactive-focus-dark);
+  --cbp-tooltip-definition-outline-focus-dark: 2px solid var(--cbp-color-interactive-focus-light);
 }
 
 [data-cbp-theme=light] cbp-tooltip[context*=dark]:not([context=light-always]),
@@ -50,11 +56,17 @@
   --cbp-tooltip-color-bg: var(--cbp-tooltip-color-bg-dark);
   --cbp-tooltip-color: var(--cbp-tooltip-color-dark);
  
-  --cbp-tooltip-color-hover: var(--cbp-tooltip-color-hover-dark);
-  --cbp-tooltip-color-bg-hover: var(--cbp-tooltip-color-bg-hover-dark);
+  --cbp-tooltip-control-color-hover: var(--cbp-tooltip-control-color-hover-dark);
+  --cbp-tooltip-control-color-bg-hover: var(--cbp-tooltip-control-color-bg-hover-dark);
 
-  --cbp-tooltip-color-focus: var(--cbp-tooltip-color-focus-dark);
-  --cbp-tooltip-color-bg-focus: var(--cbp-tooltip-color-bg-focus-dark);
+  --cbp-tooltip-control-color-focus: var(--cbp-tooltip-control-color-focus-dark);
+  --cbp-tooltip-control-color-bg-focus: var(--cbp-tooltip-control-color-bg-focus-dark);
+
+  --cbp-tooltip-definition-color: var(--cbp-tooltip-definition-color-dark);
+  --cbp-tooltip-definition-color-hover: var(--cbp-tooltip-definition-color-hover-dark);
+  
+  --cbp-tooltip-definition-color-focus: var(--cbp-tooltip-definition-color-focus-dark);
+  --cbp-tooltip-definition-outline-focus: var(--cbp-tooltip-definition-outline-focus-dark);
 }
 
 cbp-tooltip {
@@ -62,22 +74,41 @@ cbp-tooltip {
   position: relative;
   --cbp-tooltip-placement-gap: var(--cbp-tooltip-gap);
   --cbp-tooltip-placement-offset: var(--cbp-tooltip-offset);
-  --cbp-link-decoration: var(--cbp-tooltip-link-decoration);
 
   &[open] [role='tooltip']{
       display: flex;
   }
     
-  &:hover{
-    color: var(--cbp-tooltip-color-hover);
-    background: var(--cbp-tooltip-color-bg-hover);
+  &:not([definitionlinkstyle="true"]):hover{
+    color: var(--cbp-tooltip-control-color-hover);
+    background: var(--cbp-tooltip-control-color-bg-hover);
   }
 
-  &:focus-visible,
-  &:focus-within{
-    color: var(--cbp-tooltip-color-focus);
-    background: var(--cbp-tooltip-color-bg-focus);
+  &:not([definitionlinkstyle="true"]):focus-visible,
+  &:not([definitionlinkstyle="true"]):focus-within{
+    color: var(--cbp-tooltip-control-color-focus);
+    background: var(--cbp-tooltip-control-color-bg-focus);
   }
+
+  /** definition link*/
+&[definitionlinkstyle="true"]{
+  font-size: var(--cbp-font-size-body);
+  color: var(--cbp-tooltip-definition-color);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  cursor: pointer;
+
+  &:hover{
+    color: var(--cbp-tooltip-definition-color-hover);
+    background-color: transparent;
+  }
+
+  &:focus{
+    color:var(--cbp-tooltip-definition-color-focus);
+    background-color: transparent;
+    outline:var(--cbp-tooltip-definition-outline-focus);
+  }
+}
 
    /** Alignment*/
 &[alignment='top-left'] div[role=tooltip]{
@@ -225,6 +256,10 @@ cbp-tooltip div[role=tooltip] {
 
   > div{
     padding: var(--cbp-space-2x);
+  
+    [slot='cbp-tooltip-content']{
+      line-height: var(--cbp-line-height-xs);
+    }
   }
 }
 

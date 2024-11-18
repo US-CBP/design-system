@@ -26,9 +26,8 @@ export default {
     },
   };
 
-const Template = ({ open, uid, alignment, title, content, buttonContent, context, sx }) => {
-return ` 
-        <a href='#' style='display: inline-block; margin-left:40%; margin-top:20%'> item #1</a>
+const Template = ({ open, uid, alignment, title, content, tooltipControl, context, sx }) => {
+    return ` 
         <cbp-tooltip
             ${open ? `open` : ''}
             ${uid ? `uid=${uid}` : ''}
@@ -38,14 +37,13 @@ return `
 
             >  
             <div>
-                ${buttonContent}
+                ${tooltipControl}
             </div>
             <div slot="cbp-tooltip-content">
                 <div style='font-weight: var(--cbp-font-weight-bold)'>${title}</div>
                 <div>${content}</div>
             </div>
         </cbp-tooltip>
-        <a href='#'> item #3</a>
     `;
 };
   
@@ -56,9 +54,45 @@ Tooltip.args = {
     alignment: 'top-left',
     title: 'Test Tooltip Title',
     content: 'Stub text for tooltip.',
-    buttonContent: '<cbp-icon name="user"></cbp-icon>',
-    // sx:{
-    //     "margin-left":"40%",
-    //     "margin-top":"20%"
-    // }   
+    tooltipControl: '<cbp-icon name="user"></cbp-icon>',
+    sx:{
+        "margin-left":"40%",
+        "margin-top":"20%"
+    }   
+}
+
+const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipControl, context, sx }) => {
+    return ` 
+        <cbp-tooltip
+            ${open ? `open` : ''}
+            ${uid ? `uid=${uid}` : ''}
+            alignment=${alignment}
+            definitionLinkStyle=true
+            ${context && context != 'light-inverts' ? `context=${context}` : ''}
+            ${sx ? `sx=${JSON.stringify(sx)}` : ``}
+
+            >  
+            <div>
+                ${tooltipControl}
+            </div>
+            <div slot="cbp-tooltip-content">
+                <div style='font-weight: var(--cbp-font-weight-bold)'>${title}</div>
+                <div>${content}</div>
+            </div>
+        </cbp-tooltip>
+    `;
+};
+
+export const DefinitionTooltip = DefinitionTemplate.bind({});
+  
+DefinitionTooltip.args = {
+    uid: 'tooltip',
+    alignment: 'top-left',
+    title: 'Test DefinitionTooltip Title',
+    content: 'Stub text for definition tooltip.',
+    tooltipControl: `TASPD`,
+    sx:{
+        "margin-left":"40%",
+        "margin-top":"20%"
+    }   
 }
