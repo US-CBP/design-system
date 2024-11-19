@@ -9,6 +9,10 @@ body:has(cbp-app[data-cbp-theme="dark"]) {
   background-color: var(--cbp-color-branding-cbp-dark);
 }
 
+.sb-main-centered cbp-app {
+  min-height: unset;
+}
+
 /* TechDebt: Remove when table component is added to design tokens story */
 #design-tokens table {
   width: 100%;
