@@ -12,7 +12,9 @@ export class CbpTooltip {
   @Prop({ reflect: true }) open: boolean = false;
 
   /** used to set styles for the definition link for text controls*/
-  @Prop({ reflect: true }) definitionLinkStyle: boolean = false;
+  // @Prop({ reflect: true }) definitionLinkStyle: boolean = false;
+  @Prop({ reflect: true }) variant: 'default' | 'definition' = 'default';
+
 
   /** sets where the tooltip will be displayed and where the caret will be placed */
   @Prop({ reflect: true}) alignment: "top-left" | "top-center" | "top-left" | "right-top" | "right-center" | "right-bottom" | "bottom-left" | "bottom-center" | "bottom-right" | "left-top" | "left-center" | "left-bottom";
@@ -70,7 +72,7 @@ export class CbpTooltip {
             type="button"
             fill="ghost"
             color="secondary" 
-            context={(document.getElementsByTagName("cbp-app")[0].theme == 'dark' || this.context == 'dark-always' || this.context == 'dark-inverts')? "light-always":"dark-always"}
+            context='dark-inverts' /*TechDebt: doesn't work with context */
             variant="square"
             onClick={() => this.dismissTooltip()}
             onKeyDown={(e) => this.handleFocusOut(e)}

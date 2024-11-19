@@ -6,24 +6,24 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-* the tooltip component allows the development team to disclose supplemental, not essential or nessecary, information to a user via a
-triggering element. these should be used sparingly since hiding functionality should be avoided if at all possible. Historically, 
-tooltips were accessiblevia hover but this does not conform to accessibility standards, and is completely invisible on touch-based 
+* The tooltip component allows the development team to disclose supplemental, not essential or nessecary, information to a user via a
+triggering element. These should be used sparingly since hiding functionality should be avoided if at all possible. Historically, 
+tooltips were accessible via hover but this does not conform to accessibility standards, and is completely invisible on touch-based 
 devices. As such, tooltips are activated by focusing or clicking the triggering element
 
 ## Functional Requirements
 
-* tooltip is designed to wrap a slotted control, the control can be anything but the click and focus functionality will be impeded 
+* Tooltip is designed to wrap a slotted control, the control can be anything but the click and focus functionality will be impeded 
 since they are used to launch the tooltip
-* consumers will have to define the alignment of the tooltip. see the alignment prop for options
+* Consumers will have to define the alignment of the tooltip. See the alignment prop for the defined options
 
 ## Technical Specifications
 
 ### User Interactions
 
-* focusing or clicking on the tooltip makes the tooltip visible
-* once tooltip is open it will persist until the it is closed via clicking or focusing off of the close button in to left of content. 
-once closed the focus will return to the tooltip control
+* Focusing or clicking on the tooltip makes the tooltip visible
+* Once tooltip is open it will persist until the it is closed via clicking or focusing off of the close button in to left of content. 
+Once closed the focus will return to the tooltip control
 
 ### Responsiveness
 

@@ -55,11 +55,8 @@ Tooltip.args = {
     title: 'Test Tooltip Title',
     content: 'Stub text for tooltip.',
     tooltipControl: '<cbp-icon name="user"></cbp-icon>',
-    sx:{
-        "margin-left":"40%",
-        "margin-top":"20%"
-    }   
 }
+Tooltip.parameters= { layout: 'centered'} //todo: not vertically aligned due to the cbp-app{min-height: 100vh}, same with both samples
 
 const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipControl, context, sx }) => {
     return ` 
@@ -67,7 +64,7 @@ const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipContr
             ${open ? `open` : ''}
             ${uid ? `uid=${uid}` : ''}
             alignment=${alignment}
-            definitionLinkStyle=true
+            variant=definition
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ``}
 
@@ -91,8 +88,6 @@ DefinitionTooltip.args = {
     title: 'Test DefinitionTooltip Title',
     content: 'Stub text for definition tooltip.',
     tooltipControl: `TASPD`,
-    sx:{
-        "margin-left":"40%",
-        "margin-top":"20%"
-    }   
 }
+
+DefinitionTooltip.parameters= { layout: 'centered'}
