@@ -39,6 +39,8 @@
   --cbp-tooltip-control-color-focus-dark: var(--cbp-color-text-darkest);
   --cbp-tooltip-control-color-bg-focus: var(--cbp-color-interactive-focus-dark);
   --cbp-tooltip-control-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-tooltip-control-outline-focus: 2px solid var(--cbp-color-white);
+  --cbp-tooltip-control-outline-focus-dark: 2px solid var(--cbp-color-black);
 
   --cbp-tooltip-definition-color: var(--cbp-color-interactive-primary-dark);
   --cbp-tooltip-definition-color-dark: var(--cbp-color-interactive-primary-light);
@@ -61,6 +63,7 @@
 
   --cbp-tooltip-control-color-focus: var(--cbp-tooltip-control-color-focus-dark);
   --cbp-tooltip-control-color-bg-focus: var(--cbp-tooltip-control-color-bg-focus-dark);
+  --cbp-tooltip-control-outline-focus: var(--cbp-tooltip-control-outline-focus-dark);
 
   --cbp-tooltip-definition-color: var(--cbp-tooltip-definition-color-dark);
   --cbp-tooltip-definition-color-hover: var(--cbp-tooltip-definition-color-hover-dark);
@@ -89,6 +92,7 @@ cbp-tooltip {
   &:focus-within{
     color: var(--cbp-tooltip-control-color-focus);
     background: var(--cbp-tooltip-control-color-bg-focus);
+    outline:var(--cbp-tooltip-control-outline-focus);
   }
 
   /** definition link*/

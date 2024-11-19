@@ -24,6 +24,7 @@ export default {
             control: 'object',
         },
     },
+    parameters: { layout: 'centered'}
   };
 
 const Template = ({ open, uid, alignment, title, content, tooltipControl, context, sx }) => {
@@ -56,7 +57,6 @@ Tooltip.args = {
     content: 'Stub text for tooltip.',
     tooltipControl: '<cbp-icon name="user"></cbp-icon>',
 }
-Tooltip.parameters= { layout: 'centered'} //todo: not vertically aligned due to the cbp-app{min-height: 100vh}, same with both samples
 
 const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipControl, context, sx }) => {
     return ` 
@@ -89,5 +89,3 @@ DefinitionTooltip.args = {
     content: 'Stub text for definition tooltip.',
     tooltipControl: `TASPD`,
 }
-
-DefinitionTooltip.parameters= { layout: 'centered'}
