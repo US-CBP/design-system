@@ -37,9 +37,9 @@ const Template = ({ open, uid, alignment, title, content, tooltipControl, contex
             ${sx ? `sx=${JSON.stringify(sx)}` : ``}
 
             >  
-            <div>
+            
                 ${tooltipControl}
-            </div>
+            
             <div slot="cbp-tooltip-content">
                 <div style='font-weight: var(--cbp-font-weight-bold)'>${title}</div>
                 <div>${content}</div>
@@ -69,9 +69,9 @@ const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipContr
             ${sx ? `sx=${JSON.stringify(sx)}` : ``}
 
             >  
-            <div>
-                ${tooltipControl}
-            </div>
+            
+            ${tooltipControl}
+            
             <div slot="cbp-tooltip-content">
                 <div style='font-weight: var(--cbp-font-weight-bold)'>${title}</div>
                 <div>${content}</div>
@@ -85,7 +85,7 @@ export const DefinitionTooltip = DefinitionTemplate.bind({});
 DefinitionTooltip.args = {
     uid: 'tooltip',
     alignment: 'top-left',
-    title: 'Test DefinitionTooltip Title',
+    title: 'Test Definition Tooltip Title',
     content: 'Stub text for definition tooltip.',
     tooltipControl: `TASPD`,
 }

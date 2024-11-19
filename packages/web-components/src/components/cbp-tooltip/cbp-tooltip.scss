@@ -30,8 +30,13 @@
   --cbp-tooltip-caret-size: 15px;
   --cbp-tooltip-caret-offset: calc(var(--cbp-tooltip-caret-size) / 2);
 
+
+  
+  --cbp-tooltip-control-height: 2.25rem; 
+  --cbp-tooltip-control-width: var(--cbp-tooltip-control-height); 
+
   --cbp-tooltip-control-color-hover: var(--cbp-color-interactive-secondary-darker);
-  --cbp-tooltip-control-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-tooltip-control-color-hover-dark: var(--cbp-color-text-darkest);
   --cbp-tooltip-control-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
   --cbp-tooltip-control-color-bg-hover-dark: var(--cbp-color-interactive-disabled-light);
 
@@ -73,16 +78,29 @@
 }
 
 cbp-tooltip {
-  display: inline-block;
+  // display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
+  border-radius: var(--cbp-border-radius-soft);
   --cbp-tooltip-placement-gap: var(--cbp-tooltip-gap);
   --cbp-tooltip-placement-offset: var(--cbp-tooltip-offset);
   --cbp-tooltip-gap: var(--cbp-space-4x, 1rem);
   
   &[open] [role='tooltip']{
       display: flex;
+
   }
-    
+   
+  //set default tooltip control to look like square ghost button
+  &{
+    height: var(--cbp-tooltip-control-height);
+    width: var(--cbp-tooltip-control-width);
+    padding: var(--cbp-space-1x);
+    outline-offset: calc(-1 * var(--cbp-space-1x));
+  }
+
   &:hover{
     color: var(--cbp-tooltip-control-color-hover);
     background: var(--cbp-tooltip-control-color-bg-hover);
@@ -245,6 +263,7 @@ div[role=tooltip] {
   top: var(--cbp-tooltip-placement-top);
   left: var(--cbp-tooltip-placement-left);
   height: var(--tooltip-height, auto);
+  padding: var(--cbp-space-1x);
   min-height: var(--cbp-space-11x);
   width:  max-content;
   max-width: 33vw;
@@ -262,7 +281,7 @@ div[role=tooltip] {
   z-index: var(--cbp-z-index-level-1);
 
   > div{
-    padding: var(--cbp-space-2x);
+    padding: var(--cbp-space-1x);
   
     [slot='cbp-tooltip-content']{
       line-height: var(--cbp-line-height-xs);
