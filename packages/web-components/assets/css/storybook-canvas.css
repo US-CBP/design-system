@@ -9,6 +9,10 @@ body:has(cbp-app[data-cbp-theme="dark"]) {
   background-color: var(--cbp-color-branding-cbp-dark);
 }
 
+.sb-main-centered cbp-app {
+  min-height: unset;
+}
+
 
 /* Docs overrides */
 .sbdocs .sbdocs-content {

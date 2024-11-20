@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Tooltip/Specifications" />
+
+# cbp-tooltip
+
+## Purpose
+
+* The tooltip component allows the development team to disclose supplemental, not essential or nessecary, information to a user via a
+triggering element. These should be used sparingly since hiding functionality should be avoided if at all possible. Historically, 
+tooltips were accessible via hover but this does not conform to accessibility standards, and is completely invisible on touch-based 
+devices. As such, tooltips are activated by focusing or clicking the triggering element
+
+## Functional Requirements
+
+* Tooltip is designed to wrap a slotted control, the control can be anything but the click and focus functionality will be impeded 
+since they are used to launch the tooltip
+* Consumers will have to define the alignment of the tooltip. See the alignment prop for the defined options
+
+## Technical Specifications
+
+### User Interactions
+
+* Focusing or clicking on the tooltip makes the tooltip visible
+* Once tooltip is open it will persist until the it is closed via clicking or focusing off of the close button in to left of content. 
+Once closed the focus will return to the tooltip control
+
+### Responsiveness
+
+* 
+
+### Accessibility
+
+* Tooltip is designed with keyboard navigation in mind, with the tooltip launching on focus & closing both via the escape key & focus 
+leaving the close button
+* Tooltip has the roles semantically defined in HTML with the parent as role='button' and the tooltip container role='tooltip'
+* The tooltip root/parent has a tabindex of 0 to assist with Accessibility concerns with focus
+
+### Additional Notes and Considerations
