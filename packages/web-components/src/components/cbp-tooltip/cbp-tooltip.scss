@@ -78,27 +78,21 @@
 }
 
 cbp-tooltip {
-  // display: inline-block;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;
   border-radius: var(--cbp-border-radius-soft);
+  height: var(--cbp-tooltip-control-height);
+  width: var(--cbp-tooltip-control-width);
+  padding: var(--cbp-space-1x);
+  outline-offset: calc(-1 * var(--cbp-space-1x));
   --cbp-tooltip-placement-gap: var(--cbp-tooltip-gap);
   --cbp-tooltip-placement-offset: var(--cbp-tooltip-offset);
   --cbp-tooltip-gap: var(--cbp-space-4x, 1rem);
   
   &[open] [role='tooltip']{
       display: flex;
-
-  }
-   
-  //set default tooltip control to look like square ghost button
-  &{
-    height: var(--cbp-tooltip-control-height);
-    width: var(--cbp-tooltip-control-width);
-    padding: var(--cbp-space-1x);
-    outline-offset: calc(-1 * var(--cbp-space-1x));
   }
 
   &:hover{
@@ -115,6 +109,11 @@ cbp-tooltip {
 
   /** definition link*/
 &[variant=definition]{
+  height: unset;
+  width: unset;
+  padding: unset;
+  outline-offset: unset;
+  border-radius: unset;
   font-size: var(--cbp-font-size-body);
   color: var(--cbp-tooltip-definition-color);
   text-decoration: underline;
