@@ -1,6 +1,9 @@
 import { Component, Element, Prop, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * @slot - Only `cbp-tab` components shall be slotted within the default slot.
+ */
 @Component({
   tag: 'cbp-tabs',
   styleUrl: 'cbp-tabs.scss',

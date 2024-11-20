@@ -29,11 +29,12 @@ export const getFocusableElements = (scope: HTMLElement) => {
 export const setCSSProps = <T extends { [key: string]: any }>(host: HTMLElement, { ...props }: T): void => {
   Object.entries(props).forEach(([key, value]): void => {
     try {
-      //console.log('setCSSProps: ',{host},{key},{value}, typeof value);
-      // Any value other than undefined is coerced into a string?
-      //host.style.setProperty(key, value != undefined ? value : '');
+      // Still testing: Anything undefined should be skipped. Any other value is coerced into a string?
+      if (value != undefined) {
+        //console.log('setCSSProps: ', host, key, value, typeof value);
+        host.style.setProperty(key, value);
+      }
 
-      typeof value == 'string' ? host.style.setProperty(key, value) : host.style.setProperty(key, value != undefined ? `${value}` : '');
     } catch (e) {
       console.log('Error in setCSSProps: ', { host }, { key }, { value }, { e });
     }

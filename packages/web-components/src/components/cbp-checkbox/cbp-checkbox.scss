@@ -107,16 +107,18 @@ cbp-checkbox {
   position: relative;
 
   label {
-    display: flex;
+    display: grid;
+    grid-template-columns: var(--cbp-space-6x) 1fr;
     align-items: center;
+    gap: var(--cbp-space-2x);
     min-height: var(--cbp-checkbox-min-height);
     font-weight: var(--cbp-checkbox-font-weight-label);
     color: var(--cbp-checkbox-color-label);
   }
 
   input[type=checkbox] {
-    position: relative;
-    flex-shrink: 0;
+    display: grid;
+    place-content: center;
     appearance: none; // checkboxes do not accept styling per design specs
     color: var(--cbp-checkbox-color);
     background-color: var(--cbp-checkbox-color-bg);
@@ -127,7 +129,6 @@ cbp-checkbox {
     height: var(--cbp-space-6x);
     width: var(--cbp-space-6x);
     margin: 0;
-    margin-inline-end: var(--cbp-space-2x);
     outline: 0;
     box-shadow: 0 0 0 calc(var(--cbp-space-5x) / 2) var(--cbp-checkbox-color-halo);
     clip-path: circle(86%);
@@ -135,13 +136,8 @@ cbp-checkbox {
     // Check Mark/Dash
     &::before {
       content: '';
-      position: absolute;
-      margin: auto;
-      left: 0;
-      right: 0;
-      bottom: 0;
       overflow: hidden;
-      top: 0;
+      //transform: scale(0);
     }
 
     // Verified: only need to set the base variables with higher level tokens that are swapped for dark mode
@@ -176,11 +172,11 @@ cbp-checkbox {
     &:checked {
       // Check Mark
       &::before {
-        border-right: solid var(--cbp-border-size-lg) var(--cbp-checkbox-color);
-        border-bottom: solid var(--cbp-border-size-lg) var(--cbp-checkbox-color);
+        height: var(--cbp-space-4x);
+        width: var(--cbp-space-2x);
+        border-right: solid var(--cbp-border-size-xl) var(--cbp-checkbox-color);
+        border-bottom: solid var(--cbp-border-size-xl) var(--cbp-checkbox-color);
         //border-radius: 1px;
-        height: 70%;
-        width: 35%;
         transform: rotate(45deg) translateY(-10%) translateX(-10%);
       }
     }
@@ -188,10 +184,10 @@ cbp-checkbox {
     &:indeterminate {
       // Indeterminate dash
       &::before {
+        height: 0;
+        width: var(--cbp-space-4x);
         border: solid var(--cbp-border-size-md) var(--cbp-checkbox-color);
         border-radius: var(--cbp-border-radius-soft);
-        height: 0;
-        width: 60%;
       }
     }
 

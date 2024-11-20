@@ -4,13 +4,17 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
+## [unpublished] TBD
+* Published the Change log to Storybook.
+* Published Stencil-generated component API docs to Storybook. We will continually revisit these for completion.
+
 ## [0.0.1-develop.16] 10-28-2024
 * First cut of `cbp-checkbox`.
 * First cut of `cbp-radio`.
 * First cut of `cbp-toast`.
 * Updated `cbp-form-field` with the ability to handle input groups (e.g., checklist, radio list, compound inputs) with more than a single input.
 * Updated Structured list with selectable functionality.
-* Fixed the issue with slotted Accordion title being hidden.
+* Fixed the issue with slotted Accordion Item title being hidden (the slot name was also updated to `cbp-accordion-item-title` to follow our naming conventions).
 
 ## [0.0.1-develop.15] 10-07-2024
 
@@ -90,7 +94,7 @@ The React components are wrappers generated from this package and will share the
 * Breaking: Deprecated/removed `cbp-visuallyhidden` since its functionality was included in cbp-hide.
 * First cut of `cbp-hide`, a component that allows content to be programmatically hidden (or visually hidden) based on property or media query.
 * Updated designs of `cbp-badge`, `cbp-chip`, and `cbp-tag` to use the correct design tokens.
-* Updated the cbp-chip component by adding `name` and `value` properties and updating the custom event.
+* Updated the `cbp-chip` component by adding `name` and `value` properties and updating the custom event.
 * Updated Template and Universal Header stories to use `cbp-hide` for responsiveness.
 * Updated the Template to wrap the Universal Header and Application Header in an HTML5 `header` landmark tag.
 

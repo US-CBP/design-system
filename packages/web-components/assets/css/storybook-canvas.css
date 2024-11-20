@@ -13,6 +13,22 @@ body:has(cbp-app[data-cbp-theme="dark"]) {
   min-height: unset;
 }
 
+
+/* Docs overrides */
+.sbdocs .sbdocs-content {
+  max-width: 1200px !important;
+}
+
+.sbdocs code {
+  white-space: normal !important;
+}
+
+.sbdocs table {
+  width: 100% !important;
+}
+
+
+
 /* TechDebt: Remove when table component is added to design tokens story */
 #design-tokens table {
   width: 100%;
