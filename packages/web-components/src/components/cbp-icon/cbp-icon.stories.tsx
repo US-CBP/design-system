@@ -25,6 +25,7 @@ export default {
         'eye-slash',
         'filter',
         'globe',
+        'home',
         'landmark',
         'lock',
         'magnifying-glass',
