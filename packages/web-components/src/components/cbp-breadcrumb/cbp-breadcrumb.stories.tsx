@@ -15,9 +15,9 @@ export default {
       },
     };
   
-    function generateBreadcrumbs(breadcrumbs){
+    function generateBreadcrumbs(breadcrumbs, context){
       const html =  breadcrumbs.map(({text, href}) => {
-          return ` / <cbp-link href=${href}> ${text}</cbp-link> `
+          return ` / <cbp-link href=${href}  context=${context}> ${text}</cbp-link> `
         }
       );
       return html.join('');
@@ -34,16 +34,16 @@ export default {
                 fill="ghost"
                 color="primary"
                 variant="square"
+                context=${context}
                 href=${home}
-                accessibility-text="Home" 
-                slot='home' 
+                accessibility-text="Home"
               >
                 <cbp-icon
                   name="home"
                 >
                 </cbp-icon>
               </cbp-button>
-              ${generateBreadcrumbs(breadcrumbs)}
+              ${generateBreadcrumbs(breadcrumbs, context)}
             </cbp-breadcrumb>
           `;
       };
