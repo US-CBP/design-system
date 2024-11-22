@@ -1,5 +1,21 @@
+/**
+ * @Prop --cbp-breadcrumb-color: var(--cbp-color-text-darkest);
+ * @Prop --cbp-breadcrumb-color-dark: var(--cbp-color-text-lightest);
+ */
+ 
+ :root{
+  --cbp-breadcrumb-color: var(--cbp-color-text-darkest);
+  --cbp-breadcrumb-color-dark: var(--cbp-color-text-lightest);
+}
+
+[data-cbp-theme=light] cbp-breadcrumb[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-breadcrumb:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-breadcrumb-color: var(--cbp-breadcrumb-color-dark);
+}
+
 cbp-breadcrumb {
-  
+  color: var(--cbp-breadcrumb-color);
+
   cbp-link{
   padding: var(--cbp-space-1x);
   }

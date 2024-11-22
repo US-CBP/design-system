@@ -2,7 +2,14 @@ export default {
     title: 'Components/Breadcrumb',
     //tags: ['autodocs'],
     argTypes: {
- 
+      context : {
+        control: 'select',
+        options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+      },
+      sx: {
+        description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
+        control: 'object',
+      },
     },
       args: {
       },
@@ -16,11 +23,26 @@ export default {
       return html.join('');
     }
 
-    const Template = ({ breadcrumbs, home}) => {
+    const Template = ({ breadcrumbs, home, context, sx}) => {
         return ` 
             <cbp-breadcrumb
-              home=${home}
+              ${context && context != 'light-inverts' ? `context=${context}` : ''}
+              ${sx ? `sx=${JSON.stringify(sx)}` : ''}
             >
+              <cbp-button
+                tag="a"
+                fill="ghost"
+                color="primary"
+                variant="square"
+                href=${home}
+                accessibility-text="Home" 
+                slot='home' 
+              >
+                <cbp-icon
+                  name="home"
+                >
+                </cbp-icon>
+              </cbp-button>
               ${generateBreadcrumbs(breadcrumbs)}
             </cbp-breadcrumb>
           `;

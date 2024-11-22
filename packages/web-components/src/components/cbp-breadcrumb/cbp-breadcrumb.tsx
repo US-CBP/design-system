@@ -30,7 +30,7 @@ export class CbpBreadcrumb {
   render() {
     return (
       <Host>
-        <cbp-button
+        {/* <cbp-button
           tag="a"
           fill="ghost"
           color="primary"
@@ -41,8 +41,8 @@ export class CbpBreadcrumb {
             name="home"
           >
           </cbp-icon>
-        </cbp-button>
-        
+        </cbp-button> */}
+        <slot name='home'></slot>
         <slot></slot>
       </Host>
     );
