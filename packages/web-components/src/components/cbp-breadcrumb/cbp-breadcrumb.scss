@@ -2,7 +2,7 @@
  * @Prop --cbp-breadcrumb-color: var(--cbp-color-text-darkest);
  * @Prop --cbp-breadcrumb-color-dark: var(--cbp-color-text-lightest);
  */
- 
+
  :root{
   --cbp-breadcrumb-color: var(--cbp-color-text-darkest);
   --cbp-breadcrumb-color-dark: var(--cbp-color-text-lightest);
@@ -15,8 +15,11 @@
 
 cbp-breadcrumb {
   color: var(--cbp-breadcrumb-color);
-
-  cbp-link{
-  padding: var(--cbp-space-1x);
+ 
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--cbp-space-2x);
   }
 }
