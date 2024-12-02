@@ -114,7 +114,8 @@ cbp-app-header {
   //.nav-home,
   //.cbp-nav-item,
   //.cbp-menu-dropdown, 
-  button, a {
+  > button,
+  > a {
     display: flex;
     align-items: center;
     height: 100%;

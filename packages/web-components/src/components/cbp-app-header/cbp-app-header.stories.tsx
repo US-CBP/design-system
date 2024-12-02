@@ -23,6 +23,17 @@ const Template = ({ context, sx }) => {
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
         <a slot="cbp-home" href="/" class="nav-home">Application Name</a>
+        <cbp-app-header-nav 
+          variant='multi'
+          text='Multi Nav Item'
+          href='/'
+        >
+        </cbp-app-header-nav>
+        <cbp-app-header-nav
+          text='Single Nav Item'
+          href='/'
+        >
+        </cbp-app-header-nav>
       </cbp-app-header>
       `;
 };
