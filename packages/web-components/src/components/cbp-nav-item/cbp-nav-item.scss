@@ -1,0 +1,68 @@
+/**
+ * @Prop  --cbp-nav-item-button-color: var(--cbp-color-interactive-secondary-darker);
+ * @Prop   --cbp-nav-item-button-color-dark: var(--cbp-color-interactive-secondary-lighter);
+
+ * @Prop   --cbp-nav-item-button-color-hover: var(--cbp-color-interactive-secondary-darker);
+ * @Prop   --cbp-nav-item-button-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+
+ * @Prop   --cbp-nav-item-button-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
+ * @Prop   --cbp-nav-item-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-darker);
+    
+ * @Prop   --cbp-nav-item-button-border-bottom-hover: var(--cbp-color-interactive-secondary-darker);
+ * @Prop   --cbp-nav-item-button-border-bottom-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+
+ */
+
+ :root {
+    --cbp-nav-item-button-color: var(--cbp-color-interactive-secondary-darker);
+    --cbp-nav-item-button-color-dark: var(--cbp-color-interactive-secondary-lighter);
+
+    --cbp-nav-item-button-color-hover: var(--cbp-color-interactive-secondary-darker);
+    --cbp-nav-item-button-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+
+    --cbp-nav-item-button-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
+    --cbp-nav-item-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-darker);
+    
+    --cbp-nav-item-button-border-bottom-hover: var(--cbp-color-interactive-secondary-darker);
+    --cbp-nav-item-button-border-bottom-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+
+}
+
+/* 
+ * Dark Mode - display dark design based on mode or context.
+ */
+ 
+[data-cbp-theme=light] cbp-nav-item[context*=dark]:not(#fakeId),
+[data-cbp-theme=dark] cbp-nav-item:not([context=dark-inverts]):not([context=light-always]):not(#fakeId) {
+  
+  --cbp-nav-item-button-color: var(--cbp-nav-item-button-color-dark);
+  --cbp-nav-item-button-color-hover: var(--cbp-nav-item-button-color-hover-dark);
+  
+  --cbp-nav-item-button-color-bg-hover: var(--cbp-nav-item-button-color-bg-hover-dark);
+
+  --cbp-nav-item-button-border-bottom-hover: var(--cbp-nav-item-button-border-bottom-hover-dark);
+}
+
+
+cbp-nav-item {
+
+  /* remap cbp-button vars */
+  cbp-button[fill=ghost][color=secondary] {
+    --cbp-button-min-height: 3.5rem; 
+    --cbp-button-color: var(-nav-item-button-color);
+    --cbp-button-border-width: 0 0 var(--cbp-border-size-xl) 0;
+    --cbp-button-border-radius: var(--cbp-border-radius-sharp);
+
+    font-size: var(--cbp-font-weight-bold);
+
+    &:hover{
+      --cbp-button-color-hover: var(--cbp-nav-item-button-color-hover);
+      --cbp-button-color-bg-hover: var(--cbp-nav-item-button-color-bg-hover);
+      --cbp-button-color-border-hover: var(--cbp-nav-item-button-border-bottom-hover); 
+    }
+
+    &:active{
+      --cbp-button-focus-outline-width: 0;
+    }
+  }
+}
