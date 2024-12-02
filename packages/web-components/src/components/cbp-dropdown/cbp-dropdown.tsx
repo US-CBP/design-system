@@ -13,9 +13,19 @@ import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/
 export class CbpDropdown {
   private control: HTMLButtonElement;
   private formField: HTMLInputElement; // the hidden input that stores the dropdown value for form posts
+  
+  //private label: string;
   private dropdownItems: HTMLCbpDropdownItemElement[];
   private selectedItem: HTMLCbpDropdownItemElement;
   private focusIndex: number;
+
+  @State() searchString: string = ''; // This needs to be a state so that it can be used in the render method to replace the control label. TODO: test for accessibility.
+  //private searchString: string = '';
+  private matches: number[]; // an array of indexes of the matches. Do we need the DOM references too?
+  private matchIndex: number;
+  private searchTimeout = null;
+  //private activeIndex: number;
+
   private counterControl: HTMLElement;
   
   private attachedButtonStart: any;
@@ -25,11 +35,11 @@ export class CbpDropdown {
 
   @Element() host: HTMLCbpDropdownElement;
 
-  @Prop() label: string;
-  @Prop() description: string;
-
   /** Specifies whether multiple selections are supported, in which case checkboxes shall be slotted in accordance with the design system specified pattern. Defaults to false, which renders a single-select dropdown. */
   @Prop({ reflect: true }) multiple: boolean;
+
+  /** Specifies whether...?  */
+  @Prop({ reflect: true }) filter: boolean;
 
   /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-dropdown');
@@ -131,13 +141,20 @@ export class CbpDropdown {
       // Update the focusIndex for keyboard navigation
       if (this.multiple) this.focusIndex = 0;
       else this.focusIndex = this.dropdownItems.indexOf(this.selectedItem) || 0;
-
       this.setFocus();
 
+      console.log(this.focusIndex);
+      
       // Set up a clickaway listener to close the menu
       clickAwayListener(this.host, _ => {
         this.open = false;
       });
+    }
+    // If the dropdown was closed, clear any filters
+    else {
+      if(this.filter) {
+        this.clearFilters();
+      }
     }
   }
 
@@ -171,6 +188,10 @@ export class CbpDropdown {
     }
   }
 
+  /** 
+   * A public method to clear all selected items in a dropdown (single or multi-select).
+   * Emits the valueChange event afterward.
+   */
   @Method()
   async clearSelections() {
     this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
@@ -215,10 +236,291 @@ export class CbpDropdown {
     }
   }
 
+
+
+
+
   // This handles activating the button via Space or Enter as well (as long as it's not readonly or disabled).
   handleDropdownClick() {
     if (!this.readonly && !this.disabled) this.open = !this.open;
   }
+
+  // Testing...
+  getActionFromKey( event) {
+    const { key, altKey, ctrlKey, metaKey } = event;
+    //const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ']; // all keys that will do the default open action
+    const openKeys = ['ArrowDown', 'ArrowUp']; // all keys that will do the default open action - Enter and Space invoke the click handler already
+    // handle opening when closed
+    if (openKeys.includes(key) && !this.readonly && !this.disabled) {
+      if (!this.open) this.open = true; // : this.setFocus();
+    }
+
+    // Close the menu when pressing ESC anywhere in the component and send focus back to the control
+    if (key == 'Escape') {
+      this.open = false;
+      this.control.focus();
+    }
+    
+    // handle typing characters when open or closed
+    if ( key === 'Backspace' || key === 'Clear' ||
+        (key.length === 1 && key !== ' ' && !altKey && !ctrlKey && !metaKey)
+    ) {
+      this.open=true;
+      this.filter ? this.searchByString(key.toLowerCase()) : this.jumpToLetter(key.toLowerCase());
+    }
+  }
+
+  /*
+    Single letter cycling (like a native select)
+  */
+  jumpToLetter(letter) {
+    console.log('JumpToLetter: ', letter);
+    
+    // TODO: If keyboard nav has been used to shift focus to another item, what does pressing a letter do?
+
+    // if the letter pressed is different from the last one, find all the matches and select the first
+    if (letter != this.searchString) {
+      this.searchString = letter;
+      this.getFirstLetterMatches(letter);
+
+      if (this.matches.length > 0) {
+        this.matchIndex=0;
+        this.focusIndex=this.matches[0];
+      }
+      // No Matches - do what?
+      else {
+
+      }
+
+      //this.dropdownItems[this.focusIndex].focus();
+      console.log(this.matches, this.matchIndex, this.focusIndex);
+    }
+    // If the letter pressed matched the last one, cycle through the matches
+    else {
+      // If there are matches, set the current focusIndex from the array of matches and update focus, 
+      if (this.matches.length > 0) {
+
+        if (this.matchIndex+1 < this.matches.length) {
+          this.matchIndex += 1;
+          //this.focusIndex=this.matches[this.matchIndex];
+          //this.dropdownItems[this.focusIndex].focus();
+          //console.log(this.matches, this.matchIndex, this.focusIndex);
+        }
+        else {
+          this.matchIndex = 0;
+          //this.focusIndex=this.matches[this.matchIndex];
+          //this.dropdownItems[this.focusIndex].focus();
+          //console.log(this.matches, this.matchIndex, this.focusIndex);
+        }
+        this.focusIndex=this.matches[this.matchIndex];
+        this.dropdownItems[this.focusIndex].focus();
+      }
+      else {
+        // If there are no matches, do nothing?
+      }
+    }
+    console.log('JumpToLetter Results: ',this.matches, this.matchIndex, this.focusIndex);
+    if (this.focusIndex != undefined) this.dropdownItems[this.focusIndex].focus();
+  }
+
+  getFirstLetterMatches(letter) {
+    let matches=[];
+    this.dropdownItems.forEach( (item, index) => {
+      const label=item.innerText.toLowerCase();
+      console.log({label});
+      // does this item start with the character pressed?
+      if (label.startsWith(letter)) {
+        matches=[...matches, index];
+      }
+    });
+    this.matches = matches;
+  }
+  
+
+
+
+
+  /*
+    Filtering by search string
+  */
+  getSearchStringMatches(searchString) {
+    let matches=[];
+    this.dropdownItems.forEach( (item, index) => {
+      const label=item.innerText.toLowerCase();
+      console.log({label});
+      // does this item start with the character pressed?
+      if (label.indexOf(searchString) >= 0) {
+        matches=[...matches, index];
+      }
+    });
+    this.matches = matches;
+  }
+
+  filterDropdownItems(matches){
+    this.dropdownItems.forEach( (item, index) => {
+      matches.includes(index) ? item.removeAttribute('hidden') : item.setAttribute('hidden','');
+      // Now we need to update keyboard nav to traverse the matches array instead of all dropdown items
+    });
+  }
+
+  clearFilters() {
+    this.matches=[];
+    this.matchIndex=null;
+    this.searchString='';
+    this.dropdownItems.forEach( item => {
+      item.removeAttribute('hidden');
+    });
+  }
+
+  searchByString(letter) {
+    // find the index of the first matching option
+    console.log('SearchByLetter: ', letter);
+    
+
+    if ( letter === 'Backspace' || letter === 'Clear') {
+      // Remove a character
+      console.log(letter, 'pressed, remove a character.');
+    }
+    else {
+      this.searchString += letter;
+    }
+    this.getSearchStringMatches(this.searchString);
+    this.filterDropdownItems(this.matches);
+    console.log('searchByString results: ', this.searchString, this.matches);
+    
+    /*
+    if ( key === 'Backspace' || key === 'Clear' ||
+      (key.length === 1 && key !== ' ' && !altKey && !ctrlKey && !metaKey)
+  ) {
+
+      // if a match was found, go to it
+      if (searchIndex >= 0) {
+        this.onOptionChange(searchIndex);
+      }
+      // if no matches, clear the timeout and search string
+      else {
+        window.clearTimeout(this.searchTimeout);
+        this.searchString = '';
+      }
+  */
+    /*
+    const searchString = this.getSearchString(letter);
+    const searchIndex = this.getIndexByLetter(
+      this.options,
+      searchString,
+      this.activeIndex + 1
+    );
+  
+    // if a match was found, go to it
+    if (searchIndex >= 0) {
+      //this.onOptionChange(searchIndex); // update the highlighted option (not focus)
+    }
+    // if no matches, clear the timeout and search string
+    else {
+      window?.clearTimeout(this.searchTimeout);
+      this.searchString = '';
+    }
+    */
+  };
+
+
+
+
+
+
+  // return the index of an option from an array of options, based on a search string
+  // if the filter is multiple iterations of the same letter (e.g "aaa"), then cycle through first-letter matches
+  getIndexByLetter(options, filter, startIndex = 0) {
+    const orderedOptions = [
+      ...options.slice(startIndex),
+      ...options.slice(0, startIndex),
+    ];
+    const firstMatch = this.filterOptions(orderedOptions, filter)[0];
+    const allSameLetter = (array) => array.every((letter) => letter === array[0]);
+
+    // first check if there is an exact match for the typed string
+    if (firstMatch) {
+      return options.indexOf(firstMatch);
+    }
+
+    // if the same letter is being repeated, cycle through first-letter matches
+    else if (allSameLetter(filter.split(''))) {
+      const matches = this.filterOptions(orderedOptions, filter[0]);
+      return options.indexOf(matches[0]);
+    }
+
+    // if no matches, return -1
+    else {
+      return -1;
+    }
+  }
+
+
+
+
+
+  // filter an array of options against an input string
+  // returns an array of options that begin with the filter string, case-independent
+  filterOptions(options = [], filter, exclude = []) {
+    return options.filter((option) => {
+      const matches = option.toLowerCase().indexOf(filter.toLowerCase()) === 0;
+      return matches && exclude.indexOf(option) < 0;
+    });
+  }
+
+
+
+
+  xxxsearchByString(letter) {
+    console.log('SearchByString: ', letter);
+    
+    /*
+    // find the index of the first matching option
+    const searchString = this.getSearchString(letter);
+    const searchIndex = getIndexByLetter(
+      this.options,
+      searchString,
+      this.activeIndex + 1
+    );
+  
+    // if a match was found, go to it
+    if (searchIndex >= 0) {
+      this.onOptionChange(searchIndex);
+    }
+    // if no matches, clear the timeout and search string
+    else {
+      window.clearTimeout(this.searchTimeout);
+      this.searchString = '';
+    }
+    */
+  };
+
+  getSearchString(char) {
+    // reset typing timeout and start new timeout
+    // this allows us to make multiple-letter matches, like a native select
+    if (typeof this.searchTimeout === 'number') {
+      window.clearTimeout(this.searchTimeout);
+    }
+  
+    this.searchTimeout = window.setTimeout(() => {
+      this.searchString = '';
+    }, 500);
+  
+    // add most recent letter to saved search string
+    this.searchString += char;
+    return this.searchString;
+  };
+
+
+
+
+
+
+
+
+
+
+
 
   handleKeyUp({ key }) {
     // Close the menu when pressing ESC anywhere in the component and send focus back to the control
@@ -260,7 +562,7 @@ export class CbpDropdown {
   setFocus() {
     setTimeout(() => {
       if (!this.multiple && this.selectedItem) this.selectedItem.focus();
-      else this.dropdownItems[0].focus();
+      else this.dropdownItems[this.focusIndex].focus();
     }, 100);
   }
 
@@ -274,8 +576,6 @@ export class CbpDropdown {
     
     this.attachedButtonStart = this.host.querySelector('[slot=cbp-dropdown-attached-button-start]');
     this.attachedButtonEnd = this.host.querySelector('[slot=cbp-dropdown-attached-button-end]');
-
-
 
     // TechDebt: Use the dropdown values as they should match the checkbox values
     if (this.multiple) {
@@ -344,7 +644,8 @@ export class CbpDropdown {
   render() {
     return (
       <Host 
-        onKeyUp={e => this.handleKeyUp(e)} 
+        //onKeyUp={e => this.handleKeyUp(e)} 
+        onKeyUp={e => this.getActionFromKey(e)} 
         onKeyDown={e => this.handleKeyDown(e)}
       >
         <div class="cbp-dropdown-shrinkwrap">
@@ -363,10 +664,9 @@ export class CbpDropdown {
             onClick={() => this.handleDropdownClick()}
             ref={el => (this.control = el)}
           >
-            {this.selectedLabel ? (
-              <div class="cbp-dropdown-label">{this.selectedLabel}</div>
-            ) : (
-              <div class="cbp-dropdown-placeholder">
+            { (this.selectedLabel || (this.filter && this.searchString)) 
+              ? <div class="cbp-dropdown-label">{this.filter && this.searchString ? this.searchString : this.selectedLabel}</div>
+              : <div class="cbp-dropdown-placeholder">
                 {this.multiple && (
                   <span
                     role="button"
@@ -387,7 +687,7 @@ export class CbpDropdown {
                 )}
                 {this.placeholder}
               </div>
-            )}
+          }
           </button>
 
           <slot name="cbp-dropdown-attached-button-end" />
