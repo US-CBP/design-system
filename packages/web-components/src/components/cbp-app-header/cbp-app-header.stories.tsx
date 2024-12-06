@@ -16,36 +16,61 @@ export default {
   },
 };
 
-const Template = ({ context, sx }) => {
+function generateNavItems(navItems){
+  const html =  navItems.map(({html, selected}) => {
+      return `<cbp-nav-item ${selected ? 'selected' : ''}> ${html}</cbp-nav-item>`;
+    }
+  );
+  return html.join('');
+}
+
+
+const Template = ({ navItems, context, sx }) => {
   return ` 
       <cbp-app-header
         context="${context}"
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        <a slot="cbp-home" href="/" class="nav-home">Application Name</a>
-        <cbp-nav-item>
-          <cbp-button
-              tag='a'
-              fill="ghost"
-              color="secondary"
-              href='/'
-            >
-            Single Nav Item 1
-          </cbp-button>
-        </cbp-nav-item>
-
-        <cbp-nav-item>
-          <cbp-button
-            tag='a'
-            fill="ghost"
-            color="secondary"
-            href='/'
-          >
-            Single Nav Item 2
-          </cbp-button>
-        </cbp-nav-item>
+        ${generateNavItems(navItems)}
       </cbp-app-header>
       `;
 };
 
 export const ApplicationHeader = Template.bind({});
+
+ApplicationHeader.args = {
+    navItems: [
+      {
+        html: ` <cbp-button
+                  tag='a'
+                  fill="ghost"
+                  color="secondary"
+                  href='#'
+                >
+                  Application Name
+                </cbp-button>`,
+        selected: true
+      },{
+        html: ` <cbp-button
+                  tag='a'
+                  fill="ghost"
+                  color="secondary"
+                  href='#'
+                >
+                  Single Nav Item 1
+                </cbp-button>`,
+          selected: false,
+      },
+      {
+        html: ` <cbp-button
+                  tag='a'
+                  fill="ghost"
+                  color="secondary"
+                  href='#'
+                >
+                  Single Nav Item 2
+                </cbp-button>`,
+        selected: false
+      },
+    ]
+};
