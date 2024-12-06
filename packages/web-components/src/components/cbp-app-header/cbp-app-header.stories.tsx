@@ -45,7 +45,7 @@ ApplicationHeader.args = {
                   tag='a'
                   fill="ghost"
                   color="secondary"
-                  href='#'
+                  href='./?path=/story/components-application-header--application-header#'
                 >
                   Application Name
                 </cbp-button>`,
@@ -55,7 +55,7 @@ ApplicationHeader.args = {
                   tag='a'
                   fill="ghost"
                   color="secondary"
-                  href='#'
+                  href='./?path=/story/components-application-header--application-header#'
                 >
                   Single Nav Item 1
                 </cbp-button>`,
@@ -66,7 +66,7 @@ ApplicationHeader.args = {
                   tag='a'
                   fill="ghost"
                   color="secondary"
-                  href='#'
+                  href='./?path=/story/components-application-header--application-header#'
                 >
                   Single Nav Item 2
                 </cbp-button>`,

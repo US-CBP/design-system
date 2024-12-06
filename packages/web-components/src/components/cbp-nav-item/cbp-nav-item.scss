@@ -19,28 +19,33 @@
 
   --cbp-nav-item-color-hover: var(--cbp-color-interactive-secondary-darker);
   --cbp-nav-item-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
-
   --cbp-nav-item-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
   --cbp-nav-item-color-bg-hover-dark: var(--cbp-color-interactive-secondary-darker);
-  
   --cbp-nav-item-border-bottom-hover: var(--cbp-color-interactive-secondary-darker);
   --cbp-nav-item-border-bottom-hover-dark: var(--cbp-color-interactive-secondary-lighter);
 
+  --cbp-nav-item-color-active: var(--cbp-color-interactive-active-dark);
+  --cbp-nav-item-color-active-dark: var(--cbp-color-interactive-active-light);
+  --cbp-nav-item-color-bg-active: var(transparent);
+  --cbp-nav-item-border-bottom-active: var(--cbp-color-interactive-active-dark);
+  --cbp-nav-item-border-bottom-active-dark: var(--cbp-color-interactive-active-light);
 }
 
 /* 
 * Dark Mode - display dark design based on mode or context.
 */
 
-[data-cbp-theme=light] cbp-nav-item[context*=dark]:not(#fakeId),
-[data-cbp-theme=dark] cbp-nav-item:not([context=dark-inverts]):not([context=light-always]):not(#fakeId) {
+[data-cbp-theme=light] cbp-app-header[context*=dark]:not(#fakeId),
+[data-cbp-theme=dark] cbp-app-header:not([context=dark-inverts]):not([context=light-always]):not(#fakeId) {
 
 --cbp-nav-item-color: var(--cbp-nav-item-color-dark);
 --cbp-nav-item-color-hover: var(--cbp-nav-item-color-hover-dark);
 
 --cbp-nav-item-color-bg-hover: var(--cbp-nav-item-color-bg-hover-dark);
+ --cbp-nav-item-border-bottom-hover: var(--cbp-nav-item-border-bottom-hover-dark); 
 
-// --cbp-nav-item-border-bottom-hover: var(--cbp-nav-item-border-bottom-hover-dark); //tech debt: cbp-button dark overrides causing issues due to specificity, assigned the nav-item border colors to the --cbp-button-color-border-hover & --cbp-button-color-border-hover-dark seperately to circumvent issue
+ --cbp-nav-item-color-active: var(--cbp-nav-item-color-active-dark);
+ --cbp-nav-item-border-bottom-active: var(--cbp-nav-item-border-bottom-active-dark);
 }
 
 
@@ -49,7 +54,7 @@ cbp-nav-item {
 /* remap cbp-button vars */
 cbp-button[fill=ghost][color=secondary] {
   --cbp-button-min-height: 3.5rem; 
-  --cbp-button-color: var(-nav-item-color);
+  --cbp-button-color: var(--cbp-nav-item-color);
   --cbp-button-border-width: 0 0 var(--cbp-border-size-xl) 0;
   --cbp-button-border-radius: var(--cbp-border-radius-sharp);
 
@@ -62,9 +67,18 @@ cbp-button[fill=ghost][color=secondary] {
   &:hover{
     --cbp-button-color-hover: var(--cbp-nav-item-color-hover);
     --cbp-button-color-bg-hover: var(--cbp-nav-item-color-bg-hover);
+
+    //tech debt: cbp-button dark overrides causing issues due to specificity, assigned the nav-item border colors to the --cbp-button-color-border-hover & --cbp-button-color-border-hover-dark seperately to circumvent issue
     --cbp-button-color-border-hover: var(--cbp-nav-item-border-bottom-hover); 
     --cbp-button-color-border-hover-dark: var(--cbp-nav-item-border-bottom-hover-dark); 
   }
+}
+
+//Selected/Active state
+&[selected] cbp-button[fill=ghost][color=secondary]{
+  --cbp-button-color: var(--cbp-nav-item-color-active);
+  --cbp-button-color-bg: var(--cbp-nav-item-color-bg-active);
+  --cbp-button-color-border: var(--cbp-nav-item-border-bottom-active);
 }
 
 //styling for home/application title nav item

@@ -18,7 +18,7 @@ export class CbpAppHeader {
 
   initNavItemset() {
     // check for a default navItem, otherwise set the first one active
-    let activeNavItem = this.navItems[0];
+    let activeNavItem;
     this.navItems.forEach(navItem => {
       if (navItem.selected === true) activeNavItem = navItem;
     });
@@ -27,7 +27,7 @@ export class CbpAppHeader {
 
   setActiveNav(activatedNav) {
     this.navItems.forEach((navItem: HTMLCbpNavItemElement) => {
-      let link = navItem.querySelector('a');
+      let link = navItem.querySelector('a, button');
 
       if (activatedNav == navItem){
         navItem.selected = true;
