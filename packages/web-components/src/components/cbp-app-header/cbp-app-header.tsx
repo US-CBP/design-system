@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop } from '@stencil/core';
+import { Component, Element, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'cbp-app-header',
@@ -10,11 +10,6 @@ export class CbpAppHeader {
   private navItems: HTMLCbpNavItemElement[] = [];
 
   @Element() host: HTMLElement;
-
-  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
-  @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
-
-
 
   initNavItemset() {
     // check for a default navItem, otherwise set the first one active
