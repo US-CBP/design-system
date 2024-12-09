@@ -14,9 +14,8 @@ export class CbpAppHeader {
   initNavItemset() {
     // check for a default navItem, otherwise set the first one active
     let activeNavItem;
-    this.navItems.forEach(navItem => {
-      if (navItem.selected === true) activeNavItem = navItem;
-    });
+    activeNavItem =  this.host.querySelector('cbp-nav-item[selected]');
+
     this.setActiveNav(activeNavItem);
   }
 
@@ -40,8 +39,13 @@ export class CbpAppHeader {
     // Attach event listeners to the child navItem
     this.navItems.forEach(navItem => {
       navItem.addEventListener('navClicked', e => this.setActiveNav(e.detail.host));
-    });
+    }); 
   }
+
+  componentDidLoad() {
+    this.initNavItemset();
+  }
+
   render() {
     return (
       <Host>

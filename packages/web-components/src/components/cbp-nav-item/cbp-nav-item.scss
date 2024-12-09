@@ -105,8 +105,8 @@ cbp-button[fill=ghost][color=secondary] {
   --cbp-button-color: var(--cbp-nav-item-color-selected);
   --cbp-button-color-bg: var(--cbp-nav-item-color-bg-selected);
   --cbp-button-color-border: var(--cbp-nav-item-border-bottom-selected);
-
-
+  //TODO: need to set text to italics (confirm with Jer)
+  font-style: italic;
   //tech debt: cbp-button dark overrides causing issues due to specificity, same issue as with hover & active above
   --cbp-button-color-dark: var(--cbp-nav-item-color-selected-dark);
   --cbp-button-color-bg-dark: var(--cbp-nav-item-color-bg-selected-dark);
