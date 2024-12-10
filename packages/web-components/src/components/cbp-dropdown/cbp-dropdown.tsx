@@ -14,19 +14,12 @@ export class CbpDropdown {
   private control: HTMLButtonElement;
   private formField: HTMLInputElement; // the hidden input that stores the dropdown value for form posts
   
-  //private label: string;
   private listbox: HTMLElement;
   private dropdownItems: HTMLCbpDropdownItemElement[];
-  //private selectedItems: HTMLCbpDropdownItemElement[]; // This is a state
-  //private selectedItem: HTMLCbpDropdownItemElement;
   private focusIndex: number;
 
-  //@State() searchString: string = ''; // This needs to be a state so that it can be used in the render method to replace the control label. TODO: test for accessibility.
-  //private searchString: string = '';
-  private matches: number[]; // an array of indexes of the matches. Do we need the DOM references too?
+  private matches: number[]; // an array of indexes (to dropdownItems) of the matches.
   private matchIndex: number; 
-  //private searchTimeout = null;
-  //private activeIndex: number;
 
   private counterControl: HTMLElement;
   
