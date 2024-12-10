@@ -1,5 +1,36 @@
 export const createNamespaceKey = (prefix?: string): string => (prefix ? prefix + '-' : '') + (Math.random() + 1).toString(26).slice(2, 7);
 
+export const setCSSProps = <T extends { [key: string]: any }>(host: HTMLElement, { ...props }: T): void => {
+  Object.entries(props).forEach(([key, value]): void => {
+    try {
+      // Still testing: Anything undefined should be skipped. Any other value is coerced into a string?
+      if (value != undefined) {
+        //console.log('setCSSProps: ', host, key, value, typeof value);
+        host.style.setProperty(key, value);
+      }
+
+    } catch (e) {
+      console.log('Error in setCSSProps: ', { host }, { key }, { value }, { e });
+    }
+  });
+};
+
+// For determining context of nested items when the parent context is inverted (e.g., renders dark context in light mode)
+export const getInvertedContext = ( context : undefined | 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always'): string => {
+  switch (context) {
+    case 'light-inverts':
+      return 'dark-inverts';
+    case 'dark-inverts':
+      return 'light-inverts';
+    case 'light-always':
+      return 'dark-always';
+    case 'dark-always':
+      return 'light-always';
+    default: 
+      return 'dark-inverts' // if context is undefined, it acts like 'light-inverts', so return 'dark-inverts'
+  }
+}
+
 export const getFocusableElements = (scope: HTMLElement) => {
   const not = {
     inert: ':not([inert]):not([inert] *)',
@@ -24,21 +55,6 @@ export const getFocusableElements = (scope: HTMLElement) => {
   //console.log(Array.from(scope.querySelectorAll(selectors.join(','))));
   return Array.from(scope.querySelectorAll(selectors.join(',')));
   //return Array.from(scope.querySelectorAll('[tabindex="0"],a[href],button,input,textarea,select'));
-};
-
-export const setCSSProps = <T extends { [key: string]: any }>(host: HTMLElement, { ...props }: T): void => {
-  Object.entries(props).forEach(([key, value]): void => {
-    try {
-      // Still testing: Anything undefined should be skipped. Any other value is coerced into a string?
-      if (value != undefined) {
-        //console.log('setCSSProps: ', host, key, value, typeof value);
-        host.style.setProperty(key, value);
-      }
-
-    } catch (e) {
-      console.log('Error in setCSSProps: ', { host }, { key }, { value }, { e });
-    }
-  });
 };
 
 export const debounce = <T extends { [key: string]: any }>({ callback, ms, prevent }: T) => {

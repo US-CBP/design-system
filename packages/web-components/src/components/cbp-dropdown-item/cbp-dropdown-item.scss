@@ -32,6 +32,7 @@
   --cbp-dropdown-item-color: var(--cbp-dropdown-item-color-dark);
   --cbp-dropdown-item-color-bg: var(--cbp-dropdown-item-color-bg-dark);
   --cbp-dropdown-item-color-border: var(--cbp-dropdown-item-color-border-dark);
+  --cbp-checkbox-color-label: var(--cbp-checkbox-color-label-dark);
  }
 
 cbp-dropdown-item {
@@ -79,6 +80,7 @@ cbp-dropdown-item {
     --cbp-dropdown-item-color-border-dark: transparent;
   }
 
+  &[current],
   &:focus {
     --cbp-dropdown-item-color: var(--cbp-color-text-lightest);
     --cbp-dropdown-item-color-bg: var(--cbp-color-interactive-focus-dark);
@@ -111,6 +113,7 @@ cbp-dropdown-item {
     --cbp-checkbox-font-weight-label: var(--cbp-font-weight-regular);
   }
 
+  &[current],
   &:focus,
   &:hover {
     cbp-checkbox {
@@ -119,6 +122,7 @@ cbp-dropdown-item {
     }
   }
   
+  &[current],
   &:focus {
     cbp-checkbox {
       --cbp-checkbox-color: var(--cbp-color-text-lightest);

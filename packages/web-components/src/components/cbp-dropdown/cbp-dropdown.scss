@@ -44,7 +44,11 @@
   // These are used by the component and are not intended to be used by consumers
   --cbp-dropdown-attached-button-start-width: 0;
   --cbp-dropdown-attached-button-end-width: 0;
+  // On dark "button" background
+  --cbp-dropdown-chevron-down: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="%23fcfcfc"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
+  --cbp-dropdown-chevron-down-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="%231b1b1b"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
 }
+
 
 /* 
  * Dark Mode - display dark design based on mode or context
@@ -59,7 +63,8 @@
   --cbp-dropdown-menu-color-bg-counter: var(--cbp-dropdown-menu-color-bg-counter-dark);
   --cbp-dropdown-menu-color-counter-outline-focus: var(--cbp-dropdown-menu-color-counter-outline-focus-dark);
   
-  --cbp-form-field-select-chevron: var(--cbp-form-field-select-chevron-dark);
+  --cbp-dropdown-chevron: var(--cbp-dropdown-chevron-dark);
+  --cbp-dropdown-chevron-down: var(--cbp-dropdown-chevron-down-dark);
  }
 
 cbp-dropdown {
@@ -67,11 +72,12 @@ cbp-dropdown {
 
   &:has([slot="cbp-dropdown-attached-button-start"]),
   &:has([slot="cbp-dropdown-attached-button-end"]) {
-    --cbp-form-field-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%231b1b1b"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
-    --cbp-form-field-select-chevron-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%23fcfcfc"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+    --cbp-dropdown-chevron-down: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%231b1b1b"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+    --cbp-dropdown-chevron-down-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%23fcfcfc"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
     
     .cbp-custom-form-control {
-      background: right calc(var(--cbp-dropdown-attached-button-end-width) + 1.125rem - 8px) top calc(1rem - 8px) no-repeat var(--cbp-form-field-select-chevron),
+      --cbp-dropdown-chevron: var(--cbp-dropdown-chevron-down);
+      background: right calc(var(--cbp-dropdown-attached-button-end-width) + 1.125rem - 8px) top calc(1rem - 8px) no-repeat var(--cbp-dropdown-chevron),
         var(--cbp-form-field-color-bg);
     }
   }
@@ -212,9 +218,5 @@ cbp-dropdown {
     --cbp-dropdown-item-padding-inline-start: 0;
     --cbp-dropdown-item-padding-block: var(--cbp-space-1x);
     --cbp-dropdown-item-font-style-selected: normal;
-
-    cbp-checkbox {
-    --cbp-checkbox-color-label: var(--cbp-color-text-darkest);
-    }
   }
 }

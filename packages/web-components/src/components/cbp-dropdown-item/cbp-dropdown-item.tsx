@@ -1,4 +1,5 @@
 import { Component, Prop, Element, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
+import { createNamespaceKey } from '../../utils/utils';
 
 @Component({
   tag: 'cbp-dropdown-item',
@@ -7,7 +8,7 @@ import { Component, Prop, Element, Event, EventEmitter, Watch, Host, h } from '@
 export class CbpDropdownItem {
   
   private checkbox: HTMLInputElement;
-  private parent: HTMLCbpDropdownElement;
+  //private parent: HTMLCbpDropdownElement;
 
   @Element() host: HTMLElement;
 
@@ -16,6 +17,12 @@ export class CbpDropdownItem {
 
   /* Specifies that a dropdown item is disabled and cannot be selected */
   //@Prop({reflect:true}) disabled: boolean; // No disabled state designed, but keep this in case we revisit it, as native options can be disabled
+
+  /** For Internal Use: Specifies the current item (referenced by `aria-activedescendant`) while using keyboard navigation. */
+  @Prop({ reflect: true }) current: boolean;
+
+  /** Optionally specify the ID of each dropdown item, which is used by the parent dropdown to associate `aria-activedescendant`. If no `itemId` is specified, one will be automatically generated. */
+  @Prop() itemId: string = createNamespaceKey('cbp-dropdown-item');
 
   /** Specifies if an item is selected */
   @Prop({ reflect: true }) selected: boolean;
@@ -34,26 +41,16 @@ export class CbpDropdownItem {
       });
       //console.log('Dropdown Item Click: ', this.value, (!!this.value) ? this.value : label);
     }
-    //this.selected=true; delegate this to the parent level because we don't know if this is single or multiselect here
+    // Selection is delegated to the parent level because we don't know if this is single or multiselect at this level.
   }
   
   @Watch('selected')
   watchSelected(newValue) {
-    //console.log('Selected Watch fired in dropdown-item: ', this.host);
     if (this.checkbox) this.checkbox.checked=newValue; // sync a slotted checkbox (if any) with the selected state
-    if (newValue && this.parent?.open) this.host.focus(); // If the dropdown is open, send focus to the selected dropdown item (not its children)
   }
-
-  handleKeyUp(e) {
-    if (e.key == 'Enter') {
-      this.handleClick(e);
-      return false;
-    }
-  }
-
 
   componentWillLoad() {
-    this.parent=this.host.closest('cbp-dropdown');
+    //this.parent=this.host.closest('cbp-dropdown');
     this.checkbox = this.host.querySelector('input[type=checkbox]');
   }
 
@@ -65,9 +62,8 @@ export class CbpDropdownItem {
     return (
       <Host
         role="option"
-        tabindex={-1}
+        id={this.itemId}
         onClick={ (e) => this.handleClick(e)}
-        onKeyDown={ (e) => this.handleKeyUp(e)}
         aria-selected={this.selected ? "true" : "false"}
       >
         <div class="cbp-dropdown-item-content">
