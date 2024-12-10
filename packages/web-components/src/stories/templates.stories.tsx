@@ -77,7 +77,34 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
       </cbp-universal-header>
 
       <cbp-app-header>
-        <a slot="cbp-home" href="/" class="nav-home">Application Name</a>
+        <cbp-nav-item selected="">
+          <cbp-button
+            tag="a"
+            fill="ghost"
+            color="secondary"
+            href="./?path=/story/patterns-page-templates--internal#"
+          >
+            Application Name
+          </cbp-button></cbp-nav-item
+        ><cbp-nav-item>
+          <cbp-button
+            tag="a"
+            fill="ghost"
+            color="secondary"
+            href="./?path=/story/patterns-page-templates--internal#"
+          >
+            Single Nav Item 1
+          </cbp-button></cbp-nav-item
+        ><cbp-nav-item>
+          <cbp-button
+            tag="a"
+            fill="ghost"
+            color="secondary"
+            href="./?path=/story/patterns-page-templates--internal#"
+          >
+            Single Nav Item 2
+          </cbp-button></cbp-nav-item
+        >
       </cbp-app-header>
     </header>
 
@@ -182,7 +209,34 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, contentGridSize, sideba
         </cbp-universal-header>
 
         <cbp-app-header>
-          <a slot="cbp-home" href="/" class="nav-home">Application Name</a>
+          <cbp-nav-item selected="">
+            <cbp-button
+              tag="a"
+              fill="ghost"
+              color="secondary"
+              href="./?path=/story/patterns-page-templates--internal-2-column#"
+            >
+              Application Name
+            </cbp-button></cbp-nav-item
+          ><cbp-nav-item>
+            <cbp-button
+              tag="a"
+              fill="ghost"
+              color="secondary"
+              href="./?path=/story/patterns-page-templates--internal-2-column#"
+            >
+              Single Nav Item 1
+            </cbp-button></cbp-nav-item
+          ><cbp-nav-item>
+            <cbp-button
+              tag="a"
+              fill="ghost"
+              color="secondary"
+              href="./?path=/story/patterns-page-templates--internal-2-column#"
+            >
+              Single Nav Item 2
+            </cbp-button></cbp-nav-item
+          >
         </cbp-app-header>
       </header>
 
@@ -361,7 +415,34 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, numberOfCards, card
         </cbp-universal-header>
 
         <cbp-app-header>
-          <a slot="cbp-home" href="/" class="nav-home">Application Name</a>
+          <cbp-nav-item selected="">
+            <cbp-button
+              tag="a"
+              fill="ghost"
+              color="secondary"
+              href="./?path=/story/patterns-page-templates--internal-cards-layout#"
+            >
+              Application Name
+            </cbp-button></cbp-nav-item
+          ><cbp-nav-item>
+            <cbp-button
+              tag="a"
+              fill="ghost"
+              color="secondary"
+              href="./?path=/story/patterns-page-templates--internal-cards-layout#"
+            >
+              Single Nav Item 1
+            </cbp-button></cbp-nav-item
+          ><cbp-nav-item>
+            <cbp-button
+              tag="a"
+              fill="ghost"
+              color="secondary"
+              href="./?path=/story/patterns-page-templates--internal-cards-layout#"
+            >
+              Single Nav Item 2
+            </cbp-button></cbp-nav-item
+          >
         </cbp-app-header>
       </header>
 

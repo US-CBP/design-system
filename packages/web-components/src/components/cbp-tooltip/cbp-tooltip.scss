@@ -299,7 +299,10 @@ div[role=tooltip]::before {
   transform: rotate(var(--cbp-tooltip-caret-rotation));
   clip-path: polygon(8% 0, 100% 92%, 100% 100%, 0 100%, 0 0);
   border: inherit;
-  background-color: inherit
+  background-color: inherit;
+
+  
+  box-shadow: var(--cbp-shadow-level-1-center);
 }
 
 }
