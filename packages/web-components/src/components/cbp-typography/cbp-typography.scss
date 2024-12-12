@@ -53,6 +53,7 @@ cbp-typography {
   &[variant=heading-md] > *, h4,
   &[variant=heading-sm] > *, h5 {
     --cbp-typography-color: var(--cbp-typography-color-large-text);
+    //text-wrap: balance; // not at this time
   }
 
   
@@ -155,6 +156,7 @@ cbp-typography {
     font-weight: var(--cbp-font-weight-regular);
     line-height: var(--cbp-space-5x);
     max-width: var(--cbp-line-length-longer);
+    text-wrap: pretty;
   }
 
   &[variant=subhead] > * {
