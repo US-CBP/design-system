@@ -1,5 +1,22 @@
 /**
- *  @prop - 
+ *  @prop --cbp-table-color: var(--cbp-color-text-darkest);
+ *  @prop --cbp-table-color-dark: var(--cbp-color-text-lightest);
+   
+ *  @prop --cbp-table-header-color-bg: var(--cbp-color-gray-cool-20);
+ *  @prop --cbp-table-header-color-bg-dark: var(--cbp-color-gray-cool-60);
+
+ *  @prop --cbp-table-row-color-bg: var(--cbp-color-white);
+ *  @prop --cbp-table-row-color-bg-dark: var(--cbp-color-gray-cool-70);
+ *  @prop --cbp-table-row-color-bg-striped: var(--cbp-color-gray-cool-4);
+ *  @prop --cbp-table-row-color-bg-striped-dark: var(--cbp-color-gray-cool-80);
+ *  @prop --cbp-table-row-color-bg-hover: var(--cbp-color-gray-cool-10);
+ *  @prop --cbp-table-row-color-bg-hover-dark: var(--cbp-color-gray-cool-90);
+ *  @prop --cbp-table-row-color-bg-selected: var(--cbp-color-interactive-selected-light);
+ *  @prop --cbp-table-row-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
+
+ *  @prop --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
+ *  @prop --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
+ *  @prop --cbp-table-row-border-size: var(--cbp-border-size-md); 
  */
 :root {
   --cbp-table-color: var(--cbp-color-text-darkest);
@@ -16,7 +33,6 @@
   --cbp-table-row-color-bg-hover-dark: var(--cbp-color-gray-cool-90);
   --cbp-table-row-color-bg-selected: var(--cbp-color-interactive-selected-light);
   --cbp-table-row-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
-
 
   --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
   --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
