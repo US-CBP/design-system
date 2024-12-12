@@ -49,7 +49,7 @@ export default {
 
 function generateItems(items) {
   const html = items.map(({ label, value=label, selected }) => {
-    return `<cbp-dropdown-item  ${value ? `value=${value}` : ''} ${selected == true ? 'selected' : ''}>${label}</cbp-dropdown-item>`;
+    return `<cbp-dropdown-item  ${value ? `value="${value}"` : ''} ${selected == true ? 'selected' : ''}>${label}</cbp-dropdown-item>`;
   });
   return html.join('');
 }
@@ -263,7 +263,7 @@ CountriesDropdown.args = {
 
 function generateMultiSelectItems(items, context) {
   const html = items.map(({ label, name, value, selected }) => {
-    return `<cbp-dropdown-item  ${value ? `value=${value}` : ''} ${selected == true ? 'selected' : ''}>
+    return `<cbp-dropdown-item  ${value ? `value="${value}"` : ''} ${selected == true ? 'selected' : ''}>
               <cbp-checkbox 
                 ${context && context != 'light-inverts' ? `context=${context}` : ''}
               >
