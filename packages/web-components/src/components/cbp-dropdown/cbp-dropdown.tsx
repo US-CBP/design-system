@@ -223,7 +223,7 @@ export class CbpDropdown {
 
 
   handleSlotChange(e) {
-    console.log('Dropdown Slot Change: ', e);
+    console.log('Dropdown Slot Change: ', e); // Testing: I don't believe this event fires with polyfilled slots.
   }
 
   handleCounterClick(e) {
@@ -279,7 +279,7 @@ export class CbpDropdown {
         End: l,
       }[key];
       if (n !== undefined && key !== 'Tab') {
-        console.log('i',i,'l',l,'n',n)
+        //console.log('i',i,'l',l,'n',n)
         this.matchIndex = n;
         this.setCurrent( (this.filter && this.searchString) ? this.matches[n] : n, this.focusIndex);
         if (!this.filter) this.searchString='';
@@ -335,7 +335,6 @@ export class CbpDropdown {
     let matches=[];
     this.dropdownItems.forEach( (item, index) => {
       const label=item.innerText.toLowerCase();
-      console.log({label});
       // does this item start with the character pressed?
       if (label.startsWith(letter)) {
         matches=[...matches, index];
@@ -384,7 +383,6 @@ export class CbpDropdown {
   }
 
   filterDropdownItems(matches){
-    console.log('filterDropdownItems: ', {matches});
     this.dropdownItems.forEach( (item, index) => {
       matches.includes(index) ? item.removeAttribute('hidden') : item.setAttribute('hidden','');
     });
@@ -519,7 +517,6 @@ export class CbpDropdown {
   }
 
   componentWillRender() {
-    //console.log('Dropdown Component Will Render - how often is re-rendering happening?');
     if (this.attachedButtonStart) this.attachedButtonStart.disabled=this.disabled || !this.dropdownItems.length;
     if (this.attachedButtonEnd) this.attachedButtonEnd.disabled=this.disabled || !this.dropdownItems.length;
   }
