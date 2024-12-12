@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Table/Specifications" />
+
+# cbp-table
+
+## Purpose
+
+The Table component is a wrapper component encapsulating design system styles for semantic HTML tables as well as applying progressive enhancements to the contained table.
+
+## Functional Requirements
+
+* The Table component contains the basic styles for semantic HTML tables slotted inside of it.
+* The Table component allows for striped or unstriped table rows.
+* The Typography component can also set a piece of content to act as a divider, either with a faux-underline (bottom-border) or as a shaded block.
+
+## Technical Specifications
+
+### User Interactions
+
+* The Table component is a wrapper, which may progressively enhance its contained/slotted table with different user interactions, such as:
+  * Row/column/cell highlighting on mouse hover.
+  * Sortable table columns via a column header control. (TODO)
+  * Selectable rows via a slotted checkbox. (application logic)
+
+### Responsiveness
+
+* TODO: There are a number of ways to display table data responsively, the "best" being largely contextual based on the data presented and its purpose.
+
+### Accessibility
+
+* The slotted table is expected to be marked up semantically, using `thead` and `tbody` elements and denoting headings with `th` elements (not `td`s).
+* A table caption is mandatory, using the `caption` tag inside of the `table` element. If it is not desired to have a visible caption, place a `hidden` attribute on the `caption` element.
+
+### Additional Notes and Considerations
+
+* TODO: With potentially a large amount of DOM manipulation, evaluate if this is a good usecase for using ShadowDOM.

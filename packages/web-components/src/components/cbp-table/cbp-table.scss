@@ -1,0 +1,128 @@
+/**
+ *  @prop - 
+ */
+:root {
+  --cbp-table-color: var(--cbp-color-text-darkest);
+  --cbp-table-color-dark: var(--cbp-color-text-lightest);
+    
+  --cbp-table-header-color-bg: var(--cbp-color-gray-cool-20);
+  --cbp-table-header-color-bg-dark: var(--cbp-color-gray-cool-60);
+
+  --cbp-table-row-color-bg: var(--cbp-color-white);
+  --cbp-table-row-color-bg-dark: var(--cbp-color-gray-cool-70);
+  --cbp-table-row-color-bg-striped: var(--cbp-color-gray-cool-4);
+  --cbp-table-row-color-bg-striped-dark: var(--cbp-color-gray-cool-80);
+  --cbp-table-row-color-bg-hover: var(--cbp-color-gray-cool-10);
+  --cbp-table-row-color-bg-hover-dark: var(--cbp-color-gray-cool-90);
+  --cbp-table-row-color-bg-selected: var(--cbp-color-interactive-selected-light);
+  --cbp-table-row-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
+
+
+  --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
+  --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
+  --cbp-table-row-border-size: var(--cbp-border-size-md); 
+}
+
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+ [data-cbp-theme=light] cbp-table[context*=dark],
+ [data-cbp-theme=dark] cbp-table:not([context=dark-inverts]):not([context=light-always]){
+  --cbp-table-color: var(--cbp-table-color-dark);
+  
+  --cbp-table-header-color: var(--cbp-table-header-color-dark);
+  --cbp-table-header-color-bg: var(--cbp-table-header-color-bg-dark);
+
+  --cbp-table-row-color-bg: var(--cbp-table-row-color-bg-dark);
+  --cbp-table-row-color-bg-striped: var(--cbp-table-row-color-bg-striped-dark);
+  --cbp-table-row-color-bg-hover: var(--cbp-table-row-color-bg-hover-dark);
+  --cbp-table-row-color-bg-selected: var(--cbp-table-row-color-bg-selected-dark);
+
+  --cbp-table-row-color-border: var(--cbp-table-row-color-border-dark);
+ }
+
+cbp-table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+
+  // Striped rows
+  &[striped=odd] {
+    tbody {
+      tr:nth-child(odd) {
+        background-color: var(--cbp-table-row-color-bg-striped);
+      }
+    }
+  }
+
+  &[striped=even] {
+    tbody {
+      tr:nth-child(even) {
+        background-color: var(--cbp-table-row-color-bg-striped);
+      }
+    }
+  }
+
+
+  table {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    border-collapse: collapse;
+
+    caption {
+      text-align: left;
+      font-size: var(--cbp-font-size-heading-xl);
+      line-height: var(--cbp-line-height-xl);
+    }
+
+    th, td {
+      text-align: left;
+      padding: var(--cbp-space-3x) var(--cbp-space-4x);
+
+      // TechDebt: may need to do these sorts of overrides for additional components inside of tables and reevaluate where the selectors belong.
+      &:has(input[type=checkbox]) {
+        padding-block: 0;
+      }
+
+      cbp-checkbox {
+        --cbp-checkbox-min-height: 0;
+        --cbp-checkbox-margin: 0;
+      }
+
+    }
+
+    // thead, tfoot
+
+    tbody {
+      tr {
+        background-color: var(--cbp-table-row-color-bg);
+
+        &:has(input[type=checkbox]:checked) {
+          background-color: var(--cbp-table-row-color-bg-selected);
+        }
+
+        &:hover td {
+          background-color: var(--cbp-table-row-color-bg-hover);
+        }
+      }
+    }
+
+    tr {
+      border-bottom: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
+    }
+
+    th {
+      background-color: var(--cbp-table-header-color-bg);
+      font-weight: var(--cbp-font-weight-medium);
+    }
+
+    td {
+      text-wrap: pretty;
+    }
+
+  }
+
+
+}
