@@ -1,0 +1,17 @@
+/**
+ * @Prop   --cbp-toggle-XXX
+ */
+
+// :root{ 
+//   --cbp-toggle-XXX: red;
+// }
+
+// [data-cbp-theme=light] cbp-toggle[context*=dark]:not([context=light-always]),
+// [data-cbp-theme=dark] cbp-toggle:not([context=dark-inverts]):not([context=light-always]) {
+
+//   // --cbp-tooltip-color-bg: var(--cbp-tooltip-color-bg-dark);
+// }
+
+cbp-toggle {
+  border: 1px solid red; //TODO: local testing, remove before push
+}

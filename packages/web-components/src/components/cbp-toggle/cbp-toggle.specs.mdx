@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Toggle/Specifications" />
+
+# cbp-toggle
+
+## Purpose
+
+* The toggle is a control used for binary selections with a label to describe the control
+
+## Functional Requirements
+
+* Toggles require the label prop for description of the control & populate the accessibility values
+* The Toggle component provides cross-browser styling for the control in its various states: including hover, focus, & disabled for both the states of the toggle
+
+## Technical Specifications
+
+* Variant property is used to specify the display of the toggle, acceptible values of 'boolean' or 'transform'
+* Width property is used to specifiy the width of the control for 'stacked' vertical display
+* Gap property is used to specifiy the gap property of the control
+
+### User Interactions
+
+* The user interactions are that of a native checkbox (`input type="checkbox"`) element:
+  * Clicking anywhere on the form control or label text will place focus on the control and toggle its state.
+  * Toggle are keyboard accessible by tabbing onto them in either direction, placing focus onto the native form control.
+  * Pressing the spacebar will toggle the focused checkbox state, also emitting a custom event.
+
+### Responsiveness
+
+* TODO: need valid samples to display use of the width & gap props to see any Responsiveness concerns
+
+### Accessibility
+
+* TODO: supporting native checkbox Accessibility, currently unclear of other Accessibility concerns
+
+### Additional Notes and Considerations
+
+* TODO: 'Special toggles' not currently included, seems to need support for custom sliders/icons
