@@ -233,11 +233,11 @@ cbp-tooltip {
 }
 
 &[alignment='left-top']{
-  --cbp-tooltip-placement-top: calc(75% + var(--cbp-tooltip-placement-offset, 0px));
+  --cbp-tooltip-placement-top: calc(0% + var(--cbp-tooltip-placement-offset, 0px));
   --cbp-tooltip-placement-left: calc(0% - var(--cbp-tooltip-placement-gap, 5px));
   --cbp-tooltip-placement-bottom: unset;
   --cbp-tooltip-placement-transform-x: -100%;
-  --cbp-tooltip-placement-transform-y: -50%;
+  --cbp-tooltip-placement-transform-y: 0%;
   --cbp-tooltip-caret-rotation: 225deg;
   --cbp-tooltip-caret-top: calc(0% + var(--cbp-tooltip-caret-space));
   --cbp-tooltip-caret-left: calc(100% - var(--cbp-tooltip-caret-offset))
