@@ -5,6 +5,15 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 The React components are wrappers generated from this package and will share the same changes.
 
 ## [unpublished] TBD
+* First cut of the `cbp-nav-item` component for including navigation links in the Application Header.
+* BREAKING: updated the `cbp-app-header` implementation. The pattern now uses the new `cbp-nav-item` component for the first "Application Name" link. Code should be updated from Storybook for the latest implementation.
+* First cut of the `cbp-table` component.
+* First cut of the `cbp-breadcrumb` component.
+* First cut of the `cbp-tooltip` component.
+* Major refactor of `cbp-dropdown`, to include:
+  * Cycling through options based on alphanumeric keypress by default, like a native `select`.
+  * Combobox functionality for filtering by search string, enabled with the `filter` property.
+  * Revamped the accessibility model using `aria-activedescendant` rather than sending focus to the dropdown items. Focus remains on the combobox control (button).
 * Published the Change log to Storybook.
 * Published Stencil-generated component API docs to Storybook. We will continually revisit these for completion.
 
