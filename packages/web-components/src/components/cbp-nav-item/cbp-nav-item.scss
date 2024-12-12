@@ -49,7 +49,6 @@
 * Dark Mode - display dark design based on mode or context.
 */
 
-[data-cbp-theme=light] cbp-app-header:not(#fakeId),
 [data-cbp-theme=dark] cbp-app-header:not(#fakeId) {
 
 --cbp-nav-item-color: var(--cbp-nav-item-color-dark);
