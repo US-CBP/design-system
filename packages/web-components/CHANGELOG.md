@@ -4,7 +4,7 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
-## [unpublished] TBD
+## [0.0.1-develop.17] 12-12-2024
 * First cut of the `cbp-nav-item` component for including navigation links in the Application Header.
 * BREAKING: updated the `cbp-app-header` implementation. The pattern now uses the new `cbp-nav-item` component for the first "Application Name" link. Code should be updated from Storybook for the latest implementation.
 * First cut of the `cbp-table` component.
