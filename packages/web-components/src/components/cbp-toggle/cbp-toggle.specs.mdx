@@ -19,10 +19,15 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Technical Specifications
 
-* Variant property is used to specify the display of the toggle, acceptable values of 'boolean' or 'transform'
-* Width property is used to specify the width of the control for 'stacked' vertical display
-* Gap property is used to specify the gap property of the control
-
+* disabled property is used to functionally & visual disable the control.
+* hideStatus boolean property is used to specify the display of the toggle status text
+  * interacts with the statusTextOn & statusTextOff label display
+* statusTextOn is used to determine the text value of the helper text of a toggle. default value is 'on'
+* statusTextOff is used to determine the text value of the helper text of a toggle. default value is 'off'
+* Width css property is used to specify the width of the control for 'stacked' vertical display
+  *TODO: might be managable via sx prop. possible this may not be needed, need to build it first to tell
+* Gap css property is used to specify the gap property of the control
+    
 ### User Interactions
 
 * The user interactions are that of a native checkbox (`input type="checkbox"`) element:

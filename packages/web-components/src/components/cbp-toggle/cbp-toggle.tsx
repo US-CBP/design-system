@@ -9,20 +9,20 @@ export class CbpToggle {
 
   @Element() host: HTMLElement;
   
-  /**  Specifies if the toggle is enabled*/
-  @Prop({ reflect: true}) selected: boolean;
+  /** Marks the toggle as checked by default when specified. */
+  @Prop() checked: boolean;
 
-  /** Specifies the label of the toggle */
-  @Prop() label!: string;
+  /** Marks the toggle in a disabled state when specified. */
+  @Prop() disabled: boolean;
 
-  /** Specifies the variant of the toggle*/
-  @Prop() variant: 'boolean' | 'transform';
-  
-  /** Specifies width of toggle, meant for 'stacked' displays*/
-  @Prop() width: CSSPropertyRule;
+  /** Determines if the status text is visible for the render*/
+  @Prop() hideStatus: boolean = true;
 
-  /** Specifies the gap property of the toggle*/
-  @Prop() gap: CSSPropertyRule;
+  /** Determines the status text for the true toggle*/
+  @Prop() statusTextOn: string = 'on';
+
+  /** Determines the status text for the false toggle*/
+  @Prop() statusTextOff: string = 'off';
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
@@ -45,16 +45,10 @@ export class CbpToggle {
   }
 
   render() {
-    /**boilerplate HTML. TODO: review if cbp-typography && \ || cbp-checkbox is a better fit here. 
-     * .slider is copied from vanilla code, used for styling. might be replacable with a ::before
-    */
+    /**boilerplate HTML */
     return (
       <Host>
-        <label>{this.label}</label>
-        <input
-          type='checkbox'
-        ></input>
-        <span class='slider'></span>
+        <slot></slot>
       </Host>
     );
   }
