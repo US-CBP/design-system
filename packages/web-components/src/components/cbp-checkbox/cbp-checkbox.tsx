@@ -1,5 +1,5 @@
 import { Component, Element, Prop, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
-import { setCSSProps} from '../../utils/utils';
+import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
 /**
@@ -21,6 +21,9 @@ export class CbpCheckbox {
 
   /** Optionally set the `value` attribute of the checkbox at the component level. Not needed if the slotted checkbox has a value. */
   @Prop() value: string;
+
+  /** Optionally specify the ID of the checkbox input here, which is used to generate related pattern node IDs and associate everything for accessibility */
+  @Prop({ mutable: true }) fieldId: string = createNamespaceKey('cbp-checkbox');
 
   /** Marks the checkbox as checked by default when specified. */
   @Prop() checked: boolean;
@@ -78,6 +81,8 @@ export class CbpCheckbox {
     // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
     this.formField = this.host.querySelector('input[type=checkbox]');
     if (this.formField) {
+      const checkboxId = this.formField.getAttribute('id');
+      checkboxId ? this.fieldId = checkboxId : this.formField.setAttribute('id', this.fieldId);
       this.formField.addEventListener('change', () => this.handleChange());
     }
   }
@@ -96,7 +101,7 @@ export class CbpCheckbox {
   render() {
     return (
       <Host>
-        <label>
+        <label htmlFor={this.fieldId}>
           <slot />
         </label>
       </Host>
