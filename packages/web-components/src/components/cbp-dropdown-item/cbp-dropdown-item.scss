@@ -61,10 +61,10 @@ cbp-dropdown-item {
     border-block-end: var(--cbp-dropdown-item-border-size) solid var(--cbp-dropdown-item-color-border);
   }
 
-  &:last-of-type {
+  &:not([hidden]):last-of-type() {
     border-block-end-width: 0;
   }
-
+  
   &[selected] {
     --cbp-dropdown-item-color: var(--cbp-color-text-dark);
     --cbp-dropdown-item-color-dark: var(--cbp-color-text-light);
