@@ -94,6 +94,7 @@ cbp-table {
     }
 
     th, td {
+      color: var(--cbp-table-color);
       text-align: left;
       padding: var(--cbp-space-3x) var(--cbp-space-4x);
 
