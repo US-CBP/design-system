@@ -32,7 +32,9 @@ The Radio component wraps the slotted native form control (`input type="radio"`)
 
 ### Accessibility
 
-* The native radio button (`input type="radio"`) element and label text are wrapped within a `label` tag, forming an implicit label association (no `id` needed).
+* The native radio button (`input type="radio"`) element and label text are wrapped within a `label` tag.
+  * Additionally, if the slotted input has an `id` attribute, the radio component will use it to associate the `label` and `input` elements explicitly (implicit association does not work with voice software).
+  * If the slotted input does not have an `id` specified, the component will generate an `id` to apply to the slotted input and make the explicit association with the label.
 * Full keyboard navigation is supported, as detailed under "User Interactions" above.
 
 ### Additional Notes and Considerations

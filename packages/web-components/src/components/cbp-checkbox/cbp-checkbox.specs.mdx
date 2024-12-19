@@ -22,7 +22,7 @@ The Checkbox component wraps the slotted native form control (`input type="check
 * The user interactions are that of a native checkbox (`input type="checkbox"`) element:
   * Clicking anywhere on the form control or label text will place focus on the control and toggle its state.
   * Checkboxes are keyboard accessible by tabbing onto them in either direction, placing focus onto the native form control.
-  * Pressing the spacebar will toggle the focused checkbox state, also emitting a custom event.
+  * Pressing the Spacebar will toggle the focused checkbox state, also emitting a custom event.
 
 ### Responsiveness
 
@@ -31,7 +31,9 @@ The Checkbox component wraps the slotted native form control (`input type="check
 
 ### Accessibility
 
-* The native checkbox (`input type="checkbox"`) element and label text are wrapped within a `label` tag, forming an implicit label association (no `id` needed).
+* The native checkbox (`input type="checkbox"`) element and label text are wrapped within a `label` tag.
+  * Additionally, if the slotted input has an `id` attribute, the checkbox component will use it to associate the `label` and `input` elements explicitly (implicit association does not work with voice software).
+  * If the slotted input does not have an `id` specified, the component will generate an `id` to apply to the slotted input and make the explicit association with the label.
 * Full keyboard navigation is supported, as detailed under "User Interactions" above.
 
 ### Additional Notes and Considerations
