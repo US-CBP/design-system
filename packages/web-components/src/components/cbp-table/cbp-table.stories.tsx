@@ -21,9 +21,14 @@ export default {
 };
 
 
-function generateTableRows(data, selectable) {
+function generateTableRows(data, selectable, context) {
   const html = data.map( ({ row }, i) => {
-    const checkbox = `<td><cbp-checkbox><input type="checkbox" name="rowid" value="${i+1}"><span style="display:none">Select row ${i+1}</span></cbp-checkbox></td>`
+    const checkbox = `<td>
+        <cbp-checkbox ${context && context != 'light-inverts' ? `context=${context}` : ''}>
+          <input type="checkbox" name="rowid" value="${i+1}">
+          <span style="display:none">Select row ${i+1}</span>
+        </cbp-checkbox>
+      </td>`
     let cells = row.map( ({td})  => {
       return `
         <td>${td}</td>
@@ -52,17 +57,35 @@ const Template = ({ tableData, selectable, striped, context, sx }) => {
           <caption>Table Caption</caption>
           <thead>
             <tr>
-              ${ selectable ? `<th><cbp-checkbox><input type="checkbox" name="selectall" value="1"><span style="display:none">Select All</span></cbp-checkbox></th>` : ''}
+              ${ selectable ? `<th>
+                  <cbp-checkbox 
+                    ${context && context != 'light-inverts' ? `context=${context}` : ''}
+                  >
+                    <input type="checkbox" name="selectall" value="1">
+                    <span style="display:none">Select All</span>
+                  </cbp-checkbox>
+                </th>`
+                : ''
+              }
               <th>Header 1</th>
               <th>Header 2</th>
               <th>Header 3</th>
               <th>Header 4</th>
+              <th>Header 5</th>
             </tr>
           </thead>
           <tbody>
-            ${generateTableRows(tableData, selectable)}
+            ${generateTableRows(tableData, selectable, context)}
           </tbody>
         </table>
+
+        ${ selectable ? `
+            <cbp-action-bar variant="inline" context="dark-inverts">
+              <div slot="cbp-action-bar-info">0 items selected.</div>
+              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+            </cbp-action-bar>          
+          ` : ''}
       </cbp-typography>
     `;
 };
@@ -77,13 +100,6 @@ BasicTable.args = {
         {td: 'Cell Text'},
         {td: 'Cell Text'},
         {td: 'Cell Text'},
-      ]
-    },
-    {
-      row: [
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
         {td: 'Cell Text'},
       ]
     },
@@ -93,10 +109,30 @@ BasicTable.args = {
         {td: 'Cell Text'},
         {td: 'Cell Text'},
         {td: 'Cell Text'},
+        {td: 'Cell Text'},
       ]
     },
     {
       row: [
+        {td: 'Cell Text'},
+        {td: 'Cell Text'},
+        {td: 'Cell Text'},
+        {td: 'Cell Text'},
+        {td: 'Cell Text'},
+      ]
+    },
+    {
+      row: [
+        {td: 'Cell Text'},
+        {td: 'Cell Text'},
+        {td: 'Cell Text'},
+        {td: 'Cell Text'},
+        {td: 'Cell Text'},
+      ]
+    },
+    {
+      row: [
+        {td: 'Cell Text'},
         {td: 'Cell Text'},
         {td: 'Cell Text'},
         {td: 'Cell Text'},

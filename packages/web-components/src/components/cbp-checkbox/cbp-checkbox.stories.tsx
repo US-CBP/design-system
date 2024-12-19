@@ -15,6 +15,10 @@ export default {
       description: 'Specifies the `value` attribute of the slotted checkbox.',
       control: 'text',
     },
+    fieldId: {
+      description: 'Specifies the `id` attribute of the slotted checkbox.',
+      control: 'text',
+    },
     checked: {
       description: 'Specifies the `checked` attribute of the slotted checkbox, which represents its initial checked state only.',
       control: 'boolean',
@@ -38,10 +42,12 @@ export default {
   },
 };
 
-const Template = ({ label, name, value, checked, indeterminate, disabled, context, sx }) => {
+const Template = ({ label, name, value, fieldId, checked, indeterminate, disabled, context, sx }) => {
   return ` 
       <cbp-checkbox
-        ${value ? `value=${value}` : ''}
+        ${name ? `name="${name}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
         ${disabled ? `disabled=${disabled}` : ''}
         ${checked ? `checked=${checked}` : ''}
         ${indeterminate ? `indeterminate=${indeterminate}` : ''}
