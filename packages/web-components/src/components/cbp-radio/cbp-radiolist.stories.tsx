@@ -139,7 +139,7 @@ RadioListHorizontal.args = {
 
 
 
-const RadioListMultiColumnTemplate = ({ radios, gap, columns, width, rule, nobreak, label, description, fieldId, group, error, context, sx }) => {
+const RadioListMultiColumnTemplate = ({ radios, gap, columns, width, label, description, fieldId, group, error, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
@@ -150,12 +150,10 @@ const RadioListMultiColumnTemplate = ({ radios, gap, columns, width, rule, nobre
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-multicol
+      <cbp-multicol nobreak
         ${gap ? `gap="${gap}"` : ''}
         ${columns ? `columns="${columns}"` : ''}
         ${width ? `width="${width}"` : ''}
-        ${rule ? `rule="${rule}"` : ''}
-        ${nobreak ? `nobreak="${nobreak}"` : ''}
       >
         ${generateRadios(context, radios)}
       </cbp-multicol>
@@ -168,8 +166,6 @@ RadioListMultiColumn.args = {
   gap: 'var(--cbp-space-4x)',
   columns: '3',
   width: '6rem',
-  rule: '',
-  nobreak: true,
   radios: [
     {
       label: "Radio 1",

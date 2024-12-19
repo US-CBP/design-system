@@ -139,7 +139,7 @@ ChecklistHorizontal.args = {
 
 
 
-const ChecklistMultiColumnTemplate = ({ checkboxes, gap, columns, width, rule, nobreak, label, description, fieldId, group, error, context, sx }) => {
+const ChecklistMultiColumnTemplate = ({ checkboxes, gap, columns, width, label, description, fieldId, group, error, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
@@ -150,12 +150,10 @@ const ChecklistMultiColumnTemplate = ({ checkboxes, gap, columns, width, rule, n
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-multicol
+      <cbp-multicol nobreak
         ${gap ? `gap="${gap}"` : ''}
         ${columns ? `columns="${columns}"` : ''}
         ${width ? `width="${width}"` : ''}
-        ${rule ? `rule="${rule}"` : ''}
-        ${nobreak ? `nobreak="${nobreak}"` : ''}
       >
         ${generateCheckboxes(context, checkboxes)}
       </cbp-multicol>
@@ -168,8 +166,6 @@ ChecklistMultiColumn.args = {
   gap: 'var(--cbp-space-4x)',
   columns: '3',
   width: '10rem',
-  rule: '',
-  nobreak: true,
   checkboxes: [
     {
       label: "Checkbox 1",
