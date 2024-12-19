@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Multicol/Specifications" />
+
+# cbp-multicol
+
+## Purpose
+
+The Multicol component is a wrapper that invokes a CSS Multi-column layout context, ideal for using with semantic lists and checklists/radio lists.
+
+## Functional Requirements
+
+* The Multicol component is a container and its contents are provided by the application (slotted).
+* Immediate children are automatically organized into a column layout per the CSS Multicol specification.
+* The Multicol component implements the CSS Multicol API as a component API with some minor naming changes.
+
+## Technical Specifications
+
+### User Interactions
+
+* As a non-interactive layout component, there are no explicit user interactions. However, the native multi-column layout responds to changes in the device or viewport that affect content sizing according to the specified (max) columns and (minimum) column width.
+
+### Responsiveness
+
+* Multi-column layout is by default responsive when a (minimum) width is specified in relative units.
+* Always use relative CSS units such as `rem`. Using pixels is fragile and may break if users have custom text sizing or spacing.
+
+### Accessibility
+
+N/A
+
+### Additional Notes and Considerations
+
+* Because Multi=column layout has a parent-child relationship, be aware that nesting children inside of any component (e.g., `<router-outlet>`) that is present in the DOM will affect this behavior and the intended children may not be displayed as intended.
+* Individual immediate children may use the following CSS to affect multi-column layout, if needed/desired:
+  * column-span: all;
+  * break-inside: avoid;

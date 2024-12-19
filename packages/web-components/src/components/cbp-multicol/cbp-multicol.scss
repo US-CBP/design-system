@@ -1,0 +1,11 @@
+cbp-multicol {
+  display: block;
+
+  & > * {
+    max-width: 100%;
+  }
+
+  &[nobreak] > * {
+    break-inside: avoid;
+  }
+}
