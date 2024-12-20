@@ -9,6 +9,14 @@ export default {
         disabled: {
             description: 'Sets the disable state for the toggle control',
             control: 'boolean'
+        },    
+        statusTexton: {
+            description: 'Sets the label for the `on` state of the toggle control',
+            control: 'text'
+        },
+        statusTextoff: {
+            description: 'Sets the label for the `off` state of the toggle control',
+            control: 'text'
         },
         context : {
             control: 'select',
@@ -60,18 +68,11 @@ Toggle.argTypes = {
         description: 'Sets the state of the toggle',
         control: 'boolean'
     },
-    statusTexton: {
-        description: 'Sets the label for the `on` state of the toggle control',
-        control: 'text'
-    },
-    statusTextoff: {
-        description: 'Sets the label for the `off` state of the toggle control',
-        control: 'text'
-    },
+
 }
 
-function generateToggles(items, labelWidth, hideStatus, disabled, context, sx){
-    const html = items.map(({label, statusTexton, statusTextoff}) => {
+function generateToggles(items, labelWidth, hideStatus, statusTexton, statusTextoff, disabled, context, sx){
+    const html = items.map(({label}) => {
     return `<cbp-toggle
         ${hideStatus ? `hide-status` : ''}
         ${statusTexton ? `status-text-on="${statusTexton}"` : ''} 
@@ -97,11 +98,16 @@ function generateToggles(items, labelWidth, hideStatus, disabled, context, sx){
     return html.join('');
   }
 
-const MultipleTemplate = ({ToggleItems, labelWidth, hideStatus, disabled, context, sx }) => {
+const MultipleTemplate = ({ToggleItems, labelWidth, hideStatus, statusTexton, statusTextoff,  disabled, context, sx }) => {
+    //TODO: wrap in a form control w/ a label of Settings. use form fields as an example
     return `
-    <div>
-        ${generateToggles(ToggleItems, labelWidth, hideStatus, disabled, context, sx )} 
-    </div>
+    <cbp-form-field
+        label="Settings"
+        description="An example of multiple toggles in a form field"
+        group=""
+        >
+        ${generateToggles(ToggleItems, labelWidth, hideStatus, statusTexton, statusTextoff, disabled, context, sx )} 
+    </cbp-form-field>
     `;
 }
 
@@ -111,32 +117,22 @@ MultipleToggle.args={
     ToggleItems: [
         {
             label: 'Toggle #1:',
-            statusTexton: '#1 On',
-            statusTextoff: '#1 Off',
             disabled: false,
         },
         {
             label: 'Toggle #2:',
-            statusTexton: '#2 On',
-            statusTextoff: '#2 Off',
             disabled: false,
         },
         {
             label: 'Toggle #3:',
-            statusTexton: '#3 On',
-            statusTextoff: '#3 Off',
             disabled: false,
         },
         {
             label: 'Toggle #4:',
-            statusTexton: '#4 On',
-            statusTextoff: '#4 Off',
             disabled: false,
         },
         {
             label: 'Toggle #5:',
-            statusTexton: '#5 On',
-            statusTextoff: '#5 Off',
             disabled: false,
         },
     ],

@@ -42,7 +42,7 @@ export class CbpToggle {
   @Listen('keydown')
   handleKeyDown( ev: KeyboardEvent){
     if(ev.key === ' '){
-      ev.preventDefault();
+      ev.preventDefault(); //techdebt: needed to prevent scrolling when using this keypress
       this.toggleEvent();
     }
   }

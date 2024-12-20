@@ -142,7 +142,7 @@ cbp-toggle {
     }
   }
 
-  span{
+  span:last-child{
     flex-basis: var(--cbp-status-text-width);
     text-overflow: ellipsis;
     overflow: hidden;
