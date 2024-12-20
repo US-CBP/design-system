@@ -2,25 +2,9 @@ export default {
     title: 'Components/Toggle',
     //tags: ['autodocs'],
     argTypes: {
-        label: {
-            description: 'Sets the label for the toggle control',
-            control:'text'
-        },
-        checked: {
-            description: 'Sets the state of the toggle',
-            control: 'boolean'
-        },
         hideStatus: {
             description: 'Determines if the status text for the `on` and `off` is visible for the toggle control',
             control: 'boolean'
-        },
-        statusTexton: {
-            description: 'Sets the label for the `on` state of the toggle control',
-            control: 'text'
-        },
-        statusTextoff: {
-            description: 'Sets the label for the `off` state of the toggle control',
-            control: 'text'
         },
         disabled: {
             description: 'Sets the disable state for the toggle control',
@@ -53,16 +37,11 @@ const Template = ({label, checked, hideStatus, statusTexton, statusTextoff, disa
             >
                 ${label}
             </label>
-            <cbp-checkbox 
+            <input
+                type="checkbox"
+                name="checkbox"
                 value="1"
-            >
-                <input
-                    type="checkbox"
-                    name="checkbox"
-                    value="1"
-                />
-                Checkbox label
-            </cbp-checkbox>
+            />
         </cbp-toggle>
     `;
 };
@@ -70,13 +49,29 @@ const Template = ({label, checked, hideStatus, statusTexton, statusTextoff, disa
 export const Toggle = Template.bind({});
   
 Toggle.args = {
-    label: 'Toggle Label:',
-    statusTexton: 'on',
-    statusTextoff: 'off'
+    label: 'Toggle Label:'
+}
+Toggle.argTypes = {
+    label: {
+        description: 'Sets the label for the toggle control',
+        control:'text'
+    },
+    checked: {
+        description: 'Sets the state of the toggle',
+        control: 'boolean'
+    },
+    statusTexton: {
+        description: 'Sets the label for the `on` state of the toggle control',
+        control: 'text'
+    },
+    statusTextoff: {
+        description: 'Sets the label for the `off` state of the toggle control',
+        control: 'text'
+    },
 }
 
-function generateToggles(items, labelWidth){
-    const html = items.map(({label, hideStatus, statusTexton, statusTextoff, disabled, context, sx }) => {
+function generateToggles(items, labelWidth, hideStatus, disabled, context, sx){
+    const html = items.map(({label, statusTexton, statusTextoff}) => {
     return `<cbp-toggle
         ${hideStatus ? `hide-status` : ''}
         ${statusTexton ? `status-text-on="${statusTexton}"` : ''} 
@@ -91,32 +86,22 @@ function generateToggles(items, labelWidth){
             >
                 ${label} 
             </label>
-            <cbp-checkbox 
+            <input
+                type="checkbox"
+                name="checkbox"
                 value="1"
-            >
-                <input
-                    type="checkbox"
-                    name="checkbox"
-                    value="1"
-                />
-                Checkbox label
-            </cbp-checkbox>
+            />
         </cbp-toggle>
         `;
     });
     return html.join('');
   }
 
-const MultipleTemplate = ({ToggleItems, labelWidth}) => {
+const MultipleTemplate = ({ToggleItems, labelWidth, hideStatus, disabled, context, sx }) => {
     return `
-    <cbp-flex
-        direction="column"
-        gap="1rem"
-        display="flex"
-        class="hydrated"
-    >
-    ${generateToggles(ToggleItems, labelWidth)} 
-    </cbp-flex>
+    <div>
+        ${generateToggles(ToggleItems, labelWidth, hideStatus, disabled, context, sx )} 
+    </div>
     `;
 }
 
@@ -126,37 +111,32 @@ MultipleToggle.args={
     ToggleItems: [
         {
             label: 'Toggle #1:',
-            hideStatus: 'true',
-            statusTexton: 'on',
-            statusTextoff: 'off',
+            statusTexton: '#1 On',
+            statusTextoff: '#1 Off',
             disabled: false,
         },
         {
             label: 'Toggle #2:',
-            hideStatus: 'true',
-            statusTexton: 'on',
-            statusTextoff: 'off',
+            statusTexton: '#2 On',
+            statusTextoff: '#2 Off',
             disabled: false,
         },
         {
             label: 'Toggle #3:',
-            hideStatus: 'true',
-            statusTexton: 'on',
-            statusTextoff: 'off',
+            statusTexton: '#3 On',
+            statusTextoff: '#3 Off',
             disabled: false,
         },
         {
             label: 'Toggle #4:',
-            hideStatus: 'true',
-            statusTexton: 'on',
-            statusTextoff: 'off',
+            statusTexton: '#4 On',
+            statusTextoff: '#4 Off',
             disabled: false,
         },
         {
             label: 'Toggle #5:',
-            hideStatus: 'true',
-            statusTexton: 'on',
-            statusTextoff: 'off',
+            statusTexton: '#5 On',
+            statusTextoff: '#5 Off',
             disabled: false,
         },
     ],

@@ -19,10 +19,10 @@ export class CbpToggle {
   @Prop({ reflect: true }) hideStatus: boolean;
 
   /** Determines the status text for the true toggle*/
-  @Prop({ reflect: true }) statusTextOn: string;
+  @Prop({ reflect: true }) statusTextOn: string = 'On';
 
   /** Determines the status text for the false toggle*/
-  @Prop({ reflect: true }) statusTextOff: string;
+  @Prop({ reflect: true }) statusTextOff: string = 'Off';
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
@@ -42,6 +42,7 @@ export class CbpToggle {
   @Listen('keydown')
   handleKeyDown( ev: KeyboardEvent){
     if(ev.key === ' '){
+      ev.preventDefault();
       this.toggleEvent();
     }
   }
@@ -65,7 +66,7 @@ export class CbpToggle {
     let ariaLabel = this.host.querySelector('label').textContent;
     let ariaCheck = this.checked;
 
-    if(this.hideStatus){
+    if(!this.hideStatus){
       return (
       <Host
         role='checkbox'
@@ -75,7 +76,6 @@ export class CbpToggle {
         onClick={() => this.toggleEvent()}
         >
         <slot name='toggleLabel'></slot>
-        <span class='slider' />
         <slot></slot>
           <span>
             {this.checked ? this.statusTextOn : this.statusTextOff}
@@ -93,8 +93,7 @@ export class CbpToggle {
           onClick={() => this.toggleEvent()}
           >
           <slot name='toggleLabel'></slot>
-          <span class='slider' />
-          <slot></slot>
+          <slot ></slot>
         </Host>
       );
     }
