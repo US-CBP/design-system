@@ -10,11 +10,11 @@ export default {
             description: 'Sets the disable state for the toggle control',
             control: 'boolean'
         },    
-        statusTexton: {
+        statusTextOn: {
             description: 'Sets the label for the `on` state of the toggle control',
             control: 'text'
         },
-        statusTextoff: {
+        statusTextOff: {
             description: 'Sets the label for the `off` state of the toggle control',
             control: 'text'
         },
@@ -29,13 +29,13 @@ export default {
     }
   };
 
-const Template = ({label, checked, hideStatus, statusTexton, statusTextoff, disabled, context, sx }) => {
+const Template = ({label, checked, name, value, hideStatus, statusTextOn, statusTextOff, disabled, context, sx }) => {
     return ` 
         <cbp-toggle
             ${checked ? 'checked' : ''}
             ${hideStatus ? `hide-status` : ''}
-            ${statusTexton ? `status-text-on="${statusTexton}"` : ''} 
-            ${statusTextoff ? `status-text-off="${statusTextoff}"` : ''}
+            ${statusTextOn ? `status-text-on="${statusTextOn}"` : ''} 
+            ${statusTextOff ? `status-text-off="${statusTextOff}"` : ''}
             ${disabled ? 'disabled' : ''}
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ``}
@@ -43,8 +43,8 @@ const Template = ({label, checked, hideStatus, statusTexton, statusTextoff, disa
                 ${label}
                 <input
                     type="checkbox"
-                    name="checkbox"
-                    value="1"
+                    name="${name}"
+                    value="${value}"
                 />
             
         </cbp-toggle>
@@ -65,45 +65,48 @@ Toggle.argTypes = {
         description: 'Sets the state of the toggle',
         control: 'boolean'
     },
-
+    name: {
+        description: 'Specifies the `name` attribute of the slotted checkbox.',
+        control: 'text',
+    },
+    value: {
+        description: 'Specifies the `value` attribute of the slotted checkbox.',
+        control: 'text',
+    },
 }
 
 
-function generateToggles(items, labelWidth, hideStatus, statusTexton, statusTextoff, disabled, context, sx){
-    const html = items.map(({label}) => {
+function generateToggles(items, labelWidth, hideStatus, statusTextOn, statusTextOff, disabled, context, sx){
+    const html = items.map(({label}, i) => {
     return `<cbp-toggle
         ${hideStatus ? `hide-status` : ''}
-        ${statusTexton ? `status-text-on="${statusTexton}"` : ''} 
-        ${statusTextoff ? `status-text-off="${statusTextoff}"` : ''}
+        ${statusTextOn ? `status-text-on="${statusTextOn}"` : ''} 
+        ${statusTextOff ? `status-text-off="${statusTextOff}"` : ''}
         ${disabled ? 'disabled' : ''}
+        ${labelWidth ? `width="${labelWidth}"` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ``}
         >
-            <span
-                style='width: ${labelWidth}'
-            >
-                ${label} 
-           </span>
-                <input
-                    type="checkbox"
-                    name="checkbox"
-                    value="1"
-                />
+            ${label} 
+            <input
+                type="checkbox"
+                name="checkbox${i}"
+                value=${i}
+            />
         </cbp-toggle>
         `;
     });
     return html.join('');
   }
 
-const MultipleTemplate = ({ToggleItems, labelWidth, hideStatus, statusTexton, statusTextoff,  disabled, context, sx }) => {
-    //TODO: wrap in a form control w/ a label of Settings. use form fields as an example
+const MultipleTemplate = ({ToggleItems, labelWidth, hideStatus, statusTextOn, statusTextOff,  disabled, context, sx }) => {
     return `
     <cbp-form-field
         label="Settings"
         description="An example of multiple toggles in a form field"
         group
         >
-        ${generateToggles(ToggleItems, labelWidth, hideStatus, statusTexton, statusTextoff, disabled, context, sx )} 
+        ${generateToggles(ToggleItems, labelWidth, hideStatus, statusTextOn, statusTextOff, disabled, context, sx )} 
     </cbp-form-field>
     `;
 }

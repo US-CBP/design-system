@@ -1,5 +1,4 @@
 /**
-//TODO: rename cssvars using the --cbp-toggle-color-  format (I.E. --cbp-toggle-color-bg)
  * @Prop   --cbp-toggle-color-bg: var(--cbp-color-interactive-secondary-light);
  * @Prop   --cbp-toggle-color-bg-dark: var(--cbp-color-interactive-secondary-dark);
  * @Prop   --cbp-toggle-color-circle: var(--cbp-color-white);
@@ -34,12 +33,11 @@
  * @Prop   --cbp-toggle-color-circle-border-disabled-dark: var(--cbp-color-interactive-disabled-dark);
  * @Prop   --cbp-toggle-control-width: 3.25rem;
  * @Prop   --cbp-toggle-control-height: 1.75rem;
- * @Prop   --cbp-circle-diameter: 1rem;
- * @Prop   --cbp-circle-inset: 0.375rem;
- * @Prop   --cbp-circle-border-width: 0.25rem;
+ * @Prop   --cbp-toggle-circle-diameter: 1rem;
+ * @Prop   --cbp-toggle-circle-inset: 0.375rem;
+ * @Prop   --cbp-toggle-circle-border-width: 0.25rem;
  * @Prop   --cbp-toggle-gap: 1rem;  
  * @Prop   --cbp-toggle-margin: 0 0 var(--cbp-space-4x) 0;  
-
  */
 
 :root{ 
@@ -54,6 +52,7 @@
   --cbp-toggle-outline-style: solid;
   --cbp-toggle-outline-color: transparent;
   --cbp-toggle-outline-color-dark: transparent;
+
   /** Hover */
   --cbp-toggle-color-bg-hover: var(--cbp-color-interactive-secondary-dark);
   --cbp-toggle-color-bg-hover-dark: var(--cbp-color-interactive-secondary-base);
@@ -87,10 +86,11 @@
 
   --cbp-toggle-control-width: 3.25rem;
   --cbp-toggle-control-height: 1.75rem;
-  --cbp-circle-diameter: 1rem;
-  --cbp-circle-inset: 0.375rem;
-  --cbp-circle-border-width: 0.25rem;
+  --cbp-toggle-circle-diameter: 1rem;
+  --cbp-toggle-circle-inset: 0.375rem;
+  --cbp-toggle-circle-border-width: 0.25rem;
   --cbp-status-text-width: var(--cbp-space-16x);
+  --cbp-toggle-description-text-width: min-content;
 
   --cbp-toggle-gap: var(--cbp-space-4x);
   --cbp-toggle-margin: 0 0 var(--cbp-space-4x) 0;  
@@ -127,13 +127,11 @@ cbp-toggle {
   color: var(--cbp-toggle-text-color);
 
   label{
-    // display: inline-flex;
-    // align-items: center;
-
     display: grid;
-    grid-template-columns: 1fr var(--cbp-toggle-control-width) 1fr; 
+    grid-template-columns: 3fr var(--cbp-toggle-control-width) 1fr;
     gap: var(--cbp-toggle-gap);
     align-items: center;
+    width: 100%;
   }
 
   input[type='checkbox']{
@@ -149,12 +147,12 @@ cbp-toggle {
     &:before{
       content: "";
       display: block;
-      margin-top: var(--cbp-circle-inset);
+      margin-top: var(--cbp-toggle-circle-inset);
       border-radius: var(--cbp-border-radius-circle);
-      height: var(--cbp-circle-diameter);
-      width: var(--cbp-circle-diameter);
+      height: var(--cbp-toggle-circle-diameter);
+      width: var(--cbp-toggle-circle-diameter);
       background-color: var(--cbp-toggle-color-circle);
-      border: var(--cbp-circle-border-width) solid var(--cbp-toggle-color-circle-border);
+      border: var(--cbp-toggle-circle-border-width) solid var(--cbp-toggle-color-circle-border);
     }
   }
 
@@ -174,7 +172,7 @@ cbp-toggle {
     --cbp-toggle-color-circle-border-dark: var(--cbp-color-interactive-secondary-darker);
 
     &:before{
-      margin-left: calc(var(--cbp-toggle-control-width) - var(--cbp-circle-diameter) - var(--cbp-circle-inset));
+      margin-left: calc(var(--cbp-toggle-control-width) - var(--cbp-toggle-circle-diameter) - var(--cbp-toggle-circle-inset));
     }
 
     &:hover:not([disabled]){
@@ -199,7 +197,7 @@ cbp-toggle {
   &:not([checked]) input[type='checkbox']{
 
     &:before{
-      margin-left: var(--cbp-circle-inset);
+      margin-left: var(--cbp-toggle-circle-inset);
     }
 
     &:hover:not([disabled]) {
