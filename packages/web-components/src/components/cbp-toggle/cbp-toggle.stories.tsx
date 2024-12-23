@@ -116,23 +116,23 @@ export const MultipleToggle = MultipleTemplate.bind({});
 MultipleToggle.args={
     ToggleItems: [
         {
-            label: 'Toggle #1:',
+            label: 'Toggle #1',
             disabled: false,
         },
         {
-            label: 'Toggle #2:',
+            label: 'Toggle #2',
             disabled: false,
         },
         {
-            label: 'Toggle #3:',
+            label: 'Toggle #3',
             disabled: false,
         },
         {
-            label: 'Toggle #4:',
+            label: 'Toggle #4',
             disabled: false,
         },
         {
-            label: 'Toggle #5:',
+            label: 'Toggle #5',
             disabled: false,
         },
     ],
