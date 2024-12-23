@@ -47,6 +47,12 @@ export class CbpToggle {
     }
   }
 
+  
+  @Listen('change')
+  handleChange() {
+    this.toggleEvent();
+  }
+
   @Event() toggleClick: EventEmitter;
 
   /** Event: toggles the control true/false & updates DOM accordingly*/
@@ -63,20 +69,14 @@ export class CbpToggle {
   }
 
   render() {
-    let ariaLabel = this.host.querySelector('label').textContent;
-    let ariaCheck = this.checked;
 
       return (
         <Host
-          role='checkbox'
-          aria-checked={ariaCheck}
-          aria-label={ariaLabel}
-          tabindex='0'
-          onClick={() => this.toggleEvent()}
           >
-          <slot name='toggleLabel'></slot>
-          <slot ></slot>
-          {!this.hideStatus && <span>{this.checked ? this.statusTextOn : this.statusTextOff}</span>}
+          <label>
+            <slot ></slot>
+            {!this.hideStatus && <span>{this.checked ? this.statusTextOn : this.statusTextOff}</span>}
+          </label>
         </Host>
       );
   }

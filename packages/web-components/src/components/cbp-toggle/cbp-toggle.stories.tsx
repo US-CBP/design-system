@@ -40,16 +40,13 @@ const Template = ({label, checked, hideStatus, statusTexton, statusTextoff, disa
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ``}
             >
-            <label
-                slot='toggleLabel'
-            >
                 ${label}
-            </label>
-            <input
-                type="checkbox"
-                name="checkbox"
-                value="1"
-            />
+                <input
+                    type="checkbox"
+                    name="checkbox"
+                    value="1"
+                />
+            
         </cbp-toggle>
     `;
 };
@@ -71,6 +68,7 @@ Toggle.argTypes = {
 
 }
 
+
 function generateToggles(items, labelWidth, hideStatus, statusTexton, statusTextoff, disabled, context, sx){
     const html = items.map(({label}) => {
     return `<cbp-toggle
@@ -81,17 +79,16 @@ function generateToggles(items, labelWidth, hideStatus, statusTexton, statusText
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ``}
         >
-            <label
-                slot='toggleLabel'
+            <span
                 style='width: ${labelWidth}'
             >
                 ${label} 
-            </label>
-            <input
-                type="checkbox"
-                name="checkbox"
-                value="1"
-            />
+           </span>
+                <input
+                    type="checkbox"
+                    name="checkbox"
+                    value="1"
+                />
         </cbp-toggle>
         `;
     });
@@ -104,7 +101,7 @@ const MultipleTemplate = ({ToggleItems, labelWidth, hideStatus, statusTexton, st
     <cbp-form-field
         label="Settings"
         description="An example of multiple toggles in a form field"
-        group=""
+        group
         >
         ${generateToggles(ToggleItems, labelWidth, hideStatus, statusTexton, statusTextoff, disabled, context, sx )} 
     </cbp-form-field>
