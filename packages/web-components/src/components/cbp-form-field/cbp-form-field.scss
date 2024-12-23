@@ -58,6 +58,10 @@ cbp-form-field {
     all: unset;
   }
 
+  fieldset{
+    display: block;
+  }
+
   .cbp-form-field-label {
     display: block;
     color: var(--cbp-form-field-color-label);
