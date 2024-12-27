@@ -1,0 +1,49 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Loader/Specifications" />
+
+# cbp-loader
+
+## Purpose
+
+* the loader is used to have a visual indicator of progress during waiting periods for the User
+
+## Functional Requirements
+
+* Loader will render as 'progress' while loading and will either finish as a 'success' or an 'error'
+    * Please note the 'error' state does not display details about the error, only changes the visual state of the loader component
+    * In both circular and linear forms both the 'success' & 'error' state have associated icons which are not present in the 'progress' state
+    * Text text for the describing the current state is present in the circular loader small size & in both sizes of the linear loader
+
+
+## Technical Specifications
+
+* use HTML tag <progress> for the render
+* Variant property is used to specify if the render returns a circular loader or a linear progress bar
+* Color property is used to determine the visual state of the loader. options include progress, success, & error
+* Size property is used to determine the size of rendered loader. options include small or large
+* Determinate is used to determine if the loader is displaying the progress completed. options include determinate or indeterminate
+    *TODO: determinate may not be the best name for this prop. need to look into other systems to see what makes sense
+    * Determinate needs both a current & total value as props(?) to be able to display as current / total (include a min value default it to 0)
+    * make this a boolean if, if set to true it is displaying determinate
+    * that determinate have an optional additional prop for unit to be display instead of percentage
+
+### User Interactions
+
+* the loader doesn't have any user interactions (hover, focus, selected, or disabled)
+
+### Responsiveness
+
+* linear loaders are 100% width to match parents spacing, circular loaders will are set with specific width/height
+
+### Accessibility
+
+* the loader will have a role of 'progressbar' for screen readers
+    *aria-busy to be added will the loader is 'in process' and removed when complete or no longer running
+    *the 'value' value of the progress ( or aria-valuenow if render is different ) would map to the determinate variant current value prop
+    *the 'max' value of the progress ( or aria-valuemax if render is different ) would map to the determinate variant total value prop
+    *aria-label or aria-labelledby would display a description of the loader
+
+### Additional Notes and Considerations
+
+* TODO: good resource for developement: https://mui.com/material-ui/react-progress/?srsltid=AfmBOorlhwpo9rkA2LOPLIeJMc-BtjAfFuj4ZKcWcwY6uTsdXaTN4sHd
