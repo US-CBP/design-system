@@ -6,6 +6,16 @@ export default {
       control: 'select',
       options: ['none', 'even', 'odd'],
     },
+    hover: {
+      control: 'select',
+      options: ['row', 'cell'],
+    },
+    columnHover: {
+      control: 'boolean'
+    },
+    sortable: {
+      control: 'boolean'
+    },
     selectable: {
       control: 'boolean'
     },
@@ -20,6 +30,26 @@ export default {
   },
 };
 
+
+function generateTableHeaders(headers, selectable, context) {
+  const checkbox = `<th>
+      <cbp-checkbox ${context && context != 'light-inverts' ? `context=${context}` : ''}>
+        <input type="checkbox" name="selectall" value="1">
+        <span style="display:none">Select All</span>
+      </cbp-checkbox>
+    </th>`
+  let cells = headers.map( ({label, sortable}, i)  => {
+    return `${ sortable 
+      ? `<th ${i == 0 ? `aria-sort="ascending"` : ''}><cbp-button fill="ghost" color="secondary" name="${`column-${i}`}" value="${i}">${label}</cbp-button></th>`
+      : `<th>${label}</th>`
+    }`;
+  }).join('');
+  if (selectable) cells = checkbox + cells;
+  //return html.join('');
+  return `
+    ${cells}
+  `;
+}
 
 function generateTableRows(data, selectable, context) {
   const html = data.map( ({ row }, i) => {
@@ -46,32 +76,29 @@ function generateTableRows(data, selectable, context) {
 }
 
 
-const Template = ({ tableData, selectable, striped, context, sx }) => {
+const Template = ({ tableData, headers, sortable, selectable, striped, hover, columnHover, context, sx }) => {
+
+  const toolbar=`
+    <div slot="cbp-table-toolbar">
+      Test toolbar.
+    </div>
+  `;
+  
   return ` 
       <cbp-table
-        ${striped != 'none' ? `striped=${striped}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${striped != 'none' ? `striped="${striped}"` : ''}
+        ${hover == 'cell' ? `hover="${hover}"` : ''}
+        ${columnHover ? `column-hover` : ''}
+        ${sortable ? `sortable` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
+        ${toolbar}
         <table style="width: 100%">
           <caption>Table Caption</caption>
           <thead>
             <tr>
-              ${ selectable ? `<th>
-                  <cbp-checkbox 
-                    ${context && context != 'light-inverts' ? `context=${context}` : ''}
-                  >
-                    <input type="checkbox" name="selectall" value="1">
-                    <span style="display:none">Select All</span>
-                  </cbp-checkbox>
-                </th>`
-                : ''
-              }
-              <th>Header 1</th>
-              <th>Header 2</th>
-              <th>Header 3</th>
-              <th>Header 4</th>
-              <th>Header 5</th>
+              ${generateTableHeaders(headers, selectable, context)}
             </tr>
           </thead>
           <tbody>
@@ -93,50 +120,71 @@ const Template = ({ tableData, selectable, striped, context, sx }) => {
 export const BasicTable = Template.bind({});
 BasicTable.args = {
   striped: 'even',
+  headers: [
+    {
+      label: "Header 1",
+      sortable: true,
+    },
+    {
+      label: "Header 2",
+      sortable: true,
+    },
+    {
+      label: "Header 3",
+      sortable: true,
+    },
+    {
+      label: "Header 4",
+      sortable: true,
+    },
+    {
+      label: "Header 5",
+      sortable: false,
+    },
+  ],
   tableData: [
     {
       row: [
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
+        {td: 'Row 1 Column 1 Cell Text'},
+        {td: 'Row 1 Column 2 Cell Text'},
+        {td: 'Row 1 Column 3 Cell Text'},
+        {td: 'Row 1 Column 4 Cell Text'},
+        {td: 'Row 1 Column 4 Cell Text'},
       ]
     },
     {
       row: [
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
+        {td: 'Row 2 Column 1 Cell Text'},
+        {td: 'Row 2 Column 2 Cell Text'},
+        {td: 'Row 2 Column 3 Cell Text'},
+        {td: 'Row 2 Column 4 Cell Text'},
+        {td: 'Row 2 Column 5 Cell Text'},
       ]
     },
     {
       row: [
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
+        {td: 'Row 3 Column 1 Cell Text'},
+        {td: 'Row 3 Column 2 Cell Text'},
+        {td: 'Row 3 Column 3 Cell Text'},
+        {td: 'Row 3 Column 4 Cell Text'},
+        {td: 'Row 3 Column 5 Cell Text'},      ]
+    },
+    {
+      row: [
+        {td: 'Row 4 Column 1 Cell Text'},
+        {td: 'Row 4 Column 2 Cell Text'},
+        {td: 'Row 4 Column 3 Cell Text'},
+        {td: 'Row 4 Column 4 Cell Text'},
+        {td: 'Row 4 Column 5 Cell Text'},
       ]
     },
     {
       row: [
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-      ]
-    },
-    {
-      row: [
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
-        {td: 'Cell Text'},
+        {td: 'Row 5 Column 1 Cell Text'},
+        {td: 'Row 5 Column 2 Cell Text'},
+        {td: 'Row 5 Column 3 Cell Text'},
+        {td: 'Row 5 Column 4 Cell Text'},
+        {td: 'Row 5 Column 5 Cell Text'},
       ]
     },
   ]

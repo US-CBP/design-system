@@ -37,6 +37,8 @@
   --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
   --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
   --cbp-table-row-border-size: var(--cbp-border-size-md); 
+
+  --cbp-table-cell-padding: var(--cbp-space-3x) var(--cbp-space-4x);
 }
 
 
@@ -80,6 +82,39 @@ cbp-table {
     }
   }
 
+  &[hover=row] {
+    tbody {
+      tr:hover td {
+        background-color: var(--cbp-table-row-color-bg-hover);
+      }
+    }
+  }
+
+  &[hover=cell] {
+    tbody {
+      td:hover {
+        background-color: var(--cbp-table-row-color-bg-hover);
+      }
+    }
+  }
+
+  
+  // Column highlighting on hover
+  // TechDebt: doesn't scale; this would be better, but still experimental: https://developer.mozilla.org/en-US/docs/Web/CSS/Column_combinator#browser_compatibility
+  &[column-hover] {
+    table:has(thead tr > *:nth-child(1):hover) tr > *:nth-child(1),
+    table:has(thead tr > *:nth-child(2):hover) tr > *:nth-child(2),
+    table:has(thead tr > *:nth-child(3):hover) tr > *:nth-child(3),
+    table:has(thead tr > *:nth-child(4):hover) tr > *:nth-child(4),
+    table:has(thead tr > *:nth-child(5):hover) tr > *:nth-child(5),
+    table:has(thead tr > *:nth-child(6):hover) tr > *:nth-child(6),
+    table:has(thead tr > *:nth-child(7):hover) tr > *:nth-child(7),
+    table:has(thead tr > *:nth-child(8):hover) tr > *:nth-child(8),
+    table:has(thead tr > *:nth-child(9):hover) tr > *:nth-child(9),
+    table:has(thead tr > *:nth-child(10):hover) tr > *:nth-child(10) {
+      background-color: var(--cbp-table-row-color-bg-hover) !important;
+    }
+  }
 
   table {
     margin: 0;
@@ -96,12 +131,18 @@ cbp-table {
     th, td {
       color: var(--cbp-table-color);
       text-align: left;
+      vertical-align: middle;
       padding: var(--cbp-space-3x) var(--cbp-space-4x);
 
       // TechDebt: may need to do these sorts of overrides for additional components inside of tables and reevaluate where the selectors belong.
       &:has(input[type=checkbox]) {
-        padding-block: 0;
+        padding-block: var(--cbp-space-2x);
       }
+
+      &:has(button) {
+        padding: 0;
+      }
+
 
       cbp-checkbox {
         --cbp-checkbox-min-height: 0;
@@ -110,7 +151,47 @@ cbp-table {
 
     }
 
-    // thead, tfoot
+    // tfoot ??
+
+    thead {
+      th {
+        //vertical-align: bottom; ??
+
+        // TechDebt: temp
+        /*
+        &[aria-sort=ascending] cbp-button::before {
+          content: "↓";
+        }
+
+        &[aria-sort=descending] cbp-button::before {
+          content: "↑";
+        }
+        */
+        
+        cbp-button {
+          --cbp-button-width: 100%;
+          --cbp-button-height: 100%;
+          --cbp-button-border-radius: 0;
+          --cbp-button-padding: var(--cbp-table-cell-padding);
+          display: flex;
+          align-items: stretch;
+
+          button {
+            appearance: none;
+            display: flex;
+            align-items: stretch;
+            justify-content: flex-start;
+            text-align: left;
+            width: 100%;
+            text-transform: unset;
+            letter-spacing: unset;
+            white-space: normal;
+            margin: 0;
+          }
+        }
+      }
+    }
+
 
     tbody {
       tr {
@@ -118,10 +199,6 @@ cbp-table {
 
         &:has(input[type=checkbox]:checked) {
           background-color: var(--cbp-table-row-color-bg-selected);
-        }
-
-        &:hover td {
-          background-color: var(--cbp-table-row-color-bg-hover);
         }
       }
     }
