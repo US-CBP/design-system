@@ -109,6 +109,8 @@
 
 cbp-button {
   display: inline-block;
+  width: var(--cbp-button-width);
+  height: var(--cbp-button-height);
 
   button, a {
     display: inline-flex;
