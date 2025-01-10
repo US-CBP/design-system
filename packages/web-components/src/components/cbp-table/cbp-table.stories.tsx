@@ -40,7 +40,7 @@ function generateTableHeaders(headers, selectable, context) {
     </th>`
   let cells = headers.map( ({label, sortable}, i)  => {
     return `${ sortable 
-      ? `<th ${i == 0 ? `aria-sort="ascending"` : ''}><cbp-button fill="ghost" color="secondary" name="${`column-${i}`}" value="${i}">${label}</cbp-button></th>`
+      ? `<th ${i == 0 ? `aria-sort="ascending"` : ''}><cbp-button fill="ghost" color="secondary" name="${`column-${i}`}" value="${i}"><cbp-icon></cbp-icon>${label}</cbp-button></th>`
       : `<th>${label}</th>`
     }`;
   }).join('');

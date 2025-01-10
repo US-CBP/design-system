@@ -131,11 +131,12 @@ cbp-table {
     th, td {
       color: var(--cbp-table-color);
       text-align: left;
-      vertical-align: middle;
+      vertical-align: top;
       padding: var(--cbp-space-3x) var(--cbp-space-4x);
 
       // TechDebt: may need to do these sorts of overrides for additional components inside of tables and reevaluate where the selectors belong.
       &:has(input[type=checkbox]) {
+        vertical-align: middle;
         padding-block: var(--cbp-space-2x);
       }
 
@@ -155,23 +156,32 @@ cbp-table {
 
     thead {
       th {
-        //vertical-align: bottom; ??
+        vertical-align: bottom;
 
         // TechDebt: temp
-        /*
-        &[aria-sort=ascending] cbp-button::before {
+        &[aria-sort=ascending] button::before {
+          content: "↑";
+        }
+
+        &[aria-sort=descending] button::before {
           content: "↓";
         }
 
-        &[aria-sort=descending] cbp-button::before {
-          content: "↑";
-        }
-        */
-        
         cbp-button {
           --cbp-button-width: 100%;
           --cbp-button-height: 100%;
-          --cbp-button-border-radius: 0;
+          --cbp-button-border-width: 0;
+          --cbp-button-focus-outline-width: 0;
+          //--cbp-button-border-radius: 0;
+          --cbp-button-color-bg: transparent !important;
+          --cbp-button-color-bg-hover: transparent !important;
+          --cbp-button-color-bg-focus: transparent !important;
+          --cbp-button-color-bg-active: transparent !important;
+          --cbp-button-color-bg-dark: transparent !important;
+          --cbp-button-color-bg-hover-dark: transparent !important;
+          --cbp-button-color-bg-focus-dark: transparent !important;
+          --cbp-button-color-bg-active-dark: transparent !important;
+
           --cbp-button-padding: var(--cbp-table-cell-padding);
           display: flex;
           align-items: stretch;
@@ -189,6 +199,16 @@ cbp-table {
             margin: 0;
           }
         }
+      }
+
+      th:has(button:hover) {
+        --cbp-button-color-bg-hover: transparent !important;
+        --cbp-button-color-bg-hover-dark: transparent !important;
+      }
+
+      th:has(button:focus) {
+        --cbp-button-color-bg-focus: var(--cbp-color-interactive-focus-dark) !important;
+        --cbp-button-color-bg-focus-dark: var(--cbp-color-interactive-focus-light) !important;
       }
     }
 

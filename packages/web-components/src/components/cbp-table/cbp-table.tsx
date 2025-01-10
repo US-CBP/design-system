@@ -33,6 +33,16 @@ export class CbpTable {
 
   @Event() tablesorted: EventEmitter;
 
+  /*
+  @Listen('buttonClick')
+  handleHeadingClick(e) {
+    console.log('buttonClick Listener: ', e);
+    const columnHeading: HTMLTableCellElement = e.detail.host.closest('th');
+    console.log({columnHeading})
+    this.doSort(this.columnHeadings.indexOf(columnHeading));
+  }
+  */
+
   addScope(){
     const columnHeadings = Array.from(this.host.querySelectorAll('thead th'));
     const rowHeadings = Array.from(this.host.querySelectorAll('tbody th'));
@@ -53,15 +63,15 @@ export class CbpTable {
 
     this.columnHeadings.forEach( item => {
       const control = item.querySelector('cbp-button');
-      //if (item.dataset?.sortable == "true") {
-      //  item.setAttribute('aria-sort','col');
-      //}
       if(control) {
+        console.log('Wiring up column header: ', item, control);
         this.sortableColumns = [...this.sortableColumns, item];
+        if (item.getAttribute('aria-sort') == undefined) item.setAttribute("aria-sort","none");
 
-        control.addEventListener( "buttonClick", ({detail: { host, nativeElement, value }}) => {
+        // ({detail: { host, nativeElement, value }})
+        control.addEventListener( "buttonClick", () => {
           //const { host, nativeElement, value } = detail;
-          console.log('Clicked: ', host, nativeElement, value);
+          //console.log('Clicked: ', e); //host, nativeElement, value
           this.doSort(this.columnHeadings.indexOf(item));
           //const th = host.closest('th');
         });
@@ -76,24 +86,6 @@ export class CbpTable {
         direction: sortedColumn.getAttribute('aria-sort')
       }
     }
-
-    /*
-      buttonClick?.emit({
-        host: this.host,
-        nativeElement: this.button,
-        controls: this.controls ? this.controls : null,
-        pressed: this.pressed,
-        expanded: this.expanded,
-        name: this.button.tagName == 'BUTTON' ? this.button.name : null,
-        value: this.button.tagName == 'BUTTON' ? this.button.value : null,
-      }
-
-    @State() sort: {
-      columnHeading: HTMLTableCellElement, 
-      direction: string
-    }
-
-    */
   }
 
   /** 
@@ -153,7 +145,7 @@ export class CbpTable {
 
   componentDidLoad() {
     this.addScope();
-    if (this.sortable) this.makeSortable();
+    this.makeSortable();
   }
 
   // These need to be reactive, not just occur on load
