@@ -1,0 +1,7 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto Flex';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/roboto-flex/roboto-flex-v26-latin_latin-ext-regular.woff2') format('woff2');
+}
