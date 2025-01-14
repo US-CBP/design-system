@@ -10,7 +10,7 @@ The App component is a wrapper that packages high level design tokens (as CSS va
 
 ## Functional Requirements
 
-* The App component contains necessary high-level CSS and fonts to remove the need for external dependencies referenced by HTML `link` tags.
+* The App component contains necessary high-level CSS to minimize the need for external dependencies referenced by HTML `link` tags.
 * As the highest level container of the application, system-wide functionality may be hoisted to this tag, such as dark mode, debugging, etc. (TBD)
 
 ## Technical Specifications
@@ -35,4 +35,5 @@ n/a
 ### Additional Notes and Considerations
 
 * The `cbp-app` component is hidden in most component stories but is still present as a wrapper to load the required CSS and fonts. See the "Page Template" stories for examples where this component is exposed in the story markup.
+* Embedded fonts were removed from this component to improve the "First Contentful Paint" metric.
 * TODO: investigate options for dark mode, debugging, performance, etc.
