@@ -36,6 +36,7 @@ export const CbpHide = /*@__PURE__*/createReactComponent<JSX.CbpHide, HTMLCbpHid
 export const CbpIcon = /*@__PURE__*/createReactComponent<JSX.CbpIcon, HTMLCbpIconElement>('cbp-icon');
 export const CbpLink = /*@__PURE__*/createReactComponent<JSX.CbpLink, HTMLCbpLinkElement>('cbp-link');
 export const CbpList = /*@__PURE__*/createReactComponent<JSX.CbpList, HTMLCbpListElement>('cbp-list');
+export const CbpLoader = /*@__PURE__*/createReactComponent<JSX.CbpLoader, HTMLCbpLoaderElement>('cbp-loader');
 export const CbpMulticol = /*@__PURE__*/createReactComponent<JSX.CbpMulticol, HTMLCbpMulticolElement>('cbp-multicol');
 export const CbpNavItem = /*@__PURE__*/createReactComponent<JSX.CbpNavItem, HTMLCbpNavItemElement>('cbp-nav-item');
 export const CbpNotice = /*@__PURE__*/createReactComponent<JSX.CbpNotice, HTMLCbpNoticeElement>('cbp-notice');
