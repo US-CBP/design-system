@@ -4,6 +4,13 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes.
 
+## [0.0.1-develop.18] 01-14-2025
+* First cut of the `cbp-toggle` component, which acts like a visual treatment for a checkbox.
+* First cut of the `cbp-multicol` component, a component-based implementation of multi-column layout used in checklist and radiolist stories.
+* Created stories for horizontal checklists and radio lists using `cbp-flex`.
+* Decoupled fonts from `cbp-app` for performance testing. They are now included in the package as assets and should be loaded as external resources from the /assets/css files.
+* Minor bugfixes/updates to `cbp-dropdown` and `cbp-checkbox`.
+
 ## [0.0.1-develop.17] 12-12-2024
 * First cut of the `cbp-nav-item` component for including navigation links in the Application Header.
 * BREAKING: updated the `cbp-app-header` implementation. The pattern now uses the new `cbp-nav-item` component for the first "Application Name" link. Code should be updated from Storybook for the latest implementation.
