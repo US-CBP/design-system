@@ -1,5 +1,5 @@
 import { Component, Element, Prop, Host, h} from '@stencil/core';
-import { setCSSProps } from '../../utils/utils';
+import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 @Component({
   tag: 'cbp-loader',
@@ -10,14 +10,14 @@ export class CbpLoader {
 
   @Element() host: HTMLElement;
   
+  /** Specifies a unique `ID` for the loader, used to wire up the controls and accessibility features. */
+  @Prop() uid: string = createNamespaceKey('cbp-accordion-item');
+
   /** Defines if the loader will be in displayed as a circular or linear variant*/
   @Prop({ reflect: true }) variant: "circular" | "linear";
 
-  /** Defines the color of the loader render, used to express the state of the loader */
-  @Prop() color: "progress" | "success" | "error" = 'progress';
-
   /** Defines the size of the loader render, default value of large */
-  @Prop() size: "large" | "small" = "large";
+  @Prop({ reflect: true }) size: "large" | "small" = "large";
 
   /** Defines if the loader will be in determinate/indeterminate, if true loader will display the current value out of max value*/
   @Prop({ reflect: true }) determinate: boolean = false;
@@ -28,14 +28,11 @@ export class CbpLoader {
   /** Used in deternminate mode to display the max value of loaded content*/
   @Prop() max: number = 100;
 
-  /** Used in deternminate mode to display the min value of loaded content*/
-  @Prop() min: number = 0;
-
   /** Used to set the loader to the 'success' state of the loader */
-  @Prop() success: boolean;
+  @Prop({mutable: true}) success: boolean;
 
   /** Used to set the loader to the 'error' state of the loader */
-  @Prop() error: boolean;
+  @Prop({mutable: true}) error: boolean;
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
@@ -53,66 +50,63 @@ export class CbpLoader {
   }
 
   componentDidLoad() {
-    if(this.value < this.min){ //TODO: not changing color, i think the prop update isn't getting to the html for the css?
-      this.error = true;
-    }
-    
-    if(this.success && !this.error){
-      this.color = 'success';
-    } else if(this.error){
-      this.color = 'error';
-    }
 
-    if(this.determinate && this.variant == 'circular' && (this.value >= this.min)){
+    if(this.determinate && this.variant == 'circular'){
       this.host.style.setProperty("--cbp-loader-circular-determinate", `conic-gradient(var(--cbp-loader-color) ${((this.value / this.max) * 100) * 3.6}deg, var(--cbp-loader-track-color) 0deg)`)
     }
     
   }
  
   render() {
-    let statusDescription = '';
     let statusIndicator;
 
-    if (this.color == 'success'){
-      statusDescription = <span>Success</span>;
+    if(this.success && !this.error){
       statusIndicator = <cbp-icon class="statusIndicator" name="check-circle" color='var(--cbp-loader-status-indicator-color)'></cbp-icon>
-    }else if(this.color =='error'){
-      statusDescription = <span>Error</span>;
+    }else if(this.error){
       statusIndicator = <cbp-icon class="statusIndicator" name="exclamation-circle" color='var(--cbp-loader-status-indicator-color)'></cbp-icon>
     }else{
-      statusDescription = <span>Uploading...</span>;
       statusIndicator =  Math.round((this.value / this.max) * 100) + "%"
     }
-
-
+  
     return (
-      <Host>
+      <Host 
+        id={this.uid}
+        aria-busy={this.determinate ?
+           (this.value < this.max ? 'true' : 'false') 
+          : (!this.success ? 'true' : 'false')
+        }
+      >
         {this.determinate && this.variant == 'linear' && 
           
-            <span class='cbpLoaderDesc'>{statusDescription}
-            
+            <label class='cbp-loader-desc'>
+              {(this.success && !this.error) ?
+                `Complete`
+              :( this.error ?
+                  `Error`
+                :
+                null
+              ) 
+              }
+              <slot name='cbp-loader-desc' />
+               
               {this.size != 'small' &&
                <span>{statusIndicator}</span>
               }
-            </span> 
+            </label> 
             
         }
         {this.determinate && this.variant == 'circular' && this.size == 'large' &&
-          <span class='cbpLoaderDesc'>
+          <span class='cbp-loader-desc'>
             {statusIndicator}
           </span>  
         }
-        {this.determinate && this.variant == 'circular' && this.size == 'small' && this.color != 'progress'
+        {this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error)
         ?
           statusIndicator
         :
           <progress
-            value={this.value}
+            value={this.determinate ? this.value : null}
             max={this.max}
-            aria-busy={this.value < this.max ? 'true' : 'false'}
-            aria-valuenow={this.value}
-            aria-valuemin={this.min}
-            aria-valuemax={this.max}
           >
           </progress>
         }

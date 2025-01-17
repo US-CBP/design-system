@@ -2,14 +2,14 @@ export default {
     title: 'Components/Loader',
     //tags: ['autodocs'],
     argTypes: {
+        uid: {
+            description: 'A unique `id` applied to the dialog and referenced by the control.',
+            control: 'text',
+          },
         variant : {
             control: 'select',
             options: [ "circular", "linear"]
         },
-        // color : {
-        //     control: 'select',
-        //     options: [ "progress" , "success" , "error" ]
-        // },
         size : {
             control: 'select',
             options: ["large" ,  "small"]
@@ -25,9 +25,9 @@ export default {
             control: 'number',
             if: { arg: 'determinate', eq: true },
         },
-        min : {
-            control: 'number',
-            if: { arg: 'determinate', eq: true },
+        label : {
+            control: 'text',
+            if: { arg: 'determinate', eq: true}
         },
         success : {
             control: 'boolean'
@@ -49,21 +49,24 @@ export default {
     }
   };
 
-const Template = ({variant, /*color,*/ size, determinate, value, max, min, success, error, context, sx }) => {
+const Template = ({uid, variant, label, size, determinate, value, max, success, error, context, sx }) => {
     return ` 
         <cbp-loader
+            ${uid ? `uid=${uid}` : ''}
             ${variant ? `variant=${variant}` : ``}
             ${size ? `size=${size}` : ``}
             ${determinate ? 'determinate' : ''}
             ${value ? `value=${value}` : ``}
             ${max ? `max=${max}` : ``}
-            ${min ? `min=${min}` : ``}
             ${success ? 'success' : ''}
             ${error ? 'error' : ''}
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ``}
             >
-            
+            ${variant == 'linear' && label && !(success || error)? 
+            `<label slot='cbp-loader-desc'> ${label}</label>`
+            : ``
+            }
         </cbp-loader>
     `;
 };
@@ -74,5 +77,5 @@ Loader.args = {
     variant: "linear",
     value: 25,
     max: 100,
-    min: 0
+    label: 'Uploading...'
 }

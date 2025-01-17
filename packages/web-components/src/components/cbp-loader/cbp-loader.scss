@@ -35,6 +35,7 @@
 
   --cbp-loader-status-description-color: var(--cbp-color-text-darkest);
   --cbp-loader-status-description-color-dark: var(--cbp-color-text-lightest);
+  --cbp-loader-status-description-line-height: 3.5;
   --cbp-loader-status-indicator-color: var(--cbp-color-white);
   --cbp-loader-status-indicator-color-dark: var(--cbp-color-black);
 
@@ -62,13 +63,15 @@
   --cbp-loader-status-description-color: var(--cbp-loader-status-description-color-dark);
   --cbp-loader-status-indicator-color: var(--cbp-loader-status-indicator-color-dark);}
 
-@keyframes prixClipFix {
+@keyframes spin {
   0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
   25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
   50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
   75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
   100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
 }
+//value for 'easing' mentioned by Jeremy from carbon
+//cubic-bezier(0.2, 0, 0.38, 0.9) 
 
 @keyframes slide {
   0%{transform: translateX(0%);}
@@ -99,23 +102,24 @@ cbp-loader {
       }
     }
 
-    &:not([determinate]) progress:before{
+    &:not([determinate]):not([error]):not([success]) progress:before{
       content: '';
       display: block;
       height: var(--cbp-loader-linear-height);
       width: 20%;
       background-color: var(--cbp-loader-color); 
       position: absolute;
-      animation: slide 2s linear infinite;
+      animation: slide 2s cubic-bezier(0.2, 0, 0.38, 0.9)  infinite;
     }
 
     &[determinate]{
   
-      .cbpLoaderDesc{
+      .cbp-loader-desc{
         color: var(--cbp-loader-status-description-color);
         display: inline-flex;
         width: var(--cbp-loader-linear-status-width);
         height: var(--cbp-space-4x);
+        white-space: nowrap;
 
         span:last-of-type{
           margin-left: auto
@@ -134,7 +138,6 @@ cbp-loader {
       display: flex;
       align-items: center;
       justify-content: center;
-      
       border-radius: var(--cbp-border-radius-circle);
       overflow: hidden;
       padding: 0;
@@ -147,7 +150,7 @@ cbp-loader {
       &:before{
         content: "";
         position: absolute;
-        z-index: 100;
+        z-index: var(--cbp-z-index-level-1);
         height: var(--cbp-loader-diameter);
         width: var(--cbp-loader-diameter);      
         border-radius: calc(var(--cbp-border-radius-circle) / 2);
@@ -159,7 +162,7 @@ cbp-loader {
       &:after{
         content: "";
         position: absolute;
-        z-index: 100;
+        z-index: var(--cbp-z-index-level-2);
         height: calc(var(--cbp-loader-diameter) - var(--cbp-loader-gutter-width));
         width: calc(var(--cbp-loader-diameter) - var(--cbp-loader-gutter-width));
         border-radius: calc(var(--cbp-border-radius-circle) / 2);
@@ -169,8 +172,8 @@ cbp-loader {
       }
     }
     
-    &:not([determinate]) ::before{
-        animation: prixClipFix 2s linear infinite;
+    &:not([determinate]):not([error]):not([success]) ::before{
+        animation: spin 2s linear infinite;
     }
 
     &[determinate]{
@@ -182,12 +185,12 @@ cbp-loader {
         }
       }
 
-      .cbpLoaderDesc{
+      .cbp-loader-desc{
         position: absolute;
-        width: inherit;
-        align-self: center;
+        width: inherit;      
+        line-height: var(--cbp-loader-status-description-line-height);
         text-align: center;
-        z-index: 101;
+        z-index: var(--cbp-z-index-level-3);
         color: var(--cbp-loader-color);
         font-weight: var(--cbp-font-weight-bold);
       }
@@ -195,9 +198,12 @@ cbp-loader {
   }
 
 /** Color variations for Loader */
-&[success]:not([error]){
+// &[success]:not([error]){
+  &[success]{
   --cbp-loader-color: var(--cbp-color-success-dark);
   --cbp-loader-color-dark: var(--cbp-color-success-light);
+  --cbp-loader-track-color: var(--cbp-color-success-dark);
+  --cbp-loader-track-color-dark: var(--cbp-color-success-light);
   --cbp-loader-status-description-color: var(--cbp-color-success-base);
   --cbp-loader-status-description-color-dark: var(--cbp-color-success-light);
   --cbp-loader-status-indicator-color: var(--cbp-color-success-base);
@@ -207,6 +213,8 @@ cbp-loader {
 &[error]{
   --cbp-loader-color: var(--cbp-color-danger-dark);
   --cbp-loader-color-dark: var(--cbp-color-danger-light);
+  --cbp-loader-track-color: var(--cbp-color-danger-dark);
+  --cbp-loader-track-color-dark: var(--cbp-color-danger-light);
   --cbp-loader-status-description-color: var(--cbp-color-danger-dark);
   --cbp-loader-status-description-color-dark: var(--cbp-color-danger-light);
   --cbp-loader-status-indicator-color: var(--cbp-color-danger-base);
