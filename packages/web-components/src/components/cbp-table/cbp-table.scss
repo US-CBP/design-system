@@ -2,8 +2,26 @@
  *  @prop --cbp-table-color: var(--cbp-color-text-darkest);
  *  @prop --cbp-table-color-dark: var(--cbp-color-text-lightest);
    
+ *  @prop --cbp-table-header-color: var(--cbp-color-interactive-secondary-darker);
+ *  @prop --cbp-table-header-color-dark: var(--cbp-color-interactive-secondary-lighter);
+ *  @prop --cbp-table-header-color-hover: var(--cbp-color-interactive-secondary-lighter);
+ *  @prop --cbp-table-header-color-hover-dark: var(--cbp-color-interactive-secondary-darker);
+ *  @prop --cbp-table-header-color-focus: var(--cbp-color-text-lightest);
+ *  @prop --cbp-table-header-color-focus-dark: var(--cbp-color-text-darkest);
+ *  @prop --cbp-table-header-color-active: var(--cbp-color-text-darkest);
+ *  @prop --cbp-table-header-color-active-dark: var(--cbp-color-text-darkest);
+
  *  @prop --cbp-table-header-color-bg: var(--cbp-color-gray-cool-20);
  *  @prop --cbp-table-header-color-bg-dark: var(--cbp-color-gray-cool-60);
+ *  @prop --cbp-table-header-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
+ *  @prop --cbp-table-header-color-bg-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ *  @prop --cbp-table-header-color-bg-focus: var(--cbp-color-interactive-focus-dark);
+ *  @prop --cbp-table-header-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
+ *  @prop --cbp-table-header-color-bg-active: var(--cbp-color-interactive-active-dark);
+ *  @prop --cbp-table-header-color-bg-active-dark: var(--cbp-color-interactive-active-light);
+
+ *  @prop --cbp-table-header-color-outline: var(--cbp-color-white);
+ *  @prop --cbp-table-header-color-outline-dark: var(--cbp-color-black);
 
  *  @prop --cbp-table-row-color-bg: var(--cbp-color-white);
  *  @prop --cbp-table-row-color-bg-dark: var(--cbp-color-gray-cool-70);
@@ -17,6 +35,8 @@
  *  @prop --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
  *  @prop --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
  *  @prop --cbp-table-row-border-size: var(--cbp-border-size-md); 
+
+ *  @prop --cbp-table-cell-padding: var(--cbp-space-3x) var(--cbp-space-4x);
  */
 :root {
   --cbp-table-color: var(--cbp-color-text-darkest);
@@ -154,7 +174,6 @@ cbp-table {
     }
 
     th, td {
-      //position: relative;
       color: var(--cbp-table-color);
       text-align: left;
       vertical-align: top;
@@ -187,7 +206,6 @@ cbp-table {
           padding-inline-end: var(--cbp-space-9x);
         }
 
-        // TechDebt: temp
         &[aria-sort=ascending] button,
         &[aria-sort=descending] button {
           cbp-icon[name="arrow-right"] {
@@ -203,8 +221,6 @@ cbp-table {
           --cbp-table-header-color-bg-dark: var(--cbp-table-header-color-bg-hover-dark);
           
           cbp-button[fill][color] {
-            //--cbp-button-color: var(--cbp-table-header-color-hover);
-            //--cbp-button-color-dark: var(--cbp-table-header-color-hover-dark);
             --cbp-button-color-hover: var(--cbp-table-header-color-hover);
             --cbp-button-color-hover-dark: var(--cbp-table-header-color-hover-dark);
           }
@@ -225,23 +241,7 @@ cbp-table {
           --cbp-table-header-color-bg-dark: var(--cbp-table-header-color-bg-active-dark);
         }
 
-
-
-        /* No good - overflow
-        cbp-button,
-        button {
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 0;
-          bottom: 0;
-        }
-        */
-
         cbp-button {
-          //--cbp-button-width: 100%;
-          //--cbp-button-height: 100%;
-
           // Reset button styles to be invisible and style the TH like a button due to button height issues.
           --cbp-button-border-radius: 0;
           --cbp-button-border-width: 0;
@@ -255,19 +255,14 @@ cbp-table {
           --cbp-button-color-bg-focus-dark: transparent !important;
           --cbp-button-color-bg-active-dark: transparent !important;
           --cbp-button-padding: var(--cbp-table-cell-padding);
-          //display: flex;
-          //align-items: stretch;
 
           button {
-            //appearance: none;
-            //display: flex;
-            //align-items: stretch;
             justify-content: flex-start;
             text-align: left;
-            //width: 100%;
             text-transform: unset;
             letter-spacing: unset;
             white-space: normal;
+            text-wrap: balance;
             margin: 0;
             transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
           }
@@ -306,6 +301,7 @@ cbp-table {
       color: var(--cbp-table-header-color);
       background-color: var(--cbp-table-header-color-bg);
       font-weight: var(--cbp-font-weight-medium);
+      text-wrap: balance;
       outline-width: 0;
       outline-style: solid;
       outline-color: var(--cbp-table-header-color-outline);

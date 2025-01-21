@@ -93,7 +93,7 @@ const Template = ({ tableData, headers, selectable, striped, hover, columnHover,
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${toolbar}
+        <!--${toolbar}-->
         <table style="width: 100%">
           <caption>Table Caption</caption>
           <thead>

@@ -15,7 +15,7 @@ The Table component is a wrapper component encapsulating design system styles fo
 * The Table component shows a hover effect on rows but can be changed to highlight cells instead.
 * The Table component allows for column highlighting when the column heading is hovered.
 * The Table component may automatically add `scope` attributes to table headers for accessibility.
-* The Table component manages state for sorting, toggling `aria` properties on the column heading and controls as needed, and emitting and event for application logic to piggyback off.
+* The Table component manages state for sorting, toggling `aria` properties on the column heading and controls as needed, and emitting and event for application logic to listen for.
 * Column headers shall be aligned left and to the bottom (except checkboxes).
 * Cells in the table body shall be aligned left and to the top (except checkboxes; other controls TBD).
 
@@ -40,7 +40,7 @@ The Table component is a wrapper component encapsulating design system styles fo
 * Table headers (`th`) in the `thead` will automatically have `scope="col"` applied to them.
 * Table headers (`th`) in the `tbody` will automatically have `scope="row"` applied to them.
 * For sortable tables:
-  * Sortable columns must have a `cbp-button` control slotted in the column heading.
+  * Sortable columns must have a `cbp-button` control slotted in the column heading (see story code for specifics).
     * The `buttonClick` event is listened for by the Table component and sort state managed by the component via `aria-sort` on the `th` and `aria-pressed` on the `button`.
     * The Table component emits a `tableSort` event when one of these sortable controls is activated.
     * The button may optionally have a name and value defined, which are emitted with the `buttonClick` event and may be leveraged by the application logic (e.g., to pass the database/API key and/or index of the column sorted).

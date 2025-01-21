@@ -33,20 +33,9 @@ export class CbpTable {
 
   @Event() tablesorted: EventEmitter;
 
-  /*
-  @Listen('buttonClick')
-  handleHeadingClick(e) {
-    console.log('buttonClick Listener: ', e);
-    const columnHeading: HTMLTableCellElement = e.detail.host.closest('th');
-    console.log({columnHeading})
-    this.doSort(this.columnHeadings.indexOf(columnHeading));
-  }
-  */
-
   addScope(){
     const columnHeadings = Array.from(this.host.querySelectorAll('thead th'));
     const rowHeadings = Array.from(this.host.querySelectorAll('tbody th'));
-    //console.log({columnHeadings},{rowHeadings});
 
     columnHeadings.forEach( item => {
       item.setAttribute('scope','col');
@@ -59,12 +48,10 @@ export class CbpTable {
 
   makeSortable(){
     this.columnHeadings = Array.from(this.host.querySelectorAll('thead th'));
-    console.log('Making sortable: ',this.columnHeadings);
-
+    
     this.columnHeadings.forEach( item => {
       const control = item.querySelector('cbp-button');
       if(control) {
-        console.log('Wiring up column header: ', item, control);
         this.sortableColumns = [...this.sortableColumns, item];
         
         // Update the icon for any initial sort
@@ -77,10 +64,7 @@ export class CbpTable {
 
         // ({detail: { host, nativeElement, value }})
         control.addEventListener( "buttonClick", () => {
-          //const { host, nativeElement, value } = detail;
-          //console.log('Clicked: ', e); //host, nativeElement, value
           this.doSort(this.columnHeadings.indexOf(item));
-          //const th = host.closest('th');
         });
       }
     });
@@ -101,7 +85,6 @@ export class CbpTable {
    */
   @Method()
   async doSort(column: number) {
-    console.log('Sorting column ', column);
     let columnHeading: HTMLTableCellElement = this.columnHeadings[column];
     let direction = "ascending";
       //column: number, 
