@@ -108,8 +108,7 @@ export class CbpButton {
       }
     }
 
-    //this.buttonClick?.emit({
-    this.buttonClick.emit({
+    this.buttonClick?.emit({
       host: this.host,
       nativeElement: this.button,
       nativeEvent: e,
@@ -119,8 +118,6 @@ export class CbpButton {
       name: this.button.tagName == 'BUTTON' ? this.button.name : null,
       value: this.button.tagName == 'BUTTON' ? this.button.value : null,
     });
-
-    console.log('cbp-button - handleClick:', this.buttonClick, e);
   }
 
   componentWillLoad() {
