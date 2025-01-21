@@ -1,3 +1,250 @@
+/**
+ * @Prop  --cbp-loader-color: var(--cbp-color-info-dark);
+ * @Prop  --cbp-loader-color-dark: var(--cbp-color-info-light);
+ * @Prop  --cbp-loader-center-color: var(--cbp-color-branding-cbp-light);
+ * @Prop  --cbp-loader-center-color-dark: var(--cbp-color-branding-cbp-dark);
+ * @Prop  --cbp-loader-track-color: var(--cbp-color-gray-cool-20);
+ * @Prop  --cbp-loader-track-color-dark: var(--cbp-color-gray-cool-60);
+
+ * @Prop  --cbp-loader-status-description-color: var(--cbp-color-text-darkest);
+ * @Prop  --cbp-loader-status-description-color-dark: var(--cbp-color-text-lightest);
+ * @Prop  --cbp-loader-status-indicator-color: var(--cbp-color-white);
+ * @Prop  --cbp-loader-status-indicator-color-dark: var(--cbp-color-black);
+
+ * @Prop  --cbp-loader-linear-height: var(--cbp-space-2x);
+ * @Prop  --cbp-loader-linear-width: 100%;
+ * @Prop  --cbp-loader-linear-status-width: var(--cbp-loader-linear-width);
+ * @Prop  --cbp-loader-linear-flex-direction: column;
+ * @Prop  --cbp-loader-linear-gap: var(--cbp-space-2x);
+
+ * @Prop  --cbp-loader-diameter: var(--cbp-space-12x);
+ * @Prop  --cbp-loader-gutter-width: var(--cbp-space-2x);
+
+ * @Prop  --cbp-loader-status-indicator-diameter: var(--cbp-space-4x);
+
+ * @Prop  --cbp-loader-circular-determinate: var(--cbp-loader-track-color);
+ */
+
+ :root{ 
+  --cbp-loader-color: var(--cbp-color-info-dark);
+  --cbp-loader-color-dark: var(--cbp-color-info-light);
+  --cbp-loader-center-color: var(--cbp-color-branding-cbp-light);
+  --cbp-loader-center-color-dark: var(--cbp-color-branding-cbp-dark);
+  --cbp-loader-track-color: var(--cbp-color-gray-cool-20);
+  --cbp-loader-track-color-dark: var(--cbp-color-gray-cool-60);
+
+  --cbp-loader-status-description-color: var(--cbp-color-text-darkest);
+  --cbp-loader-status-description-color-dark: var(--cbp-color-text-lightest);
+  --cbp-loader-status-description-line-height: 3.5;
+  --cbp-loader-status-indicator-color: var(--cbp-color-white);
+  --cbp-loader-status-indicator-color-dark: var(--cbp-color-black);
+
+  --cbp-loader-linear-height: var(--cbp-space-2x);
+  --cbp-loader-linear-width: 100%;
+  --cbp-loader-linear-status-width: var(--cbp-loader-linear-width);
+  --cbp-loader-linear-flex-direction: column;
+  --cbp-loader-linear-gap: var(--cbp-space-2x);
+
+  --cbp-loader-diameter: var(--cbp-space-12x);
+  --cbp-loader-gutter-width: var(--cbp-space-2x);
+
+  --cbp-loader-status-indicator-diameter: var(--cbp-space-4x);
+
+  --cbp-loader-circular-determinate: var(--cbp-loader-track-color);
+}
+
+[data-cbp-theme=light] cbp-loader[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-loader:not([context=dark-inverts]):not([context=light-always]) {
+
+  --cbp-loader-color: var(--cbp-loader-color-dark);
+  --cbp-loader-center-color: var(--cbp-loader-center-color-dark);
+  --cbp-loader-track-color: var(--cbp-loader-track-color-dark);
+  
+  --cbp-loader-status-description-color: var(--cbp-loader-status-description-color-dark);
+  --cbp-loader-status-indicator-color: var(--cbp-loader-status-indicator-color-dark);}
+
+@keyframes spin {
+  0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+  25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+  50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+  75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+  100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+
+@keyframes slide {
+  0%{transform: translateX(0%);}
+  100%{transform: translateX(400%);}
+}
+
 cbp-loader {
-  display: block;
+
+  /** styling for the linear variant of the loader*/
+  &[variant="linear"]{
+    height: var(--cbp-loader-linear-height);
+    width: var(--cbp-loader-linear-width);
+    display: inline-flex;
+    flex-direction: var(--cbp-loader-linear-flex-direction);
+    align-items: center;
+    gap: var(--cbp-loader-linear-gap);
+
+    progress{
+      appearance: none; //Needed to use the below psuedo classes/ affect the progress styles
+      display: inline-block;
+
+      &::-webkit-progress-bar{ 
+        background-color: var(--cbp-loader-track-color);
+      }
+
+      &::-webkit-progress-value{
+        background-color: var(--cbp-loader-color);
+      }
+    }
+
+    &:not([determinate]):not([error]):not([success]) progress:before{
+      content: '';
+      display: block;
+      height: var(--cbp-loader-linear-height);
+      width: 20%;
+      background-color: var(--cbp-loader-color); 
+      position: absolute;
+      animation: slide 2s cubic-bezier(0.2, 0, 0.38, 0.9)  infinite;
+    }
+
+    &[determinate]{
+  
+        label{
+        color: var(--cbp-loader-status-description-color);
+        display: inline-flex;
+        width: var(--cbp-loader-linear-status-width);
+        height: var(--cbp-space-4x);
+        white-space: nowrap;
+
+        span:last-of-type{
+          margin-left: auto
+        }
+      }
+     }
+  }
+
+  /** styling for the circular variant of the loader*/
+  &[variant="circular"]{
+    height: var(--cbp-loader-diameter);
+    width: var(--cbp-loader-diameter);
+    display: inline-flex;
+
+    progress{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--cbp-border-radius-circle);
+      overflow: hidden;
+      padding: 0;
+      
+      //hide the visuals for the value/max relationship for the cirular loader. 
+      &::-webkit-progress-bar{
+        display: none;
+      }
+
+      &:before{
+        content: "";
+        position: absolute;
+        z-index: var(--cbp-z-index-level-1);
+        height: var(--cbp-loader-diameter);
+        width: var(--cbp-loader-diameter);      
+        border-radius: calc(var(--cbp-border-radius-circle) / 2);
+        margin: auto auto;
+        background: var(--cbp-loader-color);
+
+      }
+
+      &:after{
+        content: "";
+        position: absolute;
+        z-index: var(--cbp-z-index-level-2);
+        height: calc(var(--cbp-loader-diameter) - var(--cbp-loader-gutter-width));
+        width: calc(var(--cbp-loader-diameter) - var(--cbp-loader-gutter-width));
+        border-radius: calc(var(--cbp-border-radius-circle) / 2);
+        margin: auto auto;
+        background: var(--cbp-loader-center-color);
+
+      }
+    }
+    
+    &:not([determinate]):not([error]):not([success]) ::before{
+        animation: spin 2s linear infinite;
+    }
+
+    &[determinate]{
+
+      progress{
+
+        &:before{
+          background: var(--cbp-loader-circular-determinate);
+        }
+      }
+
+      .cbp-loader-desc{
+        position: absolute;
+        width: inherit;      
+        line-height: var(--cbp-loader-status-description-line-height);
+        text-align: center;
+        z-index: var(--cbp-z-index-level-3);
+        color: var(--cbp-loader-color);
+        font-weight: var(--cbp-font-weight-bold);
+      }
+    }
+  }
+
+/** Color variations for Loader */
+&[error]{
+  --cbp-loader-color: var(--cbp-color-danger-dark);
+  --cbp-loader-color-dark: var(--cbp-color-danger-light);
+  --cbp-loader-track-color: var(--cbp-color-danger-dark);
+  --cbp-loader-track-color-dark: var(--cbp-color-danger-light);
+  --cbp-loader-status-description-color: var(--cbp-color-danger-dark);
+  --cbp-loader-status-description-color-dark: var(--cbp-color-danger-light);
+  --cbp-loader-status-indicator-color: var(--cbp-color-danger-base);
+  --cbp-loader-status-indicator-color-dark: var(--cbp-color-danger-light);
+
+}
+
+  &[success]{
+  --cbp-loader-color: var(--cbp-color-success-dark);
+  --cbp-loader-color-dark: var(--cbp-color-success-light);
+  --cbp-loader-track-color: var(--cbp-color-success-dark);
+  --cbp-loader-track-color-dark: var(--cbp-color-success-light);
+  --cbp-loader-status-description-color: var(--cbp-color-success-base);
+  --cbp-loader-status-description-color-dark: var(--cbp-color-success-light);
+  --cbp-loader-status-indicator-color: var(--cbp-color-success-base);
+  --cbp-loader-status-indicator-color-dark: var(--cbp-color-success-light);
+}
+
+/** Size variations for Loader */
+
+&[size="large"]{
+  --cbp-loader-diameter: var(--cbp-space-12x);
+  --cbp-loader-gutter-width: var(--cbp-space-2x);
+  --cbp-loader-linear-height: var(--cbp-space-2x);
+  --cbp-loader-linear-flex-direction: column;
+  --cbp-loader-linear-status-width: var(--cbp-loader-linear-width);
+  --cbp-loader-linear-gap: var(--cbp-space-2x);
+
+  &[determinate]{
+    --cbp-loader-linear-height: calc(var(--cbp-space-2x) + var(--cbp-space-4x) + var(--cbp-space-2x));
+  }
+}
+
+&[size="small"]{ 
+  --cbp-loader-diameter: var(--cbp-space-4x);
+  --cbp-loader-gutter-width: var(--cbp-space-1x);  --cbp-loader-linear-height: var(--cbp-space-1x);
+  --cbp-loader-linear-flex-direction: row;
+  --cbp-loader-linear-status-width: min-content;
+  --cbp-loader-linear-gap: var(--cbp-space-1x);
+}
+
+/** generic style reset/ cross variant styles */
+  progress{
+    height: inherit;
+    width: inherit;
+  }
 }
