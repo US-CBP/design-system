@@ -1,5 +1,5 @@
 import { Component, Element, Prop, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
-import { setCSSProps} from '../../utils/utils';
+import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
 /**
@@ -20,6 +20,9 @@ export class CbpRadio {
 
   /** Optionally set the `value` attribute of the radio button at the component level. Not needed if the slotted radio button has a value. */
   @Prop() value: string;
+
+  /** Optionally specify the ID of the checkbox input here, which is used to generate related pattern node IDs and associate everything for accessibility */
+  @Prop({ mutable: true }) fieldId: string = createNamespaceKey('cbp-radio');
 
   /** Marks the radio button as checked by default when specified. */
   @Prop() checked: boolean;
@@ -69,6 +72,8 @@ export class CbpRadio {
     this.formField = this.host.querySelector('input[type=radio]');
 
     if (this.formField) {
+      const radioId = this.formField.getAttribute('id');
+      radioId ? this.fieldId = radioId : this.formField.setAttribute('id', this.fieldId);
       this.formField.addEventListener('change', () => this.handleChange());
     }
   }
@@ -86,7 +91,7 @@ export class CbpRadio {
   render() {
     return (
       <Host>
-        <label>
+        <label htmlFor={this.fieldId}>
           <slot />
         </label>
       </Host>

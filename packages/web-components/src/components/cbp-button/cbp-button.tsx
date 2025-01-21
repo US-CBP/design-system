@@ -86,22 +86,24 @@ export class CbpButton {
 
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
-  @Event() buttonClick!: EventEmitter;
+  @Event() buttonClick: EventEmitter;
   
   /** A custom event emitted when the component has completed loading and its internal lifecycles. */
-  @Event() componentLoad!: EventEmitter;
+  @Event() componentLoad: EventEmitter;
 
 
-  handleClick() {
+  handleClick(e): void {
     // If this is a control for something, manage state through stencil store
     if (this.controls) {
       // If the controlled element wasn't found, try to find it again
       if (!this.controlTarget) {
         this.controlTarget = this.controls ? document.querySelector(`#${this.controls}`) : undefined;
       }
+      // Toggle the prop it controls
       if (this.controlTarget) {
         this.controlTarget[this.targetProp] = !this.controlTarget[this.targetProp];
-      } else {
+      } 
+      else {
         console.warn('cbp-button configuration error: the control target referenced by ID by the `control` property could not be found.');
       }
     }
@@ -109,6 +111,7 @@ export class CbpButton {
     this.buttonClick?.emit({
       host: this.host,
       nativeElement: this.button,
+      nativeEvent: e,
       controls: this.controls ? this.controls : null,
       pressed: this.pressed,
       expanded: this.expanded,
@@ -189,14 +192,14 @@ export class CbpButton {
 
     if (this.host.querySelector('[slot=cbp-button-custom]')) {
       return (
-        <Host>
+        <Host onClick={(e) => this.handleClick(e)}>
           <slot name="cbp-button-custom" />
         </Host>
       );
     } 
     else if (this.tag === 'button') {
       return (
-        <Host>
+        <Host onClick={(e) => this.handleClick(e)}>
           <button
             {...this.persistedAttrs}
             {...attrs}
@@ -205,7 +208,7 @@ export class CbpButton {
             aria-pressed={pressed ? 'true' : null}
             aria-expanded={expanded ? 'true' : null}
             aria-controls={this.controls}
-            onClick={() => this.handleClick()}
+            //onClick={() => this.handleClick()}
             ref={el => (this.button = el)}
           >
             <slot />
@@ -215,7 +218,7 @@ export class CbpButton {
     } 
     else {
       return (
-        <Host>
+        <Host onClick={(e) => this.handleClick(e)}>
           <a
             {...this.persistedAttrs}
             {...attrs}
@@ -226,7 +229,7 @@ export class CbpButton {
             aria-controls={this.controls}
             role={disabled ? 'link' : null}
             aria-disabled={disabled ? 'true' : null}
-            onClick={() => this.handleClick()}
+            //onClick={() => this.handleClick()}
             ref={el => (this.button = el)}
           >
             <slot />

@@ -10,9 +10,14 @@ The Table component is a wrapper component encapsulating design system styles fo
 
 ## Functional Requirements
 
-* The Table component contains the basic styles for semantic HTML tables slotted inside of it.
+* The Table component contains the basic styles for a semantic HTML table slotted inside of it.
 * The Table component allows for striped or unstriped table rows.
-* The Typography component can also set a piece of content to act as a divider, either with a faux-underline (bottom-border) or as a shaded block.
+* The Table component shows a hover effect on rows but can be changed to highlight cells instead.
+* The Table component allows for column highlighting when the column heading is hovered.
+* The Table component may automatically add `scope` attributes to table headers for accessibility.
+* The Table component manages state for sorting, toggling `aria` properties on the column heading and controls as needed, and emitting and event for application logic to listen for.
+* Column headers shall be aligned left and to the bottom (except checkboxes).
+* Cells in the table body shall be aligned left and to the top (except checkboxes; other controls TBD).
 
 ## Technical Specifications
 
@@ -20,7 +25,7 @@ The Table component is a wrapper component encapsulating design system styles fo
 
 * The Table component is a wrapper, which may progressively enhance its contained/slotted table with different user interactions, such as:
   * Row/column/cell highlighting on mouse hover.
-  * Sortable table columns via a column header control. (TODO)
+  * Sortable table columns via a column header control. (component handles accessibility and statefullness while actual sorting is application logic)
   * Selectable rows via a slotted checkbox. (application logic)
 
 ### Responsiveness
@@ -31,7 +36,18 @@ The Table component is a wrapper component encapsulating design system styles fo
 
 * The slotted table is expected to be marked up semantically, using `thead` and `tbody` elements and denoting headings with `th` elements (not `td`s).
 * A table caption is mandatory, using the `caption` tag inside of the `table` element. If it is not desired to have a visible caption, place a `hidden` attribute on the `caption` element.
+* The `summary` attribute of the `table` is deprecated in HTML5 and should not be used.
+* Table headers (`th`) in the `thead` will automatically have `scope="col"` applied to them.
+* Table headers (`th`) in the `tbody` will automatically have `scope="row"` applied to them.
+* For sortable tables:
+  * Sortable columns must have a `cbp-button` control slotted in the column heading (see story code for specifics).
+    * The `buttonClick` event is listened for by the Table component and sort state managed by the component via `aria-sort` on the `th` and `aria-pressed` on the `button`.
+    * The Table component emits a `tableSort` event when one of these sortable controls is activated.
+    * The button may optionally have a name and value defined, which are emitted with the `buttonClick` event and may be leveraged by the application logic (e.g., to pass the database/API key and/or index of the column sorted).
+  * An initial sort state may be set by adding `aria-sort="ascending"` (or descending) to the column `th`. (Do not set if the table sort cannot be changed by the user).
 
 ### Additional Notes and Considerations
 
-* TODO: With potentially a large amount of DOM manipulation, evaluate if this is a good usecase for using ShadowDOM.
+* TODO: With potentially a large amount of DOM manipulation, evaluate if this is a good use case for using ShadowDOM.
+  * This has styling implications at a minimum.
+  * What is the interaction with using non-DS components (such as a router outlet) within the slotted content in the ShadowDOM?
