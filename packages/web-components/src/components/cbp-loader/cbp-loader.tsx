@@ -11,7 +11,7 @@ export class CbpLoader {
   @Element() host: HTMLElement;
   
   /** Specifies a unique `ID` for the loader, used to wire up the controls and accessibility features. */
-  @Prop() uid: string = createNamespaceKey('cbp-accordion-item');
+  @Prop() progressid: string = createNamespaceKey('cbp-loader');
 
   /** Defines if the loader will be in displayed as a circular or linear variant*/
   @Prop({ reflect: true }) variant: "circular" | "linear";
@@ -29,10 +29,10 @@ export class CbpLoader {
   @Prop() max: number = 100;
 
   /** Used to set the loader to the 'success' state of the loader */
-  @Prop({mutable: true}) success: boolean;
+  @Prop({mutable: true, reflect: true}) success: boolean;
 
   /** Used to set the loader to the 'error' state of the loader */
-  @Prop({mutable: true}) error: boolean;
+  @Prop({mutable: true, reflect: true}) error: boolean;
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
@@ -50,7 +50,6 @@ export class CbpLoader {
   }
 
   componentDidLoad() {
-
     if(this.determinate && this.variant == 'circular'){
       this.host.style.setProperty("--cbp-loader-circular-determinate", `conic-gradient(var(--cbp-loader-color) ${((this.value / this.max) * 100) * 3.6}deg, var(--cbp-loader-track-color) 0deg)`)
     }
@@ -60,7 +59,7 @@ export class CbpLoader {
   render() {
     let statusIndicator;
 
-    if(this.success && !this.error){
+    if(this.success){
       statusIndicator = <cbp-icon class="statusIndicator" name="check-circle" color='var(--cbp-loader-status-indicator-color)'></cbp-icon>
     }else if(this.error){
       statusIndicator = <cbp-icon class="statusIndicator" name="exclamation-circle" color='var(--cbp-loader-status-indicator-color)'></cbp-icon>
@@ -69,17 +68,13 @@ export class CbpLoader {
     }
   
     return (
-      <Host 
-        id={this.uid}
-        aria-busy={this.determinate ?
-           (this.value < this.max ? 'true' : 'false') 
-          : (!this.success ? 'true' : 'false')
-        }
-      >
+      <Host >
         {this.determinate && this.variant == 'linear' && 
           
-            <label class='cbp-loader-desc'>
-              {(this.success && !this.error) ?
+            <label
+              aria-labelledby={this.progressid}
+            >
+              {(this.success ) ?
                 `Complete`
               :( this.error ?
                   `Error`
@@ -87,8 +82,8 @@ export class CbpLoader {
                 null
               ) 
               }
-              <slot name='cbp-loader-desc' />
-               
+              <slot />
+
               {this.size != 'small' &&
                <span>{statusIndicator}</span>
               }
@@ -104,7 +99,8 @@ export class CbpLoader {
         ?
           statusIndicator
         :
-          <progress
+          <progress      
+            id={this.progressid}
             value={this.determinate ? this.value : null}
             max={this.max}
           >

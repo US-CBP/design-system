@@ -70,8 +70,6 @@
   75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
   100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
 }
-//value for 'easing' mentioned by Jeremy from carbon
-//cubic-bezier(0.2, 0, 0.38, 0.9) 
 
 @keyframes slide {
   0%{transform: translateX(0%);}
@@ -114,7 +112,7 @@ cbp-loader {
 
     &[determinate]{
   
-      .cbp-loader-desc{
+        label{
         color: var(--cbp-loader-status-description-color);
         display: inline-flex;
         width: var(--cbp-loader-linear-status-width);
@@ -198,18 +196,6 @@ cbp-loader {
   }
 
 /** Color variations for Loader */
-// &[success]:not([error]){
-  &[success]{
-  --cbp-loader-color: var(--cbp-color-success-dark);
-  --cbp-loader-color-dark: var(--cbp-color-success-light);
-  --cbp-loader-track-color: var(--cbp-color-success-dark);
-  --cbp-loader-track-color-dark: var(--cbp-color-success-light);
-  --cbp-loader-status-description-color: var(--cbp-color-success-base);
-  --cbp-loader-status-description-color-dark: var(--cbp-color-success-light);
-  --cbp-loader-status-indicator-color: var(--cbp-color-success-base);
-  --cbp-loader-status-indicator-color-dark: var(--cbp-color-success-light);
-}
-
 &[error]{
   --cbp-loader-color: var(--cbp-color-danger-dark);
   --cbp-loader-color-dark: var(--cbp-color-danger-light);
@@ -220,6 +206,17 @@ cbp-loader {
   --cbp-loader-status-indicator-color: var(--cbp-color-danger-base);
   --cbp-loader-status-indicator-color-dark: var(--cbp-color-danger-light);
 
+}
+
+  &[success]{
+  --cbp-loader-color: var(--cbp-color-success-dark);
+  --cbp-loader-color-dark: var(--cbp-color-success-light);
+  --cbp-loader-track-color: var(--cbp-color-success-dark);
+  --cbp-loader-track-color-dark: var(--cbp-color-success-light);
+  --cbp-loader-status-description-color: var(--cbp-color-success-base);
+  --cbp-loader-status-description-color-dark: var(--cbp-color-success-light);
+  --cbp-loader-status-indicator-color: var(--cbp-color-success-base);
+  --cbp-loader-status-indicator-color-dark: var(--cbp-color-success-light);
 }
 
 /** Size variations for Loader */

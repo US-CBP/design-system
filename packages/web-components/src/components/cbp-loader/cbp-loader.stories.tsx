@@ -2,7 +2,7 @@ export default {
     title: 'Components/Loader',
     //tags: ['autodocs'],
     argTypes: {
-        uid: {
+        progressid: {
             description: 'A unique `id` applied to the dialog and referenced by the control.',
             control: 'text',
           },
@@ -49,10 +49,10 @@ export default {
     }
   };
 
-const Template = ({uid, variant, label, size, determinate, value, max, success, error, context, sx }) => {
+const Template = ({progressid, variant, label, size, determinate, value, max, success, error, context, sx }) => {
     return ` 
         <cbp-loader
-            ${uid ? `uid=${uid}` : ''}
+            ${progressid ? `progressid=${progressid}` : ''}
             ${variant ? `variant=${variant}` : ``}
             ${size ? `size=${size}` : ``}
             ${determinate ? 'determinate' : ''}
@@ -64,7 +64,7 @@ const Template = ({uid, variant, label, size, determinate, value, max, success, 
             ${sx ? `sx=${JSON.stringify(sx)}` : ``}
             >
             ${variant == 'linear' && label && !(success || error)? 
-            `<label slot='cbp-loader-desc'> ${label}</label>`
+            `<label> ${label}</label>`
             : ``
             }
         </cbp-loader>
