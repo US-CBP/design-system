@@ -1,6 +1,9 @@
 import { Component, Prop, State, Element, Event, EventEmitter, Method, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * @slot - The semantic table HTML is placed within the default slot.
+ */
 @Component({
   tag: 'cbp-table',
   styleUrl: 'cbp-table.scss',
@@ -14,9 +17,14 @@ export class CbpTable {
   
   @Element() host: HTMLElement;
 
+
+  /** Specifies whether the table is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). */
   @Prop({ reflect: true }) striped: "odd" | "even";
-  @Prop({ reflect: true }) sortable: boolean;
+
+  /** Specifies whether the mouse cursor highlights the table row or cell on hover. Defaults to "row". */
   @Prop({ reflect: true }) hover: 'row' | 'cell' = 'row';
+
+  /** Specifies whether a hover effect is applied to columns when the column header is hovered. This feature is opt-in. */
   @Prop({ reflect: true }) columnHover: boolean;
   
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
@@ -31,6 +39,7 @@ export class CbpTable {
     direction: string
   }
 
+  /** An event emitted when the table is sorted via user interaction activating a table header control. */
   @Event() tablesorted: EventEmitter;
 
   addScope(){
@@ -87,8 +96,6 @@ export class CbpTable {
   async doSort(column: number) {
     let columnHeading: HTMLTableCellElement = this.columnHeadings[column];
     let direction = "ascending";
-      //column: number, 
-      //direction: string;
 
     // Manage statefulness of the sorted column vs the others (add/remove sort attrs and pressed state)
     if (columnHeading == this.sort.columnHeading) {
@@ -139,12 +146,6 @@ export class CbpTable {
   componentDidLoad() {
     this.addScope();
     this.makeSortable();
-  }
-
-  // These need to be reactive, not just occur on load
-  componentWillRender(){
-    //this.addScope();
-    //if (this.sortable) this.makeSortable();
   }
 
   render() {
