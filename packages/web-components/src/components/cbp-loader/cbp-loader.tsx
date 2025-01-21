@@ -11,7 +11,7 @@ export class CbpLoader {
   @Element() host: HTMLElement;
   
   /** Specifies a unique `ID` for the loader, used to wire up the controls and accessibility features. */
-  @Prop() progressid: string = createNamespaceKey('cbp-loader');
+  @Prop() progressId: string = createNamespaceKey('cbp-loader');
 
   /** Defines if the loader will be in displayed as a circular or linear variant*/
   @Prop({ reflect: true }) variant: "circular" | "linear";
@@ -72,7 +72,7 @@ export class CbpLoader {
         {this.determinate && this.variant == 'linear' && 
           
             <label
-              aria-labelledby={this.progressid}
+              htmlFor={this.progressId}
             >
               {(this.success ) ?
                 `Complete`
@@ -100,7 +100,7 @@ export class CbpLoader {
           statusIndicator
         :
           <progress      
-            id={this.progressid}
+            id={this.progressId}
             value={this.determinate ? this.value : null}
             max={this.max}
           >

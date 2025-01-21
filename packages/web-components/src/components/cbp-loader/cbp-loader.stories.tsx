@@ -64,7 +64,7 @@ const Template = ({progressid, variant, label, size, determinate, value, max, su
             ${sx ? `sx=${JSON.stringify(sx)}` : ``}
             >
             ${variant == 'linear' && label && !(success || error)? 
-            `<label> ${label}</label>`
+            `${label}`
             : ``
             }
         </cbp-loader>
