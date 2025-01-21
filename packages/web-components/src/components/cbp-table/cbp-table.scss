@@ -21,9 +21,27 @@
 :root {
   --cbp-table-color: var(--cbp-color-text-darkest);
   --cbp-table-color-dark: var(--cbp-color-text-lightest);
-    
+
+  --cbp-table-header-color: var(--cbp-color-interactive-secondary-darker);
+  --cbp-table-header-color-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-table-header-color-hover: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-table-header-color-hover-dark: var(--cbp-color-interactive-secondary-darker);
+  --cbp-table-header-color-focus: var(--cbp-color-text-lightest);
+  --cbp-table-header-color-focus-dark: var(--cbp-color-text-darkest);
+  --cbp-table-header-color-active: var(--cbp-color-text-darkest);
+  --cbp-table-header-color-active-dark: var(--cbp-color-text-darkest);
+
   --cbp-table-header-color-bg: var(--cbp-color-gray-cool-20);
   --cbp-table-header-color-bg-dark: var(--cbp-color-gray-cool-60);
+  --cbp-table-header-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-table-header-color-bg-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-table-header-color-bg-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-table-header-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-table-header-color-bg-active: var(--cbp-color-interactive-active-dark);
+  --cbp-table-header-color-bg-active-dark: var(--cbp-color-interactive-active-light);
+
+  --cbp-table-header-color-outline: var(--cbp-color-white);
+  --cbp-table-header-color-outline-dark: var(--cbp-color-black);
 
   --cbp-table-row-color-bg: var(--cbp-color-white);
   --cbp-table-row-color-bg-dark: var(--cbp-color-gray-cool-70);
@@ -50,7 +68,14 @@
   --cbp-table-color: var(--cbp-table-color-dark);
   
   --cbp-table-header-color: var(--cbp-table-header-color-dark);
+  --cbp-table-header-color-hover: var(--cbp-table-header-color-hover-dark);
+  --cbp-table-header-color-focus: var(--cbp-table-header-color-focus-dark);
+  --cbp-table-header-color-active: var(--cbp-table-header-color-active-dark);
   --cbp-table-header-color-bg: var(--cbp-table-header-color-bg-dark);
+  --cbp-table-header-color-bg-hover: var(--cbp-table-header-color-bg-hover-dark);
+  --cbp-table-header-color-bg-focus: var(--cbp-table-header-color-bg-focus-dark);
+  --cbp-table-header-color-bg-active: var(--cbp-table-header-color-bg-active-dark);
+  --cbp-table-header-color-outline: var(--cbp-table-header-color-outline-dark);
 
   --cbp-table-row-color-bg: var(--cbp-table-row-color-bg-dark);
   --cbp-table-row-color-bg-striped: var(--cbp-table-row-color-bg-striped-dark);
@@ -129,6 +154,7 @@ cbp-table {
     }
 
     th, td {
+      //position: relative;
       color: var(--cbp-table-color);
       text-align: left;
       vertical-align: top;
@@ -144,12 +170,10 @@ cbp-table {
         padding: 0;
       }
 
-
       cbp-checkbox {
         --cbp-checkbox-min-height: 0;
         --cbp-checkbox-margin: 0;
       }
-
     }
 
     // tfoot ??
@@ -157,22 +181,71 @@ cbp-table {
     thead {
       th {
         vertical-align: bottom;
+        transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
+
+        &[aria-sort=none] button {
+          padding-inline-end: var(--cbp-space-9x);
+        }
 
         // TechDebt: temp
-        &[aria-sort=ascending] button::before {
-          content: "↑";
+        &[aria-sort=ascending] button,
+        &[aria-sort=descending] button {
+          cbp-icon[name="arrow-right"] {
+            --cbp-icon-size: var(--cbp-space-4x);
+            margin-inline-end: var(--cbp-space-1x);
+          }
         }
 
-        &[aria-sort=descending] button::before {
-          content: "↓";
+        &:has(button:hover) {
+          --cbp-table-header-color: var(--cbp-table-header-color-hover);
+          --cbp-table-header-color-bg: var(--cbp-table-header-color-bg-hover);
+          --cbp-table-header-color-dark: var(--cbp-table-header-color-hover-dark);
+          --cbp-table-header-color-bg-dark: var(--cbp-table-header-color-bg-hover-dark);
+          
+          cbp-button[fill][color] {
+            //--cbp-button-color: var(--cbp-table-header-color-hover);
+            //--cbp-button-color-dark: var(--cbp-table-header-color-hover-dark);
+            --cbp-button-color-hover: var(--cbp-table-header-color-hover);
+            --cbp-button-color-hover-dark: var(--cbp-table-header-color-hover-dark);
+          }
         }
+
+        &:has(cbp-button[fill][color] button:focus) {
+          --cbp-table-header-color: var(--cbp-table-header-color-focus);
+          --cbp-table-header-color-bg: var(--cbp-table-header-color-bg-focus);
+          --cbp-table-header-color-dark: var(--cbp-table-header-color-focus-dark);
+          --cbp-table-header-color-bg-dark: var(--cbp-table-header-color-bg-focus-dark);
+          outline-width: var(--cbp-border-size-md);
+        }
+
+        &:has(cbp-button[fill][color] button:active) {
+          --cbp-table-header-color: var(--cbp-table-header-color-active);
+          --cbp-table-header-color-bg: var(--cbp-table-header-color-bg-active);
+          --cbp-table-header-color-dark: var(--cbp-table-header-color-active-dark);
+          --cbp-table-header-color-bg-dark: var(--cbp-table-header-color-bg-active-dark);
+        }
+
+
+
+        /* No good - overflow
+        cbp-button,
+        button {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+        }
+        */
 
         cbp-button {
-          --cbp-button-width: 100%;
-          --cbp-button-height: 100%;
+          //--cbp-button-width: 100%;
+          //--cbp-button-height: 100%;
+
+          // Reset button styles to be invisible and style the TH like a button due to button height issues.
+          --cbp-button-border-radius: 0;
           --cbp-button-border-width: 0;
           --cbp-button-focus-outline-width: 0;
-          //--cbp-button-border-radius: 0;
           --cbp-button-color-bg: transparent !important;
           --cbp-button-color-bg-hover: transparent !important;
           --cbp-button-color-bg-focus: transparent !important;
@@ -181,22 +254,22 @@ cbp-table {
           --cbp-button-color-bg-hover-dark: transparent !important;
           --cbp-button-color-bg-focus-dark: transparent !important;
           --cbp-button-color-bg-active-dark: transparent !important;
-
           --cbp-button-padding: var(--cbp-table-cell-padding);
-          display: flex;
-          align-items: stretch;
+          //display: flex;
+          //align-items: stretch;
 
           button {
-            appearance: none;
-            display: flex;
-            align-items: stretch;
+            //appearance: none;
+            //display: flex;
+            //align-items: stretch;
             justify-content: flex-start;
             text-align: left;
-            width: 100%;
+            //width: 100%;
             text-transform: unset;
             letter-spacing: unset;
             white-space: normal;
             margin: 0;
+            transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
           }
         }
       }
@@ -228,8 +301,15 @@ cbp-table {
     }
 
     th {
+      --cbp-button-color: var(--cbp-table-header-color);
+      --cbp-button-color-dark: var(--cbp-table-header-color-dark);
+      color: var(--cbp-table-header-color);
       background-color: var(--cbp-table-header-color-bg);
       font-weight: var(--cbp-font-weight-medium);
+      outline-width: 0;
+      outline-style: solid;
+      outline-color: var(--cbp-table-header-color-outline);
+      outline-offset: calc(var(--cbp-space-1x) * -1);
     }
 
     td {

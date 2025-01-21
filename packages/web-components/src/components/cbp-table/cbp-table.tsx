@@ -66,7 +66,14 @@ export class CbpTable {
       if(control) {
         console.log('Wiring up column header: ', item, control);
         this.sortableColumns = [...this.sortableColumns, item];
-        if (item.getAttribute('aria-sort') == undefined) item.setAttribute("aria-sort","none");
+        
+        // Update the icon for any initial sort
+        const icon = control.querySelector('button cbp-icon') as HTMLCbpIconElement;
+        if (item.getAttribute('aria-sort') == "ascending") icon.rotate = 270;
+        if (item.getAttribute('aria-sort') == "descending") icon.rotate = 90;
+        // Set aria-sort to none last
+        if (!item.getAttribute('aria-sort')) item.setAttribute("aria-sort","none");
+        else icon.name="arrow-right";
 
         // ({detail: { host, nativeElement, value }})
         control.addEventListener( "buttonClick", () => {
@@ -105,16 +112,19 @@ export class CbpTable {
       // If the current sort column is the same as the previously sorted column, just toggle the direction
       columnHeading.getAttribute('aria-sort') == "ascending" 
         ? direction = "descending"
-        : direction = "ascending";;
+        : direction = "ascending";
     }
     else {
       // Reset the previous sort state
-      this.sort.columnHeading.removeAttribute('aria-sort');
       this.sort.columnHeading.querySelector('cbp-button').pressed=false;
+      (this.sort.columnHeading.querySelector('button cbp-icon') as HTMLCbpIconElement).name=undefined;
+      this.sort.columnHeading.setAttribute('aria-sort','none');
       // Set the new sort state
-      //columnHeading.setAttribute('aria-sort','ascending');
       columnHeading.querySelector('cbp-button').pressed=true;
     }
+    const icon = columnHeading.querySelector('button cbp-icon') as HTMLCbpIconElement;
+    icon.rotate = (direction == 'descending') ? 90 : 270;
+    icon.name="arrow-right";
     columnHeading.setAttribute('aria-sort', direction);
 
     let newSort = {

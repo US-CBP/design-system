@@ -13,9 +13,6 @@ export default {
     columnHover: {
       control: 'boolean'
     },
-    sortable: {
-      control: 'boolean'
-    },
     selectable: {
       control: 'boolean'
     },
@@ -40,7 +37,11 @@ function generateTableHeaders(headers, selectable, context) {
     </th>`
   let cells = headers.map( ({label, sortable}, i)  => {
     return `${ sortable 
-      ? `<th ${i == 0 ? `aria-sort="ascending"` : ''}><cbp-button fill="ghost" color="secondary" name="${`column-${i}`}" value="${i}"><cbp-icon></cbp-icon>${label}</cbp-button></th>`
+      ? `<th ${i == 0 ? `aria-sort="ascending"` : ''}>
+          <cbp-button fill="ghost" color="secondary" name="${`column-${i}`}" value="${i}">
+            <cbp-icon size="var(--cbp-space-4x)"></cbp-icon>${label}
+          </cbp-button>
+        </th>`
       : `<th>${label}</th>`
     }`;
   }).join('');
@@ -76,7 +77,7 @@ function generateTableRows(data, selectable, context) {
 }
 
 
-const Template = ({ tableData, headers, sortable, selectable, striped, hover, columnHover, context, sx }) => {
+const Template = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
 
   const toolbar=`
     <div slot="cbp-table-toolbar">
@@ -89,7 +90,6 @@ const Template = ({ tableData, headers, sortable, selectable, striped, hover, co
         ${striped != 'none' ? `striped="${striped}"` : ''}
         ${hover == 'cell' ? `hover="${hover}"` : ''}
         ${columnHover ? `column-hover` : ''}
-        ${sortable ? `sortable` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
@@ -130,7 +130,7 @@ BasicTable.args = {
       sortable: true,
     },
     {
-      label: "Header 3",
+      label: "Header 3 is longer",
       sortable: true,
     },
     {
@@ -166,7 +166,7 @@ BasicTable.args = {
         {td: 'Row 3 Column 1 Cell Text'},
         {td: 'Row 3 Column 2 Cell Text'},
         {td: 'Row 3 Column 3 Cell Text'},
-        {td: 'Row 3 Column 4 Cell Text'},
+        {td: 'Row 3 Column 4 Cell Text is longer than the rest'},
         {td: 'Row 3 Column 5 Cell Text'},      ]
     },
     {
