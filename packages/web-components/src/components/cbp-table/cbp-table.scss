@@ -144,20 +144,20 @@ cbp-table {
   }
 
   
-  // Column highlighting on hover
+  // Column highlighting on hover (except for column header when sortable)
   // TechDebt: doesn't scale; this would be better, but still experimental: https://developer.mozilla.org/en-US/docs/Web/CSS/Column_combinator#browser_compatibility
   &[column-hover] {
-    table:has(thead tr > *:nth-child(1):hover) tr > *:nth-child(1),
-    table:has(thead tr > *:nth-child(2):hover) tr > *:nth-child(2),
-    table:has(thead tr > *:nth-child(3):hover) tr > *:nth-child(3),
-    table:has(thead tr > *:nth-child(4):hover) tr > *:nth-child(4),
-    table:has(thead tr > *:nth-child(5):hover) tr > *:nth-child(5),
-    table:has(thead tr > *:nth-child(6):hover) tr > *:nth-child(6),
-    table:has(thead tr > *:nth-child(7):hover) tr > *:nth-child(7),
-    table:has(thead tr > *:nth-child(8):hover) tr > *:nth-child(8),
-    table:has(thead tr > *:nth-child(9):hover) tr > *:nth-child(9),
-    table:has(thead tr > *:nth-child(10):hover) tr > *:nth-child(10) {
-      background-color: var(--cbp-table-row-color-bg-hover) !important;
+    table:has(thead tr > *:nth-child(1):hover) tr > *:nth-child(1):not([aria-sort]),
+    table:has(thead tr > *:nth-child(2):hover) tr > *:nth-child(2):not([aria-sort]),
+    table:has(thead tr > *:nth-child(3):hover) tr > *:nth-child(3):not([aria-sort]),
+    table:has(thead tr > *:nth-child(4):hover) tr > *:nth-child(4):not([aria-sort]),
+    table:has(thead tr > *:nth-child(5):hover) tr > *:nth-child(5):not([aria-sort]),
+    table:has(thead tr > *:nth-child(6):hover) tr > *:nth-child(6):not([aria-sort]),
+    table:has(thead tr > *:nth-child(7):hover) tr > *:nth-child(7):not([aria-sort]),
+    table:has(thead tr > *:nth-child(8):hover) tr > *:nth-child(8):not([aria-sort]),
+    table:has(thead tr > *:nth-child(9):hover) tr > *:nth-child(9):not([aria-sort]),
+    table:has(thead tr > *:nth-child(10):hover) tr > *:nth-child(10):not([aria-sort]) {
+      background-color: var(--cbp-table-row-color-bg-hover);
     }
   }
 
