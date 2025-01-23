@@ -1,0 +1,54 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Subnav/Specifications" />
+
+# cbp-sub-nav
+
+## Purpose
+
+* Subnav is meant to be used as a secondary, vertical navigation
+
+## Functional Requirements
+
+* Subnav is meant to be used by the application header & is used to display the sub navigation items for a site
+* Subnav items will be divided into 2 types single & parent. 
+    * Single will be items that have no children and are represented via an anchor button w/ href leading to associated page.
+    * Parent will operate similar to Single but with the addition of an Icon button used to expand/hide the display of its children
+* Will track the 'Current' item to have visual indication of where user is currently on site map.
+    * Parents of Current item will also be visually distinct (use of css has should make this simplier)
+* Sub nav will render inside of a navigation tag
+* Subnav will will be opened via the NavItems with children (notated by the chevron icon) in the App header, clicking which will open a drawer containing the Subnav
+* Indentation & chevron icon is based on the depth of the child
+
+## Technical Specifications
+
+* Text for anchor will be slotted to allow for icons next to text. (mainly used for home page)
+* Programmatically determine if subnav item is a single or parent type render based on if it has children in the imported structure
+* Current prop to determine which item is set to current (active on spec) 
+* Accessibility text prop for the navigation tag for screenreaders
+
+### User Interactions
+
+* Selecting the anchor button will route to associated href
+* Toggling the icon button will hide/expand children
+* Subnav items will have hover, focused, pressed, & current states, please note the anchor button & icon button have independent states 
+    *Hover, focus, & pressed will remap the cssvars of the cbp-button
+    *Current will be unique to Subnav which is used to represent the currently page the user is in the app structure
+
+### Responsiveness
+
+* Subnav is designed to be inside of a Drawer component and as such will defer to the Responsiveness of the Drawer component
+
+### Accessibility
+
+* Current prop will be notated via use of aria-current  
+* Keyboard tab navigation will be fore both anchor button and icon button seperately
+* Icon button will hide/expand on 'enter & space'
+* anchor buttons will launch to associated href on 'enter'
+* use of the navigation tag w/ a prop for accessibility text
+* Icon buttons need a accessible name and an aria-describedby pointing to the associated Anchor button
+
+### Additional Notes and Considerations
+
+* Hierarchy is only visually enforced, items that are 4+ deep will visually be the same
+* look to the button props to use the 'expand' prop. Accordian is a good example of this for gold star sample
