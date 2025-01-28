@@ -25,6 +25,7 @@ export const CbpDrawer = /*@__PURE__*/createReactComponent<JSX.CbpDrawer, HTMLCb
 export const CbpDropdown = /*@__PURE__*/createReactComponent<JSX.CbpDropdown, HTMLCbpDropdownElement>('cbp-dropdown');
 export const CbpDropdownItem = /*@__PURE__*/createReactComponent<JSX.CbpDropdownItem, HTMLCbpDropdownItemElement>('cbp-dropdown-item');
 export const CbpExpand = /*@__PURE__*/createReactComponent<JSX.CbpExpand, HTMLCbpExpandElement>('cbp-expand');
+export const CbpFileInput = /*@__PURE__*/createReactComponent<JSX.CbpFileInput, HTMLCbpFileInputElement>('cbp-file-input');
 export const CbpFlex = /*@__PURE__*/createReactComponent<JSX.CbpFlex, HTMLCbpFlexElement>('cbp-flex');
 export const CbpFlexItem = /*@__PURE__*/createReactComponent<JSX.CbpFlexItem, HTMLCbpFlexItemElement>('cbp-flex-item');
 export const CbpFooter = /*@__PURE__*/createReactComponent<JSX.CbpFooter, HTMLCbpFooterElement>('cbp-footer');
