@@ -1,0 +1,117 @@
+/**
+ *
+ */
+
+:root{
+  --cbp-form-field-color: var(--cbp-color-text-darkest);
+  --cbp-form-field-color-bg: var(--cbp-color-white);
+  --cbp-form-field-color-border: var(--cbp-color-interactive-secondary-base);
+  --cbp-form-field-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-form-field-color-border-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-form-field-color-label: var(--cbp-color-text-darkest);
+  --cbp-form-field-color-description: var(--cbp-color-text-darkest);
+  --cbp-form-field-color-placeholder: var(--cbp-color-text-dark);
+
+  --cbp-form-field-color-dark: var(--cbp-color-text-lightest);
+  --cbp-form-field-color-bg-dark: var(--cbp-color-gray-cool-70);
+  --cbp-form-field-color-border-dark: var(--cbp-color-interactive-secondary-light);
+  --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-form-field-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-form-field-color-label-dark: var(--cbp-color-text-lightest);
+  --cbp-form-field-color-description-dark: var(--cbp-color-text-lightest);
+  --cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
+}
+
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-file-input[context*=dark],
+[data-cbp-theme=dark] cbp-file-input:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-form-field-color-label: var(--cbp-form-field-color-label-dark);
+  --cbp-form-field-color-description: var(--cbp-form-field-color-description-dark);
+  --cbp-form-field-color: var(--cbp-form-field-color-dark);
+  --cbp-form-field-color-bg: var(--cbp-form-field-color-bg-dark);
+  --cbp-form-field-color-border: var(--cbp-form-field-color-border-dark);
+  --cbp-form-field-color-border-hover: var(--cbp-form-field-color-border-hover-dark);
+  --cbp-form-field-color-border-focus: var(--cbp-form-field-color-border-focus-dark);
+}
+
+
+cbp-file-input {
+  display: block;
+  max-width: 22rem;
+
+  .cbp-file-input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    //min-height: var(--cbp-space-9x);
+    min-height: 4.5rem;
+    //padding-inline: var(--cbp-form-field-padding-inline);
+    //font-family: inherit;
+    //font-size: var(--cbp-font-size-body);
+    //line-height: var(--cbp-line-height-xs);
+    //text-align: start;
+    //vertical-align: middle;
+
+    color: var(--cbp-form-field-color);
+    background-color: var(--cbp-form-field-color-bg);
+    //border-style: solid;
+    border-width: var(--cbp-border-size-md);
+    border-color: var(--cbp-form-field-color-border);
+    border-radius: var(--cbp-form-field-border-radius);
+    outline-style: solid;
+    outline-width: 0;
+    outline-color: var(--cbp-form-field-color-border-focus);
+    outline-offset: -1px; // Verified: Safari does not show focus outline without this
+
+    border-style: dashed;
+    outline-offset: calc(var(--cbp-space-1x) * -1);
+
+    &:hover {
+      --cbp-form-field-color-border: var(--cbp-form-field-color-border-hover); // this makes the scrollbars update dynamically
+    }
+
+    &:focus,
+    &:focus-within {
+      --cbp-form-field-color-border: var(--cbp-form-field-color-border-focus); // this makes the scrollbars update dynamically
+      outline-width: var(--cbp-border-size-lg); // This is set to 3px because of the 1px inset, overlapping the border; border+outline = 4px total.
+      //border-color: var(--cbp-form-field-color-border-focus);
+    }
+
+    &[readonly],
+    &:disabled {
+      font-style: italic;
+      cursor: not-allowed;
+    }
+
+
+    .cbp-file-input-visuals {
+      display: flex;
+      align-items: center;
+      gap: var(--cbp-space-3x);
+      height: 100%;
+      //padding-block: var(--cbp-space-4x);
+      padding-inline-start: var(--cbp-space-4x);
+      padding-inline-end: var(--cbp-space-3x);
+
+      .cbp-file-input-text {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    input[type=file]:not(#fakeId) {
+      appearance: none;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      z-index: 2;
+    }
+}
+
+}

@@ -54,8 +54,9 @@ export class CbpFormField {
   @Prop() sx: any = {};
 
 
-  /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
+  /** A custom event emitted when the the nested input is changed by user interaction. */
   @Event() valueChange: EventEmitter;
+  // TechDebt: needs testing with input groups
   handleChange() {
     this.valueChange.emit({
       host: this.host,
@@ -133,7 +134,7 @@ export class CbpFormField {
       // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
       this.formField = this.host.querySelector('input,select,textarea');
       // Treat nested components separately, as it's hard to modify their rendered content directly
-      this.formFieldComponent = this.host.querySelector('cbp-dropdown');
+      this.formFieldComponent = this.host.querySelector('cbp-dropdown, cbp-file-input');
       this.buttons = this.host.querySelectorAll('cbp-button');
       this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
       this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
