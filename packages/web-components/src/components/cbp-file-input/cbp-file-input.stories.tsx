@@ -14,15 +14,6 @@ export default {
     name: {
       control: 'text',
     },
-    placeholder: {
-      control: 'text',
-    },
-    value: {
-      control: 'text',
-    },
-    filter: {
-      control: 'boolean',
-    },
     error: {
       control: 'boolean',
     },
@@ -74,7 +65,6 @@ const FileInputTemplate = ({ label, description, fieldId, name, placeholder, err
 
 export const FileInput = FileInputTemplate.bind({});
 FileInput.args = {
-  value: '',
   fieldId: 'file-input-id',
 };
 

@@ -41,7 +41,8 @@ export class CbpFileInput {
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() valueChange: EventEmitter;
-  handleChange() {
+  handleChange(e) {
+    console.log(e);
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formField,
@@ -68,11 +69,11 @@ export class CbpFileInput {
     });
 
     // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
-    this.formField = this.host.querySelector('input[type=checkbox]');
+    this.formField = this.host.querySelector('input[type=file]');
     if (this.formField) {
-      const checkboxId = this.formField.getAttribute('id');
-      checkboxId ? this.fieldId = checkboxId : this.formField.setAttribute('id', this.fieldId);
-      //this.formField.addEventListener('change', () => this.handleChange());
+      const Id = this.formField.getAttribute('id');
+      Id ? this.fieldId = Id : this.formField.setAttribute('id', this.fieldId);
+      this.formField.addEventListener('change', (e) => this.handleChange(e));
     }
   }
 
@@ -90,12 +91,9 @@ export class CbpFileInput {
   render() {
     return (
       <Host>
-        <div 
-          class="cbp-file-input-wrapper"
-          onClick={ () => this.formField?.click()}
-        >
+        <div class="cbp-file-input-wrapper">
           <div class="cbp-file-input-visuals">
-            <cbp-icon name="upload" size="2rem" />
+            <cbp-icon name="file-lines" size="2rem" color="var(--cbp-color-text-base)" />
             <div class="cbp-file-input-text">Drag & Drop Files Here or Browse</div>
             <cbp-button fill="solid" color="secondary">
               <cbp-icon name="upload" sx='{"margin-right":"var(--cbp-space-1x)"}' />

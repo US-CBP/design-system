@@ -3,36 +3,36 @@
  */
 
 :root{
-  --cbp-form-field-color: var(--cbp-color-text-darkest);
-  --cbp-form-field-color-bg: var(--cbp-color-white);
-  --cbp-form-field-color-border: var(--cbp-color-interactive-secondary-base);
-  --cbp-form-field-color-border-hover: var(--cbp-color-interactive-secondary-darker);
-  --cbp-form-field-color-border-focus: var(--cbp-color-interactive-focus-dark);
-  --cbp-form-field-color-label: var(--cbp-color-text-darkest);
-  --cbp-form-field-color-description: var(--cbp-color-text-darkest);
-  --cbp-form-field-color-placeholder: var(--cbp-color-text-dark);
+  --cbp-file-input-color: var(--cbp-color-text-darkest);
+  --cbp-file-input-color-bg: var(--cbp-color-white);
+  --cbp-file-input-color-border: var(--cbp-color-interactive-secondary-base);
+  --cbp-file-input-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-file-input-color-border-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-file-input-color-label: var(--cbp-color-text-darkest);
+  --cbp-file-input-color-description: var(--cbp-color-text-darkest);
+  --cbp-file-input-color-placeholder: var(--cbp-color-text-dark);
 
-  --cbp-form-field-color-dark: var(--cbp-color-text-lightest);
-  --cbp-form-field-color-bg-dark: var(--cbp-color-gray-cool-70);
-  --cbp-form-field-color-border-dark: var(--cbp-color-interactive-secondary-light);
-  --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
-  --cbp-form-field-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
-  --cbp-form-field-color-label-dark: var(--cbp-color-text-lightest);
-  --cbp-form-field-color-description-dark: var(--cbp-color-text-lightest);
-  --cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
+  --cbp-file-input-color-dark: var(--cbp-color-text-lightest);
+  --cbp-file-input-color-bg-dark: var(--cbp-color-gray-cool-70);
+  --cbp-file-input-color-border-dark: var(--cbp-color-interactive-secondary-light);
+  --cbp-file-input-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-file-input-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-file-input-color-label-dark: var(--cbp-color-text-lightest);
+  --cbp-file-input-color-description-dark: var(--cbp-color-text-lightest);
+  --cbp-file-input-color-placeholder-dark: var(--cbp-color-text-light);
 }
 
 
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-file-input[context*=dark],
 [data-cbp-theme=dark] cbp-file-input:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-form-field-color-label: var(--cbp-form-field-color-label-dark);
-  --cbp-form-field-color-description: var(--cbp-form-field-color-description-dark);
-  --cbp-form-field-color: var(--cbp-form-field-color-dark);
-  --cbp-form-field-color-bg: var(--cbp-form-field-color-bg-dark);
-  --cbp-form-field-color-border: var(--cbp-form-field-color-border-dark);
-  --cbp-form-field-color-border-hover: var(--cbp-form-field-color-border-hover-dark);
-  --cbp-form-field-color-border-focus: var(--cbp-form-field-color-border-focus-dark);
+  --cbp-file-input-color-label: var(--cbp-file-input-color-label-dark);
+  --cbp-file-input-color-description: var(--cbp-file-input-color-description-dark);
+  --cbp-file-input-color: var(--cbp-file-input-color-dark);
+  --cbp-file-input-color-bg: var(--cbp-file-input-color-bg-dark);
+  --cbp-file-input-color-border: var(--cbp-file-input-color-border-dark);
+  --cbp-file-input-color-border-hover: var(--cbp-file-input-color-border-hover-dark);
+  --cbp-file-input-color-border-focus: var(--cbp-file-input-color-border-focus-dark);
 }
 
 
@@ -48,36 +48,36 @@ cbp-file-input {
     max-width: 100%;
     //min-height: var(--cbp-space-9x);
     min-height: 4.5rem;
-    //padding-inline: var(--cbp-form-field-padding-inline);
+    //padding-inline: var(--cbp-file-input-padding-inline);
     //font-family: inherit;
     //font-size: var(--cbp-font-size-body);
     //line-height: var(--cbp-line-height-xs);
     //text-align: start;
     //vertical-align: middle;
 
-    color: var(--cbp-form-field-color);
-    background-color: var(--cbp-form-field-color-bg);
+    color: var(--cbp-file-input-color);
+    background-color: var(--cbp-file-input-color-bg);
     //border-style: solid;
     border-width: var(--cbp-border-size-md);
-    border-color: var(--cbp-form-field-color-border);
-    border-radius: var(--cbp-form-field-border-radius);
+    border-color: var(--cbp-file-input-color-border);
+    border-radius: var(--cbp-file-input-border-radius);
     outline-style: solid;
     outline-width: 0;
-    outline-color: var(--cbp-form-field-color-border-focus);
+    outline-color: var(--cbp-file-input-color-border-focus);
     outline-offset: -1px; // Verified: Safari does not show focus outline without this
 
     border-style: dashed;
     outline-offset: calc(var(--cbp-space-1x) * -1);
 
     &:hover {
-      --cbp-form-field-color-border: var(--cbp-form-field-color-border-hover); // this makes the scrollbars update dynamically
+      --cbp-file-input-color-border: var(--cbp-file-input-color-border-hover); // this makes the scrollbars update dynamically
     }
 
     &:focus,
     &:focus-within {
-      --cbp-form-field-color-border: var(--cbp-form-field-color-border-focus); // this makes the scrollbars update dynamically
+      --cbp-file-input-color-border: var(--cbp-file-input-color-border-focus); // this makes the scrollbars update dynamically
       outline-width: var(--cbp-border-size-lg); // This is set to 3px because of the 1px inset, overlapping the border; border+outline = 4px total.
-      //border-color: var(--cbp-form-field-color-border-focus);
+      //border-color: var(--cbp-file-input-color-border-focus);
     }
 
     &[readonly],
@@ -99,6 +99,7 @@ cbp-file-input {
       .cbp-file-input-text {
         display: flex;
         align-items: center;
+        font-style: italic;
       }
     }
 
