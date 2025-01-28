@@ -85,8 +85,10 @@ cbp-form-field {
     position: relative;
   }
 
-  //input:not([type~="checkbox radio"]),
-  input:not([type="checkbox"]):not([type="radio"]),
+  // TechDebt: the :not()s are increasing specificity and making it hard to override elsewhere.
+  // Removing and using all: unset on check/radio. Verify those + dropdown/selects and toggle.
+  //input:not([type="checkbox"]):not([type="radio"]),
+  input,
   textarea,
   select, 
   .cbp-custom-form-control {
@@ -98,6 +100,7 @@ cbp-form-field {
     font-size: var(--cbp-font-size-body);
     line-height: var(--cbp-line-height-xs);
     text-align: start;
+    vertical-align: middle;
 
     color: var(--cbp-form-field-color);
     background-color: var(--cbp-form-field-color-bg);
@@ -198,6 +201,14 @@ cbp-form-field {
   ::placeholder {
     color: var(--cbp-form-field-color-placeholder);
     font-style: italic;
+  }
+
+  //input[type=file]:not(#fakeId){
+  input[type=file]{
+    line-height: var(--cbp-space-8x);
+  }
+  ::file-selector-button {
+    display: none;
   }
 
   textarea { 
