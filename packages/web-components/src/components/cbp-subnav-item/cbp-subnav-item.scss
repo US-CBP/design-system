@@ -1,3 +1,108 @@
-:host {
-  display: block;
+/** 
+ * @prop  --cbp-subnav-item-active-border-color: var(--cbp-color-interactive-active-dark);
+ * @prop  --cbp-subnav-item-active-color:var(--cbp-color-interactive-active-dark);
+ * @prop  --cbp-subnav-item-active-color-bg: var(--cbp-color-interactive-active-light);
+ */
+
+:root {
+  /* 
+    Component spec does not have dark mode, commented out vars & code are guess values incase they are needed at later date
+  */
+  --cbp-subnav-item-active-border-color: var(--cbp-color-interactive-active-dark);
+  --cbp-subnav-item-active-color:var(--cbp-color-interactive-active-dark);
+  // --cbp-subnav-item-active-color-dark: var(--cbp-color-interactive-secondary-light);
+  --cbp-subnav-item-active-color-bg: var(--cbp-color-interactive-active-light);
+  // --cbp-subnav-item-active-color-bg-dark: var(--cbp-color-interactive-active-dark);
+  // --cbp-subnav-item-active-border-color-dark: var(--cbp-color-interactive-active-light); 
+
+  --cbp-subnav-item-indent: var(--cbp-space-4x);
 }
+
+// [data-cbp-theme=light] cbp-subnav-item[context*=dark]:not([context=light-always]),
+// [data-cbp-theme=dark] cbp-subnav-item:not([context=dark-inverts]):not([context=light-always]) {
+
+  // --cbp-subnav-item-active-border-color: var(--cbp-subnav-item-active-border-color-dark);
+// }
+
+cbp-subnav-item {
+  display: flex;
+
+  --cbp-subnav-item-rotate-icon: rotate(90deg);
+  &[open]{
+    --cbp-subnav-item-rotate-icon: rotate(270deg);
+  }
+
+  &[current] cbp-button:first-of-type,
+  &:has( + * cbp-subnav-item[current]) cbp-button:first-of-type{
+    border-left: var(--cbp-border-size-xl) solid var(--cbp-subnav-item-active-border-color);
+  }
+
+  &[current] cbp-button[fill=outline][color=primary]:first-of-type{
+    --cbp-button-color: var(--cbp-subnav-item-active-color);
+    background-color: var(--cbp-subnav-item-active-color-bg);
+    font-style: italic;
+  }
+
+  //Overrides for button variables
+  cbp-button[fill=outline][color=primary]{
+    --cbp-button-min-height: 3.5rem;
+    --cbp-button-width: 100%;
+    --cbp-button-border-radius: var(--cbp-border-radius-sharp);
+    --cbp-button-border-width: var(--cbp-border-size-sm);
+    
+    --cbp-button-color: var(--cbp-color-interactive-secondary-darker);
+    --cbp-button-color-hover: var(--cbp-color-interactive-secondary-darker);
+    --cbp-button-color-focus: var(--cbp-color-text-lightest);
+    --cbp-button-color-active: var(--cbp-color-text-lightest);
+    --cbp-button-color-bg: transparent;
+    --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
+    --cbp-button-color-bg-focus: var(--cbp-color-interactive-focus-dark);
+    --cbp-button-color-bg-active: var(--cbp-color-interactive-active-dark);
+    --cbp-button-color-border: var(--cbp-color-gray-cool-40);
+    --cbp-button-color-border-hover: var(--cbp-color-gray-cool-40);
+    --cbp-button-color-border-focus: var(--cbp-color-gray-cool-40);
+    --cbp-button-color-border-active: var(--cbp-color-gray-cool-40);
+
+    /**Tech Debt: dark mode not outlined in spec so currently mapped to primary outline button values, associated vars to override below w/ original cbp-button values
+    --cbp-button-color-dark: var(--cbp-color-text-darkest);
+    --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
+    --cbp-button-color-focus-dark: var(--cbp-color-text-darkest);
+    --cbp-button-color-active-dark: var(--cbp-color-text-darkest);
+    --cbp-button-color-bg-dark: var(--cbp-color-interactive-primary-base);
+    --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-primary-light);
+    --cbp-button-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
+    --cbp-button-color-bg-active-dark: var(--cbp-color-interactive-active-light);
+    --cbp-button-color-border-dark: var(--cbp-color-interactive-primary-base);
+    --cbp-button-color-border-hover-dark: var(--cbp-color-interactive-primary-light);
+    --cbp-button-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
+    --cbp-button-color-border-active-dark: var(--cbp-color-interactive-active-light);
+    */
+
+    &:first-of-type button,
+    &:first-of-type a{
+      justify-content: start;
+      font-weight: var(--cbp-font-weight-medium);
+      padding-left: var(--cbp-subnav-item-indent);
+    }
+   
+    // Icon button for parent variant
+    & + cbp-button{
+      --cbp-button-width: 3.5rem;   
+      transform: var(--cbp-subnav-item-rotate-icon);
+
+    }
+  }
+
+  & + * cbp-subnav-item {
+    --cbp-subnav-item-indent: var(--cbp-space-5x);
+
+    & + * cbp-subnav-item {
+      --cbp-subnav-item-indent: var(--cbp-space-7x);
+    
+      & + * cbp-subnav-item {
+        --cbp-subnav-item-indent: var(--cbp-space-9x);
+      }
+    }
+  }
+}
+
