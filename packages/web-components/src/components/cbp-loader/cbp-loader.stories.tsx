@@ -29,6 +29,11 @@ export default {
             control: 'text',
             if: { arg: 'determinate', eq: true}
         },
+        orientation: {
+            control: 'select',
+            options: ['right', 'bottom'],
+            if: {arg: 'determinate', eq: true}
+        },
         success : {
             control: 'boolean'
         },
@@ -49,7 +54,7 @@ export default {
     }
   };
 
-const Template = ({progressid, variant, label, size, determinate, value, max, success, error, context, sx }) => {
+const Template = ({progressid, variant, label, size, determinate, value, max, orientation, success, error, context, sx }) => {
     return ` 
         <cbp-loader
             ${progressid ? `progressid=${progressid}` : ''}
@@ -58,6 +63,7 @@ const Template = ({progressid, variant, label, size, determinate, value, max, su
             ${determinate ? 'determinate' : ''}
             ${value ? `value=${value}` : ``}
             ${max ? `max=${max}` : ``}
+            ${orientation ? `orientation=${orientation}` : ``}
             ${success ? 'success' : ''}
             ${error ? 'error' : ''}
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
@@ -67,10 +73,11 @@ const Template = ({progressid, variant, label, size, determinate, value, max, su
             `${label}`
             : ``
             }
+            ${variant == 'circular' && size == 'large' && label && !(success || error)? 
+            `${label}` : `` }
         </cbp-loader>
     `;
 };
-  
 export const Loader = Template.bind({});
   
 Loader.args = {

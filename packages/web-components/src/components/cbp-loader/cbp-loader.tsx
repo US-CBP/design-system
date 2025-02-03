@@ -28,6 +28,9 @@ export class CbpLoader {
   /** Used in deternminate mode to display the max value of loaded content*/
   @Prop() max: number = 100;
 
+  /** Used to set the text orientation for the circular determinate loader's description*/
+  @Prop() orientation: "right" | "bottom" = 'right'; 
+  
   /** Used to set the loader to the 'success' state of the loader */
   @Prop({mutable: true, reflect: true}) success: boolean;
 
@@ -53,7 +56,15 @@ export class CbpLoader {
     if(this.determinate && this.variant == 'circular'){
       this.host.style.setProperty("--cbp-loader-circular-determinate", `conic-gradient(var(--cbp-loader-color) ${((this.value / this.max) * 100) * 3.6}deg, var(--cbp-loader-track-color) 0deg)`)
     }
-    
+
+    console.log(this.orientation);
+    if(this.orientation == 'bottom'){
+      this.host.style.setProperty('--cbp-loader-status-description-padding', 'var(--cbp-space-2x) 0 0 0 ')
+      this.host.style.setProperty('--cbp-loader-flex-direction', 'column')
+    }else{
+      this.host.style.setProperty('--cbp-loader-status-description-padding', '0 0 0 var(--cbp-space-2x)')
+      this.host.style.setProperty('--cbp-loader-flex-direction', 'row')
+    }
   }
  
   render() {
@@ -66,9 +77,9 @@ export class CbpLoader {
     }else{
       statusIndicator =  Math.round((this.value / this.max) * 100) + "%"
     }
-  
+
     return (
-      <Host >
+      <Host>
         {this.determinate && this.variant == 'linear' && 
           
             <label
@@ -105,6 +116,22 @@ export class CbpLoader {
             max={this.max}
           >
           </progress>
+        }
+
+        {this.determinate && this.variant == 'circular' && this.size == 'large' &&
+           <label
+           htmlFor={this.progressId}
+         >
+           {(this.success ) ?
+             `Complete`
+           :( this.error ?
+               `Error`
+             :
+             null
+           ) 
+           }
+           <slot />
+         </label> 
         }
       </Host>
     );
