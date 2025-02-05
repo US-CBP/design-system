@@ -28,6 +28,9 @@ export class CbpLoader {
   /** Used in deternminate mode to display the max value of loaded content*/
   @Prop() max: number = 100;
 
+  /** Used to set the text orientation for the circular determinate loader's description*/
+  @Prop({reflect: true}) orientation: "horizontal" | "vertical" = 'horizontal'; 
+  
   /** Used to set the loader to the 'success' state of the loader */
   @Prop({mutable: true, reflect: true}) success: boolean;
 
@@ -53,7 +56,6 @@ export class CbpLoader {
     if(this.determinate && this.variant == 'circular'){
       this.host.style.setProperty("--cbp-loader-circular-determinate", `conic-gradient(var(--cbp-loader-color) ${((this.value / this.max) * 100) * 3.6}deg, var(--cbp-loader-track-color) 0deg)`)
     }
-    
   }
  
   render() {
@@ -66,10 +68,10 @@ export class CbpLoader {
     }else{
       statusIndicator =  Math.round((this.value / this.max) * 100) + "%"
     }
-  
+
     return (
-      <Host >
-        {this.determinate && this.variant == 'linear' && 
+      <Host>
+        {this.determinate && 
           
             <label
               htmlFor={this.progressId}
@@ -84,7 +86,7 @@ export class CbpLoader {
               }
               <slot />
 
-              {this.size != 'small' &&
+              {this.size != 'small' && this.variant == 'linear' &&
                <span>{statusIndicator}</span>
               }
             </label> 
@@ -95,17 +97,16 @@ export class CbpLoader {
             {statusIndicator}
           </span>  
         }
-        {this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error)
-        ?
-          statusIndicator
-        :
-          <progress      
+        
+        {this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error) ? statusIndicator : `` }
+        
+        <progress      
             id={this.progressId}
             value={this.determinate ? this.value : null}
             max={this.max}
+            hidden={this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error)}
           >
           </progress>
-        }
       </Host>
     );
   }
