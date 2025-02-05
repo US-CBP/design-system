@@ -69,65 +69,6 @@ export class CbpLoader {
       statusIndicator =  Math.round((this.value / this.max) * 100) + "%"
     }
 
-    // Original before refactor
-    // return (
-    //   <Host>
-    //     {this.determinate && this.variant == 'linear' && 
-          
-    //         <label
-    //           htmlFor={this.progressId}
-    //         >
-    //           {(this.success ) ?
-    //             `Complete`
-    //           :( this.error ?
-    //               `Error`
-    //             :
-    //             null
-    //           ) 
-    //           }
-    //           <slot />
-
-    //           {this.size != 'small' &&
-    //            <span>{statusIndicator}</span>
-    //           }
-    //         </label> 
-            
-    //     }
-    //     {this.determinate && this.variant == 'circular' && this.size == 'large' &&
-    //       <span class='cbp-loader-desc'>
-    //         {statusIndicator}
-    //       </span>  
-    //     }
-    //     {this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error)
-    //     ?
-    //       statusIndicator
-    //     :
-    //       <progress      
-    //         id={this.progressId}
-    //         value={this.determinate ? this.value : null}
-    //         max={this.max}
-    //       >
-    //       </progress>
-    //     }
-
-    //     {this.determinate && this.variant == 'circular' && this.size == 'large' &&
-    //        <label
-    //           htmlFor={this.progressId}
-    //         >
-    //        {(this.success ) ?
-    //          `Complete`
-    //        :( this.error ?
-    //            `Error`
-    //          :
-    //          null
-    //        ) 
-    //        }
-    //        <slot />
-    //      </label> 
-    //     }
-    //   </Host>
-    // );
-
     return (
       <Host>
         {this.determinate && 
@@ -156,17 +97,16 @@ export class CbpLoader {
             {statusIndicator}
           </span>  
         }
-        {this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error)
-        ?
-          statusIndicator
-        :
-          <progress      
+        
+        {this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error) ? statusIndicator : `` }
+        
+        <progress      
             id={this.progressId}
             value={this.determinate ? this.value : null}
             max={this.max}
+            hidden={this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error)}
           >
           </progress>
-        }
       </Host>
     );
   }
