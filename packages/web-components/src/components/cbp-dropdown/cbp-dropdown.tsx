@@ -538,6 +538,7 @@ export class CbpDropdown {
           <slot name="cbp-dropdown-attached-button-start" />
 
           <button
+            type="button"
             class="cbp-custom-form-control"
             id={this.fieldId}
             role="combobox"
