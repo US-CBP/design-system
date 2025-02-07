@@ -20,7 +20,6 @@ export class CbpSubNav {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-  //TODO: is this needed? might be nice as a helper function for end user but not 100% it is nessecary if they are meant to manage current
   setCurrentSubNav(activatedSubNavItem) {
     this.subNavItems.forEach((subNavItem: HTMLCbpSubnavItemElement) => {
      if(activatedSubNavItem == subNavItem){

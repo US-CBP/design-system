@@ -1,46 +1,60 @@
 /** 
- * @prop  --cbp-subnav-item-active-border-color: var(--cbp-color-interactive-active-dark);
- * @prop  --cbp-subnav-item-active-color:var(--cbp-color-interactive-active-dark);
- * @prop  --cbp-subnav-item-active-color-bg: var(--cbp-color-interactive-active-light);
+ * @prop  --cbp-subnav-item-current-border-color: var(--cbp-color-interactive-active-dark);
+ * @prop  --cbp-subnav-item-current-color:var(--cbp-color-interactive-active-dark);
+ * @prop  --cbp-subnav-item-current-color-bg: var(--cbp-color-interactive-active-light);
+
+ * @prop  --cbp-subnav-item-indent: var(--cbp-space-4x);
+ * @prop  --cbp-subnav-item-font-size: var(--cbp-font-size-heading-md);
  */
 
 :root {
   /* 
-    Component spec does not have dark mode, commented out vars & code are guess values incase they are needed at later date
+    Tech Debt: Component spec does not have dark mode, commented out vars & code are guess values incase they are needed at later date
   */
-  --cbp-subnav-item-active-border-color: var(--cbp-color-interactive-active-dark);
-  --cbp-subnav-item-active-color:var(--cbp-color-interactive-active-dark);
-  // --cbp-subnav-item-active-color-dark: var(--cbp-color-interactive-secondary-light);
-  --cbp-subnav-item-active-color-bg: var(--cbp-color-interactive-active-light);
-  // --cbp-subnav-item-active-color-bg-dark: var(--cbp-color-interactive-active-dark);
-  // --cbp-subnav-item-active-border-color-dark: var(--cbp-color-interactive-active-light); 
+  --cbp-subnav-item-current-color:var(--cbp-color-interactive-active-dark);
+  // --cbp-subnav-item-current-color-dark: var(--cbp-color-interactive-secondary-light);
+  --cbp-subnav-item-current-color-bg: var(--cbp-color-interactive-active-light);
+  // --cbp-subnav-item-current-color-bg-dark: var(--cbp-color-interactive-active-dark);
+  --cbp-subnav-item-current-border-color: var(--cbp-color-interactive-active-dark);
+  // --cbp-subnav-item-current-border-color-dark: var(--cbp-color-interactive-active-light); 
 
   --cbp-subnav-item-indent: var(--cbp-space-4x);
+  --cbp-subnav-item-font-size: var(--cbp-font-size-heading-md);
 }
 
 // [data-cbp-theme=light] cbp-subnav-item[context*=dark]:not([context=light-always]),
 // [data-cbp-theme=dark] cbp-subnav-item:not([context=dark-inverts]):not([context=light-always]) {
 
-  // --cbp-subnav-item-active-border-color: var(--cbp-subnav-item-active-border-color-dark);
+//   --cbp-subnav-item-current-color: var(--cbp-subnav-item-current-color-dark);
+//   --cbp-subnav-item-current-color-bg: var(--cbp-subnav-item-current-color-bg-dark);
+//   --cbp-subnav-item-current-border-color: var(--cbp-subnav-item-current-border-color-dark); 
+
 // }
 
 cbp-subnav-item {
-  display: flex;
 
   --cbp-subnav-item-rotate-icon: rotate(90deg);
-  &[open]{
-    --cbp-subnav-item-rotate-icon: rotate(270deg);
-  }
+  
 
+  
   &[current] cbp-button:first-of-type,
-  &:has( + * cbp-subnav-item[current]) cbp-button:first-of-type{
-    border-left: var(--cbp-border-size-xl) solid var(--cbp-subnav-item-active-border-color);
+  &:has(cbp-subnav-item[current]) > div cbp-button:first-of-type{
+    border-left: var(--cbp-border-size-xl) solid var(--cbp-subnav-item-current-border-color);
   }
 
   &[current] cbp-button[fill=outline][color=primary]:first-of-type{
-    --cbp-button-color: var(--cbp-subnav-item-active-color);
-    background-color: var(--cbp-subnav-item-active-color-bg);
+    --cbp-button-color: var(--cbp-subnav-item-current-color);
+    background-color: var(--cbp-subnav-item-current-color-bg);
     font-style: italic;
+  }
+
+  // parent subnav item container for multiple
+  & > div{
+    display: flex;
+  }
+
+  [slot="icon"]{
+    padding-right: var(--cbp-space-2x);
   }
 
   //Overrides for button variables
@@ -78,11 +92,18 @@ cbp-subnav-item {
     --cbp-button-color-border-active-dark: var(--cbp-color-interactive-active-light);
     */
 
+    a{
+      letter-spacing: var(--cbp-letter-spacing-regular);
+      text-transform: unset;
+    }
+
     &:first-of-type button,
     &:first-of-type a{
       justify-content: start;
       font-weight: var(--cbp-font-weight-medium);
       padding-left: var(--cbp-subnav-item-indent);
+      font-size: var(--cbp-subnav-item-font-size);
+      border-left: none;
     }
    
     // Icon button for parent variant
@@ -93,14 +114,26 @@ cbp-subnav-item {
     }
   }
 
-  & + * cbp-subnav-item {
-    --cbp-subnav-item-indent: var(--cbp-space-5x);
+  &[open]{
+    --cbp-subnav-item-rotate-icon: rotate(270deg);
+  }
 
-    & + * cbp-subnav-item {
+  &  cbp-subnav-item {
+    --cbp-subnav-item-indent: var(--cbp-space-5x);
+    --cbp-subnav-item-font-size: var(--cbp-font-size-heading-sm);
+
+    &  cbp-subnav-item {
       --cbp-subnav-item-indent: var(--cbp-space-7x);
-    
-      & + * cbp-subnav-item {
+      --cbp-subnav-item-font-size: var(--cbp-font-size-heading-xs);
+
+      --cbp-subnav-item-rotate-icon: rotate(0deg);
+      &[open]{
+        --cbp-subnav-item-rotate-icon: rotate(180deg);
+      }
+
+      &  cbp-subnav-item {
         --cbp-subnav-item-indent: var(--cbp-space-9x);
+        --cbp-subnav-item-font-size: var(--cbp-font-size-body);
       }
     }
   }

@@ -7,13 +7,15 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpSubnavItem {
 
+  private icon: string;
+  private parent: boolean;
   @Element() host: HTMLElement;
 
   /** Specifies the current subnav-item */
   @Prop ({ reflect: true}) current: boolean
 
-  /** Specifies if this nav item renders as a parent */
-  @Prop ({ reflect: true}) parent: boolean
+  /** Specifies the label for the subnav item */
+  @Prop () label: string;
 
   /** Specifies the href passed to the button prop*/
   @Prop() href: string;
@@ -28,6 +30,9 @@ export class CbpSubnavItem {
   @Prop() sx: any = {};
 
   componentWillLoad() {
+    this.icon = this.host.closest('cbp-subnav-item cbp-subnav-item cbp-subnav-item') ? 'caret-down' : 'chevron-right';    
+    this.host.querySelector('cbp-subnav-item') ? this.parent = true : this.parent = false;
+
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
     }
@@ -37,12 +42,12 @@ export class CbpSubnavItem {
   }
 
   toggleChildVisibility(){
-    if(!this.host.nextElementSibling.hasAttribute('hidden')){
-      this.host.nextElementSibling.setAttribute('hidden', '');
+    if(!this.host.lastElementChild.hasAttribute('hidden')){
+      this.host.lastElementChild.setAttribute('hidden', '');
       this.open= false;
     }
     else{
-      this.host.nextElementSibling.removeAttribute('hidden');
+      this.host.lastElementChild.removeAttribute('hidden');
       this.open= true;
     }
   }
@@ -50,41 +55,50 @@ export class CbpSubnavItem {
   render() {
     if(this.parent){
       return (
-        <Host>
+        <Host
+          aria-current={this.current}
+        >
+          <div>
           <cbp-button
             tag="a"
             fill="outline"
             color="primary"
             href={this.href}
           >
-            <slot></slot>
+            <slot name='icon'> </slot>
+            {this.label} 
           </cbp-button>
           
           <cbp-button
             type="button"
             fill="outline"
             color="primary"
-            
             onClick={() => this.toggleChildVisibility()}
           >
-            <cbp-icon name="chevron-right"></cbp-icon>
+            <cbp-icon name={this.icon}></cbp-icon>  
           </cbp-button>
+          </div>
+          <section hidden>
+            <slot />
+          </section>
         </Host>
       );
     }else {
       return (
-        <Host>
+        <Host
+          aria-current={this.current}
+        >
           <cbp-button
             tag="a"
             fill="outline"
             color="primary"
             href={this.href}
           >
-            <slot></slot>
+            <slot name='icon'> </slot>
+            {this.label}
           </cbp-button>
         </Host>
       );
     }
   }
-
 }

@@ -11,19 +11,22 @@ import { Meta } from '@storybook/addon-docs';
 ## Functional Requirements
 
 * Subnav is meant to be used by the application header & is used to display the sub navigation items for a site
-* Subnav items will be divided into 2 types single & parent. 
+* Subnav items will be divided into 2 visual types single & parent. 
     * Single will be items that have no children and are represented via an anchor button w/ href leading to associated page.
-    * Parent will operate similar to Single but with the addition of an Icon button used to expand/hide the display of its children
+    * Parent will operate similar to Single but with the addition of an Icon button used to expand/hide the display of its children & a section tag housing its children subnav-items
 * Will track the 'Current' item to have visual indication of where user is currently on site map.
-    * Parents of Current item will also be visually distinct (use of css has should make this simplier)
+    * Parents of Current item will also be visually distinct
 * Sub nav will render inside of a navigation tag
 * Subnav will will be opened via the NavItems with children (notated by the chevron icon) in the App header, clicking which will open a drawer containing the Subnav
 * Indentation & chevron icon is based on the depth of the child
 
 ## Technical Specifications
 
-* Text for anchor will be slotted to allow for icons next to text. (mainly used for home page)
+* Text for subnav-item is determined by the label prop while icons are slotted in via the slot name='icon'
+* the href property is used to populate the cbp-button's href prop
 * Programmatically determine if subnav item is a single or parent type render based on if it has children in the imported structure
+    *Children are placed in the default slot in a section tag
+* open property is used to toggle the Parent's section tag visibility. By default this toggle is linked to the Parent subnav-item's icon button Onclick()
 * Current prop to determine which item is set to current (active on spec) 
 * Accessibility text prop for the navigation tag for screenreaders
 
@@ -46,7 +49,6 @@ import { Meta } from '@storybook/addon-docs';
 * Icon button will hide/expand on 'enter & space'
 * anchor buttons will launch to associated href on 'enter'
 * use of the navigation tag w/ a prop for accessibility text
-* Icon buttons need a accessible name and an aria-describedby pointing to the associated Anchor button
 
 ### Additional Notes and Considerations
 

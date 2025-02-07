@@ -18,22 +18,17 @@ export default {
     },
   };
 
-  function generateContent(items) {
-    const html = items.map(({ content, href, children, current }) => {
-        if(children){
-            return `<cbp-subnav-item parent=true href=${href} ${current? `current=${current}` : ``}>${content}</cbp-subnav-item>` + `<section hidden>` + generateContent(children) + `</section>`;
-        }else{
-            return `<cbp-subnav-item href=${href} ${current? `current=${current}` : ``}>${content}</cbp-subnav-item>`;
-        }
-      
+function generateContent(items){
+    const html = items.map(({ icon, label, href, children, current }) => {
+        return `<cbp-subnav-item label="${label}" href=${href} ${current? `current=${current}` : ``}>${icon ? icon : ``} ${children? generateContent(children) : ``}</cbp-subnav-item>`;
     });
-    return html.join('');
-  }
-
+        return html.join('');
+}
+    
 const SubnavTemplate = ({items, accessibilitytext}) => {
     return ` 
         <cbp-subnav
-            accessibilitytext=${accessibilitytext}
+            accessibilitytext="${accessibilitytext}"
         >
             ${generateContent(items)}
         </cbp-subnav>
@@ -45,82 +40,96 @@ export const Subnav = SubnavTemplate.bind({});
 Subnav.args = {
         items: [
             {
-              content: `<cbp-icon name="home"></cbp-icon> Subnav Item 1`,
-              href: './?path=/story/components-subnav--subnav',
+                icon: `<cbp-icon slot='icon' name="home"></cbp-icon> `,
+                label: `Subnav Item 1`,
+                href: './?path=/story/components-subnav--subnav',
             //   current: true,
             },
             {
-              content: "Subnav Item 2",
-              href: './?path=/story/components-subnav--subnav',
-              children: [
+                label: "Subnav Item 2",
+                href: './?path=/story/components-subnav--subnav',
+                children: [
                 {
-                    content: "Subnav Item 2-1",
+                    label: "Subnav Item 2-1",
                     href: './?path=/story/components-subnav--subnav',
                     children: [
                       {
-                          content: "Subnav Item 2-1-1",
-                          href: './?path=/story/components-subnav--subnav',
-                          children: [
+                        label: "Subnav Item 2-1-1",
+                        href: './?path=/story/components-subnav--subnav',
+                        children: [
+                        {
+                            label: "Subnav Item 2-1-1-1",
+                            href: './?path=/story/components-subnav--subnav'
+                        },
+                        {
+                            label: "Subnav Item 2-1-1-2",
+                            href: './?path=/story/components-subnav--subnav'
+                        },
+                        {
+                            label: "Subnav Item 2-1-1-3",
+                            href: './?path=/story/components-subnav--subnav',
+                            current: true
+                        }]
+                      },
+                      {
+                        label: "Subnav Item 2-1-2",
+                        href: './?path=/story/components-subnav--subnav'
+                      },
+                      {
+                        label: "Subnav Item 2-1-3",
+                        href: './?path=/story/components-subnav--subnav',
+                        children: [
                             {
-                                content: "Subnav Item 2-1-1-1",
+                                label: "Subnav Item 2-1-3-1",
                                 href: './?path=/story/components-subnav--subnav'
                             },
                             {
-                                content: "Subnav Item 2-1-1-2",
+                                label: "Subnav Item 2-1-3-2",
                                 href: './?path=/story/components-subnav--subnav'
                             },
                             {
-                                content: "Subnav Item 2-1-1-3",
+                                label: "Subnav Item 2-1-3-3",
                                 href: './?path=/story/components-subnav--subnav',
                                 current: true
-                            },
-                          ]
-                      },
-                      {
-                          content: "Subnav Item 2-1-2",
-                          href: './?path=/story/components-subnav--subnav'
-                      },
-                      {
-                          content: "Subnav Item 2-1-3",
-                          href: './?path=/story/components-subnav--subnav'
+                            }]
                       },
                     ]
                 },
                 {
-                    content: "Subnav Item 2-2",
+                    label: "Subnav Item 2-2",
                     href: './?path=/story/components-subnav--subnav'
                 },
                 {
-                    content: "Subnav Item 2-3",
+                    label: "Subnav Item 2-3",
                     href: './?path=/story/components-subnav--subnav'
                 },
               ]
             },
             {
-              content: "Subnav Item 3",
-              href: './?path=/story/components-subnav--subnav',
-              children: [
+                label: "Subnav Item 3",
+                href: './?path=/story/components-subnav--subnav',
+                children: [
                 {
-                    content: "Subnav Item 3-1",
+                    label: "Subnav Item 3-1",
                     href: './?path=/story/components-subnav--subnav'
                 },
                 {
-                    content: "Subnav Item 3-2",
+                    label: "Subnav Item 3-2",
                     href: './?path=/story/components-subnav--subnav'
                 },
                 {
-                    content: "Subnav Item 3-3",
+                    label: "Subnav Item 3-3",
                     href: './?path=/story/components-subnav--subnav'
                 },
               ]
             },
             {
-              content: "Subnav Item 4",
-              href: './?path=/story/components-subnav--subnav'
+                label: "Subnav Item 4",
+                href: './?path=/story/components-subnav--subnav'
             },
             {
-              content: "Subnav Item 5",
-              href: './?path=/story/components-subnav--subnav'
+                label: "Subnav Item 5",
+                href: './?path=/story/components-subnav--subnav'
             },
         ],
 }
