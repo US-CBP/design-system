@@ -1,5 +1,11 @@
-import { Component, Element, Prop, Host, h } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Watch, Prop, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
+
+
+/**
+ * @slot - The Subnav-item's children, will be expanded/collapsed based on the toggle.
+ * @slot - icon - used to populate the subnav-item icon if user has set it
+ */
 
 @Component({
   tag: 'cbp-subnav-item',
@@ -31,7 +37,7 @@ export class CbpSubnavItem {
 
   componentWillLoad() {
     this.icon = this.host.closest('cbp-subnav-item cbp-subnav-item cbp-subnav-item') ? 'caret-down' : 'chevron-right';    
-    this.host.querySelector('cbp-subnav-item') ? this.parent = true : this.parent = false;
+    this.parent =  !!this.host.querySelector('cbp-subnav-item');
 
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
@@ -41,64 +47,54 @@ export class CbpSubnavItem {
     });
   }
 
-  toggleChildVisibility(){
-    if(!this.host.lastElementChild.hasAttribute('hidden')){
-      this.host.lastElementChild.setAttribute('hidden', '');
-      this.open= false;
-    }
-    else{
-      this.host.lastElementChild.removeAttribute('hidden');
-      this.open= true;
-    }
+  @Event() toggleSubnavClick: EventEmitter;
+  toggleSubnav(){
+    this.open = !this.open;
+    this.toggleSubnavClick.emit({
+      host: this.host,
+      open: this.open,
+    });
+
+  }
+
+  @Watch('current')
+  watchCurrentHandler() {
+    this.toggleSubnav();
   }
 
   render() {
-    if(this.parent){
-      return (
-        <Host
-          aria-current={this.current}
-        >
-          <div>
+    return (
+      <Host>
+        <div>
           <cbp-button
             tag="a"
             fill="outline"
             color="primary"
             href={this.href}
+            aria-current={this.current}
           >
-            <slot name='icon'> </slot>
-            {this.label} 
+            { !this.host.querySelector('[slot=cbp-subnav-item-label]') && this.label}
+            <slot name="cbp-subnav-item-label" />
           </cbp-button>
-          
+          {this.parent && 
           <cbp-button
             type="button"
             fill="outline"
             color="primary"
-            onClick={() => this.toggleChildVisibility()}
+            onClick={() => this.toggleSubnav()}
           >
             <cbp-icon name={this.icon}></cbp-icon>  
           </cbp-button>
-          </div>
-          <section hidden>
+          }
+        </div>
+
+        {this.parent && 
+          // <section hidden>
+          <section>
             <slot />
           </section>
-        </Host>
-      );
-    }else {
-      return (
-        <Host
-          aria-current={this.current}
-        >
-          <cbp-button
-            tag="a"
-            fill="outline"
-            color="primary"
-            href={this.href}
-          >
-            <slot name='icon'> </slot>
-            {this.label}
-          </cbp-button>
-        </Host>
-      );
-    }
+        }
+      </Host>
+    );
   }
 }

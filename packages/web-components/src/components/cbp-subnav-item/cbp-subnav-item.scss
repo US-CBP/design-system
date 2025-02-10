@@ -11,6 +11,12 @@
   /* 
     Tech Debt: Component spec does not have dark mode, commented out vars & code are guess values incase they are needed at later date
   */
+
+  --cbp-subnav-item-color: var(--cbp-color-interactive-secondary-darker);
+  // --cbp-subnav-item-color-dark: var(--cbp-color-interactive-secondary-darker);
+  --cbp-subnav-item-color-bg: transparent;
+  // --cbp-subnav-item-color-bg-dark: var();
+
   --cbp-subnav-item-current-color:var(--cbp-color-interactive-active-dark);
   // --cbp-subnav-item-current-color-dark: var(--cbp-color-interactive-secondary-light);
   --cbp-subnav-item-current-color-bg: var(--cbp-color-interactive-active-light);
@@ -25,6 +31,9 @@
 // [data-cbp-theme=light] cbp-subnav-item[context*=dark]:not([context=light-always]),
 // [data-cbp-theme=dark] cbp-subnav-item:not([context=dark-inverts]):not([context=light-always]) {
 
+  
+//   --cbp-subnav-item-color: var(--cbp-subnav-item-color-dark);
+//   --cbp-subnav-item-color-bg: var(--cbp-subnav-item-color-bg-dark);
 //   --cbp-subnav-item-current-color: var(--cbp-subnav-item-current-color-dark);
 //   --cbp-subnav-item-current-color-bg: var(--cbp-subnav-item-current-color-bg-dark);
 //   --cbp-subnav-item-current-border-color: var(--cbp-subnav-item-current-border-color-dark); 
@@ -32,20 +41,28 @@
 // }
 
 cbp-subnav-item {
+  color: var(--cbp-subnav-item-color);
+  background-color: var(--cbp-subnav-item-color-bg);
 
   --cbp-subnav-item-rotate-icon: rotate(90deg);
   
-
+  section{
+    display: none;
+  }
   
-  &[current] cbp-button:first-of-type,
-  &:has(cbp-subnav-item[current]) > div cbp-button:first-of-type{
+  &[current] div,
+  &:has(cbp-subnav-item[current]) > div {
     border-left: var(--cbp-border-size-xl) solid var(--cbp-subnav-item-current-border-color);
   }
 
   &[current] cbp-button[fill=outline][color=primary]:first-of-type{
     --cbp-button-color: var(--cbp-subnav-item-current-color);
-    background-color: var(--cbp-subnav-item-current-color-bg);
+    --cbp-button-color-bg: var(--cbp-subnav-item-current-color-bg);
     font-style: italic;
+
+    > a{
+      font-weight: var(--cbp-font-weight-bold);
+    }
   }
 
   // parent subnav item container for multiple
@@ -64,11 +81,11 @@ cbp-subnav-item {
     --cbp-button-border-radius: var(--cbp-border-radius-sharp);
     --cbp-button-border-width: var(--cbp-border-size-sm);
     
-    --cbp-button-color: var(--cbp-color-interactive-secondary-darker);
+    --cbp-button-color: var(--cbp-subnav-item-color);
     --cbp-button-color-hover: var(--cbp-color-interactive-secondary-darker);
     --cbp-button-color-focus: var(--cbp-color-text-lightest);
     --cbp-button-color-active: var(--cbp-color-text-lightest);
-    --cbp-button-color-bg: transparent;
+    --cbp-button-color-bg: var(--cbp-subnav-item-color-bg);
     --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
     --cbp-button-color-bg-focus: var(--cbp-color-interactive-focus-dark);
     --cbp-button-color-bg-active: var(--cbp-color-interactive-active-dark);
@@ -116,13 +133,17 @@ cbp-subnav-item {
 
   &[open]{
     --cbp-subnav-item-rotate-icon: rotate(270deg);
+    
+   & > section{
+      display: block;
+    }
   }
 
-  &  cbp-subnav-item {
+  cbp-subnav-item {
     --cbp-subnav-item-indent: var(--cbp-space-5x);
     --cbp-subnav-item-font-size: var(--cbp-font-size-heading-sm);
 
-    &  cbp-subnav-item {
+    cbp-subnav-item {
       --cbp-subnav-item-indent: var(--cbp-space-7x);
       --cbp-subnav-item-font-size: var(--cbp-font-size-heading-xs);
 
@@ -131,7 +152,7 @@ cbp-subnav-item {
         --cbp-subnav-item-rotate-icon: rotate(180deg);
       }
 
-      &  cbp-subnav-item {
+      cbp-subnav-item {
         --cbp-subnav-item-indent: var(--cbp-space-9x);
         --cbp-subnav-item-font-size: var(--cbp-font-size-body);
       }
