@@ -15,7 +15,7 @@
   --cbp-subnav-item-color: var(--cbp-color-interactive-secondary-darker);
   // --cbp-subnav-item-color-dark: var(--cbp-color-interactive-secondary-darker);
   --cbp-subnav-item-color-bg: transparent;
-  // --cbp-subnav-item-color-bg-dark: var();
+  // --cbp-subnav-item-color-bg-dark: var(--cbp-color-gray-cool-70);
 
   --cbp-subnav-item-current-color:var(--cbp-color-interactive-active-dark);
   // --cbp-subnav-item-current-color-dark: var(--cbp-color-interactive-secondary-light);
@@ -82,17 +82,29 @@ cbp-subnav-item {
     --cbp-button-border-width: var(--cbp-border-size-sm);
     
     --cbp-button-color: var(--cbp-subnav-item-color);
+    --cbp-button-color-dark: var(--cbp-subnav-item-color);
     --cbp-button-color-hover: var(--cbp-color-interactive-secondary-darker);
+    --cbp-button-color-hover-dark: var(--cbp-color-interactive-secondary-darker);
     --cbp-button-color-focus: var(--cbp-color-text-lightest);
+    --cbp-button-color-focus-dark: var(--cbp-color-text-lightest);
     --cbp-button-color-active: var(--cbp-color-text-lightest);
+    --cbp-button-color-active-dark: var(--cbp-color-text-lightest);
     --cbp-button-color-bg: var(--cbp-subnav-item-color-bg);
+    --cbp-button-color-bg-dark: var(--cbp-color-white);
     --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
+    --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-lighter);
     --cbp-button-color-bg-focus: var(--cbp-color-interactive-focus-dark);
+    --cbp-button-color-bg-focus-dark: var(--cbp-color-interactive-focus-dark);
     --cbp-button-color-bg-active: var(--cbp-color-interactive-active-dark);
+    --cbp-button-color-bg-active-dark: var(--cbp-color-interactive-active-dark);
     --cbp-button-color-border: var(--cbp-color-gray-cool-40);
+    --cbp-button-color-border-dark: var(--cbp-color-gray-cool-40);
     --cbp-button-color-border-hover: var(--cbp-color-gray-cool-40);
+    --cbp-button-color-border-hover-dark: var(--cbp-color-gray-cool-40);
     --cbp-button-color-border-focus: var(--cbp-color-gray-cool-40);
+    --cbp-button-color-border-focus-dark: var(--cbp-color-gray-cool-40);
     --cbp-button-color-border-active: var(--cbp-color-gray-cool-40);
+    --cbp-button-color-border-active-dark: var(--cbp-color-gray-cool-40);
 
     /**Tech Debt: dark mode not outlined in spec so currently mapped to primary outline button values, associated vars to override below w/ original cbp-button values
     --cbp-button-color-dark: var(--cbp-color-text-darkest);
