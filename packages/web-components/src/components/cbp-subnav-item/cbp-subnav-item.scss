@@ -50,14 +50,16 @@ cbp-subnav-item {
     display: none;
   }
   
-  &[current] div,
+  &[current] > div,
   &:has(cbp-subnav-item[current]) > div {
     border-left: var(--cbp-border-size-xl) solid var(--cbp-subnav-item-current-border-color);
   }
 
-  &[current] cbp-button[fill=outline][color=primary]:first-of-type{
+  &[current] > div > cbp-button[fill=outline][color=primary]:first-of-type{
     --cbp-button-color: var(--cbp-subnav-item-current-color);
+    --cbp-button-color-dark: var(--cbp-subnav-item-current-color);
     --cbp-button-color-bg: var(--cbp-subnav-item-current-color-bg);
+    --cbp-button-color-bg-dark: var(--cbp-subnav-item-current-color-bg);
     font-style: italic;
 
     > a{
