@@ -2,7 +2,17 @@
 
 This CHANGELOG.md tracks the updates to the web components package of the CBP design system, which is currently in active development/pre-release alpha state. As such, not all changes will be logged; only new components and breaking changes. As a pre-release, there WILL be breaking changes. Upon official release, this log may be wiped clean and started fresh and [semantic versioning](https://semver.org/) will be followed.
 
-The React components are wrappers generated from this package and will share the same changes.
+The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
+
+## [0.0.1-develop.19] 02-12-2025
+* First cut of the `cbp-subnav` and `cbp-subnav-item` components.
+* First cut of the `cbp-file-input` component, supporting only the native web functionality with enhancements to come later.
+* First cut of the `cbp-loader` component.
+* Updates to the `cbp-table` component supporting a column sort control in the table header as well as cell and column highlighting.
+* Fixed a bug in `cbp-dropdown` combobox functionality causing erroneous form submission.
+* Fixed a bug in `cbp-link` causing the visited color to override other states in links, breadcrumbs, etc.
+* Added the ability to specify a `cbp-form-field` group (fieldset) as `disabled`.
+* Minor bugfixes/updates to `cbp-radio` and `cbp-checkbox`.
 
 ## [0.0.1-develop.18] 01-14-2025
 * First cut of the `cbp-toggle` component, which acts like a visual treatment for a checkbox.
