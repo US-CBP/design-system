@@ -39,7 +39,6 @@ export class CbpFileInput {
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() valueChange: EventEmitter;
   handleChange(e) {
-    console.log(e, e.target.files);
     let files = [];
     // type fileList does not support forEach or array methods
     for(let i = 0; i < e.target.files.length; i++) {
@@ -47,7 +46,6 @@ export class CbpFileInput {
     }
     // Updating this state via an event handler will cause a re-render needed for showing the selected files
     this.files = files;
-    console.log(this.files);
 
     this.valueChange.emit({
       host: this.host,
@@ -103,7 +101,6 @@ export class CbpFileInput {
   render() {
     let fileList = [];
     if (this.files.length > 0) {
-      console.log('Files: ', this.files);
       this.files.forEach( (item) => {
         fileList = [
           ...fileList,
@@ -120,7 +117,6 @@ export class CbpFileInput {
         ]
       });
     }
-    console.log('Rendering: ',this.files, {fileList});
     
     let msg = this.files.length > 0
       ? `Drag & Drop File${this.multiple ? 's' : ''} Here or Browse to Replace`
