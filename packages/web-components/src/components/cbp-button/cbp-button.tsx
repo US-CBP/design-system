@@ -76,7 +76,7 @@ export class CbpButton {
   //@Prop() pointerOnly: boolean;
 
   /** Marks the rendered button/link in a disabled state when specified. */
-  @Prop() disabled: boolean;
+  @Prop({reflect: true}) disabled: boolean;
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
@@ -191,6 +191,7 @@ export class CbpButton {
           };
 
     if (this.host.querySelector('[slot=cbp-button-custom]')) {
+      if (this.disabled) this.button.setAttribute("disabled",'');
       return (
         <Host onClick={(e) => this.handleClick(e)}>
           <slot name="cbp-button-custom" />
@@ -203,12 +204,11 @@ export class CbpButton {
           <button
             {...this.persistedAttrs}
             {...attrs}
-            //tabindex={this.pointerOnly || this.disabled ? -1 : 0}
+            disabled={this.disabled}
             aria-label={this.accessibilityText}
             aria-pressed={pressed ? 'true' : null}
             aria-expanded={expanded ? 'true' : null}
             aria-controls={this.controls}
-            //onClick={() => this.handleClick()}
             ref={el => (this.button = el)}
           >
             <slot />
@@ -222,14 +222,12 @@ export class CbpButton {
           <a
             {...this.persistedAttrs}
             {...attrs}
-            //tabindex={this.pointerOnly || this.disabled ? -1 : 0}
             aria-label={this.accessibilityText}
             aria-pressed={pressed ? 'true' : null}
             aria-expanded={expanded ? 'true' : null}
             aria-controls={this.controls}
             role={disabled ? 'link' : null}
             aria-disabled={disabled ? 'true' : null}
-            //onClick={() => this.handleClick()}
             ref={el => (this.button = el)}
           >
             <slot />
