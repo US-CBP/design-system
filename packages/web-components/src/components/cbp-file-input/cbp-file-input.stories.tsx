@@ -14,10 +14,13 @@ export default {
     name: {
       control: 'text',
     },
-    error: {
+    multiple: {
       control: 'boolean',
     },
-    readonly: {
+    accept: {
+      control: 'text',
+    },
+    error: {
       control: 'boolean',
     },
     disabled: {
@@ -39,13 +42,12 @@ export default {
 };
 
 
-const FileInputTemplate = ({ label, description, fieldId, name, placeholder, error, readonly, disabled, context, sx }) => {
+const FileInputTemplate = ({ label, description, fieldId, name, multiple, accept, error, disabled, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
@@ -53,7 +55,8 @@ const FileInputTemplate = ({ label, description, fieldId, name, placeholder, err
       <cbp-file-input
         ${name ? `name="${name}"` : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
-        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${multiple ? 'multiple' : ''}
+        ${accept ? `accept="${accept}"` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
@@ -64,7 +67,4 @@ const FileInputTemplate = ({ label, description, fieldId, name, placeholder, err
 };
 
 export const FileInput = FileInputTemplate.bind({});
-FileInput.args = {
-  fieldId: 'file-input-id',
-};
 
