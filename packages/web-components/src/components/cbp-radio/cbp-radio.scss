@@ -118,17 +118,18 @@ cbp-radio {
   }
 
   input[type=radio] {
+    appearance: none; // radios do not accept styling per design specs
     display: grid;
     place-content: center;
-    appearance: none; // radios do not accept styling per design specs
     background-color: var(--cbp-radio-color-bg);
+    min-height: unset; // unset from cbp-form-field
+    height: var(--cbp-space-7x);
+    width: var(--cbp-space-7x);
+    margin: 0;
     border-color: var(--cbp-radio-color-border);
     border-style: solid;
     border-width: var(--cbp-border-size-md);
     border-radius: var(--cbp-border-radius-circle);
-    height: var(--cbp-space-7x);
-    width: var(--cbp-space-7x);
-    margin: 0;
     outline: 0;
     box-shadow: 0 0 0 calc(var(--cbp-space-5x) / 2) var(--cbp-radio-color-halo);
     clip-path: circle(80%); // verified
@@ -175,8 +176,6 @@ cbp-radio {
     &:checked {
       // Checked inner-circle
       &::before {
-        //height: var(--cbp-space-4x);
-        //width: var(--cbp-space-4x);
         transform: scale(1);
         transition: all var(--cbp-motion-duration-shortest) ease-in-out;
       }

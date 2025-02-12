@@ -117,18 +117,20 @@ cbp-checkbox {
   }
 
   input[type=checkbox] {
+    appearance: none; // checkboxes do not accept styling per design specs
     display: grid;
     place-content: center;
-    appearance: none; // checkboxes do not accept styling per design specs
+    flex-grow: 0;
     color: var(--cbp-checkbox-color);
     background-color: var(--cbp-checkbox-color-bg);
+    min-height: unset; // unset from cbp-form-field
+    height: var(--cbp-space-6x);
+    width: var(--cbp-space-6x);
+    margin: 0;
     border-color: var(--cbp-checkbox-color-border);
     border-style: solid;
     border-width: var(--cbp-border-size-md);
     border-radius: var(--cbp-border-radius-soft);
-    height: var(--cbp-space-6x);
-    width: var(--cbp-space-6x);
-    margin: 0;
     outline: 0;
     box-shadow: 0 0 0 calc(var(--cbp-space-5x) / 2) var(--cbp-checkbox-color-halo);
     clip-path: circle(86%);
@@ -137,7 +139,6 @@ cbp-checkbox {
     &::before {
       content: '';
       overflow: hidden;
-      //transform: scale(0);
     }
 
     // Verified: only need to set the base variables with higher level tokens that are swapped for dark mode

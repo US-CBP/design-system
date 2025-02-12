@@ -79,7 +79,43 @@ InputWithOverlays.args = {
 
 
 
-const NumericCounterTemplate = ({ label, description, inputType,  overlayStart, overlayEnd, fieldId, error, readonly, disabled, value, context, sx }) => {
+const FileInputTemplate = ({ label, description, overlayStart, overlayEnd, fieldId, error, readonly, disabled, context, sx }) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      <cbp-form-field-wrapper>
+        <input type="file" name="fileinput" ${readonly ? `readonly` : ''} ${disabled ? `disabled` : ''} />
+
+        ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
+        ${overlayEnd != undefined ? `<span slot="cbp-form-field-overlay-end">${overlayEnd}</span>` : ''}
+
+        <span slot="cbp-form-field-attached-button">
+          <cbp-button
+            fill="solid"
+            color="secondary"
+            aria-describedby="${fieldId}-label"
+            onClick="event.target.closest('cbp-form-field').querySelector('input').click()"
+          >
+            Browse
+          </cbp-button>
+        </span>
+      </cbp-form-field-wrapper>
+    </cbp-form-field>
+  `;
+};
+
+export const FileInput = FileInputTemplate.bind({});
+FileInput.storyName="File Input (Simple)"
+
+
+
+const NumericCounterTemplate = ({ label, description, inputType, overlayStart, overlayEnd, fieldId, error, readonly, disabled, value, context, sx }) => {
 
   // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
   document.addEventListener('buttonClick', function(e) {

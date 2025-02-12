@@ -1,0 +1,206 @@
+/**
+ * @prop --cbp-file-input-color: var(--cbp-color-text-darkest);
+ * @prop --cbp-file-input-color-bg: var(--cbp-color-white);
+ * @prop --cbp-file-input-color-border: var(--cbp-color-interactive-secondary-base);
+ * @prop --cbp-file-input-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-file-input-color-border-focus: var(--cbp-color-interactive-focus-dark);
+
+ * @prop --cbp-file-input-color-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-file-input-color-bg-dark: var(--cbp-color-gray-cool-70);
+ * @prop --cbp-file-input-color-border-dark: var(--cbp-color-interactive-secondary-light);
+ * @prop --cbp-file-input-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ * @prop --cbp-file-input-color-border-focus-dark:var(--cbp-color-interactive-focus-light);
+
+ * @prop --cbp-file-input-file-color-bg: var(--cbp-color-gray-cool-10);
+ * @prop --cbp-file-input-file-color-bg-dark: var(--cbp-color-gray-cool-60);
+ */
+
+:root{
+  --cbp-file-input-color: var(--cbp-color-text-darkest);
+  --cbp-file-input-color-bg: var(--cbp-color-white);
+  --cbp-file-input-color-border: var(--cbp-color-interactive-secondary-base);
+  --cbp-file-input-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-file-input-color-border-focus: var(--cbp-color-interactive-focus-dark);
+
+  --cbp-file-input-color-dark: var(--cbp-color-text-lightest);
+  --cbp-file-input-color-bg-dark: var(--cbp-color-gray-cool-70);
+  --cbp-file-input-color-border-dark: var(--cbp-color-interactive-secondary-light);
+  --cbp-file-input-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-file-input-color-border-focus-dark:var(--cbp-color-interactive-focus-light);
+
+  --cbp-file-input-file-color-bg: var(--cbp-color-gray-cool-10);
+  --cbp-file-input-file-color-bg-dark: var(--cbp-color-gray-cool-60);
+}
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-file-input[context*=dark],
+[data-cbp-theme=dark] cbp-file-input:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-file-input-color-label: var(--cbp-file-input-color-label-dark);
+  --cbp-file-input-color: var(--cbp-file-input-color-dark);
+  --cbp-file-input-color-bg: var(--cbp-file-input-color-bg-dark);
+  --cbp-file-input-color-border: var(--cbp-file-input-color-border-dark);
+  --cbp-file-input-color-border-hover: var(--cbp-file-input-color-border-hover-dark);
+  --cbp-file-input-color-border-focus: var(--cbp-file-input-color-border-focus-dark);
+  --cbp-file-input-file-color-bg: var(--cbp-file-input-file-color-bg-dark);
+}
+
+
+cbp-file-input {
+  display: block;
+  max-width: 22rem;
+  container-type: inline-size;
+
+  // Disabled field results in disabled styles applied at a higher level
+  &:has(input:disabled) {
+    --cbp-file-input-color: var(--cbp-color-interactive-disabled-dark);
+    --cbp-file-input-color-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-file-input-color-bg: transparent;
+    --cbp-file-input-color-bg-dark: transparent;
+    --cbp-file-input-color-border: var(--cbp-color-interactive-disabled-dark);
+    --cbp-file-input-color-border-dark: var(--cbp-color-interactive-disabled-light);
+    --cbp-file-input-file-color-bg: var(--cbp-color-interactive-disabled-light);
+    --cbp-file-input-file-color-bg-dark: var(--cbp-color-interactive-disabled-dark);
+  }
+
+  .cbp-file-input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-height: 4.5rem;
+    margin-block-end: var(--cbp-space-4x);
+    
+    color: var(--cbp-file-input-color);
+    background-color: var(--cbp-file-input-color-bg);
+    border-width: var(--cbp-border-size-md);
+    border-color: var(--cbp-file-input-color-border);
+    border-radius: var(--cbp-file-input-border-radius);
+    outline-style: solid;
+    outline-width: 0;
+    outline-color: var(--cbp-file-input-color-border-focus);
+    outline-offset: -1px; // Verified: Safari does not show focus outline without this
+
+    border-style: dashed;
+    outline-offset: calc(var(--cbp-space-1x) * -1);
+
+    
+    // Interactive are not applied to disabled fields
+    &:hover:not(:has(input:disabled)) {
+      --cbp-file-input-color-border: var(--cbp-file-input-color-border-hover);
+
+      cbp-button[fill=solid][color=secondary] {
+        --cbp-button-color: var(--cbp-button-color-hover);
+        --cbp-button-color-bg: var(--cbp-button-color-bg-hover);
+        --cbp-button-color-border: var(--cbp-button-color-border-hover);
+        
+        --cbp-button-color-dark: var(--cbp-button-color-hover-dark);
+        --cbp-button-color-bg-dark: var(--cbp-button-color-bg-hover-dark);
+        --cbp-button-color-border-dark: var(--cbp-button-color-border-hover-dark);
+      }
+    }
+
+    // Interactive are not applied to disabled fields
+    &:focus:not(:has(input:disabled)),
+    &:focus-within:not(:has(input:disabled)) {
+      --cbp-file-input-color-border: var(--cbp-file-input-color-border-focus);
+      outline-width: var(--cbp-border-size-lg); // This is set to 3px because of the 1px inset, overlapping the border; border+outline = 4px total.
+
+      cbp-button[fill=solid][color=secondary] {
+        --cbp-button-color: var(--cbp-button-color-focus);
+        --cbp-button-color-bg: var(--cbp-button-color-bg-focus);
+        --cbp-button-color-border: var(--cbp-button-color-border-focus);
+        
+        --cbp-button-color-dark: var(--cbp-button-color-focus-dark);
+        --cbp-button-color-bg-dark: var(--cbp-button-color-bg-focus-dark);
+        --cbp-button-color-border-dark: var(--cbp-button-color-border-focus-dark);
+       
+        button {
+          outline-width: var(--cbp-border-size-md);
+        }
+      }
+    }
+
+    &[readonly],
+    &:disabled {
+      font-style: italic;
+      cursor: not-allowed;
+    }
+
+    // The visual layout of the field that lies underneath the invisible native input
+    .cbp-file-input-visuals {
+      display: flex;
+      align-items: center;
+      gap: var(--cbp-space-3x);
+      height: 100%;
+      padding-inline-start: var(--cbp-space-4x);
+      padding-inline-end: var(--cbp-space-3x);
+
+      .cbp-file-input-text {
+        display: flex;
+        align-items: center;
+        font-style: italic;
+        text-wrap: pretty;
+      }
+    }
+
+    input[type=file]:not(#fakeId) {
+      appearance: none;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      z-index: 2;
+    }
+  }
+
+
+  // The list of files beneath the input
+  .cbp-file-input-filelist {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cbp-space-4x);
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: var(--cbp-space-2x);
+      padding: var(--cbp-space-2x);
+      background-color: var(--cbp-file-input-file-color-bg);
+      font-weight: var(--cbp-font-weight-medium);
+      font-style: italic;
+      line-height: var(--cbp-line-height-xs);
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      :first-child {
+        flex-grow: 9;
+      }
+
+      cbp-button:not(#fakeId) {
+        --cbp-button-padding: 0;
+        --cbp-button-min-width: var(--cbp-space-7x);
+        --cbp-button-min-height: var(--cbp-space-7x);
+        --cbp-button-width: var(--cbp-space-7x);
+        --cbp-button-height: var(--cbp-space-7x);
+        --cbp-button-border-radius: var(--cbp-border-radius-circle);
+        --cbp-button-color-hover: var(--cbp-color-text-lightest);
+        --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
+        --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
+        --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+        --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+        --cbp-button-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+      }
+    }
+  }
+
+}
+
+
+@container (width <= 19rem) {
+  .cbp-file-input-visuals cbp-icon {
+    display: none;
+  }
+}

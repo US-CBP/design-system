@@ -46,7 +46,10 @@ The Form Field Wrapper component offers means for applying overlays and button c
     * If no step is defined, default it to 1.
     * If no value is defined, default it to 0.
     * Remember that even for `input type="number"` the input value is a string and must be converted to a number to perform arithmetic on. The `Number()` function works great, as does `parseInt()` for integers.
+* A simple/compact File Input pattern consists of:
+  * An `input type="file"`.
+  * An attached "Browse" button that invokes a click() event on the native input when clicked.
 
 ### Additional Notes and Considerations
 
-* TBD
+* For a more advanced/feature-rich File Input pattern, try using the `cbp-file-input` rather than the native `input type="file"`.

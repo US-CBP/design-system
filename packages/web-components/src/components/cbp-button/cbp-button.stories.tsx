@@ -114,7 +114,7 @@ const Template = ({ label, tag, type, value, href, rel, target, download, fill, 
         ${href ? `href=${href}` : ''}
         ${rel ? `rel=${rel}` : ''}
         ${target ? `target=${target}` : ''}
-        ${download ? `download=${download}` : ''}
+        ${download ? 'download' : ''}
         ${fill ? `fill=${fill}` : ''}
         ${color ? `color=${color}` : ''}
         ${variant !== 'default' ? `variant=${variant}` : ''}
@@ -123,7 +123,7 @@ const Template = ({ label, tag, type, value, href, rel, target, download, fill, 
         ${targetProp ? `target-prop=${targetProp}` : ''}
         ${pressed ? `pressed=${pressed}` : ''}
         ${expanded ? `expanded=${expanded}` : ''}
-        ${disabled ? `disabled=${disabled}` : ''}
+        ${disabled ? 'disabled' : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >

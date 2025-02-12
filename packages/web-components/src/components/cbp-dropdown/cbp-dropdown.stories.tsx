@@ -75,7 +75,6 @@ const SingleSelectDropdownTemplate = ({ label, description, fieldId, name, place
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
          ${generateItems(items)}
-      </ul>
       </cbp-dropdown>
     </cbp-form-field>
   `;
@@ -164,7 +163,6 @@ const StatesDropdownTemplate = ({ label, description, fieldId, name, placeholder
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
          ${generateItems(items)}
-      </ul>
       </cbp-dropdown>
     </cbp-form-field>
   `;
@@ -244,7 +242,6 @@ const CountriesDropdownTemplate = ({ label, description, fieldId, name, placehol
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
          ${generateItems(items)}
-      </ul>
       </cbp-dropdown>
     </cbp-form-field>
   `;
@@ -301,7 +298,6 @@ const MultiSelectDropdownTemplate = ({ label, description, fieldId, name, filter
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
          ${generateMultiSelectItems(items, context)}
-      </ul>
       </cbp-dropdown>
     </cbp-form-field>
   `;

@@ -1,0 +1,46 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/File Input/Specifications" />
+
+# cbp-file-input
+
+## Purpose
+
+The File Input component builds upon the native file input, allowing for custom styles and enhancing functionality when integrated with JavaScript frameworks.
+
+## Functional Requirements
+
+* The File Input wraps and enhances the native `input type="file"`, which is slotted within it.
+* The File Input shall be slotted within the `cbp-form-field` component to provide a consistent and accessible input pattern.
+* The native file input acts as a drop target and is stretched over the visual treatment for the form field so that dragging and dropping files anywhere on it works.
+* The native file picker dialog is specific to the operating system.
+* The button control is decorative and placed behind the native file input, is not focusable, and shall be hidden from the accessibility tree.
+
+## Technical Specifications
+
+### User Interactions
+
+* The native file input has some limitations when its raw value is needed for a form post:
+  * Because the input's file:fileList property is readonly, files may not be appended to the fileList or individually deleted.
+  * Once a file is selected, subsequent opening of the file dialog will replace the selection(s) with the new selection(s) or clear the selections if "cancel" is selected.
+  * Dragging and dropping additional files also replaces the previous selection.
+  * Due to the above behaviors, if multiple files are accepted, they must all be selected at once.
+  * Setting the value to an empty string or null clears the fileList.
+* However, functionality can be enhanced (via property) for integration with a framework or using the component's custom events rather than the native input value (TODO).
+
+### Responsiveness
+
+* The File Input is sized using relative units to render the desired design in the proper proportions.
+* The File Input will resize to fit smaller screen sizes, hiding the icons if needed.
+
+### Accessibility
+
+* The `cbp-file-input` component shall be slotted within the `cbp-form-field` component to provide an accessible label and description.
+* The button control is decorative and placed behind the native file input and shall be hidden from the accessibility tree.
+
+### Additional Notes and Considerations
+
+* The `accepts` attribute is merely a suggestion to the browser, which enables a filter on the native file picker dialog. The end user may be able to remove the filter and any file type restrictions should always be verified in form validation.
+* `Readonly` should not be used on file inputs - use `disabled` instead. While the `readonly` attribute is technically valid on the native `input`, it doesn't work consistently with other readonly inputs:
+  * Clicking the field still opens the file picker dialog and allows the value to be changed.
+  * File inputs cannot set a value programmatically to be submitted with a native form post as other `readonly` inputs would.
