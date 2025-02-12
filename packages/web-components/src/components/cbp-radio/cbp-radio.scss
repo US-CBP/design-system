@@ -118,7 +118,6 @@ cbp-radio {
   }
 
   input[type=radio] {
-    //all: unset;
     appearance: none; // radios do not accept styling per design specs
     display: grid;
     place-content: center;
@@ -126,7 +125,6 @@ cbp-radio {
     min-height: unset; // unset from cbp-form-field
     height: var(--cbp-space-7x);
     width: var(--cbp-space-7x);
-    //padding-inline: var(--cbp-form-field-padding-inline);
     margin: 0;
     border-color: var(--cbp-radio-color-border);
     border-style: solid;
@@ -178,8 +176,6 @@ cbp-radio {
     &:checked {
       // Checked inner-circle
       &::before {
-        //height: var(--cbp-space-4x);
-        //width: var(--cbp-space-4x);
         transform: scale(1);
         transition: all var(--cbp-motion-duration-shortest) ease-in-out;
       }

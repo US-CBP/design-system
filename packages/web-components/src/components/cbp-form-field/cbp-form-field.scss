@@ -85,9 +85,6 @@ cbp-form-field {
     position: relative;
   }
 
-  // TechDebt: the :not()s are increasing specificity and making it hard to override elsewhere.
-  // Removing and using all: unset on check/radio. Verify those + dropdown/selects and toggle.
-  //input:not([type="checkbox"]):not([type="radio"]),
   input,
   textarea,
   select, 
@@ -203,7 +200,6 @@ cbp-form-field {
     font-style: italic;
   }
 
-  //input[type=file]:not(#fakeId){
   input[type=file]{
     line-height: var(--cbp-space-8x);
   }

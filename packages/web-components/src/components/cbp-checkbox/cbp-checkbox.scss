@@ -117,7 +117,6 @@ cbp-checkbox {
   }
 
   input[type=checkbox] {
-    //all: unset;
     appearance: none; // checkboxes do not accept styling per design specs
     display: grid;
     place-content: center;
@@ -127,7 +126,6 @@ cbp-checkbox {
     min-height: unset; // unset from cbp-form-field
     height: var(--cbp-space-6x);
     width: var(--cbp-space-6x);
-    //padding-inline: var(--cbp-form-field-padding-inline);
     margin: 0;
     border-color: var(--cbp-checkbox-color-border);
     border-style: solid;
@@ -141,7 +139,6 @@ cbp-checkbox {
     &::before {
       content: '';
       overflow: hidden;
-      //transform: scale(0);
     }
 
     // Verified: only need to set the base variables with higher level tokens that are swapped for dark mode
