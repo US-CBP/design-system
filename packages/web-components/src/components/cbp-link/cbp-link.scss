@@ -61,7 +61,8 @@ cbp-link {
       text-decoration: underline;
     }
 
-    &:visited {
+    // &:visited { //TODO: original
+    &:visited:not(:hover):not(:active):not(:focus){
       color: var(--cbp-link-color-visited); //:visited restricts what properties can be set for security reasons , setting color directly to support visible change
     }
 
