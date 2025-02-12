@@ -130,11 +130,12 @@ export class CbpFormField {
       ...this.sx,
     });
 
+    /* Needs Testing: Moved this logic to componentDidLoad so that it works with buttons rendered by the component lifecycle (not just slotted), such as in file input.
     if (!this.group) {
       // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
       this.formField = this.host.querySelector('input,select,textarea');
       // Treat nested components separately, as it's hard to modify their rendered content directly
-      this.formFieldComponent = this.host.querySelector('cbp-dropdown, cbp-file-input');
+      this.formFieldComponent = this.host.querySelector('cbp-dropdown'); // , cbp-file-input
       this.buttons = this.host.querySelectorAll('cbp-button');
       this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
       this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
@@ -148,11 +149,30 @@ export class CbpFormField {
         this.formField.addEventListener('change', this.handleChange());
       }
     }
+    */
   }
 
   componentDidLoad() {
-    // Set the disabled/readonly/error states on load only if true. (The Watch decorators only listen for changes, not initial state)
+    // Moved this logic to componentDidLoad so that it works with buttons rendered by the component lifecycle (not just slotted), such as in file input.
     if (!this.group) {
+      // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
+      this.formField = this.host.querySelector('input,select,textarea');
+      // Treat nested components separately, as it's hard to modify their rendered content directly
+      this.formFieldComponent = this.host.querySelector('cbp-dropdown');
+      this.buttons = this.host.querySelectorAll('cbp-button');
+      this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
+      this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
+
+      if (this.formField) {
+        // If the slotted form field has an ID, use it; otherwise, set it.
+        this.formField.getAttribute('id')
+          ? this.fieldId = this.formField.getAttribute('id')
+          : this.formField.setAttribute('id', `${this.fieldId}`);
+        this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
+        this.formField.addEventListener('change', this.handleChange());
+      }
+
+      // Set the disabled/readonly/error states on load only if true. (The Watch decorators only listen for changes, not initial state)
       if (!!this.formField) {
         if (this.readonly) this.formField.setAttribute('readonly', '');
         if (this.disabled) this.formField.setAttribute('disabled', '');
@@ -179,12 +199,14 @@ export class CbpFormField {
 
 
   render() {
-
     // Grouped/compound form inputs
     if (this.group) {
       return (
         <Host>
-          <fieldset aria-describedby={`${this.fieldId}-description`}>
+          <fieldset 
+            disabled={this.disabled}
+            aria-describedby={`${this.fieldId}-description`}
+          >
             <legend
               id={`${this.fieldId}-grouplabel`}
               class="cbp-form-field-label"
@@ -216,7 +238,6 @@ export class CbpFormField {
     else {
       return (
         <Host>
-
           <label 
             htmlFor={this.fieldId} 
             id={`${this.fieldId}-label`}
