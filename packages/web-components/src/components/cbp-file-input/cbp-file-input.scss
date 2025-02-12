@@ -50,6 +50,7 @@ cbp-file-input {
   max-width: 22rem;
   container-type: inline-size;
 
+  // Disabled field results in disabled styles applied at a higher level
   &:has(input:disabled) {
     --cbp-file-input-color: var(--cbp-color-interactive-disabled-dark);
     --cbp-file-input-color-dark: var(--cbp-color-interactive-disabled-light);
@@ -84,7 +85,7 @@ cbp-file-input {
     outline-offset: calc(var(--cbp-space-1x) * -1);
 
     
-    // TechDebt: Interactive states must be moved under a selector that is not disabled
+    // Interactive are not applied to disabled fields
     &:hover:not(:has(input:disabled)) {
       --cbp-file-input-color-border: var(--cbp-file-input-color-border-hover);
 
@@ -99,6 +100,7 @@ cbp-file-input {
       }
     }
 
+    // Interactive are not applied to disabled fields
     &:focus:not(:has(input:disabled)),
     &:focus-within:not(:has(input:disabled)) {
       --cbp-file-input-color-border: var(--cbp-file-input-color-border-focus);

@@ -73,7 +73,7 @@ export class CbpFileInput {
     this.files=[];
   }
 
-  
+
   componentWillLoad() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
@@ -92,7 +92,7 @@ export class CbpFileInput {
   }
 
   componentDidLoad() {
-    // Set the disabled/multiple on load only if true. (The Watch decorators only listen for changes, not initial state)
+    // Set the input-specific attributes on load only if true.
     if (!!this.formField) {
       if (this.multiple) this.formField.setAttribute('multiple', '');
       if (this.accept) this.formField.setAttribute('accept', this.accept);
