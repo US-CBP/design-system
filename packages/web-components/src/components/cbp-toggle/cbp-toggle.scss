@@ -43,10 +43,16 @@
 :root{ 
   --cbp-toggle-color-bg: var(--cbp-color-interactive-secondary-light);
   --cbp-toggle-color-bg-dark: var(--cbp-color-interactive-secondary-dark);
+  --cbp-toggle-color-bg-selected: var(--cbp-color-interactive-selected-dark);
+  --cbp-toggle-color-bg-selected-dark: var(--cbp-color-interactive-selected-light);
   --cbp-toggle-color-circle: var(--cbp-color-white);
   --cbp-toggle-color-circle-dark: var(--cbp-color-white);
+  --cbp-toggle-circle-selected-color:var(--cbp-color-white);
+  --cbp-toggle-circle-selected-color-dark:var(--cbp-color-interactive-secondary-darker);
   --cbp-toggle-color-circle-border: var(--cbp-toggle-color-circle);
   --cbp-toggle-color-circle-border-dark: var(--cbp-toggle-color-circle-dark);
+  --cbp-toggle-circle-selected-border-color: var(--cbp-color-white);
+  --cbp-toggle-circle-selected-border-color-dark: var(--cbp-color-interactive-secondary-darker);
   
   --cbp-toggle-outline-width: 2px;
   --cbp-toggle-outline-style: solid;
@@ -72,6 +78,16 @@
   --cbp-toggle-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
   --cbp-toggle-outline-color-focus: var(--cbp-color-white);
   --cbp-toggle-outline-color-focus-dark: var(--cbp-color-black);
+
+  --cbp-toggle-circle-selected-color-focus: var(--cbp-color-white);
+  --cbp-toggle-circle-selected-color-focus-dark: var(--cbp-color-black);
+  --cbp-toggle-circle-selected-border-color-focus: var(--cbp-color-white);
+  --cbp-toggle-circle-selected-border-color-focus-dark: var(--cbp-color-black);
+
+  --cbp-toggle-color-circle-focus: var(--cbp-color-white);
+  --cbp-toggle-color-circle-focus-dark: var(--cbp-color-black);
+  --cbp-toggle-color-circle-border-focus: var(--cbp-color-white);
+  --cbp-toggle-color-circle-border-focus-dark: var(--cbp-color-black);
 
   /** Disabled */
   --cbp-toggle-color-bg-disabled: var(--cbp-color-interactive-disabled-dark);
@@ -100,8 +116,11 @@
 [data-cbp-theme=dark] cbp-toggle:not([context=dark-inverts]):not([context=light-always]) {
 
   --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-dark);
+  --cbp-toggle-color-bg-selected: var(--cbp-toggle-color-bg-selected-dark);
   --cbp-toggle-color-circle: var(--cbp-toggle-color-circle-dark);
   --cbp-toggle-color-circle-border: var(--cbp-toggle-color-circle-border-dark);
+  --cbp-toggle-circle-selected-color: var(--cbp-toggle-circle-selected-color-dark);
+  --cbp-toggle-circle-selected-border-color: var(--cbp-toggle-circle-selected-border-color-dark);
   --cbp-toggle-outline-color: var(--cbp-toggle-outline-color-dark);
 
   --cbp-toggle-color-bg-hover: var(--cbp-toggle-color-bg-hover-dark);
@@ -112,6 +131,10 @@
 
   --cbp-toggle-color-bg-focus: var(--cbp-toggle-color-bg-focus-dark);
   --cbp-toggle-outline-color-focus: var(--cbp-toggle-outline-color-focus-dark);
+  --cbp-toggle-circle-selected-color-focus: var(--cbp-toggle-circle-selected-color-focus-dark);
+  --cbp-toggle-circle-selected-border-color-focus: var(--cbp-toggle-circle-selected-border-color-focus-dark);
+  --cbp-toggle-color-circle-focus: var(--cbp-toggle-color-circle-focus-dark);
+  --cbp-toggle-color-circle-border-focus: var(--cbp-toggle-color-circle-border-focus-dark);
 
   --cbp-toggle-color-bg-disabled: var(--cbp-toggle-color-bg-disabled-dark);
   --cbp-toggle-color-circle-disabled: var(--cbp-toggle-color-circle-disabled-dark);
@@ -165,11 +188,9 @@ cbp-toggle {
 
   /** 'On' States */
   &[checked] input[type='checkbox']{
-    --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-hover);
-    --cbp-toggle-color-bg-dark: var(--cbp-toggle-color-bg-hover-dark);
-    --cbp-toggle-color-circle: var(--cbp-color-white);
-    --cbp-toggle-color-circle-dark: var(--cbp-color-interactive-secondary-darker);
-    --cbp-toggle-color-circle-border-dark: var(--cbp-color-interactive-secondary-darker);
+    --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-selected);
+    --cbp-toggle-color-circle: var(--cbp-toggle-circle-selected-color);
+    --cbp-toggle-color-circle-border: var(--cbp-toggle-circle-selected-border-color);
 
     &:before{
       margin-left: calc(var(--cbp-toggle-control-width) - var(--cbp-toggle-circle-diameter) - var(--cbp-toggle-circle-inset));
@@ -177,10 +198,8 @@ cbp-toggle {
 
     &:hover:not([disabled]){
       --cbp-toggle-color-circle: var(--cbp-toggle-circle-selected-color-hover);
-      --cbp-toggle-color-circle-border: var(--cbp-toggle-color-circle-border-hover);
+      --cbp-toggle-color-circle-border: var(--cbp-toggle-circle-selected-border-color-hover);
       
-      --cbp-toggle-color-circle-dark: var(--cbp-toggle-circle-selected-color-hover-dark);
-      --cbp-toggle-color-circle-border-dark: var(--cbp-toggle-circle-selected-border-color-hover-dark);
     }
 
     &:focus:not([disabled]){
@@ -188,8 +207,9 @@ cbp-toggle {
       --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-focus);
       --cbp-toggle-outline-color: var(--cbp-toggle-outline-color-focus);
 
-      --cbp-toggle-color-bg-dark: var(--cbp-toggle-color-bg-focus-dark);
-      --cbp-toggle-outline-color-dark: var(--cbp-toggle-outline-color-focus-dark);
+      --cbp-toggle-color-circle: var(--cbp-toggle-circle-selected-color-focus);
+      --cbp-toggle-color-circle-border: var(--cbp-toggle-circle-selected-border-color-focus); 
+      
     }
   }
 
@@ -216,8 +236,9 @@ cbp-toggle {
     
       --cbp-toggle-color-bg-dark: var(--cbp-toggle-color-bg-focus-dark);
       --cbp-toggle-outline-color-dark: var(--cbp-toggle-outline-color-focus-dark);
-      --cbp-toggle-color-circle-dark: var(--cbp-color-interactive-secondary-darker);
-      --cbp-toggle-color-circle-border-dark: var(--cbp-color-interactive-secondary-darker);;
+
+      --cbp-toggle-color-circle: var(--cbp-toggle-color-circle-focus);
+      --cbp-toggle-color-circle-border: var(--cbp-toggle-color-circle-border-focus);
     }
   }
 
