@@ -1,0 +1,28 @@
+{
+  "name": "design-tokens",
+  "version": "1.0.0",
+  "description": "Design Tokens for the CBP Design System.",
+  "main": "index.js",
+  "scripts": {
+    "sd": "style-dictionary build --config ./config.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/US-CBP/design-system.git"
+  },
+  "keywords": [
+    "CBP",
+    "Design System",
+    "Design Tokens"
+  ],
+  "author": "Creative Services <CreativeServices@cbp.dhs.gov>",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/US-CBP/design-system/issues"
+  },
+  "homepage": "https://github.com/US-CBP/design-system#readme",
+  "devDependencies": {
+    "style-dictionary": "^4.3.3"
+  }
+}

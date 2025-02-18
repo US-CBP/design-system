@@ -1,25 +1,25 @@
-import { default as Animation } from '../../../vanilla/src/tokens/animation.json';
-import { default as Border } from '../../../vanilla/src/tokens/border.json';
-import { default as Breakpoints } from '../../../vanilla/src/tokens/breakpoints.json';
-import { default as Elevation } from '../../../vanilla/src/tokens/elevation.json';
-import { default as Space } from '../../../vanilla/src/tokens/space.json';
-import { default as Theme } from '../../../vanilla/src/tokens/theme.json';
-import { default as Typography } from '../../../vanilla/src/tokens/typography.json';
+import { default as Animation } from '../../../design-tokens/src/tokens/animation.json';
+import { default as Border } from '../../../design-tokens/src/tokens/border.json';
+import { default as Breakpoints } from '../../../design-tokens/src/tokens/breakpoints.json';
+import { default as Elevation } from '../../../design-tokens/src/tokens/elevation.json';
+import { default as Space } from '../../../design-tokens/src/tokens/space.json';
+import { default as Theme } from '../../../design-tokens/src/tokens/theme.json';
+import { default as Typography } from '../../../design-tokens/src/tokens/typography.json';
 
-import { default as Black } from '../../../vanilla/src/tokens/color/black.json';
-import { default as Blue } from '../../../vanilla/src/tokens/color/blue.json';
-import { default as Cyan } from '../../../vanilla/src/tokens/color/cyan.json';
-import { default as Gold } from '../../../vanilla/src/tokens/color/gold.json';
-import { default as Gray } from '../../../vanilla/src/tokens/color/gray.json';
-import { default as Green } from '../../../vanilla/src/tokens/color/green.json';
-import { default as Indigo } from '../../../vanilla/src/tokens/color/indigo.json';
-import { default as Magenta } from '../../../vanilla/src/tokens/color/magenta.json';
-import { default as Mint } from '../../../vanilla/src/tokens/color/mint.json';
-import { default as Orange } from '../../../vanilla/src/tokens/color/orange.json';
-import { default as Red } from '../../../vanilla/src/tokens/color/red.json';
-import { default as Violet } from '../../../vanilla/src/tokens/color/violet.json';
-import { default as White } from '../../../vanilla/src/tokens/color/white.json';
-import { default as Yellow } from '../../../vanilla/src/tokens/color/yellow.json';
+import { default as Black } from '../../../design-tokens/src/tokens/color/black.json';
+import { default as Blue } from '../../../design-tokens/src/tokens/color/blue.json';
+import { default as Cyan } from '../../../design-tokens/src/tokens/color/cyan.json';
+import { default as Gold } from '../../../design-tokens/src/tokens/color/gold.json';
+import { default as Gray } from '../../../design-tokens/src/tokens/color/gray.json';
+import { default as Green } from '../../../design-tokens/src/tokens/color/green.json';
+import { default as Indigo } from '../../../design-tokens/src/tokens/color/indigo.json';
+import { default as Magenta } from '../../../design-tokens/src/tokens/color/magenta.json';
+import { default as Mint } from '../../../design-tokens/src/tokens/color/mint.json';
+import { default as Orange } from '../../../design-tokens/src/tokens/color/orange.json';
+import { default as Red } from '../../../design-tokens/src/tokens/color/red.json';
+import { default as Violet } from '../../../design-tokens/src/tokens/color/violet.json';
+import { default as White } from '../../../design-tokens/src/tokens/color/white.json';
+import { default as Yellow } from '../../../design-tokens/src/tokens/color/yellow.json';
 
 export default {
   title: 'Design Tokens',

@@ -28,6 +28,7 @@
   },
   "scripts": {
     "sd": "style-dictionary build --config ./config.json",
+    "build-css": "style-dictionary build --config ./config.json",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",

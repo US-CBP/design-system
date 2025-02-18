@@ -1,0 +1,102 @@
+{
+  "source": ["src/tokens/**/*.json"],
+  
+  "platforms": {
+    "scss": {
+      "transformGroup": "web",
+      "prefix": "cbp",
+      "buildPath": "dist/sass/",
+      "files": [
+        {
+          "destination": "_animation.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "animation"
+            }
+          }
+        },
+        {
+          "destination": "_border.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "border"
+            }
+          }
+        },
+        {
+          "destination": "_breakpoints.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "breakpoints"
+            }
+          }
+        },
+        {
+          "destination": "_color.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "color"
+            }
+          }
+        },
+        {
+          "destination": "_elevation.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "elevation"
+            }
+          }
+        },
+        {
+          "destination": "_space.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "space"
+            }
+          }
+        },
+        {
+          "destination": "_theme.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "theme"
+            }
+          }
+        },
+
+        {
+          "destination": "_typography.scss",
+          "format": "scss/variables",
+          "filter": {
+            "attributes": {
+              "use": "typography"
+            }
+          }
+        }
+      ]
+    },
+
+    "css": {
+      "transformGroup": "css",
+      "prefix": "cbp",
+      "buildPath": "dist/css/",
+      "files": [
+        {
+          "destination": "cbp-design-tokens.css",
+          "format": "css/variables",
+          "options": {
+            "outputReferences": false
+          }
+        }
+      ]
+    }
+
+  }
+}
