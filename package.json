@@ -46,12 +46,7 @@
     "npm": ">=8.0.0",
     "node": ">=18.0.0"
   },
-  "workspaces": [
-    "packages/vanilla",
-    "packages/ux-guidelines",
-    "packages/web-components",
-    "packages/react-components"
-  ],
+  "workspaces": ["./packages/*"],
   "devDependencies": {
     "@types/node": "^20.10.4",
     "eslint": "^8.55.0",
