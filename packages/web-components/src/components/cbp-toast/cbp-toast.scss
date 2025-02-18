@@ -87,10 +87,11 @@ cbp-toast {
     font-weight: var(--cbp-font-weight-medium);
     font-size: var(--cbp-font-size-heading-sm);
     line-height: var(--cbp-line-height-sm);
+    padding:  var(--cbp-space-3x) var(--cbp-space-3x) 0 var(--cbp-space-3x);
   }
 
   .cbp-toast-container{
-    padding:  var(--cbp-space-3x);
+    width: 100%;
   }
 
   .cbp-toast-content{
@@ -98,6 +99,7 @@ cbp-toast {
     font-size: var(--cbp-font-size-body);
     line-height: var(--cbp-line-height-xs);
     color: var(--cbp-toast-color-content);
+    padding:  0 var(--cbp-space-3x) 0 var(--cbp-space-3x);
   }
 
   .cbp-toast-button-bar{
@@ -106,12 +108,18 @@ cbp-toast {
 
     & > div{
       display: flex;
-      gap: var(--cbp-space-4x);
+      flex: 1 1 100%; 
     }
 
     cbp-button[fill=ghost][color=secondary]{ //match button color to text color for toast
       --cbp-button-color: var(--cbp-toast-color);
       --cbp-button-color-dark: var(--cbp-toast-color-dark);
+      --cbp-button-width: 100%;
+      --cbp-button-border-radius: var(--cbp-border-radius-sharp);
+      
+      &:last-child {
+        --cbp-button-border-radius: 0 0 var(--cbp-border-radius-softer) 0;
+      }
     }
   }
 
