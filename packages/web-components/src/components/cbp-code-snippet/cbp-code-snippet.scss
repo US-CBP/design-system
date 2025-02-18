@@ -1,0 +1,61 @@
+/**
+ * @Prop --cbp-chip-color-text: var(--cbp-color-text-lightest);
+ */
+:root { 
+  --cbp-code-snippet-max-height: unset; //Note: for the max-height prop to populate
+  --cbp-code-snippet-pre-padding: 0 var(--cbp-space-1x);
+
+  --cbp-code-snippet-color: var(--cbp-color-text-darkest);
+  --cbp-code-snippet-color-dark: var(--cbp-color-text-lightest);
+
+  --cbp-code-snippet-color-bg: var(--cbp-color-gray-cool-10);
+  --cbp-code-snippet-color-bg-dark: var(--cbp-color-gray-cool-70);
+
+}
+
+[data-cbp-theme=light] cbp-code-snippet[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-code-snippet:not([context=dark-inverts]):not([context=light-always]) {
+  
+  --cbp-code-snippet-color: var(--cbp-code-snippet-color-dark);
+  --cbp-code-snippet-color-bg: var(--cbp-code-snippet-color-bg-dark);
+
+}
+
+cbp-code-snippet {
+  color: var(--cbp-code-snippet-color);
+  background-color: var(--cbp-code-snippet-color-bg);
+
+  &[variant="inline"]{
+    display: inline-block;
+  }
+  
+  &[variant="block"]{
+    display: block;
+    pre{
+      display: flex;
+      --cbp-code-snippet-pre-padding: var(--cbp-space-2x);
+      overflow: auto;
+      max-height: var(--cbp-code-snippet-max-height);
+    
+      cbp-button{ //Copy button
+        margin-left: auto;
+      }
+    }
+    & > cbp-button{ //Show More / Show Less button
+      margin-inline-start: var(--cbp-space-2x);
+      margin-block-end: var(--cbp-space-2x);
+    }
+
+  }
+
+  pre{
+    padding: var(--cbp-code-snippet-pre-padding);
+
+      
+  
+  
+    margin: 0; //TODO: getting some browser default, setting to 0 for local testing
+    white-space: pre;//-line; //TODO: seeing some weirdness with an indent. setting to pre-line for some local testing
+    //this is squashing internal spacing as well for tab indents. need to find source of initial tabbing
+  }
+}

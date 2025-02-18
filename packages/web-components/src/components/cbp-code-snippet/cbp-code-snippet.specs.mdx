@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Code Snippet/Specifications" />
+
+# cbp-code-snippet
+
+## Purpose
+
+* Used to display code in either block or inline form 
+
+## Functional Requirements
+
+* accepts a slot to populate a code tag
+* 'Copy' button on Single & Multiple variants will copy associated content to clipboard
+* 'Show more' button on a scrollable Multiple line code snippet will set the container height to display all the code block
+
+## Technical Specifications
+
+* Variants: 3 variants of code snippet are supported //TODO: possibly condense single & multiple to 1 type ("block")? see what makes sense in implementation
+    * Inline: displays simple code inline with rest of text
+    * Single: displays a single line of code in a block separate from other text w/ internal button to copy code block
+    * Multiple: displays blocks of code in a scrollable container w/ internal button to copy code block
+* min-height prop for Multiple variant, when used will populate the 'show more' button
+
+### User Interactions
+
+* 
+
+### Responsiveness
+
+* 
+
+### Accessibility
+
+* tab focus to internal buttons 'copy'/'Show more'
+
+### Additional Notes and Considerations
+
+* use pre to wrap the slotted code.
+    *Carbon seems to be just using the 1 code tag here so above may not even be a concern? https://v10.carbondesignsystem.com/components/code-snippet/usage/#multi-line 
+    *Carbon: min-height being set inline to remove by clicking the 'show more' 
