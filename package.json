@@ -6,7 +6,7 @@
   "scripts": {
     "style-lint": "npx stylelint '**/*.scss'",
     "stylelint-check": "stylelint-config-prettier-check",
-    "build-tokens": "npm run sd -w packages/vanilla",
+    "build-tokens": "npm run sd -w packages/design-tokens",
     "vanilla-dev": "npm run dev -w packages/vanilla",
     "vanilla-build": "npm run build -w packages/vanilla",
     "vanilla-sb": "npm run storybook -w packages/vanilla",
