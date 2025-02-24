@@ -9,7 +9,7 @@
 
 The CBP Design System (1.0) exists to provide a unifying user experience and reduce redundant front-end code within the US Customs and Border Protection enterprise suite of applications and websites. This is the next evolution of our first effort, the [CBP Theme (1.X)](https://us-cbp.github.io/cbp-style-guide).
 
-> **⚠️ The CBP Design System (1.0) is still in a stage of very active development.** As such, much of the code base is still somewhat fragile and may break at any time. While we encourage you to explore our offerings, please do so with the knowledge that the codebase in these repositories will change rapidly and with little warning. Use at your own risk. We will communicate when a stable release will be made available.
+> **⚠️ The CBP Design System (1.0) is still in active development.** As such, breaking changes may be introduced but will be documented as such. While we encourage you to explore our offerings, please do so with the knowledge that the codebase in these repositories may change. Use at your own risk. We will communicate when a stable release will be made available.
 
 ## Contents
 
@@ -19,9 +19,9 @@ This project is set up as a monorepo, containing multiple packages. Current effo
 
 | Package Name                    | Description                                         |
 |---------------------------------|-----------------------------------------------------|
-| @cbpds/vanilla (_WIP_)          | HTML patterns, css/scss styles and vanilla js       |
+| @cbpds/vanilla (_deprecated_)   | HTML patterns, css/scss styles and vanilla js       |
 | @cbpds/web-components (_WIP_)   | Web components library                              |
-| @cbpds/react-components (_WIP_) | React components library                            |
+| @cbpds/react-components (_WIP_) | React components library (for React 18 and lower)   |
 | ux-guidelines  (_WIP_)          | Guidance for patterns, components and design tokens |
 
 ## Contributing
