@@ -2,17 +2,10 @@ import { themes } from '@storybook/theming';
 
 import { setCustomElementsManifest } from "@storybook/web-components";
 import customElements from "../custom-elements.json";
-import { setWcStorybookHelpersConfig } from "wc-storybook-helpers";
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import {defineCustomElements} from '../dist/loader';
 
 defineCustomElements();
-setWcStorybookHelpersConfig({
-  //hideArgRef: true,
-  setComponentVariable: true,
-  renderDefaultValues: false,
-  hideArgRef: false,
-});
 setCustomElementsManifest(customElements);
 
 export const CUSTOM_VIEWPORTS = {
@@ -80,7 +73,7 @@ const preview = {
         ]
       }
     },
-    // DEG: Enabling custom viewports seems to be linked to the HTML tab showing generated code instead of source/story code. Disabling custom viewports for further testing.
+    // TechDebt: Enabling custom viewports seems to be linked to the HTML tab showing generated code instead of source/story code. Disabling custom viewports for further testing.
     viewport: {
       //viewports: CUSTOM_VIEWPORTS,
     },
@@ -98,7 +91,7 @@ const preview = {
         singleAttributePerLine: true,
       },
       highlighter: {
-        showLineNumbers: true,
+        showLineNumbers: false, // TechDebt: still showing - double if true. Bug reported.
         wrapLines: true,
         language: 'html'
       },
