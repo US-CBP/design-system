@@ -7,9 +7,6 @@
     "style-lint": "npx stylelint '**/*.scss'",
     "stylelint-check": "stylelint-config-prettier-check",
     "build-tokens": "npm run sd -w packages/design-tokens",
-    "vanilla-dev": "npm run dev -w packages/vanilla",
-    "vanilla-build": "npm run build -w packages/vanilla",
-    "vanilla-sb": "npm run storybook -w packages/vanilla",
     "ux-dev": "npm run dev -w packages/ux-guidelines",
     "ux-build": "npm run build -w packages/ux-guidelines",
     "react-build": "npm run build -w packages/react-components",
@@ -19,10 +16,10 @@
     "stencil-build-sb": "npm run build-pages -w packages/web-components",
     "stencil-generate": "npm run generate -w packages/web-components",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-pages": "npm run vanilla-build && npm run build-pages -w packages/vanilla && npm run stencil-build && npm run build-pages -w packages/web-components",
+    "build-pages": "npm run stencil-build && npm run build-pages -w packages/web-components",
+    "build-pages-old": "npm run vanilla-build && npm run build-pages -w packages/vanilla && npm run build-pages -w packages/ux-guidelines && npm run stencil-build && npm run build-pages -w packages/web-components",
     "build-wc-package": "npm run stencil-build && npm run build-pages -w packages/web-components",
-    "build-pages-old": "npm run vanilla-build && npm run build-pages -w packages/vanilla && npm run build-pages -w packages/ux-guidelines",
-    "build-all": "npm run vanilla-build && npm run stencil-build && npm run react-build"
+    "build-all": "npm run stencil-build && npm run react-build"
   },
   "repository": {
     "type": "git",
@@ -56,7 +53,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "lerna": "^8.1.8",
     "postcss-scss": "^4.0.9",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.0",
     "stylelint": "^14.16.1",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-recommended": "^9.0.0",
