@@ -17,10 +17,10 @@
     "jsxFactory": "h",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-  },
-  "paths": {
-    "@assets/*": ["./assets/*"],
-    "@components/*": ["./components/*"],
+    "paths": {
+      "@assets/*": ["./assets/*"],
+      "@components/*": ["./components/*"],
+    },
   },
   "include": [
     "src"

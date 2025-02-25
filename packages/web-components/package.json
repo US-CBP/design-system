@@ -63,7 +63,7 @@
     "puppeteer": "^23.1.1",
     "react-syntax-highlighter": "^15.6.1",
     "storybook": "^8.5.8",
-    "vite": "^4.5.1"
+    "vite": "^6.1.1"
   },
   "keywords": [
     "CBP",

@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Accordion',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   argTypes: {
     items: {
       name: 'Accordion Items',
