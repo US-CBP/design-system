@@ -1,6 +1,6 @@
 export default {
     title: 'Components/Action Bar',
-    //tags: ['autodocs'],
+    tags: ['beta'],
     argTypes: {
     
       variant: {

@@ -1,6 +1,6 @@
 export default {
     title: 'Components/Tooltip',
-    //tags: ['autodocs'],
+    tags: ['new'],
     argTypes: {
         uid: {
             description: 'A unique `id` applied to the dialog and referenced by the control.',

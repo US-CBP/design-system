@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Tabs',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   argTypes: {
     tabs: {
       name: 'Tabs (slotted)',

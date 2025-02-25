@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Flex/Flex Item',
-  //tags: ['autodocs'],
+  tags: ['beta','code-only'],
   argTypes: {
     order: {
       control: 'number',

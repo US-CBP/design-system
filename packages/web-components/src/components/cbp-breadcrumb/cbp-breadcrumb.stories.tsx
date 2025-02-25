@@ -1,6 +1,6 @@
 export default {
     title: 'Components/Breadcrumb',
-    //tags: ['autodocs'],
+    tags: ['beta'],
     argTypes: {
       context : {
         control: 'select',

@@ -1,7 +1,6 @@
 export default {
   title: 'Components/Icon',
-  // TechDebt: autodocs not working here for some reason - throwing Vite error
-  //tags: ['autodocs'],
+  tags: ['beta'],
   argTypes: {
     name: {
       description: 'Named icons that are built-in to the component.',

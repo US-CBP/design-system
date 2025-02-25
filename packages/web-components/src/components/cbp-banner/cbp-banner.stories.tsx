@@ -1,6 +1,6 @@
 export default {
     title: 'Components/Banner',
-    //tags: ['autodocs'],
+    tags: ['beta'],
     argTypes: {
         bannerTitle: {
           name: 'Banner title',

@@ -4,6 +4,13 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unreleased] TBD
+* Cleaned up the monorepo:
+  * Removed vanilla package.
+  * Created design-tokens package, updated Style Dictionary.
+* Updated Storybook to v8.6.
+* Added tag badges to stories (via plugin).
+
 ## [0.0.1-develop.19] 02-12-2025
 * First cut of the `cbp-subnav` and `cbp-subnav-item` components.
 * First cut of the `cbp-file-input` component, supporting only the native web functionality with enhancements to come later.

@@ -1,6 +1,6 @@
 export default {
     title: 'Components/Toggle',
-    //tags: ['autodocs'],
+    tags: ['new'],
     argTypes: {
         hideStatus: {
             description: 'Determines if the status text for the `on` and `off` is visible for the toggle control',

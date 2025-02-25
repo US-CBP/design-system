@@ -1,6 +1,6 @@
 export default {
     title: 'Components/Loader',
-    //tags: ['autodocs'],
+    tags: ['new'],
     argTypes: {
         progressid: {
             description: 'A unique `id` applied to the dialog and referenced by the control.',

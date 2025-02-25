@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Grid',
-  //tags: ['autodocs'],
+  tags: ['beta', 'code-only'],
   argTypes: {
     display: {
       control: 'select',

@@ -1,6 +1,6 @@
 export default {
   title: 'Components/File Input',
-  //tags: ['autodocs'],
+  tags: ['new'],
   argTypes: {
     label: {
       control: 'text',

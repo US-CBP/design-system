@@ -1,6 +1,6 @@
 export default {
     title: 'Components/List',
-    //tags: ['autodocs'],
+    tags: ['beta'],
     argTypes: {
         // tag: {
         //   control: 'select',

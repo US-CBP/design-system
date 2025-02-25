@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Multicol',
-  //tags: ['autodocs'],
+  tags: ['beta','code-only'],
   argTypes: {
     columns: {
       control: 'number',
