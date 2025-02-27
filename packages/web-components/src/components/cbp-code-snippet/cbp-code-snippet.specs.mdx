@@ -11,16 +11,16 @@ import { Meta } from '@storybook/addon-docs';
 ## Functional Requirements
 
 * accepts a slot to populate a code tag
-* 'Copy' button on Single & Multiple variants will copy associated content to clipboard
-* 'Show more' button on a scrollable Multiple line code snippet will set the container height to display all the code block
+* 'Copy' button on Block variants will copy associated content to clipboard
+* 'Show more' button on a scrollable block code snippet will set the container height to display all the code block
 
 ## Technical Specifications
 
-* Variants: 3 variants of code snippet are supported //TODO: possibly condense single & multiple to 1 type ("block")? see what makes sense in implementation
+* Variants: 2 variants of code snippet are supported 
     * Inline: displays simple code inline with rest of text
-    * Single: displays a single line of code in a block separate from other text w/ internal button to copy code block
-    * Multiple: displays blocks of code in a scrollable container w/ internal button to copy code block
-* min-height prop for Multiple variant, when used will populate the 'show more' button
+    * Block: displays blocks of code in a scrollable container w/ internal button to copy code block
+* min-height prop for Block variant, when used will populate the 'show more' button
+* expanded is used w/ the 'show more' button to pass to cbp-button expanded prop
 
 ### User Interactions
 

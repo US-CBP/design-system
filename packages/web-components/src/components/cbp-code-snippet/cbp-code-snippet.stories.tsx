@@ -13,7 +13,7 @@ export default {
         control: 'select',
         options: [ "inline", "block"]
       },
-      maxHeight: {
+      height: {
         name: 'Code Snippet max-height',
         description: 'sets the max-height on the block variant control',
         control: 'text',
@@ -28,51 +28,18 @@ export default {
         control: 'object',
       },
     },
-    args: {
-//        codeSnippet: `&lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// &lt;a href='#'&gt; test code snippet &lt;/a&gt;
-// `,
-      codeSnippet: `&lt;a href='#'&gt; test code snippet &lt;/a&gt;`,
+    args: {     
+      /** code snippet passed to the <code> block so any indent/spacing will be in final render*/
+      codeSnippet: `<a href='#'> test code snippet </a>`,
       variant: 'inline'
     },
   };
   
-  const Template = ({codeSnippet, variant, maxHeight, context, sx}) => {
+  const Template = ({codeSnippet, variant, height, context, sx}) => {
     return ` 
     <cbp-code-snippet
       variant= ${variant}
-      ${maxHeight ? `maxheight= ${maxHeight}` : ``}
+      ${height ? `height= ${height}` : ``}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >${codeSnippet}</cbp-code-snippet>
