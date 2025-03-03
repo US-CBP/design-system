@@ -1,6 +1,5 @@
 /**
- * @Prop --cbp-chip-color-text: var(--cbp-color-text-lightest);
- * @Prop --cbp-code-snippet-height: unset;
+ * @Prop --cbp-code-snippet-max-height: unset;
  * @Prop --cbp-code-snippet-pre-padding: 0 var(--cbp-space-1x);
 
  * @Prop --cbp-code-snippet-color: var(--cbp-color-text-darkest);
@@ -11,7 +10,7 @@
  */
  
 :root { 
-  --cbp-code-snippet-height: unset; //Note: for the height prop to populate
+  --cbp-code-snippet-max-height: unset; //Note: for the maxheight prop to populate
   --cbp-code-snippet-pre-padding: 0 var(--cbp-space-1x);
 
   --cbp-code-snippet-color: var(--cbp-color-text-darkest);
@@ -31,20 +30,26 @@
 }
 
 cbp-code-snippet {
-  color: var(--cbp-code-snippet-color);
-  background-color: var(--cbp-code-snippet-color-bg);
 
   &[variant="inline"]{
-    display: inline-block;
+    display: inline;
+  
+    code{
+      color: var(--cbp-code-snippet-color);
+      background-color: var(--cbp-code-snippet-color-bg);  
+    }
   }
   
   &[variant="block"]{
     display: block;
+    color: var(--cbp-code-snippet-color);
+    background-color: var(--cbp-code-snippet-color-bg);  
+
     pre{
       display: flex;
       --cbp-code-snippet-pre-padding: var(--cbp-space-2x);
       overflow: auto;
-      height: var(--cbp-code-snippet-height);
+      max-height: var(--cbp-code-snippet-max-height);
     
       code{
         padding-block-start: var(--cbp-space-2x);
@@ -67,6 +72,10 @@ cbp-code-snippet {
   pre{
     padding: var(--cbp-code-snippet-pre-padding);
     margin: 0;
-    white-space: pre;
+    white-space: pre-wrap;
+
+    code{    
+      font-family: var(--cbp-font-family-roboto-mono);
+    }
   }
 }

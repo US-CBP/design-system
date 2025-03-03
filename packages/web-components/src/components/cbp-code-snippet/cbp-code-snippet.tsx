@@ -13,13 +13,21 @@ export class CbpCodeSnippet {
   private showAllToggle = false;
   private toggleButtonText = 'Show More';
   private toggleButtonRotate = 90;
+  // private codeContainerHeight;
+  // private codeBlockHeight;
 
   /**  Specifies the visual variant of the code snippet*/
   @Prop({ reflect: true }) variant: "inline" | "block" = 'inline';
   
-  /** Specifies the min height for a muliple line block variant(in CSS units). If set will populate the 'show more' button on the render to display full height */
-  @Prop() height: string;
+  /** Specifies the max height for a muliple line block variant(in CSS units). */
+  @Prop() maxheight: string;
 
+  /** Specifies the size of the current height of the code snippet container, used to manage render of 'show more' button */
+  @Prop() codeContainerHeight: number
+
+  /** Specifies the size of the current height of the code snippet block, used to manage render of 'show more' button */
+  @Prop() codeBlockHeight: number
+  
   /** sets the expanded state of the 'show more' button & is passed to the associated cbp-button prop*/
   @Prop() expanded: boolean;
 
@@ -40,19 +48,20 @@ export class CbpCodeSnippet {
   @Event() toggleShowAllClick: EventEmitter;
   toggleShowAll(){
     if(!this.showAllToggle){
-      this.host.style.setProperty('--cbp-code-snippet-height', 'auto')
+      this.host.style.setProperty('--cbp-code-snippet-max-height', 'auto')
       this.showAllToggle = true;
       this.toggleButtonRotate = 270
       this.toggleButtonText = 'Show Less';
     }else{
-      this.host.style.setProperty('--cbp-code-snippet-height', this.height)
+      this.host.style.setProperty('--cbp-code-snippet-max-height', this.maxheight)
       this.showAllToggle = false;
       this.toggleButtonRotate = 90
       this.toggleButtonText = 'Show More';
     }
     this.expanded = !this.expanded
     this.toggleShowAllClick.emit({
-      host: this.host
+      host: this.host,
+      expanded: this.expanded
     })
   }
   componentWillLoad() {
@@ -65,10 +74,16 @@ export class CbpCodeSnippet {
     });
   }
 
+
   componentDidLoad(){
-    if(this.height != null && !this.expanded){
-      this.host.style.setProperty('--cbp-code-snippet-height', this.height);
-      console.log('check for height var placement');
+    setTimeout(() => { //** timeout need for DOM to render and correct values to populate for below */
+      this.codeContainerHeight = this.host.closest('cbp-code-snippet').offsetHeight;
+      this.codeBlockHeight = this.host.closest('cbp-code-snippet').querySelector('pre').scrollHeight;
+    }, 100);
+
+
+    if(this.maxheight != null && !this.expanded){
+      this.host.style.setProperty('--cbp-code-snippet-max-height', this.maxheight);
     }
     this.codeBlock = this.host.querySelector('div').innerHTML;
     this.host.querySelector('code').innerHTML = this.codeBlock.replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -84,23 +99,27 @@ export class CbpCodeSnippet {
     
         {this.variant == 'block' &&
           <cbp-button
+            name='copy'
             type="button"
             fill="ghost"
             color="secondary"
             onClick={() => this.copyText()}
+            context={this.context}
           >
             Copy
           </cbp-button>
         }
         </pre>
         
-        {this.height && 
+        {this.maxheight && (this.codeContainerHeight < this.codeBlockHeight) &&
           <cbp-button
+            name= {this.toggleButtonText}
             type="button"
             fill="ghost"
             color="secondary"
             onClick={() => this.toggleShowAll()}
             expanded = {this.expanded}
+            context={this.context}
           >
             <cbp-icon name='chevron-right' rotate={this.toggleButtonRotate}></cbp-icon>
             {this.toggleButtonText}

@@ -6,36 +6,40 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-* Used to display code in either block or inline form 
+* Used to display code in either block or inline form. 
 
 ## Functional Requirements
 
-* accepts a slot to populate a code tag
-* 'Copy' button on Block variants will copy associated content to clipboard
-* 'Show more' button on a scrollable block code snippet will set the container height to display all the code block
+* accepts a slot to populate a code tag.
+* 'Copy' button on Block variants will copy associated content to clipboard.
+* 'Show more' button on a scrollable block code snippet, will set the container height to display all the code block.
 
 ## Technical Specifications
 
-* Variants: 2 variants of code snippet are supported 
-    * Inline: displays simple code inline with rest of text
-    * Block: displays blocks of code in a scrollable container w/ internal button to copy code block
-* min-height prop for Block variant, when used will populate the 'show more' button
-* expanded is used w/ the 'show more' button to pass to cbp-button expanded prop
+* Variants: 2 variants of code snippet are supported, see below for breakdown of variants. 
+    * Inline: displays simple code inline with rest of text.
+    * Block: displays blocks of code in a scrollable container w/ internal button to copy code block.
+* min-height prop for Block variant.
+* expanded is used w/ the 'show more' button to pass to cbp-button expanded prop.
+* codeContainerHeight prop is populated from the cbp-code-snippet offsetHeight. value populated when component loads in, used to calculate if 'show more' button is rendered
+* codeBlockHeight prop is populated from the cbp-code-snippet's internal code tag scrollHeight. value populated when component loads in, used to calculate if 'show more' button is rendered
 
 ### User Interactions
 
-* 
+* Code block is treated as plain text for user interactions with the exception of the embedded buttons (copy & show more) which are conditionally applied based on user configuration.
+    * Copy button takes slotted code and is placed in clipboard for use to paste elsewhere
+    * Show more button expands the view of the block variant code to 100% when the min-height prop is set. can be toggled on/off for end user to choose how they will view cbp-code-snippet
 
 ### Responsiveness
 
-* 
+* component will render with the pre-wrap on the displayed code wrap on small screensizes
 
 ### Accessibility
 
-* tab focus to internal buttons 'copy'/'Show more'
+* tab focus to internal buttons 'copy'/'Show More'.
+* the expanded prop will be passed to the 'Show More' cbp-button's expanded prop to display the correct aria-expanded value
+* buttons have accessibile names based on their function
 
 ### Additional Notes and Considerations
 
-* use pre to wrap the slotted code.
-    *Carbon seems to be just using the 1 code tag here so above may not even be a concern? https://v10.carbondesignsystem.com/components/code-snippet/usage/#multi-line 
-    *Carbon: min-height being set inline to remove by clicking the 'show more' 
+*
