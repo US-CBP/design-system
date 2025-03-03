@@ -68,7 +68,7 @@ export class CbpExpand {
       <Host>
         <cbp-flex
           class="cbp-expand--control"
-          align-items="start"
+          alignItems="flex-start"
           gap="var(--cbp-space-1x)"
           onClick={() => this.handleClick()}
         >
@@ -91,7 +91,7 @@ export class CbpExpand {
             </cbp-button>
           </cbp-flex-item>
 
-          <cbp-flex-item id={this.headingId} flex-grow="1">
+          <cbp-flex-item id={this.headingId} flexGrow={1}>
             { this.host.querySelector('[slot="cbp-expand-label"]')
               ? <slot name="cbp-expand-label" />
               : <cbp-typography 
