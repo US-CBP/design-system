@@ -12,7 +12,7 @@ const getAbsolutePath = (packageName: string): any =>
  
 const config: StorybookConfig  = {
   framework: {
-    name: getAbsolutePath('@storybook/web-components-vite'),
+    name: getAbsolutePath("@storybook/web-components-vite"),
     options: {},
   },
   stories: [
@@ -32,12 +32,12 @@ const config: StorybookConfig  = {
     },
     //getAbsolutePath('@storybook/addon-interactions'), 
     getAbsolutePath('@storybook/addon-a11y'),
-    //getAbsolutePath("@storybook/addon-mdx-gfm"),
-    '@chromatic-com/storybook',
+    getAbsolutePath("@chromatic-com/storybook"),
     {
       name: '@whitespace/storybook-addon-html', 
       title: 'Code',
     },
+    'storybook-addon-tag-badges'
   ],
   staticDirs: [
     '../dist',

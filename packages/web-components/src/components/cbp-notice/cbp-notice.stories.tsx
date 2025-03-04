@@ -1,6 +1,6 @@
 export default {
     title: 'Components/Notice',
-    //tags: ['autodocs'],
+    tags: ['beta'],
     argTypes: {
       title: {
         name: 'Title (slotted)',

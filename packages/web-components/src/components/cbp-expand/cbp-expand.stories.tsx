@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Expand',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   argTypes: {
     label: {
       description: 'Label text making up the heading control for the Expand component.',

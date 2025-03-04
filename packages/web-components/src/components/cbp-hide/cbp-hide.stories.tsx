@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Hide',
-  //tags: ['autodocs'],
+  tags: ['beta','code-only'],
   argTypes: {
     content: {
       name: 'Content (slotted)',

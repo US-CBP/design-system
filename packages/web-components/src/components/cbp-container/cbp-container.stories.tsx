@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Container',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   argTypes: {
     content: {
       name: 'Content (slotted)',

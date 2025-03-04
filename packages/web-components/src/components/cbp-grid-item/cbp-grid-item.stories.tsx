@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Grid/Grid Item',
-  //tags: ['autodocs'],
+  tags: ['beta', 'code-only'],
   argTypes: {
     gridColumnStart: {
       control: 'text',

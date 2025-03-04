@@ -13,6 +13,9 @@ export const config: Config = {
     reactOutputTarget({
       componentCorePackage: '@cbpds/web-components',
       proxiesFile: '../react-components/components/stencil-generated/index.ts',
+      // Optional configurations
+      // module: true,
+      // includeImportCustomElements: true,
       //outDir: '../react-components/components/stencil-generated/'
     }),
     {

@@ -1,6 +1,6 @@
 export default {
     title: 'Components/Sub-Navigation',
-    //tags: ['autodocs'],
+    tags: ['new'],
     argTypes: {
         accessibilitytext: {
             description: 'Sets accessibilitytext prop for the subnav component',

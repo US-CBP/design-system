@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Form Field Wrapper',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   argTypes: {
     label: {
       control: 'text',

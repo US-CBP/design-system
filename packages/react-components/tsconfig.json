@@ -2,12 +2,14 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
+    "jsx": "react",
+    //"jsx": "react-jsx",
     "lib": ["dom", "es2015"],
     "module": "es2015",
     "moduleResolution": "node",
     "target": "es2015",
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "declarationDir": "./dist/types"
   },

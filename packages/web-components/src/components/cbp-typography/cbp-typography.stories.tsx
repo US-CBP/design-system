@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Typography',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   argTypes: {
     text: {
       name: 'text (slotted)',

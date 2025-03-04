@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Badge',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   argTypes: {
     label: {
       name: 'label (slotted)',

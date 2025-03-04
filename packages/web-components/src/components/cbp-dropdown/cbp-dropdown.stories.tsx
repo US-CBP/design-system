@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Dropdown',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   argTypes: {
     label: {
       control: 'text',

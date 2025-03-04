@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Table',
-  //tags: ['autodocs'],
+  tags: ['new'],
   argTypes: {
     striped: {
       control: 'select',

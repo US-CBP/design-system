@@ -1,9 +1,8 @@
 export default {
   title: 'Components/Universal Header',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
-    //root: '#custom-root'
   },
   argTypes: {
     logoSrcLg: {

@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Pagination',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   argTypes: {
     records: {
       description: 'Specifies the total number of records.',

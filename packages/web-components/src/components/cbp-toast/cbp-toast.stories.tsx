@@ -1,6 +1,6 @@
 export default {
     title: 'Components/Toast',
-    //tags: ['autodocs'],
+    tags: ['new'],
     argTypes: {
       
       duration: {

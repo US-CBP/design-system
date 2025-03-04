@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Structured List',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   argTypes: {
     showHeader: {
       control: 'boolean',

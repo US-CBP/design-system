@@ -1,14 +1,14 @@
 export default {
     title: 'Components/USA Banner',
-    //tags: ['autodocs'],
+    tags: ['beta'],
   };
   
-  const Template = () => {
-    return ` 
-            <cbp-usa-banner>
-            </cbp-usa-banner>
-        `;
-  };
-  
-  export const usabanner = Template.bind({});
-  
+const Template = () => {
+  return ` 
+      <cbp-usa-banner>
+      </cbp-usa-banner>
+    `;
+};
+
+export const usabanner = Template.bind({});
+usabanner.storyName="USA Banner"

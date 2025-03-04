@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Footer',
-  //tags: ['autodocs'],
+  tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
   },
