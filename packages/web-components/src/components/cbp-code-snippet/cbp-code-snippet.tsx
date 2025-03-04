@@ -85,7 +85,7 @@ export class CbpCodeSnippet {
     if(this.height != null && !this.expanded){
       this.host.style.setProperty('--cbp-code-snippet-max-height', this.height);
     }
-    this.codeBlock = this.host.querySelector('div').innerHTML;
+    this.codeBlock = this.host.querySelector('div').innerHTML.trim();
     this.host.querySelector('code').innerHTML = this.codeBlock.replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
   render() {

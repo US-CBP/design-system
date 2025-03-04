@@ -30,22 +30,24 @@
 }
 
 cbp-code-snippet {
+  color: var(--cbp-code-snippet-color);
+  background-color: var(--cbp-code-snippet-color-bg);  
 
-  &[variant="inline"]{
-  
-    pre{
-      display: inline; 
+  pre{
+    margin: 0;
+    white-space: pre-wrap;
+    display: inline; 
+    font-family: var(--cbp-font-family-roboto);
+    scrollbar-width: thin;
+
     code{
-      color: var(--cbp-code-snippet-color);
-      background-color: var(--cbp-code-snippet-color-bg);  
+      padding: var(--cbp-code-snippet-pre-padding);    
+      font-family: var(--cbp-font-family-roboto-mono);
     }
-  }
-  }
+  }  
   
   &[variant="block"]{
     display: block;
-    color: var(--cbp-code-snippet-color);
-    background-color: var(--cbp-code-snippet-color-bg);  
 
     pre{
       display: flex;
@@ -58,8 +60,7 @@ cbp-code-snippet {
       }
     }
     & > cbp-button{ //Show More / Show Less button
-      margin-inline-start: var(--cbp-space-2x);
-      margin-block-end: var(--cbp-space-2x);
+      margin: var(--cbp-space-2x);
     }
 
     cbp-button cbp-icon{
@@ -67,13 +68,4 @@ cbp-code-snippet {
     }
   }
 
-  pre{
-    padding: var(--cbp-code-snippet-pre-padding);
-    margin: 0;
-    white-space: pre-wrap;
-
-    code{    
-      font-family: var(--cbp-font-family-roboto-mono);
-    }
-  }
 }

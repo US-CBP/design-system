@@ -38,9 +38,10 @@ export default {
       ${height ? `height= ${height}` : ``}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-    >${codeSnippet}</cbp-code-snippet>
+    >
+      ${codeSnippet}
+    </cbp-code-snippet>
       `;
-      /** NOTE: No space between slot & tags here or it will display in the render */
   };
   export const CodeSnippet = Template.bind({});
   
