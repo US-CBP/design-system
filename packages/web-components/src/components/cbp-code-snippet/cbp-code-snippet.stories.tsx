@@ -11,7 +11,7 @@ export default {
         control: 'select',
         options: [ "inline", "block"]
       },
-      maxheight: {
+      height: {
         description: 'sets the max-height on the block variant control',
         control: 'text',
         if: { arg: 'variant', eq: 'block' },
@@ -31,11 +31,11 @@ export default {
     },
   };
   
-  const Template = ({codeSnippet, variant, maxheight, context, sx}) => {
+  const Template = ({codeSnippet, variant, height, context, sx}) => {
     return ` 
     <cbp-code-snippet
       ${variant ? `variant= ${variant}` : ``}
-      ${maxheight ? `maxheight= ${maxheight}` : ``}
+      ${height ? `height= ${height}` : ``}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >${codeSnippet}</cbp-code-snippet>

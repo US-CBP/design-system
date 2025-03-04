@@ -32,7 +32,6 @@
 cbp-code-snippet {
 
   &[variant="inline"]{
-    display: inline;
   
     code{
       color: var(--cbp-code-snippet-color);
@@ -50,10 +49,6 @@ cbp-code-snippet {
       --cbp-code-snippet-pre-padding: var(--cbp-space-2x);
       overflow: auto;
       max-height: var(--cbp-code-snippet-max-height);
-    
-      code{
-        padding-block-start: var(--cbp-space-2x);
-      }
       
       cbp-button{ //Copy button
         margin-left: auto;
@@ -62,10 +57,10 @@ cbp-code-snippet {
     & > cbp-button{ //Show More / Show Less button
       margin-inline-start: var(--cbp-space-2x);
       margin-block-end: var(--cbp-space-2x);
+    }
 
-      cbp-icon{
-        margin-inline-end: var(--cbp-space-2x);
-      }
+    cbp-button cbp-icon{
+      margin-inline-end: var(--cbp-space-2x);
     }
   }
 

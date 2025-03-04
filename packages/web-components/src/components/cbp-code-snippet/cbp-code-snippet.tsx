@@ -20,7 +20,7 @@ export class CbpCodeSnippet {
   @Prop({ reflect: true }) variant: "inline" | "block" = 'inline';
   
   /** Specifies the max height for a muliple line block variant(in CSS units). */
-  @Prop() maxheight: string;
+  @Prop() height: string;
 
   /** Specifies the size of the current height of the code snippet container, used to manage render of 'show more' button */
   @Prop() codeContainerHeight: number
@@ -53,7 +53,7 @@ export class CbpCodeSnippet {
       this.toggleButtonRotate = 270
       this.toggleButtonText = 'Show Less';
     }else{
-      this.host.style.setProperty('--cbp-code-snippet-max-height', this.maxheight)
+      this.host.style.setProperty('--cbp-code-snippet-max-height', this.height)
       this.showAllToggle = false;
       this.toggleButtonRotate = 90
       this.toggleButtonText = 'Show More';
@@ -77,13 +77,13 @@ export class CbpCodeSnippet {
 
   componentDidLoad(){
     setTimeout(() => { //** timeout need for DOM to render and correct values to populate for below */
-      this.codeContainerHeight = this.host.closest('cbp-code-snippet').offsetHeight;
-      this.codeBlockHeight = this.host.closest('cbp-code-snippet').querySelector('pre').scrollHeight;
+      this.codeContainerHeight = this.host.offsetHeight;
+      this.codeBlockHeight = this.host.querySelector('pre').scrollHeight;
     }, 100);
 
 
-    if(this.maxheight != null && !this.expanded){
-      this.host.style.setProperty('--cbp-code-snippet-max-height', this.maxheight);
+    if(this.height != null && !this.expanded){
+      this.host.style.setProperty('--cbp-code-snippet-max-height', this.height);
     }
     this.codeBlock = this.host.querySelector('div').innerHTML;
     this.host.querySelector('code').innerHTML = this.codeBlock.replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -99,21 +99,20 @@ export class CbpCodeSnippet {
     
         {this.variant == 'block' &&
           <cbp-button
-            name='copy'
             type="button"
             fill="ghost"
             color="secondary"
             onClick={() => this.copyText()}
             context={this.context}
           >
+            <cbp-icon name='clone'></cbp-icon>
             Copy
           </cbp-button>
         }
         </pre>
         
-        {this.maxheight && (this.codeContainerHeight < this.codeBlockHeight) &&
+        {this.height && (this.codeContainerHeight < this.codeBlockHeight) &&
           <cbp-button
-            name= {this.toggleButtonText}
             type="button"
             fill="ghost"
             color="secondary"
