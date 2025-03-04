@@ -14,6 +14,7 @@ import { CbpAppHeader as CbpAppHeaderElement, defineCustomElement as defineCbpAp
 import { CbpApp as CbpAppElement, defineCustomElement as defineCbpApp } from "@cbpds/web-components/dist/components/cbp-app.js";
 import { CbpBadge as CbpBadgeElement, defineCustomElement as defineCbpBadge } from "@cbpds/web-components/dist/components/cbp-badge.js";
 import { CbpBanner as CbpBannerElement, defineCustomElement as defineCbpBanner } from "@cbpds/web-components/dist/components/cbp-banner.js";
+import { CbpBreadcrumb as CbpBreadcrumbElement, defineCustomElement as defineCbpBreadcrumb } from "@cbpds/web-components/dist/components/cbp-breadcrumb.js";
 import { CbpButton as CbpButtonElement, defineCustomElement as defineCbpButton } from "@cbpds/web-components/dist/components/cbp-button.js";
 import { CbpCard as CbpCardElement, defineCustomElement as defineCbpCard } from "@cbpds/web-components/dist/components/cbp-card.js";
 import { CbpCheckbox as CbpCheckboxElement, defineCustomElement as defineCbpCheckbox } from "@cbpds/web-components/dist/components/cbp-checkbox.js";
@@ -24,6 +25,7 @@ import { CbpDrawer as CbpDrawerElement, defineCustomElement as defineCbpDrawer }
 import { CbpDropdownItem as CbpDropdownItemElement, defineCustomElement as defineCbpDropdownItem } from "@cbpds/web-components/dist/components/cbp-dropdown-item.js";
 import { CbpDropdown as CbpDropdownElement, defineCustomElement as defineCbpDropdown } from "@cbpds/web-components/dist/components/cbp-dropdown.js";
 import { CbpExpand as CbpExpandElement, defineCustomElement as defineCbpExpand } from "@cbpds/web-components/dist/components/cbp-expand.js";
+import { CbpFileInput as CbpFileInputElement, defineCustomElement as defineCbpFileInput } from "@cbpds/web-components/dist/components/cbp-file-input.js";
 import { CbpFlexItem as CbpFlexItemElement, defineCustomElement as defineCbpFlexItem } from "@cbpds/web-components/dist/components/cbp-flex-item.js";
 import { CbpFlex as CbpFlexElement, defineCustomElement as defineCbpFlex } from "@cbpds/web-components/dist/components/cbp-flex.js";
 import { CbpFooter as CbpFooterElement, defineCustomElement as defineCbpFooter } from "@cbpds/web-components/dist/components/cbp-footer.js";
@@ -35,20 +37,29 @@ import { CbpHide as CbpHideElement, defineCustomElement as defineCbpHide } from 
 import { CbpIcon as CbpIconElement, defineCustomElement as defineCbpIcon } from "@cbpds/web-components/dist/components/cbp-icon.js";
 import { CbpLink as CbpLinkElement, defineCustomElement as defineCbpLink } from "@cbpds/web-components/dist/components/cbp-link.js";
 import { CbpList as CbpListElement, defineCustomElement as defineCbpList } from "@cbpds/web-components/dist/components/cbp-list.js";
+import { CbpLoader as CbpLoaderElement, defineCustomElement as defineCbpLoader } from "@cbpds/web-components/dist/components/cbp-loader.js";
+import { CbpMulticol as CbpMulticolElement, defineCustomElement as defineCbpMulticol } from "@cbpds/web-components/dist/components/cbp-multicol.js";
+import { CbpNavItem as CbpNavItemElement, defineCustomElement as defineCbpNavItem } from "@cbpds/web-components/dist/components/cbp-nav-item.js";
 import { CbpNotice as CbpNoticeElement, defineCustomElement as defineCbpNotice } from "@cbpds/web-components/dist/components/cbp-notice.js";
 import { CbpPagination as CbpPaginationElement, defineCustomElement as defineCbpPagination } from "@cbpds/web-components/dist/components/cbp-pagination.js";
 import { CbpPanel as CbpPanelElement, defineCustomElement as defineCbpPanel } from "@cbpds/web-components/dist/components/cbp-panel.js";
 import { CbpRadio as CbpRadioElement, defineCustomElement as defineCbpRadio } from "@cbpds/web-components/dist/components/cbp-radio.js";
+import { CbpResizeObserver as CbpResizeObserverElement, defineCustomElement as defineCbpResizeObserver } from "@cbpds/web-components/dist/components/cbp-resize-observer.js";
 import { CbpSection as CbpSectionElement, defineCustomElement as defineCbpSection } from "@cbpds/web-components/dist/components/cbp-section.js";
 import { CbpSegmentedButtonGroup as CbpSegmentedButtonGroupElement, defineCustomElement as defineCbpSegmentedButtonGroup } from "@cbpds/web-components/dist/components/cbp-segmented-button-group.js";
 import { CbpSkipNav as CbpSkipNavElement, defineCustomElement as defineCbpSkipNav } from "@cbpds/web-components/dist/components/cbp-skip-nav.js";
 import { CbpStructuredListItem as CbpStructuredListItemElement, defineCustomElement as defineCbpStructuredListItem } from "@cbpds/web-components/dist/components/cbp-structured-list-item.js";
 import { CbpStructuredList as CbpStructuredListElement, defineCustomElement as defineCbpStructuredList } from "@cbpds/web-components/dist/components/cbp-structured-list.js";
+import { CbpSubnavItem as CbpSubnavItemElement, defineCustomElement as defineCbpSubnavItem } from "@cbpds/web-components/dist/components/cbp-subnav-item.js";
+import { CbpSubnav as CbpSubnavElement, defineCustomElement as defineCbpSubnav } from "@cbpds/web-components/dist/components/cbp-subnav.js";
 import { CbpTabPanel as CbpTabPanelElement, defineCustomElement as defineCbpTabPanel } from "@cbpds/web-components/dist/components/cbp-tab-panel.js";
 import { CbpTab as CbpTabElement, defineCustomElement as defineCbpTab } from "@cbpds/web-components/dist/components/cbp-tab.js";
+import { CbpTable as CbpTableElement, defineCustomElement as defineCbpTable } from "@cbpds/web-components/dist/components/cbp-table.js";
 import { CbpTabs as CbpTabsElement, defineCustomElement as defineCbpTabs } from "@cbpds/web-components/dist/components/cbp-tabs.js";
 import { CbpTag as CbpTagElement, defineCustomElement as defineCbpTag } from "@cbpds/web-components/dist/components/cbp-tag.js";
 import { CbpToast as CbpToastElement, defineCustomElement as defineCbpToast } from "@cbpds/web-components/dist/components/cbp-toast.js";
+import { CbpToggle as CbpToggleElement, defineCustomElement as defineCbpToggle } from "@cbpds/web-components/dist/components/cbp-toggle.js";
+import { CbpTooltip as CbpTooltipElement, defineCustomElement as defineCbpTooltip } from "@cbpds/web-components/dist/components/cbp-tooltip.js";
 import { CbpTypography as CbpTypographyElement, defineCustomElement as defineCbpTypography } from "@cbpds/web-components/dist/components/cbp-typography.js";
 import { CbpUniversalHeader as CbpUniversalHeaderElement, defineCustomElement as defineCbpUniversalHeader } from "@cbpds/web-components/dist/components/cbp-universal-header.js";
 import { CbpUsaBanner as CbpUsaBannerElement, defineCustomElement as defineCbpUsaBanner } from "@cbpds/web-components/dist/components/cbp-usa-banner.js";
@@ -131,6 +142,17 @@ export const CbpBanner: StencilReactComponent<CbpBannerElement, CbpBannerEvents>
     react: React,
     events: { onBannerDismiss: 'bannerDismiss' } as CbpBannerEvents,
     defineCustomElement: defineCbpBanner
+});
+
+type CbpBreadcrumbEvents = NonNullable<unknown>;
+
+export const CbpBreadcrumb: StencilReactComponent<CbpBreadcrumbElement, CbpBreadcrumbEvents> = /*@__PURE__*/ createComponent<CbpBreadcrumbElement, CbpBreadcrumbEvents>({
+    tagName: 'cbp-breadcrumb',
+    elementClass: CbpBreadcrumbElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as CbpBreadcrumbEvents,
+    defineCustomElement: defineCbpBreadcrumb
 });
 
 type CbpButtonEvents = {
@@ -261,6 +283,17 @@ export const CbpExpand: StencilReactComponent<CbpExpandElement, CbpExpandEvents>
     defineCustomElement: defineCbpExpand
 });
 
+type CbpFileInputEvents = { onValueChange: EventName<CustomEvent<any>> };
+
+export const CbpFileInput: StencilReactComponent<CbpFileInputElement, CbpFileInputEvents> = /*@__PURE__*/ createComponent<CbpFileInputElement, CbpFileInputEvents>({
+    tagName: 'cbp-file-input',
+    elementClass: CbpFileInputElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: { onValueChange: 'valueChange' } as CbpFileInputEvents,
+    defineCustomElement: defineCbpFileInput
+});
+
 type CbpFlexEvents = NonNullable<unknown>;
 
 export const CbpFlex: StencilReactComponent<CbpFlexElement, CbpFlexEvents> = /*@__PURE__*/ createComponent<CbpFlexElement, CbpFlexEvents>({
@@ -382,6 +415,39 @@ export const CbpList: StencilReactComponent<CbpListElement, CbpListEvents> = /*@
     defineCustomElement: defineCbpList
 });
 
+type CbpLoaderEvents = NonNullable<unknown>;
+
+export const CbpLoader: StencilReactComponent<CbpLoaderElement, CbpLoaderEvents> = /*@__PURE__*/ createComponent<CbpLoaderElement, CbpLoaderEvents>({
+    tagName: 'cbp-loader',
+    elementClass: CbpLoaderElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as CbpLoaderEvents,
+    defineCustomElement: defineCbpLoader
+});
+
+type CbpMulticolEvents = NonNullable<unknown>;
+
+export const CbpMulticol: StencilReactComponent<CbpMulticolElement, CbpMulticolEvents> = /*@__PURE__*/ createComponent<CbpMulticolElement, CbpMulticolEvents>({
+    tagName: 'cbp-multicol',
+    elementClass: CbpMulticolElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as CbpMulticolEvents,
+    defineCustomElement: defineCbpMulticol
+});
+
+type CbpNavItemEvents = { onNavClicked: EventName<CustomEvent<any>> };
+
+export const CbpNavItem: StencilReactComponent<CbpNavItemElement, CbpNavItemEvents> = /*@__PURE__*/ createComponent<CbpNavItemElement, CbpNavItemEvents>({
+    tagName: 'cbp-nav-item',
+    elementClass: CbpNavItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: { onNavClicked: 'navClicked' } as CbpNavItemEvents,
+    defineCustomElement: defineCbpNavItem
+});
+
 type CbpNoticeEvents = NonNullable<unknown>;
 
 export const CbpNotice: StencilReactComponent<CbpNoticeElement, CbpNoticeEvents> = /*@__PURE__*/ createComponent<CbpNoticeElement, CbpNoticeEvents>({
@@ -424,6 +490,17 @@ export const CbpRadio: StencilReactComponent<CbpRadioElement, CbpRadioEvents> = 
     react: React,
     events: { onStateChanged: 'stateChanged' } as CbpRadioEvents,
     defineCustomElement: defineCbpRadio
+});
+
+type CbpResizeObserverEvents = { onResized: EventName<CustomEvent<any>> };
+
+export const CbpResizeObserver: StencilReactComponent<CbpResizeObserverElement, CbpResizeObserverEvents> = /*@__PURE__*/ createComponent<CbpResizeObserverElement, CbpResizeObserverEvents>({
+    tagName: 'cbp-resize-observer',
+    elementClass: CbpResizeObserverElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: { onResized: 'resized' } as CbpResizeObserverEvents,
+    defineCustomElement: defineCbpResizeObserver
 });
 
 type CbpSectionEvents = NonNullable<unknown>;
@@ -481,6 +558,28 @@ export const CbpStructuredListItem: StencilReactComponent<CbpStructuredListItemE
     defineCustomElement: defineCbpStructuredListItem
 });
 
+type CbpSubnavEvents = NonNullable<unknown>;
+
+export const CbpSubnav: StencilReactComponent<CbpSubnavElement, CbpSubnavEvents> = /*@__PURE__*/ createComponent<CbpSubnavElement, CbpSubnavEvents>({
+    tagName: 'cbp-subnav',
+    elementClass: CbpSubnavElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as CbpSubnavEvents,
+    defineCustomElement: defineCbpSubnav
+});
+
+type CbpSubnavItemEvents = { onToggleSubnavClick: EventName<CustomEvent<any>> };
+
+export const CbpSubnavItem: StencilReactComponent<CbpSubnavItemElement, CbpSubnavItemEvents> = /*@__PURE__*/ createComponent<CbpSubnavItemElement, CbpSubnavItemEvents>({
+    tagName: 'cbp-subnav-item',
+    elementClass: CbpSubnavItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: { onToggleSubnavClick: 'toggleSubnavClick' } as CbpSubnavItemEvents,
+    defineCustomElement: defineCbpSubnavItem
+});
+
 type CbpTabEvents = {
     onTabLoaded: EventName<CustomEvent<any>>,
     onTabClicked: EventName<CustomEvent<any>>
@@ -507,6 +606,17 @@ export const CbpTabPanel: StencilReactComponent<CbpTabPanelElement, CbpTabPanelE
     react: React,
     events: {} as CbpTabPanelEvents,
     defineCustomElement: defineCbpTabPanel
+});
+
+type CbpTableEvents = { onTablesorted: EventName<CustomEvent<any>> };
+
+export const CbpTable: StencilReactComponent<CbpTableElement, CbpTableEvents> = /*@__PURE__*/ createComponent<CbpTableElement, CbpTableEvents>({
+    tagName: 'cbp-table',
+    elementClass: CbpTableElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: { onTablesorted: 'tablesorted' } as CbpTableEvents,
+    defineCustomElement: defineCbpTable
 });
 
 type CbpTabsEvents = NonNullable<unknown>;
@@ -540,6 +650,28 @@ export const CbpToast: StencilReactComponent<CbpToastElement, CbpToastEvents> = 
     react: React,
     events: {} as CbpToastEvents,
     defineCustomElement: defineCbpToast
+});
+
+type CbpToggleEvents = { onToggleClick: EventName<CustomEvent<any>> };
+
+export const CbpToggle: StencilReactComponent<CbpToggleElement, CbpToggleEvents> = /*@__PURE__*/ createComponent<CbpToggleElement, CbpToggleEvents>({
+    tagName: 'cbp-toggle',
+    elementClass: CbpToggleElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: { onToggleClick: 'toggleClick' } as CbpToggleEvents,
+    defineCustomElement: defineCbpToggle
+});
+
+type CbpTooltipEvents = NonNullable<unknown>;
+
+export const CbpTooltip: StencilReactComponent<CbpTooltipElement, CbpTooltipEvents> = /*@__PURE__*/ createComponent<CbpTooltipElement, CbpTooltipEvents>({
+    tagName: 'cbp-tooltip',
+    elementClass: CbpTooltipElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as CbpTooltipEvents,
+    defineCustomElement: defineCbpTooltip
 });
 
 type CbpTypographyEvents = NonNullable<unknown>;
