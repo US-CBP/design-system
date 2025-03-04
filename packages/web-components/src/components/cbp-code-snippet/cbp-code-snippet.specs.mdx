@@ -1,0 +1,43 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Code Snippet/Specifications" />
+
+# cbp-code-snippet
+
+## Purpose
+
+* Used to display code in either block or inline form. 
+
+## Functional Requirements
+
+* Code-snippet accepts a slot to populate a code tag.
+* Render a 'copy' button on Block variants that will copy associated content to clipboard.
+* Render a 'Show more' button on a scrollable block code snippet, this will set the container height to display all the code block.
+
+## Technical Specifications
+
+* Code snippet will support 2 variants (inline/block) which will determine the display of the code. for single lines of code to be embedded in text block use Inline, for larger sections that could span
+multiple lines please use block.
+* Block variant code-snippets will have an copy button with their render to easily grab the code block and apply it to the users clipboard.
+* Users will be able to set a max-height for the code-snippet via prop. Please note this will only affect the block variant.
+* In cases where the size of a code block is larger than the set max height the code will scroll and a 'show more' toggle will be rendered to display the full block of code.
+
+### User Interactions
+
+* Code block is treated as plain text for user interactions, with the exception of the embedded buttons (copy & show more) which are conditionally applied based on user configuration.
+    * Copy button takes slotted code and is placed in clipboard for use to paste elsewhere
+    * Show more button expands the view of the block variant code to 100% when the min-height prop is set. can be toggled on/off for end user to choose how they will view cbp-code-snippet.
+
+### Responsiveness
+
+* Component will render with the pre-wrap on the displayed code wrap on small screensizes.
+
+### Accessibility
+
+* Tab focus to internal buttons 'copy'/'Show More'.
+* The expanded prop will be passed to the 'Show More' cbp-button's expanded prop to display the correct aria-expanded value.
+* Buttons have accessibile names based on their function.
+
+### Additional Notes and Considerations
+
+*
