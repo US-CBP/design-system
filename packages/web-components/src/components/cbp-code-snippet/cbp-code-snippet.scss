@@ -33,10 +33,13 @@ cbp-code-snippet {
 
   &[variant="inline"]{
   
+    pre{
+      display: inline; 
     code{
       color: var(--cbp-code-snippet-color);
       background-color: var(--cbp-code-snippet-color-bg);  
     }
+  }
   }
   
   &[variant="block"]{
