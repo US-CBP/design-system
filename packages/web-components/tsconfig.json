@@ -13,10 +13,12 @@
     "target": "es2017",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    //"jsx": "react-jsx",
     "jsx": "react",
     "jsxFactory": "h",
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "paths": {
       "@assets/*": ["./assets/*"],
       "@components/*": ["./components/*"],
