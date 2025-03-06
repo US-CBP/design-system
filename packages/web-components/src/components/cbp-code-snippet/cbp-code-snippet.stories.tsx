@@ -17,12 +17,6 @@ export default {
       control: 'text',
       if: { arg: 'variant', eq: 'block' },
     },
-    /*
-    expanded: {
-      control: 'boolean',
-      if: { arg: 'height', truthy: true },
-    },
-    */
     context: {
       control: 'select',
       options: ['light-inverts', 'light-always', 'dark-inverts', 'dark-always'],

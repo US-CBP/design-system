@@ -21,8 +21,8 @@ export class CbpCodeSnippet {
   /** Specifies the height (in CSS units) for a multiple line block variant while not expanded. */
   @Prop() height: string;
 
-  /** sets the expanded state of the 'show more' button & is passed to the associated cbp-button prop*/
-  @Prop() expanded: boolean;
+  /* sets the expanded state of the 'show more' button & is passed to the associated cbp-button prop*/
+  //@Prop() expanded: boolean;
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
@@ -30,8 +30,11 @@ export class CbpCodeSnippet {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-  @State() codeContainerHeight;
-  @State() codeBlockHeight;
+
+  // There are issues with allowing the component to render expanded, so make this a state that defaults to no expanded.
+  @State() expanded: boolean;
+  @State() codeContainerHeight: number;
+  @State() codeBlockHeight: number;
 
 
   /** Emits a custom event when the "Copy" button is activated, copying the code to the clipboard. */
@@ -65,7 +68,6 @@ export class CbpCodeSnippet {
 
 
   // TechDebt: This is not reactive to changes to the slotted code (and making it reactive may not be trivial).
-  // TechDebt 2: This does not account for the expanded=true on initial load (it's a prop - it can be set to true).
   componentDidLoad() {
     if (this.height != null && !this.expanded) {
       this.host.style.setProperty('--cbp-code-snippet-max-height', this.height);
