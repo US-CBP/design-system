@@ -157,8 +157,10 @@ export class CbpFormField {
     if (!this.group) {
       // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
       this.formField = this.host.querySelector('input,select,textarea');
+      
       // Treat nested components separately, as it's hard to modify their rendered content directly
       this.formFieldComponent = this.host.querySelector('cbp-dropdown');
+      
       this.buttons = this.host.querySelectorAll('cbp-button');
       this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
       this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
@@ -179,6 +181,10 @@ export class CbpFormField {
         if (this.error) this.formField.setAttribute('aria-invalid', 'true');
       }
       if (this.formFieldComponent) {
+        // Use the ID from the slotted formFieldComponent, which should always exist
+        this.formFieldComponent.fieldId
+          ? this.fieldId = this.formFieldComponent.fieldId
+          : this.formFieldComponent.fieldId = this.fieldId;
         if (this.readonly) this.formFieldComponent.readonly=true;
         if (this.disabled) this.formFieldComponent.disabled=true;
         if (this.error) this.formFieldComponent.error=true;

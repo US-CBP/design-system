@@ -83,7 +83,6 @@ const SingleSelectDropdownTemplate = ({ label, description, fieldId, name, place
 export const SingleSelectDropdown = SingleSelectDropdownTemplate.bind({});
 SingleSelectDropdown.args = {
   value: '',
-  fieldId: 'dropdown-id',
   items: [
     {
       label: 'Option 1',
@@ -172,7 +171,6 @@ export const StatesDropdown = StatesDropdownTemplate.bind({});
 StatesDropdown.args = {
   label:"State",
   value: '',
-  fieldId: 'dropdown-id',
   items: States
 };
 
@@ -226,7 +224,6 @@ const CountriesDropdownTemplate = ({ label, description, fieldId, name, placehol
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
-      ${fieldId ? `field-id="${fieldId}"` : ''}
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
@@ -251,7 +248,6 @@ export const CountriesDropdown = CountriesDropdownTemplate.bind({});
 CountriesDropdown.args = {
   label:"Country",
   value: '',
-  fieldId: 'dropdown-id',
   items: Countries
 };
 
@@ -306,7 +302,6 @@ const MultiSelectDropdownTemplate = ({ label, description, fieldId, name, filter
 export const MultiSelectDropdown = MultiSelectDropdownTemplate.bind({});
 MultiSelectDropdown.args = {
   value: '',
-  fieldId: 'dropdown-id',
   items: [
     {
       label: 'Option 1',
