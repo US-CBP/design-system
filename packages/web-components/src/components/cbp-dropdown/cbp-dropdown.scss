@@ -85,6 +85,8 @@ cbp-dropdown {
   // Apply focus outline to dropdown menu as well
   &:has(button[role=combobox]:focus) .cbp-dropdown-menu {
     outline: var(--cbp-border-size-md) solid var(--cbp-form-field-color-border-focus);
+    border-color: var(--cbp-form-field-color-border-focus);
+    scrollbar-color: var(--cbp-form-field-color-border-focus) var(--cbp-form-field-color-bg);
   }
 
   .cbp-dropdown-shrinkwrap {
