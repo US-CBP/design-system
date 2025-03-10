@@ -60,7 +60,7 @@ export class CbpPagination {
       this.pageSize=value;
       this.pages=1;
       this.pagesDropdown.setAttribute('hidden',''); // if "All" is selected, hide the pages dropdown
-      if (this.records > 500) console?.warn('cbp-pagination - Warning: the "show all" option should be disabled for large data sets. Pushing this amount of data to the user\'s browser is bad for performance, in addition to rendering a large number of DOM nodes to display it all at once.');
+      if (this.records > 500) console?.warn(`cbp-pagination - Warning: the "show all" option should be disabled for large data sets. Pushing this amount of data to the user's browser is bad for performance, in addition to rendering a large number of DOM nodes to display it all at once.`);
     }
     else {
       this.pageSize=parseInt(value); // coerce this into a number, since it also accepts a string and values sent from HTML will be strings
