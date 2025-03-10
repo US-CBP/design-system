@@ -34,6 +34,14 @@ cbp-pagination {
     flex-grow: 1;
     font-style: italic;
   }
+
+  // This is a loose coupling, but should work based on the expected markup in the pattern/story
+  [slot=cbp-pagination-pages] cbp-button {
+    // attached buttons should match the input border
+    --cbp-button-color-bg: var(--cbp-form-field-color-border);
+    --cbp-button-color-bg-dark: var(--cbp-form-field-color-border-dark);
+  }
+
 }
 
 @media (max-width: 30rem) {
