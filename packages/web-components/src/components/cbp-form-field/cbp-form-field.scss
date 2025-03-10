@@ -240,9 +240,12 @@ cbp-form-field {
     //background: right var(--cbp-space-2x) top var(--cbp-space-3x) no-repeat var(--cbp-form-field-color-bg) var(--cbp-form-field-select-chevron);
     //padding-inline-end: var(--cbp-space-5x);
 
+    // Extract the width of the faux button for easier calculations
+    --cbp-form-field-dropdown-faux-button-width: calc(var(--cbp-space-9x) - var(--cbp-border-size-md));
+
     // Chevron on a colored background (via linear gradient)
-    background: right calc(1.125rem - 8px) top calc(1rem - 8px) no-repeat var(--cbp-form-field-select-chevron), 
-                right 0px top 0px repeat-y linear-gradient( 90deg, var(--cbp-form-field-color-bg) calc(100% - var(--cbp-space-9x)), var(--cbp-form-field-color-border) var(--cbp-space-9x) );
+    background: right calc( calc(var(--cbp-form-field-dropdown-faux-button-width) / 2 ) - 8px) top calc(1rem - 8px) no-repeat var(--cbp-form-field-select-chevron), 
+                right 0px top 0px repeat-y linear-gradient( 90deg, var(--cbp-form-field-color-bg) calc(100% - var(--cbp-form-field-dropdown-faux-button-width)), var(--cbp-form-field-color-border) var(--cbp-space-9x) );
     padding-inline-end: var(--cbp-space-9x);
     
   }

@@ -1,16 +1,14 @@
 /**
- * @Prop --cbp-code-snippet-max-height: unset;
- * @Prop --cbp-code-snippet-pre-padding: 0 var(--cbp-space-1x);
-
- * @Prop --cbp-code-snippet-color: var(--cbp-color-text-darkest);
- * @Prop --cbp-code-snippet-color-dark: var(--cbp-color-text-lightest);
-
- * @Prop --cbp-code-snippet-color-bg: var(--cbp-color-gray-cool-10);
- * @Prop --cbp-code-snippet-color-bg-dark: var(--cbp-color-gray-cool-70);
+ * @prop --cbp-code-snippet-max-height: auto;
+ * @prop --cbp-code-snippet-pre-padding: 0 var(--cbp-space-1x);
+ * @prop --cbp-code-snippet-color: var(--cbp-color-text-darkest);
+ * @prop --cbp-code-snippet-color-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-code-snippet-color-bg: var(--cbp-color-gray-cool-10);
+ * @prop --cbp-code-snippet-color-bg-dark: var(--cbp-color-gray-cool-70);
  */
  
 :root { 
-  --cbp-code-snippet-max-height: unset; //Note: for the maxheight prop to populate
+  --cbp-code-snippet-max-height: auto;
   --cbp-code-snippet-pre-padding: 0 var(--cbp-space-1x);
 
   --cbp-code-snippet-color: var(--cbp-color-text-darkest);
@@ -18,48 +16,46 @@
 
   --cbp-code-snippet-color-bg: var(--cbp-color-gray-cool-10);
   --cbp-code-snippet-color-bg-dark: var(--cbp-color-gray-cool-70);
-
 }
 
 [data-cbp-theme=light] cbp-code-snippet[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-code-snippet:not([context=dark-inverts]):not([context=light-always]) {
-  
   --cbp-code-snippet-color: var(--cbp-code-snippet-color-dark);
   --cbp-code-snippet-color-bg: var(--cbp-code-snippet-color-bg-dark);
-
 }
 
 cbp-code-snippet {
   color: var(--cbp-code-snippet-color);
   background-color: var(--cbp-code-snippet-color-bg);  
 
-  pre{
+  pre {
     margin: 0;
     white-space: pre-wrap;
     display: inline; 
     font-family: var(--cbp-font-family-roboto);
     scrollbar-width: thin;
 
-    code{
+    code {
       padding: var(--cbp-code-snippet-pre-padding);    
       font-family: var(--cbp-font-family-roboto-mono);
     }
   }  
   
-  &[variant="block"]{
+  &[variant=block] {
     display: block;
 
-    pre{
+    pre {
       display: flex;
       --cbp-code-snippet-pre-padding: var(--cbp-space-2x);
       overflow: auto;
       max-height: var(--cbp-code-snippet-max-height);
       
-      cbp-button{ //Copy button
+      cbp-button { //Copy button
         margin-left: auto;
       }
     }
-    & > cbp-button{ //Show More / Show Less button
+
+    & > cbp-button { //Show More / Show Less button
       margin: var(--cbp-space-2x);
     }
 

@@ -1,22 +1,22 @@
 /**
- * @Prop --cbp-panel-header-color: var(--cbp-color-text-lighter)
- * @Prop --cbp-panel-header-color-bg: var(--cbp-color-base-neutral-dark);
- * @Prop --cbp-panel-header-color-bottom-border: var(--cbp-color-gray-cool-70);
- * @Prop --cbp-panel-content-color: var(--cbp-color-text-darkest);
- * @Prop --cbp-panel-content-color-bg: var(--cbp-color-white);
- * @Prop --cbp-panel-content-color-border: var(--cbp-color-gray-cool-10);
- * @Prop --cbp-panel-border-radius: var(--cbp-border-radius-soft);
- * @Prop --cbp-panel-border-width: var(--cbp-border-size-md);
+ * @prop --cbp-panel-header-color: var(--cbp-color-text-lighter)
+ * @prop --cbp-panel-header-color-bg: var(--cbp-color-base-neutral-dark);
+ * @prop --cbp-panel-header-color-bottom-border: var(--cbp-color-gray-cool-70);
+ * @prop --cbp-panel-content-color: var(--cbp-color-text-darkest);
+ * @prop --cbp-panel-content-color-bg: var(--cbp-color-white);
+ * @prop --cbp-panel-content-color-border: var(--cbp-color-gray-cool-10);
+ * @prop --cbp-panel-border-radius: var(--cbp-border-radius-soft);
+ * @prop --cbp-panel-border-width: var(--cbp-border-size-md);
 
- * @Prop --cbp-panel-header-color-dark: var(--cbp-color-text-darker);
- * @Prop --cbp-panel-header-color-bg-dark: var(--cbp-color-gray-cool-10);
- * @Prop --cbp-panel-header-color-bottom-border-dark: var(--cbp-color-gray-cool-40);
- * @Prop --cbp-panel-content-color-dark: var(--cbp-color-text-lightest);
- * @Prop --cbp-panel-content-color-bg-dark: var(--cbp-color-gray-cool-70);
- * @Prop --cbp-panel-content-color-border-dark: var(--cbp-color-gray-cool-60);
+ * @prop --cbp-panel-header-color-dark: var(--cbp-color-text-darker);
+ * @prop --cbp-panel-header-color-bg-dark: var(--cbp-color-gray-cool-10);
+ * @prop --cbp-panel-header-color-bottom-border-dark: var(--cbp-color-gray-cool-40);
+ * @prop --cbp-panel-content-color-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-panel-content-color-bg-dark: var(--cbp-color-gray-cool-70);
+ * @prop --cbp-panel-content-color-border-dark: var(--cbp-color-gray-cool-60);
 
- * @Prop --cbp-panel-border-radius: var(--cbp-border-radius-soft);
- * @Prop --cbp-panel-border-width: var(--cbp-border-size-md);
+ * @prop --cbp-panel-border-radius: var(--cbp-border-radius-soft);
+ * @prop --cbp-panel-border-width: var(--cbp-border-size-md);
  */
 :root {
   --cbp-panel-header-color: var(--cbp-color-text-lighter);

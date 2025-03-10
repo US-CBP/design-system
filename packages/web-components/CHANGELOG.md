@@ -5,11 +5,13 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
 ## [unreleased] TBD
+* First cut of the `cbp-code-snippet` component, which is used to display code samples.
 * Cleaned up the monorepo:
   * Removed vanilla package.
-  * Created design-tokens package, updated Style Dictionary.
-* Updated Storybook to v8.6.
-* Added tag badges to stories (via plugin).
+  * Created design-tokens package and updated Style Dictionary to the latest version, 4.3.3.
+* Updated Storybook to the latest version, 8.6.3.
+* Added tag badges (beta, new, etc.) to stories via plugin.
+* Minor bugfixes/updates to `cbp-toggle` and `cbp-toast`.
 
 ## [0.0.1-develop.19] 02-12-2025
 * First cut of the `cbp-subnav` and `cbp-subnav-item` components.

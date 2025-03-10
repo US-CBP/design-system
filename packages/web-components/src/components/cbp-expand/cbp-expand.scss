@@ -1,21 +1,21 @@
 /**
- *  @Prop --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
- *  @Prop  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
- *  @Prop  --cbp-expand-control-gap: var(--cbp-space-1x);
- *  @Prop  --cbp-expand-control-padding: var(--cbp-space-3x);
- *  @Prop  --cbp-expand-content-padding: var(--cbp-space-3x);
- *  @Prop  --cbp-expand-margin-bottom: var(--cbp-space-2x);
+ *  @prop --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
+ *  @prop  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
+ *  @prop  --cbp-expand-control-gap: var(--cbp-space-1x);
+ *  @prop  --cbp-expand-control-padding: var(--cbp-space-3x);
+ *  @prop  --cbp-expand-content-padding: var(--cbp-space-3x);
+ *  @prop  --cbp-expand-margin-bottom: var(--cbp-space-2x);
 
- *  @Prop  --cbp-expand-color: var(--cbp-color-text-darkest);
- *  @Prop  --cbp-expand-color-dark: var(--cbp-color-text-lightest);
- *  @Prop  --cbp-expand-button-color-text: var(--cbp-color-text-lightest);
- *  @Prop  --cbp-expand-button-color-text-dark: var(--cbp-color-text-darkest);
- *  @Prop  --cbp-expand-button-color-fill: var(--cbp-color-interactive-secondary-darker);
- *  @Prop  --cbp-expand-button-color-fill-dark: var(--cbp-color-interactive-secondary-lighter);
- *  @Prop  --cbp-expand-button-color-text-hover: var(--cbp-color-text-lightest);
- *  @Prop  --cbp-expand-button-color-text-hover-dark: var(--cbp-color-text-darkest);
- *  @Prop  --cbp-expand-button-color-fill-hover: var(--cbp-color-interactive-secondary-darker);
- *  @Prop  --cbp-expand-button-color-fill-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ *  @prop  --cbp-expand-color: var(--cbp-color-text-darkest);
+ *  @prop  --cbp-expand-color-dark: var(--cbp-color-text-lightest);
+ *  @prop  --cbp-expand-button-color-text: var(--cbp-color-text-lightest);
+ *  @prop  --cbp-expand-button-color-text-dark: var(--cbp-color-text-darkest);
+ *  @prop  --cbp-expand-button-color-fill: var(--cbp-color-interactive-secondary-darker);
+ *  @prop  --cbp-expand-button-color-fill-dark: var(--cbp-color-interactive-secondary-lighter);
+ *  @prop  --cbp-expand-button-color-text-hover: var(--cbp-color-text-lightest);
+ *  @prop  --cbp-expand-button-color-text-hover-dark: var(--cbp-color-text-darkest);
+ *  @prop  --cbp-expand-button-color-fill-hover: var(--cbp-color-interactive-secondary-darker);
+ *  @prop  --cbp-expand-button-color-fill-hover-dark: var(--cbp-color-interactive-secondary-lighter);
  */
 :root {
   --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
