@@ -23,6 +23,13 @@ export default {
     filter: {
       control: 'boolean',
     },
+    async: {
+      control: 'boolean',
+    },
+    minimumInputLength: {
+      control: 'number',
+      if: { arg: 'async', eq: true },
+    },
     error: {
       control: 'boolean',
     },
@@ -364,4 +371,100 @@ MultiSelectDropdown.args = {
       selected: false,
     },
   ]
+};
+
+
+// Combobox using Countries data: 
+const ComboboxTemplate = ({ label, description, fieldId, name, placeholder, filter, error, readonly, disabled, value, context, sx, items }) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
+      <cbp-dropdown
+        ${name ? `name="${name}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${filter ? `filter` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+         ${generateItems(items)}
+      </cbp-dropdown>
+    </cbp-form-field>
+  `;
+};
+
+export const Combobox = ComboboxTemplate.bind({});
+Combobox.args = {
+  label:"Combobox",
+  description: "A combobox example using country data.",
+  value: '',
+  filter: true,
+  items: Countries
+};
+
+
+
+
+// Combobox using Countries data as an asynchronous call: 
+const ComboboxAsyncTemplate = ({ label, description, fieldId, name, placeholder, filter, async, minimumInputLength, error, readonly, disabled, value, context, sx }) => {
+
+  // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
+  let asyncCombobox;
+  setTimeout(() => {
+    asyncCombobox=document.querySelector('cbp-dropdown[async]') as HTMLCbpDropdownElement;
+    console.log({asyncCombobox});
+
+    asyncCombobox.addEventListener('populateCombobox', (e) => {
+      let searchString = e.detail.searchString;
+      console.log('populateCombobox event captured by story code!',{e});
+      // filter the JSON natively in JavaScript
+      let filteredJSON = Countries.filter( (item) => item.label.indexOf(searchString) >= 0);
+      // return the filtered JSON result to the component via the items property
+      asyncCombobox.items = filteredJSON;
+    });
+
+  }, 100);
+  
+
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
+      <cbp-dropdown
+        ${name ? `name="${name}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${filter ? `filter` : ''}
+        ${async ? `async` : ''}
+        ${minimumInputLength ? `minimum-input-length="${minimumInputLength}"` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+         <!-- No dropdown items loaded by default -->
+      </cbp-dropdown>
+    </cbp-form-field>
+  `;
+};
+
+export const ComboboxAsync = ComboboxAsyncTemplate.bind({});
+ComboboxAsync.args = {
+  label:"Combobox",
+  description: "A combobox example using Country data, fetched asynchronously after 2 key presses.",
+  value: '',
+  filter: true,
+  async: true,
+  minimumInputLength: 2
 };
