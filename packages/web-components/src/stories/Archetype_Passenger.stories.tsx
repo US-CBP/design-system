@@ -48,6 +48,7 @@ export default {
             <cbp-grid
               grid-template-columns="14rem 1fr 10rem"
               gap="5rem"
+              breakpoint="70rem"
             >
               <cbp-flex>
                   <img
@@ -80,7 +81,10 @@ export default {
                   fill="ghost"
                   color="secondary"
                 >
-                  <cbp-icon name="book"></cbp-icon> Vet Passenger
+                  <cbp-icon 
+                    name="book"
+                    sx='{"margin-right":"var(--cbp-space-2x)"}'
+                  ></cbp-icon> Vet Passenger
                 </cbp-button>
               </cbp-grid-item>
             </cbp-grid>
@@ -179,51 +183,73 @@ export default {
         structuredListComponent.innerHTML = generatePassengers(passengerArgs, page, pageSize);
       });
   
-      return `
-      <cbp-flex-item flex-grow="1">
-            <cbp-grid
+      /**
+       * <cbp-grid
               grid-template-columns=" 1fr 8.5rem 8.5rem"
               gap="1rem"
             >
-              <cbp-form-field
-                label="Sort By"
-                field-id="filterResults"
+       */
+
+      return `
+      <cbp-flex-item flex-grow="1">
+            <cbp-flex
+              gap="1rem"
+              breakpoint="70rem"
+            >
+              <cbp-flex-item
+                align-self="flex-end"
+                flex-grow="1"
               >
-                <cbp-dropdown field-id="filterResults">
-                  <cbp-dropdown-item value="1">
-                    Closest to Arrival
-                  </cbp-dropdown-item>
-                  <cbp-dropdown-item value="2">
-                    Furthest from Arrival
-                  </cbp-dropdown-item>
-                  <cbp-dropdown-item value="3">
-                    Alphabetically
-                  </cbp-dropdown-item>
-                </cbp-dropdown>
-              </cbp-form-field>
-              <cbp-grid-item align-self="center">
+                <cbp-form-field
+                  label="Sort By"
+                  field-id="filterResults"
+                  sx='{"margin":"0"}'
+                >
+                  <cbp-dropdown field-id="filterResults">
+                    <cbp-dropdown-item value="1">
+                      Closest to Arrival
+                    </cbp-dropdown-item>
+                    <cbp-dropdown-item value="2">
+                      Furthest from Arrival
+                    </cbp-dropdown-item>
+                    <cbp-dropdown-item value="3">
+                      Alphabetically
+                    </cbp-dropdown-item>
+                  </cbp-dropdown>
+                </cbp-form-field>
+              </cbp-flex-item>
+              <cbp-flex-item 
+                align-self="flex-end"
+              >
                 <cbp-button
                   type="button"
                   fill="outline"
                   color="secondary"
                   target-prop="open"
                   controls="manifestDrawer"
-                  accessibility-text="Open Manifest Drawer"
                 >
-                  <cbp-icon name="book"></cbp-icon> Manifests
+                  <cbp-icon 
+                    name="book"
+                    sx='{"margin-right":"var(--cbp-space-2x)"}'
+                    ></cbp-icon> Manifests
                 </cbp-button>
-              </cbp-grid-item>
-                <cbp-grid-item align-self="center">
+              </cbp-flex-item>
+              <cbp-flex-item 
+                align-self="flex-end"
+              >
                 <cbp-button
                   type="button"
                   fill="outline"
                   color="secondary"
                 >
-                  <cbp-icon name="book"></cbp-icon> Refresh
+                  <cbp-icon 
+                    name="book"
+                    sx='{"margin-right":"var(--cbp-space-2x)"}'
+                  ></cbp-icon> Refresh
                 </cbp-button>
-              </cbp-grid-item>
-            </cbp-grid>
-            <cbp-structured-list id="passengerList" header-id="list-header" striped>
+              </cbp-flex-item>
+            </cbp-flex>
+            <cbp-structured-list id="passengerList" header-id="list-header" striped  sx='{"margin-top":"var(--cbp-space-4x)"}'>
               <div slot="cbp-structured-list-header" id="list-header">
                  XX Results - X filters Applied - Updated : 11/01/2024 10:00 EST 
               </div>
@@ -328,7 +354,7 @@ export default {
                       </cbp-button>
                     </span>
                   </cbp-form-field-wrapper>
-
+                </cbp-form-field>
                 <cbp-form-field group
                   label='Passenger Sex'
                   description='Required'
@@ -341,7 +367,7 @@ export default {
                     <cbp-radio>
                       <input 
                         type="radio" 
-                        name="Male"
+                        name="Passenger Sex"
                         value="Male"
                       />
                       Male
@@ -349,7 +375,7 @@ export default {
                     <cbp-radio>
                       <input 
                         type="radio" 
-                        name="Female"
+                        name="Passenger Sex"
                         value="Female"
                       />
                       Female
@@ -357,7 +383,7 @@ export default {
                     <cbp-radio>
                       <input 
                         type="radio" 
-                        name="Other"
+                        name="Passenger Sex"
                         value="Other"
                       />
                       Other
@@ -442,7 +468,7 @@ export default {
                     <cbp-icon name="book"></cbp-icon>
                     </span>
    
-                    <span slot="cbp-form-field-attached-button">
+                    <cbp-segmented-button-group slot="cbp-form-field-attached-button">
                       <cbp-button
                         fill="outline"
                         color="secondary"
@@ -463,7 +489,7 @@ export default {
                         >
                         24 HR
                       </cbp-button>
-                    </span>
+                    </cbp-segmented-button-group>
                   </cbp-form-field-wrapper>
                 </cbp-form-field>
 
@@ -491,7 +517,7 @@ export default {
                     <cbp-icon name="book"></cbp-icon>
                     </span>
    
-                    <span slot="cbp-form-field-attached-button">
+                    <cbp-segmented-button-group slot="cbp-form-field-attached-button">
                       <cbp-button
                         fill="outline"
                         color="secondary"
@@ -512,7 +538,7 @@ export default {
                         >
                         24 HR
                       </cbp-button>
-                    </span>
+                    </cbp-segmented-button-group>
                   </cbp-form-field-wrapper>
                 </cbp-form-field>
             </cbp-panel>
@@ -621,9 +647,26 @@ export default {
      * Filter panel should have a fixed max width probably
      * Footer missing InfoSec section (right side of footer)
      * 
-    */
-    
-    return ` 
+    */       
+
+/**
+ * sx='{
+        "width":"100%",
+        "text-align":"center",
+        "border-radius":"var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0",
+        "padding-block":"var(--cbp-space-2x)",
+        "background-color":"var(--cbp-color-red-50)",
+        "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
+        "color":"var(--cbp-color-white)",
+        "text-transform":"uppercase",
+        "font-size":"var(--cbp-font-size-heading-xl)",
+        "font-weight":"var(--cbp-font-weight-regular)"
+      }'
+ */
+
+    return `
+    <cbp-skip-nav></cbp-skip-nav>
+
     <header>
       <cbp-universal-header
         logo-src-lg="./assets/images/cbp-header-logo.svg"
@@ -634,8 +677,7 @@ export default {
           ? `
           <li>
             <cbp-button color="secondary" fill="ghost" context="dark-always">
-              <cbp-icon name="book"></cbp-icon> 
-              App directory
+              <cbp-icon name="book"></cbp-icon>
               <cbp-hide
                 hide-at="max-width: 64em"
                 sx='{"margin-left":"var(--cbp-space-2x)"}'
@@ -644,8 +686,7 @@ export default {
           </li>
           <li>
             <cbp-button color="secondary" fill="ghost" context="dark-always">
-              <cbp-icon name="comment"></cbp-icon> 
-              Feedback 
+              <cbp-icon name="comment"></cbp-icon>  
               <cbp-hide
                 visually-hide-at="max-width: 64em"
                 sx='{"margin-left":"var(--cbp-space-2x)"}'
@@ -655,7 +696,10 @@ export default {
           <li>
             <cbp-button color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="user"></cbp-icon>
-              ${username}
+              <cbp-hide
+                visually-hide-at="max-width: 64em"
+                sx='{"margin-left":"var(--cbp-space-2x)"}'
+              >${username}</cbp-hide>
             </cbp-button>
           </li>
           `
@@ -704,24 +748,22 @@ export default {
     </header>
 
     <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
-      <main id="main" tabindex="-1">
-        <cbp-typography tag="h1" divider="underline" sx='{"margin-bottom":"var(--cbp-space-5x)"}'>
-          Passenger Vetting
-        </cbp-typography>
-
-        <cbp-flex
-          display="flex"
-          gap="1rem"
-          class="hydrated"
-          style="display: flex; flex-direction: row; align-items: stretch; place-content: stretch flex-start;"
-        >
-          ${filterPanel()}
-          ${passengerList(passengersArgs)}
-          ${manifestPane(manifestArgs)/**TODO: this might need to be placed elsewhere */}
-        </cbp-flex>
-
-        </main>
-    </cbp-container>
+         <main id="main" tabindex="-1">
+           <cbp-typography tag="h1" divider="underline" sx='{"margin-bottom":"var(--cbp-space-5x)"}'>
+             Passenger Vetting
+           </cbp-typography>
+  
+           <cbp-grid
+            grid-template-columns="20rem 1fr "
+            gap="1rem"
+           >
+             ${filterPanel()}
+             ${passengerList(passengersArgs)}
+             ${manifestPane(manifestArgs)}
+           </cbp-grid>
+  
+           </main>
+       </cbp-container>
 
     <cbp-footer>
       <nav slot="cbp-footer-nav">
@@ -752,8 +794,9 @@ export default {
       </section>
     </cbp-footer>
     `;
-  };
 
+  };
+    
   
 export const Internal = InternalTemplate.bind({});
 
