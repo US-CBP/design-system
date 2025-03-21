@@ -27,126 +27,130 @@ export default {
 const InternalTemplate = ({ isLoggedIn, username }) => {
   return ` 
     <cbp-skip-nav></cbp-skip-nav>
-
-    <header>
-      <cbp-universal-header
-        logo-src-lg="./assets/images/cbp-header-logo.svg"
-        logo-src-sm="./assets/images/cbp-seal.svg"
-      >
-        <ul>
-        ${ isLoggedIn
-          ? `
-          <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
-              <cbp-icon name="book"></cbp-icon>
-              <cbp-hide
-                hide-at="max-width: 64em"
-                sx='{"margin-left":"var(--cbp-space-2x)"}'
-              >App Directory</cbp-hide>
-            </cbp-button>
-          </li>
-          <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
-              <cbp-icon name="comment"></cbp-icon>  
-              <cbp-hide
-                visually-hide-at="max-width: 64em"
-                sx='{"margin-left":"var(--cbp-space-2x)"}'
-              >Feedback</cbp-hide>
-            </cbp-button>
-          </li>
-          <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
-              <cbp-icon name="user"></cbp-icon>
-              <cbp-hide
-                visually-hide-at="max-width: 64em"
-                sx='{"margin-left":"var(--cbp-space-2x)"}'
-              >${username}</cbp-hide>
-            </cbp-button>
-          </li>
-          `
-          : `
-          <li>
-            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
-            <cbp-icon name="right-to-bracket" sx='{"margin-right":"var(--cbp-space-2x)"}'></cbp-icon>
-            Login
-            </cbp-button>
-          </li>
-          `
-        }
-        </ul>
-      </cbp-universal-header>
-
-      <cbp-app-header>
-        <cbp-nav-item selected="">
-          <cbp-button
-            tag="a"
-            fill="ghost"
-            color="secondary"
-            href="./?path=/story/patterns-page-templates--internal#"
-          >
-            Application Name
-          </cbp-button></cbp-nav-item
-        ><cbp-nav-item>
-          <cbp-button
-            tag="a"
-            fill="ghost"
-            color="secondary"
-            href="./?path=/story/patterns-page-templates--internal#"
-          >
-            Single Nav Item 1
-          </cbp-button></cbp-nav-item
-        ><cbp-nav-item>
-          <cbp-button
-            tag="a"
-            fill="ghost"
-            color="secondary"
-            href="./?path=/story/patterns-page-templates--internal#"
-          >
-            Single Nav Item 2
-          </cbp-button></cbp-nav-item
+    <cbp-flex
+      direction="column"
+      sx='{"min-height":"100vh"}'
+    >
+      <header>
+        <cbp-universal-header
+          logo-src-lg="./assets/images/cbp-header-logo.svg"
+          logo-src-sm="./assets/images/cbp-seal.svg"
         >
-      </cbp-app-header>
-    </header>
+          <ul>
+          ${ isLoggedIn
+            ? `
+            <li>
+              <cbp-button color="secondary" fill="ghost" context="dark-always">
+                <cbp-icon name="book"></cbp-icon>
+                <cbp-hide
+                  hide-at="max-width: 64em"
+                  sx='{"margin-left":"var(--cbp-space-2x)"}'
+                >App Directory</cbp-hide>
+              </cbp-button>
+            </li>
+            <li>
+              <cbp-button color="secondary" fill="ghost" context="dark-always">
+                <cbp-icon name="comment"></cbp-icon>  
+                <cbp-hide
+                  visually-hide-at="max-width: 64em"
+                  sx='{"margin-left":"var(--cbp-space-2x)"}'
+                >Feedback</cbp-hide>
+              </cbp-button>
+            </li>
+            <li>
+              <cbp-button color="secondary" fill="ghost" context="dark-always">
+                <cbp-icon name="user"></cbp-icon>
+                <cbp-hide
+                  visually-hide-at="max-width: 64em"
+                  sx='{"margin-left":"var(--cbp-space-2x)"}'
+                >${username}</cbp-hide>
+              </cbp-button>
+            </li>
+            `
+            : `
+            <li>
+              <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
+              <cbp-icon name="right-to-bracket" sx='{"margin-right":"var(--cbp-space-2x)"}'></cbp-icon>
+              Login
+              </cbp-button>
+            </li>
+            `
+          }
+          </ul>
+        </cbp-universal-header>
 
-    <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
-      <main id="main" tabindex="-1">
-        <cbp-typography tag="h1" divider="underline" sx='{"margin-bottom":"var(--cbp-space-5x)"}'>
-          Page Title
-        </cbp-typography>
+        <cbp-app-header>
+          <cbp-nav-item selected="">
+            <cbp-button
+              tag="a"
+              fill="ghost"
+              color="secondary"
+              href="./?path=/story/patterns-page-templates--internal#"
+            >
+              Application Name
+            </cbp-button></cbp-nav-item
+          ><cbp-nav-item>
+            <cbp-button
+              tag="a"
+              fill="ghost"
+              color="secondary"
+              href="./?path=/story/patterns-page-templates--internal#"
+            >
+              Single Nav Item 1
+            </cbp-button></cbp-nav-item
+          ><cbp-nav-item>
+            <cbp-button
+              tag="a"
+              fill="ghost"
+              color="secondary"
+              href="./?path=/story/patterns-page-templates--internal#"
+            >
+              Single Nav Item 2
+            </cbp-button></cbp-nav-item
+          >
+        </cbp-app-header>
+      </header>
 
-        <p>Main content here.</p>
+      <cbp-container sx='{"flex-grow":"1","padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
+        <main id="main" tabindex="-1">
+          <cbp-typography tag="h1" divider="underline" sx='{"margin-bottom":"var(--cbp-space-5x)"}'>
+            Page Title
+          </cbp-typography>
 
-        </main>
-    </cbp-container>
+          <p>Main content here.</p>
 
-    <cbp-footer>
-      <nav slot="cbp-footer-nav">
-        <cbp-flex role="list" breakpoint="37.5rem">
-          <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
-          </cbp-flex-item>
-          <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Trainings</cbp-button>
-          </cbp-flex-item>
-          <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">FAQs</cbp-button>
-          </cbp-flex-item>
-          <cbp-flex-item role="list-item">
-            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
-          </cbp-flex-item>
-        <cbp-flex role="list">
-      </nav>
+          </main>
+      </cbp-container>
 
-      <section>
-        <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
-        <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
-        <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
-          <span>Having an issue?</span>
-          <span>Email: <cbp-link href="mailto:somebody@example.com" context="dark-always">this-application-support@abc.def.gov</cbp-link></span>
-          <span>CBP Helpdesk: <cbp-link href="tel:555-555-5555" context="dark-always">(555) 555-5555</cbp-link></span>
-        </cbp-flex>
-      </section>
-    </cbp-footer>
+      <cbp-footer>
+        <nav slot="cbp-footer-nav">
+          <cbp-flex role="list" breakpoint="37.5rem">
+            <cbp-flex-item role="list-item">
+              <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
+            </cbp-flex-item>
+            <cbp-flex-item role="list-item">
+              <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Trainings</cbp-button>
+            </cbp-flex-item>
+            <cbp-flex-item role="list-item">
+              <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">FAQs</cbp-button>
+            </cbp-flex-item>
+            <cbp-flex-item role="list-item">
+              <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
+            </cbp-flex-item>
+          <cbp-flex role="list">
+        </nav>
+
+        <section>
+          <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
+          <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
+          <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
+            <span>Having an issue?</span>
+            <span>Email: <cbp-link href="mailto:somebody@example.com" context="dark-always">this-application-support@abc.def.gov</cbp-link></span>
+            <span>CBP Helpdesk: <cbp-link href="tel:555-555-5555" context="dark-always">(555) 555-5555</cbp-link></span>
+          </cbp-flex>
+        </section>
+      </cbp-footer>
+    </cbp-flex>
   `;
 };
 
