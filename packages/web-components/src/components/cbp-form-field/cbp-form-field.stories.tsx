@@ -44,10 +44,12 @@ const TextInputTemplate = ({ label, description, fieldId, error, readonly, disab
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
+      ${disabled ? `disabled` : ''}
+      ${readonly ? `readonly` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <input type="text" name="textinput" ${value ? `value="${value}"` : ''}  ${readonly ? `readonly` : ''} ${disabled ? `disabled` : ''} />
+      <input type="text" name="textinput" ${value ? `value="${value}"` : ''} />
     </cbp-form-field>
   `;
 };
@@ -65,10 +67,12 @@ const TextareaTemplate = ({ label, description, fieldId, error, readonly, disabl
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
+      ${disabled ? `disabled` : ''}
+      ${readonly ? `readonly` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <textarea name="textarea" ${readonly ? `readonly` : ''} ${disabled ? `disabled` : ''}>${value}</textarea>
+      <textarea name="textarea">${value}</textarea>
     </cbp-form-field>
   `;
 };
@@ -90,10 +94,11 @@ const SelectTemplate = ({ label, description, fieldId, error, disabled, context,
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
+      ${disabled ? `disabled` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <select name="select" ${disabled ? `disabled` : ''}>
+      <select name="select">
         <option value=""></option>
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
@@ -111,7 +116,10 @@ const SelectTemplate = ({ label, description, fieldId, error, disabled, context,
 export const Select = SelectTemplate.bind({});
 Select.args = {};
 
-// For testing: May be commented out later.
+
+
+
+/* // For testing: May be commented out later.
 const SelectWithOptgroupTemplate = ({ label, description, fieldId, error, disabled, context, sx }) => {
   return ` 
     <cbp-form-field
@@ -165,7 +173,7 @@ const SelectWithOptgroupTemplate = ({ label, description, fieldId, error, disabl
 
 export const SelectWithOptgroup = SelectWithOptgroupTemplate.bind({});
 SelectWithOptgroup.args = {};
-
+*/
 
 /* //For testing purposes only
 const MultiSelectTemplate = ({ label, description, fieldId, error, disabled, context, sx }) => {
