@@ -4,7 +4,7 @@
  * @prop  --cbp-loader-center-color: var(--cbp-color-branding-cbp-light);
  * @prop  --cbp-loader-center-color-dark: var(--cbp-color-branding-cbp-dark);
  * @prop  --cbp-loader-track-color: var(--cbp-color-gray-cool-20);
- * @prop  --cbp-loader-track-color-dark: var(--cbp-color-gray-cool-60);
+ * @prop  --cbp-loader-track-color-dark: var(--cbp-color-gray-cool-50);
 
  * @prop  --cbp-loader-status-description-color: var(--cbp-color-text-darkest);
  * @prop  --cbp-loader-status-description-color-dark: var(--cbp-color-text-lightest);
@@ -31,7 +31,7 @@
   --cbp-loader-center-color: var(--cbp-color-branding-cbp-light);
   --cbp-loader-center-color-dark: var(--cbp-color-branding-cbp-dark);
   --cbp-loader-track-color: var(--cbp-color-gray-cool-20);
-  --cbp-loader-track-color-dark: var(--cbp-color-gray-cool-60);
+  --cbp-loader-track-color-dark: var(--cbp-color-gray-cool-50);
 
   --cbp-loader-status-description-color: var(--cbp-color-text-darkest);
   --cbp-loader-status-description-color-dark: var(--cbp-color-text-lightest);
@@ -226,15 +226,15 @@ cbp-loader {
   --cbp-loader-track-color-dark: var(--cbp-color-danger-light);
   --cbp-loader-status-description-color: var(--cbp-color-danger-dark);
   --cbp-loader-status-description-color-dark: var(--cbp-color-danger-light);
-  --cbp-loader-status-indicator-color: var(--cbp-color-danger-base);
+  --cbp-loader-status-indicator-color: var(--cbp-color-danger-dark);
   --cbp-loader-status-indicator-color-dark: var(--cbp-color-danger-light);
 
 }
 
   &[success]{
-  --cbp-loader-color: var(--cbp-color-success-dark);
+  --cbp-loader-color: var(--cbp-color-success-base);
   --cbp-loader-color-dark: var(--cbp-color-success-light);
-  --cbp-loader-track-color: var(--cbp-color-success-dark);
+  --cbp-loader-track-color: var(--cbp-color-success-base);
   --cbp-loader-track-color-dark: var(--cbp-color-success-light);
   --cbp-loader-status-description-color: var(--cbp-color-success-base);
   --cbp-loader-status-description-color-dark: var(--cbp-color-success-light);
