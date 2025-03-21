@@ -48,6 +48,7 @@ The Form Field component represents a generic, reusable pattern for form fields 
   * The entire patterns is wrapped within a `fieldset`, which provides an inherent "group" role.
   * The component label is rendered as a `legend`, which provides the group's label.
   * The (optional) description is associated to the `fieldset` via the `aria-describedby` attribute.
+  * The `disabled` property controls the same-named attribute on the `fieldset`, using a little-known feature to toggle all fields within it disabled.
 * Disabled form controls and buttons are non-interactive and cannot be navigated to using the keyboard and should be used with caution (if at all).
 * Placeholder text should rarely, if ever, be used.
   * Especially in forms where the user is expected to enter data, placeholder text with sufficient contrast to the background color may be mistaken as entered input.
@@ -75,7 +76,8 @@ The Form Field component represents a generic, reusable pattern for form fields 
   * Some input types, such as `email`, `tel`, and `url`, should not be used because they invoke browser-based validation, which is inconsistent across browsers and with the design system, and not always accessible.
   * Use `inputmode` instead of HTML5 input types to provide a browser hint for the proper virtual keyboard on mobile devices without side effects noted above.
   * While the `input type="number"` restricts non-numeric input on Chrome, this is not the case in Safari and Firefox. Implement validation appropriately with the knowledge that non-numeric characters may still be entered.
-  * The `select` with `multiple` (and `size`) attribute should not be used, as they have poor usability. Use our `cbp-multiselect` (coming soon) instead.
+  * The `select` with `multiple` (and `size`) attribute should not be used, as they have poor usability. Use our `cbp-dropdown` instead.
+  * The `select` element should not use `optgroup` tags within, as these group labels able to be styled on some systems and fail color contrast requirements for accessibility.
   * Input types such as `date`, `datetime-local`, `month`, `week`, `time` may also vary by browser and not be fully customized in accordance with the design system.
   * Some input types such as `month` and `week` are not supported in Safari and Firefox and should not be used.
   * Use of the `size` attribute is discouraged as it does not represent a linear/consistent scale across input sizes and browsers.

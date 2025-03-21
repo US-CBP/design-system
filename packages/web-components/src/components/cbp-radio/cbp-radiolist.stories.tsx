@@ -11,6 +11,9 @@ export default {
     fieldId: {
       control: 'text',
     },
+    disabled: {
+      control: 'boolean',
+    },
     error: {
       control: 'boolean',
     },
@@ -80,12 +83,13 @@ function generateRadios(context, radios) {
   return html.join('');
 }
 
-const RadioListTemplate = ({ radios, label, description, fieldId, error, context, sx }) => {
+const RadioListTemplate = ({ radios, label, description, fieldId, disabled, error, context, sx }) => {
   return ` 
     <cbp-form-field group
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -100,13 +104,13 @@ export const RadioList = RadioListTemplate.bind({});
 
 
 
-const RadioListHorizontalTemplate = ({ radios, label, description, fieldId, group, error, gap, breakpoint, context, sx }) => {
+const RadioListHorizontalTemplate = ({ radios, label, description, fieldId, disabled, error, gap, breakpoint, context, sx }) => {
   return ` 
-    <cbp-form-field
+    <cbp-form-field group
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${group ? `group` : ''}
+      ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -139,13 +143,13 @@ RadioListHorizontal.args = {
 
 
 
-const RadioListMultiColumnTemplate = ({ radios, gap, columns, width, label, description, fieldId, group, error, context, sx }) => {
+const RadioListMultiColumnTemplate = ({ radios, gap, columns, width, label, description, fieldId, disabled, error, context, sx }) => {
   return ` 
-    <cbp-form-field
+    <cbp-form-field group
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${group ? `group` : ''}
+      ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}

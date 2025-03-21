@@ -6,7 +6,7 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Dark Mode
 
-The CBP Design System components support both light and dark modes, as indicated by a user's operating system preferences. There is nothing required by the developer for regular light and dark mode toggling based on user preferences.
+The CBP Design System components support both light and dark modes, as indicated by a user's operating system preferences. There is nothing required by the developer for regular light and dark mode toggling based on user preferences other than wrapping the entire site/application template in the `cbp-app` tag.
 
 A developer wishing to create an application-based toggle, which would override the system settings, can do so by togging the `cbp-app` component's `theme` property between "light" and "dark" values. The `cbp-app` component should wrap the entire site (as in the template story) and is meant for hoisting site or page-wide functionality such as light and dark modes.
 
@@ -21,10 +21,10 @@ Even in "light mode" (via system preferences), when a section of the page has a 
 * `dark-inverts`
 * `dark-always`
 
-These values support a range of possibilities to meet various design requirements, because it is a false assumption that something with a dark appearance or background in light mode would automatically invert to a light appearance in dark mode.
+These values support a range of possibilities to meet various design requirements, because it is not always the case that something with a dark appearance or background in light mode would automatically invert to a light appearance in dark mode.
 
 The values "light-always" and "dark-always" specify a visual design that does not change based on light or dark mode. However, "light-inverts" (the default value) and "dark-inverts" specify a visual design in light mode that inverts when changing to dark mode.
 
 For example, in both light and dark modes, the `cbp-footer` component contains a dark background. Any components slotted within the footer would use the property `context="dark-always"` to maintain the proper colors in both light and dark modes because they are placed on a background (context) that remains dark.
 
-As another example, the `cbp-drawer` design dictates that it shall render the light design regardless of the system's light or dark modes. However, a variant of this pattern used for the "User Preferences" drawer in many applications is shown using `context="dark-always"` instead. Showing a "dark-always" drawer means that all slotted components, such as the panel, links, typography, etc., must also contain `context="dark-always"` to persist a dark design regardless of light or dark mode.
+As another example, the `cbp-drawer` design dictates that it shall render the light design regardless of the system's light or dark modes and child components placed within would require `context="light-always"`. However, a variant of this pattern used for the "User Preferences" drawer in many applications uses a dark background (via `context="dark-always"`) instead. Showing a "dark-always" drawer means that all slotted components, such as the panel, links, typography, etc., must also contain `context="dark-always"` to persist a dark design regardless of light or dark mode.
