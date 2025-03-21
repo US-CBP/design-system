@@ -9,7 +9,7 @@ export default {
     argTypes: {
     },
     args: {
-      username: 'UI Test',
+      username: 'HASHIDX',
       isLoggedIn: true,
     },
   };
@@ -198,7 +198,8 @@ export default {
             >
               <cbp-flex-item
                 align-self="flex-end"
-                flex-grow="1"
+                flex-basis="20rem"
+                flex-shrink="1"
               >
                 <cbp-form-field
                   label="Sort By"
@@ -220,6 +221,7 @@ export default {
               </cbp-flex-item>
               <cbp-flex-item 
                 align-self="flex-end"
+                sx='{"margin-left":"auto"}'
               >
                 <cbp-button
                   type="button"
@@ -231,7 +233,7 @@ export default {
                   <cbp-icon 
                     name="book"
                     sx='{"margin-right":"var(--cbp-space-2x)"}'
-                    ></cbp-icon> Manifests
+                    ></cbp-icon>Manifests
                 </cbp-button>
               </cbp-flex-item>
               <cbp-flex-item 
@@ -245,7 +247,7 @@ export default {
                   <cbp-icon 
                     name="book"
                     sx='{"margin-right":"var(--cbp-space-2x)"}'
-                  ></cbp-icon> Refresh
+                  ></cbp-icon>Refresh
                 </cbp-button>
               </cbp-flex-item>
             </cbp-flex>
@@ -367,7 +369,7 @@ export default {
                     <cbp-radio>
                       <input 
                         type="radio" 
-                        name="Passenger Sex"
+                        name="sex"
                         value="Male"
                       />
                       Male
@@ -375,7 +377,7 @@ export default {
                     <cbp-radio>
                       <input 
                         type="radio" 
-                        name="Passenger Sex"
+                        name="sex"
                         value="Female"
                       />
                       Female
@@ -383,7 +385,7 @@ export default {
                     <cbp-radio>
                       <input 
                         type="radio" 
-                        name="Passenger Sex"
+                        name="sex"
                         value="Other"
                       />
                       Other
@@ -648,21 +650,6 @@ export default {
      * Footer missing InfoSec section (right side of footer)
      * 
     */       
-
-/**
- * sx='{
-        "width":"100%",
-        "text-align":"center",
-        "border-radius":"var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0",
-        "padding-block":"var(--cbp-space-2x)",
-        "background-color":"var(--cbp-color-red-50)",
-        "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
-        "color":"var(--cbp-color-white)",
-        "text-transform":"uppercase",
-        "font-size":"var(--cbp-font-size-heading-xl)",
-        "font-weight":"var(--cbp-font-weight-regular)"
-      }'
- */
 
     return `
     <cbp-skip-nav></cbp-skip-nav>
