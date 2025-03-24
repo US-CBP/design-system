@@ -46,8 +46,8 @@ export default {
             ${error ? `color=danger`: ``} 
           >
             <cbp-grid
-              grid-template-columns="14rem 1fr 10rem"
-              gap="5rem"
+              grid-template-columns="14rem 1fr 12rem"
+              gap="var(--cbp-space-9x)"
               breakpoint="70rem"
             >
               <cbp-flex>
@@ -182,19 +182,12 @@ export default {
   
         structuredListComponent.innerHTML = generatePassengers(passengerArgs, page, pageSize);
       });
-  
-      /**
-       * <cbp-grid
-              grid-template-columns=" 1fr 8.5rem 8.5rem"
-              gap="1rem"
-            >
-       */
 
       return `
       <cbp-flex-item flex-grow="1">
             <cbp-flex
               gap="1rem"
-              breakpoint="70rem"
+              wrap="wrap"
             >
               <cbp-flex-item
                 align-self="flex-end"
