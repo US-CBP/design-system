@@ -71,7 +71,7 @@ export class CbpLoader {
 
     return (
       <Host>
-        {this.determinate && 
+        
           
             <label
               htmlFor={this.progressId}
@@ -91,7 +91,7 @@ export class CbpLoader {
               }
             </label> 
             
-        }
+        
         {this.determinate && this.variant == 'circular' && this.size == 'large' &&
           <span class='cbp-loader-desc'>
             {statusIndicator}

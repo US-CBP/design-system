@@ -53,6 +53,9 @@
 
   --cbp-loader-circular-determinate: var(--cbp-loader-track-color);
   --cbp-loader-flex-direction: row;
+
+  --cbp-loader-font-weight: var(--cbp-font-weight-medium);
+  --cbp-loader-font-size: var(--cbp-font-size-subhead);
 }
 
 [data-cbp-theme=light] cbp-loader[context*=dark]:not([context=light-always]),
@@ -71,6 +74,7 @@
   50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
   75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
   100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+
 }
 
 @keyframes slide {
@@ -80,6 +84,12 @@
 
 cbp-loader {
 
+  label{
+    font-size: var(--cbp-loader-font-size);
+    font-weight: var(--cbp-loader-font-weight);
+    align-self: flex-start;
+  }
+  
   /** styling for the linear variant of the loader*/
   &[variant="linear"]{
     height: var(--cbp-loader-linear-height);
@@ -133,6 +143,15 @@ cbp-loader {
     display: inline-flex;
     flex-direction: var(--cbp-loader-flex-direction);
 
+    label{
+      color: var(--cbp-loader-status-description-color);
+      font-size: var(--cbp-font-size-subhead);
+      font-weight: var(--cbp-font-weight-medium);
+      align-self: center;
+      padding: var(--cbp-loader-status-description-padding);
+      order: 2;
+    }
+
     progress{
       
       height: var(--cbp-loader-diameter);
@@ -175,6 +194,7 @@ cbp-loader {
     }
     
     &:not([determinate]):not([error]):not([success]) ::before{
+       transform: rotate(45deg);
         animation: spin 2s linear infinite;
     }
 
@@ -196,23 +216,14 @@ cbp-loader {
         color: var(--cbp-loader-color);
         font-weight: var(--cbp-font-weight-bold);
       }
-
-      label{
-        color: var(--cbp-loader-status-description-color);
-        font-size: var(--cbp-font-size-subhead);
-        font-weight: var(--cbp-font-weight-medium);
-        align-self: center;
-        padding: var(--cbp-loader-status-description-padding);
-        order: 2;
-      }
     }
 
     &[orientation='horizontal']{
-      --cbp-loader-status-description-padding: 0 0 0 var(--cbp-space-2x);
+      --cbp-loader-status-description-padding: 0 0 0 var(--cbp-space-1x);
       --cbp-loader-flex-direction: row
     }
     &[orientation='vertical']:not([size="small"]){
-      --cbp-loader-status-description-padding: var(--cbp-space-2x) 0 0 0;
+      --cbp-loader-status-description-padding: var(--cbp-space-1x) 0 0 0;
       --cbp-loader-flex-direction: column
     }
     
