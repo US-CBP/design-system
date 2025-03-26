@@ -62,16 +62,16 @@ export class CbpLoader {
     let statusIndicator;
 
     if(this.success){
-      statusIndicator = <cbp-icon class="statusIndicator" name="check-circle" color='var(--cbp-loader-status-indicator-color)'></cbp-icon>
+      statusIndicator = <cbp-icon class="statusIndicator" name="check-circle" color='var(--cbp-loader-status-indicator-color)' size="var(--cbp-font-size-button)"></cbp-icon>
     }else if(this.error){
-      statusIndicator = <cbp-icon class="statusIndicator" name="exclamation-circle" color='var(--cbp-loader-status-indicator-color)'></cbp-icon>
+      statusIndicator = <cbp-icon class="statusIndicator" name="exclamation-circle" color='var(--cbp-loader-status-indicator-color)' size="var(--cbp-font-size-button)"></cbp-icon>
     }else{
       statusIndicator =  Math.round((this.value / this.max) * 100) + "%"
     }
 
     return (
       <Host>
-        {this.determinate && 
+        
           
             <label
               htmlFor={this.progressId}
@@ -91,7 +91,7 @@ export class CbpLoader {
               }
             </label> 
             
-        }
+        
         {this.determinate && this.variant == 'circular' && this.size == 'large' &&
           <span class='cbp-loader-desc'>
             {statusIndicator}

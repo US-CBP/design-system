@@ -28,7 +28,7 @@ export default {
         label : {
             name: 'label (slotted)',
             control: 'text',
-            if: { arg: 'determinate', eq: true}
+            // if: { arg: 'determinate', eq: true}
         },
         orientation: {
             control: 'select',
@@ -74,7 +74,7 @@ const Template = ({progressid, variant, label, size, determinate, value, max, or
             `${label}`
             : ``
             }
-            ${variant == 'circular' && size == 'large' && label && !(success || error)? 
+            ${variant == 'circular' && label && !(success || error)? 
             `${label}` : `` }
         </cbp-loader>
     `;
