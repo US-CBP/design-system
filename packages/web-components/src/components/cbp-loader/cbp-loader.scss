@@ -83,7 +83,10 @@
 }
 
 cbp-loader {
-
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    
   label{
     font-size: var(--cbp-loader-font-size);
     font-weight: var(--cbp-loader-font-weight);
@@ -92,7 +95,6 @@ cbp-loader {
   
   /** styling for the linear variant of the loader*/
   &[variant="linear"]{
-    height: var(--cbp-loader-linear-height);
     width: var(--cbp-loader-linear-width);
     display: inline-flex;
     flex-direction: var(--cbp-loader-linear-flex-direction);
@@ -101,8 +103,7 @@ cbp-loader {
 
     progress{
       appearance: none; //Needed to use the below psuedo classes/ affect the progress styles
-      display: inline-block;
-
+      height: var(--cbp-loader-linear-height);
       &::-webkit-progress-bar{ 
         background-color: var(--cbp-loader-track-color);
       }
@@ -262,10 +263,6 @@ cbp-loader {
   --cbp-loader-linear-flex-direction: column;
   --cbp-loader-linear-status-width: var(--cbp-loader-linear-width);
   --cbp-loader-linear-gap: var(--cbp-space-2x);
-
-  &[determinate]{
-    --cbp-loader-linear-height: calc(var(--cbp-space-2x) + var(--cbp-space-4x) + var(--cbp-space-2x));
-  }
 }
 
 &[size="small"]{ 

@@ -74,7 +74,7 @@ const Template = ({progressid, variant, label, size, determinate, value, max, or
             `${label}`
             : ``
             }
-            ${variant == 'circular' && size == 'large' && label && !(success || error)? 
+            ${variant == 'circular' && label && !(success || error)? 
             `${label}` : `` }
         </cbp-loader>
     `;
