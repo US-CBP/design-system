@@ -32,7 +32,7 @@ export default {
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
           >  
-            <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon}></cbp-icon></div>
+            <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
             <div slot="cbp-toast-title">${title}</div>
             ${content}
             <div slot="cbp-toast-buttons">${buttons}</div>
@@ -60,7 +60,7 @@ export default {
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
           >
-            <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon}></cbp-icon></div>
+            <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
             <div slot="cbp-toast-title">${title}</div>
             ${content}
             <div slot="cbp-toast-buttons">${buttons}</div>
@@ -74,7 +74,7 @@ export default {
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >       
-          <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon}></cbp-icon></div>
+          <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
           <div slot="cbp-toast-title">${title}</div>
           ${content}
           <div slot="cbp-toast-buttons">${buttons}</div>
@@ -88,7 +88,7 @@ export default {
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >      
-          <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon}></cbp-icon></div>
+          <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
           <div slot="cbp-toast-title">${title}</div>
           ${content}
           <div slot="cbp-toast-buttons">${buttons}</div>
@@ -102,7 +102,7 @@ export default {
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon}></cbp-icon></div>
+        <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
         <div slot="cbp-toast-title">${title}</div>
         ${content}
         <div slot="cbp-toast-buttons">${buttons}</div>
