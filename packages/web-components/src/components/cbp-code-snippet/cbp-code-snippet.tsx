@@ -109,7 +109,6 @@ export class CbpCodeSnippet {
           {this.variant == 'block' && 
             <cbp-button type="button" fill="ghost" color="secondary" onClick={() => this.copyText()} context={this.context}>
               <cbp-icon name="clone"></cbp-icon>
-              Copy
             </cbp-button>
           }
         </pre>
