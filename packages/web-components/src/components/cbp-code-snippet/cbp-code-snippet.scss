@@ -44,7 +44,7 @@ cbp-code-snippet {
   
   &[variant=block] {
     display: block;
-
+    padding: var(--cbp-space-2x);
 
     cbp-button[fill=ghost][color=secondary]{
       --cbp-button-color-hover: var(--cbp-color-text-lightest);
