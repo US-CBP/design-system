@@ -67,9 +67,9 @@ export default {
   const MultiTemplate = ({ open, title, content, buttons, duration, color, context, sx }) => {
     return ` 
           <cbp-toast
-            ${open ? `open` : ''}
-            ${color ? `color=${color}` : ''}
-            ${duration ? `duration=${duration}` : ''}
+            ${open ? `open=${open}` : ''}
+            color=${color}
+            duration=${duration}
             icon=${generateIcon(color)}
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
