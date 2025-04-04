@@ -22,17 +22,32 @@ export default {
     },
   };
   
-  const Template = ({ open, icon, title, content, buttons, duration, color, context, sx }) => {
+  function generateIcon(color){
+    switch (color){
+      case "info":
+        return 'globe';
+      case "success":
+        return 'check-circle';
+      case "warning":
+        return 'exclamation-circle';
+      case "danger":
+        return 'triangle-exclamation';
+      
+    }
+  }
+
+  const Template = ({ open, title, content, buttons, duration, color, context, sx }) => {
+    console.log('template: '+ color);
     return ` 
           <cbp-toast
             ${open ? `open` : ''}
             ${color ? `color=${color}` : ''}
             ${duration ? `duration=${duration}` : ''}
-            ${icon ? `icon=${icon}` : ''}
+            icon=${generateIcon(color)}
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
           >  
-            <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
+            <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${generateIcon(color)} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
             <div slot="cbp-toast-title">${title}</div>
             ${content}
             <div slot="cbp-toast-buttons">${buttons}</div>
@@ -44,23 +59,23 @@ export default {
   
   Toast.args = {
     open: true,
-    icon: `user`,
+    color: 'info',
     title: 'Test Toast Title',
     content: 'Notification Description - A rule you are following just fired.',
     buttons: `<cbp-button type="button" fill="ghost" color="secondary"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>`
   }
 
-  const MultiTemplate = ({ open, icon, title, content, buttons, duration, color, context, sx }) => {
+  const MultiTemplate = ({ open, title, content, buttons, duration, color, context, sx }) => {
     return ` 
           <cbp-toast
             ${open ? `open=${open}` : ''}
             color=${color}
             duration=${duration}
-            ${icon ? `icon=${icon}` : ''}
+            icon=${generateIcon(color)}
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ''}
           >
-            <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
+            <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${generateIcon(color)}color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
             <div slot="cbp-toast-title">${title}</div>
             ${content}
             <div slot="cbp-toast-buttons">${buttons}</div>
@@ -70,11 +85,11 @@ export default {
           ${open ? `open=${open}` : ''}
           color=${color}
           duration=${duration}
-          ${icon ? `icon=${icon}` : ''}
+          icon=${generateIcon(color)}
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >       
-          <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
+          <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${generateIcon(color)} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
           <div slot="cbp-toast-title">${title}</div>
           ${content}
           <div slot="cbp-toast-buttons">${buttons}</div>
@@ -84,11 +99,11 @@ export default {
           ${open ? `open=${open}` : ''}
           color=${color}
           duration=${duration}
-          ${icon ? `icon=${icon}` : ''}
+          icon=${generateIcon(color)}
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >      
-          <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
+          <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${generateIcon(color)} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
           <div slot="cbp-toast-title">${title}</div>
           ${content}
           <div slot="cbp-toast-buttons">${buttons}</div>
@@ -98,11 +113,11 @@ export default {
         ${open ? `open=${open}` : ''}
         color=${color}
         duration=${duration}
-        ${icon ? `icon=${icon}` : ''}
+        icon=${generateIcon(color)}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${icon} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
+        <div slot="cbp-toast-icon"><cbp-icon size='2rem' name=${generateIcon(color)} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon></div>
         <div slot="cbp-toast-title">${title}</div>
         ${content}
         <div slot="cbp-toast-buttons">${buttons}</div>
@@ -114,7 +129,7 @@ export default {
 
   MultipleToast.args = {
     open: true,
-    icon: `user`,
+    color: 'info',
     title: 'Test Toast Title',
     content: 'Notification Description - A rule you are following just fired.',
     buttons: '<cbp-button type="button" fill="ghost" color="secondary"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>'
