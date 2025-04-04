@@ -31,6 +31,20 @@ export default {
     },
   };
   
+
+  function generateIcon(color){
+    switch (color){
+      case "info":
+        return 'circle-info';
+      case "success":
+        return 'check-circle';
+      case "warning":
+        return 'exclamation-circle';
+      case "danger":
+        return 'triangle-exclamation';   
+    }
+  }
+
   const NoticeTemplate = ({ title, withIcon, content, color, context, sx }) => {
     return ` 
       <cbp-notice
@@ -39,7 +53,7 @@ export default {
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
         <cbp-typography tag='p' slot="cbp-notice-title" context=${context}>
-            ${withIcon ? `<cbp-icon name='circle-info' size='1.25rem' sx='{"vertical-align":"bottom"}'></cbp-icon>` : ''}
+            ${withIcon ? `<cbp-icon name=${generateIcon(color)} size='1.25rem' sx='{"vertical-align":"bottom"}'></cbp-icon>` : ''}
             ${title}
         </cbp-typography>
         ${content}
@@ -50,6 +64,7 @@ export default {
   export const Notice = NoticeTemplate.bind({});
   Notice.args = {    
       title: 'Notice Title',
+      color: 'info',
       content: 'Notice: This is default text',
   };
   
