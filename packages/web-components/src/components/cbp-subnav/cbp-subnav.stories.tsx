@@ -6,6 +6,10 @@ export default {
             description: 'Sets accessibilitytext prop for the subnav component',
             control: 'text',
         },
+        indentation: {
+            description: '',  
+            control: 'boolean'
+        },
         //TODO: no dark mode in spec for this component, leaving commented out incase we want to add dark mode later
         // context : {
         //     control: 'select',
@@ -25,10 +29,11 @@ function generateContent(items){
         return html.join('');
 }
     
-const SubnavTemplate = ({items, accessibilitytext}) => {
+const SubnavTemplate = ({items, accessibilitytext, indentation}) => {
     return ` 
         <cbp-subnav
             ${accessibilitytext ? `accessibilitytext="${accessibilitytext}"`: ``}
+            indentation= ${indentation}
             >
             ${generateContent(items)}
         </cbp-subnav>
