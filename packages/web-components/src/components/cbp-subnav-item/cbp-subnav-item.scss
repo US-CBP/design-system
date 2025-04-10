@@ -1,4 +1,4 @@
-/** TODO: update this with dark mode values
+/** 
  * @prop  --cbp-subnav-item-color: var(--cbp-color-interactive-secondary-darker);
  * @prop  --cbp-subnav-item-color-dark: var(--cbp-color-interactive-secondary-lighter);
  * @prop  --cbp-subnav-item-color-bg: transparent;
@@ -29,10 +29,9 @@
   --cbp-subnav-item-font-size: var(--cbp-font-size-heading-md);
 }
 
-[data-cbp-theme=light] cbp-subnav-item[context*=dark]:not([context=light-always]),
-[data-cbp-theme=dark] cbp-subnav-item:not([context=dark-inverts]):not([context=light-always]) {
+[data-cbp-theme=light] cbp-subnav[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-subnav:not([context=dark-inverts]):not([context=light-always]) {
 
-  
   --cbp-subnav-item-color: var(--cbp-subnav-item-color-dark);
   --cbp-subnav-item-color-bg: var(--cbp-subnav-item-color-bg-dark);
   --cbp-subnav-item-current-border-color: var(--cbp-subnav-item-current-border-color-dark); 
@@ -69,10 +68,6 @@ cbp-subnav-item {
   // parent subnav item container for multiple
   & > div{
     display: flex;
-  }
-
-  [slot="icon"]{
-    padding-right: var(--cbp-space-2x);
   }
 
   //Overrides for button variables
@@ -119,9 +114,6 @@ cbp-subnav-item {
       padding-left: var(--cbp-subnav-item-indent);
       font-size: var(--cbp-subnav-item-font-size);
       border-left: none;
-    }
-
-    &:last-of-type button{
       border-right: none;
     }
    
@@ -142,7 +134,7 @@ cbp-subnav-item {
   }
 }
 
-cbp-subnav:not([indentation="false"]) cbp-subnav-item{
+cbp-subnav:not([flat]) cbp-subnav-item{
   cbp-subnav-item {
     
     --cbp-subnav-item-indent: var(--cbp-space-6x);
@@ -165,9 +157,9 @@ cbp-subnav:not([indentation="false"]) cbp-subnav-item{
   } 
 }
 
-cbp-subnav[indentation=false] cbp-subnav-item cbp-subnav-item cbp-subnav-item cbp-button + cbp-button{
+cbp-subnav[flat] cbp-subnav-item cbp-subnav-item cbp-subnav-item cbp-button + cbp-button{
   --cbp-subnav-item-rotate-icon: rotate(0deg);
 }
-cbp-subnav[indentation=false] cbp-subnav-item cbp-subnav-item cbp-subnav-item[open] cbp-button + cbp-button{
+cbp-subnav[flat] cbp-subnav-item cbp-subnav-item cbp-subnav-item[open] cbp-button + cbp-button{
   --cbp-subnav-item-rotate-icon: rotate(180deg);
 }
