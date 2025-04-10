@@ -37,6 +37,7 @@ The primary use for the Slider component is to select a value within a range.
 ### Accessibility
 
 * The associated label and `aria-describedby` are provided by the parent `cbp-form-field` component.
+* The numeric input, when shown, has a static `aria-label` of "Slider value" and `aria-describedby` referencing the `label` element. While the pattern technically contains two inputs, the numeric input is more of an accessory, so a group/fieldset context was not used.
 * Full keyboard navigation is supported, as detailed under "User Interactions" above.
 * When using a mouse to click the thumb or track of the slider, the interactive element is not focused on Mac. Therefore, the component sets focus explicitly on click.
 
