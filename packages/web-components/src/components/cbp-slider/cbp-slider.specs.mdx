@@ -1,0 +1,49 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Slider/Specifications" />
+
+# cbp-slider
+
+## Purpose
+
+The primary use for the Slider component is to select a value within a range.
+
+## Functional Requirements
+
+* The Slider component wraps the slotted native form control (`input type="range"`) to provide custom, cross-browser styling and additional functionality.
+* The Slider component shall be slotted within the `cbp-form-field` component to supply an accessible label and description.
+
+## Technical Specifications
+
+### User Interactions
+
+* The user interactions are that of a native `input type="range"` element:
+  * Clicking anywhere on the form control or label text will place focus on the control.
+  * Clicking on the "track" will select the corresponding value based on the position clicked on the slider.
+  * Sliders are keyboard accessible by tabbing onto the control and then using the arrows.
+    * Pressing the up or right arrow increments the slider by the step value (default = 1).
+    * Pressing the down or left arrow decrements the slider by the step value (default = 1).
+  * Optionally, a numeric input may be shown to the right of the slider.
+    * Users can enter an exact numeric value into the input field.
+    * This input is synchronized with the slider in terms of min, max, step, and value.
+    * While the numeric input buttons are hidden, the up and down arrow keys may still be used to increments and decrement the value (by the step value) respectively.
+    * This input has no `name` attribute and will not be submitted with a native form submission (the `input[type=range]` is submitted if it has a `name`.)
+
+### Responsiveness
+
+* The pattern label will wrap as needed.
+* The slider control is sized to 100% within a flexbox context and will shrink or grow based on available space.
+
+### Accessibility
+
+* The associated label and `aria-describedby` are provided by the parent `cbp-form-field` component.
+* Full keyboard navigation is supported, as detailed under "User Interactions" above.
+* When using a mouse to click the thumb or track of the slider, the interactive element is not focused on Mac. Therefore, the component sets focus explicitly on click.
+
+### Additional Notes and Considerations
+
+* The primary use for the Slider component is to select a value within a range.
+* There are potentially other applications of this component such as a playback slider, but these will need to be discussed on a case by case basis and additional work may be needed to meet those requirements.
+* A slider should not be marked `readonly`, as its value can still be changed. 
+* The native behavior of using a `datalist` to supply tick marks is not supported since we are overriding the CSS `appearance`.
+* TODO: The initial version of this component supports a single value. A range variation supporting two values (not natively supported by `input[type=range]`) is planned for the future.

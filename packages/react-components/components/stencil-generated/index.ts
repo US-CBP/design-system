@@ -49,6 +49,7 @@ export const CbpResizeObserver = /*@__PURE__*/createReactComponent<JSX.CbpResize
 export const CbpSection = /*@__PURE__*/createReactComponent<JSX.CbpSection, HTMLCbpSectionElement>('cbp-section');
 export const CbpSegmentedButtonGroup = /*@__PURE__*/createReactComponent<JSX.CbpSegmentedButtonGroup, HTMLCbpSegmentedButtonGroupElement>('cbp-segmented-button-group');
 export const CbpSkipNav = /*@__PURE__*/createReactComponent<JSX.CbpSkipNav, HTMLCbpSkipNavElement>('cbp-skip-nav');
+export const CbpSlider = /*@__PURE__*/createReactComponent<JSX.CbpSlider, HTMLCbpSliderElement>('cbp-slider');
 export const CbpStructuredList = /*@__PURE__*/createReactComponent<JSX.CbpStructuredList, HTMLCbpStructuredListElement>('cbp-structured-list');
 export const CbpStructuredListItem = /*@__PURE__*/createReactComponent<JSX.CbpStructuredListItem, HTMLCbpStructuredListItemElement>('cbp-structured-list-item');
 export const CbpSubnav = /*@__PURE__*/createReactComponent<JSX.CbpSubnav, HTMLCbpSubnavElement>('cbp-subnav');
