@@ -6,11 +6,14 @@ export default {
             description: 'Sets accessibilitytext prop for the subnav component',
             control: 'text',
         },
-        //TODO: no dark mode in spec for this component, leaving commented out incase we want to add dark mode later
-        // context : {
-        //     control: 'select',
-        //     options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
-        // },
+        flat: {
+            description: '',  
+            control: 'boolean'
+        },
+        context : {
+            control: 'select',
+            options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+        },
         sx: {
             description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
             control: 'object',
@@ -18,19 +21,21 @@ export default {
     },
   };
 
-function generateContent(items){
+function generateContent(items, context){
     const html = items.map(({ icon, label, href, open, children, current }) => {
-        return `<cbp-subnav-item label="${label}" href=${href} ${current? `current=${current}` : ``} ${open? `open=${open}` : ``}>${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``} ${children? generateContent(children) : ``}</cbp-subnav-item>`;
+        return `<cbp-subnav-item label="${label}" href=${href} ${current? `current=${current}` : ``} ${open? `open=${open}` : ``} ${context && context != 'light-inverts' ? `context=${context}` : ''}>${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``} ${children? generateContent(children, context) : ``}</cbp-subnav-item>`;
     });
         return html.join('');
 }
     
-const SubnavTemplate = ({items, accessibilitytext}) => {
+const SubnavTemplate = ({items, accessibilitytext, flat, context}) => {
     return ` 
         <cbp-subnav
             ${accessibilitytext ? `accessibilitytext="${accessibilitytext}"`: ``}
+            ${flat ? 'flat' : ''}
+            ${context && context != 'light-inverts' ? `context=${context}` : ''}
             >
-            ${generateContent(items)}
+            ${generateContent(items, context)}
         </cbp-subnav>
     `;
 };
