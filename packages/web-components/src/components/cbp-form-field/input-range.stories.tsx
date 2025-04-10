@@ -11,6 +11,7 @@ export default {
     fieldId: {
       control: 'text',
     },
+    // min max step value
     error: {
       control: 'boolean',
     },

@@ -159,7 +159,7 @@ export class CbpFormField {
       this.formField = this.host.querySelector('input,select,textarea');
       
       // Treat nested components separately, as it's hard to modify their rendered content directly
-      this.formFieldComponent = this.host.querySelector('cbp-dropdown');
+      this.formFieldComponent = this.host.querySelector('cbp-dropdown,cbp-slider');
       
       this.buttons = this.host.querySelectorAll('cbp-button');
       this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
