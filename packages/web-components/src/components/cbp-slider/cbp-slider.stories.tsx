@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Slider',
-  tags: ['beta'],
+  tags: ['new'],
   argTypes: {
     label: {
       control: 'text',
@@ -86,54 +86,3 @@ Slider.args = {
   name: 'range',
   value: '',
 };
-
-
-
-
-/* Datalist not supported since we're overriding the default appearance
-const SliderWithDatalistTemplate = ({ label, description, fieldId, name, min, max, step, hideMinmax, hideInput, error, readonly, disabled, value, context, sx }) => {
-  return ` 
-      <cbp-form-field
-        ${label ? `label="${label}"` : ''}
-        ${description ? `description="${description}"` : ''}
-        ${fieldId ? `field-id="${fieldId}"` : ''}
-        ${error ? `error` : ''}
-        ${disabled ? `disabled` : ''}
-        ${readonly ? `readonly` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >
-        <cbp-slider
-          ${value != undefined ? `value="${value}"` : ''}
-          ${min != undefined ? `min="${min}"` : ''}
-          ${max ? `max="${max}"` : ''}
-          ${step ? `step="${step}"` : ''}
-          ${hideMinmax ? `hide-minmax` : ''}
-          ${hideInput ? `hide-input` : ''}
-          ${context && context != 'light-inverts' ? `context=${context}` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-        >
-          <input 
-            type="range" 
-            list="values"
-            ${name ? `name="${name}"` : ''}
-          />
-          <datalist id="values">
-            <option value="0" label="0"></option>
-            <option value="25" label="25"></option>
-            <option value="50" label="50"></option>
-            <option value="75" label="75"></option>
-            <option value="100" label="100"></option>
-          </datalist>
-        </cbp-slider>
-      </cbp-form-field>
-    `;
-};
-
-export const SliderWithDatalist = SliderWithDatalistTemplate.bind({});
-//Slider.storyName = 'Slider';
-SliderWithDatalist.args = {
-  name: 'range',
-  value: '',
-};
-*/
