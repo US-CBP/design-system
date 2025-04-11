@@ -5,6 +5,7 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
 ## [unreleased] TBD
+* First cut of the `cbp-slider` component for selecting a single value from a range.
 * First cut of the `cbp-code-snippet` component, which is used to display code samples.
 * Cleaned up the monorepo:
   * Removed vanilla package.

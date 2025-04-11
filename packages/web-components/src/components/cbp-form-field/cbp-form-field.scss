@@ -200,13 +200,16 @@ cbp-form-field {
     font-style: italic;
   }
 
+
+  // File Inputs
   input[type=file]{
     line-height: var(--cbp-space-8x);
   }
   ::file-selector-button {
     display: none;
   }
-
+  
+  // Textarea
   textarea { 
     min-height: 6.75rem;
     max-height: 80vh;
@@ -214,6 +217,7 @@ cbp-form-field {
     resize: vertical;
   }
 
+  // Select and Dropdowns
   select,
   cbp-dropdown .cbp-custom-form-control {
     appearance: none;

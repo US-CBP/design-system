@@ -1,0 +1,185 @@
+/**
+ * @prop --cbp-slider-thumb-color: var(--cbp-color-interactive-secondary-dark);
+ * @prop --cbp-slider-thumb-color-hover: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-slider-thumb-color-focus: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-slider-thumb-color-border: var(--cbp-color-background-light);
+ * @prop --cbp-slider-thumb-color-border-focus: var(--cbp-color-white);
+ * @prop --cbp-slider-thumb-color-halo: transparent;
+ * @prop --cbp-slider-thumb-color-halo-hover: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-slider-thumb-color-halo-focus: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-slider-track-color-selected: var(--cbp-color-interactive-selected-dark);
+ * @prop --cbp-slider-track-color-unselected: var(--cbp-color-interactive-secondary-light);
+ * @prop --cbp-slider-thumb-color-dark: var(--cbp-color-interactive-secondary-light);
+ * @prop --cbp-slider-thumb-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ * @prop --cbp-slider-thumb-color-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-slider-thumb-color-border-dark: var(--cbp-color-background-dark);
+ * @prop --cbp-slider-thumb-color-border-focus-dark: var(--cbp-color-black);
+ * @prop --cbp-slider-thumb-color-halo-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ * @prop --cbp-slider-thumb-color-halo-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-slider-track-color-selected-dark: var(--cbp-color-interactive-selected-light);
+ * @prop --cbp-slider-track-color-unselected-dark: var(--cbp-color-interactive-secondary-base);
+ */
+
+:root {
+  --cbp-slider-thumb-color: var(--cbp-color-interactive-secondary-dark);
+  --cbp-slider-thumb-color-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-slider-thumb-color-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-slider-thumb-color-border: var(--cbp-color-background-light);
+  --cbp-slider-thumb-color-border-focus: var(--cbp-color-white);
+  --cbp-slider-thumb-color-halo: transparent;
+  --cbp-slider-thumb-color-halo-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-slider-thumb-color-halo-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-slider-track-color-selected: var(--cbp-color-interactive-selected-dark);
+  --cbp-slider-track-color-unselected: var(--cbp-color-interactive-secondary-light);
+
+  --cbp-slider-thumb-color-dark: var(--cbp-color-interactive-secondary-light);
+  --cbp-slider-thumb-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-slider-thumb-color-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-slider-thumb-color-border-dark: var(--cbp-color-background-dark);
+  --cbp-slider-thumb-color-border-focus-dark: var(--cbp-color-black);
+  --cbp-slider-thumb-color-halo-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-slider-thumb-color-halo-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-slider-track-color-selected-dark: var(--cbp-color-interactive-selected-light);
+  --cbp-slider-track-color-unselected-dark: var(--cbp-color-interactive-secondary-base);
+
+  --cbp-slider-track-selection-size: 0;
+}
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-slider[context*=dark],
+[data-cbp-theme=dark] cbp-slider:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-slider-thumb-color: var(--cbp-slider-thumb-color-dark);
+  --cbp-slider-thumb-color-hover: var(--cbp-slider-thumb-color-hover-dark);
+  --cbp-slider-thumb-color-focus: var(--cbp-slider-thumb-color-focus-dark);
+  --cbp-slider-thumb-color-border: var(--cbp-slider-thumb-color-border-dark);
+  --cbp-slider-thumb-color-border-focus: var(--cbp-slider-thumb-color-border-focus-dark);
+  --cbp-slider-thumb-color-halo-hover: var(--cbp-slider-thumb-color-halo-hover-dark);
+  --cbp-slider-thumb-color-halo-focus: var(--cbp-slider-thumb-color-halo-focus-dark);
+  --cbp-slider-track-color-selected: var(--cbp-slider-track-color-selected-dark);
+  --cbp-slider-track-color-unselected: var(--cbp-slider-track-color-unselected-dark);
+}
+
+
+cbp-slider {
+  display: flex;
+  align-items: center;
+  gap: var(--cbp-space-2x);
+  font-style: italic;
+
+  input[type=number] {
+    width: 7ch;
+    
+    // This removes the default increment arrows in the number input field
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0; // Margins still appear even if hidden
+    }
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield; // Removes the default increment arrows in Firefox 
+  }
+  
+
+  .cbp-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+
+    .cbp-slider-selection {
+      position: absolute;
+      display: block;
+      background: var(--cbp-slider-track-color-selected);
+      border-radius: var(--cbp-border-radius-pill);
+      block-size: var(--cbp-space-2x);
+      inline-size: 100%;
+      transform-origin: left center;
+      transform: scaleX(calc(var(--cbp-slider-track-selection-size) / 100)); // TechDebt: the scaling is impacting the border radius. Maybe revisit with clip-path to fix?
+      pointer-events: none;
+    }
+  }
+
+  // Native range slider
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    //pointer-events: none; // this is used when 2 sliders are present for a range
+
+    // Track
+    &::-webkit-slider-runnable-track{
+      background: var(--cbp-slider-track-color-unselected);
+      height: var(--cbp-space-half-x);
+      border-radius: var(--cbp-border-radius-pill);
+    }
+
+    &::-moz-range-track{
+      background: var(--cbp-slider-track-color-unselected);
+      height: var(--cbp-space-half-x);
+      border-radius: var(--cbp-border-radius-pill);
+    }
+
+
+    // Thumb
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      margin-top: calc((var(--cbp-space-5x) / 2) * -1);
+      height: var(--cbp-space-5x);
+      width: var(--cbp-space-5x);
+      background-color: var(--cbp-slider-thumb-color);
+      border: var(--cbp-border-size-md) solid var(--cbp-slider-thumb-color-border);
+      border-radius: var(--cbp-border-radius-circle);
+      box-shadow: 0 0 0 var(--cbp-space-11x) color-mix(in srgb, var(--cbp-slider-thumb-color-halo), transparent 50%);
+      clip-path: circle(122%); // verified
+      pointer-events: all;
+    }
+
+    &::-moz-range-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      margin-top: calc((var(--cbp-space-4x) / 2) * -1);
+      height: var(--cbp-space-5x);
+      width: var(--cbp-space-5x);
+      background-color: var(--cbp-slider-thumb-color);
+      border: var(--cbp-border-size-md) solid var(--cbp-slider-thumb-color-border);
+      border-radius: var(--cbp-border-radius-circle);
+      box-shadow: 0 0 0 var(--cbp-space-11x) color-mix(in srgb, var(--cbp-slider-thumb-color-halo), transparent 50%);
+      clip-path: circle(122%); // verified
+      pointer-events: all;
+    }
+    
+
+    // States
+    &:hover:not(:disabled) {
+      --cbp-slider-thumb-color-halo: var(--cbp-slider-thumb-color-halo-hover);
+      --cbp-slider-thumb-color: var(--cbp-slider-thumb-color-hover);
+    }
+
+    &:focus:not(:disabled) {
+      --cbp-slider-thumb-color-halo: var(--cbp-slider-thumb-color-halo-focus);
+      --cbp-slider-thumb-color: var(--cbp-slider-thumb-color-focus);
+      --cbp-slider-thumb-color-border: var(--cbp-slider-thumb-color-border-focus);
+    }
+
+    &:disabled {
+      --cbp-slider-thumb-color: var(--cbp-color-interactive-secondary-dark);
+      --cbp-slider-track-color-selected: var(--cbp-color-interactive-selected-dark);
+      --cbp-slider-track-color-unselected: var(--cbp-color-interactive-secondary-light);
+      --cbp-slider-thumb-color-dark: var(--cbp-color-interactive-disabled-light);
+      --cbp-slider-track-color-selected-dark: var(--cbp-color-interactive-disabled-light);
+      --cbp-slider-track-color-unselected-dark: var(--cbp-color-interactive-disabled-dark);
+      cursor: not-allowed;
+    }
+  }
+
+}
