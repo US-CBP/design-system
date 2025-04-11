@@ -15,7 +15,7 @@ export class CbpDropdown {
   private formField: HTMLInputElement; // the hidden input that stores the dropdown value for form posts
   
   private listbox: HTMLElement;
-  private dropdownItems: HTMLCbpDropdownItemElement[];
+  private dropdownItems: HTMLCbpDropdownItemElement[] = [];
   private focusIndex: number;
 
   private matches: number[]; // an array of indexes (to dropdownItems) of the matches.
@@ -37,7 +37,7 @@ export class CbpDropdown {
   @Prop({ reflect: true }) filter: boolean = false;
 
   /** Indicates that the filtering will be performed by asyncronous calls (handled by application logic). */
-  @Prop() async: boolean = false;
+  @Prop({reflect: true}) async: boolean = false;
 
   /** Specifies the number of characters need to emit an event to make an API call and return filtered results. This property is only used when  */
   //@Prop() filterCharacters: number;
@@ -46,8 +46,8 @@ export class CbpDropdown {
   /** A JSON object (or stringified JSON) containing an array of labels and values. Labels may contain markup as needed, but in such cases, a value should always be specified explicitly. */
   @Prop() items: string | object;
 
-
-  @Prop() create: boolean;
+  /**  */
+  //@Prop() create: boolean;
 
   
 
@@ -210,18 +210,19 @@ export class CbpDropdown {
     }
   }
 
-  @Watch('items') 
-  generateItems(newValue) {
+  //@Watch('items') 
+  generateItems() {
+    console.log('generateItems(): ', this.items)
     let items;
-    if (typeof newValue == 'string') {
-      items = JSON.parse(newValue) || {};
+    if (typeof this.items == 'string') {
+      items = JSON.parse(this.items) || {};
     }
-    else if (typeof newValue == 'object') {
-      items = newValue;
+    else if (typeof this.items == 'object') {
+      items = this.items;
     }
 
     // clear the dropdownItems array
-    this.dropdownItems = []
+    let dropdownItems: HTMLCbpDropdownItemElement[] = []
     // re-populate it from items prop (JSON)
     //<cbp-dropdown-item value=${value}}>${label}</cbp-dropdown-item>;
     items.map(({ label, value=label }) => {
@@ -229,10 +230,13 @@ export class CbpDropdown {
       //dropdownItem.value = value ? value : label;
       //dropdownItem.innerHTML = label;
       //this.dropdownItems = [...this.dropdownItems, dropdownItem]
-      this.dropdownItems = [...this.dropdownItems, <cbp-dropdown-item value={value}>${label}</cbp-dropdown-item>]
+      let newItem: HTMLCbpDropdownItemElement = <cbp-dropdown-item value={value} key={`cbp-dropdown-item-${value}`}>{label}</cbp-dropdown-item>;
+      dropdownItems = [...dropdownItems, newItem]
     });
-    console.log('Append new dropdownitems: ', this.dropdownItems);
-    this.listbox.append(...this.dropdownItems);
+    this.dropdownItems = dropdownItems;
+    console.log('Generated new dropdownitems from items JSON: ', this.dropdownItems);
+    //this.listbox.append(...this.dropdownItems);
+    return dropdownItems;
   }
 
   /** 
@@ -296,6 +300,7 @@ export class CbpDropdown {
   // Testing...
   getActionFromKey( event) {
     const { key, altKey, ctrlKey, metaKey } = event;
+    console.log('Keypress detected: ', key)
     const selectKeys = ['Enter', ' '];
     const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ']; // all keys that will do the default open action
     const navKeys = ['ArrowDown', 'ArrowUp', 'Enter', 'Home', 'End']; // all keys that will do the default open action
@@ -304,6 +309,7 @@ export class CbpDropdown {
     // If the menu is already open, pressing enter or space triggers a click on the current item. 
     // Run this first, before the menu may be opened by later code.
     if (this.open && selectKeys.includes(key)) {
+      console.log('this.dropdownitems: ', this.dropdownItems, 'focusIndex: ', this.focusIndex);
       this.dropdownItems[this.focusIndex].click();
       return;
     }
@@ -311,7 +317,7 @@ export class CbpDropdown {
     // Navigation within an open menu
     if (this.open) {
       const i = (this.filter && this.searchString) ? this.matchIndex : this.focusIndex;
-      const l = (this.filter && this.searchString) ? this.matches.length -1 : this.dropdownItems.length - 1;
+      const l = (this.filter && this.searchString) ? this.matches?.length -1 || 0: this.dropdownItems?.length - 1 || 0;
       const n = {
         Home: 0,
         ArrowUp: -1 < i + -1 ? i + -1 : l,
@@ -426,12 +432,18 @@ export class CbpDropdown {
     console.log('minimumInputLength: ',this.minimumInputLength);
 
 
-    if (this.async && this.searchString.length == this.minimumInputLength && letter != 'backspace') {
-      this.populateCombobox.emit({
-        searchString: this.searchString,
-        host: this.host
-      });
-      console.log(this.populateCombobox);
+    if (this.async) {
+      if (this.searchString.length >= this.minimumInputLength) {
+        this.populateCombobox.emit({
+          searchString: this.searchString,
+          host: this.host
+        });
+        console.log(this.populateCombobox);
+      }
+      else {
+        this.items=[];
+        this.matches=[];
+      }
     }
     // If not async or we already have matches from the async call, just filter within them
     else {
@@ -496,6 +508,7 @@ export class CbpDropdown {
   }
 
   setCurrent(newValue=0, oldValue=undefined) {
+    console.log('Setting current: ', oldValue, newValue, this.dropdownItems[newValue]);
     // Unset the old item, if any
     if (oldValue != undefined && oldValue != newValue) {
       this.dropdownItems[oldValue].current=false;
@@ -532,6 +545,38 @@ export class CbpDropdown {
     }
   }
 
+
+
+
+
+/*
+  updateOptions() {
+    this.setOptionList();
+  }
+
+  setOptionList() {
+    const items = this.host.querySelectorAll('uef-droplist-item');
+    if (typeof this.items == 'string') {
+      //this.options = toJSON(this.items);
+      this.dropdownItems = JSON.parse(this.items);
+    }
+    //let options = [];
+    let dropdownItems = [];
+    if (items?.length > 0) {
+      items.forEach(el => {
+        options =
+          [...options, {
+              label: el.label,
+              value: el.value,
+              selected: el.selected
+            }];
+      });
+      this.options = [
+        ...options, ...this.options
+      ];
+    }
+  }
+*/
 
 
   componentWillLoad() {
@@ -578,7 +623,7 @@ export class CbpDropdown {
       "--cbp-dropdown-attached-button-end-width": `${this.attachedButtonEndWidth}px`,
     });
 
-
+    // TechDebt: this doesn't work here for items specified as JSON, which aren't populated until rendering
     // Get the value and label for single-select after rendering
     if (!this.multiple) {
       if (!this.value || !this.selectedLabel) {
@@ -597,12 +642,41 @@ export class CbpDropdown {
   }
 
   componentWillRender() {
+    // Disable attached buttons if the dropdown is disabled or has no items.
     if (this.attachedButtonStart) this.attachedButtonStart.disabled=this.disabled || !this.dropdownItems.length;
     if (this.attachedButtonEnd) this.attachedButtonEnd.disabled=this.disabled || !this.dropdownItems.length;
+  }
 
+  componentDidRender() {
+    // If the items were specified via JSON, they didn't exist until rendering, so set them now.
     if (this.items) {
-      this.listbox.innerHTML = [...this.dropdownItems].join('');
+      this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
+      // in async mode, all of the items are matches
+      if (this.async) {
+        this.matches=[];
+        for (let i = 0; i < this.dropdownItems.length; i++ ) {
+          this.matches = [...this.matches, i];
+        }
+      }
     }
+
+    /*
+    // Get the value and label for single-select after rendering
+    if (!this.multiple) {
+      if (!this.value || !this.selectedLabel) {
+        this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
+        if (this.selectedItems.length > 0) {
+          this.value = this.selectedItems[0].value || this.selectedItems[0].innerText;
+          this.selectedLabel = this.selectedItems[0].innerText;
+        }
+      }
+    }
+
+    // If there are no selected items, but a value is specified, set those items as selected
+    if (!this.selectedItems.length && this.value != undefined) {
+      this.setSelectedFromValue(this.value);
+    }
+    */
   }
 
   /*
@@ -615,6 +689,7 @@ export class CbpDropdown {
     One common convention is that Down Arrow moves focus from the input to the first focusable descendant of the popup element.
   */
   render() {
+    console.log('Rendering...');
     return (
       <Host>
         <div class="cbp-dropdown-shrinkwrap">
@@ -678,7 +753,10 @@ export class CbpDropdown {
             id={`${this.fieldId}-menu`}
             ref={el => (this.listbox = el)}
           >
-            <slot onSlotchange ={ (e) => this.handleSlotChange(e)} />
+            { this.items 
+              ? this.generateItems()
+              : <slot onSlotchange ={ (e) => this.handleSlotChange(e)} />
+            }
           </div>
         </div>
       </Host>

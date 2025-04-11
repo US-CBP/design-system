@@ -412,6 +412,51 @@ Combobox.args = {
 
 
 
+
+// Combobox using Countries data as an asynchronous call: 
+const DropdownJSONTemplate = ({ label, description, fieldId, name, placeholder, items, filter, async, minimumInputLength, error, readonly, disabled, value, context, sx }) => {
+  console.log('Story items: ',items);
+
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
+      <cbp-dropdown
+        ${name ? `name="${name}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${items ? `items='${items}'` : ''}
+        ${filter ? `filter` : ''}
+        ${async ? `async` : ''}
+        ${minimumInputLength ? `minimum-input-length="${minimumInputLength}"` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+         <!-- No dropdown items loaded by default -->
+      </cbp-dropdown>
+    </cbp-form-field>
+  `;
+};
+
+export const DropdownJSON = DropdownJSONTemplate.bind({});
+DropdownJSON.args = {
+  label:"Dropdown using JSON",
+  description: "A dropdown example using States data, loaded via JSON.",
+  items: JSON.stringify(States),
+  value: '',
+};
+
+
+
+
+
+
 // Combobox using Countries data as an asynchronous call: 
 const ComboboxAsyncTemplate = ({ label, description, fieldId, name, placeholder, filter, async, minimumInputLength, error, readonly, disabled, value, context, sx }) => {
 
@@ -425,7 +470,8 @@ const ComboboxAsyncTemplate = ({ label, description, fieldId, name, placeholder,
       let searchString = e.detail.searchString;
       console.log('populateCombobox event captured by story code!',{e});
       // filter the JSON natively in JavaScript
-      let filteredJSON = Countries.filter( (item) => item.label.indexOf(searchString) >= 0);
+      let filteredJSON = Countries.filter( (item) => item.label.toLowerCase().indexOf(searchString) != -1);
+      console.log({filteredJSON});
       // return the filtered JSON result to the component via the items property
       asyncCombobox.items = filteredJSON;
     });
@@ -468,3 +514,9 @@ ComboboxAsync.args = {
   async: true,
   minimumInputLength: 2
 };
+
+
+
+
+//const prefix='[{"label":"Attorney","value":"Attorney"},{"label":"Coach","value":"Coach"},{"label":"Dr.","value":"Dr."},{"label":"Father","value":"Father"},{"label":"Governor","value":"Governor"},{"label":"Honorable","value":"Honorable"},{"label":"Officer","value":"Officer"},{"label":"Master","value":"Master"},{"label":"Miss","value":"Miss"},{"label":"Mr.","value":"Mr."},{"label":"Mrs","value":"Mrs."},{"label":"Ms.","value":"Ms"},{"label":"President","value":"President"},{"label":"Professor","value":"Professor"},{"label":"Reverend","value":"Reverend"}]';
+//const suffix='[{"label":"I","value":"First"},{"label":"II","value":"Second"},{"label":"III","value":"Third"},{"label":"IV","value":"Fourth"},{"label":"IX","value":"Ninth"},{"label":"JR","value":"Junior"},{"label":"SR","value":"Senior"},{"label":"V","value":"Fifth"},{"label":"VI","value":"Sixth"},{"label":"VII","value":"Seventh"},{"label":"VIII","value":"Eighth"},{"label":"X","value":"Tenth"},{"label":"XI","value":"Eleventh"},{"label":"XII","value":"Twelfth"},{"label":"XIII","value":"Thirteenth"},{"label":"XIV","value":"Fourteenth"},{"label":"XV","value":"Fifteenth"},{"label":"XVI","value":"Sixteenth"},{"label":"XVII","value":"Seventeenth"}]';
