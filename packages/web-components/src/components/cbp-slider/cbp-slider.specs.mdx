@@ -12,6 +12,9 @@ The primary use for the Slider component is to select a value within a range.
 
 * The Slider component wraps the slotted native form control (`input type="range"`) to provide custom, cross-browser styling and additional functionality.
 * The Slider component shall be slotted within the `cbp-form-field` component to supply an accessible label and description.
+* The component will show the min/max values to the left and right of the slider control by default, but these may be hidden.
+* The component will show a numeric input to the right of the slider by default, which is synced with the slider control. This control may be optionally hidden.
+* Optional named slots also exist before and after the slider control for adding custom content, such as icons or time-based values.
 
 ## Technical Specifications
 
@@ -27,7 +30,7 @@ The primary use for the Slider component is to select a value within a range.
     * Users can enter an exact numeric value into the input field.
     * This input is synchronized with the slider in terms of min, max, step, and value.
     * While the numeric input buttons are hidden, the up and down arrow keys may still be used to increments and decrement the value (by the step value) respectively.
-    * This input has no `name` attribute and will not be submitted with a native form submission (the `input[type=range]` is submitted if it has a `name`.)
+    * This input has no `name` attribute and will not be submitted with a native form submission (the `input type=range` is submitted if it has a `name`.)
 
 ### Responsiveness
 
