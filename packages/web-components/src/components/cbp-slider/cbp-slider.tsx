@@ -3,6 +3,8 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 /**
  * @slot - A native `input type="range"` gets slotted within the default slot.
+ * @slot cpb-slider-before - an optional slot to place content (e.g., an icon) before the slider control.
+ * @slot cpb-slider-after - an optional slot to place content (e.g., an icon) after the slider control.
  */
 @Component({
   tag: 'cbp-slider',
@@ -68,7 +70,7 @@ export class CbpSlider {
     if (newValue < this.min) newValue = this.min;
     if (newValue > this.max) newValue = this.max;
     this.formField.value = newValue;
-    this.valueField.value = newValue; // set explicitly because the re-render is inconsistent
+    if (this.valueField) this.valueField.value = newValue; // set explicitly because the re-render is inconsistent
     this.host.style.setProperty('--cbp-slider-track-selection-size', newValue);
     this.value = newValue;
   }
@@ -105,12 +107,24 @@ export class CbpSlider {
   render() {
     return (
       <Host>
-        {!this.hideMinmax && <span>{this.min}</span>}
+        {(!this.hideMinmax || this.host.querySelector('[slot="cpb-slider-before"]')) &&
+          <span>
+            {!this.hideMinmax && this.min}
+            <slot name="cpb-slider-before" />
+          </span>
+        }
+
         <div class="cbp-slider-wrapper">
           <span class="cbp-slider-selection"></span>
           <slot />
         </div>
-        {!this.hideMinmax && <span>{this.max}</span>}
+        
+        {(!this.hideMinmax || this.host.querySelector('[slot="cpb-slider-after"]')) &&
+          <span>
+            <slot name="cpb-slider-after" />
+            {!this.hideMinmax && this.max}
+          </span>
+        } 
 
         {!this.hideInput && <input type="number" 
           min={this.min}
