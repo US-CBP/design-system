@@ -7,6 +7,11 @@ The React components are wrappers generated from this package and will share the
 ## [unreleased] TBD
 * First cut of the `cbp-slider` component for selecting a single value from a range.
 * First cut of the `cbp-code-snippet` component, which is used to display code samples.
+* Updates to the `cbp-dropdown` component to:
+  * Pass in items as JSON via the `items` property (rather than slotted).
+  * Specify that a dropdown's items are asynchronously updated via the `async` property.
+  * Specify a minimum input length (`minimumInputLength`) to emit an event (to asynchronously update a filtered list of items via JSON from the application code).
+  * Close the dropdown when tabbing out of it.
 * Cleaned up the monorepo:
   * Removed vanilla package.
   * Created design-tokens package and updated Style Dictionary to the latest version, 4.3.3.

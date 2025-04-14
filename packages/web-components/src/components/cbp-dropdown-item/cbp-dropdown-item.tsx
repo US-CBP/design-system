@@ -16,7 +16,7 @@ export class CbpDropdownItem {
   @Prop() value: string;
 
   /* Specifies that a dropdown item is disabled and cannot be selected */
-  //@Prop({reflect:true}) disabled: boolean; // No disabled state designed, but keep this in case we revisit it, as native options can be disabled
+  @Prop({reflect:true}) disabled: boolean; // No disabled state designed, but keep this in case we revisit it, as native options can be disabled
 
   /** For Internal Use: Specifies the current item (referenced by `aria-activedescendant`) while using keyboard navigation. */
   @Prop({ reflect: true }) current: boolean;
@@ -30,16 +30,19 @@ export class CbpDropdownItem {
 
   @Event() dropdownItemClick: EventEmitter;
   handleClick({target}) {
-    // Ignore a click on the label because it will fire a click on the input as well
-    if(target.tagName != "LABEL") {
-      const label=(this.host.querySelector('.cbp-dropdown-item-content') as HTMLElement).innerText;
-      this.dropdownItemClick.emit({
-        host: this.host,
-        target: target,
-        label: label,
-        value: (!!this.value) ? this.value : label
-      });
-      //console.log('Dropdown Item Click: ', this.value, (!!this.value) ? this.value : label);
+    // Do nothing if disabled
+    if (!this.disabled) {
+      // Ignore a click on the label because it will fire a click on the input as well
+      if(target.tagName != "LABEL") {
+        const label=(this.host.querySelector('.cbp-dropdown-item-content') as HTMLElement).innerText;
+        this.dropdownItemClick.emit({
+          host: this.host,
+          target: target,
+          label: label,
+          value: (!!this.value) ? this.value : label
+        });
+        //console.log('Dropdown Item Click: ', this.value, (!!this.value) ? this.value : label);
+      }
     }
     // Selection is delegated to the parent level because we don't know if this is single or multiselect at this level.
   }

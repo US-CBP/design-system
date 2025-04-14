@@ -15,7 +15,7 @@ export class CbpDropdown {
   private formField: HTMLInputElement; // the hidden input that stores the dropdown value for form posts
   
   private listbox: HTMLElement;
-  private dropdownItems: HTMLCbpDropdownItemElement[];
+  private dropdownItems: HTMLCbpDropdownItemElement[] = [];
   private focusIndex: number;
 
   private matches: number[]; // an array of indexes (to dropdownItems) of the matches.
@@ -33,8 +33,21 @@ export class CbpDropdown {
   /** Specifies whether multiple selections are supported, in which case checkboxes shall be slotted in accordance with the design system specified pattern. Defaults to false, which renders a single-select dropdown. */
   @Prop({ reflect: true }) multiple: boolean = false;
 
-  /** Specifies whether...?  */
+  /** Specifies whether the dropdown accepts key presses to filter results, enabling combobox functionality. */
   @Prop({ reflect: true }) filter: boolean = false;
+
+  /** Indicates that the filtering will be performed by asyncronous calls (handled by application logic). */
+  @Prop({reflect: true}) async: boolean = false;
+
+  /** Specifies the number of characters need to emit an event to make an API call and return filtered results. This property is only used when  */
+  //@Prop() filterCharacters: number;
+  @Prop() minimumInputLength: number;
+
+  /** A JSON object (or stringified JSON) containing an array of labels and values. Labels may contain markup as needed, but in such cases, a value should always be specified explicitly. */
+  @Prop() items: string | object;
+
+  /* TODO */
+  //@Prop() create: boolean;
 
   /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-dropdown');
@@ -77,6 +90,8 @@ export class CbpDropdown {
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() valueChange: EventEmitter;
   
+  /** */
+  @Event() populateCombobox: EventEmitter;
 
   // Dropdown Item selection
   selectDropdownItem({target}) {
@@ -149,7 +164,7 @@ export class CbpDropdown {
     // If the menu was opened, give it time to render and set focus to the selected/first item
     if (newValue) {
       this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item')); // Get and set this array whenever the menu is opened
-      this.setDefaultItem();
+      if (this.dropdownItems.length) this.setDefaultItem();
       //this.listbox.scrollIntoView({behavior: "instant", block: "nearest"}); // TechDebt: is this needed?
       
       // Set up a clickaway listener to close the menu
@@ -191,6 +206,27 @@ export class CbpDropdown {
         else item.selected = false;
       });
     }
+  }
+
+  //@Watch('items') 
+  generateItems() {
+    let items;
+    if (typeof this.items == 'string') {
+      items = JSON.parse(this.items) || {};
+    }
+    else if (typeof this.items == 'object') {
+      items = this.items;
+    }
+
+    // clear the dropdownItems array
+    let dropdownItems: HTMLCbpDropdownItemElement[] = []
+    // re-populate it from items prop (JSON) 
+    items.map(({ label, value=label }) => {
+      let newItem: HTMLCbpDropdownItemElement = <cbp-dropdown-item value={value} key={`cbp-dropdown-item-${value}`}>{label}</cbp-dropdown-item>;
+      dropdownItems = [...dropdownItems, newItem]
+    });
+    this.dropdownItems = dropdownItems;
+    return dropdownItems;
   }
 
   /** 
@@ -243,8 +279,6 @@ export class CbpDropdown {
 
 
 
-
-
   // This handles activating the button via Space or Enter as well (as long as it's not readonly or disabled).
   handleDropdownClick(e) {
     // TechDebt: Should only trigger from mouse/touch, needs verification for mobile touch
@@ -259,19 +293,19 @@ export class CbpDropdown {
     const selectKeys = ['Enter', ' '];
     const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ']; // all keys that will do the default open action
     const navKeys = ['ArrowDown', 'ArrowUp', 'Enter', 'Home', 'End']; // all keys that will do the default open action
-    //event.preventDefault();
 
     // If the menu is already open, pressing enter or space triggers a click on the current item. 
     // Run this first, before the menu may be opened by later code.
     if (this.open && selectKeys.includes(key)) {
-      this.dropdownItems[this.focusIndex].click();
+      //event.preventDefault();
+      this.dropdownItems[this.focusIndex]?.click();
       return;
     }
 
     // Navigation within an open menu
     if (this.open) {
       const i = (this.filter && this.searchString) ? this.matchIndex : this.focusIndex;
-      const l = (this.filter && this.searchString) ? this.matches.length -1 : this.dropdownItems.length - 1;
+      const l = (this.filter && this.searchString) ? this.matches?.length -1 || 0: this.dropdownItems?.length - 1 || 0;
       const n = {
         Home: 0,
         ArrowUp: -1 < i + -1 ? i + -1 : l,
@@ -279,7 +313,6 @@ export class CbpDropdown {
         End: l,
       }[key];
       if (n !== undefined && key !== 'Tab') {
-        //console.log('i',i,'l',l,'n',n)
         this.matchIndex = n;
         this.setCurrent( (this.filter && this.searchString) ? this.matches[n] : n, this.focusIndex);
         if (!this.filter) this.searchString='';
@@ -296,6 +329,11 @@ export class CbpDropdown {
       this.open = false;
       this.control.focus();
     }
+    // Close the menu when pressing ESC anywhere in the component and send focus back to the control
+    if (key == 'Tab') {
+      this.open = false;
+    }
+
     
     // handle typing characters when open or closed
     if ( key === 'Backspace' || key === 'Clear' ||
@@ -308,8 +346,8 @@ export class CbpDropdown {
 
 
   /*
-    Single letter cycling (like a native select)
-  */
+   *  Single letter cycling (like a native select)
+   */
   jumpToLetter(letter) {
     // if the letter pressed is different from the last one, find all the matches and select the first
     if (letter != this.searchString) {
@@ -361,13 +399,32 @@ export class CbpDropdown {
     else {
       this.searchString += letter;
     }
-    this.getSearchStringMatches(this.searchString);
-    this.filterDropdownItems(this.matches);
-    if (this.matches.length > 0) {
-      this.setCurrent(this.matches[0],this.focusIndex);
+
+    if (this.async) {
+      // For async calls, emit an event so that app logic can populate the items(JSON) proop
+      if (this.searchString.length >= this.minimumInputLength) {
+        this.populateCombobox.emit({
+          searchString: this.searchString,
+          host: this.host
+        });
+      }
+      // If the search string doesn't meet the threshold, clear items and matches
+      else {
+        this.items=[];
+        this.matches=[];
+      }
+    }
+    // If not async or we already have matches from the async call, just filter within them
+    else {
+      this.getSearchStringMatches(this.searchString);
+      this.filterDropdownItems(this.matches);
+      if (this.matches.length > 0) {
+        this.setCurrent(this.matches[0],this.focusIndex);
+      }
     }
   };
   
+  // Updates the matches[], based on search string matches
   getSearchStringMatches(searchString) {
     let matches=[];
     this.dropdownItems.forEach( (item, index) => {
@@ -382,12 +439,14 @@ export class CbpDropdown {
     this.matchIndex=0;
   }
 
+  // Updates the selectable dropdown items based on matches[]
   filterDropdownItems(matches){
     this.dropdownItems.forEach( (item, index) => {
       matches.includes(index) ? item.removeAttribute('hidden') : item.setAttribute('hidden','');
     });
   }
 
+  // Clears all filters and variables that persist them.
   clearFilters() {
     this.matches=[];
     this.matchIndex=undefined;
@@ -403,7 +462,6 @@ export class CbpDropdown {
   /*
    *  Managing the "current" item for keyboard navigation
    */
-  
   setDefaultItem(){
     let oldIndex = this.focusIndex;
     let newIndex;
@@ -420,17 +478,19 @@ export class CbpDropdown {
 
   setCurrent(newValue=0, oldValue=undefined) {
     // Unset the old item, if any
-    if (oldValue != undefined && oldValue != newValue) {
+    if (oldValue != undefined && oldValue != newValue && this.dropdownItems[oldValue]) {
       this.dropdownItems[oldValue].current=false;
     }
 
-    this.dropdownItems[newValue].current=true;
-    this.control.setAttribute('aria-activedescendant',this.dropdownItems[newValue].id)
-    this.focusIndex = newValue;
+    if (this.dropdownItems[newValue]) {
+      this.dropdownItems[newValue].current=true;
+      this.control.setAttribute('aria-activedescendant',this.dropdownItems[newValue].id)
+      this.focusIndex = newValue;  
     
-    // ensure the new option is in view
-    if (this.isScrollable(this.listbox)) {
-      this.maintainScrollVisibility(this.dropdownItems[newValue], this.listbox);
+      // ensure the new option is in view
+      if (this.isScrollable(this.listbox)) {
+        this.maintainScrollVisibility(this.dropdownItems[newValue], this.listbox);
+      }
     }
   }
 
@@ -478,6 +538,9 @@ export class CbpDropdown {
       this.value=temp;
       this.placeholder = this.selectedItems.length != 1 ? 'Selected Items' : 'Selected Item';
     }
+    else if (this.filter && this.minimumInputLength) {
+      this.placeholder = 'Begin typing to search';
+    }
 
     // Apply sx
     if (typeof this.sx == 'string') {
@@ -498,7 +561,7 @@ export class CbpDropdown {
       "--cbp-dropdown-attached-button-end-width": `${this.attachedButtonEndWidth}px`,
     });
 
-
+    // TechDebt: this doesn't work here for items specified as JSON, which aren't populated until rendering
     // Get the value and label for single-select after rendering
     if (!this.multiple) {
       if (!this.value || !this.selectedLabel) {
@@ -517,19 +580,26 @@ export class CbpDropdown {
   }
 
   componentWillRender() {
+    // Disable attached buttons if the dropdown is disabled or has no items.
     if (this.attachedButtonStart) this.attachedButtonStart.disabled=this.disabled || !this.dropdownItems.length;
     if (this.attachedButtonEnd) this.attachedButtonEnd.disabled=this.disabled || !this.dropdownItems.length;
   }
 
-  /*
-  Notes (keep until complete):
+  componentDidRender() {
+    // If the items were specified via JSON, they didn't exist until rendering, so set them now.
+    if (this.items) {
+      this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
+      // in async mode, all of the items are matches
+      if (this.async) {
+        this.matches=[];
+        for (let i = 0; i < this.dropdownItems.length; i++ ) {
+          this.matches = [...this.matches, i];
+        }
+      }
+    }
+  }
 
-    aria-haspopup, aria-controls, aria-activedescendant, and aria-autocomplete.
 
-    Comboboxes have an implicit aria-haspopup value of listbox, so including this attribute is optional if the popup is a listbox.
-
-    One common convention is that Down Arrow moves focus from the input to the first focusable descendant of the popup element.
-  */
   render() {
     return (
       <Host>
@@ -546,7 +616,7 @@ export class CbpDropdown {
             aria-expanded={`${this.open}`}
             aria-haspopup="listbox"
             aria-invalid={this.error ? 'true' : false}
-            disabled={this.disabled || this.readonly || !this.dropdownItems.length}
+            disabled={this.disabled || this.readonly || ( (!this.async) && (this.dropdownItems.length < 1))} 
             onClick={(e) => this.handleDropdownClick(e)}
             onKeyDown={e => this.getActionFromKey(e)}
             ref={el => (this.control = el)}
@@ -591,10 +661,14 @@ export class CbpDropdown {
           <div
             role="listbox"
             class="cbp-dropdown-menu"
+            tabIndex={-1}
             id={`${this.fieldId}-menu`}
             ref={el => (this.listbox = el)}
           >
-            <slot onSlotchange ={ (e) => this.handleSlotChange(e)} />
+            { this.items 
+              ? this.generateItems()
+              : <slot onSlotchange ={ (e) => this.handleSlotChange(e)} />
+            }
           </div>
         </div>
       </Host>
