@@ -46,10 +46,8 @@ export class CbpDropdown {
   /** A JSON object (or stringified JSON) containing an array of labels and values. Labels may contain markup as needed, but in such cases, a value should always be specified explicitly. */
   @Prop() items: string | object;
 
-  /**  */
+  /* TODO */
   //@Prop() create: boolean;
-
-  
 
   /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-dropdown');
@@ -212,7 +210,6 @@ export class CbpDropdown {
 
   //@Watch('items') 
   generateItems() {
-    console.log('generateItems(): ', this.items)
     let items;
     if (typeof this.items == 'string') {
       items = JSON.parse(this.items) || {};
@@ -223,19 +220,12 @@ export class CbpDropdown {
 
     // clear the dropdownItems array
     let dropdownItems: HTMLCbpDropdownItemElement[] = []
-    // re-populate it from items prop (JSON)
-    //<cbp-dropdown-item value=${value}}>${label}</cbp-dropdown-item>;
+    // re-populate it from items prop (JSON) 
     items.map(({ label, value=label }) => {
-      //let dropdownItem:HTMLCbpDropdownItemElement = document.createElement('cbp-dropdown-item');
-      //dropdownItem.value = value ? value : label;
-      //dropdownItem.innerHTML = label;
-      //this.dropdownItems = [...this.dropdownItems, dropdownItem]
       let newItem: HTMLCbpDropdownItemElement = <cbp-dropdown-item value={value} key={`cbp-dropdown-item-${value}`}>{label}</cbp-dropdown-item>;
       dropdownItems = [...dropdownItems, newItem]
     });
     this.dropdownItems = dropdownItems;
-    console.log('Generated new dropdownitems from items JSON: ', this.dropdownItems);
-    //this.listbox.append(...this.dropdownItems);
     return dropdownItems;
   }
 
@@ -300,17 +290,15 @@ export class CbpDropdown {
   // Testing...
   getActionFromKey( event) {
     const { key, altKey, ctrlKey, metaKey } = event;
-    console.log('Keypress detected: ', key)
     const selectKeys = ['Enter', ' '];
     const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ']; // all keys that will do the default open action
     const navKeys = ['ArrowDown', 'ArrowUp', 'Enter', 'Home', 'End']; // all keys that will do the default open action
-    //event.preventDefault();
 
     // If the menu is already open, pressing enter or space triggers a click on the current item. 
     // Run this first, before the menu may be opened by later code.
     if (this.open && selectKeys.includes(key)) {
-      console.log('this.dropdownitems: ', this.dropdownItems, 'focusIndex: ', this.focusIndex);
-      this.dropdownItems[this.focusIndex].click();
+      //event.preventDefault();
+      this.dropdownItems[this.focusIndex]?.click();
       return;
     }
 
@@ -325,7 +313,6 @@ export class CbpDropdown {
         End: l,
       }[key];
       if (n !== undefined && key !== 'Tab') {
-        //console.log('i',i,'l',l,'n',n)
         this.matchIndex = n;
         this.setCurrent( (this.filter && this.searchString) ? this.matches[n] : n, this.focusIndex);
         if (!this.filter) this.searchString='';
@@ -342,24 +329,16 @@ export class CbpDropdown {
       this.open = false;
       this.control.focus();
     }
+    // Close the menu when pressing ESC anywhere in the component and send focus back to the control
+    if (key == 'Tab') {
+      this.open = false;
+    }
+
     
     // handle typing characters when open or closed
     if ( key === 'Backspace' || key === 'Clear' ||
         (key.length === 1 && key !== ' ' && !altKey && !ctrlKey && !metaKey && !navKeys.includes(key))
     ) {
-      /*
-      if (this.filter) {
-        if (this.async) {
-          if (this.)
-        }
-        else {
-          this.searchByString(key.toLowerCase());
-        }
-      } 
-      else {
-        this.jumpToLetter(key.toLowerCase());
-      }
-      */
       this.open=true;
       this.filter ? this.searchByString(key.toLowerCase()) : this.jumpToLetter(key.toLowerCase());
     }
@@ -367,8 +346,8 @@ export class CbpDropdown {
 
 
   /*
-    Single letter cycling (like a native select)
-  */
+   *  Single letter cycling (like a native select)
+   */
   jumpToLetter(letter) {
     // if the letter pressed is different from the last one, find all the matches and select the first
     if (letter != this.searchString) {
@@ -421,25 +400,15 @@ export class CbpDropdown {
       this.searchString += letter;
     }
 
-    /* 
-      Update for async functionality
-      When the search string is the same length as the minimumInputLength, make the async call (unless it was already made and they backspaced to it).
-      Anything else is done by filtering.
-     */ 
-    console.log('async: ', this.async);
-    console.log('letter: ', letter);
-    console.log('searchString: ',this.searchString);
-    console.log('minimumInputLength: ',this.minimumInputLength);
-
-
     if (this.async) {
+      // For async calls, emit an event so that app logic can populate the items(JSON) proop
       if (this.searchString.length >= this.minimumInputLength) {
         this.populateCombobox.emit({
           searchString: this.searchString,
           host: this.host
         });
-        console.log(this.populateCombobox);
       }
+      // If the search string doesn't meet the threshold, clear items and matches
       else {
         this.items=[];
         this.matches=[];
@@ -508,19 +477,20 @@ export class CbpDropdown {
   }
 
   setCurrent(newValue=0, oldValue=undefined) {
-    console.log('Setting current: ', oldValue, newValue, this.dropdownItems[newValue]);
     // Unset the old item, if any
-    if (oldValue != undefined && oldValue != newValue) {
+    if (oldValue != undefined && oldValue != newValue && this.dropdownItems[oldValue]) {
       this.dropdownItems[oldValue].current=false;
     }
 
-    this.dropdownItems[newValue].current=true;
-    this.control.setAttribute('aria-activedescendant',this.dropdownItems[newValue].id)
-    this.focusIndex = newValue;
+    if (this.dropdownItems[newValue]) {
+      this.dropdownItems[newValue].current=true;
+      this.control.setAttribute('aria-activedescendant',this.dropdownItems[newValue].id)
+      this.focusIndex = newValue;  
     
-    // ensure the new option is in view
-    if (this.isScrollable(this.listbox)) {
-      this.maintainScrollVisibility(this.dropdownItems[newValue], this.listbox);
+      // ensure the new option is in view
+      if (this.isScrollable(this.listbox)) {
+        this.maintainScrollVisibility(this.dropdownItems[newValue], this.listbox);
+      }
     }
   }
 
@@ -545,38 +515,6 @@ export class CbpDropdown {
     }
   }
 
-
-
-
-
-/*
-  updateOptions() {
-    this.setOptionList();
-  }
-
-  setOptionList() {
-    const items = this.host.querySelectorAll('uef-droplist-item');
-    if (typeof this.items == 'string') {
-      //this.options = toJSON(this.items);
-      this.dropdownItems = JSON.parse(this.items);
-    }
-    //let options = [];
-    let dropdownItems = [];
-    if (items?.length > 0) {
-      items.forEach(el => {
-        options =
-          [...options, {
-              label: el.label,
-              value: el.value,
-              selected: el.selected
-            }];
-      });
-      this.options = [
-        ...options, ...this.options
-      ];
-    }
-  }
-*/
 
 
   componentWillLoad() {
@@ -659,37 +597,10 @@ export class CbpDropdown {
         }
       }
     }
-
-    /*
-    // Get the value and label for single-select after rendering
-    if (!this.multiple) {
-      if (!this.value || !this.selectedLabel) {
-        this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
-        if (this.selectedItems.length > 0) {
-          this.value = this.selectedItems[0].value || this.selectedItems[0].innerText;
-          this.selectedLabel = this.selectedItems[0].innerText;
-        }
-      }
-    }
-
-    // If there are no selected items, but a value is specified, set those items as selected
-    if (!this.selectedItems.length && this.value != undefined) {
-      this.setSelectedFromValue(this.value);
-    }
-    */
   }
 
-  /*
-  Notes (keep until complete):
 
-    aria-haspopup, aria-controls, aria-activedescendant, and aria-autocomplete.
-
-    Comboboxes have an implicit aria-haspopup value of listbox, so including this attribute is optional if the popup is a listbox.
-
-    One common convention is that Down Arrow moves focus from the input to the first focusable descendant of the popup element.
-  */
   render() {
-    console.log('Rendering...');
     return (
       <Host>
         <div class="cbp-dropdown-shrinkwrap">
@@ -750,6 +661,7 @@ export class CbpDropdown {
           <div
             role="listbox"
             class="cbp-dropdown-menu"
+            tabIndex={-1}
             id={`${this.fieldId}-menu`}
             ref={el => (this.listbox = el)}
           >

@@ -415,7 +415,6 @@ Combobox.args = {
 
 // Combobox using Countries data as an asynchronous call: 
 const DropdownJSONTemplate = ({ label, description, fieldId, name, placeholder, items, filter, async, minimumInputLength, error, readonly, disabled, value, context, sx }) => {
-  console.log('Story items: ',items);
 
   return ` 
     <cbp-form-field
@@ -464,14 +463,11 @@ const ComboboxAsyncTemplate = ({ label, description, fieldId, name, placeholder,
   let asyncCombobox;
   setTimeout(() => {
     asyncCombobox=document.querySelector('cbp-dropdown[async]') as HTMLCbpDropdownElement;
-    console.log({asyncCombobox});
 
     asyncCombobox.addEventListener('populateCombobox', (e) => {
       let searchString = e.detail.searchString;
-      console.log('populateCombobox event captured by story code!',{e});
       // filter the JSON natively in JavaScript
       let filteredJSON = Countries.filter( (item) => item.label.toLowerCase().indexOf(searchString) != -1);
-      console.log({filteredJSON});
       // return the filtered JSON result to the component via the items property
       asyncCombobox.items = filteredJSON;
     });
