@@ -10,4 +10,8 @@ cbp-app {
     --cbp-color-body-text: var(--cbp-color-text-lightest);
     --cbp-color-body-background: var(--cbp-color-branding-cbp-dark);
   }
+
+  &:has(cbp-action-bar[variant=floating]){
+    padding-bottom: var(--cbp-space-14x);
+  }
 }
