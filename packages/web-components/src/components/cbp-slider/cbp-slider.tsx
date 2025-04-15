@@ -71,7 +71,8 @@ export class CbpSlider {
     if (newValue > this.max) newValue = this.max;
     this.formField.value = newValue;
     if (this.valueField) this.valueField.value = newValue; // set explicitly because the re-render is inconsistent
-    this.host.style.setProperty('--cbp-slider-track-selection-size', newValue);
+    let newValuePercent = (newValue - this.min) / (this.max - this.min);
+    this.host.style.setProperty('--cbp-slider-track-selection-size', `${newValuePercent}`);
     this.value = newValue;
   }
 

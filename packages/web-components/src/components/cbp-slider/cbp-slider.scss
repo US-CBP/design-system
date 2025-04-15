@@ -64,7 +64,14 @@ cbp-slider {
   display: flex;
   align-items: center;
   gap: var(--cbp-space-2x);
+  font-size: var(--cbp-font-size-subhead);
+  font-weight: var(--cbp-font-weight-medium);
   font-style: italic;
+
+  & > span {
+    display: flex;
+    align-items: center;
+  }
 
   input[type=number] {
     width: 7ch;
@@ -98,8 +105,8 @@ cbp-slider {
       block-size: var(--cbp-space-2x);
       inline-size: 100%;
       transform-origin: left center;
-      transform: scaleX(calc(var(--cbp-slider-track-selection-size) / 100)); // TechDebt: the scaling is impacting the border radius. Maybe revisit with clip-path to fix?
-      pointer-events: none;
+      transform: scaleX(var(--cbp-slider-track-selection-size)); // TechDebt: the scaling is impacting the border radius. Maybe revisit with clip-path to fix?
+      pointer-events: none; // allows clicks to pass through to the actual control
     }
   }
 
@@ -118,7 +125,7 @@ cbp-slider {
     // Track
     &::-webkit-slider-runnable-track{
       background: var(--cbp-slider-track-color-unselected);
-      height: var(--cbp-space-half-x);
+      height: var(--cbp-space-1x);
       border-radius: var(--cbp-border-radius-pill);
     }
 
@@ -133,7 +140,7 @@ cbp-slider {
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      margin-top: calc((var(--cbp-space-5x) / 2) * -1);
+      margin-top: calc((var(--cbp-space-4x) / 2) * -1);
       height: var(--cbp-space-5x);
       width: var(--cbp-space-5x);
       background-color: var(--cbp-slider-thumb-color);

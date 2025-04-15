@@ -76,7 +76,7 @@
   --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
   --cbp-table-row-border-size: var(--cbp-border-size-md); 
 
-  --cbp-table-cell-padding: var(--cbp-space-3x) var(--cbp-space-4x);
+  --cbp-table-cell-padding: var(--cbp-space-4x) var(--cbp-space-3x);
 }
 
 
@@ -177,7 +177,7 @@ cbp-table {
       color: var(--cbp-table-color);
       text-align: left;
       vertical-align: top;
-      padding: var(--cbp-space-3x) var(--cbp-space-4x);
+      padding: var(--cbp-table-cell-padding);
 
       // TechDebt: may need to do these sorts of overrides for additional components inside of tables and reevaluate where the selectors belong.
       &:has(input[type=checkbox]) {
@@ -199,6 +199,7 @@ cbp-table {
 
     thead {
       th {
+        font-size: var(--cbp-font-size-heading-xs);
         vertical-align: bottom;
         transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
 

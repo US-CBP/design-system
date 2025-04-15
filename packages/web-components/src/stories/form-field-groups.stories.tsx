@@ -1,6 +1,5 @@
 export default {
   title: 'Patterns/Form Field Groups',
-  tags: ['beta'],
   argTypes: {
     label: {
       control: 'text',
@@ -12,9 +11,6 @@ export default {
       control: 'text',
     },
     error: {
-      control: 'boolean',
-    },
-    readonly: {
       control: 'boolean',
     },
     disabled: {
@@ -42,14 +38,13 @@ const Prefix='[{"label":"Attorney","value":"Attorney"},{"label":"Coach","value":
 const Suffix='[{"label":"I","value":"First"},{"label":"II","value":"Second"},{"label":"III","value":"Third"},{"label":"IV","value":"Fourth"},{"label":"IX","value":"Ninth"},{"label":"JR","value":"Junior"},{"label":"SR","value":"Senior"},{"label":"V","value":"Fifth"},{"label":"VI","value":"Sixth"},{"label":"VII","value":"Seventh"},{"label":"VIII","value":"Eighth"},{"label":"X","value":"Tenth"},{"label":"XI","value":"Eleventh"},{"label":"XII","value":"Twelfth"},{"label":"XIII","value":"Thirteenth"},{"label":"XIV","value":"Fourteenth"},{"label":"XV","value":"Fifteenth"},{"label":"XVI","value":"Sixteenth"},{"label":"XVII","value":"Seventeenth"}]';
 
 // Combobox using Countries data as an asynchronous call: 
-const FullNameTemplate = ({ label, description, fieldId, error, readonly, disabled, context, sx }) => {
+const FullNameTemplate = ({ label, description, fieldId, error, disabled, context, sx }) => {
 
   return ` 
     <cbp-form-field group
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
