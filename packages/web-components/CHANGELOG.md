@@ -4,7 +4,7 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [unreleased] TBD
+## [0.0.1-develop.20] 04-16-2025
 * First cut of the `cbp-slider` component for selecting a single value from a range.
 * First cut of the `cbp-code-snippet` component, which is used to display code samples.
 * Updates to the `cbp-dropdown` component to:
@@ -12,12 +12,12 @@ The React components are wrappers generated from this package and will share the
   * Specify that a dropdown's items are asynchronously updated via the `async` property.
   * Specify a minimum input length (`minimumInputLength`) to emit an event (to asynchronously update a filtered list of items via JSON from the application code).
   * Close the dropdown when tabbing out of it.
+* Minor bugfixes/updates to `cbp-subnav`, `cbp-nav-item`, `cbp-toggle` and `cbp-toast`.
 * Cleaned up the monorepo:
   * Removed vanilla package.
   * Created design-tokens package and updated Style Dictionary to the latest version, 4.3.3.
-* Updated Storybook to the latest version, 8.6.3.
+* Updated Storybook to v8.6.3.
 * Added tag badges (beta, new, etc.) to stories via plugin.
-* Minor bugfixes/updates to `cbp-toggle` and `cbp-toast`.
 
 ## [0.0.1-develop.19] 02-12-2025
 * First cut of the `cbp-subnav` and `cbp-subnav-item` components.
