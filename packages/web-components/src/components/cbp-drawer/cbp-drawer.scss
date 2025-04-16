@@ -17,6 +17,7 @@
 cbp-drawer {
   all: unset;
   display: none;
+  position: relative;
   --cbp-panel-border-radius: 0;
   --cbp-panel-border-width: 0;
   // Use the panel CSS API to override the colors in dark mode for a specific drawer variant
@@ -26,23 +27,11 @@ cbp-drawer {
   --cbp-panel-content-color-dark: var(--cbp-color-text-lightest);
   --cbp-panel-content-color-bg-dark: var(--cbp-color-gray-cool-70);
   --cbp-panel-content-color-border-dark: var(--cbp-color-gray-cool-60);
-}
-
-cbp-drawer[open] {
-  display: block;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: calc(var(--cbp-z-index-level-top) - 1);
-  overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.3); // backdrop
 
   .cbp-drawer__content {
     display: flex;
     flex-direction: column;
-    position: fixed;
+    //position: fixed;
     top: 0;
     overflow-y: auto;
     z-index: var(--cbp-z-index-level-4);
@@ -65,6 +54,18 @@ cbp-drawer[open] {
       top: 1em;
     }
   }
+}
+
+cbp-drawer[open] {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: calc(var(--cbp-z-index-level-top) - 1);
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.3); // backdrop
   
   &[position='left'] {
     .cbp-drawer__content {
@@ -87,10 +88,13 @@ cbp-drawer[open] {
       }
     }
   }
+  .cbp-drawer__content {
+    position: fixed;
 
-  @media (min-width: 37.5em) {
-    .cbp-drawer__content {
-      width: 25rem;
-    }
+}
+
+@media (min-width: 37.5em) {
+  .cbp-drawer__content {
+    width: 25rem;
   }
 }

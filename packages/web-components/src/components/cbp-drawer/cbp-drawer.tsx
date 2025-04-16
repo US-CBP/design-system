@@ -23,6 +23,9 @@ export class CbpDrawer {
   /** Creates an accessible label for the drawer (dialog). */
   @Prop() accessibilityText: string;
 
+  /** Specifies a valid CSS media query (preferably using relative units), when met will hide the wrapped content using display: none. E.g., `max-width: 64em` */
+  @Prop() persistAt: string;
+
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
 
@@ -77,7 +80,27 @@ export class CbpDrawer {
     e.key == 'Escape' && this.closeDrawer();
   }
 
+
+  // Callback functions for the media query event listeners
+  doPersistAt(mql) {
+    if (mql.matches) {
+      this.host.style.setProperty('display', 'block')
+    }
+    else {
+      this.host.style.setProperty('display', this.open ? 'fixed' : 'none');
+    }
+  }
+
+
   componentDidLoad() {
+    if (this.persistAt) {
+      const MQ = window?.matchMedia(`(${this.persistAt})`);
+      if (MQ) {
+        MQ.addEventListener('change', mql => this.doPersistAt(mql)); // Add an event listener to the media query
+        this.doPersistAt(MQ); // Run the breakpoint change handler once on load
+      }
+    }
+
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
     }
@@ -89,10 +112,12 @@ export class CbpDrawer {
   }
 
   componentDidRender() {
+    // Support animation by doing it this way
     setTimeout(() => {
       this.open ? this.drawer.classList.add('cbp-drawer--open') : this.drawer.classList.remove('cbp-drawer--open');
     }, 10);
   }
+
 
   render() {
     return (

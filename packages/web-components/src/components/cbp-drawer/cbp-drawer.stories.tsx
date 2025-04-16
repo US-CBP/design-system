@@ -10,6 +10,9 @@ export default {
     open: {
       description: 'Specifies whether the drawer is open or closed.',
       control: 'boolean',
+    },    
+    persistAt: {
+      control: 'text',
     },
     uid: {
       description: 'A unique `id` applied to the drawer and referenced by the control.',
@@ -19,6 +22,7 @@ export default {
       description: 'Accessibility text is required to label the drawer (dialog) and is applied as an `aria-label`.',
       control: 'text',
     },
+
     withIcon: {
       control: 'boolean',
     },
@@ -33,7 +37,7 @@ export default {
   },
 };
 
-const Template = ({ position, withIcon, open, uid, accessibilityText, context, sx }) => {
+const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText, context, sx }) => {
   return `
     <cbp-button
       type="button"
@@ -48,6 +52,7 @@ const Template = ({ position, withIcon, open, uid, accessibilityText, context, s
     <cbp-drawer
       ${position ? `position=${position}` : ''}
       ${open ? `open=${open}` : ''}
+      ${persistAt ? `persist-at=${persistAt}` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -81,7 +86,7 @@ Drawer.args = {
 };
 
 
-const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, withIcon, context, sx }) => {
+const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibilityText, withIcon, context, sx }) => {
   return `
     <cbp-button
       type="button"
@@ -96,6 +101,7 @@ const UserPreferencesTemplate = ({ position, open, uid, accessibilityText, withI
     <cbp-drawer
       ${position ? `position=${position}` : ''}
       ${open ? `open=${open}` : ''}
+      ${persistAt ? `persist-at=${persistAt}` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
