@@ -238,8 +238,8 @@ cbp-form-field {
     }
   }
 
-  select:not([multiple]):not([size]),
-  cbp-dropdown .cbp-custom-form-control {
+  // Selects do not allow ::before pseudo element for a faux-button, so this is implemented differently than cbp-dropdown.
+  select:not([multiple]):not([size]) {
     // Simple chevron replacement, no background
     //background: right var(--cbp-space-2x) top var(--cbp-space-3x) no-repeat var(--cbp-form-field-color-bg) var(--cbp-form-field-select-chevron);
     //padding-inline-end: var(--cbp-space-5x);
