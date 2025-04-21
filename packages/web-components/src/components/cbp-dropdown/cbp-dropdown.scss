@@ -130,8 +130,8 @@ cbp-dropdown {
       box-sizing: border-box;
       content: '';
       position: absolute;
-      top: 0; //var(--cbp-border-size-md);
-      right: 0; //var(--cbp-border-size-md);
+      top: 0;
+      right: 0;
       display: block;
       border-radius: 0 var(--cbp-form-field-border-radius) var(--cbp-form-field-border-radius) 0;
       width: var(--cbp-space-9x);
@@ -226,7 +226,7 @@ cbp-dropdown {
     button::before {
       transform: rotate(180deg);
     }
-    
+
     .cbp-dropdown-menu {
       display: block;
     }
