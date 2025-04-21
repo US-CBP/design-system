@@ -70,6 +70,7 @@
 cbp-dropdown {
   display: block;
 
+  // Adjustments for attached buttons e.g., pagination
   &:has([slot="cbp-dropdown-attached-button-start"]),
   &:has([slot="cbp-dropdown-attached-button-end"]) {
     --cbp-dropdown-chevron-down: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%231b1b1b"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
@@ -123,6 +124,21 @@ cbp-dropdown {
   button {
     appearance: none;
     white-space: nowrap;
+    padding-inline-end: var(--cbp-space-9x);
+
+    &::before {
+      box-sizing: border-box;
+      content: '';
+      position: absolute;
+      top: 0; //var(--cbp-border-size-md);
+      right: 0; //var(--cbp-border-size-md);
+      display: block;
+      border-radius: 0 var(--cbp-form-field-border-radius) var(--cbp-form-field-border-radius) 0;
+      width: var(--cbp-space-9x);
+      min-height: var(--cbp-space-9x);
+      background: right calc( (var(--cbp-space-9x) / 2 ) - 8px) top calc( (var(--cbp-space-9x) / 2 ) - 8px)  no-repeat var(--cbp-form-field-select-chevron), 
+                  var(--cbp-form-field-color-border);
+    }
 
     .cbp-dropdown-label,
     .cbp-dropdown-placeholder {
@@ -207,6 +223,10 @@ cbp-dropdown {
   &[open] {
     --cbp-form-field-border-radius: var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0;
 
+    button::before {
+      transform: rotate(180deg);
+    }
+    
     .cbp-dropdown-menu {
       display: block;
     }
