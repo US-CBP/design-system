@@ -39,15 +39,19 @@ export default {
 
 const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText, context, sx }) => {
   return `
-    <cbp-button
-      type="button"
-      color="secondary"
-      accessibility-text="Open Drawer"
-      target-prop="open"
-      controls=${uid}
+    <cbp-hide 
+      ${persistAt ? `hide-at=${persistAt}` : ''}
     >
-      <cbp-icon name="bars"></cbp-icon>
-    </cbp-button>
+      <cbp-button
+        type="button"
+        color="secondary"
+        accessibility-text="Open Drawer"
+        target-prop="open"
+        controls=${uid}
+      >
+        <cbp-icon name="bars"></cbp-icon>
+      </cbp-button>
+    </cbp-hide>
 
     <cbp-drawer
       ${position ? `position=${position}` : ''}
@@ -82,6 +86,7 @@ export const Drawer = Template.bind({});
 Drawer.args = {
   position: 'left',
   uid: 'drawer',
+  persistAt: 'min-width:50rem',
   context: 'light-always'
 };
 
@@ -101,7 +106,7 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
     <cbp-drawer
       ${position ? `position=${position}` : ''}
       ${open ? `open=${open}` : ''}
-      ${persistAt ? `persist-at=${persistAt}` : ''}
+      ${persistAt ? `persist-at="${persistAt}"` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}

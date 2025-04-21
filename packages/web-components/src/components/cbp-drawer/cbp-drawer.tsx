@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Event, EventEmitter, Method, Watch, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, Method, Watch, Host, h, State } from '@stencil/core';
 import { setCSSProps, getFocusableElements } from '../../utils/utils';
 
 @Component({
@@ -32,10 +32,13 @@ export class CbpDrawer {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+  @State() persistent: boolean = false;
+
   /** Custom event fired when the drawer is opened. */
   @Event() drawerOpen!: EventEmitter;
   /** Custom event fired when the drawer is closed. */
   @Event() drawerClose!: EventEmitter;
+
 
   @Watch('open')
   watchOpenHandler(newValue: boolean) {
@@ -84,10 +87,12 @@ export class CbpDrawer {
   // Callback functions for the media query event listeners
   doPersistAt(mql) {
     if (mql.matches) {
-      this.host.style.setProperty('display', 'block')
+      //this.host.style.setProperty('display', 'block');
+      this.persistent = true;
     }
     else {
-      this.host.style.setProperty('display', this.open ? 'fixed' : 'none');
+      //this.host.style.setProperty('display', this.open ? 'fixed' : 'none');
+      this.persistent = false;
     }
   }
 
@@ -121,16 +126,20 @@ export class CbpDrawer {
 
   render() {
     return (
-      <Host onClick={e => this.handleBackdropClick(e)} onKeyUp={e => this.handleKeyUp(e)} id={this.uid}>
+      <Host 
+        class={this.persistent ? "cbp-drawer--persistent" : ""}
+        onClick={e => this.handleBackdropClick(e)} 
+        onKeyUp={e => this.handleKeyUp(e)} id={this.uid}
+      >
         <div
           ref={el => (this.drawer = el)}
-          role="dialog"
-          aria-modal="true"
+          role={this.persistent ? "region" : "dialog"}
+          aria-modal={this.persistent ? false : "true"}
           class="cbp-drawer__content"
           aria-label={this.accessibilityText}
           tabindex="-1"
         >
-          <cbp-button
+          {!this.persistent && <cbp-button
             class="cbp-drawer__close-button"
             variant="square"
             type="button"
@@ -142,7 +151,7 @@ export class CbpDrawer {
             context="dark-always"
           >
             <cbp-icon name="circle-xmark" size="1rem"></cbp-icon>
-          </cbp-button>
+          </cbp-button>}
 
           <slot />
         </div>

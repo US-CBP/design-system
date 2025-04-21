@@ -12,7 +12,7 @@
 [data-cbp-theme=dark] cbp-drawer:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-drawer-color-bg: var(--cbp-color-gray-cool-70);
 }
- 
+
 
 cbp-drawer {
   all: unset;
@@ -27,6 +27,10 @@ cbp-drawer {
   --cbp-panel-content-color-dark: var(--cbp-color-text-lightest);
   --cbp-panel-content-color-bg-dark: var(--cbp-color-gray-cool-70);
   --cbp-panel-content-color-border-dark: var(--cbp-color-gray-cool-60);
+
+  &.cbp-drawer--persistent {
+    display: block;
+  }
 
   .cbp-drawer__content {
     display: flex;
@@ -88,13 +92,15 @@ cbp-drawer[open] {
       }
     }
   }
+  
   .cbp-drawer__content {
     position: fixed;
+  }
 
-}
-
-@media (min-width: 37.5em) {
-  .cbp-drawer__content {
-    width: 25rem;
+  @media (min-width: 37.5em) {
+    .cbp-drawer__content {
+      width: 25rem;
+    }
   }
 }
+
