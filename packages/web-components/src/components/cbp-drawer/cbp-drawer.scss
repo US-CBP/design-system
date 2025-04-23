@@ -18,18 +18,25 @@ cbp-drawer {
   all: unset;
   display: none;
   position: relative;
-  --cbp-panel-border-radius: 0;
-  --cbp-panel-border-width: 0;
-  // Use the panel CSS API to override the colors in dark mode for a specific drawer variant
-  --cbp-panel-header-color-dark: var(--cbp-color-text-lighter);
-  --cbp-panel-header-color-bg-dark: var(--cbp-color-branding-dhs-blue);
-  --cbp-panel-header-color-bottom-border-dark: var(--cbp-color-gray-cool-50);
-  --cbp-panel-content-color-dark: var(--cbp-color-text-lightest);
-  --cbp-panel-content-color-bg-dark: var(--cbp-color-gray-cool-70);
-  --cbp-panel-content-color-border-dark: var(--cbp-color-gray-cool-60);
+
+  &:not(.cbp-drawer--persistent) {
+    --cbp-panel-border-radius: 0;
+    --cbp-panel-border-width: 0;
+    // Use the panel CSS API to override the colors in dark mode for a specific drawer variant
+    --cbp-panel-header-color-dark: var(--cbp-color-text-lighter);
+    --cbp-panel-header-color-bg-dark: var(--cbp-color-branding-dhs-blue);
+    --cbp-panel-header-color-bottom-border-dark: var(--cbp-color-gray-cool-50);
+    --cbp-panel-content-color-dark: var(--cbp-color-text-lightest);
+    --cbp-panel-content-color-bg-dark: var(--cbp-color-gray-cool-70);
+    --cbp-panel-content-color-border-dark: var(--cbp-color-gray-cool-60);
+  }
 
   &.cbp-drawer--persistent {
     display: block;
+
+    .cbp-drawer__content {
+      height: auto;
+    }
   }
 
   .cbp-drawer__content {

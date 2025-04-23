@@ -23,7 +23,7 @@ export class CbpDrawer {
   /** Creates an accessible label for the drawer (dialog). */
   @Prop() accessibilityText: string;
 
-  /** Specifies a valid CSS media query (preferably using relative units), when met will hide the wrapped content using display: none. E.g., `max-width: 64em` */
+  /** Specifies a valid CSS media query (preferably using relative units), when met will hide the wrapped content using display: none. E.g., `min-width:64em` */
   @Prop() persistAt: string;
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */

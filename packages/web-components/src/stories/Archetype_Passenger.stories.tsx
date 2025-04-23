@@ -47,7 +47,7 @@ function generatePassengers(passengerArgs, page, pageSize) {
             <cbp-grid
               grid-template-columns="14rem 1fr 12rem"
               gap="var(--cbp-space-9x)"
-              breakpoint="70rem"
+              breakpoint="48rem"
             >
               <cbp-flex>
                   <img
@@ -208,6 +208,27 @@ function passengerList(passengerArgs) {
             </cbp-dropdown>
           </cbp-form-field>
         </cbp-flex-item>
+
+        <cbp-hide
+          hide-at="min-width:64rem"
+          sx='{"align-self":"flex-end"}'
+        >
+          <cbp-button
+            type="button"
+            color="secondary"
+            accessibility-text="Open Drawer"
+            target-prop="open"
+            controls="filterDrawer"
+            fill="outline"
+            class="hydrated"
+            >
+              <cbp-icon
+                name="filter"
+                sx='{"margin-right":"var(--cbp-space-2x)"}'
+              ></cbp-icon> Filter
+          </cbp-button>
+        </cbp-hide>
+
         <cbp-flex-item 
           align-self="flex-end"
           sx='{"margin-left":"auto"}'
@@ -306,8 +327,10 @@ function passengerList(passengerArgs) {
 function filterPanel() {
   return `
     <cbp-drawer
+      uid= "filterDrawer"
       position="left"
-      persist-at="min-width:37.5rem"
+      persist-at="min-width:64rem"
+      sx='{"flex-basis":"20rem"}'
     >
       <cbp-panel
         aria-labelledby="panelheader"
@@ -372,12 +395,12 @@ function filterPanel() {
         <cbp-form-field
           label="Passenger Age Range"
         >
-          <cbp-form-field-wrapper>
+          <cbp-slider hide-minmax>
             <input
               type="range"
-              name="textinput"
+              name="age"
             />
-          </cbp-form-field-wrapper>
+          </cbp-slider>
         </cbp-form-field>
 
         <cbp-form-field
@@ -426,12 +449,7 @@ function filterPanel() {
           label="Arrival Date Range From:"
           description="(MM/DD/YYYY) Format"
         >
-          <cbp-form-field-wrapper>
-            <input
-              type="date"
-              name="textinput"
-            />
-          </cbp-form-field-wrapper>
+          <input type="date" name="arrivaldatestart" />
         </cbp-form-field>
 
         <cbp-form-field
@@ -439,32 +457,21 @@ function filterPanel() {
           description="(HH:MM Format) UTC-6 America/New York."
         >
           <cbp-form-field-wrapper>
-            <input
-              type="time"
-            />
+            <input type="time" name="arrivaltimestart" />
             <span slot="cbp-form-field-overlay-start">
-            <cbp-icon name="book"></cbp-icon>
+              <cbp-icon name="book"></cbp-icon>
             </span>
 
             <cbp-segmented-button-group slot="cbp-form-field-attached-button">
-              <cbp-button
-                fill="outline"
-                color="secondary"
-                >
+              <cbp-button fill="outline" color="secondary">
                 AM
               </cbp-button>
 
-              <cbp-button
-                fill="outline"
-                color="secondary"
-                >
+              <cbp-button fill="outline" color="secondary">
                 PM
               </cbp-button>
 
-              <cbp-button
-                fill="outline"
-                color="secondary"
-                >
+              <cbp-button fill="outline" color="secondary">
                 24 HR
               </cbp-button>
             </cbp-segmented-button-group>
@@ -475,45 +482,29 @@ function filterPanel() {
           label="Arrival Date Range To:"
           description="(MM/DD/YYYY) Format"
         >
-          <cbp-form-field-wrapper>
-            <input
-              type="date"
-              name="textinput"
-            />
-          </cbp-form-field-wrapper>
+          <input type="date" name="arrivaldateend" />
         </cbp-form-field>
 
         <cbp-form-field
-          label="Arrival Date Range To:"
+          label="Arrival Time Range To:"
           description="(HH:MM Format) UTC-6 America/New York."
         >
           <cbp-form-field-wrapper>
-            <input
-              type="time"
-            />
+            <input type="time" name="arrivaltimeend" />
             <span slot="cbp-form-field-overlay-start">
-            <cbp-icon name="book"></cbp-icon>
+              <cbp-icon name="book"></cbp-icon>
             </span>
 
             <cbp-segmented-button-group slot="cbp-form-field-attached-button">
-              <cbp-button
-                fill="outline"
-                color="secondary"
-                >
+              <cbp-button fill="outline" color="secondary">
                 AM
               </cbp-button>
 
-              <cbp-button
-                fill="outline"
-                color="secondary"
-                >
+              <cbp-button fill="outline" color="secondary">
                 PM
               </cbp-button>
 
-              <cbp-button
-                fill="outline"
-                color="secondary"
-                >
+              <cbp-button fill="outline" color="secondary">
                 24 HR
               </cbp-button>
             </cbp-segmented-button-group>
@@ -718,17 +709,17 @@ const InternalTemplate = ({ isLoggedIn, username, passengersArgs, manifestArgs }
           Passenger Vetting
         </cbp-typography>
 
-        <cbp-grid
-          grid-template-columns="20rem 1fr "
+        <cbp-flex
           gap="1rem"
         >
           ${filterPanel()}
           ${passengerList(passengersArgs)}
-          ${manifestPane(manifestArgs)}
-        </cbp-grid>
-
+        </cbp-flex>
         </main>
+
     </cbp-container>
+
+    ${manifestPane(manifestArgs)}
 
     <cbp-footer>
       <nav slot="cbp-footer-nav">
