@@ -45,6 +45,7 @@ const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText,
       <cbp-button
         type="button"
         color="secondary"
+        variant="square"
         accessibility-text="Open Drawer"
         target-prop="open"
         controls=${uid}
@@ -86,7 +87,7 @@ export const Drawer = Template.bind({});
 Drawer.args = {
   position: 'left',
   uid: 'drawer',
-  persistAt: 'min-width:50rem',
+  //persistAt: 'min-width:64rem',
   context: 'light-always'
 };
 
@@ -96,6 +97,7 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
     <cbp-button
       type="button"
       color="secondary"
+      variant="square"
       accessibility-text="Open Drawer"
       target-prop="open"
       controls=${uid}

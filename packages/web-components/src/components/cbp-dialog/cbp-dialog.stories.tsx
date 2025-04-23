@@ -77,7 +77,8 @@ const Template = ({ title, content, color, open, uid, accessibilityText, actions
     <cbp-button
       type="button"
       color="secondary"
-      accessibility-text="Open Drawer"
+      variant="square"
+      accessibility-text="Open Dialog"
       target-prop="open"
       controls=${uid}
     >
