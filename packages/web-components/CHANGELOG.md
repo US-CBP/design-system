@@ -4,7 +4,12 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [0.0.1-develop.20] 04-16-2025
+## [unpublished] TBD
+
+* Updated the `cbp-dropdown` faux button so that the chevron can be rotated when opened.
+* Updated web components readme and included it Storybook under "Using the web components."
+
+## [0.0.1-develop.20] 04-18-2025
 * First cut of the `cbp-slider` component for selecting a single value from a range.
 * First cut of the `cbp-code-snippet` component, which is used to display code samples.
 * Updates to the `cbp-dropdown` component to:
