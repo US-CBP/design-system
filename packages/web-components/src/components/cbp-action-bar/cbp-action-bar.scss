@@ -21,6 +21,7 @@
 
 cbp-action-bar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: right;
   min-height: var(--cbp-space-14x);
