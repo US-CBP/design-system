@@ -71,7 +71,6 @@ export class CbpDrawer {
         this.focusableElements = getFocusableElements(this.host);
       }
       this.focusableElements[0]?.focus();
-      //console.log(this.focusableElements,document.activeElement);
     }, 100);
   }
 
@@ -87,11 +86,9 @@ export class CbpDrawer {
   // Callback functions for the media query event listeners
   doPersistAt(mql) {
     if (mql.matches) {
-      //this.host.style.setProperty('display', 'block');
       this.persistent = true;
     }
     else {
-      //this.host.style.setProperty('display', this.open ? 'fixed' : 'none');
       this.persistent = false;
     }
   }

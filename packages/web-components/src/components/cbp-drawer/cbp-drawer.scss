@@ -42,7 +42,6 @@ cbp-drawer {
   .cbp-drawer__content {
     display: flex;
     flex-direction: column;
-    //position: fixed;
     top: 0;
     overflow-y: auto;
     z-index: var(--cbp-z-index-level-4);
