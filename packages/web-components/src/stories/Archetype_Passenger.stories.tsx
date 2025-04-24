@@ -181,13 +181,16 @@ function passengerList(passengerArgs) {
 
   return `
     <cbp-flex-item flex-grow="1">
+
       <cbp-flex
         gap="1rem"
         wrap="wrap"
+        breakpoint="30rem"
+        align-items="flex-end"
       >
         <cbp-flex-item
-          align-self="flex-end"
-          flex-basis="20rem"
+          flex-basis="12rem"
+          flex-grow="1"
           flex-shrink="1"
         >
           <cbp-form-field
@@ -209,10 +212,7 @@ function passengerList(passengerArgs) {
           </cbp-form-field>
         </cbp-flex-item>
 
-        <cbp-hide
-          hide-at="min-width:64rem"
-          sx='{"align-self":"flex-end"}'
-        >
+        <cbp-hide hide-at="min-width:64rem">
           <cbp-button
             type="button"
             color="secondary"
@@ -229,10 +229,10 @@ function passengerList(passengerArgs) {
           </cbp-button>
         </cbp-hide>
 
-        <cbp-flex-item 
-          align-self="flex-end"
-          sx='{"margin-left":"auto"}'
-        >
+        <cbp-flex-item flex-grow="3">
+        </cbp-flex-item>
+      
+        <cbp-flex-item>
           <cbp-button
             type="button"
             fill="outline"
@@ -246,9 +246,8 @@ function passengerList(passengerArgs) {
               ></cbp-icon>Manifests
           </cbp-button>
         </cbp-flex-item>
-        <cbp-flex-item 
-          align-self="flex-end"
-        >
+        
+        <cbp-flex-item>
           <cbp-button
             type="button"
             fill="outline"
@@ -261,63 +260,65 @@ function passengerList(passengerArgs) {
           </cbp-button>
         </cbp-flex-item>
       </cbp-flex>
+
+
       <cbp-structured-list id="passengerList" header-id="list-header" striped  sx='{"margin-top":"var(--cbp-space-4x)"}'>
         <div slot="cbp-structured-list-header" id="list-header">
             XX Results - X filters Applied - Updated : 11/01/2024 10:00 EST 
         </div>
         ${generatePassengers(passengerArgs, page, pageSize)}
-
       </cbp-structured-list>
-        <cbp-pagination
-          records=${passengerArgs.length}
+
+      <cbp-pagination
+        records=${passengerArgs.length}
+      >
+        <cbp-form-field
+          slot="cbp-pagination-items-per-page"
+          label="Items Per Page"
+          field-id="pagination_size"
         >
-          <cbp-form-field
-            slot="cbp-pagination-items-per-page"
-            label="Items Per Page"
-            field-id="pagination_size"
-          >
-            <cbp-dropdown field-id="pagination_size">
-              <cbp-dropdown-item value="10">10/Page</cbp-dropdown-item>
-              <cbp-dropdown-item value="25">25/Page</cbp-dropdown-item>
-              <cbp-dropdown-item value="50">50/Page</cbp-dropdown-item>
-              <cbp-dropdown-item value="100">100/Page</cbp-dropdown-item>
-              <cbp-dropdown-item value="all">All Results</cbp-dropdown-item>
-            </cbp-dropdown>
-          </cbp-form-field>
+          <cbp-dropdown field-id="pagination_size">
+            <cbp-dropdown-item value="10">10/Page</cbp-dropdown-item>
+            <cbp-dropdown-item value="25">25/Page</cbp-dropdown-item>
+            <cbp-dropdown-item value="50">50/Page</cbp-dropdown-item>
+            <cbp-dropdown-item value="100">100/Page</cbp-dropdown-item>
+            <cbp-dropdown-item value="all">All Results</cbp-dropdown-item>
+          </cbp-dropdown>
+        </cbp-form-field>
 
-          <cbp-form-field
-            slot="cbp-pagination-pages"
-            label="Page Displayed"
-            field-id="pagination_pages"
-          >
-            <cbp-dropdown field-id="pagination_pages">
+        <cbp-form-field
+          slot="cbp-pagination-pages"
+          label="Page Displayed"
+          field-id="pagination_pages"
+        >
+          <cbp-dropdown field-id="pagination_pages">
 
-              <div slot="cbp-dropdown-attached-button-start">
-                <cbp-button
-                  fill="solid"
-                  color="secondary"
-                  variant="square"
-                  value="previous page"
-                  accessibility-text="Previous page"
-                >
-                  <cbp-icon name="chevron-right" rotate="180" />
-                </cbp-button>
-              </div>
+            <div slot="cbp-dropdown-attached-button-start">
+              <cbp-button
+                fill="solid"
+                color="secondary"
+                variant="square"
+                value="previous page"
+                accessibility-text="Previous page"
+              >
+                <cbp-icon name="chevron-right" rotate="180" />
+              </cbp-button>
+            </div>
 
-              <div slot="cbp-dropdown-attached-button-end">
-                <cbp-button
-                  fill="solid"
-                  color="secondary"
-                  variant="square"
-                  value="next page"
-                  accessibility-text="Next page"
-                >
-                  <cbp-icon name="chevron-right" />
-                </cbp-button>
-              </div>
-            </cbp-dropdown>
-          </cbp-form-field>
-        </cbp-pagination>
+            <div slot="cbp-dropdown-attached-button-end">
+              <cbp-button
+                fill="solid"
+                color="secondary"
+                variant="square"
+                value="next page"
+                accessibility-text="Next page"
+              >
+                <cbp-icon name="chevron-right" />
+              </cbp-button>
+            </div>
+          </cbp-dropdown>
+        </cbp-form-field>
+      </cbp-pagination>
 
     </cbp-flex-item>
   `;
