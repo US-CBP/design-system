@@ -6,7 +6,7 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-The Chip component acts like an interactive version of Tags and is typically used for selecting or filtering.
+The Chip component acts like an interactive version of the Tag and is typically used for selecting or filtering.
 
 ## Functional Requirements
 
@@ -19,8 +19,9 @@ The Chip component acts like an interactive version of Tags and is typically use
 ### User Interactions
 
 * A chip renders a `button` element and may be toggled with the pointer or keyboard.
-* The chip has visible pressed and not pressed states.
-* Any behavior based on toggling the state of the chip is application-defined.
+  * The chip has visible pressed and not pressed states that are also toggled.
+  * A custom `chipClick` event is emitted when the chip is toggled by user interaction.
+  * Any behavior based on toggling the state of the chip is application-defined.
 
 ### Responsiveness
 
