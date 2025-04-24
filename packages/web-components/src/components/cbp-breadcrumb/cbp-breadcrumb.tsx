@@ -1,6 +1,9 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * @slot - The individual links making up the breadcrumbs are placed in the default slot.
+ */
 @Component({
   tag: 'cbp-breadcrumb',
   styleUrl: 'cbp-breadcrumb.scss',
@@ -27,8 +30,8 @@ export class CbpBreadcrumb {
   render() {
     return (
       <Host>
-        <nav aria-label='Breadcrumb'>
-          <slot></slot>
+        <nav aria-label="Breadcrumb">
+          <slot />
         </nav>      
       </Host>
     );
