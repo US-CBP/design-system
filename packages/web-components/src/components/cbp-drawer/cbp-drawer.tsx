@@ -88,7 +88,7 @@ export class CbpDrawer {
     if (mql.matches) {
       this.persistent = true;
     }
-    else {
+    else {  
       this.persistent = false;
     }
   }
@@ -131,7 +131,7 @@ export class CbpDrawer {
         <div
           ref={el => (this.drawer = el)}
           role={this.persistent ? "region" : "dialog"}
-          aria-modal={this.persistent ? false : "true"}
+          aria-modal={!this.persistent ? "true" : false}
           class="cbp-drawer__content"
           aria-label={this.accessibilityText}
           tabindex="-1"
