@@ -89,10 +89,11 @@ These CSS files assume a directory structure of:
 
 - webroot
   - assets
-  - css
+    - css
     - fonts
       - roboto
       - roboto-mono
+    - images
 
 Any deviations from this structure may require editing of the linked CSS files and paths to the fonts.
 
