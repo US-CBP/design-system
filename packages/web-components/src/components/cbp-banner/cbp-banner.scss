@@ -1,7 +1,11 @@
+/**
+ @prop --cbp-banner-color: var(--cbp-color-text-lightest);
+ @prop --cbp-banner-color-bg: var(--cbp-color-info-dark);
+ */
 
 :root {
-  --cbp-banner-color-bg: var(--cbp-color-info-dark);
   --cbp-banner-color: var(--cbp-color-text-lightest);
+  --cbp-banner-color-bg: var(--cbp-color-info-dark);
 }
 
 cbp-banner {
@@ -27,11 +31,8 @@ cbp-banner {
     }
   }
 
-  /** Info Banner*/
-  &[color='info']{
+  &[color=info]{
     --cbp-banner-color-bg: var(--cbp-color-info-dark);
     --cbp-banner-color: var(--cbp-color-text-lightest);
   }
-  
 }
-

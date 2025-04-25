@@ -6,23 +6,31 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-* The USA Banner is a container spanning the entire viewport meant to highlight urgent or important content.
+The "USA Banner" is similar to the U.S. Web Design System component, intended to establish trust as a common identifier on public-facing government sites.
 
 ## Functional Requirements
 
-* The "USA Banner" pattern is similar to the pattern created by the U.S. Web Design System.
-* This pattern should be used as-is (not customized) in order to maintain consistency across government websites.
-* This banner has built-in expandable functionality.
-* This banner is required to be placed at the top of the page for all public-facing websites.
+* The USA Banner spans the entire viewport and is meant to be displayed at the top of public-facing pages.
+* The USA Banner should contain the same language as the U.S. Web Design System component and should not be customizable or customized, for consistency across government sites.
+* This banner initially displays "collapsed" and is expandable for more information.
 
 ## Technical Specifications
 
 ### User Interactions
 
+* The user may expand/collapse the additional information with the button labelled "Here is how you know" using the mouse or keyboard.
+* The banner will remain expanded until closed manually via the control.
+
 ### Responsiveness
 
-* The banners are responsive and content will wrap and reflow down to phone viewport sizes.
+* The Banner is responsive in both its collapsed and expanded states and its content will wrap and reflow as needed on smaller screen sizes.
 
 ### Accessibility
 
+* The ghost button control has an `aria-controls` attribute referencing the hidden `div`.
+* The control also has an `aria-expanded` attribute to indicate that it controls expandable content.
+* As a semantic button, the control can be reached by keyboard navigation and activated/toggled by pressing `Space` or `Enter`.
+
 ### Additional Notes and Considerations
+
+* The USA Banner is required to be displayed at the top of all public-facing government website or application.

@@ -1,11 +1,12 @@
 /**
  * @prop --cbp-breadcrumb-color: var(--cbp-color-text-darkest);
  * @prop --cbp-breadcrumb-color-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-breadcrumb-gap: var(--cbp-space-2x);
  */
-
  :root{
   --cbp-breadcrumb-color: var(--cbp-color-text-darkest);
   --cbp-breadcrumb-color-dark: var(--cbp-color-text-lightest);
+  --cbp-breadcrumb-gap: var(--cbp-space-2x);
 }
 
 [data-cbp-theme=light] cbp-breadcrumb[context*=dark]:not([context=light-always]),
@@ -20,6 +21,6 @@ cbp-breadcrumb {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--cbp-space-2x);
+    gap: var(--cbp-breadcrumb-gap);
   }
 }

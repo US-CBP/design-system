@@ -7,6 +7,9 @@ export default {
       description: 'Label text in the `button` element and used to describe the action when clicked.',
       control: 'text',
     },
+    withIcon: {
+      control: 'boolean',
+    },
     tag: {
       description: 'Both buttons and anchors may be visually styled like buttons. Be sure to only specify the appropriate attributes for the selected tag.',
       control: 'select',
@@ -105,7 +108,7 @@ export default {
   },
 };
 
-const Template = ({ label, tag, type, value, href, rel, target, download, fill, color, variant, accessibilityText, controls, targetProp, pressed, expanded, disabled, context, sx }) => {
+const Template = ({ label, withIcon, tag, type, value, href, rel, target, download, fill, color, variant, accessibilityText, controls, targetProp, pressed, expanded, disabled, context, sx }) => {
   return ` 
       <cbp-button
         ${tag !== 'button' ? `tag=${tag}` : ''}
@@ -127,6 +130,7 @@ const Template = ({ label, tag, type, value, href, rel, target, download, fill, 
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
+        ${withIcon ? `<cbp-icon name="pen-to-square"></cbp-icon>` : ''}
         ${label}
       </cbp-button>
     `;
@@ -135,8 +139,8 @@ const Template = ({ label, tag, type, value, href, rel, target, download, fill, 
 export const Button = Template.bind({});
 
 
-const SlottedButtonTemplate = ({ label, tag, href, fill, color, variant, context, sx }) => {
-  return ` 
+const SlottedButtonTemplate = ({ label, withIcon, tag, href, fill, color, variant, context, sx }) => {
+  return `
       <cbp-button
         ${tag !== 'button' ? `tag=${tag}` : ''}
         ${href ? `href=${href}` : ''}
@@ -151,6 +155,7 @@ const SlottedButtonTemplate = ({ label, tag, href, fill, color, variant, context
           type="button"
           value="Custom Button Value"
         >
+          ${withIcon ? `<cbp-icon name="pen-to-square"></cbp-icon>` : ''}
           ${label}
         </button>
       </cbp-button>

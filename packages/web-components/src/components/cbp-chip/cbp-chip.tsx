@@ -58,7 +58,6 @@ export class CbpChip {
     });
   }
   
-
   componentWillLoad() {
     this.ariaPressed = this.pressed ? true : false;
 

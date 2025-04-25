@@ -59,23 +59,29 @@ export default {
   },
 };
 
+// TODO: Create and "inText" control to wrap the link inside of text for testing.
+// TODO: Create a withIcon select with: none, before, after
 const Template = ({ label, href, rel, target, download, language, shortcutKey, accessibilityText, disabled, context, sx }) => {
-  return ` 
-        <cbp-link
-          ${href ? `href=${href}` : ''}
-          ${rel ? `rel=${rel}` : ''}
-          ${target ? `target=${target}` : ''}
-          ${download ? `download` : ''}
-          ${shortcutKey ? `accesskey=${shortcutKey}` : ''}
-          ${language ? `lang=${language}` : ''}
-          ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
-          ${disabled ? `disabled` : ''}
-          ${context && context != 'light-inverts' ? `context=${context}` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-        >
-          ${label}
-        </cbp-link>
-      `;
+  return `
+    <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.-->
+    <cbp-link
+      ${href ? `href=${href}` : ''}
+      ${rel ? `rel=${rel}` : ''}
+      ${target ? `target=${target}` : ''}
+      ${download ? `download` : ''}
+      ${shortcutKey ? `accesskey=${shortcutKey}` : ''}
+      ${language ? `lang=${language}` : ''}
+      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+      ${disabled ? `disabled` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      <!--<cbp-icon name="pen-to-square"></cbp-icon>-->
+      ${label}
+      <!--<cbp-icon name="up-right-from-square"></cbp-icon>-->
+    </cbp-link>
+    <!--Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.-->
+  `;
 };
 
 export const Link = Template.bind({});

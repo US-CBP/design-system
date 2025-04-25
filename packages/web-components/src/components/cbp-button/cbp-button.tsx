@@ -4,7 +4,7 @@ import { setCSSProps, getElementAttrs } from '../../utils/utils';
 
 /**
  * @slot - The button's label, which may contain markup such as icons, is placed in the default slot.
- * @slot - cbp-button-custom - Custom buttons/anchors may be slotted via named-slot, which prevents the web component from rendering its own tag. In such a case, component properties that render attributes directly onto the rendered button will have no effect, as they are expected to be supplied directly on the slotted custom element.
+ * @slot - cbp-button-custom - Custom buttons/anchors may be slotted via named-slot, which prevents the web component from rendering its own tag. In such a case, component properties that render attributes directly onto the rendered button will have no effect, as they are expected to be supplied directly on the slotted element.
  */
 @Component({
   tag: 'cbp-button',
@@ -71,9 +71,6 @@ export class CbpButton {
    * or a sufficiently unique label. This text overrides the default label and is not additive to it.
    */
   @Prop() accessibilityText: string;
-
-  /* @Internal Specifies that a button should not be keyboard navigable by setting its tabindex to -1. This property should only be used in very specific cases. */
-  //@Prop() pointerOnly: boolean;
 
   /** Marks the rendered button/link in a disabled state when specified. */
   @Prop({reflect: true}) disabled: boolean;

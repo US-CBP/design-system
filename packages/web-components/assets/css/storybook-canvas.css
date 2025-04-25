@@ -26,28 +26,3 @@ body:has(cbp-app[data-cbp-theme="dark"]) {
 .sbdocs table {
   width: 100% !important;
 }
-
-
-
-/* TechDebt: Remove when table component is added to design tokens story */
-#design-tokens table {
-  width: 100%;
-  border-collapse: collapse;
-  border: solid 1px #999;
-  margin-block-end: 2rem;
-}
-
-#design-tokens tr {
-  border-block-end: solid 1px #999;
-}
-
-
-#design-tokens th,
-#design-tokens td {
-  text-align: left;
-  width: 33.3%;
-  padding: .5rem;
-  margin: 0;
-  border: 0;
-  border-block-end: solid 1px #999;
-}

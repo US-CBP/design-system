@@ -1,8 +1,10 @@
-# Including the CBP Design System Web Components
+# Using the CBP Design System Web Components
 
-There are a couple strategies for including the CBP Design System web components in your site or application, detailed below. 
+## Including the Web Components in Your Application
 
-## Node Modules
+There are a couple strategies for including the CBP Design System web components in your site or application, detailed below.
+
+### Node Modules
 
 The CBP Design System [web components](https://www.npmjs.com/package/@cbpds/web-components) (and [React wrappers](https://www.npmjs.com/package/@cbpds/react-components)) are published to npm.
 
@@ -18,14 +20,14 @@ import { defineCustomElements } from '@cbpds/web-components/dist/esm/loader.js';
 defineCustomElements();
 ```
 
-## Script tag
+### Script tag
 
 For sites not running in a node.js environment or requiring a build step, the web components may be included via script tag:
 
 - Put a script tag referencing the loader module in the head of your index.html or template file.
-    - This file is a loader, which registers all of the design system components and lazy-loads individual components as needed.
-    - Note: ESM modules must be delivered over SSL/https.
-    - Then you can use the web components (custom elements) anywhere in your template, JSX, html, etc.
+  - This file is a loader, which registers all of the design system components and lazy-loads individual components as needed.
+  - Note: ESM modules must be delivered over SSL/https.
+  - Then you can use the web components (custom elements) anywhere in your template, JSX, html, etc.
 
 You can use UNPKG (an open source global content delivery network that mirrors npm) for testing, but it should never be used for production apps.
 
@@ -47,7 +49,7 @@ Ideally, your application should reference an central, organization-hosted copy 
 <script type="module" src="./assets/cbp-web-components/cbp-web-components.esm.js"></script>
 ```
 
-# Using the CBP Design System Web Components
+## Using the Web Components
 
 Once the CBP Design System web components have been included in your site or application, the are used like any other HTML elements - they are custom elements, after all.
 
@@ -55,7 +57,19 @@ It is recommended that the [`cbp-app` web component](https://us-cbp.github.io/de
 
 To get started quickly, you may copy the markup from one of our ["template" stories](https://us-cbp.github.io/design-system/?path=/story/patterns-page-templates--internal) to wrap your application or site content.
 
-# Fonts and Assets
+Here's an example of a button component:
+
+```
+<cbp-button
+  type="button"
+  fill="solid"
+  color="primary"
+>
+  Default
+</cbp-button>
+```
+
+## Fonts and Assets
 
 Regardless of how you include the web components (either method above), you'll still need some assets that are part of the CBP Design System package but are not encapsulated in the `cbp-app` web component or any others:
 
@@ -71,4 +85,15 @@ Copy and paste the following into your index.html or template file:
 <link rel="stylesheet" type="text/css" href="./assets/css/roboto_mono.css">
 ```
 
-If the path to your application's assets folder is different than `"./assets"`, you may need to provide the paths as properties of the `cbp-universal-header` component as part of your site/application template.
+These CSS files assume a directory structure of:
+
+- webroot
+  - assets
+  - css
+    - fonts
+      - roboto
+      - roboto-mono
+
+Any deviations from this structure may require editing of the linked CSS files and paths to the fonts.
+
+If the path to your application's assets folder is different than `"./assets"`, you may also need to provide the paths as properties of the `cbp-universal-header` component as part of your site/application template.
