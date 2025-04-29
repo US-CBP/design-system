@@ -1,24 +1,30 @@
-import { Component, Element, Prop, Host, h } from '@stencil/core';
+import { Component, Element, Prop, Method, Watch, Host, h } from '@stencil/core';
+import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/utils';
 
+/**
+ * @slot - Both the menu control and the menu items are slotted in the default slot. (The menu items are auto-slotting into their proper place).
+ */
 @Component({
   tag: 'cbp-menu',
   styleUrl: 'cbp-menu.scss'
 })
 export class CbpMenu {
 
-  //private menu: HTMLElement;
-  //private control: any[];
+  private menu: HTMLElement;
+  private menuItems: HTMLCbpMenuItemElement[];
+  private CBPButton: HTMLCbpButtonElement;
+  private control: HTMLElement;
 
   @Element() host: HTMLElement;
 
-  /** Specifies the position of the drawer (left or right) */
-  @Prop({ reflect: true }) position: 'left' | 'right' = 'left';
+  /** Specifies the position of the menu. Defaults to "bottom-start". */
+  @Prop({ reflect: true }) position: 'bottom-start' | "bottom-end" | 'top-start' | "top-end" = 'bottom-start';
 
-  /** When set, specifies that the drawer is open. */
+  /** When set, specifies that the menu is open. */
   @Prop({ reflect: true }) open: boolean=false;
 
-  /** Specifies a unique `ID` for the menus, used to wire up the controls and accessibility features. */
-  @Prop() uid: string;
+  /** Specifies a unique `ID` for the menu, used to wire up the controls and accessibility features. */
+  @Prop() uid: string = createNamespaceKey('cbp-menu');
 
   /** Creates an accessible label for the menu control. */
   @Prop() accessibilityText: string;
@@ -29,33 +35,104 @@ export class CbpMenu {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+
+  /** A public method for opening the menu. */
+  @Method()
+  async openMenu() {
+    this.open = true;
+  }
+
+  /** A public method for closing the menu. */
+  @Method()
+  async closeMenu() {
+    this.open = false;
+    this.control?.focus();
+  }
+
+  @Watch('open')
+  watchOpen(newValue) {
+    // If the menu was opened, give it time to render and set focus to the selected/first item
+    if (newValue) {
+      this.menuItems = Array.from(this.host.querySelectorAll('cbp-menu-item')); // Get and set this array whenever the menu is opened
+      console.log(this.menu,this.menuItems);
+      
+      // Set up a clickaway listener to close the menu
+      clickAwayListener(this.host, _ => {
+        this.open = false;
+      });
+    }
+  }
+
+  // Clicking outside of the component closes the menu
+  clickAwayHandler({ target }) {
+    if (!target.closest(this.host)) this.open=false;
+  }
+
+  // ESC closes the menu and returns focus to the control
+  handleKeyPress(e) {
+    if(e.key == 'Escape') this.closeMenu();
+  }
+
+  // if tabbing out of the menu from the close button, close the menu
+  handleKeyPressCloseButton(e) {
+    if(e.key == 'Tab' && !e.shiftKey) this.open=false;
+  }
+
+  componentWillLoad() {
+    this.CBPButton = this.host.querySelector('cbp-button');
+    this.control = this.host.querySelector('button');
+
+    // Apply sx
+    if (typeof this.sx == 'string') {
+      this.sx = JSON.parse(this.sx) || {};
+    }
+    setCSSProps(this.host, {
+      ...this.sx,
+    });
+  }
+
+  componentDidLoad() {
+    if (!this.control) this.control = this.host.querySelector('button');
+    if (this.control) {
+      this.CBPButton.controls=this.uid;
+      this.control.setAttribute('aria-controls',`${this.uid}-menu`);
+      this.control.setAttribute("aria-haspopup","menu");
+    }
+  }
+
   render() {
     return (
-      <Host>
-        <cbp-button
-          type="button"
-          fill="ghost"
-          aria-haspopup="menu"
-          aria-controls="menu1"
-          aria-label={this.accessibilityText}
-          id="menubutton1"
-          class="cbp-menu__control cbp-btn-square cbp-btn__secondary-ghost"
-          aria-expanded={this.open.toString()}
-        >
-          Menu
-        </cbp-button>
+      <Host 
+        id={this.uid}
+        onKeyDown={(e) => this.handleKeyPress(e)}
+      >
+        <slot />
 
         <div
+          ref={(el) => this.menu = el}
           id={`${this.uid}-menu`}
+          class="cbp-menu__menu"
           role="menu"
-          aria-labelledby={this.uid}
+          hidden={!this.open}
+          aria-labelledby={this.control?.id}
         >
-          <slot />
+          <slot name="cbp-menu-items" />
+          <cbp-menu-item class="cbp-menu__close-btn">
+            <cbp-button 
+              fill="solid"
+              color="primary"
+              context="dark-inverts"
+              onButtonClick={ () => this.closeMenu()}
+              onKeyDown={ (e) => this.handleKeyPressCloseButton(e)}
+            >
+              <cbp-icon name="times" size="1rem"></cbp-icon>
+              Close
+            </cbp-button>
+          </cbp-menu-item>
         </div>
       </Host>
     );
   }
-
 }
 
 

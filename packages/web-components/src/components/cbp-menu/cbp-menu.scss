@@ -2,14 +2,14 @@
  * @prop 
 */
 :root {
-  --cbp-menu-color: var(--cbp-color-interactive-primary-dark);
-  --cbp-menu-color-dark: var(--cbp-color-interactive-primary-light);
+  --cbp-menu-color-bg: var(--cbp-color-gray-cool-80);
+  --cbp-menu-color-bg-dark: var(--cbp-color-gray-cool-5);
 }
 
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-menu[context*=dark],
 [data-cbp-theme=dark] cbp-menu:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-menu-color: var(--cbp-menu-color-dark);
+  --cbp-menu-color-bg: var(--cbp-menu-color-bg-dark);
 }
 
 
@@ -19,11 +19,13 @@ cbp-menu {
   max-width: 100%;
 
   // The Control uses and inherits from button classes to reduce duplication
+  /*
   .cbp-menu__control {
     min-width: var(--cbp-space-6x);
     min-height: var(--cbp-space-6x);
     padding: 0;
   }
+  */
 
   /* The actual menu, positioned for mobile-first */
   .cbp-menu__menu {
@@ -35,16 +37,10 @@ cbp-menu {
     max-width: 100%;
     margin: 0 5% var(--cbp-space-6x);
     padding: 0;
+    background: var(--cbp-menu-color-bg);
     border-radius: var(--cbp-border-radius-softer);
     box-shadow: var(--cbp-shadow-level-1-down);
-    list-style-type: none;
     z-index: var(--cbp-z-index-level-0); // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
-  }
-
-  /* Toggle the visibility of the menu based on the control's aria-expanded value */
-  .cbp-menu__control:not([aria-expanded]) + .cbp-menu__menu,
-  .cbp-menu__control[aria-expanded=false] + .cbp-menu__menu {
-    display: none;
   }
 
 
@@ -59,24 +55,24 @@ cbp-menu {
       margin: 0;
     }
 
-    .cbp-menu--top-start {
+    &[position=top-start] .cbp-menu__menu {
       top: 0;
       left: 0;
       transform: translate(0, -100%);
     }
 
-    .cbp-menu--top-end {
+    &[position=top-end] .cbp-menu__menu  {
       top: 0;
       left: 100%;
       transform: translate(-100%, -100%);
     }
 
-    .cbp-menu--bottom-start {
+    &[position=bottom-start] .cbp-menu__menu  {
       top: 100%;
       left: 0;
     }
 
-    .cbp-menu--bottom-end {
+    &[position=bottom-end] .cbp-menu__menu {
       top: 100%;
       left: 100%;
       transform: translate(-100%, 0);

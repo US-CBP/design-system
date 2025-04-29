@@ -2,6 +2,10 @@ export default {
   title: 'Components/Menu',
   tags: ['new'],
   argTypes: {
+    position: {
+      control: 'select',
+      options: [ 'bottom-start', "bottom-end", 'top-start', "top-end"]
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -16,13 +20,40 @@ export default {
   },
 };
 
-const Template = ({ context, sx }) => {
+const Template = ({ position, context, sx }) => {
   return ` 
         <cbp-menu
+          uid="menuId"
+          ${position ? `position="${position}"` : ''}
           ${context ? `context="${context}"` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
-          <!-- items -->
+
+          <cbp-button
+            fill="outline"
+            color="secondary"
+            target-prop="open"
+            controls="menuId"
+          >   
+            <cbp-icon name="bars"></cbp-icon>     
+            Menu
+          </cbp-button>
+
+          <cbp-menu-item>
+            <cbp-link href="#">Option 1</cbp-link>
+          </cbp-menu-item>
+          <cbp-menu-item>
+            <a href="#">
+              <cbp-icon name="user"></cbp-icon>
+              Option 2
+            </a>
+          </cbp-menu-item>
+          <cbp-menu-item>
+            <cbp-link href="#" context="dark-inverts">Option 3 is longer</cbp-link>
+          </cbp-menu-item>
+          <cbp-menu-item>
+            <cbp-link href="#" context="dark-inverts">Option 4</cbp-link>
+          </cbp-menu-item>
         </cbp-menu>
       `;
 };
