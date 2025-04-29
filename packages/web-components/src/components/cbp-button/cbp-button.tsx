@@ -1,5 +1,5 @@
 import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
-import { setCSSProps, getElementAttrs } from '../../utils/utils';
+import { setCSSProps, getElementAttrs, createNamespaceKey } from '../../utils/utils';
 //import state from './store';
 
 /**
@@ -29,6 +29,8 @@ export class CbpButton {
   /** Specifies a variant of the buttons, such as square for buttons with only an icon and call-to-action button. */
   @Prop({ reflect: true }) variant: 'square' | 'cta';
 
+  /** Optionally specify the ID of the control here, which is used to generate related pattern node IDs and associate everything for accessibility */
+  @Prop() controlId: string = createNamespaceKey('cbp-button');
   /** The `name` attribute of the button, which is passed as part of formData (as a key) for the the pressed submit button. */
   @Prop() name: string;
   /** The `value` attribute of the button, which is passed as part of formData (as a value) for the the pressed submit button. */
@@ -154,6 +156,13 @@ export class CbpButton {
       }
     }
 
+    if (this.button) {
+      this.button.getAttribute('id')
+        ? this.controlId = this.button.getAttribute('id')
+        : this.button.setAttribute('id', `${this.controlId}`);
+      if (this.disabled) this.button.setAttribute('disabled', '');
+    }
+
     setCSSProps(this.button, {
       'min-width': this.width,
       'min-height': this.height,
@@ -190,6 +199,7 @@ export class CbpButton {
             target,
           };
 
+    // slotted control
     if (this.host.querySelector('[slot=cbp-button-custom]')) {
       if (this.disabled) this.button.setAttribute("disabled",'');
       return (
@@ -198,6 +208,8 @@ export class CbpButton {
         </Host>
       );
     } 
+
+    // rendered button
     else if (this.tag === 'button') {
       return (
         <Host onClick={(e) => this.handleClick(e)}>
@@ -216,6 +228,8 @@ export class CbpButton {
         </Host>
       );
     } 
+
+    // rendered anchor/link with button styles
     else {
       return (
         <Host onClick={(e) => this.handleClick(e)}>
