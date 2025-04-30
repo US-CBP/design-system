@@ -10,6 +10,7 @@ The CBP Design System [web components](https://www.npmjs.com/package/@cbpds/web-
 
 In modern JavaScript frameworks, you can use the native web components, which are framework-agnostic. To add the CBP Design System web components to your project, do the following:
 
+- Add the package to your `package.json` under "devDependencies" (e.g., `"@cbpds/web-components": "latest",`) and run `npm install` or
 - Run `npm install @cbpds/web-components --save-dev`
 - Import the web components loader in your framework's top-level file such as `App.js|jsx|tsx` or `main.js|jsx|tsx`.
 - Call `defineCustomElements()` to initialize the loader and register the web components (to be lazy loaded when used).
