@@ -61,16 +61,18 @@ cbp-code-snippet {
       overflow: auto;
       max-height: var(--cbp-code-snippet-max-height);
       
-      cbp-button { //Copy button
+      // Copy button
+      cbp-button { 
         margin-left: auto;
       }
     }
 
-    & > cbp-button { //Show More / Show Less button
+    //Show More / Show Less button
+    & > cbp-button {
       margin: var(--cbp-space-2x);
     
       cbp-icon{
-      margin-inline-end: var(--cbp-space-2x);
+        margin-inline-end: var(--cbp-space-2x);
       }
     }
   }
