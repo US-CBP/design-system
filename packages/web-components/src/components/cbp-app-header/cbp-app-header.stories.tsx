@@ -5,6 +5,14 @@ export default {
     layout: 'fullscreen',
   },
   argTypes: {
+    open: {
+      description: 'Specifies whether the drawer is open or closed.',
+      control: 'boolean',
+    },
+    uid: {
+      description: 'A unique `id` applied to the drawer and referenced by the control.',
+      control: 'text',
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -12,60 +20,166 @@ export default {
   },
 };
 
-function generateNavItems(navItems){
-  const html =  navItems.map(({html, selected}) => {
-      return `<cbp-nav-item ${selected ? 'selected' : ''}> ${html}</cbp-nav-item>`;
+function generateNavItems(items, uid){
+  const html =  items.map(({ label, name, href, selected, children}) => {
+    if(!children){
+      return `<cbp-nav-item name="${name}" ${selected ? 'selected' : ''}>  <cbp-button tag='a' onclick=${function(e){e.preventDefault()}} href=${href} fill="ghost" color="secondary">${label}</cbp-button></cbp-nav-item>`;
+    } else {
+      return `<cbp-nav-item name="${name}" ${selected ? 'selected' : ''}>  <cbp-button tag='button' fill="ghost" color="secondary" target-prop="open" controls=${uid}>${label} <cbp-icon name="chevron-right" sx='{"transform":"rotate(90deg)", "margin-left":"0.25rem"}'></cbp-icon></cbp-button></cbp-nav-item>`;
     }
+       }
   );
   return html.join('');
 }
 
 
-const Template = ({ navItems,  sx }) => {
+function generateSubnav(items){
+  const html = items.map(({ icon, label, name, href, open, children, current }) => {
+      return `<cbp-subnav-item label="${label}" name="${name}" href=${href} ${current? `current=${current}` : ``} ${open? `open=${open}` : ``} >${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``} ${children? generateSubnav(children) : ``}</cbp-subnav-item>`;
+  });
+      return html.join('');
+}
+
+
+const Template = ({ open, uid, items, sx }) => {  
   return ` 
       <cbp-app-header
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${generateNavItems(navItems)}
+       ${generateNavItems(items, uid)}
+      
+
+        <cbp-drawer
+        ${open ? `open=${open}` : ''}
+        ${uid ? `uid=${uid}` : ''}
+        >
+          <cbp-panel
+            aria-labelledby="panelheader"
+            role="complementary"
+          >
+            <cbp-typography
+              slot="cbp-panel-header"
+              tag="h3"
+              variant="heading-lg"
+              id="panelheader"
+            >
+              Application Name
+            </cbp-typography>
+
+            <cbp-form-field
+              label='Search'
+            >
+              <cbp-form-field-wrapper>
+                <input
+                  type="search"
+                  name="search"
+                />
+                <span slot="cbp-form-field-attached-button">
+                  <cbp-button
+                    type="submit"
+                    fill="solid"
+                    color="secondary"
+                    variant="square"
+                    accessibility-text="Search"
+                  >
+                    <cbp-icon name="magnifying-glass" size="1rem"></cbp-icon>
+                  </cbp-button>
+                </span>
+              </cbp-form-field-wrapper>
+            </cbp-form-field>
+            <cbp-subnav
+              accessibilitytext="Application Subnav"
+            >
+              ${generateSubnav(items)}
+            </cbp-subnav>
+          </cbp-panel>
+        </cbp-drawer>
       </cbp-app-header>
-      `;
+        `;
 };
+
 
 export const ApplicationHeader = Template.bind({});
-
 ApplicationHeader.args = {
-    navItems: [
+  uid: 'applicationHeader',
+  items: [
       {
-        html: ` <cbp-button
-                  tag='a'
-                  fill="ghost"
-                  color="secondary"
-                  href='./?path=/story/components-application-header--application-header#'
-                >
-                  Application Name
-                </cbp-button>`,
-        selected: true
-      },{
-        html: ` <cbp-button
-                  tag='a'
-                  fill="ghost"
-                  color="secondary"
-                  href='./?path=/story/components-application-header--application-header#'
-                >
-                  Single Nav Item 1
-                </cbp-button>`,
-          selected: false,
+        label: 'Application Name',
+        name: 'Application Name',
+        href: './?path=/story/components-application-header--application-header#',
+        current: true
       },
       {
-        html: ` <cbp-button
-                  tag='a'
-                  fill="ghost"
-                  color="secondary"
-                  href='./?path=/story/components-application-header--application-header#'
-                >
-                  Single Nav Item 2
-                </cbp-button>`,
-        selected: false
+        label: 'App Item #1',
+        name: 'App Item #1',
+        href: './?path=/story/components-application-header--application-header#',
+        children: [
+          {
+            label: 'App Item #1-1',
+            name: 'App Item #1-1',
+            href: './?path=/story/components-application-header--application-header#',
+          },
+          {
+            label: 'App Item #1-2',
+            name: 'App Item #1-2',
+            href: './?path=/story/components-application-header--application-header#',
+            children: [
+              {
+                label: 'App Item #1-2-1',
+                name: 'App Item #1-2-1',
+                href: './?path=/story/components-application-header--application-header#',
+                children: [
+                  {
+                    label: 'App Item #1-2-1-1',
+                    name: 'App Item #1-2-1-1',
+                    href: './?path=/story/components-application-header--application-header#',
+                  },
+                  {
+                    label: 'App Item #1-2-1-2',
+                    name: 'App Item #1-2-1-2',
+                    href: './?path=/story/components-application-header--application-header#',
+                  },
+                  {
+                    label: 'App Item #1-2-1-3',
+                    name: 'App Item #1-2-1-3',
+                    href: './?path=/story/components-application-header--application-header#',
+                  }
+                ]
+              },{
+                label: 'App Item #1-2-2',
+                name: 'App Item #1-2-2',
+                href: './?path=/story/components-application-header--application-header#',
+              }
+            ]
+          }
+        ]
       },
-    ]
-};
+      {
+        label: 'App Item #2',
+        name: 'App Item #2',
+        href: './?path=/story/components-application-header--application-header#',
+        children: [
+          {
+            label: 'App Item #2-1',
+            name: 'App Item #2-1',
+            href: './?path=/story/components-application-header--application-header#',
+          },    
+          {
+            label: 'App Item #2-2',
+            name: 'App Item #2-2',
+            href: './?path=/story/components-application-header--application-header#',
+          },
+          {
+            label: 'App Item #2-3',
+            name: 'App Item #2-3',
+            href: './?path=/story/components-application-header--application-header#',
+          },
+        ]
+      },
+      {
+        label: 'App Item #3',
+        name: 'App Item #3',
+        href: './?path=/story/components-application-header--application-header#',
+      },
+  ] 
+}

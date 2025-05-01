@@ -1,4 +1,5 @@
-import { Component, Element, Host, h } from '@stencil/core';
+import { Component, Element, Host, h, Listen } from '@stencil/core';
+import state from '../cbp-app-header/store';
 
 @Component({
   tag: 'cbp-app-header',
@@ -10,6 +11,11 @@ export class CbpAppHeader {
   private navItems: HTMLCbpNavItemElement[] = [];
 
   @Element() host: HTMLElement;
+  @Listen('drawerClose')
+  handleNavDrawerClose() {
+    var current = this.host.querySelector('[name=\"' + state.activeItemName + '\"] cbp-button').firstElementChild as HTMLAnchorElement;
+    current.focus();
+  }
 
   initNavItemset() {
     // check for a default navItem, otherwise set the first one active
