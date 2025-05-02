@@ -143,3 +143,8 @@ _site
 
 # Personal config files
 chromatic.config.json
+
+# A .DS_Store file in macOS is a hidden file that stores custom attributes of its containing folder, 
+# such as folder view preferences, icon positions, and other visual settings. 
+# It's automatically created by the Finder.
+.DS_Store
