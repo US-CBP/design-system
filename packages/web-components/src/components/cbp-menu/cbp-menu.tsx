@@ -1,5 +1,5 @@
-import { Component, Element, Prop, Method, Watch, Host, h } from '@stencil/core';
-import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/utils';
+import { Component, Element, Prop, Method, Watch, Event, EventEmitter, Host, h } from '@stencil/core';
+import { setCSSProps, createNamespaceKey, doKeyboardNav, clickAwayListener } from '../../utils/utils';
 
 /**
  * @slot - Both the menu control and the menu items are slotted in the default slot. (The menu items are auto-slotting into their proper place).
@@ -10,10 +10,13 @@ import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/
 })
 export class CbpMenu {
 
-  private menu: HTMLElement;
-  private menuItems: HTMLCbpMenuItemElement[];
   private CBPButton: HTMLCbpButtonElement;
   private control: HTMLElement;
+
+  private menu: HTMLElement;
+  private menuItems: any; //: HTMLButtonElement | HTMLAnchorElement; //HTMLCbpMenuItemElement[];
+  private currentMenuItem: any;
+  private focusIndex: number;
 
   @Element() host: HTMLElement;
 
@@ -35,6 +38,7 @@ export class CbpMenu {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+  @Event() toggleMenu: EventEmitter;
 
   /** A public method for opening the menu. */
   @Method()
@@ -53,13 +57,25 @@ export class CbpMenu {
   watchOpen(newValue) {
     // If the menu was opened, give it time to render and set focus to the selected/first item
     if (newValue) {
-      this.menuItems = Array.from(this.host.querySelectorAll('cbp-menu-item')); // Get and set this array whenever the menu is opened
-      console.log(this.menu,this.menuItems);
+      // TechDebt: this would be needed for reactivity, but not needed otherwise. How to make it smart/conditional?
+      this.menuItems = Array.from(this.menu.querySelectorAll('button, a')); // Get and set this array whenever the menu is opened
+      console.log(this.menu,this.menuItems,this.currentMenuItem);
       
       // Set up a clickaway listener to close the menu
       clickAwayListener(this.host, _ => {
         this.open = false;
       });
+
+      this.toggleMenu.emit({
+        host: this.host,
+        control: this.control,
+        open: this.open
+      });
+
+      setTimeout( () => 
+        this.setCurrentMenuItem(),
+        100
+      );
     }
   }
 
@@ -70,7 +86,32 @@ export class CbpMenu {
 
   // ESC closes the menu and returns focus to the control
   handleKeyPress(e) {
-    if(e.key == 'Escape') this.closeMenu();
+    const { key, shiftKey} = e;
+    //console.log(key);
+
+    const openKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft']; // all keys that will do the default open action (Enter and SPACE are omitted because they trigger the click event)
+    const navKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft', 'Enter', 'Home', 'End']; // all keys that will do the default open action
+
+    if(key == 'Escape') this.closeMenu();
+    if(key == 'Tab' && !shiftKey) this.open=false; // close without sending focus back to the control
+
+    // handle opening when closed
+    if (openKeys.includes(key) && !this.open) {
+      this.open = true;
+      return;
+    }
+
+    // Handle standard menu nav keys
+    if (navKeys.includes(key)) {
+      this.focusIndex = doKeyboardNav(this.menuItems, key, this.focusIndex);
+      this.setCurrentMenuItem(this.focusIndex);
+    }
+    return;
+  }
+
+  setCurrentMenuItem(i = 0) {
+    this.currentMenuItem = i;
+    this.menuItems[i]?.focus();
   }
 
   // if tabbing out of the menu from the close button, close the menu
@@ -92,6 +133,7 @@ export class CbpMenu {
   }
 
   componentDidLoad() {
+    this.menuItems = Array.from(this.menu.querySelectorAll('button, a'));
     if (!this.control) this.control = this.host.querySelector('button');
     if (this.control) {
       this.CBPButton.controls=this.uid;
@@ -125,7 +167,7 @@ export class CbpMenu {
               onButtonClick={ () => this.closeMenu()}
               onKeyDown={ (e) => this.handleKeyPressCloseButton(e)}
             >
-              <cbp-icon name="times" size="1rem"></cbp-icon>
+              <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
               Close
             </cbp-button>
           </cbp-menu-item>
