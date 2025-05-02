@@ -16,7 +16,7 @@ export class CbpButton {
 
   private persistedAttrs: any;
 
-  @Element() host: HTMLElement;
+  @Element() host: HTMLCbpButtonElement;
 
   /** Specifies whether the button is a true button element or "link button." */
   @Prop() tag: 'button' | 'a' = 'button';
@@ -54,18 +54,23 @@ export class CbpButton {
 
   /** Specifies if the button is pressed and results in `aria-pressed="true"` being placed on the button when true. Only valid on actual `button` elements. */
   @Prop() pressed: boolean;
+  
   /** 
    * Specifies if a controlled UI widget is expanded and results in `aria-pressed="true"` being placed on the button when true.
    * This property is usually used for progressive disclosure patterns such as accordions, menus, expand/collapse, etc., where
    * focus remains on the control after the user action.
    */
   @Prop() expanded: boolean;
-  /** Specifies the DOM element that the button controls and results in the `aria-controls` attribute
+
+  /** 
+   * Specifies the DOM element that the button controls and results in the `aria-controls` attribute
    * rendered on the button with the specified value.
    */
   @Prop() controls: string;
+  
   /* ??? */
   //@Prop() controlProp: "pressed" | "expanded";
+  
   /** The property on the target element being toggled by the button/control. */
   @Prop() targetProp: string; // A prop on the controlled element such as "open"
 
@@ -104,6 +109,7 @@ export class CbpButton {
       // Toggle the prop it controls
       if (this.controlTarget) {
         this.controlTarget[this.targetProp] = !this.controlTarget[this.targetProp];
+        this.host.expanded = this.controlTarget[this.targetProp]
       } 
       else {
         console.warn('cbp-button configuration error: the control target referenced by ID by the `control` property could not be found.');
