@@ -1,14 +1,23 @@
 import { Component, Element, Prop, Host, h } from '@stencil/core';
+import { setCSSProps } from '../../utils/utils';
 
+/**
+ * @slot - Any form of control may be slotted in the default slot (a link, button, link component, button component, component-based Router, etc.). But any components should render a semantic anchor or button element.
+ */
 @Component({
   tag: 'cbp-menu-item',
   styleUrl: 'cbp-menu-item.scss'
 })
 export class CbpMenuItem {
 
-  private menuitem: HTMLElement;
+  private menuItem: HTMLElement;
+
   @Element() host: HTMLElement;
 
+  /** Specifies an indent level to represent hierarchical items. Defaults to zero. */
+  @Prop( {reflect: true} ) indentLevel: number = 0;
+
+  /** Specifies a color variant for the menu item. Currently the only supported variant is "danger". */
   @Prop( {reflect: true} ) color: "danger";
 
 
@@ -17,17 +26,20 @@ export class CbpMenuItem {
   }
 
   componentWillLoad() {
-    this.menuitem = this.host.querySelector('a,button');
-    if (this.menuitem) {
-      this.menuitem.setAttribute('role','menuitem');
-    }
+    setCSSProps(this.host, {
+      "--cpb-menu-item-indent": this.indentLevel > 0 ? `var(--cbp-space-${this.indentLevel}x)` : "0px"
+    });
+  }
+
+  componentDidLoad() {
+    this.menuItem = this.host.querySelector('a,button');
+    this.menuItem?.setAttribute('role','menuitem');
+    this.menuItem?.setAttribute('tabindex', '-1');
   }
 
   render() {
     return (
-      <Host
-        color={this.color}
-      >
+      <Host>
         <slot />
       </Host>
     );

@@ -1,5 +1,26 @@
 /**
- * @prop 
+ * @prop --cbp-menu-item-color: var(--cbp-color-text-lightest);
+ * @prop --cbp-menu-item-color-dark: var(--cbp-color-text-darkest);
+ * @prop --cbp-menu-item-color-bg: transparent;
+ * @prop --cbp-menu-item-color-bg-dark: transparent;
+
+ * @prop --cbp-menu-item-color-hover: var(--cbp-color-text-darkest);
+ * @prop --cbp-menu-item-color-hover-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-menu-item-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
+ * @prop --cbp-menu-item-color-bg-hover-dark: var(--cbp-color-interactive-secondary-darker);
+
+ * @prop --cbp-menu-item-color-focus: var(--cbp-color-text-darkest);
+ * @prop --cbp-menu-item-color-focus-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-menu-item-color-bg-focus: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-menu-item-color-bg-focus-dark: var(--cbp-color-interactive-focus-dark);
+
+ * @prop --cbp-menu-item-color-active: var(--cbp-color-text-darkest);
+ * @prop --cbp-menu-item-color-active-dark: var(---cbp-color-text-lightest);
+ * @prop --cbp-menu-item-color-bg-active: var(--cbp-color-interactive-active-light);
+ * @prop --cbp-menu-item-color-bg-active-dark: var(--cbp-color-interactive-active-dark);
+
+ * @prop --cbp-menu-item-color-outline: var(--cbp-color-black);
+ * @prop --cbp-menu-item-color-outline-dark: var(--cbp-color-white);
 */
 :root {
   --cbp-menu-item-color: var(--cbp-color-text-lightest);
@@ -24,34 +45,31 @@
 
   --cbp-menu-item-color-outline: var(--cbp-color-black);
   --cbp-menu-item-color-outline-dark: var(--cbp-color-white);
+
+  --cpb-menu-item-indent: 0px;
 }
 
-
 // Displays dark design based on mode or context
-[data-cbp-theme=light] cbp-menu[context*=dark],
-[data-cbp-theme=dark] cbp-menu:not([context=dark-inverts]):not([context=light-always]) {
+[data-cbp-theme=light] cbp-menu[context*=dark] cbp-menu-item,
+[data-cbp-theme=dark] cbp-menu:not([context=dark-inverts]):not([context=light-always]) cbp-menu-item {
   --cbp-menu-item-color: var(--cbp-menu-item-color-dark);
   --cbp-menu-item-color-bg: var(--cbp-menu-item-color-bg-dark);
-
   --cbp-menu-item-color-hover: var(--cbp-menu-item-color-hover-dark);
   --cbp-menu-item-color-bg-hover: var(--cbp-menu-item-color-bg-hover-dark);
-
   --cbp-menu-item-color-focus: var(--cbp-menu-item-color-focus-dark);
   --cbp-menu-item-color-bg-focus: var(--cbp-menu-item-color-bg-focus-dark);
-
   --cbp-menu-item-color-active: var(--cbp-menu-item-color-active-dark);
   --cbp-menu-item-color-bg-active: var(--cbp-menu-item-color-bg-active-dark);
-
   --cbp-menu-item-color-outline: var(--cbp-menu-item-color-outline-dark);
 }
 
 cbp-menu-item {
+  --cbp-button-width: 100%;
+  --cbp-button-border-radius: 0;
   display: flex;
   align-items: stretch;
-  padding: 0;
   margin-bottom: 0;
   width: 100%;
-  //max-width: 100%;
   height: var(--cbp-space-9x);
   background: var(-cbp-menu-item-color-bg);
 
@@ -69,7 +87,6 @@ cbp-menu-item {
 
   cbp-button,
   cbp-link {
-    --cbp-button-width: 100%;
     display: block;
     width: 100%;
     height: 100%;
@@ -78,12 +95,17 @@ cbp-menu-item {
   // just hard-override all anchor and button styles because there are too many options for slotting this content
   &:not(.cbp-menu__close-btn) a:not(#fakeId),
   &:not(.cbp-menu__close-btn) button:not(#fakeId) {
+    --cbp-button-gap: var(--cbp-space-1x);
+    --cbp-link-gap: var(--cbp-space-1x);
     display: flex;
     align-items: center;
     justify-content: left;
     width: 100%;
     height: 100%;
-    padding: 0 var(--cbp-space-3x);
+    padding-block: 0;
+    padding-inline-start: calc(var(--cbp-space-3x) + var(--cpb-menu-item-indent));
+    padding-inline-end: var(--cbp-space-3x);
+
     font-weight: var(--cbp-font-weight-regular);
     line-height: var(--cbp-space-5x);
     color: var(--cbp-menu-item-color);
@@ -94,13 +116,8 @@ cbp-menu-item {
     outline-color: var(--cbp-menu-item-color-outline);
     outline-offset: calc(var(--cbp-space-1x) * -1);
     text-decoration: none;
-
-    &:hover {
-      --cbp-menu-item-color: var(--cbp-menu-item-color-hover);
-      --cbp-menu-item-color-bg: var(--cbp-menu-item-color-bg-hover);
-      --cbp-menu-item-color-dark: var(--cbp-menu-item-color-hover-dark);
-      --cbp-menu-item-color-bg-dark: var(--cbp-menu-item-color-bg-hover-dark);
-    }
+    letter-spacing: normal;
+    text-transform: none;
 
     &:focus {
       --cbp-menu-item-color: var(--cbp-menu-item-color-focus);
@@ -108,7 +125,15 @@ cbp-menu-item {
       --cbp-menu-item-color-dark: var(--cbp-menu-item-color-focus-dark);
       --cbp-menu-item-color-bg-dark: var(--cbp-menu-item-color-bg-focus-dark);
       outline-width: var(--cbp-border-size-md);
-      //box-shadow: inset 0 0 0 var(--cbp-border-size-md) var(--cbp-color-white);
+    }
+
+    // Make hover override focus state since the first item is automatically assigned focus
+    &:hover {
+      --cbp-menu-item-color: var(--cbp-menu-item-color-hover);
+      --cbp-menu-item-color-bg: var(--cbp-menu-item-color-bg-hover);
+      --cbp-menu-item-color-dark: var(--cbp-menu-item-color-hover-dark);
+      --cbp-menu-item-color-bg-dark: var(--cbp-menu-item-color-bg-hover-dark);
+      outline: 0;
     }
 
     &:active {
@@ -117,38 +142,30 @@ cbp-menu-item {
       --cbp-menu-item-color-dark: var(--cbp-menu-item-color-active-dark);
       --cbp-menu-item-color-bg-dark: var(--cbp-menu-item-color-bg-active-dark);
     }
-
-
-
-    /* Menu Close Button */
-    &.cbp-menu__close-btn {
-      width: 100%;
-      justify-content: center;
-      font-weight: var(--cbp-font-weight-bold);
-      background-color: var(--cbp-color-interactive-primary-base);
-      border: 0;
-      cursor: pointer;
-
-      &:hover {
-        background-color: var(--cbp-color-interactive-primary-dark);
-      }
-
-      &:focus {
-        background-color: var(--cbp-color-interactive-focus-dark);
-      }
-    }
   }
 
-  .cbp-menu__item--danger {
-    border-top: var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-50);
+  &[color=danger] {
+    --cbp-menu-item-color: var(--cbp-color-danger-light);
+    --cbp-menu-item-color-dark: var(--cbp-color-danger-base);
+    --cbp-menu-item-color-bg-hover: var(--cbp-color-danger-light);
+    --cbp-menu-item-color-bg-hover-dark: var(--cbp-color-danger-dark);
+  }
 
-    & > button {
-      color: var(--cbp-color-danger-light);
+  /* Menu Close Button */
+  &.cbp-menu__close-btn {
+    width: 100%;
+    justify-content: center;
+    font-weight: var(--cbp-font-weight-bold);
+    background-color: var(--cbp-color-interactive-primary-base);
+    border: 0;
+    cursor: pointer;
 
-      &:hover {
-        color: var(--cbp-color-white);
-        background-color: var(-cbp-color-danger-base);
-      }
+    &:hover {
+      background-color: var(--cbp-color-interactive-primary-dark);
+    }
+
+    &:focus {
+      background-color: var(--cbp-color-interactive-focus-dark);
     }
   }
 }
