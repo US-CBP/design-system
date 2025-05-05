@@ -1,5 +1,5 @@
 import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
-import { setCSSProps, getElementAttrs } from '../../utils/utils';
+import { setCSSProps, getElementAttrs, createNamespaceKey } from '../../utils/utils';
 //import state from './store';
 
 /**
@@ -16,7 +16,7 @@ export class CbpButton {
 
   private persistedAttrs: any;
 
-  @Element() host: HTMLElement;
+  @Element() host: HTMLCbpButtonElement;
 
   /** Specifies whether the button is a true button element or "link button." */
   @Prop() tag: 'button' | 'a' = 'button';
@@ -29,6 +29,8 @@ export class CbpButton {
   /** Specifies a variant of the buttons, such as square for buttons with only an icon and call-to-action button. */
   @Prop({ reflect: true }) variant: 'square' | 'cta';
 
+  /** Optionally specify the ID of the control here, which is used to generate related pattern node IDs and associate everything for accessibility */
+  @Prop() controlId: string = createNamespaceKey('cbp-button');
   /** The `name` attribute of the button, which is passed as part of formData (as a key) for the the pressed submit button. */
   @Prop() name: string;
   /** The `value` attribute of the button, which is passed as part of formData (as a value) for the the pressed submit button. */
@@ -52,18 +54,23 @@ export class CbpButton {
 
   /** Specifies if the button is pressed and results in `aria-pressed="true"` being placed on the button when true. Only valid on actual `button` elements. */
   @Prop() pressed: boolean;
+  
   /** 
    * Specifies if a controlled UI widget is expanded and results in `aria-pressed="true"` being placed on the button when true.
    * This property is usually used for progressive disclosure patterns such as accordions, menus, expand/collapse, etc., where
    * focus remains on the control after the user action.
    */
   @Prop() expanded: boolean;
-  /** Specifies the DOM element that the button controls and results in the `aria-controls` attribute
+
+  /** 
+   * Specifies the DOM element that the button controls and results in the `aria-controls` attribute
    * rendered on the button with the specified value.
    */
   @Prop() controls: string;
+  
   /* ??? */
   //@Prop() controlProp: "pressed" | "expanded";
+  
   /** The property on the target element being toggled by the button/control. */
   @Prop() targetProp: string; // A prop on the controlled element such as "open"
 
@@ -99,6 +106,7 @@ export class CbpButton {
       // Toggle the prop it controls
       if (this.controlTarget) {
         this.controlTarget[this.targetProp] = !this.controlTarget[this.targetProp];
+        this.host.expanded = this.controlTarget[this.targetProp]
       } 
       else {
         console.warn('cbp-button configuration error: the control target referenced by ID by the `control` property could not be found.');
@@ -151,6 +159,13 @@ export class CbpButton {
       }
     }
 
+    if (this.button) {
+      this.button.getAttribute('id')
+        ? this.controlId = this.button.getAttribute('id')
+        : this.button.setAttribute('id', `${this.controlId}`);
+      if (this.disabled) this.button.setAttribute('disabled', '');
+    }
+
     setCSSProps(this.button, {
       'min-width': this.width,
       'min-height': this.height,
@@ -187,6 +202,7 @@ export class CbpButton {
             target,
           };
 
+    // slotted control
     if (this.host.querySelector('[slot=cbp-button-custom]')) {
       if (this.disabled) this.button.setAttribute("disabled",'');
       return (
@@ -195,6 +211,8 @@ export class CbpButton {
         </Host>
       );
     } 
+
+    // rendered button
     else if (this.tag === 'button') {
       return (
         <Host onClick={(e) => this.handleClick(e)}>
@@ -213,6 +231,8 @@ export class CbpButton {
         </Host>
       );
     } 
+
+    // rendered anchor/link with button styles
     else {
       return (
         <Host onClick={(e) => this.handleClick(e)}>

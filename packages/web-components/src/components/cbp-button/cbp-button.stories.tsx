@@ -163,3 +163,39 @@ const SlottedButtonTemplate = ({ label, withIcon, tag, href, fill, color, varian
 };
 
 export const SlottedButton = SlottedButtonTemplate.bind({});
+
+
+/*
+
+Common Login Buttons - verify they work after applying flex changes.
+
+<cbp-button class="login-btn" fill="solid" color="primary">
+  <button type="button" slot="cbp-button-custom" id="login-kerberos-btn">
+    <cbp-typography variant="heading-xs">
+      <span>CBP Users</span>
+    </cbp-typography>
+    <br>
+    <cbp-typography class="login-kerebos-color" variant="subhead">
+      <span>
+        <cbp-icon>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"></path></svg>
+        </cbp-icon>
+        &nbsp; Windows Login
+      </span>
+    </cbp-typography>
+  </button>
+</cbp-button>
+
+
+<cbp-button class="login-btn" fill="solid" color="primary">
+  <button slot="cbp-button-custom" id="login-pki-btn" type="button">
+    <cbp-typography variant="heading-xs">
+      <span>All Users</span>
+    </cbp-typography>
+    <br>
+    <cbp-typography variant="subhead">
+      <span>
+        <cbp-icon>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M0 96l576 0c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96zm0 32V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V128H0zM64 405.3c0-29.5 23.9-53.3 53.3-53.3H234.7c29.5 0 53.3 23.9 53.3 53.3c0 5.9-4.8 10.7-10.7 10.7H74.7c-5.9 0-10.7-4.8-10.7-10.7zM176 192a64 64 0 1 1 0 128 64 64 0 1 1 0-128zm176 16c0-8.8 7.2-16 16-16H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16z"></path></svg></cbp-icon>&nbsp; PIV/CAC Login</span></cbp-typography></button></cbp-button>
+
+*/

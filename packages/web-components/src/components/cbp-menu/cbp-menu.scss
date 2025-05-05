@@ -1,0 +1,79 @@
+/**
+ * @prop --cbp-menu-color-bg: var(--cbp-color-gray-cool-80);
+ * @prop --cbp-menu-color-bg-dark: var(--cbp-color-gray-cool-5);
+ * @prop --cbp-menu-gap: var(--cbp-space-3x);
+ */
+:root {
+  --cbp-menu-color-bg: var(--cbp-color-gray-cool-80);
+  --cbp-menu-color-bg-dark: var(--cbp-color-gray-cool-5);
+
+  --cbp-menu-gap: var(--cbp-space-3x);
+}
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-menu[context*=dark],
+[data-cbp-theme=dark] cbp-menu:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-menu-color-bg: var(--cbp-menu-color-bg-dark);
+}
+
+
+cbp-menu {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+
+  /* The actual menu, positioned for mobile-first */
+  .cbp-menu__menu {
+    position: fixed;
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 90%;
+    max-width: 100%;
+    margin: 0 5% var(--cbp-space-6x);
+    padding: 0;
+    background: var(--cbp-menu-color-bg);
+    border-radius: var(--cbp-border-radius-softer);
+    box-shadow: var(--cbp-shadow-level-1-down);
+    z-index: var(--cbp-z-index-level-0); // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
+  }
+
+
+  /* Menu Positioning for the larger breakpoints */
+  @media (min-width: 37.5em) {
+    .cbp-menu__menu {
+      position: absolute;
+      width: max-content;
+      max-width: max-content;
+      bottom: unset;
+      margin: 0;
+    }
+
+    &[position=top-start] .cbp-menu__menu {
+      //top: calc(var(--cbp-menu-gap) * -1);
+      top: 100%;
+      left: 0;
+      transform: translate(0, -100%);
+    }
+
+    &[position=top-end] .cbp-menu__menu {
+      //top: calc(var(--cbp-menu-gap) * -1);
+      top: 100%;
+      left: 100%;
+      transform: translate(-100%, -100%);
+    }
+
+    &[position=bottom-start] .cbp-menu__menu  {
+      //top: calc(100% + var(--cbp-menu-gap));
+      top: 0;
+      left: 0;
+    }
+
+    &[position=bottom-end] .cbp-menu__menu {
+      //top: calc(100% + var(--cbp-menu-gap));
+      top: 0;
+      left: 100%;
+      transform: translate(-100%, 0);
+    }
+  }
+}
