@@ -24,8 +24,8 @@ export class CbpNavItem {
   //techdebt: event logic only works for links
   @Event() navClicked: EventEmitter;
   handleNavClick() {
-    state.activeItemName = this.name;
-    this.selected=true;
+    state.activeItemName = this.name
+    this.host.querySelector('a') ? this.selected=true : null;
     this.navClicked.emit({
       host: this.host,
     })

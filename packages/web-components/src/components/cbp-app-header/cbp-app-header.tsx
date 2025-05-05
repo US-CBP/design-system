@@ -9,12 +9,17 @@ export class CbpAppHeader {
 
   
   private navItems: HTMLCbpNavItemElement[] = [];
+  private subnavItems : HTMLCbpSubnavItemElement[] = [];
 
   @Element() host: HTMLElement;
   @Listen('drawerClose')
-  handleNavDrawerClose() {
-    var current = this.host.querySelector('[name=\"' + state.activeItemName + '\"] cbp-button').firstElementChild as HTMLAnchorElement;
-    current.focus();
+  handleNavDrawerClose(e) {
+    if(e.target.parentElement == this.host){
+      let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLElement;
+      active.focus();  
+      // this.host.querySelector(`[name="${state.currentParent}"] cbp-button > button > *`).setAttribute('aria-current', 'true');
+      this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`));
+    }
   }
 
   initNavItemset() {
@@ -39,6 +44,22 @@ export class CbpAppHeader {
     })
   }
 
+  updateCurrent(current){
+    state.currentPage = current.getAttribute('name');
+    this.findParent(current);
+  }
+
+  findParent(element){
+    let parent;
+    if( element.parentNode.parentNode.tagName == 'CBP-SUBNAV-ITEM'){
+      parent = element.parentNode.parentNode; //account for subnav <sections>
+      this.findParent(parent); 
+    }else {
+      state.currentParent = element.getAttribute('name');
+      return;
+    }
+  }
+
   componentWillLoad() {
     this.navItems = Array.from(this.host.querySelectorAll('cbp-nav-item'));
 
@@ -46,6 +67,11 @@ export class CbpAppHeader {
     this.navItems.forEach(navItem => {
       navItem.addEventListener('navClicked', e => this.setActiveNav(e.detail.host));
     }); 
+
+    this.subnavItems = Array.from(this.host.querySelectorAll('cbp-subnav-item')).filter(subnav => subnav.closest('cbp-subnav'))
+    this.subnavItems.forEach(subnavItem => {
+      subnavItem.addEventListener('subnavCurrentClick', e => this.updateCurrent(e.detail.host));
+    });
   }
 
   componentDidLoad() {

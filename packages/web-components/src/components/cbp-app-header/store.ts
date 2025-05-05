@@ -2,30 +2,37 @@ import { createStore } from "@stencil/store";
 
 const { state, onChange } = createStore({
   currentPage: null,
+  currentParent: null,
   activeItemName: '',
 });
 
 onChange('currentPage', value => {
   state.currentPage = value;
+  console.log('currentPage: ' + state.currentPage);
 });
+
+onChange('currentParent', value => {
+  state.currentParent = value;
+  console.log('currentParent: ' + value);
+})
 
 onChange('activeItemName', value => {
   state.activeItemName = value;
+  console.log('activeItemName: ' + state.activeItemName);
   updateSelected();
 });
 
-function updateSelected(){ //TODO: move this to not the store file
+function updateSelected(){
   resetSubNav();
-  let attr = '[name=\"' + state.activeItemName + '\"]' 
-  let subNavItem = document.querySelectorAll(attr)[1] as HTMLCbpSubnavItemElement;
-  subNavItem.setAttribute("open", "true");
+  let subNavItem = document.querySelectorAll(`[name="${state.activeItemName}"]`)[1] as HTMLCbpSubnavItemElement;
+  subNavItem.open=true;
   setTimeout(() => {subNavItem.querySelector('a').focus()}, 101) //Note: Time 101 is set due to cbp-drawer setting @ 100
 }
 
-function resetSubNav(){//TODO: move this to not the store file
+function resetSubNav(){//TechDebt: move this to the subNav file
   let subnav = document.querySelectorAll('cbp-subnav-item');
 
-  subnav.forEach(e => { e.hasAttribute("open") ? e.removeAttribute("open") : '' }); 
+  subnav.forEach(e => { e.hasAttribute("open") ? e.open=false : '' }); 
 }
 
 export default state;
