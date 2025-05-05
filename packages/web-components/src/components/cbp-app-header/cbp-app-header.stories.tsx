@@ -5,11 +5,7 @@ export default {
     layout: 'fullscreen',
   },
   argTypes: {
-    open: {
-      description: 'Specifies whether the drawer is open or closed.',
-      control: 'boolean',
-    },
-    uid: {
+    drawerid: {
       description: 'A unique `id` applied to the drawer and referenced by the control.',
       control: 'text',
     },
@@ -20,12 +16,13 @@ export default {
   },
 };
 
-function generateNavItems(items, uid){
+function generateNavItems(items, drawerid){
   const html =  items.map(({ label, name, href, selected, children}) => {
     if(!children){
-      return `<cbp-nav-item name="${name}" ${selected ? 'selected' : ''}>  <cbp-button tag='a' onclick=${function(e){e.preventDefault()}} href=${href} fill="ghost" color="secondary">${label}</cbp-button></cbp-nav-item>`;
+      // return `<cbp-nav-item name="${name}" ${selected ? 'selected' : ''}>  <cbp-button tag='a' onclick=${function(e){e.preventDefault()}} href=${href} fill="ghost" color="secondary">${label}</cbp-button></cbp-nav-item>`;
+      return `<cbp-nav-item name="${name}" ${selected ? 'selected' : ''}>  <cbp-button tag='a' href=${href} fill="ghost" color="secondary">${label}</cbp-button></cbp-nav-item>`;
     } else {
-      return `<cbp-nav-item name="${name}" ${selected ? 'selected' : ''}>  <cbp-button tag='button' fill="ghost" color="secondary" target-prop="open" controls=${uid}>${label} <cbp-icon name="chevron-right" sx='{"transform":"rotate(90deg)", "margin-left":"0.25rem"}'></cbp-icon></cbp-button></cbp-nav-item>`;
+      return `<cbp-nav-item name="${name}" ${selected ? 'selected' : ''}>  <cbp-button tag='button' fill="ghost" color="secondary" target-prop="open" controls=${drawerid}>${label} <cbp-icon name="chevron-right" rotate="90" sx='{"margin-left":"0.25rem"}'></cbp-icon></cbp-button></cbp-nav-item>`;
     }
        }
   );
@@ -41,17 +38,20 @@ function generateSubnav(items){
 }
 
 
-const Template = ({ open, uid, items, sx }) => {  
+const Template = ({ open, drawerid, items, sx }) => {  
+  
+  document.addEventListener('click', function(e) { e.preventDefault(); });
+
   return ` 
       <cbp-app-header
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-       ${generateNavItems(items, uid)}
+       ${generateNavItems(items, drawerid)}
       
 
         <cbp-drawer
         ${open ? `open=${open}` : ''}
-        ${uid ? `uid=${uid}` : ''}
+        ${drawerid ? `uid=${drawerid}` : ''}
         >
           <cbp-panel
             aria-labelledby="panelheader"
@@ -101,7 +101,7 @@ const Template = ({ open, uid, items, sx }) => {
 
 export const ApplicationHeader = Template.bind({});
 ApplicationHeader.args = {
-  uid: 'applicationHeader',
+  drawerid: 'navDrawer',
   items: [
       {
         label: 'Application Name',

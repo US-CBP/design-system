@@ -12,9 +12,11 @@ export class CbpAppHeader {
 
   @Element() host: HTMLElement;
   @Listen('drawerClose')
-  handleNavDrawerClose() {
-    var current = this.host.querySelector('[name=\"' + state.activeItemName + '\"] cbp-button').firstElementChild as HTMLAnchorElement;
-    current.focus();
+  handleNavDrawerClose(e) {
+    if(e.target.parentElement == this.host){
+      let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLElement;
+      active.focus();  
+    }
   }
 
   initNavItemset() {
