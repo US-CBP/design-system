@@ -28,6 +28,7 @@
  * @prop --cbp-button-border-width: var(--cbp-border-size-md);
  * @prop --cbp-button-border-style: solid;
  * @prop --cbp-button-border-radius: var(--cbp-border-radius-soft);
+ * @prop --cbp-button-gap: 0 var(--cbp-space-2x);
  */
 
 /* 
@@ -80,7 +81,7 @@
   --cbp-button-min-height: 2.25rem;
   --cbp-button-width: auto;
   --cbp-button-height: auto;
-  --cbp-button-gap: var(--cbp-space-2x); // TODO: can be overridden (set to 0) for complex buttons
+  --cbp-button-gap: 0 var(--cbp-space-2x);
 }
 
 /* 
@@ -115,7 +116,7 @@ cbp-button {
 
   button, a {
     display: inline-flex;
-    //gap: var(--cbp-button-gap); // TODO: This might work to prevent need to set a margin on icons...
+    gap: var(--cbp-button-gap); // TODO: This might work to prevent need to set a margin on icons...
     align-items: center;
     justify-content: center;
     border-width: var(--cbp-button-border-width);
