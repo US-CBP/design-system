@@ -7,6 +7,13 @@ export default {
       description: 'Linked text in the rendered anchor element.',
       control: 'text',
     },
+    withIcon: {
+      control: 'select',
+      options: ['none', 'before', 'after'],
+    },
+    inText: {
+      control: 'boolean',
+    },
     href: {
       description: 'Specifies the `href` attribute for the rendered anchor.',
       control: 'text',
@@ -24,7 +31,6 @@ export default {
         'Indicates whether the `download` attribute is placed on the rendered anchor tag as a browser hint indicating that the linked contents specified in the `href` should be downloaded rather than navigated to.',
       control: 'boolean',
     },
-
     language: {
       description:
         'Specifies the `lang` attribute on the rendered anchor tag, which is required when the link points to content in a language different than the current document.',
@@ -59,11 +65,9 @@ export default {
   },
 };
 
-// TODO: Create and "inText" control to wrap the link inside of text for testing.
-// TODO: Create a withIcon select with: none, before, after
-const Template = ({ label, href, rel, target, download, language, shortcutKey, accessibilityText, disabled, context, sx }) => {
+const Template = ({ label, withIcon, inText, href, rel, target, download, language, shortcutKey, accessibilityText, disabled, context, sx }) => {
   return `
-    <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.-->
+    ${ inText ? `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ` : ''}
     <cbp-link
       ${href ? `href=${href}` : ''}
       ${rel ? `rel=${rel}` : ''}
@@ -76,11 +80,11 @@ const Template = ({ label, href, rel, target, download, language, shortcutKey, a
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <!--<cbp-icon name="pen-to-square"></cbp-icon>-->
+      ${withIcon == 'before' ? `<cbp-icon name="pen-to-square"></cbp-icon>` : ''}
       ${label}
-      <!--<cbp-icon name="up-right-from-square"></cbp-icon>-->
+      ${withIcon == 'after' ? `<cbp-icon name="up-right-from-square"></cbp-icon>` : ''}
     </cbp-link>
-    <!--Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.-->
+    ${ inText ? ` Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>` : ''}
   `;
 };
 
