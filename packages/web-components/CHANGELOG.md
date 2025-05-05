@@ -6,6 +6,8 @@ The React components are wrappers generated from this package and will share the
 
 ## [unpublished] TBD
 
+* First cut of the `cbp-menu` component.
+* BREAKING: updated the way icons are spaced apart from text within buttons and links, now using a CSS property for the `gap`. Any instances of applying margins to the icon or text will need to be removed to avoid doubling up the spacing.
 * Updated `cbp-drawer` to add the ability to persist its contents in the flow of the page at a certain breakpoint, mobilizing to an overlay below that breakpoint.
 * Updated the Passenger List archetype to demonstrate this drawer functionality.
 * Updated the `cbp-dropdown` faux button so that the chevron can be rotated when opened.
