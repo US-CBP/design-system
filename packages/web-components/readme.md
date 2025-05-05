@@ -44,7 +44,7 @@ Referencing a specific version:
 <script type="module" src="https://unpkg.com/@cbpds/web-components@0.0.1-develop.20/dist/cbp-web-components/cbp-web-components.esm.js"></script>
 ```
 
-Ideally, your application should reference an central, organization-hosted copy of the files or pull the package's  `dist/cbp-web-components` directory into your application's "assets" directory and reference them as such:
+Ideally, your application should reference a central, organization-hosted copy of the files or pull the package's  `dist/cbp-web-components` directory into your application's "assets" directory and reference them as such:
 
 ```
 <script type="module" src="./assets/cbp-web-components/cbp-web-components.esm.js"></script>
@@ -52,7 +52,7 @@ Ideally, your application should reference an central, organization-hosted copy 
 
 ## Using the Web Components
 
-Once the CBP Design System web components have been included in your site or application, the are used like any other HTML elements - they are custom elements, after all.
+Once the CBP Design System web components have been included in your site or application, they may be used in HTML, JSX, etc.
 
 It is recommended that the [`cbp-app` web component](https://us-cbp.github.io/design-system/?path=/docs/components-app-specifications--docs) is used to wrap the entire contents of your application or site template to include the global CSS variables (design tokens) that are used throughout the design system for styling the components.
 
@@ -62,7 +62,6 @@ Here's an example of a button component:
 
 ```
 <cbp-button
-  type="button"
   fill="solid"
   color="primary"
 >
