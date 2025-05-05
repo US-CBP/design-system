@@ -1,6 +1,8 @@
 /**
- * @prop 
-*/
+ * @prop --cbp-menu-color-bg: var(--cbp-color-gray-cool-80);
+ * @prop --cbp-menu-color-bg-dark: var(--cbp-color-gray-cool-5);
+ * @prop --cbp-menu-gap: var(--cbp-space-3x);
+ */
 :root {
   --cbp-menu-color-bg: var(--cbp-color-gray-cool-80);
   --cbp-menu-color-bg-dark: var(--cbp-color-gray-cool-5);
@@ -20,15 +22,6 @@ cbp-menu {
   display: inline-block;
   max-width: 100%;
 
-  // The Control uses and inherits from button classes to reduce duplication
-  /*
-  .cbp-menu__control {
-    min-width: var(--cbp-space-6x);
-    min-height: var(--cbp-space-6x);
-    padding: 0;
-  }
-  */
-
   /* The actual menu, positioned for mobile-first */
   .cbp-menu__menu {
     position: fixed;
@@ -46,7 +39,6 @@ cbp-menu {
   }
 
 
-  
   /* Menu Positioning for the larger breakpoints */
   @media (min-width: 37.5em) {
     .cbp-menu__menu {

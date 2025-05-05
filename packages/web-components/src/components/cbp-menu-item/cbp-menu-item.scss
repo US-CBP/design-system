@@ -21,7 +21,9 @@
 
  * @prop --cbp-menu-item-color-outline: var(--cbp-color-black);
  * @prop --cbp-menu-item-color-outline-dark: var(--cbp-color-white);
-*/
+
+ * @prop --cpb-menu-item-indent: 0px;
+ */
 :root {
   --cbp-menu-item-color: var(--cbp-color-text-lightest);
   --cbp-menu-item-color-dark: var(--cbp-color-text-darkest);
