@@ -20,6 +20,9 @@ export class CbpSubnavItem {
   /** Specifies the current subnav-item */
   @Prop ({ reflect: true}) current: boolean
 
+  /** Specifies a name used to associated nav items with subnav items*/
+  @Prop({ reflect: true }) name: string;
+
   /** Specifies the label for the subnav item */
   @Prop () label: string;
 

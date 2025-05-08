@@ -9,25 +9,20 @@ export class CbpAppHeader {
 
   
   private navItems: HTMLCbpNavItemElement[] = [];
-  private subnavItems : HTMLCbpSubnavItemElement[] = [];
 
   @Element() host: HTMLElement;
-  @Listen('drawerClose')
+  @Listen('drawerClose', { target: 'body'})
   handleNavDrawerClose(e) {
-    if(e.target.parentElement == this.host){
+    if(e.target.previousElementSibling == this.host){
       let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLElement;
       active.focus();  
-      // this.host.querySelector(`[name="${state.currentParent}"] cbp-button > button > *`).setAttribute('aria-current', 'true');
       this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`));
     }
   }
 
   initNavItemset() {
-    // check for a default navItem, otherwise set the first one active
-    let activeNavItem;
-    activeNavItem =  this.host.querySelector('cbp-nav-item[selected]');
-
-    this.setActiveNav(activeNavItem);
+    state.currentPage=this.navItems[0].name;
+    this.setActiveNav(this.navItems[0]);
   }
 
   setActiveNav(activatedNav) {
@@ -39,26 +34,11 @@ export class CbpAppHeader {
         link.setAttribute('aria-current', 'true');
       } else {
         navItem.selected = false;
-        link.removeAttribute('aria-current');
+        link.hasAttribute('aria-current') ? link.removeAttribute('aria-current') : '';
       }
     })
   }
 
-  updateCurrent(current){
-    state.currentPage = current.getAttribute('name');
-    this.findParent(current);
-  }
-
-  findParent(element){
-    let parent;
-    if( element.parentNode.parentNode.tagName == 'CBP-SUBNAV-ITEM'){
-      parent = element.parentNode.parentNode; //account for subnav <sections>
-      this.findParent(parent); 
-    }else {
-      state.currentParent = element.getAttribute('name');
-      return;
-    }
-  }
 
   componentWillLoad() {
     this.navItems = Array.from(this.host.querySelectorAll('cbp-nav-item'));
@@ -68,10 +48,6 @@ export class CbpAppHeader {
       navItem.addEventListener('navClicked', e => this.setActiveNav(e.detail.host));
     }); 
 
-    this.subnavItems = Array.from(this.host.querySelectorAll('cbp-subnav-item')).filter(subnav => subnav.closest('cbp-subnav'))
-    this.subnavItems.forEach(subnavItem => {
-      subnavItem.addEventListener('subnavCurrentClick', e => this.updateCurrent(e.detail.host));
-    });
   }
 
   componentDidLoad() {
@@ -79,6 +55,11 @@ export class CbpAppHeader {
   }
 
   render() {
+    /** stored state needed in render to trigger rerender on value update */
+    console.log('---App Header Render---');
+    console.log(state.currentPage)
+    console.log(state.currentParent)
+    console.log(state.activeItemName)
     return (
       <Host>
         <slot name="cbp-home" />
