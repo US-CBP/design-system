@@ -53,11 +53,16 @@ export class CbpSubNav {
     let parent; 
     parent = element.parentNode.closest('cbp-subnav-item');
 
-    if( parent.parentNode.tagName == 'SECTION'){
-      return this.findParent(parent);
-    } else{
-      return parent.getAttribute('name');
+    if(parent){
+      if( parent.parentNode.tagName == 'SECTION'){
+        return this.findParent(parent);
+      } else{
+        return parent.getAttribute('name');
+      }
+    } else {
+      return element.getAttribute('name');
     }
+    
   }
 
   componentWillLoad() {
