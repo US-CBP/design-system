@@ -14,6 +14,7 @@
  * @prop --cbp-link-color-disabled: var(--cbp-color-interactive-disabled-dark);
  * @prop --cbp-link-color-disabled-dark: var(--cbp-color-interactive-disabled-light);
  * @prop --cbp-link-gap: var(--cbp-space-1x);
+ * @prop --cbp-link-gap-lg: 0 var(--cbp-space-2x);
  */
 :root {
   --cbp-link-color: var(--cbp-color-interactive-primary-dark);
@@ -38,6 +39,7 @@
   --cbp-link-color-disabled-dark: var(--cbp-color-interactive-disabled-light);
 
   --cbp-link-gap: 0 var(--cbp-space-1x);
+  --cbp-link-gap-lg: 0 var(--cbp-space-2x);
 }
 
 // Displays dark design based on mode or context
