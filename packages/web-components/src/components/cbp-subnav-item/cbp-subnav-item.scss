@@ -139,11 +139,11 @@ cbp-subnav-item {
 cbp-subnav:not([flat]) cbp-subnav-item{
   cbp-subnav-item {
     
-    --cbp-subnav-item-indent: var(--cbp-space-6x);
+    --cbp-subnav-item-indent: var(--cbp-space-7x);
     --cbp-subnav-item-font-size: var(--cbp-font-size-heading-sm);
 
     cbp-subnav-item {
-      --cbp-subnav-item-indent: var(--cbp-space-8x);
+      --cbp-subnav-item-indent: var(--cbp-space-10x);
       --cbp-subnav-item-font-size: var(--cbp-font-size-heading-xs);
 
       --cbp-subnav-item-rotate-icon: rotate(0deg);
@@ -152,7 +152,7 @@ cbp-subnav:not([flat]) cbp-subnav-item{
       }
 
       cbp-subnav-item {
-        --cbp-subnav-item-indent: var(--cbp-space-10x);
+        --cbp-subnav-item-indent: var(--cbp-space-14x);
         --cbp-subnav-item-font-size: var(--cbp-font-size-body);
       }
     }

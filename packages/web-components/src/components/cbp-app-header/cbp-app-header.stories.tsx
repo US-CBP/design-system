@@ -30,26 +30,35 @@ function generateNavItems(items, drawerid){
 
 
 function generateSubnav(items){
-  const html = items.map(({ icon, label, name, href, open, children, current }) => {
-      return `<cbp-subnav-item label="${label}" name="${name}" href=${href} ${current? `current=${current}` : ``} ${open? `open=${open}` : ``} >${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``} ${children? generateSubnav(children) : ``}</cbp-subnav-item>`;
+  const html = items.map(({ icon, label, name, href, children, current }) => {
+      return `<cbp-subnav-item label="${label}" name="${name}" href=${href} ${current? `current=${current}` : ``}  >${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``} ${children? generateSubnav(children) : ``}</cbp-subnav-item>`;
   });
       return html.join('');
 }
 
 
-const Template = ({ open, drawerid, items, sx }) => {  
+const Template = ({ drawerid, items, sx }) => {  
   
-  document.addEventListener('click', function(e) { e.preventDefault(); });
+  // document.addEventListener('click', function(e) { e.preventDefault(); }); //TODO: remove before push
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('#appHeaderStorybook a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 1000
+
+  )
 
   return ` 
       <cbp-app-header
+        id='appHeaderStorybook'
+        store='true'
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
        ${generateNavItems(items, drawerid)}
       
-
-        <cbp-drawer
-        ${open ? `open=${open}` : ''}
+      </cbp-app-header>
+      <cbp-drawer
         ${drawerid ? `uid=${drawerid}` : ''}
         >
           <cbp-panel
@@ -88,13 +97,13 @@ const Template = ({ open, drawerid, items, sx }) => {
             </cbp-form-field>
             <cbp-subnav
               accessibilitytext="Application Subnav"
+              store=true
             >
               ${generateSubnav(items)}
             </cbp-subnav>
           </cbp-panel>
-        </cbp-drawer>
-      </cbp-app-header>
-        `;
+        </cbp-drawer>  
+      `;
 };
 
 
@@ -106,7 +115,6 @@ ApplicationHeader.args = {
         label: 'Application Name',
         name: 'Application Name',
         href: './?path=/story/components-application-header--application-header#',
-        current: true
       },
       {
         label: 'App Item #1',

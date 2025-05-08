@@ -25,7 +25,11 @@ export class CbpNavItem {
   @Event() navClicked: EventEmitter;
   handleNavClick() {
     state.activeItemName = this.name
-    this.host.querySelector('a') ? this.selected=true : null;
+    if(this.host.querySelector('a')){
+      console.log('handleNavClick logic check');
+      this.selected = true;
+      state.currentPage = this.name;
+    }
     this.navClicked.emit({
       host: this.host,
     })
