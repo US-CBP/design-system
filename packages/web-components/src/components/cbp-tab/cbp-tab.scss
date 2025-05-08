@@ -23,12 +23,14 @@
   --cbp-tab-color-border-selected: var(--cbp-tab-color-border-selected-dark);
 
   --cbp-tab-color-outline-focus: var(--cbp-tab-color-outline-focus-dark);
-
 }
 
 cbp-tab {
   button {
     all: unset;
+    display: inline-flex;
+    gap: var(--cbp-space-2x);
+    align-items: center;
     color: var(--cbp-tab-color);
     background-color: var(--cbp-tab-color-bg);
     box-sizing: border-box;
@@ -51,7 +53,7 @@ cbp-tab {
       --cbp-tab-color-border: var(--cbp-tab-color-border-hover);
     }
 
-    &[aria-selected='true'] {
+    &[aria-selected=true] {
       --cbp-tab-color: var(--cbp-tab-color-selected);
       --cbp-tab-color-bg: var(--cbp-tab-color-bg-selected);
       --cbp-tab-color-border: var(--cbp-tab-color-border-selected);

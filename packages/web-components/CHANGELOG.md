@@ -6,8 +6,10 @@ The React components are wrappers generated from this package and will share the
 
 ## [unpublished] TBD
 
+* BREAKING (visually): updated the way icons are spaced apart from text within `cbp-button`, `cbp-link`, and `cbp-tag` components, now using a CSS property for the `gap`. Any instances of applying margins to the icon or text (via `sx` or custom CSS) will need to be removed to avoid doubling up the spacing. The following stories were updated and may need to have copied code updated in consuming applications: Cards (action buttons icon in title), Table (sortable headers), Universal Header and the universal header content in all templates and archetype pages.
+* Additionally, the horizontal padding on `cbp-button` was slightly reduced from .75rem to .5rem, allowing icon buttons to be square without specifying the `variant="square"` explicitly.
+* BREAKING (visually): updated the default `cbp-icon` size from "1em" to "1rem". This is because most icons alongside the base text size (14px) are designed to be 16px (1rem). Any other sized icon should be explicitly specified via the `size` property using relative units or design tokens.
 * First cut of the `cbp-menu` component.
-* BREAKING: updated the way icons are spaced apart from text within buttons and links, now using a CSS property for the `gap`. Any instances of applying margins to the icon or text will need to be removed to avoid doubling up the spacing.
 * Updated `cbp-drawer` to add the ability to persist its contents in the flow of the page at a certain breakpoint, mobilizing to an overlay below that breakpoint.
 * Updated the Passenger List archetype to demonstrate this drawer functionality.
 * Updated the `cbp-dropdown` faux button so that the chevron can be rotated when opened.

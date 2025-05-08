@@ -32,13 +32,13 @@ function createTabs(tabs, withIcon, withBadge,) {
     return `
       <cbp-tab 
         name="${name}"
-        ${color !== 'default' ? `color=${color}` : ''}
+        ${color !== 'default' ? `color="${color}"` : ''}
         ${accessibilityText ? `accessibility-text=${accessibilityText}}` : ''}
         ${selected == true ? 'selected' : ''}
       >
-        ${withIcon ? `<cbp-icon name='check' sx='{"padding-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>` : ''}
+        ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
         ${label}
-        ${withBadge ? `<cbp-badge sx='{"margin-inline-start":"var(--cbp-space-2x)"}'>22</cbp-badge>` : ''}
+        ${withBadge ? `<cbp-badge>22</cbp-badge>` : ''}
       </cbp-tab>
     `;
   });

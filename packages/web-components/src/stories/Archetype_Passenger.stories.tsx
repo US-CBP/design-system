@@ -78,10 +78,7 @@ function generatePassengers(passengerArgs, page, pageSize) {
                   fill="ghost"
                   color="secondary"
                 >
-                  <cbp-icon 
-                    name="book"
-                    sx='{"margin-right":"var(--cbp-space-2x)"}'
-                  ></cbp-icon> Vet Passenger
+                  <cbp-icon name="book"></cbp-icon>Vet Passenger
                 </cbp-button>
               </cbp-grid-item>
             </cbp-grid>
@@ -145,7 +142,9 @@ function generateManifest(manifestArgs) {
                   <span>people: ${people}</span>
                   <span>hotlist: ${hotlist}</span>
                 </cbp-flex>
-                <cbp-tag color='warning'><cbp-icon name='circle-info'></cbp-icon> ${arrivalGate}</cbp-tag>
+                <cbp-tag color='warning'>
+                  <cbp-icon name='circle-info'></cbp-icon> ${arrivalGate}
+                </cbp-tag>
               </cbp-flex>
             </div>
             <div slot="cbp-card-actions">
@@ -222,10 +221,7 @@ function passengerList(passengerArgs) {
             fill="outline"
             class="hydrated"
             >
-              <cbp-icon
-                name="filter"
-                sx='{"margin-right":"var(--cbp-space-2x)"}'
-              ></cbp-icon> Filter
+              <cbp-icon name="filter"></cbp-icon>Filter
           </cbp-button>
         </cbp-hide>
 
@@ -240,10 +236,7 @@ function passengerList(passengerArgs) {
             target-prop="open"
             controls="manifestDrawer"
           >
-            <cbp-icon 
-              name="book"
-              sx='{"margin-right":"var(--cbp-space-2x)"}'
-              ></cbp-icon>Manifests
+            <cbp-icon name="book"></cbp-icon>Manifests
           </cbp-button>
         </cbp-flex-item>
         
@@ -253,10 +246,7 @@ function passengerList(passengerArgs) {
             fill="outline"
             color="secondary"
           >
-            <cbp-icon 
-              name="book"
-              sx='{"margin-right":"var(--cbp-space-2x)"}'
-            ></cbp-icon>Refresh
+            <cbp-icon name="book"></cbp-icon>Refresh
           </cbp-button>
         </cbp-flex-item>
       </cbp-flex>
@@ -365,7 +355,6 @@ function filterPanel() {
               >
                 <cbp-icon
                   name="magnifying-glass"
-                  size="1rem"
                 ></cbp-icon>
               </cbp-button>
             </span>
@@ -635,36 +624,32 @@ const InternalTemplate = ({ isLoggedIn, username, passengersArgs, manifestArgs }
           <li>
             <cbp-button color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="book"></cbp-icon>
-              <cbp-hide
-                hide-at="max-width: 64em"
-                sx='{"margin-left":"var(--cbp-space-2x)"}'
-              >App Directory</cbp-hide>
+              <cbp-hide visually-hide-at="max-width: 64em">
+                  App Directory
+                </cbp-hide>
             </cbp-button>
           </li>
           <li>
             <cbp-button color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="comment"></cbp-icon>  
-              <cbp-hide
-                visually-hide-at="max-width: 64em"
-                sx='{"margin-left":"var(--cbp-space-2x)"}'
-              >Feedback</cbp-hide>
+              <cbp-hide visually-hide-at="max-width: 64em">
+                Feedback
+              </cbp-hide>
             </cbp-button>
           </li>
           <li>
             <cbp-button color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="user"></cbp-icon>
-              <cbp-hide
-                visually-hide-at="max-width: 64em"
-                sx='{"margin-left":"var(--cbp-space-2x)"}'
-              >${username}</cbp-hide>
+              <cbp-hide visually-hide-at="max-width: 64em">
+                ${username}
+              </cbp-hide>
             </cbp-button>
           </li>
           `
             : `
           <li>
             <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
-            <cbp-icon name="right-to-bracket" sx='{"margin-right":"var(--cbp-space-2x)"}'></cbp-icon>
-            Login
+              <cbp-icon name="right-to-bracket"></cbp-icon>Login
             </cbp-button>
           </li>
           `

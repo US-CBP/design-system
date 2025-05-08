@@ -111,7 +111,13 @@ export class CbpCodeSnippet {
         </pre>
 
         { (this.expanded || this.height && this.codeContainerHeight < this.codeBlockHeight) && 
-          <cbp-button type="button" fill="ghost" color="secondary" onClick={() => this.toggleShowAll()} expanded={this.expanded} context={this.context}>
+          <cbp-button 
+            fill="ghost" 
+            color="secondary" 
+            expanded={this.expanded} 
+            context={this.context}
+            onClick={() => this.toggleShowAll()} 
+          >
             <cbp-icon name="chevron-right" rotate={this.toggleButtonRotate}></cbp-icon>
             {this.toggleButtonText}
           </cbp-button>
