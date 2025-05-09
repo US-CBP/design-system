@@ -26,10 +26,6 @@ export class CbpSubNav {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-  
-  initSubnav(){
-    this.setActiveSubnav(this.subnavItems[0], false)
-  }
 
   setActiveSubnav(activatedSubNav, needParent) { 
     this.subnavItems.forEach((subnavItem: HTMLCbpSubnavItemElement) => {
@@ -44,7 +40,6 @@ export class CbpSubNav {
         }
       } else {
         subnavItem.current = false;
-        link.hasAttribute('aria-current') ? link.removeAttribute('aria-current') : '';
       }
     })
   }
@@ -79,15 +74,12 @@ export class CbpSubNav {
     });
   }
   
-  componentDidLoad(){
-     this.initSubnav(); 
-  }
 
   testStateinRender(){ //TODO: local testing to remove after review
     console.log('---Subnav Render---');
-    console.log('state.currentPage:' + state.currentPage)
-    console.log('state.currentParent:' + state.currentParent)
-    console.log('state.activeItemName:' + state.activeItemName)
+    console.log('currentPage:' + state.currentPage)
+    console.log('currentParent:' + state.currentParent)
+    console.log('activeItemName:' + state.activeItemName)
   }
   
   render() {

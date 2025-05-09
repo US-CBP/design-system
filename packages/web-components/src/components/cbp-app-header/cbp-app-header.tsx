@@ -9,6 +9,7 @@ export class CbpAppHeader {
 
   
   private navItems: HTMLCbpNavItemElement[] = [];
+  private currentItem;
 
   @Element() host: HTMLElement;
   @Listen('drawerClose', { target: 'body'})
@@ -16,13 +17,8 @@ export class CbpAppHeader {
     if(e.target.previousElementSibling == this.host){
       let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLElement;
       active.focus();  
-      this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`));
+      state.currentParent ? this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`)) : this.setActiveNav(this.host.querySelector(`[name="${state.currentPage}"]`));
     }
-  }
-
-  initNavItemset() {
-    state.currentPage=this.navItems[0].name;
-    this.setActiveNav(this.navItems[0]);
   }
 
   setActiveNav(activatedNav) {
@@ -42,6 +38,8 @@ export class CbpAppHeader {
 
   componentWillLoad() {
     this.navItems = Array.from(this.host.querySelectorAll('cbp-nav-item'));
+    this.currentItem = this.host.querySelector('cbp-nav-item[selected]');
+    state.currentPage = state.currentParent = this.currentItem?.name;
 
     // Attach event listeners to the child navItem
     this.navItems.forEach(navItem => {
@@ -50,16 +48,12 @@ export class CbpAppHeader {
 
   }
 
-  componentDidLoad() {
-    this.initNavItemset();
-  }
-
   render() {
     /** stored state needed in render to trigger rerender on value update */
     console.log('---App Header Render---');
-    console.log('state.currentPage:' + state.currentPage)
-    console.log('state.currentParent:' + state.currentParent)
-    console.log('state.activeItemName:' + state.activeItemName)
+    console.log('currentPage:' + state.currentPage)
+    console.log('currentParent:' + state.currentParent)
+    console.log('activeItemName:' + state.activeItemName)
     return (
       <Host>
         <slot name="cbp-home" />

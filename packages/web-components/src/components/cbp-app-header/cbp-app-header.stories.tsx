@@ -115,6 +115,7 @@ ApplicationHeader.args = {
         label: 'Application Name',
         name: 'Application Name',
         href: './?path=/story/components-application-header--application-header#',
+        current: true
       },
       {
         label: 'App Item #1',

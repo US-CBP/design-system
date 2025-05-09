@@ -25,10 +25,10 @@ export class CbpNavItem {
   @Event() navClicked: EventEmitter;
   handleNavClick() {
     state.activeItemName = this.name;
-    state.currentParent = this.name;
     if(this.host.querySelector('a')){
       this.selected = true;
       state.currentPage = this.name;
+      state.currentParent = this.name;
     }
     this.navClicked.emit({
       host: this.host,
