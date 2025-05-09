@@ -16,16 +16,18 @@ A Menu contains additional actions in the form of links or buttons, which can be
 * The menu's width is determined by the length of the menu items.
 * The menu may be positioned above or below the control, aligned to the right or left edges, to accommodate different placements on a page.
 * Menu items may indicate a danger state for options such as deletion.
-* The menu may optionally contain a "close" button as the last option.
-* A Menu may be closed by pressing `ESC` or clicking outside of the menu.
+* The menu automatically renders a "close" button as the last option.
+* A Menu may be closed by pressing `ESC`, clicking outside of the menu, activating the "close" item, or tabbing away from it.
 
 ## Technical Specifications
 
 ### User Interactions
 
 * Activating the menu control (button) will toggle the menu visibility and emit a custom `menuToggle` event in addition to the native button's `click` event.
-* Clicking or tabbing outside of the menu will close the menu.
-* Pressing `ESC` will also close the menu.
+* When opened, focus will be sent to the first menu item.
+* Pressing `ESC` or activating the "close" button will close the menu and send focus back to its control.
+* Clicking outside of the menu will close it and place focus wherever the click occurred (if focusable).
+* Tabbing away from the menu will also close it, but focus will be sent to the next logical element in the tab order.
 
 ### Responsiveness
 
@@ -44,7 +46,7 @@ A Menu contains additional actions in the form of links or buttons, which can be
 * Clicking on the menu control or anywhere outside of the menu itself will close the menu.
 * Tabbing outside of the menu or menu control will close the menu.
 * Pressing `ESC` at any time will close an open menu.
-* If the menu is closed by pressing `ESC`, focus will be returned to the menu's control.
+* If the menu is closed by pressing `ESC` or activating the close button, focus will be returned to the menu's control.
 
 ### Additional Notes and Considerations
 

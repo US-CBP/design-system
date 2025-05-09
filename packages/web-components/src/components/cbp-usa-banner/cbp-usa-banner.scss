@@ -42,7 +42,7 @@ cbp-usa-banner {
 
   cbp-button.cbp-usa-banner-expand[fill='ghost'][color='primary']:not(#fakeId)  { 
     //addition of fill & color in the selector is to up specificity to override button's dark mode var remapping correctly
-    
+    --cbp-button-gap: var(--cbp-space-1x);
     --cbp-button-height: 1rem;
     --cbp-button-min-height: 1rem;
 
@@ -78,7 +78,6 @@ cbp-usa-banner {
     cbp-icon svg{
       transition: transform 150ms;
       transform: var(--cbp-usa-banner-icon-rotate);
-      margin-left: var(--cbp-space-1x);
     }
   }
 

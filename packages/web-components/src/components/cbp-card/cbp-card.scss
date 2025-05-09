@@ -114,7 +114,9 @@ cbp-card {
     font-size: var(--cbp-font-size-heading-lg);
     line-height: var(--cbp-line-height-sm);
     
-     > *{
+     > * {
+      display: flex;
+      gap: var(--cbp-space-2x);
       color: var(--cbp-card-color-text);
     }
   }

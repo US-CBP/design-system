@@ -70,10 +70,6 @@ cbp-code-snippet {
     //Show More / Show Less button
     & > cbp-button {
       margin: var(--cbp-space-2x);
-    
-      cbp-icon{
-        margin-inline-end: var(--cbp-space-2x);
-      }
     }
   }
 }

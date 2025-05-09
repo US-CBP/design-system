@@ -204,14 +204,14 @@ cbp-table {
         transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
 
         &[aria-sort=none] button {
-          padding-inline-end: var(--cbp-space-9x);
+          padding-inline-end: var(--cbp-space-7x);
         }
 
         &[aria-sort=ascending] button,
         &[aria-sort=descending] button {
           cbp-icon[name="arrow-right"] {
             --cbp-icon-size: var(--cbp-space-4x);
-            margin-inline-end: var(--cbp-space-1x);
+            //margin-inline-end: var(--cbp-space-1x);
           }
         }
 
