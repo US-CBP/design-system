@@ -12,12 +12,22 @@ export class CbpAppHeader {
   private currentItem;
 
   @Element() host: HTMLElement;
+
+
   @Listen('drawerClose', { target: 'body'})
   handleNavDrawerClose(e) {
-    if(e.target.previousElementSibling == this.host){
-      let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLElement;
-      active.focus();  
-      state.currentParent ? this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`)) : this.setActiveNav(this.host.querySelector(`[name="${state.currentPage}"]`));
+    const Subnav = e.target.querySelector('cbp-subnav');
+    // Only update focus and current states if the drawer holds a subnav using state store.
+    if(Subnav?.store == true) {
+      let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLButtonElement;
+      active?.focus(); // TechDebt: this needs to be revisited for navigation events that may auto-close the drawer.
+
+      /*
+      state.currentParent 
+        ? this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`)) 
+        : this.setActiveNav(this.host.querySelector(`[name="${state.currentPage}"]`));
+      */
+      this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`)) 
     }
   }
 
@@ -30,9 +40,10 @@ export class CbpAppHeader {
         link.setAttribute('aria-current', 'true');
       } else {
         navItem.selected = false;
-        link.hasAttribute('aria-current') ? link.removeAttribute('aria-current') : '';
+        //link.hasAttribute('aria-current') ? link.removeAttribute('aria-current') : '';
+        link.removeAttribute('aria-current');
       }
-    })
+    });
   }
 
 
