@@ -142,6 +142,17 @@
       }
     },
 
+    "backdrop": {
+      "light": {
+        "value": "rgba(0, 0, 0, 0.3)",
+        "attributes": { "use": "theme", "type": "active" }
+      },
+      "dark": {
+        "value": "rgba(0, 0, 0, 0.5)",
+        "attributes": { "use": "theme", "type": "active" }
+      }
+    },
+
     "background": {
       "light": {
         "value": "{color.gray.cool.3.value}",
