@@ -57,9 +57,9 @@ export class CbpAppHeader {
   render() {
     /** stored state needed in render to trigger rerender on value update */
     console.log('---App Header Render---');
-    console.log(state.currentPage)
-    console.log(state.currentParent)
-    console.log(state.activeItemName)
+    console.log('state.currentPage:' + state.currentPage)
+    console.log('state.currentParent:' + state.currentParent)
+    console.log('state.activeItemName:' + state.activeItemName)
     return (
       <Host>
         <slot name="cbp-home" />

@@ -21,7 +21,7 @@ function generateNavItems(items, drawerid){
     if(!children){
       return `<cbp-nav-item name="${name}" ${current ? 'selected' : ''}>  <cbp-button tag='a' href=${href} fill="ghost" color="secondary">${label}</cbp-button></cbp-nav-item>`;
     } else {
-      return `<cbp-nav-item name="${name}" ${current ? 'selected' : ''}>  <cbp-button tag='button' fill="ghost" color="secondary" target-prop="open" controls=${drawerid}>${label} <cbp-icon name="chevron-right" rotate="90" sx='{"margin-left":"0.25rem"}'></cbp-icon></cbp-button></cbp-nav-item>`;
+      return `<cbp-nav-item name="${name}" ${current ? 'selected' : ''}>  <cbp-button tag='button' fill="ghost" color="secondary" target-prop="open" controls=${drawerid}>${label} <cbp-icon name="chevron-right" rotate="90"></cbp-icon></cbp-button></cbp-nav-item>`;
     }
        }
   );

@@ -85,9 +85,9 @@ export class CbpSubNav {
 
   testStateinRender(){ //TODO: local testing to remove after review
     console.log('---Subnav Render---');
-    console.log(state.currentPage)
-    console.log(state.currentParent)
-    console.log(state.activeItemName)
+    console.log('state.currentPage:' + state.currentPage)
+    console.log('state.currentParent:' + state.currentParent)
+    console.log('state.activeItemName:' + state.activeItemName)
   }
   
   render() {

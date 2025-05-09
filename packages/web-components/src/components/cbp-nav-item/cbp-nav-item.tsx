@@ -24,9 +24,9 @@ export class CbpNavItem {
   //techdebt: event logic only works for links
   @Event() navClicked: EventEmitter;
   handleNavClick() {
-    state.activeItemName = this.name
+    state.activeItemName = this.name;
+    state.currentParent = this.name;
     if(this.host.querySelector('a')){
-      console.log('handleNavClick logic check');
       this.selected = true;
       state.currentPage = this.name;
     }
