@@ -3,7 +3,7 @@ export default {
   tags: ['new'],
   argTypes: {
     accessibilitytext: {
-      description: 'Sets accessibilitytext prop for the subnav component',
+      description: 'Sets accessibilityText prop for the subnav component',
       control: 'text',
     },
     flat: {
@@ -41,7 +41,7 @@ function generateContent(items, context) {
 const SubnavTemplate = ({ items, accessibilitytext, flat, context }) => {
   return ` 
     <cbp-subnav
-      ${accessibilitytext ? `accessibilitytext="${accessibilitytext}"` : ``}
+      ${accessibilitytext ? `accessibility-text="${accessibilitytext}"` : ``}
       ${flat ? 'flat' : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
     >
