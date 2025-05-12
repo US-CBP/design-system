@@ -88,7 +88,6 @@ Drawer.args = {
   position: 'left',
   uid: 'drawer',
   //persistAt: 'min-width:64rem',
-  context: 'light-always'
 };
 
 
@@ -118,6 +117,10 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
         aria-labelledby="panelheader"
         role="complementary"
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        sx='{
+          "--cbp-panel-header-color-dark": "var(--cbp-color-text-lighter)",
+          "--cbp-panel-header-color-bg-dark":"var(--cbp-color-branding-dhs-blue)"
+        }'
       >
         <cbp-typography
           slot="cbp-panel-header"
@@ -139,5 +142,11 @@ export const UserPreferences = UserPreferencesTemplate.bind({});
 UserPreferences.args = {
   position: 'right',
   uid: 'drawer',
-  context: 'dark-always'
+  context: 'dark-always',
+  sx: {
+    "--cbp-drawer-close-button-color": "var(--cbp-color-interactive-secondary-lighter)",
+    "--cbp-drawer-close-button-color-hover": "var(--cbp-color-interactive-secondary-lighter)",
+    "--cbp-drawer-close-button-color-bg-hover": "var(--cbp-color-interactive-secondary-darker)",
+    "--cbp-drawer-close-button-color-border-hover": "var(--cbp-color-interactive-secondary-darker)",
+  }
 };

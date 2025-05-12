@@ -38,6 +38,7 @@ export class CbpMenu {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+  // A custom event fired when the menu is opened or closed.
   @Event() toggleMenu: EventEmitter;
 
   /** A public method for opening the menu. */
