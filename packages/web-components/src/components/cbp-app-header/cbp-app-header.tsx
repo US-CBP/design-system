@@ -21,12 +21,6 @@ export class CbpAppHeader {
     if(Subnav?.store == true) {
       let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLButtonElement;
       active?.focus(); // TechDebt: this needs to be revisited for navigation events that may auto-close the drawer.
-
-      /*
-      state.currentParent 
-        ? this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`)) 
-        : this.setActiveNav(this.host.querySelector(`[name="${state.currentPage}"]`));
-      */
       this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`)) 
     }
   }
@@ -40,7 +34,6 @@ export class CbpAppHeader {
         link.setAttribute('aria-current', 'true');
       } else {
         navItem.selected = false;
-        //link.hasAttribute('aria-current') ? link.removeAttribute('aria-current') : '';
         link.removeAttribute('aria-current');
       }
     });
