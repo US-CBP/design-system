@@ -27,7 +27,7 @@ export class CbpMenuItem {
 
   componentWillLoad() {
     setCSSProps(this.host, {
-      "--cpb-menu-item-indent": this.indentLevel > 0 ? `var(--cbp-space-${this.indentLevel}x)` : "0px"
+      "--cpb-menu-item-indent": this.indentLevel > 0 ? `var(--cbp-space-${this.indentLevel * 2}x)` : "0px"
     });
   }
 
