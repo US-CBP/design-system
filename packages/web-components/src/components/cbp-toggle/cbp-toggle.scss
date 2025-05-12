@@ -158,6 +158,7 @@ cbp-toggle {
   }
 
   input[type='checkbox']{
+    all: unset;
     appearance: none;
     height: var(--cbp-toggle-control-height);
     min-width: var(--cbp-toggle-control-width);
