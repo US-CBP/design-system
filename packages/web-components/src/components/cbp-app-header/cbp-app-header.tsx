@@ -1,4 +1,5 @@
-import { Component, Element, Host, h } from '@stencil/core';
+import { Component, Element, Host, h, Listen } from '@stencil/core';
+import state from '../cbp-app-header/store';
 
 @Component({
   tag: 'cbp-app-header',
@@ -8,15 +9,20 @@ export class CbpAppHeader {
 
   
   private navItems: HTMLCbpNavItemElement[] = [];
+  private currentItem;
 
   @Element() host: HTMLElement;
 
-  initNavItemset() {
-    // check for a default navItem, otherwise set the first one active
-    let activeNavItem;
-    activeNavItem =  this.host.querySelector('cbp-nav-item[selected]');
 
-    this.setActiveNav(activeNavItem);
+  @Listen('drawerClose', { target: 'body'})
+  handleNavDrawerClose(e) {
+    const Subnav = e.target.querySelector('cbp-subnav');
+    // Only update focus and current states if the drawer holds a subnav using state store.
+    if(Subnav?.store == true) {
+      let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLButtonElement;
+      active?.focus(); // TechDebt: this needs to be revisited for navigation events that may auto-close the drawer.
+      this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`)) 
+    }
   }
 
   setActiveNav(activatedNav) {
@@ -30,20 +36,20 @@ export class CbpAppHeader {
         navItem.selected = false;
         link.removeAttribute('aria-current');
       }
-    })
+    });
   }
+
 
   componentWillLoad() {
     this.navItems = Array.from(this.host.querySelectorAll('cbp-nav-item'));
+    this.currentItem = this.host.querySelector('cbp-nav-item[selected]');
+    state.currentPage = state.currentParent = this.currentItem?.name;
 
     // Attach event listeners to the child navItem
     this.navItems.forEach(navItem => {
       navItem.addEventListener('navClicked', e => this.setActiveNav(e.detail.host));
     }); 
-  }
 
-  componentDidLoad() {
-    this.initNavItemset();
   }
 
   render() {

@@ -20,6 +20,9 @@ export class CbpSubnavItem {
   /** Specifies the current subnav-item */
   @Prop ({ reflect: true}) current: boolean
 
+  /** Specifies a name used to associated nav items with subnav items*/
+  @Prop({ reflect: true }) name: string;
+
   /** Specifies the label for the subnav item */
   @Prop () label: string;
 
@@ -54,7 +57,14 @@ export class CbpSubnavItem {
       host: this.host,
       open: this.open,
     });
+  }
 
+  @Event() subnavCurrentClick: EventEmitter;
+  subnavCurrent(){
+    this.current=true;
+    this.subnavCurrentClick.emit({
+      host: this.host,
+    })
   }
 
   @Watch('current')
@@ -76,6 +86,7 @@ export class CbpSubnavItem {
             href={this.href}
             aria-current={this.current}
             context={this.context}
+            onClick={() => this.subnavCurrent()}
           >
             { !this.host.querySelector('[slot=cbp-subnav-item-label]') && this.label}
             <slot name="cbp-subnav-item-label" />

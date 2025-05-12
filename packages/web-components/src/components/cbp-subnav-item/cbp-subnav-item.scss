@@ -20,7 +20,9 @@
   --cbp-subnav-item-color-bg-dark: var(--cbp-color-gray-cool-70);
 
   --cbp-subnav-item-current-color:var(--cbp-color-interactive-active-dark);
+  --cbp-subnav-item-current-color-dark:var(--cbp-color-interactive-active-lighter);
   --cbp-subnav-item-current-color-bg: var(--cbp-color-interactive-active-light);
+  --cbp-subnav-item-current-color-bg-dark: var(--cbp-color-interactive-active-dark);
   --cbp-subnav-item-current-border-color: var(--cbp-color-interactive-active-dark);
   --cbp-subnav-item-current-border-color-dark: var(--cbp-color-interactive-active-light); 
 
@@ -32,7 +34,8 @@
 [data-cbp-theme=dark] cbp-subnav:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-subnav-item-color: var(--cbp-subnav-item-color-dark);
   --cbp-subnav-item-color-bg: var(--cbp-subnav-item-color-bg-dark);
-  --cbp-subnav-item-current-border-color: var(--cbp-subnav-item-current-border-color-dark); 
+  --cbp-subnav-item-current-border-color: var(--cbp-subnav-item-current-border-color-dark);
+  --cbp-subnav-item-current-color-bg: var(--cbp-subnav-item-current-color-bg-dark);
 }
 
 cbp-subnav-item {
@@ -52,9 +55,9 @@ cbp-subnav-item {
 
   &[current] > div > cbp-button[fill=outline][color=primary]:first-of-type{
     --cbp-button-color: var(--cbp-subnav-item-current-color);
-    --cbp-button-color-dark: var(--cbp-subnav-item-current-color);
+    --cbp-button-color-dark: var(--cbp-subnav-item-current-color-dark);
     --cbp-button-color-bg: var(--cbp-subnav-item-current-color-bg);
-    --cbp-button-color-bg-dark: var(--cbp-subnav-item-current-color-bg);
+    --cbp-button-color-bg-dark: var(--cbp-subnav-item-current-color-bg-dark);
     font-style: italic;
 
     > a{
@@ -141,11 +144,11 @@ cbp-subnav-item {
 cbp-subnav:not([flat]) cbp-subnav-item{
   cbp-subnav-item {
     
-    --cbp-subnav-item-indent: var(--cbp-space-6x);
+    --cbp-subnav-item-indent: var(--cbp-space-7x);
     --cbp-subnav-item-font-size: var(--cbp-font-size-heading-sm);
 
     cbp-subnav-item {
-      --cbp-subnav-item-indent: var(--cbp-space-8x);
+      --cbp-subnav-item-indent: var(--cbp-space-10x);
       --cbp-subnav-item-font-size: var(--cbp-font-size-heading-xs);
 
       --cbp-subnav-item-rotate-icon: rotate(0deg);
@@ -154,7 +157,7 @@ cbp-subnav:not([flat]) cbp-subnav-item{
       }
 
       cbp-subnav-item {
-        --cbp-subnav-item-indent: var(--cbp-space-10x);
+        --cbp-subnav-item-indent: var(--cbp-space-14x);
         --cbp-subnav-item-font-size: var(--cbp-font-size-body);
       }
     }
