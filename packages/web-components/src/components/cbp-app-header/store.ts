@@ -8,17 +8,14 @@ const { state, onChange } = createStore({
 
 onChange('currentPage', value => {
   state.currentPage = value;
-  console.log('currentPage: ' + state.currentPage);
 });
 
 onChange('currentParent', value => {
   state.currentParent = value;
-  console.log('currentParent: ' + value);
 })
 
 onChange('activeItemName', value => {
   state.activeItemName = value;
-  console.log('activeItemName: ' + state.activeItemName);
   updateSelected();
 });
 

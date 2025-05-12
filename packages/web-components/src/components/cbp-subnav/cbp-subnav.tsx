@@ -74,18 +74,7 @@ export class CbpSubNav {
     });
   }
   
-
-  testStateinRender(){ //TODO: local testing to remove after review
-    console.log('---Subnav Render---');
-    console.log('currentPage:' + state.currentPage)
-    console.log('currentParent:' + state.currentParent)
-    console.log('activeItemName:' + state.activeItemName)
-  }
-  
   render() {
-    /** test if function call to stored state still triggers rerender on value update */
-    this.testStateinRender();
-
     /** update the active to match the state.current */
     if(this.store){
       this.subnavItems.forEach(subnavItem => {
