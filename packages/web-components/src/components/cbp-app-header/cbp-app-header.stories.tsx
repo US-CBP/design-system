@@ -41,7 +41,7 @@ const Template = ({ drawerid, items, sx }) => {
   
   // document.addEventListener('click', function(e) { e.preventDefault(); }); //TODO: remove before push
   setTimeout(() => {
-    let anchors = document.querySelectorAll('#appHeaderStorybook a');
+    let anchors = document.querySelectorAll('cbp-app-header a, cbp-subnav a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -51,13 +51,11 @@ const Template = ({ drawerid, items, sx }) => {
 
   return ` 
       <cbp-app-header
-        id='appHeaderStorybook'
-        store='true'
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
        ${generateNavItems(items, drawerid)}
-      
       </cbp-app-header>
+      
       <cbp-drawer
         ${drawerid ? `uid=${drawerid}` : ''}
         >
@@ -95,9 +93,10 @@ const Template = ({ drawerid, items, sx }) => {
                 </span>
               </cbp-form-field-wrapper>
             </cbp-form-field>
+
             <cbp-subnav
-              accessibilitytext="Application Subnav"
-              store=true
+              accessibility-text="Application Subnav"
+              store="true"
             >
               ${generateSubnav(items)}
             </cbp-subnav>
