@@ -1,10 +1,20 @@
 /*
  * @prop --cbp-drawer-color-bg: var(--cbp-color-white);
+ * @prop --cbp-drawer-color-bg-dark: var(--cbp-color-gray-cool-70);
+ * @prop --cbp-drawer-color-backdrop: var(--cbp-color-backdrop-light);
+ * @prop -cbp-drawer-color-backdrop-dark: var(--cbp-color-backdrop-dark);
  */
 :root {
   --cbp-drawer-color-bg: var(--cbp-color-white);
+  --cbp-drawer-color-bg-dark: var(--cbp-color-gray-cool-70);
   --cbp-drawer-color-backdrop: var(--cbp-color-backdrop-light);
   --cbp-drawer-color-backdrop-dark: var(--cbp-color-backdrop-dark);
+
+  // TechDebt: duplicates default button[fill=ghost][color=secondary] styles to allow them to be overridden for User Preferences drawer
+  --cbp-drawer-close-button-color: var(--cbp-color-interactive-secondary-darker);
+  --cbp-drawer-close-button-color-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-drawer-close-button-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-drawer-close-button-color-border-hover: var(--cbp-color-interactive-primary-lighter);
 }
 
 /* 
@@ -12,7 +22,7 @@
  */
 [data-cbp-theme=light] cbp-drawer[context*=dark],
 [data-cbp-theme=dark] cbp-drawer:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-drawer-color-bg: var(--cbp-color-gray-cool-70);
+  --cbp-drawer-color-bg: var(--cbp-drawer-color-bg-dark);
   --cbp-drawer-color-backdrop: var(--cbp-drawer-color-backdrop-dark);
 }
 
@@ -25,13 +35,6 @@ cbp-drawer {
   &:not(.cbp-drawer--persistent) {
     --cbp-panel-border-radius: 0;
     --cbp-panel-border-width: 0;
-    // Use the panel CSS API to override the colors in dark mode for a specific drawer variant
-    --cbp-panel-header-color-dark: var(--cbp-color-text-lighter);
-    --cbp-panel-header-color-bg-dark: var(--cbp-color-branding-dhs-blue);
-    --cbp-panel-header-color-bottom-border-dark: var(--cbp-color-gray-cool-50);
-    --cbp-panel-content-color-dark: var(--cbp-color-text-lightest);
-    --cbp-panel-content-color-bg-dark: var(--cbp-color-gray-cool-70);
-    --cbp-panel-content-color-border-dark: var(--cbp-color-gray-cool-60);
   }
 
   &.cbp-drawer--persistent {
@@ -65,6 +68,14 @@ cbp-drawer {
       position: absolute;
       right: 1rem;
       top: 1em;
+
+      // Provided specifically in support of the User Preferences drawer design
+      &[fill][color] {
+        --cbp-button-color: var(--cbp-drawer-close-button-color);
+        --cbp-button-color-hover: var(--cbp-drawer-close-button-color-hover);
+        --cbp-button-color-bg-hover: var(--cbp-drawer-close-button-color-bg-hover);
+        --cbp-button-color-border-hover: var(--cbp-drawer-close-button-color-border-hover);
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Prop, Element, Event, EventEmitter, Method, Watch, Host, h, State } from '@stencil/core';
-import { setCSSProps, getFocusableElements } from '../../utils/utils';
+import { setCSSProps, getFocusableElements, getInvertedContext } from '../../utils/utils';
 
 @Component({
   tag: 'cbp-drawer',
@@ -124,7 +124,7 @@ export class CbpDrawer {
   render() {
     return (
       <Host 
-        class={this.persistent ? "cbp-drawer--persistent" : ""}
+        class={ (this.persistent && !this.open) ? "cbp-drawer--persistent" : ""}
         onClick={e => this.handleBackdropClick(e)} 
         onKeyUp={e => this.handleKeyUp(e)} id={this.uid}
       >
@@ -136,19 +136,21 @@ export class CbpDrawer {
           aria-label={this.accessibilityText}
           tabindex="-1"
         >
-          {!this.persistent && <cbp-button
-            class="cbp-drawer__close-button"
-            variant="square"
-            type="button"
-            color="secondary"
-            fill="ghost"
-            accessibilityText="Close"
-            targetProp="open"
-            controls={this.uid}
-            context="dark-always"
-          >
-            <cbp-icon name="circle-xmark" size="1rem"></cbp-icon>
-          </cbp-button>}
+          {(!this.persistent || this.open) && 
+            <cbp-button
+              class="cbp-drawer__close-button"
+              variant="square"
+              type="button"
+              color="secondary"
+              fill="ghost"
+              accessibilityText="Close"
+              targetProp="open"
+              controls={this.uid}
+              context={getInvertedContext(this.context)}
+            >
+              <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
+            </cbp-button>
+          }
 
           <slot />
         </div>
