@@ -12,7 +12,7 @@ export class CbpTypography {
   @Element() host: HTMLElement;
 
   /** Specifies the semantic tag to be rendered. */
-  @Prop() tag!: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'code' | 'pre' | 'div' | 'span' ;
+  @Prop() tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'code' | 'pre' | 'div' | 'span' = "span";
   
   /** Specifies the visual style of the text regardless of the semantic tag. */
   @Prop({ reflect: true }) variant: 'masthead-1' | 'masthead-2' | 'heading-xxl' | 'heading-xl' | 'heading-lg' | 'heading-md' | 'heading-sm' | 'heading-xs' | 'body-text' | 'subhead' | 'heading-dialog';
