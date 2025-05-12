@@ -10,19 +10,22 @@ The Banner is a container spanning the entire viewport meant to highlight urgent
 
 ## Functional Requirements
 
-* Informational banners are the only supported variation of banner currently supported for web Components.
-  * These banner contain an icon as well as a heading followed by descriptive text.
-  * These banner contain a button to dismiss the banner.
+* A banner contains an icon as well as body text and an optional title.
+* The Banner renders a control to dismiss it below its content.
+* Informational banners are currently the only supported variation of banner.
+  * The informational banner contains one design for both light and dark modes.
 
 ### Responsiveness
 
-* The banners are responsive and content will wrap and reflow down to phone viewport sizes.
+* Banners are responsive and content will wrap and reflow down to phone viewport sizes.
 
 ### Accessibility
 
-* Ideally, only one banner should be present at a time.
-* In the event that more than one banner is present, the "dismiss" buttons will need to be uniquely labelled. Adding an `id` to the heading element and referencing the respective heading `id` as the value of an `aria-describedby` attribute on the dismiss button is recommended.
+* The large icon is considered decorative (and has an appropriate `role="presentation"`) and does not need alternative text.
+* The "Dismiss" button has an accessible label and its icon is likewise properly marked up as decorative.
+* TODO: In the event that more than one banner is present, the "dismiss" buttons will need to be uniquely labelled. Adding an `id` to the heading element and referencing the respective heading `id` as the value of an `aria-describedby` attribute on the dismiss button is recommended.
 
 ### Additional Notes and Considerations
 
-* A dismissed banner may be brought back into view by removing the `hidden` attribute from its outer wrapping element.
+* Ideally, only one banner should be present at a time.
+* A dismissed banner may be brought back into view by removing the `hidden` attribute from its host element.

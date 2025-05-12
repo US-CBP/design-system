@@ -15,6 +15,7 @@ export const setCSSProps = <T extends { [key: string]: any }>(host: HTMLElement,
   });
 };
 
+
 // For determining context of nested items when the parent context is inverted (e.g., renders dark context in light mode)
 export const getInvertedContext = ( context : undefined | 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always'): string => {
   switch (context) {
@@ -30,6 +31,7 @@ export const getInvertedContext = ( context : undefined | 'light-inverts' | 'lig
       return 'dark-inverts' // if context is undefined, it acts like 'light-inverts', so return 'dark-inverts'
   }
 }
+
 
 export const getFocusableElements = (scope: HTMLElement) => {
   const not = {
@@ -57,6 +59,7 @@ export const getFocusableElements = (scope: HTMLElement) => {
   //return Array.from(scope.querySelectorAll('[tabindex="0"],a[href],button,input,textarea,select'));
 };
 
+
 export const debounce = <T extends { [key: string]: any }>({ callback, ms, prevent }: T) => {
   let timer: ReturnType<typeof setTimeout>;
   return (...args) => {
@@ -70,6 +73,7 @@ export const debounce = <T extends { [key: string]: any }>({ callback, ms, preve
   };
 };
 
+
 export const getElementAttrs = (el: HTMLElement): { [key: string]: any } => {
   let attrs = {};
   Array.from(el?.attributes || []).forEach(({ name, value }) => {
@@ -81,10 +85,28 @@ export const getElementAttrs = (el: HTMLElement): { [key: string]: any } => {
   return attrs;
 };
 
-export const clamp = (min: number, n: number, max: number) => {
+export const clamp = (min: number, n: number, max: number) : number => {
   return Math.max(min, Math.min(n, max));
 };
 
+
+// Handle common menu keyboard navigation within a collection of items
+export const doKeyboardNav = (collection: any[], key, focusIndex: number = 0) : number => {
+  const i = focusIndex;
+  const l = collection?.length - 1 || 0;
+  const n = {
+    Home: 0,
+    ArrowUp: -1 < i + -1 ? i + -1 : l,
+    ArrowLeft: -1 < i + -1 ? i + -1 : l,
+    ArrowDown: l + 1 > i + 1 ? i + 1 : 0,
+    ArrowRight: l + 1 > i + 1 ? i + 1 : 0,
+    End: l,
+  }[key];
+  if (n !== undefined) {
+    focusIndex = n;
+  }
+  return focusIndex;
+}
 
 // TechDebt: Can this be simplified by leveraging e.composedPath() ?
 export const clickAwayListener = (host: HTMLElement, callback: any) => {

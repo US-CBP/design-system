@@ -20,6 +20,8 @@
 
 cbp-tag {
   display: inline-flex;
+  gap: var(--cbp-space-1x);
+  align-items: center;
   color: var(--cbp-tag-color);
   background-color: var(--cbp-tag-color-background);
   border-radius: var(--cbp-border-radius-pill);

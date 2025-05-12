@@ -1,0 +1,10 @@
+import { Meta, Markdown } from "@storybook/blocks";
+import Readme from '../../readme.md?raw';
+
+<Meta title="Using the Web Components" />
+
+<Markdown>{Readme}</Markdown>
+
+You can verify that the correct fonts are loaded and being used in the browser’s dev tools, under CSS > Computed, all the way at the bottom, as in this screen capture:
+
+![Confirming Roboto fonts are loading and being used](./assets/images/confirm-Roboto.png)

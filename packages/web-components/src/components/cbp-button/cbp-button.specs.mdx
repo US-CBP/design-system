@@ -12,8 +12,9 @@ The Button component represents a UI control visually styled like a button (rega
 
 * The Button component may render either a `button` or anchor (`a`) tag with a consistent visual style.
 * Buttons may have a number or variants based on fill (solid, outline, ghost) and color (based on design tokens).
-* Additional variants include "call-to-action" and square (primarily for icons-only).
-* A Button may have any content slotted as the label, including icons and other components, barring other interactive elements.
+* Additional variants include "call-to-action" and "square" (primarily for icons-only).
+* A Button component may have any content slotted as the label, including icons and other components, barring other interactive elements.
+* The Button component allows slotting of a custom control (rather than rendering one) to support component-based routers and/or directives places directly on the control.
 * Buttons are the most common UI control and require a robust implementation, acting as a control for segmented button groups, menus, dialogs, etc.
 
 ## Technical Specifications
@@ -21,7 +22,7 @@ The Button component represents a UI control visually styled like a button (rega
 ### User Interactions
 
 * Other than buttons of "submit" or "reset" types, most interactions are defined by application logic.
-* When a button is activated by user interaction it emits a custom event that can be listened for..
+* When a button is activated by user interaction it emits a custom event that can be listened for.
 
 ### Responsiveness
 
@@ -31,7 +32,9 @@ The Button component represents a UI control visually styled like a button (rega
 ### Accessibility
 
 * If a button does not have text making up its accessible label (e.g., only an icon), use the `accessibilityText` property to specify an accessible label, rendered as `aria-label` on the button or anchor element.
-* Keep in mind that buttons and anchors should have uniquely identifiable labels. So in the case of repeated buttons with the same text, specify a more unique label with context via the `accessibilityText` property.
+* Keep in mind that buttons and anchors should have uniquely identifiable labels. There are a couple of ways to achieve this:
+  * In the case of repeated buttons with the same text, specify a more unique label with context via the `accessibilityText` property.
+  * A slightly less ideal alternative is to reference a related element (e.g., table row heading) by `id` using `aria-describedby` on the button.
 * When used as a control, the following properties mapping to aria-attributes may be appropriate:
   * `pressed` is rendered as `aria-pressed` and represents a button's pressed state, if applicable.
   * `expanded` is rendered as `aria-expanded` and is useful when a button is acting as a control for some form of dropdown, menu, accordion, etc.
@@ -41,4 +44,5 @@ The Button component represents a UI control visually styled like a button (rega
 ### Additional Notes and Considerations
 
 * Links/anchors should only be used for navigation; the `button` element is the preferred control for all other types of UI interactions.
+* Buttons with only an icon (no text label) should use the `variant="square"` property/attribute.
 * If you hide a text label at small screen sizes (e.g., via `cbp-hide`) and only show an icon, the intent is for the button to be shown as the "square" variant. This cannot be handled internally to the component and should be implemented by the application.

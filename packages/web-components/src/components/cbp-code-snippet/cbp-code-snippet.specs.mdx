@@ -6,39 +6,41 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-* The Code Snippet component is used to display code in either block or inline form.
+* The Code Snippet component is used to display code in a readable format and facilitate copying it.
 
 ## Functional Requirements
 
-* Raw code is slotted within the Code Snippet component and escaped for display.
+* Raw, unescaped code is slotted within the Code Snippet component and escaped for display.
 * The slotted code shall be rendered within semantic `pre` and `code` tags.
-* A copy button is present on block variants to copy the (unescaped) code to the device clipboard.
+* A "copy" button is present on block variants to copy the (unescaped) code to the device clipboard.
 * A height may be specified to limit the vertical space a code block takes by default.
-* A 'Show more' button shall be present on code blocks that exceed a specified height.
+* A "Show more" button shall be present on code blocks that exceed a specified height.
 
 ## Technical Specifications
 
-* Code snippet will support 2 variants (inline/block) which will determine the display of the code. for single lines of code to be embedded in text block use Inline, for larger sections that could span
-multiple lines please use block.
-* Block variant code-snippets will have an copy button with their render to easily grab the code block and apply it to the users clipboard.
-* Users will be able to set a max-height for the code-snippet via prop. Please note this will only affect the block variant.
-* In cases where the size of a code block is larger than the set max height the code will scroll and a 'show more' toggle will be rendered to display the full block of code.
+* The Code Snippet component will support 2 variants (inline/block), which determine the display of the code.
+  * For short code snippets to be embedded in a text block, use "inline".
+  * For larger amounts of code that could wrap or spans multiple lines, use "block".
+* The "block" variant will display a "copy" button to easily copy the code block to the user's clipboard.
+* Users are able to set a max-height for the "block" variant.
+  * When the size of a code block is larger than the specified max-height, the content within the component will scroll.
+  * A "Show more" button also will be displayed to see the full block of code.
 
 ### User Interactions
 
-* Code block is treated as plain text for user interactions, with the exception of the embedded buttons (copy & show more) which are conditionally applied based on user configuration.
-    * Copy button takes slotted code and is placed in clipboard for use to paste elsewhere
-    * Show more button expands the view of the block variant code to 100% when the min-height prop is set. can be toggled on/off for end user to choose how they will view cbp-code-snippet.
+* The code snippet itself is plain text and the only interactions are with the conditionally rendered "Copy" and "Show More/Less" buttons.
+  * When activated, the "Copy" button places the slotted code in the user's clipboard, to be pasted elsewhere.
+  - When activated, the "Show more" button expands the height of the code snippet to show all of its content. Pressing the button again will toggle the component to its original size.
 
 ### Responsiveness
 
-* The Code Snippet component uses `white-space: pre-wrap` CSS too allow it to wrap and display on smaller screens without a horizontal scroll.
+* The Code Snippet component uses `white-space: pre-wrap` CSS to allow it to wrap and display on smaller screens without a horizontal scroll.
 
 ### Accessibility
 
-* Keyboard navigation allows for tabbing to the "Copy" and  "Show More/Less" buttons.
-* The "Show More/Less" button will have the aria-expanded attribute to indicate its functionality to progressively reveal more information.
-* Both buttons have accessible names.
+* The "Copy" and "Show More/Less" buttons are usable via keyboard navigation.
+* The "Copy" button displays only an icon, but has an `aria-label` applied to provide an accessible name.
+* The "Show More/Less" button will have the `aria-expanded` attribute to indicate its functionality to progressively reveal more information.
 
 ### Additional Notes and Considerations
 

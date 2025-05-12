@@ -6,7 +6,7 @@ import { Component, Prop, Host, h, Env } from '@stencil/core';
 */
 
 /**
- *  @slot - All application markup should be placed within the default slot to inherit the base CSS, fonts, and dark mode styling.
+ *  @slot - All application markup should be placed within the default slot to inherit the base CSS, design tokens, and dark mode styling.
  */
 @Component({
   tag: 'cbp-app',

@@ -41,8 +41,6 @@ export class CbpCheckbox {
   @Prop() sx: any = {};
 
 
-  //this.formField.indeterminate=true;
-
   /** A custom event emitted when the checked state changes due to user interaction. */
   @Event() stateChanged: EventEmitter;
   handleChange() {

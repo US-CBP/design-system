@@ -4,7 +4,19 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [0.0.1-develop.20] 04-16-2025
+## [unpublished] TBD
+
+* BREAKING (visually): updated the way icons are spaced apart from text within `cbp-button`, `cbp-link`, and `cbp-tag` components, now using a CSS property for the `gap`. Any instances of applying margins to the icon or text (via `sx` or custom CSS) will need to be removed to avoid doubling up the spacing. The following stories were updated and may need to have copied code updated in consuming applications: Cards (action buttons icon in title), Table (sortable headers), Universal Header and the universal header content in all templates and archetype pages.
+* Additionally, the horizontal padding on `cbp-button` was slightly reduced from .75rem to .5rem, allowing icon buttons to be square without specifying the `variant="square"` explicitly.
+* BREAKING (visually): updated the default `cbp-icon` size from "1em" to "1rem". This is because most icons alongside the base text size (14px) are designed to be 16px (1rem). Any other sized icon should be explicitly specified via the `size` property using relative units or design tokens.
+* First cut of the `cbp-menu` component.
+* Updated `cbp-drawer` to add the ability to persist its contents in the flow of the page at a certain breakpoint, mobilizing to an overlay below that breakpoint.
+* Updated the Passenger List archetype to demonstrate this drawer functionality.
+* Updated the `cbp-dropdown` faux button so that the chevron can be rotated when opened.
+* Updated web components readme and included it Storybook under "Using the web components."
+
+## [0.0.1-develop.20] 04-18-2025
+
 * First cut of the `cbp-slider` component for selecting a single value from a range.
 * First cut of the `cbp-code-snippet` component, which is used to display code samples.
 * Updates to the `cbp-dropdown` component to:
@@ -20,6 +32,7 @@ The React components are wrappers generated from this package and will share the
 * Added tag badges (beta, new, etc.) to stories via plugin.
 
 ## [0.0.1-develop.19] 02-12-2025
+
 * First cut of the `cbp-subnav` and `cbp-subnav-item` components.
 * First cut of the `cbp-file-input` component, supporting only the native web functionality with enhancements to come later.
 * First cut of the `cbp-loader` component.
@@ -30,6 +43,7 @@ The React components are wrappers generated from this package and will share the
 * Minor bugfixes/updates to `cbp-radio` and `cbp-checkbox`.
 
 ## [0.0.1-develop.18] 01-14-2025
+
 * First cut of the `cbp-toggle` component, which acts like a visual treatment for a checkbox.
 * First cut of the `cbp-multicol` component, a component-based implementation of multi-column layout used in checklist and radiolist stories.
 * Created stories for horizontal checklists and radio lists using `cbp-flex`.
@@ -37,6 +51,7 @@ The React components are wrappers generated from this package and will share the
 * Minor bugfixes/updates to `cbp-dropdown` and `cbp-checkbox`.
 
 ## [0.0.1-develop.17] 12-12-2024
+
 * First cut of the `cbp-nav-item` component for including navigation links in the Application Header.
 * BREAKING: updated the `cbp-app-header` implementation. The pattern now uses the new `cbp-nav-item` component for the first "Application Name" link. Code should be updated from Storybook for the latest implementation.
 * First cut of the `cbp-table` component.
@@ -50,6 +65,7 @@ The React components are wrappers generated from this package and will share the
 * Published Stencil-generated component API docs to Storybook. We will continually revisit these for completion.
 
 ## [0.0.1-develop.16] 10-28-2024
+
 * First cut of `cbp-checkbox`.
 * First cut of `cbp-radio`.
 * First cut of `cbp-toast`.

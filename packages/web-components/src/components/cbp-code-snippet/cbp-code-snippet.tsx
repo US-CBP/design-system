@@ -21,9 +21,6 @@ export class CbpCodeSnippet {
   /** Specifies the height (in CSS units) for a multiple line block variant while not expanded. */
   @Prop() height: string;
 
-  /* sets the expanded state of the 'show more' button & is passed to the associated cbp-button prop*/
-  //@Prop() expanded: boolean;
-
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
 
@@ -114,7 +111,13 @@ export class CbpCodeSnippet {
         </pre>
 
         { (this.expanded || this.height && this.codeContainerHeight < this.codeBlockHeight) && 
-          <cbp-button type="button" fill="ghost" color="secondary" onClick={() => this.toggleShowAll()} expanded={this.expanded} context={this.context}>
+          <cbp-button 
+            fill="ghost" 
+            color="secondary" 
+            expanded={this.expanded} 
+            context={this.context}
+            onClick={() => this.toggleShowAll()} 
+          >
             <cbp-icon name="chevron-right" rotate={this.toggleButtonRotate}></cbp-icon>
             {this.toggleButtonText}
           </cbp-button>

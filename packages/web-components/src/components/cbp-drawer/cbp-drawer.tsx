@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Event, EventEmitter, Method, Watch, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, Method, Watch, Host, h, State } from '@stencil/core';
 import { setCSSProps, getFocusableElements } from '../../utils/utils';
 
 @Component({
@@ -23,16 +23,22 @@ export class CbpDrawer {
   /** Creates an accessible label for the drawer (dialog). */
   @Prop() accessibilityText: string;
 
+  /** Specifies a valid CSS media query (preferably using relative units), when met will hide the wrapped content using display: none. E.g., `min-width:64em` */
+  @Prop() persistAt: string;
+
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+  @State() persistent: boolean = false;
+
   /** Custom event fired when the drawer is opened. */
   @Event() drawerOpen!: EventEmitter;
   /** Custom event fired when the drawer is closed. */
   @Event() drawerClose!: EventEmitter;
+
 
   @Watch('open')
   watchOpenHandler(newValue: boolean) {
@@ -65,7 +71,6 @@ export class CbpDrawer {
         this.focusableElements = getFocusableElements(this.host);
       }
       this.focusableElements[0]?.focus();
-      //console.log(this.focusableElements,document.activeElement);
     }, 100);
   }
 
@@ -77,7 +82,27 @@ export class CbpDrawer {
     e.key == 'Escape' && this.closeDrawer();
   }
 
+
+  // Callback functions for the media query event listeners
+  doPersistAt(mql) {
+    if (mql.matches) {
+      this.persistent = true;
+    }
+    else {  
+      this.persistent = false;
+    }
+  }
+
+
   componentDidLoad() {
+    if (this.persistAt) {
+      const MQ = window?.matchMedia(`(${this.persistAt})`);
+      if (MQ) {
+        MQ.addEventListener('change', mql => this.doPersistAt(mql)); // Add an event listener to the media query
+        this.doPersistAt(MQ); // Run the breakpoint change handler once on load
+      }
+    }
+
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
     }
@@ -89,23 +114,29 @@ export class CbpDrawer {
   }
 
   componentDidRender() {
+    // Support animation by doing it this way
     setTimeout(() => {
       this.open ? this.drawer.classList.add('cbp-drawer--open') : this.drawer.classList.remove('cbp-drawer--open');
     }, 10);
   }
 
+
   render() {
     return (
-      <Host onClick={e => this.handleBackdropClick(e)} onKeyUp={e => this.handleKeyUp(e)} id={this.uid}>
+      <Host 
+        class={this.persistent ? "cbp-drawer--persistent" : ""}
+        onClick={e => this.handleBackdropClick(e)} 
+        onKeyUp={e => this.handleKeyUp(e)} id={this.uid}
+      >
         <div
           ref={el => (this.drawer = el)}
-          role="dialog"
-          aria-modal="true"
+          role={this.persistent ? "region" : "dialog"}
+          aria-modal={!this.persistent ? "true" : false}
           class="cbp-drawer__content"
           aria-label={this.accessibilityText}
           tabindex="-1"
         >
-          <cbp-button
+          {!this.persistent && <cbp-button
             class="cbp-drawer__close-button"
             variant="square"
             type="button"
@@ -117,7 +148,7 @@ export class CbpDrawer {
             context="dark-always"
           >
             <cbp-icon name="circle-xmark" size="1rem"></cbp-icon>
-          </cbp-button>
+          </cbp-button>}
 
           <slot />
         </div>

@@ -6,28 +6,29 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-The Action bar serves several purposes, the most common use case is a submission bar in a form page. Alternatively the bar can be used to
- contain tools that affect the content of the page the user is on.
+The Action Bar acts as a container for form controls (buttons) or other tools to affect the content of the page.
 
 ## Functional Requirements
 
-* The Action bar is a container with slots for a status or text description of the action bar and a slot for the buttons/links to be displayed
-* Action bar comes with 2 variants, inline & floating.
-    *inline: is rendered inplace. Primarily for supporting Forms, strucutred list footer, grids, etc 
-    *floating: is rendered at bottom of viewport, used for containing tools that affect the content of the whole page the user is viewing
+* The Action Bar is a container with slots for a status or text description as well as controls.
+  * The descriptive text in the named slot is aligned left.
+  * The controls are aligned to the right.
+* The Action Bar has two variants - inline and floating.
+  * The inline variant is teh default and renders in the flow of the document.
+  * The floating variant is rendered at bottom of viewport, primarily tools that affect the content of the whole page.
 
 ### Responsiveness
 
-* Since content is slotted into the action bar the end user can alter/add items to hide, alter as needed for Responsiveness
-* Inline variant is designed to follow the overall responsiveness of the control/container it is in so that behavior does not conflict 
-    with these other controls
-* Sticky variant utilizes responsive padding variables to adjust as per overall design system breakpoints
+* The Action Bar will fill 100% of the screen (floating) or parent (inline).
+* The Action Bar will wrap as needed at smaller screen sizes, but... 
+* It is up to the developer to make sure its contents are fully responsive.
+* The sticky variant uses the responsive padding token to adjust outer padding at the same ratio as other template elements.
 
 ### Accessibility
 
-* Action bar as a container does not recieve focus, it also does not inhibit the native Accessibility of any of the slotted content.
-    Thus consumers will need to ensure that any slotted content is accessibile (CBP components will come with this natively) 
+* The action bar itself does not receive focus and the accessibility of its slotted contents are the responsibility of those components.
+* When using the floating variant, it is important that the component be placed logically in the source code order so that its controls and content exist in the proper place in the document and tab order.
 
 ### Additional Notes and Considerations
 
-* it is not advised to use both inline and floating action bar on the same page to avoid user confusion
+* In order to avoid user confusion, it is not advised to use both inline and floating action bar on the same page.

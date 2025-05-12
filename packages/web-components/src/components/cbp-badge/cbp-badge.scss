@@ -1,6 +1,5 @@
 /**
  * @prop --cbp-badge-color: var(--cbp-color-text-lightest);
- * @prop --cbp-badge-color: var(--cbp-color-text-lightest);
  * @prop --cbp-badge-color-dark: var(--cbp-color-text-darkest);
  * @prop --cbp-badge-color-background: var(--cbp-color-info-base);
  * @prop --cbp-badge-color-background-dark: var( --cbp-color-interactive-secondary-lighter); 
@@ -16,8 +15,6 @@
 [data-cbp-theme=dark] cbp-badge:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-badge-color: var(--cbp-badge-color-dark);
   --cbp-badge-color-background: var(--cbp-badge-color-background-dark);
-  
-  --cbp-badge-color-background-danger: var(--cbp-badge-color-background-danger-dark);
 }
 
 cbp-badge {

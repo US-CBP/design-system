@@ -1,14 +1,14 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * @slot - Accordion Items shall be slotted in the default slot. While other content may be included within the default slot, it is not recommended.
+ */
 @Component({
   tag: 'cbp-accordion',
   styleUrl: 'cbp-accordion.scss',
 })
 
-/**
- * @slot - Accordion Items shall be slotted in the default slot. While other content may be included within the default slot, it is not recommended.
- */
 export class CbpAccordion {
   private items: HTMLCbpAccordionItemElement[];
 

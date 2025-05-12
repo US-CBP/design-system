@@ -135,7 +135,7 @@ export class CbpFileInput {
                 tabindex="-1"
                 aria-hidden="true"
               >
-                <cbp-icon name="upload" sx='{"margin-right":"var(--cbp-space-1x)"}' />
+                <cbp-icon name="upload" />
                 Browse
               </button>
             </cbp-button>

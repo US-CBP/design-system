@@ -6,12 +6,13 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-The Checkbox component wraps the slotted native form control (`input type="checkbox"`) and label text, providing cross-browser styling.
+The Checkbox component wraps the slotted native form control (`input type="checkbox"`) and label text, providing cross-browser styling accordion to the design system specifications.
 
 ## Functional Requirements
 
-* The Checkbox component accepts the native form control (`input type="checkbox"`) and its label as slotted content, wrapping them in an implicit label.
-* The Checkbox component provides cross-browser styling for the form control in its various states, including hover, focus, disabled, and checked states.
+* The Checkbox component accepts the native form control (`input type="checkbox"`) and its label text as slotted content, wrapping them in an implicit label.
+* The Checkbox component also wires up an explicit label between the label and native form control.
+* The Checkbox component provides cross-browser styling for the form control in its various states, including hover, focus, disabled, checked, and indeterminate states.
 * The Checkbox component allows the form control to be set to an indeterminate state for "select all" and grouping functionality.
 * A checkbox may be used individually as a standalone checkbox or within a checklist.
 
@@ -22,7 +23,7 @@ The Checkbox component wraps the slotted native form control (`input type="check
 * The user interactions are that of a native checkbox (`input type="checkbox"`) element:
   * Clicking anywhere on the form control or label text will place focus on the control and toggle its state.
   * Checkboxes are keyboard accessible by tabbing onto them in either direction, placing focus onto the native form control.
-  * Pressing the Spacebar will toggle the focused checkbox state, also emitting a custom event.
+  * Pressing the `Spacebar` will toggle the focused checkbox state, also emitting a custom event.
 
 ### Responsiveness
 
@@ -31,14 +32,20 @@ The Checkbox component wraps the slotted native form control (`input type="check
 
 ### Accessibility
 
-* The native checkbox (`input type="checkbox"`) element and label text are wrapped within a `label` tag.
-  * Additionally, if the slotted input has an `id` attribute, the checkbox component will use it to associate the `label` and `input` elements explicitly (implicit association does not work with voice software).
+* The native checkbox (`input type="checkbox"`) element and label text are wrapped within a `label` tag (implicit label).
+* Additionally, the Checkbox component will create an explicit label for better accessibility (implicit association does not work with voice software).
+  * If the slotted input has an `id` attribute, the checkbox component will use it to associate the `label` and `input` elements explicitly.
   * If the slotted input does not have an `id` specified, the component will generate an `id` to apply to the slotted input and make the explicit association with the label.
 * Full keyboard navigation is supported, as detailed under "User Interactions" above.
 
 ### Additional Notes and Considerations
 
 * This component may manage the checkbox's disabled state, but does its best to get out of the way if the application wants to manage those states directly on the slotted elements.
-* A checkbox's value is only included in the submitted form data if the checkbox is checked. If it is, then the value of the checkbox's value attribute is reported as the input's value, or "on" if no value is set.
+* A checkbox's value is only included in the submitted form data if the checkbox is checked.
+  * If checked, then the value of the checkbox's value attribute is reported as the input's value
+  * If checked and no value was set, then "on" is reported as the value.
+* A Checkbox may exist as a standalone pattern or within a Checklist.
+  * A checklist pattern typically includes checkboxes that share a common form control `name` attribute. This is not a requirement, but often simplifies "select all" and processing logic.
+  * Checkboxes in a checklist are slotted within a `cbp-form-field` component with the `group` property set, giving each checkbox context of the group label and description.
 * Firefox (alone) persists the dynamic checked state of an `input` across page loads. Use the autocomplete attribute to control this feature.
 * Native checkbox elements may not be `readonly` - only `disabled`.

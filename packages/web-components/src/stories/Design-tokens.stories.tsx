@@ -162,18 +162,29 @@ const Template = () => {
     currentObj = [];
 
     pageContents += `
-    <cbp-typography tag="h2" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>${AllTokenNames[index]}</cbp-typography>
-    <table>
-      <caption hidden>${AllTokenNames[index]}</caption>
-      <thead>
-        <th>Design Token</th>
-        <th>CSS Variable</th>
-        <th>Value</th>
-      </thead>
-      <tbody>
-        ${outputTableRow(contents)}
-      </tbody>
-    </table>`;
+      <cbp-typography 
+        tag="h2" 
+        sx='{"margin-block-end":"var(--cbp-space-2x)"}'
+      >
+        ${AllTokenNames[index]}
+      </cbp-typography>
+
+      <cbp-table 
+        striped="even"
+        sx='{"margin-block-end":"2rem"}'
+      >
+      <table width="100%">
+        <caption hidden>${AllTokenNames[index]}</caption>
+        <thead>
+          <th>Design Token</th>
+          <th>CSS Variable</th>
+          <th>Value</th>
+        </thead>
+        <tbody>
+          ${outputTableRow(contents)}
+        </tbody>
+      </table>
+    </cbp-table>`;
   });
 
   return `

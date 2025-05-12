@@ -6,26 +6,32 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-* Breadcrumb component exist to give users a key indicator of where they are within an application when the user happens to be deeper within the site’s architecture. the Breadcrumb is primarily made using the cbp-button & cbp-link, as such please also review the documentation for those components as well.
+* The Breadcrumb component gives users a key indicator of where they are within a site/application, especially helpful when deeper within the site’s architecture. 
 
 ## Functional Requirements
 
-* The Breadcrumb component acts as a wrapper for navigation links. 
+* The Breadcrumb component acts as a wrapper for navigation links.
+* The Breadcrumb is primarily made up of slotted `cbp-link` components.
+* TODO: On smaller screens, the breadcrumb links mobilize into a menu.
 
 ## Technical Specifications
 
 ### User Interactions
 
-* The Breadcrumb is a composite component constructed of cbp-links & cbp-button, please see those components documentation for details on User Interactions
+* The Breadcrumb component itself is a container an has no user interactions.
+* The links within the breadcrumb component should be simple navigation links (incuding router links) in accordance with the `cbp-link` component behavior. 
 
 ### Responsiveness
 
-* TODO: update to come for overflow button responsiveness
+* TODO: update to come for overflow button responsiveness.
 
 ### Accessibility
 
-* The Breadcrumb is a composite component constructed of cbp-links & cbp-button, please see those components documentation for details on Accessibility.
+* The breadcrumb is a container for link that provides a semantic `nav` tag (and implicit navigation role).
+* The `nav` tag has an accessible name (`aria-label`) of "Breadcrumbs".
+* The slotted links within should have unique and accessible labels.
+* The slotted links must also have an `href` attribute specified in order to be an interactive elements.
 
 ### Additional Notes and Considerations
 
-* 
+* TBD 

@@ -14,7 +14,6 @@
 */
 
 :root {
-
   --cbp-subnav-item-color: var(--cbp-color-interactive-secondary-darker);
   --cbp-subnav-item-color-dark: var(--cbp-color-interactive-secondary-lighter);
   --cbp-subnav-item-color-bg: transparent;
@@ -33,10 +32,9 @@
 
 [data-cbp-theme=light] cbp-subnav[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-subnav:not([context=dark-inverts]):not([context=light-always]) {
-
   --cbp-subnav-item-color: var(--cbp-subnav-item-color-dark);
   --cbp-subnav-item-color-bg: var(--cbp-subnav-item-color-bg-dark);
-  --cbp-subnav-item-current-border-color: var(--cbp-subnav-item-current-border-color-dark); 
+  --cbp-subnav-item-current-border-color: var(--cbp-subnav-item-current-border-color-dark);
   --cbp-subnav-item-current-color-bg: var(--cbp-subnav-item-current-color-bg-dark);
 }
 
@@ -107,6 +105,13 @@ cbp-subnav-item {
     a{
       letter-spacing: var(--cbp-letter-spacing-regular);
       text-transform: unset;
+    }
+
+    [slot=cbp-subnav-item-label]{
+      display: inline-flex;
+      gap: var(--cbp-space-2x);
+      align-items: center;
+
     }
 
     &:first-of-type button,
