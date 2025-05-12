@@ -17,7 +17,7 @@ export const setCSSProps = <T extends { [key: string]: any }>(host: HTMLElement,
 
 
 // For determining context of nested items when the parent context is inverted (e.g., renders dark context in light mode)
-export const getInvertedContext = ( context : undefined | 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always'): string => {
+export const getInvertedContext = ( context : undefined | 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always'): 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always' => {
   switch (context) {
     case 'light-inverts':
       return 'dark-inverts';
