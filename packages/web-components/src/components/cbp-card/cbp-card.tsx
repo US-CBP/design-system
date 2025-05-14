@@ -47,6 +47,23 @@ export class CbpCard {
   }
 
   render() {
+    
+    /** linking click event for the card to slotted cbp-checkbox*/
+    //TODO: proof of concept, refactor with Stencil/ best practice for applying the eventListener
+    const multiSelect = document.querySelectorAll('cbp-card[interactive="multi"');
+    multiSelect.forEach((multiSelectItem) => {
+      multiSelectItem.addEventListener("click", (e) => {
+      console.log(this.host);
+      let parent = document.querySelector('cbp-card *[slot="cbp-card-title"]') //TODO: update to use host for multiple cards?
+      let target = e.target as Element;
+      if(!parent.contains(target)){
+      // if(!(this.host.contains(target))){
+        console.log('==== Logic Check ====')
+        let checkbox = multiSelectItem.querySelector('cbp-checkbox input[type="checkbox"]') as HTMLInputElement;
+        checkbox.click();  
+      }
+    })})
+
     if(this.interactive === 'clickable'){
       return(
         <Host>
