@@ -3,18 +3,21 @@ cbp-footer {
 
   .cbp-footer-nav,
   .cbp-footer-content {
-    padding: 0 var(--cbp-responsive-spacing-outer);
+    padding-inline: var(--cbp-responsive-spacing-outer);
   }
 
   .cbp-footer-nav {
     --cbp-button-height: var(--cbp-space-11x);
     --cbp-button-border-radius: 0;
     background-color: var(--cbp-color-gray-cool-60);
+    
     cbp-button {
       width: 100%; 
-      --cbp-button-width: 100%; 
-      *{
-        justify-content: flex-start;
+      --cbp-button-width: 100%;
+      --cbp-button-padding: var(--cbp-space-2x) var(--cbp-space-3x);
+
+      * {
+        justify-content: flex-start; // For responsive display
       }
     }
   }
@@ -25,7 +28,6 @@ cbp-footer {
     font-size: var(--cbp-font-size-body);
     font-weight: var(--cbp-font-weight-regular);
     line-height: var(--cbp-line-height-xs);
-    padding-bottom: var(--cbp-space-5x);
-    padding-top: var(--cbp-space-5x);
+    padding-block: var(--cbp-space-5x);
   }
 }

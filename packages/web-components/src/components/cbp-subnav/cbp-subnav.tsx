@@ -12,7 +12,7 @@ export class CbpSubNav {
   private subnavItems: HTMLCbpSubnavItemElement[] = [];
 
   /**  Sets the aria-label for the navigation element of the subnav*/
-  @Prop() accessibilitytext: string = 'Sub-Navigation';
+  @Prop() accessibilityText: string = 'Sub-Navigation';
 
   /** used to toggle child indenation */
   @Prop({ reflect: true }) flat: boolean;
@@ -87,7 +87,7 @@ export class CbpSubNav {
     return (
       <Host>
         <nav
-          aria-label={this.accessibilitytext} 
+          aria-label={this.accessibilityText} 
         >
           <slot></slot>
         </nav>

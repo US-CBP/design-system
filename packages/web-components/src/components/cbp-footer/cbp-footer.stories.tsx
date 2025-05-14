@@ -27,19 +27,20 @@ function generateFooterNav(footerNav) {
 const InternalTemplate = ({ footerNav }) => {
   return `
     <cbp-footer data-cbp-container-context="dark">
-      <nav slot="cbp-footer-nav">
+      <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
         <cbp-flex role="list" breakpoint="37.5rem">
           ${generateFooterNav(footerNav)}
-        <cbp-flex role="list">
+        </cbp-flex>
       </nav>
 
       <section>
-      
         <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>
           <cbp-icon name='headset' size='1.25rem'> </cbp-icon>
           Application Support
         </cbp-typography>
+        
         <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
+        
         <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
           <span><i>Having an issue?</i></span>
           <span><b>Email: </b><cbp-link href="mailto:somebody@example.com" context="dark-always">this-application-support@abc.def.gov</cbp-link></span>

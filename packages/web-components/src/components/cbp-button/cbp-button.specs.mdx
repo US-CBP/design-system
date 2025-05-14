@@ -44,5 +44,9 @@ The Button component represents a UI control visually styled like a button (rega
 ### Additional Notes and Considerations
 
 * Links/anchors should only be used for navigation; the `button` element is the preferred control for all other types of UI interactions.
+* The Button component uses an "inline-flex" display to automatically provide a gap between any icons and label text on the control.
+  * As such, if you need to use a `br` tag to force a line break in special cases, you will need to override the CSS display property.
+  * If the label content contains additional wrapping tags, the flex context may also be lost and manual spacing applied between elements.
+  * On platforms that do not remove white space, be careful not to include spaces between icons and text in addition to the gap.
 * Buttons with only an icon (no text label) should use the `variant="square"` property/attribute.
 * If you hide a text label at small screen sizes (e.g., via `cbp-hide`) and only show an icon, the intent is for the button to be shown as the "square" variant. This cannot be handled internally to the component and should be implemented by the application.

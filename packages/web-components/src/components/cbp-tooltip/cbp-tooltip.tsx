@@ -62,7 +62,8 @@ export class CbpTooltip {
         onClick={() => this.host.focus()}
         role='button'
       >
-        <slot></slot>
+        <slot />
+
         <div role='tooltip' id={this.fieldId}>
           <div>
             <slot name='cbp-tooltip-content'></slot>
@@ -77,7 +78,7 @@ export class CbpTooltip {
             onClick={() => this.dismissTooltip()}
             onKeyDown={(e) => this.handleFocusOut(e)}
           >
-            <cbp-icon name="circle-xmark"></cbp-icon>
+            <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
           </cbp-button>
         </div>
       </Host>

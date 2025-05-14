@@ -42,7 +42,8 @@ export class CbpButton {
   @Prop() rel: string;
   /** The `target` attribute of a link button. */
   @Prop() target: string;
-  /** The `download` attribute of a link button; when present tells the browser to download the specified href URI instead
+  /** 
+   * The `download` attribute of a link button; when present tells the browser to download the specified href URI instead
    * of viewing or navigating to it.
    */
   @Prop() download: boolean;
