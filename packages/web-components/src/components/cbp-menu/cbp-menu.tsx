@@ -15,7 +15,6 @@ export class CbpMenu {
 
   private menu: HTMLElement;
   private menuItems: any; //: HTMLButtonElement | HTMLAnchorElement; 
-  private currentMenuItem: any;
   private focusIndex: number;
 
   @Element() host: HTMLElement;
@@ -38,7 +37,7 @@ export class CbpMenu {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-  // A custom event fired when the menu is opened or closed.
+  /** A custom event fired when the menu is opened or closed. */
   @Event() toggleMenu: EventEmitter;
 
   /** A public method for opening the menu. */
@@ -60,7 +59,6 @@ export class CbpMenu {
     if (newValue) {
       // TechDebt: this would be needed for reactivity, but not needed otherwise. How to make it smart/conditional?
       this.menuItems = Array.from(this.menu.querySelectorAll('button, a')); // Get and set this array whenever the menu is opened
-      console.log(this.menu,this.menuItems,this.currentMenuItem);
       
       // Set up a clickaway listener to close the menu
       clickAwayListener(this.host, _ => {
@@ -110,7 +108,6 @@ export class CbpMenu {
   }
 
   setCurrentMenuItem(i = 0) {
-    this.currentMenuItem = i;
     this.menuItems[i]?.focus();
   }
 
@@ -159,6 +156,7 @@ export class CbpMenu {
           aria-labelledby={this.control?.id}
         >
           <slot name="cbp-menu-items" />
+
           <cbp-menu-item class="cbp-menu__close-btn">
             <cbp-button 
               fill="solid"

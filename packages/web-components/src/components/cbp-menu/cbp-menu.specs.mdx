@@ -17,7 +17,7 @@ A Menu contains additional actions in the form of links or buttons, which can be
 * The menu may be positioned above or below the control, aligned to the right or left edges, to accommodate different placements on a page.
 * Menu items may indicate a danger state for options such as deletion.
 * The menu automatically renders a "close" button as the last option.
-* A Menu may be closed by pressing `ESC`, clicking outside of the menu, activating the "close" item, or tabbing away from it.
+* A Menu may be closed by pressing `ESC`, clicking outside of the menu, activating the "Close" item, or tabbing away from it.
 
 ## Technical Specifications
 
@@ -25,6 +25,11 @@ A Menu contains additional actions in the form of links or buttons, which can be
 
 * Activating the menu control (button) will toggle the menu visibility and emit a custom `menuToggle` event in addition to the native button's `click` event.
 * When opened, focus will be sent to the first menu item.
+* Once open, the menu items can be navigated via keyboard using the arrow keys (rather than tab).
+  * Pressing `Arrow Down` or `Arrow Right` will navigate to the next menu item.
+  * Pressing `Arrow Up` or `Arrow Left` will navigate to the previous menu item.
+  * Pressing `Home` will navigate to the first menu item.
+  * Pressing `End` will navigate to the last menu item.
 * Pressing `ESC` or activating the "close" button will close the menu and send focus back to its control.
 * Clicking outside of the menu will close it and place focus wherever the click occurred (if focusable).
 * Tabbing away from the menu will also close it, but focus will be sent to the next logical element in the tab order.
@@ -35,22 +40,21 @@ A Menu contains additional actions in the form of links or buttons, which can be
 
 ### Accessibility
 
-* The menu control shall always be a `<button>` with `type="button"`.
+* The menu control shall always be a `button` tag with `type="button"`.
 * The menu control shall have `aria-haspopup="menu"` applied to it.
 * The menu control shall have a unique `id`, which is referenced by the semantic menu's (containing `role="menu"`) `aria-labelledby` attribute.
 * Buttons without accessible label text, such as icon buttons, should use the `aria-label` attribute to specify an accessible label that uniquely identifies the control.
 * Activating the menu control (button) will toggle `aria-expanded` attribute, which is managed by the component, and send focus to the first item in the menu.
 * Menu items should be represented by semantically valid links or buttons, depending on their functionality.
-* Once open, the menu items can be navigated via keyboard using the arrow keys (rather than tab).
-* Additionally, the `Home` key shall jump to the first menu item and the `End` key shall jump to the last menu item.
-* Clicking on the menu control or anywhere outside of the menu itself will close the menu.
-* Tabbing outside of the menu or menu control will close the menu.
-* Pressing `ESC` at any time will close an open menu.
+* Keyboard navigation is supported according to the specifications in the User Interactions section, above.
 * If the menu is closed by pressing `ESC` or activating the close button, focus will be returned to the menu's control.
 
 ### Additional Notes and Considerations
 
+* Menu Items are meant to be flexible, yet styled consistently.
+  * You may slot in native links or buttons, as well as `cbp-button` or `cbp-link` components.
+  * Which choice you make should depend on your requirements.
 * A custom event of `menuToggle` is emitted from the parent component tag. The custom event's `details` contain the following keys:
-  * `button`: a DOM reference to the button element activated
-  * `nativeEvent`: the full native `click` event from the activated button
-  * `open`: a Boolean representing the opened/expanded state of the menu resulting from the user interaction
+  * `host`: a DOM reference to the `cbp-menu` element.
+  * `control`: a DOM reference to the button element activated.
+  * `open`: a Boolean representing the opened/expanded state of the menu resulting from the user interaction.

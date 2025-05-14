@@ -6,13 +6,11 @@ import state from '../cbp-app-header/store';
   styleUrl: 'cbp-app-header.scss'
 })
 export class CbpAppHeader {
-
   
   private navItems: HTMLCbpNavItemElement[] = [];
   private currentItem;
 
   @Element() host: HTMLElement;
-
 
   @Listen('drawerClose', { target: 'body'})
   handleNavDrawerClose(e) {
