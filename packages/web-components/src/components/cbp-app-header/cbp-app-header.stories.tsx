@@ -26,7 +26,7 @@ function generateNavItems(items, drawerid){
   const html =  items.map(({ label, name, href, current, children}) => {
     if(!children){
       return `
-        <cbp-nav-item name="${name}" ${current ? 'selected' : ''}> 
+        <cbp-nav-item name="${name}" ${current ? 'current' : ''}> 
           <cbp-button tag="a" href=${href} fill="ghost" color="secondary">
             ${label}
           </cbp-button>
@@ -35,7 +35,7 @@ function generateNavItems(items, drawerid){
     }
     else {
       return `
-        <cbp-nav-item name="${name}" ${current ? 'selected' : ''}> 
+        <cbp-nav-item name="${name}" ${current ? 'current' : ''}> 
           <cbp-button fill="ghost" color="secondary" target-prop="open" controls=${drawerid}>
             ${label}
             <cbp-icon name="chevron-right" rotate="90"></cbp-icon>
@@ -50,7 +50,7 @@ function generateNavItems(items, drawerid){
 
 function generateSubnav(items){
   const html = items.map(({ icon, label, name, href, children, current }) => {
-      return `<cbp-subnav-item label="${label}" name="${name}" href=${href} ${current? `current=${current}` : ``}  >${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``} ${children? generateSubnav(children) : ``}</cbp-subnav-item>`;
+      return `<cbp-subnav-item label="${label}" name="${name}" href=${href} ${current? 'current' : ''}  >${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``} ${children? generateSubnav(children) : ``}</cbp-subnav-item>`;
   });
       return html.join('');
 }

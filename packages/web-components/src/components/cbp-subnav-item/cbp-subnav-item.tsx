@@ -18,7 +18,7 @@ export class CbpSubnavItem {
 
   @Element() host: HTMLCbpSubnavItemElement;
 
-  /** Specifies the current subnav-item */
+  /** Specifies the current Subnav Item */
   @Prop ({ reflect: true}) current: boolean = false;
 
   /** Specifies a name used to associated nav items with subnav items*/
@@ -80,7 +80,7 @@ export class CbpSubnavItem {
             fill="outline"
             color="primary"
             href={this.href}
-            aria-current={this.current ? "page" : false}
+            aria-current={this.current ? "page" : "false"}
             context={this.context}
             onClick={() => this.handleSubnavClick()}
           >

@@ -2,9 +2,9 @@ import { createStore } from "@stencil/store";
 
 // All strings
 const { state } = createStore({
-  currentPage: null,
-  currentParent: null,
-  activeItemName: '',
+  currentPage: undefined,
+  currentParent: undefined,
+  activeItemName: undefined,
 });
 
 export default state;

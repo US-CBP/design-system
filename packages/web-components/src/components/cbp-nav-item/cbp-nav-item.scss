@@ -97,7 +97,7 @@ cbp-nav-item {
   }
 
   // Current Nav state (excluding the Application Name option)
-  &[selected]:not(:first-of-type) cbp-button[fill=ghost][color=secondary] {
+  &[current]:not(:first-of-type) cbp-button[fill=ghost][color=secondary] {
     --cbp-button-color: var(--cbp-nav-item-color-selected);
     --cbp-button-color-bg: var(--cbp-nav-item-color-bg-selected);
     --cbp-button-color-border: var(--cbp-nav-item-border-bottom-selected);

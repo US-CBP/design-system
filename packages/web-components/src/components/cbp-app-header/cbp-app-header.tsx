@@ -33,8 +33,8 @@ export class CbpAppHeader {
     console.log('App Header - setCurrent()', activatedNav);
     this.currentItem = activatedNav;
     this.navItems.forEach((navItem: HTMLCbpNavItemElement) => {
-      if (activatedNav == navItem) navItem.selected = true;
-      else navItem.selected = false;
+      if (activatedNav == navItem) navItem.current = true;
+      else navItem.current = false;
     });
   }
 
@@ -48,7 +48,7 @@ export class CbpAppHeader {
 
   componentWillLoad() {
     this.navItems = Array.from(this.host.querySelectorAll('cbp-nav-item'));
-    this.currentItem = this.host.querySelector('cbp-nav-item[selected]');
+    this.currentItem = this.host.querySelector('cbp-nav-item[current]');
     
     // Set the shared states as well
     state.currentPage = state.currentParent = this.currentItem?.name;
