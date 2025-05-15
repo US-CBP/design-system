@@ -20,6 +20,7 @@ The React components are wrappers generated from this package and will share the
   * Navigation Items with children are represented by a button control that opens a drawer containing sub-navigation.
   * The Application Header and Sub-navigation now contain a shared state, allowing user interaction with either component to update the state of the other.
 * BREAKING: renamed the `cbp-nav-item` `selected` property to `current` for consistency and clarity.
+* BREAKING: renamed the `cbp-subnav` `accessibilitytext` property to `accessibilityText` for consistency.
 * Updated the `cbp-dropdown` faux button so that the chevron can be rotated when opened.
 * Updated web components readme and included it Storybook under "Using the web components."
 
