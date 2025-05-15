@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
+import { Component, Element, Prop, Watch, Event, EventEmitter, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 import state from '../cbp-app-header/store';
@@ -9,6 +9,8 @@ import state from '../cbp-app-header/store';
 })
 
 export class CbpNavItem {
+
+  private control: any; // HTMLAnchorElement | HTMLButtonElement
 
   @Element() host: HTMLCbpNavItemElement;
 
@@ -21,18 +23,26 @@ export class CbpNavItem {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
   
-  //techdebt: event logic only works for links
-  @Event() navClicked: EventEmitter;
-  handleNavClick() {
+  @Event() navItemClick: EventEmitter;
+  handleNavItemClick() {
     state.activeItemName = this.name;
-    if(this.host.querySelector('a')){
+
+    // For anchors, set selected and update states (buttons will open a drawer for further action)
+    if (this.host.querySelector('a')) {
       this.selected = true;
       state.currentPage = this.name;
       state.currentParent = this.name;
+      // Only emit the event if it's an anchor
+      this.navItemClick.emit({
+        host: this.host,
+      })
     }
-    this.navClicked.emit({
-      host: this.host,
-    })
+  }
+
+  @Watch('selected')
+  doSelected(newValue) {
+    if (newValue) this.control.setAttribute('aria-current', 'page');
+    else this.control.removeAttribute('aria-current');
   }
 
   componentWillLoad() {
@@ -44,12 +54,14 @@ export class CbpNavItem {
     });
   }
 
+  componentDidLoad() {
+    this.control = this.host.querySelector('a,button');
+  }
+
   render() {
     return (
-    <Host 
-      onClick={() => this.handleNavClick()}
-    >
-      <slot></slot>
+    <Host onClick={() => this.handleNavItemClick()}>
+      <slot />
     </Host>
     );  
   }

@@ -1,10 +1,10 @@
-import { Component, Element, Event, EventEmitter, Watch, Prop, Host, h } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Prop, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 
 /**
- * @slot - The Subnav-item's children, will be expanded/collapsed based on the toggle.
- * @slot - icon - used to populate the subnav-item icon if user has set it
+ * @slot - The Subnav Item's children are placed in the default slot.
+ * @slot - cbp-subnav-item-label - An optional slot in support of a label with markup. Replaces the `label` property if used.
  */
 
 @Component({
@@ -15,10 +15,11 @@ export class CbpSubnavItem {
 
   private icon: string;
   private parent: boolean;
-  @Element() host: HTMLElement;
+
+  @Element() host: HTMLCbpSubnavItemElement;
 
   /** Specifies the current subnav-item */
-  @Prop ({ reflect: true}) current: boolean
+  @Prop ({ reflect: true}) current: boolean = false;
 
   /** Specifies a name used to associated nav items with subnav items*/
   @Prop({ reflect: true }) name: string;
@@ -38,8 +39,27 @@ export class CbpSubnavItem {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+  @Event() toggleSubnavItem: EventEmitter;
+  handleToggleSubnavItem(){
+    this.open = !this.open;
+    this.toggleSubnavItem.emit({
+      host: this.host,
+      open: this.open,
+    });
+  }
+
+  @Event() subnavItemClick: EventEmitter;
+  handleSubnavClick(){
+    this.current=true;
+    this.subnavItemClick.emit({
+      host: this.host,
+    })
+  }
+
   componentWillLoad() {
+    // Set the icon based on nesting level
     this.icon = this.host.closest('cbp-subnav-item cbp-subnav-item cbp-subnav-item') ? 'caret-down' : 'chevron-right';    
+    // Is this subnav item a parent?
     this.parent =  !!this.host.querySelector('cbp-subnav-item');
 
     if (typeof this.sx == 'string') {
@@ -50,31 +70,7 @@ export class CbpSubnavItem {
     });
   }
 
-  @Event() toggleSubnavClick: EventEmitter;
-  toggleSubnav(){
-    this.open = !this.open;
-    this.toggleSubnavClick.emit({
-      host: this.host,
-      open: this.open,
-    });
-  }
-
-  @Event() subnavCurrentClick: EventEmitter;
-  subnavCurrent(){
-    this.current=true;
-    this.subnavCurrentClick.emit({
-      host: this.host,
-    })
-  }
-
-  @Watch('current')
-  watchCurrentHandler() {
-    this.toggleSubnav();
-  }
-
-  /**
-   * Tech debt: routing to be implemented
-   */
+  // TechDebt: routing to be implemented
   render() {
     return (
       <Host>
@@ -84,23 +80,23 @@ export class CbpSubnavItem {
             fill="outline"
             color="primary"
             href={this.href}
-            aria-current={this.current}
+            aria-current={this.current ? "page" : false}
             context={this.context}
-            onClick={() => this.subnavCurrent()}
+            onClick={() => this.handleSubnavClick()}
           >
             { !this.host.querySelector('[slot=cbp-subnav-item-label]') && this.label}
             <slot name="cbp-subnav-item-label" />
           </cbp-button>
+          
           {this.parent && 
-          <cbp-button
-            type="button"
-            fill="outline"
-            color="primary"
-            context={this.context}
-            onClick={() => this.toggleSubnav()}
-          >
-            <cbp-icon name={this.icon}></cbp-icon>  
-          </cbp-button>
+            <cbp-button
+              fill="outline"
+              color="primary"
+              context={this.context}
+              onClick={() => this.handleToggleSubnavItem()}
+            >
+              <cbp-icon name={this.icon}></cbp-icon>  
+            </cbp-button>
           }
         </div>
 
