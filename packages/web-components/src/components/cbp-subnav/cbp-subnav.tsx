@@ -50,7 +50,6 @@ export class CbpSubNav {
   }
 
   updateCurrent(newValue) {
-    console.log('Subnav - updateCurrent: ', newValue)
     const CurrentItem = this.host.querySelector(`cbp-subnav-item[name="${newValue}"]`) as HTMLCbpSubnavItemElement;
     this.currentItem = CurrentItem;
     // Rest the current status on all the subnav items
@@ -73,7 +72,6 @@ export class CbpSubNav {
       }
       else {
         subnavItem.current = false;
-        console.log(subnavItem);
       }
     })
   }
@@ -105,7 +103,6 @@ export class CbpSubNav {
   }
 
   render() {
-    console.log('Subnav Rendering: ', state.currentPage, state.currentParent, state.activeItemName);
     // Update the active to match the state.current
     if(this.store){
       if(this.currentItem?.name != state.currentPage) {

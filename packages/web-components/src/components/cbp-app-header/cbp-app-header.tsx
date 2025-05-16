@@ -30,7 +30,6 @@ export class CbpAppHeader {
 
   // Called from navItem click as well as state updates.
   setCurrentNav(activatedNav) {
-    console.log('App Header - setCurrent()', activatedNav);
     this.currentItem = activatedNav;
     this.navItems.forEach((navItem: HTMLCbpNavItemElement) => {
       if (activatedNav == navItem) navItem.current = true;
