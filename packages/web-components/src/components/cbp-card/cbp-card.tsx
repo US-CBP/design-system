@@ -20,7 +20,7 @@ export class CbpCard {
   @Prop({ reflect: true }) variant: "banner" | "decision" | "flag";
 
   /** Specifies the interactivity of the card. */
-  @Prop({ reflect: true}) interactive: "clickable" | "select" | "multi";
+  @Prop({ reflect: true}) interactive: "clickable" | "selectable";
 
   /** Specifies the `href` value for the "clickable" interactive cards. */
   @Prop() href: string
@@ -46,21 +46,20 @@ export class CbpCard {
     });
   }
 
-  render() {
-    
-    /** linking click event for the card to slotted cbp-checkbox*/
-    const multiSelect = document.querySelectorAll('cbp-card[interactive="multi"');
-    multiSelect.forEach((multiSelectItem) => {
-      multiSelectItem.addEventListener("click", (e) => {
-        let parent = this.host.querySelector('cbp-card *[slot="cbp-card-title"]')
+  componentDidLoad(){
+    if(this.interactive == 'selectable'){
+      this.host.addEventListener("click", (e) => {
+        let parent = this.host.querySelector('cbp-card *[slot="cbp-card-title"]');
         let target = e.target as Element;
-      
-        if(!parent.contains(target)){
-          let checkbox = multiSelectItem.querySelector('cbp-checkbox input[type="checkbox"]') as HTMLInputElement;
+        if (!parent.contains(target)){
+          let checkbox = this.host.querySelector('cbp-checkbox input[type="checkbox"]') as HTMLInputElement;
           checkbox.click();  
         }
-    })})
-
+      })
+    }
+  }
+  
+  render() {
     if(this.interactive === 'clickable'){
       return(
         <Host>

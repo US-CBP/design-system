@@ -24,6 +24,15 @@
   * @prop  --cbp-interactive-card-outline-focus-dark: var(--cbp-color-black);
   * @prop  --cbp-interactive-card-danger-outline-focus: var(--cbp-color-white);
   * @prop  --cbp-interactive-card-danger-outline-focus-dark: var(--cbp-color-black);
+
+  * @prop  --cbp-multi-card-color-background-selected: var(--cbp-color-interactive-selected-dark);
+  * @prop  --cbp-multi-card-color-background-selected-dark: var(--cbp-color-interactive-selected-light);
+  * @prop  --cbp-multi-card-color-border-selected: var(--cbp-color-interactive-secondary-light);
+  * @prop  --cbp-multi-card-color-border-selected-dark: var(--cbp-color-interactive-secondary-base);
+  * @prop  --cbp-multi-card-color-title-selected: var(--cbp-color-text-lighter);
+  * @prop  --cbp-multi-card-color-title-selected-dark: var(--cbp-color-text-darker);
+  * @prop  --cbp-multi-card-color-text-selected: var(--cbp-color-text-lighter);
+  * @prop  --cbp-multi-card-color-text-selected-dark: var(--cbp-color-text-darker);  
 */
 
 :root {
@@ -59,22 +68,6 @@
   --cbp-interactive-card-danger-outline-color-focus: var(--cbp-color-white);
   --cbp-interactive-card-danger-outline-color-focus-dark: var(--cbp-color-black);
 
-  //multi checkboxs
-  --cbp-multi-card-checkbox-color-border: var(--cbp-color-interactive-secondary-light);
-  --cbp-multi-card-checkbox-color-border-dark: var(--cbp-color-interactive-secondary-light);
-  --cbp-multi-card-checkbox-color-border-hover: var(--cbp-color-interactive-secondary-darker);
-  --cbp-multi-card-checkbox-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
-  --cbp-multi-card-checkbox-color-border-focus: var(--cbp-color-interactive-focus-light);
-  --cbp-multi-card-checkbox-color-border-focus-dark: var(--cbp-color-interactive-focus-dark);
-  --cbp-multi-card-checkbox-color-bg-focus: var(--cbp-color-gray-cool-70);
-  --cbp-multi-card-checkbox-color-bg-focus-dark: var(--cbp-color-white);
-  --cbp-multi-card-checkbox-color-selected: var(--cbp-color-text-darker);
-  --cbp-multi-card-checkbox-color-selected-dark: var(--cbp-color-text-lighter);
-  --cbp-multi-card-checkbox-color-border-selected: var(--cbp-color-interactive-focus-light);
-  --cbp-multi-card-checkbox-color-border-selected-dark: var(--cbp-color-interactive-selected-dark);
-  --cbp-multi-card-checkbox-color-bg-selected: var(--cbp-color-interactive-focus-light);
-  --cbp-multi-card-checkbox-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
-
   //selected
   --cbp-multi-card-color-background-selected: var(--cbp-color-interactive-selected-dark);
   --cbp-multi-card-color-background-selected-dark: var(--cbp-color-interactive-selected-light);
@@ -105,13 +98,6 @@
   --cbp-interactive-card-outline-color-focus: var(--cbp-interactive-card-outline-color-focus-dark);
   --cbp-interactive-card-danger-outline-color-focus: var(--cbp-interactive-card-danger-outline-color-focus-dark);
 
-  --cbp-multi-card-checkbox-color-border: var(--cbp-multi-card-checkbox-color-border-dark);
-  --cbp-multi-card-checkbox-color-border-hover: var(--cbp-multi-card-checkbox-color-border-hover-dark);
-  --cbp-multi-card-checkbox-color-border-focus: var(--cbp-multi-card-checkbox-color-border-focus-dark);
-  --cbp-multi-card-checkbox-color-bg-focus: var(--cbp-multi-card-checkbox-color-bg-focus-dark);
-  --cbp-multi-card-checkbox-color-selected: var(--cbp-multi-card-checkbox-color-selected-dark);
-  --cbp-multi-card-checkbox-color-border-selected: var(--cbp-multi-card-checkbox-color-border-selected-dark);
-  --cbp-multi-card-checkbox-color-bg-selected: var(--cbp-multi-card-checkbox-color-bg-selected-dark);
   --cbp-multi-card-color-background-selected: var(--cbp-multi-card-color-background-selected-dark);
   --cbp-multi-card-color-border-selected: var(--cbp-multi-card-color-border-selected-dark);
   --cbp-multi-card-color-title-selected: var(--cbp-multi-card-color-title-selected-dark);
@@ -347,8 +333,7 @@ cbp-card {
 
   //interactive cards
   &[interactive="clickable"],
-  // &[select],
-  &[interactive="multi"]{
+  &[interactive="selectable"]{
     --cbp-checkbox-min-height: var(--cbp-space-6x); //adjust spacing for checkbox in title for multi variant
     
     a{
@@ -356,8 +341,17 @@ cbp-card {
       flex-grow: 1;
     }
 
-    [slot=cbp-card-title] input[type=checkbox]{
-      --cbp-checkbox-color-border: var(--cbp-multi-card-checkbox-color-border);
+    cbp-checkbox{
+      --cbp-checkbox-color-border: var(--cbp-color-interactive-secondary-light);
+      --cbp-checkbox-color-border-dark: var(--cbp-color-interactive-secondary-light);
+      --cbp-checkbox-color-halo-hover:transparent;
+      --cbp-checkbox-color-halo-hover-dark:transparent;
+      --cbp-checkbox-color-halo-focus:transparent;
+      --cbp-checkbox-color-halo-focus-dark:transparent;
+      --cbp-checkbox-color-halo-checked-hover: transparent;
+      --cbp-checkbox-color-halo-checked-hover-dark: transparent;
+      --cbp-checkbox-color-halo-checked-focus: transparent;
+      --cbp-checkbox-color-halo-checked-focus-dark: transparent;
     }
 
     &:hover{
@@ -371,10 +365,12 @@ cbp-card {
       --cbp-card-color-title-dark: var(--cbp-color-text-lighter);
       --cbp-card-color-text-dark: var(--cbp-color-text-lighter);
 
-      [slot=cbp-card-title] input[type=checkbox]{
-        --cbp-checkbox-color-border: var(--cbp-multi-card-checkbox-color-border-hover);
+      cbp-checkbox{
+        --cbp-checkbox-color-border: var(--cbp-color-interactive-secondary-darker);
+        --cbp-checkbox-color-border-dark: var(--cbp-color-interactive-secondary-lighter);
         --cbp-checkbox-color-halo: transparent;
       }
+
     }      
 
     &:focus,
@@ -394,9 +390,11 @@ cbp-card {
         outline-offset: -4px;
       }  
 
-      [slot=cbp-card-title] input[type=checkbox]{
-        --cbp-checkbox-color-border: var(--cbp-multi-card-checkbox-color-border-focus);
-        --cbp-checkbox-color-bg: var(  --cbp-multi-card-checkbox-color-bg-focus);
+      cbp-checkbox{
+        --cbp-checkbox-color-border: var(--cbp-color-interactive-focus-light);
+        --cbp-checkbox-color-border-dark: var(--cbp-color-interactive-focus-dark);
+        --cbp-checkbox-color-bg: var(--cbp-color-gray-cool-70);
+        --cbp-checkbox-color-bg-dark: var(--cbp-color-white);
         --cbp-checkbox-color-halo: transparent;
       }
     }
@@ -421,10 +419,16 @@ cbp-card {
       --cbp-card-color-title: var(--cbp-multi-card-color-title-selected);
       --cbp-card-color-text: var(--cbp-multi-card-color-text-selected);
       
-      [slot=cbp-card-title] input[type=checkbox]{
-        --cbp-checkbox-color: var(--cbp-multi-card-checkbox-color-selected);
-        --cbp-checkbox-color-border: var(--cbp-multi-card-checkbox-color-border-selected);
-        --cbp-checkbox-color-bg: var(--cbp-multi-card-checkbox-color-bg-selected);
+      cbp-checkbox{
+        --cbp-checkbox-color: var(--cbp-color-text-darker);
+        --cbp-checkbox-color-dark: var(--cbp-color-text-lighter);
+        --cbp-checkbox-color-border-checked: var(--cbp-color-interactive-focus-light);
+        --cbp-checkbox-color-border-checked-dark: var(--cbp-color-interactive-selected-dark);
+        --cbp-checkbox-color-bg-checked: var(--cbp-color-interactive-focus-light);
+        --cbp-checkbox-color-bg-checked-dark: var(--cbp-color-interactive-selected-dark);
+        --cbp-checkbox-color-bg-checked-focus: var(--cbp-color-interactive-focus-light);
+        --cbp-checkbox-color-bg-checked-focus-dark: var(--cbp-color-interactive-selected-dark);
+        --cbp-checkbox-color-halo: transparent;
       }
     }
 
