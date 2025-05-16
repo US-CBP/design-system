@@ -2,7 +2,7 @@ export default {
   title: 'Components/Sub-Navigation',
   tags: ['new'],
   argTypes: {
-    accessibilitytext: {
+    accessibilityText: {
       description: 'Sets accessibilityText prop for the subnav component',
       control: 'text',
     },
@@ -38,10 +38,22 @@ function generateContent(items, context) {
   return html.join('');
 }
 
-const SubnavTemplate = ({ items, accessibilitytext, flat, context }) => {
+
+const SubnavTemplate = ({ items, accessibilityText, flat, context }) => {
+  
+  // preventDefault on all links in the subnav
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-subnav a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { 
+        e.preventDefault(); 
+      })
+    });
+  }, 500);
+
   return ` 
     <cbp-subnav
-      ${accessibilitytext ? `accessibility-text="${accessibilitytext}"` : ``}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ``}
       ${flat ? 'flat' : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
     >

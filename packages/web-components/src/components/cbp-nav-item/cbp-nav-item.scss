@@ -62,7 +62,7 @@
 
 cbp-nav-item {
 
-  /* remap cbp-button vars */
+  // cbp-button overrides
   cbp-button[fill=ghost][color=secondary] {
     --cbp-button-min-height: 3.5rem; 
     --cbp-button-color: var(--cbp-nav-item-color);
@@ -72,12 +72,12 @@ cbp-nav-item {
 
     font-size: var(--cbp-font-weight-bold); // TechDebt: prop and token mismatch - are these supposed to be bold?
 
-    button, a{
+    button, a {
       text-transform: unset;
       letter-spacing: normal;
     }
 
-    &:hover{
+    &:hover {
       --cbp-button-color-hover: var(--cbp-nav-item-color-hover);
       --cbp-button-color-bg-hover: var(--cbp-nav-item-color-bg-hover);
 
@@ -86,7 +86,7 @@ cbp-nav-item {
       --cbp-button-color-border-hover-dark: var(--cbp-nav-item-border-bottom-hover-dark); 
     }
 
-    &:active{
+    &:active {
       --cbp-button-color: var(--cbp-nav-item-color-active);
       --cbp-button-color-bg: var(--cbp-nav-item-color-bg-active);
 
@@ -96,8 +96,8 @@ cbp-nav-item {
     }
   }
 
-  //Selected/Active state
-  &[selected] cbp-button[fill=ghost][color=secondary]{
+  // Current Nav state (excluding the Application Name option)
+  &[current]:not(:first-of-type) cbp-button[fill=ghost][color=secondary] {
     --cbp-button-color: var(--cbp-nav-item-color-selected);
     --cbp-button-color-bg: var(--cbp-nav-item-color-bg-selected);
     --cbp-button-color-border: var(--cbp-nav-item-border-bottom-selected);
@@ -110,7 +110,8 @@ cbp-nav-item {
   }
 
   // styling for home/application title nav item
-  &:first-of-type a{
+  // TechDebt: should this use the [slot=cbp-home] selector instead? (and should that slot name be updated?)
+  &:first-of-type a {
     font-size: var(--cbp-font-size-heading-sm);
     font-weight: var(--cbp-font-weight-bold);
     padding-left: var(--cbp-space-5x);
