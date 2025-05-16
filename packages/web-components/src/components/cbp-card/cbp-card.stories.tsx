@@ -157,7 +157,7 @@ const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
 const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, interactive, href, variant, context, sx }) => {
   return ` 
     <cbp-card
-      ${variant !=='general' ? `variant="${variant}"` : ''}
+      ${variant !=='default' ? `variant="${variant}"` : ''}
       ${interactive ? `interactive=${interactive}` : ''}
       ${href ? `href="${href}"` : ''}
       ${disabled ? `disabled=${disabled}` : ''}
@@ -167,7 +167,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
     >
       
       ${variant=== 'flag' ? `<div slot="cbp-card-flag"><img src="https://api.dicebear.com/9.x/personas/svg" /></div>` : ''}
-      ${interactive === 'multi' ? `
+      ${interactive === 'selectable' ? `
         <cbp-checkbox value="1" slot="cbp-card-title">
           <cbp-typography tag="h4" sx='{"color":"var(--cbp-card-color-title)"}'>
               ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
@@ -357,7 +357,7 @@ InteractiveCard.args = {
   title: "Banner Card Title",
   bodyText: "Here is an example of some supplementary text for this purely informational card",
   interactive: "clickable",
-  variant: "general",
+  variant: "default",
   href: "https://us-cbp.github.io/design-system/?path=/story/introduction--introduction"
 };
 
@@ -366,7 +366,7 @@ InteractiveCard.argTypes = {
     name: "Interactive",
     description: "Set the interactivity of the card",
     control: "select",
-    options: ["clickable", "select", "multi"],
+    options: ["clickable", "selectable"],
   },
   href:{
     control: "text"
@@ -382,6 +382,6 @@ InteractiveCard.argTypes = {
     name: "Variant",
     description: "set Variant of the card",
     control: "select",
-    options: ["general", "flag"]
+    options: ["default", "flag"]
   },
 };

@@ -20,7 +20,7 @@ export class CbpCard {
   @Prop({ reflect: true }) variant: "banner" | "decision" | "flag";
 
   /** Specifies the interactivity of the card. */
-  @Prop({ reflect: true}) interactive: "clickable" | "select" | "multi";
+  @Prop({ reflect: true}) interactive: "clickable" | "selectable";
 
   /** Specifies the `href` value for the "clickable" interactive cards. */
   @Prop() href: string
@@ -46,6 +46,18 @@ export class CbpCard {
     });
   }
 
+  componentDidLoad(){
+    if(this.interactive == 'selectable'){
+      this.host.addEventListener("click", (e) => {
+        let parent = this.host.querySelector('cbp-card *[slot="cbp-card-title"]');
+        if (!parent.contains(e.target as Node)){
+          let checkbox = this.host.querySelector('cbp-checkbox input[type="checkbox"]') as HTMLInputElement;
+          checkbox.click();  
+        }
+      })
+    }
+  }
+  
   render() {
     if(this.interactive === 'clickable'){
       return(
