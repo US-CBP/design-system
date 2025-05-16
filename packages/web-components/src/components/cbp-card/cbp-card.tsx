@@ -50,8 +50,7 @@ export class CbpCard {
     if(this.interactive == 'selectable'){
       this.host.addEventListener("click", (e) => {
         let parent = this.host.querySelector('cbp-card *[slot="cbp-card-title"]');
-        let target = e.target as Element;
-        if (!parent.contains(target)){
+        if (!parent.contains(e.target as Node)){
           let checkbox = this.host.querySelector('cbp-checkbox input[type="checkbox"]') as HTMLInputElement;
           checkbox.click();  
         }
