@@ -16,7 +16,7 @@ export class CbpIcon {
   @Prop() src: string;
 
   /** Optionally specifies the size of the icon, which defaults to `1em`, matching the context of nearby text. */
-  @Prop() size: string = '1rem';
+  @Prop() size: string;
 
   /** Optionally specifies the color of the icon (ideally using design-token-based CSS variables). Defaults to "currentColor." */
   @Prop() color: string = "currentColor";
