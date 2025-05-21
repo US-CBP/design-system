@@ -46,6 +46,7 @@ export default {
   },
 };
 
+
 const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabel, showIcon, context, sx }) =>
   `
     <cbp-panel
@@ -62,14 +63,14 @@ const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabe
         variant="heading-lg"
         ${headerId ? `id="${headerId}"` : ''}
       >
-        ${showIcon ? '<cbp-icon name="star" size="var(--cbp-space-6x)" sx=\'{"margin-right":"var(--cbp-space-4x)", "vertical-align":"text-top"}\'></cbp-icon>' : ''}${header}
+        ${showIcon ? '<cbp-icon name="star" sx=\'{"margin-right":"var(--cbp-space-4x)", "vertical-align":"text-top"}\'></cbp-icon>' : ''}${header}
       </cbp-typography
       <div class="cbp-panel__content">
         <p>${content}</p>
       </div>
     </cbp-panel>
   `;
-
+  
 export const Default = PanelTemplate.bind({});
 Default.args = {
   headingLevel: 'h3',
