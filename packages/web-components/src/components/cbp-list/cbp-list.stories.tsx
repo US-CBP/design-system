@@ -188,7 +188,7 @@ function generateLinkListItems(items, size, parentVariant) {
                 sx='{"color":"var(--cbp-link-list-icon-color)"}'
                 > </cbp-icon>
                 <cbp-link href='#' target='_self'>${content}</cbp-link>
-                ${parentVariant == 'link-external' ? `<br /><cbp-icon name="globe" size="1rem"/> </cbp-icon><cbp-typography tag="span" variant="body-text" sx='{"color":"var(--cbp-link-list-icon-color)"}'><i> ` + content + ` description </i></cbp-typography>` : ''} 
+                ${parentVariant == 'link-external' ? `<br /><cbp-icon name="globe" /> </cbp-icon><cbp-typography tag="span" variant="body-text" sx='{"color":"var(--cbp-link-list-icon-color)"}'><i> ` + content + ` description </i></cbp-typography>` : ''} 
               </li>`;      
     });
     return html.join('');
@@ -274,9 +274,9 @@ function generateIconItems(items) {
   const html = items.map(({ content, icon, color}) => {
       return `<li>
                 <cbp-icon 
-                  name='${icon}' 
-                  color='${color}'
-                  size='var(--cbp-space-5x)'
+                  name="${icon}" 
+                  color="${color}"
+                  size="var(--cbp-space-5x)"
                 ></cbp-icon>
                 ${content}
               </li>`;      
