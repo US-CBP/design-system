@@ -15,11 +15,16 @@ export class CbpIcon {
   /** Specifies the exact `src` of an SVG file to use. */
   @Prop() src: string;
 
-  /** Optionally specifies the size of the icon, which defaults to `1em`, matching the context of nearby text. */
+  /** 
+   * Optionally specifies the size (both width and height) of the icon, which 
+   * defaults (via CSS) to `1rem` (16px), the intended size of icons alongside body text. 
+   * Icon size may be specified via this property/attribute or the custom 
+   * CSS property `--cbp-icon-size`. 
+   */
   @Prop() size: string;
 
   /** Optionally specifies the color of the icon (ideally using design-token-based CSS variables). Defaults to "currentColor." */
-  @Prop() color: string = "currentColor";
+  @Prop() color: string;
 
   /** Optionally specify the degrees of rotation. */
   @Prop() rotate: number = 0;
