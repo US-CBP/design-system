@@ -168,7 +168,7 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
             controls="${fieldId}"
             aria-describedby="${fieldId}-label"
           >
-            <cbp-icon name="minus" size="1rem"></cbp-icon>
+            <cbp-icon name="minus"></cbp-icon>
           </cbp-button>
 
           <cbp-button
@@ -181,7 +181,7 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
             controls="${fieldId}"
             aria-describedby="${fieldId}-label"
           >
-            <cbp-icon name="plus" size="1rem"></cbp-icon>
+            <cbp-icon name="plus"></cbp-icon>
           </cbp-button>
 
         </span>
@@ -258,7 +258,7 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
             controls="${fieldId}"
             aria-describedby="${fieldId}-label"
           >
-            <cbp-icon name="eye" size="1rem"></cbp-icon>
+            <cbp-icon name="eye"></cbp-icon>
           </cbp-button>
         </span>
         
@@ -312,7 +312,7 @@ const SearchTemplate = ({ label, description, inputType,  overlayStart, overlayE
             variant="square"
             accessibility-text="Search"
           >
-            <cbp-icon name="magnifying-glass" size="1rem"></cbp-icon>
+            <cbp-icon name="magnifying-glass"></cbp-icon>
           </cbp-button>
         </span>
         
