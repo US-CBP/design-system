@@ -102,6 +102,11 @@ cbp-chip {
       }
     }
     
+    // default icon space (differentiated from other slotted icons)
+    :last-child {
+      --cbp-icon-size: var(--cbp-space-3x);
+    }
+
     // Selected
     &[aria-pressed=true] {
       background-color: var(--cbp-chip-color-background-pressed);

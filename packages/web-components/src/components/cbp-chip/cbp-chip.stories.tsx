@@ -57,7 +57,7 @@ const ChipWithCustomIconTemplate = ({ label, name, value, icon, pressed, context
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        <cbp-icon slot="cbp-chip-icon" name="${icon}" size="var(--cbp-space-3x)"></cbp-icon>
+        <cbp-icon slot="cbp-chip-icon" name="${icon}"></cbp-icon>
         ${label}
       </cbp-chip>
     `;
