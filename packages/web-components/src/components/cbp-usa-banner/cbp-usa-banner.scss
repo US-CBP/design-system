@@ -3,7 +3,7 @@
  * @prop   --cbp-usa-banner-color: var(--cbp-color-text-lightest);
  */
 
- :root{
+:root {
   --cbp-usa-banner-background-color: var(--cbp-color-gray-cool-90);
   --cbp-usa-banner-color: var(--cbp-color-text-lightest);
 }
@@ -15,11 +15,11 @@ cbp-usa-banner {
   display: inline-block;
   width: 100%;
   padding-block: var(--cbp-space-2x);
-  padding-inline:var(--cbp-responsive-spacing-outer);
+  padding-inline: var(--cbp-responsive-spacing-outer);
 
   --cbp-usa-banner-icon-rotate: rotate(90deg);
 
-  .cbp-banner__title{
+  .cbp-banner__title {
     font-weight: var(--cbp-font-weight-medium);
   }
 
@@ -27,20 +27,20 @@ cbp-usa-banner {
     display: none;
   }
 
-  &[open]{
+  &[open] {
     --cbp-usa-banner-icon-rotate: rotate(270deg);
-  
-    .cbp-usa-banner-content{
-      display: flex;;
-    }
-  } 
 
-  img{
+    .cbp-usa-banner-content {
+      display: flex;
+    }
+  }
+
+  img {
     display: inline;
     margin-right: var(--cbp-space-3x);
   }
 
-  cbp-button.cbp-usa-banner-expand[fill='ghost'][color='primary']:not(#fakeId)  { 
+  cbp-button.cbp-usa-banner-expand[fill='ghost'][color='primary']:not(#fakeId) {
     //addition of fill & color in the selector is to up specificity to override button's dark mode var remapping correctly
     --cbp-button-gap: var(--cbp-space-1x);
     --cbp-button-height: 1rem;
@@ -67,21 +67,21 @@ cbp-usa-banner {
     --cbp-button-color-bg-active: transparent;
 
     margin-left: var(--cbp-space-1x);
- 
-    > button{
+
+    > button {
       letter-spacing: unset;
       text-transform: unset;
       text-decoration: underline;
-      outline-offset:-1px;
+      outline-offset: -1px;
     }
 
-    cbp-icon svg{
+    cbp-icon svg {
       transition: transform 150ms;
       transform: var(--cbp-usa-banner-icon-rotate);
     }
   }
 
-  .cbp-usa-banner-content{
+  .cbp-usa-banner-content {
     flex-direction: row;
     flex-wrap: wrap;
     padding-block-start: var(--cbp-space-5x);
@@ -89,18 +89,18 @@ cbp-usa-banner {
     gap: var(--cbp-space-8x);
     font-size: var(--cbp-font-size-body);
 
-    > div{
+    > div {
       display: flex;
       flex-basis: 20rem;
       flex-grow: 1;
-      gap: var(--cbp-space-3x); 
+      gap: var(--cbp-space-3x);
     }
-    
-    p{
+
+    p {
       margin-bottom: 0;
     }
 
-    .cbp-banner-content-icon{
+    .cbp-banner-content-icon {
       border: var(--cbp-border-size-sm) solid var(--cbp-color-info-light);
       border-radius: var(--cbp-border-radius-circle);
       height: var(--cbp-space-13x);
