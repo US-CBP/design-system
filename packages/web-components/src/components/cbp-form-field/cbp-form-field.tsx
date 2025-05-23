@@ -257,7 +257,7 @@ export class CbpFormField {
             id={`${this.fieldId}-description`}
             class="cbp-form-field-description"
           >
-            {this.error && <cbp-icon name="triangle-exclamation" color="var(--cbp-form-field-color-description)" sx='{"margin-inline-end":"var(--cbp-space-1x)","vertical-align":"text-top"}'></cbp-icon>}
+            {this.error && <cbp-icon name="triangle-exclamation" color="var(--cbp-form-field-color-description)" size="var(--cbp-space-3x)" sx='{"margin-inline-end":"var(--cbp-space-1x)"}'></cbp-icon>}
             {this.description}
             <slot name="cbp-form-field-description" />
           </div>
