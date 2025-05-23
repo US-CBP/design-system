@@ -25,7 +25,7 @@
  * @prop  --cbp-loader-circular-determinate: var(--cbp-loader-track-color);
  */
 
- :root{ 
+:root {
   --cbp-loader-color: var(--cbp-color-info-dark);
   --cbp-loader-color-dark: var(--cbp-color-info-light);
   --cbp-loader-center-color: var(--cbp-color-branding-cbp-light);
@@ -58,93 +58,111 @@
   --cbp-loader-font-size: var(--cbp-font-size-subhead);
 }
 
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
 [data-cbp-theme=light] cbp-loader[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-loader:not([context=dark-inverts]):not([context=light-always]) {
-
   --cbp-loader-color: var(--cbp-loader-color-dark);
   --cbp-loader-center-color: var(--cbp-loader-center-color-dark);
   --cbp-loader-track-color: var(--cbp-loader-track-color-dark);
-  
+
   --cbp-loader-status-description-color: var(--cbp-loader-status-description-color-dark);
-  --cbp-loader-status-indicator-color: var(--cbp-loader-status-indicator-color-dark);}
+  --cbp-loader-status-indicator-color: var(--cbp-loader-status-indicator-color-dark);
+}
 
 @keyframes spin {
-  0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
-  25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
-  50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
-  75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
-  100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
-
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
 }
 
 @keyframes slide {
-  0%{transform: translateX(0%);}
-  100%{transform: translateX(400%);}
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
 }
 
 cbp-loader {
-    max-width: 100%;
-    overflow: hidden;
-    position: relative;
-    
-  label{
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  label {
     font-size: var(--cbp-loader-font-size);
     font-weight: var(--cbp-loader-font-weight);
     align-self: flex-start;
   }
-  
-  /** styling for the linear variant of the loader*/
-  &[variant="linear"]{
+
+  // Linear variant
+  &[variant=linear] {
+    --cbp-icon-size: var(--cbp-space-3x);
     width: var(--cbp-loader-linear-width);
     display: inline-flex;
     flex-direction: var(--cbp-loader-linear-flex-direction);
     align-items: center;
     gap: var(--cbp-loader-linear-gap);
 
-    progress{
+    progress {
       appearance: none; //Needed to use the below psuedo classes/ affect the progress styles
       height: var(--cbp-loader-linear-height);
-      &::-webkit-progress-bar{ 
+      &::-webkit-progress-bar {
         background-color: var(--cbp-loader-track-color);
       }
 
-      &::-webkit-progress-value{
+      &::-webkit-progress-value {
         background-color: var(--cbp-loader-color);
       }
     }
 
-    &:not([determinate]):not([error]):not([success]) progress:before{
+    &:not([determinate]):not([error]):not([success]) progress:before {
       content: '';
       display: block;
       height: var(--cbp-loader-linear-height);
       width: 20%;
-      background-color: var(--cbp-loader-color); 
+      background-color: var(--cbp-loader-color);
       position: absolute;
-      animation: slide 2s cubic-bezier(0.2, 0, 0.38, 0.9)  infinite;
+      animation: slide 2s cubic-bezier(0.2, 0, 0.38, 0.9) infinite;
     }
 
-    &[determinate]{
-  
-        label{
+    &[determinate] {
+      label {
         color: var(--cbp-loader-status-description-color);
         display: inline-flex;
         width: var(--cbp-loader-linear-status-width);
         height: var(--cbp-space-4x);
         white-space: nowrap;
 
-        span:last-of-type{
-          margin-left: auto
+        span:last-of-type {
+          margin-left: auto;
         }
       }
-     }
+    }
   }
 
-  /** styling for the circular variant of the loader*/
-  &[variant="circular"]{
+
+  // Circular variant
+  &[variant=circular] {
     display: inline-flex;
     flex-direction: var(--cbp-loader-flex-direction);
 
-    label{
+    label {
       color: var(--cbp-loader-status-description-color);
       font-size: var(--cbp-font-size-subhead);
       font-weight: var(--cbp-font-weight-medium);
@@ -153,8 +171,7 @@ cbp-loader {
       order: 2;
     }
 
-    progress{
-      
+    progress {
       height: var(--cbp-loader-diameter);
       width: var(--cbp-loader-diameter);
       display: flex;
@@ -163,26 +180,25 @@ cbp-loader {
       border-radius: var(--cbp-border-radius-circle);
       overflow: hidden;
       padding: 0;
-      
-      //hide the visuals for the value/max relationship for the cirular loader. 
-      &::-webkit-progress-bar{
+
+      // hide the visuals for the value/max relationship for the circular loader.
+      &::-webkit-progress-bar {
         display: none;
       }
 
-      &:before{
-        content: "";
+      &:before {
+        content: '';
         position: absolute;
         z-index: var(--cbp-z-index-level-1);
         height: var(--cbp-loader-diameter);
-        width: var(--cbp-loader-diameter);      
+        width: var(--cbp-loader-diameter);
         border-radius: calc(var(--cbp-border-radius-circle) / 2);
         margin: auto auto;
         background: var(--cbp-loader-color);
-
       }
 
-      &:after{
-        content: "";
+      &:after {
+        content: '';
         position: absolute;
         z-index: var(--cbp-z-index-level-2);
         height: calc(var(--cbp-loader-diameter) - var(--cbp-loader-gutter-width));
@@ -190,27 +206,24 @@ cbp-loader {
         border-radius: calc(var(--cbp-border-radius-circle) / 2);
         margin: auto auto;
         background: var(--cbp-loader-center-color);
-
       }
     }
-    
-    &:not([determinate]):not([error]):not([success]) ::before{
-       transform: rotate(45deg);
-        animation: spin 2s linear infinite;
+
+    &:not([determinate]):not([error]):not([success]) ::before {
+      transform: rotate(45deg);
+      animation: spin 2s linear infinite;
     }
 
-    &[determinate]{
-
-      progress{
-
-        &:before{
+    &[determinate] {
+      progress {
+        &:before {
           background: var(--cbp-loader-circular-determinate);
         }
       }
 
-      .cbp-loader-desc{
+      .cbp-loader-desc {
         position: absolute;
-        width: var(--cbp-loader-diameter);      
+        width: var(--cbp-loader-diameter);
         line-height: var(--cbp-loader-status-description-line-height);
         text-align: center;
         z-index: var(--cbp-z-index-level-3);
@@ -219,62 +232,60 @@ cbp-loader {
       }
     }
 
-    &[orientation='horizontal']{
+    &[orientation=horizontal] {
       --cbp-loader-status-description-padding: 0 0 0 var(--cbp-space-1x);
-      --cbp-loader-flex-direction: row
+      --cbp-loader-flex-direction: row;
     }
-    &[orientation='vertical']:not([size="small"]){
+    &[orientation=vertical]:not([size='small']) {
       --cbp-loader-status-description-padding: var(--cbp-space-1x) 0 0 0;
-      --cbp-loader-flex-direction: column
+      --cbp-loader-flex-direction: column;
     }
-    
   }
 
-/** Color variations for Loader */
-&[error]{
-  --cbp-loader-color: var(--cbp-color-danger-dark);
-  --cbp-loader-color-dark: var(--cbp-color-danger-light);
-  --cbp-loader-track-color: var(--cbp-color-danger-dark);
-  --cbp-loader-track-color-dark: var(--cbp-color-danger-light);
-  --cbp-loader-status-description-color: var(--cbp-color-danger-dark);
-  --cbp-loader-status-description-color-dark: var(--cbp-color-danger-light);
-  --cbp-loader-status-indicator-color: var(--cbp-color-danger-dark);
-  --cbp-loader-status-indicator-color-dark: var(--cbp-color-danger-light);
+  // Color variations
+  &[error] {
+    --cbp-loader-color: var(--cbp-color-danger-dark);
+    --cbp-loader-color-dark: var(--cbp-color-danger-light);
+    --cbp-loader-track-color: var(--cbp-color-danger-dark);
+    --cbp-loader-track-color-dark: var(--cbp-color-danger-light);
+    --cbp-loader-status-description-color: var(--cbp-color-danger-dark);
+    --cbp-loader-status-description-color-dark: var(--cbp-color-danger-light);
+    --cbp-loader-status-indicator-color: var(--cbp-color-danger-dark);
+    --cbp-loader-status-indicator-color-dark: var(--cbp-color-danger-light);
+  }
 
-}
+  &[success] {
+    --cbp-loader-color: var(--cbp-color-success-base);
+    --cbp-loader-color-dark: var(--cbp-color-success-light);
+    --cbp-loader-track-color: var(--cbp-color-success-base);
+    --cbp-loader-track-color-dark: var(--cbp-color-success-light);
+    --cbp-loader-status-description-color: var(--cbp-color-success-base);
+    --cbp-loader-status-description-color-dark: var(--cbp-color-success-light);
+    --cbp-loader-status-indicator-color: var(--cbp-color-success-base);
+    --cbp-loader-status-indicator-color-dark: var(--cbp-color-success-light);
+  }
 
-  &[success]{
-  --cbp-loader-color: var(--cbp-color-success-base);
-  --cbp-loader-color-dark: var(--cbp-color-success-light);
-  --cbp-loader-track-color: var(--cbp-color-success-base);
-  --cbp-loader-track-color-dark: var(--cbp-color-success-light);
-  --cbp-loader-status-description-color: var(--cbp-color-success-base);
-  --cbp-loader-status-description-color-dark: var(--cbp-color-success-light);
-  --cbp-loader-status-indicator-color: var(--cbp-color-success-base);
-  --cbp-loader-status-indicator-color-dark: var(--cbp-color-success-light);
-}
+  // Size variations
+  &[size=large] {
+    --cbp-loader-diameter: var(--cbp-space-12x);
+    --cbp-loader-gutter-width: var(--cbp-space-2x);
+    --cbp-loader-linear-height: var(--cbp-space-2x);
+    --cbp-loader-linear-flex-direction: column;
+    --cbp-loader-linear-status-width: var(--cbp-loader-linear-width);
+    --cbp-loader-linear-gap: var(--cbp-space-2x);
+  }
 
-/** Size variations for Loader */
+  &[size=small] {
+    --cbp-loader-diameter: var(--cbp-space-4x);
+    --cbp-loader-gutter-width: var(--cbp-space-1x);
+    --cbp-loader-linear-height: var(--cbp-space-1x);
+    --cbp-loader-linear-flex-direction: row;
+    --cbp-loader-linear-status-width: min-content;
+    --cbp-loader-linear-gap: var(--cbp-space-1x);
+  }
 
-&[size="large"]{
-  --cbp-loader-diameter: var(--cbp-space-12x);
-  --cbp-loader-gutter-width: var(--cbp-space-2x);
-  --cbp-loader-linear-height: var(--cbp-space-2x);
-  --cbp-loader-linear-flex-direction: column;
-  --cbp-loader-linear-status-width: var(--cbp-loader-linear-width);
-  --cbp-loader-linear-gap: var(--cbp-space-2x);
-}
-
-&[size="small"]{ 
-  --cbp-loader-diameter: var(--cbp-space-4x);
-  --cbp-loader-gutter-width: var(--cbp-space-1x);  --cbp-loader-linear-height: var(--cbp-space-1x);
-  --cbp-loader-linear-flex-direction: row;
-  --cbp-loader-linear-status-width: min-content;
-  --cbp-loader-linear-gap: var(--cbp-space-1x);
-}
-
-/** generic style reset/ cross variant styles */
-  progress{
+  /** generic style reset/cross variant styles */
+  progress {
     height: inherit;
     width: inherit;
   }
