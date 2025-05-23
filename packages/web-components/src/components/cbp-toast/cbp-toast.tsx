@@ -25,21 +25,21 @@ export class CbpToast {
   @Prop() sx: any = {};
 
   @Watch('open')
-    watchOpenHandler(newValue: boolean){
-      console.log('watchOpenHandler check');
-      if(!newValue) {
-        console.log('dismiss toast!');
-      }
+  watchOpenHandler(newValue: boolean){
+    //console.log('watchOpenHandler check');
+    if(!newValue) {
+      //console.log('dismiss toast!');
     }
+  }
 
-    componentWillLoad() {
-      if (typeof this.sx == 'string') {
-        this.sx = JSON.parse(this.sx) || {};
-      }
-      setCSSProps(this.host, {
-        ...this.sx,
-      });
+  componentWillLoad() {
+    if (typeof this.sx == 'string') {
+      this.sx = JSON.parse(this.sx) || {};
     }
+    setCSSProps(this.host, {
+      ...this.sx,
+    });
+  }
 
   render() {
 
@@ -49,18 +49,18 @@ export class CbpToast {
     
     return (
       <Host>
-        <div class='cbp-toast-sidebar'>
-            <slot name='cbp-toast-icon'></slot>
+        <div class="cbp-toast-sidebar">
+            <slot name="cbp-toast-icon" />
         </div>
-        <div class='cbp-toast-container'>
-          <div class='cbp-toast-title'>
-            <slot name='cbp-toast-title'></slot>
+        <div class="cbp-toast-container">
+          <div class="cbp-toast-title">
+            <slot name="cbp-toast-title" />
           </div>
-          <div class='cbp-toast-content'>
-            <slot></slot>
+          <div class="cbp-toast-content">
+            <slot />
           </div>
-          <div class='cbp-toast-button-bar'>
-            <slot name='cbp-toast-buttons'></slot>
+          <div class="cbp-toast-button-bar">
+            <slot name="cbp-toast-buttons" />
           </div>
         </div>
       </Host>
