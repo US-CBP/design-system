@@ -27,7 +27,7 @@ export class CbpIcon {
   @Prop() color: string;
 
   /** Optionally specify the degrees of rotation. */
-  @Prop() rotate: number = 0;
+  @Prop() rotate: number;
 
   /** For icons that are not decorative, accessibilityText is rendered as an `aria-label` on the `svg` tag. */
   @Prop() accessibilityText: string;
@@ -265,7 +265,7 @@ export class CbpIcon {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.host, {
-      "transform": `rotate(${this.rotate}deg)`,
+      "transform": this.rotate ? `rotate(${this.rotate}deg)` : undefined,
       "--cbp-icon-color": this.color,
       "--cbp-icon-size": this.size,
       ...this.sx
