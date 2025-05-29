@@ -215,6 +215,7 @@ cbp-card {
 
       cbp-button {
         --cbp-button-border-radius: 0;
+        --cbp-button-min-height: var(--cbp-space-11x);
         width: 100%;
 
         &:first-child {
