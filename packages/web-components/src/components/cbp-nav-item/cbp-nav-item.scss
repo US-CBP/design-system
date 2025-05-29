@@ -69,6 +69,9 @@ cbp-nav-item {
     --cbp-button-border-radius: var(--cbp-border-radius-sharp);
     --cbp-button-padding: var(--cbp-space-2x) var(--cbp-space-3x);
 
+    font-size: var(--cbp-font-size-heading-sm); 
+    font-weight: var(--cbp-font-weight-medium); 
+
     button, a {
       text-transform: unset;
       letter-spacing: normal;
@@ -109,11 +112,18 @@ cbp-nav-item {
   // styling for home/application title nav item
   // TechDebt: should this use the [slot=cbp-home] selector instead? (and should that slot name be updated?)
   &:first-of-type a {
-    font-size: var(--cbp-font-size-heading-sm);
+    font-size: var(--cbp-font-size-heading-md);
     font-weight: var(--cbp-font-weight-bold);
     padding-left: var(--cbp-space-5x);
     padding-right: var(--cbp-space-5x);
     margin-left: calc(-1 * var(--cbp-space-5x));
     letter-spacing: unset;
+  }
+
+  @media (max-width: $cbp-breakpoint-sm) {
+    // styling for home/application title nav item
+    &:first-of-type a {
+      font-size: var(--cbp-font-size-heading-sm);
+    }
   }
 }

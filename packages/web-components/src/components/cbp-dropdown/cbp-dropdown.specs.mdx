@@ -17,9 +17,13 @@ The Dropdown component offers an alternative to the native select element that c
 * The Dropdown component is meant to be used in the default slot of the `cbp-form-field` component, like a native form field, providing:
   * Form field styles without duplication
   * An accessible form field pattern
-* The Dropdown options will consist of slotted child `cbp-dropdown-item` components.
-  * For single select dropdowns, dropdown items may have individual values specified, separate from the visible label (similar to a native select option element).
-  * For multi-select dropdowns, a `cbp-checkbox` is expected to be slotted within each dropdown item and a native checkbox control within the `cbp-checkbox`.
+* The Dropdown options may be specified one of 3 ways: 
+  * Slotted as child `cbp-dropdown-item` components.
+  * Specified as JSON (stringified or an object) via the `items` property.
+  * Asynchronously loaded JSON based on user interaction and a minimum input length.
+* For single select dropdowns, dropdown items may have individual values specified, separate from the visible label (similar to a native select option element).
+* For multi-select dropdowns, a `cbp-checkbox` is expected to be slotted within each dropdown item and a native checkbox control within the `cbp-checkbox`.
+* If items are specified via JSON, the `cbp-checkbox` will be automatically rendered for multi-select dropdowns.
 * The Dropdown supports keyboard navigation using the combobox accessibility paradigm.
 * The single-select Dropdown may have default "placeholder" text specified when there is no selection.
 
@@ -92,10 +96,11 @@ The Dropdown component offers an alternative to the native select element that c
 ### Additional Notes and Considerations
 
 * While visually more consistent with the CBP Design System, the Dropdown component has some drawbacks compared to a native `select` element:
-  * On mobile devices, a native `select` will be presented by an enlarged overlay of radio options, which is drastically more usable in this context.
+  * On mobile devices, a native `select` will be presented as an enlarged overlay of radio options, which is drastically more usable in this context.
 * Since the main control is a button, it is disabled in "readonly" mode (while the hidden input may still submit the value). Does this cause issues in user expectations?
 * For common patterns such as State and Country selection where the lists are well-known, do not enable search string filtering. Cycling through those options that begin with a letter by pressing that letter multiple times is a familiar interaction supported for many years by native select fields and search string filtering may be confusing and slower.
 * The `value` property should not be set explicitly if there are items marked as selected. But in the case that this occurs, the selected items will override the specified value; the value will be updated to match the selected items.
+* For asynchronous dropdowns, a `value` and `selectedLabel` should both be provided if the field has an initial value set.
 * TODO: Requires additional testing with `cbp-form-field-wrapper`.
 
 #### Dropdown logic flow:
@@ -130,6 +135,3 @@ The Dropdown component offers an alternative to the native select element that c
     * Update the focusIndex for tracking focus for keyboard navigation.
     * For single-select dropdowns, deselect all other dropdown items.
   * TODO: This has not yet been implemented for multi-select dropdowns.
-
-  
-

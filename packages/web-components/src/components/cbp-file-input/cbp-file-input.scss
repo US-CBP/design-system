@@ -179,7 +179,9 @@ cbp-file-input {
         flex-grow: 9;
       }
 
+      // hard overrides on button colors
       cbp-button:not(#fakeId) {
+        --cbp-icon-size: var(--cbp-space-3x);
         --cbp-button-padding: 0;
         --cbp-button-min-width: var(--cbp-space-7x);
         --cbp-button-min-height: var(--cbp-space-7x);

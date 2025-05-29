@@ -36,7 +36,7 @@ export class CbpUsaBanner {
                   expanded={this.open}
                   onClick={() => this.handleClick()}
                 >
-                  Here is how you know<cbp-icon name='chevron-right'/>
+                  Here is how you know <cbp-icon name="chevron-right" size="var(--cbp-space-3x)" />
                 </cbp-button>
               </span>
             </div>

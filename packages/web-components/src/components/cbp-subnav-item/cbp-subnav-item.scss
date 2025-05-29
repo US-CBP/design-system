@@ -126,7 +126,8 @@ cbp-subnav-item {
    
     // Icon button for parent variant
     & + cbp-button{
-      --cbp-button-width: 3.5rem;   
+      --cbp-button-width: 3.5rem;
+      --cbp-icon-size: var(--cbp-space-5x);
       transform: var(--cbp-subnav-item-rotate-icon);
 
     }

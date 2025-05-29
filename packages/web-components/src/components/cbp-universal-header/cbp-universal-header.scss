@@ -48,9 +48,3 @@ cbp-universal-header {
     }
   }
 }
-
-@media (min-width: $cbp-breakpoint-lg) {
-  .cbp-universal-header__content cbp-button {
-    padding: 0 var(--cbp-space-3x);
-  }
-}

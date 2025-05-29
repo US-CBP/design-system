@@ -89,7 +89,7 @@ export class CbpChip {
           </span>
           {this.host.querySelector('[slot=cbp-chip-icon]')
             ? <slot name="cbp-chip-icon" />
-            : <cbp-icon name="plus" size='var(--cbp-space-3x)' ref={el => this.icon = el} />
+            : <cbp-icon name="plus" ref={el => this.icon = el} />
           }
         </button>
       </Host>

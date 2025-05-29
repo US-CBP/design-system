@@ -15,14 +15,19 @@ export class CbpIcon {
   /** Specifies the exact `src` of an SVG file to use. */
   @Prop() src: string;
 
-  /** Optionally specifies the size of the icon, which defaults to `1em`, matching the context of nearby text. */
-  @Prop() size: string = '1rem';
+  /** 
+   * Optionally specifies the size (both width and height) of the icon, which 
+   * defaults (via CSS) to `1rem` (16px), the intended size of icons alongside body text. 
+   * Icon size may be specified via this property/attribute or the custom 
+   * CSS property `--cbp-icon-size`. 
+   */
+  @Prop() size: string;
 
   /** Optionally specifies the color of the icon (ideally using design-token-based CSS variables). Defaults to "currentColor." */
-  @Prop() color: string = "currentColor";
+  @Prop() color: string;
 
   /** Optionally specify the degrees of rotation. */
-  @Prop() rotate: number = 0;
+  @Prop() rotate: number;
 
   /** For icons that are not decorative, accessibilityText is rendered as an `aria-label` on the `svg` tag. */
   @Prop() accessibilityText: string;
@@ -260,7 +265,7 @@ export class CbpIcon {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.host, {
-      "transform": `rotate(${this.rotate}deg)`,
+      "transform": this.rotate ? `rotate(${this.rotate}deg)` : undefined,
       "--cbp-icon-color": this.color,
       "--cbp-icon-size": this.size,
       ...this.sx

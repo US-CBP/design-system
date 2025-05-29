@@ -39,7 +39,7 @@ function generateTableHeaders(headers, selectable, context) {
     return `${ sortable 
       ? `<th ${i == 0 ? `aria-sort="ascending"` : ''}>
           <cbp-button fill="ghost" color="secondary" name="${`column-${i}`}" value="${i}">
-            <cbp-icon size="var(--cbp-space-4x)"></cbp-icon>${label}
+            <cbp-icon></cbp-icon>${label}
           </cbp-button>
         </th>`
       : `<th>${label}</th>`
