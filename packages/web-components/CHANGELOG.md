@@ -9,7 +9,7 @@ The React components are wrappers generated from this package and will share the
 * A number of visually breaking changes were introduced in this release. These changes were undertaken with much consideration. However, we felt that the changes streamline using the Button, Link, and Icon components - some of the most-used components in the design system - enough to warrant the changes at this early stage in the design system development.
   * Updated the way icons are spaced apart from text within `cbp-button`, `cbp-link`, and `cbp-tag` components, now using a CSS property for the `gap`. Any instances of applying margins to the icon or text (via `sx` or custom CSS) will need to be removed to avoid doubling up the spacing. The following stories were updated and may need to have copied code updated in consuming applications: Cards (action buttons icon in title), Table (sortable headers), Universal Header and the universal header content in all templates and archetype pages.
   * Additionally, the horizontal padding on `cbp-button` was slightly reduced from .75rem to .5rem, allowing icon buttons to be square without specifying the `variant="square"` explicitly.
-  * Updated the default `cbp-icon` size from "1em" to "1rem". This is because most icons alongside plain text (14px) are designed to be 16px (1rem). Any other sized icon should be explicitly specified via the `size` property using relative units or design tokens.
+  * Updated the default `cbp-icon` size from "1em" to "1rem". This is because most icons alongside plain text (14px) are designed to be 16px (1rem). Any other sized icon should be explicitly specified via the `size` property using relative units or design tokens. Also updated the `cbp-icon` component to more easily allow overriding its size via its CSS API (`--cbp-icon-size`).
 * First cut of the `cbp-menu` component.
 * Updated `cbp-drawer` to add the ability to persist its contents in the flow of the page at a certain breakpoint, mobilizing to an overlay below that breakpoint.
   * With the addition of a persistent drawer, the drawer component should match the user's preferences for light or dark mode rather than using "light-always" and "dark-always" contexts.
@@ -21,7 +21,11 @@ The React components are wrappers generated from this package and will share the
   * The Application Header and Sub-navigation now contain a shared state, allowing user interaction with either component to update the state of the other.
 * BREAKING: renamed the `cbp-nav-item` `selected` property to `current` for consistency and clarity.
 * BREAKING: renamed the `cbp-subnav` `accessibilitytext` property to `accessibilityText` for consistency.
-* Updated the `cbp-dropdown` faux button so that the chevron can be rotated when opened.
+* Updated the `cbp-dropdown` to fix a number of issues:
+  * Now works as a multi-select when its dropdown items are passed in via JSON.
+  * Fixed the issue of setting a value property on multi-selects to populate the initial state.
+  * Updated the faux button so that the chevron can be rotated when opened.
+* Minor bugfixes/updates to `cbp-universal-header` and `cbp-panel`.
 * Updated web components readme and included it Storybook under "Using the web components."
 
 ## [0.0.1-develop.20] 04-18-2025
