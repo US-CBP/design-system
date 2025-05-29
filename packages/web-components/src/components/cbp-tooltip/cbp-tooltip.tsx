@@ -1,5 +1,5 @@
 import { Component, Prop, Element, Host, h, Listen } from '@stencil/core';
-import { setCSSProps, createNamespaceKey } from '../../utils/utils';
+import { setCSSProps, createNamespaceKey, getInvertedContext } from '../../utils/utils';
 
 @Component({
   tag: 'cbp-tooltip',
@@ -53,6 +53,24 @@ export class CbpTooltip {
     }
   }
 
+  invertContext(){
+    let currentElement = this.host;
+    let context;
+
+    while(currentElement) {
+      //check for parent context or data-cbp-theme value to invert
+      if(currentElement.hasAttribute('context') || currentElement.hasAttribute('data-cbp-theme')){ 
+        if(currentElement.hasAttribute('context')){
+          context = currentElement.getAttribute('context')
+        }else {
+          context = currentElement.getAttribute('data-cbp-theme')
+        }
+        return getInvertedContext(context)
+      }
+      currentElement = currentElement.parentElement;
+    } 
+  }
+
   render() {
     return (
       <Host 
@@ -73,13 +91,13 @@ export class CbpTooltip {
             type="button"
             fill="ghost"
             color="secondary" 
-            context='dark-inverts' /*TechDebt: doesn't work with context */
+            context={this.invertContext()}
             variant="square"
             onClick={() => this.dismissTooltip()}
             onKeyDown={(e) => this.handleFocusOut(e)}
           >
             <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
-          </cbp-button>
+                      </cbp-button>
         </div>
       </Host>
     );

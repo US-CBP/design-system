@@ -95,9 +95,7 @@ cbp-link {
     }
   }
 
-  // TechDebt: ???
-  .cbp-link--definition:link {
+  &[definition] a{
     text-decoration-style: dotted;
   }
-
 }

@@ -119,10 +119,9 @@ cbp-accordion-item {
 
     }
 
-    /* TechDebt: having trouble with this override using CSS variables. */
     cbp-typography,
     cbp-typography > * {
-      color: inherit !important;
+      color: var(--cbp-accordion-item-color);
     }
 
     &:hover {

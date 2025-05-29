@@ -28,6 +28,10 @@ export default {
       control: 'select',
       options: ['default', 'danger'],
     },
+    withIcon: {
+      description: 'toggle icon display with dialog title',
+      control: 'boolean'
+    },
     actionsLayout: {
       name: 'Actions Layout',
       description: 'Choose actions layout of the dialog component',
@@ -72,7 +76,7 @@ const renderActions = (layout, { btn1, btn2, btn3 }) => {
   }
 };
 
-const Template = ({ title, content, color, open, uid, accessibilityText, actionsLayout, actionsConfig, sx }) => {
+const Template = ({ title, content, color, open, uid, withIcon, accessibilityText, actionsLayout, actionsConfig, sx }) => {
   return `
     <cbp-button
       type="button"
@@ -98,6 +102,14 @@ const Template = ({ title, content, color, open, uid, accessibilityText, actions
         variant="heading-dialog"
         divider="underline"
       >
+        ${withIcon ? 
+          `<cbp-icon
+            name="user"
+            class="hydrated"
+            size="var(--cbp-font-size-heading-lg)"
+            style="transform: rotate(0deg); --cbp-icon-color: currentColor;"
+          ></cbp-icon>`
+        : ''}
         ${title}
       </cbp-typography>
 

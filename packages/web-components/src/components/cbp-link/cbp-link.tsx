@@ -28,7 +28,9 @@ export class CbpLink {
   
   /** Specifies the `download` boolean attribute of the rendered anchor. */
   @Prop() download: boolean;
-  //@Prop({ reflect: true }) variant: 'definition';
+
+  /** Specifies if the 'definition' styling is used in the rendered anchor.  */
+  @Prop({ reflect: true }) definition: boolean;
 
   /** Specifies the `lang` attribute of the rendered anchor. */
   @Prop() language: string;
