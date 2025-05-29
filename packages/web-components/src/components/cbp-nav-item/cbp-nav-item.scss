@@ -120,12 +120,11 @@ cbp-nav-item {
     margin-left: calc(-1 * var(--cbp-space-5x));
     letter-spacing: unset;
   }
-}
 
-
-@media (max-width: $cbp-breakpoint-sm) {
-  // styling for home/application title nav item
-  &:first-of-type a {
-    font-size: var(--cbp-font-size-heading-sm);
+  @media (max-width: $cbp-breakpoint-sm) {
+    // styling for home/application title nav item
+    &:first-of-type a {
+      font-size: var(--cbp-font-size-heading-sm);
+    }
   }
 }
