@@ -46,6 +46,13 @@
   --cbp-structured-list-footer-color: var(--cbp-color-text-lightest);
   --cbp-structured-list-footer-color-dark: var(--cbp-color-text-darkest);
   
+  --cbp-structured-list-item-padding: var(--cbp-space-4x);
+
+  --cbp-structured-list-item-color-background-danger: var(--cbp-color-danger-lighter);
+  --cbp-structured-list-item-color-background-danger-dark: var(--cbp-color-danger-darker);
+
+  --cbp-structured-list-item-color-background-selected: var(--cbp-color-interactive-selected-light);
+  --cbp-structured-list-item-color-background-selected-dark: var(--cbp-color-interactive-selected-dark);
 }
 
 [data-cbp-theme=light] cbp-structured-list[context*=dark]:not([context=light-always]),
@@ -61,6 +68,9 @@
 
   --cbp-structured-list-footer-color-background: var(--cbp-structured-list-footer-color-background-dark);
   --cbp-structured-list-footer-color: var(--cbp-structured-list-footer-color-dark);
+
+  --cbp-structured-list-item-color-background-danger: var(--cbp-structured-list-item-color-background-danger-dark);  
+  --cbp-structured-list-item-color-background-selected: var(--cbp-structured-list-item-color-background-selected-dark);
 }
 
 cbp-structured-list {
@@ -133,6 +143,18 @@ cbp-structured-list {
     --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
     --cbp-structured-list-color-background-dark: var(--cbp-color-gray-cool-90);
     --cbp-structured-list-border-color-dark: var(--cbp-color-gray-cool-50);
+    }
+  }
+
+  cbp-structured-list-item {
+    display: block;
+  
+    &[color=danger]:not([selected]) {
+      background-color: var(--cbp-structured-list-item-color-background-danger);
+    }
+  
+    &[selected] {
+      background-color: var(--cbp-structured-list-item-color-background-selected);
     }
   }
 }
