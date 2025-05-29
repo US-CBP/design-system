@@ -204,15 +204,8 @@ cbp-table {
         transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
 
         &[aria-sort=none] button {
-          padding-inline-end: var(--cbp-space-7x);
-        }
-
-        &[aria-sort=ascending] button,
-        &[aria-sort=descending] button {
-          cbp-icon[name="arrow-right"] {
-            --cbp-icon-size: var(--cbp-space-4x);
-            //margin-inline-end: var(--cbp-space-1x);
-          }
+          // Use padding as a placeholder to keep columns from shifting when sorted and an icon is added.
+          padding-inline-end: var(--cbp-space-9x); // icon = 4 + gap = 2 + end padding = 3 = 9
         }
 
         &:has(button:hover) {

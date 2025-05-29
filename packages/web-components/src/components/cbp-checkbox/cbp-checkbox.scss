@@ -78,8 +78,8 @@
 }
 
 // Displays dark design based on mode or context
-[data-cbp-theme=light] cbp-checkbox[context*=dark]:not(#fakeId),
-[data-cbp-theme=dark] cbp-checkbox:not([context=dark-inverts]):not([context=light-always]):not(#fakeId) {
+[data-cbp-theme=light] cbp-checkbox[context*=dark],
+[data-cbp-theme=dark] cbp-checkbox:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-checkbox-color: var(--cbp-checkbox-color-dark);
   --cbp-checkbox-color-bg: var(--cbp-checkbox-color-bg-dark);
   --cbp-checkbox-color-border: var(--cbp-checkbox-color-border-dark);
@@ -190,7 +190,6 @@ cbp-checkbox {
         border-radius: var(--cbp-border-radius-soft);
       }
     }
-
   }
 
 

@@ -68,7 +68,7 @@ Subnav.storyName = 'Sub-Navigation';
 Subnav.args = {
   items: [
     {
-      icon: `<cbp-icon name="home"></cbp-icon> `,
+      icon: `<cbp-icon name="home" size="var(--cbp-space-5x)"></cbp-icon> `,
       label: `Subnav Item 1`,
       href: '?path=/story/components-sub-navigation--subnav',
       current: false,

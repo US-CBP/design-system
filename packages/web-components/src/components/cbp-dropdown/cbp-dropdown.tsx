@@ -62,7 +62,7 @@ export class CbpDropdown {
   @Prop({ mutable: true }) selectedLabel: string;
 
   /** Specifies the value of the hidden input holding the value (or barring one, the text label) of the selected item. Primarily updated dynamically by the component. */
-  @Prop({ mutable: true }) value: any;
+  @Prop({ mutable: true }) value: any; //string | object;
 
   /** Specifies whether the dropdown menu is open/visible. */
   @Prop({ reflect: true, mutable: true }) open: boolean = false;
@@ -120,6 +120,8 @@ export class CbpDropdown {
         this.placeholder = this.selectedItems.length != 1 ? 'Selected Items' : 'Selected Item';
       }, 50);
 
+      // If there is already a value, turn it into an array
+      if(this.value && typeof this.value == "string") this.value=this.value.split(',');
       // update the values array
       newValue ? (this.value = [...this.value, value]) : (this.value = this.value.filter(item => item !== value));
     }
@@ -158,7 +160,6 @@ export class CbpDropdown {
   }
 
 
-
   @Watch('open')
   watchOpen(newValue) {
     // If the menu was opened, give it time to render and set focus to the selected/first item
@@ -182,35 +183,59 @@ export class CbpDropdown {
   watchValue(newValue) {
     // Only update the selection if the value is different from the hidden field's value (externally updated).
     if (newValue != this.formField?.value) {
-      this.setSelectedFromValue(newValue);
+      this.setSelectedFromValue();
     }
     //else console.log('Value Watch on dropdown fired - component and form values already match, so no action needed.');
   }
 
-  setSelectedFromValue(value) {
+  setSelectedFromValue() {
+    console.log('Setting selections from value property: ',this.value);
     this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item')); // make sure this array is accurate
+    let selectedItems:HTMLCbpDropdownItemElement[] = [];
     
-    if(this.multiple) {
-      // TODO
+    if(this.multiple && !!this.value) {
+      let values = (typeof this.value == "string") ? this.value.split(",") : this.value;
+      console.log('Setting multiselect selections from values: ', {values});
+      
+      this.dropdownItems.forEach( item => {
+        if(item.value) {
+          if(values.includes(item.value)) {
+            item.selected=true;
+            selectedItems=[...selectedItems, item]
+          }
+        }
+        // If there's no value, the item will be saved in the native input value using the label (like a native select)
+        else {
+          if(values.includes(item.innerText.trim())) {
+            item.selected=true;
+            selectedItems=[...selectedItems, item]
+          } 
+        }
+      });
+      // updating this state will cause a re-render and the number on the multi-select to update
+      this.selectedItems=[...selectedItems];
     }
 
-    else {
+    // Single select
+    else if(!!this.value) {
       // Select the item with the value and deselect the rest
       this.dropdownItems.forEach( (item) => {
-        if (item.value == value){
-          //this.selectedItem = item;
-          this.selectedLabel = item.innerText;
-          //this.focusIndex = index;
+        if (item.value == this.value){
+          this.selectedLabel = item.innerText.trim();
           item.selected = true;
+          this.selectedItems=[...selectedItems, item];
         }
         else item.selected = false;
       });
     }
   }
 
-  //@Watch('items') 
   generateItems() {
+    console.log('Generating items...');
     let items;
+    // If there is already a string value, turn it into an array
+    if(this.value && typeof this.value == "string") this.value=this.value.split(',');
+
     if (typeof this.items == 'string') {
       items = JSON.parse(this.items) || {};
     }
@@ -219,13 +244,87 @@ export class CbpDropdown {
     }
 
     // clear the dropdownItems array
-    let dropdownItems: HTMLCbpDropdownItemElement[] = []
+    let dropdownItems: HTMLCbpDropdownItemElement[] = [];
+    let selectedItems: HTMLCbpDropdownItemElement[] = this.selectedItems;
+
+    console.log('Selected Items (state): ', this.selectedItems);
+
+    // Repopulate the list with selected items if they are not in the list of values
+    /*
+      This is not working when using async and < minimumInputLength
+      or
+      Filtered to 0 results (all dissapear).
+
+      As long as a result is returned, the selected items are preserved and shown.
+
+    */
+
+    /*
+    this.selectedItems.forEach( item => {
+      // If the selected item is not already in this.items, add it.
+      let exists = items.length ? items.find( (obj) => (obj.label === item.innerText) ) : true;
+      
+      console.log('Looking for item: ', item, exists, items?.length, items);
+
+      if (!exists) {  
+        console.log('Item doesnt exist, creating a new one from selected item: ',item);
+        let newItem: HTMLCbpDropdownItemElement = !this.multiple 
+          ? <cbp-dropdown-item value={item?.value} 
+              key={`cbp-dropdown-item-${item?.value}`}
+            >
+              {item.innerText}
+            </cbp-dropdown-item>
+          : <cbp-dropdown-item 
+              value={item.value} 
+              key={`cbp-dropdown-item-${item?.value}`} 
+              selected
+            >
+              <cbp-checkbox checked context={this.context}>
+                <input 
+                  type="checkbox" 
+                  name={`${this.name}-selection`}
+                  value={item?.value}
+                />
+                {item.innerText}
+              </cbp-checkbox>
+            </cbp-dropdown-item>;
+        dropdownItems = [...dropdownItems, newItem];
+      }
+    });
+  //}
+    */
+
     // re-populate it from items prop (JSON) 
     items.map(({ label, value=label }) => {
-      let newItem: HTMLCbpDropdownItemElement = <cbp-dropdown-item value={value} key={`cbp-dropdown-item-${value}`}>{label}</cbp-dropdown-item>;
+      //console.log('Generating item: ', value, label)
+      let newItem: HTMLCbpDropdownItemElement =  
+        <cbp-dropdown-item 
+          value={`${value}`} 
+          key={`cbp-dropdown-item-${value}`} 
+          selected={ (this.value?.includes(value)) ? true : false}
+        >
+          {this.multiple ?
+            <cbp-checkbox context={this.context}>
+              <input 
+                type="checkbox" 
+                name={`${this.name}-selection`}
+                value={`${value}`} 
+              />
+              {label}
+            </cbp-checkbox>
+            : `${label}`
+          }
+        </cbp-dropdown-item>;
+      
+
+      if(this.value?.includes(value)){
+        selectedItems = [...selectedItems, newItem]
+      }
       dropdownItems = [...dropdownItems, newItem]
     });
     this.dropdownItems = dropdownItems;
+    // Do this on componentDidLoad
+    //this.selectedItems = [...selectedItems];
     return dropdownItems;
   }
 
@@ -372,7 +471,7 @@ export class CbpDropdown {
   getFirstLetterMatches(letter) {
     let matches=[];
     this.dropdownItems.forEach( (item, index) => {
-      const label=item.innerText.toLowerCase();
+      const label=item.innerText.toLowerCase().trim();
       // does this item start with the character pressed?
       if (label.startsWith(letter)) {
         matches=[...matches, index];
@@ -410,7 +509,7 @@ export class CbpDropdown {
       }
       // If the search string doesn't meet the threshold, clear items and matches
       else {
-        this.items=[];
+        this.items=[...this.selectedItems];
         this.matches=[];
       }
     }
@@ -428,7 +527,7 @@ export class CbpDropdown {
   getSearchStringMatches(searchString) {
     let matches=[];
     this.dropdownItems.forEach( (item, index) => {
-      const label=item.innerText.toLowerCase();
+      const label=item.innerText.toLowerCase().trim();
 
       // does this item contain the search string entered?
       if (label.indexOf(searchString) >= 0) {
@@ -450,13 +549,11 @@ export class CbpDropdown {
   clearFilters() {
     this.matches=[];
     this.matchIndex=undefined;
-    //this.focusIndex=undefined;
     this.searchString='';
     this.dropdownItems.forEach( item => {
       item.removeAttribute('hidden');
     });
   }
-
 
 
   /*
@@ -502,6 +599,7 @@ export class CbpDropdown {
   // ensure a given child element is within the parent's visible scroll area
   // if the child is not visible, scroll the parent
   maintainScrollVisibility(activeElement, scrollParent) {
+    console.log('maintainScrollVisibility');
     const { offsetHeight, offsetTop } = activeElement;
     const { offsetHeight: parentOffsetHeight, scrollTop } = scrollParent;
     const isAbove = offsetTop < scrollTop;
@@ -516,9 +614,7 @@ export class CbpDropdown {
   }
 
 
-
   componentWillLoad() {
-    //this.parent = this.host.closest('cbp-form-field');
     this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
     // Look for any selected item to set the initial state, only if the value is not set
     this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
@@ -527,9 +623,8 @@ export class CbpDropdown {
     this.attachedButtonEnd = this.host.querySelector('[slot=cbp-dropdown-attached-button-end]');
 
     // TechDebt: Use the dropdown values as they should match the checkbox values
-    if (this.multiple) {
-      if (this.selectedItems) this.value=[];
-      //this.value = []; // make an array of the values of selected items
+    if (this.multiple && !this.value) {
+      if (!!this.selectedItems) this.value=[];
       let temp=[]; // make an array of the values of selected items
       this.selectedItems.forEach(item => {
         const checkbox: HTMLInputElement = item.querySelector('input[type=checkbox]');
@@ -538,7 +633,7 @@ export class CbpDropdown {
       this.value=temp;
       this.placeholder = this.selectedItems.length != 1 ? 'Selected Items' : 'Selected Item';
     }
-    else if (this.filter && this.minimumInputLength) {
+    else if (this.filter && this.minimumInputLength && !this.value && !this.selectedLabel) {
       this.placeholder = 'Begin typing to search';
     }
 
@@ -563,19 +658,20 @@ export class CbpDropdown {
 
     // TechDebt: this doesn't work here for items specified as JSON, which aren't populated until rendering
     // Get the value and label for single-select after rendering
+    this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
+
     if (!this.multiple) {
       if (!this.value || !this.selectedLabel) {
-        this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
         if (this.selectedItems.length > 0) {
-          this.value = this.selectedItems[0].value || this.selectedItems[0].innerText;
-          this.selectedLabel = this.selectedItems[0].innerText;
+          this.value = this.selectedItems[0].value || this.selectedItems[0].innerText.trim();
+          this.selectedLabel = this.selectedItems[0]?.innerText.trim();
         }
       }
     }
 
     // If there are no selected items, but a value is specified, set those items as selected
     if (!this.selectedItems.length && this.value != undefined) {
-      this.setSelectedFromValue(this.value);
+      this.setSelectedFromValue();
     }
   }
 
@@ -597,10 +693,22 @@ export class CbpDropdown {
         }
       }
     }
+
+    // ensure the new option is in view when the menu is open
+    if (this.open && this.isScrollable(this.listbox)) {
+      this.maintainScrollVisibility(this.dropdownItems[this.focusIndex], this.listbox);
+    }
+
   }
 
-
+  /*
+   * TechDebt: is calling this.generateItems() efficient? Stencil doesn't seem to be updating those DOM nodes, 
+   * but it's still looping over items JSON every render. Investigate making this.dropdownItems a state (later).
+   */
   render() {
+    if (typeof this.value == "string") this.value.split(",");
+    console.log('Rendering ', this.value, this.selectedLabel);
+
     return (
       <Host>
         <div class="cbp-dropdown-shrinkwrap">
@@ -616,13 +724,18 @@ export class CbpDropdown {
             aria-expanded={`${this.open}`}
             aria-haspopup="listbox"
             aria-invalid={this.error ? 'true' : false}
-            disabled={this.disabled || this.readonly || ( (!this.async) && (this.dropdownItems.length < 1))} 
+            disabled={this.disabled || this.readonly || ( (!this.async) && (!this.items) && (this.dropdownItems.length < 1))} 
             onClick={(e) => this.handleDropdownClick(e)}
             onKeyDown={e => this.getActionFromKey(e)}
             ref={el => (this.control = el)}
           >
             { (this.selectedLabel || (this.filter && this.searchString)) 
-              ? <div class="cbp-dropdown-label">{this.filter && this.searchString ? this.searchString : this.selectedLabel}</div>
+              ? <div class="cbp-dropdown-label">
+                  { (this.selectedLabel && !this.multiple)
+                    ? this.selectedLabel 
+                    : (this.filter && this.searchString) ? this.searchString : this.selectedLabel
+                  }
+                </div>
               : <div class="cbp-dropdown-placeholder">
                 {this.multiple && (
                   <span
@@ -634,7 +747,7 @@ export class CbpDropdown {
                     onKeyDown={e => this.handleCounterKeydown(e)}
                     ref={el => (this.counterControl = el)}
                   >
-                    {this.selectedItems.length}
+                    {typeof this.value == "object" ? this.value.length : this.selectedItems.length}
                     <cbp-icon 
                       name="circle-xmark" 
                       size="var(--cbp-space-3x)" 
@@ -652,8 +765,8 @@ export class CbpDropdown {
           <input
             type="hidden"
             id={`${this.fieldId}-field`}
-            name={this.name}
-            value={this.value}
+            name={`${this.name}`}
+            value={`${this.value}`}
             disabled={this.disabled}
             ref={el => (this.formField = el)}
           />
@@ -675,3 +788,5 @@ export class CbpDropdown {
     );
   }
 }
+
+//? (!this.async || this.open) && this.generateItems()

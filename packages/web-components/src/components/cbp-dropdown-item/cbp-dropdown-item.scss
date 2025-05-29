@@ -51,6 +51,7 @@ cbp-dropdown-item {
   font-style: var(--cbp-dropdown-item-font-style);
   line-height: var(--cbp-line-height-xs);
   outline: 0;
+  cursor: default;
 
   // This nested div is required for applying this weird indent to the bottom border and text, while extending the background color across the full width
   .cbp-dropdown-item-content {
