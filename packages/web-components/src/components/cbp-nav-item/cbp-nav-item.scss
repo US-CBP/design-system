@@ -17,8 +17,8 @@
  * @prop --cbp-nav-item-color-selected: var(--cbp-color-interactive-active-dark);
  * @prop --cbp-nav-item-color-selected-dark: var(--cbp-color-interactive-active-light);
  * @prop --cbp-nav-item-color-bg-selected: var(transparent);
- * @prop --cbp-nav-item-border-bottom-selected: var(--cbp-color-interactive-active-dark);
- * @prop --cbp-nav-item-border-bottom-selected-dark: var(--cbp-color-interactive-active-light);
+ * @prop --cbp-nav-item-border-bottom-color-selected: var(--cbp-color-interactive-active-dark);
+ * @prop --cbp-nav-item-border-bottom-color-selected-dark: var(--cbp-color-interactive-active-light);
  */
 
  :root {
@@ -41,9 +41,8 @@
   --cbp-nav-item-color-selected-dark: var(--cbp-color-interactive-active-light);
   --cbp-nav-item-color-bg-selected: var(transparent);
 
-  // TechDebt: These are colors but don't have color in the name
-  --cbp-nav-item-border-bottom-selected: var(--cbp-color-interactive-active-dark);
-  --cbp-nav-item-border-bottom-selected-dark: var(--cbp-color-interactive-active-light);
+  --cbp-nav-item-border-bottom-color-selected: var(--cbp-color-interactive-active-dark);
+  --cbp-nav-item-border-bottom-color-selected-dark: var(--cbp-color-interactive-active-light);
 }
 
 /* 
@@ -57,7 +56,7 @@
   --cbp-nav-item-color-active: var(--cbp-nav-item-color-active-dark);
   --cbp-nav-item-color-bg-active: var(--cbp-nav-item-color-bg-active-dark);
   --cbp-nav-item-color-selected: var(--cbp-nav-item-color-selected-dark);
-  --cbp-nav-item-border-bottom-selected: var(--cbp-nav-item-border-bottom-selected-dark);
+  --cbp-nav-item-border-bottom-color-selected: var(--cbp-nav-item-border-bottom-color-selected-dark);
 }
 
 cbp-nav-item {
@@ -101,12 +100,12 @@ cbp-nav-item {
   &[current]:not(:first-of-type) cbp-button[fill=ghost][color=secondary] {
     --cbp-button-color: var(--cbp-nav-item-color-selected);
     --cbp-button-color-bg: var(--cbp-nav-item-color-bg-selected);
-    --cbp-button-color-border: var(--cbp-nav-item-border-bottom-selected);
+    --cbp-button-color-border: var(--cbp-nav-item-border-bottom-color-selected);
     font-style: italic;
     // TechDebt: cbp-button dark overrides causing issues due to specificity, same issue as with hover & active above
     --cbp-button-color-dark: var(--cbp-nav-item-color-selected-dark);
     --cbp-button-color-bg-dark: var(--cbp-nav-item-color-bg-selected-dark);
-    --cbp-button-color-border-dark: var(--cbp-nav-item-border-bottom-selected-dark);
+    --cbp-button-color-border-dark: var(--cbp-nav-item-border-bottom-color-selected-dark);
 
   }
 

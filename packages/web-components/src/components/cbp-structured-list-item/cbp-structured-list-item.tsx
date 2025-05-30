@@ -3,7 +3,6 @@ import { setCSSProps } from '../../utils/utils';
 
 @Component({
   tag: 'cbp-structured-list-item',
-  styleUrl: 'cbp-structured-list-item.scss',
 })
 
 export class CbpStructuredListItem {
