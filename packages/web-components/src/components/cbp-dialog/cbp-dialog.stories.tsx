@@ -105,10 +105,8 @@ const Template = ({ title, content, color, open, uid, withIcon, accessibilityTex
         ${withIcon ? 
           `<cbp-icon
             name="user"
-            class="hydrated"
-            size="var(--cbp-font-size-heading-lg)"
-            style="transform: rotate(0deg); --cbp-icon-color: currentColor;"
-          ></cbp-icon>`
+            size="var(--cbp-space-5x)"
+            ></cbp-icon>`
         : ''}
         ${title}
       </cbp-typography>

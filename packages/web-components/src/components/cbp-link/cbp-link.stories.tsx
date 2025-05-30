@@ -31,10 +31,6 @@ export default {
         'Indicates whether the `download` attribute is placed on the rendered anchor tag as a browser hint indicating that the linked contents specified in the `href` should be downloaded rather than navigated to.',
       control: 'boolean',
     },
-    definition: {
-      description: 'toggle definition prop', //TODO: testing
-      control: 'boolean'
-    },
     language: {
       description:
         'Specifies the `lang` attribute on the rendered anchor tag, which is required when the link points to content in a language different than the current document.',
@@ -69,7 +65,7 @@ export default {
   },
 };
 
-const Template = ({ label, withIcon, inText, href, rel, target, definition, download, language, shortcutKey, accessibilityText, disabled, context, sx }) => {
+const Template = ({ label, withIcon, inText, href, rel, target, download, language, shortcutKey, accessibilityText, disabled, context, sx }) => {
   return `
     ${ inText ? `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ` : ''}
     <cbp-link
@@ -81,7 +77,6 @@ const Template = ({ label, withIcon, inText, href, rel, target, definition, down
       ${language ? `lang=${language}` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
       ${disabled ? `disabled` : ''}
-      ${definition ? `definition` : ``}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
