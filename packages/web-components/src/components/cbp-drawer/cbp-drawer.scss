@@ -12,9 +12,9 @@
 
   // TechDebt: duplicates default button[fill=ghost][color=secondary] styles to allow them to be overridden for User Preferences drawer
   --cbp-drawer-close-button-color: var(--cbp-color-interactive-secondary-darker);
-  --cbp-drawer-close-button-color-hover: var(--cbp-color-interactive-secondary-darker);
-  --cbp-drawer-close-button-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
-  --cbp-drawer-close-button-color-border-hover: var(--cbp-color-interactive-primary-lighter);
+  --cbp-drawer-close-button-color-hover: var(--cbp-color-text-lightest);
+  --cbp-drawer-close-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-drawer-close-button-color-border-hover: var(--cbp-color-interactive-secondary-darker);
 }
 
 /* 
@@ -73,8 +73,8 @@ cbp-drawer {
       &[fill][color] {
         --cbp-button-color: var(--cbp-drawer-close-button-color);
         --cbp-button-color-hover: var(--cbp-drawer-close-button-color-hover);
-        --cbp-button-color-bg-hover: var(--cbp-drawer-close-button-color-bg-hover);
-        --cbp-button-color-border-hover: var(--cbp-drawer-close-button-color-border-hover);
+        //--cbp-button-color-bg-hover: var(--cbp-drawer-close-button-color-bg-hover);
+        //--cbp-button-color-border-hover: var(--cbp-drawer-close-button-color-border-hover);
       }
     }
   }

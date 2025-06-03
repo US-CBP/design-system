@@ -163,7 +163,6 @@ cbp-button {
       --cbp-button-color-bg: var(--cbp-button-color-bg-active);
       --cbp-button-color-border: var(--cbp-button-color-border-active);
     }
-    
   }
 
   // For each button fill/color, only override what needs to change
@@ -350,50 +349,50 @@ cbp-button {
 
     &[color=primary] {
       --cbp-button-color: var(--cbp-color-interactive-primary-dark);
-      --cbp-button-color-hover: var(--cbp-color-interactive-primary-darker);
-      --cbp-button-color-bg-hover: var(--cbp-color-interactive-primary-lighter);
+      --cbp-button-color-hover: var(--cbp-color-text-lightest);
+      --cbp-button-color-bg-hover: var(--cbp-color-interactive-primary-dark);
       --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-lighter); // not transparent;
 
       --cbp-button-color-dark: var(--cbp-color-interactive-primary-light);
-      --cbp-button-color-hover-dark: var(--cbp-color-interactive-primary-lighter);
-      --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-primary-darker);
-      --cbp-button-color-border-hover-dark: var(--cbp-color-interactive-primary-darker); // not transparent;
+      --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
+      --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-primary-light);
+      --cbp-button-color-border-hover-dark: var(--cbp-color-interactive-primary-light); // not transparent;
     }
 
     &[color=secondary] {
       --cbp-button-color: var(--cbp-color-interactive-secondary-darker);
-      --cbp-button-color-hover: var(--cbp-color-interactive-secondary-darker);
-      --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
-      --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-hover: var(--cbp-color-text-lightest);
+      --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
+      --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-darker);
 
       --cbp-button-color-dark: var(--cbp-color-interactive-secondary-lighter);
-      --cbp-button-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
-      --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-darker);
-      --cbp-button-color-border-hover-dark: var(--cbp-color-interactive-secondary-darker);
+      --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
+      --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
     }
     
     &[color=tertiary] {
       --cbp-button-color: var(--cbp-color-interactive-secondary-base);
-      --cbp-button-color-hover: var(--cbp-color-interactive-secondary-darker);
-      --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
-      --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-hover: var(--cbp-color-text-lightest);
+      --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
+      --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-darker);
 
       --cbp-button-color-dark: var(--cbp-color-interactive-secondary-light);
-      --cbp-button-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
-      --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-darker);
-      --cbp-button-color-border-hover-dark: var(--cbp-color-interactive-secondary-darker);
+      --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
+      --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
     }
 
     &[color=danger] {
       --cbp-button-color: var(--cbp-color-danger-dark);
-      --cbp-button-color-hover: var(--cbp-color-danger-darker);
-      --cbp-button-color-bg-hover: var(--cbp-color-danger-light);
-      --cbp-button-color-border-hover: var(--cbp-color-danger-light);
+      --cbp-button-color-hover: var(--cbp-color-text-lightest);
+      --cbp-button-color-bg-hover: var(--cbp-color-danger-dark);
+      --cbp-button-color-border-hover: var(--cbp-color-danger-dark);
 
       --cbp-button-color-dark: var(--cbp-color-danger-light);
-      --cbp-button-color-hover-dark: var(--cbp-color-danger-lighter);
-      --cbp-button-color-bg-hover-dark: var(--cbp-color-danger-darker);
-      --cbp-button-color-border-hover-dark: var(--cbp-color-danger-darker);
+      --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
+      --cbp-button-color-bg-hover-dark: var(--cbp-color-danger-light);
+      --cbp-button-color-border-hover-dark: var(--cbp-color-danger-light);
     }
   
     &:has(button:disabled),
