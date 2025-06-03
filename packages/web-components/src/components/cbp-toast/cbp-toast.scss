@@ -76,8 +76,8 @@ cbp-toast {
     border-top-left-radius: var(--cbp-border-radius-softer);
     border-bottom-left-radius: var(--cbp-border-radius-softer);
   
-    cbp-icon svg{
-      fill: var(--cbp-toast-color-icon-sidebar);
+    cbp-icon{
+      --cbp-icon-color: var(--cbp-toast-color-icon-sidebar);
     }
   }
 
