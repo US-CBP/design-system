@@ -116,16 +116,16 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
       <cbp-footer>
         <nav slot="cbp-footer-nav">
           <cbp-flex role="list" breakpoint="37.5rem">
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
             </cbp-flex-item>
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Trainings</cbp-button>
             </cbp-flex-item>
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">FAQs</cbp-button>
             </cbp-flex-item>
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
             </cbp-flex-item>
           <cbp-flex role="list">
@@ -263,16 +263,16 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, contentGridSize, sideba
       <cbp-footer>
         <nav slot="cbp-footer-nav">
           <cbp-flex role="list" breakpoint="37.5rem">
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
             </cbp-flex-item>
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Trainings</cbp-button>
             </cbp-flex-item>
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">FAQs</cbp-button>
             </cbp-flex-item>
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
             </cbp-flex-item>
           <cbp-flex role="list">
@@ -441,16 +441,16 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, numberOfCards, card
       <cbp-footer>
         <nav slot="cbp-footer-nav">
           <cbp-flex role="list" breakpoint="37.5rem">
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
             </cbp-flex-item>
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Trainings</cbp-button>
             </cbp-flex-item>
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">FAQs</cbp-button>
             </cbp-flex-item>
-            <cbp-flex-item role="list-item">
+            <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
             </cbp-flex-item>
           <cbp-flex role="list">
