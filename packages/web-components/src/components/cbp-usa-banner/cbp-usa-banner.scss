@@ -40,7 +40,7 @@ cbp-usa-banner {
     margin-right: var(--cbp-space-3x);
   }
 
-  cbp-button.cbp-usa-banner-expand[fill='ghost'][color='primary']:not(#fakeId) {
+  cbp-button.cbp-usa-banner-expand[fill=ghost][color=primary]:not(#fakeId) {
     //addition of fill & color in the selector is to up specificity to override button's dark mode var remapping correctly
     --cbp-button-gap: var(--cbp-space-1x);
     --cbp-button-height: 1rem;
