@@ -114,7 +114,7 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
       ${uid ? `uid=${uid}` : ''}
     >
       <cbp-panel
-        aria-labelledby="panelheader"
+        aria-labelledby="userprefs-panel-header"
         role="complementary"
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         sx='{
@@ -126,7 +126,7 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="panelheader"
+          id="userprefs-panel-header"
         >
         
           ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}
