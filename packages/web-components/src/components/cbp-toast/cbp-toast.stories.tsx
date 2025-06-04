@@ -49,7 +49,6 @@ const Template = ({ open, title, content, buttons, duration, color, context, sx 
       <div slot="cbp-toast-icon">
         <cbp-icon 
           name=${generateIcon(color)}
-          color="var(--cbp-toast-color-icon-sidebar)"
         ></cbp-icon>
       </div>
       <div slot="cbp-toast-title">${title}</div>
@@ -80,7 +79,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
       <div slot="cbp-toast-icon">
-        <cbp-icon name=${generateIcon(color)} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon>
+        <cbp-icon name=${generateIcon(color)}"></cbp-icon>
       </div>
       <div slot="cbp-toast-title">${title}</div>
       ${content}
@@ -96,7 +95,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >       
       <div slot="cbp-toast-icon">
-        <cbp-icon name=${generateIcon(color)} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon>
+        <cbp-icon name=${generateIcon(color)} ></cbp-icon>
       </div>
       <div slot="cbp-toast-title">${title}</div>
       ${content}
@@ -112,7 +111,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >      
       <div slot="cbp-toast-icon">
-        <cbp-icon name=${generateIcon(color)} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon>
+        <cbp-icon name=${generateIcon(color)}></cbp-icon>
       </div>
       <div slot="cbp-toast-title">${title}</div>
       ${content}
@@ -128,7 +127,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
       <div slot="cbp-toast-icon">
-        <cbp-icon name=${generateIcon(color)} color="var(--cbp-toast-color-icon-sidebar)"></cbp-icon>
+        <cbp-icon name=${generateIcon(color)}></cbp-icon>
       </div>
       <div slot="cbp-toast-title">${title}</div>
       ${content}

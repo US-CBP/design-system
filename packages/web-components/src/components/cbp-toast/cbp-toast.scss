@@ -75,6 +75,10 @@ cbp-toast {
     background-color: var(--cbp-toast-color-bg-sidebar);
     border-top-left-radius: var(--cbp-border-radius-softer);
     border-bottom-left-radius: var(--cbp-border-radius-softer);
+  
+    cbp-icon{
+      --cbp-icon-color: var(--cbp-toast-color-icon-sidebar);
+    }
   }
 
   .cbp-toast-title {

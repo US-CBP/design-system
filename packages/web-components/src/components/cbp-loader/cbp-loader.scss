@@ -154,6 +154,10 @@ cbp-loader {
         }
       }
     }
+    &[size=small][success] label,
+    &[size=small][error] label{
+      text-wrap:nowrap;
+    }
   }
 
 
@@ -207,6 +211,20 @@ cbp-loader {
         margin: auto auto;
         background: var(--cbp-loader-center-color);
       }
+    }
+    
+    &[size=small][success] progress,
+    &[size=small][error] progress{
+      display: none;
+    }
+
+    &[size=large][success] span,
+    &[size=large][error] span{
+      position: absolute;
+      width: var(--cbp-loader-diameter);
+      line-height: var(--cbp-loader-status-description-line-height);
+      text-align: center;
+      z-index: var(--cbp-z-index-level-3);
     }
 
     &:not([determinate]):not([error]):not([success]) ::before {

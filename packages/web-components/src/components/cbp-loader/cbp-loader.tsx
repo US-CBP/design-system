@@ -58,7 +58,6 @@ export class CbpLoader {
     }
   }
 
-  // TechDebt: error and success icons should still be shown for indeterminate loaders.
   render() {
     let statusIndicator;
 
@@ -84,19 +83,19 @@ export class CbpLoader {
           }
           <slot />
 
-          {this.size != 'small' && this.variant == 'linear' &&
+          {(this.success || this.error) && this.variant == 'linear' &&
             <span>{statusIndicator}</span>
           }
         </label>
 
 
-        {this.determinate && this.variant == 'circular' && this.size == 'large' &&
+        {(this.success || this.error) && this.variant == 'circular' && this.size == 'large' &&
           <span class='cbp-loader-desc'>
             {statusIndicator}
           </span>
         }
 
-        {this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error) ? statusIndicator : ``}
+        {this.variant == 'circular' && this.size == 'small' && (this.success || this.error) ? statusIndicator : ``}
 
         <progress
           id={this.progressId}
