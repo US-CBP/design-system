@@ -13,6 +13,7 @@ The React components are wrappers generated from this package and will share the
   * Updated the default `cbp-icon` size from "1em" to "1rem". This is because most icons alongside plain text (14px) are designed to be 16px (1rem). Any other sized icon should be explicitly specified via the `size` property using relative units or design tokens. Also updated the `cbp-icon` component to more easily allow overriding its size via its CSS API (`--cbp-icon-size`).
 * BREAKING: renamed the `cbp-nav-item` `selected` property to `current` for consistency and clarity.
 * BREAKING: renamed the `cbp-subnav` `accessibilitytext` property to `accessibilityText` for consistency.
+* BREAKING: updated the `cbp-nav-item` component to style any slotted links and buttons (not just cbp-button), including component-based routers. The "home" (application name) link must now be slotted into the `slot="cbp-home"` named slot to inherit the proper styling.
 * First cut of the `cbp-menu` component.
 * Updated `cbp-drawer` to add the ability to persist its contents in the flow of the page at a certain breakpoint, mobilizing to an overlay below that breakpoint.
   * With the addition of a persistent drawer, the drawer component should match the user's preferences for light or dark mode rather than using "light-always" and "dark-always" contexts.
@@ -26,7 +27,7 @@ The React components are wrappers generated from this package and will share the
   * Now works as a multi-select when its dropdown items are passed in via JSON.
   * Fixed the issue of setting a value property on multi-selects to populate the initial state.
   * Updated the faux button so that the chevron can be rotated when opened.
-* Minor bugfixes/updates to `cbp-universal-header` and `cbp-panel`.
+* Minor bugfixes/updates to `cbp-universal-header`, `cbp-toast`, and `cbp-panel`.
 * Updated web components readme and included it Storybook under "Using the web components."
 
 ## [0.0.1-develop.20] 04-18-2025

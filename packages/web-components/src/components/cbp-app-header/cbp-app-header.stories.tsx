@@ -22,21 +22,33 @@ export default {
   }
 };
 
-function generateNavItems(items, drawerid){
-  const html =  items.map(({ label, name, href, current, children}) => {
+function generateNavItems(items, drawerid=undefined){
+  const html =  items.map(({ label, name, href, current, children}, index) => {
     if(!children){
       return `
-        <cbp-nav-item name="${name}" ${current ? 'current' : ''}> 
-          <cbp-button tag="a" href=${href} fill="ghost" color="secondary">
+        <cbp-nav-item 
+          ${name ? `name="${name}"` : ''} 
+          ${index == 0 ? `slot="cbp-home"` : ''}
+          ${current ? 'current' : ''}
+        >
+          <a href="${href}">
             ${label}
-          </cbp-button>
+          </a>
         </cbp-nav-item>
       `;
     }
     else {
       return `
-        <cbp-nav-item name="${name}" ${current ? 'current' : ''}> 
-          <cbp-button fill="ghost" color="secondary" target-prop="open" controls=${drawerid}>
+        <cbp-nav-item 
+          ${name ? `name="${name}"` : ''} 
+          ${current ? 'current' : ''}
+        > 
+          <cbp-button 
+            fill="ghost" 
+            color="secondary" 
+            target-prop="open" 
+            controls=${drawerid}
+          >
             ${label}
             <cbp-icon name="chevron-right" rotate="90"></cbp-icon>
           </cbp-button>
@@ -56,7 +68,54 @@ function generateSubnav(items){
 }
 
 
-const Template = ({ drawerid, store, items, sx }) => {  
+const Template = ({ items, sx }) => {  
+  
+  // preventDefault on all links in the header and subnav
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-app-header a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+
+  return ` 
+    <cbp-app-header
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      ${generateNavItems(items)}
+    </cbp-app-header>
+  `;
+};
+
+
+export const ApplicationHeader = Template.bind({});
+//ApplicationHeader.StoryName = "Application Header (Simple)"
+ApplicationHeader.args = {
+  drawerid: 'navDrawer',
+  items: [
+    {
+      label: 'Application Name',
+      href: './?path=/story/components-application-header--application-header#',
+      current: true
+    },
+    {
+      label: 'Nav Item 1',
+      href: './?path=/story/components-application-header--application-header#',
+    },
+    {
+      label: 'Nav Item 2',
+      href: './?path=/story/components-application-header--application-header#',
+    },
+    {
+      label: 'Nav Item 3',
+      href: './?path=/story/components-application-header--application-header#',
+    },
+  ] 
+}
+
+
+
+const AppHeaderWithSubnavTemplate = ({ drawerid, store, items, sx }) => {  
   
   // preventDefault on all links in the header and subnav
   setTimeout(() => {
@@ -89,8 +148,8 @@ const Template = ({ drawerid, store, items, sx }) => {
               Application Name
             </cbp-typography>
 
-            <cbp-form-field
-              label='Search'
+            <cbp-form-field 
+              label="Search"
             >
               <cbp-form-field-wrapper>
                 <input
@@ -105,7 +164,7 @@ const Template = ({ drawerid, store, items, sx }) => {
                     variant="square"
                     accessibility-text="Search"
                   >
-                    <cbp-icon name="magnifying-glass" size="1rem"></cbp-icon>
+                    <cbp-icon name="magnifying-glass"></cbp-icon>
                   </cbp-button>
                 </span>
               </cbp-form-field-wrapper>
@@ -122,87 +181,88 @@ const Template = ({ drawerid, store, items, sx }) => {
 };
 
 
-export const ApplicationHeader = Template.bind({});
-ApplicationHeader.args = {
+export const AppHeaderWithSubnav = AppHeaderWithSubnavTemplate.bind({});
+AppHeaderWithSubnav.storyName = "Application Header with Sub-Nav"
+AppHeaderWithSubnav.args = {
   drawerid: 'navDrawer',
   items: [
-      {
-        label: 'Application Name',
-        name: 'Application Name',
-        href: './?path=/story/components-application-header--application-header#',
-        current: true
-      },
-      {
-        label: 'App Item 1',
-        name: 'App Item 1',
-        href: './?path=/story/components-application-header--application-header#',
-        children: [
-          {
-            label: 'App Item 1-1',
-            name: 'App Item 1-1',
-            href: './?path=/story/components-application-header--application-header#',
-          },
-          {
-            label: 'App Item 1-2',
-            name: 'App Item 1-2',
-            href: './?path=/story/components-application-header--application-header#',
-            children: [
-              {
-                label: 'App Item 1-2-1',
-                name: 'App Item 1-2-1',
-                href: './?path=/story/components-application-header--application-header#',
-                children: [
-                  {
-                    label: 'App Item 1-2-1-1',
-                    name: 'App Item 1-2-1-1',
-                    href: './?path=/story/components-application-header--application-header#',
-                  },
-                  {
-                    label: 'App Item 1-2-1-2',
-                    name: 'App Item 1-2-1-2',
-                    href: './?path=/story/components-application-header--application-header#',
-                  },
-                  {
-                    label: 'App Item 1-2-1-3',
-                    name: 'App Item 1-2-1-3',
-                    href: './?path=/story/components-application-header--application-header#',
-                  }
-                ]
-              },{
-                label: 'App Item 1-2-2',
-                name: 'App Item 1-2-2',
-                href: './?path=/story/components-application-header--application-header#',
-              }
-            ]
-          }
-        ]
-      },
-      {
-        label: 'App Item 2',
-        name: 'App Item 2',
-        href: './?path=/story/components-application-header--application-header#',
-        children: [
-          {
-            label: 'App Item 2-1',
-            name: 'App Item 2-1',
-            href: './?path=/story/components-application-header--application-header#',
-          },    
-          {
-            label: 'App Item 2-2',
-            name: 'App Item 2-2',
-            href: './?path=/story/components-application-header--application-header#',
-          },
-          {
-            label: 'App Item 2-3',
-            name: 'App Item 2-3',
-            href: './?path=/story/components-application-header--application-header#',
-          },
-        ]
-      },
-      {
-        label: 'App Item 3',
-        name: 'App Item 3',
-        href: './?path=/story/components-application-header--application-header#',
-      },
+    {
+      label: 'Application Name',
+      name: 'Application Name',
+      href: './?path=/story/components-application-header--application-header#',
+      current: true
+    },
+    {
+      label: 'Nav Item 1',
+      name: 'Nav Item 1',
+      href: './?path=/story/components-application-header--application-header#',
+      children: [
+        {
+          label: 'Nav Item 1-1',
+          name: 'Nav Item 1-1',
+          href: './?path=/story/components-application-header--application-header#',
+        },
+        {
+          label: 'Nav Item 1-2',
+          name: 'Nav Item 1-2',
+          href: './?path=/story/components-application-header--application-header#',
+          children: [
+            {
+              label: 'Nav Item 1-2-1',
+              name: 'Nav Item 1-2-1',
+              href: './?path=/story/components-application-header--application-header#',
+              children: [
+                {
+                  label: 'Nav Item 1-2-1-1',
+                  name: 'Nav Item 1-2-1-1',
+                  href: './?path=/story/components-application-header--application-header#',
+                },
+                {
+                  label: 'Nav Item 1-2-1-2',
+                  name: 'Nav Item 1-2-1-2',
+                  href: './?path=/story/components-application-header--application-header#',
+                },
+                {
+                  label: 'Nav Item 1-2-1-3',
+                  name: 'Nav Item 1-2-1-3',
+                  href: './?path=/story/components-application-header--application-header#',
+                }
+              ]
+            },{
+              label: 'Nav Item 1-2-2',
+              name: 'Nav Item 1-2-2',
+              href: './?path=/story/components-application-header--application-header#',
+            }
+          ]
+        }
+      ]
+    },
+    {
+      label: 'Nav Item 2',
+      name: 'Nav Item 2',
+      href: './?path=/story/components-application-header--application-header#',
+      children: [
+        {
+          label: 'Nav Item 2-1',
+          name: 'Nav Item 2-1',
+          href: './?path=/story/components-application-header--application-header#',
+        },    
+        {
+          label: 'Nav Item 2-2',
+          name: 'Nav Item 2-2',
+          href: './?path=/story/components-application-header--application-header#',
+        },
+        {
+          label: 'Nav Item 2-3',
+          name: 'Nav Item 2-3',
+          href: './?path=/story/components-application-header--application-header#',
+        },
+      ]
+    },
+    {
+      label: 'Nav Item 3',
+      name: 'Nav Item 3',
+      href: './?path=/story/components-application-header--application-header#',
+    },
   ] 
 }

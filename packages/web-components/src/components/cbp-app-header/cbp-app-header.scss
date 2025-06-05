@@ -9,12 +9,11 @@
 }
 
 /* 
- * Dark Mode - display dark design based on mode or context.
+ * Dark Mode - display dark design based on mode (no context).
  * This toggle should have the highest specificity, so that what ever values were specified 
  * for the dark version get written to the light within the scope of this component.
  */
-[data-cbp-theme=light] cbp-app-header[context*=dark]:not([context=light-always]),
-[data-cbp-theme=dark] cbp-app-header:not([context=dark-inverts]):not([context=light-always]) {
+[data-cbp-theme=dark] cbp-app-header {
   --cbp-app-header-color-background: var(--cbp-app-header-color-background-dark);
 }
 
