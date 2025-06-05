@@ -31,10 +31,6 @@
   --cbp-tooltip-caret-offset: calc(var(--cbp-tooltip-caret-size) / 2);
   --cbp-tooltip-caret-space: var(--cbp-space-4x);
 
-  
-  --cbp-tooltip-control-height: 2.25rem; 
-  --cbp-tooltip-control-width: var(--cbp-tooltip-control-height); 
-
   --cbp-tooltip-control-color-hover: var(--cbp-color-interactive-secondary-darker);
   --cbp-tooltip-control-color-hover-dark: var(--cbp-color-text-darkest);
   --cbp-tooltip-control-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
@@ -82,6 +78,9 @@ cbp-tooltip {
   align-items: center;
   justify-content: center;
   position: relative;
+  border-radius: var(--cbp-border-radius-soft);
+  padding: var(--cbp-space-1x);
+  outline-offset: calc(-1 * var(--cbp-space-1x));
   --cbp-tooltip-placement-gap: var(--cbp-tooltip-gap);
   --cbp-tooltip-placement-offset: var(--cbp-tooltip-offset);
   --cbp-tooltip-gap: var(--cbp-space-4x, 1rem);
@@ -102,13 +101,6 @@ cbp-tooltip {
     outline:var(--cbp-tooltip-control-outline-focus);
   }
 
-  &[variant=default]{
-    border-radius: var(--cbp-border-radius-soft);
-    height: var(--cbp-tooltip-control-height);
-    width: var(--cbp-tooltip-control-width);
-    padding: var(--cbp-space-1x);
-    outline-offset: calc(-1 * var(--cbp-space-1x));
-  }
 
   /** definition link*/
 &[variant=definition]{

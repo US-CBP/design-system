@@ -13,7 +13,7 @@ export class CbpTooltip {
 
   /** used to set styles for the definition link for text controls*/
   // @Prop({ reflect: true }) definitionLinkStyle: boolean = false;
-  @Prop({ reflect: true }) variant: 'default' | 'definition' = 'default';
+  @Prop({ reflect: true }) variant: 'definition';
 
 
   /** sets where the tooltip will be displayed and where the caret will be placed */
