@@ -36,15 +36,6 @@ function generateNavItems(items, drawerid=undefined){
           </a>
         </cbp-nav-item>
       `;
-      /*
-      return `
-        <cbp-nav-item name="${name}" ${current ? 'current' : ''}> 
-          <cbp-button tag="a" href="${href}" fill="ghost" color="secondary">
-            ${label}
-          </cbp-button>
-        </cbp-nav-item>
-      `;
-      */
     }
     else {
       return `
