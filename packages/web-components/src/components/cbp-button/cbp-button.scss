@@ -116,7 +116,7 @@ cbp-button {
 
   button, a {
     display: inline-flex;
-    gap: var(--cbp-button-gap); // TODO: This might work to prevent need to set a margin on icons...
+    gap: var(--cbp-button-gap);
     align-items: center;
     justify-content: center;
     border-width: var(--cbp-button-border-width);

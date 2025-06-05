@@ -12,6 +12,6 @@ cbp-app {
   }
 
   &:has(cbp-action-bar[variant=floating]){
-    padding-bottom: var(--cbp-space-14x);
+    padding-block-end: var(--cbp-space-14x);
   }
 }
