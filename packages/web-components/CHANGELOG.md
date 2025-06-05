@@ -4,7 +4,7 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [unpublished] TBD
+## [0.0.1-develop.21] 06-05-2025
 
 * A number of visually breaking changes were introduced in this release. These changes were undertaken with much consideration. However, we felt that the changes streamline using the Button, Link, and Icon components - some of the most-used components in the design system - enough to warrant the changes at this early stage in the design system development.
   * Updated the way icons are spaced apart from text within `cbp-button`, `cbp-link`, and `cbp-tag` components, now using a CSS property for the `gap`. Any instances of applying margins to the icon or text (via `sx` or custom CSS) will need to be removed to avoid doubling up the spacing. The following stories were updated and may need to have copied code updated in consuming applications: Cards (action buttons icon in title), Table (sortable headers), Universal Header and the universal header content in all templates and archetype pages.
@@ -27,7 +27,7 @@ The React components are wrappers generated from this package and will share the
   * Now works as a multi-select when its dropdown items are passed in via JSON.
   * Fixed the issue of setting a value property on multi-selects to populate the initial state.
   * Updated the faux button so that the chevron can be rotated when opened.
-* Minor bugfixes/updates to `cbp-universal-header`, `cbp-toast`, and `cbp-panel`.
+* Minor bugfixes/updates to `cbp-universal-header`, `cbp-tooltip`, `cbp-toast`, and `cbp-panel`.
 * Updated web components readme and included it Storybook under "Using the web components."
 
 ## [0.0.1-develop.20] 04-18-2025
