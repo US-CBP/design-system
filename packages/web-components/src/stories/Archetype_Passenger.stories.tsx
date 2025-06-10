@@ -658,7 +658,7 @@ const InternalTemplate = ({ isLoggedIn, username, passengersArgs, manifestArgs }
       </cbp-universal-header>
 
       <cbp-app-header>
-        <cbp-nav-item selected="">
+        <cbp-nav-item slot="cbp-home" selected="">
           <cbp-button
             tag="a"
             fill="ghost"
