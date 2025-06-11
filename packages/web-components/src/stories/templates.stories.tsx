@@ -71,7 +71,7 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
         </cbp-universal-header>
 
         <cbp-app-header>
-          <cbp-nav-item slot="cbp-home" selected="">
+          <cbp-nav-item slot="cbp-home" selected>
             <cbp-button
               tag="a"
               fill="ghost"
@@ -195,7 +195,7 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, contentGridSize, sideba
         </cbp-universal-header>
 
         <cbp-app-header>
-          <cbp-nav-item slot="cbp-home" selected="">
+          <cbp-nav-item slot="cbp-home" selected>
             <cbp-button
               tag="a"
               fill="ghost"
@@ -392,7 +392,7 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, numberOfCards, card
         </cbp-universal-header>
 
         <cbp-app-header>
-          <cbp-nav-item slot="cbp-home" selected="">
+          <cbp-nav-item slot="cbp-home" selected>
             <cbp-button
               tag="a"
               fill="ghost"
