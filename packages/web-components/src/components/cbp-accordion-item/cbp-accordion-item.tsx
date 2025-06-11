@@ -87,6 +87,7 @@ export class CbpAccordionItem {
           <div id={this.headingId} class="cbp-accordion-item--heading">
             <slot name="cbp-accordion-item-label" />
             {this.label && <cbp-typography tag={this.headingLevel} variant="heading-sm">{this.label}</cbp-typography>}
+            {this.color == 'danger' && <cbp-icon name="triangle-exclamation"></cbp-icon> }
           </div>
         </div>
 
