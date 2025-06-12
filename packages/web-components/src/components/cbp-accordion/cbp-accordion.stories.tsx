@@ -11,6 +11,10 @@ export default {
       description: 'Specifies whether multiple accordion items may remain open at the same time.',
       control: 'boolean',
     },
+    showBadge: {
+      description: 'Toggles if the accordion will render badges with slotted content',
+      control: 'boolean',
+    },
     context: {
       control: 'select',
       options: ['light-inverts', 'light-always', 'dark-inverts', 'dark-always'],
@@ -56,31 +60,40 @@ export default {
 
 function generateChildren(items) {
   const html = items.map(({ label, content, open, color, headingLevel }) => {
+  
+    if(color === 'danger'){
+      let item = {
+        label: label,
+        open: open,
+        headingLevel: headingLevel,
+        color: color,
+        content: content,
+      }
+      return generateSlottedChildren([item], false);
+   }else{
     return `
-      <cbp-accordion-item  
+      <cbp-accordion-item
+        ${label ? `label="${label}"` : ''}  
         ${open == true ? 'open' : ''}
         ${color === 'danger' ? `color=${color}` : ''}
         ${headingLevel ? `heading-level=${headingLevel}` : ''}
       >
-        <div slot="cbp-accordion-item-label">
-          <cbp-typography ${headingLevel ? `tag=${headingLevel}` : ''} variant="heading-sm">${label}</cbp-typography>
-          ${color == 'danger' ? `<cbp-icon name="triangle-exclamation"></cbp-icon>` : `` }
-        </div>
         ${content}
       </cbp-accordion-item>
     `;
+   }
   });
   return html.join('');
 }
 
-const Template = ({ items, multiple, context, sx }) => {
+const Template = ({ items, multiple, showBadge, context, sx }) => {
   return ` 
       <cbp-accordion
           ${multiple ? `multiple` : ''}
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-          ${generateChildren(items)}
+          ${showBadge ? generateSlottedChildren(items, showBadge) : generateChildren(items)}
       </cbp-accordion>
     `;
 };
@@ -90,7 +103,7 @@ Accordion.args = {};
 
 
 
-function generateSlottedChildren(items) {
+function generateSlottedChildren(items, showBadge) {
   const html = items.map(({ label, content, open, color, headingLevel }) => {
     return `
       <cbp-accordion-item
@@ -99,7 +112,8 @@ function generateSlottedChildren(items) {
       >
         <div slot="cbp-accordion-item-label">
           <cbp-typography ${headingLevel ? `tag=${headingLevel}` : ''} variant="heading-sm">${label}</cbp-typography>
-          <cbp-badge>55</cbp-badge>
+          ${color === 'danger' ? '<cbp-icon name="triangle-exclamation"></cbp-icon>' : ''}
+          ${showBadge ? `<cbp-badge>55</cbp-badge>` : ``}
         </div>
         ${content}
       </cbp-accordion-item>
@@ -108,17 +122,19 @@ function generateSlottedChildren(items) {
   return html.join('');
 }
 
-const AccordionWithSlottedLabelTemplate = ({ items, multiple, context, sx }) => {
+const AccordionWithSlottedLabelTemplate = ({ items, multiple, showBadge, context, sx }) => {
   return ` 
       <cbp-accordion
           ${multiple ? `multiple` : ''}
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${generateSlottedChildren(items)}
+        ${generateSlottedChildren(items, showBadge)}
       </cbp-accordion>
     `;
 };
 
 export const AccordionWithSlottedLabel = AccordionWithSlottedLabelTemplate.bind({});
-AccordionWithSlottedLabel.args = {};
+AccordionWithSlottedLabel.args = {
+  showBadge: true,
+};
