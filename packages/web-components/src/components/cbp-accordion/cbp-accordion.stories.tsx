@@ -57,12 +57,15 @@ export default {
 function generateChildren(items) {
   const html = items.map(({ label, content, open, color, headingLevel }) => {
     return `
-      <cbp-accordion-item
-        ${label ? `label="${label}"` : ''}  
+      <cbp-accordion-item  
         ${open == true ? 'open' : ''}
         ${color === 'danger' ? `color=${color}` : ''}
         ${headingLevel ? `heading-level=${headingLevel}` : ''}
       >
+        <div slot="cbp-accordion-item-label">
+          <cbp-typography ${headingLevel ? `tag=${headingLevel}` : ''} variant="heading-sm">${label}</cbp-typography>
+          ${color == 'danger' ? `<cbp-icon name="triangle-exclamation"></cbp-icon>` : `` }
+        </div>
         ${content}
       </cbp-accordion-item>
     `;
