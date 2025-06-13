@@ -110,10 +110,6 @@ cbp-accordion-item {
       flex-grow: 1;
       justify-content: space-between;
 
-      // & > *{//todo update to use slot="cbp-accordion-item-label"
-      //   gap: var(--cbp-accordion-item-heading-gap);
-      // }
-
       :first-child {
         flex-grow: 1;
       }
