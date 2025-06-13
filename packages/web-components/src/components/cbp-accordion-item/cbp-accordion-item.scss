@@ -60,6 +60,8 @@
   --cbp-accordion-item-content-font-family: inherit;
   --cbp-accordion-item-content-font-weight: var(--cbp-font-weight-regular);
   --cbp-accordion-item-content-padding: var(--cbp-space-3x);
+
+  --cbp-accordion-item-heading-gap: var(--cbp-space-2x);
 }
 
 cbp-accordion-item {
@@ -115,6 +117,7 @@ cbp-accordion-item {
       [slot="cbp-accordion-item-label"] {
         display: flex;
         align-items: center;
+        gap: var(--cbp-accordion-item-heading-gap);
       }
 
     }
