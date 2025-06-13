@@ -50,7 +50,10 @@ export class CbpBanner {
             context="dark-always"
             onButtonClick={() => { this.handleDismiss() }}
           >
-            <cbp-icon name="times" />
+            <cbp-icon 
+              name="circle-xmark" 
+              size="var(--cbp-space-5x)"
+            />
             Dismiss
           </cbp-button>
         </div>
