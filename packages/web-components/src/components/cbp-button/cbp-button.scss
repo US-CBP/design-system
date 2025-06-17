@@ -351,7 +351,7 @@ cbp-button {
       --cbp-button-color: var(--cbp-color-interactive-primary-dark);
       --cbp-button-color-hover: var(--cbp-color-text-lightest);
       --cbp-button-color-bg-hover: var(--cbp-color-interactive-primary-dark);
-      --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-lighter); // not transparent;
+      --cbp-button-color-border-hover: var(--cbp-color-interactive-primary-dark);// not transparent;
 
       --cbp-button-color-dark: var(--cbp-color-interactive-primary-light);
       --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);

@@ -26,6 +26,10 @@
   --cbp-subnav-item-current-border-color: var(--cbp-color-interactive-active-dark);
   --cbp-subnav-item-current-border-color-dark: var(--cbp-color-interactive-active-light); 
 
+  --cbp-subnav-item-border-color: red;
+  --cbp-subnav-item-hover-border-color: var(--cbp-color-interactive-secondary-darker);
+  --cbp-subnav-item-hover-border-color-dark: var(--cbp-color-interactive-secondary-lighter);
+  
   --cbp-subnav-item-indent: var(--cbp-space-4x);
   --cbp-subnav-item-font-size: var(--cbp-font-size-heading-md);
 }
@@ -36,6 +40,8 @@
   --cbp-subnav-item-color-bg: var(--cbp-subnav-item-color-bg-dark);
   --cbp-subnav-item-current-border-color: var(--cbp-subnav-item-current-border-color-dark);
   --cbp-subnav-item-current-color-bg: var(--cbp-subnav-item-current-color-bg-dark);
+
+  --cbp-subnav-item-hover-border-color: var(--cbp-subnav-item-hover-border-color-dark);
 }
 
 cbp-subnav-item {
@@ -47,10 +53,10 @@ cbp-subnav-item {
   section{
     display: none;
   }
-  
+
   &[current] > div,
   &:has(cbp-subnav-item[current]) > div {
-    border-left: var(--cbp-border-size-xl) solid var(--cbp-subnav-item-current-border-color);
+    --cbp-subnav-item-border-color: var(--cbp-subnav-item-current-border-color)
   }
 
   &[current] > div > cbp-button[fill=outline][color=primary]:first-of-type{
@@ -67,7 +73,13 @@ cbp-subnav-item {
 
   // parent subnav item container for multiple
   & > div{
-    display: flex;
+    --cbp-subnav-item-border-color: var(--cbp-subnav-item-color-bg);
+    display: flex; 
+    border-left: var(--cbp-border-size-xl) solid var(--cbp-subnav-item-border-color);
+  }
+
+  &:hover > div{
+    --cbp-subnav-item-border-color: var(--cbp-subnav-item-hover-border-color);
   }
 
   //Overrides for button variables
@@ -118,7 +130,7 @@ cbp-subnav-item {
     &:first-of-type a{
       justify-content: start;
       font-weight: var(--cbp-font-weight-medium);
-      padding-left: var(--cbp-subnav-item-indent);
+      padding-left: calc(var(--cbp-subnav-item-indent));
       font-size: var(--cbp-subnav-item-font-size);
       border-left: none;
       border-right: none;
