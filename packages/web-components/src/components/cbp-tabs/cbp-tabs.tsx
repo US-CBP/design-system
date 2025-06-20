@@ -119,9 +119,10 @@ export class CbpTabs {
   componentDidLoad() {
     this.initTabset();
 
-    // Only set up a ResizeObserver if the checklist is specified as a horizontal mode (inline or series)
+    // Set up a resize observer to compare the host (cbp-tabs) to its child wrapper (div.cbp-tabs-wrapper), looking for overflow.
     this.observer = new ResizeObserver(([{ contentRect: { width } }]) => {
-      // When using browser zoom, the numbers reported back are sometimes sub-pixel and trigger a flickering of the controls; adding +1 fixes this.
+      // When using browser zoom, the numbers reported back are sometimes sub-pixel and trigger a flickering 
+      // of the controls; adding +1 fixes this.
       if (width+1 > this.wrapper.scrollWidth) {
         this.previousControl.setAttribute('hidden','');
         this.nextControl.setAttribute('hidden','');
@@ -131,7 +132,7 @@ export class CbpTabs {
         this.nextControl.removeAttribute('hidden');
       }
     });
-      this.observedEl = this.host; //this.host.querySelector('uef-checklist>uef-input-styles');
+      this.observedEl = this.host;
       this.observer.observe(this.observedEl);
   }
 
