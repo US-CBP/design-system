@@ -1,6 +1,10 @@
 import { Component, Element, Listen, Host, h } from '@stencil/core';
 import state from '../cbp-app-header/store';
 
+/**
+ * @slot - The default slot usually contains only `cbp-nav-item` tags, but other content may also be included.
+ * @slot - cbp-home - The link to the home page containing the Application Name as link text should be placed within this named slot for the intended visual treatment. 
+ */
 @Component({
   tag: 'cbp-app-header',
   styleUrl: 'cbp-app-header.scss'

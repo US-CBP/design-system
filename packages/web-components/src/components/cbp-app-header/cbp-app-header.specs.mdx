@@ -19,15 +19,15 @@ The Application Header component is meant to contain the primary navigation acco
 ### User Interactions
 
 * The Application Header component contains an application-defined number of "nav items":
-  * A Nav Item representing navigation shall render an anchor.
+  * A Nav Item representing navigation shall contain a slotted anchor.
   * Navigation Items with children are represented by a button control that opens a drawer containing sub-navigation options.
-   for navigation or button control linking to the drawer that holds.
 * When a Nav Item anchor is activated, it is marked visually and accessibly as the "current" item.
 * A Nav Item representing a drawer control is only marked current if the item or one of its children are activated within the Sub-Navigation.
 
 ### Responsiveness
 
-* TBD
+* The application name (home link) is rendered at a smaller font size on mobile devices.
+* More TBD.
 
 ### Accessibility
 
@@ -39,7 +39,7 @@ The Application Header component is meant to contain the primary navigation acco
   * Specify the `controls` property, referencing the `id` of the Drawer it controls to render `aria-controls` on the native button.
   * Specify `target-prop="open"`.
   * Include the `expanded` property to render `aria-expanded` on the native button.
-* The "current" navigation control is denoted via `aria-current` as well as visual styling.
+* The "current" navigation control is denoted via `aria-current="page"` as well as visual styling.
 
 ### Additional Notes and Considerations
 
