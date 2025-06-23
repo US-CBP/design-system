@@ -4,6 +4,14 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unreleased] TBA
+
+* First cut of the `cbp-resize-observer` component.
+* Updated `cbp-breadcrumb` with responsive functionality using the Resize Observer and Menu components.
+* Minor bugfixes/updates to `cbp-menu`.
+* Add a vscode output target to Stencil config.
+
+
 ## [0.0.1-develop.21] 06-05-2025
 
 * A number of visually breaking changes were introduced in this release. These changes were undertaken with much consideration. However, we felt that the changes streamline using the Button, Link, and Icon components - some of the most-used components in the design system - enough to warrant the changes at this early stage in the design system development.
@@ -13,16 +21,17 @@ The React components are wrappers generated from this package and will share the
   * Updated the default `cbp-icon` size from "1em" to "1rem". This is because most icons alongside plain text (14px) are designed to be 16px (1rem). Any other sized icon should be explicitly specified via the `size` property using relative units or design tokens. Also updated the `cbp-icon` component to more easily allow overriding its size via its CSS API (`--cbp-icon-size`).
 * BREAKING: renamed the `cbp-nav-item` `selected` property to `current` for consistency and clarity.
 * BREAKING: renamed the `cbp-subnav` `accessibilitytext` property to `accessibilityText` for consistency.
-* BREAKING: updated the `cbp-nav-item` component to style any slotted links and buttons (not just cbp-button), including component-based routers. The "home" (application name) link must now be slotted into the `slot="cbp-home"` named slot to inherit the proper styling.
+* Updated the Application Header to support Navigation Items that have children:
+  * Navigation Items with children are represented by a button control that opens a drawer containing sub-navigation.
+  * The Application Header and Sub-navigation now contain a shared state, allowing user interaction with either component to update the state of the other.
+  * Updated the `cbp-nav-item` component to style any slotted links and buttons (not just `cbp-button`), including component-based routers.
+  * BREAKING: The "home" (application name) link must now be slotted into the `slot="cbp-home"` named slot to inherit the proper styling. This is less opinionated/more flexible than always styling the first nav-item in a special way.
 * First cut of the `cbp-menu` component.
 * Updated `cbp-drawer` to add the ability to persist its contents in the flow of the page at a certain breakpoint, mobilizing to an overlay below that breakpoint.
   * With the addition of a persistent drawer, the drawer component should match the user's preferences for light or dark mode rather than using "light-always" and "dark-always" contexts.
   * Implemented an official dark mode for the Drawer component.
   * Updated the "User Preferences" story to work with the new dark theme and component implementation. This pattern still uses `context="dark-always"`, but represents a custom pattern rather than the default dark mode.
   * Updated the Passenger List archetype to demonstrate the persistent drawer functionality.
-* Updated the Application Header to support Navigation Items that have children:
-  * Navigation Items with children are represented by a button control that opens a drawer containing sub-navigation.
-  * The Application Header and Sub-navigation now contain a shared state, allowing user interaction with either component to update the state of the other.
 * Updated the `cbp-dropdown` to fix a number of issues:
   * Now works as a multi-select when its dropdown items are passed in via JSON.
   * Fixed the issue of setting a value property on multi-selects to populate the initial state.
