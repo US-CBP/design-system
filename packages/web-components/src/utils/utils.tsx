@@ -59,9 +59,8 @@ export const getFocusableElements = (scope: HTMLElement) => {
   //return Array.from(scope.querySelectorAll('[tabindex="0"],a[href],button,input,textarea,select'));
 };
 
-
-export const debounce = <T extends { [key: string]: any }>({ callback, ms, prevent }: T) => {
-  let timer: ReturnType<typeof setTimeout>;
+export const debounce = (callback, wait, prevent=false) => {
+  let timer: ReturnType<typeof setTimeout> = null;;
   return (...args) => {
     if (prevent) {
       const e = args[0];
@@ -69,10 +68,11 @@ export const debounce = <T extends { [key: string]: any }>({ callback, ms, preve
       e.stopPropagation();
     }
     clearTimeout(timer);
-    timer = setTimeout(callback, ms, ...args);
+    timer = setTimeout(() => {
+      callback.apply(null, args);
+    }, wait);
   };
 };
-
 
 export const getElementAttrs = (el: HTMLElement): { [key: string]: any } => {
   let attrs = {};
