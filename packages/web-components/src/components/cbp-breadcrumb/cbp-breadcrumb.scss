@@ -2,11 +2,13 @@
  * @prop --cbp-breadcrumb-color: var(--cbp-color-text-darkest);
  * @prop --cbp-breadcrumb-color-dark: var(--cbp-color-text-lightest);
  * @prop --cbp-breadcrumb-gap: var(--cbp-space-2x);
+ * @prop --cbp-breadcrumb-divider: "/";
  */
  :root{
   --cbp-breadcrumb-color: var(--cbp-color-text-darkest);
   --cbp-breadcrumb-color-dark: var(--cbp-color-text-lightest);
   --cbp-breadcrumb-gap: var(--cbp-space-2x);
+  --cbp-breadcrumb-divider: "/";
 }
 
 [data-cbp-theme=light] cbp-breadcrumb[context*=dark]:not([context=light-always]),
@@ -16,11 +18,36 @@
 
 cbp-breadcrumb {
   color: var(--cbp-breadcrumb-color);
+  display: block;
  
   nav {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     gap: var(--cbp-breadcrumb-gap);
+    width: max-content;
+    overflow: visible;
+  
+    // Setting the divider as ::before on each element after the home button
+    > *:not(:first-child)::before {
+      content: var(--cbp-breadcrumb-divider);
+      margin-inline-end: var(--cbp-breadcrumb-gap);
+      white-space: nowrap;
+    }
+
+    a {
+      white-space: nowrap;
+    }
+
+    // The home button appears too far away due to button size, so apply the gap as a negative margin.
+    > :first-child {
+      margin-inline-end: calc(var(--cbp-breadcrumb-gap) * -1);
+    }
+
+    // Fix for the ::before vertical alignment issue
+    cbp-menu:not([hidden]) {
+      display: flex;
+      align-items: center;
+      order: 1; // the flex order should be after the default items (0), but be before the last item (set to its index)
+    }
   }
 }
