@@ -1,6 +1,12 @@
 import { Component, Element, Prop, Event, EventEmitter, Host, h } from '@stencil/core';
+//import { debounce } from '../../utils/utils';
 
 /**
+ * The Resize Observer component is a wrapper that implements a resizeObserver to detect changes to its size,
+ * typically to compare to an immediate child that is wrapping a collection of variable-sized elements 
+ * (e.g., links, tabs, etc.), in order to implement responsive functionality that cannot be accomplished 
+ * with a media query or container query.
+ * 
  * @slot - any markup or content may be placed in the default slot. 
  */
 @Component({
@@ -11,16 +17,11 @@ export class CbpResizeObserver {
 
   private observer: ResizeObserver;
   private observedEl: Element
-  //private parentEl: HTMLElement;
-  //private childEl: HTMLElement;
-
+ 
   @Element() host: HTMLElement;
 
-  /** Optionally specify a selector with which to query the closest matching parent of the host tag to observe. */
-  @Prop() parent: string;
-
-  /** Optionally specify a selector with which to query the a child of the host tag to observe. */
-  @Prop() child: string;
+  /** The number of milliseconds to debounce the event emitter. (not currently working) */
+  @Prop() debounce: number = 0;
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() resized!: EventEmitter;
@@ -35,9 +36,8 @@ export class CbpResizeObserver {
 
 
   componentDidLoad() {
-    // TODO: still need to figure out what comparisons are useful at this level - parent or children
-    const children = this.host.children;
-    this.observedEl = this.host; //this.host.querySelector(child) or this.host.closest(parent); ?
+    // Initialize the resizeObserver on the host element
+    this.observedEl = this.host;
     /*
       ResizeObserver object structure:
         Entries[]: 
@@ -56,24 +56,12 @@ export class CbpResizeObserver {
             devicePixelContentBoxSize[]: ResizeObserverSize
             target
     */
-    this.observer = new ResizeObserver(([{ contentRect }]) => {
+    this.observer = new ResizeObserver( ([{ contentRect }]) => {
       const {width, height, top, bottom, left, right, x, y} = contentRect;
-      console.log('Resize Observer: ', width, height, children, children[0].getBoundingClientRect());
+      //console.log('Resize Observer: ', width, height, top, bottom, left, right, x, y);
 
-      // TODO: do comparisons, such as to check for overflow (against child? this depends what we're observing)
-      // When using browser zoom, the numbers reported back are sometimes sub-pixel and trigger a flickering of the controls; adding +1 fixes this.
-      /*
-      if (width+1 > this.wrapper.scrollWidth) {
-        //
-      }
-      else {
-        //
-      }
-      */
-
-
-      // TechDebt: should this be debounced?
-      this.resized.emit({
+      const customEvent = {
+        host: this.host,
         width: width,
         height: height,
         top: top,
@@ -82,14 +70,27 @@ export class CbpResizeObserver {
         right: right,
         x: x,
         y: y
-      });
+      }
+
+      // TechDebt: should this be debounced?
+      /* not working
+      debounce( () => {
+        this.resized.emit( customEvent);
+       }, this.debounce);
+      */
+      this.resized.emit(customEvent);
 
     });
+
+    // Observe the element
     this.observer.observe(this.observedEl);
   }
 
   disconnectedCallback(){
-    this.observer.disconnect()
+    // remove the ResizeObserver if the component is removed from the DOM
+    if (this.observer) {
+      this.observer.unobserve(this.observedEl);
+    }
   }
 
   render() {
@@ -99,5 +100,4 @@ export class CbpResizeObserver {
       </Host>
     );
   }
-
 }

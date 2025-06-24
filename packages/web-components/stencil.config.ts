@@ -46,6 +46,10 @@ export const config: Config = {
       type: 'docs-readme',
       footer: '  ',
     },
+    { 
+      type: 'docs-vscode',
+      file: 'dist/vscode/cbpds-vscode-data.json',
+    },
     {
       type: 'www',
       copy: [

@@ -35,10 +35,10 @@ export class CbpLink {
   /** Defines an `accesskey` attribute of the rendered anchor. */
   @Prop() shortcutKey: string;
   
-  /** Specifies the `rel` attribute of the rendered anchor. */
+  /** Specifies an accessible label for the rendered anchor via `aria-label`. */
   @Prop() accessibilityText: string;
 
-  /** Specifies whether the anchor is "disabled". Creating disabled anchors may introduce accessibility concerns - use with caution. */
+  /** Specifies whether the the rendered anchor is "disabled". Creating disabled anchors may introduce accessibility concerns - use with caution. */
   @Prop({ reflect: true }) disabled: boolean;
   
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */

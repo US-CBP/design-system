@@ -24,13 +24,11 @@ cbp-menu {
 
   /* The actual menu, positioned for mobile-first */
   .cbp-menu__menu {
-    position: fixed;
-    display: block;
-    bottom: 0;
+    position: absolute;
+    top: 0;
     left: 0;
-    width: 90%;
-    max-width: 100%;
-    margin: 0 5% var(--cbp-space-6x);
+    display: block;
+    width: max-content;
     padding: 0;
     background: var(--cbp-menu-color-bg);
     border-radius: var(--cbp-border-radius-softer);
@@ -42,10 +40,8 @@ cbp-menu {
   /* Menu Positioning for the larger breakpoints */
   @media (min-width: 37.5em) {
     .cbp-menu__menu {
-      position: absolute;
       width: max-content;
       max-width: max-content;
-      bottom: unset;
       margin: 0;
     }
 

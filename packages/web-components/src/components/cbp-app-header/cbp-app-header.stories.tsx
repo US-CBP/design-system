@@ -59,7 +59,6 @@ function generateNavItems(items, drawerid=undefined){
   return html.join('');
 }
 
-
 function generateSubnav(items){
   const html = items.map(({ icon, label, name, href, children, current }) => {
       return `<cbp-subnav-item label="${label}" name="${name}" href=${href} ${current? 'current' : ''}  >${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``} ${children? generateSubnav(children) : ``}</cbp-subnav-item>`;
@@ -86,6 +85,27 @@ const Template = ({ items, sx }) => {
     </cbp-app-header>
   `;
 };
+
+/* 
+    Test case for using flex to float additional content off to the right.
+
+      <cbp-flex 
+        align-items="center"
+        justify-content="space-between"
+        sx='{"width":"100%"}'
+      >
+        <div>
+          ${generateNavItems(items)}
+        </div>
+
+        <div>
+          <cbp-button>
+            Right-aligned button
+          </cbp-button>
+        </div>
+      </cbp-flex>
+*/
+
 
 
 export const ApplicationHeader = Template.bind({});

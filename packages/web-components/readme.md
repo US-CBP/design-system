@@ -16,8 +16,7 @@ In modern JavaScript frameworks, you can use the native web components, which ar
 - Call `defineCustomElements()` to initialize the loader and register the web components (to be lazy loaded when used).
 
 ```
-import { defineCustomElements } from '@cbpds/web-components/dist/esm/loader.js';
-
+import { defineCustomElements } from '@cbpds/web-components/dist/loader';
 defineCustomElements();
 ```
 
