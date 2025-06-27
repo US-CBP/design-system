@@ -1,6 +1,13 @@
 import { Component, Prop, Element, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
 import { createNamespaceKey } from '../../utils/utils';
 
+/**
+ * The Dropdown Item represents an individual option for the Dropdown, similar to an option in a 
+ * native `select` but with more flexibility.
+ * 
+ * @slot - The Dropdown Item's label or content goes in the default slot; for multi-select dropdowns, 
+ * this includes the checkbox component and slotted native `input type="checkbox"` and label.
+ */
 @Component({
   tag: 'cbp-dropdown-item',
   styleUrl: 'cbp-dropdown-item.scss',

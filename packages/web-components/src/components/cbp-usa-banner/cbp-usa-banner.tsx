@@ -1,5 +1,9 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 
+/**
+ * The "USA Banner" is similar to the U.S. Web Design System component, intended to establish trust 
+ * as a common identifier on public-facing government sites.
+ */
 @Component({
   tag: 'cbp-usa-banner',
   styleUrl: 'cbp-usa-banner.scss'

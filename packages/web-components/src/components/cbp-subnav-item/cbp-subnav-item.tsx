@@ -3,6 +3,8 @@ import { setCSSProps } from '../../utils/utils';
 
 
 /**
+ * The Subnav Item component represents a single navigation link and can also be nested multiple levels to convey a site/navigation hierarchy.
+ * 
  * @slot - The Subnav Item's children are placed in the default slot.
  * @slot - cbp-subnav-item-label - An optional slot in support of a label with markup. Replaces the `label` property if used.
  */
@@ -27,7 +29,7 @@ export class CbpSubnavItem {
   /** Specifies the label for the subnav item */
   @Prop () label: string;
 
-  /** Specifies the href passed to the button prop*/
+  /** Specifies the href passed to the button prop */
   @Prop() href: string;
 
   /** used to style icon based on open/hide state */

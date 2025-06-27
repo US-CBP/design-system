@@ -1,6 +1,14 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * The Icon component represents a standard API for embedding accessible Scalable Vector Graphics (SVG) icons 
+ * into applications/documents. This component contains a number of icons used by the design system and may be used to wrap
+ * external icons for consistent styling via the component API.
+ * 
+ * @slot - For icons that are not baked into this component, the SVG of an external icon may be slotted within 
+ * this component to inherit the component properties for controlling some aspects such as color, sizing, and rotation.
+ */
 @Component({
   tag: 'cbp-icon',
   styleUrl: 'cbp-icon.scss',

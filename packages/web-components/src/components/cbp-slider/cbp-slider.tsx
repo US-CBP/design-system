@@ -2,6 +2,8 @@ import { Component, Element, Prop, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 /**
+ * The Slider component allows for the selection of a value within a range, styled to design system specifications.
+ * 
  * @slot - A native `input type="range"` gets slotted within the default slot.
  * @slot cpb-slider-before - an optional slot to place content (e.g., an icon) before the slider control.
  * @slot cpb-slider-after - an optional slot to place content (e.g., an icon) after the slider control.

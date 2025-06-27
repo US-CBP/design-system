@@ -2,6 +2,8 @@ import { Component, Host, Element, Prop, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Card component is a visual treatment for a container meant for similarly-sized, repeated chunks of content.
+ * 
  * @slot - The default slot contains the body of the card.
  * @slot cbp-card-title - Contains the card title, if present.
  * @slot cbp-card-actions - Contains the links/buttons for decision cards.

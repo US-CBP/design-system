@@ -1,7 +1,11 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
-/** @slot - The default slot may contain any content representing the grid item. */
+/**
+ * The Grid Item component may optionally be used to specify properties of an individual grid item.
+ * 
+ * @slot - The default slot may contain any content representing the grid item. 
+ */
 @Component({
   tag: 'cbp-grid-item',
   styleUrl: 'cbp-grid-item.scss',

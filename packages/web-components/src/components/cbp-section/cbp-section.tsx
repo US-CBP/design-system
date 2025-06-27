@@ -2,6 +2,9 @@ import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Section component represents a generic block that may be used for semantic meaning or as 
+ * a generic container for styling.
+ * 
  * @slot - Content slotted in the default slot is rendered inside of the specified tag, if any.
  */
 @Component({

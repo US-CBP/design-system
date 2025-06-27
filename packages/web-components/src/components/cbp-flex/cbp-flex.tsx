@@ -2,6 +2,9 @@ import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Flex component invokes a CSS Flexbox context, acting as the flex parent and implementing 
+ * CSS Flexbox as a component API. Immediate child nodes are automatically considered flex items.
+ * 
  * @slot - DOM nodes placed in the default slot automatically become flex children. The use of `cbp-flex-item` is only required for granular control of individual flex item properties.
  */
 @Component({

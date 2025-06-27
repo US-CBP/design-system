@@ -1,6 +1,15 @@
 import { Component, Prop, Element, Host, Watch, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * The Toast component displays a brief, non-intrusive message that appears on a user interface to 
+ * provide feedback about an action or status update.
+ * 
+ * @slot - The toast content is slotted in the default slot.
+ * @slot cbp-toast-icon - The large toast icon, usually corresponding to the color variant, is slotted in this named slot.
+ * @slot cbp-toast-title - The toast title is slotted within this named slot.
+ * @slot cbp-toast-buttons - The toast action buttons, including a button to dismiss the toast at a minimum, are placed within this named slot.
+ */
 @Component({
   tag: 'cbp-toast',
   styleUrl: 'cbp-toast.scss'
@@ -50,7 +59,7 @@ export class CbpToast {
     return (
       <Host>
         <div class="cbp-toast-sidebar">
-            <slot name="cbp-toast-icon" />
+          <slot name="cbp-toast-icon" />
         </div>
         <div class="cbp-toast-container">
           <div class="cbp-toast-title">

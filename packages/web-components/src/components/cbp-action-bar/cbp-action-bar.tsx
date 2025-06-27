@@ -2,6 +2,9 @@ import { Component, Host, Element, Prop, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Action Bar acts as a container for form controls (buttons) or other tools to affect the content of the page. 
+ * It is often used for batch actions on table or structured list data.
+ * 
  * @slot - Any controls or content may be slotted into the default slot and will be aligned to the right of the bar.
  * @slot cbp-action-bar-info - This named slot is intended for information placed before the default slot content, aligned to the left of the bar.
  */

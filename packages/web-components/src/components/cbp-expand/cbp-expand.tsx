@@ -2,6 +2,9 @@ import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 /**
+ * The Expand component is a standalone component used for progressive disclosure, organizing content under 
+ * a relevant heading, which is used as a control for revealing and hiding its content.
+ * 
  * @slot - Hidden/revealed content is placed in the default slot.
  * @slot cbp-expand-label - Optionally the component label/heading may be slotted via named slot if it contains markup rather than plain text.
  */

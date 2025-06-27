@@ -2,8 +2,9 @@ import { Component, Prop, State, Element, Host, h } from '@stencil/core';
 import { setCSSProps, debounce } from '../../utils/utils';
 
 /**
- * The Breadcrumb component gives users an indicator of where they are within a site/application hierarchy, 
- * especially helpful when deeper within the site’s architecture.
+ * Breadcrumbs give users an indicator of where they are within a site/application hierarchy, 
+ * especially helpful when deeper within the site’s architecture. This component should wrap links 
+ * representing the parent sections of the current page, but not including the current page.
  * 
  * @slot - The individual links making up the breadcrumbs are placed in the default slot.
  */

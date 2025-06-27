@@ -1,7 +1,12 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
-/** @slot - The default slot accepts grid items. These should be `cbp-grid-item` components or DOM nodes; inserting plain text nodes as a direct descendant of the grid may yield unexpected results. */
+/** 
+ * The Grid component invokes a CSS Grid context, acting as the grid parent and implementing 
+ * CSS Grid as a component API. Immediate child nodes are automatically considered grid items.
+ * 
+ * @slot - The default slot accepts grid items. These should be `cbp-grid-item` components or DOM nodes; inserting plain text nodes as a direct descendant of the grid may yield unexpected results. 
+ */
 @Component({
   tag: 'cbp-grid',
   styleUrl: 'cbp-grid.scss',

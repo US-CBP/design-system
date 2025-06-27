@@ -6,10 +6,7 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-* The tooltip component allows the development team to disclose supplemental, not essential or nessecary, information to a user via a
-triggering element. These should be used sparingly since hiding functionality should be avoided if at all possible. Historically, 
-tooltips were accessible via hover but this does not conform to accessibility standards, and is completely invisible on touch-based 
-devices. As such, tooltips are activated by focusing or clicking the triggering element
+The Tooltip component allows for the disclosure of supplemental, non-essential information via a triggering element.
 
 ## Functional Requirements
 
@@ -21,13 +18,13 @@ since they are used to launch the tooltip
 
 ### User Interactions
 
-* Focusing or clicking on the tooltip makes the tooltip visible
+* Tooltips are activated by focusing or clicking the triggering element.
 * Once tooltip is open it will persist until the it is closed via clicking or focusing off of the close button in to left of content. 
-Once closed the focus will return to the tooltip control
+* Once closed the focus will return to the tooltip control.
 
 ### Responsiveness
 
-* 
+* TBD
 
 ### Accessibility
 
@@ -37,3 +34,7 @@ leaving the close button
 * The tooltip root/parent has a tabindex of 0 to assist with Accessibility concerns with focus
 
 ### Additional Notes and Considerations
+
+* Tooltips should be used sparingly since hiding functionality should be avoided if at all possible.
+* Historically, tooltips were accessible via hover but this does not conform to accessibility standards, and is completely invisible on touch-based 
+devices. As such, tooltips are activated by focusing or clicking the triggering element.

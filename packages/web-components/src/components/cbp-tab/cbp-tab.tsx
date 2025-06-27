@@ -2,6 +2,8 @@ import { Component, Element, Prop, Event, EventEmitter, Host, h } from '@stencil
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Tab component represents an individual tab control within a tab set.
+ * 
  * @slot - The default slot holds the tab's label (rendered as a button label), which may include text as well as icons, badges, and tags.
  */
 @Component({

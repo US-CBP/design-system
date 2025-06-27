@@ -2,6 +2,8 @@ import { Component, Element, Prop, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Menu Item component wraps each individual control (link or button) within the menu.
+ * 
  * @slot - Any form of control may be slotted in the default slot (a link, button, link component, button component, component-based Router, etc.). But any components should render a semantic anchor or button element.
  */
 @Component({

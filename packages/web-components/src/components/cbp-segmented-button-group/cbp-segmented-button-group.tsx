@@ -1,7 +1,12 @@
 import { Component, Prop, Element, Event, EventEmitter, Listen, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
-/** @slot - Only `cbp-button` components should be slotted within the default slot to make up the button group. */
+/** 
+ * The Segmented Button Group component wraps multiple buttons and can be used as a multi-option 
+ * toggle or group of controls.
+ * 
+ * @slot - Only `cbp-button` components should be slotted within the default slot to make up the button group. 
+ */
 @Component({
   tag: 'cbp-segmented-button-group',
   styleUrl: 'cbp-segmented-button-group.scss'

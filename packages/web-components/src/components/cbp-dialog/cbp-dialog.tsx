@@ -2,6 +2,15 @@ import { Component, Prop, Element, Method, Event, EventEmitter, Watch, Host, h }
 import { setCSSProps, getFocusableElements } from '../../utils/utils';
 //import state from './store';
 
+/**
+ * The Dialog component represents a dialog overlaid on top of the web page, which can be used similar 
+ * to an alert/confirm dialog or contain a small form.
+ * 
+ * @slot - The body content of the dialog goes in the default slot.
+ * @slot cbp-dialog-header - The dialog header, which should render a semantic h2 tag, is slotted into this named slot.
+ * @slot cbp-dialog-body - Body content may optionally be slotted into this named slot.
+ * @slot cbp-dialog-actions - The dialog actions (buttons) shall be slotted in this named slot.
+ */
 @Component({
   tag: 'cbp-dialog',
   styleUrl: 'cbp-dialog.scss',
@@ -27,8 +36,10 @@ export class CbpDialog {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+
   /** Custom event fired when the dialog is opened. */
   @Event() dialogOpen!: EventEmitter;
+
   /** Custom event fired when the dialog is closed. */
   @Event() dialogClose!: EventEmitter;
 
@@ -93,7 +104,13 @@ export class CbpDialog {
   render() {
     return (
       <Host onClick={e => this.handleBackdropClick(e)} onKeyDown={() => {}} id={this.uid}>
-        <div role="dialog" aria-modal="true" aria-label={this.accessibilityText} tabindex="-1" ref={el => (this.dialog = el)}>
+        <div 
+          role="dialog" 
+          aria-modal="true" 
+          aria-label={this.accessibilityText} 
+          tabindex="-1" 
+          ref={el => (this.dialog = el)}
+        >
           <div class="cbp-dialog-body">
             {[
               {

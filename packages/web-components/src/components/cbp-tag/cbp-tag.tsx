@@ -1,6 +1,11 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * The Tag component is a visual treatment for text, typically representing labels, keywords, or search terms.
+ * 
+ * @slot - The tag label or content is placed in the default slot.
+ */
 @Component({
   tag: 'cbp-tag',
   styleUrl: 'cbp-tag.scss'
