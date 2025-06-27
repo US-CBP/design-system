@@ -2,6 +2,8 @@ import { Component, Prop, State, Element, Event, EventEmitter, Host, h } from '@
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Code Snippet component is used to display code in a readable format and facilitate copying it.
+ * 
  * @slot - Raw, unescaped code is slotted in the default slot and escaped for display purposes.
  */
 @Component({

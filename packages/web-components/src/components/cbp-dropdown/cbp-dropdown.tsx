@@ -2,6 +2,9 @@ import { Component, Prop, State, Element, Event, EventEmitter, Method, Listen, W
 import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/utils';
 
 /**
+ * The Dropdown component offers an alternative to the native select element that can be fully styled 
+ * and support additional variants, such as a multi-select and/or combobox.
+ * 
  * @slot - Only Dropdown Items should be placed in the default slot.
  * @slot cbp-dropdown-attached-button-start - Allows for an optional button control to be slotted as an overlay at the start of the dropdown (such as a "previous" button).
  * @slot cbp-dropdown-attached-button-end - Allows for an optional button control to be slotted as an overlay at the end of the dropdown (such as a "next" button).

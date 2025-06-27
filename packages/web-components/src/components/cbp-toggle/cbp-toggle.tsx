@@ -1,6 +1,12 @@
 import { Component, Element, Event, EventEmitter, Prop, Host, h, Watch} from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * The Toggle component is a visual variant of a Boolean selection form control (checkbox), 
+ * representing an on/off toggle switch.
+ * 
+ * @slot - The label text followed by the native `input type="checkbox"` control are provided in the default slot.
+ */
 @Component({
   tag: 'cbp-toggle',
   styleUrl: 'cbp-toggle.scss',
@@ -89,7 +95,7 @@ export class CbpToggle {
       return (
         <Host>
           <label>
-            <slot ></slot>
+            <slot />
             {!this.hideStatus && <span>{this.checked ? this.statusTextOn : this.statusTextOff}</span>}
           </label>
         </Host>

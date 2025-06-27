@@ -2,6 +2,10 @@ import { Component, Element, Prop, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * Tabs are a common UI pattern of progressive disclosure mimicking the real world paradigm of tabbed 
+ * folders, each with a label and containing their own set of contents. Tabs allow the user to navigate 
+ * multiple views without leaving the page. This component wraps individual `cbp-tab` components.
+ * 
  * @slot - Only `cbp-tab` components shall be slotted within the default slot.
  */
 @Component({

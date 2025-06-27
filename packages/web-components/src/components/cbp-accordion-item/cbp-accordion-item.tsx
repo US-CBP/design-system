@@ -3,6 +3,9 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
 /**
+ * Accordion Items are placed as children of the parent `cbp-accordion` tag. The content is slotted and the 
+ * heading control text is provided via the label property or the optional named slot.
+ * 
  * @slot - Accordion Item content is placed in the default slot.
  * @slot cbp-accordion-item-label - Optionally, an Accordion Item heading with markup may be placed in this slot rather than via the labal property.
  */

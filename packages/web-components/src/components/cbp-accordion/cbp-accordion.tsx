@@ -1,7 +1,10 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
-/**
+/** 
+ * An Accordion is a common paradigm for progressive disclosure, organizing content under a relevant heading 
+ * that is used as a control for revealing and hiding its content. This component wraps multiple `cbp-accordion-item` tags.
+ * 
  * @slot - Accordion Items shall be slotted in the default slot. While other content may be included within the default slot, it is not recommended.
  */
 @Component({

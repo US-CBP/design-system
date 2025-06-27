@@ -2,6 +2,9 @@ import { Component, Element, Prop, State, Event, EventEmitter, Listen, Watch, Ho
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 /** 
+ * The File Input component builds upon the native file input, allowing for custom styles and 
+ * enhancing functionality when integrated with JavaScript frameworks.
+ * 
  * @slot - The native `input type="file"` gets slotted in the default slot.
  */
 @Component({

@@ -2,6 +2,9 @@ import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Multicol component is a wrapper that invokes a CSS Multi-column layout context, ideal for 
+ * using with semantic lists and checklists/radio lists.
+ * 
  * @slot - The default slot contains any content or children to be arranged in a multi-column layout.
  */
 @Component({

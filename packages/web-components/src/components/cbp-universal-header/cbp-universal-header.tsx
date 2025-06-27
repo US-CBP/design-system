@@ -1,6 +1,8 @@
 import { Component, Prop, Host, h } from '@stencil/core';
 
 /**
+ * The Universal Header component establishes CBP branding, displaying the seal in a standard DHS blue header.
+ * 
  * @slot - The default slot may contain any application-specific markup placed to the right of the CBP seal, usually a list of links.
  */
 @Component({

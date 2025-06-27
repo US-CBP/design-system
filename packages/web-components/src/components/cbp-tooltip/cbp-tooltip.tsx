@@ -1,6 +1,12 @@
 import { Component, Prop, Element, Host, h, Listen } from '@stencil/core';
 import { setCSSProps, createNamespaceKey, getInvertedContext } from '../../utils/utils';
 
+/**
+ * The Tooltip component allows for the disclosure of supplemental, non-essential information via a triggering element.
+ * 
+ * @slot - The tooltip control label is provided in the default slot.
+ * @slot cbp-tooltip-content - The tooltip content is placed in this named slot.
+ */
 @Component({
   tag: 'cbp-tooltip',
   styleUrl: 'cbp-tooltip.scss'
@@ -74,20 +80,20 @@ export class CbpTooltip {
   render() {
     return (
       <Host 
-        aria-describedby={this.fieldId}
-        tabindex='0'  
+        aria-describedby={`${this.fieldId}`}
+        role="button"
+        tabindex="0"  
         onfocus={() => this.open=true}
         onClick={() => this.host.focus()}
-        role='button'
       >
         <slot />
 
-        <div role='tooltip' id={this.fieldId}>
+        <div role="tooltip" id={`${this.fieldId}`}>
           <div>
-            <slot name='cbp-tooltip-content'></slot>
+            <slot name="cbp-tooltip-content"></slot>
           </div>
           <cbp-button
-            class='cbp-tooltip-close'
+            class="cbp-tooltip-close"
             type="button"
             fill="ghost"
             color="secondary" 
@@ -97,7 +103,7 @@ export class CbpTooltip {
             onKeyDown={(e) => this.handleFocusOut(e)}
           >
             <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
-                      </cbp-button>
+          </cbp-button>
         </div>
       </Host>
     );

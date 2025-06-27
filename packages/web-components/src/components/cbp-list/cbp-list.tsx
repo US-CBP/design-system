@@ -1,6 +1,12 @@
 import { Component, Host, Element, Prop, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * The List component is used to render semantic HTML lists in accordance with the design system, 
+ * supporting additional variants with custom/user-defined icons and description lists.
+ * 
+ * @slot - Only list items of the proper semantic type should be slotted in the default slot.
+ */
 @Component({
   tag: 'cbp-list',
   styleUrl: 'cbp-list.scss',

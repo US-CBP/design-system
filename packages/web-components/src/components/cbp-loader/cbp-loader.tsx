@@ -1,6 +1,11 @@
 import { Component, Element, Prop, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
+/**
+ * The Loader is used as a visual indicator of progress during waiting periods.
+ * 
+ * @slot - Label text may be provided in the default slot.
+ */
 @Component({
   tag: 'cbp-loader',
   styleUrl: 'cbp-loader.scss',

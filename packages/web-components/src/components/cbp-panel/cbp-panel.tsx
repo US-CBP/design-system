@@ -1,6 +1,12 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * A panel is a styled container for displaying information within the main page content area or to either side.
+ * 
+ * @slot - Panel content goes in the default slot.
+ * @slot cbp-panel-header - The panel header is placed in this named slot.
+ */
 @Component({
   tag: 'cbp-panel',
   styleUrl: 'cbp-panel.scss'

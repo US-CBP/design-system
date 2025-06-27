@@ -1,6 +1,13 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * The Footer component serves site visitors who arrive at the bottom of a page without finding 
+ * what they want, typically containing information about the agency and navigation links.
+ * 
+ * @slot - The main footer content goes in the default slot.
+ * @slot cbp-footer-nav - Footer navigation links are slotted within this named slot.
+ */
 @Component({
   tag: 'cbp-footer',
   styleUrl: 'cbp-footer.scss',
@@ -11,7 +18,6 @@ export class CbpFooter {
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
-
 
 
   componentWillLoad() {
@@ -40,5 +46,4 @@ export class CbpFooter {
       </Host>
     );
   }
-
 }

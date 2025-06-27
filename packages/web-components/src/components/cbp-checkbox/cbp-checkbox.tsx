@@ -3,6 +3,9 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
 /**
+ * The Checkbox component wraps the slotted native form control (`input type="checkbox"`) and label text, 
+ * providing cross-browser styling according to the design system specifications.
+ * 
  * @slot - the checkbox control and label text are placed in the default slot, both of which are rendered inside of the `label` element. The label should not include excessively long descriptive text.
  */
 @Component({

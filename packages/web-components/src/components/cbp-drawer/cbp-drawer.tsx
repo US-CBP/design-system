@@ -1,6 +1,13 @@
 import { Component, Prop, Element, Event, EventEmitter, Method, Watch, Host, h, State } from '@stencil/core';
 import { setCSSProps, getFocusableElements, getInvertedContext } from '../../utils/utils';
 
+/**
+ * The Drawer is a container that may be hidden and revealed, sliding in from either side of the viewport, 
+ * containing application-defined contents. The Drawer may optionally be rendered in the flow of the page 
+ * at larger screen sizes.
+ * 
+ * @slot - The Drawer contents go in the default slot.
+ */
 @Component({
   tag: 'cbp-drawer',
   styleUrl: 'cbp-drawer.scss',

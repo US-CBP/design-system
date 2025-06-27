@@ -2,6 +2,9 @@ import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Hide component represents a component-based implementation for programmatically hiding 
+ * (or visually hiding) content based on application logic or media query.
+ * 
  * @slot - Content in the default slot to be conditionally hidden.
  */
 @Component({

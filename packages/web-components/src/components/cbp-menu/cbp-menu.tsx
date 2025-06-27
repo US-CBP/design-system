@@ -2,6 +2,8 @@ import { Component, Element, Prop, Method, Watch, Event, EventEmitter, Host, h }
 import { setCSSProps, createNamespaceKey, doKeyboardNav, clickAwayListener } from '../../utils/utils';
 
 /**
+ * A Menu contains additional actions in the form of links or buttons, which can be shown by activating a control.
+ * 
  * @slot - Both the menu control and the menu items are slotted in the default slot. (The menu items are auto-slotting into their proper place).
  */
 @Component({

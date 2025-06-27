@@ -2,6 +2,9 @@ import { Component, Prop, State, Element, Event, EventEmitter, Method, Host, h }
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Table component is a wrapper component encapsulating design system styles for semantic HTML 
+ * tables as well as applying progressive enhancements to the contained table.
+ * 
  * @slot - The semantic table HTML is placed within the default slot.
  */
 @Component({

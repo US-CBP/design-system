@@ -3,6 +3,9 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
 /**
+ * The Form Field component represents a generic, reusable pattern for form fields of all types, displaying the 
+ * label and form control, along with optional descriptive text and error state in a consistent and accessible manner.
+ * 
  * @slot - the default slot holds the form control(s)/input(s).
  * @slot cbp-form-field-label - An optional slot for labels containing markup.
  * @slot cbp-form-field-description - An optional slot for descriptions containing markup.

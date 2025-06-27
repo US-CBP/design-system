@@ -1,6 +1,8 @@
 import { Component, Prop, Element, Event, EventEmitter, h, Host } from '@stencil/core';
 
 /**
+ * The Banner is a container spanning the entire viewport meant to highlight urgent or important content.
+ * 
  * @slot - The main content of the banner goes in the default slot. 
  * @slot cbp-banner-title - An optional banner title may be slotted here.
  */

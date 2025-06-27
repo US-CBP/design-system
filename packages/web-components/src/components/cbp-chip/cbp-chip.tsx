@@ -2,6 +2,8 @@ import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Chip component acts like an interactive version of the Tag and is typically used for selecting or filtering.
+ * 
  * @slot - The default slot defines the chip's label.
  * @slot cbp-chip-icon - Optionally slot a custom icon for the default state (will still show the x for removal when pressed).
  */

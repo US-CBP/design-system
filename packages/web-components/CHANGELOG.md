@@ -8,9 +8,9 @@ The React components are wrappers generated from this package and will share the
 
 * First cut of the `cbp-resize-observer` component.
 * Updated `cbp-breadcrumb` with responsive functionality using the Resize Observer and Menu components.
+* Updated `cbp-dropdown` to accept Space as a filter character (just not as the first character).
 * Minor bugfixes/updates to `cbp-menu`.
 * Add a vscode output target to Stencil config.
-
 
 ## [0.0.1-develop.21] 06-05-2025
 

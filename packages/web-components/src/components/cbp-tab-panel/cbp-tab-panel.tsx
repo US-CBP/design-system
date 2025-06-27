@@ -2,6 +2,8 @@ import { Component, Element, Prop, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Tab Panel component is a wrapper representing a tabpanel role and containing the content to be progressively disclosed.
+ * 
  * @slot - The default slot holds the contents of a tab panel, which may include any form of text, markup, and media elements.
  */
 @Component({

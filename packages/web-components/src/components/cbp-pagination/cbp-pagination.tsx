@@ -2,7 +2,10 @@ import { Component, Prop, State, Element, Event, EventEmitter, Listen, Host, h }
 import { setCSSProps } from '../../utils/utils';
 
 /**
- * @slot
+ * The Pagination component presents a common UI pattern for displaying data sets broken up into smaller, 
+ * more consumable (and performant) chunks or "pages."
+ * 
+ * @slot - The default slot positions specified content between the "showing items" text and page controls. This slot should rarely be used.
  * @slot cbp-pagination-items-per-page - Slot a `cbp-dropdown` here with numeric values (or "All") defining the options for page size.
  * @slot cbp-pagination-pages - Slot an empty `cbp-dropdown` here with next/previous controls for the page selection. The Pagination component will manage the items within this dropdown.
  */

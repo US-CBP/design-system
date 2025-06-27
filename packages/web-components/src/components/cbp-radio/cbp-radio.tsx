@@ -3,7 +3,9 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
 /**
- * @slot - the checkbox control and label text goes in the default slot, both of which are placed inside of the `label` element. The label should not include excessively long descriptive text.
+ * The Radio component wraps the slotted native form control (`input type="radio"`) and label text, providing cross-browser styling.
+ * 
+ * @slot - The radio control and label text goes in the default slot, both of which are placed inside of the `label` element. The label should not include excessively long descriptive text.
  */
 @Component({
   tag: 'cbp-radio',

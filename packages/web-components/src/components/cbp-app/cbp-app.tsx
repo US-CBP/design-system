@@ -1,11 +1,9 @@
 import { Component, Prop, Host, h, Env } from '@stencil/core';
 
-/*
-  An overarching "app" tag can act as a low-barrier way to get core design system elements (CSS, fonts)
-  as well as a way to manage site/page-level settings such as dark mode.
-*/
-
 /**
+ * An overarching App tag acts as a low-barrier way to get core design system elements (design tokens and styles)
+ * as well as a way to manage site/page-level settings such as dark mode.
+ * 
  *  @slot - All application markup should be placed within the default slot to inherit the base CSS, design tokens, and dark mode styling.
  */
 @Component({

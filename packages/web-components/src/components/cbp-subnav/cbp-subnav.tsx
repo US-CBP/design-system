@@ -3,6 +3,11 @@ import { setCSSProps } from '../../utils/utils';
 
 import state from '../cbp-app-header/store';
 
+/**
+ * Sub-Navigation (Subnav) is meant to be used as a secondary, vertical navigation.
+ * 
+ * @slot - Subnav Items (and rarely anything else) should be slotted in the default slot.
+ */
 @Component({
   tag: 'cbp-subnav',
   styleUrl: 'cbp-subnav.scss'

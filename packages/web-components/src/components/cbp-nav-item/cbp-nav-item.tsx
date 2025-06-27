@@ -3,6 +3,11 @@ import { setCSSProps } from '../../utils/utils';
 
 import state from '../cbp-app-header/store';
 
+/**
+ * The Nav Item component wraps each individual control (link or button) within the App Header.
+ * 
+ * @slot - Any form of control may be slotted in the default slot (a link, button, link component, button component, component-based Router, etc.). But any components should render a semantic anchor or button element.
+ */
 @Component({
   tag: 'cbp-nav-item',
   styleUrl: 'cbp-nav-item.scss',

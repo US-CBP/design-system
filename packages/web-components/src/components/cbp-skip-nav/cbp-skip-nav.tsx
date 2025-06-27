@@ -2,6 +2,9 @@ import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Skip Navigation link (or "Skip Nav") is an essential accessibility feature that allows screen 
+ * reader users to skip repetitive portions of the page and get right to the main content.
+ * 
  * @slot - The default slot accepts custom link text, which is only needed if multiple skip links are present. Otherwise, it is advised to use the default "Skip to main content", which has been validated for clarity and pronunciation.
  */
 @Component({

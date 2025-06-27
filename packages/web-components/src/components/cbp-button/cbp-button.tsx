@@ -3,6 +3,9 @@ import { setCSSProps, getElementAttrs, createNamespaceKey } from '../../utils/ut
 //import state from './store';
 
 /**
+ * The Button component represents a UI control visually styled like a button, regardless of whether 
+ * it renders (or wraps) a button or an anchor tag.
+ * 
  * @slot - The button's label, which may contain markup such as icons, is placed in the default slot.
  * @slot - cbp-button-custom - Custom buttons/anchors may be slotted via named-slot, which prevents the web component from rendering its own tag. In such a case, component properties that render attributes directly onto the rendered button will have no effect, as they are expected to be supplied directly on the slotted element.
  */

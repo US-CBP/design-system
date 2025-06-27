@@ -2,6 +2,8 @@ import { Component, Prop, Element, Host, h} from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Flex Item component may optionally be used to specify properties of an individual flex item.
+ * 
  * @slot - Content slotted in the default slot may consist of any combination of text or DOM nodes.
  */
 @Component({

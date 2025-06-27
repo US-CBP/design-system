@@ -2,6 +2,9 @@ import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Container component is a building block component for wrapping content and providing 
+ * visual treatment such as a background image or color.
+ * 
  * @slot - Any content or layout components may be slotted within the container.
  */
 @Component({

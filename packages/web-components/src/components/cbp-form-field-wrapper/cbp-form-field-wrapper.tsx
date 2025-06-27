@@ -2,6 +2,9 @@ import { Component, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Form Field Wrapper component is an optional wrapper that offers means for applying overlays 
+ * and button controls to form inputs in accordance with design requirements.
+ * 
  * @slot - The default slot holds the form control.
  * @slot cbp-form-field-overlay-start - Holds an overlay positioned on the left side of the form field.
  * @slot cbp-form-field-overlay-end - Holds an overlay positioned on the right side of the form field.

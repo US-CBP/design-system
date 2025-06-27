@@ -1,6 +1,12 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * The Typography component encapsulates predefined styles for different kinds of text that makes 
+ * up a website, merging design language with CSS and HTML implementations.
+ * 
+ * @slot - The content provided in the default slot is wrapped within the specified HTML tag.
+ */
 @Component({
   tag: 'cbp-typography',
   styleUrl: 'cbp-typography.scss',

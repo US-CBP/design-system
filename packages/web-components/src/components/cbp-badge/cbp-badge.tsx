@@ -2,6 +2,9 @@ import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
+ * The Badge component is generally used for emphasizing a numeric characteristic of an object 
+ * (e.g., the number of unread items in a folder).
+ * 
  * @slot - The slotted badge content should be a short 1-2 digit number.
  */
 @Component({
