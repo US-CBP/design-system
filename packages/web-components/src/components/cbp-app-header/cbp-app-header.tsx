@@ -1,4 +1,5 @@
-import { Component, Element, Listen, Host, h } from '@stencil/core';
+import { Component, Element, Listen, Host, h, State } from '@stencil/core';
+import { debounce } from '../../utils/utils';
 import state from '../cbp-app-header/store';
 
 /**
@@ -14,7 +15,15 @@ export class CbpAppHeader {
   private navItems: HTMLCbpNavItemElement[] = [];
   private currentItem: HTMLCbpNavItemElement;
 
+  private drawerButton: HTMLCbpButtonElement;
+  private nav: HTMLElement;
+  private children: HTMLElement[] = []; 
+  private resizeWidth; 
+
   @Element() host: HTMLCbpAppHeaderElement;
+
+  
+  @State() menuItems: HTMLCbpMenuItemElement[] = [];
 
   @Listen('drawerClose', { target: 'body'})
   handleNavDrawerClose(e) {
@@ -48,6 +57,36 @@ export class CbpAppHeader {
     }, 101) // Note: Time 101 is set due to cbp-drawer setting @ 100
   }
 
+  handleResize( width ) {
+    
+    // Get the width of the content (and update the this.resizeWidth) before doing responsive adjustments.
+    this.resizeWidth == undefined? this.resizeWidth = this.nav.getBoundingClientRect().width : null;
+    
+    // If the emitted size is less than the current mode's width, step down to the next responsive size
+    if (width <= this.resizeWidth) {
+      this.resizeResponsive('compact');
+    } else{
+      this.resizeResponsive('large');
+    }
+  }
+
+  resizeResponsive(mode){
+    if(mode == 'compact' ) {
+      this.children.forEach( (item, index) => {
+              if (index > 0) {
+                item.setAttribute('hidden','');
+              }
+            });
+            this.drawerButton.removeAttribute('hidden');
+    } else {
+      this.children.forEach( (item, index) => {
+        if (index > 0) {
+          item.removeAttribute('hidden');
+        }
+      });
+      this.drawerButton.setAttribute('hidden', '');
+    }
+  }
 
   componentWillLoad() {
     this.navItems = Array.from(this.host.querySelectorAll('cbp-nav-item'));
@@ -62,15 +101,47 @@ export class CbpAppHeader {
     });
   }
 
+  componentDidLoad(){
+    // Get the immediate children to toggle hidden
+    this.children=Array.from(this.nav.querySelectorAll(':scope > *'));   
+  }
+
   render() {
     if(this.currentItem?.name != state.currentParent) {
       this.updateCurrentItem(state.currentParent);
     }
-    
+
     return (
       <Host>
-        <slot name="cbp-home" />
-        <slot />
+        <cbp-resize-observer 
+          onResized={ debounce((e) => {
+            this.handleResize(e.detail.width);
+        }, 10)}
+        >
+          <nav 
+            aria-label="Primary Navigation" 
+            ref={el => this.nav = el}
+          >
+            <slot name="cbp-home" />
+            <slot />
+            
+            <cbp-button
+              hidden
+              ref={el => this.drawerButton = el}
+              fill="outline"
+              color="secondary"
+              target-prop="open"
+              controls="navDrawer"
+              accessibilityText="Navigation Menu"
+            >
+              <cbp-icon
+                name="ellipsis-vertical"
+                rotate={90}
+              />
+            </cbp-button>
+          </nav>
+        </cbp-resize-observer>
+        
       </Host>
     );
   }

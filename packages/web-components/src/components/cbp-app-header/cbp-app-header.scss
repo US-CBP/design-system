@@ -17,16 +17,24 @@
   --cbp-app-header-color-background: var(--cbp-app-header-color-background-dark);
 }
 
-cbp-app-header {
-  display: flex;
-  align-items: center;
-  align-content: stretch;
-  position: sticky;
-  top: calc(-1 * var(--cbp-space-half-x));
-  width: 100%;
+cbp-app-header{
+
   min-height: var(--cbp-space-14x);
   padding: 0 var(--cbp-responsive-spacing-outer);
   background-color: var(--cbp-app-header-color-background);
   box-shadow: var(--cbp-shadow-level-3-down);
   z-index: var(--cbp-z-index-level-1);
+  position: sticky;
+  top: calc(-1 * var(--cbp-space-half-x));
+
+  display: block;
+  width: 100%;
+
+  nav{
+    display: flex;
+    align-items: center;
+    align-content: stretch;
+    // width: 100%;
+    width: max-content;
+  }
 }
