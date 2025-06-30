@@ -21,7 +21,7 @@ export class CbpAppHeader {
   private navWidth; 
 
   /** Specifies the id of the drawer to be launched*/
-  @Prop() subnavdrawerid: string;
+  @Prop() subnavDrawerId: string;
 
   @Element() host: HTMLCbpAppHeaderElement;
 
@@ -78,6 +78,8 @@ export class CbpAppHeader {
         item.setAttribute('hidden','');
       }
     });
+
+    this.drawerButton.parentElement.classList.add('cbpAppHeaderResize');
     this.drawerButton ? this.drawerButton.removeAttribute('hidden') : '';
   }
 
@@ -87,6 +89,8 @@ export class CbpAppHeader {
         item.removeAttribute('hidden');
       }
     });
+    
+    this.drawerButton.parentElement.classList.remove('cbpAppHeaderResize');
     this.drawerButton ? this.drawerButton.setAttribute('hidden', ''): '';
   }
 
@@ -121,6 +125,7 @@ export class CbpAppHeader {
         }, 10)}
         >
           <nav 
+            // class='cbpAppHeaderResize'
             aria-label="Primary Navigation" 
             ref={el => this.nav = el}
           >
@@ -134,7 +139,7 @@ export class CbpAppHeader {
                 fill="outline"
                 color="secondary"
                 target-prop="open"
-                controls={this.subnavdrawerid}
+                controls={this.subnavDrawerId}
                 accessibilityText="Navigation Menu"
               >
                 <cbp-icon
@@ -142,19 +147,6 @@ export class CbpAppHeader {
                 />
               </cbp-button>
             }
-            {/* <cbp-button
-              hidden
-              ref={el => this.drawerButton = el}
-              fill="outline"
-              color="secondary"
-              target-prop="open"
-              controls={this.subnavdrawerid}
-              accessibilityText="Navigation Menu"
-            >
-              <cbp-icon
-                name="bars"
-              />
-            </cbp-button> */}
           </nav>
         </cbp-resize-observer>
         

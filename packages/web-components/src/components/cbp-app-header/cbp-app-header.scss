@@ -35,4 +35,10 @@ cbp-app-header{
     align-content: stretch;
     width: max-content;
   }
+
+  .cbpAppHeaderResize{
+    align-items: center;
+    justify-content: space-between;
+    width: 100%
+  }
 }
