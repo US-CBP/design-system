@@ -66,24 +66,10 @@ function generateSubnav(items){
       return html.join('');
 }
 
+function renderDrawer(items, drawerid, store){
 
-const Template = ({ drawerid, store, items, sx }) => {  
-  
-  // preventDefault on all links in the header and subnav
-  setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-app-header a');
-    anchors.forEach(anchor => {
-      anchor.addEventListener('click', function(e) { e.preventDefault(); })
-    });
-  }, 500);
-
-  return ` 
-    <cbp-app-header    
-      ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-    >
-      ${generateNavItems(items)}
-    </cbp-app-header>
+  if(items.length > 1){
+    return `
     <cbp-drawer
         ${drawerid ? `uid=${drawerid}` : ''}
         >
@@ -129,7 +115,30 @@ const Template = ({ drawerid, store, items, sx }) => {
             </cbp-subnav>
 
           </cbp-panel>
-        </cbp-drawer>  
+        </cbp-drawer> 
+    `;
+  }else {
+    return '';
+  }
+}
+const Template = ({ drawerid, store, items, sx }) => {  
+  
+  // preventDefault on all links in the header and subnav
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-app-header a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+
+  return ` 
+    <cbp-app-header    
+      ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      ${generateNavItems(items)}
+    </cbp-app-header>
+     ${renderDrawer(items, drawerid, store)}
   `;
 };
 
@@ -200,51 +209,7 @@ const AppHeaderWithSubnavTemplate = ({ drawerid, store, items, sx }) => {
        ${generateNavItems(items, drawerid)}
       </cbp-app-header>
       
-      <cbp-drawer
-        ${drawerid ? `uid=${drawerid}` : ''}
-        >
-          <cbp-panel
-            aria-labelledby="panelheader"
-            role="complementary"
-          >
-            <cbp-typography
-              slot="cbp-panel-header"
-              tag="h3"
-              variant="heading-lg"
-              id="panelheader"
-            >
-              Application Name
-            </cbp-typography>
-
-            <cbp-form-field 
-              label="Search"
-            >
-              <cbp-form-field-wrapper>
-                <input
-                  type="search"
-                  name="search"
-                />
-                <span slot="cbp-form-field-attached-button">
-                  <cbp-button
-                    type="submit"
-                    fill="solid"
-                    color="secondary"
-                    variant="square"
-                    accessibility-text="Search"
-                  >
-                    <cbp-icon name="magnifying-glass"></cbp-icon>
-                  </cbp-button>
-                </span>
-              </cbp-form-field-wrapper>
-            </cbp-form-field>
-
-            <cbp-subnav
-              ${store ? 'store' : ''}
-            >
-              ${generateSubnav(items)}
-            </cbp-subnav>
-          </cbp-panel>
-        </cbp-drawer>  
+     ${renderDrawer(items, drawerid, store)}  
       `;
 };
 

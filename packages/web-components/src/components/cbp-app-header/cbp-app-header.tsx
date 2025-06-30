@@ -79,7 +79,7 @@ export class CbpAppHeader {
       }
     });
 
-    this.drawerButton.parentElement.classList.add('cbpAppHeaderResize');
+    this.drawerButton.parentElement.classList.add('cbp-app-header-responsive');
     this.drawerButton ? this.drawerButton.removeAttribute('hidden') : '';
   }
 
@@ -90,7 +90,7 @@ export class CbpAppHeader {
       }
     });
     
-    this.drawerButton.parentElement.classList.remove('cbpAppHeaderResize');
+    this.drawerButton.parentElement.classList.remove('cbp-app-header-responsive');
     this.drawerButton ? this.drawerButton.setAttribute('hidden', ''): '';
   }
 
@@ -125,7 +125,6 @@ export class CbpAppHeader {
         }, 10)}
         >
           <nav 
-            // class='cbpAppHeaderResize'
             aria-label="Primary Navigation" 
             ref={el => this.nav = el}
           >
