@@ -1,4 +1,4 @@
-import { Component, Element, Listen, Host, h, State } from '@stencil/core';
+import { Component, Element, Listen, Host, h, Prop} from '@stencil/core';
 import { debounce } from '../../utils/utils';
 import state from '../cbp-app-header/store';
 
@@ -18,12 +18,12 @@ export class CbpAppHeader {
   private drawerButton: HTMLCbpButtonElement;
   private nav: HTMLElement;
   private children: HTMLElement[] = []; 
-  private resizeWidth; 
+  private navWidth; 
+
+  /** Specifies the id of the drawer to be launched*/
+  @Prop() subnavdrawerid: string;
 
   @Element() host: HTMLCbpAppHeaderElement;
-
-  
-  @State() menuItems: HTMLCbpMenuItemElement[] = [];
 
   @Listen('drawerClose', { target: 'body'})
   handleNavDrawerClose(e) {
@@ -59,33 +59,35 @@ export class CbpAppHeader {
 
   handleResize( width ) {
     
-    // Get the width of the content (and update the this.resizeWidth) before doing responsive adjustments.
-    this.resizeWidth == undefined? this.resizeWidth = this.nav.getBoundingClientRect().width : null;
+    // Get the width of the content (and update the this.navWidth) before doing responsive adjustments.
+    if(this.navWidth == undefined){
+      this.navWidth = this.nav.getBoundingClientRect().width;
+    }
     
     // If the emitted size is less than the current mode's width, step down to the next responsive size
-    if (width <= this.resizeWidth) {
-      this.resizeResponsive('compact');
+    if (width <= this.navWidth) {
+      this.doResponsive();
     } else{
-      this.resizeResponsive('large');
+      this.doFullSize();
     }
   }
 
-  resizeResponsive(mode){
-    if(mode == 'compact' ) {
-      this.children.forEach( (item, index) => {
-              if (index > 0) {
-                item.setAttribute('hidden','');
-              }
-            });
-            this.drawerButton.removeAttribute('hidden');
-    } else {
-      this.children.forEach( (item, index) => {
-        if (index > 0) {
-          item.removeAttribute('hidden');
-        }
-      });
-      this.drawerButton.setAttribute('hidden', '');
-    }
+  doResponsive(){
+    this.children.forEach( (item, index) => {
+      if (index > 0) {
+        item.setAttribute('hidden','');
+      }
+    });
+    this.drawerButton.removeAttribute('hidden');
+  }
+
+  doFullSize(){
+    this.children.forEach( (item, index) => {
+      if (index > 0) {
+        item.removeAttribute('hidden');
+      }
+    });
+    this.drawerButton.setAttribute('hidden', '');
   }
 
   componentWillLoad() {
@@ -131,12 +133,11 @@ export class CbpAppHeader {
               fill="outline"
               color="secondary"
               target-prop="open"
-              controls="navDrawer"
+              controls={this.subnavdrawerid}
               accessibilityText="Navigation Menu"
             >
               <cbp-icon
-                name="ellipsis-vertical"
-                rotate={90}
+                name="bars"
               />
             </cbp-button>
           </nav>

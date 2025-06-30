@@ -28,13 +28,11 @@ cbp-app-header{
   top: calc(-1 * var(--cbp-space-half-x));
 
   display: block;
-  width: 100%;
 
   nav{
     display: flex;
     align-items: center;
     align-content: stretch;
-    // width: 100%;
     width: max-content;
   }
 }

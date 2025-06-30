@@ -78,7 +78,7 @@ const Template = ({ items, sx }) => {
   }, 500);
 
   return ` 
-    <cbp-app-header
+    <cbp-app-header  
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
       ${generateNavItems(items)}
@@ -147,6 +147,7 @@ const AppHeaderWithSubnavTemplate = ({ drawerid, store, items, sx }) => {
 
   return ` 
       <cbp-app-header
+        ${drawerid ? `subnavdrawerid=${drawerid}`: ``}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
        ${generateNavItems(items, drawerid)}
