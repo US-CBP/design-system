@@ -78,7 +78,7 @@ export class CbpAppHeader {
         item.setAttribute('hidden','');
       }
     });
-    this.drawerButton.removeAttribute('hidden');
+    this.drawerButton ? this.drawerButton.removeAttribute('hidden') : '';
   }
 
   doFullSize(){
@@ -87,7 +87,7 @@ export class CbpAppHeader {
         item.removeAttribute('hidden');
       }
     });
-    this.drawerButton.setAttribute('hidden', '');
+    this.drawerButton ? this.drawerButton.setAttribute('hidden', ''): '';
   }
 
   componentWillLoad() {
@@ -126,8 +126,23 @@ export class CbpAppHeader {
           >
             <slot name="cbp-home" />
             <slot />
-            
-            <cbp-button
+
+            {(this.navItems.length > 1) &&
+              <cbp-button
+                hidden
+                ref={el => this.drawerButton = el}
+                fill="outline"
+                color="secondary"
+                target-prop="open"
+                controls={this.subnavdrawerid}
+                accessibilityText="Navigation Menu"
+              >
+                <cbp-icon
+                  name="bars"
+                />
+              </cbp-button>
+            }
+            {/* <cbp-button
               hidden
               ref={el => this.drawerButton = el}
               fill="outline"
@@ -139,7 +154,7 @@ export class CbpAppHeader {
               <cbp-icon
                 name="bars"
               />
-            </cbp-button>
+            </cbp-button> */}
           </nav>
         </cbp-resize-observer>
         
