@@ -1,6 +1,6 @@
 # CHANGELOG
 
-This CHANGELOG.md tracks the updates to the web components package of the CBP design system, which is currently in active development/pre-release alpha state. As such, not all changes will be logged; only new components and breaking changes. As a pre-release, there WILL be breaking changes. Upon official release, this log may be wiped clean and started fresh and [semantic versioning](https://semver.org/) will be followed.
+This CHANGELOG.md tracks the updates to the web components package of the CBP design system, which is currently in active development/beta state. As such, not all changes will be logged; only new components and breaking changes. As a beta release, there WILL be breaking changes. Upon official release, this log may be wiped clean and started fresh and [semantic versioning](https://semver.org/) will be followed.
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
