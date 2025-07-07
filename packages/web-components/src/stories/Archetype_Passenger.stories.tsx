@@ -168,7 +168,10 @@ function generatePassengers(passengerArgs, page, pageSize) {
               gap="var(--cbp-space-9x)"
               breakpoint="48rem"
             >
-              <cbp-flex>
+              <cbp-flex
+                gap="var(--cbp-space-2x)"
+                align-items="flex-start"
+              >
                   <img
                     src="https://thispersondoesnotexist.com/"
                     alt="avatar"
@@ -728,9 +731,9 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
    *
    */
   
-  
+  // preventDefault on all links in the header and subnav
   setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-app-header a');
+    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });

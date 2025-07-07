@@ -155,7 +155,7 @@ export const Internal = InternalTemplate.bind({});
 const Internal2ColumnTemplate = ({ isLoggedIn, username, navItems, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
   
   setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-app-header a');
+    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
