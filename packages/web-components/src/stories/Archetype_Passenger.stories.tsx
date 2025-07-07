@@ -10,7 +10,7 @@ export default {
   args: {
     username: 'HASHIDX',
     isLoggedIn: true,
-    appHeaderItems: [
+    navItems: [
       {
         label: 'Application Name',
         href: './?path=/story/components-application-header--application-header#',
@@ -90,7 +90,6 @@ function renderDrawer(items, drawerid, store){
         >
           <cbp-panel
             aria-labelledby="panelheader"
-            role="complementary"
           >
             <cbp-typography
               slot="cbp-panel-header"
@@ -124,7 +123,8 @@ function renderDrawer(items, drawerid, store){
             </cbp-form-field>
 
             <cbp-subnav
-            ${store ? 'store' : ''}
+              accessibility-text="Application Name Navigation"
+              ${store ? 'store' : ''}
             >
               ${generateSubnav(items)}
             </cbp-subnav>
@@ -170,7 +170,7 @@ function generatePassengers(passengerArgs, page, pageSize) {
             >
               <cbp-flex>
                   <img
-                    src="https://api.dicebear.com/9.x/personas/svg"
+                    src="https://thispersondoesnotexist.com/"
                     alt="avatar"
                     style="width: 100px"
                   />
@@ -717,7 +717,7 @@ function manifestPane(manifestArgs) {
         </cbp-drawer>
       `;
 }
-const InternalTemplate = ({ isLoggedIn, username, appHeaderItems, passengersArgs, manifestArgs }) => {
+const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, manifestArgs }) => {
   /** Techdebt for iteration on filter & manifest pane:
    * Icon for the app directory button is incorrect, verify all icons in buttons, most of these are initial stubs
    * Buttons in the universal header need spacing between icon & text
@@ -727,7 +727,15 @@ const InternalTemplate = ({ isLoggedIn, username, appHeaderItems, passengersArgs
    * Footer missing InfoSec section (right side of footer)
    *
    */
-
+  
+  
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-app-header a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+  
   return `
     <cbp-skip-nav></cbp-skip-nav>
 
@@ -779,10 +787,10 @@ const InternalTemplate = ({ isLoggedIn, username, appHeaderItems, passengersArgs
       <cbp-app-header
           subnav-drawer-id='appHeaderDrawer'
         >
-        ${generateNavItems(appHeaderItems)}
+        ${generateNavItems(navItems)}
         </cbp-app-header>
         
-     ${renderDrawer(appHeaderItems, 'appHeaderDrawer', false)}
+     ${renderDrawer(navItems, 'appHeaderDrawer', false)}
     </header>
 
     <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)"}'>

@@ -21,7 +21,7 @@ export default {
   args: {
     username: 'HASHIDX',
     isLoggedIn: true,
-    appHeaderItems: [
+    navItems: [
       {
         label: 'Application Name',
         href: './?path=/story/components-application-header--application-header#',
@@ -43,7 +43,15 @@ export default {
   },
 };
 
-const InternalTemplate = ({ isLoggedIn, username, appHeaderItems }) => {
+const InternalTemplate = ({ isLoggedIn, username, navItems }) => {
+
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-app-header a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+  
   return ` 
     <cbp-skip-nav></cbp-skip-nav>
     <cbp-flex
@@ -92,10 +100,10 @@ const InternalTemplate = ({ isLoggedIn, username, appHeaderItems }) => {
         <cbp-app-header
           subnav-drawer-id='appHeaderDrawer'
         >
-        ${generateNavItems(appHeaderItems)}
+        ${generateNavItems(navItems)}
         </cbp-app-header>
         
-     ${renderDrawer(appHeaderItems, 'appHeaderDrawer', false)}
+     ${renderDrawer(navItems, 'appHeaderDrawer', false)}
       </header>
 
       <cbp-container sx='{"flex-grow":"1","padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
@@ -144,7 +152,15 @@ const InternalTemplate = ({ isLoggedIn, username, appHeaderItems }) => {
 export const Internal = InternalTemplate.bind({});
 
 
-const Internal2ColumnTemplate = ({ isLoggedIn, username, appHeaderItems, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
+const Internal2ColumnTemplate = ({ isLoggedIn, username, navItems, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
+  
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-app-header a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+  
   return ` 
     <cbp-skip-nav></cbp-skip-nav>
     <cbp-flex
@@ -193,10 +209,10 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, appHeaderItems, content
         <cbp-app-header
           subnav-drawer-id='appHeaderDrawer'
         >
-        ${generateNavItems(appHeaderItems)}
+        ${generateNavItems(navItems)}
         </cbp-app-header>
         
-     ${renderDrawer(appHeaderItems, 'appHeaderDrawer', false)}
+     ${renderDrawer(navItems, 'appHeaderDrawer', false)}
       </header>
 
       <cbp-grid
@@ -326,7 +342,6 @@ function renderDrawer(items, drawerid, store){
         >
           <cbp-panel
             aria-labelledby="panelheader"
-            role="complementary"
           >
             <cbp-typography
               slot="cbp-panel-header"
@@ -360,6 +375,7 @@ function renderDrawer(items, drawerid, store){
             </cbp-form-field>
 
             <cbp-subnav
+            accessibility-text="Application Name Navigation"
             ${store ? 'store' : ''}
             >
               ${generateSubnav(items)}
@@ -416,7 +432,15 @@ function generateCards(numberOfCards) {
 
 
 
-const InternalCardsLayoutTemplate = ({ isLoggedIn, username, appHeaderItems, numberOfCards, cardMinWidth }) => {
+const InternalCardsLayoutTemplate = ({ isLoggedIn, username, navItems, numberOfCards, cardMinWidth }) => {
+  
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-app-header a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+
   return ` 
     <cbp-skip-nav></cbp-skip-nav>
     <cbp-flex
@@ -465,10 +489,10 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, appHeaderItems, num
         <cbp-app-header
           subnav-drawer-id='appHeaderDrawer'
         >
-        ${generateNavItems(appHeaderItems)}
+        ${generateNavItems(navItems)}
         </cbp-app-header>
         
-     ${renderDrawer(appHeaderItems, 'appHeaderDrawer', false)}
+     ${renderDrawer(navItems, 'appHeaderDrawer', false)}
       </header>
 
       <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)","flex-grow":"2"}'>
