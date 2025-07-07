@@ -21,10 +21,29 @@ export default {
   args: {
     username: 'HASHIDX',
     isLoggedIn: true,
+    appHeaderItems: [
+      {
+        label: 'Application Name',
+        href: './?path=/story/components-application-header--application-header#',
+        current: true
+      },
+      {
+        label: 'Nav Item 1',
+        href: './?path=/story/components-application-header--application-header#',
+      },
+      {
+        label: 'Nav Item 2',
+        href: './?path=/story/components-application-header--application-header#',
+      },
+      {
+        label: 'Nav Item 3',
+        href: './?path=/story/components-application-header--application-header#',
+      },
+    ] 
   },
 };
 
-const InternalTemplate = ({ isLoggedIn, username }) => {
+const InternalTemplate = ({ isLoggedIn, username, appHeaderItems }) => {
   return ` 
     <cbp-skip-nav></cbp-skip-nav>
     <cbp-flex
@@ -70,36 +89,13 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
           </ul>
         </cbp-universal-header>
 
-        <cbp-app-header>
-          <cbp-nav-item slot="cbp-home" selected>
-            <cbp-button
-              tag="a"
-              fill="ghost"
-              color="secondary"
-              href="./?path=/story/patterns-page-templates--internal#"
-            >
-              Application Name
-            </cbp-button></cbp-nav-item
-          ><cbp-nav-item>
-            <cbp-button
-              tag="a"
-              fill="ghost"
-              color="secondary"
-              href="./?path=/story/patterns-page-templates--internal#"
-            >
-              Single Nav Item 1
-            </cbp-button></cbp-nav-item
-          ><cbp-nav-item>
-            <cbp-button
-              tag="a"
-              fill="ghost"
-              color="secondary"
-              href="./?path=/story/patterns-page-templates--internal#"
-            >
-              Single Nav Item 2
-            </cbp-button></cbp-nav-item
-          >
+        <cbp-app-header
+          subnav-drawer-id='appHeaderDrawer'
+        >
+        ${generateNavItems(appHeaderItems)}
         </cbp-app-header>
+        
+     ${renderDrawer(appHeaderItems, 'appHeaderDrawer', false)}
       </header>
 
       <cbp-container sx='{"flex-grow":"1","padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
@@ -148,7 +144,7 @@ const InternalTemplate = ({ isLoggedIn, username }) => {
 export const Internal = InternalTemplate.bind({});
 
 
-const Internal2ColumnTemplate = ({ isLoggedIn, username, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
+const Internal2ColumnTemplate = ({ isLoggedIn, username, appHeaderItems, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
   return ` 
     <cbp-skip-nav></cbp-skip-nav>
     <cbp-flex
@@ -194,36 +190,13 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, contentGridSize, sideba
           </ul>
         </cbp-universal-header>
 
-        <cbp-app-header>
-          <cbp-nav-item slot="cbp-home" selected>
-            <cbp-button
-              tag="a"
-              fill="ghost"
-              color="secondary"
-              href="./?path=/story/patterns-page-templates--internal-2-column#"
-            >
-              Application Name
-            </cbp-button></cbp-nav-item
-          ><cbp-nav-item>
-            <cbp-button
-              tag="a"
-              fill="ghost"
-              color="secondary"
-              href="./?path=/story/patterns-page-templates--internal-2-column#"
-            >
-              Single Nav Item 1
-            </cbp-button></cbp-nav-item
-          ><cbp-nav-item>
-            <cbp-button
-              tag="a"
-              fill="ghost"
-              color="secondary"
-              href="./?path=/story/patterns-page-templates--internal-2-column#"
-            >
-              Single Nav Item 2
-            </cbp-button></cbp-nav-item
-          >
+        <cbp-app-header
+          subnav-drawer-id='appHeaderDrawer'
+        >
+        ${generateNavItems(appHeaderItems)}
         </cbp-app-header>
+        
+     ${renderDrawer(appHeaderItems, 'appHeaderDrawer', false)}
       </header>
 
       <cbp-grid
@@ -300,7 +273,105 @@ Internal2Column.args = {
 }
 
 
+function generateNavItems(items, drawerid=undefined){
+  const html =  items.map(({ label, name, href, current, children}, index) => {
+    if(!children){
+      return `
+        <cbp-nav-item 
+          ${name ? `name="${name}"` : ''} 
+          ${index == 0 ? `slot="cbp-home"` : ''}
+          ${current ? 'current' : ''}
+        >
+          <a href="${href}">
+            ${label}
+          </a>
+        </cbp-nav-item>
+      `;
+    }
+    else {
+      return `
+        <cbp-nav-item 
+          ${name ? `name="${name}"` : ''} 
+          ${current ? 'current' : ''}
+        > 
+          <cbp-button 
+            fill="ghost" 
+            color="secondary" 
+            target-prop="open" 
+            controls=${drawerid}
+          >
+            ${label}
+            <cbp-icon name="chevron-right" rotate="90"></cbp-icon>
+          </cbp-button>
+        </cbp-nav-item>
+      `;
+    }
+  });
+  return html.join('');
+}
 
+function generateSubnav(items){
+  const html = items.map(({ icon, label, name, href, children, current }) => {
+      return `<cbp-subnav-item label="${label}" name="${name}" href=${href} ${current? 'current' : ''}  >${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``} ${children? generateSubnav(children) : ``}</cbp-subnav-item>`;
+  });
+      return html.join('');
+}
+
+function renderDrawer(items, drawerid, store){
+
+  if(items.length > 1){
+    return `
+    <cbp-drawer
+        ${drawerid ? `uid=${drawerid}` : ''}
+        >
+          <cbp-panel
+            aria-labelledby="panelheader"
+            role="complementary"
+          >
+            <cbp-typography
+              slot="cbp-panel-header"
+              tag="h3"
+              variant="heading-lg"
+              id="panelheader"
+            >
+              Application Name
+            </cbp-typography>
+
+            <cbp-form-field 
+              label="Search"
+            >
+              <cbp-form-field-wrapper>
+                <input
+                  type="search"
+                  name="search"
+                />
+                <span slot="cbp-form-field-attached-button">
+                  <cbp-button
+                    type="submit"
+                    fill="solid"
+                    color="secondary"
+                    variant="square"
+                    accessibility-text="Search"
+                  >
+                    <cbp-icon name="magnifying-glass"></cbp-icon>
+                  </cbp-button>
+                </span>
+              </cbp-form-field-wrapper>
+            </cbp-form-field>
+
+            <cbp-subnav
+            ${store ? 'store' : ''}
+            >
+              ${generateSubnav(items)}
+            </cbp-subnav>
+
+          </cbp-panel>
+        </cbp-drawer> 
+    `;
+  }else {
+    return '';
+  }
+}
 
 function generateCards(numberOfCards) {
   let html=''
@@ -345,7 +416,7 @@ function generateCards(numberOfCards) {
 
 
 
-const InternalCardsLayoutTemplate = ({ isLoggedIn, username, numberOfCards, cardMinWidth }) => {
+const InternalCardsLayoutTemplate = ({ isLoggedIn, username, appHeaderItems, numberOfCards, cardMinWidth }) => {
   return ` 
     <cbp-skip-nav></cbp-skip-nav>
     <cbp-flex
@@ -391,36 +462,13 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, numberOfCards, card
           </ul>
         </cbp-universal-header>
 
-        <cbp-app-header>
-          <cbp-nav-item slot="cbp-home" selected>
-            <cbp-button
-              tag="a"
-              fill="ghost"
-              color="secondary"
-              href="./?path=/story/patterns-page-templates--internal-cards-layout#"
-            >
-              Application Name
-            </cbp-button></cbp-nav-item
-          ><cbp-nav-item>
-            <cbp-button
-              tag="a"
-              fill="ghost"
-              color="secondary"
-              href="./?path=/story/patterns-page-templates--internal-cards-layout#"
-            >
-              Single Nav Item 1
-            </cbp-button></cbp-nav-item
-          ><cbp-nav-item>
-            <cbp-button
-              tag="a"
-              fill="ghost"
-              color="secondary"
-              href="./?path=/story/patterns-page-templates--internal-cards-layout#"
-            >
-              Single Nav Item 2
-            </cbp-button></cbp-nav-item
-          >
+        <cbp-app-header
+          subnav-drawer-id='appHeaderDrawer'
+        >
+        ${generateNavItems(appHeaderItems)}
         </cbp-app-header>
+        
+     ${renderDrawer(appHeaderItems, 'appHeaderDrawer', false)}
       </header>
 
       <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)","flex-grow":"2"}'>
