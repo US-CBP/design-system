@@ -200,7 +200,7 @@ function generatePassengers(passengerArgs, page, pageSize) {
                   fill="ghost"
                   color="secondary"
                 >
-                  <cbp-icon name="book"></cbp-icon>Vet Passenger
+                  <cbp-icon name="check-circle"></cbp-icon>Vet Passenger
                 </cbp-button>
               </cbp-grid-item>
             </cbp-grid>
@@ -358,7 +358,7 @@ function passengerList(passengerArgs) {
             target-prop="open"
             controls="manifestDrawer"
           >
-            <cbp-icon name="book"></cbp-icon>Manifests
+            <cbp-icon name="circle-info"></cbp-icon>Manifests
           </cbp-button>
         </cbp-flex-item>
         
@@ -368,7 +368,7 @@ function passengerList(passengerArgs) {
             fill="outline"
             color="secondary"
           >
-            <cbp-icon name="book"></cbp-icon>Refresh
+            <cbp-icon name="circle"></cbp-icon>Refresh
           </cbp-button>
         </cbp-flex-item>
       </cbp-flex>
@@ -455,7 +455,7 @@ function filterPanel() {
           variant="heading-lg"
           id="panelheader"
         >
-          Sidebar Header
+          <cbp-icon name="filter" size="var(--cbp-space-6x)" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>Filter
         </cbp-typography>
           
         <cbp-form-field
@@ -622,6 +622,26 @@ function filterPanel() {
             </cbp-segmented-button-group>
           </cbp-form-field-wrapper>
         </cbp-form-field>
+
+
+        <cbp-flex
+          justify-content="end"
+          gap="var(--cbp-space-4x)"
+        >
+          <cbp-button
+            color="secondary"
+            fill="outline"
+          >
+            <cbp-icon name="circle"></cbp-icon>Reset
+          </cbp-button>
+
+          <cbp-button
+            color="primary"
+            fill="solid"
+          >
+            <cbp-icon name="check-circle"></cbp-icon>Apply
+          </cbp-button>
+        </cbp-flex>
 
       </cbp-panel>
     </cbp-drawer>
