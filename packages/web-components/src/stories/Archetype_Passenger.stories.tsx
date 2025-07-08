@@ -81,7 +81,7 @@ function generateSubnav(items){
       return html.join('');
 }
 
-function renderDrawer(items, drawerid, store){
+function renderDrawer(items, drawerid){
 
   if(items.length > 1){
     return `
@@ -123,8 +123,8 @@ function renderDrawer(items, drawerid, store){
             </cbp-form-field>
 
             <cbp-subnav
+              store
               accessibility-text="Application Name Navigation"
-              ${store ? 'store' : ''}
             >
               ${generateSubnav(items)}
             </cbp-subnav>
@@ -164,7 +164,7 @@ function generatePassengers(passengerArgs, page, pageSize) {
             ${error ? `color=danger` : ``} 
           >
             <cbp-grid
-              grid-template-columns="14rem 1fr 12rem"
+              grid-template-columns="16rem 1fr 12rem"
               gap="var(--cbp-space-9x)"
               breakpoint="48rem"
             >
@@ -219,18 +219,18 @@ function generateManifest(manifestArgs) {
     return `
           <cbp-card
             variant="decision"
-            class="hydrated"
+            sx='{"margin-block-end":"var(--cbp-space-4x)"}'
           >
             <div>
               <cbp-flex 
                 direction="row"
-                gap='33%'
+                align-items="flex-start"
+                justify-content="space-between"
+                sx='{"margin-block-end":"var(--cbp-space-4x)"}'
               >  
                 <cbp-typography
                   tag="h3"
-                 
                   id="card-heading-1"
-                  class="hydrated"
                 >
                   ${flight}
                 </cbp-typography>
@@ -239,7 +239,9 @@ function generateManifest(manifestArgs) {
 
               <cbp-flex 
                 direction="row"
-                gap='1rem'
+                align-items="flex-start"
+                justify-content="space-between"
+                sx='{"margin-block-end":"var(--cbp-space-4x)"}'
               >
                 <cbp-flex direction="column">
                   <cbp-typography tag="h4">${departureTerminal}</cbp-typography>
@@ -249,40 +251,37 @@ function generateManifest(manifestArgs) {
                 
                 <cbp-flex 
                   direction="column"
+                  align-items="flex-end"
+                  sx='{"text-align":"end"}'
                 >
                   <cbp-typography tag="h4">${arrivalTerminal}</cbp-typography>
                   <span><b>${arrivalLocation}</b></span>
                   <span>${arrivalTime}</span>
                 </cbp-flex>
               </cbp-flex>
-              </br>
+
               <cbp-flex 
                 direction="row"
-                gap='50%'  
+                align-items="flex-start"
+                justify-content="space-between"
               >
                 <cbp-flex direction="column">
                   <span>people: ${people}</span>
                   <span>hotlist: ${hotlist}</span>
                 </cbp-flex>
-                <cbp-tag color='warning'>
-                  <cbp-icon name='circle-info'></cbp-icon> ${arrivalGate}
+                <cbp-tag color="warning">
+                  <cbp-icon name="circle-info"></cbp-icon> ${arrivalGate}
                 </cbp-tag>
               </cbp-flex>
             </div>
+
             <div slot="cbp-card-actions">
               <cbp-button
-                tag="button"
                 fill="solid"
                 color="primary"
-                context="undefined"
-                class="hydrated"
-                ><button
-                  aria-describedby="card-heading-1"
-                  type="button"
-                >
-                  <cbp-icon name='eye'></cbp-icon>View Manifest
-                </button></cbp-button
               >
+                <cbp-icon name="eye"></cbp-icon>View Manifest
+              </cbp-button>
             </div>
           </cbp-card>
           `;
@@ -306,11 +305,11 @@ function passengerList(passengerArgs) {
       <cbp-flex
         gap="1rem"
         wrap="wrap"
-        breakpoint="30rem"
+        breakpoint="1rem"
         align-items="flex-end"
       >
         <cbp-flex-item
-          flex-basis="12rem"
+          flex-basis="20ch"
           flex-grow="1"
           flex-shrink="1"
         >
@@ -341,9 +340,8 @@ function passengerList(passengerArgs) {
             target-prop="open"
             controls="filterDrawer"
             fill="outline"
-            class="hydrated"
-            >
-              <cbp-icon name="filter"></cbp-icon>Filter
+          >
+            <cbp-icon name="filter"></cbp-icon>Filter
           </cbp-button>
         </cbp-hide>
 
@@ -813,7 +811,7 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
         ${generateNavItems(navItems)}
         </cbp-app-header>
         
-     ${renderDrawer(navItems, 'appHeaderDrawer', false)}
+      ${renderDrawer(navItems, 'appHeaderDrawer')}
     </header>
 
     <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
