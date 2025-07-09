@@ -124,8 +124,8 @@ const Template = ({ label, withIcon, tag, type, value, href, rel, target, downlo
         ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
         ${controls ? `controls=${controls}` : ''}
         ${targetProp ? `target-prop=${targetProp}` : ''}
-        ${pressed ? `pressed=${pressed}` : ''}
-        ${expanded ? `expanded=${expanded}` : ''}
+        ${pressed!=undefined ? `pressed="${pressed}"` : ''}
+        ${expanded!=undefined ? `expanded="${expanded}"` : ''}
         ${disabled ? 'disabled' : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
