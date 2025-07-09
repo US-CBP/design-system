@@ -68,14 +68,19 @@ export class CbpTable {
         
         // Update the icon for any initial sort
         const icon = control.querySelector('button cbp-icon') as HTMLCbpIconElement;
+        
         if (item.getAttribute('aria-sort') == "ascending") icon.rotate = 270;
         if (item.getAttribute('aria-sort') == "descending") icon.rotate = 90;
         // Set aria-sort to none last
         if (!item.getAttribute('aria-sort')) {
           item.setAttribute("aria-sort","none");
           icon.setAttribute('hidden','');
+          control.pressed="false";
         }
-        else icon.name="arrow-right";
+        else {
+          icon.name="arrow-right";
+          control.pressed="true";
+        }
 
         // ({detail: { host, nativeElement, value }})
         control.addEventListener( "buttonClick", () => {
@@ -115,12 +120,12 @@ export class CbpTable {
     else {
       // If a new header was pressed, reset the previous sort state
       this.sort.columnHeading.setAttribute('aria-sort','none');
-      this.sort.columnHeading.querySelector('cbp-button').pressed=false;
+      this.sort.columnHeading.querySelector('cbp-button').pressed="false";
       (this.sort.columnHeading.querySelector('button cbp-icon') as HTMLCbpIconElement).name=undefined;
       (this.sort.columnHeading.querySelector('button cbp-icon')).setAttribute('hidden','');
   
       // Set the new sort state
-      CbpButton.pressed=true;
+      CbpButton.pressed="true";
     }
     // Update the statefulness of the sorted header
     Icon.removeAttribute('hidden');
