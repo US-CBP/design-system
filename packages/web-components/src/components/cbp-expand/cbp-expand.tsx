@@ -26,7 +26,7 @@ export class CbpExpand {
   @Prop() headingId: string = createNamespaceKey('cbp-expand');
   
   /** Specifies whether the content is expanded and visible. */
-  @Prop({ reflect: true }) open: boolean;
+  @Prop({ reflect: true }) open: boolean = false;
   
   /** The component control label. */
   @Prop() label: string;
@@ -84,9 +84,8 @@ export class CbpExpand {
               height="var(--cbp-space-6x)"
               context={this.context}
               controls={`${this.headingId}-content`}
-              expanded={this.open}
-              accessibilityText="Expand/collapse"
-              aria-describedby={this.headingId}
+              expanded={`${this.open}`}
+              aria-labelledby={this.headingId}
               ref={el => (this.control = el)}
             >
               <cbp-icon name="caret-down" size="var(--cbp-space-3x)"></cbp-icon>
