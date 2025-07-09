@@ -10,6 +10,25 @@ export default {
   args: {
     username: 'HASHIDX',
     isLoggedIn: true,
+    navItems: [
+      {
+        label: 'Application Name',
+        href: './?path=/story/components-application-header--application-header#',
+        current: true
+      },
+      {
+        label: 'Nav Item 1',
+        href: './?path=/story/components-application-header--application-header#',
+      },
+      {
+        label: 'Nav Item 2',
+        href: './?path=/story/components-application-header--application-header#',
+      },
+      {
+        label: 'Nav Item 3',
+        href: './?path=/story/components-application-header--application-header#',
+      },
+    ]
   },
 };
 
@@ -17,6 +36,106 @@ export default {
 //TODO: needs default values (currently hard set to component defaults) below is 'ideal' but DOM not rendered at this point
 let page = 1; //document.getElementsByTagName('cbp-pagination')[0].page;
 let pageSize: number | 'all' = 10; //document.getElementsByTagName('cbp-pagination')[0].pageSize;
+
+function generateNavItems(items, drawerid=undefined){
+  const html =  items.map(({ label, name, href, current, children}, index) => {
+    if(!children){
+      return `
+        <cbp-nav-item 
+          ${name ? `name="${name}"` : ''} 
+          ${index == 0 ? `slot="cbp-home"` : ''}
+          ${current ? 'current' : ''}
+        >
+          <a href="${href}">
+            ${label}
+          </a>
+        </cbp-nav-item>
+      `;
+    }
+    else {
+      return `
+        <cbp-nav-item 
+          ${name ? `name="${name}"` : ''} 
+          ${current ? 'current' : ''}
+        > 
+          <cbp-button 
+            fill="ghost" 
+            color="secondary" 
+            target-prop="open" 
+            controls=${drawerid}
+          >
+            ${label}
+            <cbp-icon name="chevron-right" rotate="90"></cbp-icon>
+          </cbp-button>
+        </cbp-nav-item>
+      `;
+    }
+  });
+  return html.join('');
+}
+
+function generateSubnav(items){
+  const html = items.map(({ icon, label, name, href, children, current }) => {
+      return `<cbp-subnav-item label="${label}" name="${name}" href=${href} ${current? 'current' : ''}  >${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``} ${children? generateSubnav(children) : ``}</cbp-subnav-item>`;
+  });
+      return html.join('');
+}
+
+function renderDrawer(items, drawerid){
+
+  if(items.length > 1){
+    return `
+    <cbp-drawer
+        ${drawerid ? `uid=${drawerid}` : ''}
+        >
+          <cbp-panel
+            aria-labelledby="panelheader"
+          >
+            <cbp-typography
+              slot="cbp-panel-header"
+              tag="h3"
+              variant="heading-lg"
+              id="panelheader"
+            >
+              Application Name
+            </cbp-typography>
+
+            <cbp-form-field 
+              label="Search"
+            >
+              <cbp-form-field-wrapper>
+                <input
+                  type="search"
+                  name="search"
+                />
+                <span slot="cbp-form-field-attached-button">
+                  <cbp-button
+                    type="submit"
+                    fill="solid"
+                    color="secondary"
+                    variant="square"
+                    accessibility-text="Search"
+                  >
+                    <cbp-icon name="magnifying-glass"></cbp-icon>
+                  </cbp-button>
+                </span>
+              </cbp-form-field-wrapper>
+            </cbp-form-field>
+
+            <cbp-subnav
+              store
+              accessibility-text="Application Name Navigation"
+            >
+              ${generateSubnav(items)}
+            </cbp-subnav>
+
+          </cbp-panel>
+        </cbp-drawer> 
+    `;
+  }else {
+    return '';
+  }
+}
 
 function getTimeDiff(date1, date2) {
   const timeDiff = Math.abs(date1 - date2);
@@ -45,13 +164,16 @@ function generatePassengers(passengerArgs, page, pageSize) {
             ${error ? `color=danger` : ``} 
           >
             <cbp-grid
-              grid-template-columns="14rem 1fr 12rem"
+              grid-template-columns="16rem 1fr 12rem"
               gap="var(--cbp-space-9x)"
               breakpoint="48rem"
             >
-              <cbp-flex>
+              <cbp-flex
+                gap="var(--cbp-space-2x)"
+                align-items="flex-start"
+              >
                   <img
-                    src="https://api.dicebear.com/9.x/personas/svg"
+                    src="https://thispersondoesnotexist.com/"
                     alt="avatar"
                     style="width: 100px"
                   />
@@ -78,7 +200,7 @@ function generatePassengers(passengerArgs, page, pageSize) {
                   fill="ghost"
                   color="secondary"
                 >
-                  <cbp-icon name="book"></cbp-icon>Vet Passenger
+                  <cbp-icon name="check-circle"></cbp-icon>Vet Passenger
                 </cbp-button>
               </cbp-grid-item>
             </cbp-grid>
@@ -97,18 +219,18 @@ function generateManifest(manifestArgs) {
     return `
           <cbp-card
             variant="decision"
-            class="hydrated"
+            sx='{"margin-block-end":"var(--cbp-space-4x)"}'
           >
             <div>
               <cbp-flex 
                 direction="row"
-                gap='33%'
+                align-items="flex-start"
+                justify-content="space-between"
+                sx='{"margin-block-end":"var(--cbp-space-4x)"}'
               >  
                 <cbp-typography
                   tag="h3"
-                 
                   id="card-heading-1"
-                  class="hydrated"
                 >
                   ${flight}
                 </cbp-typography>
@@ -117,7 +239,9 @@ function generateManifest(manifestArgs) {
 
               <cbp-flex 
                 direction="row"
-                gap='1rem'
+                align-items="flex-start"
+                justify-content="space-between"
+                sx='{"margin-block-end":"var(--cbp-space-4x)"}'
               >
                 <cbp-flex direction="column">
                   <cbp-typography tag="h4">${departureTerminal}</cbp-typography>
@@ -127,40 +251,37 @@ function generateManifest(manifestArgs) {
                 
                 <cbp-flex 
                   direction="column"
+                  align-items="flex-end"
+                  sx='{"text-align":"end"}'
                 >
                   <cbp-typography tag="h4">${arrivalTerminal}</cbp-typography>
                   <span><b>${arrivalLocation}</b></span>
                   <span>${arrivalTime}</span>
                 </cbp-flex>
               </cbp-flex>
-              </br>
+
               <cbp-flex 
                 direction="row"
-                gap='50%'  
+                align-items="flex-start"
+                justify-content="space-between"
               >
                 <cbp-flex direction="column">
                   <span>people: ${people}</span>
                   <span>hotlist: ${hotlist}</span>
                 </cbp-flex>
-                <cbp-tag color='warning'>
-                  <cbp-icon name='circle-info'></cbp-icon> ${arrivalGate}
+                <cbp-tag color="warning">
+                  <cbp-icon name="circle-info"></cbp-icon> ${arrivalGate}
                 </cbp-tag>
               </cbp-flex>
             </div>
+
             <div slot="cbp-card-actions">
               <cbp-button
-                tag="button"
                 fill="solid"
                 color="primary"
-                context="undefined"
-                class="hydrated"
-                ><button
-                  aria-describedby="card-heading-1"
-                  type="button"
-                >
-                  <cbp-icon name='eye'></cbp-icon>View Manifest
-                </button></cbp-button
               >
+                <cbp-icon name="eye"></cbp-icon>View Manifest
+              </cbp-button>
             </div>
           </cbp-card>
           `;
@@ -184,11 +305,11 @@ function passengerList(passengerArgs) {
       <cbp-flex
         gap="1rem"
         wrap="wrap"
-        breakpoint="30rem"
+        breakpoint="1rem"
         align-items="flex-end"
       >
         <cbp-flex-item
-          flex-basis="12rem"
+          flex-basis="20ch"
           flex-grow="1"
           flex-shrink="1"
         >
@@ -219,9 +340,8 @@ function passengerList(passengerArgs) {
             target-prop="open"
             controls="filterDrawer"
             fill="outline"
-            class="hydrated"
-            >
-              <cbp-icon name="filter"></cbp-icon>Filter
+          >
+            <cbp-icon name="filter"></cbp-icon>Filter
           </cbp-button>
         </cbp-hide>
 
@@ -236,7 +356,7 @@ function passengerList(passengerArgs) {
             target-prop="open"
             controls="manifestDrawer"
           >
-            <cbp-icon name="book"></cbp-icon>Manifests
+            <cbp-icon name="circle-info"></cbp-icon>Manifests
           </cbp-button>
         </cbp-flex-item>
         
@@ -246,7 +366,7 @@ function passengerList(passengerArgs) {
             fill="outline"
             color="secondary"
           >
-            <cbp-icon name="book"></cbp-icon>Refresh
+            <cbp-icon name="circle"></cbp-icon>Refresh
           </cbp-button>
         </cbp-flex-item>
       </cbp-flex>
@@ -333,7 +453,7 @@ function filterPanel() {
           variant="heading-lg"
           id="panelheader"
         >
-          Sidebar Header
+          <cbp-icon name="filter" size="var(--cbp-space-6x)" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>Filter
         </cbp-typography>
           
         <cbp-form-field
@@ -501,6 +621,26 @@ function filterPanel() {
           </cbp-form-field-wrapper>
         </cbp-form-field>
 
+
+        <cbp-flex
+          justify-content="end"
+          gap="var(--cbp-space-4x)"
+        >
+          <cbp-button
+            color="secondary"
+            fill="outline"
+          >
+            <cbp-icon name="circle"></cbp-icon>Reset
+          </cbp-button>
+
+          <cbp-button
+            color="primary"
+            fill="solid"
+          >
+            <cbp-icon name="check-circle"></cbp-icon>Apply
+          </cbp-button>
+        </cbp-flex>
+
       </cbp-panel>
     </cbp-drawer>
     `;
@@ -598,7 +738,7 @@ function manifestPane(manifestArgs) {
         </cbp-drawer>
       `;
 }
-const InternalTemplate = ({ isLoggedIn, username, passengersArgs, manifestArgs }) => {
+const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, manifestArgs }) => {
   /** Techdebt for iteration on filter & manifest pane:
    * Icon for the app directory button is incorrect, verify all icons in buttons, most of these are initial stubs
    * Buttons in the universal header need spacing between icon & text
@@ -608,7 +748,15 @@ const InternalTemplate = ({ isLoggedIn, username, passengersArgs, manifestArgs }
    * Footer missing InfoSec section (right side of footer)
    *
    */
-
+  
+  // preventDefault on all links in the header and subnav
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+  
   return `
     <cbp-skip-nav></cbp-skip-nav>
 
@@ -657,36 +805,13 @@ const InternalTemplate = ({ isLoggedIn, username, passengersArgs, manifestArgs }
         </ul>
       </cbp-universal-header>
 
-      <cbp-app-header>
-        <cbp-nav-item slot="cbp-home" selected>
-          <cbp-button
-            tag="a"
-            fill="ghost"
-            color="secondary"
-            href="./?path=/story/patterns-page-templates--internal#"
-          >
-            Application Name
-          </cbp-button></cbp-nav-item
-        ><cbp-nav-item>
-          <cbp-button
-            tag="a"
-            fill="ghost"
-            color="secondary"
-            href="./?path=/story/patterns-page-templates--internal#"
-          >
-            Single Nav Item 1
-          </cbp-button></cbp-nav-item
-        ><cbp-nav-item>
-          <cbp-button
-            tag="a"
-            fill="ghost"
-            color="secondary"
-            href="./?path=/story/patterns-page-templates--internal#"
-          >
-            Single Nav Item 2
-          </cbp-button></cbp-nav-item
+      <cbp-app-header
+          subnav-drawer-id='appHeaderDrawer'
         >
-      </cbp-app-header>
+        ${generateNavItems(navItems)}
+        </cbp-app-header>
+        
+      ${renderDrawer(navItems, 'appHeaderDrawer')}
     </header>
 
     <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)"}'>

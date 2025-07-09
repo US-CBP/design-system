@@ -1,4 +1,5 @@
-import { Component, Element, Listen, Host, h } from '@stencil/core';
+import { Component, Element, Listen, Host, h, Prop} from '@stencil/core';
+import { debounce } from '../../utils/utils';
 import state from '../cbp-app-header/store';
 
 /**
@@ -13,6 +14,14 @@ export class CbpAppHeader {
   
   private navItems: HTMLCbpNavItemElement[] = [];
   private currentItem: HTMLCbpNavItemElement;
+
+  private drawerButton: HTMLCbpButtonElement;
+  private nav: HTMLElement;
+  private children: HTMLElement[] = []; 
+  private navWidth; 
+
+  /** Specifies the id of the drawer to be launched*/
+  @Prop() subnavDrawerId: string;
 
   @Element() host: HTMLCbpAppHeaderElement;
 
@@ -48,6 +57,42 @@ export class CbpAppHeader {
     }, 101) // Note: Time 101 is set due to cbp-drawer setting @ 100
   }
 
+  handleResize( width ) {
+    
+    // Get the width of the content (and update the this.navWidth) before doing responsive adjustments.
+    if(this.navWidth == undefined){
+      this.navWidth = this.nav.getBoundingClientRect().width;
+    }
+    
+    // If the emitted size is less than the current mode's width, step down to the next responsive size
+    if (width <= this.navWidth) {
+      this.doResponsive();
+    } else{
+      this.doFullSize();
+    }
+  }
+
+  doResponsive(){
+    this.children.forEach( (item, index) => {
+      if (index > 0) {
+        item.setAttribute('hidden','');
+      }
+    });
+
+    this.drawerButton.parentElement.classList.add('cbp-app-header-responsive');
+    this.drawerButton ? this.drawerButton.removeAttribute('hidden') : '';
+  }
+
+  doFullSize(){
+    this.children.forEach( (item, index) => {
+      if (index > 0) {
+        item.removeAttribute('hidden');
+      }
+    });
+    
+    this.drawerButton.parentElement.classList.remove('cbp-app-header-responsive');
+    this.drawerButton ? this.drawerButton.setAttribute('hidden', ''): '';
+  }
 
   componentWillLoad() {
     this.navItems = Array.from(this.host.querySelectorAll('cbp-nav-item'));
@@ -62,15 +107,48 @@ export class CbpAppHeader {
     });
   }
 
+  componentDidLoad(){
+    // Get the immediate children to toggle hidden
+    this.children=Array.from(this.nav.querySelectorAll(':scope > *'));   
+  }
+
   render() {
     if(this.currentItem?.name != state.currentParent) {
       this.updateCurrentItem(state.currentParent);
     }
-    
+
     return (
       <Host>
-        <slot name="cbp-home" />
-        <slot />
+        <cbp-resize-observer 
+          onResized={ debounce((e) => {
+            this.handleResize(e.detail.width);
+        }, 10)}
+        >
+          <nav 
+            aria-label="Primary Navigation" 
+            ref={el => this.nav = el}
+          >
+            <slot name="cbp-home" />
+            <slot />
+
+            {(this.navItems.length > 1) &&
+              <cbp-button
+                hidden
+                ref={el => this.drawerButton = el}
+                fill="outline"
+                color="secondary"
+                target-prop="open"
+                controls={this.subnavDrawerId}
+                accessibilityText="Navigation Menu"
+              >
+                <cbp-icon
+                  name="bars"
+                />
+              </cbp-button>
+            }
+          </nav>
+        </cbp-resize-observer>
+        
       </Host>
     );
   }
