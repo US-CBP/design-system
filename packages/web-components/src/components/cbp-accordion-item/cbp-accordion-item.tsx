@@ -27,7 +27,7 @@ export class CbpAccordionItem {
   @Prop() headingId: string = createNamespaceKey('cbp-accordion-item');
   
   /** Specifies whether the accordion is open. */
-  @Prop({ reflect: true }) open: boolean;
+  @Prop({ reflect: true }) open: boolean = false;
   
   /** The accordion control label. */
   @Prop() label: string;
@@ -79,9 +79,8 @@ export class CbpAccordionItem {
             fill="ghost"
             color="secondary"
             controls={`${this.headingId}-content`}
-            expanded={this.open}
-            accessibilityText="Toggle Accordion Item"
-            aria-describedby={this.headingId}
+            expanded={`${this.open}`}
+            aria-labelledby={this.headingId}
             ref={el => (this.control = el)}
           >
             <cbp-icon name="chevron-right"></cbp-icon>
