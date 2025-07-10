@@ -67,7 +67,7 @@ export class CbpTab {
 
   render() {
     return (
-      <Host>
+      <Host role="presentation">
         <button
           type="button"
           role="tab"
