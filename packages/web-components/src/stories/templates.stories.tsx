@@ -46,7 +46,7 @@ export default {
 const InternalTemplate = ({ isLoggedIn, username, navItems }) => {
 
   setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-app-header a');
+    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -155,7 +155,7 @@ export const Internal = InternalTemplate.bind({});
 const Internal2ColumnTemplate = ({ isLoggedIn, username, navItems, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
   
   setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a');
+    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -435,7 +435,7 @@ function generateCards(numberOfCards) {
 const InternalCardsLayoutTemplate = ({ isLoggedIn, username, navItems, numberOfCards, cardMinWidth }) => {
   
   setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-app-header a');
+    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
