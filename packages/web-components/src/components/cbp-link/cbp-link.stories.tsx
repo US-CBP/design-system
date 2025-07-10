@@ -66,6 +66,15 @@ export default {
 };
 
 const Template = ({ label, withIcon, inText, href, rel, target, download, language, shortcutKey, accessibilityText, disabled, context, sx }) => {
+ 
+    setTimeout(() => {
+      let anchors = document.querySelectorAll('cbp-link a');
+      anchors.forEach(anchor => {
+        anchor.addEventListener('click', function(e) { e.preventDefault(); })
+      });
+    }, 500);
+    
+ 
   return `
     ${ inText ? `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ` : ''}
     <cbp-link

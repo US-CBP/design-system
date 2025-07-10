@@ -753,7 +753,7 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
   
   // preventDefault on all links in the header and subnav
   setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a');
+    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-link a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });

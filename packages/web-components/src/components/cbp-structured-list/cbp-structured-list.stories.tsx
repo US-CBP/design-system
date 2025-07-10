@@ -277,6 +277,14 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
 };
 
 const StructuredListCollectionTemplate = ({ listItems, striped, selectable, context, sx }) => {
+  
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-link a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+  
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
@@ -337,6 +345,14 @@ export const StructuredListWithGrid = StructuredListWithGridTemplate.bind({});
 /*<------------------------------------Media---------------------------------------->*/
 
 const StructuredListMediaTemplate = ({ listItems, striped, selectable, context, sx }) => {
+
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-link a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
