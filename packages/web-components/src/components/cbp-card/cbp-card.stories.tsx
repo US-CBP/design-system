@@ -155,6 +155,14 @@ const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
 };
 
 const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, interactive, href, variant, context, sx }) => {
+  
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-card a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+
   return ` 
     <cbp-card
       ${variant !=='default' ? `variant="${variant}"` : ''}

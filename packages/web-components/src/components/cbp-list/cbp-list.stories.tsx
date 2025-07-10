@@ -207,6 +207,14 @@ function generateLinkListItems(items, size, parentVariant) {
 }
               
 const InternalLinkListTemplate = ({linkListItems, size, accessibilityText, context, sx}) => {
+  
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-list a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+  
   return ` 
   <cbp-list
     variant='link' 
@@ -235,6 +243,14 @@ export const InternalLinkList = InternalLinkListTemplate.bind({});
 };
 
 const ExternalLinkListTemplate = ({linkListItems, size, accessibilityText, context, sx}) => {
+  
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-list a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+
   return ` 
     <cbp-list
       variant='link' 
