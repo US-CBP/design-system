@@ -41,7 +41,7 @@ export class CbpMenuItem {
 
   render() {
     return (
-      <Host>
+      <Host role="presentation">
         <slot />
       </Host>
     );

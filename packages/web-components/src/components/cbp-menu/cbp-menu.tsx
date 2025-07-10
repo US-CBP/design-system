@@ -75,7 +75,7 @@ export class CbpMenu {
 
       setTimeout( () => 
         this.setCurrentMenuItem(),
-        100
+        500
       );
     }
 
@@ -135,7 +135,7 @@ export class CbpMenu {
   }
 
   componentDidLoad() {
-    this.menuItems = Array.from(this.menu.querySelectorAll('button, a'));
+    this.menuItems = Array.from(this.menu.querySelectorAll('button,a'));
 
     if (!this.control) this.control = this.host.querySelector('button');
     if (this.control) {
