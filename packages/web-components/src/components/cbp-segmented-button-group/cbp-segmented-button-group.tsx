@@ -77,6 +77,16 @@ export class SegmentedButtonGroup {
     });
   }
 
+  componentDidLoad() {
+    // Set the pressed state of each button to "false" if it's not set to "true" already.
+    this.buttongroup.forEach( cbpButton => {
+      if(cbpButton.pressed !== "true"){
+        cbpButton.pressed="false";
+      }
+    });
+  }
+
+
   render() {
     return (
       <Host role="group" aria-label={this.accessibilityText}>
