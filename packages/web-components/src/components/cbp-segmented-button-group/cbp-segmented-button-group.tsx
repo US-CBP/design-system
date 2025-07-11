@@ -43,14 +43,16 @@ export class SegmentedButtonGroup {
 
   @Listen('buttonClick')
   handleButtonClick({ detail: { nativeElement: element, host, value } }) {
-    // Toggle "pressed" prop on the button
-    host.pressed=!host.pressed;
+    // Toggle "pressed" prop on the button only when multiple selections are allowed; 
+    // otherwise, it acts like a radio list and a click selects it but doesn't deselect it.
+    if (this.multiple) host.pressed = (host.pressed == "true") ? "false" : "true";
+    else host.pressed = "true";
 
     // if a button was toggled to "pressed," toggle the rest unpressed for groups that only allow a single buttons pressed.
     if(!this.multiple && host.pressed) {
       this.buttongroup.forEach(el => {
         if(el != host){
-          el.pressed=false;
+          el.pressed="false";
         }
       });
     }
