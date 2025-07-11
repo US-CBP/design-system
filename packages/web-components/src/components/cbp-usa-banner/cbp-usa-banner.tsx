@@ -13,7 +13,7 @@ export class CbpUsaBanner {
   @Element() host: HTMLElement;
 
   /** Specifies that the banner is open. Primarily used for internal component logic.  */
-  @Prop({ reflect: true }) open: boolean;
+  @Prop({ reflect: true }) open: boolean = false;
 
   // /** A custom event emitted when the banner link control is activated. */
   handleClick() {
@@ -38,7 +38,7 @@ export class CbpUsaBanner {
                 fill="ghost"
                 target-prop="open"
                 controls="gov-banner"
-                expanded={this.open}
+                expanded={`${this.open}`}
                 onClick={() => this.handleClick()}
               >
                 Here is how you know <cbp-icon name="chevron-right" size="var(--cbp-space-3x)" />

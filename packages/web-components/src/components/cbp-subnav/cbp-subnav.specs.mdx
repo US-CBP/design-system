@@ -41,15 +41,17 @@ Sub-Navigation (Subnav) is meant to be used as a secondary, vertical navigation.
 
 ### Responsiveness
 
-* Subnav is designed to be inside of a Drawer component and as such will defer to the Responsiveness of the Drawer component
+* Subnav is primarily designed to be inside of a Drawer component, and as such will defer to the responsiveness of the Drawer.
 
 ### Accessibility
 
-* The "current" navigation control is denoted via `aria-current` as well as visual styling.
-* Keyboard tab navigation will be fore both anchor button and icon button seperately
-* Icon button will hide/expand on 'enter & space'
-* anchor buttons will launch to associated href on 'enter'
-* use of the navigation tag w/ a prop for accessibility text
+* The Sub-Navigation items are wrapped in a semantic `nav` landmark tag.
+  * Since this is likely not the first or only `nav` tag, it should be supplied with an accessible label.
+  * The Subnav component sets this accessible label (`aria-label`) to "Sub-Navigation" by default, but it should be overridden with something more contextual when applicable. For example, when used solely for the responsive navigation, perhaps "Mobile Navigation" would be a better description.
+* The "current" navigation control is denoted via `aria-current="page"` as well as visual styling.
+* Keyboard navigation allow tabbing to both the anchor and expand button separately.
+* The expand button is labelled by the Subnav Item's anchor text (via `aria-labelledby`).
+* The expand button renders an `aria-expanded` attribute to indicate the state of the expanded/collapsed content.
 
 ### Additional Notes and Considerations
 

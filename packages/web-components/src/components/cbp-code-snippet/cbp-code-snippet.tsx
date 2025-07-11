@@ -31,7 +31,7 @@ export class CbpCodeSnippet {
 
 
   // There are issues with allowing the component to render expanded, so make this a state that defaults to no expanded.
-  @State() expanded: boolean;
+  @State() expanded: boolean = false;
   @State() codeContainerHeight: number;
   @State() codeBlockHeight: number;
 
@@ -116,7 +116,7 @@ export class CbpCodeSnippet {
           <cbp-button 
             fill="ghost" 
             color="secondary" 
-            expanded={this.expanded} 
+            expanded={`${this.expanded}`} 
             context={this.context}
             onClick={() => this.toggleShowAll()} 
           >

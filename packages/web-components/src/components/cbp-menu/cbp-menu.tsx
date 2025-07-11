@@ -75,9 +75,12 @@ export class CbpMenu {
 
       setTimeout( () => 
         this.setCurrentMenuItem(),
-        100
+        500
       );
     }
+
+    // regardless of the new value, set the expanded value on the control
+    this.CBPButton.expanded=`${this.open}`;
   }
 
   // Clicking outside of the component closes the menu
@@ -110,7 +113,7 @@ export class CbpMenu {
   }
 
   setCurrentMenuItem(i = 0) {
-    this.menuItems[i]?.focus();
+    this.menuItems[i].focus();
   }
 
   // if tabbing out of the menu from the close button, close the menu
@@ -132,10 +135,12 @@ export class CbpMenu {
   }
 
   componentDidLoad() {
-    this.menuItems = Array.from(this.menu.querySelectorAll('button, a'));
+    this.menuItems = Array.from(this.menu.querySelectorAll('button,a'));
+
     if (!this.control) this.control = this.host.querySelector('button');
     if (this.control) {
       this.CBPButton.controls=this.uid;
+      this.CBPButton.expanded=`${this.open}`;
       this.control.setAttribute('aria-controls',`${this.uid}-menu`);
       this.control.setAttribute("aria-haspopup","menu");
     }

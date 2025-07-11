@@ -4,6 +4,17 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unreleased] TBD
+
+* BREAKING: Updated the `cbp-button` properties of `expanded` and `pressed` to a string union of `"true" | "false"` rather than a true Boolean value.
+  * This is due to the fact that JSX does not render the `aria-expanded` or `aria-pressed` at all with a false value.
+  * When `aria-expanded="false"` is not rendered, the statefulness of the control is not conveyed to screen readers and updates to the state are only spoken when the value is true.
+  * These properties are primarily used internally and this change is unlikely to cause significant problems.
+  * Components updated to work with this change include: Accordion Item, Expand, Menu, Code Snippet, Subnav Item, and Segmented Button Group.
+  * Story code was updated and may need to be copied fresh for: 
+    * Segmented Button Group (only if Button "pressed" values were explicitly set as a boolean HTML attribute).
+    * Button (only if `pressed` or `expanded` props were used).
+
 ## [0.0.1-develop.22] 07-02-2025
 
 * First cut of the `cbp-resize-observer` component.

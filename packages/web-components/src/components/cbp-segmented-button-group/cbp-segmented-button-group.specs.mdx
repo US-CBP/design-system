@@ -18,7 +18,10 @@ The Segmented Button Group component wraps multiple buttons and can be used as a
 ### User Interactions
 
 * Activating any of the buttons within the group toggles the `pressed` property and likewise `aria-pressed` value on the button element.
-* If the group allows only one button to be active, when pressing a button, all others will be programmatically "unpressed."
+* If the group allows only one button to be active:
+  * When pressing a button, all others will be programmatically "unpressed."
+  * Pressing a button again does not toggle it "unpressed"; it stays pressed, like a radio button.
+* If the group allows multiple selections, user interaction toggles the pressed state and does not affect the other buttons in the group.
 * When a button within the group is activated (either pressed state) by user interaction, both the Button and the Segmented Button Group components emit custom events that can be listened for.
 
 ### Responsiveness

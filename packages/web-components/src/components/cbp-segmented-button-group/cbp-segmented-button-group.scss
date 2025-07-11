@@ -28,7 +28,7 @@ cbp-segmented-button-group {
     --cbp-button-color-bg-dark: var(--cbp-color-gray-cool-80);
     --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-light);
     
-      // borders are unchanging in segmented button groups even in interactive states
+    // borders are unchanging in segmented button groups even in interactive states
     --cbp-button-color-border-dark: var(--cbp-color-interactive-secondary-lighter);
     --cbp-button-color-border-hover-dark: var(--cbp-button-color-border-dark);
     --cbp-button-color-border-focus-dark: var(--cbp-button-color-border-dark);
@@ -47,7 +47,7 @@ cbp-segmented-button-group {
       --cbp-button-border-width: var(--cbp-border-size-md) var(--cbp-border-size-md) var(--cbp-border-size-md) calc(var(--cbp-border-size-md) / 2);
     }
 
-    &:has([aria-pressed='true']) {
+    &:has([aria-pressed=true]) {
       --cbp-button-color: var(--cbp-color-white);
       --cbp-button-color-bg: var(--cbp-color-interactive-selected-dark);
       

@@ -1,5 +1,5 @@
 import { Component, Element, Event, EventEmitter, Prop, Host, h } from '@stencil/core';
-import { setCSSProps } from '../../utils/utils';
+import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
 /**
@@ -20,26 +20,33 @@ export class CbpSubnavItem {
 
   @Element() host: HTMLCbpSubnavItemElement;
 
-  /** Specifies the current Subnav Item */
-  @Prop ({ reflect: true}) current: boolean = false;
+  /** Specifies the text label for the subnav item. */
+  @Prop() label: string;
 
-  /** Specifies a name used to associated nav items with subnav items*/
-  @Prop({ reflect: true }) name: string;
-
-  /** Specifies the label for the subnav item */
-  @Prop () label: string;
-
-  /** Specifies the href passed to the button prop */
+  /** Specifies the href for the Subnav Item anchor. */
   @Prop() href: string;
 
-  /** used to style icon based on open/hide state */
-  @Prop({ reflect: true }) open: boolean 
+  /** Optionally specifies a unique `ID` for the menu, used to wire up the controls and accessibility features. */
+  @Prop() uid: string = createNamespaceKey('cbp-subnav-item');
+
+  /** Specifies a name used to associated Nav Items with Subnav Items. */
+  @Prop({ reflect: true }) name: string;
+
+  /** Specifies the current item within the collection of Subnav Items. */
+  @Prop ({ reflect: true}) current: boolean = false;
+
+  /** 
+   * Specifies whether a Subnav Item with nested children is expanded or collapsed. 
+   * Primarily used internally for user interactions.
+   */
+  @Prop({ reflect: true }) open: boolean = false;
   
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
+
 
   @Event() toggleSubnavItem: EventEmitter;
   handleToggleSubnavItem(){
@@ -78,6 +85,7 @@ export class CbpSubnavItem {
       <Host>
         <div>
           <cbp-button
+            id={this.uid}
             tag="a"
             fill="outline"
             color="primary"
@@ -94,6 +102,8 @@ export class CbpSubnavItem {
             <cbp-button
               fill="outline"
               color="primary"
+              expanded={`${this.open}`}
+              aria-labelledby={this.uid}
               context={this.context}
               onClick={() => this.handleToggleSubnavItem()}
             >

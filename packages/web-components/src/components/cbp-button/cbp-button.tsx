@@ -56,15 +56,18 @@ export class CbpButton {
   /** Specifies the (min-)height of the button (in CSS units) when different from the default size. */
   @Prop() height: string;
 
-  /** Specifies if the button is pressed and results in `aria-pressed="true"` being placed on the button when true. Only valid on actual `button` elements. */
-  @Prop() pressed: boolean;
+  /** 
+   * Specifies if the button is pressed and results in `aria-pressed="true|false"` being placed on the 
+   * button when specified. Only valid on actual `button` elements. 
+   */
+  @Prop() pressed: "true" | "false";
   
   /** 
-   * Specifies if a controlled UI widget is expanded and results in `aria-pressed="true"` being placed on the button when true.
-   * This property is usually used for progressive disclosure patterns such as accordions, menus, expand/collapse, etc., where
-   * focus remains on the control after the user action.
+   * Specifies if a controlled UI widget is expanded and results in `aria-pressed="true|false"` being placed 
+   * on the button when specified. This property is usually used for progressive disclosure patterns such as 
+   * accordions, menus, expand/collapse, etc., where focus remains on the control after the user action.
    */
-  @Prop() expanded: boolean;
+  @Prop() expanded: "true" | "false";
 
   /** 
    * Specifies the DOM element that the button controls and results in the `aria-controls` attribute
@@ -75,10 +78,11 @@ export class CbpButton {
   /* ??? */
   //@Prop() controlProp: "pressed" | "expanded";
   
-  /** The property on the target element being toggled by the button/control. */
-  @Prop() targetProp: string; // A prop on the controlled element such as "open"
+  /** The property on the target element being toggled by the button/control (e.g., "open"). */
+  @Prop() targetProp: string;
 
-  /** Specifies an accessible label for the button/link as an `aria-label` when the button does not contain label text
+  /** 
+   * Specifies an accessible label for the button/link as an `aria-label` when the button does not contain label text
    * or a sufficiently unique label. This text overrides the default label and is not additive to it.
    */
   @Prop() accessibilityText: string;
@@ -104,17 +108,16 @@ export class CbpButton {
     // If this is a control for something, manage state through stencil store
     if (this.controls) {
       // If the controlled element wasn't found, try to find it again
-      if (!this.controlTarget) {
-        this.controlTarget = this.controls ? document.querySelector(`#${this.controls}`) : undefined;
-      }
+      if (!this.controlTarget) this.controlTarget = document.querySelector(`#${this.controls}`);
+
       // Toggle the prop it controls
       if (this.controlTarget) {
         this.controlTarget[this.targetProp] = !this.controlTarget[this.targetProp];
-        this.host.expanded = this.controlTarget[this.targetProp]
       } 
       else {
         console.warn('cbp-button configuration error: the control target referenced by ID by the `control` property could not be found.');
       }
+      // Toggling the control's expanded/pressed props is handled by parent components, so it cannot be done here.
     }
 
     this.buttonClick?.emit({
@@ -154,7 +157,8 @@ export class CbpButton {
   }
 
   componentDidLoad() {
-    // If the button was not defined by ref in the render lifecycle, query the DOM for one that may have been slotted and attach an event listener to it
+    // If the button was not defined by ref in the render lifecycle, query the DOM for one that may 
+    // have been slotted and attach an event listener to it.
     if (!this.button) {
       const slottedButton = (this.button = this.host.querySelector('button,a'));
       if (slottedButton) {
@@ -189,7 +193,7 @@ export class CbpButton {
   }
 
   render() {
-    const { type, name, value, pressed, expanded, disabled, rel, target, href, download } = this;
+    const { type, name, value, disabled, rel, target, href, download } = this;
 
     const attrs =
       this.tag === 'button'
@@ -225,8 +229,8 @@ export class CbpButton {
             {...attrs}
             disabled={this.disabled}
             aria-label={this.accessibilityText}
-            aria-pressed={pressed ? 'true' : null}
-            aria-expanded={expanded ? 'true' : null}
+            aria-pressed={this.pressed}
+            aria-expanded={this.expanded}
             aria-controls={this.controls}
             ref={el => (this.button = el)}
           >
@@ -244,8 +248,8 @@ export class CbpButton {
             {...this.persistedAttrs}
             {...attrs}
             aria-label={this.accessibilityText}
-            aria-pressed={pressed ? 'true' : null}
-            aria-expanded={expanded ? 'true' : null}
+            aria-pressed={this.pressed}
+            aria-expanded={this.expanded}
             aria-controls={this.controls}
             role={disabled ? 'link' : null}
             aria-disabled={disabled ? 'true' : null}
