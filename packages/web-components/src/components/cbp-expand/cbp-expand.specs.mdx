@@ -31,8 +31,9 @@ The Expand component is a standalone component used for progressive disclosure, 
 
 * Expand component headings default to `h4` tags, but should use the appropriate heading level for the document structure.
 * When the component heading is activated, whether content is expanded or collapsed, focus is sent to the actual button control.
-* The button control has the `aria-expanded` attribute applied to convey statefulness of the control.
-* The button control also contains the `aria-controls` attribute, referencing the `id` of the content wrapper.
+  * The button control has the `aria-labelledby` attribute referencing the text of the Expand heading.
+  * The button control has the `aria-expanded` attribute applied to convey statefulness of the control.
+  * The button control also contains the `aria-controls` attribute, referencing the `id` of the content wrapper.
 
 ### Additional Notes and Considerations
 

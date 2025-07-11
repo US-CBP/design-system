@@ -113,22 +113,11 @@ export class CbpButton {
       // Toggle the prop it controls
       if (this.controlTarget) {
         this.controlTarget[this.targetProp] = !this.controlTarget[this.targetProp];
-        //this.host.expanded = this.controlTarget[this.targetProp]; // TechDebt: does it make sense to assume this? This could be the cause of some issues seen in testing.
       } 
       else {
         console.warn('cbp-button configuration error: the control target referenced by ID by the `control` property could not be found.');
       }
-
-      // Toggle the control's expanded/pressed props, if set
-      // Does this conflict with existing behavior where another component controls these? Very likely.
-      /*
-      if (this.expanded != undefined) {
-        this.expanded == "true" ? "false" : "true";
-      }
-      if (this.pressed != undefined) {
-        this.pressed == "true" ? false : true;
-      }
-      */
+      // Toggling the control's expanded/pressed props is handled by parent components, so it cannot be done here.
     }
 
     this.buttonClick?.emit({
@@ -168,7 +157,8 @@ export class CbpButton {
   }
 
   componentDidLoad() {
-    // If the button was not defined by ref in the render lifecycle, query the DOM for one that may have been slotted and attach an event listener to it
+    // If the button was not defined by ref in the render lifecycle, query the DOM for one that may 
+    // have been slotted and attach an event listener to it.
     if (!this.button) {
       const slottedButton = (this.button = this.host.querySelector('button,a'));
       if (slottedButton) {

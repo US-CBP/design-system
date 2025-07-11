@@ -40,7 +40,8 @@ The Code Snippet component is used to display code in a readable format and faci
 
 * The "Copy" and "Show More/Less" buttons are usable via keyboard navigation.
 * The "Copy" button displays only an icon, but has an `aria-label` applied to provide an accessible name.
-* The "Show More/Less" button will have the `aria-expanded` attribute to indicate its functionality to progressively reveal more information.
+* The "Show More/Less" button will have `aria-expanded="false"` to indicate its functionality to progressively reveal more information.
+* Upon user interaction with the "Show More/Less" button, the `aria-expanded` value will be toggled.
 
 ### Additional Notes and Considerations
 
