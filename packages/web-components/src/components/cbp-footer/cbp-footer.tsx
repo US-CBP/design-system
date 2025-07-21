@@ -36,11 +36,11 @@ export class CbpFooter {
           {
             this.host.querySelector('[slot=cbp-footer-nav]') && 
             <div class="cbp-footer-nav">
-              <slot name="cbp-footer-nav"></slot>
+              <slot name="cbp-footer-nav" />
             </div>
           }
           <div class="cbp-footer-content">
-            <slot/>
+            <slot />
           </div>
         </footer>
       </Host>
