@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Form Fields',
+  title: 'Components/Form Field',
   tags: ['beta'],
   argTypes: {
     label: {
