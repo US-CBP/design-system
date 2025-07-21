@@ -20,7 +20,7 @@ export class CbpUniversalHeader {
   
   render() {
     return (
-      <Host>
+      <Host role="banner">
         <div class="cbp-universal-header__brand">
           <picture>
             <source srcSet={this.logoSrcSm} media="(max-width: 37.5rem)" type="image/svg+xml" height={44} width={44} />
