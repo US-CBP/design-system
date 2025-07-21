@@ -54,7 +54,7 @@ export class CbpDropdown {
   /* TODO */
   //@Prop() create: boolean;
 
-  /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
+  /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility. */
   @Prop() fieldId: string = createNamespaceKey('cbp-dropdown');
 
   /** Specifies the name of the (hidden) form field */

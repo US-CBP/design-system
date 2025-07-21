@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="Components/Form Fields/Specifications" />
+<Meta title="Components/Form Field/Specifications" />
 
 # cbp-form-field
 
@@ -44,11 +44,14 @@ import { Meta } from '@storybook/addon-docs';
 * For single-input form fields:
   * The label is rendered within a semantic `label` tag referencing the slotted form control by `id`.
   * The (optional) description is associated to the form control as a description via the `aria-describedby` attribute.
+  * The `disabled` and `readonly` properties controls the same-named attributes on the native form control.
+  * The `error` property controls the `aria-invalid` attribute on the native form control.
 * For multi-input form fields, such as radio lists or checklists:
   * The entire patterns is wrapped within a `fieldset`, which provides an inherent "group" role.
   * The component label is rendered as a `legend`, which provides the group's label.
   * The (optional) description is associated to the `fieldset` via the `aria-describedby` attribute.
   * The `disabled` property controls the same-named attribute on the `fieldset`, using a little-known feature to toggle all fields within it disabled.
+  * The `error` property controls the `aria-invalid` attribute on the `fieldset`. This is the preferred way of marking a checklist or radio list as invalid. For groupings containing multiple discrete form entries, such as a Name or Address pattern, the `error` property should also be used on the individual fields within the group.
 * Disabled form controls and buttons are non-interactive and cannot be navigated to using the keyboard and should be used with caution (if at all).
 * Placeholder text should rarely, if ever, be used.
   * Especially in forms where the user is expected to enter data, placeholder text with sufficient contrast to the background color may be mistaken as entered input.

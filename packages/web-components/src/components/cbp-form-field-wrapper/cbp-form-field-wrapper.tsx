@@ -6,10 +6,10 @@ import { setCSSProps } from '../../utils/utils';
  * and button controls to form inputs in accordance with design requirements.
  * 
  * @slot - The default slot holds the form control.
- * @slot cbp-form-field-overlay-start - Holds an overlay positioned on the left side of the form field.
- * @slot cbp-form-field-overlay-end - Holds an overlay positioned on the right side of the form field.
- * @slot cbp-form-field-attached-button
- * @slot cbp-form-field-unattached-buttons
+ * @slot cbp-form-field-overlay-start - Optionally slot an overlay positioned on the left side of the form field.
+ * @slot cbp-form-field-overlay-end - Optionally slot an overlay positioned on the right side of the form field.
+ * @slot cbp-form-field-attached-button - Optionally slot in any buttons that appear attached to the native form field.
+ * @slot cbp-form-field-unattached-buttons - Optionally slot in any buttons that appear horizontally after the native form field, but not attached to it.
  */
 @Component({
   tag: 'cbp-form-field-wrapper',

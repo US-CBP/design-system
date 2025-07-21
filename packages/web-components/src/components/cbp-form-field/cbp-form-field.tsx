@@ -108,6 +108,7 @@ export class CbpFormField {
 
   @Watch('error')
   watchErrorHandler(newValue: boolean) {
+    // This is already filtered for non-groups
     if (this.formField) {
       (newValue) 
         ? this.formField.setAttribute('aria-invalid', 'true')
@@ -159,11 +160,11 @@ export class CbpFormField {
     // Moved this logic to componentDidLoad so that it works with buttons rendered by the component lifecycle (not just slotted), such as in file input.
     if (!this.group) {
       // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
-      this.formField = this.host.querySelector('input,select,textarea');
+      this.formField = this.host.querySelector('button[role=combobox],input,select,textarea');
       
       // Treat nested components separately, as it's hard to modify their rendered content directly
       this.formFieldComponent = this.host.querySelector('cbp-dropdown,cbp-slider');
-      
+
       this.buttons = this.host.querySelectorAll('cbp-button');
       this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
       this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
@@ -215,6 +216,7 @@ export class CbpFormField {
           <fieldset 
             disabled={this.disabled}
             aria-describedby={`${this.fieldId}-description`}
+            aria-invalid={this.error ? 'true' : false}
           >
             <legend
               id={`${this.fieldId}-grouplabel`}

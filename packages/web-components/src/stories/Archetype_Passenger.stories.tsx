@@ -760,59 +760,57 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
   return `
     <cbp-skip-nav></cbp-skip-nav>
 
-    <header>
-      <cbp-universal-header
-        logo-src-lg="./assets/images/cbp-header-logo.svg"
-        logo-src-sm="./assets/images/cbp-seal.svg"
-      >
-        <ul>
-        ${
-          isLoggedIn
-            ? `
-          <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
-              <cbp-icon name="book"></cbp-icon>
-              <cbp-hide visually-hide-at="max-width: 64em">
-                  App Directory
-                </cbp-hide>
-            </cbp-button>
-          </li>
-          <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
-              <cbp-icon name="comment"></cbp-icon>  
-              <cbp-hide visually-hide-at="max-width: 64em">
-                Feedback
+    <cbp-universal-header
+      logo-src-lg="./assets/images/cbp-header-logo.svg"
+      logo-src-sm="./assets/images/cbp-seal.svg"
+    >
+      <ul>
+      ${
+        isLoggedIn
+          ? `
+        <li>
+          <cbp-button color="secondary" fill="ghost" context="dark-always">
+            <cbp-icon name="book"></cbp-icon>
+            <cbp-hide visually-hide-at="max-width: 64em">
+                App Directory
               </cbp-hide>
-            </cbp-button>
-          </li>
-          <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
-              <cbp-icon name="user"></cbp-icon>
-              <cbp-hide visually-hide-at="max-width: 64em">
-                ${username}
-              </cbp-hide>
-            </cbp-button>
-          </li>
-          `
-            : `
-          <li>
-            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
-              <cbp-icon name="right-to-bracket"></cbp-icon>Login
-            </cbp-button>
-          </li>
-          `
-        }
-        </ul>
-      </cbp-universal-header>
+          </cbp-button>
+        </li>
+        <li>
+          <cbp-button color="secondary" fill="ghost" context="dark-always">
+            <cbp-icon name="comment"></cbp-icon>  
+            <cbp-hide visually-hide-at="max-width: 64em">
+              Feedback
+            </cbp-hide>
+          </cbp-button>
+        </li>
+        <li>
+          <cbp-button color="secondary" fill="ghost" context="dark-always">
+            <cbp-icon name="user"></cbp-icon>
+            <cbp-hide visually-hide-at="max-width: 64em">
+              ${username}
+            </cbp-hide>
+          </cbp-button>
+        </li>
+        `
+          : `
+        <li>
+          <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
+            <cbp-icon name="right-to-bracket"></cbp-icon>Login
+          </cbp-button>
+        </li>
+        `
+      }
+      </ul>
+    </cbp-universal-header>
 
-      <cbp-app-header
-          subnav-drawer-id='appHeaderDrawer'
-        >
-        ${generateNavItems(navItems)}
-        </cbp-app-header>
+    <cbp-app-header
+      subnav-drawer-id="appHeaderDrawer"
+    >
+      ${generateNavItems(navItems)}
+    </cbp-app-header>
         
-      ${renderDrawer(navItems, 'appHeaderDrawer')}
-    </header>
+    ${renderDrawer(navItems, 'appHeaderDrawer')}
 
     <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
       <main id="main" tabindex="-1">
