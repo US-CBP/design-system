@@ -329,3 +329,70 @@ Search.args = {
   inputType: 'search',
   value: '',
 };
+
+
+const TimePickerInputTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      <cbp-form-field-wrapper
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >  
+        <input 
+          placeholder="HH:MM"
+          name="textinput" 
+          ${value ? `value="${value}"` : ''}
+          ${readonly ? `readonly` : ''}
+          ${disabled ? `disabled` : ''} 
+          sx='{"--cbp-form-field-wrapper-padding-end": "0" }'
+        />
+        <cbp-icon 
+          slot="cbp-form-field-overlay-start" 
+          name="clock"
+        ></cbp-icon>
+
+        <span slot="cbp-form-field-attached-button">
+          <cbp-segmented-button-group>
+            <cbp-button
+              type="button"
+              value="sm"
+              pressed="false"
+            >
+              AM
+            </cbp-button>
+
+            <cbp-button
+              type="button"
+              value="md"
+              pressed="false"
+            >
+              PM
+            </cbp-button>
+
+            <cbp-button
+              type="button"
+              value="lg"
+              pressed="false"
+            >
+              24 hr
+            </cbp-button>
+          </cbp-segmented-button-group>
+        </span>
+
+      </cbp-form-field-wrapper>
+    </cbp-form-field>
+  `;
+};
+
+export const TimePickerInput = TimePickerInputTemplate.bind({});
+TimePickerInput.args = {
+  value: '',
+  label: 'Field Title',
+  description: '(HH:MM Format) UTC-6 America/New York'
+};
