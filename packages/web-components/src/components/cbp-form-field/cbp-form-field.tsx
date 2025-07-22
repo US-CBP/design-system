@@ -215,6 +215,7 @@ export class CbpFormField {
         <Host>
           <fieldset 
             disabled={this.disabled}
+            aria-labelledby={`${this.fieldId}-grouplabel`}
             aria-describedby={`${this.fieldId}-description`}
             aria-invalid={this.error ? 'true' : false}
           >
