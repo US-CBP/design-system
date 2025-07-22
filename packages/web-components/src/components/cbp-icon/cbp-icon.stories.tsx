@@ -17,6 +17,7 @@ export default {
         'circle',
         'circle-info',
         'circle-xmark',
+        'clock',
         'clone',
         'ellipsis-vertical',
         'envelope',
