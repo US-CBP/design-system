@@ -14,6 +14,13 @@ The React components are wrappers generated from this package and will share the
   * Story code was updated and may need to be copied fresh for: 
     * Segmented Button Group (only if Button "pressed" values were explicitly set as a boolean HTML attribute).
     * Button (only if `pressed` or `expanded` props were used).
+* Updated the `cbp-universal-header` with an explicit `role="banner"`.
+  * BREAKING (story code): removed the `header` tag from all template/archetype stories in accordance with the above change. Story code may need to be re-copied or update in application code.
+  * This change also fixes the issue of the `cbp-app-header` not being sticky to the viewport as intended.
+* Updated the `cbp-form-field` component with accessibility bug fixes:
+  * Supports `aria-invalid` on form field groups (e.g., checklist, radio lists, etc.), rendered on the `fieldset` tag.
+  * Fixes support for `aria-describedby` on the Dropdown control.
+* Updated `cbp-skip-nav` to send focus to the target element rather than perform in-page navigation, which may break in some frameworks (and Storybook), and updated scroll margin to account for sticky App Header.
 
 ## [0.0.1-develop.22] 07-02-2025
 
