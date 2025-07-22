@@ -50,7 +50,16 @@ html {
 body {
   color: var(--cbp-color-body-text);
   background-color: var(--cbp-color-body-background);
-  font: var(--cbp-font-size-body) / 1rem var(--cbp-font-family-roboto);
+  font: var(--cbp-font-size-body)/1rem var(--cbp-font-family-roboto);
+}
+
+// Give everything a scroll margin so that it's not hidden beneath the sticky app header.
+* {
+  scroll-margin-block: var(--cbp-space-15x);
+}
+
+h1,h2,h3,h4,h5,h6 {
+  line-height: normal;
 }
 
 p,
@@ -68,9 +77,9 @@ button {
   cursor: pointer;
 }
 
-[aria-disabled='true'],
+[aria-disabled=true],
 :disabled,
-input:read-only:not([type='checkbox'], [type='radio'], [type='file'], [type='range'], [type='color']),
+input:read-only:not([type=checkbox], [type=radio], [type=file], [type=range], [type=color]),
 textarea:read-only {
   cursor: not-allowed;
 }
