@@ -59,9 +59,7 @@ const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-form-field-wrapper
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >  
+      <cbp-form-field-wrapper>  
         <input type="${inputType}" name="textinput" ${value ? `value="${value}"` : ''}  ${readonly ? `readonly` : ''} ${disabled ? `disabled` : ''} />
 
         ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
@@ -145,9 +143,7 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-form-field-wrapper
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >
+      <cbp-form-field-wrapper>
         <input
           type="${inputType}"
           name="search"
@@ -235,9 +231,7 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-form-field-wrapper
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >
+      <cbp-form-field-wrapper>
         <input
           type="${inputType}"
           name="search"
@@ -290,9 +284,7 @@ const SearchTemplate = ({ label, description, inputType,  overlayStart, overlayE
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-form-field-wrapper
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >  
+      <cbp-form-field-wrapper>  
         <input
           type="${inputType}"
           name="search"
@@ -331,7 +323,7 @@ Search.args = {
 };
 
 
-const TimePickerInputTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
+const TimeInputTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
@@ -341,9 +333,7 @@ const TimePickerInputTemplate = ({ label, description, fieldId, error, readonly,
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-form-field-wrapper
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >  
+      <cbp-form-field-wrapper>  
         <input 
           placeholder="HH:MM"
           name="textinput" 
@@ -390,8 +380,8 @@ const TimePickerInputTemplate = ({ label, description, fieldId, error, readonly,
   `;
 };
 
-export const TimePickerInput = TimePickerInputTemplate.bind({});
-TimePickerInput.args = {
+export const TimeInput = TimeInputTemplate.bind({});
+TimeInput.args = {
   value: '',
   label: 'Field Title',
   description: '(HH:MM Format) UTC-6 America/New York'
