@@ -59,9 +59,7 @@ const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-form-field-wrapper
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >  
+      <cbp-form-field-wrapper>  
         <input type="${inputType}" name="textinput" ${value ? `value="${value}"` : ''}  ${readonly ? `readonly` : ''} ${disabled ? `disabled` : ''} />
 
         ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
@@ -145,9 +143,7 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-form-field-wrapper
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >
+      <cbp-form-field-wrapper>
         <input
           type="${inputType}"
           name="search"
@@ -235,9 +231,7 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-form-field-wrapper
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >
+      <cbp-form-field-wrapper>
         <input
           type="${inputType}"
           name="search"
@@ -290,9 +284,7 @@ const SearchTemplate = ({ label, description, inputType,  overlayStart, overlayE
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-form-field-wrapper
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >  
+      <cbp-form-field-wrapper>  
         <input
           type="${inputType}"
           name="search"
@@ -341,9 +333,7 @@ const TimeInputTemplate = ({ label, description, fieldId, error, readonly, disab
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      <cbp-form-field-wrapper
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >  
+      <cbp-form-field-wrapper>  
         <input 
           placeholder="HH:MM"
           name="textinput" 
