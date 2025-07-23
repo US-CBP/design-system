@@ -26,8 +26,19 @@ export class CbpSkipNav {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+
+  handleClick(e) {
+    // Cancel navigation (because it can break in many contexts) and send focus to the target element.
+    e.preventDefault();
+    e.stopPropagation();
+    const target = document.querySelector(`#${this.targetId}`) as HTMLElement;
+    if (target) {
+      target.focus();
+    }
+  }
+  
   componentWillLoad() {
-    const target = document.querySelector(`#${this.targetId}`);
+    const target = document.querySelector(`#${this.targetId}`) as HTMLElement;
     if (!target) console.warn(`Configuration Error (cbp-skip-nav): The specified targetId of "${this.targetId}" cannot be found in the current page.`);
 
     if (typeof this.sx == 'string') {
@@ -45,6 +56,7 @@ export class CbpSkipNav {
           href={this.targetId ? `#${this.targetId}` : null}
           accessKey={this.shortcutKey}
           ref={(el) => this.link = el} 
+          onClick={ (e) => this.handleClick(e)}
         >
           <slot>Skip to main content</slot>
         </a>
