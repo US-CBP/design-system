@@ -38,25 +38,30 @@ cbp-form-field-wrapper {
       color: var(--cbp-form-field-color);
     }
 
-    [slot="cbp-form-field-overlay-start"] {
+    [slot=cbp-form-field-overlay-start] {
       inset-inline-start: var(--cbp-space-2x);
       font-weight: var(--cbp-font-weight-bold);
       font-style: italic;
     }
 
-    [slot="cbp-form-field-overlay-end"] {
+    [slot=cbp-form-field-overlay-end] {
       inset-inline-end: calc(var(--cbp-form-field-attached-button-width) + var(--cbp-space-2x));
       font-style: italic;
     }
 
     // Attached buttons act like an overlay in order to wrap the input focus highlight around them.
-    [slot="cbp-form-field-attached-button"] {
+    [slot=cbp-form-field-attached-button] {
       --cbp-button-border-radius: 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0;
       inset-inline-end: 0;
+
+      cbp-segmented-button-group cbp-button:first-child {
+        --cbp-button-border-radius: 0;
+      }
+
     }
   }
 
-  [slot="cbp-form-field-unattached-buttons"] {
+  [slot=cbp-form-field-unattached-buttons] {
     display: flex;
     gap: var(--cbp-space-4x);
   }

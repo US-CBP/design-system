@@ -331,7 +331,7 @@ Search.args = {
 };
 
 
-const TimePickerInputTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
+const TimeInputTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
@@ -390,8 +390,8 @@ const TimePickerInputTemplate = ({ label, description, fieldId, error, readonly,
   `;
 };
 
-export const TimePickerInput = TimePickerInputTemplate.bind({});
-TimePickerInput.args = {
+export const TimeInput = TimeInputTemplate.bind({});
+TimeInput.args = {
   value: '',
   label: 'Field Title',
   description: '(HH:MM Format) UTC-6 America/New York'
