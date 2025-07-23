@@ -311,27 +311,27 @@ StructuredListCollection.args = {
   showHeader: false,
   listItems: [
     {
-      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
+      content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
+      content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
+      content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
+      content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
+      content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
       color: 'default',
       selected: false
     },
@@ -379,22 +379,22 @@ StructuredListMedia.args = {
   showHeader: false,
   listItems: [
     {
-      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px'/></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px'/></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' /></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
       selected: false
     },
     {
-      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' /></div><div><cbp-typography tag='p'><cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon><cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
+      content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
       selected: false
     },
@@ -403,6 +403,14 @@ StructuredListMedia.args = {
 
 /*<------------------------------------ Collection w/ Calendar ---------------------------------------->*/
 const StructuredListMediaCalendarTemplate = ({ listItems, striped, selectable, context, sx }) => {
+  
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-structured-list a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+
   return ` 
         <cbp-structured-list
           ${striped ? `striped` : ''}
@@ -473,8 +481,10 @@ StructuredListMediaCalendar.args = {
                 </cbp-flex>
                   <div>
                     <cbp-typography tag='p'>
-                      <cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon>
-                      <cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Find the Hidden Beetle Training</cbp-link>
+                      <cbp-link href='#'>
+                        <cbp-icon name='arrow-right'></cbp-icon>
+                        Find the Hidden Beetle Training
+                      </cbp-link>
                     </cbp-typography>
                     <cbp-typography tag='p'>This training session will help you find those pesky hiding beetles. Inside boxes, on top of containers, or in someone's pocket, these bugs don't stand a chance of getting to America's sweet, delicious forests</cbp-typography>
                     <cbp-typography tag='p'>
@@ -531,8 +541,10 @@ StructuredListMediaCalendar.args = {
                 </cbp-flex>
                   <div>
                     <cbp-typography tag='p'>
-                      <cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon>
-                      <cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Agency Picnic</cbp-link>
+                      <cbp-link href='#'>
+                        <cbp-icon name='arrow-right'></cbp-icon>  
+                        Agency Picnic
+                      </cbp-link>
                     </cbp-typography>
                     <cbp-typography tag='p'>Every year the Capital District CBP employees come together to have a nice (ant free) picnic</cbp-typography>
                     <cbp-typography tag='p'>
@@ -590,8 +602,9 @@ StructuredListMediaCalendar.args = {
                 </cbp-flex>
                   <div>
                     <cbp-typography tag='p'>
-                      <cbp-icon name='arrow-right' color='var(--cbp-link-color)'></cbp-icon>
-                      <cbp-link href='#' target='_self' style='margin-inline-start: 0.5rem'>Commissioners Awards</cbp-link>
+                      <cbp-link href='#'>                      
+                        <cbp-icon name='arrow-right'></cbp-icon>
+                        Commissioners Awards</cbp-link>
                     </cbp-typography>
                     <cbp-typography tag='p'>Join us in person or online to celebrate this past years CBP employees excellence awards.</cbp-typography>
                     <cbp-typography tag='p'>
@@ -618,7 +631,7 @@ const StructuredListSelectableTemplate = ({ listItems, striped, showHeader, head
           ${context && context != 'light-inverts' ? `context=${context}` : ''}   
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
-        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox><input type="checkbox" /><span style='display: none'>check all</span></cbp-checkbox> <span>XX results - Y filters Applied Updated: XX/XX/XXXX XX:XX:XX EST</span></div>` : ''}
+        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox><input type="checkbox" /><span style='display: none'>check all</span></cbp-checkbox> <span>5 Search Results</span></div>` : ''}
     
         ${generateSelectableItems(listItems, context)}
           <div slot="cbp-structured-list-footer">
