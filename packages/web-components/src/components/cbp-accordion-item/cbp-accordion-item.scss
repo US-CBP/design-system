@@ -213,12 +213,18 @@ cbp-accordion-item {
     --cbp-accordion-item-color: var(--cbp-color-text-lightest);
     --cbp-accordion-item-color-fill: var(--cbp-color-danger-base);
 
-    .cbp-accordion-item--control:hover:not(:focus-within):not(:active) {
-      --cbp-accordion-item-color: var(--cbp-color-text-lightest);
-      --cbp-accordion-item-color-fill: var(--cbp-color-danger-dark);
-
-      + .cbp-accordion-item--content {
+    .cbp-accordion-item--control{
+      &:hover:not(:focus-within):not(:active) {
+        --cbp-accordion-item-color: var(--cbp-color-text-lightest);
         --cbp-accordion-item-color-fill: var(--cbp-color-danger-dark);
+
+        + .cbp-accordion-item--content {
+          --cbp-accordion-item-color-fill: var(--cbp-color-danger-dark);
+        }
+      }
+      cbp-typography,
+      cbp-typography > * {
+        --cbp-accordion-item-color: var(--cbp-color-white);
       }
     }
   }
