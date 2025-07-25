@@ -491,7 +491,7 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, navItems, numberOfC
         ${generateNavItems(navItems)}
       </cbp-app-header>
         
-      ${renderDrawer(navItems, 'appHeaderDrawer', false)}
+      ${renderDrawer(navItems, 'appHeaderDrawer', true)}
 
       <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)","flex-grow":"2"}'>
         <main id="main" tabindex="-1">
