@@ -13,19 +13,23 @@ export default {
     navItems: [
       {
         label: 'Application Name',
+        name: 'Application Name',
         href: './?path=/story/components-application-header--application-header#',
         current: true
       },
       {
         label: 'Nav Item 1',
+        name: 'Nav Item 1',
         href: './?path=/story/components-application-header--application-header#',
       },
       {
         label: 'Nav Item 2',
+        name: 'Nav Item 2',
         href: './?path=/story/components-application-header--application-header#',
       },
       {
         label: 'Nav Item 3',
+        name: 'Nav Item 3',
         href: './?path=/story/components-application-header--application-header#',
       },
     ]

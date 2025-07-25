@@ -24,19 +24,23 @@ export default {
     navItems: [
       {
         label: 'Application Name',
+        name: 'Application Name',
         href: './?path=/story/components-application-header--application-header#',
         current: true
       },
       {
         label: 'Nav Item 1',
+        name: 'Nav Item 1',
         href: './?path=/story/components-application-header--application-header#',
       },
       {
         label: 'Nav Item 2',
+        name: 'Nav Item 2',
         href: './?path=/story/components-application-header--application-header#',
       },
       {
         label: 'Nav Item 3',
+        name: 'Nav Item 3',
         href: './?path=/story/components-application-header--application-header#',
       },
     ] 
@@ -102,7 +106,7 @@ const InternalTemplate = ({ isLoggedIn, username, navItems }) => {
         ${generateNavItems(navItems)}
       </cbp-app-header>
         
-     ${renderDrawer(navItems, 'appHeaderDrawer', false)}
+     ${renderDrawer(navItems, 'appHeaderDrawer', true)}
 
       <cbp-container sx='{"flex-grow":"1","padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
         <main id="main" tabindex="-1">
@@ -209,7 +213,7 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, navItems, contentGridSi
         ${generateNavItems(navItems)}
       </cbp-app-header>
       
-      ${renderDrawer(navItems, 'appHeaderDrawer', false)}
+      ${renderDrawer(navItems, 'appHeaderDrawer', true)}
 
       <cbp-grid
         grid-template-columns="${contentGridSize} ${sidebarGridSize}"
@@ -487,7 +491,7 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, navItems, numberOfC
         ${generateNavItems(navItems)}
       </cbp-app-header>
         
-      ${renderDrawer(navItems, 'appHeaderDrawer', false)}
+      ${renderDrawer(navItems, 'appHeaderDrawer', true)}
 
       <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)","flex-grow":"2"}'>
         <main id="main" tabindex="-1">
