@@ -141,6 +141,82 @@ function renderDrawer(items, drawerid){
   }
 }
 
+function renderUserPref(username) {
+  return `
+    <cbp-drawer
+      uid= "userPref"    
+      position= "right"
+      accessibility-text= "User Preference Drawer"
+    >
+      <cbp-panel>
+        <cbp-typography
+          slot="cbp-panel-header"
+          tag="h3"
+          variant="heading-lg"
+          id="panelheader"
+        >
+          User Preferences
+        </cbp-typography>
+
+        <cbp-typography
+          tag="p"
+          variant="heading-xs"
+        >
+          Hi there,
+        </cbp-typography>
+        
+        <cbp-typography
+          tag="h3"
+          variant="heading-lg"
+        >
+          ${username}
+        </cbp-typography>
+        
+        <cbp-typography
+          tag="p"
+          variant="heading-xs"
+        >
+          (XXXXXXX)
+        </cbp-typography>
+        <cbp-flex
+          gap="1rem"
+        >
+          <cbp-button
+            color="secondary"
+          >
+            <cbp-icon
+              name="up-right-from-square"
+            ></cbp-icon>
+            LOGOUT
+          </cbp-button>
+          <cbp-flex-item
+            align-self="center"
+          >
+            <cbp-typography
+              tag="span"
+            >
+              <b>Not you?</b> Click here to Logout.
+            </cbp-typography>
+          </cbp-flex-item>
+        </cbp-flex>
+        <br />
+        <cbp-toggle
+          status-text-on="Dark"
+          status-text-off="Light"
+        >
+          Theme:
+          <input
+            type="checkbox"
+            name="undefined"
+            value="undefined"
+          />
+        </cbp-toggle>
+
+      </cbp-panel>
+    </cbp-drawer>
+  `
+}
+
 function getTimeDiff(date1, date2) {
   const timeDiff = Math.abs(date1 - date2);
   const seconds = Math.floor(timeDiff / 1000);
@@ -789,7 +865,15 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
           </cbp-button>
         </li>
         <li>
-          <cbp-button color="secondary" fill="ghost" context="dark-always">
+
+          <cbp-button 
+          type="button"
+          color="secondary" 
+            fill="ghost" 
+            context="dark-always" 
+            controls="userPref"
+            target-prop="open"
+          >
             <cbp-icon name="user"></cbp-icon>
             <cbp-hide visually-hide-at="max-width: 64em">
               ${username}
@@ -815,6 +899,7 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
     </cbp-app-header>
         
     ${renderDrawer(navItems, 'appHeaderDrawer')}
+    ${renderUserPref(username)}
 
     <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
       <main id="main" tabindex="-1">
