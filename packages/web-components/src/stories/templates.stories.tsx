@@ -19,7 +19,8 @@ export default {
     },
   },
   args: {
-    username: 'HASHIDX',
+    username: 'Johnathan Smithington',
+    hashid: 'HASHIDX',
     isLoggedIn: true,
     navItems: [
       {
@@ -47,7 +48,7 @@ export default {
   },
 };
 
-const InternalTemplate = ({ isLoggedIn, username, navItems }) => {
+const InternalTemplate = ({ isLoggedIn, username, hashid, navItems }) => {
 
   setTimeout(() => {
     let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
@@ -82,9 +83,9 @@ const InternalTemplate = ({ isLoggedIn, username, navItems }) => {
             </cbp-button>
           </li>
           <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
+            <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
               <cbp-icon name="user"></cbp-icon>
-              <cbp-hide visually-hide-at="max-width: 64em">${username}</cbp-hide>
+              <cbp-hide visually-hide-at="max-width: 64em">${hashid}</cbp-hide>
             </cbp-button>
           </li>
           `
@@ -105,8 +106,6 @@ const InternalTemplate = ({ isLoggedIn, username, navItems }) => {
       >
         ${generateNavItems(navItems)}
       </cbp-app-header>
-        
-     ${renderDrawer(navItems, 'appHeaderDrawer', true)}
 
       <cbp-container sx='{"flex-grow":"1","padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
         <main id="main" tabindex="-1">
@@ -147,6 +146,9 @@ const InternalTemplate = ({ isLoggedIn, username, navItems }) => {
           </cbp-flex>
         </section>
       </cbp-footer>
+
+     ${renderDrawer(navItems, 'appHeaderDrawer', true)}
+     ${renderUserPref(username, hashid)}
     </cbp-flex>
   `;
 };
@@ -154,7 +156,7 @@ const InternalTemplate = ({ isLoggedIn, username, navItems }) => {
 export const Internal = InternalTemplate.bind({});
 
 
-const Internal2ColumnTemplate = ({ isLoggedIn, username, navItems, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
+const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
   
   setTimeout(() => {
     let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
@@ -189,9 +191,9 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, navItems, contentGridSi
             </cbp-button>
           </li>
           <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
+            <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
               <cbp-icon name="user"></cbp-icon>
-              <cbp-hide visually-hide-at="max-width:64em">${username}</cbp-hide>
+              <cbp-hide visually-hide-at="max-width:64em">${hashid}</cbp-hide>
             </cbp-button>
           </li>
           `
@@ -213,8 +215,6 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, navItems, contentGridSi
         ${generateNavItems(navItems)}
       </cbp-app-header>
       
-      ${renderDrawer(navItems, 'appHeaderDrawer', true)}
-
       <cbp-grid
         grid-template-columns="${contentGridSize} ${sidebarGridSize}"
         gap="var(--cbp-space-7x)"
@@ -277,6 +277,10 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, navItems, contentGridSi
           </cbp-flex>
         </section>
       </cbp-footer>
+
+      
+      ${renderDrawer(navItems, 'appHeaderDrawer', true)}
+      ${renderUserPref(username, hashid)}
     </cbp-flex>
   `;
 };
@@ -389,6 +393,83 @@ function renderDrawer(items, drawerid, store){
   }
 }
 
+function renderUserPref(username, hashid) {
+  return `
+    <cbp-drawer
+      uid= "userPref"    
+      position= "right"
+      accessibility-text= "User Preference Drawer"
+    >
+      <cbp-panel>
+        <cbp-typography
+          slot="cbp-panel-header"
+          tag="h2"
+          variant="heading-lg"
+          id="panelheader"
+        >
+          <cbp-icon name="user"></cbp-icon>
+          User Preferences
+        </cbp-typography>
+
+        <cbp-typography
+          tag="p"
+          variant="heading-xs"
+        >
+          Hi there,
+        </cbp-typography>
+        
+        <cbp-typography
+          tag="h3"
+          variant="heading-lg"
+        >
+          ${username}
+        </cbp-typography>
+        
+        <cbp-typography
+          tag="p"
+          variant="heading-xs"
+        >
+          (${hashid})
+        </cbp-typography>
+        <cbp-flex
+          gap="1rem"
+        >
+          <cbp-button
+            color="secondary"
+          >
+            <cbp-icon
+              name="arrow-right-from-bracket"
+            ></cbp-icon>
+            logout
+          </cbp-button>
+          <cbp-flex-item
+            align-self="center"
+          >
+            <cbp-typography
+              tag="span"
+            >
+              <b>Not you?</b> Click here to Logout.
+            </cbp-typography>
+          </cbp-flex-item>
+        </cbp-flex>
+        <br />
+        <cbp-toggle
+          status-text-on="Dark"
+          status-text-off="Light"
+        >
+          Theme:
+          <input
+            type="checkbox"
+            name="themeSwitch"
+            value="undefined"
+          />
+        </cbp-toggle>
+
+      </cbp-panel>
+    </cbp-drawer>
+  `
+}
+
 function generateCards(numberOfCards) {
   let html=''
   for (let i=0; i<numberOfCards; i++) {
@@ -432,7 +513,7 @@ function generateCards(numberOfCards) {
 
 
 
-const InternalCardsLayoutTemplate = ({ isLoggedIn, username, navItems, numberOfCards, cardMinWidth }) => {
+const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, numberOfCards, cardMinWidth }) => {
   
   setTimeout(() => {
     let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
@@ -467,9 +548,9 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, navItems, numberOfC
             </cbp-button>
           </li>
           <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
+            <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
               <cbp-icon name="user"></cbp-icon>
-              <cbp-hide visually-hide-at="max-width:64em">${username}</cbp-hide>
+              <cbp-hide visually-hide-at="max-width:64em">${hashid}</cbp-hide>
             </cbp-button>
           </li>
           `
@@ -491,7 +572,7 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, navItems, numberOfC
         ${generateNavItems(navItems)}
       </cbp-app-header>
         
-      ${renderDrawer(navItems, 'appHeaderDrawer', true)}
+      
 
       <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)","flex-grow":"2"}'>
         <main id="main" tabindex="-1">
@@ -536,6 +617,9 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, navItems, numberOfC
           </cbp-flex>
         </section>
       </cbp-footer>
+
+      ${renderDrawer(navItems, 'appHeaderDrawer', true)}
+      ${renderUserPref(username, hashid)}
     </cbp-flex>
   `;
 };

@@ -8,7 +8,8 @@ export default {
   },
   argTypes: {},
   args: {
-    username: 'HASHIDX',
+    username: 'Johnathan Smithington',
+    hashid: 'HASHIDX',
     isLoggedIn: true,
     navItems: [
       {
@@ -139,6 +140,83 @@ function renderDrawer(items, drawerid){
   }else {
     return '';
   }
+}
+
+function renderUserPref(username, hashid) {
+  return `
+    <cbp-drawer
+      uid= "userPref"    
+      position= "right"
+      accessibility-text= "User Preference Drawer"
+    >
+      <cbp-panel>
+        <cbp-typography
+          slot="cbp-panel-header"
+          tag="h2"
+          variant="heading-lg"
+          id="panelheader"
+        >      
+          <cbp-icon name="user"></cbp-icon>
+          User Preferences
+        </cbp-typography>
+
+        <cbp-typography
+          tag="p"
+          variant="heading-xs"
+        >
+          Hi there,
+        </cbp-typography>
+        
+        <cbp-typography
+          tag="h3"
+          variant="heading-lg"
+        >
+          ${username}
+        </cbp-typography>
+        
+        <cbp-typography
+          tag="p"
+          variant="heading-xs"
+        >
+          (${hashid})
+        </cbp-typography>
+        <cbp-flex
+          gap="1rem"
+        >
+          <cbp-button
+            color="secondary"
+          >
+            <cbp-icon
+              name="arrow-right-from-bracket"
+            ></cbp-icon>
+            logout
+          </cbp-button>
+          <cbp-flex-item
+            align-self="center"
+          >
+            <cbp-typography
+              tag="span"
+            >
+              <b>Not you?</b> Click here to Logout.
+            </cbp-typography>
+          </cbp-flex-item>
+        </cbp-flex>
+        <br />
+        <cbp-toggle
+          status-text-on="Dark"
+          status-text-off="Light"
+        >
+          Theme:
+          <input
+            type="checkbox"
+            name="themeSwitch"
+            value="undefined"
+          />
+        </cbp-toggle>
+
+      </cbp-panel>
+    </cbp-drawer>
+  `
 }
 
 function getTimeDiff(date1, date2) {
@@ -742,7 +820,7 @@ function manifestPane(manifestArgs) {
         </cbp-drawer>
       `;
 }
-const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, manifestArgs }) => {
+const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, passengersArgs, manifestArgs }) => {
   /** Techdebt for iteration on filter & manifest pane:
    * Icon for the app directory button is incorrect, verify all icons in buttons, most of these are initial stubs
    * Buttons in the universal header need spacing between icon & text
@@ -789,10 +867,18 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
           </cbp-button>
         </li>
         <li>
-          <cbp-button color="secondary" fill="ghost" context="dark-always">
+
+          <cbp-button 
+          type="button"
+          color="secondary" 
+            fill="ghost" 
+            context="dark-always" 
+            controls="userPref"
+            target-prop="open"
+          >
             <cbp-icon name="user"></cbp-icon>
             <cbp-hide visually-hide-at="max-width: 64em">
-              ${username}
+              ${hashid}
             </cbp-hide>
           </cbp-button>
         </li>
@@ -814,8 +900,6 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
       ${generateNavItems(navItems)}
     </cbp-app-header>
         
-    ${renderDrawer(navItems, 'appHeaderDrawer')}
-
     <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
       <main id="main" tabindex="-1">
         <cbp-typography tag="h1" divider="underline" sx='{"margin-bottom":"var(--cbp-space-5x)"}'>
@@ -831,8 +915,6 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
         </main>
 
     </cbp-container>
-
-    ${manifestPane(manifestArgs)}
 
     <cbp-footer>
       <nav slot="cbp-footer-nav">
@@ -862,6 +944,10 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
         </cbp-flex>
       </section>
     </cbp-footer>
+
+    ${renderDrawer(navItems, 'appHeaderDrawer')}
+    ${renderUserPref(username, hashid)}
+    ${manifestPane(manifestArgs)}
     `;
 };
 
