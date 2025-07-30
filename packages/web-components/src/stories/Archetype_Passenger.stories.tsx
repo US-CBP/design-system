@@ -8,7 +8,8 @@ export default {
   },
   argTypes: {},
   args: {
-    username: 'HASHIDX',
+    username: 'John Doe',
+    hashid: 'HASHIDX',
     isLoggedIn: true,
     navItems: [
       {
@@ -141,7 +142,7 @@ function renderDrawer(items, drawerid){
   }
 }
 
-function renderUserPref(username) {
+function renderUserPref(username, hashid) {
   return `
     <cbp-drawer
       uid= "userPref"    
@@ -151,7 +152,7 @@ function renderUserPref(username) {
       <cbp-panel>
         <cbp-typography
           slot="cbp-panel-header"
-          tag="h3"
+          tag="h2"
           variant="heading-lg"
           id="panelheader"
         >
@@ -176,7 +177,7 @@ function renderUserPref(username) {
           tag="p"
           variant="heading-xs"
         >
-          (XXXXXXX)
+          ${hashid}
         </cbp-typography>
         <cbp-flex
           gap="1rem"
@@ -185,9 +186,9 @@ function renderUserPref(username) {
             color="secondary"
           >
             <cbp-icon
-              name="up-right-from-square"
+              name="arrow-right-from-bracket"
             ></cbp-icon>
-            LOGOUT
+            logout
           </cbp-button>
           <cbp-flex-item
             align-self="center"
@@ -207,7 +208,7 @@ function renderUserPref(username) {
           Theme:
           <input
             type="checkbox"
-            name="undefined"
+            name="themeSwitch"
             value="undefined"
           />
         </cbp-toggle>
@@ -818,7 +819,7 @@ function manifestPane(manifestArgs) {
         </cbp-drawer>
       `;
 }
-const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, manifestArgs }) => {
+const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, passengersArgs, manifestArgs }) => {
   /** Techdebt for iteration on filter & manifest pane:
    * Icon for the app directory button is incorrect, verify all icons in buttons, most of these are initial stubs
    * Buttons in the universal header need spacing between icon & text
@@ -898,9 +899,6 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
       ${generateNavItems(navItems)}
     </cbp-app-header>
         
-    ${renderDrawer(navItems, 'appHeaderDrawer')}
-    ${renderUserPref(username)}
-
     <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
       <main id="main" tabindex="-1">
         <cbp-typography tag="h1" divider="underline" sx='{"margin-bottom":"var(--cbp-space-5x)"}'>
@@ -916,8 +914,6 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
         </main>
 
     </cbp-container>
-
-    ${manifestPane(manifestArgs)}
 
     <cbp-footer>
       <nav slot="cbp-footer-nav">
@@ -947,6 +943,10 @@ const InternalTemplate = ({ isLoggedIn, username, navItems, passengersArgs, mani
         </cbp-flex>
       </section>
     </cbp-footer>
+
+    ${renderDrawer(navItems, 'appHeaderDrawer')}
+    ${renderUserPref(username, hashid)}
+    ${manifestPane(manifestArgs)}
     `;
 };
 
