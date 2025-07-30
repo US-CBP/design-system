@@ -19,7 +19,7 @@ export default {
     },
   },
   args: {
-    username: 'John Doe',
+    username: 'Johnathan Smithington',
     hashid: 'HASHIDX',
     isLoggedIn: true,
     navItems: [
@@ -85,7 +85,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems }) => {
           <li>
             <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
               <cbp-icon name="user"></cbp-icon>
-              <cbp-hide visually-hide-at="max-width: 64em">${username}</cbp-hide>
+              <cbp-hide visually-hide-at="max-width: 64em">${hashid}</cbp-hide>
             </cbp-button>
           </li>
           `
@@ -193,7 +193,7 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, conte
           <li>
             <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
               <cbp-icon name="user"></cbp-icon>
-              <cbp-hide visually-hide-at="max-width:64em">${username}</cbp-hide>
+              <cbp-hide visually-hide-at="max-width:64em">${hashid}</cbp-hide>
             </cbp-button>
           </li>
           `
@@ -428,7 +428,7 @@ function renderUserPref(username, hashid) {
           tag="p"
           variant="heading-xs"
         >
-          ${hashid}
+          (${hashid})
         </cbp-typography>
         <cbp-flex
           gap="1rem"
@@ -549,7 +549,7 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, n
           <li>
             <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
               <cbp-icon name="user"></cbp-icon>
-              <cbp-hide visually-hide-at="max-width:64em">${username}</cbp-hide>
+              <cbp-hide visually-hide-at="max-width:64em">${hashid}</cbp-hide>
             </cbp-button>
           </li>
           `

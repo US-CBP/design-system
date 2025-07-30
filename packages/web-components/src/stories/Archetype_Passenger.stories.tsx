@@ -8,7 +8,7 @@ export default {
   },
   argTypes: {},
   args: {
-    username: 'John Doe',
+    username: 'Johnathan Smithington',
     hashid: 'HASHIDX',
     isLoggedIn: true,
     navItems: [
@@ -177,7 +177,7 @@ function renderUserPref(username, hashid) {
           tag="p"
           variant="heading-xs"
         >
-          ${hashid}
+          (${hashid})
         </cbp-typography>
         <cbp-flex
           gap="1rem"
@@ -877,7 +877,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, passengersAr
           >
             <cbp-icon name="user"></cbp-icon>
             <cbp-hide visually-hide-at="max-width: 64em">
-              ${username}
+              ${hashid}
             </cbp-hide>
           </cbp-button>
         </li>
