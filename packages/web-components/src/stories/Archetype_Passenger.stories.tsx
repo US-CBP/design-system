@@ -155,7 +155,8 @@ function renderUserPref(username, hashid) {
           tag="h2"
           variant="heading-lg"
           id="panelheader"
-        >
+        >      
+          <cbp-icon name="user"></cbp-icon>
           User Preferences
         </cbp-typography>
 

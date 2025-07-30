@@ -407,6 +407,7 @@ function renderUserPref(username, hashid) {
           variant="heading-lg"
           id="panelheader"
         >
+          <cbp-icon name="user"></cbp-icon>
           User Preferences
         </cbp-typography>
 
