@@ -65,7 +65,6 @@ const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText,
     >
       <cbp-panel
         aria-labelledby="panelheader"
-        role="complementary"
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
       >
         <cbp-typography
@@ -75,7 +74,7 @@ const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText,
           id="panelheader"
         >
           ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}
-          Sidebar Header
+          Drawer Header
         </cbp-typography>
         <p>Sidebar Content</p>
       </cbp-panel>
@@ -115,7 +114,6 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
     >
       <cbp-panel
         aria-labelledby="userprefs-panel-header"
-        role="complementary"
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         sx='{
           "--cbp-panel-header-color-dark": "var(--cbp-color-text-lighter)",

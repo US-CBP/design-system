@@ -72,7 +72,7 @@ const ActionsMenuTemplate = ({ position, context, sx }) => {
         fill="outline"
         color="secondary"
         variant="square"
-        accessibilityText="Actions"
+        accessibility-text="Actions"
         target-prop="open"
         controls="menuId"
       >

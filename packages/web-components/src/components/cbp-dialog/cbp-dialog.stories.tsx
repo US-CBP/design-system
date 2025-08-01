@@ -81,12 +81,11 @@ const Template = ({ title, content, color, open, uid, withIcon, accessibilityTex
     <cbp-button
       type="button"
       color="secondary"
-      variant="square"
       accessibility-text="Open Dialog"
       target-prop="open"
       controls=${uid}
     >
-      <cbp-icon name="bars"></cbp-icon>
+      Open Dialog
     </cbp-button>
 
     <cbp-dialog
