@@ -75,6 +75,7 @@ const ActionsMenuTemplate = ({ position, context, sx }) => {
         accessibilityText="Actions"
         target-prop="open"
         controls="menuId"
+        label="Action Menu"
       >
         <cbp-icon name="ellipsis-vertical"></cbp-icon>
       </cbp-button>
