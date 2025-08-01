@@ -72,10 +72,9 @@ const ActionsMenuTemplate = ({ position, context, sx }) => {
         fill="outline"
         color="secondary"
         variant="square"
-        accessibilityText="Actions"
+        accessibility-text="Actions"
         target-prop="open"
         controls="menuId"
-        label="Action Menu"
       >
         <cbp-icon name="ellipsis-vertical"></cbp-icon>
       </cbp-button>
