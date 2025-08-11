@@ -16,6 +16,12 @@ export default {
       //options: [ "text", "number", "password", "search"]
       options: [ "text", "number", "password", "search", "email", "tel", "url", "color", "range", "date", "datetime-local", "month", "week", "time", "file"]
     },
+    name: {
+      control: 'text',
+    },
+    value: {
+      control: 'text',
+    },
     error: {
       control: 'boolean',
     },
@@ -49,7 +55,7 @@ export default {
 
 
 
-const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart, overlayEnd, fieldId, error, readonly, disabled, value, context, sx }) => {
+const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart, overlayEnd, fieldId, error, readonly, disabled, name, value, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
@@ -60,7 +66,13 @@ const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
       <cbp-form-field-wrapper>  
-        <input type="${inputType}" name="textinput" ${value ? `value="${value}"` : ''}  ${readonly ? `readonly` : ''} ${disabled ? `disabled` : ''} />
+        <input 
+          type="${inputType}" 
+          ${name ? `name="${name}"` : ''} 
+          ${value ? `value="${value}"` : ''} 
+          ${readonly ? `readonly` : ''}
+          ${disabled ? `disabled` : ''}
+        />
 
         ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
         ${overlayEnd != undefined ? `<span slot="cbp-form-field-overlay-end">${overlayEnd}</span>` : ''}
@@ -72,17 +84,19 @@ const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart
 
 export const InputWithOverlays = InputWithOverlaysTemplate.bind({});
 InputWithOverlays.args = {
+  name: 'textinput',
   value: '',
 };
 
 
 
-const FileInputTemplate = ({ label, description, overlayStart, overlayEnd, fieldId, error, readonly, disabled, context, sx }) => {
+const FileInputTemplate = ({ label, description, overlayStart, overlayEnd, fieldId, name, error, readonly, disabled, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${name ? `name="${name}"` : ''} 
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -113,7 +127,7 @@ FileInput.storyName="File Input (Simple)"
 
 
 
-const NumericCounterTemplate = ({ label, description, inputType, overlayStart, overlayEnd, fieldId, error, readonly, disabled, value, context, sx }) => {
+const NumericCounterTemplate = ({ label, description, inputType, overlayStart, overlayEnd, fieldId, name, value, error, readonly, disabled, context, sx }) => {
 
   // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
   document.addEventListener('buttonClick', function(e) {
@@ -146,7 +160,7 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
       <cbp-form-field-wrapper>
         <input
           type="${inputType}"
-          name="search"
+          ${name ? `name="${name}"` : ''}
           ${value ? `value="${value}"` : ''}
         />
 
@@ -193,12 +207,13 @@ NumericCounter.args = {
   description: '',
   fieldId: 'numeric-input',
   inputType: 'number',
+  name: 'numericinput',
   value: '',
 };
 
 
 
-const PasswordTemplate = ({ label, description, inputType,  overlayStart, overlayEnd, fieldId, error, readonly, disabled, value, context, sx }) => {
+const PasswordTemplate = ({ label, description, inputType,  overlayStart, overlayEnd, fieldId, name, value, error, readonly, disabled, context, sx }) => {
 
   // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
   document.addEventListener('buttonClick', function(e) {
@@ -234,7 +249,7 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
       <cbp-form-field-wrapper>
         <input
           type="${inputType}"
-          name="search"
+          ${name ? `name="${name}"` : ''}
           ${value ? `value="${value}"` : ''}
         />
 
@@ -267,12 +282,13 @@ Password.args = {
   description: '',
   fieldId: 'pw',
   inputType: 'password',
+  name: 'password',
   value: '',
 };
 
 
 
-const SearchTemplate = ({ label, description, inputType,  overlayStart, overlayEnd, fieldId, error, readonly, disabled, value, context, sx }) => {
+const SearchTemplate = ({ label, description, inputType,  overlayStart, overlayEnd, fieldId, name, value, error, readonly, disabled, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
@@ -287,10 +303,8 @@ const SearchTemplate = ({ label, description, inputType,  overlayStart, overlayE
       <cbp-form-field-wrapper>  
         <input
           type="${inputType}"
-          name="search"
+          ${name ? `name="${name}"` : ''}
           ${value ? `value="${value}"` : ''}
-          ${readonly ? `readonly` : ''}
-          ${disabled ? `disabled` : ''}
         />
 
         ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
@@ -319,11 +333,12 @@ Search.args = {
   description: '',
   fieldId: 'search',
   inputType: 'search',
+  name: 'search',
   value: '',
 };
 
 
-const TimeInputTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
+const TimeInputTemplate = ({ label, description, fieldId, name, value, error, readonly, disabled, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
@@ -336,7 +351,7 @@ const TimeInputTemplate = ({ label, description, fieldId, error, readonly, disab
       <cbp-form-field-wrapper>  
         <input 
           placeholder="HH:MM"
-          name="textinput" 
+          ${name ? `name="${name}"` : ''}
           ${value ? `value="${value}"` : ''}
           ${readonly ? `readonly` : ''}
           ${disabled ? `disabled` : ''} 
@@ -352,7 +367,7 @@ const TimeInputTemplate = ({ label, description, fieldId, error, readonly, disab
             <cbp-button
               type="button"
               value="sm"
-              pressed="false"
+              pressed="true"
             >
               AM
             </cbp-button>
@@ -360,7 +375,6 @@ const TimeInputTemplate = ({ label, description, fieldId, error, readonly, disab
             <cbp-button
               type="button"
               value="md"
-              pressed="false"
             >
               PM
             </cbp-button>
@@ -368,7 +382,6 @@ const TimeInputTemplate = ({ label, description, fieldId, error, readonly, disab
             <cbp-button
               type="button"
               value="lg"
-              pressed="false"
             >
               24 hr
             </cbp-button>
@@ -382,7 +395,8 @@ const TimeInputTemplate = ({ label, description, fieldId, error, readonly, disab
 
 export const TimeInput = TimeInputTemplate.bind({});
 TimeInput.args = {
-  value: '',
   label: 'Field Title',
-  description: '(HH:MM Format) UTC-6 America/New York'
+  description: '(HH:MM Format) UTC-6 America/New York',
+  name: 'time',
+  value: '',
 };
