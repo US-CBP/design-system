@@ -4,6 +4,11 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unreleased] TBD
+
+* Updated the File Input component with experimental enhanced functionality.
+  * Also fixed accessibility defects.
+
 ## [0.0.1-develop.23] 07-24-2025
 
 * BREAKING: Updated the `cbp-button` properties of `expanded` and `pressed` to a string union of `"true" | "false"` rather than a true Boolean value.

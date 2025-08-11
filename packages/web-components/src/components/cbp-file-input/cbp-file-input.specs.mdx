@@ -15,6 +15,7 @@ The File Input component builds upon the native file input, allowing for custom 
 * The native file input acts as a drop target and is stretched over the visual treatment for the form field so that dragging and dropping files anywhere on it works.
 * The native file picker dialog is specific to the operating system.
 * The button control is decorative and placed behind the native file input, is not focusable, and shall be hidden from the accessibility tree.
+* An enhanced version of the file input shall be supported, which allows adding subsequent files to the selection and individual file deletion from the list.
 
 ## Technical Specifications
 
@@ -26,7 +27,15 @@ The File Input component builds upon the native file input, allowing for custom 
   * Dragging and dropping additional files also replaces the previous selection.
   * Due to the above behaviors, if multiple files are accepted, they must all be selected at once.
   * Setting the value to an empty string or null clears the fileList.
-* However, functionality can be enhanced (via property) for integration with a framework or using the component's custom events rather than the native input value (TODO).
+* However, functionality can be enhanced (via property) for integration with a framework or using the component's custom events rather than the native input value.
+  * Enhanced mode only matters when supporting multiple files.
+  * Enhanced mode will not work with a native form post, as the value and fileList is cleared and a file array is maintained internally.
+  * As such, files may be added after an initial selection is made, rather than replacing the selection.
+  * Files may be deleted individually from the file list.
+  * The value emitted as part of the custom event is an array of File objects, which may be read with the native JavaScript FileReader API.
+* In either mode, the native `input type="file"` is made transparent and overlaid on top of the visible UI.
+  * This makes the native input focusable and also
+  * Available as a drop target to drag and drop files onto it.
 
 ### Responsiveness
 
@@ -37,10 +46,13 @@ The File Input component builds upon the native file input, allowing for custom 
 
 * The `cbp-file-input` component shall be slotted within the `cbp-form-field` component to provide an accessible label and description.
 * The button control is decorative and placed behind the native file input and shall be hidden from the accessibility tree.
+* The native `input type="file"` is focusable and available as a drag and drop target.
+* When a file is selected (via the OS-level dialog or drag and drop) or when a file is deleted, focus is returned to the native form control.
 
 ### Additional Notes and Considerations
 
-* The `accepts` attribute is merely a suggestion to the browser, which enables a filter on the native file picker dialog. The end user may be able to remove the filter and any file type restrictions should always be verified in form validation.
+* The `accepts` attribute is merely a suggestion to the browser, which enables a filter on the native file picker dialog. This does not prevent other file types from being added via drag-and-drop and the end user may be able to remove the filter in the dialog UI, so any file type restrictions should always be verified in form validation.
 * `Readonly` should not be used on file inputs - use `disabled` instead. While the `readonly` attribute is technically valid on the native `input`, it doesn't work consistently with other readonly inputs:
   * Clicking the field still opens the file picker dialog and allows the value to be changed.
   * File inputs cannot set a value programmatically to be submitted with a native form post as other `readonly` inputs would.
+  * If the intent is to show a (non-editable) previously save value, do so as plain text rather than an interactive control.
