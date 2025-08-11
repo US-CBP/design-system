@@ -72,6 +72,12 @@ p {
   line-height: 1.25rem;
 }
 
+hr {
+  border: none;
+  height: 1px;
+  background-color: var(--cbp-color-body-text);
+}
+
 a[href],
 button {
   cursor: pointer;

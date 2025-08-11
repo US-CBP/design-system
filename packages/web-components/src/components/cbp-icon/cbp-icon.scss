@@ -1,7 +1,12 @@
+/**
+ * @prop --cbp-icon-color: currentColor;
+ * @prop --cbp-icon-size: 1rem;
+ */
 :root {
   --cbp-icon-color: currentColor;
   --cbp-icon-size: 1rem;
 }
+
 cbp-icon {
   display: inline-flex;
   align-items: center;
