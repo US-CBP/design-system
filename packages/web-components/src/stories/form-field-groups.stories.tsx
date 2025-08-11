@@ -63,9 +63,8 @@ const FullNameTemplate = ({ label, description, fieldId, error, disabled, contex
         >
           <cbp-form-field
             label="Prefix"
-            name="prefix"
           >
-            <cbp-dropdown items='${Prefix}'></cbp-dropdown>
+            <cbp-dropdown name="prefix" items='${Prefix}'></cbp-dropdown>
           </cbp-form-field>
         </cbp-flex-item>
 
@@ -75,18 +74,16 @@ const FullNameTemplate = ({ label, description, fieldId, error, disabled, contex
         >
           <cbp-form-field
             label="First Name"
-            name="firstname"
           >
-            <input type="text" />
+            <input name="firstname" type="text" />
           </cbp-form-field>
         </cbp-flex-item>
 
         <cbp-form-field
           label="M.I."
-          name="middleinitial"
           sx='{"width":"5ch"}'
         >
-          <input type="text" maxlength="1" />
+          <input name="middleinitial" type="text" maxlength="1" />
         </cbp-form-field>
 
         <cbp-flex-item
@@ -95,9 +92,8 @@ const FullNameTemplate = ({ label, description, fieldId, error, disabled, contex
         >
           <cbp-form-field
             label="Last Name"
-            name="lastname"
           >
-            <input type="text" />
+            <input name="lastname" type="text" />
           </cbp-form-field>
         </cbp-flex-item>
 
@@ -107,9 +103,8 @@ const FullNameTemplate = ({ label, description, fieldId, error, disabled, contex
         >
           <cbp-form-field
             label="Suffix"
-            name="suffix"
           >
-            <cbp-dropdown items='${Suffix}'></cbp-dropdown>
+            <cbp-dropdown name="suffix" items='${Suffix}'></cbp-dropdown>
           </cbp-form-field>
         </cbp-flex-item>
 
