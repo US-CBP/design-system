@@ -8,9 +8,7 @@
  * @prop   --cbp-toggle-outline-width: 2px;
  * @prop   --cbp-toggle-outline-style: solid;
  * @prop   --cbp-toggle-outline-color: transparent;
- * @prop   --cbp-toggle-outline: var(--cbp-toggle-outline-width) var(--cbp-toggle-outline-style) var(--cbp-toggle-outline-color);
  * @prop   --cbp-toggle-outline-color-dark: 2px solid transparent;
- * @prop   --cbp-toggle-outline-dark: var(--cbp-toggle-outline-width) var(--cbp-toggle-outline-style) var(--cbp-toggle-outline-color-dark);
  * @prop   --cbp-toggle-color-bg-hover: var(--cbp-color-interactive-secondary-dark);
  * @prop   --cbp-toggle-color-bg-hover-dark: var(--cbp-color-interactive-secondary-base);
  * @prop   --cbp-toggle-circle-selected-color-hover: var(--cbp-color-interactive-selected-dark);
@@ -40,21 +38,23 @@
  * @prop   --cbp-toggle-margin: 0 0 var(--cbp-space-4x) 0;  
  */
 
-:root{ 
+:root {
   --cbp-toggle-color-bg: var(--cbp-color-interactive-secondary-light);
   --cbp-toggle-color-bg-dark: var(--cbp-color-interactive-secondary-dark);
   --cbp-toggle-color-bg-selected: var(--cbp-color-interactive-selected-dark);
   --cbp-toggle-color-bg-selected-dark: var(--cbp-color-interactive-selected-light);
+
+  // TechDebt: inconsistent naming
   --cbp-toggle-color-circle: var(--cbp-color-white);
   --cbp-toggle-color-circle-dark: var(--cbp-color-white);
-  --cbp-toggle-circle-selected-color:var(--cbp-color-white);
-  --cbp-toggle-circle-selected-color-dark:var(--cbp-color-interactive-secondary-darker);
+  --cbp-toggle-circle-selected-color: var(--cbp-color-white);
+  --cbp-toggle-circle-selected-color-dark: var(--cbp-color-interactive-secondary-darker);
   --cbp-toggle-color-circle-border: var(--cbp-toggle-color-circle);
   --cbp-toggle-color-circle-border-dark: var(--cbp-toggle-color-circle-dark);
   --cbp-toggle-circle-selected-border-color: var(--cbp-color-white);
   --cbp-toggle-circle-selected-border-color-dark: var(--cbp-color-interactive-secondary-darker);
-  
-  --cbp-toggle-outline-width: 2px;
+
+  --cbp-toggle-outline-width: 2px; // TechDebt: token needed
   --cbp-toggle-outline-style: solid;
   --cbp-toggle-outline-color: transparent;
   --cbp-toggle-outline-color-dark: transparent;
@@ -62,12 +62,14 @@
   /** Hover */
   --cbp-toggle-color-bg-hover: var(--cbp-color-interactive-secondary-dark);
   --cbp-toggle-color-bg-hover-dark: var(--cbp-color-interactive-secondary-base);
-  
+
+  // TechDebt: inconsistent naming
   --cbp-toggle-circle-selected-color-hover: var(--cbp-color-interactive-selected-dark);
   --cbp-toggle-circle-selected-color-hover-dark: var(--cbp-color-interactive-selected-light);
   --cbp-toggle-circle-selected-border-color-hover: var(--cbp-color-white);
   --cbp-toggle-circle-selected-border-color-hover-dark: var(--cbp-color-interactive-secondary-darker);
 
+  // TechDebt: inconsistent naming
   --cbp-toggle-color-circle-hover: var(--cbp-color-interactive-secondary-darker);
   --cbp-toggle-color-circle-hover-dark: var(--cbp-color-interactive-secondary-base);
   --cbp-toggle-color-circle-border-hover: var(--cbp-color-white);
@@ -79,11 +81,15 @@
   --cbp-toggle-outline-color-focus: var(--cbp-color-white);
   --cbp-toggle-outline-color-focus-dark: var(--cbp-color-black);
 
+  // TechDebt: the naming does not follow convention.
+  // It should be --cbp-toggle-circle-color-selected OR --cbp-toggle-color-circle-selected
+  // I would go with the first. It's inconsistent all the way down
   --cbp-toggle-circle-selected-color-focus: var(--cbp-color-white);
   --cbp-toggle-circle-selected-color-focus-dark: var(--cbp-color-black);
   --cbp-toggle-circle-selected-border-color-focus: var(--cbp-color-white);
   --cbp-toggle-circle-selected-border-color-focus-dark: var(--cbp-color-black);
 
+  // TechDebt: inconsistent naming
   --cbp-toggle-color-circle-focus: var(--cbp-color-white);
   --cbp-toggle-color-circle-focus-dark: var(--cbp-color-black);
   --cbp-toggle-color-circle-border-focus: var(--cbp-color-white);
@@ -92,6 +98,7 @@
   /** Disabled */
   --cbp-toggle-color-bg-disabled: var(--cbp-color-interactive-disabled-dark);
   --cbp-toggle-color-bg-disabled-dark: var(--cbp-color-interactive-disabled-light);
+  // TechDebt: inconsistent naming
   --cbp-toggle-color-circle-disabled: var(--cbp-color-interactive-disabled-light);
   --cbp-toggle-color-circle-disabled-dark: var(--cbp-color-interactive-disabled-dark);
   --cbp-toggle-color-circle-border-disabled: var(--cbp-color-interactive-disabled-light);
@@ -105,16 +112,16 @@
   --cbp-toggle-circle-diameter: 1rem;
   --cbp-toggle-circle-inset: 0.375rem;
   --cbp-toggle-circle-border-width: 0.25rem;
-  --cbp-status-text-width: var(--cbp-space-16x);
+  --cbp-status-text-width: var(--cbp-space-16x); // TechDebt: inconsistent naming
   --cbp-toggle-description-text-width: min-content;
 
   --cbp-toggle-gap: var(--cbp-space-4x);
-  --cbp-toggle-margin: 0 0 var(--cbp-space-4x) 0;  
+  --cbp-toggle-margin: 0 0 var(--cbp-space-4x) 0;
 }
 
 [data-cbp-theme=light] cbp-toggle[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-toggle:not([context=dark-inverts]):not([context=light-always]) {
-
+  --cbp-toggle-text-color: var(--cbp-toggle-text-color-dark);
   --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-dark);
   --cbp-toggle-color-bg-selected: var(--cbp-toggle-color-bg-selected-dark);
   --cbp-toggle-color-circle: var(--cbp-toggle-color-circle-dark);
@@ -139,8 +146,6 @@
   --cbp-toggle-color-bg-disabled: var(--cbp-toggle-color-bg-disabled-dark);
   --cbp-toggle-color-circle-disabled: var(--cbp-toggle-color-circle-disabled-dark);
   --cbp-toggle-color-circle-border-disabled: var(--cbp-toggle-color-circle-border-disabled-dark);
-  
-  --cbp-toggle-text-color: var(--cbp-toggle-text-color-dark);
 }
 
 cbp-toggle {
@@ -149,7 +154,7 @@ cbp-toggle {
   margin: var(--cbp-toggle-margin);
   color: var(--cbp-toggle-text-color);
 
-  label{
+  label {
     display: grid;
     grid-template-columns: 3fr var(--cbp-toggle-control-width) 1fr;
     gap: var(--cbp-toggle-gap);
@@ -157,7 +162,7 @@ cbp-toggle {
     width: 100%;
   }
 
-  input[type='checkbox']{
+  input[type=checkbox] {
     all: unset;
     appearance: none;
     height: var(--cbp-toggle-control-height);
@@ -166,9 +171,9 @@ cbp-toggle {
     border-radius: var(--cbp-border-radius-pill);
     background-color: var(--cbp-toggle-color-bg);
     outline: var(--cbp-toggle-outline-width) var(--cbp-toggle-outline-style) var(--cbp-toggle-outline-color);
-    outline-offset: calc( -1 * var(--cbp-space-1x));
+    outline-offset: calc(-1 * var(--cbp-space-1x));
 
-    &:before{
+    &:before {
       content: "";
       display: block;
       margin-top: var(--cbp-toggle-circle-inset);
@@ -180,7 +185,7 @@ cbp-toggle {
     }
   }
 
-  span:last-child{
+  span:last-child {
     flex-basis: var(--cbp-status-text-width);
     text-overflow: ellipsis;
     overflow: hidden;
@@ -188,36 +193,32 @@ cbp-toggle {
   }
 
   /** 'On' States */
-  &[checked] input[type='checkbox']{
+  &[checked] input[type=checkbox] {
     --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-selected);
     --cbp-toggle-color-circle: var(--cbp-toggle-circle-selected-color);
     --cbp-toggle-color-circle-border: var(--cbp-toggle-circle-selected-border-color);
 
-    &:before{
+    &:before {
       margin-left: calc(var(--cbp-toggle-control-width) - var(--cbp-toggle-circle-diameter) - var(--cbp-toggle-circle-inset));
     }
 
-    &:hover:not([disabled]){
+    &:hover:not([disabled]) {
       --cbp-toggle-color-circle: var(--cbp-toggle-circle-selected-color-hover);
       --cbp-toggle-color-circle-border: var(--cbp-toggle-circle-selected-border-color-hover);
-      
     }
 
-    &:focus:not([disabled]){
-    
+    &:focus:not([disabled]) {
       --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-focus);
       --cbp-toggle-outline-color: var(--cbp-toggle-outline-color-focus);
-
       --cbp-toggle-color-circle: var(--cbp-toggle-circle-selected-color-focus);
-      --cbp-toggle-color-circle-border: var(--cbp-toggle-circle-selected-border-color-focus); 
-      
+      --cbp-toggle-color-circle-border: var(--cbp-toggle-circle-selected-border-color-focus);
     }
   }
 
   /** 'Off' States */
-  &:not([checked]) input[type='checkbox']{
+  &:not([checked]) input[type=checkbox] {
 
-    &:before{
+    &:before {
       margin-left: var(--cbp-toggle-circle-inset);
     }
 
@@ -225,16 +226,16 @@ cbp-toggle {
       --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-hover);
       --cbp-toggle-color-circle: var(--cbp-toggle-color-circle-hover);
       --cbp-toggle-color-circle-border: var(--cbp-toggle-color-circle-border-hover);
-      
+
       --cbp-toggle-color-bg-dark: var(--cbp-toggle-color-bg-hover-dark);
       --cbp-toggle-color-circle-dark: var(--cbp-toggle-color-circle-hover-dark);
       --cbp-toggle-color-circle-border-dark: var(--cbp-toggle-color-circle-border-hover-dark);
     }
-    
-    &:focus:not([disabled]){
+
+    &:focus:not([disabled]) {
       --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-focus);
       --cbp-toggle-outline-color: var(--cbp-toggle-outline-color-focus);
-    
+
       --cbp-toggle-color-bg-dark: var(--cbp-toggle-color-bg-focus-dark);
       --cbp-toggle-outline-color-dark: var(--cbp-toggle-outline-color-focus-dark);
 
@@ -243,8 +244,8 @@ cbp-toggle {
     }
   }
 
-  /** Disabled*/
-  &[disabled]{
+  /** Disabled */
+  &[disabled] {
     --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-disabled);
     --cbp-toggle-color-bg-dark: var(--cbp-toggle-color-bg-disabled-dark);
     --cbp-toggle-color-circle: var(--cbp-toggle-color-circle-disabled);
@@ -254,7 +255,7 @@ cbp-toggle {
   }
 
   // override a browser default
-  &:focus-visible{
+  &:focus-visible {
     outline: none;
   }
 }
