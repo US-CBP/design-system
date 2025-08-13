@@ -119,7 +119,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems }) => {
       </cbp-container>
 
       <cbp-footer>
-        <nav slot="cbp-footer-nav">
+        <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
           <cbp-flex role="list" breakpoint="37.5rem">
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
@@ -250,7 +250,7 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, conte
       </cbp-grid>
 
       <cbp-footer>
-        <nav slot="cbp-footer-nav">
+        <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
           <cbp-flex role="list" breakpoint="37.5rem">
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
@@ -590,7 +590,7 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, n
       </cbp-container>
 
       <cbp-footer>
-        <nav slot="cbp-footer-nav">
+        <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
           <cbp-flex role="list" breakpoint="37.5rem">
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
