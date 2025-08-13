@@ -44,3 +44,23 @@ const Template = ({ codeSnippet, variant, height, context, sx }) => {
     `;
 };
 export const CodeSnippet = Template.bind({});
+
+const BlockTemplate = ({ codeSnippet, height, context, sx }) => {
+  return ` 
+      <cbp-code-snippet
+        variant= block
+        ${height ? `height= ${height}` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+        ${codeSnippet}
+      </cbp-code-snippet>
+    `;
+};
+
+export const CodeSnippetBlock = BlockTemplate.bind({});
+CodeSnippetBlock.argTypes = {
+  variant: {
+      control: false
+  }
+}

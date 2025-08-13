@@ -527,7 +527,6 @@ function filterPanel() {
     >
       <cbp-panel
         aria-labelledby="panelheader"
-        role="complementary"
       >
         <cbp-typography
           slot="cbp-panel-header"

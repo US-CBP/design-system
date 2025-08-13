@@ -76,6 +76,10 @@ export class CbpLoader {
       statusIndicator = Math.round((this.value / this.max) * 100) + "%"
     }
 
+    if(this.success && !this.determinate){
+      this.value = this.max;
+    }
+
     return (
       <Host>
         <label htmlFor={this.progressId}>

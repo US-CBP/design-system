@@ -99,6 +99,7 @@ export class CbpTooltip {
             color="secondary" 
             context={this.invertContext()}
             variant="square"
+            accessibilityText="Close Tooltip"
             onClick={() => this.dismissTooltip()}
             onKeyDown={(e) => this.handleFocusOut(e)}
           >

@@ -118,7 +118,9 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems }) => {
           </main>
       </cbp-container>
 
-      <cbp-footer>
+      <cbp-footer
+        label='Footer'
+      >
         <nav slot="cbp-footer-nav">
           <cbp-flex role="list" breakpoint="37.5rem">
             <cbp-flex-item role="listitem">
@@ -249,7 +251,9 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, conte
         </cbp-panel>
       </cbp-grid>
 
-      <cbp-footer>
+      <cbp-footer
+        label='Footer'
+      >
         <nav slot="cbp-footer-nav">
           <cbp-flex role="list" breakpoint="37.5rem">
             <cbp-flex-item role="listitem">
@@ -589,7 +593,9 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, n
         </main>
       </cbp-container>
 
-      <cbp-footer>
+      <cbp-footer
+        label='Footer'
+      >
         <nav slot="cbp-footer-nav">
           <cbp-flex role="list" breakpoint="37.5rem">
             <cbp-flex-item role="listitem">
