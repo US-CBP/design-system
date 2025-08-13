@@ -118,10 +118,8 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems }) => {
           </main>
       </cbp-container>
 
-      <cbp-footer
-        label='Footer'
-      >
-        <nav slot="cbp-footer-nav">
+      <cbp-footer>
+        <nav slot="cbp-footer-nav" aria-label="Footer">
           <cbp-flex role="list" breakpoint="37.5rem">
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
@@ -251,10 +249,8 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, conte
         </cbp-panel>
       </cbp-grid>
 
-      <cbp-footer
-        label='Footer'
-      >
-        <nav slot="cbp-footer-nav">
+      <cbp-footer>
+        <nav slot="cbp-footer-nav" aria-label="Footer">
           <cbp-flex role="list" breakpoint="37.5rem">
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
@@ -593,10 +589,8 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, n
         </main>
       </cbp-container>
 
-      <cbp-footer
-        label='Footer'
-      >
-        <nav slot="cbp-footer-nav">
+      <cbp-footer>
+        <nav slot="cbp-footer-nav" aria-label="Footer">
           <cbp-flex role="list" breakpoint="37.5rem">
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
