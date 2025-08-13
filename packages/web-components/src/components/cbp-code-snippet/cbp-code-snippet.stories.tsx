@@ -59,8 +59,8 @@ const BlockTemplate = ({ codeSnippet, height, context, sx }) => {
 };
 
 export const CodeSnippetBlock = BlockTemplate.bind({});
-CodeSnippetBlock.argTypes = {
-  variant: {
-      control: false
-  }
+CodeSnippetBlock.args ={
+  variant: "block",
+  codeSnippet: "<a href='#'>test code snippet</a> <br /> <a href='#'>test code snippet</a> <br /><a href='#'>test code snippet</a> <br /><a href='#'>test code snippet</a> <br /><a href='#'>test code snippet</a> <br /><a href='#'>test code snippet</a> <br /><a href='#'>test code snippet</a> <br />",
+  height: "50px"
 }
