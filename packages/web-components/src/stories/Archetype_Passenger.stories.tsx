@@ -916,7 +916,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, passengersAr
     </cbp-container>
 
     <cbp-footer>
-      <nav slot="cbp-footer-nav">
+      <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
         <cbp-flex role="list" breakpoint="37.5rem">
           <cbp-flex-item role="listitem">
             <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">App Overview</cbp-button>
