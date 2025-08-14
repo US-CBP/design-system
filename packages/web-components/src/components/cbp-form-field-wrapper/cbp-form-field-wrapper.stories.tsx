@@ -204,7 +204,7 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
 export const NumericCounter = NumericCounterTemplate.bind({});
 NumericCounter.args = {
   label: 'Numeric Counter Field',
-  description: '',
+  description: 'This pattern requires some JavaScript to function, which can be found in the story source code.',
   fieldId: 'numeric-input',
   inputType: 'number',
   name: 'numericinput',
@@ -279,7 +279,7 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
 export const Password = PasswordTemplate.bind({});
 Password.args = {
   label: 'Password',
-  description: '',
+  description: 'This pattern requires some JavaScript to function, which can be found in the story source code.',
   fieldId: 'pw',
   inputType: 'password',
   name: 'password',
@@ -351,11 +351,11 @@ const TimeInputTemplate = ({ label, description, fieldId, name, value, error, re
       <cbp-form-field-wrapper>  
         <input 
           placeholder="HH:MM"
+          maxlength="5"
           ${name ? `name="${name}"` : ''}
           ${value ? `value="${value}"` : ''}
           ${readonly ? `readonly` : ''}
           ${disabled ? `disabled` : ''} 
-          sx='{"--cbp-form-field-wrapper-padding-end": "0" }'
         />
         <cbp-icon 
           slot="cbp-form-field-overlay-start" 
