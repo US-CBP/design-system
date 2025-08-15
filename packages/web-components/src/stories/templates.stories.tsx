@@ -48,9 +48,29 @@ export default {
   },
 };
 
+
+function initThemeSwitcher() {
+  const ThemeToggle = document.querySelector('cbp-toggle#darkmode') as HTMLCbpToggleElement;
+  const DarkMode = window?.matchMedia(`(prefers-color-scheme: dark)`);
+  // Set the initial toggle state based on the system setting (checked = dark)
+  ThemeToggle.checked = !!DarkMode;
+
+  // Only set up the listener if we're using the system default, otherwise it's being set manua
+  const AppComponent = document.querySelector('cbp-app') as HTMLCbpAppElement;
+  ThemeToggle.addEventListener('toggleClick', (e)=> {
+    //console.log('Toggle Clicked: ', e);
+    // Toggle the `theme` property on `cbp-app` based on this toggle
+    AppComponent.theme = e.detail.checked ? "dark" : "light";
+    // If you wanted to persist this setting, you could use sessionStorage or localStorage
+  });
+}
+
 const InternalTemplate = ({ isLoggedIn, username, hashid, navItems }) => {
 
   setTimeout(() => {
+    initThemeSwitcher();
+
+    // Prevent anchors from navigating away
     let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
@@ -159,6 +179,9 @@ export const Internal = InternalTemplate.bind({});
 const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
   
   setTimeout(() => {
+    initThemeSwitcher();
+
+    // Prevent anchors from navigating away
     let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
@@ -379,8 +402,8 @@ function renderDrawer(items, drawerid, store){
             </cbp-form-field>
 
             <cbp-subnav
-            accessibility-text="Application Name Navigation"
-            ${store ? 'store' : ''}
+              accessibility-text="Application Name Navigation"
+              ${store ? 'store' : ''}
             >
               ${generateSubnav(items)}
             </cbp-subnav>
@@ -454,6 +477,7 @@ function renderUserPref(username, hashid) {
         </cbp-flex>
         <br />
         <cbp-toggle
+          id="darkmode"
           status-text-on="Dark"
           status-text-off="Light"
         >
@@ -516,6 +540,9 @@ function generateCards(numberOfCards) {
 const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, numberOfCards, cardMinWidth }) => {
   
   setTimeout(() => {
+    initThemeSwitcher();
+
+    // Prevent anchors from navigating away
     let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })

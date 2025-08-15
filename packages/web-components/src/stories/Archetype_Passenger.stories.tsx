@@ -203,6 +203,7 @@ function renderUserPref(username, hashid) {
         </cbp-flex>
         <br />
         <cbp-toggle
+          id="darkmode"
           status-text-on="Dark"
           status-text-off="Light"
         >
@@ -819,6 +820,25 @@ function manifestPane(manifestArgs) {
         </cbp-drawer>
       `;
 }
+
+
+function initThemeSwitcher() {
+  const ThemeToggle = document.querySelector('cbp-toggle#darkmode') as HTMLCbpToggleElement;
+  const DarkMode = window?.matchMedia(`(prefers-color-scheme: dark)`);
+  // Set the initial toggle state based on the system setting (checked = dark)
+  ThemeToggle.checked = !!DarkMode;
+
+  // Only set up the listener if we're using the system default, otherwise it's being set manua
+  const AppComponent = document.querySelector('cbp-app') as HTMLCbpAppElement;
+  ThemeToggle.addEventListener('toggleClick', (e)=> {
+    //console.log('Toggle Clicked: ', e);
+    // Toggle the `theme` property on `cbp-app` based on this toggle
+    AppComponent.theme = e.detail.checked ? "dark" : "light";
+    // If you wanted to persist this setting, you could use sessionStorage or localStorage
+  });
+}
+
+
 const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, passengersArgs, manifestArgs }) => {
   /** Techdebt for iteration on filter & manifest pane:
    * Icon for the app directory button is incorrect, verify all icons in buttons, most of these are initial stubs
@@ -832,6 +852,9 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, passengersAr
   
   // preventDefault on all links in the header and subnav
   setTimeout(() => {
+    initThemeSwitcher();
+
+    // Prevent anchors from navigating away
     let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
