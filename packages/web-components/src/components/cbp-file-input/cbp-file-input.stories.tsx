@@ -67,7 +67,7 @@ const FileInputTemplate = ({ label, description, fieldId, name, enhanced, multip
     
     const fileInput = document.querySelector('cbp-file-input');
     fileInput.addEventListener( 'valueChange', e => {
-      console.log('cbp-file-input',e)
+      //console.log('cbp-file-input',e)
       // Set errors on each file for testing purposes
       if (showFileErrors == true) {
         let status=e.detail.value;
