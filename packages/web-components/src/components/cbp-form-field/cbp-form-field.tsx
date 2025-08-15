@@ -163,7 +163,7 @@ export class CbpFormField {
       this.formField = this.host.querySelector('button[role=combobox],input,select,textarea');
       
       // Treat nested components separately, as it's hard to modify their rendered content directly
-      this.formFieldComponent = this.host.querySelector('cbp-dropdown,cbp-slider');
+      this.formFieldComponent = this.host.querySelector('cbp-dropdown,cbp-slider,cbp-file-input');
 
       this.buttons = this.host.querySelectorAll('cbp-button');
       this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
@@ -189,6 +189,7 @@ export class CbpFormField {
         this.formFieldComponent.fieldId
           ? this.fieldId = this.formFieldComponent.fieldId
           : this.formFieldComponent.fieldId = this.fieldId;
+        // TechDebt: readonly should probably be removed, as it's not applicable to these components/inputs. Or maybe set the field disabled, because this could be applied to a group?
         if (this.readonly) this.formFieldComponent.readonly=true;
         if (this.disabled) this.formFieldComponent.disabled=true;
         if (this.error) this.formFieldComponent.error=true;

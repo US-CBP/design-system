@@ -54,6 +54,15 @@ export class CbpFileInput {
   @Prop() status: any = {};
 
   /** 
+   * Specifies that the field has an error (and sets aria-invalid accordingly). Primarily controlled by the 
+   * parent `cbp-form-field` component. 
+   */
+  @Prop({ reflect: true }) error: boolean = false;
+
+  /** Specifies that the field is disabled. Primarily controlled by the parent `cbp-form-field` component. */
+  @Prop({ reflect: true, mutable: true }) disabled: boolean = false;
+
+  /** 
    * Specifies the context of the component as it applies to the visual design and whether 
    * it inverts when light/dark mode is toggled. 
    * Default behavior is "light-inverts" and does not have to be specified. 
@@ -166,19 +175,16 @@ export class CbpFileInput {
     if (this.formField) {
       const Id = this.formField.getAttribute('id');
       Id ? this.fieldId = Id : this.formField.setAttribute('id', this.fieldId);
+      if (this.multiple) this.formField.setAttribute('multiple', '');
+      if (this.accept) this.formField.setAttribute('accept', this.accept);
+      if (this.name) this.formField.setAttribute('name', this.name);
+      if (this.disabled) this.formField.setAttribute('disabled', ``);
+
+      // Set event listeners
       this.formField.addEventListener('change', (e) => this.handleChange(e));
       this.formField.addEventListener('dragenter', () => this.formField.classList.add('cbp-file-input-dragged'));
       this.formField.addEventListener('dragleave', () => this.formField.classList.remove('cbp-file-input-dragged'));
       this.formField.addEventListener('drop', () => this.formField.classList.remove('cbp-file-input-dragged'));
-    }
-  }
-
-  componentDidLoad() {
-    // Set the input-specific attributes on load only if true.
-    if (!!this.formField) {
-      if (this.multiple) this.formField.setAttribute('multiple', '');
-      if (this.accept) this.formField.setAttribute('accept', this.accept);
-      if (this.name) this.formField.setAttribute('name', this.name);
     }
   }
 

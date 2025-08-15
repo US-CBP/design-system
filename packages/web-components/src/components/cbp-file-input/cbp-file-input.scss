@@ -4,16 +4,22 @@
  * @prop --cbp-file-input-color-border: var(--cbp-color-interactive-secondary-base);
  * @prop --cbp-file-input-color-border-hover: var(--cbp-color-interactive-secondary-darker);
  * @prop --cbp-file-input-color-border-focus: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-file-input-color-outline: transparent;
+ * @prop --cbp-file-input-color-outline-hover: var(--cbp-color-interactive-secondary-light);
+ * @prop --cbp-file-input-color-outline-focus: var(--cbp-color-interactive-focus-light);
 
  * @prop --cbp-file-input-color-dark: var(--cbp-color-text-lightest);
  * @prop --cbp-file-input-color-bg-dark: var(--cbp-color-gray-cool-70);
  * @prop --cbp-file-input-color-border-dark: var(--cbp-color-interactive-secondary-light);
  * @prop --cbp-file-input-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
  * @prop --cbp-file-input-color-border-focus-dark:var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-file-input-color-outline-dark: transparent;
+ * @prop --cbp-file-input-color-outline-hover-dark: var(--cbp-color-interactive-secondary-dark);
+ * @prop --cbp-file-input-color-outline-focus-dark: var(--cbp-color-white);
+
  * @prop --cbp-file-input-icon-color: var(--cbp-color-text-base);
  * @prop --cbp-file-input-file-color-bg: var(--cbp-color-gray-cool-10);
  * @prop --cbp-file-input-file-color-bg-dark: var(--cbp-color-gray-cool-60);
-
  */
 
 :root{
@@ -23,6 +29,9 @@
   --cbp-file-input-color-border: var(--cbp-color-interactive-secondary-base);
   --cbp-file-input-color-border-hover: var(--cbp-color-interactive-secondary-darker);
   --cbp-file-input-color-border-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-file-input-color-outline: transparent;
+  --cbp-file-input-color-outline-hover: var(--cbp-color-interactive-secondary-light);
+  --cbp-file-input-color-outline-focus: var(--cbp-color-interactive-focus-light);
 
   --cbp-file-input-color-dark: var(--cbp-color-text-lightest);
   --cbp-file-input-color-bg-dark: var(--cbp-color-gray-cool-70);
@@ -30,22 +39,19 @@
   --cbp-file-input-color-border-dark: var(--cbp-color-interactive-secondary-light);
   --cbp-file-input-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
   --cbp-file-input-color-border-focus-dark:var(--cbp-color-interactive-focus-light);
+  --cbp-file-input-color-outline-dark: transparent;
+  --cbp-file-input-color-outline-hover-dark: var(--cbp-color-interactive-secondary-dark);
+  --cbp-file-input-color-outline-focus-dark: var(--cbp-color-white);
+
   --cbp-file-input-icon-color: var(--cbp-color-text-base);
 
   --cbp-file-input-file-color-bg: var(--cbp-color-gray-cool-10);
   --cbp-file-input-file-color-bg-dark: var(--cbp-color-gray-cool-60);
 
-
-  // TODO: finish adding error states when spec sheet is updated.
-  --cbp-file-input-color-border-error: var(--cbp-color-danger-dark);
-  --cbp-file-input-color-border-error-hover: var(--cbp-color-danger-dark);
-  --cbp-file-input-color-border-error-dark: var(--cbp-color-interactive-secondary-light);
-  --cbp-file-input-color-border-error-hover-dark: var(--cbp-color-interactive-secondary-lighter);
   
   --cbp-file-input-file-color-bg-error: var(--cbp-color-danger-lighter);
   --cbp-file-input-file-color-bg-error-dark: var(--cbp-color-danger-darker);
-  //--cbp-file-input-file-color-bg-success: ;
-  //--cbp-file-input-file-color-bg-success-dark: ;
+
 }
 
 // Displays dark design based on mode or context
@@ -58,8 +64,11 @@
   --cbp-file-input-color-border: var(--cbp-file-input-color-border-dark);
   --cbp-file-input-color-border-hover: var(--cbp-file-input-color-border-hover-dark);
   --cbp-file-input-color-border-focus: var(--cbp-file-input-color-border-focus-dark);
+  --cbp-file-input-color-outline: var(--cbp-file-input-color-outline-dark);
+  --cbp-file-input-color-outline-hover: var(--cbp-file-input-color-outline-hover-dark);
+  --cbp-file-input-color-outline-focus: var(--cbp-file-input-color-outline-focus-dark);
+  
   --cbp-file-input-file-color-bg: var(--cbp-file-input-file-color-bg-dark);
-
   --cbp-file-input-file-color-bg-error: var(--cbp-file-input-file-color-bg-error-dark);
 }
 
@@ -70,6 +79,27 @@ cbp-file-input {
   //max-width: 22rem;
   container-type: inline-size;
 
+  &[error] {
+    --cbp-file-input-color-border: var(--cbp-color-danger-dark);
+    --cbp-file-input-color-border-hover: var(--cbp-color-danger-dark);
+    --cbp-file-input-color-outline-hover: var(--cbp-color-danger-light);
+  
+    --cbp-file-input-color-border-dark: var(--cbp-color-danger-light);
+    --cbp-file-input-color-border-hover-dark: var(--cbp-color-danger-lighter);
+    --cbp-file-input-color-outline-hover-dark: var(--cbp-color-danger-light);
+
+    .cbp-file-input-visuals cbp-button {
+      --cbp-button-color-bg: var(--cbp-color-danger-dark);
+      --cbp-button-color-bg-hover: var(--cbp-color-danger-darker);
+      --cbp-button-color-border: var(--cbp-color-danger-dark);
+      --cbp-button-color-border-hover: var(--cbp-color-danger-darker);
+
+      --cbp-button-color-bg-dark: var(--cbp-color-danger-light);
+      --cbp-button-color-bg-hover-dark: var(--cbp-color-danger-lighter);
+      --cbp-button-color-border-dark: var(--cbp-color-danger-light);
+      --cbp-button-color-border-hover-dark: var(--cbp-color-danger-lighter);
+    }
+  }
 
   &:has(input.cbp-file-input-dragged) {
     --cbp-file-input-color-bg: var(--cbp-file-input-color-bg-dragged);
@@ -106,15 +136,17 @@ cbp-file-input {
     border-radius: var(--cbp-file-input-border-radius);
     outline-style: solid;
     outline-width: 0;
-    outline-color: var(--cbp-file-input-color-border-focus);
-    outline-offset: -1px; // Verified: Safari does not show focus outline without this
-
+    outline-color: var(--cbp-file-input-color-outline);
+    outline-offset: calc((var(--cbp-border-size-md) + var(--cbp-border-size-xl)) * -1);
+    //outline-offset: -6px;
     border-style: dashed;
-    outline-offset: calc(var(--cbp-space-1x) * -1);
+
 
     // Interactive are not applied to disabled fields
     &:hover:not(:has(input:disabled)) {
       --cbp-file-input-color-border: var(--cbp-file-input-color-border-hover);
+      --cbp-file-input-color-outline: var(--cbp-file-input-color-outline-hover);
+      outline-width: var(--cbp-border-size-xl);
 
       cbp-button[fill=solid][color=secondary] {
         --cbp-button-color: var(--cbp-button-color-hover);
@@ -131,7 +163,8 @@ cbp-file-input {
     &:focus:not(:has(input:disabled)),
     &:focus-within:not(:has(input:disabled)) {
       --cbp-file-input-color-border: var(--cbp-file-input-color-border-focus);
-      outline-width: var(--cbp-border-size-lg); // This is set to 3px because of the 1px inset, overlapping the border; border+outline = 4px total.
+      --cbp-file-input-color-outline: var(--cbp-file-input-color-outline-focus);
+      outline-width: var(--cbp-border-size-xl);
 
       cbp-button[fill=solid][color=secondary] {
         --cbp-button-color: var(--cbp-button-color-focus);
@@ -237,7 +270,7 @@ cbp-file-input {
 
 }
 
-
+// Hide the left icon if needed
 @container (width <= 19rem) {
   .cbp-file-input-visuals cbp-icon {
     display: none;
