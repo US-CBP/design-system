@@ -43,29 +43,17 @@ export class CbpToggle {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-  componentWillLoad() {
-    if (typeof this.sx == 'string') {
-      this.sx = JSON.parse(this.sx) || {};
-    }
-    setCSSProps(this.host, {
-      ...this.sx,
+  /** Custom event fired when the control is toggled by the user. */
+  @Event() toggleClick: EventEmitter;
+  toggleEvent(){
+    this.checked=this.formField.checked;
+
+    this.toggleClick.emit({
+      host: this.host,
+      nativeElement: this.formField,
+      value: this.formField.value,
+      checked: this.formField.checked
     });
-
-        // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
-        this.formField = this.host.querySelector('input[type=checkbox]');
-        if (this.formField) {
-          this.formField.addEventListener('change', () => this.toggleEvent());
-        }
-  }
-
-  componentDidLoad() {
-    // Set the disabled/indeterminate states on load only if true. (The Watch decorators only listen for changes, not initial state)
-    if (!!this.formField) {
-      if (this.checked) this.formField.checked=this.checked;
-      if (this.disabled) this.formField.setAttribute('disabled', '');
-      if (this.name) this.formField.name=this.name;
-      if (this.value) this.formField.value=this.value;
-    }
   }
 
   @Watch('disabled')
@@ -77,21 +65,41 @@ export class CbpToggle {
     }
   }
 
-  @Event() toggleClick: EventEmitter;
-
-  /** Event: toggles the control true/false & updates DOM accordingly*/
-  toggleEvent(){
-    this.checked=this.formField.checked;
-    this.toggleClick.emit({
-      host: this.host,
-      nativeElement: this.formField,
-      value: this.formField.value,
-      checked: this.formField.checked
-    });
+  @Watch('checked')
+  watchCheckedHandler(newValue: boolean) {
+    if (this.formField) {
+      this.formField.checked = newValue;
+    }
   }
 
-  render() {
 
+  componentWillLoad() {
+    if (typeof this.sx == 'string') {
+      this.sx = JSON.parse(this.sx) || {};
+    }
+    setCSSProps(this.host, {
+      ...this.sx,
+    });
+
+    // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
+    this.formField = this.host.querySelector('input[type=checkbox]');
+    if (this.formField) {
+      this.formField.addEventListener('change', () => this.toggleEvent());
+    }
+  }
+
+  componentDidLoad() {
+    // Set the states on load only if true. (The Watch decorators only listen for changes, not initial state)
+    if (!!this.formField) {
+      if (this.checked) this.formField.checked=this.checked;
+      if (this.disabled) this.formField.setAttribute('disabled', '');
+      if (this.name) this.formField.name=this.name;
+      if (this.value) this.formField.value=this.value;
+    }
+  }
+
+
+  render() {
       return (
         <Host>
           <label>
