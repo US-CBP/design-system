@@ -54,29 +54,44 @@ export class CbpDropdown {
   /* TODO */
   //@Prop() create: boolean;
 
-  /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility. */
+  /** 
+   * Optionally specify the ID of the visible control here, which is used to generate related 
+   * pattern node IDs and associate everything for accessibility. 
+   */
   @Prop() fieldId: string = createNamespaceKey('cbp-dropdown');
 
   /** Specifies the name of the (hidden) form field */
   @Prop() name: string = this.fieldId;
 
-  /** Represents placeholder text on the dropdown control, displayed in a distinctive style from the selected item. Defaults to "Choose Item". Has no effect on multi-selects, as the component manages this text. */
+  /** 
+   * Represents placeholder text on the dropdown control, displayed in a distinctive style from the 
+   * selected item. Defaults to "Choose Item". Has no effect on multi-selects, as the component manages this text. 
+   */
   @Prop({ mutable: true }) placeholder: string = 'Choose Item';
 
-  /** Specifies the visible label on the dropdown control of the selected item. Primarily updated dynamically by the component. */
+  /** 
+   * Specifies the visible label on the dropdown control of the selected item. 
+   * Primarily updated dynamically by the component. 
+   */
   @Prop({ mutable: true }) selectedLabel: string;
 
-  /** Specifies the value of the hidden input holding the value (or barring one, the text label) of the selected item. Primarily updated dynamically by the component. */
+  /** 
+   * Specifies the value of the hidden input holding the value (or barring one, the text label) 
+   * of the selected item. Primarily updated dynamically by the component. 
+   */
   @Prop({ mutable: true }) value: any; //string | object;
 
   /** Specifies whether the dropdown menu is open/visible. */
   @Prop({ reflect: true, mutable: true }) open: boolean = false;
 
-  /** Specifies that the field has an error (and sets aria-invalid accordingly). Primarily controlled by the parent `cbp-form-field` component. */
+  /** 
+   * Specifies that the field has an error (and sets aria-invalid accordingly). Primarily controlled by the 
+   * parent `cbp-form-field` component. 
+   */
   @Prop({ reflect: true }) error: boolean = false;
 
   /** Specifies that the field is readonly. Primarily controlled by the parent `cbp-form-field` component. */
-  @Prop({ reflect: true, mutable: true }) readonly: boolean = false;
+  @Prop({ reflect: true, mutable: true }) readonly: boolean = false; // TechDebt: there's no such thing as a readonly dropdown/select. Can this be removed or is it needed for compatibility with the parent form field component?
 
   /** Specifies that the field is disabled. Primarily controlled by the parent `cbp-form-field` component. */
   @Prop({ reflect: true, mutable: true }) disabled: boolean = false;
