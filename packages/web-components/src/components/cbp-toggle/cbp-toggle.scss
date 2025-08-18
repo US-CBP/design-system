@@ -178,21 +178,17 @@ cbp-toggle {
   }
 
   span:last-child {
-    flex-basis: var(--cbp-toggle-label-text-width);
+    flex-basis: var(--cbp-toggle-status-text-width);
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
   }
 
   /** 'On' States */
-  &[checked] input[type=checkbox] {
+  &[checked]:not([disabled]) input[type=checkbox] {
     --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-selected);
     --cbp-toggle-circle-color: var(--cbp-toggle-circle-selected-color);
     --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-selected-border-color);
-
-    &:before {
-      margin-left: calc(var(--cbp-toggle-control-width) - var(--cbp-toggle-circle-diameter) - var(--cbp-toggle-circle-inset));
-    }
 
     &:hover:not([disabled]) {
       --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-selected-hover);
@@ -205,6 +201,10 @@ cbp-toggle {
       --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-selected-focus);
       --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-border-color-selected-focus);
     }
+  }
+
+  &[checked] input[type=checkbox]:before {
+    margin-left: calc(var(--cbp-toggle-control-width) - var(--cbp-toggle-circle-diameter) - var(--cbp-toggle-circle-inset));
   }
 
   /** 'Off' States */

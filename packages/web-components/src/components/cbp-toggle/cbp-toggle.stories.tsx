@@ -54,7 +54,8 @@ const Template = ({label, checked, name, value, hideStatus, statusTextOn, status
 export const Toggle = Template.bind({});
   
 Toggle.args = {
-    label: 'Toggle Label'
+    label: 'Toggle Label',
+    checked: false
 }
 Toggle.argTypes = {
     label: {
