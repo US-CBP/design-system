@@ -185,7 +185,7 @@ cbp-toggle {
   }
 
   /** 'On' States */
-  &[checked]:has(input[type=checkbox]:not(:disabled)) {
+  &[checked] input[type=checkbox]:not(:disabled) {
     --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-selected);
     --cbp-toggle-circle-color: var(--cbp-toggle-circle-selected-color);
     --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-selected-border-color);
