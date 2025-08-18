@@ -185,17 +185,17 @@ cbp-toggle {
   }
 
   /** 'On' States */
-  &[checked]:not([disabled]) input[type=checkbox] {
+  &[checked]:has(input[type=checkbox]:not(:disabled)) {
     --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-selected);
     --cbp-toggle-circle-color: var(--cbp-toggle-circle-selected-color);
     --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-selected-border-color);
 
-    &:hover:not([disabled]) {
+    &:hover {
       --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-selected-hover);
       --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-selected-hover);
     }
 
-    &:focus:not([disabled]) {
+    &:focus {
       --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-focus);
       --cbp-toggle-outline-color: var(--cbp-toggle-outline-color-focus);
       --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-selected-focus);
@@ -208,13 +208,9 @@ cbp-toggle {
   }
 
   /** 'Off' States */
-  &:not([checked]) input[type=checkbox] {
+  &:not([checked]) input[type=checkbox]:not(:disabled) {
 
-    &:before {
-      margin-left: var(--cbp-toggle-circle-inset);
-    }
-
-    &:hover:not([disabled]) {
+    &:hover {
       --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-hover);
       --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-hover);
       --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-hover);
@@ -224,7 +220,7 @@ cbp-toggle {
       --cbp-toggle-circle-color-border-dark: var(--cbp-toggle-circle-color-border-hover-dark);
     }
 
-    &:focus:not([disabled]) {
+    &:focus {
       --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-focus);
       --cbp-toggle-outline-color: var(--cbp-toggle-outline-color-focus);
 
@@ -236,8 +232,12 @@ cbp-toggle {
     }
   }
 
+  &:not([checked]) input[type=checkbox]:before {
+    margin-left: var(--cbp-toggle-circle-inset);
+  }
+
   /** Disabled */
-  &[disabled] {
+  &:has(:disabled) {
     --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-disabled);
     --cbp-toggle-color-bg-dark: var(--cbp-toggle-color-bg-disabled-dark);
     --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-disabled);
