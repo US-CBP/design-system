@@ -60,14 +60,14 @@ export class CbpButton {
    * Specifies if the button is pressed and results in `aria-pressed="true|false"` being placed on the 
    * button when specified. Only valid on actual `button` elements. 
    */
-  @Prop() pressed: "true" | "false";
+  @Prop({ reflect: true }) pressed: "true" | "false";
   
   /** 
    * Specifies if a controlled UI widget is expanded and results in `aria-pressed="true|false"` being placed 
    * on the button when specified. This property is usually used for progressive disclosure patterns such as 
    * accordions, menus, expand/collapse, etc., where focus remains on the control after the user action.
    */
-  @Prop() expanded: "true" | "false";
+  @Prop({ reflect: true }) expanded: "true" | "false";
 
   /** 
    * Specifies the DOM element that the button controls and results in the `aria-controls` attribute

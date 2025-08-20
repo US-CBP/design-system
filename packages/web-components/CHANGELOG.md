@@ -6,8 +6,11 @@ The React components are wrappers generated from this package and will share the
 
 ## [unreleased] TBD
 
-* Updated the File Input component with experimental enhanced functionality.
-  * Also fixed accessibility defects.
+* Updated `cbp-segmented-button-group` to pass a form value when a `name` is specified.
+* Updated the `cbp-file-input` component with experimental enhanced functionality and error states.
+  * Added error states.
+  * Fixed accessibility defects.
+* Updated `cbp-toggle` CSS API for consistency in naming and fixed visual bugs for disabled state.
 
 ## [0.0.1-develop.23] 07-24-2025
 

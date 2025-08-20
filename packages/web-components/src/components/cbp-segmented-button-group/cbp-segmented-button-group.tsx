@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Event, EventEmitter, Listen, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, Listen, Watch, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /** 
@@ -17,6 +17,19 @@ export class SegmentedButtonGroup {
   private buttongroup = [];
 
   @Element() host: HTMLElement;
+
+  /** 
+   * Optionally specifies the name of the (hidden) form field as a formData key 
+   * when a value is intended to be passed. 
+   */
+  @Prop() name: string;
+
+  /** 
+   * Optionally specifies a value of the group as a way to set the initial button pressed states and/or
+   * to be passed as part of submitted formData when a name is also specified. 
+   * Requires that the individual buttons have a value specified for the group to pass a value.
+   */
+  @Prop({ mutable: true }) value: any; //string | object;
 
   /** Specifies whether multiple buttons may be activated at the same time. Defaults to false. */
   @Prop() multiple: boolean;
@@ -49,23 +62,51 @@ export class SegmentedButtonGroup {
     else host.pressed = "true";
 
     // if a button was toggled to "pressed," toggle the rest unpressed for groups that only allow a single buttons pressed.
+    //console.log(this.multiple, host.pressed);
+
     if(!this.multiple && host.pressed) {
       this.buttongroup.forEach(el => {
-        if(el != host){
+        if(el !== host){
           el.pressed="false";
         }
       });
     }
 
-    // Emit a custom event so that the developer can listen to the group instead of each individual button.
-    this.segmentedButtonGroupClick.emit({
-      detail: {
+    // Give the buttons time to update before getting the value from them.
+    setTimeout(() => {
+      this.setValueFromButtons();
+
+      // Emit a custom event so that the developer can listen to the group instead of each individual button.
+      this.segmentedButtonGroupClick.emit({
         host: this.host,
+        value: this.value,
         button: element,
-        value: value,
+        buttonValue: value,
         pressed: host.pressed,
+      });
+    },10);
+  }
+
+  @Watch('value')
+  watchValueHandler(newValue) {
+    let values=[];
+    if (typeof newValue == 'object') values = newValue;
+    else if (typeof newValue == 'string') values = newValue.split(',');
+    // Set pressed states based on the value(s)    
+    this.buttongroup.forEach( (item) => {
+      item.pressed = `${values.includes(item.value)}`
+    });
+  }
+
+  setValueFromButtons() {
+    let values = [];
+    const PressedButtons: HTMLCbpButtonElement[] = Array.from(this.host.querySelectorAll('cbp-button[pressed=true]'));
+    PressedButtons.forEach( item => {
+      if (item.value != undefined) {
+        values = [...values, item.value]
       }
     });
+    if(values.length > 0) this.value=values;
   }
 
   componentWillLoad() {
@@ -84,6 +125,11 @@ export class SegmentedButtonGroup {
         cbpButton.pressed="false";
       }
     });
+
+    // Set the pressed states from the value, if set
+    if(this.value != undefined) this.watchValueHandler(this.value);
+    // Set the value from the pressed states
+    else this.setValueFromButtons();
   }
 
 
@@ -91,6 +137,9 @@ export class SegmentedButtonGroup {
     return (
       <Host role="group" aria-label={this.accessibilityText}>
         <slot />
+        { this.name && 
+            <input type="hidden" name={this.name} value={this.value} />
+        }
       </Host>
     );
   }

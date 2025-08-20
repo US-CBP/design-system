@@ -55,7 +55,6 @@ function initThemeSwitcher() {
   // Set the initial toggle state based on the system setting (checked = dark)
   ThemeToggle.checked = !!DarkMode;
 
-  // Only set up the listener if we're using the system default, otherwise it's being set manua
   const AppComponent = document.querySelector('cbp-app') as HTMLCbpAppElement;
   ThemeToggle.addEventListener('toggleClick', (e)=> {
     //console.log('Toggle Clicked: ', e);

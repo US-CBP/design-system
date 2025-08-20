@@ -7,6 +7,12 @@ export default {
       description: 'Configure various aspects of the buttons within the segmented button group.',
       control: 'object',
     },
+    name: {
+      type: 'string'
+    },
+    value: {
+      type: 'string'
+    },
     multiple: {
       description: 'Specifies whether multiple buttons may remain pressed at the same time. Defaults to false (only a single button in the group may be in a pressed state).',
       control: 'boolean',
@@ -39,10 +45,21 @@ function generateButtons(buttons) {
   return html.join('');
 }
 
-const Template = ({ buttons, multiple, accessibilityText, disabled, sx }) => {
+const Template = ({ buttons, name, value, multiple, accessibilityText, disabled, sx }) => {
+  
+  setTimeout(() => {
+    let buttongroup = document.querySelector('cbp-segmented-button-group');
+    buttongroup.addEventListener('segmentedButtonGroupClick', function() { 
+      // For testing
+      //console.log(e);
+    });
+  }, 500);
+  
   return ` 
         <cbp-segmented-button-group
-          ${multiple ? `multiple=${multiple}` : ''}
+          ${name ? `name="${name}"` : ''}
+          ${value ? `value="${value}"` : ''}
+          ${multiple ? `multiple` : ''}
           ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
           ${disabled ? `disabled=${disabled}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}

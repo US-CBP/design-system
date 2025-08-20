@@ -363,10 +363,12 @@ const TimeInputTemplate = ({ label, description, fieldId, name, value, error, re
         ></cbp-icon>
 
         <span slot="cbp-form-field-attached-button">
-          <cbp-segmented-button-group>
+          <cbp-segmented-button-group
+            name="time-ampm"
+          >
             <cbp-button
               type="button"
-              value="sm"
+              value="AM"
               pressed="true"
             >
               AM
@@ -374,14 +376,14 @@ const TimeInputTemplate = ({ label, description, fieldId, name, value, error, re
 
             <cbp-button
               type="button"
-              value="md"
+              value="PM"
             >
               PM
             </cbp-button>
 
             <cbp-button
               type="button"
-              value="lg"
+              value="24H"
             >
               24 hr
             </cbp-button>
