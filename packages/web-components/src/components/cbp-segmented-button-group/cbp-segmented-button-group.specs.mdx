@@ -12,6 +12,7 @@ The Segmented Button Group component wraps multiple buttons and can be used as a
 
 * The Segmented Button Group is a wrapper for child Button components.
 * The group may allow only one option to be selected (pressed) at a time, or multiple items to be selected.
+* The group may be used as a simple UI toggle or may optionally pass a name/value pair as a form element.
 
 ## Technical Specifications
 
@@ -38,4 +39,4 @@ The Segmented Button Group component wraps multiple buttons and can be used as a
 ### Additional Notes and Considerations
 
 * While the Button component is capable of rendering both anchors and buttons, only the semantic `button` tag should be used within a Segmented Button Group, as that is the only context in which `aria-pressed` is valid.
-* Since the `button` element does not convey data to the `formData` object upon form submission, applications will have to rely on the custom events to get the button states and values, if needed.
+* Since the `button` element does not pass data to the `formData` object upon form submission by default, specifying a `name` attribute will render a hidden input to pass the group's value as part of the `formData` automatically.
