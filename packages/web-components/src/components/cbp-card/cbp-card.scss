@@ -209,7 +209,7 @@ cbp-card {
       border-top-right-radius: var(--cbp-border-radius-softer);
       border-bottom: 0;
     }
-
+  }
      [slot=cbp-card-actions] {
       display: flex;
 
@@ -218,12 +218,33 @@ cbp-card {
         --cbp-button-min-height: var(--cbp-space-11x);
         width: 100%;
 
+        &[fill=ghost][color=primary] button:not(:hover):not(:focus),
+        &[fill=ghost][color=secondary] button:not(:hover):not(:focus),
+        &[fill=ghost][color=tertiary] button:not(:hover):not(:focus)
+        {
+          --cbp-button-color-border: var(--cbp-banner-card-color-border);
+          --cbp-button-border-width: var(--cbp-border-size-md) 0 var(--cbp-border-size-md) 0;//TODO: suppress border width for inbetween exlude first & last
+        }
+
+
         &:first-child {
           --cbp-button-border-radius: 0 0 0 var(--cbp-border-radius-softer);
+
+          &[fill=ghost][color=primary] button:not(:hover):not(:focus),
+          &[fill=ghost][color=secondary] button:not(:hover):not(:focus),
+          &[fill=ghost][color=tertiary] button:not(:hover):not(:focus){
+            --cbp-button-border-width: var(--cbp-border-size-md) 0 var(--cbp-border-size-md) var(--cbp-border-size-md);
+          }
         }
   
         &:last-child {
           --cbp-button-border-radius: 0 0 var(--cbp-border-radius-softer) 0;
+
+          &[fill=ghost][color=primary] button:not(:hover):not(:focus),
+          &[fill=ghost][color=secondary] button:not(:hover):not(:focus),
+          &[fill=ghost][color=tertiary] button:not(:hover):not(:focus){
+            --cbp-button-border-width: var(--cbp-border-size-md) var(--cbp-border-size-md) var(--cbp-border-size-md) 0;
+          }
         }
 
         &:first-child:last-child {
@@ -240,7 +261,7 @@ cbp-card {
     &[color=danger] .cbp-card-body { 
       border-color: var(--cbp-color-danger-base);
     }
-  }
+  // }
 
   &[variant=banner] {
     border-color: var(--cbp-banner-card-color);
@@ -338,7 +359,8 @@ cbp-card {
 
   //interactive cards
   &[interactive="clickable"],
-  &[interactive="selectable"]{
+  &[interactive="selectable"],
+  &[interactive="radio"]{
     --cbp-checkbox-min-height: var(--cbp-space-6x); //adjust spacing for checkbox in title for selectable variant
     --cbp-checkbox-color-border: var(--cbp-color-interactive-secondary-light);
     --cbp-checkbox-color-border-dark: var(--cbp-color-interactive-secondary-light);
@@ -410,7 +432,8 @@ cbp-card {
     }
 
     //selected
-    &:has([slot=cbp-card-title] input[type=checkbox]:checked){
+    &:has([slot=cbp-card-title] input[type=checkbox]:checked),
+    &:has([slot=cbp-card-title] input[type=radio]:checked){ //TODO: seems like issue with dark mode overrides? need to investigate further
       --cbp-card-color-background: var(--cbp-card-color-background-selected);
       --cbp-card-color-border: var(--cbp-card-color-border-selected);
       --cbp-card-color-title: var(--cbp-card-color-title-selected);
@@ -475,6 +498,11 @@ cbp-card {
       --cbp-card-color-border-dark: var(--cbp-color-interactive-disabled-light);
       --cbp-card-color-title-dark: var(--cbp-color-interactive-disabled-light);
       --cbp-card-color-text-dark: var(--cbp-color-interactive-disabled-light);      
+    }
+
+    cbp-radio label{
+      display: grid;
+      grid-template-columns: 1fr var(--cbp-space-7x);
     }
   }
 }

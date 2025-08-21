@@ -22,7 +22,7 @@ export class CbpCard {
   @Prop({ reflect: true }) variant: "banner" | "decision" | "flag";
 
   /** Specifies the interactivity of the card. */
-  @Prop({ reflect: true}) interactive: "clickable" | "selectable";
+  @Prop({ reflect: true}) interactive: "clickable" | "selectable" | "radio";
 
   /** Specifies the `href` value for the "clickable" interactive cards. */
   @Prop() href: string
