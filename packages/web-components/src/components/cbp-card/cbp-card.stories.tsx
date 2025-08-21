@@ -461,13 +461,6 @@ BannerAndDecisionCard.args = {
 };
 
 const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIcon, href, variant, context, sx }) => {
-  
-  setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-card a');
-    anchors.forEach(anchor => {
-      anchor.addEventListener('click', function(e) { e.preventDefault(); })
-    });
-  }, 500);
 
   return ` 
     <cbp-form-field group
