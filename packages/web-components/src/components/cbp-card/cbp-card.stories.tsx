@@ -168,7 +168,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
       ${variant !=='default' ? `variant="${variant}"` : ''}
       ${interactive ? `interactive=${interactive}` : ''}
       ${href ? `href="${href}"` : ''}
-      ${disabled ? `disabled=${disabled}` : ''}
+      ${disabled ? `disabled` : ''}
       ${color ? `color=${color}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -473,7 +473,7 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
         ${variant !=='default' ? `variant="${variant}"` : ''}
         interactive= 'radio'
         ${href ? `href="${href}"` : ''}
-        ${disabled ? `disabled=${disabled}` : ''}
+        ${disabled ? `disabled` : ''}
         ${color ? `color=${color}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -497,7 +497,7 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
         ${variant !=='default' ? `variant="${variant}"` : ''}
         interactive= 'radio'
         ${href ? `href="${href}"` : ''}
-        ${disabled ? `disabled=${disabled}` : ''}
+        ${disabled ? `disabled` : ''}
         ${color ? `color=${color}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -521,7 +521,7 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
         ${variant !=='default' ? `variant="${variant}"` : ''}
         interactive= 'radio'
         ${href ? `href="${href}"` : ''}
-        ${disabled ? `disabled=${disabled}` : ''}
+        ${disabled ? `disabled` : ''}
         ${color ? `color=${color}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}

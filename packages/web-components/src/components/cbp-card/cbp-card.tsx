@@ -50,6 +50,15 @@ export class CbpCard {
 
   componentDidLoad(){
     if(this.interactive == 'selectable' || this.interactive == 'radio'){
+
+      if(this.disabled){
+        let input = this.host.querySelector('cbp-checkbox input[type="checkbox"], cbp-radio input[type="radio"]') as HTMLInputElement;
+        input.disabled = true;
+        console.log('Card disabled input');
+        console.log(input);  
+      }
+      
+
       this.host.addEventListener("click", (e) => {
         let parent = this.host.querySelector('cbp-card *[slot="cbp-card-title"]');
         if (!parent.contains(e.target as Node)){
