@@ -22,7 +22,7 @@ export class CbpCard {
   @Prop({ reflect: true }) variant: "banner" | "decision" | "flag";
 
   /** Specifies the interactivity of the card. */
-  @Prop({ reflect: true}) interactive: "clickable" | "selectable";
+  @Prop({ reflect: true}) interactive: "clickable" | "selectable" | "radio";
 
   /** Specifies the `href` value for the "clickable" interactive cards. */
   @Prop() href: string
@@ -49,12 +49,20 @@ export class CbpCard {
   }
 
   componentDidLoad(){
-    if(this.interactive == 'selectable'){
+    if(this.interactive == 'selectable' || this.interactive == 'radio'){
+
+      //Techdebt: need to move this so that it is reactive to changes
+      if(this.disabled){
+        let input = this.host.querySelector('cbp-checkbox input[type="checkbox"], cbp-radio input[type="radio"]') as HTMLInputElement;
+        input.disabled = true;
+      }
+      
+
       this.host.addEventListener("click", (e) => {
         let parent = this.host.querySelector('cbp-card *[slot="cbp-card-title"]');
         if (!parent.contains(e.target as Node)){
-          let checkbox = this.host.querySelector('cbp-checkbox input[type="checkbox"]') as HTMLInputElement;
-          checkbox.click();  
+          let input = this.host.querySelector('cbp-checkbox input[type="checkbox"], cbp-radio input[type="radio"]') as HTMLInputElement;
+          input.click();  
         }
       })
     }

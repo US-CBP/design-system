@@ -33,17 +33,17 @@ export default {
   },
 };
 
-const renderActions = (layout, color, context, withIcon, { btn1, btn2, btn3 }) => {
+const renderActions = (layout, fill, color, context, withIcon, { btn1, btn2, btn3 }) => {
   
   
   if (layout === 'double') {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn2.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill=${fill} color="${btn2.color}" context="${context}" aria-describedby="card-heading-1">
           ${withIcon ? `<cbp-icon name="arrow-right"></cbp-icon>` : ''}
           ${btn2.label}
         </cbp-button>
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill=${fill} color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
@@ -52,15 +52,15 @@ const renderActions = (layout, color, context, withIcon, { btn1, btn2, btn3 }) =
   } else if (layout === 'triple') {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn3.tag}" ${btn3.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn3.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn3.tag}" ${btn3.tag == 'a' ? `href="#"` : ''} fill=${fill} color="${btn3.color}" context="${context}" aria-describedby="card-heading-1">
           ${withIcon ? `<cbp-icon name="eye"></cbp-icon>` : ''} 
           ${btn3.label}
         </cbp-button>
-        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn2.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill=${fill} color="${btn2.color}" context="${context}" aria-describedby="card-heading-1">
           ${withIcon ? `<cbp-icon name="arrow-right"></cbp-icon>` : ''}
           ${btn2.label}
         </cbp-button>
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill=${fill} color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
@@ -69,7 +69,7 @@ const renderActions = (layout, color, context, withIcon, { btn1, btn2, btn3 }) =
   } else {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill=${fill} color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
@@ -94,7 +94,7 @@ const GeneralTemplate = ({ color, title, bodyText, withIcon, context, sx }) => {
   `;
 };
 
-const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig, withIcon, context, sx }) => {
+const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       variant="decision" 
@@ -107,7 +107,7 @@ const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig
         ${title}
       </cbp-typography>
       <p>${bodyText}</p>  
-      ${renderActions(actionsLayout, color,context, withIcon, actionsConfig)}
+      ${renderActions(actionsLayout, actionsFill, color,context, withIcon, actionsConfig)}
     </cbp-card>
   `;
   // <h4 slot="cbp-card-title" id="card-heading-1">
@@ -168,13 +168,14 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
       ${variant !=='default' ? `variant="${variant}"` : ''}
       ${interactive ? `interactive=${interactive}` : ''}
       ${href ? `href="${href}"` : ''}
-      ${disabled ? `disabled=${disabled}` : ''}
+      ${disabled ? `disabled` : ''}
       ${color ? `color=${color}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       
       ${variant=== 'flag' ? `<div slot="cbp-card-flag"><img src="https://api.dicebear.com/9.x/personas/svg" /></div>` : ''}
+      
       ${interactive === 'selectable' ? `
         <cbp-checkbox value="1" slot="cbp-card-title">
           <cbp-typography tag="h4" sx='{"color":"var(--cbp-card-color-title)"}'>
@@ -189,10 +190,26 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
           />
         </cbp-checkbox>
       ` 
-      :   `<cbp-typography tag="h4" slot="cbp-card-title">
+      : (interactive === 'radio' ? 
+        `<cbp-radio value="1" slot="cbp-card-title">
+        <cbp-typography tag="h4" sx='{"color":"var(--cbp-card-color-title)"}'>
             ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
             ${title}
-          </cbp-typography>`}
+        </cbp-typography>
+
+        <input
+          type= "radio"
+          name= "radio"
+          value= "1"
+        />
+      </cbp-radio>`
+        :
+        `<cbp-typography tag="h4" slot="cbp-card-title">
+            ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
+            ${title}
+          </cbp-typography>`
+      )
+      }
       <p>${bodyText}</p>  
     </cbp-card>
   `;
@@ -302,6 +319,7 @@ DecisionCard.args = {
   title: "Card Title",
   bodyText: "Here is an example of some body text for this decision card.",
   actionsLayout: "single",
+  actionsFill: "solid",
   actionsConfig: {
     btn1: {
       label: "Action 1",
@@ -332,6 +350,12 @@ DecisionCard.argTypes = {
     description: "Choose actions layout of the card component",
     control: "radio",
     options: ["single", "double", "triple"],
+  },
+  actionsFill: {
+    name: "Actions Fill",
+    description: "Choose the fill of the actions in the card component",
+    control: "radio",
+    options: ["solid", "outline", "ghost"]
   },
   actionsConfig: {
     name: "Decision Card Actions",
@@ -374,7 +398,7 @@ InteractiveCard.argTypes = {
     name: "Interactive",
     description: "Set the interactivity of the card",
     control: "select",
-    options: ["clickable", "selectable"],
+    options: ["clickable", "selectable", "radio"],
   },
   href:{
     control: "text"
@@ -392,4 +416,167 @@ InteractiveCard.argTypes = {
     control: "select",
     options: ["default", "flag"]
   },
+};
+
+const BannerAndDecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig, withIcon, context, sx }) => { 
+  return ` 
+    <cbp-card
+      variant="banner"
+      ${color ? `color=${color}` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <cbp-typography tag="h4" slot="cbp-card-title">
+        ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
+        ${title}
+      </cbp-typography>
+      <p>${bodyText}</p>
+      ${renderActions(actionsLayout, "solid", color,context, withIcon, actionsConfig)}  
+    </cbp-card>
+  `;
+};
+
+export const BannerAndDecisionCard = BannerAndDecisionTemplate.bind({});
+BannerAndDecisionCard.args = {
+  title: "Banner Card Title",
+  bodyText: "Here is an example of some supplementary text for this purely informational card",
+  actionsLayout: "single",
+  actionsConfig: {
+    btn1: {
+      label: "Action 1",
+      tag: "button",
+      color: "primary",
+    },
+    btn2: {
+      label: "Action 2",
+      tag: "button",
+      color: "secondary",
+    },
+    btn3: {
+      label: "Action 3",
+      tag: "button",
+      color: "tertiary",
+    },
+  },
+};
+
+const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIcon, href, variant, context, sx }) => {
+
+  return ` 
+    <cbp-form-field group
+      label="Interactive Card Radio List"
+      description="Example of a radio list using the interactive card component"
+      field-id="cardRadioGroup"
+    >
+
+      <cbp-card
+        ${variant !=='default' ? `variant="${variant}"` : ''}
+        interactive= 'radio'
+        ${href ? `href="${href}"` : ''}
+        ${disabled ? `disabled` : ''}
+        ${color ? `color=${color}` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+          <cbp-radio value="1" slot="cbp-card-title">
+            <cbp-typography tag="h4" sx='{"color":"var(--cbp-card-color-title)"}'>
+                ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
+                ${title}
+            </cbp-typography>
+
+            <input
+              type= "radio"
+              name= "radio"
+              value= "1"
+            />
+          </cbp-radio>
+        <p>${bodyText}</p>  
+      </cbp-card>
+      
+      <cbp-card
+        ${variant !=='default' ? `variant="${variant}"` : ''}
+        interactive= 'radio'
+        ${href ? `href="${href}"` : ''}
+        ${disabled ? `disabled` : ''}
+        ${color ? `color=${color}` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+          <cbp-radio value="1" slot="cbp-card-title">
+            <cbp-typography tag="h4" sx='{"color":"var(--cbp-card-color-title)"}'>
+                ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
+                ${title}
+            </cbp-typography>
+
+            <input
+              type= "radio"
+              name= "radio"
+              value= "1"
+            />
+          </cbp-radio>
+        <p>${bodyText}</p>  
+      </cbp-card>
+
+      <cbp-card
+        ${variant !=='default' ? `variant="${variant}"` : ''}
+        interactive= 'radio'
+        ${href ? `href="${href}"` : ''}
+        ${disabled ? `disabled` : ''}
+        ${color ? `color=${color}` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+          <cbp-radio value="1" slot="cbp-card-title">
+            <cbp-typography tag="h4" sx='{"color":"var(--cbp-card-color-title)"}'>
+                ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
+                ${title}
+            </cbp-typography>
+
+            <input
+              type= "radio"
+              name= "radio"
+              value= "1"
+            />
+          </cbp-radio>
+        <p>${bodyText}</p>  
+      </cbp-card>
+
+    </cbp-form-field>  
+  `;
+};
+
+
+export const InteractiveRadioList = InteractiveRadioListTemplate.bind({});
+InteractiveRadioList.args = {
+  title: "Banner Card Title",
+  bodyText: "Here is an example of some supplementary text for this purely informational card",
+  interactive: "clickable",
+  variant: "default",
+  href: "https://us-cbp.github.io/design-system/?path=/story/introduction--introduction",
+  sx: {"margin-bottom":"var(--cbp-space-1x)"}
+};
+
+InteractiveRadioList.argTypes = {
+  interactive: {
+    name: "Interactive",
+    description: "Set the interactivity of the card",
+    control: "select",
+    options: ["clickable", "selectable"],
+  },
+  href:{
+    control: "text"
+  },
+  disabled: {
+    control: "boolean",
+  },
+  color: {
+    control: "select",
+    options: ["default", "danger"],
+  },
+  variant: {
+    name: "Variant",
+    description: "set Variant of the card",
+    control: "select",
+    options: ["default", "flag"]
+  }
 };
