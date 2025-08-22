@@ -51,11 +51,10 @@ export class CbpCard {
   componentDidLoad(){
     if(this.interactive == 'selectable' || this.interactive == 'radio'){
 
+      //Techdebt: need to move this so that it is reactive to changes
       if(this.disabled){
         let input = this.host.querySelector('cbp-checkbox input[type="checkbox"], cbp-radio input[type="radio"]') as HTMLInputElement;
         input.disabled = true;
-        console.log('Card disabled input');
-        console.log(input);  
       }
       
 
