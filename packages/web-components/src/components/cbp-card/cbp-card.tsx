@@ -49,12 +49,12 @@ export class CbpCard {
   }
 
   componentDidLoad(){
-    if(this.interactive == 'selectable'){
+    if(this.interactive == 'selectable' || this.interactive == 'radio'){
       this.host.addEventListener("click", (e) => {
         let parent = this.host.querySelector('cbp-card *[slot="cbp-card-title"]');
         if (!parent.contains(e.target as Node)){
-          let checkbox = this.host.querySelector('cbp-checkbox input[type="checkbox"]') as HTMLInputElement;
-          checkbox.click();  
+          let input = this.host.querySelector('cbp-checkbox input[type="checkbox"], cbp-radio input[type="radio"]') as HTMLInputElement;
+          input.click();  
         }
       })
     }
