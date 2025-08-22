@@ -218,21 +218,21 @@ cbp-card {
         --cbp-button-min-height: var(--cbp-space-11x);
         width: 100%;
 
-        &[fill=ghost][color=primary] button:not(:hover):not(:focus),
-        &[fill=ghost][color=secondary] button:not(:hover):not(:focus),
-        &[fill=ghost][color=tertiary] button:not(:hover):not(:focus)
+        // &[fill=ghost][color=primary] button:not(:hover):not(:focus),
+        // &[fill=ghost][color=secondary] button:not(:hover):not(:focus),
+        // &[fill=ghost][color=tertiary] button:not(:hover):not(:focus)
+        
+        &[fill=ghost][color] button:not(:hover):not(:focus)
         {
           --cbp-button-color-border: var(--cbp-banner-card-color-border);
-          --cbp-button-border-width: var(--cbp-border-size-md) 0 var(--cbp-border-size-md) 0;//TODO: suppress border width for inbetween exlude first & last
+          --cbp-button-border-width: var(--cbp-border-size-md) 0 var(--cbp-border-size-md) 0;
         }
 
 
         &:first-child {
           --cbp-button-border-radius: 0 0 0 var(--cbp-border-radius-softer);
 
-          &[fill=ghost][color=primary] button:not(:hover):not(:focus),
-          &[fill=ghost][color=secondary] button:not(:hover):not(:focus),
-          &[fill=ghost][color=tertiary] button:not(:hover):not(:focus){
+          &[fill=ghost][color] button:not(:hover):not(:focus){
             --cbp-button-border-width: var(--cbp-border-size-md) 0 var(--cbp-border-size-md) var(--cbp-border-size-md);
           }
         }
@@ -240,15 +240,17 @@ cbp-card {
         &:last-child {
           --cbp-button-border-radius: 0 0 var(--cbp-border-radius-softer) 0;
 
-          &[fill=ghost][color=primary] button:not(:hover):not(:focus),
-          &[fill=ghost][color=secondary] button:not(:hover):not(:focus),
-          &[fill=ghost][color=tertiary] button:not(:hover):not(:focus){
+          &[fill=ghost][color] button:not(:hover):not(:focus){
             --cbp-button-border-width: var(--cbp-border-size-md) var(--cbp-border-size-md) var(--cbp-border-size-md) 0;
           }
         }
-
+        
         &:first-child:last-child {
           --cbp-button-border-radius: 0 0 var(--cbp-border-radius-softer) var(--cbp-border-radius-softer);
+        
+          &[fill=ghost][color] button:not(:hover):not(:focus){
+            --cbp-button-border-width: var(--cbp-border-size-md);
+          }
         }
   
         button, a {
@@ -415,6 +417,7 @@ cbp-card {
       &:not(disabled) .cbp-card-body{
         outline: 2px solid var(--cbp-card-outline-color-focus); 
         outline-offset: -4px;
+        border-radius: var(--cbp-border-radius-softer);
       }
     }
 

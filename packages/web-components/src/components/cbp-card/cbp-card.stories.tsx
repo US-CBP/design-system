@@ -460,7 +460,7 @@ BannerAndDecisionCard.args = {
   },
 };
 
-const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIcon, href, variant, context, sx }) => {
+const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIcon, href, variant, context }) => {
 
   return ` 
     <cbp-form-field group
@@ -476,7 +476,7 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
         ${disabled ? `disabled=${disabled}` : ''}
         ${color ? `color=${color}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+        sx={"margin-bottom":"var(--cbp-space-1x)"}
       >
           <cbp-radio value="1" slot="cbp-card-title">
             <cbp-typography tag="h4" sx='{"color":"var(--cbp-card-color-title)"}'>
@@ -500,7 +500,7 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
         ${disabled ? `disabled=${disabled}` : ''}
         ${color ? `color=${color}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+        sx={"margin-bottom":"var(--cbp-space-1x)"}
       >
           <cbp-radio value="1" slot="cbp-card-title">
             <cbp-typography tag="h4" sx='{"color":"var(--cbp-card-color-title)"}'>
@@ -524,7 +524,7 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
         ${disabled ? `disabled=${disabled}` : ''}
         ${color ? `color=${color}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+        sx={"margin-bottom":"var(--cbp-space-1x)"}
       >
           <cbp-radio value="1" slot="cbp-card-title">
             <cbp-typography tag="h4" sx='{"color":"var(--cbp-card-color-title)"}'>
