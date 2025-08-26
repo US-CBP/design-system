@@ -303,3 +303,81 @@ AppHeaderWithSubnav.args = {
     },
   ] 
 }
+
+const AppHeaderWithGlobalSearchTemplate = ({ drawerid, store, items, sx }) => {  
+  
+  // preventDefault on all links in the header and subnav
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-app-header a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+
+  return ` 
+    <cbp-app-header    
+      global-search=true
+      ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      ${generateNavItems(items)}
+      <input 
+        slot="cbp-global-search"
+        type="search" 
+        name="global search" 
+        placeholder="Start Typing - Press Esc to Close" 
+      />
+    </cbp-app-header>
+     ${renderDrawer(items, drawerid, store)}
+  `;
+};
+
+/* 
+    Test case for using flex to float additional content off to the right.
+
+      <cbp-flex 
+        align-items="center"
+        justify-content="space-between"
+        sx='{"width":"100%"}'
+      >
+        <div>
+          ${generateNavItems(items)}
+        </div>
+
+        <div>
+          <cbp-button>
+            Right-aligned button
+          </cbp-button>
+        </div>
+      </cbp-flex>
+*/
+
+
+
+export const AppHeaderWithGlobalSearch = AppHeaderWithGlobalSearchTemplate.bind({});
+AppHeaderWithGlobalSearch.args = {
+  drawerid: 'navDrawer',
+  items: [
+    {
+      label: 'Application Name',
+      name: 'Application Name',
+      href: './?path=/story/components-application-header--application-header#',
+      current: true
+    },
+    {
+      label: 'Nav Item 1',
+      name: 'Nav Item 1',
+      href: './?path=/story/components-application-header--application-header#',
+    },
+    {
+      label: 'Nav Item 2',
+      name: 'Nav Item 2',
+      href: './?path=/story/components-application-header--application-header#',
+    },
+    {
+      label: 'Nav Item 3',
+      name: 'Nav Item 3',
+      href: './?path=/story/components-application-header--application-header#',
+    },
+  ] 
+}

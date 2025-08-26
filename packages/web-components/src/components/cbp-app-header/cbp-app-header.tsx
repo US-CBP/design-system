@@ -5,7 +5,9 @@ import state from '../cbp-app-header/store';
 /**
  * @slot - The default slot usually contains only `cbp-nav-item` tags, but other content may also be included.
  * @slot - cbp-home - The link to the home page containing the Application Name as link text should be placed within this named slot for the intended visual treatment. 
- */
+ * @slot - cbp-global-search - The input used for the global search actions should be placed within this slot
+*/
+
 @Component({
   tag: 'cbp-app-header',
   styleUrl: 'cbp-app-header.scss'
@@ -23,6 +25,9 @@ export class CbpAppHeader {
   /** Specifies the id of the drawer to be launched*/
   @Prop() subnavDrawerId: string;
 
+  /** Specifies if there will be a slotted input for global search */
+  @Prop() globalSearch: boolean
+
   @Element() host: HTMLCbpAppHeaderElement;
 
   @Listen('drawerClose', { target: 'body'})
@@ -33,6 +38,22 @@ export class CbpAppHeader {
       let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLButtonElement;
       active?.focus(); // TechDebt: this needs to be revisited for navigation events that may auto-close the drawer.
       //this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`)) 
+    }
+  }
+
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent){
+    let searchVisible = document.querySelector('search').hidden == false;
+    if(ev.key === 'Escape' && this.globalSearch && searchVisible){
+      this.toggleSearch();
+    }
+  }
+
+  @Listen('click', { target: 'body'})
+  handleClick(event: MouseEvent) {
+    let searchVisible = document.querySelector('search').hidden == false;
+    if (!this.host.contains(event.target as Node) && this.globalSearch && searchVisible){
+      this.toggleSearch();
     }
   }
 
@@ -58,7 +79,6 @@ export class CbpAppHeader {
   }
 
   handleResize( width ) {
-    
     // Get the width of the content (and update the this.navWidth) before doing responsive adjustments.
     if(this.navWidth == undefined){
       this.navWidth = this.nav.getBoundingClientRect().width;
@@ -74,7 +94,7 @@ export class CbpAppHeader {
 
   doResponsive(){
     this.children.forEach( (item, index) => {
-      if (index > 0) {
+      if (index > 0 && item.id != 'global-search-toggle') {
         item.setAttribute('hidden','');
       }
     });
@@ -92,6 +112,16 @@ export class CbpAppHeader {
     
     this.drawerButton.parentElement.classList.remove('cbp-app-header-responsive');
     this.drawerButton ? this.drawerButton.setAttribute('hidden', ''): '';
+  }
+
+
+  toggleSearch() {
+    let search = document.querySelector('search') as HTMLElement;
+    if (search.hidden){
+      search.hidden = false;
+    } else{
+      search.hidden = true;
+    }
   }
 
   componentWillLoad() {
@@ -131,6 +161,8 @@ export class CbpAppHeader {
             <slot name="cbp-home" />
             <slot />
 
+            
+            
             {(this.navItems.length > 1) &&
               <cbp-button
                 hidden
@@ -149,6 +181,36 @@ export class CbpAppHeader {
           </nav>
         </cbp-resize-observer>
         
+        {this.globalSearch &&
+              <cbp-button
+                id='global-search-toggle'
+                type='button'
+                fill='outline'
+                color='secondary'
+                variant='square'
+                onClick={this.toggleSearch}
+              >
+                <cbp-icon name='magnifying-glass'></cbp-icon>
+              </cbp-button>
+            }
+
+        {this.globalSearch &&
+          <div>
+            <search hidden>
+              <slot name='cbp-global-search' />
+              
+              <cbp-button
+                type='button'
+                fill='solid'
+                color='primary'
+                variant='square'
+                // onClick={this.toggleSearch}
+              >
+              <cbp-icon name='magnifying-glass'></cbp-icon>
+            </cbp-button>
+            </search>
+          </div>
+        }
       </Host>
     );
   }
