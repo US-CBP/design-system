@@ -5,7 +5,6 @@ import state from '../cbp-app-header/store';
  * @slot - The default slot usually contains only `cbp-nav-item` tags, but other content may also be included.
  * @slot - cbp-home - The link to the home page containing the Application Name as link text should be placed within this named slot for the intended visual treatment. 
  * @slot - cbp-global-search - The input used for the global search actions should be placed within this slot
- * @slot - cbp-global-search-submit - the button used to submit the data from the cbp-global-search slot
 */
 
 @Component({
@@ -202,8 +201,7 @@ export class CbpAppHeader {
 
         {this.globalSearch &&
           <div id= "global-search-field" hidden>
-              <slot name= "cbp-global-search" />
-              <slot name= "cbp-global-search-submit" />
+            <slot name= "cbp-global-search" />
           </div>
         }
       </Host>

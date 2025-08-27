@@ -79,23 +79,28 @@ cbp-app-header{
       outline-offset: calc( -2 * var(--cbp-border-size-md));
     }
 
-    input{
-      flex-grow: 1;
-      border: none;
-      background-color: var(--cbp-app-header-color-background);
-    
-      &::placeholder{
-        color: var(--cbp-app-header-search-color-placeholder);
-      }
+    form{
+      display: inline-flex;
+      width: 100%;
 
-      &:focus-visible{
-        outline: none;
+      input{
+        flex-grow: 1;
+        border: none;
+        background-color: var(--cbp-app-header-color-background);
+      
+        &::placeholder{
+          color: var(--cbp-app-header-search-color-placeholder);
+        }
+
+        &:focus-visible{
+          outline: none;
+        }
       }
-    }
-     
-    & > *{
-      align-content: center;
-      margin-left: var(--cbp-space-4x);
+      
+      & > *{
+        align-content: center;
+        margin-left: var(--cbp-space-4x);
+      }
     }
   }
 }
