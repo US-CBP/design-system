@@ -1,11 +1,11 @@
 import { Component, Element, Listen, Host, h, Prop} from '@stencil/core';
 import { debounce } from '../../utils/utils';
 import state from '../cbp-app-header/store';
-
 /**
  * @slot - The default slot usually contains only `cbp-nav-item` tags, but other content may also be included.
  * @slot - cbp-home - The link to the home page containing the Application Name as link text should be placed within this named slot for the intended visual treatment. 
  * @slot - cbp-global-search - The input used for the global search actions should be placed within this slot
+ * @slot - cbp-global-search-submit - the button used to submit the data from the cbp-global-search slot
 */
 
 @Component({
@@ -43,7 +43,7 @@ export class CbpAppHeader {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent){
-    let searchVisible = document.querySelector('search').hidden == false;
+    let searchVisible = document.getElementById('global-search-field').hidden == false;
     if(ev.key === 'Escape' && this.globalSearch && searchVisible){
       this.toggleSearch();
     }
@@ -51,7 +51,7 @@ export class CbpAppHeader {
 
   @Listen('click', { target: 'body'})
   handleClick(event: MouseEvent) {
-    let searchVisible = document.querySelector('search').hidden == false;
+    let searchVisible = document.getElementById('global-search-field').hidden == false;
     if (!this.host.contains(event.target as Node) && this.globalSearch && searchVisible){
       this.toggleSearch();
     }
@@ -116,11 +116,14 @@ export class CbpAppHeader {
 
 
   toggleSearch() {
-    let search = document.querySelector('search') as HTMLElement;
+    let search = document.getElementById('global-search-field') as HTMLElement;
+    let searchToggle = document.getElementById('global-search-toggle') as HTMLCbpButtonElement;
     if (search.hidden){
-      search.hidden = false;
+      search.hidden = false; 
+      searchToggle.expanded = "true";
     } else{
       search.hidden = true;
+      searchToggle.expanded = "false";
     }
   }
 
@@ -182,33 +185,25 @@ export class CbpAppHeader {
         </cbp-resize-observer>
         
         {this.globalSearch &&
+          <search>
               <cbp-button
-                id='global-search-toggle'
-                type='button'
-                fill='outline'
-                color='secondary'
-                variant='square'
-                onClick={this.toggleSearch}
+                id= "global-search-toggle"
+                type= "button"
+                fill= "outline"
+                color= "secondary"
+                variant= "square"
+                onClick= {this.toggleSearch}
+                expanded= "false"
               >
-                <cbp-icon name='magnifying-glass'></cbp-icon>
+                <cbp-icon name="magnifying-glass"></cbp-icon>
               </cbp-button>
+            </search>
             }
 
         {this.globalSearch &&
-          <div>
-            <search hidden>
-              <slot name='cbp-global-search' />
-              
-              <cbp-button
-                type='button'
-                fill='solid'
-                color='primary'
-                variant='square'
-                // onClick={this.toggleSearch}
-              >
-              <cbp-icon name='magnifying-glass'></cbp-icon>
-            </cbp-button>
-            </search>
+          <div id= "global-search-field" hidden>
+              <slot name= "cbp-global-search" />
+              <slot name= "cbp-global-search-submit" />
           </div>
         }
       </Host>

@@ -327,32 +327,22 @@ const AppHeaderWithGlobalSearchTemplate = ({ drawerid, store, items, sx }) => {
         name="global search" 
         placeholder="Start Typing - Press Esc to Close" 
       />
+
+      <cbp-button
+        slot= "cbp-global-search-submit"
+        type= "button"
+        fill= "solid"
+        color= "primary"
+        variant= "square"
+        type= "submit"
+        >
+        <cbp-icon name= "magnifying-glass"></cbp-icon>
+      </cbp-button>
+
     </cbp-app-header>
      ${renderDrawer(items, drawerid, store)}
   `;
 };
-
-/* 
-    Test case for using flex to float additional content off to the right.
-
-      <cbp-flex 
-        align-items="center"
-        justify-content="space-between"
-        sx='{"width":"100%"}'
-      >
-        <div>
-          ${generateNavItems(items)}
-        </div>
-
-        <div>
-          <cbp-button>
-            Right-aligned button
-          </cbp-button>
-        </div>
-      </cbp-flex>
-*/
-
-
 
 export const AppHeaderWithGlobalSearch = AppHeaderWithGlobalSearchTemplate.bind({});
 AppHeaderWithGlobalSearch.args = {
