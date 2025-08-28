@@ -89,6 +89,7 @@ cbp-app-header{
         background-color: var(--cbp-app-header-color-background);
       
         &::placeholder{
+          font-style: italic;
           color: var(--cbp-app-header-search-color-placeholder);
         }
 
@@ -96,11 +97,13 @@ cbp-app-header{
           outline: none;
         }
       }
-      
-      & > *{
-        align-content: center;
-        margin-left: var(--cbp-space-4x);
-      }
     }
+    
+    form > *:not(input),
+    > cbp-button{
+      align-content: center;
+      margin-left: var(--cbp-space-4x);
+    }
+  
   }
 }

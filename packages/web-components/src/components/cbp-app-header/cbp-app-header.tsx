@@ -44,7 +44,9 @@ export class CbpAppHeader {
   handleKeyDown(ev: KeyboardEvent){
     let searchVisible = document.getElementById('global-search-field').hidden == false;
     if(ev.key === 'Escape' && this.globalSearch && searchVisible){
+    // if((ev.key === 'Escape' && this.globalSearch && searchVisible) || (!searchArea.contains(document.activeElement) && ev.key === 'Tab' && searchVisible && this.globalSearch)){
       this.toggleSearch();
+      
     }
   }
 
@@ -54,6 +56,15 @@ export class CbpAppHeader {
     if (!this.host.contains(event.target as Node) && this.globalSearch && searchVisible){
       this.toggleSearch();
     }
+  }
+
+  handleTabFocusOut({key, shiftKey}) {
+    if(key == 'Tab' && !shiftKey) this.toggleSearch();
+  }
+
+  handleShiftTabFocusOut({key, shiftKey}) {
+    console.log('handleShiftTabFocusOut triggered', key, shiftKey);
+    if(key == 'Tab' && shiftKey) this.toggleSearch();
   }
 
   updateCurrentItem(newValue){
@@ -117,9 +128,12 @@ export class CbpAppHeader {
   toggleSearch() {
     let search = document.getElementById('global-search-field') as HTMLElement;
     let searchToggle = document.getElementById('global-search-toggle') as HTMLCbpButtonElement;
+    let searchInput = document.querySelector('search input') as HTMLElement;
+    
     if (search.hidden){
       search.hidden = false; 
       searchToggle.expanded = "true";
+      searchInput.focus();
     } else{
       search.hidden = true;
       searchToggle.expanded = "false";
@@ -142,7 +156,13 @@ export class CbpAppHeader {
   componentDidLoad(){
     // Get the immediate children to toggle hidden
     this.children=Array.from(this.nav.querySelectorAll(':scope > *'));   
+
+    // Attach focus out event to input in sloted content for the search function
+    let searchInput = this.host.querySelector('search input');
+    searchInput.addEventListener("keydown", (e: KeyboardEvent) => {this.handleShiftTabFocusOut(e)});
   }
+
+  
 
   render() {
     if(this.currentItem?.name != state.currentParent) {
@@ -185,25 +205,34 @@ export class CbpAppHeader {
         
         {this.globalSearch &&
           <search>
+            <cbp-button
+              id= "global-search-toggle"
+              type= "button"
+              fill= "outline"
+              color= "secondary"
+              variant= "square"
+              onClick= {this.toggleSearch}
+              expanded= "false"
+            >
+              <cbp-icon name="magnifying-glass"></cbp-icon>
+            </cbp-button>
+
+            <div id= "global-search-field" hidden>
+              <slot name= "cbp-global-search" />
               <cbp-button
-                id= "global-search-toggle"
                 type= "button"
-                fill= "outline"
+                fill= "ghost"
                 color= "secondary"
                 variant= "square"
                 onClick= {this.toggleSearch}
-                expanded= "false"
-              >
-                <cbp-icon name="magnifying-glass"></cbp-icon>
+                onKeyDown={(e) => this.handleTabFocusOut(e)}
+                >
+                <cbp-icon name="times"></cbp-icon>
               </cbp-button>
-            </search>
-            }
-
-        {this.globalSearch &&
-          <div id= "global-search-field" hidden>
-            <slot name= "cbp-global-search" />
-          </div>
-        }
+            </div>
+        
+          </search>
+          }
       </Host>
     );
   }

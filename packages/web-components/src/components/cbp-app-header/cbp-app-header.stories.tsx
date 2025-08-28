@@ -325,9 +325,9 @@ const AppHeaderWithGlobalSearchTemplate = ({ drawerid, store, items, sx }) => {
         slot="cbp-global-search"
       >
         <input 
-          type="search" 
+          type="text" 
           name="global search" 
-          placeholder="Start Typing - Press Esc to Close" 
+          placeholder="Start Typing - Press ESC to Close" 
         />
 
         <cbp-button
