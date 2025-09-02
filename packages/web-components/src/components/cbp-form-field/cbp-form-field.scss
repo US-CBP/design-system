@@ -1,5 +1,25 @@
 /**
- *
+ * @prop --cbp-form-field-color: var(--cbp-color-text-darkest);
+ * @prop --cbp-form-field-color-bg: var(--cbp-color-white);
+ * @prop --cbp-form-field-color-border: var(--cbp-color-interactive-secondary-base);
+ * @prop --cbp-form-field-color-border-hover: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-form-field-color-border-focus: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-form-field-color-label: var(--cbp-color-text-darkest);
+ * @prop --cbp-form-field-color-description: var(--cbp-color-text-darkest);
+ * @prop --cbp-form-field-color-placeholder: var(--cbp-color-text-dark);
+
+ * @prop --cbp-form-field-color-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-form-field-color-bg-dark: var(--cbp-color-gray-cool-70);
+ * @prop --cbp-form-field-color-border-dark: var(--cbp-color-interactive-secondary-light);
+ * @prop --cbp-form-field-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ * @prop --cbp-form-field-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-form-field-color-label-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-form-field-color-description-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
+
+ * @prop --cbp-form-field-padding-inline: var(--cbp-space-2x);
+ * @prop --cbp-form-field-margin-bottom: var(--cbp-space-4x);
+ * @prop --cbp-form-field-border-radius: var(--cbp-border-radius-soft);
  */
  :root{
   --cbp-form-field-color: var(--cbp-color-text-darkest);
