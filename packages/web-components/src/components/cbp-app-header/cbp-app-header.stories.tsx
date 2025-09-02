@@ -316,17 +316,18 @@ const AppHeaderWithGlobalSearchTemplate = ({ drawerid, store, items, sx }) => {
 
   return ` 
     <cbp-app-header    
-      global-search=true
+      global-search
       ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
       ${generateNavItems(items)}
       <form
         slot="cbp-global-search"
+        method="post"
       >
         <input 
           type="text" 
-          name="global search" 
+          name="globalSearch" 
           placeholder="Start Typing - Press ESC to Close" 
         />
 

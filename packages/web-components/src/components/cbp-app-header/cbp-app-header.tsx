@@ -210,9 +210,9 @@ export class CbpAppHeader {
               fill= "outline"
               color= "secondary"
               variant= "square"
-              onClick= {() => {this.toggleSearch()}}
+              onClick= {() => this.toggleSearch()}
               expanded= "false"
-              accessibility-text="Global Search"
+              accessibilityText="Global Search"
             >
               <cbp-icon name="magnifying-glass"></cbp-icon>
             </cbp-button>
@@ -224,8 +224,8 @@ export class CbpAppHeader {
                 fill= "ghost"
                 color= "secondary"
                 variant= "square"
-                accessibility-text="Close Search"
-                onClick= {() => {this.toggleSearch()}}
+                accessibilityText="Close Search"
+                onClick= {() => this.toggleSearch()}
                 onKeyDown={(e) => this.handleTabFocusOut(e)}
                 >
                 <cbp-icon name="times" />
