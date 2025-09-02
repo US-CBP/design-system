@@ -40,17 +40,14 @@ cbp-app-header{
   top: calc(-1 * var(--cbp-space-half-x));
 
   display: flex;
+  align-items: center;
+  gap: var(--cbp-space-4x);
 
   nav{
     display: flex;
     align-items: center;
     align-content: stretch;
     width: max-content;
-  }
-
-  search{
-    align-self: center;
-    margin-left: var(--cbp-space-4x);
   }
 
   cbp-resize-observer{
@@ -63,7 +60,7 @@ cbp-app-header{
     width: 100%
   }
 
-  #global-search-field{
+  #cbp-app-header-search{
     position: absolute;
     top: 0;
     left: 0;
@@ -79,7 +76,7 @@ cbp-app-header{
       outline-offset: calc( -2 * var(--cbp-border-size-md));
     }
 
-    form{
+    > [slot="cbp-global-search"]{
       display: inline-flex;
       width: 100%;
 
@@ -99,7 +96,8 @@ cbp-app-header{
       }
     }
     
-    form > *:not(input),
+    //*Spacing for buttons associated to search form (submit, close, etc)
+    > [slot="cbp-global-search"] > *:not(input),
     > cbp-button{
       align-content: center;
       margin-left: var(--cbp-space-4x);

@@ -336,6 +336,7 @@ const AppHeaderWithGlobalSearchTemplate = ({ drawerid, store, items, sx }) => {
           color= "primary"
           variant= "square"
           type= "submit"
+          accessibility-text="Search"
           >
           <cbp-icon name= "magnifying-glass"></cbp-icon>
         </cbp-button>

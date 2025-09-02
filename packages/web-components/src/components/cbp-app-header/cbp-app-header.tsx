@@ -42,7 +42,7 @@ export class CbpAppHeader {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent){
-    let searchVisible = document.getElementById('global-search-field').hidden == false;
+    const searchVisible = document.getElementById('cbp-app-header-search').hidden == false;
     if(ev.key === 'Escape' && this.globalSearch && searchVisible){
     // if((ev.key === 'Escape' && this.globalSearch && searchVisible) || (!searchArea.contains(document.activeElement) && ev.key === 'Tab' && searchVisible && this.globalSearch)){
       this.toggleSearch();
@@ -52,7 +52,7 @@ export class CbpAppHeader {
 
   @Listen('click', { target: 'body'})
   handleClick(event: MouseEvent) {
-    let searchVisible = document.getElementById('global-search-field').hidden == false;
+    const searchVisible = document.getElementById('cbp-app-header-search').hidden == false;
     if (!this.host.contains(event.target as Node) && this.globalSearch && searchVisible){
       this.toggleSearch();
     }
@@ -63,7 +63,6 @@ export class CbpAppHeader {
   }
 
   handleShiftTabFocusOut({key, shiftKey}) {
-    console.log('handleShiftTabFocusOut triggered', key, shiftKey);
     if(key == 'Tab' && shiftKey) this.toggleSearch();
   }
 
@@ -126,9 +125,9 @@ export class CbpAppHeader {
 
 
   toggleSearch() {
-    let search = document.getElementById('global-search-field') as HTMLElement;
-    let searchToggle = document.getElementById('global-search-toggle') as HTMLCbpButtonElement;
-    let searchInput = document.querySelector('search input') as HTMLElement;
+    const search = document.getElementById('cbp-app-header-search') as HTMLElement;
+    const searchToggle = document.getElementById('global-search-toggle') as HTMLCbpButtonElement;
+    const searchInput = document.querySelector('search input') as HTMLElement;
     
     if (search.hidden){
       search.hidden = false; 
@@ -158,7 +157,7 @@ export class CbpAppHeader {
     this.children=Array.from(this.nav.querySelectorAll(':scope > *'));   
 
     // Attach focus out event to input in sloted content for the search function
-    let searchInput = this.host.querySelector('search input');
+    const searchInput = this.host.querySelector('search input');
     searchInput.addEventListener("keydown", (e: KeyboardEvent) => {this.handleShiftTabFocusOut(e)});
   }
 
@@ -211,23 +210,25 @@ export class CbpAppHeader {
               fill= "outline"
               color= "secondary"
               variant= "square"
-              onClick= {this.toggleSearch}
+              onClick= {() => {this.toggleSearch()}}
               expanded= "false"
+              accessibility-text="Global Search"
             >
               <cbp-icon name="magnifying-glass"></cbp-icon>
             </cbp-button>
 
-            <div id= "global-search-field" hidden>
+            <div id= "cbp-app-header-search" hidden>
               <slot name= "cbp-global-search" />
               <cbp-button
                 type= "button"
                 fill= "ghost"
                 color= "secondary"
                 variant= "square"
-                onClick= {this.toggleSearch}
+                accessibility-text="Close Search"
+                onClick= {() => {this.toggleSearch()}}
                 onKeyDown={(e) => this.handleTabFocusOut(e)}
                 >
-                <cbp-icon name="times"></cbp-icon>
+                <cbp-icon name="times" />
               </cbp-button>
             </div>
         
