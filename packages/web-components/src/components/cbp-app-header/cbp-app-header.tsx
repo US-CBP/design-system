@@ -1,11 +1,11 @@
-import { Component, Element, Listen, Host, h, Prop} from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Listen, Host, h, Prop, Method} from '@stencil/core';
 import { debounce } from '../../utils/utils';
 import state from '../cbp-app-header/store';
-
 /**
  * @slot - The default slot usually contains only `cbp-nav-item` tags, but other content may also be included.
  * @slot - cbp-home - The link to the home page containing the Application Name as link text should be placed within this named slot for the intended visual treatment. 
- */
+*/
+
 @Component({
   tag: 'cbp-app-header',
   styleUrl: 'cbp-app-header.scss'
@@ -20,8 +20,19 @@ export class CbpAppHeader {
   private children: HTMLElement[] = []; 
   private navWidth; 
 
+  private input: HTMLInputElement;
+
   /** Specifies the id of the drawer to be launched*/
   @Prop() subnavDrawerId: string;
+
+  /** Specifies if there will be a slotted input for global search */
+  @Prop() search: boolean;
+
+  /** Specifies the method attribute for the search form  */
+  @Prop() searchMethod: string;
+
+  /** Specifies the action attribute for the search form  */
+  @Prop() searchAction: string;
 
   @Element() host: HTMLCbpAppHeaderElement;
 
@@ -34,6 +45,42 @@ export class CbpAppHeader {
       active?.focus(); // TechDebt: this needs to be revisited for navigation events that may auto-close the drawer.
       //this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`)) 
     }
+  }
+
+
+  /** A custom event emitted when input is submitted. */
+  @Event() searchInput: EventEmitter;
+  handleSearchInput(){
+    this.searchInput.emit({
+      host: this.host,
+      nativeInput: this.input,
+      value:  this.input.value,
+      })
+  }
+
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent){
+    const searchVisible = document.getElementById('cbp-app-header-search').hidden == false;
+    if(ev.key === 'Escape' && this.search && searchVisible){
+      this.toggleSearch();
+      
+    }
+  }
+
+  @Listen('click', { target: 'body'})
+  handleClick(event: MouseEvent) {
+    const searchVisible = document.getElementById('cbp-app-header-search').hidden == false;
+    if (!this.host.contains(event.target as Node) && this.search && searchVisible){
+      this.toggleSearch();
+    }
+  }
+
+  handleTabFocusOut({key, shiftKey}) {
+    if(key == 'Tab' && !shiftKey) this.toggleSearch();
+  }
+
+  handleShiftTabFocusOut({key, shiftKey}) {
+    if(key == 'Tab' && shiftKey) this.toggleSearch();
   }
 
   updateCurrentItem(newValue){
@@ -58,7 +105,6 @@ export class CbpAppHeader {
   }
 
   handleResize( width ) {
-    
     // Get the width of the content (and update the this.navWidth) before doing responsive adjustments.
     if(this.navWidth == undefined){
       this.navWidth = this.nav.getBoundingClientRect().width;
@@ -74,7 +120,7 @@ export class CbpAppHeader {
 
   doResponsive(){
     this.children.forEach( (item, index) => {
-      if (index > 0) {
+      if (index > 0 && item.id != 'global-search-toggle') {
         item.setAttribute('hidden','');
       }
     });
@@ -92,6 +138,27 @@ export class CbpAppHeader {
     
     this.drawerButton.parentElement.classList.remove('cbp-app-header-responsive');
     this.drawerButton ? this.drawerButton.setAttribute('hidden', ''): '';
+  }
+
+
+  /** A public method to toggle the search visibility on/off */
+  @Method()
+  async toggleSearch() {
+    const search = document.getElementById('cbp-app-header-search') as HTMLElement;
+    const searchToggle = document.getElementById('global-search-toggle') as HTMLCbpButtonElement;
+    const searchToggleButton = document.querySelector("#global-search-toggle > button") as HTMLElement;
+    const searchInput = document.querySelector('search input') as HTMLInputElement;
+    
+    if (search.hidden){
+      search.hidden = false; 
+      searchToggle.expanded = "true";
+      searchInput.focus();
+    } else{
+      search.hidden = true;
+      searchToggle.expanded = "false";
+      searchToggleButton.focus();
+      searchInput.value = '';
+    }
   }
 
   componentWillLoad() {
@@ -112,6 +179,8 @@ export class CbpAppHeader {
     this.children=Array.from(this.nav.querySelectorAll(':scope > *'));   
   }
 
+  
+
   render() {
     if(this.currentItem?.name != state.currentParent) {
       this.updateCurrentItem(state.currentParent);
@@ -131,6 +200,8 @@ export class CbpAppHeader {
             <slot name="cbp-home" />
             <slot />
 
+            
+            
             {(this.navItems.length > 1) &&
               <cbp-button
                 hidden
@@ -149,6 +220,61 @@ export class CbpAppHeader {
           </nav>
         </cbp-resize-observer>
         
+        {this.search &&
+          <search>
+            <cbp-button
+              id= "global-search-toggle"
+              type= "button"
+              fill= "outline"
+              color= "secondary"
+              variant= "square"
+              onClick= {() => this.toggleSearch()}
+              expanded= "false"
+              accessibilityText="Global Search"
+            >
+              <cbp-icon name="magnifying-glass"></cbp-icon>
+            </cbp-button>
+
+            <form 
+              id= "cbp-app-header-search"
+              method={this.searchMethod}
+              action={this.searchAction}
+              hidden
+            >
+              <input 
+                type="text" 
+                name="globalSearch" 
+                placeholder="Start Typing - Press ESC to Close" 
+                onKeyDown={(e) => this.handleShiftTabFocusOut(e)}
+                ref={el => (this.input = el)}
+                onInput={() => this.handleSearchInput}           
+                
+              />
+              <div>
+                <cbp-button
+                  type= "button"
+                  fill= "solid"
+                  color= "primary"
+                  variant= "square"
+                  accessibilityText="Search"
+                  >
+                  <cbp-icon name= "magnifying-glass"></cbp-icon>
+                </cbp-button>
+                <cbp-button
+                  type= "button"
+                  fill= "ghost"
+                  color= "secondary"
+                  variant= "square"
+                  accessibilityText="Close Search"
+                  onKeyDown={(e) => this.handleTabFocusOut(e)}
+                  onClick= {() => this.toggleSearch()}
+                  >
+                  <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)" />
+                </cbp-button>
+              </div>
+            </form>        
+          </search>
+          }
       </Host>
     );
   }
