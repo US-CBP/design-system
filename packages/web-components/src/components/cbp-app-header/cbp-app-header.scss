@@ -76,7 +76,7 @@ cbp-app-header{
       outline-offset: calc( -2 * var(--cbp-border-size-md));
     }
 
-    > [slot="cbp-global-search"]{
+      > form{
       display: inline-flex;
       width: 100%;
 
@@ -94,14 +94,16 @@ cbp-app-header{
           outline: none;
         }
       }
+
+      div{
+        display: flex;  
+        flex-direction: row-reverse;
+      
+        cbp-button{
+          align-content: center;
+          margin-left: var(--cbp-space-4x);
+        }  
+      }
     }
-    
-    //*Spacing for buttons associated to search form (submit, close, etc)
-    > [slot="cbp-global-search"] > *:not(input),
-    > cbp-button{
-      align-content: center;
-      margin-left: var(--cbp-space-4x);
-    }
-  
   }
 }

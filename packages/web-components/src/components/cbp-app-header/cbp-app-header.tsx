@@ -1,10 +1,9 @@
-import { Component, Element, Listen, Host, h, Prop} from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Listen, Host, h, Prop} from '@stencil/core';
 import { debounce } from '../../utils/utils';
 import state from '../cbp-app-header/store';
 /**
  * @slot - The default slot usually contains only `cbp-nav-item` tags, but other content may also be included.
  * @slot - cbp-home - The link to the home page containing the Application Name as link text should be placed within this named slot for the intended visual treatment. 
- * @slot - cbp-global-search - The input used for the global search actions should be placed within this slot
 */
 
 @Component({
@@ -21,11 +20,19 @@ export class CbpAppHeader {
   private children: HTMLElement[] = []; 
   private navWidth; 
 
+  private input: HTMLInputElement;
+
   /** Specifies the id of the drawer to be launched*/
   @Prop() subnavDrawerId: string;
 
   /** Specifies if there will be a slotted input for global search */
-  @Prop() globalSearch: boolean
+  @Prop() search: boolean;
+
+  /** Specifies the method attribute for the search form  */
+  @Prop() searchMethod: string;
+
+  /** Specifies the action attribute for the search form  */
+  @Prop() searchAction: string;
 
   @Element() host: HTMLCbpAppHeaderElement;
 
@@ -40,11 +47,14 @@ export class CbpAppHeader {
     }
   }
 
+
+  /** A custom event emitted when input is submitted. */
+  @Event() searchInput: EventEmitter;
+  
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent){
     const searchVisible = document.getElementById('cbp-app-header-search').hidden == false;
-    if(ev.key === 'Escape' && this.globalSearch && searchVisible){
-    // if((ev.key === 'Escape' && this.globalSearch && searchVisible) || (!searchArea.contains(document.activeElement) && ev.key === 'Tab' && searchVisible && this.globalSearch)){
+    if(ev.key === 'Escape' && this.search && searchVisible){
       this.toggleSearch();
       
     }
@@ -53,7 +63,7 @@ export class CbpAppHeader {
   @Listen('click', { target: 'body'})
   handleClick(event: MouseEvent) {
     const searchVisible = document.getElementById('cbp-app-header-search').hidden == false;
-    if (!this.host.contains(event.target as Node) && this.globalSearch && searchVisible){
+    if (!this.host.contains(event.target as Node) && this.search && searchVisible){
       this.toggleSearch();
     }
   }
@@ -156,9 +166,9 @@ export class CbpAppHeader {
     // Get the immediate children to toggle hidden
     this.children=Array.from(this.nav.querySelectorAll(':scope > *'));   
 
-    // Attach focus out event to input in sloted content for the search function
-    const searchInput = this.host.querySelector('search input');
-    searchInput.addEventListener("keydown", (e: KeyboardEvent) => {this.handleShiftTabFocusOut(e)});
+    if(this.search){
+      this.input = this.host.querySelector("search input");
+    }
   }
 
   
@@ -202,7 +212,7 @@ export class CbpAppHeader {
           </nav>
         </cbp-resize-observer>
         
-        {this.globalSearch &&
+        {this.search &&
           <search>
             <cbp-button
               id= "global-search-toggle"
@@ -218,18 +228,45 @@ export class CbpAppHeader {
             </cbp-button>
 
             <div id= "cbp-app-header-search" hidden>
-              <slot name= "cbp-global-search" />
-              <cbp-button
-                type= "button"
-                fill= "ghost"
-                color= "secondary"
-                variant= "square"
-                accessibilityText="Close Search"
-                onClick= {() => this.toggleSearch()}
-                onKeyDown={(e) => this.handleTabFocusOut(e)}
-                >
-                <cbp-icon name="times" />
-              </cbp-button>
+              <form
+                method={this.searchMethod}
+                action={this.searchAction}
+              >
+                <input 
+                  type="text" 
+                  name="globalSearch" 
+                  placeholder="Start Typing - Press ESC to Close" 
+                  onKeyDown={(e) => this.handleShiftTabFocusOut(e)}
+                  onInput={() => this.searchInput.emit({
+                    host: this.host,
+                    nativeInput: this.input,
+                    value:  this.input.value,
+                  })}
+                />
+                <div>
+                  <cbp-button
+                    type= "button"
+                    fill= "solid"
+                    color= "primary"
+                    variant= "square"
+                    accessibility-text="Search"
+                    >
+                    <cbp-icon name= "magnifying-glass"></cbp-icon>
+                  </cbp-button>
+                  <cbp-button
+                    type= "button"
+                    fill= "ghost"
+                    color= "secondary"
+                    variant= "square"
+                    accessibilityText="Close Search"
+                    onKeyDown={(e) => this.handleTabFocusOut(e)}
+                    onClick= {() => this.toggleSearch()}
+                    >
+                    <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)" />
+                  </cbp-button>
+                </div>
+              </form>
+              
             </div>
         
           </search>

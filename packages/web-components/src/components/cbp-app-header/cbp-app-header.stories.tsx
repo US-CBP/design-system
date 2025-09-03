@@ -316,32 +316,13 @@ const AppHeaderWithGlobalSearchTemplate = ({ drawerid, store, items, sx }) => {
 
   return ` 
     <cbp-app-header    
-      global-search
+      search
+      searchMethod="get"
       ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
       ${generateNavItems(items)}
-      <form
-        slot="cbp-global-search"
-        method="post"
-      >
-        <input 
-          type="text" 
-          name="globalSearch" 
-          placeholder="Start Typing - Press ESC to Close" 
-        />
-
-        <cbp-button
-          type= "button"
-          fill= "solid"
-          color= "primary"
-          variant= "square"
-          type= "submit"
-          accessibility-text="Search"
-          >
-          <cbp-icon name= "magnifying-glass"></cbp-icon>
-        </cbp-button>
-      </form>
+      
     </cbp-app-header>
      ${renderDrawer(items, drawerid, store)}
   `;
