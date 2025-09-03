@@ -496,7 +496,6 @@ function renderUserPref(username, hashid) {
             "--cbp-toggle-color-bg":"var(--cbp-color-yellow-30)",
             "--cbp-toggle-color-bg-hover":"var(--cbp-color-yellow-30)",
             "--cbp-toggle-color-bg-focus":"var(--cbp-color-yellow-30)",
-
             "--cbp-toggle-circle-color-dark":"var(--cbp-color-white)",
             "--cbp-toggle-circle-color-selected-dark":"var(--cbp-color-white)",
             "--cbp-toggle-circle-color-border-dark":"var(--cbp-color-white)",
@@ -504,10 +503,11 @@ function renderUserPref(username, hashid) {
             "--cbp-toggle-color-bg-hover-dark":"var(--cbp-color-mint-cool-60)",
             "--cbp-toggle-color-bg-focus-dark":"var(--cbp-color-mint-cool-60)",
             "--cbp-toggle-color-bg-selected":"var(--cbp-color-mint-cool-60)",
-            "--cbp-toggle-color-bg-selected-dark":"var(--cbp-color-mint-cool-60)"
+            "--cbp-toggle-color-bg-selected-dark":"var(--cbp-color-mint-cool-60)",
+            "--cbp-toggle-grid-columns":"var(--cbp-toggle-control-width) 1fr"
           }'
         >
-          Theme
+          <cbp-hide visually-hide>Theme</cbp-hide>
           <input
             type="checkbox"
             name="themeSwitch"
