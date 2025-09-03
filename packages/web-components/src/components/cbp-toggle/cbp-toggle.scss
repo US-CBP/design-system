@@ -1,41 +1,74 @@
 /**
- * @prop   --cbp-toggle-color-bg: var(--cbp-color-interactive-secondary-light);
- * @prop   --cbp-toggle-color-bg-dark: var(--cbp-color-interactive-secondary-dark);
- * @prop   --cbp-toggle-circle-color: var(--cbp-color-white);
- * @prop   --cbp-toggle-circle-color-dark: var(--cbp-color-white);
- * @prop   --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color);
- * @prop   --cbp-toggle-circle-color-border-dark: var(--cbp-toggle-circle-color-dark);
- * @prop   --cbp-toggle-outline-width: 2px;
- * @prop   --cbp-toggle-outline-style: solid;
- * @prop   --cbp-toggle-outline-color: transparent;
- * @prop   --cbp-toggle-outline-color-dark: 2px solid transparent;
- * @prop   --cbp-toggle-color-bg-hover: var(--cbp-color-interactive-secondary-dark);
- * @prop   --cbp-toggle-color-bg-hover-dark: var(--cbp-color-interactive-secondary-base);
- * @prop   --cbp-toggle-circle-color-selected-hover: var(--cbp-color-interactive-selected-dark);
- * @prop   --cbp-toggle-circle-color-selected-hover-dark: var(--cbp-color-interactive-selected-light);
- * @prop   --cbp-toggle-circle-color-border-selected-hover: var(--cbp-color-white);
- * @prop   --cbp-toggle-circle-color-border-selected-hover-dark: var(--cbp-color-interactive-secondary-darker);
- * @prop   --cbp-toggle-circle-color-hover: var(--cbp-color-interactive-secondary-darker);
- * @prop   --cbp-toggle-circle-color-hover-dark: var(--cbp-color-interactive-secondary-base);
- * @prop   --cbp-toggle-circle-color-border-hover: var(--cbp-color-white);
- * @prop   --cbp-toggle-circle-color-border-hover-dark: var(--cbp-color-white);
- * @prop   --cbp-toggle-color-bg-focus: var(--cbp-color-interactive-focus-dark);
- * @prop   --cbp-toggle-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
- * @prop   --cbp-toggle-outline-focus: 2px solid var(--cbp-color-white);
- * @prop   --cbp-toggle-outline-focus-dark: 2px solid var(--cbp-color-black);
- * @prop   --cbp-toggle-color-bg-disabled: var(--cbp-color-interactive-disabled-dark);
- * @prop   --cbp-toggle-color-bg-disabled-dark: var(--cbp-color-interactive-disabled-light);
- * @prop   --cbp-toggle-circle-color-disabled: var(--cbp-color-interactive-disabled-light);
- * @prop   --cbp-toggle-circle-color-disabled-dark: var(--cbp-color-interactive-disabled-dark);
- * @prop   --cbp-toggle-circle-color-border-disabled: var(--cbp-color-interactive-disabled-light);
- * @prop   --cbp-toggle-circle-color-border-disabled-dark: var(--cbp-color-interactive-disabled-dark);
- * @prop   --cbp-toggle-control-width: 3.25rem;
- * @prop   --cbp-toggle-control-height: 1.75rem;
- * @prop   --cbp-toggle-circle-diameter: 1rem;
- * @prop   --cbp-toggle-circle-inset: 0.375rem;
- * @prop   --cbp-toggle-circle-border-width: 0.25rem;
- * @prop   --cbp-toggle-gap: 1rem;  
- * @prop   --cbp-toggle-margin: 0 0 var(--cbp-space-4x) 0;  
+ * @prop --cbp-toggle-color-bg: var(--cbp-color-interactive-secondary-light);
+ * @prop --cbp-toggle-color-bg-dark: var(--cbp-color-interactive-secondary-dark);
+ * @prop --cbp-toggle-color-bg-selected: var(--cbp-color-interactive-selected-dark);
+ * @prop --cbp-toggle-color-bg-selected-dark: var(--cbp-color-interactive-selected-light);
+ * @prop --cbp-toggle-circle-color: var(--cbp-color-white);
+ * @prop --cbp-toggle-circle-color-dark: var(--cbp-color-white);
+ * @prop --cbp-toggle-circle-color-selected: var(--cbp-color-white);
+ * @prop --cbp-toggle-circle-color-selected-dark: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color);
+ * @prop --cbp-toggle-circle-color-border-dark: var(--cbp-toggle-circle-color-dark);
+ * @prop --cbp-toggle-circle-color-border-selected: var(--cbp-color-white);
+ * @prop --cbp-toggle-circle-color-border-selected-dark: var(--cbp-color-interactive-secondary-darker);
+
+ * @prop --cbp-toggle-outline-width: var(--cbp-space-half-x);
+ * @prop --cbp-toggle-outline-style: solid;
+
+ * @prop --cbp-toggle-color-bg-hover: var(--cbp-color-interactive-secondary-dark);
+ * @prop --cbp-toggle-color-bg-hover-dark: var(--cbp-color-interactive-secondary-base);
+
+ * @prop --cbp-toggle-circle-color-selected-hover: var(--cbp-color-interactive-selected-dark);
+ * @prop --cbp-toggle-circle-color-selected-hover-dark: var(--cbp-color-interactive-selected-light);
+ * @prop --cbp-toggle-circle-color-border-selected-hover: var(--cbp-color-white);
+ * @prop --cbp-toggle-circle-color-border-selected-hover-dark: var(--cbp-color-interactive-secondary-darker);
+
+ * @prop --cbp-toggle-circle-color-hover: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-toggle-circle-color-hover-dark: var(--cbp-color-interactive-secondary-base);
+ * @prop --cbp-toggle-circle-color-border-hover: var(--cbp-color-white);
+ * @prop --cbp-toggle-circle-color-border-hover-dark: var(--cbp-color-white);
+
+ * @prop --cbp-toggle-color-bg-focus: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-toggle-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-toggle-color-outline-focus: var(--cbp-color-white);
+ * @prop --cbp-toggle-color-outline-focus-dark: var(--cbp-color-black);
+
+ * @prop --cbp-toggle-circle-color-selected-focus: var(--cbp-color-white);
+ * @prop --cbp-toggle-circle-color-selected-focus-dark: var(--cbp-color-black);
+ * @prop --cbp-toggle-circle-color-border-selected-focus: var(--cbp-color-white);
+ * @prop --cbp-toggle-circle-color-border-selected-focus-dark: var(--cbp-color-black);
+
+ * @prop --cbp-toggle-circle-color-focus: var(--cbp-color-white);
+ * @prop --cbp-toggle-circle-color-focus-dark: var(--cbp-color-black);
+ * @prop --cbp-toggle-circle-color-border-focus: var(--cbp-color-white);
+ * @prop --cbp-toggle-circle-color-border-focus-dark: var(--cbp-color-black);
+
+ * @prop --cbp-toggle-color-bg-disabled: var(--cbp-color-interactive-disabled-dark);
+ * @prop --cbp-toggle-color-bg-disabled-dark: var(--cbp-color-interactive-disabled-light);
+ * @prop --cbp-toggle-circle-color-disabled: var(--cbp-color-interactive-disabled-light);
+ * @prop --cbp-toggle-circle-color-disabled-dark: var(--cbp-color-interactive-disabled-dark);
+ * @prop --cbp-toggle-circle-color-border-disabled: var(--cbp-color-interactive-disabled-light);
+ * @prop --cbp-toggle-circle-color-border-disabled-dark: var(--cbp-color-interactive-disabled-dark);
+
+ * @prop --cbp-toggle-text-color: var(--cbp-color-text-darkest);
+ * @prop --cbp-toggle-text-color-dark: var(--cbp-color-text-lightest);
+
+ * @prop --cbp-toggle-control-width: 3.25rem;
+ * @prop --cbp-toggle-control-height: var(--cbp-space-7x);
+ * @prop --cbp-toggle-circle-diameter: var(--cbp-space-4x);
+ * @prop --cbp-toggle-circle-inset: 0.375rem;
+ * @prop --cbp-toggle-circle-border-width: var(--cbp-border-size-xl);
+ * @prop --cbp-toggle-status-text-width: var(--cbp-space-16x);
+ * @prop --cbp-toggle-description-text-width: min-content;
+
+ * @prop --cbp-toggle-gap: var(--cbp-space-4x);
+ * @prop --cbp-toggle-margin: 0 0 var(--cbp-space-4x) 0;
+
+ * @prop --cbp-toggle-custom-icon: "";
+ * @prop --cbp-toggle-custom-icon-on: "";
+ * @prop --cbp-toggle-custom-icon-off: "";
+
+ * @prop --cbp-toggle-grid-columns: 3fr var(--cbp-toggle-control-width) 1fr;
  */
 
 :root {
@@ -46,17 +79,15 @@
 
   --cbp-toggle-circle-color: var(--cbp-color-white);
   --cbp-toggle-circle-color-dark: var(--cbp-color-white);
-  --cbp-toggle-circle-selected-color: var(--cbp-color-white);
-  --cbp-toggle-circle-selected-color-dark: var(--cbp-color-interactive-secondary-darker);
+  --cbp-toggle-circle-color-selected: var(--cbp-color-white);
+  --cbp-toggle-circle-color-selected-dark: var(--cbp-color-interactive-secondary-darker);
   --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color);
   --cbp-toggle-circle-color-border-dark: var(--cbp-toggle-circle-color-dark);
-  --cbp-toggle-circle-selected-border-color: var(--cbp-color-white);
-  --cbp-toggle-circle-selected-border-color-dark: var(--cbp-color-interactive-secondary-darker);
+  --cbp-toggle-circle-color-border-selected: var(--cbp-color-white);
+  --cbp-toggle-circle-color-border-selected-dark: var(--cbp-color-interactive-secondary-darker);
 
   --cbp-toggle-outline-width: var(--cbp-space-half-x);
   --cbp-toggle-outline-style: solid;
-  --cbp-toggle-outline-color: transparent;
-  --cbp-toggle-outline-color-dark: transparent;
 
   /** Hover */
   --cbp-toggle-color-bg-hover: var(--cbp-color-interactive-secondary-dark);
@@ -75,13 +106,13 @@
   /** Focus */
   --cbp-toggle-color-bg-focus: var(--cbp-color-interactive-focus-dark);
   --cbp-toggle-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
-  --cbp-toggle-outline-color-focus: var(--cbp-color-white);
-  --cbp-toggle-outline-color-focus-dark: var(--cbp-color-black);
+  --cbp-toggle-color-outline-focus: var(--cbp-color-white);
+  --cbp-toggle-color-outline-focus-dark: var(--cbp-color-black);
 
   --cbp-toggle-circle-color-selected-focus: var(--cbp-color-white);
   --cbp-toggle-circle-color-selected-focus-dark: var(--cbp-color-black);
-  --cbp-toggle-circle-border-color-selected-focus: var(--cbp-color-white);
-  --cbp-toggle-circle-border-color-selected-focus-dark: var(--cbp-color-black);
+  --cbp-toggle-circle-color-border-selected-focus: var(--cbp-color-white);
+  --cbp-toggle-circle-color-border-selected-focus-dark: var(--cbp-color-black);
 
   --cbp-toggle-circle-color-focus: var(--cbp-color-white);
   --cbp-toggle-circle-color-focus-dark: var(--cbp-color-black);
@@ -100,27 +131,39 @@
   --cbp-toggle-text-color-dark: var(--cbp-color-text-lightest);
 
   --cbp-toggle-control-width: 3.25rem;
-  --cbp-toggle-control-height: 1.75rem;
-  --cbp-toggle-circle-diameter: 1rem;
+  --cbp-toggle-control-height: var(--cbp-space-7x);
+  --cbp-toggle-circle-diameter: var(--cbp-space-4x);
   --cbp-toggle-circle-inset: 0.375rem;
-  --cbp-toggle-circle-border-width: 0.25rem;
+  --cbp-toggle-circle-border-width: var(--cbp-border-size-xl);
   --cbp-toggle-status-text-width: var(--cbp-space-16x);
   --cbp-toggle-description-text-width: min-content;
 
   --cbp-toggle-gap: var(--cbp-space-4x);
   --cbp-toggle-margin: 0 0 var(--cbp-space-4x) 0;
+
+  --cbp-toggle-custom-icon: "";
+  --cbp-toggle-custom-icon-on: "";
+  --cbp-toggle-custom-icon-off: "";
+
+  --cbp-toggle-grid-columns: 3fr var(--cbp-toggle-control-width) 1fr;
 }
 
-[data-cbp-theme=light] cbp-toggle[context*=dark]:not([context=light-always]),
-[data-cbp-theme=dark] cbp-toggle:not([context=dark-inverts]):not([context=light-always]) {
+
+/* 
+ * Dark Mode - display dark design based on mode or context.
+ * This toggle should have the highest specificity, so that what ever values were specified for the dark version 
+ * get written to the light within the scope of this component.
+ */
+[data-cbp-theme=light] cbp-toggle[context*=dark]:not([context=light-always]):not(#fakeId),
+[data-cbp-theme=dark] cbp-toggle:not([context=dark-inverts]):not([context=light-always]):not(#fakeId) {
   --cbp-toggle-text-color: var(--cbp-toggle-text-color-dark);
+ 
   --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-dark);
   --cbp-toggle-color-bg-selected: var(--cbp-toggle-color-bg-selected-dark);
   --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-dark);
   --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-dark);
-  --cbp-toggle-circle-selected-color: var(--cbp-toggle-circle-selected-color-dark);
-  --cbp-toggle-circle-selected-border-color: var(--cbp-toggle-circle-selected-border-color-dark);
-  --cbp-toggle-outline-color: var(--cbp-toggle-outline-color-dark);
+  --cbp-toggle-circle-color-selected: var(--cbp-toggle-circle-color-selected-dark);
+  --cbp-toggle-circle-color-border-selected: var(--cbp-toggle-circle-color-border-selected-dark);
 
   --cbp-toggle-color-bg-hover: var(--cbp-toggle-color-bg-hover-dark);
   --cbp-toggle-circle-color-selected-hover: var(--cbp-toggle-circle-color-selected-hover-dark);
@@ -129,9 +172,9 @@
   --cbp-toggle-circle-color-border-hover: var(--cbp-toggle-circle-color-border-hover-dark);
 
   --cbp-toggle-color-bg-focus: var(--cbp-toggle-color-bg-focus-dark);
-  --cbp-toggle-outline-color-focus: var(--cbp-toggle-outline-color-focus-dark);
+  --cbp-toggle-color-outline-focus: var(--cbp-toggle-color-outline-focus-dark);
   --cbp-toggle-circle-color-selected-focus: var(--cbp-toggle-circle-color-selected-focus-dark);
-  --cbp-toggle-circle-border-color-selected-focus: var(--cbp-toggle-circle-border-color-selected-focus-dark);
+  --cbp-toggle-circle-color-border-selected-focus: var(--cbp-toggle-circle-color-border-selected-focus-dark);
   --cbp-toggle-circle-color-focus: var(--cbp-toggle-circle-color-focus-dark);
   --cbp-toggle-circle-color-border-focus: var(--cbp-toggle-circle-color-border-focus-dark);
 
@@ -139,6 +182,7 @@
   --cbp-toggle-circle-color-disabled: var(--cbp-toggle-circle-color-disabled-dark);
   --cbp-toggle-circle-color-border-disabled: var(--cbp-toggle-circle-color-border-disabled-dark);
 }
+
 
 cbp-toggle {
   display: flex;
@@ -148,7 +192,7 @@ cbp-toggle {
 
   label {
     display: grid;
-    grid-template-columns: 3fr var(--cbp-toggle-control-width) 1fr;
+    grid-template-columns: var(--cbp-toggle-grid-columns);
     gap: var(--cbp-toggle-gap);
     align-items: center;
     width: 100%;
@@ -162,18 +206,80 @@ cbp-toggle {
     flex-basis: var(--cbp-toggle-control-width);
     border-radius: var(--cbp-border-radius-pill);
     background-color: var(--cbp-toggle-color-bg);
-    outline: var(--cbp-toggle-outline-width) var(--cbp-toggle-outline-style) var(--cbp-toggle-outline-color);
+    outline-width: 0;
+    outline-style: var(--cbp-toggle-outline-style);
+    outline-color: var(--cbp-toggle-color-outline-focus);
     outline-offset: calc(-1 * var(--cbp-space-1x));
 
-    &:before {
-      content: "";
-      display: block;
-      margin-top: var(--cbp-toggle-circle-inset);
-      border-radius: var(--cbp-border-radius-circle);
+    --cbp-toggle-custom-icon: var(--cbp-toggle-custom-icon-off);
+
+    // Psuedo elements for the circle and optional custom icon
+    &::before,
+    &::after {
+      display: inline-block;
+      margin-block-start: var(--cbp-toggle-circle-inset);
       height: var(--cbp-toggle-circle-diameter);
       width: var(--cbp-toggle-circle-diameter);
+      transition: margin 0.2s linear; // TechDebt: temporary - replace with tokens later.
+    }
+
+    &::before {
+      content: "";
       background-color: var(--cbp-toggle-circle-color);
+      border-radius: var(--cbp-border-radius-circle);
       border: var(--cbp-toggle-circle-border-width) solid var(--cbp-toggle-circle-color-border);
+      margin-inline: var(--cbp-toggle-circle-inset) var(--cbp-space-1x);
+    }
+
+    &::after {
+      content: var(--cbp-toggle-custom-icon);
+      margin-inline: var(--cbp-space-1x) var(--cbp-toggle-circle-border-width);
+    }
+    
+    // default interactive states
+    &:hover {
+      --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-hover);
+      --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-hover);
+      --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-hover);
+    }
+
+    &:focus {
+      --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-focus);
+      --cbp-toggle-color: var(--cbp-toggle-color-outline-focus); //??
+      --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-focus);
+      --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-focus);
+      outline-width: var(--cbp-toggle-outline-width);
+    }
+
+    // On State ("selected" and circle to the right)
+    &:checked {
+      --cbp-toggle-custom-icon: var(--cbp-toggle-custom-icon-on);
+      --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-selected);
+      --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-selected);
+      --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-selected);
+      
+      // The circle
+      &::before {
+        border-radius: var(--cbp-border-radius-circle);
+        background-color: var(--cbp-toggle-circle-color);
+        border: var(--cbp-toggle-circle-border-width) solid var(--cbp-toggle-circle-color-border);
+        margin-inline-start: calc(var(--cbp-toggle-control-width) - var(--cbp-toggle-circle-diameter) - var(--cbp-toggle-circle-inset));
+      }
+
+      // Optional custom icon
+      &::after {
+        margin-inline: calc( ((var(--cbp-toggle-control-width) - var(--cbp-toggle-circle-diameter)) + var(--cbp-toggle-circle-inset)) * -1) var(--cbp-space-1x);
+      }
+  
+      &:hover {
+        --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-selected-hover);
+        --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-selected-hover);
+      }
+  
+      &:focus {
+        --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-selected-focus);
+        --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-selected-focus);
+      }
     }
   }
 
@@ -184,70 +290,21 @@ cbp-toggle {
     white-space: nowrap;
   }
 
-  /** 'On' States */
-  &[checked] input[type=checkbox]:not(:disabled) {
-    --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-selected);
-    --cbp-toggle-circle-color: var(--cbp-toggle-circle-selected-color);
-    --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-selected-border-color);
-
-    &:hover {
-      --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-selected-hover);
-      --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-selected-hover);
-    }
-
-    &:focus {
-      --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-focus);
-      --cbp-toggle-outline-color: var(--cbp-toggle-outline-color-focus);
-      --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-selected-focus);
-      --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-border-color-selected-focus);
-    }
-  }
-
-  &[checked] input[type=checkbox]:before {
-    margin-left: calc(var(--cbp-toggle-control-width) - var(--cbp-toggle-circle-diameter) - var(--cbp-toggle-circle-inset));
-  }
-
-  /** 'Off' States */
-  &:not([checked]) input[type=checkbox]:not(:disabled) {
-
-    &:hover {
-      --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-hover);
-      --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-hover);
-      --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-hover);
-
-      --cbp-toggle-color-bg-dark: var(--cbp-toggle-color-bg-hover-dark);
-      --cbp-toggle-circle-color-dark: var(--cbp-toggle-circle-color-hover-dark);
-      --cbp-toggle-circle-color-border-dark: var(--cbp-toggle-circle-color-border-hover-dark);
-    }
-
-    &:focus {
-      --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-focus);
-      --cbp-toggle-outline-color: var(--cbp-toggle-outline-color-focus);
-
-      --cbp-toggle-color-bg-dark: var(--cbp-toggle-color-bg-focus-dark);
-      --cbp-toggle-outline-color-dark: var(--cbp-toggle-outline-color-focus-dark);
-
-      --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-focus);
-      --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-focus);
-    }
-  }
-
-  &:not([checked]) input[type=checkbox]:before {
-    margin-left: var(--cbp-toggle-circle-inset);
-  }
-
-  /** Disabled */
-  &:has(:disabled) {
+  // Disabled overrides
+  &:has(:disabled),
+  &:has(:disabled):hover {
     --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-disabled);
     --cbp-toggle-color-bg-dark: var(--cbp-toggle-color-bg-disabled-dark);
     --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-disabled);
     --cbp-toggle-circle-color-dark: var(--cbp-toggle-circle-color-disabled-dark);
     --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-disabled);
     --cbp-toggle-circle-color-border-dark: var(--cbp-toggle-circle-color-border-disabled-dark);
-  }
-
-  // override a browser default
-  &:focus-visible {
-    outline: none;
+    // Just override the hover variables rather than try to filter them out
+    --cbp-toggle-color-bg-hover: var(--cbp-toggle-color-bg-disabled);
+    --cbp-toggle-color-bg-hover-dark: var(--cbp-toggle-color-bg-disabled-dark);
+    --cbp-toggle-circle-color-hover: var(--cbp-toggle-circle-color-disabled);
+    --cbp-toggle-circle-color-hover-dark: var(--cbp-toggle-circle-color-disabled-dark);
+    --cbp-toggle-circle-color-border-hover: var(--cbp-toggle-circle-color-border-disabled);
+    --cbp-toggle-circle-color-border-hover-dark: var(--cbp-toggle-circle-color-border-disabled-dark);
   }
 }
