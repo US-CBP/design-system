@@ -12,6 +12,20 @@ export default {
     store: {
       control: 'boolean'
     },
+    search: {
+      description: 'determines if the search field is rendered',
+      control: 'boolean'
+    },
+    searchMethod: {
+      description: 'set the method attribute on the form for search',
+      control: 'text',
+      if:{ arg: 'search'}
+    },
+    searchAction: {
+      description: 'set the action attribute on the form for search',
+      control: 'text',
+      if:{ arg: 'search'}
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -121,7 +135,7 @@ function renderDrawer(items, drawerid, store){
     return '';
   }
 }
-const Template = ({ drawerid, store, items, sx }) => {  
+const Template = ({ drawerid, store, search, searchMethod, searchAction, items, sx }) => {  
   
   // preventDefault on all links in the header and subnav
   setTimeout(() => {
@@ -134,6 +148,9 @@ const Template = ({ drawerid, store, items, sx }) => {
   return ` 
     <cbp-app-header    
       ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
+      ${search ? `search` : ``}
+      ${searchMethod ? `search-method=${searchMethod}` : ``}
+      ${searchAction ? `search-action=${searchAction}` : ``}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
       ${generateNavItems(items)}
@@ -195,7 +212,7 @@ ApplicationHeader.args = {
 
 
 
-const AppHeaderWithSubnavTemplate = ({ drawerid, store, items, sx }) => {  
+const AppHeaderWithSubnavTemplate = ({ drawerid, store, search, searchMethod, searchAction, items, sx }) => {  
   
   // preventDefault on all links in the header and subnav
   setTimeout(() => {
@@ -208,6 +225,9 @@ const AppHeaderWithSubnavTemplate = ({ drawerid, store, items, sx }) => {
   return ` 
       <cbp-app-header
         ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
+        ${search ? `search` : ``}
+        ${searchMethod ? `search-method=${searchMethod}` : ``}
+        ${searchAction ? `search-action=${searchAction}` : ``}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
        ${generateNavItems(items, drawerid)}
@@ -304,54 +324,54 @@ AppHeaderWithSubnav.args = {
   ] 
 }
 
-const AppHeaderWithGlobalSearchTemplate = ({ drawerid, store, items, sx }) => {  
+// const AppHeaderWithGlobalSearchTemplate = ({ drawerid, store, items, sx }) => {  
   
-  // preventDefault on all links in the header and subnav
-  setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-app-header a');
-    anchors.forEach(anchor => {
-      anchor.addEventListener('click', function(e) { e.preventDefault(); })
-    });
-  }, 500);
+//   // preventDefault on all links in the header and subnav
+//   setTimeout(() => {
+//     let anchors = document.querySelectorAll('cbp-app-header a');
+//     anchors.forEach(anchor => {
+//       anchor.addEventListener('click', function(e) { e.preventDefault(); })
+//     });
+//   }, 500);
 
-  return ` 
-    <cbp-app-header    
-      search
-      searchMethod="get"
-      ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-    >
-      ${generateNavItems(items)}
+//   return ` 
+//     <cbp-app-header    
+//       search
+//       searchMethod="get"
+//       ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
+//       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+//     >
+//       ${generateNavItems(items)}
       
-    </cbp-app-header>
-     ${renderDrawer(items, drawerid, store)}
-  `;
-};
+//     </cbp-app-header>
+//      ${renderDrawer(items, drawerid, store)}
+//   `;
+// };
 
-export const AppHeaderWithGlobalSearch = AppHeaderWithGlobalSearchTemplate.bind({});
-AppHeaderWithGlobalSearch.args = {
-  drawerid: 'navDrawer',
-  items: [
-    {
-      label: 'Application Name',
-      name: 'Application Name',
-      href: './?path=/story/components-application-header--application-header#',
-      current: true
-    },
-    {
-      label: 'Nav Item 1',
-      name: 'Nav Item 1',
-      href: './?path=/story/components-application-header--application-header#',
-    },
-    {
-      label: 'Nav Item 2',
-      name: 'Nav Item 2',
-      href: './?path=/story/components-application-header--application-header#',
-    },
-    {
-      label: 'Nav Item 3',
-      name: 'Nav Item 3',
-      href: './?path=/story/components-application-header--application-header#',
-    },
-  ] 
-}
+// export const AppHeaderWithGlobalSearch = AppHeaderWithGlobalSearchTemplate.bind({});
+// AppHeaderWithGlobalSearch.args = {
+//   drawerid: 'navDrawer',
+//   items: [
+//     {
+//       label: 'Application Name',
+//       name: 'Application Name',
+//       href: './?path=/story/components-application-header--application-header#',
+//       current: true
+//     },
+//     {
+//       label: 'Nav Item 1',
+//       name: 'Nav Item 1',
+//       href: './?path=/story/components-application-header--application-header#',
+//     },
+//     {
+//       label: 'Nav Item 2',
+//       name: 'Nav Item 2',
+//       href: './?path=/story/components-application-header--application-header#',
+//     },
+//     {
+//       label: 'Nav Item 3',
+//       name: 'Nav Item 3',
+//       href: './?path=/story/components-application-header--application-header#',
+//     },
+//   ] 
+// }

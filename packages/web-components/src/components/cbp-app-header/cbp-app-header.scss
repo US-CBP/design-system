@@ -68,6 +68,7 @@ cbp-app-header{
     right: 0;
 
     display: flex;  
+    width: 100%;
     padding: 0 var(--cbp-responsive-spacing-outer);
     background-color: var(--cbp-app-header-color-background);
 
@@ -76,31 +77,30 @@ cbp-app-header{
       outline-offset: calc( -2 * var(--cbp-border-size-md));
     }
 
-      > form{
-      display: inline-flex;
-      width: 100%;
+      // > form{
+      // display: inline-flex;
 
-      input{
-        flex-grow: 1;
-        border: none;
-        background-color: var(--cbp-app-header-color-background);
-      
-        &::placeholder{
-          font-style: italic;
-          color: var(--cbp-app-header-search-color-placeholder);
-        }
-
-        &:focus-visible{
-          outline: none;
-        }
+    input{
+      flex-grow: 1;
+      border: none;
+      background-color: var(--cbp-app-header-color-background);
+    
+      &::placeholder{
+        font-style: italic;
+        color: var(--cbp-app-header-search-color-placeholder);
       }
 
-      div{
-        display: flex;  
-        flex-direction: row-reverse;
-        gap: var(--cbp-space-4x);
-        align-items: center;
+      &:focus-visible{
+        outline: none;
       }
     }
+
+    div{
+      display: flex;  
+      flex-direction: row-reverse;
+      gap: var(--cbp-space-4x);
+      align-items: center;
+    }
+  
   }
 }

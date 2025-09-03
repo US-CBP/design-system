@@ -144,6 +144,7 @@ export class CbpAppHeader {
   toggleSearch() {
     const search = document.getElementById('cbp-app-header-search') as HTMLElement;
     const searchToggle = document.getElementById('global-search-toggle') as HTMLCbpButtonElement;
+    const searchToggleButton = document.querySelector("#global-search-toggle > button") as HTMLElement;
     const searchInput = document.querySelector('search input') as HTMLElement;
     
     if (search.hidden){
@@ -153,6 +154,7 @@ export class CbpAppHeader {
     } else{
       search.hidden = true;
       searchToggle.expanded = "false";
+      searchToggleButton.focus();
     }
   }
 
@@ -230,46 +232,44 @@ export class CbpAppHeader {
               <cbp-icon name="magnifying-glass"></cbp-icon>
             </cbp-button>
 
-            <div id= "cbp-app-header-search" hidden>
-              <form
-                method={this.searchMethod}
-                action={this.searchAction}
-              >
-                <input 
-                  type="text" 
-                  name="globalSearch" 
-                  placeholder="Start Typing - Press ESC to Close" 
-                  onKeyDown={(e) => this.handleShiftTabFocusOut(e)}
-                  ref={el => (this.input = el)}
-                  onInput={() => this.handleSearchInput}           
-                 
-                />
-                <div>
-                  <cbp-button
-                    type= "button"
-                    fill= "solid"
-                    color= "primary"
-                    variant= "square"
-                    accessibilityText="Search"
-                    >
-                    <cbp-icon name= "magnifying-glass"></cbp-icon>
-                  </cbp-button>
-                  <cbp-button
-                    type= "button"
-                    fill= "ghost"
-                    color= "secondary"
-                    variant= "square"
-                    accessibilityText="Close Search"
-                    onKeyDown={(e) => this.handleTabFocusOut(e)}
-                    onClick= {() => this.toggleSearch()}
-                    >
-                    <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)" />
-                  </cbp-button>
-                </div>
-              </form>
-              
-            </div>
-        
+            <form 
+              id= "cbp-app-header-search"
+              method={this.searchMethod}
+              action={this.searchAction}
+              hidden
+            >
+              <input 
+                type="text" 
+                name="globalSearch" 
+                placeholder="Start Typing - Press ESC to Close" 
+                onKeyDown={(e) => this.handleShiftTabFocusOut(e)}
+                ref={el => (this.input = el)}
+                onInput={() => this.handleSearchInput}           
+                
+              />
+              <div>
+                <cbp-button
+                  type= "button"
+                  fill= "solid"
+                  color= "primary"
+                  variant= "square"
+                  accessibilityText="Search"
+                  >
+                  <cbp-icon name= "magnifying-glass"></cbp-icon>
+                </cbp-button>
+                <cbp-button
+                  type= "button"
+                  fill= "ghost"
+                  color= "secondary"
+                  variant= "square"
+                  accessibilityText="Close Search"
+                  onKeyDown={(e) => this.handleTabFocusOut(e)}
+                  onClick= {() => this.toggleSearch()}
+                  >
+                  <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)" />
+                </cbp-button>
+              </div>
+            </form>        
           </search>
           }
       </Host>
