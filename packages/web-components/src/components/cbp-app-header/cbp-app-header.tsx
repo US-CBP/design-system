@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Host, h, Prop} from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Listen, Host, h, Prop, Method} from '@stencil/core';
 import { debounce } from '../../utils/utils';
 import state from '../cbp-app-header/store';
 /**
@@ -141,11 +141,13 @@ export class CbpAppHeader {
   }
 
 
-  toggleSearch() {
+  /** A public method to toggle the search visibility on/off */
+  @Method()
+  async toggleSearch() {
     const search = document.getElementById('cbp-app-header-search') as HTMLElement;
     const searchToggle = document.getElementById('global-search-toggle') as HTMLCbpButtonElement;
     const searchToggleButton = document.querySelector("#global-search-toggle > button") as HTMLElement;
-    const searchInput = document.querySelector('search input') as HTMLElement;
+    const searchInput = document.querySelector('search input') as HTMLInputElement;
     
     if (search.hidden){
       search.hidden = false; 
@@ -155,6 +157,7 @@ export class CbpAppHeader {
       search.hidden = true;
       searchToggle.expanded = "false";
       searchToggleButton.focus();
+      searchInput.value = '';
     }
   }
 
