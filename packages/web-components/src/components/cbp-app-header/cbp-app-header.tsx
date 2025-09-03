@@ -50,7 +50,14 @@ export class CbpAppHeader {
 
   /** A custom event emitted when input is submitted. */
   @Event() searchInput: EventEmitter;
-  
+  handleSearchInput(){
+    this.searchInput.emit({
+      host: this.host,
+      nativeInput: this.input,
+      value:  this.input.value,
+      })
+  }
+
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent){
     const searchVisible = document.getElementById('cbp-app-header-search').hidden == false;
@@ -165,10 +172,6 @@ export class CbpAppHeader {
   componentDidLoad(){
     // Get the immediate children to toggle hidden
     this.children=Array.from(this.nav.querySelectorAll(':scope > *'));   
-
-    if(this.search){
-      this.input = this.host.querySelector("search input");
-    }
   }
 
   
@@ -237,11 +240,9 @@ export class CbpAppHeader {
                   name="globalSearch" 
                   placeholder="Start Typing - Press ESC to Close" 
                   onKeyDown={(e) => this.handleShiftTabFocusOut(e)}
-                  onInput={() => this.searchInput.emit({
-                    host: this.host,
-                    nativeInput: this.input,
-                    value:  this.input.value,
-                  })}
+                  ref={el => (this.input = el)}
+                  onInput={() => this.handleSearchInput}           
+                 
                 />
                 <div>
                   <cbp-button
@@ -249,7 +250,7 @@ export class CbpAppHeader {
                     fill= "solid"
                     color= "primary"
                     variant= "square"
-                    accessibility-text="Search"
+                    accessibilityText="Search"
                     >
                     <cbp-icon name= "magnifying-glass"></cbp-icon>
                   </cbp-button>

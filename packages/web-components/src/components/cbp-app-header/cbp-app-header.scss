@@ -98,11 +98,8 @@ cbp-app-header{
       div{
         display: flex;  
         flex-direction: row-reverse;
-      
-        cbp-button{
-          align-content: center;
-          margin-left: var(--cbp-space-4x);
-        }  
+        gap: var(--cbp-space-4x);
+        align-items: center;
       }
     }
   }
