@@ -4,13 +4,17 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [unreleased] TBD
+## [0.0.1-develop.24] 09-04-2025
 
+* Updated the `app-header` with optional global search functionality (integration with application logic required).
 * Updated `cbp-segmented-button-group` to pass a form value when a `name` is specified.
 * Updated the `cbp-file-input` component with experimental enhanced functionality and error states.
   * Added error states.
+  * Added the ability to append or remove individual files to the file selection (in enhanced mode).
   * Fixed accessibility defects.
-* Updated `cbp-toggle` CSS API for consistency in naming and fixed visual bugs for disabled state.
+* Updated `cbp-toggle` CSS API for consistency, fixed bugs, and added support to create the custom dark mode toggle found in template/archetype stories.
+* Updated template and archetype stories with responsive navigation (hamburger control and drawer) and User Preferences drawer with working dark mode toggle.
+* Additional accessibility and bug fixes in story code and components.
 
 ## [0.0.1-develop.23] 07-24-2025
 
