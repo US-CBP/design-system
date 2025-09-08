@@ -137,9 +137,16 @@ function renderDrawer(items, drawerid, store){
 }
 const Template = ({ drawerid, store, search, searchMethod, searchAction, items, sx }) => {  
   
-  // preventDefault on all links in the header and subnav
   setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-app-header a');
+    // Cancel form submit event on search to prevent full page reload
+    const AppHeader = document.querySelector('cbp-app-header');
+    AppHeader?.addEventListener('searchSubmit', function(e) {
+      //console.log('searchSubmit event: ', e);
+      e.detail.nativeEvent.preventDefault();
+    });
+
+    // Cancel events on anchors to prevent navigating away from the story
+    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -214,8 +221,15 @@ ApplicationHeader.args = {
 
 const AppHeaderWithSubnavTemplate = ({ drawerid, store, search, searchMethod, searchAction, items, sx }) => {  
   
-  // preventDefault on all links in the header and subnav
-  setTimeout(() => {
+    setTimeout(() => {
+    // Cancel form submit event on search to prevent full page reload
+    const AppHeader = document.querySelector('cbp-app-header');
+    AppHeader?.addEventListener('searchSubmit', function(e) {
+      //console.log('searchSubmit event: ', e);
+      e.detail.nativeEvent.preventDefault();
+    });
+
+    // Cancel events on anchors to prevent navigating away from the story
     let anchors = document.querySelectorAll('cbp-app-header a, cbp-subnav a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
