@@ -6,7 +6,7 @@ The React components are wrappers generated from this package and will share the
 
 ## [0.0.1-develop.24] 09-04-2025
 
-* Updated the `app-header` with optional global search functionality (integration with application logic required).
+* Updated the `cbp-app-header` with optional global search functionality (integration with application logic required).
 * Updated `cbp-segmented-button-group` to pass a form value when a `name` is specified.
 * Updated the `cbp-file-input` component with experimental enhanced functionality and error states.
   * Added error states.
