@@ -64,13 +64,16 @@ function initThemeSwitcher() {
   });
 }
 
+
+
+
 const InternalTemplate = ({ isLoggedIn, username, hashid, navItems }) => {
 
   setTimeout(() => {
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
+    let anchors = document.querySelectorAll('cbp-universal-header a,cbp-app-header a,cbp-subnav a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -90,7 +93,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems }) => {
         ${ isLoggedIn
           ? `
           <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
+            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="book"></cbp-icon>
               <cbp-hide visually-hide-at="max-width: 64em">App Directory</cbp-hide>
             </cbp-button>
@@ -181,7 +184,7 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, conte
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
+    let anchors = document.querySelectorAll('cbp-universal-header a,cbp-app-header a,cbp-subnav a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -201,7 +204,7 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, conte
         ${ isLoggedIn
           ? `
           <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
+            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="book"></cbp-icon>
               <cbp-hide visually-hide-at="max-width:64em">App Directory</cbp-hide>
             </cbp-button>
@@ -568,7 +571,7 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, n
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
+    let anchors = document.querySelectorAll('cbp-universal-header a,cbp-app-header a,cbp-subnav a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -588,7 +591,7 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, n
         ${ isLoggedIn
           ? `
           <li>
-            <cbp-button color="secondary" fill="ghost" context="dark-always">
+            <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="book"></cbp-icon>
               <cbp-hide visually-hide-at="max-width:64em">App Directory</cbp-hide>
             </cbp-button>
