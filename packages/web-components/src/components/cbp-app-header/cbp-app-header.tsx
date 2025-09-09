@@ -1,26 +1,29 @@
-import { Component, Element, Event, EventEmitter, Listen, Host, h, Prop, Method} from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Listen, Host, h, Prop, Method } from '@stencil/core';
 import { debounce } from '../../utils/utils';
 import state from '../cbp-app-header/store';
 /**
  * @slot - The default slot usually contains only `cbp-nav-item` tags, but other content may also be included.
- * @slot - cbp-home - The link to the home page containing the Application Name as link text should be placed within this named slot for the intended visual treatment. 
-*/
+ * @slot - cbp-home - The link to the home page containing the Application Name as link text should be placed within this named slot for the intended visual treatment.
+ * @slot - cbp-app-header-extras - Optional extra buttons/links that are right-aligned may be slotted within the app header but outside of the `nav` landmark.
+ */
 
 @Component({
   tag: 'cbp-app-header',
-  styleUrl: 'cbp-app-header.scss'
+  styleUrl: 'cbp-app-header.scss',
 })
 export class CbpAppHeader {
-  
   private navItems: HTMLCbpNavItemElement[] = [];
   private currentItem: HTMLCbpNavItemElement;
 
   private drawerButton: HTMLCbpButtonElement;
   private nav: HTMLElement;
-  private children: HTMLElement[] = []; 
-  private navWidth; 
+  private children: HTMLElement[] = [];
+  private navWidth;
 
-  private input: HTMLInputElement;
+  private searchForm:HTMLElement;
+  private searchControl:HTMLCbpButtonElement;
+  private searchField:HTMLInputElement;
+
 
   /** Specifies the id of the drawer to be launched*/
   @Prop() subnavDrawerId: string;
@@ -36,54 +39,65 @@ export class CbpAppHeader {
 
   @Element() host: HTMLCbpAppHeaderElement;
 
-  @Listen('drawerClose', { target: 'body'})
+  @Listen('drawerClose', { target: 'body' })
   handleNavDrawerClose(e) {
     const Subnav = e.target.querySelector('cbp-subnav');
     // Only update focus and current states if the drawer holds a subnav using state store.
-    if(Subnav?.store == true) {
+    if (Subnav?.store == true) {
       let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLButtonElement;
       active?.focus(); // TechDebt: this needs to be revisited for navigation events that may auto-close the drawer.
-      //this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`)) 
+      //this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`))
     }
   }
 
-
-  /** A custom event emitted when input is submitted. */
+  /** A custom event emitted in accordance with the native input's onInput event. */
   @Event() searchInput: EventEmitter;
-  handleSearchInput(){
+  handleSearchInput() {
     this.searchInput.emit({
       host: this.host,
-      nativeInput: this.input,
-      value:  this.input.value,
-      })
+      nativeInput: this.searchField,
+      value: this.searchField.value,
+    });
   }
+
+  /** A custom event emitted in accordance with the native input's onInput event. */
+  @Event() searchSubmit: EventEmitter;
+  handleSearchSubmit(e) {
+    this.searchSubmit.emit({
+      host: this.host,
+      nativeInput: this.searchField,
+      value: this.searchField.value,
+      nativeEvent: e
+    });
+  }
+
 
   @Listen('keydown')
-  handleKeyDown(ev: KeyboardEvent){
+  handleKeyDown(ev: KeyboardEvent) {
     const searchVisible = document.getElementById('cbp-app-header-search').hidden == false;
-    if(ev.key === 'Escape' && this.search && searchVisible){
-      this.toggleSearch();
-      
+    if (ev.key === 'Escape' && this.search && searchVisible) {
+      this.closeSearch();
     }
   }
 
-  @Listen('click', { target: 'body'})
+  // TechDebt: try to use clickAwayListener - but verify it's not loading multiple event listeners each time it's toggled.
+  @Listen('click', { target: 'body' })
   handleClick(event: MouseEvent) {
-    const searchVisible = document.getElementById('cbp-app-header-search').hidden == false;
-    if (!this.host.contains(event.target as Node) && this.search && searchVisible){
-      this.toggleSearch();
+    const searchVisible = document.getElementById('cbp-app-header-search')?.hidden == false;
+    if (!this.host.contains(event.target as Node) && this.search && searchVisible) {
+      this.closeSearch();
     }
   }
 
-  handleTabFocusOut({key, shiftKey}) {
-    if(key == 'Tab' && !shiftKey) this.toggleSearch();
+  handleTabFocusOut({ key, shiftKey }) {
+    if (key == 'Tab' && !shiftKey) this.closeSearch();
   }
 
-  handleShiftTabFocusOut({key, shiftKey}) {
-    if(key == 'Tab' && shiftKey) this.toggleSearch();
+  handleShiftTabFocusOut({ key, shiftKey }) {
+    if (key == 'Tab' && shiftKey) this.closeSearch();
   }
 
-  updateCurrentItem(newValue){
+  updateCurrentItem(newValue) {
     const CurrentItem = this.host.querySelector(`cbp-nav-item[name="${newValue}"]`) as HTMLCbpNavItemElement;
     this.setCurrentNav(CurrentItem);
   }
@@ -97,74 +111,71 @@ export class CbpAppHeader {
     });
   }
 
-  updateActiveItem(newValue){
+  updateActiveItem(newValue) {
     const ActiveItem = this.host.querySelector(`cbp-nav-item[name="${newValue}"] button`) as HTMLCbpNavItemElement;
     setTimeout(() => {
-      ActiveItem?.focus()
-    }, 101) // Note: Time 101 is set due to cbp-drawer setting @ 100
+      ActiveItem?.focus();
+    }, 101); // Note: Time 101 is set due to cbp-drawer setting @ 100
   }
 
-  handleResize( width ) {
+  handleResize(width) {
     // Get the width of the content (and update the this.navWidth) before doing responsive adjustments.
-    if(this.navWidth == undefined){
+    if (this.navWidth == undefined) {
       this.navWidth = this.nav.getBoundingClientRect().width;
     }
-    
+
     // If the emitted size is less than the current mode's width, step down to the next responsive size
     if (width <= this.navWidth) {
       this.doResponsive();
-    } else{
+    } else {
       this.doFullSize();
     }
   }
 
-  doResponsive(){
-    this.children.forEach( (item, index) => {
+  doResponsive() {
+    this.children.forEach((item, index) => {
       if (index > 0 && item.id != 'global-search-toggle') {
-        item.setAttribute('hidden','');
+        item.setAttribute('hidden', '');
       }
     });
 
-    this.drawerButton.parentElement.classList.add('cbp-app-header-responsive');
-    this.drawerButton ? this.drawerButton.removeAttribute('hidden') : '';
+    this.drawerButton?.parentElement?.classList.add('cbp-app-header-responsive');
+    this.drawerButton?.removeAttribute('hidden');
   }
 
-  doFullSize(){
-    this.children.forEach( (item, index) => {
+  doFullSize() {
+    this.children.forEach((item, index) => {
       if (index > 0) {
         item.removeAttribute('hidden');
       }
     });
-    
-    this.drawerButton.parentElement.classList.remove('cbp-app-header-responsive');
-    this.drawerButton ? this.drawerButton.setAttribute('hidden', ''): '';
+
+    this.drawerButton?.parentElement?.classList.remove('cbp-app-header-responsive');
+    this.drawerButton?.setAttribute('hidden', '');
   }
 
-
-  /** A public method to toggle the search visibility on/off */
+  /** A public method to show the search form in the application header. */
   @Method()
-  async toggleSearch() {
-    const search = document.getElementById('cbp-app-header-search') as HTMLElement;
-    const searchToggle = document.getElementById('global-search-toggle') as HTMLCbpButtonElement;
-    const searchToggleButton = document.querySelector("#global-search-toggle > button") as HTMLElement;
-    const searchInput = document.querySelector('search input') as HTMLInputElement;
-    
-    if (search.hidden){
-      search.hidden = false; 
-      searchToggle.expanded = "true";
-      searchInput.focus();
-    } else{
-      search.hidden = true;
-      searchToggle.expanded = "false";
-      searchToggleButton.focus();
-      searchInput.value = '';
-    }
+  async openSearch() {
+    this.searchForm.hidden = false;
+    this.searchControl.expanded = 'true';
+    this.searchField.focus();
   }
+
+  /** A public method to show close/hide the search form in the application header. */
+  @Method()
+  async closeSearch() {
+    this.searchForm.hidden = true;
+    this.searchField.value = ''; // Reset the search value when closed
+    this.searchControl.expanded = 'false';
+    this.searchControl.querySelector('button')?.focus();
+  }
+
 
   componentWillLoad() {
     this.navItems = Array.from(this.host.querySelectorAll('cbp-nav-item'));
     this.currentItem = this.host.querySelector('cbp-nav-item[current]');
-    
+
     // Set the shared states as well
     state.currentPage = state.currentParent = this.currentItem?.name;
 
@@ -174,109 +185,96 @@ export class CbpAppHeader {
     });
   }
 
-  componentDidLoad(){
+  componentDidLoad() {
     // Get the immediate children to toggle hidden
-    this.children=Array.from(this.nav.querySelectorAll(':scope > *'));   
+    this.children = Array.from(this.nav.querySelectorAll(':scope > *'));
   }
 
-  
-
   render() {
-    if(this.currentItem?.name != state.currentParent) {
+    if (this.currentItem?.name != state.currentParent) {
       this.updateCurrentItem(state.currentParent);
     }
 
     return (
       <Host>
-        <cbp-resize-observer 
-          onResized={ debounce((e) => {
+        <cbp-resize-observer
+          onResized={debounce(e => {
             this.handleResize(e.detail.width);
-        }, 10)}
+          }, 10)}
         >
-          <nav 
-            aria-label="Primary Navigation" 
-            ref={el => this.nav = el}
-          >
+          <nav aria-label="Primary Navigation" ref={el => (this.nav = el)}>
             <slot name="cbp-home" />
             <slot />
 
-            
-            
-            {(this.navItems.length > 1) &&
+            {this.navItems.length > 1 && (
               <cbp-button
                 hidden
-                ref={el => this.drawerButton = el}
+                ref={el => (this.drawerButton = el)}
                 fill="outline"
                 color="secondary"
                 target-prop="open"
                 controls={this.subnavDrawerId}
                 accessibilityText="Navigation Menu"
               >
-                <cbp-icon
-                  name="bars"
-                />
+                <cbp-icon name="bars" />
               </cbp-button>
-            }
+            )}
           </nav>
         </cbp-resize-observer>
-        
-        {this.search &&
+
+        <slot name="cbp-app-header-extras" />
+
+        {this.search && (
           <search>
             <cbp-button
-              id= "global-search-toggle"
-              type= "button"
-              fill= "outline"
-              color= "secondary"
-              variant= "square"
-              onClick= {() => this.toggleSearch()}
-              expanded= "false"
+              id="global-search-toggle"
+              type="button"
+              fill="outline"
+              color="secondary"
+              variant="square"
+              onClick={() => this.openSearch()}
+              expanded="false"
               accessibilityText="Global Search"
+              ref={el => (this.searchControl = el)}
             >
               <cbp-icon name="magnifying-glass"></cbp-icon>
             </cbp-button>
 
-            <form 
-              id= "cbp-app-header-search"
-              method={this.searchMethod}
+            <form hidden
+              id="cbp-app-header-search" 
+              method={this.searchMethod} 
               action={this.searchAction}
-              hidden
+              onSubmit={ (e) => this.handleSearchSubmit(e)}
+              ref={el => (this.searchForm = el)}
             >
-              <input 
-                type="text" 
-                name="globalSearch" 
-                placeholder="Start Typing - Press ESC to Close" 
-                onKeyDown={(e) => this.handleShiftTabFocusOut(e)}
-                ref={el => (this.input = el)}
-                onInput={() => this.handleSearchInput}           
-                
+              <input
+                type="text"
+                name="globalSearch"
+                placeholder="Start Typing - Press ESC to Close"
+                onKeyDown={e => this.handleShiftTabFocusOut(e)}
+                onInput={() => this.handleSearchInput}
+                ref={el => (this.searchField = el)}
               />
               <div>
-                <cbp-button
-                  type= "button"
-                  fill= "solid"
-                  color= "primary"
-                  variant= "square"
-                  accessibilityText="Search"
-                  >
-                  <cbp-icon name= "magnifying-glass"></cbp-icon>
+                <cbp-button type="submit" fill="solid" color="primary" variant="square" accessibilityText="Search">
+                  <cbp-icon name="magnifying-glass"></cbp-icon>
                 </cbp-button>
                 <cbp-button
-                  type= "button"
-                  fill= "ghost"
-                  color= "secondary"
-                  variant= "square"
+                  type="button"
+                  fill="ghost"
+                  color="secondary"
+                  variant="square"
                   accessibilityText="Close Search"
-                  onKeyDown={(e) => this.handleTabFocusOut(e)}
-                  onClick= {() => this.toggleSearch()}
-                  >
+                  onKeyDown={e => this.handleTabFocusOut(e)}
+                  onClick={() => this.closeSearch()}
+                >
                   <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)" />
                 </cbp-button>
               </div>
-            </form>        
+            </form>
           </search>
-          }
+        )}
       </Host>
     );
   }
 }
-

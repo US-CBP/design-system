@@ -15,9 +15,18 @@ In modern JavaScript frameworks, you can use the native web components, which ar
 - Import the web components loader in your framework's top-level file such as `App.js|jsx|tsx` or `main.js|jsx|tsx`.
 - Call `defineCustomElements()` to initialize the loader and register the web components (to be lazy loaded when used).
 
-```
+```javascript
 import { defineCustomElements } from '@cbpds/web-components/dist/loader';
 defineCustomElements();
+```
+
+If you are using Typescript in your codebase, you may need to make your project aware of the web components before you can compile your code successfully. In many cases, this can be accomplished simply by adding the web component definitions to your `tsconfig.json`'s includes (after `npm install` has been run). E.g.,
+
+```json
+"include": [
+  "src",
+  "node_modules/@cbpds/web-components/dist/types/components.d.ts"
+]
 ```
 
 ### Script tag
@@ -33,19 +42,19 @@ You can use UNPKG (an open source global content delivery network that mirrors n
 
 Referencing the latest version:
 
-```
+```html
 <script type="module" src="https://unpkg.com/@cbpds/web-components/dist/cbp-web-components/cbp-web-components.esm.js"></script>
 ```
 
 Referencing a specific version:
 
-```
+```html
 <script type="module" src="https://unpkg.com/@cbpds/web-components@0.0.1-develop.20/dist/cbp-web-components/cbp-web-components.esm.js"></script>
 ```
 
 Ideally, your application should reference a central, organization-hosted copy of the files or pull the package's  `dist/cbp-web-components` directory into your application's "assets" directory and reference them as such:
 
-```
+```html
 <script type="module" src="./assets/cbp-web-components/cbp-web-components.esm.js"></script>
 ```
 
@@ -59,7 +68,7 @@ To get started quickly, you may copy the markup from one of our ["template" stor
 
 Here's an example of a button component:
 
-```
+```html
 <cbp-button
   fill="solid"
   color="primary"
@@ -78,7 +87,7 @@ The Roboto font family is part of the CBP Design System standards, but must be l
 
 Copy and paste the following into your index.html or template file:
 
-```
+```html
 <link rel="icon" type="image/svg+xml" href="assets/images/cbp-seal.svg">
 <link rel="stylesheet" type="text/css" href="./assets/css/roboto.css">
 <link rel="stylesheet" type="text/css" href="./assets/css/roboto_mono.css">
