@@ -4,6 +4,14 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [0.0.1-develop.25] 09-09-2025
+
+* Quick turnaround bugfix and features added to `cbp-app-header` search functionality.
+  * Added `searchSubmit` event, which is emitted when the search form is submitted and contains a reference to the native `submit` event to that preventDefault() may be called on it by application logic.
+  * Added a new named slot for non-navigation items aligned to the right in the Application Header, but outside of the `nav` landmark.
+  * Fixed console errors in some edge case conditions.
+* Added a note about Typescript support to the "Using the Web Components" documentation.
+
 ## [0.0.1-develop.24] 09-04-2025
 
 * Updated the `cbp-app-header` with optional global search functionality (integration with application logic required).
