@@ -143,6 +143,7 @@ const Template = ({ drawerid, store, search, searchMethod, searchAction, items, 
     AppHeader?.addEventListener('searchSubmit', function(e) {
       //console.log('searchSubmit event: ', e);
       e.detail.nativeEvent.preventDefault();
+      //AppHeader.closeSearch();
     });
 
     // Cancel events on anchors to prevent navigating away from the story
@@ -162,28 +163,23 @@ const Template = ({ drawerid, store, search, searchMethod, searchAction, items, 
     >
       ${generateNavItems(items)}
     </cbp-app-header>
-     ${renderDrawer(items, drawerid, store)}
+
+    ${renderDrawer(items, drawerid, store)}
   `;
 };
 
 /* 
-    Test case for using flex to float additional content off to the right.
+    Optional button slotted and off to the right.
 
-      <cbp-flex 
-        align-items="center"
-        justify-content="space-between"
-        sx='{"width":"100%"}'
+      <cbp-button
+        slot="cbp-app-header-extras"
+        color="secondary"
+        fill="outline"
       >
-        <div>
-          ${generateNavItems(items)}
-        </div>
+        <cbp-icon name="circle-info"></cbp-icon>
+        <cbp-hide visually-hide-at="max-width:45rem">About</cbp-hide>
+      </cbp-button>
 
-        <div>
-          <cbp-button>
-            Right-aligned button
-          </cbp-button>
-        </div>
-      </cbp-flex>
 */
 
 
@@ -227,6 +223,7 @@ const AppHeaderWithSubnavTemplate = ({ drawerid, store, search, searchMethod, se
     AppHeader?.addEventListener('searchSubmit', function(e) {
       //console.log('searchSubmit event: ', e);
       e.detail.nativeEvent.preventDefault();
+      //AppHeader.closeSearch();
     });
 
     // Cancel events on anchors to prevent navigating away from the story
@@ -237,18 +234,18 @@ const AppHeaderWithSubnavTemplate = ({ drawerid, store, search, searchMethod, se
   }, 500);
 
   return ` 
-      <cbp-app-header
-        ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
-        ${search ? `search` : ``}
-        ${searchMethod ? `search-method=${searchMethod}` : ``}
-        ${searchAction ? `search-action=${searchAction}` : ``}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >
-       ${generateNavItems(items, drawerid)}
-      </cbp-app-header>
-      
-     ${renderDrawer(items, drawerid, store)}  
-      `;
+    <cbp-app-header
+      ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
+      ${search ? `search` : ``}
+      ${searchMethod ? `search-method=${searchMethod}` : ``}
+      ${searchAction ? `search-action=${searchAction}` : ``}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      ${generateNavItems(items, drawerid)}
+    </cbp-app-header>
+    
+    ${renderDrawer(items, drawerid, store)}  
+  `;
 };
 
 
@@ -337,55 +334,3 @@ AppHeaderWithSubnav.args = {
     },
   ] 
 }
-
-// const AppHeaderWithGlobalSearchTemplate = ({ drawerid, store, items, sx }) => {  
-  
-//   // preventDefault on all links in the header and subnav
-//   setTimeout(() => {
-//     let anchors = document.querySelectorAll('cbp-app-header a');
-//     anchors.forEach(anchor => {
-//       anchor.addEventListener('click', function(e) { e.preventDefault(); })
-//     });
-//   }, 500);
-
-//   return ` 
-//     <cbp-app-header    
-//       search
-//       searchMethod="get"
-//       ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
-//       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-//     >
-//       ${generateNavItems(items)}
-      
-//     </cbp-app-header>
-//      ${renderDrawer(items, drawerid, store)}
-//   `;
-// };
-
-// export const AppHeaderWithGlobalSearch = AppHeaderWithGlobalSearchTemplate.bind({});
-// AppHeaderWithGlobalSearch.args = {
-//   drawerid: 'navDrawer',
-//   items: [
-//     {
-//       label: 'Application Name',
-//       name: 'Application Name',
-//       href: './?path=/story/components-application-header--application-header#',
-//       current: true
-//     },
-//     {
-//       label: 'Nav Item 1',
-//       name: 'Nav Item 1',
-//       href: './?path=/story/components-application-header--application-header#',
-//     },
-//     {
-//       label: 'Nav Item 2',
-//       name: 'Nav Item 2',
-//       href: './?path=/story/components-application-header--application-header#',
-//     },
-//     {
-//       label: 'Nav Item 3',
-//       name: 'Nav Item 3',
-//       href: './?path=/story/components-application-header--application-header#',
-//     },
-//   ] 
-// }

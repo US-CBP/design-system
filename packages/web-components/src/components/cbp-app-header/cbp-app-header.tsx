@@ -4,6 +4,7 @@ import state from '../cbp-app-header/store';
 /**
  * @slot - The default slot usually contains only `cbp-nav-item` tags, but other content may also be included.
  * @slot - cbp-home - The link to the home page containing the Application Name as link text should be placed within this named slot for the intended visual treatment.
+ * @slot - cbp-app-header-extras - Optional extra buttons/links that are right-aligned may be slotted within the app header but outside of the `nav` landmark.
  */
 
 @Component({
@@ -220,6 +221,8 @@ export class CbpAppHeader {
             )}
           </nav>
         </cbp-resize-observer>
+
+        <slot name="cbp-app-header-extras" />
 
         {this.search && (
           <search>
