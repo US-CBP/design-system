@@ -6,13 +6,14 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Purpose
 
-The Application Header component is meant to contain the primary navigation accompanied by a "home" link.
+The Application Header component is meant to contain the primary navigation accompanied by a "home" link, as well as optional global search functionality.
 
 ## Functional Requirements
 
 * The Application Header should always contain a link back to the application/site home page.
 * Additional links/buttons may be slotted to make up the primary navigation.
 * Navigation Items with children are represented by a button control that opens a drawer containing sub-navigation.
+* If an application has global search functionality, it shall also be part of the Application Header.
 
 ## Technical Specifications
 
@@ -23,11 +24,18 @@ The Application Header component is meant to contain the primary navigation acco
   * Navigation Items with children are represented by a button control that opens a drawer containing sub-navigation options.
 * When a Nav Item anchor is activated, it is marked visually and accessibly as the "current" item.
 * A Nav Item representing a drawer control is only marked current if the item or one of its children are activated within the Sub-Navigation.
+* If the optional global search functionality is included, a toggle button will be present to reveal the search form.
+  * Once revealed, the search form overlays the entire app header area.
+  * Clicking outside of the component, pressing `ESC`, or pressing the close button will close the search form and reveal the navigation again.
+  * Clicking the "search" button will submit the form. It is up to the application to handle the form submission and whether to hide the search form.
+  * The exact behavior of the search form is dependent on the implementation, e.g., whether it does a form post or does the search asynchronously and/or updating a router outlet.
 
 ### Responsiveness
 
 * The application name (home link) is rendered at a smaller font size on mobile devices.
-* More TBD.
+* The navigation items use a resize observer to detect when there is no longer enough horizontal space for their display.
+  * At this point, all Nav Items except the first (Application Name/home link) are hidden, and a "hamburger" control is shown, which launches a navigation drawer when pressed.
+  * Care should be taken adding any non-standard content outside of the navigation (e.g., buttons/links), as these items will not be automatically hidden at small screen sizes.
 
 ### Accessibility
 
@@ -43,6 +51,8 @@ The Application Header component is meant to contain the primary navigation acco
 
 ### Additional Notes and Considerations
 
-* In order for the Application Header to share state with the Sub-navigation:
-  * The Sub-Navigation must set its property `store="true"`.
-  * The Application Header Nav Items must specify a "name" property that matches the corresponding Subnav Item "name" property. 
+* The Application Header is loosely coupled with the Drawer and Sub-Navigation for responsive navigation and/or child navigation.
+  * While it does render the hamburger control, it does not include or render the Drawer and Sub-Navigation itself.
+  * In order for the Application Header to share state with the Sub-Navigation (within a Drawer):
+    * The Sub-Navigation must set its property `store="true"`.
+    * The Application Header Nav Items must specify a "name" property matching the corresponding Subnav Item "name" property.

@@ -52,15 +52,16 @@ export class CbpAppHeader {
 
   /** A custom event emitted in accordance with the native input's onInput event. */
   @Event() searchInput: EventEmitter;
-  handleSearchInput() {
+  handleSearchInput(e) {
     this.searchInput.emit({
       host: this.host,
       nativeInput: this.searchField,
       value: this.searchField.value,
+      nativeEvent: e
     });
   }
 
-  /** A custom event emitted in accordance with the native input's onInput event. */
+  /** A custom event emitted in accordance with the native search form's submit event. */
   @Event() searchSubmit: EventEmitter;
   handleSearchSubmit(e) {
     this.searchSubmit.emit({
@@ -88,6 +89,24 @@ export class CbpAppHeader {
       this.closeSearch();
     }
   }
+
+  /** A public method to show the search form in the application header. */
+  @Method()
+  async openSearch() {
+    this.searchForm.hidden = false;
+    this.searchControl.expanded = 'true';
+    this.searchField.focus();
+  }
+
+  /** A public method to close/hide the search form in the application header. */
+  @Method()
+  async closeSearch() {
+    this.searchForm.hidden = true;
+    this.searchField.value = ''; // Reset the search value when closed
+    this.searchControl.expanded = 'false';
+    this.searchControl.querySelector('button')?.focus();
+  }
+
 
   handleTabFocusOut({ key, shiftKey }) {
     if (key == 'Tab' && !shiftKey) this.closeSearch();
@@ -152,23 +171,6 @@ export class CbpAppHeader {
 
     this.drawerButton?.parentElement?.classList.remove('cbp-app-header-responsive');
     this.drawerButton?.setAttribute('hidden', '');
-  }
-
-  /** A public method to show the search form in the application header. */
-  @Method()
-  async openSearch() {
-    this.searchForm.hidden = false;
-    this.searchControl.expanded = 'true';
-    this.searchField.focus();
-  }
-
-  /** A public method to show close/hide the search form in the application header. */
-  @Method()
-  async closeSearch() {
-    this.searchForm.hidden = true;
-    this.searchField.value = ''; // Reset the search value when closed
-    this.searchControl.expanded = 'false';
-    this.searchControl.querySelector('button')?.focus();
   }
 
 
@@ -252,7 +254,7 @@ export class CbpAppHeader {
                 name="globalSearch"
                 placeholder="Start Typing - Press ESC to Close"
                 onKeyDown={e => this.handleShiftTabFocusOut(e)}
-                onInput={() => this.handleSearchInput}
+                onInput={ e => this.handleSearchInput(e)}
                 ref={el => (this.searchField = el)}
               />
               <div>
