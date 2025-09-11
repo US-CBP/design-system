@@ -4,6 +4,10 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unreleased] TBD
+
+* Additional `cbp-app-header` bugfix for the `searchInput` event not being emitted properly.
+
 ## [0.0.1-develop.25] 09-09-2025
 
 * Quick turnaround bugfix and features added to `cbp-app-header` search functionality.
