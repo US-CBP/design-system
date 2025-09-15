@@ -150,12 +150,12 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
       </cbp-universal-header>
 
       <cbp-app-header
-        subnav-drawer-id="appHeaderDrawer"
+        subnav-drawer-id="appheaderdrawer"
         ${search ? `search` : ``}
         ${searchMethod ? `search-method=${searchMethod}` : ``}
         ${searchAction ? `search-action=${searchAction}` : ``}
       >
-        ${generateNavItems(navItems, "appHeaderDrawer")}
+        ${generateNavItems(navItems, "appheaderdrawer")}
       </cbp-app-header>
 
       <cbp-container sx='{"flex-grow":"1","padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
@@ -198,7 +198,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
         </section>
       </cbp-footer>
 
-     ${renderDrawer(navItems, 'appHeaderDrawer', true)}
+     ${renderDrawer(navItems, 'appheaderdrawer', true)}
      ${renderUserPref(username, hashid)}
     </cbp-flex>
   `;
@@ -264,12 +264,12 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, searc
       </cbp-universal-header>
 
       <cbp-app-header
-        subnav-drawer-id="appHeaderDrawer"
+        subnav-drawer-id="appheaderdrawer"
         ${search ? `search` : ``}
         ${searchMethod ? `search-method=${searchMethod}` : ``}
         ${searchAction ? `search-action=${searchAction}` : ``}
       >
-        ${generateNavItems(navItems, "appHeaderDrawer")}
+        ${generateNavItems(navItems, "appheaderdrawer")}
       </cbp-app-header>
       
       <cbp-grid
@@ -290,14 +290,14 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, searc
         </main>
 
         <cbp-panel
-          aria-labelledby="sideBarPanelheader"
+          aria-labelledby="sidebarpanelheader"
           role="complementary"
         >
           <cbp-typography
             slot="cbp-panel-header"
             tag="h3"
             variant="heading-lg"
-            id="sideBarPanelheader"
+            id="sidebarpanelheader"
           >
             Sidebar Header
           </cbp-typography>
@@ -336,7 +336,7 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, searc
       </cbp-footer>
 
       
-      ${renderDrawer(navItems, 'appHeaderDrawer', true)}
+      ${renderDrawer(navItems, 'appheaderdrawer', true)}
       ${renderUserPref(username, hashid)}
     </cbp-flex>
   `;
@@ -471,7 +471,7 @@ function renderUserPref(username, hashid) {
           slot="cbp-panel-header"
           tag="h2"
           variant="heading-lg"
-          id="userPrefHeader"
+          id="userprefheader"
         >
           <cbp-icon name="user"></cbp-icon>
           User Preferences
@@ -654,12 +654,12 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, s
       </cbp-universal-header>
 
       <cbp-app-header
-        subnav-drawer-id="appHeaderDrawer"
+        subnav-drawer-id="appheaderdrawer"
         ${search ? `search` : ``}
         ${searchMethod ? `search-method=${searchMethod}` : ``}
         ${searchAction ? `search-action=${searchAction}` : ``}
       >
-        ${generateNavItems(navItems, "appHeaderDrawer")}
+        ${generateNavItems(navItems, "appheaderdrawer")}
       </cbp-app-header>
         
       
@@ -708,7 +708,7 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, s
         </section>
       </cbp-footer>
 
-      ${renderDrawer(navItems, 'appHeaderDrawer', true)}
+      ${renderDrawer(navItems, 'appheaderdrawer', true)}
       ${renderUserPref(username, hashid)}
     </cbp-flex>
   `;

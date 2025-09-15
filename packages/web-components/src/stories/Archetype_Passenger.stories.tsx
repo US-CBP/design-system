@@ -819,7 +819,7 @@ function manifestPane(manifestArgs) {
           uid= "manifestdrawer"
         >
           <cbp-panel
-            aria-labelledby="manifestDrawerHeader"
+            aria-labelledby="manifestdrawerheader"
             role="complementary"
           >
             <cbp-typography
