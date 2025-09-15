@@ -671,28 +671,45 @@ function filterPanel() {
         </cbp-form-field>
 
         <cbp-form-field
-          label="Arrival Time Range From:"
-          description="(HH:MM Format) UTC-6 America/New York."
+          label="Field Title"
+          description="(HH:MM Format) UTC-6 America/New York"
         >
           <cbp-form-field-wrapper>
-            <input type="time" name="arrivaltimestart" />
-            <span slot="cbp-form-field-overlay-start">
-              <cbp-icon name="clock"></cbp-icon>
+            <input
+              placeholder="HH:MM"
+              maxlength="5"
+              name="time"
+            />
+            <cbp-icon
+              slot="cbp-form-field-overlay-start"
+              name="clock"
+            ></cbp-icon>
+
+            <span slot="cbp-form-field-attached-button">
+              <cbp-segmented-button-group name="time-ampm">
+                <cbp-button
+                  type="button"
+                  value="AM"
+                  pressed="true"
+                >
+                  AM
+                </cbp-button>
+
+                <cbp-button
+                  type="button"
+                  value="PM"
+                >
+                  PM
+                </cbp-button>
+
+                <cbp-button
+                  type="button"
+                  value="24H"
+                >
+                  24 hr
+                </cbp-button>
+              </cbp-segmented-button-group>
             </span>
-
-            <cbp-segmented-button-group slot="cbp-form-field-attached-button">
-              <cbp-button fill="outline" color="secondary">
-                AM
-              </cbp-button>
-
-              <cbp-button fill="outline" color="secondary">
-                PM
-              </cbp-button>
-
-              <cbp-button fill="outline" color="secondary">
-                24 HR
-              </cbp-button>
-            </cbp-segmented-button-group>
           </cbp-form-field-wrapper>
         </cbp-form-field>
 
@@ -704,28 +721,45 @@ function filterPanel() {
         </cbp-form-field>
 
         <cbp-form-field
-          label="Arrival Time Range To:"
-          description="(HH:MM Format) UTC-6 America/New York."
+          label="Field Title"
+          description="(HH:MM Format) UTC-6 America/New York"
         >
           <cbp-form-field-wrapper>
-            <input type="time" name="arrivaltimeend" />
-            <span slot="cbp-form-field-overlay-start">
-              <cbp-icon name="clock"></cbp-icon>
+            <input
+              placeholder="HH:MM"
+              maxlength="5"
+              name="time"
+            />
+            <cbp-icon
+              slot="cbp-form-field-overlay-start"
+              name="clock"
+            ></cbp-icon>
+
+            <span slot="cbp-form-field-attached-button">
+              <cbp-segmented-button-group name="time-ampm">
+                <cbp-button
+                  type="button"
+                  value="AM"
+                  pressed="true"
+                >
+                  AM
+                </cbp-button>
+
+                <cbp-button
+                  type="button"
+                  value="PM"
+                >
+                  PM
+                </cbp-button>
+
+                <cbp-button
+                  type="button"
+                  value="24H"
+                >
+                  24 hr
+                </cbp-button>
+              </cbp-segmented-button-group>
             </span>
-
-            <cbp-segmented-button-group slot="cbp-form-field-attached-button">
-              <cbp-button fill="outline" color="secondary">
-                AM
-              </cbp-button>
-
-              <cbp-button fill="outline" color="secondary">
-                PM
-              </cbp-button>
-
-              <cbp-button fill="outline" color="secondary">
-                24 HR
-              </cbp-button>
-            </cbp-segmented-button-group>
           </cbp-form-field-wrapper>
         </cbp-form-field>
 

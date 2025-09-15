@@ -57,34 +57,6 @@ export default {
           label: 'Nav Item 1-2',
           name: 'Nav Item 1-2',
           href: './?path=/story/components-application-header--application-header#',
-          children: [
-            {
-              label: 'Nav Item 1-2-1',
-              name: 'Nav Item 1-2-1',
-              href: './?path=/story/components-application-header--application-header#',
-              children: [
-                {
-                  label: 'Nav Item 1-2-1-1',
-                  name: 'Nav Item 1-2-1-1',
-                  href: './?path=/story/components-application-header--application-header#',
-                },
-                {
-                  label: 'Nav Item 1-2-1-2',
-                  name: 'Nav Item 1-2-1-2',
-                  href: './?path=/story/components-application-header--application-header#',
-                },
-                {
-                  label: 'Nav Item 1-2-1-3',
-                  name: 'Nav Item 1-2-1-3',
-                  href: './?path=/story/components-application-header--application-header#',
-                }
-              ]
-            },{
-              label: 'Nav Item 1-2-2',
-              name: 'Nav Item 1-2-2',
-              href: './?path=/story/components-application-header--application-header#',
-            }
-          ]
         }
       ]
     },
