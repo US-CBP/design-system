@@ -677,7 +677,7 @@ function filterPanel() {
           <cbp-form-field-wrapper>
             <input type="time" name="arrivaltimestart" />
             <span slot="cbp-form-field-overlay-start">
-              <cbp-icon name="book"></cbp-icon>
+              <cbp-icon name="clock"></cbp-icon>
             </span>
 
             <cbp-segmented-button-group slot="cbp-form-field-attached-button">
@@ -710,7 +710,7 @@ function filterPanel() {
           <cbp-form-field-wrapper>
             <input type="time" name="arrivaltimeend" />
             <span slot="cbp-form-field-overlay-start">
-              <cbp-icon name="book"></cbp-icon>
+              <cbp-icon name="clock"></cbp-icon>
             </span>
 
             <cbp-segmented-button-group slot="cbp-form-field-attached-button">
@@ -943,6 +943,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, passengersAr
 
     <cbp-app-header
       subnav-drawer-id="appHeaderDrawer"
+      search
     >
       ${generateNavItems(navItems)}
     </cbp-app-header>

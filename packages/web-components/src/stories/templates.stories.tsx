@@ -17,34 +17,105 @@ export default {
       description: 'Display Universal Header controls for user log in/out',
       type: { name: 'boolean' },
     },
+    search: {
+      description: 'determines if the search field is rendered',
+      control: 'boolean'
+    },
+    searchMethod: {
+      description: 'set the method attribute on the form for search',
+      control: 'text',
+      if:{ arg: 'search'}
+    },
+    searchAction: {
+      description: 'set the action attribute on the form for search',
+      control: 'text',
+      if:{ arg: 'search'}
+    }
   },
   args: {
     username: 'Johnathan Smithington',
     hashid: 'HASHIDX',
     isLoggedIn: true,
     navItems: [
-      {
-        label: 'Application Name',
-        name: 'Application Name',
-        href: './?path=/story/components-application-header--application-header#',
-        current: true
-      },
-      {
-        label: 'Nav Item 1',
-        name: 'Nav Item 1',
-        href: './?path=/story/components-application-header--application-header#',
-      },
-      {
-        label: 'Nav Item 2',
-        name: 'Nav Item 2',
-        href: './?path=/story/components-application-header--application-header#',
-      },
-      {
-        label: 'Nav Item 3',
-        name: 'Nav Item 3',
-        href: './?path=/story/components-application-header--application-header#',
-      },
-    ] 
+    {
+      label: 'Application Name',
+      name: 'Application Name',
+      href: './?path=/story/components-application-header--application-header#',
+      current: true
+    },
+    {
+      label: 'Nav Item 1',
+      name: 'Nav Item 1',
+      href: './?path=/story/components-application-header--application-header#',
+      children: [
+        {
+          label: 'Nav Item 1-1',
+          name: 'Nav Item 1-1',
+          href: './?path=/story/components-application-header--application-header#',
+        },
+        {
+          label: 'Nav Item 1-2',
+          name: 'Nav Item 1-2',
+          href: './?path=/story/components-application-header--application-header#',
+          children: [
+            {
+              label: 'Nav Item 1-2-1',
+              name: 'Nav Item 1-2-1',
+              href: './?path=/story/components-application-header--application-header#',
+              children: [
+                {
+                  label: 'Nav Item 1-2-1-1',
+                  name: 'Nav Item 1-2-1-1',
+                  href: './?path=/story/components-application-header--application-header#',
+                },
+                {
+                  label: 'Nav Item 1-2-1-2',
+                  name: 'Nav Item 1-2-1-2',
+                  href: './?path=/story/components-application-header--application-header#',
+                },
+                {
+                  label: 'Nav Item 1-2-1-3',
+                  name: 'Nav Item 1-2-1-3',
+                  href: './?path=/story/components-application-header--application-header#',
+                }
+              ]
+            },{
+              label: 'Nav Item 1-2-2',
+              name: 'Nav Item 1-2-2',
+              href: './?path=/story/components-application-header--application-header#',
+            }
+          ]
+        }
+      ]
+    },
+    {
+      label: 'Nav Item 2',
+      name: 'Nav Item 2',
+      href: './?path=/story/components-application-header--application-header#',
+      children: [
+        {
+          label: 'Nav Item 2-1',
+          name: 'Nav Item 2-1',
+          href: './?path=/story/components-application-header--application-header#',
+        },    
+        {
+          label: 'Nav Item 2-2',
+          name: 'Nav Item 2-2',
+          href: './?path=/story/components-application-header--application-header#',
+        },
+        {
+          label: 'Nav Item 2-3',
+          name: 'Nav Item 2-3',
+          href: './?path=/story/components-application-header--application-header#',
+        },
+      ]
+    },
+    {
+      label: 'Nav Item 3',
+      name: 'Nav Item 3',
+      href: './?path=/story/components-application-header--application-header#',
+    },
+  ] 
   },
 };
 
@@ -67,7 +138,7 @@ function initThemeSwitcher() {
 
 
 
-const InternalTemplate = ({ isLoggedIn, username, hashid, navItems }) => {
+const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, }) => {
 
   setTimeout(() => {
     initThemeSwitcher();
@@ -125,8 +196,11 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems }) => {
 
       <cbp-app-header
         subnav-drawer-id="appHeaderDrawer"
+        ${search ? `search` : ``}
+        ${searchMethod ? `search-method=${searchMethod}` : ``}
+        ${searchAction ? `search-action=${searchAction}` : ``}
       >
-        ${generateNavItems(navItems)}
+        ${generateNavItems(navItems, "appHeaderDrawer")}
       </cbp-app-header>
 
       <cbp-container sx='{"flex-grow":"1","padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
@@ -178,7 +252,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems }) => {
 export const Internal = InternalTemplate.bind({});
 
 
-const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
+const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
   
   setTimeout(() => {
     initThemeSwitcher();
@@ -236,8 +310,11 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, conte
 
       <cbp-app-header
         subnav-drawer-id="appHeaderDrawer"
+        ${search ? `search` : ``}
+        ${searchMethod ? `search-method=${searchMethod}` : ``}
+        ${searchAction ? `search-action=${searchAction}` : ``}
       >
-        ${generateNavItems(navItems)}
+        ${generateNavItems(navItems, "appHeaderDrawer")}
       </cbp-app-header>
       
       <cbp-grid
@@ -565,7 +642,7 @@ function generateCards(numberOfCards) {
 
 
 
-const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, numberOfCards, cardMinWidth }) => {
+const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, numberOfCards, cardMinWidth }) => {
   
   setTimeout(() => {
     initThemeSwitcher();
@@ -623,8 +700,11 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, n
 
       <cbp-app-header
         subnav-drawer-id="appHeaderDrawer"
+        ${search ? `search` : ``}
+        ${searchMethod ? `search-method=${searchMethod}` : ``}
+        ${searchAction ? `search-action=${searchAction}` : ``}
       >
-        ${generateNavItems(navItems)}
+        ${generateNavItems(navItems, "appHeaderDrawer")}
       </cbp-app-header>
         
       
