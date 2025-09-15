@@ -64,23 +64,6 @@ export default {
       label: 'Nav Item 2',
       name: 'Nav Item 2',
       href: './?path=/story/components-application-header--application-header#',
-      children: [
-        {
-          label: 'Nav Item 2-1',
-          name: 'Nav Item 2-1',
-          href: './?path=/story/components-application-header--application-header#',
-        },    
-        {
-          label: 'Nav Item 2-2',
-          name: 'Nav Item 2-2',
-          href: './?path=/story/components-application-header--application-header#',
-        },
-        {
-          label: 'Nav Item 2-3',
-          name: 'Nav Item 2-3',
-          href: './?path=/story/components-application-header--application-header#',
-        },
-      ]
     },
     {
       label: 'Nav Item 3',
