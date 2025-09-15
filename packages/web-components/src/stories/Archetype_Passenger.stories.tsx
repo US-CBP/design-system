@@ -6,7 +6,22 @@ export default {
       root: '#storybook-root',
     },
   },
-  argTypes: {},
+  argTypes: {    
+    search: {
+      description: 'determines if the search field is rendered',
+      control: 'boolean'
+    },
+    searchMethod: {
+      description: 'set the method attribute on the form for search',
+      control: 'text',
+      if:{ arg: 'search'}
+    },
+    searchAction: {
+      description: 'set the action attribute on the form for search',
+      control: 'text',
+      if:{ arg: 'search'}
+    }
+  },
   args: {
     username: 'Johnathan Smithington',
     hashid: 'HASHIDX',
@@ -33,7 +48,8 @@ export default {
         name: 'Nav Item 3',
         href: './?path=/story/components-application-header--application-header#',
       },
-    ]
+    ],
+
   },
 };
 
@@ -164,7 +180,7 @@ function renderUserPref(username, hashid) {
           slot="cbp-panel-header"
           tag="h2"
           variant="heading-lg"
-          id="panelheader"
+          id="userprefheader"
         >      
           <cbp-icon name="user"></cbp-icon>
           User Preferences
@@ -424,10 +440,10 @@ function passengerList(passengerArgs) {
         >
           <cbp-form-field
             label="Sort By"
-            field-id="filterResults"
+            field-id="filterresults"
             sx='{"margin":"0"}'
           >
-            <cbp-dropdown field-id="filterResults">
+            <cbp-dropdown field-id="filterresults">
               <cbp-dropdown-item value="1">
                 Closest to Arrival
               </cbp-dropdown-item>
@@ -463,7 +479,7 @@ function passengerList(passengerArgs) {
             fill="outline"
             color="secondary"
             target-prop="open"
-            controls="manifestDrawer"
+            controls="manifestdrawer"
           >
             <cbp-icon name="circle-info"></cbp-icon>Manifests
           </cbp-button>
@@ -481,7 +497,7 @@ function passengerList(passengerArgs) {
       </cbp-flex>
 
 
-      <cbp-structured-list id="passengerList" header-id="list-header" striped  sx='{"margin-top":"var(--cbp-space-4x)"}'>
+      <cbp-structured-list id="passengerlist" header-id="list-header" striped  sx='{"margin-top":"var(--cbp-space-4x)"}'>
         <div slot="cbp-structured-list-header" id="list-header">
             XX Results - X filters Applied - Updated : 11/01/2024 10:00 EST 
         </div>
@@ -547,208 +563,245 @@ function passengerList(passengerArgs) {
 function filterPanel() {
   return `
     <cbp-drawer
-      uid= "filterDrawer"
+      uid= "filterdrawer"
       position="left"
       persist-at="min-width:64rem"
       sx='{"flex-basis":"20rem"}'
     >
       <cbp-panel
-        aria-labelledby="panelheader"
+        aria-labelledby="filterpanelheader"
       >
         <cbp-typography
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="panelheader"
+          id="filterpanelheader"
         >
           <cbp-icon name="filter" size="var(--cbp-space-6x)" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>Filter
         </cbp-typography>
-          
-        <cbp-form-field
-          label="Search"
-          field-id="search"
+        <form
+          action=""
         >
-          <cbp-form-field-wrapper>
-            <input
-              type="search"
-              name="search"
-            />
-            <span slot="cbp-form-field-attached-button">
-              <cbp-button
-                type="submit"
-                fill="solid"
-                color="secondary"
-                variant="square"
-                accessibility-text="Search"
-              >
-                <cbp-icon
-                  name="magnifying-glass"
-                ></cbp-icon>
-              </cbp-button>
-            </span>
-          </cbp-form-field-wrapper>
-        </cbp-form-field>
+          <cbp-form-field
+            label="Search"
+            field-id="search"
+          >
+            <cbp-form-field-wrapper>
+              <input
+                type="search"
+                name="search"
+              />
+              <span slot="cbp-form-field-attached-button">
+                <cbp-button
+                  type="submit"
+                  fill="solid"
+                  color="secondary"
+                  variant="square"
+                  accessibility-text="Search"
+                >
+                  <cbp-icon
+                    name="magnifying-glass"
+                  ></cbp-icon>
+                </cbp-button>
+              </span>
+            </cbp-form-field-wrapper>
+          </cbp-form-field>
 
-        <cbp-form-field group
-          label='Passenger Sex'
-          description='Required'
-        >
+          <cbp-form-field group
+            label='Passenger Sex'
+            description='Required'
+          >
+            <cbp-flex
+              gap="var(--cbp-space-5x)"
+              breakpoint="28rem"
+              sx='{"width":"max-content"}'
+            >
+              <cbp-radio>
+                <input type="radio" name="sex" value="Male" /> Male
+              </cbp-radio>
+              <cbp-radio>
+                <input type="radio" name="sex" value="Female" /> Female
+              </cbp-radio>
+              <cbp-radio>
+                <input type="radio" name="sex" value="Other" /> Other
+              </cbp-radio>
+            </cbp-flex>
+          </cbp-form-field>
+
+          <cbp-form-field
+            label="Passenger Age Range"
+          >
+            <cbp-slider hide-minmax>
+              <input
+                type="range"
+                name="age"
+              />
+            </cbp-slider>
+          </cbp-form-field>
+
+          <cbp-form-field
+            label="Country that Issued Passport"
+            description="Required."
+          >
+            <select name="select">
+              <option value="">United States of America</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+              <option value="4">Option 4</option>
+              <option value="5">Option 5</option>
+            </select>
+          </cbp-form-field>
+
+          <cbp-form-field
+            label="Port of Departure"
+            description="Required."
+          >
+            <select name="select">
+              <option value="">Any</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+              <option value="4">Option 4</option>
+              <option value="5">Option 5</option>
+            </select>
+          </cbp-form-field>
+
+          <cbp-form-field
+            label="Port of Arrival"
+            description="Required."
+          >
+            <select name="select">
+              <option value="">JFK (XXXX/SM)</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+              <option value="4">Option 4</option>
+              <option value="5">Option 5</option>
+            </select>
+          </cbp-form-field>
+
+          <cbp-form-field
+            label="Arrival Date Range From:"
+            description="(MM/DD/YYYY) Format"
+          >
+            <input type="date" name="arrivaldatestart" />
+          </cbp-form-field>
+
+          <cbp-form-field
+            label="Arrival Time Range From:"
+            description="(HH:MM Format) UTC-6 America/New York"
+          >
+            <cbp-form-field-wrapper>
+              <input
+                placeholder="HH:MM"
+                maxlength="5"
+                name="arrivalfrom"
+              />
+              <cbp-icon
+                slot="cbp-form-field-overlay-start"
+                name="clock"
+              ></cbp-icon>
+
+              <span slot="cbp-form-field-attached-button">
+                <cbp-segmented-button-group name="arrivalfromampm">
+                  <cbp-button
+                    type="button"
+                    value="AM"
+                    pressed="true"
+                  >
+                    AM
+                  </cbp-button>
+
+                  <cbp-button
+                    type="button"
+                    value="PM"
+                  >
+                    PM
+                  </cbp-button>
+
+                  <cbp-button
+                    type="button"
+                    value="24H"
+                  >
+                    24 hr
+                  </cbp-button>
+                </cbp-segmented-button-group>
+              </span>
+            </cbp-form-field-wrapper>
+          </cbp-form-field>
+
+          <cbp-form-field
+            label="Arrival Date Range To:"
+            description="(MM/DD/YYYY) Format"
+          >
+            <input type="date" name="arrivaldateend" />
+          </cbp-form-field>
+
+          <cbp-form-field
+            label="Arrival Time Range To:"
+            description="(HH:MM Format) UTC-6 America/New York"
+          >
+            <cbp-form-field-wrapper>
+              <input
+                placeholder="HH:MM"
+                maxlength="5"
+                name="arrivalto"
+              />
+              <cbp-icon
+                slot="cbp-form-field-overlay-start"
+                name="clock"
+              ></cbp-icon>
+
+              <span slot="cbp-form-field-attached-button">
+                <cbp-segmented-button-group name="arrivaltoampm">
+                  <cbp-button
+                    type="button"
+                    value="AM"
+                    pressed="true"
+                  >
+                    AM
+                  </cbp-button>
+
+                  <cbp-button
+                    type="button"
+                    value="PM"
+                  >
+                    PM
+                  </cbp-button>
+
+                  <cbp-button
+                    type="button"
+                    value="24H"
+                  >
+                    24 hr
+                  </cbp-button>
+                </cbp-segmented-button-group>
+              </span>
+            </cbp-form-field-wrapper>
+          </cbp-form-field>
+
+
           <cbp-flex
-            gap="var(--cbp-space-5x)"
-            breakpoint="28rem"
-            sx='{"width":"max-content"}'
+            justify-content="end"
+            gap="var(--cbp-space-4x)"
           >
-            <cbp-radio>
-              <input type="radio" name="sex" value="Male" /> Male
-            </cbp-radio>
-            <cbp-radio>
-              <input type="radio" name="sex" value="Female" /> Female
-            </cbp-radio>
-            <cbp-radio>
-              <input type="radio" name="sex" value="Other" /> Other
-            </cbp-radio>
+            <cbp-button
+              type="reset"
+              color="secondary"
+              fill="outline"
+            >
+              <cbp-icon name="circle"></cbp-icon>Reset
+            </cbp-button>
+
+            <cbp-button
+              color="primary"
+              fill="solid"
+            >
+              <cbp-icon name="check-circle"></cbp-icon>Apply
+            </cbp-button>
           </cbp-flex>
-        </cbp-form-field>
-
-        <cbp-form-field
-          label="Passenger Age Range"
-        >
-          <cbp-slider hide-minmax>
-            <input
-              type="range"
-              name="age"
-            />
-          </cbp-slider>
-        </cbp-form-field>
-
-        <cbp-form-field
-          label="Country that Issued Passport"
-          description="Required."
-        >
-          <select name="select">
-            <option value="">United States of America</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-            <option value="4">Option 4</option>
-            <option value="5">Option 5</option>
-          </select>
-        </cbp-form-field>
-
-        <cbp-form-field
-          label="Port of Departure"
-          description="Required."
-        >
-          <select name="select">
-            <option value="">Any</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-            <option value="4">Option 4</option>
-            <option value="5">Option 5</option>
-          </select>
-        </cbp-form-field>
-
-        <cbp-form-field
-          label="Port of Arrival"
-          description="Required."
-        >
-          <select name="select">
-            <option value="">JFK (XXXX/SM)</option>
-            <option value="1">Option 1</option>
-            <option value="2">Option 2</option>
-            <option value="3">Option 3</option>
-            <option value="4">Option 4</option>
-            <option value="5">Option 5</option>
-          </select>
-        </cbp-form-field>
-
-        <cbp-form-field
-          label="Arrival Date Range From:"
-          description="(MM/DD/YYYY) Format"
-        >
-          <input type="date" name="arrivaldatestart" />
-        </cbp-form-field>
-
-        <cbp-form-field
-          label="Arrival Time Range From:"
-          description="(HH:MM Format) UTC-6 America/New York."
-        >
-          <cbp-form-field-wrapper>
-            <input type="time" name="arrivaltimestart" />
-            <span slot="cbp-form-field-overlay-start">
-              <cbp-icon name="book"></cbp-icon>
-            </span>
-
-            <cbp-segmented-button-group slot="cbp-form-field-attached-button">
-              <cbp-button fill="outline" color="secondary">
-                AM
-              </cbp-button>
-
-              <cbp-button fill="outline" color="secondary">
-                PM
-              </cbp-button>
-
-              <cbp-button fill="outline" color="secondary">
-                24 HR
-              </cbp-button>
-            </cbp-segmented-button-group>
-          </cbp-form-field-wrapper>
-        </cbp-form-field>
-
-        <cbp-form-field
-          label="Arrival Date Range To:"
-          description="(MM/DD/YYYY) Format"
-        >
-          <input type="date" name="arrivaldateend" />
-        </cbp-form-field>
-
-        <cbp-form-field
-          label="Arrival Time Range To:"
-          description="(HH:MM Format) UTC-6 America/New York."
-        >
-          <cbp-form-field-wrapper>
-            <input type="time" name="arrivaltimeend" />
-            <span slot="cbp-form-field-overlay-start">
-              <cbp-icon name="book"></cbp-icon>
-            </span>
-
-            <cbp-segmented-button-group slot="cbp-form-field-attached-button">
-              <cbp-button fill="outline" color="secondary">
-                AM
-              </cbp-button>
-
-              <cbp-button fill="outline" color="secondary">
-                PM
-              </cbp-button>
-
-              <cbp-button fill="outline" color="secondary">
-                24 HR
-              </cbp-button>
-            </cbp-segmented-button-group>
-          </cbp-form-field-wrapper>
-        </cbp-form-field>
-
-
-        <cbp-flex
-          justify-content="end"
-          gap="var(--cbp-space-4x)"
-        >
-          <cbp-button
-            color="secondary"
-            fill="outline"
-          >
-            <cbp-icon name="circle"></cbp-icon>Reset
-          </cbp-button>
-
-          <cbp-button
-            color="primary"
-            fill="solid"
-          >
-            <cbp-icon name="check-circle"></cbp-icon>Apply
-          </cbp-button>
-        </cbp-flex>
-
+        </form>
       </cbp-panel>
     </cbp-drawer>
     `;
@@ -761,17 +814,17 @@ function manifestPane(manifestArgs) {
         <cbp-drawer
           position= "right"
           accessibility-text= "Manifest Drawer"
-          uid= "manifestDrawer"
+          uid= "manifestdrawer"
         >
           <cbp-panel
-            aria-labelledby="panelheader"
+            aria-labelledby="manifestdrawerheader"
             role="complementary"
           >
             <cbp-typography
               slot="cbp-panel-header"
               tag="h3"
               variant="heading-lg"
-              id="panelheader"
+              id="manifestdrawerheader"
             >
               Manifests
             </cbp-typography>
@@ -864,7 +917,7 @@ function initThemeSwitcher() {
 }
 
 
-const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, passengersArgs, manifestArgs }) => {
+const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, passengersArgs, manifestArgs }) => {
   /** Techdebt for iteration on filter & manifest pane:
    * Icon for the app directory button is incorrect, verify all icons in buttons, most of these are initial stubs
    * Buttons in the universal header need spacing between icon & text
@@ -942,7 +995,10 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, passengersAr
     </cbp-universal-header>
 
     <cbp-app-header
-      subnav-drawer-id="appHeaderDrawer"
+      subnav-drawer-id="appheaderdrawer"
+      ${search ? `search` : ``}
+      ${searchMethod ? `search-method=${searchMethod}` : ``}
+      ${searchAction ? `search-action=${searchAction}` : ``}
     >
       ${generateNavItems(navItems)}
     </cbp-app-header>
@@ -1119,3 +1175,4 @@ Internal.args = {
     },
   ],
 };
+ 
