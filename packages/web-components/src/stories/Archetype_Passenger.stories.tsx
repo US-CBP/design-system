@@ -479,7 +479,7 @@ function passengerList(passengerArgs) {
             fill="outline"
             color="secondary"
             target-prop="open"
-            controls="manifestDrawer"
+            controls="manifestdrawer"
           >
             <cbp-icon name="circle-info"></cbp-icon>Manifests
           </cbp-button>
