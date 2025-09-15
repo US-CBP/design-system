@@ -6,7 +6,22 @@ export default {
       root: '#storybook-root',
     },
   },
-  argTypes: {},
+  argTypes: {    
+    search: {
+      description: 'determines if the search field is rendered',
+      control: 'boolean'
+    },
+    searchMethod: {
+      description: 'set the method attribute on the form for search',
+      control: 'text',
+      if:{ arg: 'search'}
+    },
+    searchAction: {
+      description: 'set the action attribute on the form for search',
+      control: 'text',
+      if:{ arg: 'search'}
+    }
+  },
   args: {
     username: 'Johnathan Smithington',
     hashid: 'HASHIDX',
@@ -33,7 +48,8 @@ export default {
         name: 'Nav Item 3',
         href: './?path=/story/components-application-header--application-header#',
       },
-    ]
+    ],
+
   },
 };
 
@@ -164,7 +180,7 @@ function renderUserPref(username, hashid) {
           slot="cbp-panel-header"
           tag="h2"
           variant="heading-lg"
-          id="userPrefHeader"
+          id="userprefheader"
         >      
           <cbp-icon name="user"></cbp-icon>
           User Preferences
@@ -424,10 +440,10 @@ function passengerList(passengerArgs) {
         >
           <cbp-form-field
             label="Sort By"
-            field-id="filterResults"
+            field-id="filterresults"
             sx='{"margin":"0"}'
           >
-            <cbp-dropdown field-id="filterResults">
+            <cbp-dropdown field-id="filterresults">
               <cbp-dropdown-item value="1">
                 Closest to Arrival
               </cbp-dropdown-item>
@@ -481,7 +497,7 @@ function passengerList(passengerArgs) {
       </cbp-flex>
 
 
-      <cbp-structured-list id="passengerList" header-id="list-header" striped  sx='{"margin-top":"var(--cbp-space-4x)"}'>
+      <cbp-structured-list id="passengerlist" header-id="list-header" striped  sx='{"margin-top":"var(--cbp-space-4x)"}'>
         <div slot="cbp-structured-list-header" id="list-header">
             XX Results - X filters Applied - Updated : 11/01/2024 10:00 EST 
         </div>
@@ -547,7 +563,7 @@ function passengerList(passengerArgs) {
 function filterPanel() {
   return `
     <cbp-drawer
-      uid= "filterDrawer"
+      uid= "filterdrawer"
       position="left"
       persist-at="min-width:64rem"
       sx='{"flex-basis":"20rem"}'
@@ -559,7 +575,7 @@ function filterPanel() {
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="filterPanelheader"
+          id="filterpanelheader"
         >
           <cbp-icon name="filter" size="var(--cbp-space-6x)" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>Filter
         </cbp-typography>
@@ -678,7 +694,7 @@ function filterPanel() {
             <input
               placeholder="HH:MM"
               maxlength="5"
-              name="time"
+              name="arrivalfrom"
             />
             <cbp-icon
               slot="cbp-form-field-overlay-start"
@@ -686,7 +702,7 @@ function filterPanel() {
             ></cbp-icon>
 
             <span slot="cbp-form-field-attached-button">
-              <cbp-segmented-button-group name="arrivalTime">
+              <cbp-segmented-button-group name="arrivalfromampm">
                 <cbp-button
                   type="button"
                   value="AM"
@@ -721,14 +737,14 @@ function filterPanel() {
         </cbp-form-field>
 
         <cbp-form-field
-          label="Departure Time Range From:"
+          label="Arrival Time Range To:"
           description="(HH:MM Format) UTC-6 America/New York"
         >
           <cbp-form-field-wrapper>
             <input
               placeholder="HH:MM"
               maxlength="5"
-              name="time"
+              name="arrivalto"
             />
             <cbp-icon
               slot="cbp-form-field-overlay-start"
@@ -736,7 +752,7 @@ function filterPanel() {
             ></cbp-icon>
 
             <span slot="cbp-form-field-attached-button">
-              <cbp-segmented-button-group name="departTime">
+              <cbp-segmented-button-group name="arrivaltoampm">
                 <cbp-button
                   type="button"
                   value="AM"
@@ -795,7 +811,7 @@ function manifestPane(manifestArgs) {
         <cbp-drawer
           position= "right"
           accessibility-text= "Manifest Drawer"
-          uid= "manifestDrawer"
+          uid= "manifestdrawer"
         >
           <cbp-panel
             aria-labelledby="manifestDrawerHeader"
@@ -805,7 +821,7 @@ function manifestPane(manifestArgs) {
               slot="cbp-panel-header"
               tag="h3"
               variant="heading-lg"
-              id="manifestDrawerHeader"
+              id="manifestdrawerheader"
             >
               Manifests
             </cbp-typography>
@@ -898,7 +914,7 @@ function initThemeSwitcher() {
 }
 
 
-const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, passengersArgs, manifestArgs }) => {
+const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, passengersArgs, manifestArgs }) => {
   /** Techdebt for iteration on filter & manifest pane:
    * Icon for the app directory button is incorrect, verify all icons in buttons, most of these are initial stubs
    * Buttons in the universal header need spacing between icon & text
@@ -976,8 +992,10 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, passengersAr
     </cbp-universal-header>
 
     <cbp-app-header
-      subnav-drawer-id="appHeaderDrawer"
-      search
+      subnav-drawer-id="appheaderdrawer"
+      ${search ? `search` : ``}
+      ${searchMethod ? `search-method=${searchMethod}` : ``}
+      ${searchAction ? `search-action=${searchAction}` : ``}
     >
       ${generateNavItems(navItems)}
     </cbp-app-header>
