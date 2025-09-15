@@ -290,14 +290,14 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, searc
         </main>
 
         <cbp-panel
-          aria-labelledby="panelheader"
+          aria-labelledby="sideBarPanelheader"
           role="complementary"
         >
           <cbp-typography
             slot="cbp-panel-header"
             tag="h3"
             variant="heading-lg"
-            id="panelheader"
+            id="sideBarPanelheader"
           >
             Sidebar Header
           </cbp-typography>
@@ -471,7 +471,7 @@ function renderUserPref(username, hashid) {
           slot="cbp-panel-header"
           tag="h2"
           variant="heading-lg"
-          id="panelheader"
+          id="userPrefHeader"
         >
           <cbp-icon name="user"></cbp-icon>
           User Preferences

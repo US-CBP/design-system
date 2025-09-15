@@ -164,7 +164,7 @@ function renderUserPref(username, hashid) {
           slot="cbp-panel-header"
           tag="h2"
           variant="heading-lg"
-          id="panelheader"
+          id="userPrefHeader"
         >      
           <cbp-icon name="user"></cbp-icon>
           User Preferences
@@ -553,13 +553,13 @@ function filterPanel() {
       sx='{"flex-basis":"20rem"}'
     >
       <cbp-panel
-        aria-labelledby="panelheader"
+        aria-labelledby="filterPanelheader"
       >
         <cbp-typography
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="panelheader"
+          id="filterPanelheader"
         >
           <cbp-icon name="filter" size="var(--cbp-space-6x)" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>Filter
         </cbp-typography>
@@ -671,7 +671,7 @@ function filterPanel() {
         </cbp-form-field>
 
         <cbp-form-field
-          label="Field Title"
+          label="Arrival Time Range From:"
           description="(HH:MM Format) UTC-6 America/New York"
         >
           <cbp-form-field-wrapper>
@@ -686,7 +686,7 @@ function filterPanel() {
             ></cbp-icon>
 
             <span slot="cbp-form-field-attached-button">
-              <cbp-segmented-button-group name="time-ampm">
+              <cbp-segmented-button-group name="arrivalTime">
                 <cbp-button
                   type="button"
                   value="AM"
@@ -721,7 +721,7 @@ function filterPanel() {
         </cbp-form-field>
 
         <cbp-form-field
-          label="Field Title"
+          label="Departure Time Range From:"
           description="(HH:MM Format) UTC-6 America/New York"
         >
           <cbp-form-field-wrapper>
@@ -736,7 +736,7 @@ function filterPanel() {
             ></cbp-icon>
 
             <span slot="cbp-form-field-attached-button">
-              <cbp-segmented-button-group name="time-ampm">
+              <cbp-segmented-button-group name="departTime">
                 <cbp-button
                   type="button"
                   value="AM"
@@ -798,14 +798,14 @@ function manifestPane(manifestArgs) {
           uid= "manifestDrawer"
         >
           <cbp-panel
-            aria-labelledby="panelheader"
+            aria-labelledby="manifestDrawerHeader"
             role="complementary"
           >
             <cbp-typography
               slot="cbp-panel-header"
               tag="h3"
               variant="heading-lg"
-              id="panelheader"
+              id="manifestDrawerHeader"
             >
               Manifests
             </cbp-typography>
