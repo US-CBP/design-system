@@ -569,7 +569,7 @@ function filterPanel() {
       sx='{"flex-basis":"20rem"}'
     >
       <cbp-panel
-        aria-labelledby="filterPanelheader"
+        aria-labelledby="filterpanelheader"
       >
         <cbp-typography
           slot="cbp-panel-header"
@@ -580,9 +580,7 @@ function filterPanel() {
           <cbp-icon name="filter" size="var(--cbp-space-6x)" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>Filter
         </cbp-typography>
         <form
-          id="filterpanelsearch"
           action=""
-          method="get"
         >
           <cbp-form-field
             label="Search"
@@ -1177,3 +1175,4 @@ Internal.args = {
     },
   ],
 };
+ 
