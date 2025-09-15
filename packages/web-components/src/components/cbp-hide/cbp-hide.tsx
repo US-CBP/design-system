@@ -55,6 +55,7 @@ export class CbpHide {
     this.hideToggle.emit({
       host: this.host,
       hidden: this.hidden,
+      mq: mql
     });
   }
 
@@ -71,6 +72,7 @@ export class CbpHide {
     this.hideToggle.emit({
       host: this.host,
       hidden: this.hidden,
+      mq: mql
     });
   }
 
@@ -111,5 +113,4 @@ export class CbpHide {
       </Host>
     );
   }
-
 }
