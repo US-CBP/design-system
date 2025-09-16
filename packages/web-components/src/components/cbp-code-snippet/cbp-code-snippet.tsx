@@ -38,21 +38,24 @@ export class CbpCodeSnippet {
 
   /** Emits a custom event when the "Copy" button is activated, copying the code to the clipboard. */
   @Event() copyTextClick: EventEmitter;
-  copyText() {
+  copyText(e) {
     navigator.clipboard.writeText(this.codeBlock);
     this.copyTextClick.emit({
       host: this.host,
+      code: this.codeBlock,
+      nativeEvent: e
     });
   }
 
   /** Emits a custom event when the the "Show More/Less" control is activated (for code blocks overflowing the specified height). */
   @Event() toggleShowAllClick: EventEmitter;
-  toggleShowAll() {
+  toggleShowAll(e) {
     // Toggle the expanded state last, after logic checks, to cause a re-render.
     this.expanded = !this.expanded;
     this.toggleShowAllClick.emit({
       host: this.host,
       expanded: this.expanded,
+      nativeEvent: e
     });
   }
 
@@ -106,7 +109,15 @@ export class CbpCodeSnippet {
           <code></code>
 
           {this.variant == 'block' && 
-            <cbp-button type="button" fill="ghost" color="secondary" variant='square' accessibilityText='Copy' onClick={() => this.copyText()} context={this.context}>
+            <cbp-button 
+              type="button"
+              fill="ghost" 
+              color="secondary" 
+              variant='square' 
+              accessibilityText='Copy' 
+              onClick={(e) => this.copyText(e)} 
+              context={this.context}
+            >
               <cbp-icon name="clone"></cbp-icon>
             </cbp-button>
           }
@@ -118,7 +129,7 @@ export class CbpCodeSnippet {
             color="secondary" 
             expanded={`${this.expanded}`} 
             context={this.context}
-            onClick={() => this.toggleShowAll()} 
+            onClick={(e) => this.toggleShowAll(e)} 
           >
             <cbp-icon name="chevron-right" rotate={this.toggleButtonRotate}></cbp-icon>
             {this.toggleButtonText}

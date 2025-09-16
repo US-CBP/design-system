@@ -59,12 +59,14 @@ export class CbpFormField {
 
   /** A custom event emitted when the the nested input is changed by user interaction. */
   @Event() valueChange: EventEmitter;
+  // TechDebt: Seems to be firing twice with a different CurrentTarget on each instance (one on the component, the other on the document/root)
   // TechDebt: needs testing with input groups
-  handleChange() {
+  handleChange(e) {
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formField,
       value: this.formField.value,
+      nativeEvent: e
     });
   }
 
@@ -175,7 +177,7 @@ export class CbpFormField {
           ? this.fieldId = this.formField.getAttribute('id')
           : this.formField.setAttribute('id', `${this.fieldId}`);
         this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
-        this.formField.addEventListener('change', this.handleChange());
+        this.formField.addEventListener('change', (e) => this.handleChange(e));
       }
 
       // Set the disabled/readonly/error states on load only if true. (The Watch decorators only listen for changes, not initial state)

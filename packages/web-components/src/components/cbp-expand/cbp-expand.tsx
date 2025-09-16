@@ -43,12 +43,13 @@ export class CbpExpand {
 
   /** A custom event emitted when the accordion item control is activated. */
   @Event() expandClick: EventEmitter;
-  handleClick() {
+  handleClick(e) {
     this.open = !this.open;
     this.expandClick.emit({
       host: this.host,
       button: this.button,
       open: this.open,
+      nativeEvent: e
     });
     this.button.focus();
   }
@@ -73,7 +74,7 @@ export class CbpExpand {
           class="cbp-expand--control"
           alignItems="flex-start"
           gap="var(--cbp-space-1x)"
-          onClick={() => this.handleClick()}
+          onClick={e => this.handleClick(e)}
         >
           <cbp-flex-item>
             <cbp-button

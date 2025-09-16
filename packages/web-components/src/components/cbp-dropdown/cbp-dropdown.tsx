@@ -118,21 +118,10 @@ export class CbpDropdown {
    */
   @Event() populateCombobox: EventEmitter;
 
-  // Dropdown Item selection
-  selectDropdownItem({target}) {
-    // Ignore a click on the label because it will fire a click on the input as well
-    if(target.tagName != "LABEL") {
-      this.valueChange.emit({
-        host: this.host,
-        value: this.value
-      });
-    }
-    //this.selected=true; delegate this to the parent level because we don't know if this is single or multiselect here
-  }
-
 
   @Listen('dropdownItemClick')
-  handleDropdownItemClick({ detail: { host, label, value } }) {
+  handleDropdownItemClick(e) {
+    const { host, label, value } = e.detail;
     let oldIndex=this.focusIndex;
 
     // multi-select behavior
@@ -184,6 +173,7 @@ export class CbpDropdown {
       nativeElement: this.formField,
       value: this.value,
       label: this.selectedLabel,
+      nativeEvent: e
     });
   }
 
@@ -417,7 +407,7 @@ export class CbpDropdown {
    * Emits the valueChange event afterward.
    */
   @Method()
-  async clearSelections() {
+  async clearSelections(e=undefined) {
     this.selectedItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item[selected]'));
     this.selectedItems.forEach(item => {
       item.selected = false;
@@ -437,6 +427,7 @@ export class CbpDropdown {
       nativeElement: this.formField,
       value: this.value,
       label: undefined,
+      nativeEvent: e
     });
   }
 
@@ -446,7 +437,7 @@ export class CbpDropdown {
   }
 
   handleCounterClick(e) {
-    this.clearSelections();
+    this.clearSelections(e);
     e.stopImmediatePropagation();
     this.counterControl.focus();
   }
@@ -454,7 +445,7 @@ export class CbpDropdown {
   handleCounterKeydown(e) {
     const { key } = e;
     if (key == ' ' || key == 'Enter') {
-      this.clearSelections();
+      this.clearSelections(e);
       e.preventDefault();
       this.counterControl.focus();
     }
@@ -823,7 +814,7 @@ export class CbpDropdown {
             aria-haspopup="listbox"
             aria-invalid={this.error ? 'true' : false}
             disabled={this.disabled || this.readonly || ( (!this.async) && (!this.items) && (this.dropdownItems.length < 1))} 
-            onClick={(e) => this.handleDropdownClick(e)}
+            onClick={e => this.handleDropdownClick(e)}
             onKeyDown={e => this.getActionFromKey(e)}
             ref={el => (this.control = el)}
           >

@@ -36,7 +36,8 @@ export class CbpDropdownItem {
 
 
   @Event() dropdownItemClick: EventEmitter;
-  handleClick({target}) {
+  handleClick(e) {
+    const {target} = e;
     // Do nothing if disabled
     if (!this.disabled) {
       // Ignore a click on the label because it will fire a click on the input as well
@@ -46,7 +47,8 @@ export class CbpDropdownItem {
           host: this.host,
           target: target,
           label: label,
-          value: (!!this.value) ? this.value : label
+          value: (!!this.value) ? this.value : label,
+          nativeEvent: e
         });
         //console.log('Dropdown Item Click: ', this.value, (!!this.value) ? this.value : label);
       }
@@ -73,7 +75,7 @@ export class CbpDropdownItem {
       <Host
         role="option"
         id={this.itemId}
-        onClick={ (e) => this.handleClick(e)}
+        onClick={e => this.handleClick(e)}
         aria-selected={this.selected ? "true" : "false"}
       >
         <div class="cbp-dropdown-item-content">

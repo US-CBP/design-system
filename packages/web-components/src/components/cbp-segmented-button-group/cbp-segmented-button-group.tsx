@@ -55,7 +55,9 @@ export class SegmentedButtonGroup {
   }
 
   @Listen('buttonClick')
-  handleButtonClick({ detail: { nativeElement: element, host, value } }) {
+  handleButtonClick(e) {
+    const { detail: { nativeElement: element, host, value } } = e;
+
     // Toggle "pressed" prop on the button only when multiple selections are allowed; 
     // otherwise, it acts like a radio list and a click selects it but doesn't deselect it.
     if (this.multiple) host.pressed = (host.pressed == "true") ? "false" : "true";
@@ -83,6 +85,7 @@ export class SegmentedButtonGroup {
         button: element,
         buttonValue: value,
         pressed: host.pressed,
+        nativeEvent: e
       });
     },10);
   }

@@ -38,12 +38,13 @@ export class CbpTab {
   
   /** Emits a custom even containing an object that describes the tab that was activated. */
   @Event() tabClicked: EventEmitter;
-  handleTabClick() {
+  handleTabClick(e=undefined) {
     this.selected=true;
     this.tabClicked.emit({
       host: this.host,
       tab: this.button,
       name: this.name,
+      nativeEvent: e
     });
   }
 
@@ -77,7 +78,7 @@ export class CbpTab {
           aria-controls={this.name}
           tabindex={this.selected ? 0 : -1} // is this safe?
           ref={(el) => this.button = el} 
-          onClick={() => this.handleTabClick()}
+          onClick={e => this.handleTabClick(e)}
       >
           <slot />
         </button>

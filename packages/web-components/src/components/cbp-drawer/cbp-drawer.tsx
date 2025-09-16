@@ -46,7 +46,7 @@ export class CbpDrawer {
   /** Custom event fired when the drawer is closed. */
   @Event() drawerClose!: EventEmitter;
 
-
+  // TechDebt: closeDrawer is called (and event emitted) twice in some cases.
   @Watch('open')
   watchOpenHandler(newValue: boolean) {
     newValue == true ? this.setFocus() : this.closeDrawer();
@@ -54,21 +54,23 @@ export class CbpDrawer {
 
   /** A public method for opening the drawer. */
   @Method()
-  async openDrawer() {
+  async openDrawer(e=undefined) {
     this.open = true;
     this.drawerOpen.emit({
       host: this.host,
       open: this.open,
+      nativeEvent: e
     });
   }
 
   /** A public method for closing the drawer. */
   @Method()
-  async closeDrawer() {
+  async closeDrawer(e=undefined) {
     this.open = false;
     this.drawerClose.emit({
       host: this.host,
       open: this.open,
+      nativeEvent: e
     });
   }
 
@@ -81,12 +83,13 @@ export class CbpDrawer {
     }, 100);
   }
 
-  handleBackdropClick({ target }) {
-    !target.closest('.cbp-drawer__content') && this.closeDrawer();
+  handleBackdropClick(e) {
+    const { target } = e;
+    !target.closest('.cbp-drawer__content') && this.closeDrawer(e);
   }
 
   handleKeyUp(e) {
-    e.key == 'Escape' && this.closeDrawer();
+    e.key == 'Escape' && this.closeDrawer(e);
   }
 
 
@@ -133,7 +136,8 @@ export class CbpDrawer {
       <Host 
         class={ (this.persistent && !this.open) ? "cbp-drawer--persistent" : ""}
         onClick={e => this.handleBackdropClick(e)} 
-        onKeyUp={e => this.handleKeyUp(e)} id={this.uid}
+        onKeyUp={e => this.handleKeyUp(e)}
+        id={this.uid}
       >
         <div
           ref={el => (this.drawer = el)}

@@ -50,11 +50,12 @@ export class CbpLink {
 
   /** A custom event emitted with the anchor is activated/clicked. */
   @Event() linkClick!: EventEmitter;
-  handleClick = () => {
+  handleClick(e) {
     this.linkClick.emit({
       host: this.host,
       nativeElement: this.anchor,
       href: this.href,
+      nativeEvent: e
     });
   };
 
@@ -94,7 +95,7 @@ export class CbpLink {
             aria-disabled={this.disabled ? 'true' : false}
             role={this.disabled ? 'link' : null}
             accessKey={this.shortcutKey}
-            onClick={() => this.handleClick()}
+            onClick={(e) => this.handleClick(e)}
             ref={el => (this.anchor = el)}
           >
             <slot />

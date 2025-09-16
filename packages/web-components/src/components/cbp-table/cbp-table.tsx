@@ -83,8 +83,8 @@ export class CbpTable {
         }
 
         // ({detail: { host, nativeElement, value }})
-        control.addEventListener( "buttonClick", () => {
-          this.doSort(this.columnHeadings.indexOf(item));
+        control.addEventListener( "buttonClick", e => {
+          this.doSort(this.columnHeadings.indexOf(item), e);
         });
       }
     });
@@ -104,7 +104,7 @@ export class CbpTable {
    * emits a custom event to hook up to application logic for the actual sorting 
    */
   @Method()
-  async doSort(column: number) {
+  async doSort(column: number, e=undefined) {
     const ColumnHeading: HTMLTableCellElement = this.columnHeadings[column];
     const CbpButton = ColumnHeading.querySelector('cbp-button') as HTMLCbpButtonElement ;
     const Icon = ColumnHeading.querySelector('button cbp-icon') as HTMLCbpIconElement;
@@ -142,8 +142,10 @@ export class CbpTable {
 
     // Emit an event for the app logic to handle the actual sorting of data
     this.tableSort.emit({
+      host: this.host,
       column: column, 
-      direction: direction
+      direction: direction,
+      nativeEvent: e
     })
   }
 
