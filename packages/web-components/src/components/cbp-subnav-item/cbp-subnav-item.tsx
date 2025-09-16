@@ -17,6 +17,8 @@ export class CbpSubnavItem {
 
   private icon: string;
   private parent: boolean;
+  private link: HTMLAnchorElement;
+  private expandButton: HTMLCbpButtonElement;
 
   @Element() host: HTMLCbpSubnavItemElement;
 
@@ -48,20 +50,33 @@ export class CbpSubnavItem {
   @Prop() sx: any = {};
 
 
-  @Event() toggleSubnavItem: EventEmitter;
-  handleToggleSubnavItem(){
+  // this event should not bubble since items can be nested
+  @Event({
+    eventName: 'toggleSubnavItem',
+    bubbles: false,
+  }) toggleSubnavItem: EventEmitter;
+
+  handleToggleSubnavItem(e){
     this.open = !this.open;
     this.toggleSubnavItem.emit({
       host: this.host,
       open: this.open,
+      nativeElement: this.expandButton?.querySelector('button'),
+      nativeEvent: e
     });
   }
 
-  @Event() subnavItemClick: EventEmitter;
-  handleSubnavClick(){
+  // this event should not bubble since items can be nested
+  @Event({
+    eventName: 'subnavItemClick',
+    bubbles: false,
+  }) subnavItemClick: EventEmitter;
+  handleSubnavClick(e){
     this.current=true;
     this.subnavItemClick.emit({
       host: this.host,
+      nativeElement: this.link,
+      nativeEvent: e
     })
   }
 
@@ -79,6 +94,10 @@ export class CbpSubnavItem {
     });
   }
 
+  componentDidLoad() {
+    this.link=this.host.querySelector('a');
+  }
+
   // TechDebt: routing to be implemented
   render() {
     return (
@@ -92,7 +111,7 @@ export class CbpSubnavItem {
             href={this.href}
             aria-current={this.current ? "page" : "false"}
             context={this.context}
-            onClick={() => this.handleSubnavClick()}
+            onClick={e => this.handleSubnavClick(e)}
           >
             { !this.host.querySelector('[slot=cbp-subnav-item-label]') && this.label}
             <slot name="cbp-subnav-item-label" />
@@ -105,7 +124,8 @@ export class CbpSubnavItem {
               expanded={`${this.open}`}
               aria-labelledby={this.uid}
               context={this.context}
-              onClick={() => this.handleToggleSubnavItem()}
+              ref={el => this.expandButton = el}
+              onClick={e => this.handleToggleSubnavItem(e)}
             >
               <cbp-icon name={this.icon}></cbp-icon>  
             </cbp-button>
