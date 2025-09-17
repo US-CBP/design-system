@@ -337,6 +337,7 @@ function renderPeopleTab(items, searchText){
             <cbp-form-field
                 label="Search"
                 field-id="search"
+                sx='{"--cbp-form-field-margin-bottom":"var(--cbp-space-6x)"}'
             >
                 <cbp-form-field-wrapper>
                     <input
@@ -360,12 +361,7 @@ function renderPeopleTab(items, searchText){
                 </cbp-form-field-wrapper>
             </cbp-form-field>
         </cbp-flex-item>
-        <cbp-flex-item
-            sx='{
-                    "margin-top":"0.5rem",
-                    "margin-left":"auto"
-                }'
-        >
+        <cbp-flex-item sx='{"margin-left":"auto"}'>
             <cbp-button
                 type="button"
                 fill="outline"
@@ -378,12 +374,10 @@ function renderPeopleTab(items, searchText){
             </cbp-button>
         </cbp-flex-item>
         <cbp-flex-item
-            sx='{"margin-top":"0.5rem"}'
         >
             <cbp-typography tag="span"> <b><i>Alpha Sort</i></b> </cbp-typography>
         </cbp-flex-item>
         <cbp-flex-item
-            sx='{"margin-top":"0.5rem"}'
         >
             <cbp-segmented-button-group>
                 <cbp-button
