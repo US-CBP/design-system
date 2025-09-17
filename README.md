@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="packages/vanilla/assets/images/CBP_SEAL.svg" height="200" width="200" />
+  <img src="packages/web-components/assets/images/cbp-seal.svg" height="200" width="200" />
 </p>
 
 <h1 align="center">[ALPHA] U.S. Customs and Border Protection (CBP) Design System</h1>

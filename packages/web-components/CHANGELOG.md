@@ -6,7 +6,12 @@ The React components are wrappers generated from this package and will share the
 
 ## [unreleased] TBD
 
-* Additional `cbp-app-header` bugfix for the `searchInput` event not being emitted properly.
+* Additional `cbp-app-header` bugfix for the `searchInput` event not being emitted properly and accessibility improvements.
+* Updated custom events across all components:
+  * Added a "nativeEvent" key to most event to pass a reference to the native event that triggered the custom event. This exposes all other event properties and methods, making it easier to stopPropagation() or preventDefault() on the native event.
+  * Added the media query to the `cbp-hide` custom event, which may be useful for debugging purposes.
+  * Prevent `subnavItemClick` and `toggleSubnavItem` from bubbling, since these components are commonly nested.
+  * Verified every event emitter changed is firing and noted issues for further investigation.
 
 ## [0.0.1-develop.25] 09-09-2025
 
