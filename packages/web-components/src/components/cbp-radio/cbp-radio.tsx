@@ -43,13 +43,14 @@ export class CbpRadio {
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() stateChanged: EventEmitter;
-  handleChange() {
+  handleChange(e) {
     this.checked=this.formField.checked;
     this.stateChanged.emit({
       host: this.host,
       nativeElement: this.formField,
       value: this.formField.value,
-      checked: this.formField.checked
+      checked: this.formField.checked,
+      nativeEvent: e
     });
   }
 
@@ -76,7 +77,7 @@ export class CbpRadio {
     if (this.formField) {
       const radioId = this.formField.getAttribute('id');
       radioId ? this.fieldId = radioId : this.formField.setAttribute('id', this.fieldId);
-      this.formField.addEventListener('change', () => this.handleChange());
+      this.formField.addEventListener('change', e => this.handleChange(e));
     }
   }
 

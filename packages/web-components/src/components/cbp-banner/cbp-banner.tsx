@@ -19,10 +19,11 @@ export class CbpBanner {
 
   /** A custom event emitted with the Banner is dismissed. */
   @Event() bannerDismiss: EventEmitter;
-  handleDismiss() {
+  handleDismiss(e) {
     this.host.setAttribute("hidden", "");
     this.bannerDismiss.emit({
-      host: this.host
+      host: this.host,
+      nativeEvent: e
     })
   }
 
@@ -50,7 +51,7 @@ export class CbpBanner {
             fill="solid"
             color="primary"
             context="dark-always"
-            onButtonClick={() => { this.handleDismiss() }}
+            onButtonClick={e => this.handleDismiss(e)}
           >
             <cbp-icon 
               name="circle-xmark" 

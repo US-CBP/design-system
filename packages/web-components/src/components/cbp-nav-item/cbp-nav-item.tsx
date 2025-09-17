@@ -29,7 +29,7 @@ export class CbpNavItem {
   @Prop() sx: any = {};
   
   @Event() navItemClick: EventEmitter;
-  handleNavItemClick() {
+  handleNavItemClick(e) {
     state.activeItemName = this.name;
 
     // For anchors, set selected and update states (buttons will open a drawer for further action)
@@ -38,9 +38,12 @@ export class CbpNavItem {
 
       state.currentPage = this.name;
       state.currentParent = this.name;
-      // Only emit the event if it's an anchor
+
+      // Only emit the event if it's an anchor, as this event gets used by the parent app header to set "current" state
       this.navItemClick.emit({
         host: this.host,
+        nativeElement: this.control,
+        nativeEvent: e
       })
     }
   }
@@ -67,7 +70,7 @@ export class CbpNavItem {
 
   render() {
     return (
-    <Host onClick={() => this.handleNavItemClick()}>
+    <Host onClick={e => this.handleNavItemClick(e)}>
       <slot />
     </Host>
     );  

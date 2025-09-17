@@ -62,6 +62,7 @@ function generateNavItems(items, drawerid=undefined){
             color="secondary" 
             target-prop="open" 
             controls=${drawerid}
+            expanded="false"
           >
             ${label}
             <cbp-icon name="chevron-right" rotate="90"></cbp-icon>

@@ -105,10 +105,12 @@ export class CbpFileInput {
     // send focus back to the form field just in case focus was lost/not applied automatically by the browser.
     this.formField.focus();
 
+    // TechDebt: this event seems to be firing 3 times when adding a file, based on the native change event, which is doing the same.
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formField,
-      value: this.files
+      value: this.files,
+      nativeEvent: e
     });
   }
 
@@ -132,7 +134,9 @@ export class CbpFileInput {
 
 
   @Listen('buttonClick')
-  handleDelete({detail: {value}}) {
+  handleDelete(e) {
+    const {detail: {value}} = e;
+
     // For enhanced mode, remove individual files
     if(this.enhanced) {
       const filterIndex = value;
@@ -157,7 +161,8 @@ export class CbpFileInput {
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formField,
-      value: this.files
+      value: this.files,
+      nativeEvent: e
     });
   }
 

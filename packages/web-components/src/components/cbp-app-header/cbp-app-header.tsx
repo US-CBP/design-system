@@ -217,6 +217,7 @@ export class CbpAppHeader {
                 target-prop="open"
                 controls={this.subnavDrawerId}
                 accessibilityText="Navigation Menu"
+                expanded="false"
               >
                 <cbp-icon name="bars" />
               </cbp-button>
@@ -252,6 +253,7 @@ export class CbpAppHeader {
               <input
                 type="text"
                 name="globalSearch"
+                aria-label="Search"
                 placeholder="Start Typing - Press ESC to Close"
                 onKeyDown={e => this.handleShiftTabFocusOut(e)}
                 onInput={ e => this.handleSearchInput(e)}

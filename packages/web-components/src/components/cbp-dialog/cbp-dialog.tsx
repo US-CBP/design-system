@@ -103,7 +103,10 @@ export class CbpDialog {
 
   render() {
     return (
-      <Host onClick={e => this.handleBackdropClick(e)} onKeyDown={() => {}} id={this.uid}>
+      <Host 
+        onClick={e => this.handleBackdropClick(e)} 
+        id={this.uid}
+      >
         <div 
           role="dialog" 
           aria-modal="true" 

@@ -46,13 +46,14 @@ export class CbpCheckbox {
 
   /** A custom event emitted when the checked state changes due to user interaction. */
   @Event() stateChanged: EventEmitter;
-  handleChange() {
+  handleChange(e) {
     this.checked=this.formField.checked;
     this.stateChanged.emit({
       host: this.host,
       nativeElement: this.formField,
       value: this.formField.value,
-      checked: this.formField.checked
+      checked: this.formField.checked,
+      nativeEvent: e
     });
   }
 
@@ -84,7 +85,7 @@ export class CbpCheckbox {
     if (this.formField) {
       const checkboxId = this.formField.getAttribute('id');
       checkboxId ? this.fieldId = checkboxId : this.formField.setAttribute('id', this.fieldId);
-      this.formField.addEventListener('change', () => this.handleChange());
+      this.formField.addEventListener('change', (e) => this.handleChange(e));
     }
   }
 

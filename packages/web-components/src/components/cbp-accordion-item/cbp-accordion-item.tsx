@@ -41,14 +41,16 @@ export class CbpAccordionItem {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+
   /** A custom event emitted when the accordion item control is activated. */
   @Event() accordionItemClick: EventEmitter;
-  handleClick() {
+  handleClick(e) {
     this.open = !this.open;
     this.accordionItemClick.emit({
       host: this.host,
       button: this.button,
       open: this.open,
+      nativeEvent: e
     });
     this.button.focus();
   }
@@ -71,7 +73,7 @@ export class CbpAccordionItem {
       <Host>
         <div 
           class="cbp-accordion-item--control"
-          onClick={() => this.handleClick()}
+          onClick={(e) => this.handleClick(e)}
         >
           <cbp-button
             type="button"
