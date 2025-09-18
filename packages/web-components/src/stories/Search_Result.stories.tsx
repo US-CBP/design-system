@@ -137,6 +137,21 @@ function renderDrawer(items, drawerid, store){
   }
 }
 
+function initThemeSwitcher() {
+  const ThemeToggle = document.querySelector('cbp-toggle#darkmode') as HTMLCbpToggleElement;
+  const DarkMode = window?.matchMedia(`(prefers-color-scheme: dark)`);
+  // Set the initial toggle state based on the system setting (checked = dark)
+  ThemeToggle.checked = DarkMode.matches;
+
+  const AppComponent = document.querySelector('cbp-app') as HTMLCbpAppElement;
+  ThemeToggle.addEventListener('toggleClick', (e)=> {
+    //console.log('Toggle Clicked: ', e);
+    // Toggle the `theme` property on `cbp-app` based on this toggle
+    AppComponent.theme = e.detail.checked ? "dark" : "light";
+    // If you wanted to persist this setting, you could use sessionStorage or localStorage
+  });
+}
+
 function renderUserPref(username, hashid) {
   return `
 
@@ -328,8 +343,9 @@ function renderPeopleTab(items, searchText){
 
     return `
     <cbp-flex
-        align-items="center"
+        align-items="flex-end"
         gap="1rem"
+        sx='{"margin-bottom":"var(--cbp-space-4x)"}'
     >
         <cbp-flex-item
             flex-basis="calc(var(--cbp-space-16x) * 5)"
@@ -337,7 +353,7 @@ function renderPeopleTab(items, searchText){
             <cbp-form-field
                 label="Search"
                 field-id="search"
-                sx='{"--cbp-form-field-margin-bottom":"var(--cbp-space-6x)"}'
+                sx='{"--cbp-form-field-margin-bottom":"0"}'
             >
                 <cbp-form-field-wrapper>
                     <input
@@ -373,32 +389,37 @@ function renderPeopleTab(items, searchText){
                 Filter
             </cbp-button>
         </cbp-flex-item>
-        <cbp-flex-item
-        >
-            <cbp-typography tag="span"> <b><i>Alpha Sort</i></b> </cbp-typography>
-        </cbp-flex-item>
-        <cbp-flex-item
-        >
-            <cbp-segmented-button-group>
-                <cbp-button
-                    type="button"
-                    value="1"
-                    pressed="true"
-                    variant="square"
+        <cbp-flex-item>
+            <cbp-flex    
+                align-items="center"
+                gap="1rem"
+            >
+                <cbp-flex-item> 
+                    <cbp-typography tag="span"> <b><i>Alpha Sort</i></b> </cbp-typography>
+                </cbp-flex-item>
+                <cbp-flex-item
                 >
-                    <cbp-icon name="sort-asc"></cbp-icon>
-                </cbp-button>
+                    <cbp-segmented-button-group>
+                        <cbp-button
+                            type="button"
+                            value="1"
+                            pressed="true"
+                            variant="square"
+                        >
+                            <cbp-icon name="sort-asc"></cbp-icon>
+                        </cbp-button>
 
-                <cbp-button
-                    type="button"
-                    value="2"
-                    pressed="false"
-                    variant="square"
-                >
-                    <cbp-icon name="sort-desc"></cbp-icon>
-                </cbp-button>
-            </cbp-segmented-button-group>
-        </cbp-flex-item>
+                        <cbp-button
+                            type="button"
+                            value="2"
+                            pressed="false"
+                            variant="square"
+                        >
+                            <cbp-icon name="sort-desc"></cbp-icon>
+                        </cbp-button>
+                    </cbp-segmented-button-group>
+                </cbp-flex-item>
+            </cbp-flex>
     </cbp-flex>
     <cbp-structured-list 
         id="peopleResults" 
@@ -469,6 +490,16 @@ function renderPeopleTab(items, searchText){
 }
 
 const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchText, peopleResults, search, searchMethod, searchAction}) => {
+
+    setTimeout(() => {
+        initThemeSwitcher();
+
+        // Prevent anchors from navigating away
+        let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
+        anchors.forEach(anchor => {
+        anchor.addEventListener('click', function(e) { e.preventDefault(); })
+        });
+    }, 500);
 
   return ` 
     <cbp-skip-nav></cbp-skip-nav>
