@@ -556,7 +556,7 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
 
       <cbp-container sx='{"flex-grow":"1","padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
         <main id="main" tabindex="-1">
-          <cbp-typography tag="h1" divider="underline" sx='{"margin-bottom":"var(--cbp-space-5x)"}'>
+          <cbp-typography tag="h1" divider="underline">
             Search Results
           </cbp-typography>
 
