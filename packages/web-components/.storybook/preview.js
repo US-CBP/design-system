@@ -1,6 +1,6 @@
-import { themes } from '@storybook/theming';
+import { themes } from 'storybook/theming';
 
-import { setCustomElementsManifest } from "@storybook/web-components";
+import { setCustomElementsManifest } from "@storybook/web-components-vite";
 import customElements from "../custom-elements.json";
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import {defineCustomElements} from '../dist/loader';
@@ -44,7 +44,7 @@ export const CUSTOM_VIEWPORTS = {
 };
 
 
-/** @type { import('@storybook/web-components').Preview } */
+/** @type { import('@storybook/web-components-vite').Preview } */
 const preview = {
   parameters: {
     //actions: { argTypesRegex: '^on[A-Z].*' },
@@ -86,13 +86,14 @@ const preview = {
         tabWidth: 2,
         useTabs: false,
         htmlWhitespaceSensitivity: 'css',
+        quoteProps: "as-needed",
         proseWrap: "always",
         bracketSameLine: false,
         singleAttributePerLine: true,
       },
       highlighter: {
-        showLineNumbers: false, // TechDebt: still showing - double if true. Bug reported.
-        wrapLines: true,
+        showLineNumbers: true, // TechDebt: double line numbers fixed in v8.x of html-addon
+        wrapLines: false,
         language: 'html'
       },
       transform: (code) => {

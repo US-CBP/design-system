@@ -21,23 +21,12 @@ const config: StorybookConfig  = {
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'
   ],
   addons: [
-    //getAbsolutePath('@storybook/addon-controls'),
-    //getAbsolutePath('@storybook/addon-links'), 
     getAbsolutePath('@storybook/addon-themes'), 
-    {
-      name: getAbsolutePath('@storybook/addon-essentials'),
-      options: {
-        actions: false,
-      },
-    },
-    //getAbsolutePath('@storybook/addon-interactions'), 
-    getAbsolutePath('@storybook/addon-a11y'),
-    getAbsolutePath("@chromatic-com/storybook"),
-    {
-      name: '@whitespace/storybook-addon-html', 
-      title: 'Code',
-    },
-    'storybook-addon-tag-badges'
+    getAbsolutePath('@storybook/addon-a11y'), 
+    getAbsolutePath("@chromatic-com/storybook"), 
+    "@whitespace/storybook-addon-html",
+    getAbsolutePath("storybook-addon-tag-badges"), 
+    getAbsolutePath("@storybook/addon-docs")
   ],
   staticDirs: [
     '../dist',

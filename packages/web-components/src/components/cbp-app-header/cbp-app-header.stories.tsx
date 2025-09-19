@@ -76,7 +76,17 @@ function generateNavItems(items, drawerid=undefined){
 
 function generateSubnav(items){
   const html = items.map(({ icon, label, name, href, children, current }) => {
-      return `<cbp-subnav-item label="${label}" name="${name}" href=${href} ${current? 'current' : ''}  >${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``} ${children? generateSubnav(children) : ``}</cbp-subnav-item>`;
+      return `
+        <cbp-subnav-item
+          label="${label}"
+          name="${name}"
+          href=${href}
+          ${current? 'current' : ''}
+        >
+          ${icon ? `<span slot="cbp-subnav-item-label">${icon} ${label}</span>` : ``}
+          ${children? generateSubnav(children) : ``}
+        </cbp-subnav-item>
+      `;
   });
       return html.join('');
 }
