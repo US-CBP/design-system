@@ -86,14 +86,14 @@ const preview = {
         tabWidth: 2,
         useTabs: false,
         htmlWhitespaceSensitivity: 'css',
-        quoteProps: "preserve",
-        proseWrap: "preserve",
+        quoteProps: "as-needed",
+        proseWrap: "always",
         bracketSameLine: false,
-        singleAttributePerLine: false,
+        singleAttributePerLine: true,
       },
       highlighter: {
         showLineNumbers: true, // TechDebt: double line numbers fixed in v8.x of html-addon
-        wrapLines: true,
+        wrapLines: false,
         language: 'html'
       },
       transform: (code) => {
