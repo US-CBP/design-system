@@ -12,6 +12,11 @@ The React components are wrappers generated from this package and will share the
   * Added the media query to the `cbp-hide` custom event, which may be useful for debugging purposes.
   * Prevent `subnavItemClick` and `toggleSubnavItem` from bubbling, since these components are commonly nested.
   * Verified every event emitter changed is firing and noted issues for further investigation.
+* Updated to Storybook 9.1.6, which required some other packages to be upgraded manually:
+  * Upgraded local development to node 24 and "@types/node" to ^24.5.1.
+  * Upgraded to Vite 7.1.5.
+  * Upgraded "storybook-addon-tag-badges".
+  * Upgraded "@whitespace/storybook-addon-html".
 
 ## [0.0.1-develop.25] 09-09-2025
 

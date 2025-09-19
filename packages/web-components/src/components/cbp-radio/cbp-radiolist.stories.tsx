@@ -67,18 +67,19 @@ export default {
 function generateRadios(context, radios) {
   const html = radios.map(({ label, name, value, checked, disabled }) => {
     return `
-    <cbp-radio
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
-    >
-      <input 
-        type="radio" 
-        name="${name}"
-        value="${value}"
-        ${checked ? `checked` : ''}
-        ${disabled ? `disabled` : ''}
-      />
-      ${label}
-    </cbp-radio>`;
+      <cbp-radio
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      >
+        <input 
+          type="radio" 
+          name="${name}"
+          value="${value}"
+          ${checked ? `checked` : ''}
+          ${disabled ? `disabled` : ''}
+        />
+        ${label}
+      </cbp-radio>
+    `;
   });
   return html.join('');
 }

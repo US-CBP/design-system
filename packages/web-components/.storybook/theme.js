@@ -1,4 +1,4 @@
-import { create } from '@storybook/theming/create';
+import { create } from 'storybook/theming/create';
 
 export default create({
   base: globalThis.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light', //'light',
