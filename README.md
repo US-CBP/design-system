@@ -2,7 +2,7 @@
   <img src="packages/web-components/assets/images/cbp-seal.svg" height="200" width="200" />
 </p>
 
-<h1 align="center">[ALPHA] U.S. Customs and Border Protection (CBP) Design System</h1>
+<h1 align="center">[BETA] U.S. Customs and Border Protection (CBP) Design System</h1>
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](/LICENSE)
 [![Open-Source: Policy](https://img.shields.io/badge/Open--Source-Policy-f39f37)](https://github.com/US-CBP/open-source-policy/blob/master/policy.md)
@@ -19,7 +19,7 @@ This project is set up as a monorepo, containing multiple packages. Current effo
 
 | Package Name                    | Description                                         |
 |---------------------------------|-----------------------------------------------------|
-| @cbpds/vanilla (_deprecated_)   | HTML patterns, css/scss styles and vanilla js       |
+| design-tokens (_WIP_)           | Design Tokens                                       |
 | @cbpds/web-components (_WIP_)   | Web components library                              |
 | @cbpds/react-components (_WIP_) | React components library (for React 18 and lower)   |
 | ux-guidelines  (_WIP_)          | Guidance for patterns, components and design tokens |
