@@ -1,6 +1,6 @@
 // Replace your-framework with the framework you are using (e.g., react-webpack5, vue3-vite)
 import type { StorybookConfig } from '@storybook/web-components-vite';
-
+//import type { StorybookConfig } from '@stencil/storybook-plugin'; // for testing
 import path from 'path';
 
 /**
@@ -12,12 +12,12 @@ const getAbsolutePath = (packageName: string): any =>
  
 const config: StorybookConfig  = {
   framework: {
+    //name: "@stencil/storybook-plugin" // TODO: try out the stencil plugin to see what it has to offer
     name: getAbsolutePath("@storybook/web-components-vite"),
     options: {},
   },
   stories: [
     '../src/**/*.mdx',
-    //'../src**/*.md',
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'
   ],
   addons: [

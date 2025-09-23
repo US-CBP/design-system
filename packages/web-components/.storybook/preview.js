@@ -1,6 +1,6 @@
-import { themes } from 'storybook/theming';
 
 import { setCustomElementsManifest } from "@storybook/web-components-vite";
+import { themes } from 'storybook/theming';
 import customElements from "../custom-elements.json";
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import {defineCustomElements} from '../dist/loader';
@@ -92,8 +92,8 @@ const preview = {
         singleAttributePerLine: true,
       },
       highlighter: {
-        showLineNumbers: true, // TechDebt: double line numbers fixed in v8.x of html-addon
-        wrapLines: false,
+        showLineNumbers: true,
+        wrapLines: false, // enabling this triggers a bug in ReactSyntaxHighlighter that sets each line of code to display:flex
         language: 'html'
       },
       transform: (code) => {
@@ -102,24 +102,26 @@ const preview = {
         return code.replace(/(?:_nghost|ng-reflect).*?="[\S\s]*?"/g, '');
       },
     },
-    /*
     decorators: [
-      (Story) => (
-        <ThemeProvider theme="default">
-          <Story />
-        </ThemeProvider>
-      ),
-    ],
+      /* TechDebt: no version of this is wrapping the story in the cbp-app tag properly. Going back to the withWrapper function below.
+      (story) => html`<cbp-app>${story()}</cbp-app>`,
+      withThemeByDataAttribute({
+        themes: {
+          light: 'light',
+          dark: 'dark',
+        },
+        defaultTheme: globalThis.matchMedia('(prefers-color-scheme: dark)').matches ? themes.dark : themes.light,
+        attributeName: 'data-cbp-theme',
+      }),
     */
+    ]
   },
 };
-
 export default preview;
 
 
 // Wrap every story with `cbp-app` component, which brings in the high level CSS resets, settings, and variables.
 const withWrapper = (story) => {
-  //return `<cbp-app theme="light">${story()}</cbp-app>`;
   return `<cbp-app>${story()}</cbp-app>`;
 };
 
@@ -156,6 +158,5 @@ export const decorators = [
     //defaultTheme: 'light',
     attributeName: 'data-cbp-theme',
   }),
-  //*/
 ];
 
