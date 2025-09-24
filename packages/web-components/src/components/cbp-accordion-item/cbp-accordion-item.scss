@@ -237,9 +237,9 @@ cbp-accordion-item {
  [data-cbp-theme='light'] cbp-accordion[context*='dark'],
  [data-cbp-theme='dark'] cbp-accordion:not([context='dark-inverts']):not([context='light-always']) {
 
-   --cbp-accordion-item-color: var(--cbp-color-text-lightest);
+   --cbp-accordion-item-color: var(--cbp-color-white);
    --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-50);
-   --cbp-accordion-item-color-open: var(--cbp-color-text-lightest);
+   --cbp-accordion-item-color-open: var(--cbp-color-white);
    --cbp-accordion-item-color-fill-open: var(--cbp-color-gray-cool-60);
  
    --cbp-accordion-item-color-hover: var(--cbp-color-text-darkest);
@@ -270,6 +270,11 @@ cbp-accordion-item {
         + .cbp-accordion-item--content {
           --cbp-accordion-item-color-fill: var(--cbp-color-danger-lighter);
         }
+      }
+      
+      cbp-typography,
+      cbp-typography > * {
+        --cbp-accordion-item-color: var(--cbp-color-text-darkest);
       }
     }
   }
