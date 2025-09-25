@@ -30,7 +30,7 @@ export default {
         description: 'set the action attribute on the form for search',
         control: 'text',
         if:{ arg: 'search'}
-        },
+        }
     }
 };
 
@@ -256,6 +256,160 @@ function renderUserPref(username, hashid) {
   `
 }
 
+function renderFilterDrawer(){
+  return `
+    <cbp-drawer
+      uid= "filterdrawer"
+      position="left"
+      persist-at="min-width:64rem"
+      sx='{"flex-basis":"20rem"}'
+    >
+      ${renderFilterPanel()}
+    </cbp-drawer>
+    `;
+}
+
+function renderFilterPanel(){
+return `
+      <cbp-panel
+        aria-labelledby="filterpanelheader"
+      >
+        <cbp-typography
+          slot="cbp-panel-header"
+          tag="h3"
+          variant="heading-lg"
+          id="filterpanelheader"
+        >
+          <cbp-icon name="filter" size="var(--cbp-space-6x)" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>Filter
+        </cbp-typography>
+        <form
+          action=""
+        >
+          <cbp-form-field
+            label="Arrival Date Range From:"
+            description="(MM/DD/YYYY) Format"
+          >
+            <input type="date" name="arrivaldatestart" />
+          </cbp-form-field>
+
+          <cbp-form-field
+            label="Arrival Time Range From:"
+            description="(HH:MM Format) UTC-6 America/New York"
+          >
+            <cbp-form-field-wrapper>
+              <input
+                placeholder="HH:MM"
+                maxlength="5"
+                name="arrivalfrom"
+              />
+              <cbp-icon
+                slot="cbp-form-field-overlay-start"
+                name="clock"
+              ></cbp-icon>
+
+              <span slot="cbp-form-field-attached-button">
+                <cbp-segmented-button-group name="arrivalfromampm">
+                  <cbp-button
+                    type="button"
+                    value="AM"
+                    pressed="true"
+                  >
+                    AM
+                  </cbp-button>
+
+                  <cbp-button
+                    type="button"
+                    value="PM"
+                  >
+                    PM
+                  </cbp-button>
+
+                  <cbp-button
+                    type="button"
+                    value="24H"
+                  >
+                    24 hr
+                  </cbp-button>
+                </cbp-segmented-button-group>
+              </span>
+            </cbp-form-field-wrapper>
+          </cbp-form-field>
+
+          <cbp-form-field
+            label="Arrival Date Range To:"
+            description="(MM/DD/YYYY) Format"
+          >
+            <input type="date" name="arrivaldateend" />
+          </cbp-form-field>
+
+          <cbp-form-field
+            label="Arrival Time Range To:"
+            description="(HH:MM Format) UTC-6 America/New York"
+          >
+            <cbp-form-field-wrapper>
+              <input
+                placeholder="HH:MM"
+                maxlength="5"
+                name="arrivalto"
+              />
+              <cbp-icon
+                slot="cbp-form-field-overlay-start"
+                name="clock"
+              ></cbp-icon>
+
+              <span slot="cbp-form-field-attached-button">
+                <cbp-segmented-button-group name="arrivaltoampm">
+                  <cbp-button
+                    type="button"
+                    value="AM"
+                    pressed="true"
+                  >
+                    AM
+                  </cbp-button>
+
+                  <cbp-button
+                    type="button"
+                    value="PM"
+                  >
+                    PM
+                  </cbp-button>
+
+                  <cbp-button
+                    type="button"
+                    value="24H"
+                  >
+                    24 hr
+                  </cbp-button>
+                </cbp-segmented-button-group>
+              </span>
+            </cbp-form-field-wrapper>
+          </cbp-form-field>
+
+
+          <cbp-flex
+            justify-content="end"
+            gap="var(--cbp-space-4x)"
+          >
+            <cbp-button
+              type="reset"
+              color="secondary"
+              fill="outline"
+            >
+              <cbp-icon name="circle"></cbp-icon>Reset
+            </cbp-button>
+
+            <cbp-button
+              color="primary"
+              fill="solid"
+            >
+              <cbp-icon name="check-circle"></cbp-icon>Apply
+            </cbp-button>
+          </cbp-flex>
+        </form>
+      </cbp-panel>
+    `;
+}
+
 function renderPeopleListItem(items, searchText, page, pageSize){
 const html = items.map(({ anchorTitle, location, pageCreation, lastEdited, textBlock }, index) => {
     if (index >= (page - 1) * pageSize && index < page * pageSize) {
@@ -345,7 +499,7 @@ function renderPeopleTab(items, searchText){
     <cbp-flex
         align-items="flex-end"
         gap="1rem"
-        sx='{"margin-bottom":"var(--cbp-space-4x)"}'
+        sx='{"margin":"var(--cbp-space-4x) 0"}'
     >
         <cbp-flex-item
             flex-basis="calc(var(--cbp-space-16x) * 5)"
@@ -378,16 +532,18 @@ function renderPeopleTab(items, searchText){
             </cbp-form-field>
         </cbp-flex-item>
         <cbp-flex-item sx='{"margin-left":"auto"}'>
-            <cbp-button
+             <cbp-hide hide-at="max-width: 42em">
+               <cbp-button
                 type="button"
-                fill="outline"
                 color="secondary"
-            >
-                <cbp-icon
-                    name="filter"
-                ></cbp-icon>
-                Filter
-            </cbp-button>
+                accessibility-text="Open Drawer"
+                target-prop="open"
+                controls="filterdrawer"
+                fill="outline"
+              >
+            <cbp-icon name="filter"></cbp-icon>Filter
+          </cbp-button>
+        </cbp-hide>
         </cbp-flex-item>
         <cbp-flex-item>
             <cbp-flex    
@@ -395,16 +551,23 @@ function renderPeopleTab(items, searchText){
                 gap="1rem"
             >
                 <cbp-flex-item> 
+                  <cbp-hide
+                    visually-hide-at="max-width: 42em"
+                  >
                     <cbp-typography tag="span"> <b><i>Alpha Sort</i></b> </cbp-typography>
+                  </cbp-hide>
                 </cbp-flex-item>
                 <cbp-flex-item
                 >
-                    <cbp-segmented-button-group>
+                    <cbp-segmented-button-group
+                      accessibility-text="sort search results asc/desc"
+                    >
                         <cbp-button
                             type="button"
                             value="1"
                             pressed="true"
-                            variant="square"
+                            variant="square"                      
+                            accessibility-text="sort ascending"
                         >
                             <cbp-icon name="sort-asc"></cbp-icon>
                         </cbp-button>
@@ -413,7 +576,8 @@ function renderPeopleTab(items, searchText){
                             type="button"
                             value="2"
                             pressed="false"
-                            variant="square"
+                            variant="square" 
+                            accessibility-text="sort descending"
                         >
                             <cbp-icon name="sort-desc"></cbp-icon>
                         </cbp-button>
@@ -560,16 +724,10 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
             Search Results
           </cbp-typography>
 
-          <cbp-tabs accessibility-text="Search Results">
-            <cbp-tab name="pages"> Pages </cbp-tab>
-            <cbp-tab name="people"> People </cbp-tab>
-            <cbp-tab name="hotlists"> Hotlists </cbp-tab>
-        </cbp-tabs>
-
-            <cbp-tab-panel name="pages"> ${renderPeopleTab(peopleResults, searchText)} </cbp-tab-panel>
-            <cbp-tab-panel name="people"> TODO: people function </cbp-tab-panel>
-            <cbp-tab-panel name="hotlists"> TODO: hotlists function </cbp-tab-panel>
-
+          <cbp-hide hide-at="min-width: 42em">
+            ${renderFilterPanel()}
+          </cbp-hide>
+          ${renderPeopleTab(peopleResults, searchText)} 
           </main>
       </cbp-container>
 
@@ -602,7 +760,7 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
         </section>
       </cbp-footer>
 
-      
+      ${renderFilterDrawer()}
       ${renderDrawer(navItems, 'appheaderdrawer', true)}
       ${renderUserPref(username, hashid)}
     </cbp-flex>
@@ -615,6 +773,7 @@ searchTemplate.args ={
     username: 'Johnathan Smithington',
     hashid: 'HASHIDX',
     isLoggedIn: true,
+    search: true,
     navItems: [
         {
             label: 'Application Name',

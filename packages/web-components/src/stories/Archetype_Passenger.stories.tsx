@@ -463,7 +463,7 @@ function passengerList(passengerArgs) {
             color="secondary"
             accessibility-text="Open Drawer"
             target-prop="open"
-            controls="filterDrawer"
+            controls="filterdrawer"
             fill="outline"
           >
             <cbp-icon name="filter"></cbp-icon>Filter
