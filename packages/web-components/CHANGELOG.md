@@ -12,6 +12,7 @@ The React components are wrappers generated from this package and will share the
   * Added the media query to the `cbp-hide` custom event, which may be useful for debugging purposes.
   * Prevent `subnavItemClick` and `toggleSubnavItem` from bubbling, since these components are commonly nested.
   * Verified every event emitter changed is firing and noted issues for further investigation.
+* Fixed a bug in `cbp-dropdown` where Spacebar behavior was conflicting with combobox and multiselect functionality when used together.
 * Updated to Storybook 9.1.6, which required some other packages to be upgraded manually:
   * Upgraded local development and deployment scripts to node 24 and "@types/node" to ^24.5.1.
   * Upgraded to Vite 7.1.5.
@@ -21,7 +22,7 @@ The React components are wrappers generated from this package and will share the
 ## [0.0.1-develop.25] 09-09-2025
 
 * Quick turnaround bugfix and features added to `cbp-app-header` search functionality.
-  * Added `searchSubmit` event, which is emitted when the search form is submitted and contains a reference to the native `submit` event to that preventDefault() may be called on it by application logic.
+  * Added `searchSubmit` event, which is emitted when the search form is submitted and contains a reference to the native `submit` event to that `preventDefault()` may be called on it by application logic.
   * Added a new named slot for non-navigation items aligned to the right in the Application Header, but outside of the `nav` landmark.
   * Fixed console errors in some edge case conditions.
 * Added a note about Typescript support to the "Using the Web Components" documentation.

@@ -33,6 +33,8 @@ export class CbpDropdown {
   private attachedButtonStartWidth;
   private attachedButtonEndWidth;
 
+  private typingMode: boolean = false; // track typing mode for combobox mode (only when filter=true)
+
   @Element() host: HTMLCbpDropdownElement;
 
   /** Specifies whether multiple selections are supported, in which case checkboxes shall be slotted in accordance with the design system specified pattern. Defaults to false, which renders a single-select dropdown. */
@@ -471,7 +473,7 @@ export class CbpDropdown {
     // If the menu is already open, pressing enter or space triggers a click on the current item -
     // with an exception for pressing space as part of a combobox searchString (not the first character).
     // Run this first, before the menu may be opened by later code.
-    if (this.open && selectKeys.includes(key) && !(key == ' ' && this.searchString !== '')) {
+    if (this.open && selectKeys.includes(key) && !this.typingMode) { //!(key == ' ' && this.searchString !== '')
       //event.preventDefault();
       this.dropdownItems[this.focusIndex]?.click();
       return;
@@ -479,39 +481,49 @@ export class CbpDropdown {
 
     // Navigation within an open menu
     if (this.open) {
-      const i = (this.filter && this.searchString) ? this.matchIndex : this.focusIndex;
-      const l = (this.filter && this.searchString) ? this.matches?.length -1 || 0: this.dropdownItems?.length - 1 || 0;
+      const i = (this.filter && this.searchString) ? this.matchIndex : this.focusIndex; // index
+      const l = (this.filter && this.searchString) ? this.matches?.length -1 || 0: this.dropdownItems?.length - 1 || 0; // length
       const n = {
         Home: 0,
         ArrowUp: -1 < i + -1 ? i + -1 : l,
         ArrowDown: l + 1 > i + 1 ? i + 1 : 0,
         End: l,
-      }[key];
+      }[key]; //navigation key pressed
+
+      // If it was a navigation key
       if (n !== undefined && key !== 'Tab') {
+        //console.log('Keyboard nav: ',key);
+        this.typingMode=false;
         this.matchIndex = n;
         this.setCurrent( (this.filter && this.searchString) ? this.matches[n] : n, this.focusIndex);
         if (!this.filter) this.searchString='';
       }
     }
-        
+
     // handle opening when closed
     if (openKeys.includes(key) && !this.readonly && !this.disabled) {
-      if (!this.open) this.open = true;
+      if (!this.open) {
+        this.open = true;
+        this.typingMode=false;
+      }
     }
 
     // Close the menu when pressing ESC anywhere in the component and send focus back to the control
     if (key == 'Escape') {
       this.open = false;
+      this.typingMode=false;
       this.control.focus();
     }
     // Close the menu when pressing TAB anywhere in the component
     if (key == 'Tab') {
+      this.typingMode=false;
       this.open = false;
     }
 
     
     // handle typing characters when open or closed, allowing for Space as part of the searchString (not first character)
-    if ( key === 'Backspace' || key === 'Clear' || (key == ' ' && this.searchString !== '') ||
+    // && this.searchString !== '')
+    if ( key === 'Backspace' || key === 'Clear' || (key == ' ' && this.typingMode) ||
         (
           key.length === 1 && 
           !altKey && 
@@ -520,7 +532,9 @@ export class CbpDropdown {
           !navKeys.includes(key)
         )
     ) {
+      //console.log('Typing Mode = true: ',key);
       this.open=true;
+      if(this.filter) this.typingMode=true;
       this.filter ? this.searchByString(key.toLowerCase()) : this.jumpToLetter(key.toLowerCase());
     }
   }
