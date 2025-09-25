@@ -473,7 +473,7 @@ export class CbpDropdown {
     // If the menu is already open, pressing enter or space triggers a click on the current item -
     // with an exception for pressing space as part of a combobox searchString (not the first character).
     // Run this first, before the menu may be opened by later code.
-    if (this.open && selectKeys.includes(key) && !this.typingMode) { //!(key == ' ' && this.searchString !== '')
+    if (this.open && selectKeys.includes(key) && !this.typingMode) {
       //event.preventDefault();
       this.dropdownItems[this.focusIndex]?.click();
       return;
@@ -522,7 +522,6 @@ export class CbpDropdown {
 
     
     // handle typing characters when open or closed, allowing for Space as part of the searchString (not first character)
-    // && this.searchString !== '')
     if ( key === 'Backspace' || key === 'Clear' || (key == ' ' && this.typingMode) ||
         (
           key.length === 1 && 
