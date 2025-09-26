@@ -566,7 +566,7 @@ function filterPanel() {
       uid= "filterdrawer"
       position="left"
       persist-at="min-width:64rem"
-      sx='{"min-width":"25rem"}'
+      sx='{"min-width":"20rem"}'
     >
       <cbp-panel
         aria-labelledby="filterpanelheader"
