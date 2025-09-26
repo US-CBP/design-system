@@ -4,7 +4,7 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [unreleased] TBD
+## [0.0.1-develop.26] 09-26-2025
 
 * Additional `cbp-app-header` bugfix for the `searchInput` event not being emitted properly and accessibility improvements.
 * Updated custom events across all components:
@@ -13,6 +13,8 @@ The React components are wrappers generated from this package and will share the
   * Prevent `subnavItemClick` and `toggleSubnavItem` from bubbling, since these components are commonly nested.
   * Verified every event emitter changed is firing and noted issues for further investigation.
 * Fixed a bug in `cbp-dropdown` where Spacebar behavior was conflicting with combobox and multiselect functionality when used together.
+* Added a default bottom margin to `cbp-structured-list` via public CSS property.
+* Other minor bug and accessibility fixes.
 * Updated to Storybook 9.1.6, which required some other packages to be upgraded manually:
   * Upgraded local development and deployment scripts to node 24 and "@types/node" to ^24.5.1.
   * Upgraded to Vite 7.1.5.
