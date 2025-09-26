@@ -54,7 +54,7 @@
   --cbp-structured-list-item-color-background-selected: var(--cbp-color-interactive-selected-light);
   --cbp-structured-list-item-color-background-selected-dark: var(--cbp-color-interactive-selected-dark);
 
-  --cbp-structured-list-pagination-spacing: var(--cbp-space-4x);
+  --cbp-structured-list-margin-bottom: var(--cbp-space-4x);
 }
 
 [data-cbp-theme=light] cbp-structured-list[context*=dark]:not([context=light-always]),
@@ -79,7 +79,7 @@ cbp-structured-list {
   display: block; 
   background-color: var(--cbp-structured-list-color-background);
   color: var(--cbp-structured-list-color);
-  margin-bottom: var(--cbp-structured-list-pagination-spacing);
+  margin-bottom: var(--cbp-structured-list-margin-bottom);
   
   [slot=cbp-structured-list-header] {
     color: var(--cbp-structured-list-header-color);

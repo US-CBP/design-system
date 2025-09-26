@@ -261,16 +261,9 @@ function renderFilterDrawer(){
     <cbp-drawer
       uid= "filterdrawer"
       position="left"
-      persist-at="min-width:64rem"
+      persist-at="max-width:  42rem"
       sx='{"flex-basis":"20rem"}'
     >
-      ${renderFilterPanel()}
-    </cbp-drawer>
-    `;
-}
-
-function renderFilterPanel(){
-return `
       <cbp-panel
         aria-labelledby="filterpanelheader"
       >
@@ -401,20 +394,22 @@ return `
             <cbp-button
               color="primary"
               fill="solid"
+              type="submit"
             >
               <cbp-icon name="check-circle"></cbp-icon>Apply
             </cbp-button>
           </cbp-flex>
         </form>
       </cbp-panel>
+    </cbp-drawer>
     `;
 }
+
 
 function renderPeopleListItem(items, searchText, page, pageSize){
 const html = items.map(({ anchorTitle, location, pageCreation, lastEdited, textBlock }, index) => {
     if (index >= (page - 1) * pageSize && index < page * pageSize) {
 
-        //TODO: link w/ Icon spacing seems high compared to spec but matching implementation in design system. maybe issue on spec?
       return `
           <cbp-structured-list-item>
             <cbp-flex
@@ -724,9 +719,8 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
             Search Results
           </cbp-typography>
 
-          <cbp-hide hide-at="min-width: 42em">
-            ${renderFilterPanel()}
-          </cbp-hide>
+          
+          ${renderFilterDrawer()}
           ${renderPeopleTab(peopleResults, searchText)} 
           </main>
       </cbp-container>
@@ -760,7 +754,6 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
         </section>
       </cbp-footer>
 
-      ${renderFilterDrawer()}
       ${renderDrawer(navItems, 'appheaderdrawer', true)}
       ${renderUserPref(username, hashid)}
     </cbp-flex>
