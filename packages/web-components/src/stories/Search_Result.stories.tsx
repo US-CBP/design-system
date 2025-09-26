@@ -262,7 +262,7 @@ function renderFilterDrawer(){
       uid= "filterdrawer"
       position="left"
       persist-at="min-width:64rem"
-      sx='{"flex-basis":"20rem"}'
+      sx='{"min-width":"25rem"}'
     >
       <cbp-panel
         aria-labelledby="filterpanelheader"
@@ -495,7 +495,7 @@ function renderPeopleTab(items, searchText){
       <cbp-flex
           align-items="flex-end"
           gap="1rem"
-          sx='{"margin":"var(--cbp-space-4x) 0"}'
+          sx='{"margin-bottom":"var(--cbp-space-4x)"}'
       >
           <cbp-flex-item
               flex-basis="calc(var(--cbp-space-16x) * 5)"
@@ -717,7 +717,7 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
 
       <cbp-container sx='{"flex-grow":"1","padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
         <main id="main" tabindex="-1">
-          <cbp-typography tag="h1" divider="underline">
+          <cbp-typography tag="h1" divider="underline" sx='{"margin-bottom":"var(--cbp-space-4x)"}'>
             Search Results
           </cbp-typography>
 
