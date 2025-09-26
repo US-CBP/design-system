@@ -495,6 +495,7 @@ function renderPeopleTab(items, searchText){
       <cbp-flex
           align-items="flex-end"
           gap="1rem"
+          wrap="wrap"
           sx='{"margin-bottom":"var(--cbp-space-4x)"}'
       >
           <cbp-flex-item
