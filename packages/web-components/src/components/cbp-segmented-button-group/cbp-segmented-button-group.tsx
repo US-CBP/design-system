@@ -109,7 +109,7 @@ export class SegmentedButtonGroup {
         values = [...values, item.value]
       }
     });
-    if(values.length > 0) this.value=values;
+    this.value=values;
   }
 
   componentWillLoad() {

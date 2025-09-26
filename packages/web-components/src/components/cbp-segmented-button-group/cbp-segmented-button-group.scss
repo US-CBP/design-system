@@ -1,39 +1,10 @@
+
 cbp-segmented-button-group {
   display: flex;
   width: fit-content;
 
-  /* attribute selectors included for specificity 
-   * :not(#fakeId) too much specificity and overrides the button dark mode
-   * focus and active states inherited from button component
-   */
-  cbp-button[color][fill] {
-    // Light
-    --cbp-button-color: var(--cbp-color-interactive-secondary-darker);
-    --cbp-button-color-hover: var(--cbp-color-text-lightest);
   
-    --cbp-button-color-bg: var(--cbp-color-white);
-    --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
-
-    // borders are unchanging in segmented button groups even in interactive states
-    --cbp-button-color-border: var(--cbp-color-interactive-secondary-dark);
-    --cbp-button-color-border-hover: var(--cbp-button-color-border);
-    --cbp-button-color-border-focus: var(--cbp-button-color-border);
-    --cbp-button-color-border-active: var(--cbp-button-color-border);
-
-    
-    // Dark
-    --cbp-button-color-dark: var(--cbp-color-interactive-secondary-lighter);
-    --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
-  
-    --cbp-button-color-bg-dark: var(--cbp-color-gray-cool-80);
-    --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-light);
-    
-    // borders are unchanging in segmented button groups even in interactive states
-    --cbp-button-color-border-dark: var(--cbp-color-interactive-secondary-lighter);
-    --cbp-button-color-border-hover-dark: var(--cbp-button-color-border-dark);
-    --cbp-button-color-border-focus-dark: var(--cbp-button-color-border-dark);
-    --cbp-button-color-border-active-dark: var(--cbp-button-color-border-dark);
-
+  cbp-button {
     --cbp-button-border-width: var(--cbp-border-size-md) calc(var(--cbp-border-size-md) / 2);
     --cbp-button-border-style: solid;
     --cbp-button-border-radius: 0;
@@ -42,27 +13,61 @@ cbp-segmented-button-group {
       --cbp-button-border-radius: var(--cbp-border-radius-soft) 0 0 var(--cbp-border-radius-soft);
       --cbp-button-border-width: var(--cbp-border-size-md) calc(var(--cbp-border-size-md) / 2) var(--cbp-border-size-md) var(--cbp-border-size-md);
     }
-    &:last-child {
+    // there can potentially be a hidden input at the end, so :last-child doesn't work here
+    &:last-of-type {
       --cbp-button-border-radius: 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0;
       --cbp-button-border-width: var(--cbp-border-size-md) var(--cbp-border-size-md) var(--cbp-border-size-md) calc(var(--cbp-border-size-md) / 2);
     }
 
-    &:has([aria-pressed=true]) {
-      --cbp-button-color: var(--cbp-color-white);
-      --cbp-button-color-bg: var(--cbp-color-interactive-selected-dark);
-      
-      --cbp-button-color-dark: var(--cbp-color-text-darkest);
-      --cbp-button-color-bg-dark: var(--cbp-color-interactive-selected-light);
-    }
-
+    /* 
+     * attribute selectors included for specificity (only for colors)
+     * :not(#fakeId) too much specificity and overrides the button dark mode
+     * focus and active states inherited from button component
+     */
+    &[color][fill] {
+      // Light
+      --cbp-button-color: var(--cbp-color-interactive-secondary-darker);
+      --cbp-button-color-hover: var(--cbp-color-text-lightest);
     
-    // Disabled
-    [disabled]  {
-      --cbp-button-color: var(--cbp-color-interactive-disabled-dark);
-      --cbp-button-color-bg: var(--cbp-color-interactive-disabled-light);
+      --cbp-button-color-bg: var(--cbp-color-white);
+      --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
 
-      --cbp-button-color-dark: var(--cbp-color-interactive-disabled-dark);
-      --cbp-button-color-bg-dark: var(--cbp-color-interactive-disabled-light);
+      // borders are unchanging in segmented button groups even in interactive states
+      --cbp-button-color-border: var(--cbp-color-interactive-secondary-dark);
+      --cbp-button-color-border-hover: var(--cbp-button-color-border);
+      --cbp-button-color-border-focus: var(--cbp-button-color-border);
+      --cbp-button-color-border-active: var(--cbp-button-color-border);
+
+      
+      // Dark
+      --cbp-button-color-dark: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
+    
+      --cbp-button-color-bg-dark: var(--cbp-color-gray-cool-80);
+      --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-light);
+      
+      // borders are unchanging in segmented button groups even in interactive states
+      --cbp-button-color-border-dark: var(--cbp-color-interactive-secondary-lighter);
+      --cbp-button-color-border-hover-dark: var(--cbp-button-color-border-dark);
+      --cbp-button-color-border-focus-dark: var(--cbp-button-color-border-dark);
+      --cbp-button-color-border-active-dark: var(--cbp-button-color-border-dark);
+
+      &:has([aria-pressed=true]) {
+        --cbp-button-color: var(--cbp-color-white);
+        --cbp-button-color-bg: var(--cbp-color-interactive-selected-dark);
+        
+        --cbp-button-color-dark: var(--cbp-color-text-darkest);
+        --cbp-button-color-bg-dark: var(--cbp-color-interactive-selected-light);
+      }
+      
+      // Disabled
+      [disabled]  {
+        --cbp-button-color: var(--cbp-color-interactive-disabled-dark);
+        --cbp-button-color-bg: var(--cbp-color-interactive-disabled-light);
+
+        --cbp-button-color-dark: var(--cbp-color-interactive-disabled-dark);
+        --cbp-button-color-bg-dark: var(--cbp-color-interactive-disabled-light);
+      }
     }
   }
 }
