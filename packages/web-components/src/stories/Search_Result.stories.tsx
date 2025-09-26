@@ -261,7 +261,7 @@ function renderFilterDrawer(){
     <cbp-drawer
       uid= "filterdrawer"
       position="left"
-      persist-at="max-width:  42rem"
+      persist-at="min-width:64rem"
       sx='{"flex-basis":"20rem"}'
     >
       <cbp-panel
@@ -491,160 +491,162 @@ function renderPeopleTab(items, searchText){
     });
 
     return `
-    <cbp-flex
-        align-items="flex-end"
-        gap="1rem"
-        sx='{"margin":"var(--cbp-space-4x) 0"}'
-    >
-        <cbp-flex-item
-            flex-basis="calc(var(--cbp-space-16x) * 5)"
-        >    
-            <cbp-form-field
-                label="Search"
-                field-id="search"
-                sx='{"--cbp-form-field-margin-bottom":"0"}'
-            >
-                <cbp-form-field-wrapper>
-                    <input
-                        type="search"
-                        name="search"
-                        value="${searchText}"
-                    />
-                    <span slot="cbp-form-field-attached-button">
-                    <cbp-button
-                        type="submit"
-                        fill="solid"
-                        color="secondary"
-                        variant="square"
-                        accessibility-text="Search"
-                    >
-                        <cbp-icon
-                        name="magnifying-glass"
-                        ></cbp-icon>
-                    </cbp-button>
-                    </span>
-                </cbp-form-field-wrapper>
-            </cbp-form-field>
-        </cbp-flex-item>
-        <cbp-flex-item sx='{"margin-left":"auto"}'>
-             <cbp-hide hide-at="max-width: 42em">
-               <cbp-button
-                type="button"
-                color="secondary"
-                accessibility-text="Open Drawer"
-                target-prop="open"
-                controls="filterdrawer"
-                fill="outline"
-              >
-            <cbp-icon name="filter"></cbp-icon>Filter
-          </cbp-button>
-        </cbp-hide>
-        </cbp-flex-item>
-        <cbp-flex-item>
-            <cbp-flex    
-                align-items="center"
-                gap="1rem"
-            >
-                <cbp-flex-item> 
-                  <cbp-hide
-                    visually-hide-at="max-width: 42em"
-                  >
-                    <cbp-typography tag="span"> <b><i>Alpha Sort</i></b> </cbp-typography>
-                  </cbp-hide>
-                </cbp-flex-item>
-                <cbp-flex-item
-                >
-                    <cbp-segmented-button-group
-                      accessibility-text="sort search results asc/desc"
-                    >
-                        <cbp-button
-                            type="button"
-                            value="1"
-                            pressed="true"
-                            variant="square"                      
-                            accessibility-text="sort ascending"
-                        >
-                            <cbp-icon name="sort-asc"></cbp-icon>
-                        </cbp-button>
-
-                        <cbp-button
-                            type="button"
-                            value="2"
-                            pressed="false"
-                            variant="square" 
-                            accessibility-text="sort descending"
-                        >
-                            <cbp-icon name="sort-desc"></cbp-icon>
-                        </cbp-button>
-                    </cbp-segmented-button-group>
-                </cbp-flex-item>
-            </cbp-flex>
-    </cbp-flex>
-    <cbp-structured-list 
-        id="peopleResults" 
-        header-id="list-header"
-        striped
-    >
-        <div
-            slot="cbp-structured-list-header"
-            id="list-header"
-        >
-            234 Results Found
-        </div>
-
-        ${renderPeopleListItem(items, searchText, page, pageSize)}
-    </cbp-structured-list>
-
-    <cbp-pagination
-        records=${items.length}
+    <cbp-flex-item flex-grow="1">
+      <cbp-flex
+          align-items="flex-end"
+          gap="1rem"
+          sx='{"margin":"var(--cbp-space-4x) 0"}'
       >
-        <cbp-form-field
-          slot="cbp-pagination-items-per-page"
-          label="Items Per Page"
-          field-id="pagination_size"
-        >
-          <cbp-dropdown field-id="pagination_size">
-            <cbp-dropdown-item value="10">10/Page</cbp-dropdown-item>
-            <cbp-dropdown-item value="25">25/Page</cbp-dropdown-item>
-            <cbp-dropdown-item value="50">50/Page</cbp-dropdown-item>
-            <cbp-dropdown-item value="100">100/Page</cbp-dropdown-item>
-            <cbp-dropdown-item value="all">All Results</cbp-dropdown-item>
-          </cbp-dropdown>
-        </cbp-form-field>
-
-        <cbp-form-field
-          slot="cbp-pagination-pages"
-          label="Page Displayed"
-          field-id="pagination_pages"
-        >
-          <cbp-dropdown field-id="pagination_pages">
-
-            <div slot="cbp-dropdown-attached-button-start">
-              <cbp-button
-                fill="solid"
-                color="secondary"
-                variant="square"
-                value="previous page"
-                accessibility-text="Previous page"
+          <cbp-flex-item
+              flex-basis="calc(var(--cbp-space-16x) * 5)"
+          >    
+              <cbp-form-field
+                  label="Search"
+                  field-id="search"
+                  sx='{"--cbp-form-field-margin-bottom":"0"}'
               >
-                <cbp-icon name="chevron-right" rotate="180" />
-              </cbp-button>
-            </div>
-
-            <div slot="cbp-dropdown-attached-button-end">
-              <cbp-button
-                fill="solid"
-                color="secondary"
-                variant="square"
-                value="next page"
-                accessibility-text="Next page"
+                  <cbp-form-field-wrapper>
+                      <input
+                          type="search"
+                          name="search"
+                          value="${searchText}"
+                      />
+                      <span slot="cbp-form-field-attached-button">
+                      <cbp-button
+                          type="submit"
+                          fill="solid"
+                          color="secondary"
+                          variant="square"
+                          accessibility-text="Search"
+                      >
+                          <cbp-icon
+                          name="magnifying-glass"
+                          ></cbp-icon>
+                      </cbp-button>
+                      </span>
+                  </cbp-form-field-wrapper>
+              </cbp-form-field>
+          </cbp-flex-item>
+          <cbp-flex-item sx='{"margin-left":"auto"}'>
+              <cbp-hide hide-at="min-width: 64rem">
+                <cbp-button
+                  type="button"
+                  color="secondary"
+                  accessibility-text="Open Drawer"
+                  target-prop="open"
+                  controls="filterdrawer"
+                  fill="outline"
+                >
+              <cbp-icon name="filter"></cbp-icon>Filter
+            </cbp-button>
+          </cbp-hide>
+          </cbp-flex-item>
+          <cbp-flex-item>
+              <cbp-flex    
+                  align-items="center"
+                  gap="1rem"
               >
-                <cbp-icon name="chevron-right" />
-              </cbp-button>
-            </div>
-          </cbp-dropdown>
-        </cbp-form-field>
-      </cbp-pagination>
+                  <cbp-flex-item> 
+                    <cbp-hide
+                      visually-hide-at="max-width: 42em"
+                    >
+                      <cbp-typography tag="span"> <b><i>Alpha Sort</i></b> </cbp-typography>
+                    </cbp-hide>
+                  </cbp-flex-item>
+                  <cbp-flex-item
+                  >
+                      <cbp-segmented-button-group
+                        accessibility-text="sort search results asc/desc"
+                      >
+                          <cbp-button
+                              type="button"
+                              value="1"
+                              pressed="true"
+                              variant="square"                      
+                              accessibility-text="sort ascending"
+                          >
+                              <cbp-icon name="sort-asc"></cbp-icon>
+                          </cbp-button>
+
+                          <cbp-button
+                              type="button"
+                              value="2"
+                              pressed="false"
+                              variant="square" 
+                              accessibility-text="sort descending"
+                          >
+                              <cbp-icon name="sort-desc"></cbp-icon>
+                          </cbp-button>
+                      </cbp-segmented-button-group>
+                  </cbp-flex-item>
+              </cbp-flex>
+      </cbp-flex>
+      <cbp-structured-list 
+          id="peopleResults" 
+          header-id="list-header"
+          striped
+      >
+          <div
+              slot="cbp-structured-list-header"
+              id="list-header"
+          >
+              234 Results Found
+          </div>
+
+          ${renderPeopleListItem(items, searchText, page, pageSize)}
+      </cbp-structured-list>
+
+      <cbp-pagination
+          records=${items.length}
+        >
+          <cbp-form-field
+            slot="cbp-pagination-items-per-page"
+            label="Items Per Page"
+            field-id="pagination_size"
+          >
+            <cbp-dropdown field-id="pagination_size">
+              <cbp-dropdown-item value="10">10/Page</cbp-dropdown-item>
+              <cbp-dropdown-item value="25">25/Page</cbp-dropdown-item>
+              <cbp-dropdown-item value="50">50/Page</cbp-dropdown-item>
+              <cbp-dropdown-item value="100">100/Page</cbp-dropdown-item>
+              <cbp-dropdown-item value="all">All Results</cbp-dropdown-item>
+            </cbp-dropdown>
+          </cbp-form-field>
+
+          <cbp-form-field
+            slot="cbp-pagination-pages"
+            label="Page Displayed"
+            field-id="pagination_pages"
+          >
+            <cbp-dropdown field-id="pagination_pages">
+
+              <div slot="cbp-dropdown-attached-button-start">
+                <cbp-button
+                  fill="solid"
+                  color="secondary"
+                  variant="square"
+                  value="previous page"
+                  accessibility-text="Previous page"
+                >
+                  <cbp-icon name="chevron-right" rotate="180" />
+                </cbp-button>
+              </div>
+
+              <div slot="cbp-dropdown-attached-button-end">
+                <cbp-button
+                  fill="solid"
+                  color="secondary"
+                  variant="square"
+                  value="next page"
+                  accessibility-text="Next page"
+                >
+                  <cbp-icon name="chevron-right" />
+                </cbp-button>
+              </div>
+            </cbp-dropdown>
+          </cbp-form-field>
+        </cbp-pagination>
+      </cbp-flex-item>
     `;
 }
 
@@ -719,9 +721,12 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
             Search Results
           </cbp-typography>
 
-          
-          ${renderFilterDrawer()}
-          ${renderPeopleTab(peopleResults, searchText)} 
+          <cbp-flex
+            gap="1rem"
+          >
+            ${renderFilterDrawer()}
+            ${renderPeopleTab(peopleResults, searchText)} 
+          </cbp-flex>
           </main>
       </cbp-container>
 
