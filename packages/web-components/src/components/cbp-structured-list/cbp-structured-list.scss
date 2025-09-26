@@ -21,6 +21,8 @@
  * @prop --cbp-structured-list-footer-color-background-dark: var(--cbp-color-gray-cool-5);
  * @prop --cbp-structured-list-footer-color: var(--cbp-color-text-lightest);
  * @prop --cbp-structured-list-footer-color-dark: var(--cbp-color-text-darkest);
+
+ * @prop --cbp-structured-list-margin-bottom: var(--cbp-space-4x);
 */
 :root {
   --cbp-structured-list-item-padding: var(--cbp-space-4x);
@@ -53,6 +55,8 @@
 
   --cbp-structured-list-item-color-background-selected: var(--cbp-color-interactive-selected-light);
   --cbp-structured-list-item-color-background-selected-dark: var(--cbp-color-interactive-selected-dark);
+
+  --cbp-structured-list-margin-bottom: var(--cbp-space-4x);
 }
 
 [data-cbp-theme=light] cbp-structured-list[context*=dark]:not([context=light-always]),
@@ -77,6 +81,7 @@ cbp-structured-list {
   display: block; 
   background-color: var(--cbp-structured-list-color-background);
   color: var(--cbp-structured-list-color);
+  margin-bottom: var(--cbp-structured-list-margin-bottom);
   
   [slot=cbp-structured-list-header] {
     color: var(--cbp-structured-list-header-color);

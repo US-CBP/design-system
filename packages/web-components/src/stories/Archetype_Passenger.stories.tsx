@@ -463,7 +463,7 @@ function passengerList(passengerArgs) {
             color="secondary"
             accessibility-text="Open Drawer"
             target-prop="open"
-            controls="filterDrawer"
+            controls="filterdrawer"
             fill="outline"
           >
             <cbp-icon name="filter"></cbp-icon>Filter
@@ -566,7 +566,7 @@ function filterPanel() {
       uid= "filterdrawer"
       position="left"
       persist-at="min-width:64rem"
-      sx='{"flex-basis":"20rem"}'
+      sx='{"min-width":"20rem"}'
     >
       <cbp-panel
         aria-labelledby="filterpanelheader"
