@@ -142,6 +142,11 @@
       }
     },
 
+    "highlight":{
+      "value": "{color.yellow.20}",
+      "attributes": { "use": "theme", "type": "active" }
+    },
+
     "backdrop": {
       "light": {
         "value": "rgba(0, 0, 0, 0.3)",
