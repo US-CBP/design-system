@@ -72,6 +72,12 @@ p {
   line-height: 1.25rem;
 }
 
+mark,
+::highlight {
+  color: var(--cbp-color-text-darkest);
+  background-color: var(--cbp-color-highlight);
+}
+
 hr {
   border: none;
   height: 1px;
