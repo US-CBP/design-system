@@ -6,7 +6,7 @@ The React components are wrappers generated from this package and will share the
 
 ## [unpublished] TBD
 
-* Added a `color.highlight` token and styles to the `mark` tag and `::highlight` psuedo-element.
+* Added a `color.highlight` token and styles to the `mark` tag and `::highlight` pseudo-element.
 
 ## [0.0.1-develop.26] 09-26-2025
 
