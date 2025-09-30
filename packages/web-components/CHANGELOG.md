@@ -4,6 +4,10 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unpublished] TBD
+
+* Added a `color.highlight` token and styles to the `mark` tag and `::highlight` psuedo-element.
+
 ## [0.0.1-develop.26] 09-26-2025
 
 * Additional `cbp-app-header` bugfix for the `searchInput` event not being emitted properly and accessibility improvements.
