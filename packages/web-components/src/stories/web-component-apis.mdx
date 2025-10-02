@@ -1,0 +1,124 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Web Components and APIs" />
+
+# Web Components and APIs
+
+## What are Web Components?
+
+Web components are a set of web platform APIs that allow you to create new custom, reusable, encapsulated HTML tags to use in web pages and web applications.
+
+* Custom elements
+* Shadow DOM
+* HTML Templates
+
+### Why web components?
+
+* Web components are framework-agnostic.
+* Ability to ship most bug fixes internally, with no code updates from consuming applications (just a package update).
+* Web components can be lazy-loaded and only those used are downloaded by the end user.
+
+### Some notes about our implementation
+
+* Since the Shadow DOM creates accessibility barriers, it is seldomly used within the CBP Design System web components. As such, most of the web components are technically custom elements. “Web components” and “custom elements” are often used interchangeably; the 
+custom elements API is the foundation for web components.
+* In TypeScript, custom elements have their own types in the form of "HTMLCbpTagnameElement". When typed properly, all web component properties and methods may be referenced via dot notation.
+* Slots are typically reserved for the Shadow DOM, but in our case they are polyfilled by the Stencil library in which the CBPDS web components are built, so they work even without the Shadow DOM.
+
+## Web Component APIs
+
+The web component <abbr title="Application Programming Interface">API</abbr>s allow applications to interact with the web components and are comprised of several parts:
+
+* Properties (and attributes)
+* Slots
+* Events
+* Methods
+* CSS Properties
+
+### Properties and Attributes
+
+Properties define the inputs for web components, along with slotted content. Properties are exposed in HTML as attributes, but there are some subtle differences between the two that are important to understand:
+
+<table>
+  <caption hidden>Properties vs. Attributes</caption>
+  <thead>
+    <tr>
+      <th>Properties</th>
+      <th>Attributes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The preferred interface in JavaScript and JavaScript frameworks.</td>
+      <td>The preferred interface for HTML.</td>
+    </tr>
+    <tr>
+      <td>Use camelCase.</td>
+      <td>Use dash-case.</td>
+    </tr>
+    <tr>
+      <td>Booleans may have values explicitly set to true or false.</td>
+      <td>Booleans are true by their existence (e.g., checked or hidden).</td>
+    </tr>
+    <tr>
+      <td>Can be accessed or set in JavaScript using dot notation.</td>
+      <td>Can be accessed or set in JavaScript using getAttribute() and setAttribute().</td>
+    </tr>
+    <tr>
+      <td>Only present in the DOM if the component specifies that the property is reflected to the attribute.</td>
+      <td>Always present in the DOM (when viewed in the browser developer tools).</td>
+    </tr>
+  </tbody>
+</table>
+
+Custom elements are HTML elements and extend the HTMLElement Interface. This means all global attributes are also valid on custom elements (e.g., class, id, style, aria-, data-, etc.)
+
+**Caveat:** One point of confusion is that some web components have a property that mirrors an attribute of a rendered element (e.g., `href`). This leads developers to incorrectly assume that any property or attribute placed on a custom element will be passed down to a rendered element. This behavior only occurs if implemented in the component in that way. Always reference the component API documentation to see which properties are allowed/supported and keep in mind that a custom element is an HTML Element as well.
+
+#### Common Properties
+
+Consistency in naming makes for a more predictable and memorable API and therefore there are a number of properties repeated across components throughout the design system.
+
+* `color` - Components that have different color variants use the color property to specify them (as opposed to the `variant` property). Color variants are most commonly some subset of names defined by the design tokens, such as "danger", "info", "success", or "warning". See the specific component's API docs to confirm acceptable values.
+* `variant` - Components that have different variations not based on color alone use the `variant` property to specify those.
+* `accessibilityText` - The implementation may vary, but the `accessibilityText` property exists on many components to provide an accessible name for elements when there is no visible text to do so. E.g., buttons or links with only an icon.
+* `context` - The context property exists on most components where there is a possibility to place the component on a different background, allowing you to specify that a component displays in "dark mode" on a dark background even if the site is in "light mode."
+* `sx` - The `sx` property provides a way to add custom styles to a component. These styles are usually placed on the host element, but in some cases the styles are placed on an element rendered by or within the custom element. The `sx` property is not reactive in most cases.
+
+### Slots
+
+Almost all components contain a default slot that determines where content placed between the opening and closing web component tags is placed within the component's rendered content.
+
+Named slots allow web components to use multiple slot definitions for placing each piece of content in different places within the rendered content. Named slots are always namespaced with "cbp-" and are defined in each component's API documentation. To specify an element for a named slot, the `slot` attribute is used on wrapping tag, e.g., `<div slot="cbp-accordion-title"></div>`
+
+Named slots are typically used in two specific cases:
+
+* To provide structure to the slotted content, such as "cbp-dialog-header", "cbp-dialog-body", and "cbp-dialog-actions" in the dialog component, without the need for creating child components to wrap them.
+* As an optional named slot that provides an alternative to a property. This is useful when the value contains markup or embedded components, since property values cannot contain markup.
+
+### Events
+
+Custom events are often implemented in the web components to make working with them easier. When interactive elements are rendered by a component's asynchronous lifecycle, it can make it difficult to attach an event listener on those elements. So, by emitting custom events, an application can listen for them directly on the custom element.
+
+In many cases, custom events are provided so that the apps can piggyback application logic onto a user interaction.
+
+#### Common Custom Events and Keys
+
+Some events and event keys are common across components:
+
+* `valueChange` event - The `valueChange` event is typically fired similar to the native `onChange` event on custom form elements and `cbp-form-field`, which wraps most form fields.
+* `host` key - Every custom event should have a `host` key, which provides a reference to the DOM node of the custom element emitting the event.
+* `nativeElement` key - Many custom events contain a reference to the native element that triggered the event. This provides easier access to interactive controls for use cases like toggling `aria-` attributes, etc. This key may be named something more specific when the element is more predictable, such as `button`, `link`, or `control`.
+* `nativeEvent` key - When possible, a reference to the native event is included in the custom event. This exposes all other event properties and methods, making it easier to `stopPropagation()` or `preventDefault()` on the native event, which may be difficult to access if it's coming from a DOM node rendered behind a web component's own asynchronous lifecycle.
+
+### Methods
+
+While the vast majority of web component interactivity is achieved via properties (e.g., `open`), some components implement public methods as well. These methods can be called in JavaScript using dot notation (on the custom element) like any other JavaScript method.
+
+Methods are `async` and `await` may be used to chain subsequent logic onto the behavior.
+
+### CSS Properties
+
+While a goal of the design system is consistency, many facets of a reusable component may vary based on context. A robust CSS API is built into the web components for ease of customizing the appearance of a component in such cases. CSS properties are also instrumental in the implementation of dark mode.
+
+Using CSS properties make these overrides easier to manage, as specificity is flattened for the most part. The initial values are set on the `:root` (in most cases) with the lowest specificity. Color variants typically require more specificity, however. Overrides should typically be done on the host (custom element) selector. They can be applied with the `sx` property (where it exists), `style` attribute, etc., or in a regular CSS file (using the custom element or class/id on the custom element as a selector).

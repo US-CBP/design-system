@@ -24,7 +24,7 @@ export class CbpAppHeader {
   private searchControl:HTMLCbpButtonElement;
   private searchField:HTMLInputElement;
 
-
+  
   /** Specifies the id of the drawer to be launched*/
   @Prop() subnavDrawerId: string;
 
@@ -137,6 +137,7 @@ export class CbpAppHeader {
     }, 101); // Note: Time 101 is set due to cbp-drawer setting @ 100
   }
 
+  // Called by the resize observer; also fires on initial render.
   handleResize(width) {
     // Get the width of the content (and update the this.navWidth) before doing responsive adjustments.
     if (this.navWidth == undefined) {
@@ -151,24 +152,24 @@ export class CbpAppHeader {
     }
   }
 
+  // If nav items can't fit, hide all nav items and show the hamburger control
   doResponsive() {
     this.children.forEach((item, index) => {
       if (index > 0 && item.id != 'global-search-toggle') {
         item.setAttribute('hidden', '');
       }
     });
-
     this.drawerButton?.parentElement?.classList.add('cbp-app-header-responsive');
     this.drawerButton?.removeAttribute('hidden');
   }
 
+  // If nav items fit, reveal them and hide the hamburger control
   doFullSize() {
     this.children.forEach((item, index) => {
       if (index > 0) {
         item.removeAttribute('hidden');
       }
     });
-
     this.drawerButton?.parentElement?.classList.remove('cbp-app-header-responsive');
     this.drawerButton?.setAttribute('hidden', '');
   }

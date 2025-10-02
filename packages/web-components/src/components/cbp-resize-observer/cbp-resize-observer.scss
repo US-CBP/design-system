@@ -1,6 +1,7 @@
 /*
  * The resize observer is a block-level component with a max-width of 100% that grows and shrinks with its parent container, 
  * so that it can report changes in both directions.
+ *
  * It allows for overflow, so that its children may still report their full dimensions based on their content and overflow may
  * therefore be detected for responsive behavior.
  */
