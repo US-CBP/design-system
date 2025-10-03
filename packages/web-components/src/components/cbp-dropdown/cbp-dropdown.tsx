@@ -763,7 +763,6 @@ export class CbpDropdown {
 
   getSizeInfo() {
     this.visible = !!this.host.offsetWidth;
-    //console.log('Visible: ', this.host.offsetWidth, this.visible);
 
     if (this.visible) {
       // remove the resize observer if one was created
@@ -779,7 +778,6 @@ export class CbpDropdown {
     }
     else if(!this.observer) {
       // Set up a resize observer to check for when the host becomes visible and gets a size.
-      //console.log(this.host, ' is not visible, setting resize observer.');
       this.observer = new ResizeObserver(() => {
         this.getSizeInfo();
       });
