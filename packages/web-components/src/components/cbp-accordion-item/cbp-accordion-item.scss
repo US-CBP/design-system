@@ -197,7 +197,7 @@ cbp-accordion-item {
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 10);
     animation-iteration-count: revert;
     animation-fill-mode: forwards;
-    overflow: hidden;
+    //overflow: hidden;
   }
 
   &:not([open]) {

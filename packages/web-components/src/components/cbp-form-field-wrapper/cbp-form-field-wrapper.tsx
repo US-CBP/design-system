@@ -28,8 +28,46 @@ export class CbpFormFieldWrapper {
   private overlayStartWidth;
   private overlayEndWidth;
   private attachedButtonWidth;
+
+  private visible: boolean = false; // tracked for size calculations
+  private observer: ResizeObserver;
+
   
   @Element() host: HTMLElement;
+
+
+  getSizeInfo() {
+    this.visible = !!this.host.offsetWidth;
+
+    if (this.visible) {
+      // remove the resize observer if one was created
+      if (this.observer) this.observer.disconnect();
+
+      // Calculate the size of the overlays to set the input padding accordingly
+      // TechDebt: as a first cut, this is not reactive. How reactive does it need to be?
+      this.overlayStartWidth = this.overlayStart ? this.overlayStart.offsetWidth + 8 : 0;
+      this.overlayEndWidth = this.overlayEnd ? this.overlayEnd.offsetWidth + 8 : 0;
+      this.attachedButtonWidth = this.attachedButton ? this.attachedButton.offsetWidth : 0;
+
+      // Update this with the buttons size
+      this.overlayEndWidth = this.overlayEndWidth +  this.attachedButtonWidth
+
+      setCSSProps(this.host, {
+        "--cbp-form-field-overlay-start-width": `${this.overlayStartWidth}px`,
+        "--cbp-form-field-overlay-end-width": `${this.overlayEndWidth}px`,
+        "--cbp-form-field-attached-button-width": `${this.attachedButtonWidth}px`,
+      });
+    }
+    else if(!this.observer) {
+      // Set up a resize observer to check for when the host becomes visible and gets a size.
+      //console.log(this.host, ' is not visible, setting resize observer.');
+      this.observer = new ResizeObserver(() => {
+        this.getSizeInfo();
+      });
+      this.observer.observe(this.host);
+    }
+  }
+
 
   componentWillLoad() {
     // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
@@ -42,19 +80,7 @@ export class CbpFormFieldWrapper {
 
   componentDidLoad() {
     // Calculate the size of the overlays to set the input padding accordingly
-    // TechDebt: as a first cut, this is not reactive. How reactive does it need to be?
-    this.overlayStartWidth = this.overlayStart ? this.overlayStart.offsetWidth + 8 : 0;
-    this.overlayEndWidth = this.overlayEnd ? this.overlayEnd.offsetWidth + 8 : 0;
-    this.attachedButtonWidth = this.attachedButton ? this.attachedButton.offsetWidth : 0;
-
-    // Update this with the buttons size
-    this.overlayEndWidth = this.overlayEndWidth +  this.attachedButtonWidth
-
-    setCSSProps(this.host, {
-      "--cbp-form-field-overlay-start-width": `${this.overlayStartWidth}px`,
-      "--cbp-form-field-overlay-end-width": `${this.overlayEndWidth}px`,
-      "--cbp-form-field-attached-button-width": `${this.attachedButtonWidth}px`,
-    });
+    this.getSizeInfo();
 
     // Set the IDs on the slotted overlays (if needed) and assign them to the native input's `aria-describedby` attribute.
     let overlayids = '';

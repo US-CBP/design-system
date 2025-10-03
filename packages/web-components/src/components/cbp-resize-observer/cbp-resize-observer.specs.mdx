@@ -34,3 +34,4 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 
 * The native resizeObserver is a performant way of measuring changes to a DOM node's size or positioning.
 * However, care must be taken that application logic and calculations based on the resize event are not too complex as to impact performance of the UI.
+* The immediate child should be sized according to its contents; Setting width to 100% will not allow the calculations to work correctly for switching between layouts.

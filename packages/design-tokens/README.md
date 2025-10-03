@@ -1,4 +1,4 @@
-# @cbpds/vdesign-tokens
+# @cbpds/design-tokens
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](/LICENSE)
 
@@ -33,3 +33,11 @@ The compiled and minified CSS is located in:
 ```
 /packages/design-tokens/dist/sass/
 ```
+
+## Updating the Design Tokens
+
+Updates to the Design Tokens should be rare, but in such a case the web components package needs to be updated as well:
+
+* Update the desired JSON files representing the design tokens.
+* Build a new distribution of the design tokens by running `npm run build-tokens`.
+* Copy the CSS from `dist/css/cbp-design-tokens.css` into `/packages/web-components/src/components/cbp-app/css-variables.css`

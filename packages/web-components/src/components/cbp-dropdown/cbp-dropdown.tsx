@@ -33,6 +33,9 @@ export class CbpDropdown {
   private attachedButtonStartWidth;
   private attachedButtonEndWidth;
 
+  private visible: boolean = false; // tracked for size calculations
+  private observer: ResizeObserver;
+
   private typingMode: boolean = false; // track typing mode for combobox mode (only when filter=true)
 
   @Element() host: HTMLCbpDropdownElement;
@@ -757,15 +760,36 @@ export class CbpDropdown {
     });
   }
 
+
+  getSizeInfo() {
+    this.visible = !!this.host.offsetWidth;
+
+    if (this.visible) {
+      // remove the resize observer if one was created
+      if (this.observer) this.observer.disconnect();
+
+      // Allocate space for attached buttons in overall sizing
+      this.attachedButtonStartWidth = this.attachedButtonStart ? this.attachedButtonStart.offsetWidth : 0;
+      this.attachedButtonEndWidth = this.attachedButtonEnd ? this.attachedButtonEnd.offsetWidth : 0;
+      setCSSProps(this.host, {
+        "--cbp-dropdown-attached-button-start-width": `${this.attachedButtonStartWidth}px`,
+        "--cbp-dropdown-attached-button-end-width": `${this.attachedButtonEndWidth}px`,
+      });
+    }
+    else if(!this.observer) {
+      // Set up a resize observer to check for when the host becomes visible and gets a size.
+      this.observer = new ResizeObserver(() => {
+        this.getSizeInfo();
+      });
+      this.observer.observe(this.host);
+    }
+  }
+
+  
+
   componentDidLoad() {
-    // Update this with the buttons size
-    this.attachedButtonStartWidth = this.attachedButtonStart ? this.attachedButtonStart.offsetWidth : 0;
-    this.attachedButtonEndWidth = this.attachedButtonEnd ? this.attachedButtonEnd.offsetWidth : 0;
-    
-    setCSSProps(this.host, {
-      "--cbp-dropdown-attached-button-start-width": `${this.attachedButtonStartWidth}px`,
-      "--cbp-dropdown-attached-button-end-width": `${this.attachedButtonEndWidth}px`,
-    });
+    // Allocate space for attached buttons in overall sizing
+    this.getSizeInfo();
 
     // Get the value and label for single-select (this doesn't work for items specified as JSON)
     this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item'));
