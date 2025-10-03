@@ -11,6 +11,16 @@ const Template = () => {
           
       <cbp-accordion-item label="Accordion Item 1">
         
+         
+        <cbp-breadcrumb>
+          <cbp-button tag="a" fill="ghost" color="primary" variant="square" href="#" accessibility-text="Home">
+            <cbp-icon name="home"></cbp-icon>
+          </cbp-button>
+          <cbp-link href="?o95gn">Page Title Level A</cbp-link>
+          <cbp-link href="?8iehg">Page Title Level B</cbp-link>
+          <cbp-link href="?f8ia0">Page Title Level C</cbp-link>
+          <cbp-link href="?2kepd">Page Title Level D</cbp-link>
+        </cbp-breadcrumb>
  
         <cbp-tabs accessibility-text="Tabs Example">
           <cbp-tab name="tab1">Tab 1</cbp-tab>
