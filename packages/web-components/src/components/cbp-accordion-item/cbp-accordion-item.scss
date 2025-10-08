@@ -24,6 +24,13 @@
  *  @prop  --cbp-accordion-item-content-font-family: inherit;
  *  @prop  --cbp-accordion-item-content-font-weight: var(--cbp-font-weight-regular);
  *  @prop  --cbp-accordion-item-content-padding: var(--cbp-space-3x);
+ 
+ *  @prop  --cbp-accordion-item-danger-color: var(--cbp-color-white);
+ *  @prop  --cbp-accordion-item-danger-color-dark: var(--cbp-color-text-darkest);
+ *  @prop  --cbp-accordion-item-danger-color-fill: var(--cbp-color-danger-base);
+ *  @prop  --cbp-accordion-item-danger-color-fill-dark: var(--cbp-color-danger-light);
+ *  @prop  --cbp-accordion-item-danger-color-fill-hover: var(--cbp-color-danger-dark);
+ *  @prop  --cbp-accordion-item-danger-color-fill-hover-dark: var(--cbp-color-danger-lighter);
  */
 :root {
   --cbp-accordion-item-color: var(--cbp-color-text-darker);
@@ -62,7 +69,43 @@
   --cbp-accordion-item-content-padding: var(--cbp-space-3x);
 
   --cbp-accordion-item-heading-gap: var(--cbp-space-2x);
+
+  --cbp-accordion-item-danger-color: var(--cbp-color-white);
+  --cbp-accordion-item-danger-color-dark: var(--cbp-color-text-darkest);
+  --cbp-accordion-item-danger-color-fill: var(--cbp-color-danger-base);
+  --cbp-accordion-item-danger-color-fill-dark: var(--cbp-color-danger-light);
+  --cbp-accordion-item-danger-color-fill-hover: var(--cbp-color-danger-dark);
+  --cbp-accordion-item-danger-color-fill-hover-dark: var(--cbp-color-danger-lighter);
 }
+
+
+[data-cbp-theme='light'] cbp-accordion[context*='dark'],
+ [data-cbp-theme='dark'] cbp-accordion:not([context='dark-inverts']):not([context='light-always']) {
+
+   --cbp-accordion-item-color: var(--cbp-color-white);
+   --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-50);
+   --cbp-accordion-item-color-open: var(--cbp-color-white);
+   --cbp-accordion-item-color-fill-open: var(--cbp-color-gray-cool-60);
+ 
+   --cbp-accordion-item-color-hover: var(--cbp-color-text-darkest);
+   --cbp-accordion-item-color-fill-hover: var(--cbp-color-interactive-secondary-lighter);
+   --cbp-accordion-item-color-open-hover: var(--cbp-color-text-darkest);
+   --cbp-accordion-item-color-fill-open-hover: var(--cbp-color-interactive-secondary-light);
+ 
+   --cbp-accordion-item-color-focus: var(--cbp-color-text-darkest);
+   --cbp-accordion-item-color-fill-focus: var(--cbp-color-interactive-focus-light);
+   --cbp-accordion-item-color-outline-focus: var(--cbp-color-black);
+ 
+   --cbp-accordion-item-color-active: var(--cbp-color-text-darkest);
+   --cbp-accordion-item-color-fill-active: var(--cbp-color-interactive-active-light);
+
+   --cbp-accordion-item-color-content: var(--cbp-color-text-lightest);
+   --cbp-accordion-item-color-fill-content: var(--cbp-color-gray-cool-90);
+ 
+  --cbp-accordion-item-danger-color: var(--cbp-accordion-item-danger-color-dark);
+  --cbp-accordion-item-danger-color-fill: var(--cbp-accordion-item-danger-color-fill-dark);
+  --cbp-accordion-item-danger-color-fill-hover: var(--cbp-accordion-item-danger-color-fill-hover-dark);
+ }
 
 cbp-accordion-item {
   display: flex;
@@ -210,76 +253,25 @@ cbp-accordion-item {
 
   &[color=danger],
   &[color=danger][open] {
-    --cbp-accordion-item-color: var(--cbp-color-text-lightest);
-    --cbp-accordion-item-color-fill: var(--cbp-color-danger-base);
+    --cbp-accordion-item-color: var(--cbp-accordion-item-danger-color);
+    --cbp-accordion-item-color-fill: var(--cbp-accordion-item-danger-color-fill);
 
     .cbp-accordion-item--control{
       &:hover:not(:focus-within):not(:active) {
-        --cbp-accordion-item-color: var(--cbp-color-text-lightest);
-        --cbp-accordion-item-color-fill: var(--cbp-color-danger-dark);
+        --cbp-accordion-item-color: var(--cbp-accordion-item-danger-color);
+        --cbp-accordion-item-color-fill: var(--cbp-accordion-item-danger-color-fill-hover);
 
         + .cbp-accordion-item--content {
-          --cbp-accordion-item-color-fill: var(--cbp-color-danger-dark);
+          --cbp-accordion-item-color-fill: var(--cbp-accordion-item-danger-color-fill-hover);
         }
       }
       cbp-typography,
       cbp-typography > * {
-        --cbp-accordion-item-color: var(--cbp-color-white);
+        --cbp-accordion-item-color: var(--cbp-accordion-item-danger-color);
       }
     }
   }
-}
-
-
-/* 
- * Dark Mode - display dark design based on mode or context
- */
- [data-cbp-theme='light'] cbp-accordion[context*='dark'],
- [data-cbp-theme='dark'] cbp-accordion:not([context='dark-inverts']):not([context='light-always']) {
-
-   --cbp-accordion-item-color: var(--cbp-color-white);
-   --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-50);
-   --cbp-accordion-item-color-open: var(--cbp-color-white);
-   --cbp-accordion-item-color-fill-open: var(--cbp-color-gray-cool-60);
- 
-   --cbp-accordion-item-color-hover: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-fill-hover: var(--cbp-color-interactive-secondary-lighter);
-   --cbp-accordion-item-color-open-hover: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-fill-open-hover: var(--cbp-color-interactive-secondary-light);
- 
-   --cbp-accordion-item-color-focus: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-fill-focus: var(--cbp-color-interactive-focus-light);
-   --cbp-accordion-item-color-outline-focus: var(--cbp-color-black);
- 
-   --cbp-accordion-item-color-active: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-fill-active: var(--cbp-color-interactive-active-light);
-
-   --cbp-accordion-item-color-content: var(--cbp-color-text-lightest);
-   --cbp-accordion-item-color-fill-content: var(--cbp-color-gray-cool-90);
-
-  cbp-accordion-item {
-    &[color=danger],
-    &[color=danger][open] {
-      --cbp-accordion-item-color: var(--cbp-color-text-darkest);
-      --cbp-accordion-item-color-fill: var(--cbp-color-danger-light);
-
-      .cbp-accordion-item--control:hover:not(:focus-within):not(:active) {
-        --cbp-accordion-item-color: var(--cbp-color-text-darkest);
-        --cbp-accordion-item-color-fill: var(--cbp-color-danger-lighter);
-
-        + .cbp-accordion-item--content {
-          --cbp-accordion-item-color-fill: var(--cbp-color-danger-lighter);
-        }
-      }
-      
-      cbp-typography,
-      cbp-typography > * {
-        --cbp-accordion-item-color: var(--cbp-color-text-darkest);
-      }
-    }
-  }
- }
- 
+} 
 
 @keyframes expandTo {
   from {
