@@ -35,14 +35,12 @@ export default {
             <cbp-button 
             ${context && context != 'light-inverts' ? `context=${context}` : ''}   
             fill="ghost"
-            accessibility-text="Action 1"
             >
               Action 1
             </cbp-button>
             <cbp-button 
               ${context && context != 'light-inverts' ? `context=${context}` : ''}     
               fill="ghost"
-              accessibility-text="Action 2"
             >
               Action 2
             </cbp-button>

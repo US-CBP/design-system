@@ -1,17 +1,17 @@
 /**
  *  @prop  --cbp-accordion-item-color: var(--cbp-color-text-darker);
- *  @prop  --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-10);
+ *  @prop  --cbp-accordion-item-color-background: var(--cbp-color-gray-cool-10);
  *  @prop  --cbp-accordion-item-border-width: var(--cbp-border-width-xs);
  *  @prop  --cbp-accordion-item-border-style: solid;
  *  @prop  --cbp-accordion-item-color-hover: var(--cbp-color-text-darker);
- *  @prop  --cbp-accordion-item-color-fill-hover: var(--cbp-color-interactive-secondary-light);
+ *  @prop  --cbp-accordion-item-color-background-hover: var(--cbp-color-interactive-secondary-light);
  *  @prop  --cbp-accordion-item-color-open-hover: var(--cbp-color-text-lightest);
- *  @prop  --cbp-accordion-item-color-fill-open-hover: var(--cbp-color-interactive-secondary-darker);
+ *  @prop  --cbp-accordion-item-color-background-open-hover: var(--cbp-color-interactive-secondary-darker);
  *  @prop  --cbp-accordion-item-color-focus: var(--cbp-color-text-lightest);
- *  @prop --cbp-accordion-item-color-fill-focus: var(--cbp-color-interactive-focus-dark);
+ *  @prop --cbp-accordion-item-color-background-focus: var(--cbp-color-interactive-focus-dark);
  *  @prop  --cbp-accordion-item-color-outline-focus: var(--cbp-color-white);
  *  @prop  --cbp-accordion-item-color-active: var(--cbp-color-text-lightest);
- *  @prop  --cbp-accordion-item-color-fill-active: var(--cbp-color-interactive-active-dark);
+ *  @prop  --cbp-accordion-item-color-background-active: var(--cbp-color-interactive-active-dark);
  *  @prop  --cbp-accordion-item-border-radius: var(--cbp-border-radius-sharp, 0);
  *  @prop  --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
  *  @prop  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
@@ -19,29 +19,36 @@
  *  @prop  --cbp-accordion-item-control-padding: var(--cbp-space-3x);
  *  @prop  --cbp-accordion-item-control-direction: row;
  *  @prop  --cbp-accordion-item-color-content: var(--cbp-color-text-darkest);
- *  @prop  --cbp-accordion-item-color-fill-content: var(--cbp-color-white);
+ *  @prop  --cbp-accordion-item-color-background-content: var(--cbp-color-white);
  *  @prop  --cbp-accordion-item-content-font-size: var(--cbp-font-size-md);
  *  @prop  --cbp-accordion-item-content-font-family: inherit;
  *  @prop  --cbp-accordion-item-content-font-weight: var(--cbp-font-weight-regular);
  *  @prop  --cbp-accordion-item-content-padding: var(--cbp-space-3x);
+ 
+ *  @prop  --cbp-accordion-item-danger-color: var(--cbp-color-white);
+ *  @prop  --cbp-accordion-item-danger-color-dark: var(--cbp-color-text-darkest);
+ *  @prop  --cbp-accordion-item-danger-color-background: var(--cbp-color-danger-base);
+ *  @prop  --cbp-accordion-item-danger-color-background-dark: var(--cbp-color-danger-light);
+ *  @prop  --cbp-accordion-item-danger-color-background-hover: var(--cbp-color-danger-dark);
+ *  @prop  --cbp-accordion-item-danger-color-background-hover-dark: var(--cbp-color-danger-lighter);
  */
 :root {
   --cbp-accordion-item-color: var(--cbp-color-text-darker);
-  --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-10);
+  --cbp-accordion-item-color-background: var(--cbp-color-gray-cool-10);
   --cbp-accordion-item-color-open: var(--cbp-color-text-lighter);
-  --cbp-accordion-item-color-fill-open: var(--cbp-color-gray-cool-60);
+  --cbp-accordion-item-color-background-open: var(--cbp-color-gray-cool-60);
 
   --cbp-accordion-item-color-hover: var(--cbp-color-text-darker);
-  --cbp-accordion-item-color-fill-hover: var(--cbp-color-interactive-secondary-light);
+  --cbp-accordion-item-color-background-hover: var(--cbp-color-interactive-secondary-light);
   --cbp-accordion-item-color-open-hover: var(--cbp-color-text-lightest);
-  --cbp-accordion-item-color-fill-open-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-accordion-item-color-background-open-hover: var(--cbp-color-interactive-secondary-darker);
 
   --cbp-accordion-item-color-focus: var(--cbp-color-text-lightest);
-  --cbp-accordion-item-color-fill-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-accordion-item-color-background-focus: var(--cbp-color-interactive-focus-dark);
   --cbp-accordion-item-color-outline-focus: var(--cbp-color-white);
 
   --cbp-accordion-item-color-active: var(--cbp-color-text-lightest);
-  --cbp-accordion-item-color-fill-active: var(--cbp-color-interactive-active-dark);
+  --cbp-accordion-item-color-background-active: var(--cbp-color-interactive-active-dark);
 
   --cbp-accordion-item-border-width: var(--cbp-border-width-xs);
   --cbp-accordion-item-border-style: solid;
@@ -55,14 +62,50 @@
   --cbp-accordion-item-control-direction: row;
 
   --cbp-accordion-item-color-content: var(--cbp-color-text-darkest);
-  --cbp-accordion-item-color-fill-content: var(--cbp-color-white);
+  --cbp-accordion-item-color-background-content: var(--cbp-color-white);
   --cbp-accordion-item-content-font-size: var(--cbp-font-size-md);
   --cbp-accordion-item-content-font-family: inherit;
   --cbp-accordion-item-content-font-weight: var(--cbp-font-weight-regular);
   --cbp-accordion-item-content-padding: var(--cbp-space-3x);
 
   --cbp-accordion-item-heading-gap: var(--cbp-space-2x);
+
+  --cbp-accordion-item-danger-color: var(--cbp-color-white);
+  --cbp-accordion-item-danger-color-dark: var(--cbp-color-text-darkest);
+  --cbp-accordion-item-danger-color-background: var(--cbp-color-danger-base);
+  --cbp-accordion-item-danger-color-background-dark: var(--cbp-color-danger-light);
+  --cbp-accordion-item-danger-color-background-hover: var(--cbp-color-danger-dark);
+  --cbp-accordion-item-danger-color-background-hover-dark: var(--cbp-color-danger-lighter);
 }
+
+
+[data-cbp-theme='light'] cbp-accordion[context*='dark'],
+ [data-cbp-theme='dark'] cbp-accordion:not([context='dark-inverts']):not([context='light-always']) {
+
+   --cbp-accordion-item-color: var(--cbp-color-white);
+   --cbp-accordion-item-color-background: var(--cbp-color-gray-cool-50);
+   --cbp-accordion-item-color-open: var(--cbp-color-white);
+   --cbp-accordion-item-color-background-open: var(--cbp-color-gray-cool-60);
+ 
+   --cbp-accordion-item-color-hover: var(--cbp-color-text-darkest);
+   --cbp-accordion-item-color-background-hover: var(--cbp-color-interactive-secondary-lighter);
+   --cbp-accordion-item-color-open-hover: var(--cbp-color-text-darkest);
+   --cbp-accordion-item-color-background-open-hover: var(--cbp-color-interactive-secondary-light);
+ 
+   --cbp-accordion-item-color-focus: var(--cbp-color-text-darkest);
+   --cbp-accordion-item-color-background-focus: var(--cbp-color-interactive-focus-light);
+   --cbp-accordion-item-color-outline-focus: var(--cbp-color-black);
+ 
+   --cbp-accordion-item-color-active: var(--cbp-color-text-darkest);
+   --cbp-accordion-item-color-background-active: var(--cbp-color-interactive-active-light);
+
+   --cbp-accordion-item-color-content: var(--cbp-color-text-lightest);
+   --cbp-accordion-item-color-background-content: var(--cbp-color-gray-cool-90);
+ 
+  --cbp-accordion-item-danger-color: var(--cbp-accordion-item-danger-color-dark);
+  --cbp-accordion-item-danger-color-background: var(--cbp-accordion-item-danger-color-background-dark);
+  --cbp-accordion-item-danger-color-background-hover: var(--cbp-accordion-item-danger-color-background-hover-dark);
+ }
 
 cbp-accordion-item {
   display: flex;
@@ -70,7 +113,7 @@ cbp-accordion-item {
 
   &[open] {
     --cbp-accordion-item-color: var(--cbp-accordion-item-color-open);
-    --cbp-accordion-item-color-fill: var(--cbp-accordion-item-color-fill-open);
+    --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-open);
 
     .cbp-accordion-item--control {
       --cbp-accordion-rotate-icon: rotate(270deg);
@@ -78,10 +121,10 @@ cbp-accordion-item {
 
       &:hover:not(:focus-within):not(:active) {
         --cbp-accordion-item-color: var(--cbp-accordion-item-color-open-hover);
-        --cbp-accordion-item-color-fill: var(--cbp-accordion-item-color-fill-open-hover);
+        --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-open-hover);
 
         + .cbp-accordion-item--content {
-          --cbp-accordion-item-color-fill: var(--cbp-accordion-item-color-fill-open-hover);
+          --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-open-hover);
         }
       }
     }
@@ -95,7 +138,7 @@ cbp-accordion-item {
     min-height: var(--cbp-space-13x);
     color: var(--cbp-accordion-item-color);
     --cbp-button-color: var(--cbp-accordion-item-color);
-    background-color: var(--cbp-accordion-item-color-fill);
+    background-color: var(--cbp-accordion-item-color-background);
     font-size: var(--cbp-accordion-item-control-font-size);
     font-weight: var(--cbp-accordion-item-control-font-weight);
     padding: var(--cbp-accordion-item-control-padding);
@@ -129,12 +172,12 @@ cbp-accordion-item {
 
     &:hover {
       --cbp-accordion-item-color: var(--cbp-accordion-item-color-hover);
-      --cbp-accordion-item-color-fill: var(--cbp-accordion-item-color-fill-hover);
+      --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-hover);
     }
 
     &:focus-within {
       --cbp-accordion-item-color: var(--cbp-accordion-item-color-focus);
-      --cbp-accordion-item-color-fill: var(--cbp-accordion-item-color-fill-focus);
+      --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-focus);
       outline-width: var(--cbp-border-size-md);
 
       // button
@@ -143,13 +186,13 @@ cbp-accordion-item {
       }
 
       + .cbp-accordion-item--content {
-        --cbp-accordion-item-color-fill: var(--cbp-accordion-item-color-fill-focus);
+        --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-focus);
       }
     }
 
     &:active {
       --cbp-accordion-item-color: var(--cbp-accordion-item-color-active);
-      --cbp-accordion-item-color-fill: var(--cbp-accordion-item-color-fill-active);
+      --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-active);
 
       // button
       .cbp-accordion-item--toggle {
@@ -157,7 +200,7 @@ cbp-accordion-item {
       }
 
       + .cbp-accordion-item--content {
-        --cbp-accordion-item-color-fill: var(--cbp-accordion-item-color-fill-active);
+        --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-active);
       }
     }
 
@@ -186,11 +229,11 @@ cbp-accordion-item {
 
   .cbp-accordion-item--content {
     color: var(--cbp-accordion-item-color-content);
-    background-color: var(--cbp-accordion-item-color-fill-content);
+    background-color: var(--cbp-accordion-item-color-background-content);
     padding: var(--cbp-space-4x) var(--cbp-space-3x);
     border-width: var(--cbp-border-size-xl);
     border-style: var(--cbp-accordion-item-border-style);
-    border-color: var(--cbp-accordion-item-color-fill);
+    border-color: var(--cbp-accordion-item-color-background);
     border-top: 0;
 
     animation: var(--cbp-accordion-toggle);
@@ -210,76 +253,25 @@ cbp-accordion-item {
 
   &[color=danger],
   &[color=danger][open] {
-    --cbp-accordion-item-color: var(--cbp-color-text-lightest);
-    --cbp-accordion-item-color-fill: var(--cbp-color-danger-base);
+    --cbp-accordion-item-color: var(--cbp-accordion-item-danger-color);
+    --cbp-accordion-item-color-background: var(--cbp-accordion-item-danger-color-background);
 
     .cbp-accordion-item--control{
       &:hover:not(:focus-within):not(:active) {
-        --cbp-accordion-item-color: var(--cbp-color-text-lightest);
-        --cbp-accordion-item-color-fill: var(--cbp-color-danger-dark);
+        --cbp-accordion-item-color: var(--cbp-accordion-item-danger-color);
+        --cbp-accordion-item-color-background: var(--cbp-accordion-item-danger-color-background-hover);
 
         + .cbp-accordion-item--content {
-          --cbp-accordion-item-color-fill: var(--cbp-color-danger-dark);
+          --cbp-accordion-item-color-background: var(--cbp-accordion-item-danger-color-background-hover);
         }
       }
       cbp-typography,
       cbp-typography > * {
-        --cbp-accordion-item-color: var(--cbp-color-white);
+        --cbp-accordion-item-color: var(--cbp-accordion-item-danger-color);
       }
     }
   }
-}
-
-
-/* 
- * Dark Mode - display dark design based on mode or context
- */
- [data-cbp-theme='light'] cbp-accordion[context*='dark'],
- [data-cbp-theme='dark'] cbp-accordion:not([context='dark-inverts']):not([context='light-always']) {
-
-   --cbp-accordion-item-color: var(--cbp-color-white);
-   --cbp-accordion-item-color-fill: var(--cbp-color-gray-cool-50);
-   --cbp-accordion-item-color-open: var(--cbp-color-white);
-   --cbp-accordion-item-color-fill-open: var(--cbp-color-gray-cool-60);
- 
-   --cbp-accordion-item-color-hover: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-fill-hover: var(--cbp-color-interactive-secondary-lighter);
-   --cbp-accordion-item-color-open-hover: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-fill-open-hover: var(--cbp-color-interactive-secondary-light);
- 
-   --cbp-accordion-item-color-focus: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-fill-focus: var(--cbp-color-interactive-focus-light);
-   --cbp-accordion-item-color-outline-focus: var(--cbp-color-black);
- 
-   --cbp-accordion-item-color-active: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-fill-active: var(--cbp-color-interactive-active-light);
-
-   --cbp-accordion-item-color-content: var(--cbp-color-text-lightest);
-   --cbp-accordion-item-color-fill-content: var(--cbp-color-gray-cool-90);
-
-  cbp-accordion-item {
-    &[color=danger],
-    &[color=danger][open] {
-      --cbp-accordion-item-color: var(--cbp-color-text-darkest);
-      --cbp-accordion-item-color-fill: var(--cbp-color-danger-light);
-
-      .cbp-accordion-item--control:hover:not(:focus-within):not(:active) {
-        --cbp-accordion-item-color: var(--cbp-color-text-darkest);
-        --cbp-accordion-item-color-fill: var(--cbp-color-danger-lighter);
-
-        + .cbp-accordion-item--content {
-          --cbp-accordion-item-color-fill: var(--cbp-color-danger-lighter);
-        }
-      }
-      
-      cbp-typography,
-      cbp-typography > * {
-        --cbp-accordion-item-color: var(--cbp-color-text-darkest);
-      }
-    }
-  }
- }
- 
+} 
 
 @keyframes expandTo {
   from {

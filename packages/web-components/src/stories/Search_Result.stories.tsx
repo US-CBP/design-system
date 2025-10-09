@@ -459,15 +459,9 @@ const html = items.map(({ anchorTitle, location, pageCreation, lastEdited, textB
                         variant="body-text"
                         sx='{"--cbp-line-length-longer":"100%"}'
                     >
-                        <cbp-typography
-                            tag="span"
-                            sx='{
-                                    "color":"var(--cbp-color-text-darkest)",
-                                    "background":"var(--cbp-color-warning-base"
-                                }'
-                        >
-                            ${searchText}
-                        </cbp-typography>
+                      <mark>
+                        ${searchText}
+                      </mark>
                         ${textBlock}
                     </cbp-typography>
                 </cbp-flex-item>
