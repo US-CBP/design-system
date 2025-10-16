@@ -7,7 +7,7 @@ cbp-universal-header {
   color-scheme: dark;
   color: var(--cbp-color-text-lightest);
   background-color: var(--cbp-color-branding-dhs-blue);
-  min-height: var(--cbp-space-15x);
+  min-height: var(--cbp-space-16x);
   width: 100%;
   padding: 0 var(--cbp-responsive-spacing-outer);
 
@@ -41,7 +41,7 @@ cbp-universal-header {
 
 @media (min-width: $cbp-breakpoint-md) {
   cbp-universal-header {
-    min-height: 5.5rem;
+    min-height: 4rem;
 
     .cbp-universal-header__brand::after {
       content: '';

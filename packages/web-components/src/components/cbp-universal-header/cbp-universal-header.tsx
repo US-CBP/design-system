@@ -24,7 +24,7 @@ export class CbpUniversalHeader {
         <div class="cbp-universal-header__brand">
           <picture>
             <source srcSet={this.logoSrcSm} media="(max-width: 37.5rem)" type="image/svg+xml" height={44} width={44} />
-            <img src={this.logoSrcLg} alt="U.S. Customs and Border Protection" height="55" width="186" />
+            <img src={this.logoSrcLg} alt="U.S. Customs and Border Protection" height="48" width="162" />
           </picture>
         </div>
         <div class="cbp-universal-header__content">
