@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, Event, EventEmitter, Method, Listen, Watch, Host, h } from '@stencil/core';
+import { Component, Prop, State, Element, Event, EventEmitter, Method, Listen, Watch, Host, h, forceUpdate } from '@stencil/core';
 import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/utils';
 
 /**
@@ -327,8 +327,12 @@ export class CbpDropdown {
       this.items = [...items, newItemJSON]
     }
 
-    // close the dropdown last (or there are issues with the new item displaying properly)
-    if (!this.multiple) this.open=false;
+    // for multi-select, the dropdown stays open; we need to add the new item and remove the "create" option.
+    if (this.multiple) {
+      this.dropdownItems=Array.from(this.host.querySelectorAll('cbp-dropdown-item:not(.cbp-dropdown-item-no-results,.cbp-dropdown-create-item)'));
+      forceUpdate(this);
+    }
+    else this.open=false;
 
     // set focusIndex to the newly created item???
   }
@@ -810,7 +814,7 @@ export class CbpDropdown {
       this.value=temp;
       this.placeholder = this.selectedItems.length != 1 ? 'Selected Items' : 'Selected Item';
     }
-    // TechDebt: is this working?
+
     else if (this.filter && this.minimumInputLength && !this.value && !this.selectedLabel) {
       this.placeholder = 'Begin typing to search';
     }
