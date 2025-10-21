@@ -101,8 +101,9 @@ cbp-dropdown {
       padding-inline-end: calc(var(--cbp-dropdown-attached-button-end-width) + var(--cbp-form-field-padding-inline) + var(--cbp-space-9x));
     }
 
-    // All named slots within the shrinkwrap element are overlays
-    [slot] {
+    // Attached buttons are overlays
+    &[slot=cbp-dropdown-attached-button-start],
+    &[slot=cbp-dropdown-attached-button-end] {
       position: absolute;
       inset-block-start: 0; // Needed for Firefox
     }
