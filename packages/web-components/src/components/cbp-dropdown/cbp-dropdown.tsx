@@ -119,7 +119,7 @@ export class CbpDropdown {
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() valueChange: EventEmitter;
 
-  /** A custom event that is fired when the "create item" option is clicked (when filtering returns no matches). */
+  /** A custom event that is fired when the "create item" option is clicked. */
   @Event() createItem: EventEmitter;
 
   /** 
