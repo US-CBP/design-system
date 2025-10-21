@@ -53,7 +53,7 @@ The Drawer is a container that may be hidden and revealed, sliding in from eithe
 
 ### Additional Notes and Considerations
 
-* The host tag, which acts as both the container and the backdrop, is positioned using fixed positioning with a high z-index (998).
+* When open, the host tag, which acts as both the container and the backdrop, is positioned using fixed positioning with a high z-index (998).
   * As such, where the Drawer is placed in your code should not matter in most cases.
   * However, be careful of placing the Drawer inside of a container with its own z-index, as this can cause issues.
 * TODO: Implement keyboard trap within drawer.
