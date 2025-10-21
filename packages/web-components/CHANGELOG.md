@@ -16,6 +16,7 @@ The React components are wrappers generated from this package and will share the
 * Updated the `cbp-universal-header` to:
   * Use the proper DHS blue in their updated guidance.
   * Reduce the vertical footprint of the header based on minimum logo size according to DHS guidance.
+* Fixed the `z-index` for `cbp-drawer` rendered container element.
 * Added a `color.highlight` token and styles to the `mark` tag and `::highlight` selectors.
 
 ## [0.0.1-develop.26] 09-26-2025
