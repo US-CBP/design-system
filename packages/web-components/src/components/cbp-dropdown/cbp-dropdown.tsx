@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, Event, EventEmitter, Method, Listen, Watch, Host, h, forceUpdate } from '@stencil/core';
+import { Component, Prop, State, Element, Event, EventEmitter, Method, Listen, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/utils';
 
 /**
@@ -28,7 +28,8 @@ export class CbpDropdown {
   private matchIndex: number; // like focusIndex, but to the matches array
 
   private counterControl: HTMLElement;
-  
+  private createOption: HTMLCbpDropdownItemElement;
+
   private attachedButtonStart: any;
   private attachedButtonEnd: any;
   private attachedButtonStartWidth;
@@ -125,7 +126,7 @@ export class CbpDropdown {
   /** 
    * A custom event emitted for asynchronous comboboxes (`async=true` and `filter=true`) and 
    * the search string meets the `minimumInputLength` requirement. 
-   * This event can be listened for and the `items` (JSON) updated via application logic/service callß.
+   * This event can be listened for and the `items` (JSON) updated via application logic/service call.
    */
   @Event() populateCombobox: EventEmitter;
 
@@ -139,11 +140,18 @@ export class CbpDropdown {
     // If this was a "Create" item, then ignore all other behavior
     if (this.create && label==`Create "${value}"`) {
       this.doCreateItem(e);
+
+      // Update the current item for keyboard navigation
+      //this.setCurrent(this.dropdownItems?.indexOf(host), oldIndex);
+      
+      // Delay sending focus a bit to prevent enter from re-opening the dropdown (verified)
+      setTimeout(() => {
+        this.control.focus();
+      }, 100);
     }
     
     // Not a "Create" item
     else {
-
       // multi-select behavior
       if (this.multiple) {
         // TechDebt: this should ideally be async/promise. Update: Made selectedItems a State, so this might be fine now. Needs testing.
@@ -297,7 +305,7 @@ export class CbpDropdown {
     newItem.value=value;
     newItem.selected=true;
     if (this.multiple) {
-      newItem.innerHTML=`<cbp-checkbox context={this.context}>
+      newItem.innerHTML=`<cbp-checkbox ${this.context ? `context="${this.context}"` : ''}>
         <input 
           type="checkbox" 
           name="${this.name}-selection"
@@ -330,7 +338,8 @@ export class CbpDropdown {
     // for multi-select, the dropdown stays open; we need to add the new item and remove the "create" option.
     if (this.multiple) {
       this.dropdownItems=Array.from(this.host.querySelectorAll('cbp-dropdown-item:not(.cbp-dropdown-item-no-results,.cbp-dropdown-create-item)'));
-      forceUpdate(this);
+      //const createItem=this.listbox.querySelector('cbp-dropdown-item.cbp-dropdown-create-item');
+      this.createOption?.setAttribute('hidden',''); // hide the create item immediately since it's not always removed properly from the render immediately upon creating the item.
     }
     else this.open=false;
 
@@ -504,7 +513,6 @@ export class CbpDropdown {
 
   checkExactMatch(): boolean {
     let exactMatch: boolean = false;
-
     this.dropdownItems.forEach( item => {
       const label = item.innerText.toLowerCase().trim();
       if (this.searchString.toLowerCase() == label) exactMatch=true;
@@ -685,7 +693,8 @@ export class CbpDropdown {
         //this.items=[...this.selectedItems]; // TechDebt: revisit later
       }
     }
-    // If not async or we already have matches from the async call, just filter within them
+
+    // If not async filter within them
     else {
       this.getSearchStringMatches(this.searchString);
       this.filterDropdownItems(this.matches);
@@ -884,15 +893,18 @@ export class CbpDropdown {
   }
 
   componentWillRender() {
+    //if (this.open) this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item:not(.cbp-dropdown-item-no-results)'));
     // Disable attached buttons if the dropdown is disabled or has no items.
     if (this.attachedButtonStart) this.attachedButtonStart.disabled=this.disabled || !this.dropdownItems.length;
     if (this.attachedButtonEnd) this.attachedButtonEnd.disabled=this.disabled || !this.dropdownItems.length;
   }
 
   componentDidRender() {
+    // update the list of items every render for an open dropdown in case an item was created.
+    if (this.open) this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item:not(.cbp-dropdown-item-no-results)'));
     // If the items were specified via JSON, they didn't exist until rendering, so set them now.
     if (this.items) {
-      this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item:not(.cbp-dropdown-item-no-results)'));
+      //this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item:not(.cbp-dropdown-item-no-results)'));
       // in async mode, all of the items are matches
       if (this.async) {
         this.matches=[];
@@ -905,7 +917,6 @@ export class CbpDropdown {
 
 
   render() {
-
     if (this.multiple) {
       this.selectedItemCount = this.value.length; // value was already split on initial load
     }
@@ -1011,6 +1022,8 @@ export class CbpDropdown {
                 value={`${this.searchString}`}
                 class="cbp-dropdown-create-item"
                 key="cbp-dropdown-create-item" 
+                selected={false}
+                ref={el => this.createOption = el}
               >
                 {this.createLabel}
               </cbp-dropdown-item>
