@@ -1,5 +1,5 @@
 export default {
-  title: 'Patterns/Form Field Groups',
+  title: 'Test/Form Field Groups',
   argTypes: {
     label: {
       control: 'text',
