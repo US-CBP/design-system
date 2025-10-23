@@ -6,6 +6,7 @@ import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/
  * and support additional variants, such as a multi-select and/or combobox.
  * 
  * @slot - Only Dropdown Items should be placed in the default slot. They get auto-slotted into 'cbp-dropdown-items' behind the scenes.
+ * @slot cbp-dropdown-items - Dropdown items are auto-slotted here. Not need to specify this named slot.
  * @slot cbp-dropdown-attached-button-start - Allows for an optional button control to be slotted as an overlay at the start of the dropdown (such as a "previous" button).
  * @slot cbp-dropdown-attached-button-end - Allows for an optional button control to be slotted as an overlay at the end of the dropdown (such as a "next" button).
  */
@@ -60,7 +61,7 @@ export class CbpDropdown {
   /** A JSON object (or stringified JSON) containing an array of labels and values. Labels may contain markup as needed, but in such cases, a value should always be specified explicitly. */
   @Prop() items: string | object;
 
-  /** Specifies that when no items are found for a search string (for combobox functionality), an option to create the string as a new item is presented. */
+  /** Specifies that when an exact match is not found for a search string (for combobox functionality), an option to create a new item is presented. */
   @Prop() create: boolean;
 
   /** 
@@ -1010,8 +1011,6 @@ export class CbpDropdown {
               ? [...this.generatedItems]
               : <slot name="cbp-dropdown-items" onSlotchange ={ (e) => this.handleSlotChange(e)} />
             }
-
-            <slot name="cbp-dropdown-item-created" />
 
             { ( this.create && 
                 this.filter && 
