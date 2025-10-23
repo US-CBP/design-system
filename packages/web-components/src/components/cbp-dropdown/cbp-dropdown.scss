@@ -102,8 +102,8 @@ cbp-dropdown {
     }
 
     // Attached buttons are overlays
-    &[slot=cbp-dropdown-attached-button-start],
-    &[slot=cbp-dropdown-attached-button-end] {
+    [slot=cbp-dropdown-attached-button-start],
+    [slot=cbp-dropdown-attached-button-end] {
       position: absolute;
       inset-block-start: 0; // Needed for Firefox
     }
