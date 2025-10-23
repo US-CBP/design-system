@@ -992,7 +992,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
       ${generateNavItems(navItems)}
     </cbp-app-header>
         
-    <cbp-container sx='{"padding-inline":"var(--cbp-responsive-spacing-outer)", "padding-bottom":"var(--cbp-space-4x)"}'>
+    <cbp-container sx='{"padding-inline":"var(--cbp-responsive-spacing-outer)", "padding-block-end":"var(--cbp-space-4x)"}'>
       <main id="main" tabindex="-1">
         <cbp-typography tag="h1" divider="underline">
           Passenger Vetting

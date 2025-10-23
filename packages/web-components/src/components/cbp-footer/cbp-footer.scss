@@ -12,9 +12,13 @@ cbp-footer {
       --cbp-button-width: 100%;
       --cbp-button-padding: var(--cbp-space-2x) var(--cbp-space-3x);
 
-      * {
+      * {    
         justify-content: flex-start; // For responsive display
       }
+    }
+    
+    cbp-flex-item:first-of-type{
+      margin-inline-start: calc(-1 * var(--cbp-space-5x));
     }
   }
 
@@ -24,6 +28,7 @@ cbp-footer {
     font-size: var(--cbp-font-size-body);
     font-weight: var(--cbp-font-weight-regular);
     line-height: var(--cbp-line-height-xs);
-    padding: var(--cbp-space-5x) calc(var(--cbp-responsive-spacing-outer) + var(--cbp-space-3x));
+    padding: var(--cbp-space-5x);
+    // padding: var(--cbp-space-5x) calc(var(--cbp-responsive-spacing-outer) + var(--cbp-space-3x));
   }
 }
