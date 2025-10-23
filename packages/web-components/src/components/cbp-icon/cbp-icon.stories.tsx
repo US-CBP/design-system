@@ -35,6 +35,7 @@ export default {
         'plus',
         'right-to-bracket',
         'right-from-bracket',
+        'rotate',
         'sort-asc',
         'sort-desc',
         'square',

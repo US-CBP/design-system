@@ -262,22 +262,12 @@ function renderUserPref(username, hashid) {
   `
 }
 
-function getTimeDiff(date1, date2) {
-  const timeDiff = Math.abs(date1 - date2);
-  const seconds = Math.floor(timeDiff / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-
-  return { days, hours: hours % 24, minutes: minutes % 60, seconds: seconds % 60 };
-}
 
 function generatePassengers(passengerArgs, page, pageSize) {
   //TODO: update api call for img to have some variation see doc: https://www.dicebear.com/styles/personas/
   //TODO: math on the time to arrival format isn't great but not sure how to setup obj to not have diff for days
 
   const html = passengerArgs.map(({ name, bio, arrival, error }, index) => {
-    const timeDiff = getTimeDiff(Date.now(), arrival);
     const formatedTime = arrival.toLocaleString('en-US', {
       timeZone: 'America/New_York',
       timeZoneName: 'short',
@@ -300,11 +290,11 @@ function generatePassengers(passengerArgs, page, pageSize) {
                   <img
                     src="https://thispersondoesnotexist.com/"
                     alt="avatar"
-                    style="width: 100px"
+                    style="width: 100px; border-radius: var(--cbp-border-radius-softer);"
                   />
                 <cbp-flex direction="column" gap="var(--cbp-space-1x)">
                   <cbp-typography tag="h3">${name}</cbp-typography>
-                  <cbp-tag> Arriving In: ${timeDiff.hours}:${timeDiff.minutes}: ${timeDiff.hours} </cbp-tag>
+                  <cbp-tag> Arriving In: 01:12:45 </cbp-tag>
                   ${error ? `<cbp-tag color="danger"> T-list</cbp-tag>` : ``}
                 </cbp-flex>
               </cbp-flex>
@@ -339,7 +329,6 @@ function generateManifest(manifestArgs) {
   //TODO: tag icon for gate is not correct
 
   const html = manifestArgs.map(({ flight, arrivalTerminal, arrivalLocation, arrivalGate, arrivalTime, departureTerminal, departureLocation, departureTime, people, hotlist }) => {
-    const timeDiff = getTimeDiff(Date.now(), arrivalTime);
 
     return `
           <cbp-card
@@ -359,7 +348,7 @@ function generateManifest(manifestArgs) {
                 >
                   ${flight}
                 </cbp-typography>
-                <cbp-tag color="danger"> Arriving In: ${timeDiff.hours}:${timeDiff.minutes}: ${timeDiff.hours} </cbp-tag>
+                <cbp-tag color="danger"> Arriving In: 01:12:45 </cbp-tag>
               </cbp-flex>
 
               <cbp-flex 
@@ -491,7 +480,7 @@ function passengerList(passengerArgs) {
             fill="outline"
             color="secondary"
           >
-            <cbp-icon name="circle"></cbp-icon>Refresh
+            <cbp-icon name="rotate"></cbp-icon>Refresh
           </cbp-button>
         </cbp-flex-item>
       </cbp-flex>
@@ -565,7 +554,7 @@ function filterPanel() {
     <cbp-drawer
       uid= "filterdrawer"
       position="left"
-      persist-at="min-width:64rem"
+      persist-at="min-width:80rem"
       sx='{"min-width":"20rem"}'
     >
       <cbp-panel
@@ -791,7 +780,7 @@ function filterPanel() {
               color="secondary"
               fill="outline"
             >
-              <cbp-icon name="circle"></cbp-icon>Reset
+              <cbp-icon name="rotate"></cbp-icon>Reset
             </cbp-button>
 
             <cbp-button
@@ -1003,9 +992,9 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
       ${generateNavItems(navItems)}
     </cbp-app-header>
         
-    <cbp-container sx='{"padding":"1rem var(--cbp-responsive-spacing-outer)"}'>
+    <cbp-container sx='{"padding-inline":"var(--cbp-responsive-spacing-outer)", "padding-block-end":"var(--cbp-space-4x)"}'>
       <main id="main" tabindex="-1">
-        <cbp-typography tag="h1" divider="underline" sx='{"margin-bottom":"var(--cbp-space-5x)"}'>
+        <cbp-typography tag="h1" divider="underline">
           Passenger Vetting
         </cbp-typography>
 

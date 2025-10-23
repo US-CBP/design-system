@@ -1,24 +1,24 @@
 cbp-footer {
   display: block;
 
-  .cbp-footer-nav,
-  .cbp-footer-content {
-    padding-inline: var(--cbp-responsive-spacing-outer);
-  }
-
   .cbp-footer-nav {
     --cbp-button-height: var(--cbp-space-11x);
     --cbp-button-border-radius: 0;
     background-color: var(--cbp-color-gray-cool-60);
+    padding-inline: var(--cbp-responsive-spacing-outer);
     
     cbp-button {
       width: 100%; 
       --cbp-button-width: 100%;
       --cbp-button-padding: var(--cbp-space-2x) var(--cbp-space-3x);
 
-      * {
+      * {    
         justify-content: flex-start; // For responsive display
       }
+    }
+    
+    cbp-flex-item:first-of-type{
+      margin-inline-start: calc(-1 * var(--cbp-space-3x));
     }
   }
 
@@ -28,6 +28,6 @@ cbp-footer {
     font-size: var(--cbp-font-size-body);
     font-weight: var(--cbp-font-weight-regular);
     line-height: var(--cbp-line-height-xs);
-    padding-block: var(--cbp-space-5x);
-  }
+    padding: var(--cbp-space-5x) var(--cbp-responsive-spacing-outer)
+    }
 }
