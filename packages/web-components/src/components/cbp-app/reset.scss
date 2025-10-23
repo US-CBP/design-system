@@ -61,7 +61,7 @@ picture {
   max-width: 100%;
   display: block;
 }
-img[width][height] {
+img:not([height]) {
   height: auto; /* Preserve aspect ratio */
 }
 
