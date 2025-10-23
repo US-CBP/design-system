@@ -6,6 +6,17 @@ The React components are wrappers generated from this package and will share the
 
 ## [unpublished] TBD
 
+* Updated the `cbp-dropdown` with new features:
+  * Updated "no items found" text to be contextual and more helpful.
+  * Added a "create" option to the `cbp-dropdown` combobox variant.
+    * The item is added directly to the dropdown and selected.
+    * An event is also emitted in case the item needs to be created on the fly in the backend and served back to the dropdown via an API call.
+  * Updated `cbp-dropdown-item` component to be auto-slotting into a named slot (like the menu/menu item components).
+* Fixed a bug related to size calculation in `cbp-pagination`, `cbp-dropdown`, and `cbp-form-field-wrapper` when they are initially hidden (such as when placed in a drawer or accordion).
+* Updated the `cbp-universal-header` to:
+  * Use the proper DHS blue in their updated guidance.
+  * Reduce the vertical footprint of the header based on minimum logo size according to DHS guidance.
+* Fixed the `z-index` for `cbp-drawer` rendered container element.
 * Added a `color.highlight` token and styles to the `mark` tag and `::highlight` selectors.
 
 ## [0.0.1-develop.26] 09-26-2025

@@ -2,10 +2,10 @@ import { Component, Prop, Element, Event, EventEmitter, Watch, Host, h } from '@
 import { createNamespaceKey } from '../../utils/utils';
 
 /**
- * The Dropdown Item represents an individual option for the Dropdown, similar to an option in a 
+ * The Dropdown Item represents an individual option for the Dropdown, similar to an option in a
  * native `select` but with more flexibility.
- * 
- * @slot - The Dropdown Item's label or content goes in the default slot; for multi-select dropdowns, 
+ *
+ * @slot - The Dropdown Item's label or content goes in the default slot; for multi-select dropdowns,
  * this includes the checkbox component and slotted native `input type="checkbox"` and label.
  */
 @Component({
@@ -13,7 +13,7 @@ import { createNamespaceKey } from '../../utils/utils';
   styleUrl: 'cbp-dropdown-item.scss',
 })
 export class CbpDropdownItem {
-  
+
   private checkbox: HTMLInputElement;
   //private parent: HTMLCbpDropdownElement;
 
@@ -23,7 +23,7 @@ export class CbpDropdownItem {
   @Prop() value: string;
 
   /* Specifies that a dropdown item is disabled and cannot be selected */
-  @Prop({reflect:true}) disabled: boolean; // No disabled state designed, but keep this in case we revisit it, as native options can be disabled
+  @Prop({ reflect: true }) disabled: boolean;
 
   /** For Internal Use: Specifies the current item (referenced by `aria-activedescendant`) while using keyboard navigation. */
   @Prop({ reflect: true }) current: boolean;
@@ -37,28 +37,33 @@ export class CbpDropdownItem {
 
   @Event() dropdownItemClick: EventEmitter;
   handleClick(e) {
-    const {target} = e;
+    const { target } = e;
     // Do nothing if disabled
     if (!this.disabled) {
       // Ignore a click on the label because it will fire a click on the input as well
-      if(target.tagName != "LABEL") {
-        const label=(this.host.querySelector('.cbp-dropdown-item-content') as HTMLElement).innerText;
+      if (target.tagName != 'LABEL') {
+        const label = (this.host.querySelector('.cbp-dropdown-item-content') as HTMLElement).innerText;
+        
         this.dropdownItemClick.emit({
           host: this.host,
           target: target,
           label: label,
-          value: (!!this.value) ? this.value : label,
-          nativeEvent: e
+          value: !!this.value ? this.value : label,
+          nativeEvent: e,
         });
         //console.log('Dropdown Item Click: ', this.value, (!!this.value) ? this.value : label);
       }
     }
     // Selection is delegated to the parent level because we don't know if this is single or multiselect at this level.
   }
-  
+
   @Watch('selected')
   watchSelected(newValue) {
-    if (this.checkbox) this.checkbox.checked=newValue; // sync a slotted checkbox (if any) with the selected state
+    if (this.checkbox) this.checkbox.checked = newValue; // sync a slotted checkbox (if any) with the selected state
+  }
+
+  constructor() {
+    if(!this.host.hasAttribute('slot')) this.host.slot="cbp-dropdown-items"; // auto-slot the dropdown items
   }
 
   componentWillLoad() {
@@ -67,16 +72,16 @@ export class CbpDropdownItem {
   }
 
   componentDidLoad() {
-    if (this.selected && this.checkbox) this.checkbox.checked=true;
+    if (this.selected && this.checkbox) this.checkbox.checked = true;
   }
 
   render() {
     return (
-      <Host
-        role="option"
-        id={this.itemId}
-        onClick={e => this.handleClick(e)}
-        aria-selected={this.selected ? "true" : "false"}
+      <Host 
+        role="option" 
+        id={this.itemId} 
+        onClick={e => this.handleClick(e)} 
+        aria-selected={this.selected ? 'true' : 'false'}
       >
         <div class="cbp-dropdown-item-content">
           <slot />

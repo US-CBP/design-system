@@ -10,22 +10,30 @@ The Dropdown component offers an alternative to the native select element that c
 
 ## Functional Requirements
 
-* The Dropdown component can replace the native `select` element (with caveats*)
-* The Dropdown component supports both single select and multi-select functionality.
-* The Dropdown component supports type-ahead filtering of options (when enabled via property).
+* The Dropdown component can replace the native `select` element (with caveats*).
+* The Dropdown component supports both single select and multi-select functionality in both standard dropdown and combobox variations:
+  * Dropdown:
+    * Single select - items loaded through slot or property, supports key cycling like a standard select element.
+    * Multi-select - items loaded through slot or property, supports key cycling like a standard select element.
+  * Combobox:
+    * Single select with type-ahead filtering - items loaded through slot or property.
+    * Multi-select with type-ahead filtering - items loaded through slot or property.
+  * Asynchronous combobox: for large data sets where nothing is loaded until X filter characters are typed; requires filter=true, async=true, and loading items via property as JSON.
+    * Single select - works normally.
+    * Multi-select - requires custom integration with chips to make deselecting items easier since they are not persisted in the dropdown once selected.
 * The Dropdown component will render an `input type="hidden"` element to pass the field value in a native form submission.
 * The Dropdown component is meant to be used in the default slot of the `cbp-form-field` component, like a native form field, providing:
   * Form field styles without duplication
   * An accessible form field pattern
-* The Dropdown options may be specified one of 3 ways: 
+* The Dropdown options may be specified one of two ways: 
   * Slotted as child `cbp-dropdown-item` components.
-  * Specified as JSON (stringified or an object) via the `items` property.
-  * Asynchronously loaded JSON based on user interaction and a minimum input length.
+  * Specified as JSON (stringified or an object) via the `items` property. This property is reactive, so it can also handle asynchronous filtering.
 * For single select dropdowns, dropdown items may have individual values specified, separate from the visible label (similar to a native select option element).
 * For multi-select dropdowns, a `cbp-checkbox` is expected to be slotted within each dropdown item and a native checkbox control within the `cbp-checkbox`.
-* If items are specified via JSON, the `cbp-checkbox` will be automatically rendered for multi-select dropdowns.
-* The Dropdown supports keyboard navigation using the combobox accessibility paradigm.
+  * If items are specified via JSON, the `cbp-checkbox` will be automatically rendered for multi-select dropdowns.
+* The Dropdown supports keyboard navigation using the combobox accessibility paradigm and `aria-activedescendant`.
 * The single-select Dropdown may have default "placeholder" text specified when there is no selection.
+* For comboboxes (with filtering enabled), the option to create an item is also supported.
 
 ## Technical Specifications
 
@@ -55,6 +63,9 @@ The Dropdown component offers an alternative to the native select element that c
     * The search string will be shown on the control.
     * Backspace or Clear will remove a character from the search string.
     * Closing the dropdown will clear the search string and filtering automatically.
+  * When using the "create" option:
+    * The item is added directly to the dropdown using the search string text as both the label and value.
+    * The item is automatically selected (in both single and multi-select comboboxes).
 
 * Dropdown Items may be activated either by clicking with the mouse or pressing `Enter` or `Spacebar`.
 * Activating a Dropdown Item will do the following for single select dropdowns:
@@ -101,7 +112,11 @@ The Dropdown component offers an alternative to the native select element that c
 * For common patterns such as State and Country selection where the lists are well-known, do not enable search string filtering. Cycling through those options that begin with a letter by pressing that letter multiple times is a familiar interaction supported for many years by native select fields and search string filtering may be confusing and slower.
 * The `value` property should not be set explicitly if there are items marked as selected. But in the case that this occurs, the selected items will override the specified value; the value will be updated to match the selected items.
 * For asynchronous dropdowns, a `value` and `selectedLabel` should both be provided if the field has an initial value set.
+* When using the "create" option:
+  * The item added directly to the dropdown uses the search string text as both the label and value. This may not always work in cases where the dropdown values differ from the visible labels.
+  * An event is also emitted in case the item needs to be created on the fly in the backend (e.g., to provide an `id` as a value from a relational database) and served back to the dropdown via an API call.
 * TODO: Requires additional testing with `cbp-form-field-wrapper`.
+* TODO: Investigate persisting selected options in multi-select combobox (especially asynchronous combobox).
 
 #### Dropdown logic flow:
 

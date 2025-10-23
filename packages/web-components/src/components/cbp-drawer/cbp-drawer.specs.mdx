@@ -53,6 +53,9 @@ The Drawer is a container that may be hidden and revealed, sliding in from eithe
 
 ### Additional Notes and Considerations
 
+* When open, the host tag, which acts as both the container and the backdrop, is positioned using fixed positioning with a high z-index (998).
+  * As such, where the Drawer is placed in your code should not matter in most cases.
+  * However, be careful of placing the Drawer inside of a container with its own z-index, as this can cause issues.
 * TODO: Implement keyboard trap within drawer.
 * TODO: Implement focus management (return to control when closed)
 * TODO: Implement State store to handle the connection of the control and drawer more elegantly

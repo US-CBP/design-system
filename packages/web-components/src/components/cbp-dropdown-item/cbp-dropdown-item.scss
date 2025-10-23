@@ -91,6 +91,9 @@ cbp-dropdown-item {
     --cbp-dropdown-item-color-border-dark: transparent;
   }
 
+  &[disabled] {
+    font-style: italic;
+  }
 
 
   /*
