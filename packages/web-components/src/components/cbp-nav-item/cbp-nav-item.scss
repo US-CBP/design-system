@@ -122,8 +122,8 @@ cbp-nav-item:not(#fakeId) {
     background-color: var(--cbp-nav-item-color-bg);
     font-size: var(--cbp-font-size-heading-xs); 
     font-weight: var(--cbp-font-weight-medium);
-    padding-block-start: calc(var(--cbp-space-5x)/2);
-    padding-block-end: calc(var(--cbp-space-3x)/2);
+    padding-block: calc(var(--cbp-space-5x)/2) calc(var(--cbp-space-3x)/2);
+    
     padding-inline: var(--cbp-space-3x);
     border-width: 0 0 var(--cbp-border-size-xl) 0;
     border-style: solid;
