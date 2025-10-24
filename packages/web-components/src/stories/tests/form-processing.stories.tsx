@@ -157,47 +157,6 @@ const FormProcessingTemplate = ({ name, action, method, enctype }) => {
         </cbp-flex>
       </cbp-form-field>
 
-
-      <cbp-form-field
-        label="Numeric Counter Field"
-        field-id="numeric-input"
-      >
-        <cbp-form-field-wrapper>
-          <input
-            type="number"
-            name="number"
-          />
-
-          <span slot="cbp-form-field-unattached-buttons">
-            <cbp-button
-              name="decrement"
-              type="button"
-              fill="outline"
-              color="secondary"
-              variant="square"
-              accessibility-text="Decrement"
-              controls="numeric-input"
-              aria-describedby="numeric-input-label"
-            >
-              <cbp-icon name="minus"></cbp-icon>
-            </cbp-button>
-
-            <cbp-button
-              name="increment"
-              type="button"
-              fill="outline"
-              color="secondary"
-              variant="square"
-              accessibility-text="Increment"
-              controls="numeric-input"
-              aria-describedby="numeric-input-label"
-            >
-              <cbp-icon name="plus"></cbp-icon>
-            </cbp-button>
-          </span>
-        </cbp-form-field-wrapper>
-      </cbp-form-field>
-
       <cbp-form-field group
         label="Checklist Group Label"
         description="Field description."
