@@ -1,0 +1,39 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Components/Carousel/Specifications" />
+
+# cbp-dot-indicator
+
+## Purpose
+
+The dot indicator is intended for use to navigate across small sections of related content, such as in a Carousel.
+
+## Functional Requirements
+
+* Comprised of a series of buttons with the associated index of items they represent
+* 'Active' state refers to the visually discint styleing and aria-selected on indicator. Only one indicator can be active at a time
+
+## Technical Specifications
+
+* will be set to 'active' when the associated index is active
+
+### User Interactions
+
+* Clicking on an individual dot indicator will set that indicator and its associated indexed item as 'active' via event emitter
+* keyboard interactions will be using the 'roving index' as noted below in Accessibility 
+
+### Responsiveness
+
+* TODO: no current responsive approach here, intended to keep total size of indicator ~4-8 to avoid issues of wrapping/overflow
+
+### Accessibility
+
+* if no index is explicitly set to 'active', the first index will default to 'active'
+* for keyboard navigation, the dot indicator uses the 'roving tabindex' paradigm
+    * Only the active indicator is reachable by tab/shift+tab
+    * Once focus is on the active indicator, using the arrow keys will move the focus to previous/next indicator
+    * Indicators must still be activated by clicking or pressing the 'space' or 'enter' key while focused.
+
+### Additional Notes and Considerations
+
+* Intended to be slotted into the index control slot of a Carousel
