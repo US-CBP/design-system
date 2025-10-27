@@ -1,0 +1,49 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Components/Carousel/Specifications" />
+
+# cbp-carousel, cbp-carousel-item
+
+## Purpose
+
+Carousels are a common UI pattern to show a gallery of associated content to users and iterate through show content in the same area
+
+## Functional Requirements
+
+* A Carousel is composed of a Carousel and Carousel-items in a parent-child relationship
+    * Carousel will manage the buttons and control
+    * Carousel-item will be the individual slides that are being iterated through
+* Only one Carousel-item can be 'active' at a time, this is the carousel-item that is currently visible. Non-'active' Carousel-items will not be visible
+* Carousel-items will have a slot for users to define content
+
+## Technical Specifications
+
+* Carousel-items will have prop to dertermine its place in the order (TODO: reword this and add prop name) 
+* have a slot for the index control
+
+### User Interactions
+
+* Carousel will not automatically iterate through content
+* Carousel will provide a forward and back buttons to allow user to control visible Carousel-item
+* Keyboard navigation follow the below order:
+    * backwards button
+    * index control if slotted (TODO: rewrite to mention dot-indicator?)
+    * forward button
+
+### Responsiveness
+
+* 
+
+### Accessibility
+
+* Carousel will be marked as role=region/group and have an aria-roledescription= carousel
+* the container displaying the slides will have the role=group and aria-description=slides
+* Carousel-items will have EITHER
+    *aria-labledby if there is a visible label
+        --or--
+    *an accessible name of the slide # over slide total
+
+### Additional Notes and Considerations
+
+* w3 documentation: https://www.w3.org/WAI/ARIA/apg/patterns/carousel/
+* Slotted index controls
