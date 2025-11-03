@@ -43,6 +43,8 @@
   --cbp-slider-track-color-unselected-dark: var(--cbp-color-interactive-secondary-base);
 
   --cbp-slider-track-selection-size: 0;
+  --cbp-slider-track-selection-offset: 0;
+
 }
 
 // Displays dark design based on mode or context
@@ -86,6 +88,7 @@ cbp-slider {
 
   input[type=number] {
     -moz-appearance: textfield; // Removes the default increment arrows in Firefox 
+    appearance: textfield; //Removes the default increment arrows in Firefox 
   }
   
 
@@ -106,12 +109,14 @@ cbp-slider {
       inline-size: 100%;
       transform-origin: left center;
       transform: scaleX(var(--cbp-slider-track-selection-size)); // TechDebt: the scaling is impacting the border radius. Maybe revisit with clip-path to fix?
+      margin-inline-start: var(--cbp-slider-track-selection-offset);
       pointer-events: none; // allows clicks to pass through to the actual control
     }
   }
 
   // Native range slider
   input[type=range] {
+    //position: absolute;
     -webkit-appearance: none;
     appearance: none;
     background: transparent;
@@ -120,7 +125,7 @@ cbp-slider {
     margin: 0;
     padding: 0;
     cursor: pointer;
-    //pointer-events: none; // this is used when 2 sliders are present for a range
+
 
     // Track
     &::-webkit-slider-runnable-track{
@@ -135,7 +140,6 @@ cbp-slider {
       border-radius: var(--cbp-border-radius-pill);
     }
 
-
     // Thumb
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -149,6 +153,7 @@ cbp-slider {
       box-shadow: 0 0 0 var(--cbp-space-11x) color-mix(in srgb, var(--cbp-slider-thumb-color-halo), transparent 50%);
       clip-path: circle(122%); // verified
       pointer-events: all;
+      z-index: 2;
     }
 
     &::-moz-range-thumb {
@@ -163,7 +168,21 @@ cbp-slider {
       box-shadow: 0 0 0 var(--cbp-space-11x) color-mix(in srgb, var(--cbp-slider-thumb-color-halo), transparent 50%);
       clip-path: circle(122%); // verified
       pointer-events: all;
+      z-index: 2;
     }
+
+    // Range Slider: make the second slider absolutely positioned on top of the first
+    &:last-of-type:not(:first-of-type) {
+      position: absolute;
+      
+      &::-webkit-slider-runnable-track {
+        background: transparent;
+      }
+      &::-moz-range-track {
+        background: transparent;
+      }
+    }
+
     
 
     // States
@@ -186,6 +205,19 @@ cbp-slider {
       --cbp-slider-track-color-selected-dark: var(--cbp-color-interactive-disabled-light);
       --cbp-slider-track-color-unselected-dark: var(--cbp-color-interactive-disabled-dark);
       cursor: not-allowed;
+    }
+  }
+
+
+  // Disable pointer events for range sliders
+  &[variant=range] input[type=range] {
+    pointer-events: none;
+
+    &::-webkit-slider-runnable-track{
+      pointer-events: none;
+    }
+    &::-moz-range-track{
+      pointer-events: none;
     }
   }
 

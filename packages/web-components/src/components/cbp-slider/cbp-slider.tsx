@@ -1,10 +1,10 @@
-import { Component, Element, Prop, Host, h } from '@stencil/core';
+import { Component, Element, Prop, Event, EventEmitter, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 /**
  * The Slider component allows for the selection of a value within a range, styled to design system specifications.
  * 
- * @slot - A native `input type="range"` gets slotted within the default slot.
+ * @slot - A native `input type="range"` (or 2 for range sliders) gets slotted within the default slot.
  * @slot cpb-slider-before - an optional slot to place content (e.g., an icon) before the slider control.
  * @slot cpb-slider-after - an optional slot to place content (e.g., an icon) after the slider control.
  */
@@ -14,20 +14,34 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 })
 export class CbpSlider {
 
-  private formField: HTMLInputElement;
-  private valueField: HTMLInputElement;
+  private formFields: HTMLInputElement[] = [];
+  //private formField: HTMLInputElement;
+  // You can't set a ref to an array index, so we'll construct the array after they've loaded.
+  private valueField1: HTMLInputElement;
+  private valueField2: HTMLInputElement;
+  private valueFields: HTMLInputElement[] = [];
 
   @Element() host: HTMLElement;
 
 
-  /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility. */
+  /** 
+   * Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility. 
+   * For range sliders, "-start" and "-end" are appended to the specified/generated value automatically.
+   */
   @Prop() fieldId: string = createNamespaceKey('cbp-slider');
 
   /** 
    *  Specifies the value of the slider and numeric entry field.
    *  This prop should be set on this component rather than (or in addition to) the slotted `input type="range"`. 
    */
-  @Prop() value: number;
+  //@Prop() value: number;
+  @Prop({ mutable: true, reflect: true }) value: number | number[] | string;
+
+  /** Specifies the minimum difference in values in a range slider. If a non-zero value is specified, keep in mind the interaction with the "step" property. */
+  @Prop() gap: number = 0;
+
+  /** Specifies whether the control is a single slider or a range with two values (can be auto-detected by the number of slotted `input[type=range]` tags). */
+  @Prop({ reflect: true, mutable: true }) variant: "single" | "range" = "single";
 
   /** 
    *  Specifies the minimum value of the slider and numeric entry field (defaults to 0). 
@@ -66,20 +80,105 @@ export class CbpSlider {
   @Prop() sx: any = {};
 
 
+  
+  /** A custom event fired when the menu is opened or closed. */
+  @Event() valueChange: EventEmitter;
+
   // Sync the values regardless of which field was updated.
-  handleChange(e) {
+  handleChange(e, i=0) {
+    // normalize invalid values to the min or max
     let newValue = (!isNaN(e.target.value) && !isNaN(parseFloat(e.target.value))) ? e.target.value : this.min;
-    if (newValue < this.min) newValue = this.min;
-    if (newValue > this.max) newValue = this.max;
-    this.formField.value = newValue;
-    if (this.valueField) this.valueField.value = newValue; // set explicitly because the re-render is inconsistent
-    let newValuePercent = (newValue - this.min) / (this.max - this.min);
-    this.host.style.setProperty('--cbp-slider-track-selection-size', `${newValuePercent}`);
-    this.value = newValue;
+    
+    // Enforce the min value
+    if(i==1) {
+      // set the min of the end input to the range start value + gap
+      const Min = Number(this.value?.[0] || this.min) + this.gap;
+      if (newValue < Min) newValue = Min;
+    }
+    else if (newValue < this.min) newValue = this.min;
+
+    // Enforce the max value
+    if(i==0 && this.formFields.length > 1) {
+      // set the max of the range start to the range end value - gap
+      const Max = Number(this.value?.[1] || this.max) - this.gap;
+      if (newValue > Max) newValue = Max;
+    }
+    else if (newValue > this.max) newValue = this.max;
+
+    this.formFields[i].value = newValue;
+    if (!!this.valueFields[i]) this.valueFields[i].value = newValue; // set explicitly because the re-render is inconsistent
+    
+    // Update the component value
+    if(this.variant == 'single') this.value = newValue;
+    else {
+      this.value=[
+        i == 0 ? newValue : this.value?.[0],
+        i == 1 ? newValue : this.value?.[1],
+      ];
+      this.updateRangeBoundaries();
+    }
+
+    this.valueChange.emit({
+      host: this.host,
+      nativeElement: this.formFields[i],
+      value: this.value,
+      nativeEvent: e
+    });
+
+    this.setSliderBar();
   }
 
+  initRangeValues(){
+    if (typeof this.value == 'string') {
+      this.value = this.value.split(',').map(Number) || [undefined, undefined];
+    }
+  }
+
+  // Set the CSS custom properties that control the slider highlight range based on value(s)
+  setSliderBar(){
+    if(this.variant == 'single'){
+      let newValuePercent = (Number(this.value) - this.min) / (this.max - this.min);
+      this.host.style.setProperty('--cbp-slider-track-selection-size', `${newValuePercent || 0}`);
+    }
+    else {
+      let newValuePercent = ((this.value?.[1] - this.value?.[0]) / (this.max - this.min)) || 0;
+      let newValueOffsetPercent = (((this.value?.[0] - this.min) / (this.max - this.min)) * 100) || 0;
+      this.host.style.setProperty('--cbp-slider-track-selection-size', `${newValuePercent}`);
+      this.host.style.setProperty('--cbp-slider-track-selection-offset', `${newValueOffsetPercent}%`);
+    }
+  }
+
+  initRangeSlider() {
+    this.variant="range";
+    // parse the value into an array
+    if (typeof this.value == 'string') {
+      this.value = this.value.split(',').map(Number) || [undefined, undefined];
+    }
+  }
+
+  updateRangeBoundaries() {
+    // Set the max of numeric input 1 and the min of numeric input 2 based on values 
+    // We can't actually override the min/max of the sliders because it affects the scale of the input
+    this.valueFields.forEach( (item, index) => {
+      // set the max of the start input to the range end value - gap
+      if(index==0) {
+        item?.setAttribute('max', `${Number(this.value[1] || this.max) - this.gap}`);
+      }
+      // set the min of the end input to the range start value + gap
+      if(index==1) {
+        item?.setAttribute('min', `${Number(this.value[0] || this.min) + this.gap}`);
+      }
+    });
+  }
+
+
   componentWillLoad() {
-    this.formField = this.host.querySelector('input[type=range]');
+    this.formFields = Array.from(this.host.querySelectorAll('input[type=range]'));
+    
+    // initialize the range slider by setting the variant and parsing the value
+    if (this.formFields.length > 1) {
+      this.initRangeSlider();
+    }
 
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
@@ -89,27 +188,62 @@ export class CbpSlider {
     });
   }
 
+  // Set the min/max/step/value on the native input[type=range] on load.
   componentDidLoad() {
-    // Set the min/max/step/value on the native input[type=range] on load.
-    if (!!this.formField) {
-      this.formField.getAttribute('id')
-          ? this.fieldId = this.formField.getAttribute('id')
-          : this.formField.setAttribute('id', `${this.fieldId}`);
-      if (this.value) this.formField.setAttribute('value', `${this.value}`);
-      if (this.min) this.formField.setAttribute('min', `${this.min}`);
-      if (this.max) this.formField.setAttribute('max', `${this.max}`);
-      if (this.step) this.formField.setAttribute('step', `${this.step}`);
-      if (this.disabled) this.formField.setAttribute('disabled', ``);
+    this.valueFields = this.variant == 'range' ? [this.valueField1,this.valueField2] : [this.valueField1];
 
-      // The input foes not retain focus on Mac when clicked, so force it
-      this.formField.addEventListener('click', () => this.formField.focus());
-      this.formField.addEventListener('input', (e) => this.handleChange(e));
-    }
+    // update the slider boundaries based on values
+    //if (this.variant=='range') this.updateRangeBoundaries();
+
+    this.formFields.forEach( (item, index) => {
+      if (!!item.getAttribute('id')) {
+        this.fieldId = item.getAttribute('id')
+      }
+      else {
+        if (this.variant == 'single') {
+          item.setAttribute('id', `${this.fieldId}`);
+        }
+        else {
+          item.setAttribute('id', `${this.fieldId}-${index == 0 ? 'start' : 'end'}`);
+        }
+      }
+      if (this.value) item.setAttribute('value', this.variant == 'range' ? this.value[index] : this.value);
+      if (this.min) item.setAttribute('min', `${this.min}`);
+      if (this.max) item.setAttribute('max', `${this.max}`);
+      if (this.step) item.setAttribute('step', `${this.step}`);
+      if (this.disabled) item.setAttribute('disabled', ``);
+
+      if(this.value != undefined) {
+        this.setSliderBar();
+      }
+
+      // The input does not retain focus on Mac when clicked, so force it
+      item.addEventListener('click', () => item.focus());
+      item.addEventListener('input', (e) => this.handleChange(e, index));
+    })
   }
 
   render() {
     return (
       <Host>
+
+        {!this.hideInput && this.variant == 'range' && 
+          <input type="number" 
+            min={this.min}
+            max={this.max}
+            step={this.step}
+            value={this.variant == 'range' ? this.value?.[0] || undefined : `${this.value}`}
+            disabled={this.disabled}
+            aria-label="Slider 1 value"
+            aria-describedby={`${this.fieldId}-label`}
+            aria-invalid={this.error}
+            ref={(el) => this.valueField1 = el}
+            onChange={ (e) => this.handleChange(e,0)}
+            //onKeyUp={ (e) => this.handleChange(e,0)}
+          />
+        }
+
+
         {(!this.hideMinmax || this.host.querySelector('[slot="cpb-slider-before"]')) &&
           <span>
             {!this.hideMinmax && this.min}
@@ -129,19 +263,21 @@ export class CbpSlider {
           </span>
         } 
 
-        {!this.hideInput && <input type="number" 
-          min={this.min}
-          max={this.max}
-          step={this.step}
-          value={this.value}
-          disabled={this.disabled}
-          aria-label="Slider value"
-          aria-describedby={`${this.fieldId}-label`}
-          aria-invalid={this.error}
-          ref={(el) => this.valueField = el} 
-          onChange={ (e) => this.handleChange(e)}
-          onKeyUp={ (e) => this.handleChange(e)}
-        />}
+        {!this.hideInput && 
+          <input type="number" 
+            min={this.min}
+            max={this.max}
+            step={this.step}
+            value={this.variant == 'range' ? this.value?.[1] || undefined : `${this.value}`}
+            disabled={this.disabled}
+            aria-label={`Slider ${this.variant == 'range' ? 2 : 1} value`}
+            aria-describedby={`${this.fieldId}-label`}
+            aria-invalid={this.error}
+            ref={(el) => this.variant == 'range' ? this.valueField2 = el : this.valueField1 = el} 
+            onChange={ (e) => this.handleChange(e, this.variant == 'range' ? 1 : 0)}
+            //onKeyUp={ (e) => this.handleChange(e, this.variant == 'range' ? 1 : 0)}
+          />
+        }
       </Host>
     );
   }

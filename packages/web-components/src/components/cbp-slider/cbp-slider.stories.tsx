@@ -14,6 +14,9 @@ export default {
     name: {
       control: 'text'
     },
+    value: {
+      control: 'text',
+    },
     min: {
       control: 'number',
     },
@@ -21,6 +24,9 @@ export default {
       control: 'number',
     },
     step: {
+      control: 'number',
+    },
+    gap: {
       control: 'number',
     },
     hideMinmax: {
@@ -84,7 +90,6 @@ const SliderTemplate = ({ label, description, fieldId, name, min, max, step, hid
 export const Slider = SliderTemplate.bind({});
 Slider.args = {
   name: 'range',
-  value: '',
 };
 
 
@@ -137,3 +142,51 @@ VolumeSlider.args = {
   hideMinmax: true,
   hideInput: true
 };
+
+
+
+const RangeSliderTemplate = ({ label, description, fieldId, name, min, max, step, gap, hideMinmax, hideInput, error, disabled, value, context, sx }) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${error ? `error` : ''}
+      ${disabled ? `disabled` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+      <cbp-slider
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${value != undefined ? `value="${value}"` : ''}
+        ${min != undefined ? `min="${min}"` : ''}
+        ${max ? `max="${max}"` : ''}
+        ${step ? `step="${step}"` : ''}
+        ${gap ? `gap="${gap}"` : ''}
+        ${hideMinmax ? `hide-minmax` : ''}
+        ${hideInput ? `hide-input` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+        <input 
+          type="range" 
+          ${name ? `name="${name}-start"` : ''}
+        />
+        <input 
+          type="range" 
+          ${name ? `name="${name}-end"` : ''}
+        />
+      </cbp-slider>
+    </cbp-form-field>
+  `;
+};
+
+export const RangeSlider = RangeSliderTemplate.bind({});
+RangeSlider.argTypes = {
+  max: {
+    control: 'number',
+  },
+}
+RangeSlider.args = {
+  name: 'range',
+};
+
