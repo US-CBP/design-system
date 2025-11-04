@@ -4,6 +4,12 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unpublished] TBD
+
+* Updated the `cbp-slider`:
+  * Added range slider capability
+  * Added a `valueChange` event emitter.
+
 ## [0.0.1-develop.27] 10-24-2025
 
 * Updated the `cbp-dropdown` with new features:

@@ -18,6 +18,7 @@ export class CbpFormField {
 
   // These are only set for non-group form fields and should be null for groups
   private formField: any;
+  //private formFields: any[] = [];
   private formFieldComponent: any;
   private buttons: any;
   private attachedButtons: any;
@@ -163,6 +164,7 @@ export class CbpFormField {
     if (!this.group) {
       // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
       this.formField = this.host.querySelector('button[role=combobox],input,select,textarea');
+      //this.formFields = Array.from(this.host.querySelectorAll('button[role=combobox],input,select,textarea')) as any;
       
       // Treat nested components separately, as it's hard to modify their rendered content directly
       this.formFieldComponent = this.host.querySelector('cbp-dropdown,cbp-slider,cbp-file-input');

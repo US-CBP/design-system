@@ -1,4 +1,4 @@
-import { Component, Element, Prop, Event, EventEmitter, Host, h } from '@stencil/core';
+import { Component, Element, Prop, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 /**
@@ -80,10 +80,20 @@ export class CbpSlider {
   @Prop() sx: any = {};
 
 
-  
   /** A custom event fired when the menu is opened or closed. */
   @Event() valueChange: EventEmitter;
 
+
+  @Watch('disabled')
+  watchDisabledHandler(newValue: boolean) {
+    // for ranges, setting disabled on load isn't working, so do it via watch just in case.
+    this.formFields.forEach( (item) => {
+      (newValue) 
+        ? item.setAttribute('disabled', '')
+        : item.removeAttribute('disabled');
+    });
+  }
+  
   // Sync the values regardless of which field was updated.
   handleChange(e, i=0) {
     // normalize invalid values to the min or max
@@ -157,18 +167,20 @@ export class CbpSlider {
   }
 
   updateRangeBoundaries() {
-    // Set the max of numeric input 1 and the min of numeric input 2 based on values 
-    // We can't actually override the min/max of the sliders because it affects the scale of the input
-    this.valueFields.forEach( (item, index) => {
-      // set the max of the start input to the range end value - gap
-      if(index==0) {
-        item?.setAttribute('max', `${Number(this.value[1] || this.max) - this.gap}`);
-      }
-      // set the min of the end input to the range start value + gap
-      if(index==1) {
-        item?.setAttribute('min', `${Number(this.value[0] || this.min) + this.gap}`);
-      }
-    });
+    if(!this.hideInput) {
+      // Set the max of numeric input 1 and the min of numeric input 2 based on values 
+      // We can't actually override the min/max of the sliders because it affects the scale of the input
+      this.valueFields.forEach( (item, index) => {
+        // set the max of the start input to the range end value - gap
+        if(index==0) {
+          item?.setAttribute('max', `${Number(this.value[1] || this.max) - this.gap}`);
+        }
+        // set the min of the end input to the range start value + gap
+        if(index==1) {
+          item?.setAttribute('min', `${Number(this.value[0] || this.min) + this.gap}`);
+        }
+      });
+    }
   }
 
 
@@ -192,9 +204,7 @@ export class CbpSlider {
   componentDidLoad() {
     this.valueFields = this.variant == 'range' ? [this.valueField1,this.valueField2] : [this.valueField1];
 
-    // update the slider boundaries based on values
-    //if (this.variant=='range') this.updateRangeBoundaries();
-
+    // Loop over the input[type=range] fields to update their attributes based on props
     this.formFields.forEach( (item, index) => {
       if (!!item.getAttribute('id')) {
         this.fieldId = item.getAttribute('id')
@@ -204,14 +214,23 @@ export class CbpSlider {
           item.setAttribute('id', `${this.fieldId}`);
         }
         else {
-          item.setAttribute('id', `${this.fieldId}-${index == 0 ? 'start' : 'end'}`);
+          item.setAttribute('id', `${this.fieldId}${index == 1 ? '-end' : ''}`);
         }
       }
       if (this.value) item.setAttribute('value', this.variant == 'range' ? this.value[index] : this.value);
       if (this.min) item.setAttribute('min', `${this.min}`);
       if (this.max) item.setAttribute('max', `${this.max}`);
       if (this.step) item.setAttribute('step', `${this.step}`);
-      if (this.disabled) item.setAttribute('disabled', ``);
+      // this seems to work for a single slider, but not a range slider; added a watch to handle it
+      if (this.disabled) item.setAttribute('disabled', '');
+      // set aria-labelledby on the second input in a range, since the label only explicitly points to the first.
+      // As a faux-group, we don't need to link the description.
+      if (index==1) item.setAttribute('aria-labelledby',`${this.fieldId}-label`);
+      // Set a description for range sliders for added context
+      if(this.variant == "range") {
+        if(document.querySelector(`${this.fieldId}-description`)) item.setAttribute('aria-describedby',`${this.fieldId}-description`);
+        else item.setAttribute('aria-description', index == 0 ? 'Range start' : 'Range end');
+      }
 
       if(this.value != undefined) {
         this.setSliderBar();
@@ -221,6 +240,13 @@ export class CbpSlider {
       item.addEventListener('click', () => item.focus());
       item.addEventListener('input', (e) => this.handleChange(e, index));
     })
+  }
+
+  componentDidRender(){
+    // remove aria-describedby from the numeric input, which is inadvertently set by the cbp-form-field (it's meant for the slider)
+    this.valueFields.forEach( item => {
+      item?.removeAttribute('aria-describedby');
+    });
   }
 
   render() {
@@ -234,12 +260,11 @@ export class CbpSlider {
             step={this.step}
             value={this.variant == 'range' ? this.value?.[0] || undefined : `${this.value}`}
             disabled={this.disabled}
-            aria-label="Slider 1 value"
-            aria-describedby={`${this.fieldId}-label`}
+            aria-labelledby={`${this.fieldId}-label`}
+            aria-description="Slider 1 value"
             aria-invalid={this.error}
             ref={(el) => this.valueField1 = el}
             onChange={ (e) => this.handleChange(e,0)}
-            //onKeyUp={ (e) => this.handleChange(e,0)}
           />
         }
 
@@ -270,12 +295,11 @@ export class CbpSlider {
             step={this.step}
             value={this.variant == 'range' ? this.value?.[1] || undefined : `${this.value}`}
             disabled={this.disabled}
-            aria-label={`Slider ${this.variant == 'range' ? 2 : 1} value`}
-            aria-describedby={`${this.fieldId}-label`}
+            aria-labelledby={`${this.fieldId}-label`}
+            aria-description={`Slider ${this.variant == 'range' ? 2 : 1} value`}
             aria-invalid={this.error}
             ref={(el) => this.variant == 'range' ? this.valueField2 = el : this.valueField1 = el} 
             onChange={ (e) => this.handleChange(e, this.variant == 'range' ? 1 : 0)}
-            //onKeyUp={ (e) => this.handleChange(e, this.variant == 'range' ? 1 : 0)}
           />
         }
       </Host>
