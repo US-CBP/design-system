@@ -1,3 +1,42 @@
 cbp-carousel {
   display: block;
+
+  .cbp-carousel-viewer,
+  cbp-carousel-item{
+    height: 100%;
+    width: 100%;
+  }
+
+  cbp-carousel-item > *{
+    height: inherit;
+    width: inherit;
+  }
+
+  
+  .cbp-carousel-viewer[aria-animation="carouselForwards"] cbp-carousel-item > *{
+    animation: slide 0.5s forwards;
+    transform: translateX(-100%);
+  }
+  
+  .cbp-carousel-viewer[aria-animation="carouselBackwards"] cbp-carousel-item > *{
+    animation: slide 0.5s forwards;
+    transform: translateX(100%);
+  }
+
+
+  .cbp-carousel-controls{
+    display: flex;
+    gap: var(--cbp-space-4x);
+    
+    > [slot='index-control']{
+      display: inline-flex;
+      justify-content: center;
+      flex-grow: 1;
+    }
+  }
+}
+
+
+@keyframes slide {
+  100%{ transform: translateX(0%)}
 }
