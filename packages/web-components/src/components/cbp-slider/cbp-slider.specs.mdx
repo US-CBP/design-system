@@ -6,14 +6,14 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 
 ## Purpose
 
-The Slider component allows for the selection of a value within a range, styled to design system specifications.
+The Slider component allows for the selection of a single value or two values within a range, styled to design system specifications.
 
 ## Functional Requirements
 
-* The Slider component wraps the slotted native form control (`input type="range"`) to provide custom, cross-browser styling and additional functionality.
+* The Slider component wraps the slotted native form control(s) (`input type="range"`) to provide custom, cross-browser styling and additional functionality.
 * The Slider component shall be slotted within the `cbp-form-field` component to supply an accessible label and description.
 * The component will show the min/max values to the left and right of the slider control by default, but these may be hidden.
-* The component will show a numeric input to the right of the slider by default, which is synced with the slider control. This control may be optionally hidden.
+* The component will show a numeric input (to the right of a single slider, or on both ends for a range slider) by default, which is synced with the slider control. These controls may be optionally hidden.
 * Optional named slots also exist before and after the slider control for adding custom content, such as icons or time-based values.
 
 ## Technical Specifications
@@ -22,13 +22,14 @@ The Slider component allows for the selection of a value within a range, styled 
 
 * The user interactions are that of a native `input type="range"` element:
   * Clicking anywhere on the form control or label text will place focus on the control.
-  * Clicking on the "track" will select the corresponding value based on the position clicked on the slider.
+  * For single select sliders, clicking on the "track" will select the corresponding value based on the position clicked on the slider.
   * Sliders are keyboard accessible by tabbing onto the control and then using the arrows.
     * Pressing the up or right arrow increments the slider by the step value (default = 1).
     * Pressing the down or left arrow decrements the slider by the step value (default = 1).
-  * Optionally, a numeric input may be shown to the right of the slider.
+  * Optionally, a numeric input may be shown on either side of the slider (right for a single slider, both sides for a range slider).
     * Users can enter an exact numeric value into the input field.
     * This input is synchronized with the slider in terms of min, max, step, and value.
+    * For range sliders, the min and max values are updated based on the other value selected so that the end value cannot be lower than the start value and vice versa.
     * While the numeric input buttons are hidden, the up and down arrow keys may still be used to increments and decrement the value (by the step value) respectively.
     * This input has no `name` attribute and will not be submitted with a native form submission (the `input type=range` is submitted if it has a `name`.)
 
@@ -39,8 +40,13 @@ The Slider component allows for the selection of a value within a range, styled 
 
 ### Accessibility
 
-* The associated label and `aria-describedby` are provided by the parent `cbp-form-field` component.
-* The numeric input, when shown, has a static `aria-label` of "Slider value" and `aria-describedby` referencing the `label` element. While the pattern technically contains two inputs, the numeric input acts as an accessory, so a group/fieldset context was not used.
+* The associated `label` and `aria-describedby` are provided by the parent `cbp-form-field` component.
+* In a range slider:
+  * The second slider has an `aria-labelledby` referencing the `label` tag.
+  * Both sliders also have a static `aria-description` of "Range start" or "Range end" if not description is provided by the `cbp-form-field` tag.
+* The numeric input(s), when shown:
+  * Have an `aria-labelledby` referencing the `cbp-form-field` `label` as well.
+  * Also have a static `aria-description` of "Slider 1 value" or "Slider 2 value".
 * Full keyboard navigation is supported, as detailed under "User Interactions" above.
 * When using a mouse to click the thumb or track of the slider, the interactive element is not focused on Mac by default. Therefore, the component sets focus explicitly on click.
 
@@ -50,4 +56,4 @@ The Slider component allows for the selection of a value within a range, styled 
 * A slider should not be marked `readonly`, as its value can still be changed. 
 * The native behavior of using a `datalist` to supply tick marks is not supported since we are overriding the CSS `appearance`.
 * There are potentially other applications of this component such as a playback slider, but these will need to be discussed on a case by case basis and additional work may be needed to meet those requirements.
-* TODO: The initial version of this component supports a single value. A range variation supporting two values (not natively supported by `input[type=range]`) is planned for the future.
+* For range sliders, which accept a start and end value, initial values should be set so that the sliders are not placed on top of each other by default. Logical starting values may vary by context.
