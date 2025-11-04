@@ -188,5 +188,6 @@ RangeSlider.argTypes = {
 }
 RangeSlider.args = {
   name: 'range',
+  value: '30,70'
 };
 
