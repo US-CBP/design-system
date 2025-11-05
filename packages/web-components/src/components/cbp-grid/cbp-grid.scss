@@ -1,4 +1,19 @@
+/**
+ *  @prop --cbp-grid-linearized-margin: 0;
+ */
+:root{
+  --cbp-grid-linearized-margin: 0;
+}
+
 cbp-grid:not([hidden]) {
-    display: grid;
-    max-width: 100%;
+  display: grid;
+  max-width: 100%;
+
+  &.cbp-grid-linearized {
+    display: block !important;
+    
+    & > * {
+      margin-block-end: var(--cbp-grid-linearized-margin);
+    }
+  }
 }

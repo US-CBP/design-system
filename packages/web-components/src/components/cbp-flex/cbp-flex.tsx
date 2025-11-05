@@ -46,7 +46,7 @@ export class CbpFlex {
 
   // Callback function for the media query event listener
   handleBreakpointChange(mql) {
-    mql.matches ? this.host.style.setProperty('display', 'block') : this.host.style.setProperty('display', this.display);
+    mql.matches ? this.host.classList.add('cbp-flex-linearized') : this.host.classList.remove('cbp-flex-linearized');
   }
 
   componentWillLoad() {
@@ -61,6 +61,7 @@ export class CbpFlex {
       'align-content': this.alignContent,
       'justify-content': this.justifyContent,
       'gap': this.gap,
+      '--cbp-flex-linearized-margin': this.gap != undefined ? this.gap.split(' ')?.[0] : undefined,
       ...this.sx,
     });
   }
