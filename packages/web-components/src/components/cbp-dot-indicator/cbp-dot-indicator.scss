@@ -19,48 +19,55 @@
   --cbp-dot-indicator-selected-color: var(--cbp-dot-indicator-selected-color-dark);
 }
 
-
-
 cbp-dot-indicator {
+  display: flex;
+  gap: var(--cbp-space-4x);
 
-  .dot-indicator{
-    height: var(--cbp-space-9x);
-    width: var(--cbp-space-9x);
-    border: none;
-    background-color: transparent;
-    padding: none;
+  .indicators{
     display: inline-flex;
-    align-items: center;
     justify-content: center;
+    flex-grow: 1;
 
-    .dot{
-      height: var(--cbp-space-4x);
-      width: var(--cbp-space-4x);
-      border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-secondary-darker);
-      border-radius: var(--cbp-border-radius-circle);
-      
+    .dot-indicator{
+      height: var(--cbp-space-9x);
+      width: var(--cbp-space-9x);
+      border: none;
+      background-color: transparent;
+      padding: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      .dot{
+        height: var(--cbp-space-4x);
+        width: var(--cbp-space-4x);
+        border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-secondary-darker);
+        border-radius: var(--cbp-border-radius-circle);
+        
+      }
+
+      &:hover .dot{
+        background-color:var(--cbp-dot-indicator-hover-color);
+        border-color: var(--cbp-dot-indicator-hover-color);
+      }
+
+      &:focus .dot{
+        background-color:var(--cbp-dot-indicator-focus-color);
+        border-color: var(--cbp-dot-indicator-focus-color);
+        outline: var(--cbp-space-half-x) solid var(--cbp-dot-indicator-focus-color);
+        outline-offset: var(--cbp-space-half-x);
+      }
+
+      &[aria-selected="true"] .dot{
+        background-color:var(--cbp-dot-indicator-selected-color);
+        border-color: var(--cbp-dot-indicator-selected-color);
+      }
     }
 
-    &:hover .dot{
-      background-color:var(--cbp-dot-indicator-hover-color);
-      border-color: var(--cbp-dot-indicator-hover-color);
-    }
-
-    &:focus .dot{
-      background-color:var(--cbp-dot-indicator-focus-color);
-      border-color: var(--cbp-dot-indicator-focus-color);
-      outline: var(--cbp-space-half-x) solid var(--cbp-dot-indicator-focus-color);
-      outline-offset: var(--cbp-space-half-x);
-    }
-
-    &:focus-visible{ //override browser default for buttons
+    &:focus-visible,
+    & .dot-indicator:focus-visible { //override browser default for buttons
       border: none;
       outline: none;
-    }
-
-    &[aria-selected="true"] .dot{
-      background-color:var(--cbp-dot-indicator-selected-color);
-      border-color: var(--cbp-dot-indicator-selected-color);
     }
   }
 }

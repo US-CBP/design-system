@@ -46,9 +46,11 @@ export class CbpDotIndicator {
                 </div> 
               </button> `;
     }
-    this.host.innerHTML = html;
-  }
-
+    //setTimeout needed for this.host.children to return element
+    setTimeout(() => {
+      this.host.children[1].innerHTML = html;
+    }, 0)
+    }
 
   keyboardNav(key) {
     const l = this.index - 1;
@@ -60,9 +62,9 @@ export class CbpDotIndicator {
       Tab: this.focusIndex=this.selectedIndex, // reset the focusIndex when tabbing out of the dot-indicator
     }[key];
     if (n !== undefined && key !== 'Tab') {
-      console.log('keyboardNav check: ', n);
       this.focusIndex = n;
-      this.setIndexActive(this.focusIndex);
+      let focusedIndicator = this.host.querySelectorAll(`.dot-indicator`)[this.focusIndex] as HTMLElement;
+      focusedIndicator.focus();
     }
   }
 
@@ -72,10 +74,6 @@ export class CbpDotIndicator {
       let dotIndex = dot.getAttribute('index');
       dot.addEventListener('click', () => this.setIndexActive(dotIndex));
     })
-    
-    let carousel = document.querySelector('cbp-carousel');
-    carousel.addEventListener('carouselForward', (e)=> this.setIndexActive(e.detail.index));
-    carousel.addEventListener('carouselBackward', (e)=> this.setIndexActive(e.detail.index));
 
     indicators[0].setAttribute('aria-selected', 'true'); //default set first index to active;
   }
@@ -83,11 +81,46 @@ export class CbpDotIndicator {
   render() {
     return (
       <Host
-        onKeydown={({ key }) => {
-          this.keyboardNav(key);
-        }}
       >
-        {this.generateIndicator()}
+        
+          <cbp-button
+            type='button'
+            fill='ghost'
+            color='secondary'
+            variant='square'
+            id='carousel-back'
+            onClick={() => {
+                document.querySelector('.cbp-carousel-viewer').setAttribute('aria-animation', 'carouselBackwards');
+                this.setIndexActive(this.selectedIndex - 1)
+              }
+            }
+          >
+            <cbp-icon name='angle-down' rotate={90}></cbp-icon>
+          </cbp-button>
+
+        <div class='indicators'
+          tabindex='0'
+          onKeyDown={({ key }) => {
+            this.keyboardNav(key);
+          }}
+        >
+          {this.generateIndicator()}
+        </div>
+        
+        <cbp-button
+          type='button'
+          fill='ghost'
+          color='secondary'
+          variant='square'
+          id='carousel-forward'
+          onClick={() => {
+              document.querySelector('.cbp-carousel-viewer').setAttribute('aria-animation', 'carouselForwards');
+              this.setIndexActive(this.selectedIndex + 1)
+            }
+          }
+        >
+          <cbp-icon name='angle-down' rotate={270}></cbp-icon>
+        </cbp-button>
       </Host>
     );
   }

@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Host, h, Prop} from '@stencil/core';
+import { Component, Element, Host, h, Prop} from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 @Component({
@@ -12,6 +12,9 @@ export class CbpCarousel {
   
   @Element() host: HTMLElement; 
   
+  @Prop({reflect: true}) height
+  @Prop({reflect: true}) width
+
  /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
@@ -27,28 +30,6 @@ export class CbpCarousel {
     });
   }
 
-  @Event() carouselForward: EventEmitter;
-    handleCarouselForward(e){
-      let index = Number(document.querySelector('[slot="index-control"] [aria-selected="true"]').getAttribute('index')) + 1;
-      this.carouselForward.emit({
-        index: index,
-        nativeEvent: e
-      })
-      document.querySelector('.cbp-carousel-viewer').setAttribute('aria-animation', 'carouselForwards');
-      this.updateVisible();
-     }
-
-  @Event() carouselBackward: EventEmitter;
-     handleCarouselBackward(e) {
-      let index = Number(document.querySelector('[slot="index-control"] [aria-selected="true"]').getAttribute('index')) - 1;
-      this.carouselForward.emit({
-        index: index,
-        nativeEvent: e
-      })
-      document.querySelector('.cbp-carousel-viewer').setAttribute('aria-animation', 'carouselBackwards');
-      this.updateVisible();
-     }
-
   updateVisible(){
     let index = document.querySelector('[slot="index-control"] [aria-selected="true"]').getAttribute('index'); //TODO: probably pretty weak selector/logic here
    
@@ -56,7 +37,6 @@ export class CbpCarousel {
       const slide = this.slideIndex[x];
       slide.hidden= true;
     }
-
     this.slideIndex[index].hidden = false;
   }
 
@@ -67,7 +47,12 @@ export class CbpCarousel {
     indicators.forEach((dot) => {
       dot.addEventListener('click', () => this.updateVisible());
     })
-
+    document.querySelector('#carousel-back').addEventListener('click', () => this.updateVisible())
+    document.querySelector('#carousel-forward').addEventListener('click', () => this.updateVisible())
+    
+    this.height != null ? this.host.style.height = this.height : null;
+    this.width != null ? this.host.style.width = this.width : null;
+    
     this.updateVisible();
   }
 
@@ -84,30 +69,7 @@ export class CbpCarousel {
         >
           <slot></slot>
         </div>
-        <div class='cbp-carousel-controls'>
-          <cbp-button
-            type='button'
-            fill='ghost'
-            color='secondary'
-            variant='square'
-            id='carousel-back'
-            onClick={(e) => this.handleCarouselBackward(e)}
-          >
-            <cbp-icon name='angle-down' rotate={90}></cbp-icon>
-          </cbp-button>
-          <slot name='index-control'></slot>
-          
-          <cbp-button
-            type='button'
-            fill='ghost'
-            color='secondary'
-            variant='square'
-            id='carousel-forward'
-            onClick={(e) => this.handleCarouselForward(e)}
-          >
-            <cbp-icon name='angle-down' rotate={270}></cbp-icon>
-          </cbp-button>
-        </div>
+        <slot name='index-control'></slot>
       </Host>
     );
   }

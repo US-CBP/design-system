@@ -16,9 +16,11 @@ function generateSlides(slides) {
   return html.join('');
 }
 
-const Template = ({slides, sx}) => {
+const Template = ({slides, height, width, sx}) => {
   return `
    <cbp-carousel
+    height=${height}
+    width=${width}
     ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
    >
         ${generateSlides(slides)}
@@ -64,8 +66,6 @@ Carousel.args ={
             `,
         },
     ],
-    sx: {
-            "width": "500px",
-            "height": "300px"
-        }
+    height: '300px',
+    width: '500px'
 }
