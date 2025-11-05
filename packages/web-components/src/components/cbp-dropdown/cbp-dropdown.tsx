@@ -124,6 +124,9 @@ export class CbpDropdown {
   /** A custom event that is fired when the "create item" option is clicked. */
   @Event() createItem: EventEmitter;
 
+  /** A custom event that is fired when a key is pressed while filtering a combobox. */
+  @Event() filterKeypress: EventEmitter;
+
   /** 
    * A custom event emitted for asynchronous comboboxes (`async=true` and `filter=true`) and 
    * the search string meets the `minimumInputLength` requirement. 
@@ -619,7 +622,7 @@ export class CbpDropdown {
       //console.log('Typing Mode = true: ',key);
       this.open=true;
       if(this.filter) this.typingMode=true;
-      this.filter ? this.searchByString(key.toLowerCase()) : this.jumpToLetter(key.toLowerCase());
+      this.filter ? this.searchByString(key.toLowerCase(), event) : this.jumpToLetter(key.toLowerCase());
     }
   }
 
@@ -662,7 +665,9 @@ export class CbpDropdown {
   
 
   // Filtering by search string
-  searchByString(letter) {
+  searchByString(letter,e) {
+    const { altKey, ctrlKey, metaKey } = e;
+    
     // handle deletion of a character
     if ( letter == 'backspace' || letter == 'clear') {
       const l = this.searchString.length;
@@ -677,13 +682,29 @@ export class CbpDropdown {
       this.searchString += letter;
     }
 
+    // Emit the filterKeypress event once the search string is updated
+    this.filterKeypress.emit({
+      host: this.host,
+      key: letter,
+      altKey: altKey,
+      ctrlKey: ctrlKey,
+      metaKey: metaKey,
+      searchString: this.searchString,
+      nativeEvent: e
+    })
+
     // async combobox
     if (this.async) {
       // For async calls, emit an event so that app logic can populate the items(JSON) prop
       if (this.searchString.length >= this.minimumInputLength) {
         this.populateCombobox.emit({
+          host: this.host,
+          key: letter,
+          altKey: altKey,
+          ctrlKey: ctrlKey,
+          metaKey: metaKey,
           searchString: this.searchString,
-          host: this.host
+          nativeEvent: e
         });
       }
       // If the search string doesn't meet the threshold, clear items and matches
