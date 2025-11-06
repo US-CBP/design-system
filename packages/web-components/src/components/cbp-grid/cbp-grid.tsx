@@ -12,6 +12,7 @@ import { setCSSProps } from '../../utils/utils';
   styleUrl: 'cbp-grid.scss',
 })
 export class CbpGrid {
+
   @Element() host: HTMLElement;
 
   /** Specifies the grid display. Defaults to "grid". */
@@ -58,7 +59,7 @@ export class CbpGrid {
 
   // Callback function for the media query event listener
   handleBreakpointChange(mql) {
-    mql.matches ? this.host.style.setProperty('display', 'block') : this.host.style.setProperty('display', this.display);
+    mql.matches ? this.host.classList.add('cbp-grid-linearized') : this.host.classList.remove('cbp-grid-linearized');
   }
 
   componentWillLoad() {
@@ -78,6 +79,7 @@ export class CbpGrid {
       'align-items': this.alignItems,
       'justify-items': this.justifyItems,
       'grid-gap': this.gap,
+      '--cbp-grid-linearized-margin': this.gap != undefined ? this.gap.split(' ')?.[0] : undefined,
       ...this.sx,
     });
   }

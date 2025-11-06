@@ -131,7 +131,7 @@ const Template = ({
           ${alignContent ? `align-content=${alignContent}` : ''}
           ${justifyItems ? `justify-items=${justifyItems}` : ''}
           ${justifyContent ? `justify-content=${justifyContent}` : ''}
-          ${gap ? `gap=${gap}` : ''}
+          ${gap ? `gap="${gap}"` : ''}
           ${breakpoint ? `breakpoint=${breakpoint}` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
