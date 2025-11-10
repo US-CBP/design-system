@@ -8,11 +8,15 @@ export class CbpDotIndicator {
 
   @Element() host: HTMLElement; 
   
-  private selectedIndex: number = 1; // index of the selected indicator
+  private selectedIndex: number = 0; // index of the selected indicator
   private focusIndex: number = 0; // index of the focused indicator, used for keyboard nav
 
   /** the currently active dot */
-  @Prop () current: number; //TODO: this may not need reflect: true
+  @Prop () current= 0;
+
+  /** unit of measure for what the dot indicator is measuring */
+  @Prop() unit = 'Item';
+
   /** Length of index dot-indicator is tracking */
   @Prop() items: number;
 
@@ -26,16 +30,7 @@ export class CbpDotIndicator {
       index=this.items - 1;
     }
 
-    this.host.querySelectorAll('.dot-indicators-container button').forEach((item)=> {
-      item.setAttribute('aria-selected', 'false');
-      item.setAttribute('tabindex', '-1');
-    })
-
     this.selectedIndex = this.focusIndex = index;
-    
-    let indicator = this.host.querySelector('.dot-indicators-container').childNodes[index] as HTMLButtonElement;
-    indicator.setAttribute('aria-selected', 'true');
-    indicator.setAttribute('tabindex', '0');
     this.current = index;
 
     this.navigateCollection.emit({
@@ -49,7 +44,7 @@ export class CbpDotIndicator {
     for (let x = 0; x < this.items; x++){
       let newIndicator: HTMLButtonElement = 
         <button 
-          aria-label={(x+1) + " of " + this.items + " Dots"}
+          aria-label={(x+1) + " of " + this.items + " " + this.unit}
           aria-selected = {x == this.current ? "true" : "false"}
           tabindex="-1"
           onClick={() => this.setIndexActive(x)}
@@ -78,9 +73,6 @@ export class CbpDotIndicator {
     }
   }
 
-  componentDidRender(){
-  this.setIndexActive(this.current);
-  }
 
   render() {
     return (
@@ -90,13 +82,8 @@ export class CbpDotIndicator {
           fill="ghost"
           color="secondary"
           variant="square"
-          value="carousel-back"
-          accessibilityText='carousel back'
-          onClick={() => {
-              // document.querySelector('.cbp-carousel-viewer').setAttribute('aria-animation', 'carouselBackwards'); //TODO: note for animation refactor
-              this.setIndexActive(this.selectedIndex - 1)
-            }
-          }
+          accessibilityText={this.unit + " back"}  
+          onClick={() => {this.setIndexActive(this.selectedIndex - 1)}}
         >
           <cbp-icon name="angle-down" rotate={90}></cbp-icon>
         </cbp-button>
@@ -113,13 +100,8 @@ export class CbpDotIndicator {
           fill="ghost"
           color="secondary"
           variant="square"
-          value="carousel-forward"
-          accessibilityText='carousel forward'
-          onClick={() => {
-              // document.querySelector('.cbp-carousel-viewer').setAttribute('aria-animation', 'carouselForwards'); //TODO: note for animation refactor
-              this.setIndexActive(this.selectedIndex + 1)
-            }
-          }
+          accessibilityText={this.unit + " forward"}
+          onClick={() => {this.setIndexActive(this.selectedIndex + 1)}}
         >
           <cbp-icon name="angle-down" rotate={270}></cbp-icon>
         </cbp-button>

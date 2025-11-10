@@ -1,6 +1,13 @@
 import { Component, Element, Host, h, Listen, Prop} from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
+/**
+ * The Carousel is a control meant to take slotted Carousel-items to visually
+ * iterate though to display with a slotted control of a dot-indicator or other control
+ * 
+ * @slot - Anything placed into the default slot will be rendered in the cbp-carousel-container
+ * @slot cbp-carousel-controls - This named slot is intended for a control of the carousel, for example: cbp-dot-indicator
+ */
 @Component({
   tag: 'cbp-carousel',
   styleUrl: 'cbp-carousel.scss'
