@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Carousel',
-  tags: ['beta'],
+  tags: ['new'],
   argTypes: {
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
@@ -25,9 +25,9 @@ const Template = ({slides, sx}) => {
    >
         ${generateSlides(slides)}
         <cbp-dot-indicator 
-            slot='index-control'
-            active-indicator=0
-            indicator-length=${slides.length}
+            slot='cbp-carousel-controls'
+            current=0
+            items=${slides.length}
         ></cbp-dot-indicator>
    </cbp-carousel>
   `;

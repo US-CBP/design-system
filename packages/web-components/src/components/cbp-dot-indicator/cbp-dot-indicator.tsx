@@ -12,18 +12,18 @@ export class CbpDotIndicator {
   private focusIndex: number = 0; // index of the focused indicator, used for keyboard nav
 
   /** the currently active dot */
-  @Prop ({reflect: true}) activeIndicator: number; //TODO: this may not need reflect: true
+  @Prop () current: number; //TODO: this may not need reflect: true
   /** Length of index dot-indicator is tracking */
-  @Prop({ reflect: true }) indicatorLength: number;
+  @Prop() items: number;
 
   /** Custom event emitted when the Dot-indicator changes active indicator*/
-  @Event() handleIndexChange: EventEmitter;
+  @Event() navigateCollection: EventEmitter;
 
   setIndexActive(index){
-    if(index >= this.indicatorLength){
+    if(index >= this.items){
       index=0;
     }else if(index < 0){
-      index=this.indicatorLength - 1;
+      index=this.items - 1;
     }
 
     this.host.querySelectorAll('.dot-indicators-container button').forEach((item)=> {
@@ -36,34 +36,34 @@ export class CbpDotIndicator {
     let indicator = this.host.querySelector('.dot-indicators-container').childNodes[index] as HTMLButtonElement;
     indicator.setAttribute('aria-selected', 'true');
     indicator.setAttribute('tabindex', '0');
-    this.activeIndicator = index;
+    this.current = index;
 
-    this.handleIndexChange.emit({
+    this.navigateCollection.emit({
       host: this.host,
-      active: this.activeIndicator
+      item: this.current
     })
   }
 
   generateIndicator(){
-    let dotIndicator: HTMLButtonElement[] = [];
-    for (let x = 0; x < this.indicatorLength; x++){
+    let dots: HTMLButtonElement[] = [];
+    for (let x = 0; x < this.items; x++){
       let newIndicator: HTMLButtonElement = 
         <button 
-          // aria-index={`${x}`} //TODO: aria-index not right, just here for testing
-          aria-selected = {x == this.activeIndicator ? "true" : "false"}
+          aria-label={(x+1) + " of " + this.items + " Dots"}
+          aria-selected = {x == this.current ? "true" : "false"}
           tabindex="-1"
           onClick={() => this.setIndexActive(x)}
         >
           <span></span> 
         </button>;
-        dotIndicator = [...dotIndicator, newIndicator]
+        dots = [...dots, newIndicator]
     }
     
-    return dotIndicator
+    return dots
   }
 
   keyboardNav(key) {
-    const l = this.indicatorLength - 1;
+    const l = this.items - 1;
     const n = {
       Home: 0,
       ArrowLeft: -1 < this.focusIndex + -1 ? this.focusIndex + -1 : l,
@@ -79,7 +79,7 @@ export class CbpDotIndicator {
   }
 
   componentDidRender(){
-  this.setIndexActive(this.activeIndicator);
+  this.setIndexActive(this.current);
   }
 
   render() {
@@ -91,6 +91,7 @@ export class CbpDotIndicator {
           color="secondary"
           variant="square"
           value="carousel-back"
+          accessibilityText='carousel back'
           onClick={() => {
               // document.querySelector('.cbp-carousel-viewer').setAttribute('aria-animation', 'carouselBackwards'); //TODO: note for animation refactor
               this.setIndexActive(this.selectedIndex - 1)
@@ -113,6 +114,7 @@ export class CbpDotIndicator {
           color="secondary"
           variant="square"
           value="carousel-forward"
+          accessibilityText='carousel forward'
           onClick={() => {
               // document.querySelector('.cbp-carousel-viewer').setAttribute('aria-animation', 'carouselForwards'); //TODO: note for animation refactor
               this.setIndexActive(this.selectedIndex + 1)

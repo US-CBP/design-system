@@ -15,7 +15,9 @@ export class CbpCarousel {
   @Prop() height;
   @Prop() width;
 
- /** Supports adding inline styles as an object */
+  /** used to set the activeItem for the carousel*/
+  @Prop() activeItem
+  /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
@@ -30,10 +32,12 @@ export class CbpCarousel {
         "--cbp-carousel-width": `${this.width}`,
       ...this.sx,
     });
+    
+    this.updateVisible();
   }
 
-  @Listen('handleIndexChange')
-  handleIndexChange() {
+  @Listen('navigateCollection')
+  navigateCollection() {
     this.updateVisible();
   }
 
@@ -41,13 +45,13 @@ export class CbpCarousel {
       // let carouselContainer = this.host.querySelector('.cbp-carousel-container');
       // carouselContainer.classList.contains('carousel-animation')?carouselContainer.classList.remove('carousel-animation'): null;
 
-      let activeCarouselItem = this.control.activeIndicator;
+      this.activeItem = this.control.current;
       let widthValue = parseInt(this.width);
       let carouselOffset = 0;
       let carouselOffsetStart = getComputedStyle(this.control).getPropertyValue('--cbp-carousel-offset');
 
 
-      for(let x=0; x < activeCarouselItem; x++){
+      for(let x=0; x < this.activeItem; x++){
         carouselOffset -= widthValue;
       }
       setCSSProps(this.host, {
@@ -57,12 +61,8 @@ export class CbpCarousel {
       // carouselContainer.classList.add('carousel-animation');
   }
 
-  componentDidRender(){
-    this.updateVisible();
-  }
-
   componentWillRender(){
-    this.control = this.host.querySelector('[slot="index-control"]');
+    this.control = this.host.querySelector('[slot="cbp-carousel-controls"]');
   }
 
   render() {
@@ -80,7 +80,7 @@ export class CbpCarousel {
             <slot></slot>
           </div>
         </div>
-        <slot name="index-control"></slot>
+        <slot name="cbp-carousel-controls"></slot>
       </Host>
     );
   }
