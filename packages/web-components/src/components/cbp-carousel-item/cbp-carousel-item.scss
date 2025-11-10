@@ -1,3 +1,10 @@
 cbp-carousel-item {
-  display: block;
+  display: inline-block;
+  height: var(--cbp-carousel-height); 
+  width: var(--cbp-carousel-width);
+
+  & > *{
+    height: inherit;
+    width: inherit;
+  }
 }

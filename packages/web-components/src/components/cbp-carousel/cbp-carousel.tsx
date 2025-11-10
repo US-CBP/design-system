@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop} from '@stencil/core';
+import { Component, Element, Host, h, Listen, Prop} from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 @Component({
@@ -8,12 +8,12 @@ import { setCSSProps } from '../../utils/utils';
 
 export class CbpCarousel {
 
-  private slideIndex; //array of slides
-  
+  private control: HTMLCbpDotIndicatorElement;
+    
   @Element() host: HTMLElement; 
   
-  @Prop({reflect: true}) height
-  @Prop({reflect: true}) width
+  @Prop() height;
+  @Prop() width;
 
  /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
@@ -26,50 +26,61 @@ export class CbpCarousel {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.host, {
+        "--cbp-carousel-height": `${this.height}`,
+        "--cbp-carousel-width": `${this.width}`,
       ...this.sx,
     });
   }
 
+  @Listen('handleIndexChange')
+  handleIndexChange() {
+    this.updateVisible();
+  }
+
   updateVisible(){
-    let index = document.querySelector('[slot="index-control"] [aria-selected="true"]').getAttribute('index'); //TODO: probably pretty weak selector/logic here
-   
-    for  (let x=0; x < this.slideIndex.length; x++) {
-      const slide = this.slideIndex[x];
-      slide.hidden= true;
-    }
-    this.slideIndex[index].hidden = false;
+      // let carouselContainer = this.host.querySelector('.cbp-carousel-container');
+      // carouselContainer.classList.contains('carousel-animation')?carouselContainer.classList.remove('carousel-animation'): null;
+
+      let activeCarouselItem = this.control.activeIndicator;
+      let widthValue = parseInt(this.width);
+      let carouselOffset = 0;
+      let carouselOffsetStart = getComputedStyle(this.control).getPropertyValue('--cbp-carousel-offset');
+
+
+      for(let x=0; x < activeCarouselItem; x++){
+        carouselOffset -= widthValue;
+      }
+      setCSSProps(this.host, {
+        "--cbp-carousel-offset": `${carouselOffset}px`,
+        "--cbp-carousel-offset-start": `${carouselOffsetStart}px`
+      });
+      // carouselContainer.classList.add('carousel-animation');
   }
 
   componentDidRender(){
-    this.slideIndex = document.querySelector('.cbp-carousel-viewer').children;
-    
-    let indicators = document.querySelectorAll('cbp-dot-indicator .dot-indicator');
-    indicators.forEach((dot) => {
-      dot.addEventListener('click', () => this.updateVisible());
-    })
-    document.querySelector('#carousel-back').addEventListener('click', () => this.updateVisible())
-    document.querySelector('#carousel-forward').addEventListener('click', () => this.updateVisible())
-    
-    this.height != null ? this.host.style.height = this.height : null;
-    this.width != null ? this.host.style.width = this.width : null;
-    
     this.updateVisible();
+  }
+
+  componentWillRender(){
+    this.control = this.host.querySelector('[slot="index-control"]');
   }
 
   render() {
     return (
       <Host
-        role='region'
-        aria-roledescription='carousel'
+        role="region"
+        aria-roledescription="carousel"
       >
         <div
-          class='cbp-carousel-viewer'
-          role='group'
-          aria-description='slides'
+          class="cbp-carousel-viewer"
+          role="group"
+          aria-description="slides"
         >
-          <slot></slot>
+          <div class="cbp-carousel-container">
+            <slot></slot>
+          </div>
         </div>
-        <slot name='index-control'></slot>
+        <slot name="index-control"></slot>
       </Host>
     );
   }

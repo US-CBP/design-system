@@ -1,36 +1,32 @@
+:root {
+  --cbp-carousel-height: 100%;
+  --cbp-carousel-width: 100%;
+  --cbp-carousel-offset: 0;
+  --cbp-carousel-offset-start: 0;
+}
+
 cbp-carousel {
-  display: block;
+  display: inline-block;
+  height: var(--cbp-carousel-height); 
+  width: var(--cbp-carousel-width);
 
   .cbp-carousel-viewer{
     height: 100%;
     width: 100%;
     overflow: hidden;
-  }
 
-  cbp-carousel-item{
-    height: 100%;
-    width: 100%;
-  
-    & > *{
-      height: inherit;
-      width: inherit;
-    }
-  } 
+      .cbp-carousel-container{
+        display: flex;
+        animation: slide 2s forwards; 
+      }
 
-  
-  .cbp-carousel-viewer[aria-animation="carouselForwards"] cbp-carousel-item > *{
-    animation: slide 0.5s forwards;
-    transform: translateX(-100%);
+      // .carousel-animation{
+      //   animation: slide 2s forwards;
+      // }
   }
-  
-  .cbp-carousel-viewer[aria-animation="carouselBackwards"] cbp-carousel-item > *{
-    animation: slide 0.5s forwards;
-    transform: translateX(100%);
-  }
-
 }
 
-
 @keyframes slide {
-  100%{ transform: translateX(0%)}
+  0%{ transform: translateX(var(--cbp-carousel-offset-start))}
+  100%{ transform: translateX(var(--cbp-carousel-offset))}
 }

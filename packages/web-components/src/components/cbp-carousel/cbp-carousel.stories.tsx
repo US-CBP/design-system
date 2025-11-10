@@ -16,17 +16,18 @@ function generateSlides(slides) {
   return html.join('');
 }
 
-const Template = ({slides, height, width, sx}) => {
+const Template = ({slides, sx}) => {
   return `
    <cbp-carousel
-    height=${height}
-    width=${width}
+    height="300px"
+    width="500px"
     ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
    >
         ${generateSlides(slides)}
         <cbp-dot-indicator 
             slot='index-control'
-            index=${slides.length}
+            active-indicator=0
+            indicator-length=${slides.length}
         ></cbp-dot-indicator>
    </cbp-carousel>
   `;
@@ -66,6 +67,4 @@ Carousel.args ={
             `,
         },
     ],
-    height: '300px',
-    width: '500px'
 }
