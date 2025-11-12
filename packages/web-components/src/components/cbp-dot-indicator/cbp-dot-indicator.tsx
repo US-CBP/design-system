@@ -6,16 +6,16 @@ import { Component, Element, Event, EventEmitter, Host, h, Prop } from '@stencil
 })
 export class CbpDotIndicator {
 
-  @Element() host: HTMLElement; 
-  
+  @Element() host: HTMLElement;
+
   private selectedIndex: number = 0; // index of the selected indicator
   private focusIndex: number = 0; // index of the focused indicator, used for keyboard nav
 
   /** the currently active dot */
-  @Prop () current= 0;
+  @Prop() current: number = 0;
 
   /** unit of measure for what the dot indicator is measuring */
-  @Prop() unit = 'Item';
+  @Prop() itemName: string = 'Item';
 
   /** Length of index dot-indicator is tracking */
   @Prop() items: number;
@@ -23,11 +23,11 @@ export class CbpDotIndicator {
   /** Custom event emitted when the Dot-indicator changes active indicator*/
   @Event() navigateCollection: EventEmitter;
 
-  setIndexActive(index){
-    if(index >= this.items){
-      index=0;
-    }else if(index < 0){
-      index=this.items - 1;
+  setIndexActive(index) {
+    if (index >= this.items) {
+      index = 0;
+    } else if (index < 0) {
+      index = this.items - 1;
     }
 
     this.selectedIndex = this.focusIndex = index;
@@ -39,21 +39,21 @@ export class CbpDotIndicator {
     })
   }
 
-  generateIndicator(){
+  generateIndicator() {
     let dots: HTMLButtonElement[] = [];
-    for (let x = 0; x < this.items; x++){
-      let newIndicator: HTMLButtonElement = 
-        <button 
-          aria-label={(x+1) + " of " + this.items + " " + this.unit}
-          aria-selected = {x == this.current ? "true" : "false"}
-          tabindex="-1"
+    for (let x = 0; x < this.items; x++) {
+      let newIndicator: HTMLButtonElement =
+        <button
+          aria-label={(x + 1) + " of " + this.items + " " + this.itemName}
+          aria-selected={x == this.current ? "true" : "false"}
+          tabindex={x == this.current ? "0" : "-1"}
           onClick={() => this.setIndexActive(x)}
         >
-          <span></span> 
+          <span></span>
         </button>;
-        dots = [...dots, newIndicator]
+      dots = [...dots, newIndicator]
     }
-    
+
     return dots
   }
 
@@ -64,7 +64,7 @@ export class CbpDotIndicator {
       ArrowLeft: -1 < this.focusIndex + -1 ? this.focusIndex + -1 : l,
       ArrowRight: l + 1 > this.focusIndex + 1 ? this.focusIndex + 1 : 0,
       End: l,
-      Tab: this.focusIndex=this.selectedIndex, // reset the focusIndex when tabbing out of the dot-indicator
+      Tab: this.focusIndex = this.selectedIndex, // reset the focusIndex when tabbing out of the dot-indicator
     }[key];
     if (n !== undefined && key !== 'Tab') {
       this.focusIndex = n;
@@ -82,8 +82,8 @@ export class CbpDotIndicator {
           fill="ghost"
           color="secondary"
           variant="square"
-          accessibilityText={this.unit + " back"}  
-          onClick={() => {this.setIndexActive(this.selectedIndex - 1)}}
+          accessibilityText={this.itemName + " back"}
+          onClick={() => { this.setIndexActive(this.selectedIndex - 1) }}
         >
           <cbp-icon name="angle-down" rotate={90}></cbp-icon>
         </cbp-button>
@@ -95,13 +95,13 @@ export class CbpDotIndicator {
         >
           {this.generateIndicator()}
         </div>
-        
+
         <cbp-button
           fill="ghost"
           color="secondary"
           variant="square"
-          accessibilityText={this.unit + " forward"}
-          onClick={() => {this.setIndexActive(this.selectedIndex + 1)}}
+          accessibilityText={this.itemName + " forward"}
+          onClick={() => { this.setIndexActive(this.selectedIndex + 1) }}
         >
           <cbp-icon name="angle-down" rotate={270}></cbp-icon>
         </cbp-button>

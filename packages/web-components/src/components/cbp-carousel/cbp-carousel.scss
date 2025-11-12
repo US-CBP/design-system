@@ -7,26 +7,19 @@
 
 cbp-carousel {
   display: inline-block;
-  height: var(--cbp-carousel-height); 
+  height: var(--cbp-carousel-height);
   width: var(--cbp-carousel-width);
 
-  .cbp-carousel-viewer{
+  .cbp-carousel-viewer {
     height: 100%;
     width: 100%;
     overflow: hidden;
 
-      .cbp-carousel-container{
-        display: flex;
-        animation: slide 2s forwards; 
-      }
+    .cbp-carousel-container {
+      display: flex;
+      transform: translateX(var(--cbp-carousel-offset));
+      transition: all 0.5s ease-out;
+    }
 
-      // .carousel-animation{
-      //   animation: slide 2s forwards;
-      // }
   }
-}
-
-@keyframes slide {
-  0%{ transform: translateX(var(--cbp-carousel-offset-start))}
-  100%{ transform: translateX(var(--cbp-carousel-offset))}
 }

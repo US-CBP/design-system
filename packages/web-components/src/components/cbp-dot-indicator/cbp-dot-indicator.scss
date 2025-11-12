@@ -1,7 +1,7 @@
 :root {
   --cbp-dot-indicator-color-hover: var(--cbp-color-interactive-secondary-darker);
   --cbp-dot-indicator-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
-  
+
   --cbp-dot-indicator-color-focus: var(--cbp-color-interactive-focus-dark);
   --cbp-dot-indicator-color-focus-dark: var(--cbp-color-interactive-focus-light);
 
@@ -23,47 +23,48 @@ cbp-dot-indicator {
   display: flex;
   justify-content: center;
 
-  .dot-indicators-container{
+  .dot-indicators-container {
     display: inline-flex;
 
-    button{
+    button {
       height: var(--cbp-space-9x);
       width: var(--cbp-space-9x);
-      border: none;
+      border: 0;
       background-color: transparent;
       padding: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
 
-      span{
+      span {
         height: var(--cbp-space-4x);
         width: var(--cbp-space-4x);
         border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-secondary-darker);
         border-radius: var(--cbp-border-radius-circle);
-        
+
       }
 
-      &:hover span{
-        background-color:var(--cbp-dot-indicator-color-hover);
+      &:hover span {
+        background-color: var(--cbp-dot-indicator-color-hover);
         border-color: var(--cbp-dot-indicator-color-hover);
       }
 
-      &:focus span{
-        background-color:var(--cbp-dot-indicator-color-focus);
+      &:focus span {
+        background-color: var(--cbp-dot-indicator-color-focus);
         border-color: var(--cbp-dot-indicator-color-focus);
         outline: var(--cbp-space-half-x) solid var(--cbp-dot-indicator-color-focus);
         outline-offset: var(--cbp-space-half-x);
       }
 
-      &[aria-selected="true"] span{
-        background-color:var(--cbp-dot-indicator-color-selected);
+      &[aria-selected="true"] span {
+        background-color: var(--cbp-dot-indicator-color-selected);
         border-color: var(--cbp-dot-indicator-color-selected);
       }
     }
 
     &:focus-visible,
-    & button:focus-visible { //override browser default for buttons
+    & button:focus-visible {
+      //override browser default for buttons
       border: none;
       outline: none;
     }

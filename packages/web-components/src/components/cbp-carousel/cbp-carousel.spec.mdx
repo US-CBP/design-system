@@ -12,17 +12,17 @@ Carousels are a common UI pattern to show a gallery of associated content to use
 
 * A Carousel is composed of a Carousel and Carousel-items in a parent-child relationship
     * Carousel will manage the buttons and control
-    * Carousel-item will be the individual slides that are being iterated through
+    * Carousel-item will be the individual carousel items that are being iterated through
 * Only one Carousel-item can be 'active' at a time, this is the carousel-item that is currently visible. 
 
 ## Technical Specifications
 
-* the cbp-carousel tag will be the parent of tags of the buttons, index control slot, and slide viewer
-* slot for index control (for example dot-indicator) which will:
-    *update index of active item based on navigation control's emitted events
+* the cbp-carousel tag will be the parent of tags of the buttons, index control slot, and carousel item viewer
+* slot for control (for example dot-indicator) which will:
+    *update the active item based on navigation control's emitted events
 * navigation buttons for forward and backwards 
     *eventemitter for forward/backwards to be integrated with keyboard command 'enter' or gesture swiping 
-* on change slides will animate the change and use scroll snap to center the new slide 
+* on change carousel items will animate the change and use scroll snap to center the new carousel item 
 * cbp-carousel item will be sized to stretch to fit view port by default 
 
 ### User Interactions
@@ -41,13 +41,12 @@ Carousels are a common UI pattern to show a gallery of associated content to use
 ### Accessibility
 
 * Carousel will be marked as role=region/group and have an aria-roledescription= carousel
-* the container displaying the slides will have the role=group and aria-description=slides
+* the container displaying the carousel items will have the role=group and aria-description=slides
 * Carousel-items will have EITHER
     *aria-labledby if there is a visible label
         --or--
-    *an accessible name of the slide # over slide total
+    *an accessible name of the carousel item # over carousel items total
 
 ### Additional Notes and Considerations
 
 * w3 documentation: https://www.w3.org/WAI/ARIA/apg/patterns/carousel/
-* Slotted index controls
