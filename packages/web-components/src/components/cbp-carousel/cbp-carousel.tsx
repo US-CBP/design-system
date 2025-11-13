@@ -17,6 +17,7 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpCarousel {
 
   private control: HTMLCbpDotIndicatorElement;
+  private items: HTMLCbpCarouselItemElement[] = [];
 
   @Element() host: HTMLElement;
 
@@ -46,20 +47,19 @@ export class CbpCarousel {
     });
 
     this.control = this.host.querySelector('[slot="cbp-carousel-controls"]');
+    this.items = Array.from(this.host.querySelectorAll('cbp-carousel-item'));
   }
 
   @Watch('current')
-  watchCurrent(e) {
-    if (e < 0) {
-      this.current = 0;
-    } else if (e > this.control.items) {
-      this.current = this.control.items
-    }
+  watchCurrent() {
+    //Sync controls for when the current is updated via the Carousel
+    if (this.control) this.control.current = this.current;
+    this.scrollToItem
   }
 
   @Listen('navigateCollection')
-  navigateCollection() {
-    this.updateCurrent();
+  navigateCollection(e) {
+    this.updateCurrent(e.index);
   }
 
   handleResize() {
@@ -68,12 +68,11 @@ export class CbpCarousel {
   }
 
   scrollToItem() {
-    let carouselItems = this.host.querySelectorAll('cbp-carousel-item') as unknown as HTMLCbpCarouselItemElement[];
     let carouselOffset = 0;
     let carouselOffsetStart = getComputedStyle(this.control).getPropertyValue('--cbp-carousel-offset');
 
     for (let x = 0; x < this.current; x++) {
-      carouselOffset -= carouselItems[x].offsetWidth
+      carouselOffset -= this.items[x].offsetWidth
     }
     setCSSProps(this.host, {
       "--cbp-carousel-offset": `${carouselOffset}px`,
@@ -81,8 +80,14 @@ export class CbpCarousel {
     });
   }
 
-  updateCurrent() {
-    this.current = this.control.current;
+  updateCurrent(index) {
+    let max = this.items.length - 1;
+    if (index < 0) {
+      this.current = 0;
+    } else if (index > max) {
+      this.current = max
+    }
+    // this.current = this.control.current;
     this.scrollToItem();
   }
 

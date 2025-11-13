@@ -22,8 +22,8 @@ const Template = ({ current, items, itemName }) => {
   return `
     <cbp-dot-indicator
       ${current ? `current=${current}` : ""}
-      items=${items}
-      item-name=${itemName}
+      ${items ? `items=${items}` : ""}
+      ${itemName ? `item-name=${itemName}` : ""}
     ></cbp-dot-indicator>
 `;
 };
@@ -31,5 +31,4 @@ const Template = ({ current, items, itemName }) => {
 export const dotIndicator = Template.bind({});
 dotIndicator.args = {
   items: 9,
-  itemName: 'Slide'
 }

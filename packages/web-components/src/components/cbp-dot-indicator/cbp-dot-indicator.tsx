@@ -35,7 +35,7 @@ export class CbpDotIndicator {
 
     this.navigateCollection.emit({
       host: this.host,
-      item: this.current
+      index: this.current
     })
   }
 
