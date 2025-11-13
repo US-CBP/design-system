@@ -10,7 +10,7 @@ export default {
             description: 'Sets the Width of the carousel',
             control: 'text'
         },
-        activeIndex: {
+        current: {
             description: 'Sets the item # to the active state, moving carousel to specified item',
             control: 'number'
         },
@@ -28,18 +28,18 @@ function generateSlides(slides) {
     return html.join('');
 }
 
-const Template = ({ slides, height, width, activeIndex, sx }) => {
+const Template = ({ slides, height, width, current, sx }) => {
     return `
    <cbp-carousel
     ${height ? `height= ${height}` : ''}
     ${width ? `width= ${width}` : ''}
-    ${activeIndex ? `activeIndex= ${activeIndex}` : ''}
+    ${current ? `current= ${current}` : ''}
     ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
    >
         ${generateSlides(slides)}
         <cbp-dot-indicator 
             slot='cbp-carousel-controls'
-            current=${activeIndex ? activeIndex : '0'}
+            current=${current ? current : '0'}
             items=${slides.length}
         ></cbp-dot-indicator>
    </cbp-carousel>

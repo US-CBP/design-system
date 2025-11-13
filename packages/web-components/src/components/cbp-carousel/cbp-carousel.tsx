@@ -26,8 +26,8 @@ export class CbpCarousel {
   /** used to set the width (in CSS units or content values) of the carousel*/
   @Prop() width: string = '100%';
 
-  /** used to set the activeIndex for the carousel*/
-  @Prop({ mutable: true }) activeIndex = 0;
+  /** used to set the current for the carousel*/
+  @Prop({ mutable: true }) current = 0;
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
@@ -48,12 +48,12 @@ export class CbpCarousel {
     this.control = this.host.querySelector('[slot="cbp-carousel-controls"]');
   }
 
-  @Watch('activeIndex')
-  watchActiveIndex(e) {
+  @Watch('current')
+  watchCurrent(e) {
     if (e < 0) {
-      this.activeIndex = 0;
+      this.current = 0;
     } else if (e > this.control.items) {
-      this.activeIndex = this.control.items
+      this.current = this.control.items
     }
   }
 
@@ -72,7 +72,7 @@ export class CbpCarousel {
     let carouselOffset = 0;
     let carouselOffsetStart = getComputedStyle(this.control).getPropertyValue('--cbp-carousel-offset');
 
-    for (let x = 0; x < this.activeIndex; x++) {
+    for (let x = 0; x < this.current; x++) {
       carouselOffset -= carouselItems[x].offsetWidth
     }
     setCSSProps(this.host, {
@@ -82,7 +82,7 @@ export class CbpCarousel {
   }
 
   updateCurrent() {
-    this.activeIndex = this.control.current;
+    this.current = this.control.current;
     this.scrollToItem();
   }
 
