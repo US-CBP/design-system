@@ -36,6 +36,51 @@ export class CbpCarousel {
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
 
+  
+  @Watch('current')
+  watchCurrent() {
+    // Sync controls when current is updated directly on the Carousel
+    if (this.control) this.control.current = this.current;
+    this.scrollToItem();
+  }
+
+  @Listen('navigateCollection')
+  navigateCollection(e) {
+    this.updateCurrent(e.detail.index);
+  }
+
+  handleResize() {
+    // TechDebt: should this be passing in and using the width from the resize observer?
+    this.scrollToItem();
+    //TechDebt: need to find behavior for fullscreen and responsive to be triggered here
+  }
+
+  scrollToItem() {
+    let carouselOffset = 0;
+    //let carouselOffsetStart = getComputedStyle(this.control).getPropertyValue('--cbp-carousel-offset');
+
+    for (let x = 0; x < this.current; x++) {
+      carouselOffset -= this.items[x].offsetWidth;
+    }
+    setCSSProps(this.host, {
+      "--cbp-carousel-offset": `${carouselOffset}px`,
+    });
+  }
+
+  updateCurrent(index) {
+    let max = this.items.length - 1;
+    if (index < 0) {
+      this.current = 0;
+    }
+    else if (index > max) {
+      this.current = max;
+    }
+    else this.current = index;
+
+    this.scrollToItem();
+  }
+
+
   componentWillLoad() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
@@ -49,48 +94,6 @@ export class CbpCarousel {
     this.control = this.host.querySelector('[slot="cbp-carousel-controls"]');
     this.items = Array.from(this.host.querySelectorAll('cbp-carousel-item'));
   }
-
-  @Watch('current')
-  watchCurrent() {
-    //Sync controls for when the current is updated via the Carousel
-    if (this.control) this.control.current = this.current;
-    this.scrollToItem
-  }
-
-  @Listen('navigateCollection')
-  navigateCollection(e) {
-    this.updateCurrent(e.index);
-  }
-
-  handleResize() {
-    this.scrollToItem()
-    //TechDebt: need to find behavior for fullscreen and responsive to be triggered here
-  }
-
-  scrollToItem() {
-    let carouselOffset = 0;
-    let carouselOffsetStart = getComputedStyle(this.control).getPropertyValue('--cbp-carousel-offset');
-
-    for (let x = 0; x < this.current; x++) {
-      carouselOffset -= this.items[x].offsetWidth
-    }
-    setCSSProps(this.host, {
-      "--cbp-carousel-offset": `${carouselOffset}px`,
-      "--cbp-carousel-offset-start": `${carouselOffsetStart}px`
-    });
-  }
-
-  updateCurrent(index) {
-    let max = this.items.length - 1;
-    if (index < 0) {
-      this.current = 0;
-    } else if (index > max) {
-      this.current = max
-    }
-    // this.current = this.control.current;
-    this.scrollToItem();
-  }
-
 
   render() {
     return (
