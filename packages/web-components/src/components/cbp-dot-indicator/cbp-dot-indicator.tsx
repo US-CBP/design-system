@@ -42,10 +42,11 @@ export class CbpDotIndicator {
   generateIndicator() {
     let dots: HTMLButtonElement[] = [];
     for (let x = 0; x < this.items; x++) {
-      let accessibilityText = `${x + 1} of ${this.items} ${this.itemName}`
+      //let accessibilityText = `${this.itemName} ${x + 1}`
       let newIndicator: HTMLButtonElement =
         <button
-          aria-label={accessibilityText}
+          role="tab"
+          aria-label={`${this.itemName} ${x + 1}`}
           aria-selected={x == this.current ? "true" : "false"}
           tabindex={x == this.current ? "0" : "-1"}
           onClick={() => this.setIndexActive(x)}
@@ -77,8 +78,7 @@ export class CbpDotIndicator {
 
   render() {
     return (
-      <Host
-      >
+      <Host>
         <cbp-button
           fill="ghost"
           color="secondary"
@@ -90,9 +90,8 @@ export class CbpDotIndicator {
         </cbp-button>
 
         <div class="dot-indicators-container"
-          onKeyDown={({ key }) => {
-            this.keyboardNav(key);
-          }}
+          role="tablist"
+          onKeyDown={({ key }) => { this.keyboardNav(key) }}
         >
           {this.generateIndicator()}
         </div>
