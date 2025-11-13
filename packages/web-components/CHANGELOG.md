@@ -6,7 +6,15 @@ The React components are wrappers generated from this package and will share the
 
 ## [Unpublished] TBD
 
-* First cut of the `cbp-carousel` component.
+
+* Updated the `cbp-slider`:
+  * Added range slider capability
+  * Added a `valueChange` event emitter.
+* Updated `cbp-dropdown`:
+  * Added `filterKeypress` custom event that fires on every keypress when filtering a combobox.
+  * Added modifier keys and nativeEvent to the `populateCombobox` event.
+* Updated `cbp-grid` and `cbp-flex` with vertical spacing (based on `gap` by default) when linearized at their responsive breakpoint.
+* Initial creation of `cbp-carousel`, `cbp-carousel-item`, and `cbp-dot-indicator` components.
 
 ## [0.0.1-develop.27] 10-24-2025
 

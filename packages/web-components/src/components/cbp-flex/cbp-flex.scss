@@ -1,7 +1,22 @@
+/**
+ *  @prop --cbp-flex-linearized-margin: 0;
+ */
+:root{
+  --cbp-flex-linearized-margin: 0;
+}
+
 cbp-flex:not([hidden]) {
   display: flex;
 
   &[display="inline-flex"] {
     display: inline-flex;
+  }
+
+  &.cbp-flex-linearized {
+    display: block !important;
+    
+    & > * {
+      margin-block-end: var(--cbp-flex-linearized-margin);
+    }
   }
 }
