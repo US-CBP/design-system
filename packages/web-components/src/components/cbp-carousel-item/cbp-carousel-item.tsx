@@ -16,7 +16,11 @@ export class CbpCarouselItem {
 
   @Element() host: HTMLElement;
 
+
+  /** used to set the height (in CSS units or content values) of the carousel-item*/
   @Prop() height: string = '100%';
+
+  /** used to set the width (in CSS units or content values) of the carousel-item*/
   @Prop() width: string = '100%';
 
   componentWillLoad() {

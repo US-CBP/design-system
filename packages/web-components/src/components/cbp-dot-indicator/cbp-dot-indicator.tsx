@@ -42,9 +42,10 @@ export class CbpDotIndicator {
   generateIndicator() {
     let dots: HTMLButtonElement[] = [];
     for (let x = 0; x < this.items; x++) {
+      let accessibilityText = `${x + 1} of ${this.items} ${this.itemName}`
       let newIndicator: HTMLButtonElement =
         <button
-          aria-label={(x + 1) + " of " + this.items + " " + this.itemName}
+          aria-label={accessibilityText}
           aria-selected={x == this.current ? "true" : "false"}
           tabindex={x == this.current ? "0" : "-1"}
           onClick={() => this.setIndexActive(x)}
@@ -82,7 +83,7 @@ export class CbpDotIndicator {
           fill="ghost"
           color="secondary"
           variant="square"
-          accessibilityText={this.itemName + " back"}
+          accessibilityText={"previous " + this.itemName}
           onClick={() => { this.setIndexActive(this.selectedIndex - 1) }}
         >
           <cbp-icon name="angle-down" rotate={90}></cbp-icon>
@@ -100,7 +101,7 @@ export class CbpDotIndicator {
           fill="ghost"
           color="secondary"
           variant="square"
-          accessibilityText={this.itemName + " forward"}
+          accessibilityText={"next " + this.itemName}
           onClick={() => { this.setIndexActive(this.selectedIndex + 1) }}
         >
           <cbp-icon name="angle-down" rotate={270}></cbp-icon>

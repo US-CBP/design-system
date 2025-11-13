@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Listen, Prop } from '@stencil/core';
+import { Component, Element, Host, h, Listen, Prop, Watch } from '@stencil/core';
 import { debounce } from '../../utils/utils';
 import { setCSSProps } from '../../utils/utils';
 
@@ -20,12 +20,15 @@ export class CbpCarousel {
 
   @Element() host: HTMLElement;
 
-  //TODO: seperate these from the cbp-carousel-item instance
+  /** used to set the height (in CSS units or content values) of the carousel*/
   @Prop() height: string = '100%';
+
+  /** used to set the width (in CSS units or content values) of the carousel*/
   @Prop() width: string = '100%';
 
-  /** used to set the activeItem for the carousel*/
-  @Prop() activeItem
+  /** used to set the activeIndex for the carousel*/
+  @Prop({ mutable: true }) activeIndex = 0;
+
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
@@ -43,44 +46,46 @@ export class CbpCarousel {
     });
 
     this.control = this.host.querySelector('[slot="cbp-carousel-controls"]');
-    this.updateVisible();
+  }
+
+  @Watch('activeIndex')
+  watchActiveIndex(e) {
+    if (e < 0) {
+      this.activeIndex = 0;
+    } else if (e > this.control.items) {
+      this.activeIndex = this.control.items
+    }
   }
 
   @Listen('navigateCollection')
   navigateCollection() {
-    this.updateVisible();
+    this.updateCurrent();
   }
 
-  handleResize(width) {
-    this.width = width;
-
-    //TODO: need to find behavior for fullscreen and responsive to be triggered here
+  handleResize() {
+    this.scrollToItem()
+    //TechDebt: need to find behavior for fullscreen and responsive to be triggered here
   }
 
-  updateVisible() {
-    this.activeItem = this.control.current;
-    let widthValue = 0;
-    if (this.width.includes('%')) {
-      widthValue = (this.host.offsetWidth * parseInt(this.width)) / 100;
-
-      console.log('sanity check for %: ', widthValue)
-    } else {
-      widthValue = parseInt(this.width)
-    }
+  scrollToItem() {
+    let carouselItems = this.host.querySelectorAll('cbp-carousel-item') as unknown as HTMLCbpCarouselItemElement[];
     let carouselOffset = 0;
     let carouselOffsetStart = getComputedStyle(this.control).getPropertyValue('--cbp-carousel-offset');
 
-
-    for (let x = 0; x < this.activeItem; x++) {
-      carouselOffset -= widthValue;
+    for (let x = 0; x < this.activeIndex; x++) {
+      carouselOffset -= carouselItems[x].offsetWidth
     }
     setCSSProps(this.host, {
       "--cbp-carousel-offset": `${carouselOffset}px`,
       "--cbp-carousel-offset-start": `${carouselOffsetStart}px`
     });
-
-    //TODO: need resize observer & set the actual css var based on resize value resize will always return px values
   }
+
+  updateCurrent() {
+    this.activeIndex = this.control.current;
+    this.scrollToItem();
+  }
+
 
   render() {
     return (
@@ -89,9 +94,8 @@ export class CbpCarousel {
         aria-roledescription="carousel"
       >
         <cbp-resize-observer
-          onResized={debounce(e => {
-            this.handleResize(e.detail.width);
-            // console.log('resize observer sanity check', e);
+          onResized={debounce(() => {
+            this.handleResize();
           }, 10)}
         >
           <div
