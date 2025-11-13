@@ -1,0 +1,11 @@
+cbp-carousel-item {
+  display: inline-block;
+  height: var(--cbp-carousel-item-height); //TODO: do these need values in this file if being set via prop?
+  width: var(--cbp-carousel-item-width);
+  flex-shrink: 0;
+
+  &>* {
+    height: inherit;
+    width: inherit;
+  }
+}

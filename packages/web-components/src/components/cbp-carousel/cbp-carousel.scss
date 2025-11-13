@@ -1,0 +1,26 @@
+:root {
+  --cbp-carousel-height: 100%;
+  --cbp-carousel-width: 100%;
+  --cbp-carousel-offset: 0;
+  --cbp-carousel-offset-start: 0;
+  --cbp-carousel-viewer-padding-bottom: var(--cbp-space-3x)
+}
+
+cbp-carousel {
+  display: block;
+
+  .cbp-carousel-viewer {
+    height: var(--cbp-carousel-height);
+    width: var(--cbp-carousel-width);
+    overflow: hidden;
+    padding-bottom: var(--cbp-carousel-viewer-padding-bottom);
+
+    .cbp-carousel-container {
+      height: 100%;
+      display: flex;
+      transform: translateX(var(--cbp-carousel-offset));
+      transition: all 0.5s ease-out;
+    }
+
+  }
+}

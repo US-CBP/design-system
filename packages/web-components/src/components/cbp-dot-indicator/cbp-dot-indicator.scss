@@ -1,0 +1,72 @@
+:root {
+  --cbp-dot-indicator-color-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-dot-indicator-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+
+  --cbp-dot-indicator-color-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-dot-indicator-color-focus-dark: var(--cbp-color-interactive-focus-light);
+
+  --cbp-dot-indicator-color-selected: var(--cbp-color-interactive-secondary-darker);
+  --cbp-dot-indicator-color-selected-dark: var(--cbp-color-interactive-selected-light);
+}
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+[data-cbp-theme=light] cbp-dot-indicator[context*=dark],
+[data-cbp-theme=dark] cbp-dot-indicator:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-dot-indicator-color-hover: var(--cbp-dot-indicator-color-hover-dark);
+  --cbp-dot-indicator-color-focus: var(--cbp-dot-indicator-color-focus-dark);
+  --cbp-dot-indicator-color-selected: var(--cbp-dot-indicator-color-selected-dark);
+}
+
+cbp-dot-indicator {
+  display: flex;
+  justify-content: center;
+
+  .dot-indicators-container {
+    display: inline-flex;
+
+    button {
+      height: var(--cbp-space-9x);
+      width: var(--cbp-space-9x);
+      border: 0;
+      background-color: transparent;
+      padding: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        height: var(--cbp-space-4x);
+        width: var(--cbp-space-4x);
+        border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-secondary-darker);
+        border-radius: var(--cbp-border-radius-circle);
+
+      }
+
+      &:hover span {
+        background-color: var(--cbp-dot-indicator-color-hover);
+        border-color: var(--cbp-dot-indicator-color-hover);
+      }
+
+      &:focus span {
+        background-color: var(--cbp-dot-indicator-color-focus);
+        border-color: var(--cbp-dot-indicator-color-focus);
+        outline: var(--cbp-space-half-x) solid var(--cbp-dot-indicator-color-focus);
+        outline-offset: var(--cbp-space-half-x);
+      }
+
+      &[aria-selected="true"] span {
+        background-color: var(--cbp-dot-indicator-color-selected);
+        border-color: var(--cbp-dot-indicator-color-selected);
+      }
+    }
+
+    &:focus-visible,
+    & button:focus-visible {
+      //override browser default for buttons
+      border: none;
+      outline: none;
+    }
+  }
+}
