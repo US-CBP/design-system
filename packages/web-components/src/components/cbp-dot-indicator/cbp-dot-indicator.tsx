@@ -42,7 +42,6 @@ export class CbpDotIndicator {
   generateIndicator() {
     let dots: HTMLButtonElement[] = [];
     for (let x = 0; x < this.items; x++) {
-      //let accessibilityText = `${this.itemName} ${x + 1}`
       let newIndicator: HTMLButtonElement =
         <button
           role="tab"
