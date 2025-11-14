@@ -22,33 +22,36 @@ export class CbpChip {
 
   /** Specifies the `name` attribute of the rendered button */
   @Prop({ reflect: true }) name: string;
-  
+
   /** Specifies the `value` attribute of the rendered button */
   @Prop() value: string;
-  
+
   /** Specifies the pressed state of the button and `aria-pressed` attribute of the rendered button */
   @Prop() pressed: boolean = false;
 
+  /** Marks the rendered button/link in a disabled state when specified. */
+  @Prop({ reflect: true }) disabled: boolean;
+
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
-  
+
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
   /** A custom event emitted when the chip is activated/toggled. */
   @Event() chipClick!: EventEmitter;
-  
-  handleClick(e){
+
+  handleClick(e) {
     // We're using this variable rather than the property to avoid re-rendering, which would impact the animation
-    this.ariaPressed=!this.ariaPressed;
+    this.ariaPressed = !this.ariaPressed;
 
     // toggle the aria-pressed attribute directly to allow for animation
-    if (this.iconName == "plus" ) {
+    if (this.iconName == "plus") {
       this.button.setAttribute('aria-pressed', `${this.ariaPressed}`)
     }
     else {
       this.pressed = !this.pressed;
-      this.pressed ? this.icon.name="times" : this.icon.name=this.iconName;
+      this.pressed ? this.icon.name = "times" : this.icon.name = this.iconName;
     }
 
     this.chipClick.emit({
@@ -59,7 +62,7 @@ export class CbpChip {
       nativeEvent: e,
     });
   }
-  
+
   componentWillLoad() {
     this.ariaPressed = this.pressed ? true : false;
 
@@ -74,6 +77,7 @@ export class CbpChip {
   componentDidLoad() {
     if (!this.icon) this.icon = this.host.querySelector('cbp-icon');
     this.iconName = this.icon.name;
+    if (this.disabled) this.button.setAttribute('disabled', '');
   }
 
   render() {
@@ -83,8 +87,8 @@ export class CbpChip {
           type="button"
           value={this.value}
           aria-pressed={`${this.pressed}`}
-          ref={(el) => this.button = el} 
-          onClick={ (e) => this.handleClick(e) }
+          ref={(el) => this.button = el}
+          onClick={(e) => this.handleClick(e)}
         >
           <span class="cbp-chip__label">
             <slot />
