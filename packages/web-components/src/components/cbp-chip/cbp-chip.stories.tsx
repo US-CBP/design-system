@@ -52,13 +52,14 @@ const Template = ({ label, name, value, pressed, disabled, context, sx }) => {
 export const Chip = Template.bind({});
 
 
-const ChipWithCustomIconTemplate = ({ label, name, value, icon, pressed, context, sx }) => {
+const ChipWithCustomIconTemplate = ({ label, name, value, icon, pressed, disabled, context, sx }) => {
   return ` 
       <cbp-chip
         ${name ? `name="${name}"` : ''}
         ${value ? `value="${value}"` : ''}
         ${icon ? `icon="${icon}"` : ''}
         ${pressed ? 'pressed' : ''}
+        ${disabled ? 'disabled' : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
