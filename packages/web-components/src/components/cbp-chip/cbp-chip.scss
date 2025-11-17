@@ -148,6 +148,7 @@ cbp-chip {
     }
 
     &:disabled {
+      font-style: italic;
       background-color: var(--cbp-chip-color-background-disabled);
       color: var(--cbp-chip-color-text-disabled);
     }
