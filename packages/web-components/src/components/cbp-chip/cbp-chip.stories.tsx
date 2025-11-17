@@ -17,9 +17,13 @@ export default {
       description: 'The initial active/selected state.',
       control: 'boolean',
     },
-    context : {
+    disabled: {
+      description: '',
+      control: 'boolean'
+    },
+    context: {
       control: 'select',
-      options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
+      options: ["light-inverts", "light-always", "dark-inverts", "dark-always"]
     },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
@@ -31,12 +35,13 @@ export default {
   },
 };
 
-const Template = ({ label, name, value, pressed, context, sx }) => {
+const Template = ({ label, name, value, pressed, disabled, context, sx }) => {
   return ` 
       <cbp-chip
         ${name ? `name="${name}"` : ''}
         ${value ? `value="${value}"` : ''}
         ${pressed ? 'pressed' : ''}
+        ${disabled ? 'disabled' : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
@@ -47,13 +52,14 @@ const Template = ({ label, name, value, pressed, context, sx }) => {
 export const Chip = Template.bind({});
 
 
-const ChipWithCustomIconTemplate = ({ label, name, value, icon, pressed, context, sx }) => {
+const ChipWithCustomIconTemplate = ({ label, name, value, icon, pressed, disabled, context, sx }) => {
   return ` 
       <cbp-chip
         ${name ? `name="${name}"` : ''}
         ${value ? `value="${value}"` : ''}
         ${icon ? `icon="${icon}"` : ''}
         ${pressed ? 'pressed' : ''}
+        ${disabled ? 'disabled' : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
