@@ -124,7 +124,7 @@ cbp-chip {
 
     }
 
-    &:hover {
+    &:hover:not(:disabled) {
       cursor: pointer;
 
       .cbp-chip__label+cbp-icon {

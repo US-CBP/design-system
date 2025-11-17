@@ -77,7 +77,6 @@ export class CbpChip {
   componentDidLoad() {
     if (!this.icon) this.icon = this.host.querySelector('cbp-icon');
     this.iconName = this.icon.name;
-    if (this.disabled) this.button.setAttribute('disabled', '');
   }
 
   render() {
@@ -89,6 +88,7 @@ export class CbpChip {
           aria-pressed={`${this.pressed}`}
           ref={(el) => this.button = el}
           onClick={(e) => this.handleClick(e)}
+          disabled={this.disabled}
         >
           <span class="cbp-chip__label">
             <slot />
