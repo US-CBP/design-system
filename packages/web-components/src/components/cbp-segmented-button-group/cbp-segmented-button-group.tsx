@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Event, EventEmitter, Listen, Watch, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, Listen, Method, Watch, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /** 
@@ -13,8 +13,9 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class SegmentedButtonGroup {
 
-  // An array of all buttons registered (loaded)
-  private buttongroup = [];
+  
+  private buttongroup = []; // An array of all buttons registered (loaded)
+  private initialValue: any; // string | object; - Save the initial value to support reset functionality
 
   @Element() host: HTMLElement;
 
@@ -44,6 +45,13 @@ export class SegmentedButtonGroup {
   @Prop() sx: any = {};
 
   @Event() segmentedButtonGroupClick: EventEmitter;
+
+  @Method()
+  async reset() {
+    //console.log(this.host, `Resetting cbp-segmented-button-group from ${this.value} to ${this.initialValue}.`);
+    this.value=this.initialValue;
+  }
+
 
   @Listen('componentLoad')
   handleComponentLoad({ detail: { nativeElement: element, host } }) {
@@ -96,7 +104,7 @@ export class SegmentedButtonGroup {
     if (typeof newValue == 'object') values = newValue;
     else if (typeof newValue == 'string') values = newValue.split(',');
     // Set pressed states based on the value(s)    
-    this.buttongroup.forEach( (item) => {
+    this.buttongroup.forEach( item => {
       item.pressed = `${values.includes(item.value)}`
     });
   }
@@ -133,6 +141,8 @@ export class SegmentedButtonGroup {
     if(this.value != undefined) this.watchValueHandler(this.value);
     // Set the value from the pressed states
     else this.setValueFromButtons();
+    
+    this.initialValue = this.value;
   }
 
 
