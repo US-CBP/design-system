@@ -1,0 +1,42 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Components/Form/Specifications" />
+
+# cbp-form
+
+## Purpose
+
+The Form component wraps a native HTML form and its fields in order to provide enhanced functionality and integrate some components better with the native platform.
+
+## Functional Requirements
+
+* The Form component allows for an enhanced file input component to work with the native web platform.
+* The Form component allows certain custom fields (e.g., dropdown, slider, segmented button group) to reset properly when a form reset is invoked.
+
+## Technical Specifications
+
+### User Interactions
+
+* Users do not interact with the Form component directly; rather, it listens for the nested form's submit and reset events and piggybacks off them.
+
+### Responsiveness
+
+n/a
+
+### Accessibility
+
+n/a
+
+### Additional Notes and Considerations
+
+* The use of the Form component is entirely optional if certain custom fields are not being used.
+* Reset functionality is needed for the following design system components:
+  * Dropdown
+  * File Input
+  * Segmented Button Group
+  * Slider
+  * Checkbox
+  * Radio button
+  * Toggle
+
+  
