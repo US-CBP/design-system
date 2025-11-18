@@ -17,6 +17,7 @@ cbp-footer {
       }
     }
     
+    .cbp-flex-linearized cbp-flex-item,
     cbp-flex-item:first-of-type{
       margin-inline-start: calc(-1 * var(--cbp-space-3x));
     }
