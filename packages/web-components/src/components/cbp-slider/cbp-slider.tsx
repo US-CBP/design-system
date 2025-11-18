@@ -1,4 +1,4 @@
-import { Component, Element, Prop, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
+import { Component, Element, Prop, Event, EventEmitter, Method, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 /**
@@ -20,6 +20,8 @@ export class CbpSlider {
   private valueField1: HTMLInputElement;
   private valueField2: HTMLInputElement;
   private valueFields: HTMLInputElement[] = [];
+  private initialValue: any; // Save the initial value to support reset functionality
+
 
   @Element() host: HTMLElement;
 
@@ -83,6 +85,17 @@ export class CbpSlider {
   /** A custom event fired when the menu is opened or closed. */
   @Event() valueChange: EventEmitter;
 
+  @Method()
+  async reset() {
+    console.log(this.host,`Resetting cbp-slider from ${this.value} to ${this.initialValue}.`);
+    // reset the value to something different to trigger the watch/re-render
+    this.value = this.variant != 'range' ? '-1' : [-1,-1];
+    // set it back to the initial value
+    this.value=this.initialValue;
+    if(this.variant=='range') this.initRangeSlider();
+    this.setSliderBar();
+    //forceUpdate(this);
+  }
 
   @Watch('disabled')
   watchDisabledHandler(newValue: boolean) {
@@ -138,12 +151,6 @@ export class CbpSlider {
     this.setSliderBar();
   }
 
-  initRangeValues(){
-    if (typeof this.value == 'string') {
-      this.value = this.value.split(',').map(Number) || [undefined, undefined];
-    }
-  }
-
   // Set the CSS custom properties that control the slider highlight range based on value(s)
   setSliderBar(){
     if(this.variant == 'single'){
@@ -187,7 +194,7 @@ export class CbpSlider {
   componentWillLoad() {
     this.formFields = Array.from(this.host.querySelectorAll('input[type=range]'));
     
-    // initialize the range slider by setting the variant and parsing the value
+    // initialize the range slider by setting the variant and parsing the value to an array
     if (this.formFields.length > 1) {
       this.initRangeSlider();
     }
@@ -239,6 +246,9 @@ export class CbpSlider {
       // The input does not retain focus on Mac when clicked, so force it
       item.addEventListener('click', () => item.focus());
       item.addEventListener('input', (e) => this.handleChange(e, index));
+          
+      // Save the initial value after any parsing has been done
+      this.initialValue = this.value;
     })
   }
 
@@ -250,6 +260,7 @@ export class CbpSlider {
   }
 
   render() {
+    console.log('Rendering slider: ',this.variant,this.value);
     return (
       <Host>
 
@@ -258,6 +269,8 @@ export class CbpSlider {
             min={this.min}
             max={this.max}
             step={this.step}
+            key={`slider-value-${this.variant == 'range' ? this.value?.[0] || undefined : `${this.value}`}`}
+            data-key={`slider-value-${this.variant == 'range' ? this.value?.[0] || undefined : `${this.value}`}`}
             value={this.variant == 'range' ? this.value?.[0] || undefined : `${this.value}`}
             disabled={this.disabled}
             aria-labelledby={`${this.fieldId}-label`}
