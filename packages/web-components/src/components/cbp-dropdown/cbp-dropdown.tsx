@@ -18,7 +18,8 @@ export class CbpDropdown {
 
   private control: HTMLButtonElement;
   private formField: HTMLInputElement; // the hidden input that stores the dropdown value for form posts
-  
+  private initialValue: any // string | object - Save the initial value to support reset functionality
+
   private listbox: HTMLElement;
   private dropdownItems: HTMLCbpDropdownItemElement[] = [];
   // even with the same typings, these are JSX nodes and behaving differently than Array.from()
@@ -89,7 +90,7 @@ export class CbpDropdown {
    * Specifies the value of the hidden input holding the value (or barring one, the text label) 
    * of the selected item. Primarily updated dynamically by the component. 
    */
-  @Prop({ mutable: true }) value: any; //string | object;
+  @Prop({ mutable: true }) value: any = ''; //string | object;
 
   /** Specifies whether the dropdown menu is open/visible. */
   @Prop({ reflect: true, mutable: true }) open: boolean = false;
@@ -243,7 +244,8 @@ export class CbpDropdown {
   @Watch('value')
   watchValue(newValue) {
     // Only update the selection if the value is different from the hidden field's value (externally updated).
-    if (newValue != this.formField?.value && newValue != '') {
+    //if (newValue != this.formField?.value && newValue != '') {
+    if (newValue != this.formField?.value) {
       this.setSelectedFromValue();
     }
     //else console.log('Value Watch on dropdown fired - component and form values already match, so no action needed.');
@@ -261,6 +263,26 @@ export class CbpDropdown {
       })
       this.matches = matches;
     }
+  }
+
+  @Method()
+  async reset() {
+    // TODO: Verify that this works to update the field across all variants (single, multi, slotted/JSON items, filtered, async)
+    //console.log(this.host, `Resetting cbp-dropdown from ${this.value} to ${this.initialValue}.`);
+    // reset the value to something different to trigger the watch/re-render
+    this.value = createNamespaceKey('value');
+    // Clear all of the selected items and internal states
+    this.selectedItems.forEach(item => {
+      item.selected = false;
+      item.current = false;
+    });
+    this.selectedLabel=this.focusIndex=this.matchIndex=this.searchString=undefined;
+    this.matches=this.selectedItems=[];
+
+    // set the value back to the initial value
+    this.value=this.initialValue;
+    
+    this.setSelectedFromValue();
   }
 
   /** 
@@ -366,10 +388,10 @@ export class CbpDropdown {
   }
 
   setSelectedFromValue() {
-    if (!!this.value) {
+    //if (!!this.value) {
       this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item:not(.cbp-dropdown-item-no-results)')); // make sure this array is accurate
       let selectedItems:HTMLCbpDropdownItemElement[] = [];
-      
+
       if(this.multiple) {
         let values = (typeof this.value == "string") ? this.value.split(",") : this.value;
         
@@ -395,7 +417,7 @@ export class CbpDropdown {
       // Single select
       else {
         // Select the item with the value and deselect the rest
-        this.dropdownItems.forEach( (item) => {
+        this.dropdownItems.forEach( item => {
           if (item.value == this.value){
             this.selectedLabel = item.innerText.trim();
             item.selected = true;
@@ -404,7 +426,7 @@ export class CbpDropdown {
           else item.selected = false;
         });
       }
-    }
+    //}
   }
 
 
@@ -823,9 +845,11 @@ export class CbpDropdown {
 
 
   componentWillLoad() {
+    // TechDebt: do we need to generate them here or is it already done in render?
     if(!!this.items) {
       this.generatedItems = this.generateItems(this.items);
     }
+    // If slotting dropdown items, query them to store as an array
     else {
       this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item:not(.cbp-dropdown-item-no-results)'));
       // Look for any selected item to set the initial state, only if the value is not set
@@ -912,6 +936,8 @@ export class CbpDropdown {
     if (!this.selectedItems.length && !!this.value) {
       this.setSelectedFromValue();
     }
+
+    this.initialValue = this.value;
   }
 
   componentWillRender() {
@@ -999,7 +1025,7 @@ export class CbpDropdown {
             type="hidden"
             id={`${this.fieldId}-field`}
             name={`${this.name}`}
-            value={`${this.value}`}
+            value={ this.value != undefined ? `${this.value}` : ''}
             disabled={this.disabled}
             ref={el => (this.formField = el)}
           />
