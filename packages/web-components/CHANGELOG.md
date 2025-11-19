@@ -4,17 +4,17 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [Unpublished] TBD
+## [0.0.1-develop.28] 11-19-2025
 
-
+* Initial creation of `cbp-carousel`, `cbp-carousel-item`, and `cbp-dot-indicator` components.
 * Updated the `cbp-slider`:
-  * Added range slider capability
+  * Added range slider capability.
   * Added a `valueChange` event emitter.
 * Updated `cbp-dropdown`:
-  * Added `filterKeypress` custom event that fires on every keypress when filtering a combobox.
+  * Added `filterKeypress` custom event that is emitted on every keypress when filtering a combobox.
   * Added modifier keys and nativeEvent to the `populateCombobox` event.
 * Updated `cbp-grid` and `cbp-flex` with vertical spacing (based on `gap` by default) when linearized at their responsive breakpoint.
-* Initial creation of `cbp-carousel`, `cbp-carousel-item`, and `cbp-dot-indicator` components.
+* Other minor bug fixes.
 
 ## [0.0.1-develop.27] 10-24-2025
 
