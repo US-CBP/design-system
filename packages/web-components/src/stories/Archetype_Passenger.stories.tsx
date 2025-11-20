@@ -158,7 +158,7 @@ function renderDrawer(items, drawerid){
   }
 }
 
-function renderUserPref(username, hashid) {
+function renderUserPref(username) {
   return `
 
       <style>
@@ -175,7 +175,13 @@ function renderUserPref(username, hashid) {
       position= "right"
       accessibility-text= "User Preference Drawer"
     >
-      <cbp-panel>
+      <cbp-panel
+          sx='{
+            "--cbp-panel-header-color":"var(--cbp-color-white)",
+            "--cbp-panel-header-color-bg":"var(--cbp-color-branding-dhs-blue)",
+            "--cbp-panel-header-color-bottom-border":"var(--cbp-color-gray-cool-40)"
+          }'
+      >
         <cbp-typography
           slot="cbp-panel-header"
           tag="h2"
@@ -188,9 +194,9 @@ function renderUserPref(username, hashid) {
 
         <cbp-typography
           tag="p"
-          variant="heading-xs"
+          variant="heading-sm"
         >
-          Hi there,
+          Hello there,
         </cbp-typography>
         
         <cbp-typography
@@ -204,7 +210,7 @@ function renderUserPref(username, hashid) {
           tag="p"
           variant="heading-xs"
         >
-          (${hashid})
+          HASH ID: XXXXXXX
         </cbp-typography>
         <cbp-flex
           gap="1rem"
@@ -230,8 +236,8 @@ function renderUserPref(username, hashid) {
         <br />
         <cbp-toggle
           id="darkmode"
-          status-text-on="Dark"
-          status-text-off="Light"
+          status-text-on="Dark Mode Active"
+          status-text-off="Light Mode Active"
           sx='{
             "--cbp-toggle-circle-color":"var(--cbp-color-white)",
             "--cbp-toggle-circle-color-border":"var(--cbp-color-white)",
@@ -246,7 +252,10 @@ function renderUserPref(username, hashid) {
             "--cbp-toggle-color-bg-focus-dark":"var(--cbp-color-mint-cool-60)",
             "--cbp-toggle-color-bg-selected":"var(--cbp-color-mint-cool-60)",
             "--cbp-toggle-color-bg-selected-dark":"var(--cbp-color-mint-cool-60)",
-            "--cbp-toggle-grid-columns":"var(--cbp-toggle-control-width) 1fr" 
+            "--cbp-toggle-grid-columns":"var(--cbp-toggle-control-width) 1fr",
+            "border-top":"var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-20)",
+            "border-bottom":"var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-20)",
+            "padding":"var(--cbp-space-3x) 0"
           }'
         >
           <cbp-hide visually-hide>Theme</cbp-hide>
@@ -280,11 +289,11 @@ function generatePassengers(passengerArgs, page, pageSize) {
           >
             <cbp-grid
               grid-template-columns="16rem 1fr 12rem"
-              gap="var(--cbp-space-9x)"
+              gap="var(--cbp-space-4x) var(--cbp-space-9x)"
               breakpoint="48rem"
             >
               <cbp-flex
-                gap="var(--cbp-space-2x)"
+                gap="var(--cbp-space-2x) var(--cbp-space-3x) "
                 align-items="flex-start"
               >
                   <img
@@ -292,7 +301,7 @@ function generatePassengers(passengerArgs, page, pageSize) {
                     alt="avatar"
                     style="width: 100px; border-radius: var(--cbp-border-radius-softer);"
                   />
-                <cbp-flex direction="column" gap="var(--cbp-space-1x)">
+                <cbp-flex direction="column" gap="var(--cbp-space-2x) var(--cbp-space-1x)">
                   <cbp-typography tag="h3">${name}</cbp-typography>
                   <cbp-tag> Arriving In: 01:12:45 </cbp-tag>
                   ${error ? `<cbp-tag color="danger"> T-list</cbp-tag>` : ``}
@@ -616,15 +625,13 @@ function filterPanel() {
               </cbp-radio>
             </cbp-flex>
           </cbp-form-field>
-
-          <cbp-form-field
-            label="Passenger Age Range"
+                    
+          <cbp-form-field 
+            label="Age Range" 
           >
-            <cbp-slider hide-minmax>
-              <input
-                type="range"
-                name="age"
-              />
+            <cbp-slider value="30,60">
+              <input type="range" name="range-start">
+              <input type="range" name="range-end">
             </cbp-slider>
           </cbp-form-field>
 
@@ -1038,7 +1045,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
     </cbp-footer>
 
     ${renderDrawer(navItems, 'appHeaderDrawer')}
-    ${renderUserPref(username, hashid)}
+    ${renderUserPref(username)}
     ${manifestPane(manifestArgs)}
     `;
 };

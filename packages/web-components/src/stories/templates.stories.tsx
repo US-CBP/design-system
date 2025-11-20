@@ -199,7 +199,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
       </cbp-footer>
 
      ${renderDrawer(navItems, 'appheaderdrawer', true)}
-     ${renderUserPref(username, hashid)}
+     ${renderUserPref(username)}
     </cbp-flex>
   `;
 };
@@ -337,7 +337,7 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, searc
 
       
       ${renderDrawer(navItems, 'appheaderdrawer', true)}
-      ${renderUserPref(username, hashid)}
+      ${renderUserPref(username)}
     </cbp-flex>
   `;
 };
@@ -450,10 +450,10 @@ function renderDrawer(items, drawerid, store){
   }
 }
 
-function renderUserPref(username, hashid) {
+function renderUserPref(username) {
   return `
 
-    <style>
+      <style>
       cbp-toggle#darkmode {
         --cbp-toggle-custom-icon-off: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" style="fill:rgb(92 72 9)" viewBox="0 0 512 512"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>');
 
@@ -461,27 +461,34 @@ function renderUserPref(username, hashid) {
       }
     </style>
 
+
     <cbp-drawer
       uid= "userPref"    
       position= "right"
       accessibility-text= "User Preference Drawer"
     >
-      <cbp-panel>
+      <cbp-panel
+          sx='{
+            "--cbp-panel-header-color":"var(--cbp-color-white)",
+            "--cbp-panel-header-color-bg":"var(--cbp-color-branding-dhs-blue)",
+            "--cbp-panel-header-color-bottom-border":"var(--cbp-color-gray-cool-40)"
+          }'
+      >
         <cbp-typography
           slot="cbp-panel-header"
           tag="h2"
           variant="heading-lg"
           id="userprefheader"
-        >
+        >      
           <cbp-icon name="user"></cbp-icon>
           User Preferences
         </cbp-typography>
 
         <cbp-typography
           tag="p"
-          variant="heading-xs"
+          variant="heading-sm"
         >
-          Hi there,
+          Hello there,
         </cbp-typography>
         
         <cbp-typography
@@ -495,7 +502,7 @@ function renderUserPref(username, hashid) {
           tag="p"
           variant="heading-xs"
         >
-          (${hashid})
+          HASH ID: XXXXXXX
         </cbp-typography>
         <cbp-flex
           gap="1rem"
@@ -518,13 +525,11 @@ function renderUserPref(username, hashid) {
             </cbp-typography>
           </cbp-flex-item>
         </cbp-flex>
-
         <br />
-        
         <cbp-toggle
           id="darkmode"
-          status-text-on="Dark"
-          status-text-off="Light"
+          status-text-on="Dark Mode Active"
+          status-text-off="Light Mode Active"
           sx='{
             "--cbp-toggle-circle-color":"var(--cbp-color-white)",
             "--cbp-toggle-circle-color-border":"var(--cbp-color-white)",
@@ -539,13 +544,17 @@ function renderUserPref(username, hashid) {
             "--cbp-toggle-color-bg-focus-dark":"var(--cbp-color-mint-cool-60)",
             "--cbp-toggle-color-bg-selected":"var(--cbp-color-mint-cool-60)",
             "--cbp-toggle-color-bg-selected-dark":"var(--cbp-color-mint-cool-60)",
-            "--cbp-toggle-grid-columns":"var(--cbp-toggle-control-width) 1fr"
+            "--cbp-toggle-grid-columns":"var(--cbp-toggle-control-width) 1fr",
+            "border-top":"var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-20)",
+            "border-bottom":"var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-20)",
+            "padding":"var(--cbp-space-3x) 0"
           }'
         >
           <cbp-hide visually-hide>Theme</cbp-hide>
           <input
             type="checkbox"
             name="themeSwitch"
+            value="undefined"
           />
         </cbp-toggle>
 
@@ -709,7 +718,7 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, s
       </cbp-footer>
 
       ${renderDrawer(navItems, 'appheaderdrawer', true)}
-      ${renderUserPref(username, hashid)}
+      ${renderUserPref(username)}
     </cbp-flex>
   `;
 };
