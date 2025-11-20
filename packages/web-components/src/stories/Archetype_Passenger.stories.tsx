@@ -174,6 +174,9 @@ function renderUserPref(username) {
       uid= "userPref"    
       position= "right"
       accessibility-text= "User Preference Drawer"
+      sx='{
+        "--cbp-drawer-close-button-color":"var(--cbp-color-white)"
+      }'
     >
       <cbp-panel
           sx='{
@@ -996,7 +999,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
       ${searchMethod ? `search-method=${searchMethod}` : ``}
       ${searchAction ? `search-action=${searchAction}` : ``}
     >
-      ${generateNavItems(navItems)}
+      ${generateNavItems(navItems, "appheaderdrawer")}
     </cbp-app-header>
         
     <cbp-container sx='{"padding-inline":"var(--cbp-responsive-spacing-outer)", "padding-block-end":"var(--cbp-space-4x)"}'>
@@ -1044,7 +1047,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
       </section>
     </cbp-footer>
 
-    ${renderDrawer(navItems, 'appHeaderDrawer')}
+    ${renderDrawer(navItems, '"appheaderdrawer"')}
     ${renderUserPref(username)}
     ${manifestPane(manifestArgs)}
     `;
