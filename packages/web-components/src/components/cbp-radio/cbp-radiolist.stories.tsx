@@ -138,7 +138,7 @@ const RadioListHorizontalTemplate = ({ radios, label, description, fieldId, disa
 
 export const RadioListHorizontal = RadioListHorizontalTemplate.bind({});
 RadioListHorizontal.args = {
-  gap: 'var(--cbp-space-5x)',
+  gap: 'var(--cbp-space-1x) var(--cbp-space-5x)',
   breakpoint: '28rem'
 }
 
