@@ -44,14 +44,18 @@ export class SegmentedButtonGroup {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+  /** A custom event fired when any of the group's buttons are clicked, whether toggled on or off. */
   @Event() segmentedButtonGroupClick: EventEmitter;
 
+  /** 
+   * A custom method to reset the Segmented Button Group component to its initial state and value (when a name is specified)
+   * since the hidden input does not update on a native form reset. This method may be called manually, but is automatically 
+   * called on form reset when using the `cbp-form` component.
+   */
   @Method()
   async reset() {
-    //console.log(this.host, `Resetting cbp-segmented-button-group from ${this.value} to ${this.initialValue}.`);
     this.value=this.initialValue;
   }
-
 
   @Listen('componentLoad')
   handleComponentLoad({ detail: { nativeElement: element, host } }) {
