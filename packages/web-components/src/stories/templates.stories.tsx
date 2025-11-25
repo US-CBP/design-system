@@ -76,18 +76,12 @@ export default {
 
 
 function initThemeSwitcher() {
-  const ThemeToggle = document.querySelector('cbp-toggle#darkmode') as HTMLCbpToggleElement;
-  const DarkMode = window?.matchMedia(`(prefers-color-scheme: dark)`);
-  // Set the initial toggle state based on the system setting (checked = dark)
-  ThemeToggle.checked = DarkMode.matches;
-
+    const ThemeSegement = document.querySelector('cbp-segmented-button-group#darkmode') as HTMLCbpSegmentedButtonGroupElement
   const AppComponent = document.querySelector('cbp-app') as HTMLCbpAppElement;
-  ThemeToggle.addEventListener('toggleClick', (e)=> {
-    //console.log('Toggle Clicked: ', e);
-    // Toggle the `theme` property on `cbp-app` based on this toggle
-    AppComponent.theme = e.detail.checked ? "dark" : "light";
-    // If you wanted to persist this setting, you could use sessionStorage or localStorage
-  });
+  ThemeSegement.addEventListener('buttonClick', (e: any) => {
+    let value = e.detail.value;
+    AppComponent.theme = value;
+  })
 }
 
 
@@ -529,38 +523,22 @@ function renderUserPref(username) {
           </cbp-flex-item>
         </cbp-flex>
         <br />
-        <cbp-toggle
+        <cbp-segmented-button-group
           id="darkmode"
-          status-text-on="Dark Mode Active"
-          status-text-off="Light Mode Active"
-          sx='{
-            "--cbp-toggle-circle-color":"var(--cbp-color-white)",
-            "--cbp-toggle-circle-color-border":"var(--cbp-color-white)",
-            "--cbp-toggle-color-bg":"var(--cbp-color-yellow-30)",
-            "--cbp-toggle-color-bg-hover":"var(--cbp-color-yellow-30)",
-            "--cbp-toggle-color-bg-focus":"var(--cbp-color-yellow-30)",
-            "--cbp-toggle-circle-color-dark":"var(--cbp-color-white)",
-            "--cbp-toggle-circle-color-selected-dark":"var(--cbp-color-white)",
-            "--cbp-toggle-circle-color-border-dark":"var(--cbp-color-white)",
-            "--cbp-toggle-circle-color-border-selected-dark":"var(--cbp-color-white)",
-            "--cbp-toggle-color-bg-hover-dark":"var(--cbp-color-mint-cool-60)",
-            "--cbp-toggle-color-bg-focus-dark":"var(--cbp-color-mint-cool-60)",
-            "--cbp-toggle-color-bg-selected":"var(--cbp-color-mint-cool-60)",
-            "--cbp-toggle-color-bg-selected-dark":"var(--cbp-color-mint-cool-60)",
-            "--cbp-toggle-grid-columns":"var(--cbp-toggle-control-width) 1fr",
-            "border-top":"var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-20)",
-            "border-bottom":"var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-20)",
-            "padding":"var(--cbp-space-3x) 0"
-          }'
         >
-          <cbp-hide visually-hide>Theme</cbp-hide>
-          <input
-            type="checkbox"
-            name="themeSwitch"
-            value="undefined"
-          />
-        </cbp-toggle>
-
+          <cbp-button type="button" value="system" pressed="true">
+            <cbp-icon name="computer"></cbp-icon>
+            System
+          </cbp-button>
+          <cbp-button type="button" value="light" pressed="false">
+            <cbp-icon name="sun"></cbp-icon>
+            Light
+          </cbp-button>
+          <cbp-button type="button" value="dark" pressed="false">
+            <cbp-icon name="moon"></cbp-icon>
+            Dark
+          </cbp-button>
+        </cbp-segemented-button-group>
       </cbp-panel>
     </cbp-drawer>
   `
