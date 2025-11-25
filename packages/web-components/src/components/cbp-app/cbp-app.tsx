@@ -12,6 +12,8 @@ import { Component, Prop, Host, h, Env } from '@stencil/core';
 })
 export class CbpApp {
 
+  private darkMode: MediaQueryList;
+
   /** Optionally specifies light/dark mode. This is only needed if the application can change the theme separate from OS settings.  */
   @Prop({reflect: true}) theme: "light" | "dark" | "system" = "system"
 
@@ -30,11 +32,17 @@ export class CbpApp {
   }
 
   componentDidLoad() {
-    const darkMode = window?.matchMedia(`(prefers-color-scheme: dark)`);
+    this.darkMode = window?.matchMedia(`(prefers-color-scheme: dark)`);
     // Only set up the listener if we're using the system default, otherwise it's being set manually via reactive property
     if (this.theme == "system") {
-      darkMode.addEventListener('change', mql => this.handleThemeChange(mql)); // Add an event listener to the media query
-      this.handleThemeChange(darkMode); // Run the theme change handler once on load
+      this.darkMode.addEventListener('change', mql => this.handleThemeChange(mql)); // Add an event listener to the media query
+      this.handleThemeChange(this.darkMode); // Run the theme change handler once on load
+    }
+  }
+
+  componentWillUpdate() {
+    if(this.theme === 'system'){
+      this.theme = this.darkMode.matches ? "dark" : "light";
     }
   }
 
