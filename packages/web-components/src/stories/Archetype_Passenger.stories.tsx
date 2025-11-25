@@ -240,15 +240,15 @@ function renderUserPref(username) {
         <cbp-segmented-button-group
           id="darkmode"
         >
-          <cbp-button type="button" value="system" pressed="true">
+          <cbp-button value="system" pressed="true">
             <cbp-icon name="computer"></cbp-icon>
             System
           </cbp-button>
-          <cbp-button type="button" value="light" pressed="false">
+          <cbp-button value="light">
             <cbp-icon name="sun"></cbp-icon>
             Light
           </cbp-button>
-          <cbp-button type="button" value="dark" pressed="false">
+          <cbp-button value="dark">
             <cbp-icon name="moon"></cbp-icon>
             Dark
           </cbp-button>
