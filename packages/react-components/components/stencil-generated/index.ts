@@ -30,6 +30,7 @@ export const CbpFileInput = /*@__PURE__*/createReactComponent<JSX.CbpFileInput, 
 export const CbpFlex = /*@__PURE__*/createReactComponent<JSX.CbpFlex, HTMLCbpFlexElement>('cbp-flex');
 export const CbpFlexItem = /*@__PURE__*/createReactComponent<JSX.CbpFlexItem, HTMLCbpFlexItemElement>('cbp-flex-item');
 export const CbpFooter = /*@__PURE__*/createReactComponent<JSX.CbpFooter, HTMLCbpFooterElement>('cbp-footer');
+export const CbpForm = /*@__PURE__*/createReactComponent<JSX.CbpForm, HTMLCbpFormElement>('cbp-form');
 export const CbpFormField = /*@__PURE__*/createReactComponent<JSX.CbpFormField, HTMLCbpFormFieldElement>('cbp-form-field');
 export const CbpFormFieldWrapper = /*@__PURE__*/createReactComponent<JSX.CbpFormFieldWrapper, HTMLCbpFormFieldWrapperElement>('cbp-form-field-wrapper');
 export const CbpGrid = /*@__PURE__*/createReactComponent<JSX.CbpGrid, HTMLCbpGridElement>('cbp-grid');

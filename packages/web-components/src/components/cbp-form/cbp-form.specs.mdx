@@ -10,14 +10,21 @@ The Form component wraps a native HTML form and its fields in order to provide e
 
 ## Functional Requirements
 
-* The Form component allows for an enhanced file input component to work with the native web platform.
-* The Form component allows certain custom fields (e.g., dropdown, slider, segmented button group) to reset properly when a form reset is invoked.
+* The Form component allows for an enhanced file input component to work with the native web platform by adding files to the formData.
+* The Form component allows certain custom fields to reset properly when a native form reset is invoked, including:
+  * Dropdown: stores its value in a hidden input so that it is passed in a native form submit, but hidden inputs are not affected by a form reset. Needs to reset all selections and internal states.
+  * Segmented Button Group: when named, this component stores its value in a hidden input so that it is passed in a native form submit, but hidden inputs are not affected by a form reset.
+  * Slider: seems to clear numeric entry fields, resets value prop but doesn't range highlight.
+  * Checkbox: when set as `checked` using the component property, they are unchecked when reset by default. Also affects the multi-select dropdown.
+  * Radio button: when set as `checked` using the component property, they are unchecked when reset by default.
+  * Toggle: when set as `checked` using the component property, they are unchecked when reset by default.
+  * File Input: can only clear the value and internal array of files; there should be no default value set for a file input.
 
 ## Technical Specifications
 
 ### User Interactions
 
-* Users do not interact with the Form component directly; rather, it listens for the nested form's submit and reset events and piggybacks off them.
+* Users do not interact with the Form component directly; rather, it listens for the nested form's `submit` and `reset` events and piggybacks off them.
 
 ### Responsiveness
 
@@ -25,18 +32,8 @@ n/a
 
 ### Accessibility
 
-n/a
+* All accessibility concerns are related to the individual form fields and patterns.
 
 ### Additional Notes and Considerations
 
-* The use of the Form component is entirely optional if certain custom fields are not being used.
-* Reset functionality is needed for the following design system components:
-  * Dropdown
-  * File Input
-  * Segmented Button Group
-  * Slider
-  * Checkbox
-  * Radio button
-  * Toggle
-
-  
+* The use of the Form component is entirely optional if certain custom fields are not being used and/or component `reset()` methods are called manually when needed.
