@@ -1,4 +1,4 @@
-import { Component, Element, Prop, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
+import { Component, Element, Prop, Event, EventEmitter, Method, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
@@ -14,6 +14,7 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 export class CbpRadio {
 
   private formField: HTMLInputElement;
+  private initialChecked: boolean; // Save the initial value to support reset functionality
 
   @Element() host: HTMLElement;
 
@@ -54,6 +55,19 @@ export class CbpRadio {
     });
   }
 
+  /** 
+   * A custom method to reset the Radio component to its initial state and value since it does not update 
+   * properly on a native form reset when the checked state is set via the component property. This method may 
+   * be called manually, but is automatically called on form reset when using the `cbp-form` component.
+   */
+  @Method()
+  async reset() {
+    // The prop may not have changed, so don't rely on a re-render to update it
+    this.checked = this.initialChecked;
+    this.initialChecked ? this.formField?.setAttribute('checked','') : this?.formField.removeAttribute('checked');
+  }
+
+
   @Watch('disabled')
   watchDisabledHandler(newValue: boolean) {
     if (this.formField) {
@@ -88,7 +102,12 @@ export class CbpRadio {
       if (this.disabled) this.formField.setAttribute('disabled', '');
       if (this.name) this.formField.name=this.name;
       if (this.value) this.formField.value=this.value;
+    
+      // sync the checked prop with the checkbox
+      this.checked = this.formField.checked;
     }
+
+    this.initialChecked=this.checked;
   }
 
   render() {
