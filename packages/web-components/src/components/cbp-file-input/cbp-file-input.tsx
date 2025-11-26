@@ -1,4 +1,4 @@
-import { Component, Element, Prop, State, Event, EventEmitter, Listen, Watch, Host, h } from '@stencil/core';
+import { Component, Element, Prop, State, Event, EventEmitter, Listen, Method, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 /** 
@@ -15,6 +15,7 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 export class CbpFileInput {
 
   private formField: HTMLInputElement;
+  private initialValue: any; // Save the initial value to support reset functionality
 
   @Element() host: HTMLElement;
 
@@ -114,6 +115,13 @@ export class CbpFileInput {
     });
   }
 
+  @Method()
+  async reset() {
+    //console.log(`Resetting file input from ${this.formField.value} to ${this.initialValue}.`,this.host);
+    this.formField.value = this.initialValue ? this.initialValue: ''; // reset to empty string if undefined, which should always be the case
+    this.files=[];
+  }
+
 
   @Watch('disabled')
   watchDisabledHandler(newValue: boolean) {
@@ -184,6 +192,8 @@ export class CbpFileInput {
       if (this.accept) this.formField.setAttribute('accept', this.accept);
       if (this.name) this.formField.setAttribute('name', this.name);
       if (this.disabled) this.formField.setAttribute('disabled', ``);
+      // store the initialValue for reset functionality
+      this.initialValue = this.formField?.value;
 
       // Set event listeners
       this.formField.addEventListener('change', (e) => this.handleChange(e));
