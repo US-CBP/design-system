@@ -65,7 +65,6 @@ export class CbpCheckbox {
    */
   @Method()
   async reset() {
-    //console.log(`Resetting cbp-checkbox from ${this.checked} to ${this.initialChecked} (actual form field is now ${this.formField.checked}).`, this.host);
     // The prop may not have changed, so don't rely on a re-render to update it
     this.checked = this.initialChecked;
     this.initialChecked ? this.formField.setAttribute('checked','') : this.formField.removeAttribute('checked');

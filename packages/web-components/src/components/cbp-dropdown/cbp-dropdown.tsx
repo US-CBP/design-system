@@ -276,12 +276,10 @@ export class CbpDropdown {
     //console.log(this.host, `Resetting cbp-dropdown from ${this.value} to ${this.initialValue}.`);
 
     // Clear all of the selected items and internal states
-    //if (this.selectedItems?.length > 0) {
-      this.selectedItems?.forEach(item => {
-        item.selected = false;
-        item.current = false;
-      });
-    //}
+    this.selectedItems?.forEach(item => {
+      item.selected = false;
+      item.current = false;
+    });
     this.selectedLabel=this.focusIndex=this.matchIndex=undefined;
     this.searchString='';
     this.matches=[];

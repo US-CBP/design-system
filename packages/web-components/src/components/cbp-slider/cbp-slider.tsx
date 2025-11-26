@@ -89,10 +89,6 @@ export class CbpSlider {
    */
   @Method()
   async reset() {
-    //console.log(this.host,`Resetting cbp-slider from ${this.value} to ${this.initialValue}.`);
-    // reset the value to something different to trigger the watch/re-render
-    //this.value = this.variant != 'range' ? this.min : [this.min,this.min];
-    // set it back to the initial value
     this.value = this.initialValue != undefined ? this.initialValue : '';
     if(this.variant=='range') this.initRangeSlider();
 

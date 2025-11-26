@@ -117,7 +117,6 @@ export class CbpFileInput {
 
   @Method()
   async reset() {
-    //console.log(`Resetting file input from ${this.formField.value} to ${this.initialValue}.`,this.host);
     this.formField.value = this.initialValue ? this.initialValue: ''; // reset to empty string if undefined, which should always be the case
     this.files=[];
   }
