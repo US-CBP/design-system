@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Prop, Host, h, Watch} from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Prop, Method, Watch, Host, h} from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
@@ -14,33 +14,45 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpToggle {
 
   private formField: HTMLInputElement;
+  private initialChecked: boolean; // Save the initial value to support reset functionality
+
   @Element() host: HTMLElement;
   
-  /** Marks the toggle as checked by default when specified. */
+  /** Marks the toggle as checked (on) by default when specified. */
   @Prop({ reflect: true }) checked: boolean;
 
   /** Marks the toggle in a disabled state when specified. */
   @Prop({ reflect: true }) disabled: boolean;
 
-  /** Determines if the status text is visible for the render*/
+  /** Hides the status text after the toggle control when specified. */
   @Prop() hideStatus: boolean;
 
-  /** Determines the status text for the true toggle*/
+  /** Specifies the status text for the true toggle. */
   @Prop() statusTextOn: string = 'On';
 
-  /** Determines the status text for the false toggle*/
+  /** Specifies the status text for the false toggle. */
   @Prop() statusTextOff: string = 'Off';
 
-  /** The `name` attribute of the checkbox, which is passed as part of formData (as a key) only when the checkbox is checked. */
+  /** 
+   * Optionally set the `name` attribute of the checkbox at the component level, which is passed as part of 
+   * formData (as a key) only when the checkbox is checked. 
+   * Not needed if the slotted checkbox has a name. 
+   */
   @Prop() name: string;
 
-  /** Optionally set the `value` attribute of the checkbox at the component level. Not needed if the slotted checkbox has a value. */
+  /** 
+   * Optionally set the `value` attribute of the checkbox at the component level. 
+   * Not needed if the slotted checkbox has a value. 
+   */
   @Prop() value: string;
 
-  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
+  /** 
+   * Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. 
+   * Default behavior is "light-inverts" and does not have to be specified. 
+   */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
    
-  /** Supports adding inline styles as an object */
+  /** Supports adding inline styles as an object. */
   @Prop() sx: any = {};
 
   /** Custom event fired when the control is toggled by the user. */
@@ -56,6 +68,20 @@ export class CbpToggle {
       nativeEvent: e
     });
   }
+
+  /** 
+   * A custom method to reset the Toggle component to its initial state and value since it does not update 
+   * properly on a native form reset when the checked state is set via the component property. This method may 
+   * be called manually, but is automatically called on form reset when using the `cbp-form` component.
+   */
+  @Method()
+  async reset() {
+    // The prop may not have changed, so don't rely on a re-render to update it
+    this.checked = this.initialChecked;
+    this.initialChecked ? this.formField?.setAttribute('checked','') : this?.formField.removeAttribute('checked');
+  }
+
+
 
   @Watch('disabled')
   watchDisabledHandler(newValue: boolean) {
@@ -96,7 +122,11 @@ export class CbpToggle {
       if (this.disabled) this.formField.setAttribute('disabled', '');
       if (this.name) this.formField.name=this.name;
       if (this.value) this.formField.value=this.value;
+      // sync the checked prop with the checkbox
+      this.checked = this.formField.checked;
     }
+    
+    this.initialChecked=this.checked;
   }
 
 

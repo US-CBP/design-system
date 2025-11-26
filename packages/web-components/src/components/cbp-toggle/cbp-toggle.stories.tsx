@@ -91,7 +91,7 @@ function generateToggles(items, labelWidth, hideStatus, statusTextOn, statusText
             ${label} 
             <input
                 type="checkbox"
-                name="checkbox${i}"
+                name="toggle${i}"
                 value=${i}
             />
         </cbp-toggle>
