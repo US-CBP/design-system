@@ -15,16 +15,13 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 export class CbpSlider {
 
   private formFields: HTMLInputElement[] = [];
-  //private formField: HTMLInputElement;
-  // You can't set a ref to an array index, so we'll construct the array after they've loaded.
+    // You can't set a ref to an array index, so we'll construct the array after they've loaded.
   private valueField1: HTMLInputElement;
   private valueField2: HTMLInputElement;
   private valueFields: HTMLInputElement[] = [];
   private initialValue: any; // Save the initial value to support reset functionality
 
-
   @Element() host: HTMLElement;
-
 
   /** 
    * Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility. 
@@ -37,7 +34,7 @@ export class CbpSlider {
    *  This prop should be set on this component rather than (or in addition to) the slotted `input type="range"`. 
    */
   //@Prop() value: number;
-  @Prop({ mutable: true, reflect: true }) value: number | number[] | string;
+  @Prop({ mutable: true, reflect: true }) value: number | number[] | string | string[];
 
   /** Specifies the minimum difference in values in a range slider. If a non-zero value is specified, keep in mind the interaction with the "step" property. */
   @Prop() gap: number = 0;
@@ -85,16 +82,32 @@ export class CbpSlider {
   /** A custom event fired when the menu is opened or closed. */
   @Event() valueChange: EventEmitter;
 
+  /** 
+   * A custom method to reset the Slider component to its initial state and value since it does not update 
+   * properly on a native form reset. This method may be called manually, but is automatically called on 
+   * form reset when using the `cbp-form` component.
+   */
   @Method()
   async reset() {
-    console.log(this.host,`Resetting cbp-slider from ${this.value} to ${this.initialValue}.`);
+    //console.log(this.host,`Resetting cbp-slider from ${this.value} to ${this.initialValue}.`);
     // reset the value to something different to trigger the watch/re-render
-    this.value = this.variant != 'range' ? '-1' : [-1,-1];
+    //this.value = this.variant != 'range' ? this.min : [this.min,this.min];
     // set it back to the initial value
-    this.value=this.initialValue;
+    this.value = this.initialValue != undefined ? this.initialValue : '';
     if(this.variant=='range') this.initRangeSlider();
+
+    // Manually set the numeric inputs to their initial values because it's not working via render
+    if(!this.hideInput) {
+      if(this.variant == 'range') {
+        this.valueFields.forEach( (item,index) => {
+          !isNaN(this.initialValue[index]) ? item.setAttribute("value", this.initialValue[index]) : item.removeAttribute("value");
+
+        });
+      }
+      else !isNaN(this.initialValue) ? this.valueField1.setAttribute("value", this.initialValue) : this.valueField1.removeAttribute("value");
+    }
+
     this.setSliderBar();
-    //forceUpdate(this);
   }
 
   @Watch('disabled')
@@ -135,8 +148,8 @@ export class CbpSlider {
     if(this.variant == 'single') this.value = newValue;
     else {
       this.value=[
-        i == 0 ? newValue : this.value?.[0],
-        i == 1 ? newValue : this.value?.[1],
+        i == 0 ? newValue : this.value?.[0] || undefined,
+        i == 1 ? newValue : this.value?.[1] || undefined,
       ];
       this.updateRangeBoundaries();
     }
@@ -167,9 +180,15 @@ export class CbpSlider {
 
   initRangeSlider() {
     this.variant="range";
+    let value;
     // parse the value into an array
     if (typeof this.value == 'string') {
-      this.value = this.value.split(',').map(Number) || [undefined, undefined];
+      value = this.value.split(',').map(Number);
+      // replace any NaNs with ''
+      value.forEach( (item,index) => {
+        if (isNaN(item)) value[index] = '';
+      });
+      this.value = [...value]
     }
   }
 
@@ -189,7 +208,6 @@ export class CbpSlider {
       });
     }
   }
-
 
   componentWillLoad() {
     this.formFields = Array.from(this.host.querySelectorAll('input[type=range]'));
@@ -260,7 +278,7 @@ export class CbpSlider {
   }
 
   render() {
-    console.log('Rendering slider: ',this.variant,this.value);
+    //console.log('Rendering slider: ',this.variant,this.value);
     return (
       <Host>
 
@@ -269,9 +287,7 @@ export class CbpSlider {
             min={this.min}
             max={this.max}
             step={this.step}
-            key={`slider-value-${this.variant == 'range' ? this.value?.[0] || undefined : `${this.value}`}`}
-            data-key={`slider-value-${this.variant == 'range' ? this.value?.[0] || undefined : `${this.value}`}`}
-            value={this.variant == 'range' ? this.value?.[0] || undefined : `${this.value}`}
+            value={this.variant == 'range' ? this.value?.[0] : `${this.value}`}
             disabled={this.disabled}
             aria-labelledby={`${this.fieldId}-label`}
             aria-description="Slider 1 value"
@@ -306,7 +322,7 @@ export class CbpSlider {
             min={this.min}
             max={this.max}
             step={this.step}
-            value={this.variant == 'range' ? this.value?.[1] || undefined : `${this.value}`}
+            value={this.variant == 'range' ? this.value?.[1] : `${this.value}`}
             disabled={this.disabled}
             aria-labelledby={`${this.fieldId}-label`}
             aria-description={`Slider ${this.variant == 'range' ? 2 : 1} value`}
