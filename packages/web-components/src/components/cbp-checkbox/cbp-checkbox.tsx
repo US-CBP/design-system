@@ -1,4 +1,4 @@
-import { Component, Element, Prop, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
+import { Component, Element, Prop, Event, EventEmitter, Method, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
@@ -16,6 +16,7 @@ export class CbpCheckbox {
 
   //private checkbox: any; // HTMLButtonElement or HTMLAnchorElement
   private formField: HTMLInputElement;
+  private initialChecked: boolean; // Save the initial value to support reset functionality
 
   @Element() host: HTMLElement;
 
@@ -29,7 +30,7 @@ export class CbpCheckbox {
   @Prop({ mutable: true }) fieldId: string = createNamespaceKey('cbp-checkbox');
 
   /** Marks the checkbox as checked by default when specified. */
-  @Prop() checked: boolean;
+  @Prop({ reflect: true, mutable: true }) checked: boolean;
 
   /** Marks the checkbox as checked by default when specified. */
   @Prop() indeterminate: boolean;
@@ -57,6 +58,20 @@ export class CbpCheckbox {
     });
   }
 
+  /** 
+   * A custom method to reset the Checkbox component to its initial state and value since it does not update 
+   * properly on a native form reset when the checked state is set via the component property. This method may 
+   * be called manually, but is automatically called on form reset when using the `cbp-form` component.
+   */
+  @Method()
+  async reset() {
+    //console.log(`Resetting cbp-checkbox from ${this.checked} to ${this.initialChecked} (actual form field is now ${this.formField.checked}).`, this.host);
+    // The prop may not have changed, so don't rely on a re-render to update it
+    this.checked = this.initialChecked;
+    this.initialChecked ? this.formField.setAttribute('checked','') : this.formField.removeAttribute('checked');
+  }
+
+
   @Watch('disabled')
   watchDisabledHandler(newValue: boolean) {
     if (this.formField) {
@@ -66,10 +81,17 @@ export class CbpCheckbox {
     }
   }
 
+  @Watch('checked')
+  watchChecked(newValue: boolean) {
+    if (this.formField) this.formField.checked=newValue;
+  }
+
   @Watch('indeterminate')
   watchIndeterminateHandler(newValue: boolean) {
-    if (this.formField) this.formField.indeterminate=newValue;
-    if (newValue == true) this.checked = false;
+    if (this.formField) {
+      if (newValue == true) this.checked = false;
+      this.formField.indeterminate=newValue;
+    }
   }
 
   componentWillLoad() {
@@ -91,13 +113,17 @@ export class CbpCheckbox {
 
   componentDidLoad() {
     // Set the disabled/indeterminate states on load only if true. (The Watch decorators only listen for changes, not initial state)
-    if (!!this.formField) {
+    if (this.formField) {
       if (this.checked) this.formField.checked=this.checked;
       if (this.indeterminate && !this.checked) this.formField.indeterminate=this.indeterminate; // Checked takes precedence
       if (this.disabled) this.formField.setAttribute('disabled', '');
       if (this.name) this.formField.name=this.name;
       if (this.value) this.formField.value=this.value;
+      // sync the checked prop with the checkbox
+      this.checked = this.formField.checked;
     }
+
+    this.initialChecked=this.checked;
   }
 
   render() {
