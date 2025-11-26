@@ -32,9 +32,8 @@ function generateButtons(buttons) {
   const html = buttons.map(({ label, value, pressed, disabled, variant }) => {
     return `
       <cbp-button 
-        type="button" 
         value="${value}" 
-        ${pressed != undefined ? `pressed="${pressed}"` : ''}
+        ${pressed == true ? `pressed="${pressed}"` : ''}
         ${disabled == true ? 'disabled' : ''}
         ${variant ? `variant="${variant}"` : ''}
       >

@@ -18,7 +18,8 @@ export class CbpDropdown {
 
   private control: HTMLButtonElement;
   private formField: HTMLInputElement; // the hidden input that stores the dropdown value for form posts
-  
+  private initialValue: any // string | object - Save the initial value to support reset functionality
+
   private listbox: HTMLElement;
   private dropdownItems: HTMLCbpDropdownItemElement[] = [];
   // even with the same typings, these are JSX nodes and behaving differently than Array.from()
@@ -89,7 +90,7 @@ export class CbpDropdown {
    * Specifies the value of the hidden input holding the value (or barring one, the text label) 
    * of the selected item. Primarily updated dynamically by the component. 
    */
-  @Prop({ mutable: true }) value: any; //string | object;
+  @Prop({ mutable: true }) value: any = ''; //string | object;
 
   /** Specifies whether the dropdown menu is open/visible. */
   @Prop({ reflect: true, mutable: true }) open: boolean = false;
@@ -243,7 +244,8 @@ export class CbpDropdown {
   @Watch('value')
   watchValue(newValue) {
     // Only update the selection if the value is different from the hidden field's value (externally updated).
-    if (newValue != this.formField?.value && newValue != '') {
+    //if (newValue != this.formField?.value && newValue != '') {
+    if (newValue != this.formField?.value) {
       this.setSelectedFromValue();
     }
     //else console.log('Value Watch on dropdown fired - component and form values already match, so no action needed.');
@@ -261,6 +263,32 @@ export class CbpDropdown {
       })
       this.matches = matches;
     }
+  }
+
+  /** 
+   * A custom method to reset the Dropdown component to its initial state and value since it does not update 
+   * properly on a native form reset. This method may be called manually, but is automatically called on 
+   * form reset when using the `cbp-form` component.
+   */
+  @Method()
+  async reset() {
+    // TODO: Verify that this works to update the field across all variants (single, multi, slotted/JSON items, filtered, async)
+    //console.log(this.host, `Resetting cbp-dropdown from ${this.value} to ${this.initialValue}.`);
+
+    // Clear all of the selected items and internal states
+    this.selectedItems?.forEach(item => {
+      item.selected = false;
+      item.current = false;
+    });
+    this.selectedLabel=this.focusIndex=this.matchIndex=undefined;
+    this.searchString='';
+    this.matches=[];
+    //this.selectedItems=[];
+
+    // set the value back to the initial value
+    this.value=this.initialValue;
+    
+    if (this.value != '') this.setSelectedFromValue(); // TechDebt: this is not working fully for multi-select
   }
 
   /** 
@@ -366,45 +394,44 @@ export class CbpDropdown {
   }
 
   setSelectedFromValue() {
-    if (!!this.value) {
-      this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item:not(.cbp-dropdown-item-no-results)')); // make sure this array is accurate
-      let selectedItems:HTMLCbpDropdownItemElement[] = [];
+    this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item:not(.cbp-dropdown-item-no-results)')); // make sure this array is accurate
+    let selectedItems:HTMLCbpDropdownItemElement[] = [];
+    
+    if(this.multiple) {
+      let values = (typeof this.value == "string") ? this.value.split(",") : this.value;
       
-      if(this.multiple) {
-        let values = (typeof this.value == "string") ? this.value.split(",") : this.value;
-        
-        this.dropdownItems.forEach( item => {
-          if(item.value) {
-            if(values.includes(item.value)) {
-              item.selected=true;
-              selectedItems=[...selectedItems, item]
-            }
+      this.dropdownItems.forEach( item => {
+        if(item.value) {
+          if(values.includes(item.value)) {
+            item.selected=true;
+            selectedItems=[...selectedItems, item]
           }
-          // If there's no value, the item will be stored in the hidden input value using the label (like a native select)
-          else {
-            if(values.includes(item.innerText.trim())) {
-              item.selected=true;
-              selectedItems=[...selectedItems, item]
-            } 
-          }
-        });
-        // updating this state will cause a re-render and the number on the multi-select to update
-        this.selectedItems=[...selectedItems];
-      }
-
-      // Single select
-      else {
-        // Select the item with the value and deselect the rest
-        this.dropdownItems.forEach( (item) => {
-          if (item.value == this.value){
-            this.selectedLabel = item.innerText.trim();
-            item.selected = true;
-            this.selectedItems=[...selectedItems, item];
-          }
-          else item.selected = false;
-        });
-      }
+        }
+        // If there's no value, the item will be stored in the hidden input value using the label (like a native select)
+        else {
+          if(values.includes(item.innerText.trim())) {
+            item.selected=true;
+            selectedItems=[...selectedItems, item]
+          } 
+        }
+      });
+      // Updating this state will cause a re-render and the number on the multi-select to update
+      this.selectedItems.length > 0 ? this.selectedItems=[...selectedItems] : this.selectedItems=[];
     }
+
+    // Single select
+    else {
+      // Select the item with the value and deselect the rest
+      this.dropdownItems.forEach( item => {
+        if (item.value == this.value){
+          this.selectedLabel = item.innerText.trim();
+          item.selected = true;
+          this.selectedItems=[...selectedItems, item];
+        }
+        else item.selected = false;
+      });
+    }
+
   }
 
 
@@ -489,7 +516,10 @@ export class CbpDropdown {
             }
         >
           {this.multiple ?
-            <cbp-checkbox context={this.context}>
+            <cbp-checkbox
+              checked={this.value?.includes(value)}
+              context={this.context}
+            >
               <input 
                 type="checkbox" 
                 name={`${this.name}-selection`}
@@ -823,9 +853,11 @@ export class CbpDropdown {
 
 
   componentWillLoad() {
+    // TechDebt: do we need to generate them here or is it already done in render?
     if(!!this.items) {
       this.generatedItems = this.generateItems(this.items);
     }
+    // If slotting dropdown items, query them to store as an array
     else {
       this.dropdownItems = Array.from(this.host.querySelectorAll('cbp-dropdown-item:not(.cbp-dropdown-item-no-results)'));
       // Look for any selected item to set the initial state, only if the value is not set
@@ -912,6 +944,8 @@ export class CbpDropdown {
     if (!this.selectedItems.length && !!this.value) {
       this.setSelectedFromValue();
     }
+
+    this.initialValue = this.value;
   }
 
   componentWillRender() {
@@ -939,6 +973,7 @@ export class CbpDropdown {
 
 
   render() {
+    //console.log('Rendering dropdown: ', this.host, this.value);
     if (this.multiple) {
       this.selectedItemCount = this.value.length; // value was already split on initial load
     }
@@ -999,7 +1034,7 @@ export class CbpDropdown {
             type="hidden"
             id={`${this.fieldId}-field`}
             name={`${this.name}`}
-            value={`${this.value}`}
+            value={ this.value != undefined ? `${this.value}` : ''}
             disabled={this.disabled}
             ref={el => (this.formField = el)}
           />

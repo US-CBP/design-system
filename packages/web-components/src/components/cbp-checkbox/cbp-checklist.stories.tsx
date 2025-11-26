@@ -137,7 +137,7 @@ const ChecklistHorizontalTemplate = ({ checkboxes, label, description, fieldId, 
 
 export const ChecklistHorizontal = ChecklistHorizontalTemplate.bind({});
 ChecklistHorizontal.args = {
-  gap: 'var(--cbp-space-5x)',
+  gap: 'var(--cbp-space-1x) var(--cbp-space-5x)',
   breakpoint: '35rem'
 }
 

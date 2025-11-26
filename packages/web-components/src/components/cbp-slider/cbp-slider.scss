@@ -18,6 +18,7 @@
  * @prop --cbp-slider-thumb-color-halo-focus-dark: var(--cbp-color-interactive-focus-light);
  * @prop --cbp-slider-track-color-selected-dark: var(--cbp-color-interactive-selected-light);
  * @prop --cbp-slider-track-color-unselected-dark: var(--cbp-color-interactive-secondary-base);
+ * @prop --cbp-slider-numeric-input-width: 6ch; (ideal size for values up to 3 digits)
  */
 
 :root {
@@ -42,6 +43,7 @@
   --cbp-slider-track-color-selected-dark: var(--cbp-color-interactive-selected-light);
   --cbp-slider-track-color-unselected-dark: var(--cbp-color-interactive-secondary-base);
 
+  --cbp-slider-numeric-input-width: 6ch;
   --cbp-slider-track-selection-size: 0;
   --cbp-slider-track-selection-offset: 0;
 
@@ -76,7 +78,7 @@ cbp-slider {
   }
 
   input[type=number] {
-    width: 7ch;
+    width: var(--cbp-slider-numeric-input-width);
     
     // This removes the default increment arrows in the number input field
     &::-webkit-outer-spin-button,
