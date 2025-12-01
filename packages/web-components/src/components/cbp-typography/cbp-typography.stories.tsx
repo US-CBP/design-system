@@ -37,7 +37,7 @@ const Template = ({ text, tag, variant, divider, context, sx }) => {
   return ` 
       <cbp-typography
         ${tag ? `tag=${tag}` : ''}
-        ${variant != 'none' ? `variant=${variant}` : ''}
+        ${variant != undefined ? `variant=${variant}` : ''}
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
@@ -52,13 +52,9 @@ Typography.argTypes = {
   variant: {
       control: 'select',
       description: 'An optional variant used for styling the semantic element and its contents.',
-      options: ['none', 'masthead-1', 'masthead-2', 'heading-xxl', 'heading-xl', 'heading-lg', 'heading-md', 'heading-sm', 'heading-xs', 'body-text', 'subhead'],
+      options: ['masthead-1', 'masthead-2', 'heading-xxl', 'heading-xl', 'heading-lg', 'heading-md', 'heading-sm', 'heading-xs', 'body-text', 'subhead'],
     },
 }
-Typography.args = {
-  variant: 'none'
-}
-
 const AllStyles = ({ text, tag, divider, context, sx }) => {
 return ` 
       <cbp-typography
