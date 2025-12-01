@@ -64,7 +64,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text} <-- variant: masthead-1
+        ${text} (masthead-1)
       </cbp-typography>
       <br />
       <cbp-typography
@@ -74,7 +74,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text} <-- variant: masthead-2
+        ${text} (masthead-2)
       </cbp-typography>
       <br />
       <cbp-typography
@@ -84,7 +84,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text} <-- variant: heading-xxl
+        ${text} (heading-xxl)
       </cbp-typography>
       <br />
       
@@ -95,7 +95,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text} <-- variant: heading-xl
+        ${text} (heading-xl)
       </cbp-typography>
       <br />
       
@@ -106,7 +106,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text} <-- variant: heading-lg
+        ${text} (heading-lg)
       </cbp-typography>
       <br />
       
@@ -117,7 +117,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text} <-- variant: heading-md
+        ${text} (heading-md)
       </cbp-typography>
       <br />
       
@@ -128,7 +128,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text} <-- variant: heading-sm
+        ${text} (heading-sm)
       </cbp-typography>
       <br />
       
@@ -139,7 +139,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text} <-- variant: heading-xs
+        ${text} (heading-xs)
       </cbp-typography>
       <br />
       
@@ -150,7 +150,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text} <-- variant: body-text
+        ${text} (body-text)
       </cbp-typography>
       <br />
 
@@ -161,7 +161,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text} <-- variant: subhead
+        ${text} (subhead)
       </cbp-typography>
       <br />
     `;
