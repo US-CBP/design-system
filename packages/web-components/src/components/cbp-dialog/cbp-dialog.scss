@@ -1,3 +1,17 @@
+/*
+ * @prop --cbp-dialog-color: var(--cbp-color-text-darkest);
+ * @prop --cbp-dialog-color-dark: var(--cbp-color-text-lightest);
+
+ * @prop --cbp-dialog-color-bg: var(--cbp-color-white);
+ * @prop --cbp-dialog-color-bg-dark: var(--cbp-color-gray-cool-60);
+
+ * @prop --cbp-dialog-padding: var(--cbp-space-5x);
+ * @prop --cbp-dialog-border-radius: var(--cbp-border-radius-softer);
+ * @prop --cbp-dialog-shadow: var(--cbp-shadow-level-5-center);
+ * @prop --cbp-dialog-width: 20rem;
+ * @prop --cbp-dialog-height: auto;
+ */
+
 :root {
   --cbp-dialog-color: var(--cbp-color-text-darkest);
   --cbp-dialog-color-dark: var(--cbp-color-text-lightest);
