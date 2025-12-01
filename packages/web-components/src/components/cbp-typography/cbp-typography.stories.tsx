@@ -28,7 +28,7 @@ export default {
   },
   args: {
     text: 'Hello World',
-    tag: 'span',
+    tag: 'div',
     divider: 'none',
   },
 };
@@ -55,6 +55,9 @@ Typography.argTypes = {
       options: ['none', 'masthead-1', 'masthead-2', 'heading-xxl', 'heading-xl', 'heading-lg', 'heading-md', 'heading-sm', 'heading-xs', 'body-text', 'subhead'],
     },
 }
+Typography.args = {
+  variant: 'none'
+}
 
 const AllStyles = ({ text, tag, divider, context, sx }) => {
 return ` 
@@ -65,7 +68,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text}
+        ${text} <-- variant: masthead-1
       </cbp-typography>
       <br />
       <cbp-typography
@@ -75,7 +78,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text}
+        ${text} <-- variant: masthead-2
       </cbp-typography>
       <br />
       <cbp-typography
@@ -85,7 +88,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text}
+        ${text} <-- variant: heading-xxl
       </cbp-typography>
       <br />
       
@@ -96,7 +99,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text}
+        ${text} <-- variant: heading-xl
       </cbp-typography>
       <br />
       
@@ -107,7 +110,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text}
+        ${text} <-- variant: heading-lg
       </cbp-typography>
       <br />
       
@@ -118,7 +121,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text}
+        ${text} <-- variant: heading-md
       </cbp-typography>
       <br />
       
@@ -129,7 +132,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text}
+        ${text} <-- variant: heading-sm
       </cbp-typography>
       <br />
       
@@ -140,7 +143,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text}
+        ${text} <-- variant: heading-xs
       </cbp-typography>
       <br />
       
@@ -151,7 +154,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text}
+        ${text} <-- variant: body-text
       </cbp-typography>
       <br />
 
@@ -162,7 +165,7 @@ return `
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
-        ${text}
+        ${text} <-- variant: subhead
       </cbp-typography>
       <br />
     `;
