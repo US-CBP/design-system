@@ -102,7 +102,6 @@ export class CbpHide {
         visuallyHideAtMQ.addEventListener('change', mql => this.doVisuallyHideAt(mql)); // Add an event listener to the media query
         this.doVisuallyHideAt(visuallyHideAtMQ); // Run the breakpoint change handler once on load
       }
-
     }
   }
 
