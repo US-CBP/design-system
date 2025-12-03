@@ -36,5 +36,8 @@ The Hide component represents a component-based implementation for programmatica
 * Toggling the HTML5 `hidden` attribute or a visually hidden class will always be more performant than using this component.
 * If you are using this component in repeatable, high-level templates, it may be more maintainable and performant to implement that functionality directly in CSS.
 * This component should *never* be used for security purposes. Content being hidden may easily be toggled visible in the browser tools.
+* This component does not currently support AND or OR operators to combine media queries.
+  * However, when testing for viewport width, the following format may be used to check against multiple sizes: `30rem <= width <= 60rem`.
+  * If there are use cases that require the use of AND/OR operators, please discuss with the design system developers for future consideration.
 * TODO: Investigate the possibilities of container queries (in addition to media queries).
 * TODO: Investigate the possibility of overflow detection or create a POC interfacing a resize observer with this component.

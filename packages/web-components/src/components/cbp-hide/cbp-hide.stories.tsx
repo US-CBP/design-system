@@ -35,11 +35,11 @@ export default {
 const Template = ({ display, hide, visuallyHide, hideAt, visuallyHideAt, content, sx }) => {
   return ` 
         <cbp-hide
-          ${display ? `display=${display}` : ''}
-          ${hide ? `hide` : ''}
-          ${visuallyHide ? `visually-hide` : ''}
-          ${hideAt ? `hide-at=${hideAt}` : ''}
-          ${visuallyHideAt ? `visually-hide-at=${visuallyHideAt}` : ''}
+          ${display ? `display="${display}"` : ''}
+          ${hide ? 'hide' : ''}
+          ${visuallyHide ? 'visually-hide' : ''}
+          ${hideAt ? `hide-at="${hideAt}"` : ''}
+          ${visuallyHideAt ? `visually-hide-at="${visuallyHideAt}"` : ''}
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
           ${content}
