@@ -1,6 +1,5 @@
 import { Component, Prop, Element, Method, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, getFocusableElements } from '../../utils/utils';
-//import state from './store';
 
 /**
  * The Dialog component represents a dialog overlaid on top of the web page, which can be used similar 

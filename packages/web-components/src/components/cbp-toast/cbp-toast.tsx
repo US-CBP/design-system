@@ -35,10 +35,7 @@ export class CbpToast {
 
   @Watch('open')
   watchOpenHandler(newValue: boolean){
-    //console.log('watchOpenHandler check');
-    if(!newValue) {
-      //console.log('dismiss toast!');
-    }
+    if(!newValue) {}
   }
 
   componentWillLoad() {

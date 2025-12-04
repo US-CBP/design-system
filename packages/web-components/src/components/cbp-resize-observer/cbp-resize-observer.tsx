@@ -23,7 +23,7 @@ export class CbpResizeObserver {
   /** The number of milliseconds to debounce the event emitter. (not currently working) */
   @Prop() debounce: number = 0;
 
-  /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
+  /** A custom event emitted when the component is resized to give new values for size of component*/
   @Event() resized!: EventEmitter;
   
 
@@ -58,7 +58,6 @@ export class CbpResizeObserver {
     */
     this.observer = new ResizeObserver( ([{ contentRect }]) => {
       const {width, height, top, bottom, left, right, x, y} = contentRect;
-      //console.log('Resize Observer: ', width, height, top, bottom, left, right, x, y);
 
       const customEvent = {
         host: this.host,

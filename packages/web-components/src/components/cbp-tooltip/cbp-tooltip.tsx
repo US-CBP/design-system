@@ -18,7 +18,6 @@ export class CbpTooltip {
   @Prop({ reflect: true }) open: boolean = false;
 
   /** used to set styles for the definition link for text controls*/
-  // @Prop({ reflect: true }) definitionLinkStyle: boolean = false;
   @Prop({ reflect: true }) variant: 'definition';
 
 

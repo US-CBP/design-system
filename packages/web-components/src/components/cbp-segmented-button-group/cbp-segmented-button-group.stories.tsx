@@ -48,10 +48,7 @@ const Template = ({ buttons, name, value, multiple, accessibilityText, disabled,
   
   setTimeout(() => {
     let buttongroup = document.querySelector('cbp-segmented-button-group');
-    buttongroup.addEventListener('segmentedButtonGroupClick', function() { 
-      // For testing
-      //console.log(e);
-    });
+    buttongroup.addEventListener('segmentedButtonGroupClick', function() {});
   }, 500);
   
   return ` 

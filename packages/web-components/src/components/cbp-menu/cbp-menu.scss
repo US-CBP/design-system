@@ -46,27 +46,23 @@ cbp-menu {
     }
 
     &[position=top-start] .cbp-menu__menu {
-      //top: calc(var(--cbp-menu-gap) * -1);
       top: 100%;
       left: 0;
       transform: translate(0, -100%);
     }
 
     &[position=top-end] .cbp-menu__menu {
-      //top: calc(var(--cbp-menu-gap) * -1);
       top: 100%;
       left: 100%;
       transform: translate(-100%, -100%);
     }
 
     &[position=bottom-start] .cbp-menu__menu  {
-      //top: calc(100% + var(--cbp-menu-gap));
       top: 0;
       left: 0;
     }
 
     &[position=bottom-end] .cbp-menu__menu {
-      //top: calc(100% + var(--cbp-menu-gap));
       top: 0;
       left: 100%;
       transform: translate(-100%, 0);

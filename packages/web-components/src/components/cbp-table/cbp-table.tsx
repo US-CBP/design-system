@@ -82,7 +82,6 @@ export class CbpTable {
           control.pressed="true";
         }
 
-        // ({detail: { host, nativeElement, value }})
         control.addEventListener( "buttonClick", e => {
           this.doSort(this.columnHeadings.indexOf(item), e);
         });

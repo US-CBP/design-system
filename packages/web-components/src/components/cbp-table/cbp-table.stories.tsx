@@ -46,7 +46,6 @@ function generateTableHeaders(headers, selectable, context) {
     }`;
   }).join('');
   if (selectable) cells = checkbox + cells;
-  //return html.join('');
   return `
     ${cells}
   `;
@@ -66,7 +65,6 @@ function generateTableRows(data, selectable, context) {
       `;
     }).join('');
     if (selectable) cells = checkbox + cells;
-    //return html.join('');
     return `
       <tr>
         ${cells}
@@ -78,14 +76,6 @@ function generateTableRows(data, selectable, context) {
 
 
 const Template = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
-
-  /*
-  const toolbar=`
-    <div slot="cbp-table-toolbar">
-      Test toolbar.
-    </div>
-  `;
-  */
   
   return ` 
       <cbp-table

@@ -66,7 +66,7 @@ return `
       >
         ${text} (masthead-1)
       </cbp-typography>
-      <br />
+
       <cbp-typography
         ${tag ? `tag=${tag}` : ''}
         variant = "masthead-2"
@@ -76,7 +76,7 @@ return `
       >
         ${text} (masthead-2)
       </cbp-typography>
-      <br />
+
       <cbp-typography
         ${tag ? `tag=${tag}` : ''}
         variant = "heading-xxl"
@@ -86,7 +86,6 @@ return `
       >
         ${text} (heading-xxl)
       </cbp-typography>
-      <br />
       
       <cbp-typography
         ${tag ? `tag=${tag}` : ''}
@@ -97,7 +96,6 @@ return `
       >
         ${text} (heading-xl)
       </cbp-typography>
-      <br />
       
       <cbp-typography
         ${tag ? `tag=${tag}` : ''}
@@ -108,7 +106,6 @@ return `
       >
         ${text} (heading-lg)
       </cbp-typography>
-      <br />
       
       <cbp-typography
         ${tag ? `tag=${tag}` : ''}
@@ -119,7 +116,6 @@ return `
       >
         ${text} (heading-md)
       </cbp-typography>
-      <br />
       
       <cbp-typography
         ${tag ? `tag=${tag}` : ''}
@@ -130,7 +126,6 @@ return `
       >
         ${text} (heading-sm)
       </cbp-typography>
-      <br />
       
       <cbp-typography
         ${tag ? `tag=${tag}` : ''}
@@ -141,7 +136,6 @@ return `
       >
         ${text} (heading-xs)
       </cbp-typography>
-      <br />
       
       <cbp-typography
         ${tag ? `tag=${tag}` : ''}
@@ -152,7 +146,6 @@ return `
       >
         ${text} (body-text)
       </cbp-typography>
-      <br />
 
       <cbp-typography
         ${tag ? `tag=${tag}` : ''}
@@ -163,7 +156,6 @@ return `
       >
         ${text} (subhead)
       </cbp-typography>
-      <br />
     `;
 }
 

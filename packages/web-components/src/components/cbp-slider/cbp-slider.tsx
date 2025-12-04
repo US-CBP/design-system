@@ -33,7 +33,6 @@ export class CbpSlider {
    *  Specifies the value of the slider and numeric entry field.
    *  This prop should be set on this component rather than (or in addition to) the slotted `input type="range"`. 
    */
-  //@Prop() value: number;
   @Prop({ mutable: true, reflect: true }) value: number | number[] | string | string[];
 
   /** Specifies the minimum difference in values in a range slider. If a non-zero value is specified, keep in mind the interaction with the "step" property. */
@@ -274,7 +273,6 @@ export class CbpSlider {
   }
 
   render() {
-    //console.log('Rendering slider: ',this.variant,this.value);
     return (
       <Host>
 

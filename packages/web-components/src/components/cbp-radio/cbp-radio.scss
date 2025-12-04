@@ -1,5 +1,5 @@
 /**
-  * @prop --cbp-radio-color-bg: var(--cbp-color-white);
+ * @prop --cbp-radio-color-bg: var(--cbp-color-white);
  * @prop --cbp-radio-color-border: var(--cbp-color-interactive-secondary-dark);
  * @prop --cbp-radio-color-border-hover: var(--cbp-color-interactive-secondary-darker);
  * @prop --cbp-radio-color-border-focus: var(--cbp-color-interactive-focus-dark);
@@ -35,8 +35,8 @@
  * @prop --cbp-radio-margin: 0 0 var(--cbp-space-1x) 0;
  * @prop --cbp-radio-font-weight-label: var(--cbp-font-weight-bold);
  */
+
  :root {
-  //--cbp-radio-color: var(--cbp-color-text-lightest);
   --cbp-radio-color-bg: var(--cbp-color-white);
   --cbp-radio-color-border: var(--cbp-color-interactive-secondary-dark);
   --cbp-radio-color-border-hover: var(--cbp-color-interactive-secondary-darker);
@@ -54,7 +54,6 @@
   --cbp-radio-color-halo-checked-focus: var(--cbp-color-interactive-focus-light);
   --cbp-radio-color-label: var(--cbp-color-text-darkest);
 
-  //--cbp-radio-color-dark: var(--cbp-color-text-darkest);
   --cbp-radio-color-bg-dark: var(--cbp-color-gray-cool-70);
   --cbp-radio-color-border-dark: var(--cbp-color-interactive-secondary-light);
   --cbp-radio-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
@@ -81,7 +80,6 @@
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-radio[context*=dark],
 [data-cbp-theme=dark] cbp-radio:not([context=dark-inverts]):not([context=light-always]) {
-  //--cbp-radio-color: var(--cbp-radio-color-dark);
   --cbp-radio-color-bg: var(--cbp-radio-color-bg-dark);
   --cbp-radio-color-border: var(--cbp-radio-color-border-dark);
   --cbp-radio-color-border-hover: var(--cbp-radio-color-border-hover-dark);
@@ -158,7 +156,6 @@ cbp-radio {
 
     
     &:checked {
-      //--cbp-radio-color-bg: var(--cbp-radio-color-bg-checked);
       --cbp-radio-color-border: var(--cbp-radio-color-border-checked);
 
       &:hover {
@@ -198,7 +195,6 @@ cbp-radio {
   &[disabled],
   &:has(*:disabled) {
     // No focus for disabled form controls, hover state still exists so it must be invisible since this is a non-interactive element
-    //--cbp-radio-color: var(--cbp-color-interactive-disabled-light);
     --cbp-radio-color-bg: var(--cbp-color-interactive-disabled-light);
     --cbp-radio-color-border: var(--cbp-color-interactive-disabled-dark);
     --cbp-radio-color-border-hover: var(--cbp-color-interactive-disabled-dark);
@@ -210,7 +206,6 @@ cbp-radio {
     --cbp-radio-color-halo-checked-hover: transparent;
     --cbp-radio-color-label: var(--cbp-color-interactive-disabled-dark);
     
-    //--cbp-radio-color-dark: var(--cbp-color-interactive-disabled-dark);
     --cbp-radio-color-bg-dark: var(--cbp-color-interactive-disabled-dark);
     --cbp-radio-color-border-dark: var(--cbp-color-interactive-disabled-light);
     --cbp-radio-color-border-hover-dark: var(--cbp-color-interactive-disabled-light);

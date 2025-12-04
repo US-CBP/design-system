@@ -12,10 +12,6 @@ export default {
       description: 'Set the body text of the card',
       control: 'text',
     },
-    // color: {
-    //   control: 'select',
-    //   options: ['default', 'info', 'success', 'warning', 'danger'],
-    // },
     stretch: {
       control: 'boolean',
     },
@@ -110,10 +106,6 @@ const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsFill, 
       ${renderActions(actionsLayout, actionsFill, color,context, withIcon, actionsConfig)}
     </cbp-card>
   `;
-  // <h4 slot="cbp-card-title" id="card-heading-1">
-  //       ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
-  //       ${title}
-  //     </h4>
 };
 
 const BannerTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
@@ -214,98 +206,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
     </cbp-card>
   `;
 };
-
-// For testing only:
-/*
-const CardsGridTemplate = ({ title, color, stretch, bodyText, actionsLayout, actionsConfig, sx }) => {
-  return ` 
-    <cbp-flex
-      wrap="wrap"
-      gap="1rem"
-      align-items="stretch"
-    >
-      <cbp-flex-item flex-basis="15rem">
-      <cbp-card 
-        variant="decision"
-        ${stretch ? 'stretch' : ''}
-        ${color ? `color=${color}` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        <h4 slot="cbp-card-title">${title}</h4>
-        <p>${bodyText}</p>
-        ${renderActions(actionsLayout, actionsConfig)}
-      </cbp-card>
-      </cbp-flex-item>
-
-      <cbp-flex-item flex-basis="15rem">
-      <cbp-card 
-        variant="decision"
-        ${stretch ? 'stretch' : ''}
-        ${color ? `color=${color}` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        <h4 slot="cbp-card-title">${title}</h4>
-        <p>
-          ${bodyText}
-          ${bodyText}
-          ${bodyText}
-        </p>
-        ${renderActions(actionsLayout, actionsConfig)}
-      </cbp-card>
-      </cbp-flex-item>
-
-      <cbp-flex-item flex-basis="15rem">      
-      <cbp-card 
-        variant="decision"  
-        ${stretch ? 'stretch' : ''}
-        ${color ? `color=${color}` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        <h4 slot="cbp-card-title">${title}</h4>
-        <p>${bodyText}</p>
-        ${renderActions(actionsLayout, actionsConfig)}
-      </cbp-card>
-      </cbp-flex-item>
-    </cbp-flex>
-  `;
-};
-export const CardsGrid = CardsGridTemplate.bind({});
-CardsGrid.argTypes = {
-  actionsLayout: {
-    name: 'Actions Layout',
-    description: 'Choose actions layout of the card component',
-    control: 'radio',
-    options: ['single', 'double', 'triple'],
-  },
-  actionsConfig: {
-    name: 'Decision Card Actions',
-    description: 'Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`',
-    control: 'object',
-  },
-};
-CardsGrid.args = {
-  title: 'Banner Card Title',
-  bodyText: 'Here is an example of some supplementary text for this purely informational card.',
-  actionsLayout: 'single',
-  actionsConfig: {
-    btn1: {
-      label: 'Action 1',
-      tag: 'button',
-      color: 'primary',
-    },
-    btn2: {
-      label: 'Action 2',
-      tag: 'button',
-      color: 'secondary',
-    },
-    btn3: {
-      label: 'Action 3',
-      tag: 'button',
-      color: 'tertiary',
-    },
-  },
-};
-*/
+=
 
 export const GeneralCard = GeneralTemplate.bind({});
 GeneralCard.args = {

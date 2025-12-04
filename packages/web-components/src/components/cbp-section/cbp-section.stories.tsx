@@ -39,14 +39,4 @@ const Template = ({ text, tag, accessibilityText, sx }) => {
     `;
 };
 
-/* JSX format?
-const Template = ({ text }, props) => {
-  return h(
-    <cbp-section {...props}>
-      ${text}
-    </cbp-section>
-  )
-};
-*/
-
 export const Section = Template.bind({});

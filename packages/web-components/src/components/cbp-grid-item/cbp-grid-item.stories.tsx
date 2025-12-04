@@ -85,4 +85,3 @@ const Template = ({ gridColumnStart, gridColumnEnd, gridRowStart, gridRowEnd, al
 };
 
 export const GridItem = Template.bind({});
-//GridItem.args = {}

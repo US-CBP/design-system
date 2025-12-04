@@ -28,7 +28,6 @@ export default {
         label : {
             name: 'label (slotted)',
             control: 'text',
-            // if: { arg: 'determinate', eq: true}
         },
         orientation: {
             control: 'select',

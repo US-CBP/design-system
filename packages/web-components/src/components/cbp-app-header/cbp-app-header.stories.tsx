@@ -152,9 +152,7 @@ const Template = ({ drawerid, store, search, searchMethod, searchAction, items, 
     // Cancel form submit event on search to prevent full page reload
     const AppHeader = document.querySelector('cbp-app-header');
     AppHeader?.addEventListener('searchSubmit', function(e) {
-      //console.log('searchSubmit event: ', e);
       e.detail.nativeEvent.preventDefault();
-      //AppHeader.closeSearch();
     });
 
     // Cancel events on anchors to prevent navigating away from the story
@@ -232,9 +230,7 @@ const AppHeaderWithSubnavTemplate = ({ drawerid, store, search, searchMethod, se
     // Cancel form submit event on search to prevent full page reload
     const AppHeader = document.querySelector('cbp-app-header');
     AppHeader?.addEventListener('searchSubmit', function(e) {
-      //console.log('searchSubmit event: ', e);
       e.detail.nativeEvent.preventDefault();
-      //AppHeader.closeSearch();
     });
 
     // Cancel events on anchors to prevent navigating away from the story

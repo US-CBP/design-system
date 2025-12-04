@@ -57,7 +57,6 @@ export class CbpCarousel {
 
   scrollToItem() {
     let carouselOffset = 0;
-    //let carouselOffsetStart = getComputedStyle(this.control).getPropertyValue('--cbp-carousel-offset');
 
     for (let x = 0; x < this.current; x++) {
       carouselOffset -= this.items[x].offsetWidth;

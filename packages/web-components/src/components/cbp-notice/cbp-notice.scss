@@ -1,5 +1,12 @@
 /**
- * @prop --cbp-list-padding: var(--cbp-space-4x);
+* @prop --cbp-notice-color-text: var(--cbp-color-text-darkest);
+* @prop --cbp-notice-color-text-dark: var(--cbp-color-text-lightest);
+* @prop --cbp-notice-color-title: var(--cbp-color-text-darker);
+* @prop --cbp-notice-color-title-dark: var(--cbp-color-text-lighter);
+* @prop --cbp-notice-color-background: var(--cbp-color-info-lighter);
+* @prop --cbp-notice-color-background-dark: var(--cbp-color-info-dark);
+* @prop --cbp-notice-color-border: var(--cbp-color-info-base);
+* @prop --cbp-notice-color-border-dark: var(--cbp-color-info-light);
 */
 
 :root {

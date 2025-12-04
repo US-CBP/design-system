@@ -1,4 +1,4 @@
-/*
+/**
  * @prop --cbp-drawer-color-bg: var(--cbp-color-white);
  * @prop --cbp-drawer-color-bg-dark: var(--cbp-color-gray-cool-70);
  * @prop --cbp-drawer-color-backdrop: var(--cbp-color-backdrop-light);
@@ -73,8 +73,6 @@ cbp-drawer {
       &[fill][color] {
         --cbp-button-color: var(--cbp-drawer-close-button-color);
         --cbp-button-color-hover: var(--cbp-drawer-close-button-color-hover);
-        //--cbp-button-color-bg-hover: var(--cbp-drawer-close-button-color-bg-hover);
-        //--cbp-button-color-border-hover: var(--cbp-drawer-close-button-color-border-hover);
       }
     }
   }
