@@ -35,9 +35,6 @@ export class CbpSubNav {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-  //@State() currentItem: HTMLCbpSubnavItemElement;
-  //@State() activeItem: HTMLCbpSubnavItemElement = null;
-
   updateActiveItem(newValue) {
     const ActiveItem = this.host.querySelector(`cbp-subnav-item[name="${newValue}"]`) as HTMLCbpSubnavItemElement;
     this.activeItem=ActiveItem;
@@ -90,7 +87,6 @@ export class CbpSubNav {
   componentWillLoad() {
     this.subnavItems = Array.from(this.host.querySelectorAll('cbp-subnav-item'));
     this.currentItem = this.host.querySelector('cbp-subnav-item[current]') as HTMLCbpSubnavItemElement;
-    //this.activeItem = this.subnavItems[0]; // Does this make sense as a default?
 
     // Set event listeners on Subnav Items
     this.subnavItems.forEach( subnavItem  => {

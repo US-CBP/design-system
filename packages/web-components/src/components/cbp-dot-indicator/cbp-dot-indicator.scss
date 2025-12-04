@@ -1,3 +1,15 @@
+/**
+ * @prop --cbp-dot-indicator-color-hover: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-dot-indicator-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+
+ * @prop --cbp-dot-indicator-color-focus: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-dot-indicator-color-focus-dark: var(--cbp-color-interactive-focus-light);
+
+ * @prop --cbp-dot-indicator-color-selected: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-dot-indicator-color-selected-dark: var(--cbp-color-interactive-selected-light);
+
+ */
+
 :root {
   --cbp-dot-indicator-color-hover: var(--cbp-color-interactive-secondary-darker);
   --cbp-dot-indicator-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);

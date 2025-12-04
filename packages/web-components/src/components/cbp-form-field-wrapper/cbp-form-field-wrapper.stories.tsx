@@ -13,7 +13,6 @@ export default {
     },
     inputType:{
       control: 'select',
-      //options: [ "text", "number", "password", "search"]
       options: [ "text", "number", "password", "search", "email", "tel", "url", "color", "range", "date", "datetime-local", "month", "week", "time", "file"]
     },
     name: {

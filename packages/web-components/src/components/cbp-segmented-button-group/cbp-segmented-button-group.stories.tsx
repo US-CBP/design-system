@@ -46,14 +46,6 @@ function generateButtons(buttons) {
 
 const Template = ({ buttons, name, value, multiple, accessibilityText, disabled, sx }) => {
   
-  setTimeout(() => {
-    let buttongroup = document.querySelector('cbp-segmented-button-group');
-    buttongroup.addEventListener('segmentedButtonGroupClick', function() { 
-      // For testing
-      //console.log(e);
-    });
-  }, 500);
-  
   return ` 
         <cbp-segmented-button-group
           ${name ? `name="${name}"` : ''}

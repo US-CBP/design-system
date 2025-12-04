@@ -51,13 +51,6 @@ const Template = ({ label, color, withIcon, context, sx }) => {
 };
 
 export const Tag = Template.bind({});
-Tag.args = {};
-
-
-
-
-
-
 /*
   Attempt at CSF3:
     * Has issues with the decorator wrapping the story in `cbp-app` tags.
@@ -70,7 +63,6 @@ Tag.args = {};
 /*
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-
 const meta: Meta = {
   title: 'Components/Tag',
   tags: ['beta'],
@@ -96,10 +88,8 @@ const meta: Meta = {
     },
   },
 };
-
 export default meta;
 type Story = StoryObj;
-
 //  By default, stories will render the component defined in the meta (default export), with the args passed to it. 
 //  If you need to render something else, you can provide a function to the render property that returns the desired output.
 export const Basic: Story = {};
@@ -111,8 +101,6 @@ export const WithProp: Story = {
     </div>
   `,
 };
-
-
 export const Tag: Story = {
   args: {
     label: 'Tag',
@@ -131,3 +119,4 @@ export const Tag: Story = {
   `,
 };
 */
+Tag.args = {};

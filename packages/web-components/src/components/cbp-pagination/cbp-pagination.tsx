@@ -79,7 +79,6 @@ export class CbpPagination {
       let newItem: HTMLCbpDropdownItemElement = document.createElement("cbp-dropdown-item");
       newItem.value=`${i}`;
       newItem.innerText=`${this.pages <100 ? 'Page' : ''} ${i} of ${this.pages}`;
-      //if (i == 1) newItem.selected=true;
       this.pagesDropdownItems=[...this.pagesDropdownItems, newItem];
     }
     this.pagesDropdown.querySelector('[role=listbox]').replaceChildren(...this.pagesDropdownItems);
@@ -134,11 +133,6 @@ export class CbpPagination {
     this.pageSizeDropdown.value=this.pageSize;
 
     this.handlePageSizeChange(this.pageSize);
-
-    // Setting the pagesDropdown value has no effect because it's not populated.
-    //this.pagesDropdown.value=this.page;
-
-    //console.log(this.pagesDropdown, this.pageSizeDropdown);
   }
 
   render() {

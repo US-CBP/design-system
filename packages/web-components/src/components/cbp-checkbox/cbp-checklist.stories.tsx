@@ -126,15 +126,6 @@ const ChecklistHorizontalTemplate = ({ checkboxes, label, description, fieldId, 
     `;
 };
 
-/*
-      <cbp-resize-observer>
-        <cbp-flex gap="var(--cbp-space-5x)" breakpoint="31rem" sx='{"width":"max-content"}'>
-          ${generateCheckboxes(context, checkboxes)}
-        </cbp-flex>
-      </cbp-resize-observer>
-    </cbp-form-field>
-*/
-
 export const ChecklistHorizontal = ChecklistHorizontalTemplate.bind({});
 ChecklistHorizontal.args = {
   gap: 'var(--cbp-space-1x) var(--cbp-space-5x)',

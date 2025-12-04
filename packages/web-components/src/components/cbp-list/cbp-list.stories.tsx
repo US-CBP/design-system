@@ -2,16 +2,6 @@ export default {
   title: 'Components/List',
   tags: ['beta'],
   argTypes: {
-      // tag: {
-      //   control: 'select',
-      //   description: 'Type of List',
-      //   options: ['ul', 'ol'],
-      // },
-      // size: {
-      //   control: 'select',
-      //   description: 'Font size of list text',
-      //   options: ['normal', 'large'],
-      // },
       accessibilityText: {
         description: 'Support for accessibility text',
         control: 'text',
@@ -25,9 +15,6 @@ export default {
         control: 'object',
       },
   },   
-  // args: {
-  //   tag: 'ul',
-  // },
 };
 
 function generateItems(items) {

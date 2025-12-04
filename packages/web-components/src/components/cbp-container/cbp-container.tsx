@@ -24,8 +24,6 @@ export class CbpContainer {
   /** Specifies the width of the inner container area. */
   @Prop() width: string;
   
-  //@Prop() padding: string;
-  
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
@@ -37,7 +35,6 @@ export class CbpContainer {
       "--cbp-container-color-text": this.textColor,
       "--cbp-container-color-background": this.background,
       "--cbp-container-inner-width": this.width,
-      //"--cbp-container-content-padding": this.padding,
       ...this.sx,
     });
   }

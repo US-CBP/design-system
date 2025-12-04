@@ -115,7 +115,6 @@ cbp-file-input {
     --cbp-file-input-color-border: var(--cbp-color-interactive-disabled-dark);
     --cbp-file-input-color-border-dark: var(--cbp-color-interactive-disabled-light);
     --cbp-file-input-icon-color: currentColor;
-    //--cbp-file-input-icon-color-dark: currentColor;
     --cbp-file-input-file-color-bg: var(--cbp-color-interactive-disabled-light);
     --cbp-file-input-file-color-bg-dark: var(--cbp-color-interactive-disabled-dark);
   }
@@ -239,7 +238,6 @@ cbp-file-input {
       gap: var(--cbp-space-2x);
       padding: var(--cbp-space-2x);
       background-color: var(--cbp-file-input-file-color-bg);
-      //font-weight: var(--cbp-font-weight-medium);
       font-style: italic;
       line-height: var(--cbp-line-height-xs);
       overflow: hidden;

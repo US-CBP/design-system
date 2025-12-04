@@ -49,28 +49,3 @@ const Template = ({ label, content, open, headingLevel, context, sx }) => {
       `;
 };
 export const Expand = Template.bind({});
-
-/*
-  const StackedTemplate = ({ label, content, open, headingLevel, sx }) => {
-    return ` 
-        <cbp-expand
-          ${label ? `label="${label}"` : ''}
-          ${headingLevel ? `heading-level="${headingLevel}"` : ''}
-          ${open ? `open` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-        >
-            ${content}
-        </cbp-expand>
-
-        <cbp-expand
-        ${label ? `label="${label}"` : ''}
-        ${headingLevel ? `heading-level="${headingLevel}"` : ''}
-        ${open ? `open` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >
-          ${content}
-      </cbp-expand>
-      `;
-  };
-  export const Stacked = StackedTemplate.bind({});
-  */

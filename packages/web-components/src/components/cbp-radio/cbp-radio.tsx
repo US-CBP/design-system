@@ -39,9 +39,6 @@ export class CbpRadio {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-
-  //this.formField.indeterminate=true;
-
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() stateChanged: EventEmitter;
   handleChange(e) {

@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Host, Watch, h } from '@stencil/core';
+import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
@@ -32,14 +32,6 @@ export class CbpToast {
   
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
-
-  @Watch('open')
-  watchOpenHandler(newValue: boolean){
-    //console.log('watchOpenHandler check');
-    if(!newValue) {
-      //console.log('dismiss toast!');
-    }
-  }
 
   componentWillLoad() {
     if (typeof this.sx == 'string') {

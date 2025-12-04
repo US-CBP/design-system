@@ -86,7 +86,6 @@ export const Drawer = Template.bind({});
 Drawer.args = {
   position: 'left',
   uid: 'drawer',
-  //persistAt: 'min-width:64rem',
 };
 
 

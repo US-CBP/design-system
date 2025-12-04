@@ -1,6 +1,5 @@
 import { Component, Prop, Element, Event, EventEmitter, Host, h } from '@stencil/core';
 import { setCSSProps, getElementAttrs, createNamespaceKey } from '../../utils/utils';
-//import state from './store';
 
 /**
  * The Button component represents a UI control visually styled like a button, regardless of whether 
@@ -74,10 +73,7 @@ export class CbpButton {
    * rendered on the button with the specified value.
    */
   @Prop() controls: string;
-  
-  /* ??? */
-  //@Prop() controlProp: "pressed" | "expanded";
-  
+
   /** The property on the target element being toggled by the button/control (e.g., "open"). */
   @Prop() targetProp: string;
 
@@ -105,7 +101,6 @@ export class CbpButton {
 
 
   handleClick(e): void {
-    // If this is a control for something, manage state through stencil store
     if (this.controls) {
       // If the controlled element wasn't found, try to find it again
       if (!this.controlTarget) this.controlTarget = document.querySelector(`#${this.controls}`);
