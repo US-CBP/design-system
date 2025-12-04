@@ -77,6 +77,14 @@ function generateTableRows(data, selectable, context) {
 
 const Template = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
   
+ /*
+  const toolbar=`
+    <div slot="cbp-table-toolbar">
+      Test toolbar.
+    </div>
+  `;
+  */
+
   return ` 
       <cbp-table
         ${striped != 'none' ? `striped="${striped}"` : ''}

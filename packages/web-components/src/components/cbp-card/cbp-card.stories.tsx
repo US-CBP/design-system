@@ -206,7 +206,8 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
     </cbp-card>
   `;
 };
-=
+
+
 
 export const GeneralCard = GeneralTemplate.bind({});
 GeneralCard.args = {
