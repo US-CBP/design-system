@@ -268,13 +268,8 @@ function HTMLForm( {name, action, method, enctype, prefix, firstName, middleInit
         </cbp-slider>
       </cbp-form-field>
 
+      
       <!-- File Inputs -->
-      <label>
-        Native File Input<br />
-        <input type="file" name="nativefileinput" multiple/>
-      </label><br /><br />
-
- 
       <cbp-form-field label="Native File Input" description="Although styled as a design system input, this is a native file input in function.">
         <cbp-form-field-wrapper>
           <input type="file" name="nativefileinput" multiple>
@@ -379,7 +374,9 @@ const FormProcessingTemplate = ( args ) => {
 };
 
 export const FormProcessing = FormProcessingTemplate.bind({});
-
+FormProcessing.args = {
+  name: 'nativeForm'
+}
 
 
 
@@ -417,3 +414,6 @@ const FormComponentProcessingTemplate = (args) => {
 };
 
 export const FormComponentProcessing = FormComponentProcessingTemplate.bind({});
+FormComponentProcessing.args = {
+  name: 'formComponent'
+}
