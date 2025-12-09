@@ -46,7 +46,7 @@ export class CbpForm {
     // Add files from enhanced/multi-file inputs
     formData = this.addFiles(formData);
 
-    //console.log('resulting formData (array spread): ',[...formData]);
+    console.log('cbp-form - Resulting formData (array spread): ', [...formData]);
     
     // If the form submission is prevented, emit an event with the data instead
     if (this.preventSubmit) {
@@ -62,12 +62,9 @@ export class CbpForm {
   }
 
   addFiles(formData) {
-    /*
-      Update FormData (or create a copy) with fields not supported natively:
-      File input (multiple+enhanced, allowing manipulation of FileList)
-    */
+    // Update formData with enhanced/multi-file input (allowing manipulation of FileList)
     Object.keys(this.files).forEach( key => {
-      if (this.files?.[`${key}`]?.length > 0){
+      if (this.files?.[key]?.length > 0){
         // delete the empty key if there are files specified
         formData.delete(key);
         // loop over the files and add each as a new entry using append (set overrides the same entry)
@@ -75,7 +72,7 @@ export class CbpForm {
           formData.append(key, file);
         });
       }
-      formData[`${key}`] = this.files[`${key}`];
+      formData[key] = this.files[key];
     });
     return formData;
   }
@@ -83,8 +80,8 @@ export class CbpForm {
   handleEnhancedFileInput(e) {
     // Keep tabs on enhanced/multi-file inputs' values
     const {name, value} = e.detail;
-    this.files[name] = value;
-    console.log('cbp-form - Tracking enhanced/multi-file input: ', this.files);
+    // Only bother if the input has a name
+    if(!!name) this.files[name] = value;
   }
 
   componentWillLoad() {
