@@ -271,8 +271,20 @@ function HTMLForm( {name, action, method, enctype, prefix, firstName, middleInit
       <!-- File Inputs -->
       <label>
         Native File Input<br />
-        <input type="file" name="nativefileinput" />
+        <input type="file" name="nativefileinput" multiple/>
       </label><br /><br />
+
+ 
+      <cbp-form-field label="Native File Input" description="Although styled as a design system input, this is a native file input in function.">
+        <cbp-form-field-wrapper>
+          <input type="file" name="nativefileinput" multiple>
+          <span slot="cbp-form-field-attached-button">
+            <cbp-button fill="solid" color="secondary" aria-describedby="undefined-label" onclick="event.target.closest('cbp-form-field').querySelector('input').click()">
+              Browse
+            </cbp-button>
+          </span>
+        </cbp-form-field-wrapper>
+      </cbp-form-field>
 
       <cbp-form-field
         label="Single File"
@@ -427,7 +439,7 @@ const FormComponentProcessingTemplate = (args) => {
       Some component-enhanced functionality may not work with the native platform without using the cbp-form component. 
       This page demonstrates component interactions using a cbp-form wrapping a native HTML form and handling the form events such as submit and reset.
     </p>
-    <cbp-form>
+    <cbp-form prevent-submit>
       ${HTMLForm(args)}
     </cbp-form>
   `;
