@@ -209,7 +209,7 @@ export class CbpFileInput {
       const Id = this.formField.getAttribute('id');
       Id ? this.fieldId = Id : this.formField.setAttribute('id', this.fieldId);
       const Name = this.formField.getAttribute('name');
-      Name ? this.name = Name : this.formField.setAttribute('Name', this.name);
+      Name ? this.name = Name : (this.name ? this.formField.setAttribute('Name', this.name) : null);
       
       if (this.multiple) this.formField.setAttribute('multiple', '');
       if (this.accept) this.formField.setAttribute('accept', this.accept);
