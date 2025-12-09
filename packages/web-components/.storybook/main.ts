@@ -1,7 +1,11 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { createRequire } from "node:module";
 // Replace your-framework with the framework you are using (e.g., react-webpack5, vue3-vite)
 import type { StorybookConfig } from '@storybook/web-components-vite';
 //import type { StorybookConfig } from '@stencil/storybook-plugin'; // for testing
 import path from 'path';
+
+const require = createRequire(import.meta.url);
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -9,7 +13,7 @@ import path from 'path';
  */
 const getAbsolutePath = (packageName: string): any =>
   path.dirname(require.resolve(path.join(packageName, 'package.json')));
- 
+
 const config: StorybookConfig  = {
   framework: {
     //name: "@stencil/storybook-plugin" // TODO: try out the stencil plugin to see what it has to offer
