@@ -20,7 +20,7 @@ export class CbpFileInput {
   @Element() host: HTMLElement;
 
   /** The `name` attribute of the input, which is passed as part of formData (as a key). */
-  @Prop() name: string;
+  @Prop({ mutable: true }) name: string;
 
   /** 
    * Optionally specify the ID of the input here, which is used to generate related pattern 
@@ -29,7 +29,7 @@ export class CbpFileInput {
   @Prop({ mutable: true }) fieldId: string = createNamespaceKey('cbp-file-input');
 
   /** Specifies whether the file input accepts multiple files rather than a single file (may also be set directly on the slotted input). */
-  @Prop() multiple: boolean;
+  @Prop({ reflect: true }) multiple: boolean;
 
   /** 
    * Specifies the files types accepted by the file input (may also be set directly on the slotted input). 
@@ -110,15 +110,35 @@ export class CbpFileInput {
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formField,
+      name: this.name,
       value: this.files,
       nativeEvent: e
     });
   }
 
+  
+  /** 
+   * A custom method to reset the file input component (for enhanced/multi-file inputs) to its initial state and value 
+   * since it does not update properly on a native form reset. This method may be called manually, but is automatically 
+   * called on form reset when using the `cbp-form` component.
+   */
   @Method()
   async reset() {
     this.formField.value = this.initialValue ? this.initialValue: ''; // reset to empty string if undefined, which should always be the case
     this.files=[];
+  }
+
+
+  /* Testing: This method not yet fully supported */
+  @Method()
+  async getData() {
+    const Data={
+      host: this.host,
+      name: this.name,
+      files: this.files
+    }
+    //console.log('getData(): ', Data);
+    return Data;
   }
 
 
@@ -168,6 +188,7 @@ export class CbpFileInput {
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formField,
+      name: this.name,
       value: this.files,
       nativeEvent: e
     });
@@ -187,9 +208,11 @@ export class CbpFileInput {
     if (this.formField) {
       const Id = this.formField.getAttribute('id');
       Id ? this.fieldId = Id : this.formField.setAttribute('id', this.fieldId);
+      const Name = this.formField.getAttribute('name');
+      Name ? this.name = Name : this.formField.setAttribute('Name', this.name);
+      
       if (this.multiple) this.formField.setAttribute('multiple', '');
       if (this.accept) this.formField.setAttribute('accept', this.accept);
-      if (this.name) this.formField.setAttribute('name', this.name);
       if (this.disabled) this.formField.setAttribute('disabled', ``);
       // store the initialValue for reset functionality
       this.initialValue = this.formField?.value;
