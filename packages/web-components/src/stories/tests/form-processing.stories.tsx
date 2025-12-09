@@ -322,10 +322,10 @@ const FormProcessingTemplate = ( args ) => {
 
   // Set up event handlers for logging and setting errors on files via the `status` prop.
   setTimeout(() => {
-    const formEl = document.querySelector(`form[name="${name}"]`) as HTMLFormElement;
+    const formEl = document.querySelector(`form[name="${args.name}"]`) as HTMLFormElement;
     const submitButton = document.querySelector('button[type=submit]') as HTMLButtonElement;
     
-    //console.log('Event Listeners set: ', formEl, submitButton);
+    console.log('Event Listeners set: ', formEl, submitButton);
 
     submitButton?.addEventListener('click', e => {
       console.log('Submit button pressed', submitButton, e);
@@ -349,13 +349,15 @@ const FormProcessingTemplate = ( args ) => {
        */
       
       // List key/value pairs
+      /*
       for(let [name, value] of formData) {
         console.log(`${name} =`, value);
       }
+      */
       // Spreading the formData as an array seems to give the same results as above.
-      console.log('formData (array spread): ',[...formData]);
+      console.log('Native form submit - formData (array spread): ',[...formData]);
       // This method makes the assumption that object keys are unique and only shows 1 value when they are not.
-      console.log('formData as JS Object: ', Object.fromEntries(formData.entries()));
+      //console.log('formData as JS Object: ', Object.fromEntries(formData.entries()));
 
       /*
       formData.append("CustomField", "This is some extra data");
@@ -367,7 +369,7 @@ const FormProcessingTemplate = ( args ) => {
       */
 
     });
-  }, 1000);
+  }, 2000);
 
  return `
     <h1>Native Form Tag</h1>
@@ -386,7 +388,7 @@ const FormComponentProcessingTemplate = (args) => {
 
   // Set up event handlers for logging and setting errors on files via the `status` prop.
   setTimeout(() => {
-    const formEl = document.querySelector(`form[name="${name}"]`) as HTMLFormElement;
+    const formEl = document.querySelector(`form[name="${args.name}"]`) as HTMLFormElement;
     const submitButton = document.querySelector('button[type=submit]') as HTMLButtonElement;
     
     //console.log('Event Listeners set: ', formEl, submitButton);
@@ -397,39 +399,8 @@ const FormComponentProcessingTemplate = (args) => {
 
     formEl?.addEventListener('submit', e => {
       console.log('Native Form submit', formEl, e);
-      e.preventDefault();
-      
       let formData = new FormData(formEl);
-      // Data can be added to the formData for submission:
-      //formData.append("CustomField", "This is some extra data");
-
-      /*
-       * Because formData is an iterable, logging it does not show its name/value pairs.
-       * There are a number of ways to get at this, however, all of which require
-       * adding "dom.iterable", to compilerOptions > lib in tsconfig.json to avoid the 
-       * following TypeScript/compile error:
-       * 
-       * Type 'FormData' must have a '[Symbol.iterator]()' method that returns an iterator.
-       */
-      
-      // List key/value pairs
-      for(let [name, value] of formData) {
-        console.log(`${name} =`, value);
-      }
-      // Spreading the formData as an array seems to give the same results as above.
-      console.log('formData (array spread): ',[...formData]);
-      // This method makes the assumption that object keys are unique and only shows 1 value when they are not.
-      //console.log('formData as JS Object: ', Object.fromEntries(formData.entries()));
-
-      /*
-      formData.append("CustomField", "This is some extra data");
-      // formData can be manually submitted 
-      const response = await fetch("stash.php", {
-        method: "POST",
-        body: formData,
-      });
-      */
-
+      console.log('Native form submit - formData (array spread): ',[...formData]);
     });
   }, 1000);
 
