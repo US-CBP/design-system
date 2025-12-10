@@ -101,21 +101,21 @@ export const SegmentedButtonGroupIcons = IconTemplate.bind({});
 SegmentedButtonGroupIcons.args = {
   buttons: [
     {
-      label: '<cbp-icon name="user" aria-label="User"></cbp-icon>',
+      label: '<cbp-icon name="user" accessibility-text="User"></cbp-icon>',
       value: '1',
       pressed: false,
       disabled: false,
       variant: "square"
     },
     {
-      label: '<cbp-icon name="pen-to-square" aria-label="Edit"></cbp-icon>',
+      label: '<cbp-icon name="pen-to-square" accessibility-text="Edit"></cbp-icon>',
       value: '2',
       pressed: false,
       disabled: false,
       variant: "square"
     },
     {
-      label: '<cbp-icon name="filter" aria-label="Filter"></cbp-icon>',
+      label: '<cbp-icon name="filter" accessibility-text="Filter"></cbp-icon>',
       value: '3',
       pressed: false,
       disabled: false,

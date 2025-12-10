@@ -86,5 +86,5 @@ Multicol.args = {
   columns: 2,
   width: '8rem',
   gap: 'var(--cbp-space-4x)',
-  sx: {"padding":"var(--cbp-space-4x)"}
+  sx: {"padding-inline-start":"var(--cbp-space-4x)"}
 };

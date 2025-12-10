@@ -54,7 +54,7 @@ Tooltip.args = {
     alignment: 'top-left',
     title: 'Test Tooltip Title',
     content: 'Stub text for tooltip.',
-    tooltipControl: '<cbp-icon name="user" aria-label="User"></cbp-icon>',
+    tooltipControl: '<cbp-icon name="user" accessibility-text="User"></cbp-icon>',
 }
 
 const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipControl, context, sx }) => {
