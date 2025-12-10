@@ -29,6 +29,10 @@ cbp-footer {
     font-size: var(--cbp-font-size-body);
     font-weight: var(--cbp-font-weight-regular);
     line-height: var(--cbp-line-height-xs);
-    padding: var(--cbp-space-5x) var(--cbp-responsive-spacing-outer)
+    padding: var(--cbp-space-5x) var(--cbp-responsive-spacing-outer);
+
+      cbp-link {
+      --cbp-link-color-dark: var(--cbp-color-blue-20);
+      }
     }
 }

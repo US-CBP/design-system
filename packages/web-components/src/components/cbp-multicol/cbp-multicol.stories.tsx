@@ -66,7 +66,6 @@ function createChildren(children) {
 }
 
 const Template = ({ content, columns, width, gap, rule, nobreak, sx }) => {
-  //TODO: removed UL to deal with accessibility flag
   return `
       <cbp-multicol
         ${columns ? `columns="${columns}"` : ''}
@@ -75,6 +74,7 @@ const Template = ({ content, columns, width, gap, rule, nobreak, sx }) => {
         ${rule ? `rule="${rule}"` : ''}
         ${nobreak ? `nobreak` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        role="list"
       >
         ${createChildren(content)}
       </cbp-multicol>
@@ -85,5 +85,6 @@ export const Multicol = Template.bind({});
 Multicol.args = {
   columns: 2,
   width: '8rem',
-  gap: 'var(--cbp-space-4x)'
+  gap: 'var(--cbp-space-4x)',
+  sx: {"padding":"var(--cbp-space-4x)"}
 };
