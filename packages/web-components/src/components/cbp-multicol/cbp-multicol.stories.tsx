@@ -66,8 +66,8 @@ function createChildren(children) {
 }
 
 const Template = ({ content, columns, width, gap, rule, nobreak, sx }) => {
+  //TODO: removed UL to deal with accessibility flag
   return `
-    <ul>
       <cbp-multicol
         ${columns ? `columns="${columns}"` : ''}
         ${width ? `width="${width}"` : ''}
@@ -78,7 +78,6 @@ const Template = ({ content, columns, width, gap, rule, nobreak, sx }) => {
       >
         ${createChildren(content)}
       </cbp-multicol>
-    </ul>
   `;
 };
 

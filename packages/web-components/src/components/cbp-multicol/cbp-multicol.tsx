@@ -51,7 +51,7 @@ export class CbpMulticol {
 
   render() {
     return (
-      <Host>
+      <Host role="list">
         <slot />
       </Host>
     );

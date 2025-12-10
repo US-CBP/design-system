@@ -35,7 +35,7 @@ const Template = ({ open, uid, alignment, title, content, tooltipControl, contex
             alignment=${alignment}
             ${context && context != 'light-inverts' ? `context=${context}` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ``}
-
+            aria-label=${title}
             >  
             
                 ${tooltipControl}

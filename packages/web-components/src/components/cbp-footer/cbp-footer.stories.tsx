@@ -43,8 +43,8 @@ const InternalTemplate = ({ footerNav }) => {
         
         <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
           <span><i>Having an issue?</i></span>
-          <span><b>Email: </b><cbp-link href="mailto:somebody@example.com" context="dark-always">this-application-support@abc.def.gov</cbp-link></span>
-          <span><b>CBP Helpdesk: </b><cbp-link href="tel:555-555-5555" context="dark-always">(555) 555-5555</cbp-link></span>
+          <span><b>Email: </b><cbp-link href="mailto:somebody@example.com" context="dark-always" sx='{"--cbp-link-color-dark":"var(--cbp-color-blue-20)"}'>this-application-support@abc.def.gov</cbp-link></span>
+          <span><b>CBP Helpdesk: </b><cbp-link href="tel:555-555-5555" context="dark-always" sx='{"--cbp-link-color-dark":"var(--cbp-color-blue-20)"}'>(555) 555-5555</cbp-link></span>
         </cbp-flex>
       </section>
     </cbp-footer>

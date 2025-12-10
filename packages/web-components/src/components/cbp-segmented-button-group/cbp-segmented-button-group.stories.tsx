@@ -36,6 +36,7 @@ function generateButtons(buttons) {
         ${pressed == true ? `pressed="${pressed}"` : ''}
         ${disabled == true ? 'disabled' : ''}
         ${variant ? `variant="${variant}"` : ''}
+        accessibility-text="segementedButtonExample"
       >
         ${label}
       </cbp-button>

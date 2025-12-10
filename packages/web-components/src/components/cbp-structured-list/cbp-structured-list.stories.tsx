@@ -60,6 +60,7 @@ function generateSelectableItems(items, context){
         type="checkbox"
         name="checkbox"
         value=${index}
+        aria-label= ${content}
       />
       <span style='display: none'>Checkbox ${index}</span>
     </cbp-checkbox>
@@ -631,7 +632,7 @@ const StructuredListSelectableTemplate = ({ listItems, striped, showHeader, head
           ${context && context != 'light-inverts' ? `context=${context}` : ''}   
           ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
-        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox><input type="checkbox" /><span style='display: none'>check all</span></cbp-checkbox> <span>5 Search Results</span></div>` : ''}
+        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox><input type="checkbox" aria-label="Select All"/><span style='display: none'>check all</span></cbp-checkbox> <span>5 Search Results</span></div>` : ''}
     
         ${generateSelectableItems(listItems, context)}
           <div slot="cbp-structured-list-footer">

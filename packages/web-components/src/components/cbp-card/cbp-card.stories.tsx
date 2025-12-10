@@ -135,7 +135,7 @@ const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
       <div slot="cbp-card-flag">
-        <img src="https://api.dicebear.com/9.x/personas/svg" />
+        <img src="https://api.dicebear.com/9.x/personas/svg" alt="Flag Card random image"/>
       </div>
       <cbp-typography tag="h4" slot="cbp-card-title">
         ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
