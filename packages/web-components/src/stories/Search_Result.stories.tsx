@@ -740,7 +740,7 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
             </cbp-flex-item>
-          <cbp-flex role="list">
+          </cbp-flex>
         </nav>
 
         <section>

@@ -178,7 +178,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
             </cbp-flex-item>
-          <cbp-flex role="list">
+          </cbp-flex>
         </nav>
 
         <section>
@@ -315,7 +315,7 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, searc
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
             </cbp-flex-item>
-          <cbp-flex role="list">
+          </cbp-flex>
         </nav>
 
         <section>
@@ -684,7 +684,7 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, s
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
             </cbp-flex-item>
-          <cbp-flex role="list">
+          </cbp-flex>
         </nav>
 
         <section>
