@@ -10,10 +10,10 @@
   --cbp-action-bar-color: var(--cbp-color-text-darkest);
   --cbp-action-bar-color-dark: var(--cbp-color-text-lightest);
   --cbp-action-bar-color-bg: var(--cbp-color-gray-cool-5);
-  --cbp-action-bar-color-bg-dark: var(--cbp-color-gray-cool-70);
+  --cbp-action-bar-color-bg-dark: var(--cbp-color-gray-cool-80);
 
   --cbp-action-bar-floating-color-bg: var(--cbp-color-white);
-  --cbp-action-bar-floating-color-bg-dark: var(--cbp-color-gray-cool-90);
+  --cbp-action-bar-floating-color-bg-dark: var(--cbp-color-gray-cool-80);
 }
 
 [data-cbp-theme=light] cbp-action-bar[context*=dark]:not([context=light-always]),

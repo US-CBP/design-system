@@ -34,7 +34,7 @@ const InternalTemplate = ({ footerNav }) => {
       </nav>
 
       <section>
-        <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>
+        <cbp-typography tag="span" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>
           <cbp-icon name='headset' size='1.25rem'> </cbp-icon>
           Application Support
         </cbp-typography>
@@ -43,8 +43,8 @@ const InternalTemplate = ({ footerNav }) => {
         
         <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
           <span><i>Having an issue?</i></span>
-          <span><b>Email: </b><cbp-link href="mailto:somebody@example.com" context="dark-always">this-application-support@abc.def.gov</cbp-link></span>
-          <span><b>CBP Helpdesk: </b><cbp-link href="tel:555-555-5555" context="dark-always">(555) 555-5555</cbp-link></span>
+          <span><b>Email: </b><cbp-link href="mailto:somebody@example.com" context="dark-always" >this-application-support@abc.def.gov</cbp-link></span>
+          <span><b>CBP Helpdesk: </b><cbp-link href="tel:555-555-5555" context="dark-always" >(555) 555-5555</cbp-link></span>
         </cbp-flex>
       </section>
     </cbp-footer>

@@ -178,11 +178,11 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
             </cbp-flex-item>
-          <cbp-flex role="list">
+          </cbp-flex>
         </nav>
 
         <section>
-          <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
+          <cbp-typography tag="span" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
           <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
           <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
             <span>Having an issue?</span>
@@ -289,7 +289,7 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, searc
         >
           <cbp-typography
             slot="cbp-panel-header"
-            tag="h3"
+            tag="h2"
             variant="heading-lg"
             id="sidebarpanelheader"
           >
@@ -315,11 +315,11 @@ const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, searc
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
             </cbp-flex-item>
-          <cbp-flex role="list">
+          </cbp-flex>
         </nav>
 
         <section>
-          <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
+          <cbp-typography tag="span" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
           <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
           <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
             <span>Having an issue?</span>
@@ -550,7 +550,8 @@ function generateCards(numberOfCards) {
     html+= `
       <cbp-card variant="decision">
         <cbp-typography
-          tag="h4"
+          tag="h2"
+          variant="heading-md"
           slot="cbp-card-title"
           id="card-heading-${i}"
         >
@@ -684,11 +685,11 @@ const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, s
             <cbp-flex-item role="listitem">
               <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">Release Notes</cbp-button>
             </cbp-flex-item>
-          <cbp-flex role="list">
+          </cbp-flex>
         </nav>
 
         <section>
-          <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
+          <cbp-typography tag="span" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
           <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
           <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
             <span>Having an issue?</span>
