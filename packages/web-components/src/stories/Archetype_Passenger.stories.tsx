@@ -289,7 +289,7 @@ function generatePassengers(passengerArgs, page, pageSize) {
                     style="width: 100px; border-radius: var(--cbp-border-radius-softer);"
                   />
                 <cbp-flex direction="column" gap="var(--cbp-space-2x) var(--cbp-space-1x)">
-                  <cbp-typography tag="h3">${name}</cbp-typography>
+                  <cbp-typography tag="h2">${name}</cbp-typography>
                   <cbp-tag> Arriving In: 01:12:45 </cbp-tag>
                   ${error ? `<cbp-tag color="danger"> T-list</cbp-tag>` : ``}
                 </cbp-flex>
@@ -1015,7 +1015,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
       </nav>
 
       <section>
-        <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
+        <cbp-typography tag="span" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
         <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
         <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
           <span>Having an issue?</span>

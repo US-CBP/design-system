@@ -35,14 +35,13 @@ export default {
             <cbp-button 
             ${context && context != 'light-inverts' ? `context=${context}` : ''}   
             fill="ghost"
-            sx='{"--cbp-button-color-dark":"var(--cbp-color-blue-20"}'
           >
               Action 1
           </cbp-button>
           <cbp-button 
               ${context && context != 'light-inverts' ? `context=${context}` : ''}     
               fill="ghost"
-              sx='{"--cbp-button-color-dark":"var(--cbp-color-blue-20"}'
+              color="secondary"
           >
               Action 2
           </cbp-button>

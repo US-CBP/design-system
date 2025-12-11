@@ -34,7 +34,7 @@ const InternalTemplate = ({ footerNav }) => {
       </nav>
 
       <section>
-        <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>
+        <cbp-typography tag="span" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>
           <cbp-icon name='headset' size='1.25rem'> </cbp-icon>
           Application Support
         </cbp-typography>
