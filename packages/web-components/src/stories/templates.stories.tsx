@@ -551,6 +551,7 @@ function generateCards(numberOfCards) {
       <cbp-card variant="decision">
         <cbp-typography
           tag="h2"
+          variant="heading-lg"
           slot="cbp-card-title"
           id="card-heading-${i}"
         >

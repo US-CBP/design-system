@@ -744,7 +744,7 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
         </nav>
 
         <section>
-          <cbp-typography tag="h6" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
+          <cbp-typography tag="span" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>Application Support</cbp-typography>
           <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
           <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
             <span>Having an issue?</span>
