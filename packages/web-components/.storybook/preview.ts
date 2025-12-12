@@ -6,21 +6,9 @@ import {defineCustomElements} from '../dist/loader';
 
 // Used for docs
 import { themes } from 'storybook/theming';
-//import { DocsContainer, type DocsContainerProps } from '@storybook/addon-docs/blocks';
-
 
 defineCustomElements();
 setCustomElementsManifest(customElements);
-
-
-// Extend the DocsContainerProps to include the userGlobals
-/*
-interface ExtendedDocsContainerProps extends DocsContainerProps {
-  context: DocsContainerProps['context'] & {
-    store: { userGlobals: { globals: Record<string, string> } };
-  };
-}
-*/
 
 
 // Wrap every story with `cbp-app` component, which brings in the high level CSS resets, settings, and variables.
