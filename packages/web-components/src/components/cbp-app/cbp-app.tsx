@@ -34,13 +34,14 @@ export class CbpApp {
   componentDidLoad() {
     this.darkMode = window?.matchMedia(`(prefers-color-scheme: dark)`);
     // Only set up the listener if we're using the system default, otherwise it's being set manually via reactive property
-    if (this.theme == "system") {
+    if (this.theme === "system") {
       this.darkMode.addEventListener('change', mql => this.handleThemeChange(mql)); // Add an event listener to the media query
       this.handleThemeChange(this.darkMode); // Run the theme change handler once on load
     }
   }
 
   componentWillUpdate() {
+    // If it's set back to system, force it to dark or light for the CSS to work
     if(this.theme === 'system'){
       this.theme = this.darkMode.matches ? "dark" : "light";
     }
