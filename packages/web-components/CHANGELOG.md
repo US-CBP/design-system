@@ -4,6 +4,25 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unpublished] TBD
+
+* Initial creation of `cbp-form` wrapper component to allow custom input components to work with native form reset and submit methods.
+  * Automatically call component `reset()` methods on components that need them when a form reset is detected.
+  * Automatically add files from enhanced/multi-file input components on form submission.
+* Added `reset()` methods to a number of components, which can be called manually or automatically by `cbp-form`, including:
+  * `cbp-checkbox`
+  * `cbp-dropdown`
+  * `cbp-file-input`
+  * `cbp-radio`
+  * `cbp-segmented-button-group`
+  * `cbp-slider`
+  * `cbp-toggle`
+* BREAKING: updated Footer story code to remove the `h6` tag to address accessibility concerns about skipping heading levels. Code should be re-copied or updated manually.
+* BREAKING: updated the light/dark mode switcher in the User Preferences drawer (in all templates) to a segmented button group, replacing the toggle control. Code should be re-copied or manually updated.
+* Numerous accessibility fixes to components and stories.
+* Upgraded Storybook from 9.x to 10.1.18.
+  * Added light/dark mode toggle to story toolbars for easier visual inspection and testing.
+
 ## [0.0.1-develop.28] 11-19-2025
 
 * Initial creation of `cbp-carousel`, `cbp-carousel-item`, and `cbp-dot-indicator` components.
