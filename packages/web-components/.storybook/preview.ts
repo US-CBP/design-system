@@ -48,19 +48,6 @@ const contentDirectionProvider: DecoratorFunction<WebComponentsRenderer, { [x: s
 };
 
 
-const withThemeProvider: DecoratorFunction<WebComponentsRenderer, { [x: string]: unknown }> = (storyFn, context) => {
-  const {
-    globals: { theme, mode },
-  } = context;
-  const body = document.querySelector('body.sb-show-main');
-  if (!(body instanceof HTMLElement)) return storyFn();
-
-  const app = document.querySelector('cbp-app') as HTMLCbpAppElement;
-  if (!(app instanceof HTMLElement)) return storyFn();
-
-  return storyFn();
-};
-
 // Add decorator to disable animations when running in Chromatic
 const withAnimationControl: DecoratorFunction<WebComponentsRenderer> = (storyFn) => {
   // Disable animations only in Chromatic environment
@@ -82,7 +69,7 @@ const withAnimationControl: DecoratorFunction<WebComponentsRenderer> = (storyFn)
 };
 
 const preview: Preview = {
-  decorators: [withWrapper, withThemeProvider, withAnimationControl], //, contentDirectionProvider
+  decorators: [withWrapper, withAnimationControl], //, contentDirectionProvider
   globalTypes: {
     /*
     layout: {
