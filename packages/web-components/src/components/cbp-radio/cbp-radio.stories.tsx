@@ -38,8 +38,8 @@ const Template = ({ label, name, value, checked, disabled, context, sx }) => {
   return ` 
       <cbp-radio
         ${value ? `value=${value}` : ''}
-        ${disabled ? `disabled=${disabled}` : ''}
-        ${checked ? `checked=${checked}` : ''}
+        ${disabled ? `disabled` : ''}
+        ${checked ? `checked` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
       >
