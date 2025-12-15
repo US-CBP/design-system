@@ -48,16 +48,15 @@ export class CbpCard {
     });
   }
 
+  componentDidRender(){
+    if(this.disabled){
+      let input = this.host.querySelector('cbp-checkbox, cbp-radio') as any;
+      input.disabled = true;
+    }
+  }
+
   componentDidLoad(){
     if(this.interactive == 'selectable' || this.interactive == 'radio'){
-
-      //Techdebt: need to move this so that it is reactive to changes
-      if(this.disabled){
-        let input = this.host.querySelector('cbp-checkbox input[type="checkbox"], cbp-radio input[type="radio"]') as HTMLInputElement;
-        input.disabled = true;
-      }
-      
-
       this.host.addEventListener("click", (e) => {
         let parent = this.host.querySelector('cbp-card *[slot="cbp-card-title"]');
         if (!parent.contains(e.target as Node)){
