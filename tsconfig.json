@@ -12,6 +12,7 @@
     "sourceMap": true,
     "lib": ["es6"],
     "skipLibCheck": true,
+    "types": ["node"] 
   },
   "exclude": ["node_modules", "**/*.spec.ts", "**/__tests__/**"]
 }

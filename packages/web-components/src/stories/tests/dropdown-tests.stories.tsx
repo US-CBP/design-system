@@ -94,7 +94,7 @@ const EmptyDropdownTemplate = ({ label, description, fieldId, name, placeholder,
   // Set up event handlers for logging and setting errors on files via the `status` prop.
   setTimeout(() => {
     const Dropdown = document.querySelector('cbp-app cbp-dropdown') as HTMLCbpDropdownElement;
-    const Button = document.querySelector('cbp-app cbp-button') as HTMLCbpButtonElement;
+    const Button = document.querySelector('cbp-button#populateDropdown') as HTMLCbpButtonElement;
     //console.log(Dropdown, Button);
 
     Button.addEventListener('buttonClick', () => {
@@ -132,6 +132,7 @@ const EmptyDropdownTemplate = ({ label, description, fieldId, name, placeholder,
       <cbp-button
         fill="solid"
         color="primary"
+        id="populateDropdown"
       >
         Populate Dropdown
       </cbp-button>

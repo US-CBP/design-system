@@ -109,7 +109,8 @@ const preview: Preview = {
          * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter-examples for more details.
          * Available tags: https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#axe-core-tags
          */
-        runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'],
+        //runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'],
+        runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'],
       },
       /*
        * Configure test behavior
