@@ -22,6 +22,7 @@ The React components are wrappers generated from this package and will share the
 * Numerous accessibility fixes to components and stories.
 * Upgraded Storybook from 9.x to 10.1.18.
   * Added light/dark mode toggle to story toolbars for easier visual inspection and testing.
+  * Installed Vitest, which uses Playwright under the hood, for more robust testing and coverage reports.
 
 ## [0.0.1-develop.28] 11-19-2025
 
