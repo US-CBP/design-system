@@ -340,7 +340,6 @@ cbp-button {
     }
   }
 
-  // TechDebt: pull out the transparent bg/borders
   &[fill=ghost] {
     --cbp-button-color-bg: transparent;
     --cbp-button-color-border: transparent;
