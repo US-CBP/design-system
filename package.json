@@ -45,8 +45,7 @@
   },
   "workspaces": [
     "./packages/web-components",
-    "./packages/react-components",
-    "./packages/ux-guidelines"
+    "./packages/react-components"
   ],
   "dependencies": {
     "vite": "^6.1.1"
