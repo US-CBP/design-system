@@ -19,6 +19,9 @@ The React components are wrappers generated from this package and will share the
   * `cbp-toggle`
 * BREAKING: updated Footer story code to remove the `h6` tag to address accessibility concerns about skipping heading levels. Code should be re-copied or updated manually.
 * BREAKING: updated the light/dark mode switcher in the User Preferences drawer (in all templates) to a segmented button group, replacing the toggle control. Code should be re-copied or manually updated.
+* Updates to `cbp-dropdown`:
+  * Only emit the `valueChange` event when triggered by the user from the built-in counter pill control.
+  * Add an optional `selected` (boolean) key to the `items` JSON, so that items may be easily selected by default when loading in a new set of dropdown items.
 * Numerous accessibility fixes to components and stories.
 * Upgraded Storybook from 9.x to 10.1.18.
   * Added light/dark mode toggle to story toolbars for easier visual inspection and testing.
