@@ -22,12 +22,24 @@ export class CbpHide {
 
   /** When set to true, the host is hidden. Allows for toggling via property binding rather than media query. */
   @Prop({reflect:true}) hide: boolean;
+  
   /** When set to true, the host is visually hidden in an accessible manner. Allows for toggling via property binding rather than media query. */
   @Prop({reflect:true}) visuallyHide: boolean;
 
-  /** Specifies a valid CSS media query (preferably using relative units), when met will hide the wrapped content using display: none. E.g., `max-width: 64em` */
+  /** 
+   * Specifies a valid CSS media query (preferably using relative units), when met will hide the wrapped content
+   * using display: none; (e.g., `max-width: 64em`). 
+   * For complex media queries using AND/OR operators, each condition must be enclosed in parentheses 
+   * (e.g., `(width < 37.5rem) OR (width > 63rem)`).
+   */
   @Prop() hideAt: string;
-  /** Specifies a valid CSS media query (preferably using relative units), when met will visually hide the wrapped content in a way that is it still accessible as a label. E.g., `max-width: 64em` */
+
+  /** 
+   * Specifies a valid CSS media query (preferably using relative units), when met will visually hide the wrapped content 
+   * in a way that is it still accessible as a label (e.g., `max-width: 64em`),
+   * For complex media queries using AND/OR operators, each condition must be enclosed in parentheses 
+   * (e.g., `(width < 37.5rem) OR (width > 63rem)`).
+   */
   @Prop() visuallyHideAt: string;
 
   /** Supports adding inline styles as an object */
@@ -76,7 +88,7 @@ export class CbpHide {
     });
   }
 
-
+  
   componentWillLoad() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};

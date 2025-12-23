@@ -111,7 +111,9 @@ The Dropdown component offers an alternative to the native select element that c
 * Since the main control is a button, it is disabled in "readonly" mode (while the hidden input may still submit the value). Does this cause issues in user expectations?
 * For common patterns such as State and Country selection where the lists are well-known, do not enable search string filtering. Cycling through those options that begin with a letter by pressing that letter multiple times is a familiar interaction supported for many years by native select fields and search string filtering may be confusing and slower.
 * The `value` property should not be set explicitly if there are items marked as selected. But in the case that this occurs, the selected items will override the specified value; the value will be updated to match the selected items.
-* For asynchronous dropdowns, a `value` and `selectedLabel` should both be provided if the field has an initial value set.
+* For asynchronous dropdowns:
+  * A `value` and `selectedLabel` should both be provided if the field has an initial value set.
+  * Optionally, selected items may be set via a "selected" key in the JSON object. When doing this, the value should be cleared by setting it to an empty string.
 * When using the "create" option:
   * The item added directly to the dropdown uses the search string text as both the label and value. This may not always work in cases where the dropdown values differ from the visible labels.
   * An event is also emitted in case the item needs to be created on the fly in the backend (e.g., to provide an `id` as a value from a relational database) and served back to the dropdown via an API call.
