@@ -24,6 +24,7 @@ export class CbpAppHeader {
   private searchControl:HTMLCbpButtonElement;
   private searchField:HTMLInputElement;
 
+  @Element() host: HTMLCbpAppHeaderElement;
   
   /** Specifies the id of the drawer to be launched*/
   @Prop() subnavDrawerId: string;
@@ -37,8 +38,7 @@ export class CbpAppHeader {
   /** Specifies the action attribute for the search form  */
   @Prop() searchAction: string;
 
-  @Element() host: HTMLCbpAppHeaderElement;
-
+  
   @Listen('drawerClose', { target: 'body' })
   handleNavDrawerClose(e) {
     const Subnav = e.target.querySelector('cbp-subnav');
@@ -75,43 +75,50 @@ export class CbpAppHeader {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
-    const searchVisible = document.getElementById('cbp-app-header-search').hidden == false;
-    if (ev.key === 'Escape' && this.search && searchVisible) {
-      this.closeSearch();
+    if(this.search) {
+      const searchVisible = document.getElementById('cbp-app-header-search').hidden == false;
+      if (ev.key === 'Escape' && this.search && searchVisible) {
+        this.closeSearch();
+      }
     }
   }
 
   // TechDebt: try to use clickAwayListener - but verify it's not loading multiple event listeners each time it's toggled.
   @Listen('click', { target: 'body' })
   handleClick(event: MouseEvent) {
-    const searchVisible = document.getElementById('cbp-app-header-search')?.hidden == false;
-    if (!this.host.contains(event.target as Node) && this.search && searchVisible) {
-      this.closeSearch();
+    if(this.search) {
+      const searchVisible = document.getElementById('cbp-app-header-search')?.hidden == false;
+      if (!this.host.contains(event.target as Node) && this.search && searchVisible) {
+        this.closeSearch();
+      }
     }
   }
 
   /** A public method to show the search form in the application header. */
   @Method()
   async openSearch() {
-    this.searchForm.hidden = false;
-    this.searchControl.expanded = 'true';
-    this.searchField.focus();
+    if(this.search) {
+      this.searchForm.hidden = false;
+      this.searchControl.expanded = 'true';
+      this.searchField.focus();
+    }
   }
 
   /** A public method to close/hide the search form in the application header. */
   @Method()
   async closeSearch() {
-    this.searchForm.hidden = true;
-    this.searchField.value = ''; // Reset the search value when closed
-    this.searchControl.expanded = 'false';
-    this.searchControl.querySelector('button')?.focus();
+    if(this.search) {
+      this.searchForm.hidden = true;
+      this.searchField.value = ''; // Reset the search value when closed
+      this.searchControl.expanded = 'false';
+      this.searchControl.querySelector('button')?.focus();
+    }
   }
 
-
+  // When navigating out of the search area, close the search
   handleTabFocusOut({ key, shiftKey }) {
     if (key == 'Tab' && !shiftKey) this.closeSearch();
   }
-
   handleShiftTabFocusOut({ key, shiftKey }) {
     if (key == 'Tab' && shiftKey) this.closeSearch();
   }
@@ -144,10 +151,11 @@ export class CbpAppHeader {
       this.navWidth = this.nav.getBoundingClientRect().width;
     }
 
-    // If the emitted size is less than the current mode's width, step down to the next responsive size
+    // If the emitted size is less than the current mode's width, do responsive behavior
     if (width <= this.navWidth) {
       this.doResponsive();
-    } else {
+    } 
+    else {
       this.doFullSize();
     }
   }
