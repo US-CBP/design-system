@@ -523,6 +523,7 @@ function renderUserPref(username) {
           </cbp-flex-item>
         </cbp-flex>
         <br />
+        
         <cbp-segmented-button-group
           id="darkmode"
         >
@@ -538,7 +539,7 @@ function renderUserPref(username) {
             <cbp-icon name="moon"></cbp-icon>
             Dark
           </cbp-button>
-        </cbp-segemented-button-group>
+        </cbp-segmented-button-group>
       </cbp-panel>
     </cbp-drawer>
   `
