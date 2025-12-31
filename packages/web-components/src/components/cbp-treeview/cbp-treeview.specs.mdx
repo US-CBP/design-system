@@ -1,0 +1,46 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Components/Treeview/Specifications" />
+
+# cbp-treeview
+
+## Purpose
+
+*Display information in a tiered or nested display with parents and child relationships with the option to either select or take action on items
+
+## Functional Requirements
+
+* use cbp-expand with a descriptive label and either cbp-checkbox or cbp-button
+    *not this is not a variant, use props to determine if these are needed. Spec don't cover combined case for this
+* The parent-child relationship is deteremined by nesting a cbp-treeview inside another cbp-treeview
+
+## Technical Specifications
+
+* treeview always has an expand control with an associated label. it also has 2 slots for associated controls on either side of the label
+    *expand -> slot -> label -> slot
+* Visual styling is only made 4 items deep, while parent/children can be deeper they will not be visually distinct past this depth.
+    *specs (A -> B -> C -> D -> E)
+*
+
+### User Interactions
+
+* Clicking on expand component will show hidden children
+
+### Responsiveness
+
+*
+
+### Accessibility
+
+* All tree nodes are contained in or owned by an element with role "tree"
+* Each element serving as a tree node has role "treeitem"
+* Each Parent element contains or owns an element with role "group"
+* Each element with the role treeitme that serves as a parent node has aria-expanded set to "false" when the node is in a closed state and "true" when it is in an open stat
+* If tree supports selection of more than one node, the element with role "tree" has aria-multiselectable set to "true"
+* the selection state for each selectable node is indicated with either aria-selected or aria-checked
+* the element with role tree has either a visible label referenced by aria-labelledby or a value specified for aria-label
+
+### Additional Notes and Considerations
+
+*keyboard actions for enter seem very situational with what the 'default action' would be. might need to expand on this in requirements or refine requirement after mvp
+n/a

@@ -1,0 +1,82 @@
+/**
+ * @prop --cbp-
+ */
+:root {
+  --cbp-treeview-item-indent: 0;
+  --cbp-treeview-indicator-spacing: 2.75rem;
+  --cbp-treeview-connection-width: 2px;
+  --cbp-treeview-connection-color: var(--cbp-color-gray-cool-20);
+  --cbp-treeview-connection-color-dark: var(--cbp-color-gray-cool-40);
+}
+
+[data-cbp-theme=light] cbp-treeview-item[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-treeview-item:not([context=dark-inverts]):not([context=light-always]) {
+
+  --cbp-tooltip-color-bg: var(--cbp-tooltip-color-bg-dark);
+ }
+
+cbp-treeview-item {
+  display: block;
+  padding-inline-start: var(--cbp-treeview-item-indent);
+  margin-inline-start: calc((2.25rem - var(--cbp-treeview-connection-width)) / 2); //2.25rem is for the square button width
+
+  .cbp-treeview-control{
+    display: inline-flex;
+    min-height: var(--cbp-space-11x);
+    align-items: center;
+    gap: var(--cbp-space-3x);  
+  
+    cbp-button:not(.cbp-treeview-toggle){ //Techdebt: slotted buttons not part of MVP, needs to be centered with text of treeview-item
+      --cbp-button-height: var(--cbp-space-6x);
+    }
+  }
+
+  &:not([open]) .cbp-treeview-content{
+    display: none;
+  }
+
+
+  &[open] {
+
+    & > .cbp-treeview-control{
+
+      .cbp-treeview-toggle cbp-icon{
+        transform: rotate(180deg)
+      }
+    }
+  }
+
+  cbp-treeview-item{
+    --cbp-treeview-item-indent: 11px; //Spec specified values for indent outside of avaliable CSSVars
+    border-left: var(--cbp-treeview-connection-width) solid var(--cbp-treeview-connection-color);
+
+    &::before{
+      content: '';
+      display: inline-block;
+      position: relative;
+      top: (calc(var(--cbp-space-2x) * -1));
+      left: calc(var(--cbp-treeview-connection-width) * -1);
+      width: var(--cbp-treeview-item-indent);
+      margin-inline-start: calc(var(--cbp-treeview-item-indent) * -1);
+      height: calc(var(--cbp-treeview-indicator-spacing) + 1px);
+      border: solid var(--cbp-treeview-connection-color);
+      border-width: 0 0 var(--cbp-treeview-connection-width) var(--cbp-treeview-connection-width);
+    }
+
+    cbp-treeview-item{
+      --cbp-treeview-item-indent: 45px;
+    
+      cbp-treeview-item{
+        --cbp-treeview-item-indent: 79px;
+
+        cbp-treeview-item{
+          --cbp-treeview-item-indent: 113px;
+        }
+      }
+    }
+  }
+
+  &:last-child{
+    border-color: transparent;
+  }
+}
