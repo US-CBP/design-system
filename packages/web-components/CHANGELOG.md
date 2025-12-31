@@ -4,6 +4,11 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unpublished] TBD
+
+* Fixed an error in `cbp-app-header` on keyboard navigation when search was not used.
+* Upgraded Storybook to v10.1.11 to address a bug that was breaking page reloads or deep links.
+
 ## [0.0.1-develop.29] 12-23-2025
 
 * Initial creation of `cbp-form` wrapper component to allow custom input components to work with native form reset and submit methods.
