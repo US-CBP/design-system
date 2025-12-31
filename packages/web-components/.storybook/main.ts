@@ -25,12 +25,12 @@ const config: StorybookConfig  = {
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'
   ],
   addons: [
-    "@storybook/addon-themes",
-    "@storybook/addon-a11y",
-    "@chromatic-com/storybook",
-    "@whitespace/storybook-addon-html", // TechDebt: this addon is the cause of the reload issue; logged issues w/ Storybook and addon provider.
-    "storybook-addon-tag-badges",
-    "@storybook/addon-docs",
+    getAbsolutePath("@storybook/addon-themes"),
+    getAbsolutePath("@storybook/addon-a11y"),
+    getAbsolutePath("@chromatic-com/storybook"),
+    getAbsolutePath("@whitespace/storybook-addon-html"),
+    getAbsolutePath("storybook-addon-tag-badges"),
+    getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath("@storybook/addon-vitest")
   ],
   staticDirs: [
