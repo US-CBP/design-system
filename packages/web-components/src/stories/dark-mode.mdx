@@ -28,3 +28,26 @@ The values "light-always" and "dark-always" specify a visual design that does no
 For example, in both light and dark modes, the `cbp-footer` component contains a dark background. Any components slotted within the footer would use the property `context="dark-always"` to maintain the proper colors in both light and dark modes because they are placed on a background (context) that remains dark.
 
 As another example, the `cbp-drawer` design dictates that it shall render the light design regardless of the system's light or dark modes and child components placed within would require `context="light-always"`. However, a variant of this pattern used for the "User Preferences" drawer in many applications uses a dark background (via `context="dark-always"`) instead. Showing a "dark-always" drawer means that all slotted components, such as the panel, links, typography, etc., must also contain `context="dark-always"` to persist a dark design regardless of light or dark mode.
+
+## Accessibility
+
+### User Preferences
+
+While the inclusion of dark mode (user preference) may be considered accessible design, there is no specific WCAG 2.2 Success Criterion that mandates a dark mode/theme.
+The inclusion of dark mode remains a best practice and a method for meeting the broader intent of WCAG (User Preference and Flexibility), but it is not a Pass/Fail requirement under any single criterion. 
+Dark mode is typically preferred by most users in a low light setting, reduces eye strain for users with light sensitivity, helps people with certain types of visual impairments, and provides essential accommodation for people with migraine disorders or traumatic brain injuries.
+
+Some motivations for wanting a dark mode include:
+
+* Physical comfort reasons: To reduce eye strain when reading at night or in ambient conditions.
+* Technical reasons: Dark mode saves energy on battery powered devices.
+* Aesthetic reasons: Dark mode as design preference looks sleeker to some.
+* Medical reasons: For people suffering from migraines, light from screen is a trigger and are actually advised to avoid light and sound to reduce the pain.
+
+Conversely, people with astigmatisms, which are very common, may have a harder time with dark mode because it can create a halation effect.
+
+Supporting user preference is important. Surfacing this feature as an application-level control makes it more readily available on a contextual basis, easier than changing it via system settings.
+
+### Context
+
+The inclusion of light/dark context support in the individual web components is critical in meeting accessible contrast requirements in specific scenarios regardless of the user's preference of light or dark mode. In cases where custom background colors are used beyond those defined by the design system, most components expose a CSS API of custom properties allowing for both light and dark color overrides.
