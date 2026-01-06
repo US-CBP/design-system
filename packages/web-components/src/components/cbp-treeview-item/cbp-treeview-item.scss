@@ -26,6 +26,7 @@ cbp-treeview-item {
     align-items: center;
     gap: var(--cbp-space-3x);  
   
+    
     cbp-button:not(.cbp-treeview-toggle){ //Techdebt: slotted buttons not part of MVP, needs to be centered with text of treeview-item
       --cbp-button-height: var(--cbp-space-6x);
     }
@@ -49,6 +50,7 @@ cbp-treeview-item {
   cbp-treeview-item{
     --cbp-treeview-item-indent: 11px; //Spec specified values for indent outside of avaliable CSSVars
     border-left: var(--cbp-treeview-connection-width) solid var(--cbp-treeview-connection-color);
+    --cbp-treeview-item-indent: 2.25rem;
 
     &::before{
       content: '';
@@ -63,17 +65,17 @@ cbp-treeview-item {
       border-width: 0 0 var(--cbp-treeview-connection-width) var(--cbp-treeview-connection-width);
     }
 
-    cbp-treeview-item{
-      --cbp-treeview-item-indent: 45px;
+    // cbp-treeview-item{
+    //   --cbp-treeview-item-indent: 2.25rem;
     
-      cbp-treeview-item{
-        --cbp-treeview-item-indent: 79px;
+    //   cbp-treeview-item{
+    //     --cbp-treeview-item-indent: 79px;
 
-        cbp-treeview-item{
-          --cbp-treeview-item-indent: 113px;
-        }
-      }
-    }
+    //     cbp-treeview-item{
+    //       --cbp-treeview-item-indent: 113px;
+    //     }
+    //   }
+    // }
   }
 
   &:last-child{

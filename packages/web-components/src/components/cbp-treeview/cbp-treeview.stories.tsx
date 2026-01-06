@@ -3,12 +3,12 @@ export default {
     tags: ['new'],
     argTypes: {
         label : {
-            description: 'Specifies Text for the Treeview, is displayed with the treeview-controls',
+            description: 'Specifies Text for the Treeview, is displayed above the treeview items',
             control: 'text',
         },
-        open: {
-            description: 'Specifies if the treeview content is visiblie/expanded',
-            control: 'boolean',
+        icon : {
+            description: 'Toggle to show Icon with Treeview label',
+            control: 'boolean'
         },
         context: {
             control: 'select',
@@ -21,103 +21,127 @@ export default {
     },
   };
 
-const Template = ({ label, open, context, sx }) => {
-    return ` 
-        <cbp-treeview>
-            <cbp-treeview-item
-                ${label ? `label="${label}"` : ""}
-                ${open}    
-                ${context && context != 'light-inverts' ? `context=${context}` : ''}
-                ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-            >
-                <cbp-checkbox slot="treeview-checkbox-control" value="1">
-                    <input type="checkbox" name="checkbox" value="1">
-                </cbp-checkbox>
 
-                <cbp-treeview-item
-                    label="Parent level B"
-                >
-                    
-                    <cbp-checkbox slot="treeview-checkbox-control" value="2">
-                        <input type="checkbox" name="checkbox" value="2">
-                    </cbp-checkbox>
+function generateTreeviewitems(tree){
+    const html = tree.map(({label, slottedControl, children}) => {
+        return `<cbp-treeview-item
+            label="${label}"
+        >
+        ${slottedControl ? 
+            true //TODO: needs to be fleshed out support slotted/non checkbox control's
+            : ''
+        } 
+        ${children ? generateTreeviewitems(children) : ''}
+        </cbp-treeview-item>`
+    });
+    return html.join('');
+}
 
-                    <cbp-treeview-item
-                        label="Parent level C"
-                    >
-                        
-                        <cbp-checkbox slot="treeview-checkbox-control" value="2">
-                            <input type="checkbox" name="checkbox" value="2">
-                        </cbp-checkbox>
-
-                        <cbp-treeview-item
-                            label="Parent level D"
-                        >
-                            
-                            <cbp-checkbox slot="treeview-checkbox-control" value="2">
-                                <input type="checkbox" name="checkbox" value="2">
-                            </cbp-checkbox>
-
-                            
-                            <cbp-treeview-item
-                                label="Child level E"
-                            >
-                                <cbp-button slot="treeview-button-control" type="button" fill="solid" color="primary"><button type="button" >                
-                                Default
-                                </button></cbp-button>
-                                <span>test</span>
-                            </cbp-treeview-item>
-
-                            <cbp-treeview-item
-                                label="Child level E"
-                            >
-                                <cbp-button slot="treeview-button-control" type="button" fill="solid" color="primary"><button type="button" >                
-                                Default
-                                </button></cbp-button>
-                                <span>test 2</span>
-                            </cbp-treeview-item>
-                        </cbp-treeview-item>
-                        <cbp-treeview-item
-                            label="Parent level D"
-                        >
-                            <cbp-checkbox slot="treeview-checkbox-control" value="2">
-                                <input type="checkbox" name="checkbox" value="2">
-                            </cbp-checkbox>
-                        </cbp-treeview-item>
-                    </cbp-treeview-item>
-                    <cbp-treeview-item
-                        label="Parent level C"
-                    >
-                        
-                        <cbp-checkbox slot="treeview-checkbox-control" value="2">
-                            <input type="checkbox" name="checkbox" value="2">
-                        </cbp-checkbox>
-                    </cbp-treeview-item>
-                </cbp-treeview-item>
-                <cbp-treeview-item
-                    label="Parent level B"
-                >
-                    
-                    <cbp-checkbox slot="treeview-checkbox-control" value="2">
-                        <input type="checkbox" name="checkbox" value="2">
-                    </cbp-checkbox>
-                </cbp-treeview-item>
-            </cbp-treeview-item>
-            <cbp-treeview-item
-                label="Parent level A"
-            >
-                
-                <cbp-checkbox slot="treeview-checkbox-control" value="2">
-                    <input type="checkbox" name="checkbox" value="2">
-                </cbp-checkbox>
-            </cbp-treeview-item>
-        </cbp-treeview>
+const Template = ({label, tree, icon,  context, sx }) => {
+    return `
+    <cbp-treeview
+        ${label ? `label="${label}"` : ""}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+    >
+        ${icon ?
+            `<span name="cbp-treeview-label-icon">
+                <cbp-icon name="user"></cbp-icon>
+            </span>`
+            : ''
+        }
+        ${generateTreeviewitems(tree)}
+    </cbp-treeview>
     `;
 };
 
 
 export const Treeview = Template.bind({});
-  
+
 Treeview.args = {
-    label: `Parent Level A`,
+    label: 'Treeview Example:', 
+    icon: false,
+    tree: [
+        {
+            label: "Parent Level A",
+            slottedControl: false,
+            children: [
+                {
+                    label: "Parent Level B",
+                    slottedControl: false,
+                    children: [  
+                    {
+                        label: "Parent Level C",
+                        slottedControl: false,
+                        children: [
+                            {
+                                label: "Parent Level D",
+                                slottedControl: false,
+                                children: [
+                                    {
+                                        label: "Parent Level E",
+                                        slottedControl: true,
+                                        children: []
+                                    },
+                                    {
+                                        label: "Parent Level E",
+                                        slottedControl: true,
+                                        children: []
+                                    },
+                                ]
+                            },
+                            {
+                                label: "Parent Level D",
+                                slottedControl: false,
+                                children: []
+                            },
+                            {
+                                label: "Parent Level D",
+                                slottedControl: false,
+                                children: []
+                            },
+                        ]
+                    },
+                    {
+                        label: "Parent Level C",
+                        slottedControl: false,
+                        children: []
+                    },
+                    {
+                        label: "Parent Level C",
+                        slottedControl: false,
+                        children: []
+                    },
+                    ]
+                },
+                {
+                    label: "Parent Level B",
+                    slottedControl: false,
+                    children: []
+                },
+                {
+                    label: "Parent Level B",
+                    slottedControl: false,
+                    children: []
+                },
+            ]
+        },
+        {
+            label: "Parent Level A",
+            slottedControl: false,
+            children: [
+                {
+                    label: "Parent Level B",
+                    slottedControl: false,
+                    children: []
+                },
+                {
+                    label: "Parent Level B",
+                    slottedControl: false,
+                    children: []
+                },
+            ]
+        },
+
+    ]
 }
