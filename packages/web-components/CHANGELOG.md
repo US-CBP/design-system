@@ -23,7 +23,7 @@ The React components are wrappers generated from this package and will share the
   * Only emit the `valueChange` event when triggered by the user from the built-in counter pill control.
   * Add an optional `selected` (boolean) key to the `items` JSON, so that items may be easily selected by default when loading in a new set of dropdown items.
 * Numerous accessibility fixes to components and stories.
-* Upgraded Storybook from 9.x to 10.1.18.
+* Upgraded Storybook from 9.x to 10.0.18.
   * Added light/dark mode toggle to story toolbars for easier visual inspection and testing.
   * Installed Vitest, which uses Playwright under the hood, for more robust testing and coverage reports.
 
