@@ -118,9 +118,6 @@ const preview: Preview = {
        */
       test: 'todo',
     },
-    backgrounds: {
-      disabled: true, // TechDebt: not working for me
-    },
     controls: { 
       //expanded: true, 
       hideNoControlsWarning: true,

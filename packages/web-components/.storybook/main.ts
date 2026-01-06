@@ -40,6 +40,9 @@ const config: StorybookConfig  = {
   core: {
     disableTelemetry: true
   },
+  features: {
+    backgrounds: false, // 👈 disable the backgrounds feature
+  },
   async viteFinal(config, { configType }) {
     const { mergeConfig } = await import('vite');
  
