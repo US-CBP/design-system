@@ -64,18 +64,9 @@ cbp-treeview-item {
       border: solid var(--cbp-treeview-connection-color);
       border-width: 0 0 var(--cbp-treeview-connection-width) var(--cbp-treeview-connection-width);
     }
-
-    // cbp-treeview-item{
-    //   --cbp-treeview-item-indent: 2.25rem;
-    
-    //   cbp-treeview-item{
-    //     --cbp-treeview-item-indent: 79px;
-
-    //     cbp-treeview-item{
-    //       --cbp-treeview-item-indent: 113px;
-    //     }
-    //   }
-    // }
+    &:not([parent])::before{
+      top: unset;
+    }
   }
 
   &:last-child{

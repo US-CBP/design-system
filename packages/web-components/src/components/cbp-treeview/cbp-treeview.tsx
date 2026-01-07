@@ -19,12 +19,12 @@ export class CbpTreeview {
         aria-label={this.label}
       >
         
-        <slot name='cbp-treeview-label-icon'></slot>
-        <cbp-typography //TODO: does this need to be conditionally rendered? 
-          variant="heading-sm" //TODO: need to validate with designer this is styled correctly
+        <slot name="label"></slot>
+        <cbp-typography  
+          variant="heading-sm" 
           divider="underline"
         >
-          {/* <cbp-icon name="user"></cbp-icon> */}
+          <slot name='cbp-treeview-label-icon'></slot>
           {this.label ? this.label : ''}
         </cbp-typography>
         <slot></slot>

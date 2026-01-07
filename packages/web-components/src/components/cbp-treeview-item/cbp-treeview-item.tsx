@@ -6,10 +6,11 @@ import { Component, Element, Host, h, Listen, Prop } from '@stencil/core';
 })
 
 export class CbpTreeviewItem {
-  
 @Element() host: HTMLElement;
 
 @Prop({reflect: true}) parent: boolean;
+// @Prop({mutable: true}) childrenItems: number;
+@Prop({mutable: true}) childrenItems;
 
 /**
  * Label to be displayed in the control of the treeview item.
@@ -26,9 +27,10 @@ export class CbpTreeviewItem {
  */
 @Prop() slottedControl: boolean;
 
+@Prop({mutable: true}) treeviewItemChecked: boolean;
+
 @Listen('stateChanged')
   handleCheck(e){
-    //TODO: need logic for clear parent/children nodes when unchecked
     let checkbox = e.target;
     let treeviewItem = checkbox.closest('cbp-treeview-item');
     let treeviewItemContent = treeviewItem.querySelector('.cbp-treeview-content');
@@ -37,34 +39,50 @@ export class CbpTreeviewItem {
     // console.log('Event treeviewitem: ', treeviewItem)
     // console.log('Content: ', treeviewItemContent);
 
-    //TODO: need boolean return on let to determine if the parent has any other selected children
-    if(treeviewItem.closest('.cbp-treeview-content').children){
-      let treeviewItemSiblings = treeviewItem.closest('.cbp-treeview-content').children; // throwing error for non parent nodes... need to sync on this, feels like i am missing something obvious
-      // console.log('TreeviewItemSiblings: ', treeviewItemSiblings)
+    //TODO: notes from sync need 2 query select for any item that has children and one for all the children
+    // let allChildren =[... this.host.closest('cbp-treeview').querySelectorAll('cbp-treeview-item cbp-checkbox')] as HTMLCbpCheckboxElement[];
     
-      for( const item of treeviewItemSiblings) {
-        let itemCheckbox = item.querySelector('cbp-checkbox') as HTMLCbpCheckboxElement
-        if(itemCheckbox.checked){
-        console.log('item: ', itemCheckbox) //TODO: local testing, remove
-        }
+    // console.log('allChildren: ', allChildren);
+    // console.log('selected: ', selected);
+
+    let treeviewItemSiblings= treeviewItem.parentNode.children;
+    let checkedSiblings = [];
+    for (let i = 0; i < treeviewItemSiblings.length; i++){
+      if(treeviewItemSiblings[i].querySelector('input[type="checkbox"]:checked')){
+        checkedSiblings.push(treeviewItemSiblings[i]);
       }
     }
+
+    // console.log('treeviewItemSiblings: ', treeviewItemSiblings);
+    // console.log('siblings: ', checkedSiblings) 
+
+    if(this.host == treeviewItem){
+      this.treeviewItemChecked = true;
+    } else{
+      this.treeviewItemChecked = false;
+    }
+
     if(this.host.contains(checkbox) && this.host != treeviewItem) {
-      //TODO: rename var for better verbage?
-      let x = this.host.querySelector('.cbp-treeview-control cbp-checkbox') as HTMLCbpCheckboxElement; 
-      if(checkbox.checked){//TODO: need logic for selected or indeterminate here based on above TODO ln 40 
-        x.indeterminate= true;  
+      let parentCheckbox = this.host.querySelector('.cbp-treeview-control cbp-checkbox') as HTMLCbpCheckboxElement; 
+      if(checkbox.checked){//TODO: closer, still seeing some weirdness on the grandparent+
+        if(checkedSiblings.length == treeviewItemSiblings.length){
+          parentCheckbox.checked = true;
+          parentCheckbox.indeterminate = false;
+        } else {
+          parentCheckbox.indeterminate= true;  
+          parentCheckbox.checked = false;
+        }
+        
       } 
       else {
-        x.indeterminate = false; //TODO: this might be unnessecary if the component manages it, need to verify
-        x.checked = false;
+        parentCheckbox.indeterminate = false;
+        parentCheckbox.checked = false;
       }
      }
 
-    if (treeviewItemContent.querySelectorAll('cbp-checkbox')) { 
-      //TODO: rename var for better verbage? 
-      let x = treeviewItemContent.querySelectorAll('cbp-checkbox') as HTMLCbpCheckboxElement[];
-      x.forEach(a => {
+    if (treeviewItemContent && treeviewItemContent.querySelectorAll('cbp-checkbox')) { 
+      let childCheckbox = treeviewItemContent.querySelectorAll('cbp-checkbox') as HTMLCbpCheckboxElement[];
+      childCheckbox.forEach(a => {
         if(checkbox.checked == true){
           a.checked = true;
         } else{ 
@@ -74,9 +92,15 @@ export class CbpTreeviewItem {
     }
   }
 
-toggleOpen(){
-  this.open === false ? this.open = true : this.open = false;
-}
+  toggleOpen(){
+    this.open === false ? this.open = true : this.open = false;
+  }
+
+  componentDidRender(){
+    if(this.host.querySelector('.cbp-treeview-content')){
+      this.childrenItems = this.host.querySelector('.cbp-treeview-content').children.length;
+    }
+  }
 
   render() {
 
@@ -84,13 +108,6 @@ toggleOpen(){
       this.parent = true;
     }
   
-    // setTimeout(() => {
-    // console.log('Treeview Item: ', this.host);
-    // // console.log('Treeview checkbox: ', this.host.querySelectorAll('& > .cbp-treeview-control cbp-checkbox input[type="checkbox"]')); 
-    // console.log('Treeview checkbox: ', this.host.querySelector('.cbp-treeview-control cbp-checkbox input[type="checkbox"]')); 
-    // console.log('----------------------------------')
-    // }, 500);
-
     return (
       <Host
         role="treeitem"
@@ -115,8 +132,8 @@ toggleOpen(){
               <input type="checkbox" name="checkbox" />
             </cbp-checkbox>
           }
-          
-          <span>{this.label}</span>
+
+          <span>{this.childrenItems ? this.label + ' (' + this.childrenItems + ')' : this.label}</span>
 
           {this.slottedControl &&
             <slot name="treeview-button-control"></slot> 
