@@ -8,8 +8,14 @@ import { Component, Element, Host, h, Listen, Prop } from '@stencil/core';
 export class CbpTreeviewItem {
 @Element() host: HTMLElement;
 
+/**
+ * determines if treeviewItem is a parent to other treeviewItems
+ */
 @Prop({reflect: true}) parent: boolean;
-// @Prop({mutable: true}) childrenItems: number;
+
+/**
+ * children treeview items of a parent treeview item
+ */
 @Prop({mutable: true}) childrenItems;
 
 /**
@@ -29,32 +35,17 @@ export class CbpTreeviewItem {
 
 @Prop({mutable: true}) treeviewItemChecked: boolean;
 
+private treeviewItemSiblings;
+private checkedSiblings = [];
+
+content !: HTMLElement
+
 @Listen('stateChanged')
   handleCheck(e){
+    e.stopPropagation();
+
     let checkbox = e.target;
     let treeviewItem = checkbox.closest('cbp-treeview-item');
-    let treeviewItemContent = treeviewItem.querySelector('.cbp-treeview-content');
-
-    // console.log(checkbox)
-    // console.log('Event treeviewitem: ', treeviewItem)
-    // console.log('Content: ', treeviewItemContent);
-
-    //TODO: notes from sync need 2 query select for any item that has children and one for all the children
-    // let allChildren =[... this.host.closest('cbp-treeview').querySelectorAll('cbp-treeview-item cbp-checkbox')] as HTMLCbpCheckboxElement[];
-    
-    // console.log('allChildren: ', allChildren);
-    // console.log('selected: ', selected);
-
-    let treeviewItemSiblings= treeviewItem.parentNode.children;
-    let checkedSiblings = [];
-    for (let i = 0; i < treeviewItemSiblings.length; i++){
-      if(treeviewItemSiblings[i].querySelector('input[type="checkbox"]:checked')){
-        checkedSiblings.push(treeviewItemSiblings[i]);
-      }
-    }
-
-    // console.log('treeviewItemSiblings: ', treeviewItemSiblings);
-    // console.log('siblings: ', checkedSiblings) 
 
     if(this.host == treeviewItem){
       this.treeviewItemChecked = true;
@@ -62,33 +53,44 @@ export class CbpTreeviewItem {
       this.treeviewItemChecked = false;
     }
 
-    if(this.host.contains(checkbox) && this.host != treeviewItem) {
-      let parentCheckbox = this.host.querySelector('.cbp-treeview-control cbp-checkbox') as HTMLCbpCheckboxElement; 
-      if(checkbox.checked){//TODO: closer, still seeing some weirdness on the grandparent+
-        if(checkedSiblings.length == treeviewItemSiblings.length){
-          parentCheckbox.checked = true;
-          parentCheckbox.indeterminate = false;
-        } else {
-          parentCheckbox.indeterminate= true;  
-          parentCheckbox.checked = false;
-        }
-        
-      } 
-      else {
-        parentCheckbox.indeterminate = false;
-        parentCheckbox.checked = false;
-      }
-     }
-
-    if (treeviewItemContent && treeviewItemContent.querySelectorAll('cbp-checkbox')) { 
-      let childCheckbox = treeviewItemContent.querySelectorAll('cbp-checkbox') as HTMLCbpCheckboxElement[];
-      childCheckbox.forEach(a => {
+    if (this.content && this.content.querySelectorAll('cbp-checkbox')) { 
+      let childCheckbox = this.content.querySelectorAll('cbp-checkbox') as unknown as HTMLCbpCheckboxElement[];
+        childCheckbox.forEach(a => {
+        a.indeterminate = false;
         if(checkbox.checked == true){
           a.checked = true;
         } else{ 
           a.checked = false;
         }
       });
+    }
+    this.updateSelectedCount();
+    this.handleUpdateParent();
+  }
+    
+  handleUpdateParent(){
+    
+   let parent = this.host.parentNode.parentNode as HTMLCbpTreeviewItemElement;
+   let parentCheckbox = parent.querySelector("cbp-checkbox") as HTMLCbpCheckboxElement; 
+
+    if(this.treeviewItemSiblings.length == this.checkedSiblings.length){
+      parentCheckbox.checked = true;
+      parentCheckbox.indeterminate = false;
+    }else if(this.treeviewItemSiblings.length > this.checkedSiblings.length && this.checkedSiblings.length != 0){
+      parentCheckbox.checked = false;
+      parentCheckbox.indeterminate = true;
+    }else{
+      parentCheckbox.checked = false;
+      parentCheckbox.indeterminate = false;
+    }
+  }
+
+  updateSelectedCount(){
+    this.checkedSiblings = [];
+    for (let i = 0; i < this.treeviewItemSiblings.length; i++){
+      if(this.treeviewItemSiblings[i].querySelector('input[type="checkbox"]:checked')){
+        this.checkedSiblings.push(this.treeviewItemSiblings[i]);
+      }
     }
   }
 
@@ -97,9 +99,12 @@ export class CbpTreeviewItem {
   }
 
   componentDidRender(){
-    if(this.host.querySelector('.cbp-treeview-content')){
-      this.childrenItems = this.host.querySelector('.cbp-treeview-content').children.length;
+    if(this.content){
+      this.childrenItems = this.content.children.length;
     }
+
+    this.treeviewItemSiblings= this.host.parentNode.children
+    this.updateSelectedCount();
   }
 
   render() {
@@ -141,7 +146,7 @@ export class CbpTreeviewItem {
 
           </span>
         {this.parent && 
-          <div class="cbp-treeview-content">
+          <div class="cbp-treeview-content" ref={(el) => this.content = el as HTMLElement}>
             <slot></slot>
           </div>
         }  

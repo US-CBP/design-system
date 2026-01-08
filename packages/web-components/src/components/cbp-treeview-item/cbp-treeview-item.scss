@@ -64,9 +64,6 @@ cbp-treeview-item {
       border: solid var(--cbp-treeview-connection-color);
       border-width: 0 0 var(--cbp-treeview-connection-width) var(--cbp-treeview-connection-width);
     }
-    &:not([parent])::before{
-      top: unset;
-    }
   }
 
   &:last-child{
