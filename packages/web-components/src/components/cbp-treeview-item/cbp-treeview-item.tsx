@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Listen, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Host, h, Listen, Prop } from '@stencil/core';
 
 @Component({
   tag: 'cbp-treeview-item',
@@ -35,10 +35,14 @@ export class CbpTreeviewItem {
 
 @Prop({mutable: true}) treeviewItemChecked: boolean;
 
+@Event() treeviewItemUpdate: EventEmitter;
+
 private treeviewItemSiblings;
 private checkedSiblings = [];
+private parentNode; //TODO: rename this to parent and refactor out the Prop
 
 content !: HTMLElement
+checkbox !: HTMLCbpCheckboxElement
 
 @Listen('stateChanged')
   handleCheck(e){
@@ -47,6 +51,7 @@ content !: HTMLElement
     let checkbox = e.target;
     let treeviewItem = checkbox.closest('cbp-treeview-item');
 
+    // console.log('e.target: ', e.target)
     if(this.host == treeviewItem){
       this.treeviewItemChecked = true;
     } else{
@@ -64,33 +69,55 @@ content !: HTMLElement
         }
       });
     }
-    this.updateSelectedCount();
-    this.handleUpdateParent();
+    // this.updateSelectedCount();
+    // this.handleUpdateParent();
+    this.treeviewItemUpdate.emit({
+      host: this.host,
+      parent: this.parentNode, //TODO: rename this to parent and refactor out the Prop
+      // checked: checkbox.checked
+      checked: checkbox
+    })
   }
     
-  handleUpdateParent(){
-    
-   let parent = this.host.parentNode.parentNode as HTMLCbpTreeviewItemElement;
-   let parentCheckbox = parent.querySelector("cbp-checkbox") as HTMLCbpCheckboxElement; 
+  @Listen('treeviewItemUpdate')
+    // handleTreeviewItemUpdate(e){ //TODO: doesn't seem to be firing up the full chain of parents? might be issue with updateSelectedCount
+    handleTreeviewItemUpdate(){
+    this.updateSelectedCount();
+    // let checkbox = e.detail.parent.querySelector("cbp-checkbox") as HTMLCbpCheckboxElement; //TODO: is this correct? i don't think i should be looking for parent checkbox in child but maybe i just need coffee?
+
+    // console.log('e: ', e)
+    // console.log('parent Checkbox: ', checkbox)
+    // console.log('this.checkbox: ', this.checkbox)
+    // console.log('treeviewItemSiblings: ', this.treeviewItemSiblings);
+    // console.log('checkedSiblings: ', this.checkedSiblings)//TODO: not sure this is 100%
+
 
     if(this.treeviewItemSiblings.length == this.checkedSiblings.length){
-      parentCheckbox.checked = true;
-      parentCheckbox.indeterminate = false;
+      console.log('checkall')
+      this.checkbox.checked = true;
+      this.checkbox.indeterminate = false;
     }else if(this.treeviewItemSiblings.length > this.checkedSiblings.length && this.checkedSiblings.length != 0){
-      parentCheckbox.checked = false;
-      parentCheckbox.indeterminate = true;
+      console.log('indeterminate')
+      this.checkbox.checked = false;
+      this.checkbox.indeterminate = true;
     }else{
-      parentCheckbox.checked = false;
-      parentCheckbox.indeterminate = false;
+      console.log('empty')
+      this.checkbox.checked = false;
+      this.checkbox.indeterminate = false;
     }
   }
 
   updateSelectedCount(){
+    // this.treeviewItemSiblings.filter((item) => item ==)
+    // console.log('treeviewItemSiblings: ', this.treeviewItemSiblings)
     this.checkedSiblings = [];
     for (let i = 0; i < this.treeviewItemSiblings.length; i++){
-      if(this.treeviewItemSiblings[i].querySelector('input[type="checkbox"]:checked')){
+      if(this.treeviewItemSiblings[i].querySelector('input[type="checkbox"]:checked')){ //TODO: queryselector is firing everywhere, need an aria-checked/ref/prop/class to trigger off of?
+      // if(this.treeviewItemSiblings[i].checkbox.checked){
         this.checkedSiblings.push(this.treeviewItemSiblings[i]);
+        console.log('treeviewSibilings[i]: ', this.treeviewItemSiblings[i])
       }
+      
     }
   }
 
@@ -98,13 +125,25 @@ content !: HTMLElement
     this.open === false ? this.open = true : this.open = false;
   }
 
+  componentWillLoad(){
+    let node = this.host.parentNode as HTMLElement;
+    this.parentNode = node.closest("cbp-treeview-item") //TODO: should return closest parent cbp-treeview item
+
+    let siblings = this.host.parentNode.children;
+    this.treeviewItemSiblings = Array.from(siblings).filter(element => { //TODO: works but type is wrong at the end(?)
+      return element.tagName === 'CBP-TREEVIEW-ITEM';
+    }) as HTMLCbpTreeviewItemElement[];
+
+    // this.treeviewItemSiblings = this.host.parentNode.children
+  }
+
   componentDidRender(){
     if(this.content){
       this.childrenItems = this.content.children.length;
     }
 
-    this.treeviewItemSiblings= this.host.parentNode.children
-    this.updateSelectedCount();
+    // this.treeviewItemSiblings= this.host.parentNode.children
+    // this.updateSelectedCount();
   }
 
   render() {
@@ -133,7 +172,7 @@ content !: HTMLElement
           } 
           
           {!this.slottedControl &&
-            <cbp-checkbox>
+            <cbp-checkbox ref={(el) => this.checkbox = el as HTMLCbpCheckboxElement}>
               <input type="checkbox" name="checkbox" />
             </cbp-checkbox>
           }
@@ -144,7 +183,7 @@ content !: HTMLElement
             <slot name="treeview-button-control"></slot> 
           }
 
-          </span>
+        </span>
         {this.parent && 
           <div class="cbp-treeview-content" ref={(el) => this.content = el as HTMLElement}>
             <slot></slot>
