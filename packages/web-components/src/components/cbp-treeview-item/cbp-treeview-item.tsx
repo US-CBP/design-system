@@ -6,12 +6,12 @@ import { Component, Element, Event, EventEmitter, Host, h, Listen, Prop } from '
 })
 
 export class CbpTreeviewItem {
-@Element() host: HTMLElement;
+@Element() host: HTMLCbpTreeviewItemElement;
 
 /**
  * determines if treeviewItem is a parent to other treeviewItems
  */
-@Prop({reflect: true}) parent: boolean;
+@Prop({reflect: true}) parent: boolean; //TODO: remove to use name fore the parentNode ln 43
 
 /**
  * children treeview items of a parent treeview item
@@ -33,12 +33,15 @@ export class CbpTreeviewItem {
  */
 @Prop() slottedControl: boolean;
 
-@Prop({mutable: true}) treeviewItemChecked: boolean;
+/**
+ * used to determing if the treeviewItem is in a checked state
+ */
+@Prop({mutable: true}) treeviewItemChecked: boolean; //TODO: does this need to be updated from boolean to true/indeterimate/false ?
 
 @Event() treeviewItemUpdate: EventEmitter;
 
-private treeviewItemSiblings;
-private checkedSiblings = [];
+private children;
+
 private parentNode; //TODO: rename this to parent and refactor out the Prop
 
 content !: HTMLElement
@@ -49,14 +52,10 @@ checkbox !: HTMLCbpCheckboxElement
     e.stopPropagation();
 
     let checkbox = e.target;
-    let treeviewItem = checkbox.closest('cbp-treeview-item');
 
-    // console.log('e.target: ', e.target)
-    if(this.host == treeviewItem){
-      this.treeviewItemChecked = true;
-    } else{
-      this.treeviewItemChecked = false;
-    }
+
+    this.treeviewItemChecked = checkbox.checked;
+    this.host.setAttribute('aria-selected', checkbox.checked)
 
     if (this.content && this.content.querySelectorAll('cbp-checkbox')) { 
       let childCheckbox = this.content.querySelectorAll('cbp-checkbox') as unknown as HTMLCbpCheckboxElement[];
@@ -69,81 +68,76 @@ checkbox !: HTMLCbpCheckboxElement
         }
       });
     }
-    // this.updateSelectedCount();
-    // this.handleUpdateParent();
+    
     this.treeviewItemUpdate.emit({
       host: this.host,
       parent: this.parentNode, //TODO: rename this to parent and refactor out the Prop
-      // checked: checkbox.checked
       checked: checkbox
     })
   }
     
   @Listen('treeviewItemUpdate')
-    // handleTreeviewItemUpdate(e){ //TODO: doesn't seem to be firing up the full chain of parents? might be issue with updateSelectedCount
-    handleTreeviewItemUpdate(){
-    this.updateSelectedCount();
-    // let checkbox = e.detail.parent.querySelector("cbp-checkbox") as HTMLCbpCheckboxElement; //TODO: is this correct? i don't think i should be looking for parent checkbox in child but maybe i just need coffee?
+    handleTreeviewItemUpdate(e){ //TODO: can get some weird states for 'unchecking' children not updating parent/grandparents to correct state
+      if(this.host == e.detail.parent){
 
-    // console.log('e: ', e)
-    // console.log('parent Checkbox: ', checkbox)
-    // console.log('this.checkbox: ', this.checkbox)
-    // console.log('treeviewItemSiblings: ', this.treeviewItemSiblings);
-    // console.log('checkedSiblings: ', this.checkedSiblings)//TODO: not sure this is 100%
+      console.log('event: ', e)
 
+      let selectedChildren = 0;
 
-    if(this.treeviewItemSiblings.length == this.checkedSiblings.length){
-      console.log('checkall')
+      for (let i = 0; i < this.children.length; i++){
+        if(this.children[i].treeviewItemChecked){ 
+        selectedChildren= selectedChildren + 1;
+        }
+      }
+
+    if(this.children.length == selectedChildren){
       this.checkbox.checked = true;
       this.checkbox.indeterminate = false;
-    }else if(this.treeviewItemSiblings.length > this.checkedSiblings.length && this.checkedSiblings.length != 0){
-      console.log('indeterminate')
+      this.host.treeviewItemChecked = true
+    }else if(this.children.length > selectedChildren && selectedChildren != 0){
       this.checkbox.checked = false;
       this.checkbox.indeterminate = true;
+      this.host.treeviewItemChecked = true
     }else{
-      console.log('empty')
       this.checkbox.checked = false;
       this.checkbox.indeterminate = false;
+      this.host.treeviewItemChecked = false
+    }
+
+    if(e.detail.parent.tagName == 'CBP-TREEVIEW-ITEM'){
+      
+      this.treeviewItemUpdate.emit({
+        host: this.host,
+        parent: this.parentNode, //TODO: rename this to parent and refactor out the Prop
+        checked: this.host.querySelector('cbp-checkbox')
+      })
     }
   }
-
-  updateSelectedCount(){
-    // this.treeviewItemSiblings.filter((item) => item ==)
-    // console.log('treeviewItemSiblings: ', this.treeviewItemSiblings)
-    this.checkedSiblings = [];
-    for (let i = 0; i < this.treeviewItemSiblings.length; i++){
-      if(this.treeviewItemSiblings[i].querySelector('input[type="checkbox"]:checked')){ //TODO: queryselector is firing everywhere, need an aria-checked/ref/prop/class to trigger off of?
-      // if(this.treeviewItemSiblings[i].checkbox.checked){
-        this.checkedSiblings.push(this.treeviewItemSiblings[i]);
-        console.log('treeviewSibilings[i]: ', this.treeviewItemSiblings[i])
-      }
-      
-    }
   }
 
   toggleOpen(){
     this.open === false ? this.open = true : this.open = false;
   }
 
+componentDidLoad(){
+if(this.content){
+    let childNodes = this.content.children;
+    this.children = Array.from(childNodes).filter(element => {
+      return element.tagName === 'CBP-TREEVIEW-ITEM';
+    }) as HTMLCbpTreeviewItemElement[];
+  }
+}
+
+
   componentWillLoad(){
     let node = this.host.parentNode as HTMLElement;
     this.parentNode = node.closest("cbp-treeview-item") //TODO: should return closest parent cbp-treeview item
-
-    let siblings = this.host.parentNode.children;
-    this.treeviewItemSiblings = Array.from(siblings).filter(element => { //TODO: works but type is wrong at the end(?)
-      return element.tagName === 'CBP-TREEVIEW-ITEM';
-    }) as HTMLCbpTreeviewItemElement[];
-
-    // this.treeviewItemSiblings = this.host.parentNode.children
   }
 
   componentDidRender(){
     if(this.content){
       this.childrenItems = this.content.children.length;
     }
-
-    // this.treeviewItemSiblings= this.host.parentNode.children
-    // this.updateSelectedCount();
   }
 
   render() {
