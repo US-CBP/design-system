@@ -56,11 +56,13 @@ cbp-treeview-item {
       content: '';
       display: inline-block;
       position: relative;
-      top: (calc(var(--cbp-space-2x) * -1));
+      // top: (calc(var(--cbp-space-2x) * -1));
+      top: -50%;
       left: calc(var(--cbp-treeview-connection-width) * -1);
       width: var(--cbp-treeview-item-indent);
       margin-inline-start: calc(var(--cbp-treeview-item-indent) * -1);
-      height: calc(var(--cbp-treeview-indicator-spacing) + 1px);
+      // height: calc(var(--cbp-treeview-indicator-spacing) + 1px);
+      height: calc(var(--cbp-treeview-indicator-spacing) + var(--cbp-treeview-connection-width));
       border: solid var(--cbp-treeview-connection-color);
       border-width: 0 0 var(--cbp-treeview-connection-width) var(--cbp-treeview-connection-width);
     }

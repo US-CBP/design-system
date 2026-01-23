@@ -9,16 +9,6 @@ export class CbpTreeviewItem {
 @Element() host: HTMLCbpTreeviewItemElement;
 
 /**
- * determines if treeviewItem is a parent to other treeviewItems
- */
-@Prop({reflect: true}) parent: boolean; //TODO: remove to use name fore the parentNode ln 43
-
-/**
- * children treeview items of a parent treeview item
- */
-@Prop({mutable: true}) childrenItems;
-
-/**
  * Label to be displayed in the control of the treeview item.
  */
 @Prop({ reflect: true}) label: string;
@@ -29,20 +19,32 @@ export class CbpTreeviewItem {
 @Prop({reflect: true, mutable: true}) open: boolean = false;
 
 /**
- * determines if the control for the treeview-item is slotted, if true the default checkbox will not be rendered
+ * determines if the control renders with a checkbox as part of the treeview-item control
  */
-@Prop() slottedControl: boolean;
+@Prop() selectable: boolean;
 
 /**
  * used to determing if the treeviewItem is in a checked state
  */
-@Prop({mutable: true}) treeviewItemChecked: boolean; //TODO: does this need to be updated from boolean to true/indeterimate/false ?
+@Prop({mutable: true}) treeviewItemChecked: boolean;
+
+/**
+ * used to determing if the treeviewItem is in an indeterminate state
+ */
+@Prop({mutable: true}) treeviewItemIndeterminate: boolean;
 
 @Event() treeviewItemUpdate: EventEmitter;
 
-private children;
+/** Specifies a unique `ID` for the dialog, used to wire up the controls and accessibility features. */
+@Prop() uid: string;
 
-private parentNode; //TODO: rename this to parent and refactor out the Prop
+private children;
+private allChildren; //populate with all children to search against similar to children above. Usefulness is in determining whether the state should be selected or indeterminate
+
+/**displays number of direct children slotted into parent */
+private directChildren;
+
+private parent;
 
 content !: HTMLElement
 checkbox !: HTMLCbpCheckboxElement
@@ -56,59 +58,79 @@ checkbox !: HTMLCbpCheckboxElement
 
     this.treeviewItemChecked = checkbox.checked;
     this.host.setAttribute('aria-selected', checkbox.checked)
-
-    if (this.content && this.content.querySelectorAll('cbp-checkbox')) { 
-      let childCheckbox = this.content.querySelectorAll('cbp-checkbox') as unknown as HTMLCbpCheckboxElement[];
-        childCheckbox.forEach(a => {
-        a.indeterminate = false;
-        if(checkbox.checked == true){
-          a.checked = true;
-        } else{ 
-          a.checked = false;
-        }
-      });
-    }
     
+  if(this.content && this.content.querySelectorAll('cbp-treeview-item')) {
+    let childTreeviewItem = this.content.querySelectorAll('cbp-treeview-item') as unknown as HTMLCbpTreeviewItemElement[];
+    childTreeviewItem.forEach(a => {
+      let childCheckbox = a.querySelector('cbp-checkbox')
+      checkbox.indeterminate = false;
+
+      if(checkbox.checked == true){
+        a.treeviewItemChecked = true;
+        childCheckbox.checked = true;
+      }else{
+        a.treeviewItemChecked = false;
+        childCheckbox.checked = false;
+      }
+    })
+  }
+
     this.treeviewItemUpdate.emit({
       host: this.host,
-      parent: this.parentNode, //TODO: rename this to parent and refactor out the Prop
+      parent: this.parent,
       checked: checkbox
     })
   }
     
   @Listen('treeviewItemUpdate')
-    handleTreeviewItemUpdate(e){ //TODO: can get some weird states for 'unchecking' children not updating parent/grandparents to correct state
+    handleTreeviewItemUpdate(e){
       if(this.host == e.detail.parent){
 
-      console.log('event: ', e)
+      // console.log('event: ', e)
+      // console.log('this.host: ', this.host);
+      // console.log('allChildren: ', this.allChildren);
 
       let selectedChildren = 0;
+      let allSelectedChildren = 0;
+      let indeterimateChild = false;
 
       for (let i = 0; i < this.children.length; i++){
         if(this.children[i].treeviewItemChecked){ 
         selectedChildren= selectedChildren + 1;
+        }else if(this.children[i].treeviewItemIndeterminate){
+          indeterimateChild = true;
         }
       }
 
-    if(this.children.length == selectedChildren){
+      for(let i = 0; i < this.allChildren.length; i++){
+        if(this.allChildren[i].treeviewItemChecked){
+          allSelectedChildren = allSelectedChildren + 1;
+        }
+      }
+
+      
+    if(this.children.length == selectedChildren && this.allChildren.length == allSelectedChildren){
       this.checkbox.checked = true;
+      this.host.treeviewItemChecked = true
       this.checkbox.indeterminate = false;
-      this.host.treeviewItemChecked = true
-    }else if(this.children.length > selectedChildren && selectedChildren != 0){
+      this.host.treeviewItemIndeterminate = false;
+    }else if(this.children.length > selectedChildren && selectedChildren != 0 && this.allChildren.length > allSelectedChildren || indeterimateChild){
       this.checkbox.checked = false;
+      this.host.treeviewItemChecked = false;
       this.checkbox.indeterminate = true;
-      this.host.treeviewItemChecked = true
+      this.host.treeviewItemIndeterminate = true;
     }else{
       this.checkbox.checked = false;
+      this.host.treeviewItemChecked = false;
       this.checkbox.indeterminate = false;
-      this.host.treeviewItemChecked = false
+      this.host.treeviewItemIndeterminate = false;
     }
 
     if(e.detail.parent.tagName == 'CBP-TREEVIEW-ITEM'){
       
       this.treeviewItemUpdate.emit({
         host: this.host,
-        parent: this.parentNode, //TODO: rename this to parent and refactor out the Prop
+        parent: this.parent,
         checked: this.host.querySelector('cbp-checkbox')
       })
     }
@@ -125,64 +147,61 @@ if(this.content){
     this.children = Array.from(childNodes).filter(element => {
       return element.tagName === 'CBP-TREEVIEW-ITEM';
     }) as HTMLCbpTreeviewItemElement[];
+
+    this.allChildren = this.content.querySelectorAll('cbp-treeview-item') as unknown as HTMLCbpTreeviewItemElement[];
+   
   }
 }
 
 
   componentWillLoad(){
     let node = this.host.parentNode as HTMLElement;
-    this.parentNode = node.closest("cbp-treeview-item") //TODO: should return closest parent cbp-treeview item
+    this.parent = node.closest("cbp-treeview-item") 
   }
 
   componentDidRender(){
     if(this.content){
-      this.childrenItems = this.content.children.length;
+      this.directChildren = this.content.children.length;
     }
   }
 
   render() {
 
-    if(this.host.querySelector('cbp-treeview-item')){
-      this.parent = true;
-    }
   
     return (
       <Host
         role="treeitem"
-        aria-expanded={this.open ? 'true' : 'false'}
+        id={this.uid}
       >
         <span class="cbp-treeview-control">
-          {this.parent &&
-          <cbp-button
-            variant="square"
-            color="secondary"
-            fill="ghost"
-            class="cbp-treeview-toggle"
-            onClick={() => {this.toggleOpen()}}
-            targetProp="open"
-          >
-            <cbp-icon name="caret-down"></cbp-icon>
-          </cbp-button>
-          } 
+          {this.host.querySelector('cbp-treeview-item') != null && //need to validate if expand should be rendered
+            <cbp-button
+              variant="square"
+              color="secondary"
+              fill="ghost"
+              class="cbp-treeview-toggle"
+              onClick={() => {this.toggleOpen()}}
+            >
+              <cbp-icon name="caret-down"></cbp-icon>
+            </cbp-button>
+          }
           
-          {!this.slottedControl &&
+          {!this.selectable &&
             <cbp-checkbox ref={(el) => this.checkbox = el as HTMLCbpCheckboxElement}>
               <input type="checkbox" name="checkbox" />
+              {this.directChildren ? this.label + ' (' + this.directChildren + ')' : this.label} {/*TODO: only displaying directChildren after rerender probably due to where directChildren is being populated */}
             </cbp-checkbox>
           }
 
-          <span>{this.childrenItems ? this.label + ' (' + this.childrenItems + ')' : this.label}</span>
-
-          {this.slottedControl &&
-            <slot name="treeview-button-control"></slot> 
-          }
-
         </span>
-        {this.parent && 
-          <div class="cbp-treeview-content" ref={(el) => this.content = el as HTMLElement}>
+          <div 
+            class="cbp-treeview-content" 
+            ref={(el) => this.content = el as HTMLElement}
+            role='group'  
+          >
             <slot></slot>
           </div>
-        }  
+        
       </Host>
     );
   }
