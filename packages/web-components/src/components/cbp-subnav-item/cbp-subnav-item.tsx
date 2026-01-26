@@ -20,7 +20,7 @@ export class CbpSubnavItem {
   private link: HTMLAnchorElement;
   private expandButton: HTMLCbpButtonElement;
 
-  @Element() host: HTMLCbpSubnavItemElement;
+  @Element() private host: HTMLCbpSubnavItemElement;
 
   /** Specifies the text label for the subnav item. */
   @Prop() label: string;

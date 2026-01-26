@@ -25,7 +25,7 @@ export class CbpTabs {
   private previousControl: HTMLElement;
   private nextControl: HTMLElement;
   
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** The accessible label of the tablist. Required unless `aria-labelledby` is specified on the host tag directly. */
   @Prop() accessibilityText: string;

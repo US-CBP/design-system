@@ -6,7 +6,7 @@ import { Component, Element, Event, EventEmitter, Host, h, Prop } from '@stencil
 })
 export class CbpDotIndicator {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   private selectedIndex: number = 0; // index of the selected indicator
   private focusIndex: number = 0; // index of the focused indicator, used for keyboard nav

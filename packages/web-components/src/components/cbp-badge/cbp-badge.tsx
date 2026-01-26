@@ -13,7 +13,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpBadge {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
   
   /** Specifies a color variant. Currently the only variant supported is "danger". */
   @Prop({ reflect: true }) color: "default"| "danger";

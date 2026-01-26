@@ -15,7 +15,7 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpAccordion {
   private items: HTMLCbpAccordionItemElement[];
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies whether multiple accordion items can be open at the same time. Defaults to false. */
   @Prop() multiple: boolean;

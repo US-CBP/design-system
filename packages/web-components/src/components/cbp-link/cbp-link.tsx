@@ -15,7 +15,7 @@ export class CbpLink {
   
   private anchor: HTMLAnchorElement;
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the `href` of the rendered anchor. */
   @Prop() href: string;

@@ -12,7 +12,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpFlexItem {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the alignment of the specific flex item along the cross-axis separate from the parent context. */
   @Prop() alignSelf: "auto" | "stretch" | "flex-start" | "flex-end" | "center" | "baseline";

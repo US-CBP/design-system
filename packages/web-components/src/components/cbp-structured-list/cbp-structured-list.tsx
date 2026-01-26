@@ -16,7 +16,7 @@ import { setCSSProps } from '../../utils/utils';
  */
 export class CbpStructuredList {
   
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** 
    * Specifies an accessible label for the list as an `aria-label`, similar to a table `caption`. 

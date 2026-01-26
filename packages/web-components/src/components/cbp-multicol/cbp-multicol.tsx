@@ -13,7 +13,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpMulticol {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the maximum number of columns */
   @Prop() columns: number;

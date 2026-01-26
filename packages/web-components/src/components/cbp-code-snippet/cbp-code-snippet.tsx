@@ -11,7 +11,7 @@ import { setCSSProps } from '../../utils/utils';
   styleUrl: 'cbp-code-snippet.scss',
 })
 export class CbpCodeSnippet {
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   private codeBlock;
   private toggleButtonText = 'Show More';
@@ -31,9 +31,9 @@ export class CbpCodeSnippet {
 
 
   // There are issues with allowing the component to render expanded, so make this a state that defaults to no expanded.
-  @State() expanded: boolean = false;
-  @State() codeContainerHeight: number;
-  @State() codeBlockHeight: number;
+  @State() private expanded: boolean = false;
+  @State() private codeContainerHeight: number;
+  @State() private codeBlockHeight: number;
 
 
   /** Emits a custom event when the "Copy" button is activated, copying the code to the clipboard. */

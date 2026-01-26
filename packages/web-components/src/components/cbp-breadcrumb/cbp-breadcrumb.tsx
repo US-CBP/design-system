@@ -34,7 +34,7 @@ export class CbpBreadcrumb {
     }
   ];
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies a character as a divider between breadcrumb links. Defaults to "/". */
   @Prop() divider: string;
@@ -45,8 +45,8 @@ export class CbpBreadcrumb {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-  @State() menuItems: HTMLCbpMenuItemElement[] = [];
-  @State() sizeIndex = 2; // Default to full-width
+  @State() private menuItems: HTMLCbpMenuItemElement[] = [];
+  @State() private sizeIndex = 2; // Default to full-width
 
 
   handleResize( width ) {

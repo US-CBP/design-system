@@ -13,7 +13,7 @@ import { setCSSProps } from '../../utils/utils';
   styleUrl: 'cbp-action-bar.scss',
 })
 export class CbpActionBar {
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies whether the action bar is inline or floating. Defaults to inline. */
   @Prop({ reflect: true }) variant:  'inline' | 'floating' = 'inline'

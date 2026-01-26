@@ -24,7 +24,7 @@ export class CbpAppHeader {
   private searchControl:HTMLCbpButtonElement;
   private searchField:HTMLInputElement;
 
-  @Element() host: HTMLCbpAppHeaderElement;
+  @Element() private host: HTMLCbpAppHeaderElement;
   
   /** Specifies the id of the drawer to be launched*/
   @Prop() subnavDrawerId: string;

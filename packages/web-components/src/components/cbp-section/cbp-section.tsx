@@ -13,7 +13,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpSection {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the tag to render. Use `section` with the `accessibilityText` property to make an accessible landmark element. */
   @Prop() tag: 'div' | 'section' | 'none' = 'none';

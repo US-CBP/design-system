@@ -18,7 +18,7 @@ export class CbpDialog {
   private dialog: HTMLElement;
   private focusableElements: any[];
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** When set, specifies that the dialog is open */
   @Prop({ reflect: true }) open: boolean;

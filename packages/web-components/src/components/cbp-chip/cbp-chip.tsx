@@ -18,7 +18,7 @@ export class CbpChip {
   private iconName: string = "plus"; // default is "plus" but if customized, we need to keep track of it
   private ariaPressed: boolean;
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the `name` attribute of the rendered button */
   @Prop({ reflect: true }) name: string;

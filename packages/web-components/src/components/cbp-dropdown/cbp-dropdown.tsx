@@ -55,7 +55,7 @@ export class CbpDropdown {
   private typingMode: boolean = false; // track typing mode for combobox mode (only when filter=true)
   private newItems: boolean = false;
 
-  @Element() host: HTMLCbpDropdownElement;
+  @Element() private host: HTMLCbpDropdownElement;
 
   /** Specifies whether multiple selections are supported, in which case checkboxes shall be slotted in accordance with the design system specified pattern. Defaults to false, which renders a single-select dropdown. */
   @Prop({ reflect: true }) multiple: boolean = false;
@@ -135,9 +135,9 @@ export class CbpDropdown {
 
 
   //@State() dropdownItems: HTMLCbpDropdownItemElement[];
-  @State() selectedItems: HTMLCbpDropdownItemElement[] = [];
-  @State() selectedItemCount: number=0;
-  @State() searchString: string = ''; // This needs to be a state so that it can be used in the render method to replace the control label. TODO: test for accessibility.
+  @State() private selectedItems: HTMLCbpDropdownItemElement[] = [];
+  @State() private selectedItemCount: number=0;
+  @State() private searchString: string = ''; // This needs to be a state so that it can be used in the render method to replace the control label. TODO: test for accessibility.
   
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */

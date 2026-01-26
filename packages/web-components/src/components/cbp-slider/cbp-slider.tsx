@@ -21,7 +21,7 @@ export class CbpSlider {
   private valueFields: HTMLInputElement[] = [];
   private initialValue: any; // Save the initial value to support reset functionality
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** 
    * Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility. 

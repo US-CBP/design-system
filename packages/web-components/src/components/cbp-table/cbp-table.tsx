@@ -18,7 +18,7 @@ export class CbpTable {
   private columnHeadings: HTMLTableCellElement[];
   private sortableColumns: HTMLTableCellElement[] = [];
   
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
 
   /** Specifies whether the table is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). */
@@ -37,7 +37,7 @@ export class CbpTable {
   @Prop() sx: any = {};
 
 
-  @State() sort: {
+  @State() private sort: {
     columnHeading: HTMLTableCellElement, 
     direction: string
   }

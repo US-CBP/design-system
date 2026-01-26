@@ -13,7 +13,8 @@ import { setCSSProps, createNamespaceKey, getInvertedContext } from '../../utils
 })
 export class CbpTooltip {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
+  
   /** When set, specifies that the tooltip is open */
   @Prop({ reflect: true }) open: boolean = false;
 

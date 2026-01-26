@@ -14,7 +14,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpFooter {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};

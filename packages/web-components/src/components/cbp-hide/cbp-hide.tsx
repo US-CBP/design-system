@@ -15,7 +15,7 @@ export class CbpHide {
   
   private hidden=false;
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the host's display when visible. The default is `inline`, which is the default display of a custom element. */
   @Prop() display: string = 'inline';

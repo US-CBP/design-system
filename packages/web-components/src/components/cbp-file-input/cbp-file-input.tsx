@@ -17,7 +17,7 @@ export class CbpFileInput {
   private formField: HTMLInputElement;
   private initialValue: any; // Save the initial value to support reset functionality
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** The `name` attribute of the input, which is passed as part of formData (as a key). */
   @Prop({ mutable: true }) name: string;
@@ -74,7 +74,7 @@ export class CbpFileInput {
   @Prop() sx: any = {};
 
 
-  @State() files: File[] = [];
+  @State() private files: File[] = [];
 
 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */

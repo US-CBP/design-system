@@ -1,7 +1,7 @@
-import { Component, Prop, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
 
 /**
- * The "USA Banner" is similar to the U.S. Web Design System component, intended to establish trust 
+ * The "USA Banner" is similar to the U.S. Web Design System "banner" component, intended to establish trust 
  * as a common identifier on public-facing government sites.
  */
 @Component({
@@ -10,12 +10,9 @@ import { Component, Prop, Element, Host, h } from '@stencil/core';
 })
 export class CbpUsaBanner {
 
-  @Element() host: HTMLElement;
+  /** Specifies that the banner is open. Primarily used for internal component logic. */
+  @Prop({ mutable: true, reflect: true }) open: boolean = false;
 
-  /** Specifies that the banner is open. Primarily used for internal component logic.  */
-  @Prop({ reflect: true }) open: boolean = false;
-
-  // /** A custom event emitted when the banner link control is activated. */
   handleClick() {
     this.open = !this.open;
   }

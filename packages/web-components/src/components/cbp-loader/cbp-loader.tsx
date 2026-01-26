@@ -13,7 +13,7 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 export class CbpLoader {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies a unique `ID` for the loader, used to wire up the controls and accessibility features. */
   @Prop() progressId: string = createNamespaceKey('cbp-loader');

@@ -12,7 +12,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpTag {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies a tag color variant. Default does not need to be specified. */
   @Prop({ reflect: true }) color: 'default' | 'danger' | 'success' | 'warning';

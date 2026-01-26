@@ -14,7 +14,7 @@ export class CbpMenuItem {
 
   private menuItem: HTMLElement;
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies an indent level to represent hierarchical items. Defaults to zero. */
   @Prop( {reflect: true} ) indentLevel: number = 0;

@@ -16,7 +16,7 @@ export class CbpRadio {
   private formField: HTMLInputElement;
   private initialChecked: boolean; // Save the initial value to support reset functionality
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** The `name` attribute of the radio button, which is passed as part of formData (as a key) only when the radio button is checked. */
   @Prop() name: string;

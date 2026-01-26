@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
@@ -14,8 +14,6 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpTypography {
 
   private renderedTag: HTMLElement;
-
-  @Element() host: HTMLElement;
 
   /** Specifies the semantic tag to be rendered. */
   @Prop() tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'code' | 'pre' | 'div' | 'span' = "span";
