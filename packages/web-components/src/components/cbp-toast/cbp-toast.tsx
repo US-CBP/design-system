@@ -16,7 +16,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpToast {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** specifies the color for the toast */
   @Prop({ reflect: true }) color: 'info' | 'danger' | 'success' | 'warning' = 'info';

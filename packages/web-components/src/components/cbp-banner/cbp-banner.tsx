@@ -12,7 +12,7 @@ import { Component, Prop, Element, Event, EventEmitter, h, Host } from '@stencil
 })
 export class CbpBanner {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies a color variant for the banner. */
   @Prop({ reflect: true }) color: "info" = "info"; //intended to be used for different statuses (error, warning, etc)

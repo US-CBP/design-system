@@ -13,7 +13,7 @@ import { setCSSProps } from '../../utils/utils';
   styleUrl: 'cbp-card.scss',
 })
 export class CbpCard {
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Optionally specifies a card color (different from the default color) based on predefined design token values. */
   @Prop({ reflect: true }) color: "info" | "success" | "warning" | "danger";

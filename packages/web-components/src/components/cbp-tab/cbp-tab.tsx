@@ -15,7 +15,7 @@ export class CbpTab {
   private button: HTMLButtonElement;
   private parent: HTMLCbpTabsElement;
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** An `ID`-conformant unique name of the tab; This value should match the corresponding cbp-tab-panel name and links the two together. */
   @Prop() name!: string;

@@ -18,7 +18,7 @@ export class CbpButton {
 
   private persistedAttrs: any;
 
-  @Element() host: HTMLCbpButtonElement;
+  @Element() private host: HTMLCbpButtonElement;
 
   /** Specifies whether the button is a true button element or "link button." */
   @Prop() tag: 'button' | 'a' = 'button';

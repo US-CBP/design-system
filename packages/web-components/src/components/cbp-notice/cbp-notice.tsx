@@ -14,7 +14,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpNotice {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Optionally specifies a notice color based on predefined design token values. Defaults to "info". */
   @Prop({ reflect: true }) color: 'info' | 'success' | 'warning' | 'danger' = 'info';

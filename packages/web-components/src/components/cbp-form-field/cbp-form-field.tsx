@@ -24,7 +24,7 @@ export class CbpFormField {
   private attachedButtons: any;
   private hasDescription: boolean;
   
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
 
   /** Provide a visible/accessible label for the form field/group. */

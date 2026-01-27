@@ -16,7 +16,7 @@ export class CbpExpand {
   private control: HTMLElement;
   private button: HTMLButtonElement;
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /**
    * Specifies an optional `id` for the component item heading, also used to generate an `id` for 
@@ -26,12 +26,12 @@ export class CbpExpand {
   @Prop() headingId: string = createNamespaceKey('cbp-expand');
   
   /** Specifies whether the content is expanded and visible. */
-  @Prop({ reflect: true }) open: boolean = false;
+  @Prop({ reflect: true, mutable: true }) open: boolean = false;
   
   /** The component control label. */
   @Prop() label: string;
 
-  /** The heading level of the accordion item control. Defaults to h3. */
+  /** The heading level of the expand item control. Defaults to h3. */
   @Prop() headingLevel: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' = 'h4';
   
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
@@ -45,12 +45,14 @@ export class CbpExpand {
   @Event() expandClick: EventEmitter;
   handleClick(e) {
     this.open = !this.open;
+
     this.expandClick.emit({
       host: this.host,
       button: this.button,
       open: this.open,
       nativeEvent: e
     });
+
     this.button.focus();
   }
 

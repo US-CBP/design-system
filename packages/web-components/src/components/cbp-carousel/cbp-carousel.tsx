@@ -19,7 +19,7 @@ export class CbpCarousel {
   private control: HTMLCbpDotIndicatorElement;
   private items: HTMLCbpCarouselItemElement[] = [];
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** used to set the height (in CSS units or content values) of the carousel*/
   @Prop() height: string = '100%';

@@ -16,7 +16,7 @@ export class CbpToggle {
   private formField: HTMLInputElement;
   private initialChecked: boolean; // Save the initial value to support reset functionality
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
   
   /** Marks the toggle as checked (on) by default when specified. */
   @Prop({ reflect: true }) checked: boolean;

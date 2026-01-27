@@ -23,7 +23,7 @@ export class CbpPagination {
   private nextPageButton: HTMLCbpButtonElement;
   private previousPageButton: HTMLCbpButtonElement;
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the number of records in the entire data set (complete or filtered) to be paginated. */
   @Prop() records: number = 0;
@@ -41,8 +41,8 @@ export class CbpPagination {
   @Prop() sx: any = {};
 
 
-  @State() pagesDropdownItems: HTMLCbpDropdownItemElement[];
-  @State() showingText: string;
+  @State() private pagesDropdownItems: HTMLCbpDropdownItemElement[];
+  @State() private showingText: string;
 
   
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */

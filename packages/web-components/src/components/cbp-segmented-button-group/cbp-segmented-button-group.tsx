@@ -17,7 +17,7 @@ export class SegmentedButtonGroup {
   private buttongroup = []; // An array of all buttons registered (loaded)
   private initialValue: any; // string | object; - Save the initial value to support reset functionality
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** 
    * Optionally specifies the name of the (hidden) form field as a formData key 

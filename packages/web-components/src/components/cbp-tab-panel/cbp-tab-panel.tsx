@@ -12,7 +12,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpTabPanel {
   
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** An `ID`-conformant unique name of the tab-panel, applied as an `id` on this tab panel; This value should match the corresponding cbp-tab name and links the two together. */
   @Prop() name!: string;

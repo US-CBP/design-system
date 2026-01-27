@@ -16,7 +16,7 @@ export class CbpDrawer {
   private drawer: HTMLElement;
   private focusableElements: any[];
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the position of the drawer (left or right) */
   @Prop({ reflect: true }) position: 'left' | 'right' = 'left';

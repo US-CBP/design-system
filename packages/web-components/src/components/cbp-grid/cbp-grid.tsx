@@ -13,7 +13,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpGrid {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the grid display. Defaults to "grid". */
   @Prop({ reflect: true }) display: 'grid' | 'inline-grid' = 'grid';

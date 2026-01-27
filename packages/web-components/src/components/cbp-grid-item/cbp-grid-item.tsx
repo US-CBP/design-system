@@ -11,7 +11,8 @@ import { setCSSProps } from '../../utils/utils';
   styleUrl: 'cbp-grid-item.scss',
 })
 export class CbpGridItem {
-  @Element() host: HTMLElement;
+  
+  @Element() private host: HTMLElement;
 
   /** Specifies the starting position/edge of the grid item in the horizontal/column plane, which is used to calculate the size (including column and row spanning) and location within the grid. */
   @Prop() gridColumnStart: number | string;

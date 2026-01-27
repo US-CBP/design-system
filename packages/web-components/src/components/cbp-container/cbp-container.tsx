@@ -13,7 +13,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpContainer {
   
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the CSS background of the parent container, which could be a solid color, an image, a gradient, or any combination (or multiples) achievable via the CSS `background` property. */
   @Prop() background: string;

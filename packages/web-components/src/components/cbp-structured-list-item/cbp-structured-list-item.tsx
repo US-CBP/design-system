@@ -13,7 +13,7 @@ import { setCSSProps } from '../../utils/utils';
 
 export class CbpStructuredListItem {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Optionally specifies a color variant based on design tokens. */
   @Prop({ reflect: true }) color: 'danger';

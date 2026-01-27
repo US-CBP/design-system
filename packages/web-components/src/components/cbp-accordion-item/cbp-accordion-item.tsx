@@ -17,7 +17,7 @@ export class CbpAccordionItem {
   private control: HTMLElement;
   private button: HTMLButtonElement;
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /**
    * Specifies an optional `id` for the accordion item heading, also used to generate an `id` for 

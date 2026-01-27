@@ -19,7 +19,7 @@ export class CbpMenu {
   private menuItems: any; //: HTMLButtonElement | HTMLAnchorElement; 
   private focusIndex: number;
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the position of the menu. Defaults to "bottom-start". */
   @Prop({ reflect: true }) position: 'bottom-start' | "bottom-end" | 'top-start' | "top-end" = 'bottom-start';

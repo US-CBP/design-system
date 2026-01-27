@@ -17,7 +17,7 @@ export class CbpNavItem {
 
   private control: any; // HTMLAnchorElement | HTMLButtonElement
 
-  @Element() host: HTMLCbpNavItemElement;
+  @Element() private host: HTMLCbpNavItemElement;
 
   /** Specifies whether this is the Nav Item that represents the current page. Only one item per set should be marked as current. */
   @Prop({ reflect: true }) current: boolean;

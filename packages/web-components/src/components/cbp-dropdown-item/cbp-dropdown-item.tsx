@@ -17,7 +17,7 @@ export class CbpDropdownItem {
   private checkbox: HTMLInputElement;
   //private parent: HTMLCbpDropdownElement;
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies an optional value to be passed in the FormData instead of the display text/label. */
   @Prop() value: string;

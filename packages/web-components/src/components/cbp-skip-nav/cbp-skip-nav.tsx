@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
@@ -14,8 +14,6 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpSkipNav {
 
   private link: HTMLAnchorElement;
-
-  @Element() host: HTMLElement;
 
   /** Specifies the target `id` where focus is sent when the "skip nav" link is activated. Defaults to "main". */
   @Prop() targetId: string = "main";

@@ -15,7 +15,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpIcon {
   
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies which icon to use from the built-in set of icons. */
   @Prop({ reflect: true }) name: string;

@@ -14,7 +14,7 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpCarouselItem {
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
 
   /** used to set the height (in CSS units or content values) of the carousel-item*/

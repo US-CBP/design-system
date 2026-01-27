@@ -12,7 +12,7 @@ import { setCSSProps } from '../../utils/utils';
   styleUrl: 'cbp-flex.scss',
 })
 export class CbpFlex {
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Specifies the display mode. Defaults to "flex" */
   @Prop({ reflect: true }) display: 'flex' | 'inline-flex' = 'flex';

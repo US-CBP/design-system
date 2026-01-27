@@ -16,7 +16,7 @@ export class CbpForm {
   private enhancedFileInputs: HTMLCbpFileInputElement[] = [];
   private files: object = {}; 
   
-  @Element() host: HTMLCbpFormElement;
+  @Element() private host: HTMLCbpFormElement;
 
   /** When specified, applies preventDefault() to the submit event and emits a custom event with the formData to hand off to the application. */
   @Prop() preventSubmit: boolean;

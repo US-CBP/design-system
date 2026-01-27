@@ -1,4 +1,4 @@
-import { Component, Host, Element, Prop, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
@@ -12,7 +12,6 @@ import { setCSSProps } from '../../utils/utils';
   styleUrl: 'cbp-list.scss',
 })
 export class CbpList {
-  @Element() host: HTMLElement;
   
   private renderedTag: HTMLElement;
 

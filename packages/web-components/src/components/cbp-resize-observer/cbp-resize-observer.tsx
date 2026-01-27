@@ -18,7 +18,7 @@ export class CbpResizeObserver {
   private observer: ResizeObserver;
   private observedEl: Element
  
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** The number of milliseconds to debounce the event emitter. (not currently working) */
   @Prop() debounce: number = 0;

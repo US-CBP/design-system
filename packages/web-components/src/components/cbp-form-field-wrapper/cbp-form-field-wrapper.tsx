@@ -33,7 +33,7 @@ export class CbpFormFieldWrapper {
   private observer: ResizeObserver;
 
   
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
 
   getSizeInfo() {

@@ -4,6 +4,10 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unpublished] TBD
+
+* Updated internal host and state references using the `private` designator to support documentation generation.
+
 ## [0.0.1-develop.30] 01-16-2026
 
 * Fixed an error in `cbp-app-header` on keyboard navigation when search was not used.

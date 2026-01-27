@@ -18,7 +18,7 @@ export class CbpSubNav {
   private currentItem: HTMLCbpSubnavItemElement;
   private activeItem: HTMLCbpSubnavItemElement = null;
 
-  @Element() host: HTMLElement;
+  @Element() private host: HTMLElement;
 
   /** Sets the aria-label for the `nav` landmark element rendered by the subnav. */
   @Prop() accessibilityText: string = 'Sub-Navigation';
