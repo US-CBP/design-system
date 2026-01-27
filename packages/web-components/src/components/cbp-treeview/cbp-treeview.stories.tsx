@@ -23,9 +23,10 @@ export default {
 
 
 function generateTreeviewitems(tree){
-    const html = tree.map(({label, children}) => {
+    const html = tree.map(({label, children, checked}) => {
         return `<cbp-treeview-item
             label="${label}"
+            treeview-item-checked="${checked}"
         >
         ${children ? generateTreeviewitems(children) : ''}
         </cbp-treeview-item>`
@@ -55,73 +56,87 @@ const Template = ({label, tree, icon,  context, sx }) => {
 export const Treeview = Template.bind({});
 
 Treeview.args = {
-    label: 'Treeview Example:', 
     icon: false,
     tree: [
         {
-            label: "Parent Level A",
+            label: "Parent Level A 1",
             children: [
                 {
-                    label: "Parent Level B",
+                    label: "Parent Level B 1",
                     children: [  
                     {
-                        label: "Parent Level C",
+                        label: "Parent Level C 1",
                         children: [
                             {
-                                label: "Parent Level D",
+                                label: "Parent Level D 1",
                                 children: [
                                     {
-                                        label: "Parent Level E",
-                                        children: []
+                                        label: "Parent Level E 1",
+                                        children: [],
+                                        checked: true,
                                     },
                                     {
-                                        label: "Parent Level E",
-                                        children: []
+                                        label: "Parent Level E 2",
+                                        children: [],
+                                        checked: false,
                                     },
-                                ]
+                                ],
+                                checked: false,
                             },
                             {
-                                label: "Parent Level D",
-                                children: []
+                                label: "Parent Level D 2",
+                                children: [],
+                                checked: false,
                             },
                             {
-                                label: "Parent Level D",
-                                children: []
+                                label: "Parent Level D 3",
+                                children: [],
+                                checked: false,
                             },
-                        ]
+                        ],
+                        checked: false,
                     },
                     {
-                        label: "Parent Level C",
-                        children: []
+                        label: "Parent Level C 2",
+                        children: [],
+                        checked: false,
                     },
                     {
-                        label: "Parent Level C",
-                        children: []
+                        label: "Parent Level C 3",
+                        children: [],
+                        checked: false,
                     },
-                    ]
+                    ],
+                    checked: false,
                 },
                 {
-                    label: "Parent Level B",
-                    children: []
+                    label: "Parent Level B 2",
+                    children: [],
+                    checked: false,
                 },
                 {
-                    label: "Parent Level B",
-                    children: []
+                    label: "Parent Level B 3",
+                    children: [],
+                    checked: false,
                 },
-            ]
+            ],
+            checked: false,
         },
         {
-            label: "Parent Level A",
+            label: "Parent Level A 2",
             children: [
                 {
-                    label: "Parent Level B",
-                    children: []
+                    label: "Parent Level B 1",
+                    children: [],
+                    checked: false,
                 },
                 {
-                    label: "Parent Level B",
-                    children: []
+                    label: "Parent Level B 1",
+                    children: [],
+                    checked: false,
                 },
-            ]
+            ],
+            checked: false,
         },
 
     ]

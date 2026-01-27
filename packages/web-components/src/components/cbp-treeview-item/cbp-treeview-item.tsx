@@ -26,28 +26,28 @@ export class CbpTreeviewItem {
 /**
  * used to determing if the treeviewItem is in a checked state
  */
-@Prop({mutable: true}) treeviewItemChecked: boolean;
+@Prop({reflect: true, mutable: true}) treeviewItemChecked: boolean; //TODO: does this need reflect? used for local testing confrimation but not sure this should be in final
 
 /**
  * used to determing if the treeviewItem is in an indeterminate state
  */
-@Prop({mutable: true}) treeviewItemIndeterminate: boolean;
+@Prop({reflect: true, mutable: true}) treeviewItemIndeterminate: boolean; //TODO: does this need reflect? used for local testing confrimation but not sure this should be in final
 
 @Event() treeviewItemUpdate: EventEmitter;
 
 /** Specifies a unique `ID` for the dialog, used to wire up the controls and accessibility features. */
 @Prop() uid: string;
 
-private children;
-private allChildren; //populate with all children to search against similar to children above. Usefulness is in determining whether the state should be selected or indeterminate
+private children = [];
+private allChildren = [];
 
 /**displays number of direct children slotted into parent */
 private directChildren;
 
 private parent;
 
-content !: HTMLElement
-checkbox !: HTMLCbpCheckboxElement
+private containedChildren !: HTMLElement
+private checkbox !: HTMLCbpCheckboxElement
 
 @Listen('stateChanged')
   handleCheck(e){
@@ -55,12 +55,11 @@ checkbox !: HTMLCbpCheckboxElement
 
     let checkbox = e.target;
 
-
     this.treeviewItemChecked = checkbox.checked;
     this.host.setAttribute('aria-selected', checkbox.checked)
     
-  if(this.content && this.content.querySelectorAll('cbp-treeview-item')) {
-    let childTreeviewItem = this.content.querySelectorAll('cbp-treeview-item') as unknown as HTMLCbpTreeviewItemElement[];
+  if(this.containedChildren && this.containedChildren.querySelectorAll('cbp-treeview-item')) {
+    let childTreeviewItem = this.containedChildren.querySelectorAll('cbp-treeview-item') as unknown as HTMLCbpTreeviewItemElement[];
     childTreeviewItem.forEach(a => {
       let childCheckbox = a.querySelector('cbp-checkbox')
       checkbox.indeterminate = false;
@@ -86,10 +85,6 @@ checkbox !: HTMLCbpCheckboxElement
     handleTreeviewItemUpdate(e){
       if(this.host == e.detail.parent){
 
-      // console.log('event: ', e)
-      // console.log('this.host: ', this.host);
-      // console.log('allChildren: ', this.allChildren);
-
       let selectedChildren = 0;
       let allSelectedChildren = 0;
       let indeterimateChild = false;
@@ -108,7 +103,6 @@ checkbox !: HTMLCbpCheckboxElement
         }
       }
 
-      
     if(this.children.length == selectedChildren && this.allChildren.length == allSelectedChildren){
       this.checkbox.checked = true;
       this.host.treeviewItemChecked = true
@@ -142,31 +136,34 @@ checkbox !: HTMLCbpCheckboxElement
   }
 
 componentDidLoad(){
-if(this.content){
-    let childNodes = this.content.children;
+if(this.containedChildren){
+    let childNodes = this.containedChildren.children;
     this.children = Array.from(childNodes).filter(element => {
       return element.tagName === 'CBP-TREEVIEW-ITEM';
     }) as HTMLCbpTreeviewItemElement[];
 
-    this.allChildren = this.content.querySelectorAll('cbp-treeview-item') as unknown as HTMLCbpTreeviewItemElement[];
-   
+    this.allChildren = this.containedChildren.querySelectorAll('cbp-treeview-item') as unknown as HTMLCbpTreeviewItemElement[];
+
+  }
+  
+  //TODO: fire handleCheck event to 'init' the state of the treeview
+  if(this.treeviewItemChecked){
+    let initCheckbox = this.checkbox.firstElementChild.firstElementChild as HTMLInputElement;
+    initCheckbox.click(); //TODO: Is firing multipe times up the parental chain but not seeing the visual change
+    console.log('initCheckbox: ', this.host, initCheckbox)
   }
 }
-
 
   componentWillLoad(){
     let node = this.host.parentNode as HTMLElement;
     this.parent = node.closest("cbp-treeview-item") 
-  }
 
-  componentDidRender(){
-    if(this.content){
-      this.directChildren = this.content.children.length;
+    if(this.host.lastElementChild != null){
+      this.directChildren = this.host.children.length
     }
   }
 
   render() {
-
   
     return (
       <Host
@@ -174,7 +171,7 @@ if(this.content){
         id={this.uid}
       >
         <span class="cbp-treeview-control">
-          {this.host.querySelector('cbp-treeview-item') != null && //need to validate if expand should be rendered
+          {this.directChildren > 0 && 
             <cbp-button
               variant="square"
               color="secondary"
@@ -185,23 +182,25 @@ if(this.content){
               <cbp-icon name="caret-down"></cbp-icon>
             </cbp-button>
           }
-          
           {!this.selectable &&
             <cbp-checkbox ref={(el) => this.checkbox = el as HTMLCbpCheckboxElement}>
               <input type="checkbox" name="checkbox" />
-              {this.directChildren ? this.label + ' (' + this.directChildren + ')' : this.label} {/*TODO: only displaying directChildren after rerender probably due to where directChildren is being populated */}
-            </cbp-checkbox>
+               
+              {this.directChildren ? this.label + ' (' + this.directChildren + ')' : this.label}
+              
+              {/** below is changing # on expand of the control, seems to be reducing by 1 but need to confirm reason
+              {this.host.children.length > 0 ? this.label + ' (' + this.host.children.length + ')' : this.label}
+              */}  
+              </cbp-checkbox>
           }
-
         </span>
           <div 
             class="cbp-treeview-content" 
-            ref={(el) => this.content = el as HTMLElement}
+            ref={(el) => this.containedChildren = el as HTMLElement}
             role='group'  
           >
             <slot></slot>
           </div>
-        
       </Host>
     );
   }
