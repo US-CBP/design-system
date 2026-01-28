@@ -26,7 +26,7 @@ function generateTreeviewitems(tree){
     const html = tree.map(({label, children, checked}) => {
         return `<cbp-treeview-item
             label="${label}"
-            treeview-item-checked="${checked}"
+            ${checked ? 'checked': ''}
         >
         ${children ? generateTreeviewitems(children) : ''}
         </cbp-treeview-item>`

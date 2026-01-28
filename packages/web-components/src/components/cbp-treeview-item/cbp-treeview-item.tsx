@@ -26,14 +26,14 @@ export class CbpTreeviewItem {
 /**
  * used to determing if the treeviewItem is in a checked state
  */
-@Prop({reflect: true, mutable: true}) treeviewItemChecked: boolean; //TODO: does this need reflect? used for local testing confrimation but not sure this should be in final
+@Prop({reflect: true, mutable: true}) checked: boolean; //TODO: does this need reflect? used for local testing confrimation but not sure this should be in final
 
 /**
  * used to determing if the treeviewItem is in an indeterminate state
  */
-@Prop({reflect: true, mutable: true}) treeviewItemIndeterminate: boolean; //TODO: does this need reflect? used for local testing confrimation but not sure this should be in final
+@Prop({reflect: true, mutable: true}) indeterminate: boolean; //TODO: does this need reflect? used for local testing confrimation but not sure this should be in final
 
-@Event() treeviewItemUpdate: EventEmitter;
+@Event() updateParent: EventEmitter;
 
 /** Specifies a unique `ID` for the dialog, used to wire up the controls and accessibility features. */
 @Prop() uid: string;
@@ -46,43 +46,50 @@ private directChildren;
 
 private parent;
 
-private containedChildren !: HTMLElement
 private checkbox !: HTMLCbpCheckboxElement
 
 @Listen('stateChanged')
-  handleCheck(e){
-    e.stopPropagation();
+  handleCheck(e = undefined){
+    e?.stopPropagation();
 
     let checkbox = e.target;
 
-    this.treeviewItemChecked = checkbox.checked;
+    // console.log(e)
+    // let checkbox
+    // if(e.tagName === 'CBP-CHECKBOX'){
+    //   checkbox = this.checkbox
+    //   console.log('Logic check')
+    // }else{
+    //   e?.stopPropagation();
+    //   checkbox = e.target
+    // }
+    // console.log('event checkbox: ', checkbox)
+
+    this.checked = checkbox.checked;
     this.host.setAttribute('aria-selected', checkbox.checked)
-    
-  if(this.containedChildren && this.containedChildren.querySelectorAll('cbp-treeview-item')) {
-    let childTreeviewItem = this.containedChildren.querySelectorAll('cbp-treeview-item') as unknown as HTMLCbpTreeviewItemElement[];
-    childTreeviewItem.forEach(a => {
-      let childCheckbox = a.querySelector('cbp-checkbox')
+
+    this.allChildren.forEach(a =>{
+      let childCheckbox = a.querySelector('cbp-checkbox');
       checkbox.indeterminate = false;
 
-      if(checkbox.checked == true){
-        a.treeviewItemChecked = true;
+      if (checkbox.checked){
+        a.checked = true;
         childCheckbox.checked = true;
       }else{
-        a.treeviewItemChecked = false;
+        a.checked = false;
         childCheckbox.checked = false;
       }
     })
-  }
 
-    this.treeviewItemUpdate.emit({
+    this.updateParent.emit({
       host: this.host,
       parent: this.parent,
       checked: checkbox
     })
   }
     
-  @Listen('treeviewItemUpdate')
-    handleTreeviewItemUpdate(e){
+  @Listen('updateParent')
+    handleUpdateParent(e){
       if(this.host == e.detail.parent){
 
       let selectedChildren = 0;
@@ -90,44 +97,41 @@ private checkbox !: HTMLCbpCheckboxElement
       let indeterimateChild = false;
 
       for (let i = 0; i < this.children.length; i++){
-        if(this.children[i].treeviewItemChecked){ 
+        if(this.children[i].checked){ 
         selectedChildren= selectedChildren + 1;
-        }else if(this.children[i].treeviewItemIndeterminate){
+        }else if(this.children[i].indeterminate){
           indeterimateChild = true;
         }
       }
 
       for(let i = 0; i < this.allChildren.length; i++){
-        if(this.allChildren[i].treeviewItemChecked){
+        if(this.allChildren[i].checked){
           allSelectedChildren = allSelectedChildren + 1;
         }
       }
 
     if(this.children.length == selectedChildren && this.allChildren.length == allSelectedChildren){
       this.checkbox.checked = true;
-      this.host.treeviewItemChecked = true
+      this.host.checked = true
       this.checkbox.indeterminate = false;
-      this.host.treeviewItemIndeterminate = false;
+      this.host.indeterminate = false;
     }else if(this.children.length > selectedChildren && selectedChildren != 0 && this.allChildren.length > allSelectedChildren || indeterimateChild){
       this.checkbox.checked = false;
-      this.host.treeviewItemChecked = false;
+      this.host.checked = false;
       this.checkbox.indeterminate = true;
-      this.host.treeviewItemIndeterminate = true;
+      this.host.indeterminate = true;
     }else{
       this.checkbox.checked = false;
-      this.host.treeviewItemChecked = false;
+      this.host.checked = false;
       this.checkbox.indeterminate = false;
-      this.host.treeviewItemIndeterminate = false;
+      this.host.indeterminate = false;
     }
 
-    if(e.detail.parent.tagName == 'CBP-TREEVIEW-ITEM'){
-      
-      this.treeviewItemUpdate.emit({
-        host: this.host,
-        parent: this.parent,
-        checked: this.host.querySelector('cbp-checkbox')
-      })
-    }
+    this.updateParent.emit({
+      host: this.host,
+      parent: this.parent,
+      checked: this.host.querySelector('cbp-checkbox')
+    })
   }
   }
 
@@ -136,31 +140,26 @@ private checkbox !: HTMLCbpCheckboxElement
   }
 
 componentDidLoad(){
-if(this.containedChildren){
-    let childNodes = this.containedChildren.children;
-    this.children = Array.from(childNodes).filter(element => {
-      return element.tagName === 'CBP-TREEVIEW-ITEM';
-    }) as HTMLCbpTreeviewItemElement[];
-
-    this.allChildren = this.containedChildren.querySelectorAll('cbp-treeview-item') as unknown as HTMLCbpTreeviewItemElement[];
-
-  }
-  
   //TODO: fire handleCheck event to 'init' the state of the treeview
-  if(this.treeviewItemChecked){
-    let initCheckbox = this.checkbox.firstElementChild.firstElementChild as HTMLInputElement;
-    initCheckbox.click(); //TODO: Is firing multipe times up the parental chain but not seeing the visual change
-    console.log('initCheckbox: ', this.host, initCheckbox)
+  if(this.checked){
+    this.checkbox.checked = true
+    // console.log('fires init()', this.host, this.checkbox)
+    // this.handleCheck() // fires event, errors out as soon as e is needed 
   }
 }
 
   componentWillLoad(){
     let node = this.host.parentNode as HTMLElement;
     this.parent = node.closest("cbp-treeview-item") 
+    // this.parent = this.host.parentNode.closest("cbp-treeview-item")
 
     if(this.host.lastElementChild != null){
       this.directChildren = this.host.children.length
     }
+
+    this.children = [...this.host.children]
+    this.allChildren = this.host.querySelectorAll('cbp-treeview-item') as unknown as HTMLCbpTreeviewItemElement[];
+   
   }
 
   render() {
@@ -196,7 +195,6 @@ if(this.containedChildren){
         </span>
           <div 
             class="cbp-treeview-content" 
-            ref={(el) => this.containedChildren = el as HTMLElement}
             role='group'  
           >
             <slot></slot>
