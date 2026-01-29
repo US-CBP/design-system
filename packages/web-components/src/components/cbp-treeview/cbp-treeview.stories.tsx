@@ -2,14 +2,6 @@ export default {
     title: 'Components/Treeview',
     tags: ['new'],
     argTypes: {
-        label : {
-            description: 'Specifies Text for the Treeview, is displayed above the treeview items',
-            control: 'text',
-        },
-        icon : {
-            description: 'Toggle to show Icon with Treeview label',
-            control: 'boolean'
-        },
         context: {
             control: 'select',
             options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -34,19 +26,12 @@ function generateTreeviewitems(tree){
     return html.join('');
 }
 
-const Template = ({label, tree, icon,  context, sx }) => {
+const Template = ({tree, context, sx }) => {
     return `
     <cbp-treeview
-        ${label ? `label="${label}"` : ""}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-        ${icon ?
-            `<span name="cbp-treeview-label-icon">
-                <cbp-icon name="user"></cbp-icon>
-            </span>`
-            : ''
-        }
         ${generateTreeviewitems(tree)}
     </cbp-treeview>
     `;

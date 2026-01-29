@@ -11,6 +11,7 @@
   --cbp-treeview-connection-width: 2px;
   --cbp-treeview-connection-color: var(--cbp-color-gray-cool-20);
   --cbp-treeview-connection-color-dark: var(--cbp-color-gray-cool-40);
+  --cbp-treeview-expand-width: var(--cbp-space-6x)
 }
 
 [data-cbp-theme=light] cbp-treeview-item[context*=dark]:not([context=light-always]),
@@ -22,13 +23,24 @@
 cbp-treeview-item {
   display: block;
   padding-inline-start: var(--cbp-treeview-item-indent);
-  margin-inline-start: calc((2.25rem - var(--cbp-treeview-connection-width)) / 2); //2.25rem is for the square button width
+  margin-inline-start: calc((var(--cbp-treeview-expand-width) - var(--cbp-treeview-connection-width)) / 2);
 
   .cbp-treeview-control{
     display: inline-flex;
     min-height: var(--cbp-space-11x);
     align-items: center;
   
+
+    .cbp-treeview-toggle button{
+      --cbp-button-height: var(--cbp-treeview-expand-width);
+      --cbp-button-width: var(--cbp-treeview-expand-width);
+      --cbp-button-min-height: var(--cbp-button-height)
+    }
+    
+    cbp-checkbox label{
+      padding-block: var(--cbp-space-1x);
+    }
+
     cbp-button:not(.cbp-treeview-toggle){ //Techdebt: slotted buttons not part of MVP, needs to be centered with text of treeview-item
       --cbp-button-height: var(--cbp-space-6x);
     }
@@ -36,9 +48,9 @@ cbp-treeview-item {
     & > *{
       margin-inline-end: var(--cbp-space-3x);
       
-      &:first-child:not(cbp-button){
-        margin-inline-start: var(--cbp-space-1x);
-      }
+      // &:first-child:not(cbp-button){
+      //   margin-inline-start: var(--cbp-space-1x);
+      // }
     } 
   }
 
@@ -48,14 +60,28 @@ cbp-treeview-item {
 
 
   &[open] {
-
     & > .cbp-treeview-control{
-
       .cbp-treeview-toggle cbp-icon{
         transform: rotate(180deg)
       }
     }
   }
+
+  //TODO: adjacent to sibling with expand but does not contain expand
+&:not(:has(.cbp-treeview-toggle)){
+  padding-inline-start: calc(var(--cbp-treeview-item-indent) + var(--cbp-treeview-expand-width));
+  .cbp-treeview-control{
+    &::before{
+      left: calc((var(--cbp-treeview-connection-width) + var(--cbp-treeview-expand-width)) * -1);
+      // width: calc(var(--cbp-treeview-item-indent) + (var(--cbp-treeview-expand-width) / 2));
+      width: calc(var(--cbp-treeview-item-indent) + var(--cbp-treeview-expand-width));
+    }
+    cbp-checkbox{
+      margin-inline-start: calc((var(--cbp-treeview-expand-width) / 2) * -1);// TODO: don't love, look for better answer
+    }
+  }
+}
+
 
   cbp-treeview-item{
     --cbp-treeview-item-indent: 11px; //Spec specified values for indent outside of avaliable CSSVars

@@ -10,13 +10,13 @@ export class CbpTreeview {
   /**
    * Label to be displayed in the control of the treeview.
    */
-  @Prop({ reflect: true}) label: string;
+  @Prop({ reflect: true}) accessibilitylabel: string;
 
   render() {
     return (
       <Host
         role="tree"
-        aria-label={this.label}
+        aria-label={this.accessibilitylabel}
       >
         
         <slot name="label"></slot>
@@ -25,7 +25,6 @@ export class CbpTreeview {
           divider="underline"
         >
           <slot name='cbp-treeview-label-icon'></slot>
-          {this.label ? this.label : ''}
         </cbp-typography>
         <slot></slot>
       </Host>
