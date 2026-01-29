@@ -91,7 +91,6 @@
 
 /* 
  * Dark Mode - display dark design based on mode or context
- * 
  */
 [data-cbp-theme=light] cbp-tabs[context*=dark],
 [data-cbp-theme=dark] cbp-tabs:not([context=dark-inverts]):not([context=light-always]) {
@@ -123,6 +122,5 @@ cbp-tabs {
     flex-grow: 5;
     flex-shrink: 5;
     overflow: hidden;
-    scroll-snap-align: start;
   }
 }
