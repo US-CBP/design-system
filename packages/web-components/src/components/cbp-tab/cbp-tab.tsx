@@ -52,7 +52,9 @@ export class CbpTab {
     if (typeof this.sx == "string") {
       this.sx = JSON.parse(this.sx) || {};
     }
-    setCSSProps(this.host, Object.assign({}, this.sx));
+    setCSSProps(this.host, {
+      ...this.sx,
+    });
   
     // If the tab is marked selected on initial load, treat it as a tabClick and emit the event for the parent to act on.
     this.selected && this.handleTabClick();
