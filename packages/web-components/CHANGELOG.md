@@ -6,7 +6,11 @@ The React components are wrappers generated from this package and will share the
 
 ## [unpublished] TBD
 
+* Updated `cbp-tabs` to fix scrolling issues:
+  * Improved scrolling and visibility of tabs in responsive mode.
+  * Prevent all scrolling on initialization, which could cause the entire page to scroll on load.
 * Updated internal host and state references using the `private` designator to support documentation generation.
+* Updated Storybook and `storybook-addon-tag-badges` package to the latest versions.
 
 ## [0.0.1-develop.30] 01-16-2026
 
