@@ -40,7 +40,7 @@ Tabs are a common UI pattern of progressive disclosure mimicking the real world 
 * Tab set:
   * The parent `cbp-tabs` component has a `role="tablist"`.
   * For keyboard navigation, the tab group uses the "roving tabindex" paradigm. See more under "User Interactions."
-  * In the responsive view, the next/previous button controls are *not* keyboard accessible because the arrow keys will scroll hidden tabs into view without them; Additionally, the next tab stop should not be in the tab list after selecting a tab.
+  * In the responsive view, the next/previous button controls are *not* keyboard accessible by design because the arrow keys will scroll hidden tabs into view without them; Additionally, the next tab stop should not be in the tab list after selecting a tab.
 * Tabs:
   * Each tab control (button) has a `role="tab"`.
   * Tabs without accessible label text (such as icon buttons) should use the `accessibilityText` property, which renders an `aria-label` attribute on the control, to specify an accessible label.
@@ -57,9 +57,13 @@ Tabs are a common UI pattern of progressive disclosure mimicking the real world 
 ### Additional Notes and Considerations
 
 * The use of `aria-controls` on the tab control pointing to the `id` of the tab panel associates these elements not only for accessibility, but also programmatically.
-* A custom event of `tabActivated` is emitted from the tab control (button), which bubbles and may be listened for at a higher level, such as the tabset. The custom event's `details` contain the following keys:
-  * `tab`: a DOM reference to the button element activated
-  * `name`: the name of the tab, derived from the `name` attribute of the button, or barring that, the innerText of the button element. For tabs with only icons, the button's `name` attribute should always be used.
-  * `nativeEvent`: the full native `click` event from the activated button
-* This custom event may be leveraged to asynchronously load content when a tab is activated.
+* A custom event of `tabActivated` is emitted from the tab control (button), which bubbles and may be listened for at a higher level, such as the tabset. 
+  * The custom event's `details` contain the following keys:
+    * `tab`: a DOM reference to the button element activated.
+    * `name`: the name of the tab, derived from the `name` attribute of the button, or barring that, the innerText of the button element. For tabs with only icons, the button's `name` attribute should always be used.
+    * `nativeEvent`: the full native `click` event from the activated button.
+  * This custom event may be leveraged to asynchronously load content when a tab is activated.
 * For tabs with only icons, the button's `name` attribute should always be used for the benefit of the custom event emitter.
+* It is not recommended to set a tab (after the first) as selected by default if it may result in being hidden at smaller screen sizes in responsive mode.
+  * This can create usability and accessibility issues.
+  * The selected tab will still move into view when tabbed to, however.
