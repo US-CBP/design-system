@@ -27,7 +27,9 @@ export class CbpTabPanel {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
     }
-    setCSSProps(this.host, Object.assign({}, this.sx));
+    setCSSProps(this.host, {
+      ...this.sx,
+    });
   }
 
   render() {

@@ -148,7 +148,6 @@ export class CbpTable {
     })
   }
 
-
   componentWillLoad() {
     this.table = this.host.querySelector('table');
     this.caption = this.table?.querySelector('caption');
@@ -158,7 +157,9 @@ export class CbpTable {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
     }
-    setCSSProps(this.host, Object.assign({}, this.sx));
+    setCSSProps(this.host, {
+      ...this.sx,
+    });
   }
 
   componentDidLoad() {
