@@ -5,6 +5,12 @@ import { Component, Element, Event, EventEmitter, Host, h, Prop, Listen } from '
   styleUrl: 'cbp-treeview.scss',
 })
 
+/**
+ * Treeview is used to display nested items in a parent/child relationship with the option of selecting or interacting with items 
+ * 
+ * @slot - Used to populate the children of treeview
+ */
+
 export class CbpTreeview {
   
   @Element() host: HTMLCbpTreeviewElement;

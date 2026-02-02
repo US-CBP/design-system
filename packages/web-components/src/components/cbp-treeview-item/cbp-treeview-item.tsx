@@ -5,6 +5,12 @@ import { Component, Element, Event, EventEmitter, Host, h, Listen, Prop } from '
   styleUrl: 'cbp-treeview-item.scss',
 })
 
+/**
+ * Treeview Items are used to display a single parent or selection for the cbp-treeview component
+ * 
+ * @slot - Used to populate the children of treeview item
+ */
+
 export class CbpTreeviewItem {
 @Element() host: HTMLCbpTreeviewItemElement;
 
@@ -91,7 +97,7 @@ private checkbox !: HTMLCbpCheckboxElement
             selected.push(this.allChildren[i])
           }
         }
-        
+
         this.updatedState.emit({
           host: this.host,
           selected: selected
