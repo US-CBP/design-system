@@ -4,6 +4,7 @@
  * @prop --cbp-treeview-connection-width: 2px;
  * @prop --cbp-treeview-connection-color: var(--cbp-color-gray-cool-20);
  * @prop --cbp-treeview-connection-color-dark: var(--cbp-color-gray-cool-40);
+ * @prop --cbp-treeview-expand-width: var(--cbp-space-6x)
  */
 :root {
   --cbp-treeview-item-indent: 0;
@@ -37,20 +38,20 @@ cbp-treeview-item {
       --cbp-button-min-height: var(--cbp-button-height)
     }
     
-    cbp-checkbox label{
-      padding-block: var(--cbp-space-1x);
+    cbp-checkbox{
+      flex-shrink: 1;
+      label{
+        padding-block: var(--cbp-space-1x);
+      }
     }
-
+    
     cbp-button:not(.cbp-treeview-toggle){ //Techdebt: slotted buttons not part of MVP, needs to be centered with text of treeview-item
       --cbp-button-height: var(--cbp-space-6x);
     }
 
     & > *{
+      flex-shrink: 0;
       margin-inline-end: var(--cbp-space-3x);
-      
-      // &:first-child:not(cbp-button){
-      //   margin-inline-start: var(--cbp-space-1x);
-      // }
     } 
   }
 
@@ -67,24 +68,21 @@ cbp-treeview-item {
     }
   }
 
-  //TODO: adjacent to sibling with expand but does not contain expand
 &:not(:has(.cbp-treeview-toggle)){
   padding-inline-start: calc(var(--cbp-treeview-item-indent) + var(--cbp-treeview-expand-width));
   .cbp-treeview-control{
     &::before{
       left: calc((var(--cbp-treeview-connection-width) + var(--cbp-treeview-expand-width)) * -1);
-      // width: calc(var(--cbp-treeview-item-indent) + (var(--cbp-treeview-expand-width) / 2));
       width: calc(var(--cbp-treeview-item-indent) + var(--cbp-treeview-expand-width));
     }
     cbp-checkbox{
-      margin-inline-start: calc((var(--cbp-treeview-expand-width) / 2) * -1);// TODO: don't love, look for better answer
+      margin-inline-start: calc((var(--cbp-treeview-expand-width) / 2) * -1);
     }
   }
 }
 
 
   cbp-treeview-item{
-    --cbp-treeview-item-indent: 11px; //Spec specified values for indent outside of avaliable CSSVars
     border-left: var(--cbp-treeview-connection-width) solid var(--cbp-treeview-connection-color);
     --cbp-treeview-item-indent: 1.5rem;
 

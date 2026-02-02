@@ -6,29 +6,30 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 
 ## Purpose
 
-*Display information in a tiered or nested display with parents and child relationships with the option to either select or take action on items
+* Display information in a tiered or nested display with parents and child relationships with the option to select items
 
 ## Functional Requirements
 
-* use cbp-expand with a descriptive label and either cbp-checkbox or cbp-button
-    *not this is not a variant, use props to determine if these are needed. Spec don't cover combined case for this
-* The parent-child relationship is deteremined by nesting a cbp-treeview inside another cbp-treeview
+* rendered checkboxs will support unselected, selected, and indeterminate states that will be reflected on the treeview-item props
+* Selecting a treeview-item will update the children (if any) to be selected as well as update the parents to the correct state
+* The parent-child relationship is deteremined by nesting a cbp-treeview-item inside another cbp-treeview-item
 
 ## Technical Specifications
 
-* treeview always has an expand control with an associated label. it also has 2 slots for associated controls on either side of the label
-    *expand -> slot -> label -> slot
 * Visual styling is only made 4 items deep, while parent/children can be deeper they will not be visually distinct past this depth.
     *specs (A -> B -> C -> D -> E)
-*
+* treeview emits an event 'treeviewSubmit' with the selected treeview items for cases where a form submit are not available or applicable
+* treeview-item's that are parents will render with an 'expand' button to toggle display of any children as well as the number of children appended to the label prop
+* 'Connectors' are used to visually display the parent/child relationship of elements in addition to indentation
 
 ### User Interactions
 
-* Clicking on expand component will show hidden children
+* Clicking on expand component will toggle hidden children
+* Changes to rendered checkbox will be reflected in the state of the parent treeview-item props(checked/indeterminate)
 
 ### Responsiveness
 
-*
+* labels will wrap incases where nessecary, intended UX guidance is to keep this wrap to 2 lines where possible
 
 ### Accessibility
 
@@ -43,4 +44,3 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 ### Additional Notes and Considerations
 
 *keyboard actions for enter seem very situational with what the 'default action' would be. might need to expand on this in requirements or refine requirement after mvp
-n/a

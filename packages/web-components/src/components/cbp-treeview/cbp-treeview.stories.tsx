@@ -2,6 +2,15 @@ export default {
     title: 'Components/Treeview',
     tags: ['new'],
     argTypes: {
+        name:{
+            control:'text'
+        },
+        accessibilityText: {
+            control: 'text'
+        },
+        uid: {
+            control: 'text'
+        },
         context: {
             control: 'select',
             options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -26,9 +35,12 @@ function generateTreeviewitems(tree){
     return html.join('');
 }
 
-const Template = ({tree, context, sx }) => {
+const Template = ({tree, name, accessibilityText, uid,  context, sx }) => {
     return `
     <cbp-treeview
+        accessibilityText=${accessibilityText}
+        name=${name}
+        uid=${uid}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
@@ -41,7 +53,6 @@ const Template = ({tree, context, sx }) => {
 export const Treeview = Template.bind({});
 
 Treeview.args = {
-    icon: false,
     tree: [
         {
             label: "Parent Level A 1",
@@ -116,7 +127,7 @@ Treeview.args = {
                     checked: false,
                 },
                 {
-                    label: "Parent Level B 1",
+                    label: "Parent Level B 2",
                     children: [],
                     checked: false,
                 },
@@ -124,5 +135,7 @@ Treeview.args = {
             checked: false,
         },
 
-    ]
+    ],
+    name:'treeviewExample',
+    uid:'treeview'
 }
