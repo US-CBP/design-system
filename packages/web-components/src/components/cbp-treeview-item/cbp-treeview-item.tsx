@@ -11,8 +11,13 @@ import { createNamespaceKey } from '../../utils/utils';
  * 
  * @slot - Used to populate the children of treeview item
  */
-
 export class CbpTreeviewItem {
+
+  private parent: HTMLCbpTreeviewItemElement;
+  private immediateChildren: HTMLCbpTreeviewItemElement[] = []
+  private allChildren: HTMLCbpTreeviewItemElement[] = [];
+  private checkbox !: HTMLCbpCheckboxElement
+
   @Element() host: HTMLCbpTreeviewItemElement;
 
   /**
@@ -57,19 +62,11 @@ export class CbpTreeviewItem {
 
   @Event() updateTreeviewItemParent: EventEmitter;
 
-  private immediateChildren: HTMLCbpTreeviewItemElement[] = []
-  private allChildren: HTMLCbpTreeviewItemElement[] = [];
-
-  private parent: HTMLCbpTreeviewItemElement;
-
-  private checkbox !: HTMLCbpCheckboxElement
 
   @Listen('stateChanged')
   handleCheck(e = undefined) {
     e?.stopPropagation();
-
     let checkbox = e?.target || this.checkbox;
-
     this.checked = checkbox.checked;
 
     this.allChildren.forEach(item => {
@@ -131,41 +128,50 @@ export class CbpTreeviewItem {
         id={this.uid}
         aria-selected={this.checked}
       >
-        <span class="cbp-treeview-control">
-          {this.immediateChildren.length > 0 &&
+        <span class="cbp-treeview-item-control">
+          { this.immediateChildren.length > 0 &&
             <cbp-button
               color="secondary"
               fill="ghost"
-              class="cbp-treeview-toggle"
-              onClick={() => { this.toggleOpen() }}
+              class="cbp-treeview-item-toggle"
               expanded={this.open ? 'true' : 'false'}
-              aria-labelledby={`${this.uid}-checkbox`}
+              aria-labelledby={`${this.uid}-label`}
+              onClick={() => { this.toggleOpen() }}
             >
               <cbp-icon name="caret-down"></cbp-icon>
             </cbp-button>
           }
-          <cbp-checkbox
-            ref={(el) => this.checkbox = el as HTMLCbpCheckboxElement}
-            checked={this.checked}
-            indeterminate={this.indeterminate}
-            name={this.name}
-            value={this.value}
-            id={`${this.uid}-checkbox`}
-          >
-            <input
-              type="checkbox"
+          { this.selectable ?
+            <cbp-checkbox
+              name={this.name}
               value={this.value}
-            />
-            {this.label}
-            {this.immediateChildren.length > 0 && `(${this.immediateChildren.length})`}
-          </cbp-checkbox>
+              id={`${this.uid}-label`}
+              checked={this.checked}
+              indeterminate={this.indeterminate}
+              ref={(el) => this.checkbox = el as HTMLCbpCheckboxElement}
+            >
+              <input
+                type="checkbox"
+                value={this.value}
+              />
+              {this.label}
+              {this.immediateChildren.length > 0 && `(${this.immediateChildren.length})`}
+            </cbp-checkbox>
+            : 
+            <div
+              id={`${this.uid}-label`}
+            >
+              {this.label}
+              {this.immediateChildren.length > 0 && ` (${this.immediateChildren.length})`}
+            </div>
+          }
 
         </span>
         <div
-          class="cbp-treeview-item-content"
           role="group"
+          class="cbp-treeview-item-content"
         >
-          <slot></slot>
+          <slot />
         </div>
       </Host>
     );

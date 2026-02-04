@@ -7,7 +7,7 @@
  * @prop --cbp-treeview-expand-width: var(--cbp-space-6x)
  */
 :root {
-  --cbp-treeview-item-indent: 0;
+  --cbp-treeview-item-indent: 0; //1.5rem nested
   --cbp-treeview-indicator-spacing: 1.5rem;
   --cbp-treeview-connection-width: 2px;
   --cbp-treeview-connection-color: var(--cbp-color-gray-cool-20);
@@ -15,84 +15,85 @@
   --cbp-treeview-expand-width: var(--cbp-space-6x)
 }
 
-[data-cbp-theme=light] cbp-treeview-item[context*=dark]:not([context=light-always]),
-[data-cbp-theme=dark] cbp-treeview-item:not([context=dark-inverts]):not([context=light-always]) {
-
-  --cbp-tooltip-color-bg: var(--cbp-tooltip-color-bg-dark);
- }
-
 cbp-treeview-item {
   display: block;
   padding-inline-start: var(--cbp-treeview-item-indent);
   margin-inline-start: calc((var(--cbp-treeview-expand-width) - var(--cbp-treeview-connection-width)) / 2);
 
-  .cbp-treeview-control{
+  .cbp-treeview-item-control {
+    --cbp-checkbox-margin: 0; // remove bottom margin for vertical alignment
+
     display: inline-flex;
     min-height: var(--cbp-space-11x);
     align-items: center;
-  
 
-    .cbp-treeview-toggle button{
+    .cbp-treeview-item-toggle {
       --cbp-button-height: var(--cbp-treeview-expand-width);
       --cbp-button-width: var(--cbp-treeview-expand-width);
       --cbp-button-min-height: var(--cbp-button-height)
     }
-    
-    cbp-checkbox{
+
+    cbp-checkbox {
       flex-shrink: 1;
-      label{
+      label {
         padding-block: var(--cbp-space-1x);
       }
     }
-    
-    cbp-button:not(.cbp-treeview-toggle){ //Techdebt: slotted buttons not part of MVP, needs to be centered with text of treeview-item
-      --cbp-button-height: var(--cbp-space-6x);
-    }
 
-    & > *{
+    & > * {
       flex-shrink: 0;
       margin-inline-end: var(--cbp-space-3x);
-    } 
+    }
   }
 
-  &:not([open]) .cbp-treeview-item-content{
+  .cbp-treeview-item-content {
     display: none;
   }
 
-
   &[open] {
-    & > .cbp-treeview-control{
-      .cbp-treeview-toggle cbp-icon{
+    & > .cbp-treeview-item-control {
+      .cbp-treeview-item-toggle cbp-icon {
         transform: rotate(180deg)
+      }
+    }
+
+    & > .cbp-treeview-item-content {
+      display: block;
+  }
+
+
+  }
+
+  // If the item has no children, adjust the indentation to account for the lack of expand button
+  &:not(:has(.cbp-treeview-item-toggle)) {
+    padding-inline-start: calc(var(--cbp-treeview-item-indent) + var(--cbp-treeview-expand-width));
+
+    .cbp-treeview-item-control {
+      &::before {
+        left: calc((var(--cbp-treeview-connection-width) + var(--cbp-treeview-expand-width)) * -1);
+        width: calc(var(--cbp-treeview-item-indent) + var(--cbp-treeview-expand-width));
+      }
+
+      cbp-checkbox {
+        margin-inline-start: calc((var(--cbp-treeview-expand-width) / 2) * -1);
       }
     }
   }
 
-&:not(:has(.cbp-treeview-toggle)){
-  padding-inline-start: calc(var(--cbp-treeview-item-indent) + var(--cbp-treeview-expand-width));
-  .cbp-treeview-control{
-    &::before{
-      left: calc((var(--cbp-treeview-connection-width) + var(--cbp-treeview-expand-width)) * -1);
-      width: calc(var(--cbp-treeview-item-indent) + var(--cbp-treeview-expand-width));
-    }
-    cbp-checkbox{
-      margin-inline-start: calc((var(--cbp-treeview-expand-width) / 2) * -1);
-    }
-  }
-}
 
-
-  cbp-treeview-item{
+  // Nested items
+  cbp-treeview-item {
     border-left: var(--cbp-treeview-connection-width) solid var(--cbp-treeview-connection-color);
-    --cbp-treeview-item-indent: 1.5rem;
+    --cbp-treeview-item-indent: 1.5rem; // TechDebt: this should be the default value, not reassigned here.
 
-    .cbp-treeview-control{
-      --cbp-checkbox-margin: 0;
+    .cbp-treeview-item-control {
+      //--cbp-checkbox-margin: 0;
 
-      &::before{
+      &::before {
         content: '';
         display: inline-block;
         position: relative;
+        flex-shrink: 0;
         top: calc((var(--cbp-treeview-indicator-spacing) /2) * -1);
         left: calc(var(--cbp-treeview-connection-width) * -1);
         width: var(--cbp-treeview-item-indent);
@@ -104,7 +105,7 @@ cbp-treeview-item {
     }
   }
 
-  &:last-child{
+  &:last-child {
     border-color: transparent;
   }
 }

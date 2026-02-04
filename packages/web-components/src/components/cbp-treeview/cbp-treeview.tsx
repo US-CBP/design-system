@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Host, h, Prop, Listen } from '@stencil/core';
+import { Component, Prop, Element, Listen, Event, EventEmitter, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'cbp-treeview',
@@ -6,47 +6,47 @@ import { Component, Element, Event, EventEmitter, Host, h, Prop, Listen } from '
 })
 
 /**
- * Treeview is used to display nested items in a parent/child relationship with the option of selecting or interacting with items 
+ * The Treeview component is used to display nested items in a parent/child relationship with the option of selecting or interacting with items.
  * 
- * @slot - Used to populate the children of treeview
+ * @slot - All child treeview items are placed in the default slot.
  */
 
 export class CbpTreeview {
 
   @Element() host: HTMLCbpTreeviewElement;
 
-  /**
-   * determines if the control renders with a checkbox as part of the treeview-item control
-   */
+  /** Specifies that the entire tree is selectable. Setting this property at this level overrides all child treeview items. */
   @Prop() selectable: boolean;
 
-  /**
-   * identifier to prefix the treeview-item control name
-   */
+  /** Specifies the name for all checkboxes in selectable treeviews, similar to a checklist. */
   @Prop() name: string
 
-  /**
-   * Label to be displayed in the control of the treeview.
-   */
+  /** Creates an accessible label for the treeview control if one has not been associated via `aria-labelledby`. */
   @Prop() accessibilityText: string;
 
-  /** Array of key/value pairs representing selected treeviewItems inside of the treeview*/
-  private selectedChildren = []
+    /** A custom event that rolls up all selected values and is emitted when any selectable item is changed. */
+  @Event() valueChange: EventEmitter;
 
-  @Event() treeviewSubmit: EventEmitter;
 
   @Listen('updateTreeviewItemParent')
   handleUpdateTreeviewItemParent(e) {
     if (e.detail.parent == null) {
-      let selectedItems = this.host.querySelectorAll("cbp-treeview-item[checked]") as unknown as HTMLCbpTreeviewItemElement[];
-      this.selectedChildren = [];
+      let values = [];
+      const selectedItems = Array.from(this.host.querySelectorAll("cbp-treeview-item[checked]")) as HTMLCbpTreeviewItemElement[];
+
+      // Roll up all selected name/value pairs only when both a name and value exist
       selectedItems.forEach((item) => {
-        this.selectedChildren.push([item.name, item.value])
+        const {name, value } = item;
+        if (!!name && !!value ) {
+          let itemValue = new Object; //{ name : value};
+          itemValue[name] = value;
+          values = [...values, itemValue ];
+        }
       })
 
-      this.treeviewSubmit.emit({
+      this.valueChange.emit({
         host: this.host,
-        selected: this.selectedChildren,
+        values: values,
         nativeEvent: e
       })
     }
@@ -54,11 +54,11 @@ export class CbpTreeview {
 
 
   componentWillLoad() {
-    let children = Array.from(this.host.querySelectorAll('cbp-treeview-item')) as HTMLCbpTreeviewItemElement[];
+    const children = Array.from(this.host.querySelectorAll('cbp-treeview-item')) as HTMLCbpTreeviewItemElement[];
     children.forEach((item) => {
-      item.name = this.name
-      item.selectable = this.selectable
-    })
+      if(this.name) item.name = this.name;
+      if(this.selectable) item.selectable = this.selectable;
+    });
   }
 
   render() {
@@ -68,7 +68,7 @@ export class CbpTreeview {
         aria-label={this.accessibilityText}
         aria-multiselectable={this.selectable ? "true" : "false"}
       >
-        <slot></slot>
+        <slot />
       </Host>
     );
   }
