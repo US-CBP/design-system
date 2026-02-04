@@ -55,11 +55,9 @@ export class CbpTreeviewItem {
    */
   @Prop() value: string;
 
-  @Event() updateParent: EventEmitter;
-  @Event() updatedTreeviewSelected: EventEmitter; //TODO: might need a different name
+  @Event() updateTreeviewItemParent: EventEmitter;
 
-
-  private children: HTMLCbpTreeviewItemElement[] = []
+  private immediateChildren: HTMLCbpTreeviewItemElement[] = []
   private allChildren: HTMLCbpTreeviewItemElement[] = [];
 
   private parent: HTMLCbpTreeviewItemElement;
@@ -79,58 +77,33 @@ export class CbpTreeviewItem {
       item.checked = checkbox.checked;
     })
 
-    this.updateParent.emit({
+    this.updateTreeviewItemParent.emit({
       host: this.host,
       parent: this.parent,
-      checked: checkbox.checked
     })
   }
 
-  @Listen('updateParent')
-  handleUpdateParent(e) {
-    if (e.detail.parent == null) {
-      e?.stopPropagation();
-
-      let selected = [];
-      for (let i = 0; i < this.allChildren.length; i++) {
-        if (this.allChildren[i].checked) {
-          selected.push(this.allChildren[i])
-        }
-      }
-
-      this.updatedTreeviewSelected.emit({
-        host: this.host,
-        selected: selected
-      })
-    }
+  @Listen('updateTreeviewItemParent')
+  handleUpdateTreeviewItemParent(e) {
     if (this.host == e.detail.parent) {
-      let selectedChildren = 0;
-      let indeterimateChild = false;
-
-      for (let i = 0; i < this.children.length; i++) {
-        if (this.children[i].checked) {
-          selectedChildren = selectedChildren + 1;
-        } else if (this.children[i].indeterminate) {
-          indeterimateChild = true;
+      setTimeout(() => { 
+        let selectedChildren = this.host.querySelectorAll("cbp-treeview-item[checked]").length;
+        if (this.allChildren.length == selectedChildren) {
+          this.checked = true;
+          this.indeterminate = false;
+        } else if (selectedChildren == 0) {
+          this.checked = false;
+          this.indeterminate = false;
+        } else {
+          this.checked = false;
+          this.indeterminate = true;
         }
-      }
 
-      if (this.allChildren.length == selectedChildren) {
-        this.host.checked = true;
-        this.host.indeterminate = false;
-      } else if (selectedChildren == 0 && !indeterimateChild) { 
-        this.host.checked = false;
-        this.host.indeterminate = false;
-      } else {
-        this.host.checked = false;
-        this.host.indeterminate = true;
-      }
-
-      this.updateParent.emit({
-        host: this.host,
-        parent: this.parent,
-        checked: this.host.querySelector('cbp-checkbox')
-      })
+        this.updateTreeviewItemParent.emit({
+          host: this.host,
+          parent: this.parent,
+        })
+      }, (50));
     }
   }
 
@@ -146,7 +119,7 @@ export class CbpTreeviewItem {
 
   componentWillLoad() {
     this.parent = this.host.parentElement.closest("cbp-treeview-item");
-    this.children = Array.from(this.host.querySelectorAll(':scope > cbp-treeview-item'));
+    this.immediateChildren = Array.from(this.host.querySelectorAll(':scope > cbp-treeview-item'));
     this.allChildren = Array.from(this.host.querySelectorAll('cbp-treeview-item'));
   }
 
@@ -159,7 +132,7 @@ export class CbpTreeviewItem {
         aria-selected={this.checked}
       >
         <span class="cbp-treeview-control">
-          {this.children.length > 0 &&
+          {this.immediateChildren.length > 0 &&
             <cbp-button
               color="secondary"
               fill="ghost"
@@ -184,7 +157,7 @@ export class CbpTreeviewItem {
               value={this.value}
             />
             {this.label}
-            {this.children.length > 0 && `(${this.children.length})`}
+            {this.immediateChildren.length > 0 && `(${this.immediateChildren.length})`}
           </cbp-checkbox>
 
         </span>

@@ -31,28 +31,31 @@ export class CbpTreeview {
   @Prop() accessibilityText: string;
 
   /** Array of key/value pairs representing selected treeviewItems inside of the treeview*/
-  private selectedChildren= []
+  private selectedChildren = []
 
   @Event() treeviewSubmit: EventEmitter;
 
-  @Listen('updatedTreeviewSelected')
-  handleUpdatedTreeviewSelected(e) {
-    this.selectedChildren = [];
-    e.detail.selected.forEach((item) => {
-      this.selectedChildren.push([item.name, item.value])
-    })
+  @Listen('updateTreeviewItemParent')
+  handleUpdateTreeviewItemParent(e) {
+    if (e.detail.parent == null) {
+      let selectedItems = this.host.querySelectorAll("cbp-treeview-item[checked]") as unknown as HTMLCbpTreeviewItemElement[];
+      this.selectedChildren = [];
+      selectedItems.forEach((item) => {
+        this.selectedChildren.push([item.name, item.value])
+      })
 
-    this.treeviewSubmit.emit({
-      host: this.host,
-      selected: this.selectedChildren,
-      nativeEvent: e
-    })
-
+      this.treeviewSubmit.emit({
+        host: this.host,
+        selected: this.selectedChildren,
+        nativeEvent: e
+      })
+    }
   }
 
-  componentWillLoad(){
+
+  componentWillLoad() {
     let children = Array.from(this.host.querySelectorAll('cbp-treeview-item')) as HTMLCbpTreeviewItemElement[];
-    children.forEach((item) => { 
+    children.forEach((item) => {
       item.name = this.name
       item.selectable = this.selectable
     })
