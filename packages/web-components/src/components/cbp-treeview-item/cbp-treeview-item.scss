@@ -55,7 +55,7 @@ cbp-treeview-item {
     } 
   }
 
-  &:not([open]) .cbp-treeview-content{
+  &:not([open]) .cbp-treeview-item-content{
     display: none;
   }
 

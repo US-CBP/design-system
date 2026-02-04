@@ -1,4 +1,5 @@
 import { Component, Element, Event, EventEmitter, Host, h, Listen, Prop } from '@stencil/core';
+import { createNamespaceKey } from '../../utils/utils';
 
 @Component({
   tag: 'cbp-treeview-item',
@@ -12,68 +13,68 @@ import { Component, Element, Event, EventEmitter, Host, h, Listen, Prop } from '
  */
 
 export class CbpTreeviewItem {
-@Element() host: HTMLCbpTreeviewItemElement;
+  @Element() host: HTMLCbpTreeviewItemElement;
 
-/**
- * Label to be displayed in the control of the treeview item.
- */
-@Prop() label: string;
+  /**
+   * Label to be displayed in the control of the treeview item.
+   */
+  @Prop() label: string;
 
-/**
- * determines if the component is in an open or expanded state
- */
-@Prop({reflect: true, mutable: true}) open: boolean = false;
+  /**
+   * determines if the component is in an open or expanded state
+   */
+  @Prop({ reflect: true, mutable: true }) open: boolean = false;
 
-/**
- * determines if the control renders with a checkbox as part of the treeview-item control
- */
-@Prop({ reflect: true }) selectable: boolean;
+  /**
+   * determines if the control renders with a checkbox as part of the treeview-item control
+   */
+  @Prop({ reflect: true }) selectable: boolean;
 
-/**
- * used to determing if the treeviewItem is in a checked state
- */
-@Prop({reflect: true, mutable: true}) checked: boolean; 
+  /**
+   * used to determing if the treeviewItem is in a checked state
+   */
+  @Prop({ reflect: true, mutable: true }) checked: boolean;
 
-/**
- * used to determing if the treeviewItem is in an indeterminate state
- */
-@Prop({reflect: true, mutable: true}) indeterminate: boolean; 
+  /**
+   * used to determing if the treeviewItem is in an indeterminate state
+   */
+  @Prop({ reflect: true, mutable: true }) indeterminate: boolean;
 
-/**
- * name to be passed to the rendered checkbox prop
- */
-@Prop({mutable: true}) name: string;
+  /**
+   * name to be passed to the rendered checkbox prop
+   */
+  @Prop({ mutable: true }) name: string;
 
-/** 
- * Specifies a unique `ID` for the dialog, used to wire up the controls and accessibility features. 
- */
-@Prop({mutable: true}) uid: string;
+  /** 
+   * Specifies a unique `ID` for the dialog, used to wire up the controls and accessibility features. 
+   */
+  @Prop({ mutable: true }) uid: string = createNamespaceKey('cbp-treeview-item');
 
-/**
- * Sets the value for the checkbox rendered in treeviewItem
- */
-@Prop() checkboxValue: string;
+  /**
+   * Sets the value for the checkbox rendered in treeviewItem
+   */
+  @Prop() value: string;
 
-@Event() updateParent: EventEmitter;
-@Event() updatedState: EventEmitter; //TODO: might need a different name
+  @Event() updateParent: EventEmitter;
+  @Event() updatedTreeviewSelected: EventEmitter; //TODO: might need a different name
 
 
-private children = [] as HTMLCbpTreeviewItemElement[];
-private allChildren = [] as HTMLCbpTreeviewItemElement[];
+  private children: HTMLCbpTreeviewItemElement[] = []
+  private allChildren: HTMLCbpTreeviewItemElement[] = [];
 
-private parent;
+  private parent: HTMLCbpTreeviewItemElement;
 
-private checkbox !: HTMLCbpCheckboxElement
+  private checkbox !: HTMLCbpCheckboxElement
 
-@Listen('stateChanged')
-  handleCheck(e = undefined){
+  @Listen('stateChanged')
+  handleCheck(e = undefined) {
     e?.stopPropagation();
 
     let checkbox = e?.target || this.checkbox;
 
     this.checked = checkbox.checked;
 
-    this.allChildren.forEach(item =>{
+    this.allChildren.forEach(item => {
       item.indeterminate = false;
       item.checked = checkbox.checked;
     })
@@ -84,132 +85,115 @@ private checkbox !: HTMLCbpCheckboxElement
       checked: checkbox.checked
     })
   }
-    
+
   @Listen('updateParent')
-    handleUpdateParent(e){
-      
-      if(e.detail.parent == null){ 
-        e?.stopPropagation();
+  handleUpdateParent(e) {
+    if (e.detail.parent == null) {
+      e?.stopPropagation();
 
-        let selected = [];
-        for(let i = 0; i < this.allChildren.length; i++){ 
-          if(this.allChildren[i].checked){
-            selected.push(this.allChildren[i])
-          }
+      let selected = [];
+      for (let i = 0; i < this.allChildren.length; i++) {
+        if (this.allChildren[i].checked) {
+          selected.push(this.allChildren[i])
         }
-
-        this.updatedState.emit({
-          host: this.host,
-          selected: selected
-        })
       }
 
-      if(this.host == e.detail.parent){
-
+      this.updatedTreeviewSelected.emit({
+        host: this.host,
+        selected: selected
+      })
+    }
+    if (this.host == e.detail.parent) {
       let selectedChildren = 0;
-      let allSelectedChildren = 0;
       let indeterimateChild = false;
 
-      for (let i = 0; i < this.children.length; i++){
-        if(this.children[i].checked){ 
-        selectedChildren= selectedChildren + 1;
-        }else if(this.children[i].indeterminate){
+      for (let i = 0; i < this.children.length; i++) {
+        if (this.children[i].checked) {
+          selectedChildren = selectedChildren + 1;
+        } else if (this.children[i].indeterminate) {
           indeterimateChild = true;
         }
       }
 
-      for(let i = 0; i < this.allChildren.length; i++){
-        if(this.allChildren[i].checked){
-          allSelectedChildren = allSelectedChildren + 1;
-        }
+      if (this.allChildren.length == selectedChildren) {
+        this.host.checked = true;
+        this.host.indeterminate = false;
+      } else if (selectedChildren == 0 && !indeterimateChild) { 
+        this.host.checked = false;
+        this.host.indeterminate = false;
+      } else {
+        this.host.checked = false;
+        this.host.indeterminate = true;
       }
 
-    if(this.children.length == selectedChildren && this.allChildren.length == allSelectedChildren){
-      this.checkbox.checked = true;
-      this.host.checked = true
-      this.checkbox.indeterminate = false;
-      this.host.indeterminate = false;
-    }else if(this.children.length > selectedChildren && selectedChildren != 0 && this.allChildren.length > allSelectedChildren || indeterimateChild){
-      this.checkbox.checked = false;
-      this.host.checked = false;
-      this.checkbox.indeterminate = true;
-      this.host.indeterminate = true;
-    }else{
-      this.checkbox.checked = false;
-      this.host.checked = false;
-      this.checkbox.indeterminate = false;
-      this.host.indeterminate = false;
-    }
-
-    this.updateParent.emit({
-      host: this.host,
-      parent: this.parent,
-      checked: this.host.querySelector('cbp-checkbox')
-    })
+      this.updateParent.emit({
+        host: this.host,
+        parent: this.parent,
+        checked: this.host.querySelector('cbp-checkbox')
+      })
     }
   }
 
-  toggleOpen(){
+  toggleOpen() {
     this.open === false ? this.open = true : this.open = false;
   }
 
-componentDidLoad(){
-  if(this.checked){
-    this.handleCheck()
+  componentDidLoad() {
+    if (this.checked) {
+      this.handleCheck()
+    }
   }
-}
 
-  componentWillLoad(){ 
+  componentWillLoad() {
     this.parent = this.host.parentElement.closest("cbp-treeview-item");
     this.children = Array.from(this.host.querySelectorAll(':scope > cbp-treeview-item'));
     this.allChildren = Array.from(this.host.querySelectorAll('cbp-treeview-item'));
-
-    this.name ??= this.host.closest('cbp-treeview').name
-    this.uid ??= this.host.closest('cbp-treeview').uid
   }
 
   render() {
-  
+
     return (
       <Host
-        role = "treeitem"
-        id = {this.uid}
-        aria-selected = {this.checkbox}
+        role="treeitem"
+        id={this.uid}
+        aria-selected={this.checked}
       >
         <span class="cbp-treeview-control">
-          {this.children.length > 0 && 
+          {this.children.length > 0 &&
             <cbp-button
               color="secondary"
               fill="ghost"
               class="cbp-treeview-toggle"
-              onClick={() => {this.toggleOpen()}}
-              aria-labelledby = {`${this.uid}-checkbox`}
+              onClick={() => { this.toggleOpen() }}
+              expanded={this.open ? 'true' : 'false'}
+              aria-labelledby={`${this.uid}-checkbox`}
             >
               <cbp-icon name="caret-down"></cbp-icon>
             </cbp-button>
           }
-            <cbp-checkbox 
-              ref={(el) => this.checkbox = el as HTMLCbpCheckboxElement}
-              checked = {this.checked}
-              indeterminate = {this.indeterminate}
-              name={this.name}
-              id={`${this.uid}-checkbox`}
-            >
-              <input 
-                type="checkbox"
-                value={this.checkboxValue}
-              />
-                {this.label}
-                {this.children.length > 0 && `(${this.children.length})`}
-            </cbp-checkbox>
-          
-        </span>
-          <div 
-            class="cbp-treeview-content" 
-            role="group"  
+          <cbp-checkbox
+            ref={(el) => this.checkbox = el as HTMLCbpCheckboxElement}
+            checked={this.checked}
+            indeterminate={this.indeterminate}
+            name={this.name}
+            value={this.value}
+            id={`${this.uid}-checkbox`}
           >
-            <slot></slot>
-          </div>
+            <input
+              type="checkbox"
+              value={this.value}
+            />
+            {this.label}
+            {this.children.length > 0 && `(${this.children.length})`}
+          </cbp-checkbox>
+
+        </span>
+        <div
+          class="cbp-treeview-item-content"
+          role="group"
+        >
+          <slot></slot>
+        </div>
       </Host>
     );
   }

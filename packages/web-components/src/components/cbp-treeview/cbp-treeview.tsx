@@ -12,55 +12,58 @@ import { Component, Element, Event, EventEmitter, Host, h, Prop, Listen } from '
  */
 
 export class CbpTreeview {
-  
+
   @Element() host: HTMLCbpTreeviewElement;
-  
+
   /**
    * determines if the control renders with a checkbox as part of the treeview-item control
    */
-  @Prop({ reflect: true }) selectable: boolean;
+  @Prop() selectable: boolean;
 
   /**
-   * unique identifier to prefix the treeview-item control name
+   * identifier to prefix the treeview-item control name
    */
   @Prop() name: string
 
   /**
    * Label to be displayed in the control of the treeview.
    */
-  @Prop({ reflect: true}) accessibilityText: string;
+  @Prop() accessibilityText: string;
 
-  /**
-   * text to be rendered as UID for the component
-   */
-  @Prop() uid: string
-
-  /** Array of selected treeviewItems inside of the treeview*/
-  private selectedChildren = [] as HTMLCbpTreeviewItemElement[];
+  /** Array of key/value pairs representing selected treeviewItems inside of the treeview*/
+  private selectedChildren= []
 
   @Event() treeviewSubmit: EventEmitter;
 
-  @Listen('updatedState')
-  handleUpdatedState(e){
-    let combined = [...this.selectedChildren, ...e.detail.selected];
-    this.selectedChildren = combined.filter((item, index) => {
-      return combined.indexOf(item) === index;
-    });
-  
+  @Listen('updatedTreeviewSelected')
+  handleUpdatedTreeviewSelected(e) {
+    this.selectedChildren = [];
+    e.detail.selected.forEach((item) => {
+      this.selectedChildren.push([item.name, item.value])
+    })
+
     this.treeviewSubmit.emit({
       host: this.host,
       selected: this.selectedChildren,
       nativeEvent: e
     })
+
   }
 
+  componentWillLoad(){
+    let children = Array.from(this.host.querySelectorAll('cbp-treeview-item')) as HTMLCbpTreeviewItemElement[];
+    children.forEach((item) => { 
+      item.name = this.name
+      item.selectable = this.selectable
+    })
+  }
 
   render() {
     return (
       <Host
         role="tree"
         aria-label={this.accessibilityText}
-        uid={this.uid}
+        aria-multiselectable={this.selectable ? "true" : "false"}
       >
         <slot></slot>
       </Host>
