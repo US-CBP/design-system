@@ -1,4 +1,6 @@
 /**
+ * @prop --cbp-treeview-item-color: var(--cbp-color-text-darkest);
+ * @prop --cbp-treeview-item-color-dark: var(--cbp-color-text-lightest);
  * @prop --cbp-treeview-item-indent: 0;
  * @prop --cbp-treeview-indicator-spacing: 1.5rem;
  * @prop --cbp-treeview-connection-width: 2px;
@@ -7,6 +9,8 @@
  * @prop --cbp-treeview-expand-width: var(--cbp-space-6x)
  */
 :root {
+  --cbp-treeview-item-color: var(--cbp-color-text-darkest);
+  --cbp-treeview-item-color-dark: var(--cbp-color-text-lightest);
   --cbp-treeview-item-indent: 0; //1.5rem nested
   --cbp-treeview-indicator-spacing: 1.5rem;
   --cbp-treeview-connection-width: 2px;
@@ -14,6 +18,15 @@
   --cbp-treeview-connection-color-dark: var(--cbp-color-gray-cool-40);
   --cbp-treeview-expand-width: var(--cbp-space-6x)
 }
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+[data-cbp-theme=light] cbp-treeview-item[context*=dark],
+[data-cbp-theme=dark] cbp-treeview-item:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-treeview-item-color: var(--cbp-treeview-item-color-dark);
+}
+
 
 cbp-treeview-item {
   display: block;

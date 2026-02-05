@@ -60,6 +60,15 @@ export class CbpTreeviewItem {
    */
   @Prop() value: string;
 
+  /** 
+   * Specifies the context of the component as it applies to the visual design and whether it 
+   * inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. 
+   * This property is passed down from the parent `cbp-treeview` and does not need to be set at this level.
+   */
+  @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
+
+
+  
   @Event() updateTreeviewItemParent: EventEmitter;
 
 
@@ -136,6 +145,7 @@ export class CbpTreeviewItem {
               class="cbp-treeview-item-toggle"
               expanded={this.open ? 'true' : 'false'}
               aria-labelledby={`${this.uid}-label`}
+              context={this.context}
               onClick={() => { this.toggleOpen() }}
             >
               <cbp-icon name="caret-down"></cbp-icon>
@@ -148,6 +158,7 @@ export class CbpTreeviewItem {
               id={`${this.uid}-label`}
               checked={this.checked}
               indeterminate={this.indeterminate}
+              context={this.context}
               ref={(el) => this.checkbox = el as HTMLCbpCheckboxElement}
             >
               <input

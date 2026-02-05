@@ -1,5 +1,5 @@
 import { Component, Prop, Element, Listen, Event, EventEmitter, Host, h } from '@stencil/core';
-
+import { setCSSProps } from '../../utils/utils';
 @Component({
   tag: 'cbp-treeview',
   styleUrl: 'cbp-treeview.scss',
@@ -24,7 +24,16 @@ export class CbpTreeview {
   /** Creates an accessible label for the treeview control if one has not been associated via `aria-labelledby`. */
   @Prop() accessibilityText: string;
 
-    /** A custom event that rolls up all selected values and is emitted when any selectable item is changed. */
+  /** 
+   * Specifies the context of the component (and its child items) as it applies to the visual design and whether it 
+   * inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. 
+   */
+  @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
+
+  /** Supports adding inline styles as an object */
+  @Prop() sx: any = {};
+
+  /** A custom event that rolls up all selected values and is emitted when any selectable item is changed. */
   @Event() valueChange: EventEmitter;
 
 
@@ -52,12 +61,19 @@ export class CbpTreeview {
     }
   }
 
-
   componentWillLoad() {
     const children = Array.from(this.host.querySelectorAll('cbp-treeview-item')) as HTMLCbpTreeviewItemElement[];
     children.forEach((item) => {
       if(this.name) item.name = this.name;
       if(this.selectable) item.selectable = this.selectable;
+      item.context = this.context;
+    });
+
+    if (typeof this.sx == 'string') {
+      this.sx = JSON.parse(this.sx) || {};
+    }
+    setCSSProps(this.host, {
+      ...this.sx,
     });
   }
 
