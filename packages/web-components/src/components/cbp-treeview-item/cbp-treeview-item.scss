@@ -26,6 +26,7 @@ cbp-treeview-item {
     display: inline-flex;
     min-height: var(--cbp-space-11x);
     align-items: center;
+    font-weight: var(--cbp-font-weight-bold);
 
     .cbp-treeview-item-toggle {
       --cbp-button-height: var(--cbp-treeview-expand-width);
@@ -65,7 +66,7 @@ cbp-treeview-item {
   }
 
   // If the item has no children, adjust the indentation to account for the lack of expand button
-  &:not(:has(.cbp-treeview-item-toggle)) {
+  cbp-treeview[selectable="true"] &:not(:has(.cbp-treeview-item-toggle)) {
     padding-inline-start: calc(var(--cbp-treeview-item-indent) + var(--cbp-treeview-expand-width));
 
     .cbp-treeview-item-control {

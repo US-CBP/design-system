@@ -12,9 +12,6 @@ export default {
         //     description: 'Determines if the treeview will render with checkboxs',
         //     control: 'boolean'
         // },
-        uid: {
-            control: 'text'
-        },
         context: {
             control: 'select',
             options: ["light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -40,13 +37,12 @@ function generateTreeviewitems(tree) {
     return html.join('');
 }
 
-const Template = ({ tree, name, selectable, accessibilityText, uid, context, sx }) => {
+const Template = ({ tree, name, selectable, accessibilityText, context, sx }) => {
     return `
     <cbp-treeview
         selectable=${selectable}
         accessibility-text="${accessibilityText}"
         name=${name}
-        uid=${uid}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
@@ -158,7 +154,6 @@ Treeview.args = {
 
     ],
     name: 'treeviewExample',
-    uid: 'treeview',
     selectable: true,
     accessibilityText: 'Treeview storybook example'
 }
