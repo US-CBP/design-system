@@ -33,38 +33,54 @@ export class CbpTreeview {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-  /** A custom event that rolls up all selected values and is emitted when any selectable item is changed. */
+  /**
+   * A custom event that rolls up all selected values and is emitted when any selectable item is changed. 
+   * Only selectable items that have both a name and value specified will be included.
+   * If all items/checkboxes have the same name, specified by the `cbp-treeview`, then the values are returned as a simple array.
+   * If items/checkboxes have individually specified names, values are returned as an array of objects containing name-value pairs.
+   */
   @Event() valueChange: EventEmitter;
 
 
   @Listen('updateTreeviewItemParent')
   handleUpdateTreeviewItemParent(e) {
-    if (e.detail.parent == null) {
-      let values = [];
-      const selectedItems = Array.from(this.host.querySelectorAll("cbp-treeview-item[checked]")) as HTMLCbpTreeviewItemElement[];
+    //console.log(`Treeview received updateTreeviewItemParent event`, e.target, e);
+    let values = [];
+    const selectedItems = Array.from(this.host.querySelectorAll("cbp-treeview-item[checked]")) as HTMLCbpTreeviewItemElement[];
 
-      // Roll up all selected name/value pairs only when both a name and value exist
+    // If a name is specified at this level, then roll the values into a simple array
+    if(this.name != undefined) {
+      selectedItems.forEach((item) => {
+        if (item.value != undefined ) values = [...values, item.value ];
+      });
+    }
+    // Roll up all selected name/value pairs only when both a name and value exist
+    else {
       selectedItems.forEach((item) => {
         const {name, value } = item;
-        if (!!name && !!value ) {
+        if (name != undefined && value != undefined) {
           let itemValue = new Object; //{ name : value};
           itemValue[name] = value;
           values = [...values, itemValue ];
         }
-      })
-
-      this.valueChange.emit({
-        host: this.host,
-        values: values,
-        nativeEvent: e
-      })
+      });
     }
+
+    // Emit a rollup of all selected values as an array if same-named or name-value pairs.
+    this.valueChange.emit({
+      host: this.host,
+      name: this.name,
+      values: values,
+      nativeEvent: e
+    })
   }
 
   componentWillLoad() {
     const children = Array.from(this.host.querySelectorAll('cbp-treeview-item')) as HTMLCbpTreeviewItemElement[];
+    
+    // Push down high-level props to all children, if specified
     children.forEach((item) => {
-      if(this.name) item.name = this.name;
+      if(this.name != undefined) item.name = this.name;
       if(this.selectable) item.selectable = this.selectable;
       item.context = this.context;
     });

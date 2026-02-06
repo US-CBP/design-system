@@ -30,6 +30,7 @@
 
 cbp-treeview-item {
   display: block;
+  color: var(--cbp-treeview-item-color);
   padding-inline-start: var(--cbp-treeview-item-indent);
   margin-inline-start: calc((var(--cbp-treeview-expand-width) - var(--cbp-treeview-connection-width)) / 2);
 
@@ -37,6 +38,7 @@ cbp-treeview-item {
     --cbp-checkbox-margin: 0; // remove bottom margin for vertical alignment
 
     display: inline-flex;
+    width: 100%;
     min-height: var(--cbp-space-11x);
     align-items: center;
     font-weight: var(--cbp-font-weight-bold);
@@ -58,9 +60,14 @@ cbp-treeview-item {
       flex-shrink: 0;
       margin-inline-end: var(--cbp-space-3x);
     }
+  
+    [slot=cbp-treeview-item-buttons] {
+      flex-grow: 1;
+      text-align: right;
+    }
   }
 
-  .cbp-treeview-item-content {
+  .cbp-treeview-item-children {
     display: none;
   }
 
@@ -71,7 +78,7 @@ cbp-treeview-item {
       }
     }
 
-    & > .cbp-treeview-item-content {
+    & > .cbp-treeview-item-children {
       display: block;
   }
 

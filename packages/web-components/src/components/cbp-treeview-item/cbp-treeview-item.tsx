@@ -7,58 +7,51 @@ import { createNamespaceKey } from '../../utils/utils';
 })
 
 /**
- * Treeview Items are used to display a single parent or selection for the cbp-treeview component
+ * The treeview items component represents a single node in the tree view. Treeview Items may be nested to create a hierarchy.
  * 
- * @slot - Used to populate the children of treeview item
+ * @slot - Nested child treeview items are placed in the default slot.
+ * @slot cbp-tree-item-buttons - Optionally slot action buttons related to this treeview item in this named slot.
  */
 export class CbpTreeviewItem {
 
   private parent: HTMLCbpTreeviewItemElement;
-  private immediateChildren: HTMLCbpTreeviewItemElement[] = []
+  private immediateChildren: HTMLCbpTreeviewItemElement[] = [];
   private allChildren: HTMLCbpTreeviewItemElement[] = [];
-  private checkbox !: HTMLCbpCheckboxElement
+  private checkbox !: HTMLCbpCheckboxElement; 
 
   @Element() host: HTMLCbpTreeviewItemElement;
 
-  /**
-   * Label to be displayed in the control of the treeview item.
-   */
+
+  /** Specifies the label to be displayed in the treeview item control. For selectable items, this becomes the checkbox label. */
   @Prop() label: string;
 
-  /**
-   * determines if the component is in an open or expanded state
-   */
+  /** Specifies whether the item, if a parent to nested items, is open/expanded. */
   @Prop({ reflect: true, mutable: true }) open: boolean = false;
 
-  /**
-   * determines if the control renders with a checkbox as part of the treeview-item control
+  /** 
+   * Specifies whether this item is selectable, and if so renders a checkbox within the item.
+   * This property can be set on the parent `cbp-treeview` component to be applied to all treeview items.
    */
   @Prop({ reflect: true }) selectable: boolean;
 
-  /**
-   * used to determing if the treeviewItem is in a checked state
-   */
-  @Prop({ reflect: true, mutable: true }) checked: boolean;
-
-  /**
-   * used to determing if the treeviewItem is in an indeterminate state
-   */
-  @Prop({ reflect: true, mutable: true }) indeterminate: boolean;
-
-  /**
-   * name to be passed to the rendered checkbox prop
-   */
+    /** Specifies a name for a selectable item's checkbox. */
   @Prop({ mutable: true }) name: string;
 
+  /** Specifies the value for a selectable item's checkbox and to pass in the `cbp-treeview`'s custom event emitter. */
+  @Prop() value: string;
+
+  /** Specifies whether a selectable item (and its rendered checkbox) is in a checked state. */
+  @Prop({ reflect: true, mutable: true }) checked: boolean;
+
+  /** Specifies whether a selectable item (and its rendered checkbox) is in an indeterminate state. This logic is handled internally and should not need to be set manually. */
+  @Prop({ reflect: true, mutable: true }) indeterminate: boolean;
+
   /** 
-   * Specifies a unique `ID` for the dialog, used to wire up the controls and accessibility features. 
+   * Specifies a unique `id` for the treeview item, used to wire up the controls and accessibility features. 
+   * This property is not required and will auto-generate an `id` if none is specified.
    */
   @Prop({ mutable: true }) uid: string = createNamespaceKey('cbp-treeview-item');
 
-  /**
-   * Sets the value for the checkbox rendered in treeviewItem
-   */
-  @Prop() value: string;
 
   /** 
    * Specifies the context of the component as it applies to the visual design and whether it 
@@ -71,10 +64,11 @@ export class CbpTreeviewItem {
   
   @Event() updateTreeviewItemParent: EventEmitter;
 
-
+  // listen to the checkbox's stateChange event emitter to update this treeview item (and its children).
   @Listen('stateChanged')
   handleCheck(e = undefined) {
     e?.stopPropagation();
+
     let checkbox = e?.target || this.checkbox;
     this.checked = checkbox.checked;
 
@@ -83,28 +77,41 @@ export class CbpTreeviewItem {
       item.checked = checkbox.checked;
     })
 
+    // Emit an event up to the next parent to evaluate its checked/indeterminate state.
     this.updateTreeviewItemParent.emit({
       host: this.host,
       parent: this.parent,
     })
   }
 
+  // listen to child item's event emitter to evaluate the checked/indeterminate state of this parent item.
   @Listen('updateTreeviewItemParent')
   handleUpdateTreeviewItemParent(e) {
-    if (this.host == e.detail.parent) {
+    // Only the immediate parent should take action on this event.
+    if(this.host === e.detail.parent) {
+      //console.log(`${this.label} received updateTreeviewItemParent event`, this.host, e);
+      e?.stopPropagation();
+
+      // A small timeout is necessary to allow children to re-render before querying their attributes
       setTimeout(() => { 
-        let selectedChildren = this.host.querySelectorAll("cbp-treeview-item[checked]").length;
-        if (this.allChildren.length == selectedChildren) {
+        let selectedChildren = Array.from(this.host.querySelectorAll("cbp-treeview-item[checked]"));
+        // if all children are checked, then this parent should be checked.
+        if (this.allChildren.length == selectedChildren.length) {
           this.checked = true;
           this.indeterminate = false;
-        } else if (selectedChildren == 0) {
+        }
+        // if no children are checked, then this parent should be unchecked.
+        else if (selectedChildren.length == 0) {
           this.checked = false;
           this.indeterminate = false;
-        } else {
+        }
+        // if some (but not all) children are checked, then this parent is indeterminate (and checked=false).
+        else {
           this.checked = false;
           this.indeterminate = true;
         }
 
+        // Emit the event up to the next parent
         this.updateTreeviewItemParent.emit({
           host: this.host,
           parent: this.parent,
@@ -117,27 +124,26 @@ export class CbpTreeviewItem {
     this.open === false ? this.open = true : this.open = false;
   }
 
-  componentDidLoad() {
-    if (this.checked) {
-      this.handleCheck()
-    }
-  }
-
   componentWillLoad() {
     this.parent = this.host.parentElement.closest("cbp-treeview-item");
     this.immediateChildren = Array.from(this.host.querySelectorAll(':scope > cbp-treeview-item'));
     this.allChildren = Array.from(this.host.querySelectorAll('cbp-treeview-item'));
   }
 
-  render() {
+  componentDidLoad() {
+    if (this.checked) {
+      this.handleCheck()
+    }
+  }
 
+  render() {
     return (
       <Host
         role="treeitem"
         id={this.uid}
-        aria-selected={this.checked}
+        aria-selected={ this.selectable ? `"${this.checked}"` : false}
       >
-        <span class="cbp-treeview-item-control">
+        <div class="cbp-treeview-item-control">
           { this.immediateChildren.length > 0 &&
             <cbp-button
               color="secondary"
@@ -157,7 +163,7 @@ export class CbpTreeviewItem {
               value={this.value}
               id={`${this.uid}-label`}
               checked={this.checked}
-              indeterminate={this.indeterminate}
+              indeterminate={this.checked ? false : this.indeterminate}
               context={this.context}
               ref={(el) => this.checkbox = el as HTMLCbpCheckboxElement}
             >
@@ -166,22 +172,17 @@ export class CbpTreeviewItem {
                 value={this.value}
               />
               {this.label}
-              {this.immediateChildren.length > 0 && `(${this.immediateChildren.length})`}
+              {this.immediateChildren.length > 0 && ` (${this.immediateChildren.length})`}
             </cbp-checkbox>
             : 
-            <div
-              id={`${this.uid}-label`}
-            >
+            <div id={`${this.uid}-label`}>
               {this.label}
               {this.immediateChildren.length > 0 && ` (${this.immediateChildren.length})`}
             </div>
           }
-
-        </span>
-        <div
-          role="group"
-          class="cbp-treeview-item-content"
-        >
+          <slot name="cbp-treeview-item-buttons" />
+        </div>
+        <div role="group" class="cbp-treeview-item-children">
           <slot />
         </div>
       </Host>

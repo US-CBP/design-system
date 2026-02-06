@@ -26,9 +26,9 @@ function generateTreeviewitems(tree) {
   const html = tree.map(({ label, value, children, checked }) => {
     return `
       <cbp-treeview-item
-          label="${label}"
-          ${checked ? 'checked' : ''}
-          value="${value}"
+        label="${label}"
+        ${checked ? 'checked' : ''}
+        value="${value}"
       >
         ${children ? generateTreeviewitems(children) : ''}
       </cbp-treeview-item>`;
@@ -36,7 +36,8 @@ function generateTreeviewitems(tree) {
   return html.join('');
 }
 
-const Template = ({ tree, name, selectable, accessibilityText, context, sx }) => {
+
+const Template = ({ treeItems, name, selectable, accessibilityText, context, sx }) => {
   return `
     <cbp-treeview
       ${selectable ? 'selectable' : ''}
@@ -45,7 +46,7 @@ const Template = ({ tree, name, selectable, accessibilityText, context, sx }) =>
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      ${generateTreeviewitems(tree)}
+      ${generateTreeviewitems(treeItems)}
     </cbp-treeview>
   `;
 };
@@ -55,7 +56,7 @@ Treeview.args = {
   accessibilityText: 'Treeview storybook example',
   name: 'treeitem',
   selectable: true,
-  tree: [
+  treeItems: [
     {
       label: 'Parent Level A 1',
       value: 'a1',
