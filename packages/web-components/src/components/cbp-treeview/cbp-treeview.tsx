@@ -44,35 +44,43 @@ export class CbpTreeview {
 
   @Listen('updateTreeviewItemParent')
   handleUpdateTreeviewItemParent(e) {
-    //console.log(`Treeview received updateTreeviewItemParent event`, e.target, e);
-    let values = [];
-    const selectedItems = Array.from(this.host.querySelectorAll("cbp-treeview-item[checked]")) as HTMLCbpTreeviewItemElement[];
+    // Only process this event after it has cascaded all the way up the tree
+    if (e.detail.parent == null) {
+      e.stopPropagation();
+      //console.log(`Treeview received updateTreeviewItemParent event`, e.target, e);
 
-    // If a name is specified at this level, then roll the values into a simple array
-    if(this.name != undefined) {
-      selectedItems.forEach((item) => {
-        if (item.value != undefined ) values = [...values, item.value ];
-      });
-    }
-    // Roll up all selected name/value pairs only when both a name and value exist
-    else {
-      selectedItems.forEach((item) => {
-        const {name, value } = item;
-        if (name != undefined && value != undefined) {
-          let itemValue = new Object; //{ name : value};
-          itemValue[name] = value;
-          values = [...values, itemValue ];
+      // Give the children time to re-render updates before querying for selected items.
+      setTimeout( () => {
+        let values = [];
+        const selectedItems = Array.from(this.host.querySelectorAll("cbp-treeview-item[checked]")) as HTMLCbpTreeviewItemElement[];
+
+        // If a name is specified at this level, then roll the values into a simple array
+        if(this.name != undefined) {
+          selectedItems.forEach((item) => {
+            if (item.value != undefined ) values = [...values, item.value ];
+          });
         }
-      });
-    }
+        // Roll up all selected name/value pairs only when both a name and value exist
+        else {
+          selectedItems.forEach((item) => {
+            const {name, value } = item;
+            if (name != undefined && value != undefined) {
+              let itemValue = new Object; //{ name : value};
+              itemValue[name] = value;
+              values = [...values, itemValue ];
+            }
+          });
+        }
 
-    // Emit a rollup of all selected values as an array if same-named or name-value pairs.
-    this.valueChange.emit({
-      host: this.host,
-      name: this.name,
-      values: values,
-      nativeEvent: e
-    })
+        // Emit a rollup of all selected values as an array if same-named or name-value pairs.
+        this.valueChange.emit({
+          host: this.host,
+          name: this.name,
+          values: values,
+          nativeEvent: e
+        });
+      }, 50);
+    }
   }
 
   componentWillLoad() {

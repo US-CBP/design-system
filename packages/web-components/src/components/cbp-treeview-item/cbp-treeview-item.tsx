@@ -60,9 +60,12 @@ export class CbpTreeviewItem {
    */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
 
-
-  
+  /** Custom event emitted to the parent treeview item to re-evaluate its checked/indeterminate state based on actions below it. */
   @Event() updateTreeviewItemParent: EventEmitter;
+
+
+  // TechDebt: probably need a @Watch on `checked` to handle programmatic updated to items.
+
 
   // listen to the checkbox's stateChange event emitter to update this treeview item (and its children).
   @Listen('stateChanged')
@@ -71,17 +74,18 @@ export class CbpTreeviewItem {
 
     let checkbox = e?.target || this.checkbox;
     this.checked = checkbox.checked;
+    this.indeterminate = false; // if user interaction set the checkbox as checked/unchecked, then it's not indeterminate
 
     this.allChildren.forEach(item => {
       item.indeterminate = false;
       item.checked = checkbox.checked;
-    })
+    });
 
     // Emit an event up to the next parent to evaluate its checked/indeterminate state.
     this.updateTreeviewItemParent.emit({
       host: this.host,
       parent: this.parent,
-    })
+    });
   }
 
   // listen to child item's event emitter to evaluate the checked/indeterminate state of this parent item.
@@ -116,7 +120,7 @@ export class CbpTreeviewItem {
           host: this.host,
           parent: this.parent,
         })
-      }, (50));
+      }, 50);
     }
   }
 
@@ -141,7 +145,7 @@ export class CbpTreeviewItem {
       <Host
         role="treeitem"
         id={this.uid}
-        aria-selected={ this.selectable ? `"${this.checked}"` : false}
+        aria-selected={ this.selectable ? `${this.checked}` : false}
       >
         <div class="cbp-treeview-item-control">
           { this.immediateChildren.length > 0 &&
@@ -149,7 +153,7 @@ export class CbpTreeviewItem {
               color="secondary"
               fill="ghost"
               class="cbp-treeview-item-toggle"
-              expanded={this.open ? 'true' : 'false'}
+              expanded={`${this.open}`}
               aria-labelledby={`${this.uid}-label`}
               context={this.context}
               onClick={() => { this.toggleOpen() }}

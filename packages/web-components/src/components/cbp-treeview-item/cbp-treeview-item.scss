@@ -11,7 +11,7 @@
 :root {
   --cbp-treeview-item-color: var(--cbp-color-text-darkest);
   --cbp-treeview-item-color-dark: var(--cbp-color-text-lightest);
-  --cbp-treeview-item-indent: 0; //1.5rem nested
+  --cbp-treeview-item-indent: 0; //1.5rem nested; TechDebt: this should use usable as part of the API, but current implementation prevents it.
   --cbp-treeview-indicator-spacing: 1.5rem;
   --cbp-treeview-connection-width: 2px;
   --cbp-treeview-connection-color: var(--cbp-color-gray-cool-20);
