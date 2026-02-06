@@ -1,0 +1,132 @@
+/**
+ * @prop --cbp-treeview-item-color: var(--cbp-color-text-darkest);
+ * @prop --cbp-treeview-item-color-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-treeview-item-indent: 0;
+ * @prop --cbp-treeview-indicator-spacing: 1.5rem;
+ * @prop --cbp-treeview-connection-width: 2px;
+ * @prop --cbp-treeview-connection-color: var(--cbp-color-gray-cool-20);
+ * @prop --cbp-treeview-connection-color-dark: var(--cbp-color-gray-cool-40);
+ * @prop --cbp-treeview-expand-width: var(--cbp-space-6x)
+ */
+:root {
+  --cbp-treeview-item-color: var(--cbp-color-text-darkest);
+  --cbp-treeview-item-color-dark: var(--cbp-color-text-lightest);
+  --cbp-treeview-item-indent: 0; //1.5rem nested; TechDebt: this should use usable as part of the API, but current implementation prevents it.
+  --cbp-treeview-indicator-spacing: 1.5rem;
+  --cbp-treeview-connection-width: 2px;
+  --cbp-treeview-connection-color: var(--cbp-color-gray-cool-20);
+  --cbp-treeview-connection-color-dark: var(--cbp-color-gray-cool-40);
+  --cbp-treeview-expand-width: var(--cbp-space-6x)
+}
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+[data-cbp-theme=light] cbp-treeview-item[context*=dark],
+[data-cbp-theme=dark] cbp-treeview-item:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-treeview-item-color: var(--cbp-treeview-item-color-dark);
+}
+
+
+cbp-treeview-item {
+  display: block;
+  color: var(--cbp-treeview-item-color);
+  padding-inline-start: var(--cbp-treeview-item-indent);
+  margin-inline-start: calc((var(--cbp-treeview-expand-width) - var(--cbp-treeview-connection-width)) / 2);
+
+  .cbp-treeview-item-control {
+    --cbp-checkbox-margin: 0; // remove bottom margin for vertical alignment
+
+    display: inline-flex;
+    width: 100%;
+    min-height: var(--cbp-space-11x);
+    align-items: center;
+    font-weight: var(--cbp-font-weight-bold);
+
+    .cbp-treeview-item-toggle {
+      --cbp-button-height: var(--cbp-treeview-expand-width);
+      --cbp-button-width: var(--cbp-treeview-expand-width);
+      --cbp-button-min-height: var(--cbp-button-height)
+    }
+
+    cbp-checkbox {
+      flex-shrink: 1;
+      label {
+        padding-block: var(--cbp-space-1x);
+      }
+    }
+
+    & > * {
+      flex-shrink: 0;
+      margin-inline-end: var(--cbp-space-3x);
+    }
+  
+    [slot=cbp-treeview-item-buttons] {
+      flex-grow: 1;
+      text-align: right;
+    }
+  }
+
+  .cbp-treeview-item-children {
+    display: none;
+  }
+
+  &[open] {
+    & > .cbp-treeview-item-control {
+      .cbp-treeview-item-toggle cbp-icon {
+        transform: rotate(180deg)
+      }
+    }
+
+    & > .cbp-treeview-item-children {
+      display: block;
+  }
+
+
+  }
+
+  // If the item has no children, adjust the indentation to account for the lack of expand button
+  cbp-treeview[selectable="true"] &:not(:has(.cbp-treeview-item-toggle)) {
+    padding-inline-start: calc(var(--cbp-treeview-item-indent) + var(--cbp-treeview-expand-width));
+
+    .cbp-treeview-item-control {
+      &::before {
+        left: calc((var(--cbp-treeview-connection-width) + var(--cbp-treeview-expand-width)) * -1);
+        width: calc(var(--cbp-treeview-item-indent) + var(--cbp-treeview-expand-width));
+      }
+
+      cbp-checkbox {
+        margin-inline-start: calc((var(--cbp-treeview-expand-width) / 2) * -1);
+      }
+    }
+  }
+
+
+  // Nested items
+  cbp-treeview-item {
+    border-left: var(--cbp-treeview-connection-width) solid var(--cbp-treeview-connection-color);
+    --cbp-treeview-item-indent: 1.5rem; // TechDebt: this should be the default value, not reassigned here.
+
+    .cbp-treeview-item-control {
+      //--cbp-checkbox-margin: 0;
+
+      &::before {
+        content: '';
+        display: inline-block;
+        position: relative;
+        flex-shrink: 0;
+        top: calc((var(--cbp-treeview-indicator-spacing) /2) * -1);
+        left: calc(var(--cbp-treeview-connection-width) * -1);
+        width: var(--cbp-treeview-item-indent);
+        margin-inline-start: calc(var(--cbp-treeview-item-indent) * -1);
+        height: calc(var(--cbp-treeview-indicator-spacing) + var(--cbp-treeview-connection-width));
+        border: solid var(--cbp-treeview-connection-color);
+        border-width: 0 0 var(--cbp-treeview-connection-width) var(--cbp-treeview-connection-width);
+      }
+    }
+  }
+
+  &:last-child {
+    border-color: transparent;
+  }
+}

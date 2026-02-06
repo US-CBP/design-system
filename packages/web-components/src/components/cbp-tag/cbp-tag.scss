@@ -7,11 +7,14 @@
  :root{
   --cbp-tag-color: var(--cbp-color-info-lighter);
   --cbp-tag-color-dark: var(--cbp-color-info-dark);
-
   --cbp-tag-color-background: var(--cbp-color-info-dark);
   --cbp-tag-color-background-dark: var(--cbp-color-info-lighter);
 }
 
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
 [data-cbp-theme=light] cbp-tag[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-tag:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-tag-color: var(--cbp-tag-color-dark);
