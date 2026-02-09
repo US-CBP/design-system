@@ -15,6 +15,12 @@ export default {
       control: 'select',
       options: [ "application/x-www-form-urlencoded", "multipart/form-data", "text/plain"]
     },
+    preventSubmit: {
+      control: 'boolean',
+    },
+    debug: {
+      control: 'boolean',
+    },
     prefix: {
       control: 'text',
     },
@@ -60,6 +66,8 @@ export default {
     action: '/?path=/story/test-form-processing--form-processing',
     method: 'post',
     enctype: 'multipart/form-data',
+    preventSubmit: true,
+    debug: false,
     toggle1: true,
     toggle2: true
   },
@@ -303,9 +311,8 @@ function HTMLForm( {name, action, method, enctype, prefix, firstName, middleInit
         </cbp-file-input>
       </cbp-form-field>
 
-
-      <cbp-button type="submit">Submit</cbp-button>
-      <cbp-button type="reset" color="secondary" fill="outline">Reset</cbp-button>
+      <cbp-button type="submit" name="submit" value="Some value for submit button">Submit</cbp-button>
+      <cbp-button type="reset" name="reset" color="secondary" fill="outline">Reset</cbp-button>
 
     </form>
   `;
@@ -320,15 +327,15 @@ const FormProcessingTemplate = ( args ) => {
     const formEl = document.querySelector(`form[name="${args.name}"]`) as HTMLFormElement;
     const submitButton = document.querySelector('button[type=submit]') as HTMLButtonElement;
     
-    console.log('Event Listeners set: ', formEl, submitButton);
+    if(args.debug) console.log('Event Listeners set: ', formEl, submitButton);
 
     submitButton?.addEventListener('click', e => {
-      console.log('Submit button pressed', submitButton, e);
+      if(args.debug) console.log('Submit button pressed', submitButton, e);
     });
 
     formEl?.addEventListener('submit', e => {
-      console.log('Native Form submit', formEl, e);
-      e.preventDefault();
+      if(args.debug) console.log('Native Form submit', formEl, e);
+      if(args.preventSubmit) e.preventDefault();
       
       let formData = new FormData(formEl);
       // Data can be added to the formData for submission:
@@ -350,7 +357,7 @@ const FormProcessingTemplate = ( args ) => {
       }
       */
       // Spreading the formData as an array seems to give the same results as above.
-      console.log('Native form submit - formData (array spread): ',[...formData]);
+      if(args.debug) console.log('Native form submit - formData (array spread): ',[...formData]);
       // This method makes the assumption that object keys are unique and only shows 1 value when they are not.
       //console.log('formData as JS Object: ', Object.fromEntries(formData.entries()));
 
@@ -375,7 +382,7 @@ const FormProcessingTemplate = ( args ) => {
 
 export const FormProcessing = FormProcessingTemplate.bind({});
 FormProcessing.args = {
-  name: 'nativeForm'
+  name: 'nativeForm',
 }
 
 
@@ -384,6 +391,7 @@ FormProcessing.args = {
 const FormComponentProcessingTemplate = (args) => {
 
   // Set up event handlers for logging and setting errors on files via the `status` prop.
+  /*
   setTimeout(() => {
     const formEl = document.querySelector(`form[name="${args.name}"]`) as HTMLFormElement;
     const submitButton = document.querySelector('button[type=submit]') as HTMLButtonElement;
@@ -400,6 +408,7 @@ const FormComponentProcessingTemplate = (args) => {
       console.log('Native form submit - formData (array spread): ',[...formData]);
     });
   }, 1000);
+  */
 
  return `
     <h1>Form Component</h1>
@@ -407,7 +416,10 @@ const FormComponentProcessingTemplate = (args) => {
       Some component-enhanced functionality may not work with the native platform without using the cbp-form component. 
       This page demonstrates component interactions using a cbp-form wrapping a native HTML form and handling the form events such as submit and reset.
     </p>
-    <cbp-form prevent-submit>
+    <cbp-form 
+      ${ args.debug ? 'debug': ''}
+      ${ args.preventSubmit ? 'prevent-submit': ''}
+    >
       ${HTMLForm(args)}
     </cbp-form>
   `;
@@ -415,5 +427,5 @@ const FormComponentProcessingTemplate = (args) => {
 
 export const FormComponentProcessing = FormComponentProcessingTemplate.bind({});
 FormComponentProcessing.args = {
-  name: 'formComponent'
+  name: 'formComponent',
 }
