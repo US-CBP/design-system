@@ -52,8 +52,11 @@ The Slider component allows for the selection of a single value or two values wi
 
 ### Additional Notes and Considerations
 
-* The `min`, `max`, and `step` properties should be set on the Slider component rather than the native `input type="range"` so that they may be synchronized with the numeric input and used in other internal calculations.
+* The `min`, `max`, and `step` properties should be set on the Slider component rather than the native `input type="range"` so that they may be synchronized with the numeric input(s) and used in other internal calculations.
+* It is highly recommended to set contextually sensible default values to single sliders and range sliders.
+  * A native `input type="range"` cannot have an undefined or empty string value.
+  * If no value is specified, the default value will be reported (and submitted) as halfway between the specified minimum and maximum; unless the maximum is actually less than the minimum, in which case the default is set to the value of the minimum attribute.
+  * For range sliders, which accept a start and end value, initial values should be set so that the sliders are not placed on top of each other by default.
 * A slider should not be marked `readonly`, as its value can still be changed. 
-* The native behavior of using a `datalist` to supply tick marks is not supported since we are overriding the CSS `appearance`.
+* The native behavior of using a `datalist` to supply tick marks is not supported since the component overrides the CSS `appearance`.
 * There are potentially other applications of this component such as a playback slider, but these will need to be discussed on a case by case basis and additional work may be needed to meet those requirements.
-* For range sliders, which accept a start and end value, initial values should be set so that the sliders are not placed on top of each other by default. Logical starting values may vary by context.
