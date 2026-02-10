@@ -135,7 +135,7 @@ export class CbpTreeviewItem {
   }
 
   componentDidLoad() {
-    if (this.checked) {
+    if (this.checked && this.selectable) {
       this.handleCheck()
     }
   }
