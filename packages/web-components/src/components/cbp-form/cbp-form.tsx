@@ -20,6 +20,7 @@ export class CbpForm {
 
   /** When specified, applies preventDefault() to the submit event and emits a custom event with the formData to hand off to the application. */
   @Prop() preventSubmit: boolean;
+  @Prop() debug: boolean;
   
   @Event() suppressedSubmit: EventEmitter;
 
@@ -36,20 +37,26 @@ export class CbpForm {
     });
   }
 
+
+  handleFormData(e) {
+    // Referencing the native form event's formData seems to allow updating it before submission
+    let formData = e.formData;
+    if(this.debug) console.log("cbp-form - listening for formData event: ", [...formData]);
+    // Add files from enhanced/multi-file inputs
+    formData = this.addFiles(formData);
+    if(this.debug) console.log("cbp-form - modified formData: ", [...formData]);
+  }
+
   handleSubmit(e) {
     const form = e.srcElement;
     // FormData object populated from an existing form
     let formData = new FormData(form);
 
-    e.preventDefault();
-
-    // Add files from enhanced/multi-file inputs
-    formData = this.addFiles(formData);
-
-    console.log('cbp-form - Resulting formData (array spread): ', [...formData]);
+    if(this.debug) console.log('cbp-form - Resulting formData (array spread): ', [...formData]);
     
     // If the form submission is prevented, emit an event with the data instead
     if (this.preventSubmit) {
+      e.preventDefault();
       this.suppressedSubmit.emit({
         host: this.host,
         form: form,
@@ -57,8 +64,8 @@ export class CbpForm {
         nativeEvent: e
       });
     }
-    // otherwise submit after updating the formData
-    else form.submit();
+    // If we're not calling preventDefault, the form will just submit.
+
   }
 
   addFiles(formData) {
@@ -86,6 +93,7 @@ export class CbpForm {
 
   componentWillLoad() {
     this.form=this.host.querySelector('form');
+    this.form.addEventListener('formdata', e => this.handleFormData(e));
     this.form.addEventListener('submit', e => this.handleSubmit(e));
     this.form.addEventListener('reset', () => this.handleReset());
 

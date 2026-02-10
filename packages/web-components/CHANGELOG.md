@@ -6,6 +6,7 @@ The React components are wrappers generated from this package and will share the
 
 ## [unpublished] TBD
 
+* Initial creation of `cbp-treeview` and `cbp-treeview-item` components.
 * Updated `cbp-tabs` to fix scrolling issues:
   * Improved scrolling and visibility of tabs in responsive mode.
   * Prevent all scrolling on initialization, which could cause the entire page to scroll on load.
