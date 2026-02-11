@@ -55,7 +55,7 @@ ActionBar.args = {
 };
 
 
-const actionBarInDrawer = ({ actionBarInfo, context }) => {
+const actionBarInDrawer = ({ variant, actionBarInfo, context, sx }) => {
   return ` 
       <cbp-button
         type="button"
@@ -70,11 +70,13 @@ const actionBarInDrawer = ({ actionBarInfo, context }) => {
     </cbp-hide>
 
     <cbp-drawer
-      position= 'left'
+      position="left"
       uid="actionbarDrawer"
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
     >
       <cbp-panel
         aria-labelledby="panelheader"
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
       >
         <cbp-typography
           slot="cbp-panel-header"
@@ -85,7 +87,10 @@ const actionBarInDrawer = ({ actionBarInfo, context }) => {
           Drawer Header
         </cbp-typography>
         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat</p>
-        <cbp-accordion>
+        <cbp-accordion
+          multiple
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        >
             <cbp-accordion-item>
               <div slot="cbp-accordion-item-label">
                 <cbp-typography
@@ -105,11 +110,13 @@ const actionBarInDrawer = ({ actionBarInfo, context }) => {
         </cbp-accordion>
         </cbp-panel>
         <cbp-action-bar
-          variant="sticky"
+          ${variant ? `variant=${variant}` : ''}
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}
+          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
         >
           <cbp-typography 
-            slot='cbp-action-bar-info'
-            tag='div'
+            slot="cbp-action-bar-info"
+            tag="div"
           >
               ${actionBarInfo}
           </cbp-typography>
@@ -135,5 +142,6 @@ const actionBarInDrawer = ({ actionBarInfo, context }) => {
 
 export const ActionBarDrawer = actionBarInDrawer.bind({});
 ActionBarDrawer.args = {
+  variant: 'sticky',
   actionBarInfo: `0 items selected.`,
 };

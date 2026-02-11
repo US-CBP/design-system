@@ -22,15 +22,15 @@ export default {
   },
 };
 
-function generateTreeviewitems(tree) {
+function generateTreeviewitems(tree, selectable) {
   const html = tree.map(({ label, value, children, checked }) => {
     return `
       <cbp-treeview-item
         label="${label}"
-        ${checked ? 'checked' : ''}
+        ${checked && selectable? 'checked' : ''}
         value="${value}"
       >
-        ${children ? generateTreeviewitems(children) : ''}
+        ${children ? generateTreeviewitems(children, selectable) : ''}
       </cbp-treeview-item>`;
   });
   return html.join('');
@@ -46,7 +46,7 @@ const Template = ({ treeItems, name, selectable, accessibilityText, context, sx 
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}
     >
-      ${generateTreeviewitems(treeItems)}
+      ${generateTreeviewitems(treeItems, selectable)}
     </cbp-treeview>
   `;
 };
