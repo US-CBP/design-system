@@ -75,6 +75,10 @@ cbp-drawer {
         --cbp-button-color-hover: var(--cbp-drawer-close-button-color-hover);
       }
     }
+
+    > cbp-panel{
+      flex-grow: 1;
+    }
   }
 }
 

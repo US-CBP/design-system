@@ -48,4 +48,11 @@ cbp-action-bar {
     padding-inline: var(--cbp-responsive-spacing-outer);
     box-shadow: var(--cbp-shadow-level-3-up);
   }
+
+  &[variant=sticky] {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    box-shadow: var(--cbp-shadow-level-3-up);
+  }
 }
