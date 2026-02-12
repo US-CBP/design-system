@@ -36,6 +36,11 @@ The File Input component builds upon the native file input, allowing for custom 
 * In either mode, the native `input type="file"` is made transparent and overlaid on top of the visible UI.
   * This makes the native input focusable and also
   * Available as a drop target to drag and drop files onto it.
+* When the file selection dialog is opened and canceled or a selection is made, the component will be updated accordingly.
+  * Pressing cancel will clear a single file input and have no effect on an enhanced multi-file input.
+  * Selecting one or more files will update the component accordingly.
+  * Selecting duplicate files in the enhanced multi-file input will be ignored.
+  * The custom `valueChange` event will only be emitted when the actual value has changed; e.g., Pressing cancel on an empty file input or selecting duplicate files in a multi-file input will not trigger the event emitter.
 
 ### Responsiveness
 
