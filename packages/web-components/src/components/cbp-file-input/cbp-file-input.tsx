@@ -73,47 +73,57 @@ export class CbpFileInput {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-
   @State() private files: File[] = [];
 
 
-  /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
+  /** 
+   * A custom event emitted when the value of the component changes, either by selecting (non-duplicate) files 
+   * or canceling the dialog, or clicking the button in the file list to remove a file.
+   */
   @Event() valueChange: EventEmitter;
   handleChange(e) {
+    let valueChanged: boolean = false;
+
     // For the enhanced version accepting multiple files, iteratively add files to the list
     if(this.enhanced && this.multiple) {
       let files = this.files;
-      // type fileList does not support forEach or array methods
+
+      // Loop over selected files and add them to the files Array (type fileList does not support forEach or array methods)
       for(let i = 0; i < e.target.files.length; i++) {
-        // TechDebt: check for duplicates before adding the file?
-        files = [...files, e.target.files[i]]
+        // Only add the file to the list if it's not already added (matching name and lastModified)
+        if ( !files.find(f => f.name === e.target.files[i].name && f.lastModified === e.target.files[i].lastModified) ) {
+          files = [...files, e.target.files[i]]
+        }
       }
+      valueChanged = !(this.files == files);
       this.files = files;
-      // Clear the native form input value in the end (but maybe after file reader?)
-      this.formField.value='';
+      this.formField.value=''; // Clear the native form input value in the end.
     }
 
     // For the native/single file version, a file selection replaces the previous file(s) selected.
     else {
       let files = [];
-      // type fileList does not support forEach or array methods
+      // Loop over selected files and add them to the files Array (type fileList does not support forEach or array methods)
       for(let i = 0; i < e.target.files.length; i++) {
         files = [...files, e.target.files[i]]
       }
+      valueChanged = !(this.files == files);
       // Updating this state via an event handler will cause a re-render needed for showing the selected files
       this.files = files;
     }
     // send focus back to the form field just in case focus was lost/not applied automatically by the browser.
     this.formField.focus();
 
-    // TechDebt: this event seems to be firing 3 times when adding a file, based on the native change event, which is doing the same.
-    this.valueChange.emit({
-      host: this.host,
-      nativeElement: this.formField,
-      name: this.name,
-      value: this.files,
-      nativeEvent: e
-    });
+    // Only emit the value if the value actually changed
+    if (valueChanged) {
+      this.valueChange.emit({
+        host: this.host,
+        nativeElement: this.formField,
+        name: this.name,
+        value: this.files,
+        nativeEvent: e
+      });
+    }
   }
 
   
@@ -159,7 +169,7 @@ export class CbpFileInput {
     }
   }
 
-
+  // Listening to events from the "remove" buttons in the file list
   @Listen('buttonClick')
   handleDelete(e) {
     const {detail: {value}} = e;

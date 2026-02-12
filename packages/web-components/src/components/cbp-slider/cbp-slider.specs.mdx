@@ -21,8 +21,12 @@ The Slider component allows for the selection of a single value or two values wi
 ### User Interactions
 
 * The user interactions are that of a native `input type="range"` element:
-  * Clicking anywhere on the form control or label text will place focus on the control.
-  * For single select sliders, clicking on the "track" will select the corresponding value based on the position clicked on the slider.
+  * For single select sliders:
+    * Clicking anywhere on the form control or label text will place focus on the control.
+    * Clicking on the "track" will select the corresponding value based on the position clicked on the slider and place focus on the "thumb" control.
+  * For "range" sliders with two values:
+    * Clicking the label text or "thumb" controls will place focus on the control.
+    * Clicking on the track is disabled.
   * Sliders are keyboard accessible by tabbing onto the control and then using the arrows.
     * Pressing the up or right arrow increments the slider by the step value (default = 1).
     * Pressing the down or left arrow decrements the slider by the step value (default = 1).
@@ -36,7 +40,7 @@ The Slider component allows for the selection of a single value or two values wi
 ### Responsiveness
 
 * The pattern label will wrap as needed.
-* The slider control is sized to 100% within a flexbox context and will shrink or grow based on available space.
+* The slider control is sized to 100% within a flexbox context and will shrink or grow based on available space, taking into account whether the values and numeric controls are shown.
 
 ### Accessibility
 

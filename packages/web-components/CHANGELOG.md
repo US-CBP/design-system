@@ -10,6 +10,9 @@ The React components are wrappers generated from this package and will share the
 * Updated `cbp-tabs` to fix scrolling issues:
   * Improved scrolling and visibility of tabs in responsive mode.
   * Prevent all scrolling on initialization, which could cause the entire page to scroll on load.
+* Updated `cbp-file-input`:s
+  * Multi-file upload now ignores duplicate files (checked against name and last modified values).
+  * The `valueChange` event is only emitted when a change has taken place, taking into account de-duping of selections.
 * Updated internal host and state references using the `private` designator to support documentation generation.
 * Updated Storybook and `storybook-addon-tag-badges` package to the latest versions.
 

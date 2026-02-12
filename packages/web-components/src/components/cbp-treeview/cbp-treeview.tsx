@@ -76,7 +76,7 @@ export class CbpTreeview {
         this.valueChange.emit({
           host: this.host,
           name: this.name,
-          values: values,
+          value: values,
           nativeEvent: e
         });
       }, 50);
