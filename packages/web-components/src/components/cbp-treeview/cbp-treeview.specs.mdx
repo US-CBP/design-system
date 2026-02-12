@@ -6,13 +6,13 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 
 ## Purpose
 
-* The Treeview and child Treeview Item components are used to display information in hierarchical tree, allowing items to be nested within each other recursively.
+* The Treeview and child Treeview Item components are used to display information in hierarchical tree, allowing items to be nested within each other recursively and optionally selectable.
 
 ## Functional Requirements
 
 * Treeview items may be nested recursively with no limit imposed.
 * Treeview items with nested children will render an expand control.
-* Selectable items will render a checkboxs (after the expand control, if present).
+* Selectable items will render a checkboxes (after the expand control, if present).
 * Selectable parents act like a "select all" for children under them and must be updated based on selections made below them, reflecting a checked, unchecked, or indeterminate state.
 * Visual "connectors" are used to display the parent/child relationship of elements in addition to indentation.
 
@@ -28,7 +28,10 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
     * If all children are checked, then the parent is checked.
     * If no children are checked, then the parent is unchecked.
     * If some, but not all children are checked, then the parent is in an indeterminate state.
-  * Every checkbox toggle triggers the parent `cbp-treeview` to emit a custom `valueChange` event that can be listened to for a rollup of all selected values in the Treeview control.
+  * For selectable treeviews, every checkbox toggle triggers the parent `cbp-treeview` to emit a custom `valueChange` event that can be listened to for a rollup of all selected values in the Treeview control.
+    * If all checkbox controls have the same `name` specified at the `cbp-treeview` level, the rollup of values will be a simple array containing the values of checked items.
+    * If the names of the checkbox controls are specified for each individual `cbp-treeview-item`, then the rollup of values will be an array of objects containing name:value pairs.
+    * Only those checkboxes with both a `name` and `value` specified will be rolled up, giving the developer control of which items to include in the form submission and `valueChange` event. E.g., omitting the parents as part of the hierarchy/categorization and only including the bottom-level items.
 
 ### Responsiveness
 
@@ -58,4 +61,4 @@ When tabbing into the control to the first expand button or checkbox, the screen
 
 ### Additional Notes and Considerations
 
-* TBD.
+* For selectable treeviews, only those checkboxes with both a `name` and `value` specified will be rolled up, giving the developer control of which items to include in the form submission and `valueChange` event. E.g., omitting the parents as part of the hierarchy/categorization and only including the bottom-level items.
