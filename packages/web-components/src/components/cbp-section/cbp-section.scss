@@ -1,3 +1,32 @@
+/**
+ * @prop --cbp-section-border-color: transparent;
+ * @prop --cbp-section-border-color-dark: transparent;
+ * @prop --cbp-section-border-width: var(--cbp-border-size-md);
+ * @prop --cbp-section-border-style: solid;
+ */
+:root {
+  --cbp-section-border-color: transparent;
+  --cbp-section-border-color-dark: transparent;
+  --cbp-section-border-width: var(--cbp-border-size-md);
+  --cbp-section-border-style: solid;
+}
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+
+[data-cbp-theme=light] cbp-section[context*=dark]:not(#fakeId),
+[data-cbp-theme=dark] cbp-section:not([context=dark-inverts]):not([context=light-always]):not(#fakeId) {
+  --cbp-section-border-color: var(--cbp-section-border-color-dark); //Setting sx on story is overriding this
+}
+
+
+
+
 cbp-section:not([hidden]) {
   display: block;
+  border-width: var(--cbp-section-border-width);
+  border-style: var(--cbp-section-border-style);
+  border-color: var(--cbp-section-border-color);
+  
 }
