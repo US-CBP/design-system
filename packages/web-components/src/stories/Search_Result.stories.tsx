@@ -138,11 +138,19 @@ function renderDrawer(items, drawerid, store){
 }
 
 function initThemeSwitcher() {
-    const ThemeSegement = document.querySelector('cbp-segmented-button-group#darkmode') as HTMLCbpSegmentedButtonGroupElement
+  const ThemeSegement = document.querySelector('cbp-segmented-button-group#darkmode') as HTMLCbpSegmentedButtonGroupElement
   const AppComponent = document.querySelector('cbp-app') as HTMLCbpAppElement;
+  const ThemeSpan = document.querySelector('#darkmodeText') as HTMLSpanElement
   ThemeSegement.addEventListener('buttonClick', (e: any) => {
     let value = e.detail.value;
     AppComponent.theme = value;
+    if(e.detail.value == 'light'){
+      ThemeSpan.innerText = "Light mode active.";
+    }else if(e.detail.value == 'dark'){
+      ThemeSpan.innerText = "Dark mode active.";
+    }else{
+      ThemeSpan.innerText = "Device settings will determine light or dark mode.";
+    }
   })
 }
 
@@ -186,44 +194,52 @@ function renderUserPref(username, hashid) {
         </cbp-typography>
         <cbp-flex
           gap="1rem"
+          sx='{"margin-block":"var(--cbp-space-3x)"}'
         >
-          <cbp-button
-            color="secondary"
-          >
-            <cbp-icon
-              name="arrow-right-from-bracket"
-            ></cbp-icon>
+          <cbp-button color="secondary">
+            <cbp-icon name="arrow-right-from-bracket"></cbp-icon>
             logout
           </cbp-button>
           <cbp-flex-item
             align-self="center"
           >
-            <cbp-typography
-              tag="span"
-            >
-              <b>Not you?</b> Click here to Logout.
-            </cbp-typography>
+            <b>Not you?</b> Click here to Logout.
           </cbp-flex-item>
         </cbp-flex>
 
-        <br />
-        
-        <cbp-segmented-button-group
-          id="darkmode"
+        <cbp-section
+          sx='{
+              "margin-block":"var(--cbp-space-3x)",
+              "padding-block-start":"var(--cbp-space-4x)",
+              "padding-block-end":"var(--cbp-space-3x)",
+              "--cbp-section-color-border":"var(--cbp-color-gray-cool-20)",
+              "--cbp-section-color-border-dark":"var(--cbp-color-gray-cool-60)",
+              "--cbp-section-border-width":"var(--cbp-border-size-sm) 0"
+            }'
         >
-          <cbp-button value="system" pressed="true">
-            <cbp-icon name="computer"></cbp-icon>
-            System
-          </cbp-button>
-          <cbp-button value="light">
-            <cbp-icon name="sun"></cbp-icon>
-            Light
-          </cbp-button>
-          <cbp-button value="dark">
-            <cbp-icon name="moon"></cbp-icon>
-            Dark
-          </cbp-button>
-        </cbp-segmented-button-group>
+          <cbp-segmented-button-group
+            id="darkmode"
+            sx='{"margin-block-end":"var(--cbp-space-1x)"}'
+          >
+            <cbp-button value="system" pressed="true">
+              <cbp-icon name="computer"></cbp-icon>
+              System
+            </cbp-button>
+            <cbp-button value="light">
+              <cbp-icon name="sun"></cbp-icon>
+              Light
+            </cbp-button>
+            <cbp-button value="dark">
+              <cbp-icon name="moon"></cbp-icon>
+              Dark
+            </cbp-button>
+          </cbp-segmented-button-group>
+
+          <em id="darkmodeText">
+            Device settings will determine light or dark mode.
+          </em>
+
+        </cbp-section>
 
       </cbp-panel>
     </cbp-drawer>
