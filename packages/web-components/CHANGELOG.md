@@ -4,15 +4,17 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [unpublished] TBD
+## [0.0.1-develop.31] 02-13-2026
 
 * Initial creation of `cbp-treeview` and `cbp-treeview-item` components.
 * Updated `cbp-tabs` to fix scrolling issues:
   * Improved scrolling and visibility of tabs in responsive mode.
   * Prevent all scrolling on initialization, which could cause the entire page to scroll on load.
-* Updated `cbp-file-input`:s
+* Updated `cbp-file-input`:
   * Multi-file upload now ignores duplicate files (checked against name and last modified values).
   * The `valueChange` event is only emitted when a change has taken place, taking into account de-duping of selections.
+* Updated `cbp-form` handling of submit event and modifying formData with multi-file input data to work with native form POST events.
+* BREAKING: Updated User Preferences drawer markup with primarily visual changes. Code should be re-copied or manually updated.
 * Updated internal host and state references using the `private` designator to support documentation generation.
 * Updated Storybook and `storybook-addon-tag-badges` package to the latest versions.
 
