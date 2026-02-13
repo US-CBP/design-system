@@ -227,8 +227,8 @@ function renderUserPref(username) {
           sx='{
               "padding-block-start":"var(--cbp-space-4x)",
               "padding-block-end":"var(--cbp-space-3x)",
-              "--cbp-section-border-color":"var(--cbp-color-gray-cool-20)",
-              "--cbp-section-border-color-dark":"var(--cbp-color-gray-cool-60)",
+              "--cbp-section-color-border":"var(--cbp-color-gray-cool-20)",
+              "--cbp-section-color-border-dark":"var(--cbp-color-gray-cool-60)",
               "--cbp-section-border-width":"var(--cbp-border-size-md) 0"
             }'
         >
@@ -250,9 +250,9 @@ function renderUserPref(username) {
             </cbp-button>
           </cbp-segmented-button-group>
 
-          <span id="darkmodeText">
+          <em id="darkmodeText">
             Device settings will determine light or dark mode.
-          </span>
+          </em>
 
         </cbp-section>
       </cbp-panel>
@@ -552,7 +552,7 @@ function filterPanel() {
     <cbp-drawer
       uid= "filterdrawer"
       position="left"
-      persist-at="min-width:80rem"
+      persist-at="min-width:64rem"
       sx='{"min-width":"20rem"}'
     >
       <cbp-panel
