@@ -217,16 +217,13 @@ function renderUserPref(username) {
           <cbp-flex-item
             align-self="center"
           >
-            <cbp-link
-              href="#"
-            >
-              <b>Not you?</b> Click here to Logout.
-            </cbp-link>
+            <b>Not you?</b> Click here to Logout.
           </cbp-flex-item>
         </cbp-flex>
 
         <cbp-section
           sx='{
+              "margin-block":"var(--cbp-space-3x)",
               "padding-block-start":"var(--cbp-space-4x)",
               "padding-block-end":"var(--cbp-space-3x)",
               "--cbp-section-color-border":"var(--cbp-color-gray-cool-20)",
