@@ -511,34 +511,30 @@ function renderUserPref(username) {
         </cbp-typography>
         <cbp-flex
           gap="1rem"
+          sx='{"margin-block":"var(--cbp-space-3x)"}'
         >
-          <cbp-button
-            color="secondary"
-          >
-            <cbp-icon
-              name="arrow-right-from-bracket"
-            ></cbp-icon>
+          <cbp-button color="secondary">
+            <cbp-icon name="arrow-right-from-bracket"></cbp-icon>
             logout
           </cbp-button>
           <cbp-flex-item
             align-self="center"
           >
-            <cbp-typography
-              tag="span"
+            <cbp-link
+              href="#"
             >
               <b>Not you?</b> Click here to Logout.
-            </cbp-typography>
+            </cbp-link>
           </cbp-flex-item>
         </cbp-flex>
-        <br />
-        
-       <cbp-section
+
+        <cbp-section
           sx='{
               "padding-block-start":"var(--cbp-space-4x)",
               "padding-block-end":"var(--cbp-space-3x)",
               "--cbp-section-color-border":"var(--cbp-color-gray-cool-20)",
               "--cbp-section-color-border-dark":"var(--cbp-color-gray-cool-60)",
-              "--cbp-section-border-width":"var(--cbp-border-size-md) 0"
+              "--cbp-section-border-width":"var(--cbp-border-size-sm) 0"
             }'
         >
           <cbp-segmented-button-group
