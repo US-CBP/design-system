@@ -24,13 +24,15 @@ jobs:
     # Job steps
     steps:
       # Manual Checkout
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       # Set up Node
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v5
         with:
           node-version: '24.x'
-        
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
       #👇 Add Storybook build and deploy to GitHub Pages as a step in the workflow
       - id: build-publish
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
@@ -38,4 +40,4 @@ jobs:
           install_command: npm ci # default: npm ci
           build_command: npm run build-wc-package # default: npm run build-storybook
           path: packages/web-components/storybook-static # default: dist/storybook
-          checkout: false # default: true   
+          checkout: false # default: true
