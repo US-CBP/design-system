@@ -28,13 +28,14 @@
     "analyze:dev": "cem analyze --watch",
     "build": "stencil build --docs",
     "build-dev": "stencil build --dev --docs",
+    "llms-docs": "storybook-llms-extractor --config llms.config.js",
     "start": "stencil build --dev --watch",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "storybook": "stencil build --docs && storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build-pages": "stencil build --docs && storybook build --output-dir storybook-static"
+    "build-pages": "stencil build --docs && storybook build --output-dir storybook-static && storybook-llms-extractor --config llms.config.js"
   },
   "dependencies": {
     "@stencil/core": "4.15.0"
@@ -42,6 +43,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.0",
     "@custom-elements-manifest/analyzer": "^0.9.9",
+    "@fluentui/storybook-llms-extractor": "^0.0.3",
     "@stencil/react-output-target": "0.5.3",
     "@stencil/sass": "3.0.7",
     "@stencil/store": "^2.0.12",
