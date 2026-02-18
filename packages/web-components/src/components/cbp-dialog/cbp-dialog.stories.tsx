@@ -10,6 +10,14 @@ export default {
       description: 'Specifies whether the drawer is open or closed.',
       control: 'boolean',
     },
+    height: {
+      description: 'Specifies a custom CSS height for the dialog',
+      control: 'text'
+    },
+    width: {
+      description: 'Specifies a custom CSS width for the dialog',
+      control: 'text'
+    },
     title: {
       name: 'Title (slotted)',
       description: 'Set the title in the banner area of the card',
@@ -76,7 +84,7 @@ const renderActions = (layout, { btn1, btn2, btn3 }) => {
   }
 };
 
-const Template = ({ title, content, color, open, uid, withIcon, accessibilityText, actionsLayout, actionsConfig, sx }) => {
+const Template = ({ title, content, color, open, width, height, uid, withIcon, accessibilityText, actionsLayout, actionsConfig, sx }) => {
   return `
     <cbp-button
       type="button"
@@ -90,6 +98,8 @@ const Template = ({ title, content, color, open, uid, withIcon, accessibilityTex
 
     <cbp-dialog
       ${open ? `open=${open}` : ''}
+      ${height ? `height=${height}` : ''}
+      ${width ? `width=${width}` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
       ${color && color != 'default' ? `color=${color}` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ''}

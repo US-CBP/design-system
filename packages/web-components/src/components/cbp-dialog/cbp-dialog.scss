@@ -8,8 +8,6 @@
  * @prop --cbp-dialog-padding: var(--cbp-space-5x);
  * @prop --cbp-dialog-border-radius: var(--cbp-border-radius-softer);
  * @prop --cbp-dialog-shadow: var(--cbp-shadow-level-5-center);
- * @prop --cbp-dialog-width: 20rem;
- * @prop --cbp-dialog-height: auto;
  */
 
 :root {
@@ -22,8 +20,6 @@
   --cbp-dialog-padding: var(--cbp-space-5x);
   --cbp-dialog-border-radius: var(--cbp-border-radius-softer);
   --cbp-dialog-shadow: var(--cbp-shadow-level-5-center);
-  --cbp-dialog-width: 20rem;
-  --cbp-dialog-height: auto;
 }
 
 /* 
@@ -65,8 +61,6 @@ cbp-dialog {
     position: fixed;
     overflow-y: auto;
     z-index: var(--cbp-z-index-level-top);
-    width: var(--cbp-dialog-width);
-    height: var(--cbp-dialog-height);
     max-width: 100%;
     max-height: 90vh;
     box-shadow: var(--cbp-dialog-shadow);
@@ -77,6 +71,7 @@ cbp-dialog {
       background-color: var(--cbp-dialog-color-bg);
       padding: var(--cbp-dialog-padding);
       border-radius: var(--cbp-dialog-border-radius) var(--cbp-dialog-border-radius) 0 0;
+      height: 100%;
     }
 
     [slot=cbp-dialog-actions] {
