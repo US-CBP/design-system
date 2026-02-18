@@ -30,12 +30,6 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '24.x'
-#      - name: Install Playwright Browsers
-#        run: npx playwright install --with-deps
-#      - name: Build Storybook
-#        run: npm run build-storybook
-#      - name: Generate LLM Docs
-#        run: npx storybook-llms-extractor --distPath storybook-static --summaryBaseUrl ${{ env.DEPLOY_URL }}
 
       #👇 Add Storybook build and deploy to GitHub Pages as a step in the workflow
       - id: build-publish
