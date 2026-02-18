@@ -35,7 +35,7 @@
     "generate": "stencil generate",
     "storybook": "stencil build --docs && storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build-pages": "stencil build --docs && storybook build --output-dir storybook-static && storybook-llms-extractor --config llms.config.js"
+    "build-pages": "stencil build --docs && storybook build --output-dir storybook-static"
   },
   "dependencies": {
     "@stencil/core": "4.15.0"
@@ -46,7 +46,7 @@
     "@fluentui/storybook-llms-extractor": "^0.0.3",
     "@stencil/react-output-target": "0.5.3",
     "@stencil/sass": "3.0.7",
-    "@stencil/store": "^2.0.12",
+    "@stencil/store": "^2.1.3",
     "@storybook/addon-a11y": "^10.2.1",
     "@storybook/addon-docs": "^10.2.1",
     "@storybook/addon-themes": "^10.2.1",
@@ -61,7 +61,7 @@
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
     "lit": "^3.1.2",
-    "playwright": "1.57.0",
+    "playwright": "^1.58.2",
     "prettier": "^3.6.2",
     "puppeteer": "^23.1.1",
     "react-syntax-highlighter": "^15.6.6",

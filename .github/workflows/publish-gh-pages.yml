@@ -30,14 +30,12 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '24.x'
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
 
       #👇 Add Storybook build and deploy to GitHub Pages as a step in the workflow
       - id: build-publish
-        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.4
         with:
           install_command: npm ci # default: npm ci
-          build_command: npm run build-wc-package # default: npm run build-storybook
+          build_command: npm run build-wc-package && npx storybook-llms-extractor --distPath storybook-static --summaryBaseUrl ${{ env.DEPLOY_URL }} # default: npm run build-storybook
           path: packages/web-components/storybook-static # default: dist/storybook
           checkout: false # default: true
