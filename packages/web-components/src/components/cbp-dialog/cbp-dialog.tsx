@@ -23,10 +23,10 @@ export class CbpDialog {
   /** When set, specifies that the dialog is open */
   @Prop({ reflect: true }) open: boolean;
 
-  /** Specifies the CSS height CSS units (preferably relative units such as rem). */
+  /** Specifies the dialog height in CSS units (preferably relative units such as rem). */
   @Prop() height: string;
 
-  /** Specifies the CSS width CSS units (preferably relative units such as rem). */
+  /** Specifies the dialog width in CSS units (preferably relative units such as rem). */
   @Prop() width: string;
 
   /** Specifies a unique `ID` for the dialog, used to wire up the controls and accessibility features. */
@@ -35,7 +35,7 @@ export class CbpDialog {
   /** Creates an accessible label for the dialog. */
   @Prop() accessibilityText: string;
 
-  /** Optionally specifies a card color (different from the default color) based on predefined design token values. */
+  /** Optionally specifies a dialog color (different from the default color) based on predefined design token values. */
   @Prop({ reflect: true }) color: 'info' | 'success' | 'warning' | 'danger';
 
   /** Supports adding inline styles as an object */
