@@ -101,22 +101,12 @@ const preview: Preview = {
         height: '250px',
       },
     },
-    a11y: {
-      options: {
-        /*
-         * Opt in to running WCAG 2.x AAA rules
-         * Note that you must explicitly re-specify the defaults (all but the last array entry)
-         * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter-examples for more details.
-         * Available tags: https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#axe-core-tags
-         */
-        //runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'],
-        runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'],
-      },
-      /*
-       * Configure test behavior
-       * See: https://storybook.js.org/docs/next/writing-tests/accessibility-testing#test-behavior
-       */
-      test: 'todo',
+    actions: { 
+      disable: true,
+      //argTypesRegex: '^on.*' 
+    },
+    interactions: { 
+      disable: true,
     },
     controls: { 
       //expanded: true, 
@@ -135,7 +125,7 @@ const preview: Preview = {
         proseWrap: "always",
         bracketSameLine: false,
         singleAttributePerLine: true,
-        //printWidth: 80,
+        printWidth: 80,
       },
       highlighter: {
         showLineNumbers: true,
@@ -157,6 +147,23 @@ const preview: Preview = {
             ]
         ]
       },
+    },
+    a11y: {
+      options: {
+        /*
+         * Opt in to running WCAG 2.x AAA rules
+         * Note that you must explicitly re-specify the defaults (all but the last array entry)
+         * See https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter-examples for more details.
+         * Available tags: https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#axe-core-tags
+         */
+        //runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'],
+        runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'],
+      },
+      /*
+       * Configure test behavior
+       * See: https://storybook.js.org/docs/next/writing-tests/accessibility-testing#test-behavior
+       */
+      test: 'todo',
     },
   },
   //tags: ['autodocs'],
