@@ -25,12 +25,12 @@ const config: StorybookConfig  = {
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'
   ],
   addons: [
+    getAbsolutePath("@whitespace/storybook-addon-html"),
     getAbsolutePath("@storybook/addon-themes"),
     getAbsolutePath("@storybook/addon-a11y"),
-    getAbsolutePath("@chromatic-com/storybook"),
-    getAbsolutePath("@whitespace/storybook-addon-html"),
     getAbsolutePath("storybook-addon-tag-badges"),
     getAbsolutePath("@storybook/addon-docs"),
+    getAbsolutePath("@chromatic-com/storybook"),
     getAbsolutePath("@storybook/addon-vitest")
   ],
   staticDirs: [
