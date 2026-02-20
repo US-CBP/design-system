@@ -142,14 +142,15 @@ cbp-table {
 
   &[hover=row] {
     tbody {
-      tr{
-        &:hover td {
+      tr:hover{
+         td {
           background-color: var(--cbp-table-row-color-bg-hover);
         }
-        &:hover td.danger-cell {
+        td.cbp-table--danger {
           background-color: var(--cbp-table-row-color-bg-danger-hover);
         }
-        &:hover td.hightlight-cell {
+        td.cbp-table--hightlight {
+          color: var(--cbp-color-text-darkest);
           background-color: var(--cbp-table-row-color-bg-highlight);
         }
       }
@@ -162,10 +163,11 @@ cbp-table {
         &:hover {
           background-color: var(--cbp-table-row-color-bg-hover);
         }
-        &.danger-cell:hover{
+        &.cbp-table--danger:hover{
           background-color: var(--cbp-table-row-color-bg-danger-hover);
         }
-        &.hightlight-cell:hover {
+        &.cbp-table--hightlight:hover {
+          color: var(--cbp-color-text-darkest);
           background-color: var(--cbp-table-row-color-bg-highlight);
         }
       }
@@ -223,13 +225,12 @@ cbp-table {
         --cbp-checkbox-margin: 0;
       }
 
-      &.danger-cell{
+      &.cbp-table--danger{
         background-color: var(--cbp-table-row-color-bg-danger);
       }
 
-      &.hightlight-cell,
-      // &.hightlight-cell:hover,
-      {
+      &.cbp-table--hightlight{
+        color: var(--cbp-color-text-darkest);
         background-color: var(--cbp-table-row-color-bg-highlight);
       }
     }
