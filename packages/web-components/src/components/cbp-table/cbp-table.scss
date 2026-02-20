@@ -31,7 +31,11 @@
  *  @prop --cbp-table-row-color-bg-hover-dark: var(--cbp-color-gray-cool-90);
  *  @prop --cbp-table-row-color-bg-selected: var(--cbp-color-interactive-selected-light);
  *  @prop --cbp-table-row-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
-
+ *  @prop --cbp-table-row-color-bg-danger: var(--cbp-color-danger-lighter);
+ *  @prop --cbp-table-row-color-bg-danger-dark: var(--cbp-color-danger-darker);
+ *  @prop --cbp-table-row-color-bg-danger-hover: var(--cbp-color-danger-light);
+ *  @prop --cbp-table-row-color-bg-danger-hover-dark: var(--cbp-color-danger-dark);
+ 
  *  @prop --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
  *  @prop --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
  *  @prop --cbp-table-row-border-size: var(--cbp-border-size-md); 
@@ -71,6 +75,12 @@
   --cbp-table-row-color-bg-hover-dark: var(--cbp-color-gray-cool-90);
   --cbp-table-row-color-bg-selected: var(--cbp-color-interactive-selected-light);
   --cbp-table-row-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
+  --cbp-table-row-color-bg-danger: var(--cbp-color-danger-lighter);
+  --cbp-table-row-color-bg-danger-dark: var(--cbp-color-danger-darker);
+  --cbp-table-row-color-bg-danger-hover: var(--cbp-color-danger-light);
+  --cbp-table-row-color-bg-danger-hover-dark: var(--cbp-color-danger-dark);
+  --cbp-table-row-color-bg-highlight: var(--cbp-color-yellow-20);
+  --cbp-table-row-color-bg-highlight-dark: var(--cbp-color-yellow-10);
 
   --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
   --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
@@ -101,6 +111,9 @@
   --cbp-table-row-color-bg-striped: var(--cbp-table-row-color-bg-striped-dark);
   --cbp-table-row-color-bg-hover: var(--cbp-table-row-color-bg-hover-dark);
   --cbp-table-row-color-bg-selected: var(--cbp-table-row-color-bg-selected-dark);
+  --cbp-table-row-color-bg-danger: var(--cbp-table-row-color-bg-danger-dark);
+  --cbp-table-row-color-bg-danger-hover: var(--cbp-table-row-color-bg-danger-hover-dark);
+  --cbp-table-row-color-bg-highlight: var(--cbp-table-row-color-bg-highlight-dark);
 
   --cbp-table-row-color-border: var(--cbp-table-row-color-border-dark);
  }
@@ -129,16 +142,32 @@ cbp-table {
 
   &[hover=row] {
     tbody {
-      tr:hover td {
-        background-color: var(--cbp-table-row-color-bg-hover);
+      tr{
+        &:hover td {
+          background-color: var(--cbp-table-row-color-bg-hover);
+        }
+        &:hover td.danger-cell {
+          background-color: var(--cbp-table-row-color-bg-danger-hover);
+        }
+        &:hover td.hightlight-cell {
+          background-color: var(--cbp-table-row-color-bg-highlight);
+        }
       }
     }
   }
 
   &[hover=cell] {
     tbody {
-      td:hover {
-        background-color: var(--cbp-table-row-color-bg-hover);
+      td{
+        &:hover {
+          background-color: var(--cbp-table-row-color-bg-hover);
+        }
+        &.danger-cell:hover{
+          background-color: var(--cbp-table-row-color-bg-danger-hover);
+        }
+        &.hightlight-cell:hover {
+          background-color: var(--cbp-table-row-color-bg-highlight);
+        }
       }
     }
   }
@@ -192,6 +221,16 @@ cbp-table {
       cbp-checkbox {
         --cbp-checkbox-min-height: 0;
         --cbp-checkbox-margin: 0;
+      }
+
+      &.danger-cell{
+        background-color: var(--cbp-table-row-color-bg-danger);
+      }
+
+      &.hightlight-cell,
+      // &.hightlight-cell:hover,
+      {
+        background-color: var(--cbp-table-row-color-bg-highlight);
       }
     }
 
