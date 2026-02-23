@@ -31,10 +31,11 @@
  *  @prop --cbp-table-row-color-bg-hover-dark: var(--cbp-color-gray-cool-90);
  *  @prop --cbp-table-row-color-bg-selected: var(--cbp-color-interactive-selected-light);
  *  @prop --cbp-table-row-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
- *  @prop --cbp-table-row-color-bg-danger: var(--cbp-color-danger-lighter);
- *  @prop --cbp-table-row-color-bg-danger-dark: var(--cbp-color-danger-darker);
- *  @prop --cbp-table-row-color-bg-danger-hover: var(--cbp-color-danger-light);
- *  @prop --cbp-table-row-color-bg-danger-hover-dark: var(--cbp-color-danger-dark);
+ *  @prop --cbp-table-color-bg-danger: var(--cbp-color-danger-lighter);
+ *  @prop --cbp-table-color-bg-danger-dark: var(--cbp-color-danger-darker);
+ *  @prop --cbp-table-color-bg-danger-hover: var(--cbp-color-danger-light);
+ *  @prop --cbp-table-color-bg-danger-hover-dark: var(--cbp-color-danger-dark);
+ *  @prop --cbp-table-row-color-bg-highlight: var(--cbp-color-highlight);
  
  *  @prop --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
  *  @prop --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
@@ -75,12 +76,11 @@
   --cbp-table-row-color-bg-hover-dark: var(--cbp-color-gray-cool-90);
   --cbp-table-row-color-bg-selected: var(--cbp-color-interactive-selected-light);
   --cbp-table-row-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
-  --cbp-table-row-color-bg-danger: var(--cbp-color-danger-lighter);
-  --cbp-table-row-color-bg-danger-dark: var(--cbp-color-danger-darker);
-  --cbp-table-row-color-bg-danger-hover: var(--cbp-color-danger-light);
-  --cbp-table-row-color-bg-danger-hover-dark: var(--cbp-color-danger-dark);
-  --cbp-table-row-color-bg-highlight: var(--cbp-color-yellow-20);
-  --cbp-table-row-color-bg-highlight-dark: var(--cbp-color-yellow-10);
+  --cbp-table-color-bg-danger: var(--cbp-color-danger-lighter);
+  --cbp-table-color-bg-danger-dark: var(--cbp-color-danger-darker);
+  --cbp-table-color-bg-danger-hover: var(--cbp-color-danger-light);
+  --cbp-table-color-bg-danger-hover-dark: var(--cbp-color-danger-dark);
+  --cbp-table-row-color-bg-highlight: var(--cbp-color-highlight);
 
   --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
   --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
@@ -97,25 +97,24 @@
  [data-cbp-theme=dark] cbp-table:not([context=dark-inverts]):not([context=light-always]){
   --cbp-table-color: var(--cbp-table-color-dark);
   
-  --cbp-table-header-color: var(--cbp-table-header-color-dark);
-  --cbp-table-header-color-hover: var(--cbp-table-header-color-hover-dark);
-  --cbp-table-header-color-focus: var(--cbp-table-header-color-focus-dark);
-  --cbp-table-header-color-active: var(--cbp-table-header-color-active-dark);
-  --cbp-table-header-color-bg: var(--cbp-table-header-color-bg-dark);
-  --cbp-table-header-color-bg-hover: var(--cbp-table-header-color-bg-hover-dark);
-  --cbp-table-header-color-bg-focus: var(--cbp-table-header-color-bg-focus-dark);
-  --cbp-table-header-color-bg-active: var(--cbp-table-header-color-bg-active-dark);
-  --cbp-table-header-color-outline: var(--cbp-table-header-color-outline-dark);
+  --cbp-table-header-color: var(--cbp-table-header-color-dark) !important;
+  --cbp-table-header-color-hover: var(--cbp-table-header-color-hover-dark) !important;
+  --cbp-table-header-color-focus: var(--cbp-table-header-color-focus-dark) !important;
+  --cbp-table-header-color-active: var(--cbp-table-header-color-active-dark) !important;
+  --cbp-table-header-color-bg: var(--cbp-table-header-color-bg-dark) !important;
+  --cbp-table-header-color-bg-hover: var(--cbp-table-header-color-bg-hover-dark) !important;
+  --cbp-table-header-color-bg-focus: var(--cbp-table-header-color-bg-focus-dark) !important;
+  --cbp-table-header-color-bg-active: var(--cbp-table-header-color-bg-active-dark) !important;
+  --cbp-table-header-color-outline: var(--cbp-table-header-color-outline-dark) !important;
 
-  --cbp-table-row-color-bg: var(--cbp-table-row-color-bg-dark);
-  --cbp-table-row-color-bg-striped: var(--cbp-table-row-color-bg-striped-dark);
-  --cbp-table-row-color-bg-hover: var(--cbp-table-row-color-bg-hover-dark);
-  --cbp-table-row-color-bg-selected: var(--cbp-table-row-color-bg-selected-dark);
-  --cbp-table-row-color-bg-danger: var(--cbp-table-row-color-bg-danger-dark);
-  --cbp-table-row-color-bg-danger-hover: var(--cbp-table-row-color-bg-danger-hover-dark);
-  --cbp-table-row-color-bg-highlight: var(--cbp-table-row-color-bg-highlight-dark);
+  --cbp-table-row-color-bg: var(--cbp-table-row-color-bg-dark) !important;
+  --cbp-table-row-color-bg-striped: var(--cbp-table-row-color-bg-striped-dark) !important;
+  --cbp-table-row-color-bg-hover: var(--cbp-table-row-color-bg-hover-dark) !important;
+  --cbp-table-row-color-bg-selected: var(--cbp-table-row-color-bg-selected-dark) !important;
+  --cbp-table-color-bg-danger: var(--cbp-table-color-bg-danger-dark) !important;
+  --cbp-table-color-bg-danger-hover: var(--cbp-table-color-bg-danger-hover-dark) !important;
 
-  --cbp-table-row-color-border: var(--cbp-table-row-color-border-dark);
+  --cbp-table-row-color-border: var(--cbp-table-row-color-border-dark) !important;
  }
 
 cbp-table {
@@ -148,7 +147,7 @@ cbp-table {
         }
         td.cbp-table--danger,
         &.cbp-table--danger td {
-          background-color: var(--cbp-table-row-color-bg-danger-hover);
+          background-color: var(--cbp-table-color-bg-danger-hover);
         }
         td.cbp-table--hightlight {
           color: var(--cbp-color-text-darkest);
@@ -164,7 +163,7 @@ cbp-table {
           background-color: var(--cbp-table-row-color-bg-hover);
         
         &.cbp-table--danger{
-          background-color: var(--cbp-table-row-color-bg-danger-hover);
+          background-color: var(--cbp-table-color-bg-danger-hover);
         }
         &.cbp-table--hightlight{
           color: var(--cbp-color-text-darkest);
@@ -172,7 +171,7 @@ cbp-table {
         }
       }
       tr.cbp-table--danger td:hover {
-        background-color: var(--cbp-table-row-color-bg-danger-hover);
+        background-color: var(--cbp-table-color-bg-danger-hover);
       }
     }
   }
@@ -181,18 +180,46 @@ cbp-table {
   // Column highlighting on hover (except for column header when sortable)
   // TechDebt: doesn't scale; this would be better, but still experimental: https://developer.mozilla.org/en-US/docs/Web/CSS/Column_combinator#browser_compatibility
   &[column-hover] {
-    table:has(thead tr > *:nth-child(1):hover) tr > *:nth-child(1):not([aria-sort]),
-    table:has(thead tr > *:nth-child(2):hover) tr > *:nth-child(2):not([aria-sort]),
-    table:has(thead tr > *:nth-child(3):hover) tr > *:nth-child(3):not([aria-sort]),
-    table:has(thead tr > *:nth-child(4):hover) tr > *:nth-child(4):not([aria-sort]),
-    table:has(thead tr > *:nth-child(5):hover) tr > *:nth-child(5):not([aria-sort]),
-    table:has(thead tr > *:nth-child(6):hover) tr > *:nth-child(6):not([aria-sort]),
-    table:has(thead tr > *:nth-child(7):hover) tr > *:nth-child(7):not([aria-sort]),
-    table:has(thead tr > *:nth-child(8):hover) tr > *:nth-child(8):not([aria-sort]),
-    table:has(thead tr > *:nth-child(9):hover) tr > *:nth-child(9):not([aria-sort]),
-    table:has(thead tr > *:nth-child(10):hover) tr > *:nth-child(10):not([aria-sort]) {
+    table:has(thead tr > *:nth-child(1):hover) tr > *:nth-child(1):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(2):hover) tr > *:nth-child(2):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(3):hover) tr > *:nth-child(3):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(4):hover) tr > *:nth-child(4):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(5):hover) tr > *:nth-child(5):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(6):hover) tr > *:nth-child(6):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(7):hover) tr > *:nth-child(7):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(8):hover) tr > *:nth-child(8):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(9):hover) tr > *:nth-child(9):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(10):hover) tr > *:nth-child(10):not([aria-sort]):not(.cbp-table--hightlight) {
+      color: var(--cbp-table-color);
       background-color: var(--cbp-table-row-color-bg-hover);
     }
+
+    /** Danger */
+    
+    table:has(thead tr > *:nth-child(1):hover) tr.cbp-table--danger > *:nth-child(1):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(2):hover) tr.cbp-table--danger > *:nth-child(2):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(3):hover) tr.cbp-table--danger > *:nth-child(3):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(4):hover) tr.cbp-table--danger > *:nth-child(4):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(5):hover) tr.cbp-table--danger > *:nth-child(5):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(6):hover) tr.cbp-table--danger > *:nth-child(6):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(7):hover) tr.cbp-table--danger > *:nth-child(7):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(8):hover) tr.cbp-table--danger > *:nth-child(8):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(9):hover) tr.cbp-table--danger > *:nth-child(9):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(10):hover) tr.cbp-table--danger > *:nth-child(10):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(1):hover) tr > *.cbp-table--danger:nth-child(1):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(2):hover) tr > *.cbp-table--danger:nth-child(2):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(3):hover) tr > *.cbp-table--danger:nth-child(3):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(4):hover) tr > *.cbp-table--danger:nth-child(4):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(5):hover) tr > *.cbp-table--danger:nth-child(5):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(6):hover) tr > *.cbp-table--danger:nth-child(6):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(7):hover) tr > *.cbp-table--danger:nth-child(7):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(8):hover) tr > *.cbp-table--danger:nth-child(8):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(9):hover) tr > *.cbp-table--danger:nth-child(9):not([aria-sort]):not(.cbp-table--hightlight),
+    table:has(thead tr > *:nth-child(10):hover) tr > *.cbp-table--danger:nth-child(10):not([aria-sort]):not(.cbp-table--hightlight){
+      color: var(--cbp-table-color);
+      background-color: var(--cbp-table-color-bg-danger-hover);
+    }
+
   }
 
   table {
@@ -229,7 +256,7 @@ cbp-table {
       }
 
       &.cbp-table--danger{
-        background-color: var(--cbp-table-row-color-bg-danger);
+        background-color: var(--cbp-table-color-bg-danger);
       }
 
       &.cbp-table--hightlight{
@@ -323,7 +350,7 @@ cbp-table {
         background-color: var(--cbp-table-row-color-bg);
 
         &.cbp-table--danger{
-          background-color: var(--cbp-table-row-color-bg-danger);
+          background-color: var(--cbp-table-color-bg-danger);
         }
 
         &:has(input[type=checkbox]:checked) {
