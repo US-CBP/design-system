@@ -52,24 +52,41 @@ function generateTableHeaders(headers, selectable, context) {
 }
 
 function generateTableRows(data, selectable, context) {
-  const html = data.map( ({ row }, i) => {
+  const html = data.map( ({ row, danger }, i) => {
     const checkbox = `<td>
         <cbp-checkbox ${context && context != 'light-inverts' ? `context=${context}` : ''}>
           <input type="checkbox" name="rowid" value="${i+1}">
           <span style="display:none">Select row ${i+1}</span>
         </cbp-checkbox>
       </td>`
-    let cells = row.map( ({td})  => {
-      return `
+    let cells = row.map( ({td, danger, highlight})  => {
+      if(danger){
+        return `
+          <td class="cbp-table--danger">${td}</td>
+        `;
+      }else if(highlight){
+        return `
+          <td class="cbp-table--hightlight">${td}</td>
+        `;
+      }
+       return `
         <td>${td}</td>
       `;
-    }).join('');
+      }).join('');
     if (selectable) cells = checkbox + cells;
-    return `
-      <tr>
-        ${cells}
-      </tr>
-    `;
+    if(danger){
+      return `
+          <tr class="cbp-table--danger">
+            ${cells}
+          </tr>
+        `;
+    }else{
+      return `
+        <tr>
+          ${cells}
+        </tr>
+      `;
+    }
   });
   return html.join('');
 }
@@ -189,3 +206,231 @@ BasicTable.args = {
   ]
 }
 
+const tableDangerTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
+  
+ /*
+  const toolbar=`
+    <div slot="cbp-table-toolbar">
+      Test toolbar.
+    </div>
+  `;
+  */
+
+  return ` 
+      <cbp-table
+        ${striped != 'none' ? `striped="${striped}"` : ''}
+        ${hover == 'cell' ? `hover="${hover}"` : ''}
+        ${columnHover ? `column-hover` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+        <table style="width: 100%">
+          <caption>Table Caption</caption>
+          <thead>
+            <tr>
+              ${generateTableHeaders(headers, selectable, context)}
+            </tr>
+          </thead>
+          <tbody>
+            ${generateTableRows(tableData, selectable, context)}
+          </tbody>
+        </table>
+
+        ${ selectable ? `
+            <cbp-action-bar variant="inline" context="dark-inverts">
+              <div slot="cbp-action-bar-info">0 items selected.</div>
+              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+            </cbp-action-bar>          
+          ` : ''}
+      </cbp-typography>
+    `;
+};
+
+export const dangerTable = tableDangerTemplate.bind({});
+dangerTable.args = {
+  striped: 'even',
+  headers: [
+    {
+      label: "Header 1",
+      sortable: true,
+    },
+    {
+      label: "Header 2",
+      sortable: true,
+    },
+    {
+      label: "Header 3 is longer",
+      sortable: true,
+    },
+    {
+      label: "Header 4",
+      sortable: true,
+    },
+    {
+      label: "Header 5",
+      sortable: false,
+    },
+  ],
+  tableData: [
+    {
+      row: [
+        {td: 'Row 1 Column 1 Cell Text'},
+        {td: 'Row 1 Column 2 Cell Text'},
+        {td: 'Row 1 Column 3 Cell Text'},
+        {td: 'Row 1 Column 4 Cell Text'},
+        {td: 'Row 1 Column 4 Cell Text'},
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 2 Column 1 Cell Text', danger: true},
+        {td: 'Row 2 Column 2 Cell Text', danger: true},
+        {td: 'Row 2 Column 3 Cell Text', danger: true},
+        {td: 'Row 2 Column 4 Cell Text', danger: true},
+        {td: 'Row 2 Column 5 Cell Text', danger: true},
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 3 Column 1 Cell Text'},
+        {td: 'Row 3 Column 2 Cell Text'},
+        {td: 'Row 3 Column 3 Cell Text'},
+        {td: 'Row 3 Column 4 Cell Text is longer than the rest'},
+        {td: 'Row 3 Column 5 Cell Text'},
+      ], danger: true
+    },
+    {
+      row: [
+        {td: 'Row 4 Column 1 Cell Text'},
+        {td: 'Row 4 Column 2 Cell Text'},
+        {td: 'Row 4 Column 3 Cell Text'},
+        {td: 'Row 4 Column 4 Cell Text'},
+        {td: 'Row 4 Column 5 Cell Text'},
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 5 Column 1 Cell Text'},
+        {td: 'Row 5 Column 2 Cell Text'},
+        {td: 'Row 5 Column 3 Cell Text'},
+        {td: 'Row 5 Column 4 Cell Text'},
+        {td: 'Row 5 Column 5 Cell Text'},
+      ]
+    },
+  ]
+}
+
+const tableHighlightTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
+  
+ /*
+  const toolbar=`
+    <div slot="cbp-table-toolbar">
+      Test toolbar.
+    </div>
+  `;
+  */
+
+  return ` 
+      <cbp-table
+        ${striped != 'none' ? `striped="${striped}"` : ''}
+        ${hover == 'cell' ? `hover="${hover}"` : ''}
+        ${columnHover ? `column-hover` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+        <table style="width: 100%">
+          <caption>Table Caption</caption>
+          <thead>
+            <tr>
+              ${generateTableHeaders(headers, selectable, context)}
+            </tr>
+          </thead>
+          <tbody>
+            ${generateTableRows(tableData, selectable, context)}
+          </tbody>
+        </table>
+
+        ${ selectable ? `
+            <cbp-action-bar variant="inline" context="dark-inverts">
+              <div slot="cbp-action-bar-info">0 items selected.</div>
+              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+            </cbp-action-bar>          
+          ` : ''}
+      </cbp-typography>
+    `;
+};
+
+export const highlightTable = tableHighlightTemplate.bind({});
+highlightTable.args = {
+  striped: 'even',
+  headers: [
+    {
+      label: "Header 1",
+      sortable: true,
+    },
+    {
+      label: "Header 2",
+      sortable: true,
+    },
+    {
+      label: "Header 3 is longer",
+      sortable: true,
+    },
+    {
+      label: "Header 4",
+      sortable: true,
+    },
+    {
+      label: "Header 5",
+      sortable: false,
+    },
+  ],
+  tableData: [
+    {
+      row: [
+        {td: 'Row 1 Column 1 Cell Text'},
+        {td: 'Row 1 Column 2 Cell Text'},
+        {td: 'Row 1 Column 3 Cell Text'},
+        {td: 'Row 1 Column 4 Cell Text'},
+        {td: 'Row 1 Column 4 Cell Text'},
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 2 Column 1 Cell Text', highlight: true},
+        {td: 'Row 2 Column 2 Cell Text'},
+        {td: 'Row 2 Column 3 Cell Text', highlight: true},
+        {td: 'Row 2 Column 4 Cell Text'},
+        {td: 'Row 2 Column 5 Cell Text'},
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 3 Column 1 Cell Text'},
+        {td: 'Row 3 Column 2 Cell Text', highlight: true},
+        {td: 'Row 3 Column 3 Cell Text'},
+        {td: 'Row 3 Column 4 Cell Text is longer than the rest'},
+        {td: 'Row 3 Column 5 Cell Text'},      ]
+    },
+    {
+      row: [
+        {td: 'Row 4 Column 1 Cell Text'},
+        {td: 'Row 4 Column 2 Cell Text'},
+        {td: 'Row 4 Column 3 Cell Text'},
+        {td: 'Row 4 Column 4 Cell Text'},
+        {td: 'Row 4 Column 5 Cell Text'},
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 5 Column 1 Cell Text'},
+        {td: 'Row 5 Column 2 Cell Text'},
+        {td: 'Row 5 Column 3 Cell Text'},
+        {td: 'Row 5 Column 4 Cell Text'},
+        {td: 'Row 5 Column 5 Cell Text'},
+      ]
+    },
+  ]
+}
