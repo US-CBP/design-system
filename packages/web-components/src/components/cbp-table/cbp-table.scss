@@ -141,7 +141,7 @@ cbp-table {
 
   &[hover=row] {
     tbody {
-      tr:hover{
+      tr:hover:not(:has(input[type="checkbox"]:checked)){
         td {
           background-color: var(--cbp-table-row-color-bg-hover);
         }
