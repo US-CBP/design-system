@@ -53,7 +53,6 @@ function generateTableHeaders(headers, selectable, context) {
 
 function generateTableRows(data, selectable, context) {
   const html = data.map( ({ row, danger }, i) => {
-    // console.log('data: ', data);
     const checkbox = `<td>
         <cbp-checkbox ${context && context != 'light-inverts' ? `context=${context}` : ''}>
           <input type="checkbox" name="rowid" value="${i+1}">
