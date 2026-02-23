@@ -143,10 +143,11 @@ cbp-table {
   &[hover=row] {
     tbody {
       tr:hover{
-         td {
+        td {
           background-color: var(--cbp-table-row-color-bg-hover);
         }
-        td.cbp-table--danger {
+        td.cbp-table--danger,
+        &.cbp-table--danger td {
           background-color: var(--cbp-table-row-color-bg-danger-hover);
         }
         td.cbp-table--hightlight {
@@ -159,17 +160,19 @@ cbp-table {
 
   &[hover=cell] {
     tbody {
-      td{
-        &:hover {
+      td:hover{
           background-color: var(--cbp-table-row-color-bg-hover);
-        }
-        &.cbp-table--danger:hover{
+        
+        &.cbp-table--danger{
           background-color: var(--cbp-table-row-color-bg-danger-hover);
         }
-        &.cbp-table--hightlight:hover {
+        &.cbp-table--hightlight{
           color: var(--cbp-color-text-darkest);
           background-color: var(--cbp-table-row-color-bg-highlight);
         }
+      }
+      tr.cbp-table--danger td:hover {
+        background-color: var(--cbp-table-row-color-bg-danger-hover);
       }
     }
   }
@@ -318,6 +321,10 @@ cbp-table {
     tbody {
       tr {
         background-color: var(--cbp-table-row-color-bg);
+
+        &.cbp-table--danger{
+          background-color: var(--cbp-table-row-color-bg-danger);
+        }
 
         &:has(input[type=checkbox]:checked) {
           background-color: var(--cbp-table-row-color-bg-selected);

@@ -52,7 +52,8 @@ function generateTableHeaders(headers, selectable, context) {
 }
 
 function generateTableRows(data, selectable, context) {
-  const html = data.map( ({ row }, i) => {
+  const html = data.map( ({ row, danger }, i) => {
+    // console.log('data: ', data);
     const checkbox = `<td>
         <cbp-checkbox ${context && context != 'light-inverts' ? `context=${context}` : ''}>
           <input type="checkbox" name="rowid" value="${i+1}">
@@ -62,11 +63,11 @@ function generateTableRows(data, selectable, context) {
     let cells = row.map( ({td, danger, highlight})  => {
       if(danger){
         return `
-          <td class='cbp-table--danger'>${td}</td>
+          <td class="cbp-table--danger">${td}</td>
         `;
       }else if(highlight){
         return `
-          <td class='cbp-table--hightlight'>${td}</td>
+          <td class="cbp-table--hightlight">${td}</td>
         `;
       }
        return `
@@ -74,11 +75,19 @@ function generateTableRows(data, selectable, context) {
       `;
       }).join('');
     if (selectable) cells = checkbox + cells;
-    return `
-      <tr>
-        ${cells}
-      </tr>
-    `;
+    if(danger){
+      return `
+          <tr class="cbp-table--danger">
+            ${cells}
+          </tr>
+        `;
+    }else{
+      return `
+        <tr>
+          ${cells}
+        </tr>
+      `;
+    }
   });
   return html.join('');
 }
@@ -286,10 +295,11 @@ dangerTable.args = {
     {
       row: [
         {td: 'Row 3 Column 1 Cell Text'},
-        {td: 'Row 3 Column 2 Cell Text', danger: true},
+        {td: 'Row 3 Column 2 Cell Text'},
         {td: 'Row 3 Column 3 Cell Text'},
         {td: 'Row 3 Column 4 Cell Text is longer than the rest'},
-        {td: 'Row 3 Column 5 Cell Text'},      ]
+        {td: 'Row 3 Column 5 Cell Text'},
+      ], danger: true
     },
     {
       row: [
