@@ -36,7 +36,6 @@ function generateIcon(color) {
 }
 
 const Template = ({ open, title, content, buttons, duration, color, context, sx }) => {
-  console.log('template: ' + color);
   return ` 
     <cbp-toast
       ${open ? `open` : ''}

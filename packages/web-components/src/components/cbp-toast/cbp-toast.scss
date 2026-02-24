@@ -32,22 +32,6 @@
   --cbp-toast-color-icon-sidebar: var(--cbp-toast-color-icon-sidebar-dark);
 }
 
-@keyframes show {
-  0% {
-    opacity: 1;
-    transform: translateX(100%);
-  }
-}
-
-@keyframes dismiss {
-  99% {
-    transform: translateX(200%);
-  }
-  100% {
-    visibility: hidden;
-  }
-}
-
 cbp-toast {
   display: flex;
   margin-inline-start: auto;
@@ -57,9 +41,14 @@ cbp-toast {
   color: var(--cbp-toast-color);
   box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.3);
   border-radius: var(--cbp-border-radius-softer);
+  opacity: 0;
 
   animation: show 600ms 100ms ease-in-out forwards;
-
+  
+  &[open]{
+    visibility: visible;
+  }
+  
   &:not([open]) {
     animation: dismiss 1s ease-in-out forwards;
   }
@@ -162,5 +151,27 @@ cbp-toast {
     --cbp-toast-color-bg-dark: var(--cbp-color-danger-lighter);
     --cbp-toast-color-bg-sidebar: var(--cbp-color-danger-darker);
     --cbp-toast-color-bg-sidebar-dark: var(--cbp-color-danger-light);
+  }
+}
+
+@keyframes show {
+  0% {
+    transform: translateX(100%);
+  }
+  100%{
+    opacity:1;
+  }
+}
+
+@keyframes dismiss {
+  0%{
+    opacity: 1;
+  }
+  99% {
+    transform: translateX(200%);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
   }
 }
