@@ -33,15 +33,13 @@
  *  @prop --cbp-table-row-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
  *  @prop --cbp-table-color-bg-danger: var(--cbp-color-danger-lighter);
  *  @prop --cbp-table-color-bg-danger-dark: var(--cbp-color-danger-darker);
- *  @prop --cbp-table-color-bg-danger-hover: var(--cbp-color-danger-light);
- *  @prop --cbp-table-color-bg-danger-hover-dark: var(--cbp-color-danger-dark);
  *  @prop --cbp-table-row-color-bg-highlight: var(--cbp-color-highlight);
  
  *  @prop --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
  *  @prop --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
  *  @prop --cbp-table-row-border-size: var(--cbp-border-size-md); 
 
- *  @prop --cbp-table-cell-padding: var(--cbp-space-3x) var(--cbp-space-4x);
+ *  @prop --cbp-table-cell-padding: var(--cbp-space-4x) var(--cbp-space-3x);
  */
 :root {
   --cbp-table-color: var(--cbp-color-text-darkest);
@@ -78,8 +76,6 @@
   --cbp-table-row-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
   --cbp-table-color-bg-danger: var(--cbp-color-danger-lighter);
   --cbp-table-color-bg-danger-dark: var(--cbp-color-danger-darker);
-  --cbp-table-color-bg-danger-hover: var(--cbp-color-danger-light);
-  --cbp-table-color-bg-danger-hover-dark: var(--cbp-color-danger-dark);
   --cbp-table-row-color-bg-highlight: var(--cbp-color-highlight);
 
   --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
@@ -112,7 +108,6 @@
   --cbp-table-row-color-bg-hover: var(--cbp-table-row-color-bg-hover-dark) !important;
   --cbp-table-row-color-bg-selected: var(--cbp-table-row-color-bg-selected-dark) !important;
   --cbp-table-color-bg-danger: var(--cbp-table-color-bg-danger-dark) !important;
-  --cbp-table-color-bg-danger-hover: var(--cbp-table-color-bg-danger-hover-dark) !important;
 
   --cbp-table-row-color-border: var(--cbp-table-row-color-border-dark) !important;
  }
@@ -159,10 +154,6 @@ cbp-table {
           background-color: var(--cbp-table-row-color-bg-hover);
         }
         
-        td.cbp-table--danger,
-        &.cbp-table--danger td {
-          background-color: var(--cbp-table-color-bg-danger-hover);
-        }
         td.cbp-table--hightlight,
         &.cbp-table--hightlight td {
           color: var(--cbp-color-text-darkest);
@@ -178,16 +169,10 @@ cbp-table {
       td:hover{
           background-color: var(--cbp-table-row-color-bg-hover);
         
-        &.cbp-table--danger{
-          background-color: var(--cbp-table-color-bg-danger-hover);
-        }
         &.cbp-table--hightlight{
           color: var(--cbp-color-text-darkest);
           background-color: var(--cbp-table-row-color-bg-highlight);
         }
-      }
-      tr.cbp-table--danger td:hover {
-        background-color: var(--cbp-table-color-bg-danger-hover);
       }
     }
   }
@@ -209,33 +194,6 @@ cbp-table {
       &:not([aria-sort]):not(.cbp-table--highlight) {
         color: var(--cbp-table-color);
         background-color: var(--cbp-table-row-color-bg-hover);
-      }
-    }
-
-    /* Danger */
-    table:has(thead tr > *:nth-child(1):hover) tr.cbp-table--danger > *:nth-child(1),
-    table:has(thead tr > *:nth-child(2):hover) tr.cbp-table--danger > *:nth-child(2),
-    table:has(thead tr > *:nth-child(3):hover) tr.cbp-table--danger > *:nth-child(3),
-    table:has(thead tr > *:nth-child(4):hover) tr.cbp-table--danger > *:nth-child(4),
-    table:has(thead tr > *:nth-child(5):hover) tr.cbp-table--danger > *:nth-child(5),
-    table:has(thead tr > *:nth-child(6):hover) tr.cbp-table--danger > *:nth-child(6),
-    table:has(thead tr > *:nth-child(7):hover) tr.cbp-table--danger > *:nth-child(7),
-    table:has(thead tr > *:nth-child(8):hover) tr.cbp-table--danger > *:nth-child(8),
-    table:has(thead tr > *:nth-child(9):hover) tr.cbp-table--danger > *:nth-child(9),
-    table:has(thead tr > *:nth-child(10):hover) tr.cbp-table--danger > *:nth-child(10),
-    table:has(thead tr > *:nth-child(1):hover) tr > .cbp-table--danger:nth-child(1),
-    table:has(thead tr > *:nth-child(2):hover) tr > .cbp-table--danger:nth-child(2),
-    table:has(thead tr > *:nth-child(3):hover) tr > .cbp-table--danger:nth-child(3),
-    table:has(thead tr > *:nth-child(4):hover) tr > .cbp-table--danger:nth-child(4),
-    table:has(thead tr > *:nth-child(5):hover) tr > .cbp-table--danger:nth-child(5),
-    table:has(thead tr > *:nth-child(6):hover) tr > .cbp-table--danger:nth-child(6),
-    table:has(thead tr > *:nth-child(7):hover) tr > .cbp-table--danger:nth-child(7),
-    table:has(thead tr > *:nth-child(8):hover) tr > .cbp-table--danger:nth-child(8),
-    table:has(thead tr > *:nth-child(9):hover) tr > .cbp-table--danger:nth-child(9),
-    table:has(thead tr > *:nth-child(10):hover) tr > .cbp-table--danger:nth-child(10) {
-      &:not([aria-sort]):not(.cbp-table--hightlight) {
-        color: var(--cbp-table-color);
-        background-color: var(--cbp-table-color-bg-danger-hover);
       }
     }
   }
@@ -264,9 +222,9 @@ cbp-table {
         padding-block: var(--cbp-space-2x);
       }
 
-      &:has(button) {
-        padding: 0;
-      }
+      // &:has(button) { //TODO: applying to cells with buttons, which i don't think was the original intent
+      //   padding: 0;
+      // }
 
       cbp-checkbox {
         --cbp-checkbox-min-height: 0;
@@ -274,7 +232,9 @@ cbp-table {
       }
     }
 
-    // tfoot ??
+    td:has(cbp-button){
+      --cbp-table-cell-padding: var(--cbp-space-2x) var(--cbp-space-3x);//TODO: misaligned with header which is also button. spec doesn't have header for this row so maybe remove header?
+    }
 
     thead {
       th {
@@ -285,6 +245,10 @@ cbp-table {
         &[aria-sort=none] button {
           // Use padding as a placeholder to keep columns from shifting when sorted and an icon is added.
           padding-inline-end: var(--cbp-space-9x); // icon = 4 + gap = 2 + end padding = 3 = 9
+        }
+
+        &:has(button) {
+          padding: 0;
         }
 
         &:has(button:hover) {
