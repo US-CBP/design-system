@@ -436,7 +436,7 @@ highlightTable.args = {
 }
 
 
-const tableButtonTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
+const singleRowActionTableTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
   
  /*
   const toolbar=`
@@ -477,8 +477,8 @@ const tableButtonTemplate = ({ tableData, headers, selectable, striped, hover, c
     `;
 };
 
-export const buttonTable = tableButtonTemplate.bind({});
-buttonTable.args = {
+export const singleRowActionTable = singleRowActionTableTemplate.bind({});
+singleRowActionTable.args = {
   striped: 'even',
   headers: [
     {
@@ -497,9 +497,146 @@ buttonTable.args = {
       label: "Header 4",
       sortable: true,
     },
+  ],
+  tableData: [
     {
-      label: "Header 5",
-      sortable: false,
+      row: [
+        {td: 'Row 1 Column 1 Cell Text'},
+        {td: 'Row 1 Column 2 Cell Text'},
+        {td: 'Row 1 Column 3 Cell Text'},
+        {td: `  <cbp-button
+                  fill="ghost"
+                  color="secondary"
+                  accessibility-text="View details of Row 1"
+                > 
+                  View 
+                </cbp-button>`
+        },
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 2 Column 1 Cell Text'},
+        {td: 'Row 2 Column 2 Cell Text'},
+        {td: 'Row 2 Column 3 Cell Text'},
+        {td: `  <cbp-button
+                  fill="ghost"
+                  color="secondary"
+                  accessibility-text="View details of Row 2"
+                > 
+                  View
+                </cbp-button>`
+        },
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 3 Column 1 Cell Text'},
+        {td: 'Row 3 Column 2 Cell Text'},
+        {td: 'Row 3 Column 3 Cell Text'},
+        {td: `  <cbp-button
+                  fill="ghost"
+                  color="secondary"
+                  accessibility-text="View details of Row 3"
+                > 
+                  View
+                </cbp-button>`
+        },
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 4 Column 1 Cell Text'},
+        {td: 'Row 4 Column 2 Cell Text'},
+        {td: 'Row 4 Column 3 Cell Text'},
+        {td: `  <cbp-button
+                  fill="ghost"
+                  color="secondary"
+                  accessibility-text="View details of Row 4"
+                > 
+                  View
+                </cbp-button>`
+        },
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 5 Column 1 Cell Text'},
+        {td: 'Row 5 Column 2 Cell Text'},
+        {td: 'Row 5 Column 3 Cell Text'},
+        {td: `  <cbp-button
+                  fill="ghost"
+                  color="secondary"
+                  accessibility-text="View details of Row 5"
+                > 
+                  View
+                </cbp-button>`
+        },
+      ]
+    },
+  ]
+}
+
+const singleRowActionTableWithOverflowMenuTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
+  
+ /*
+  const toolbar=`
+    <div slot="cbp-table-toolbar">
+      Test toolbar.
+    </div>
+  `;
+  */
+
+  return ` 
+      <cbp-table
+        ${striped != 'none' ? `striped="${striped}"` : ''}
+        ${hover == 'cell' ? `hover="${hover}"` : ''}
+        ${columnHover ? `column-hover` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      >
+        <table style="width: 100%">
+          <caption>Table Caption</caption>
+          <thead>
+            <tr>
+              ${generateTableHeaders(headers, selectable, context)}
+            </tr>
+          </thead>
+          <tbody>
+            ${generateTableRows(tableData, selectable, context)}
+          </tbody>
+        </table>
+
+        ${ selectable ? `
+            <cbp-action-bar variant="inline" context="dark-inverts">
+              <div slot="cbp-action-bar-info">0 items selected.</div>
+              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+            </cbp-action-bar>          
+          ` : ''}
+      </cbp-typography>
+    `;
+};
+
+export const singleRowActionTableWithOverflowMenu = singleRowActionTableWithOverflowMenuTemplate.bind({});
+singleRowActionTableWithOverflowMenu.args = {
+  striped: 'even',
+  headers: [
+    {
+      label: "Header 1",
+      sortable: true,
+    },
+    {
+      label: "Header 2",
+      sortable: true,
+    },
+    {
+      label: "Header 3 is longer",
+      sortable: true,
+    },
+    {
+      label: "Header 4",
+      sortable: true,
     },
   ],
   tableData: [
@@ -511,13 +648,7 @@ buttonTable.args = {
         {td: `  <cbp-button
                   fill="ghost"
                   color="secondary"
-                > 
-                  Press me 
-                </cbp-button>`
-        },
-        {td: `  <cbp-button
-                  fill="ghost"
-                  color="secondary"
+                  accessibility-text="View details of Row 1"
                 > 
                   <cbp-icon
                     name="ellipsis-vertical"
@@ -535,13 +666,7 @@ buttonTable.args = {
         {td: `  <cbp-button
                   fill="ghost"
                   color="secondary"
-                > 
-                  Press me 
-                </cbp-button>`
-        },
-        {td: `  <cbp-button
-                  fill="ghost"
-                  color="secondary"
+                  accessibility-text="View details of Row 2"
                 > 
                   <cbp-icon
                     name="ellipsis-vertical"
@@ -559,13 +684,7 @@ buttonTable.args = {
         {td: `  <cbp-button
                   fill="ghost"
                   color="secondary"
-                > 
-                  Press me 
-                </cbp-button>`
-        },
-        {td: `  <cbp-button
-                  fill="ghost"
-                  color="secondary"
+                  accessibility-text="View details of Row 3"
                 > 
                   <cbp-icon
                     name="ellipsis-vertical"
@@ -583,13 +702,7 @@ buttonTable.args = {
         {td: `  <cbp-button
                   fill="ghost"
                   color="secondary"
-                > 
-                  Press me 
-                </cbp-button>`
-        },
-        {td: `  <cbp-button
-                  fill="ghost"
-                  color="secondary"
+                  accessibility-text="View details of Row 4"
                 > 
                   <cbp-icon
                     name="ellipsis-vertical"
@@ -607,13 +720,7 @@ buttonTable.args = {
         {td: `  <cbp-button
                   fill="ghost"
                   color="secondary"
-                > 
-                  Press me 
-                </cbp-button>`
-        },
-        {td: `  <cbp-button
-                  fill="ghost"
-                  color="secondary"
+                  accessibility-text="View details of Row 5"
                 > 
                   <cbp-icon
                     name="ellipsis-vertical"

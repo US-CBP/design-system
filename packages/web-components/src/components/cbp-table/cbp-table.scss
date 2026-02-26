@@ -222,18 +222,14 @@ cbp-table {
         padding-block: var(--cbp-space-2x);
       }
 
-      // &:has(button) { //TODO: applying to cells with buttons, which i don't think was the original intent
-      //   padding: 0;
-      // }
+      &:has(button) {
+        padding: 0;
+      }
 
       cbp-checkbox {
         --cbp-checkbox-min-height: 0;
         --cbp-checkbox-margin: 0;
       }
-    }
-
-    td:has(cbp-button){
-      --cbp-table-cell-padding: var(--cbp-space-2x) var(--cbp-space-3x);//TODO: misaligned with header which is also button. spec doesn't have header for this row so maybe remove header?
     }
 
     thead {
@@ -247,9 +243,7 @@ cbp-table {
           padding-inline-end: var(--cbp-space-9x); // icon = 4 + gap = 2 + end padding = 3 = 9
         }
 
-        &:has(button) {
-          padding: 0;
-        }
+        
 
         &:has(button:hover) {
           --cbp-table-header-color: var(--cbp-table-header-color-hover);
@@ -327,6 +321,10 @@ cbp-table {
           color: var(--cbp-table-color);
           background-color: var(--cbp-table-row-color-bg-selected);
         }
+      }
+
+      td:has(cbp-button){
+        vertical-align: middle;
       }
     }
 
