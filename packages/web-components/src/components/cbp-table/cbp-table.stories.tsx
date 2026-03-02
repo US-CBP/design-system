@@ -494,7 +494,7 @@ singleRowActionTable.args = {
       sortable: true,
     },
     {
-      label: "Action",
+      label: "Actions",
       sortable: false,
     },
   ],
@@ -637,7 +637,7 @@ OverflowMenu.args = {
       sortable: true,
     },
     {
-      label: "Action",
+      label: "Actions",
       sortable: false,
     },
   ],
@@ -650,7 +650,7 @@ OverflowMenu.args = {
         {td: `
           <cbp-menu
             uid="menuId1"
-            position="bottom-start"
+            position="bottom-end"
           >
 
             <cbp-button
@@ -704,7 +704,7 @@ OverflowMenu.args = {
         {td: `
           <cbp-menu
             uid="menuId2"
-            position="bottom-start"
+            position="bottom-end"
           >
 
             <cbp-button
@@ -758,7 +758,7 @@ OverflowMenu.args = {
         {td: `
           <cbp-menu
             uid="menuId3"
-            position="top-start"
+            position="top-end"
           >
 
             <cbp-button
@@ -812,7 +812,7 @@ OverflowMenu.args = {
         {td: `
           <cbp-menu
             uid="menuId4"
-            position="top-start"
+            position="top-end"
           >
 
             <cbp-button
@@ -866,7 +866,7 @@ OverflowMenu.args = {
        {td: `
           <cbp-menu
             uid="menuId5"
-            position="top-start"
+            position="top-end"
           >
 
             <cbp-button

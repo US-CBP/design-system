@@ -222,10 +222,6 @@ cbp-table {
         padding-block: var(--cbp-space-2x);
       }
 
-      &:has(button) {
-        padding: 0;
-      }
-
       cbp-checkbox {
         --cbp-checkbox-min-height: 0;
         --cbp-checkbox-margin: 0;
@@ -243,7 +239,9 @@ cbp-table {
           padding-inline-end: var(--cbp-space-9x); // icon = 4 + gap = 2 + end padding = 3 = 9
         }
 
-        
+        &:has(button) {
+          padding: 0;
+        }
 
         &:has(button:hover) {
           --cbp-table-header-color: var(--cbp-table-header-color-hover);
@@ -324,6 +322,7 @@ cbp-table {
       }
 
       td:has(cbp-button){
+        padding: 0; // TechDebt: should probably be padding-block, but alignment appears off in both cases.
         vertical-align: middle;
       }
     }
