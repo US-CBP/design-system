@@ -71,7 +71,7 @@
  * This toggle should have the highest specificity, so that what ever values were specified
  * for the dark version get written to the light within the scope of this component.
  */
-[data-cbp-theme=dark] cbp-nav-item:not(#fakeId) {
+[data-cbp-theme=dark] cbp-nav-item {
   --cbp-nav-item-color: var(--cbp-nav-item-color-dark) !important;
   
   --cbp-nav-item-color-hover: var(--cbp-nav-item-color-hover-dark) !important;

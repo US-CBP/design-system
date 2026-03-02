@@ -33,7 +33,8 @@ const Template = ({UnorderedListItems, OrderedListItems, tag, size, accessibilit
       ${size ? `size=${size}` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}  
+      }
     >
       ${tag == 'ol' ? 
         generateItems(OrderedListItems)
@@ -208,7 +209,7 @@ const InternalLinkListTemplate = ({linkListItems, size, accessibilityText, conte
     ${size ? `size=${size}` : ''}
     ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
     ${context && context != 'light-inverts' ? `context=${context}` : ''}
-    ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+    ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
   >
       ${generateLinkListItems(linkListItems, size, 'link-internal')}
   </cbp-list>`;
@@ -244,7 +245,7 @@ const ExternalLinkListTemplate = ({linkListItems, size, accessibilityText, conte
       ${size ? `size=${size}` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateLinkListItems(linkListItems, size, 'link-external')}
   </cbp-list>
@@ -295,7 +296,7 @@ const IconListTemplate = ({linkListItems, accessibilityText, context, sx}) => {
       variant='icon' 
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateIconItems(linkListItems)}
     </cbp-list>
@@ -344,7 +345,7 @@ const DescriptionListTemplate = ({linkListItems, accessibilityText, context, sx}
       tag='dl' 
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateDescriptionItems(linkListItems)}
   </cbp-list>

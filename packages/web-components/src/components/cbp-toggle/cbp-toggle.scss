@@ -154,9 +154,9 @@
  * This toggle should have the highest specificity, so that what ever values were specified for the dark version 
  * get written to the light within the scope of this component.
  */
-[data-cbp-theme=light] cbp-toggle[context*=dark]:not([context=light-always]):not(#fakeId),
-[data-cbp-theme=dark] cbp-toggle:not([context=dark-inverts]):not([context=light-always]):not(#fakeId) {
-  --cbp-toggle-text-color: var(--cbp-toggle-text-color-dark);
+[data-cbp-theme=light] cbp-toggle[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-toggle:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-toggle-text-color: var(--cbp-toggle-text-color-dark) !important;
  
   --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-dark) !important;
   --cbp-toggle-color-bg-selected: var(--cbp-toggle-color-bg-selected-dark) !important;

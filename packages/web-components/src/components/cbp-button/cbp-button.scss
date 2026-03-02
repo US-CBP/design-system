@@ -89,8 +89,8 @@
  * This toggle should have the highest specificity, so that what ever values were specified for the dark version 
  * get written to the light within the scope of this component.
  */
-[data-cbp-theme=light] cbp-button[context*=dark]:not(#fakeId),
-[data-cbp-theme=dark] cbp-button:not([context=dark-inverts]):not([context=light-always]):not(#fakeId) {
+[data-cbp-theme=light] cbp-button[context*=dark],
+[data-cbp-theme=dark] cbp-button:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-button-color: var(--cbp-button-color-dark) !important;
   --cbp-button-color-hover: var(--cbp-button-color-hover-dark) !important;
   --cbp-button-color-focus: var(--cbp-button-color-focus-dark) !important;
