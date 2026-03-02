@@ -41,7 +41,7 @@ const Template = ({ label, name, value, checked, disabled, context, sx }) => {
         ${disabled ? `disabled` : ''}
         ${checked ? `checked` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input 
           type="radio" 

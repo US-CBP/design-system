@@ -128,7 +128,7 @@ const Template = ({ label, withIcon, tag, type, value, href, rel, target, downlo
         ${expanded!=undefined ? `expanded="${expanded}"` : ''}
         ${disabled ? 'disabled' : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${withIcon ? `<cbp-icon name="pen-to-square"></cbp-icon>` : ''}
         ${label}
@@ -148,7 +148,7 @@ const SlottedButtonTemplate = ({ label, withIcon, tag, href, fill, color, varian
         ${color ? `color=${color}` : ''}
         ${variant !== 'default' ? `variant=${variant}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <button 
           slot="cbp-button-custom"

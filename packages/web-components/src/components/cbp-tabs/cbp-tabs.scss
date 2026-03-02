@@ -94,7 +94,7 @@
  */
 [data-cbp-theme=light] cbp-tabs[context*=dark],
 [data-cbp-theme=dark] cbp-tabs:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-tabs-color-border: var(--cbp-tabs-color-border-dark);
+  --cbp-tabs-color-border: var(--cbp-tabs-color-border-dark) !important;
 }
 
 cbp-tabs {

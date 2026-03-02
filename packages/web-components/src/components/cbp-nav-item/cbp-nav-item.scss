@@ -71,22 +71,22 @@
  * This toggle should have the highest specificity, so that what ever values were specified
  * for the dark version get written to the light within the scope of this component.
  */
-[data-cbp-theme=dark] cbp-nav-item:not(#fakeId) {
-  --cbp-nav-item-color: var(--cbp-nav-item-color-dark);
+[data-cbp-theme=dark] cbp-nav-item {
+  --cbp-nav-item-color: var(--cbp-nav-item-color-dark) !important;
   
-  --cbp-nav-item-color-hover: var(--cbp-nav-item-color-hover-dark);
-  --cbp-nav-item-color-bg-hover: var(--cbp-nav-item-color-bg-hover-dark);
-  --cbp-nav-item-color-border-hover: var(--cbp-nav-item-color-border-hover-dark);
+  --cbp-nav-item-color-hover: var(--cbp-nav-item-color-hover-dark) !important;
+  --cbp-nav-item-color-bg-hover: var(--cbp-nav-item-color-bg-hover-dark) !important;
+  --cbp-nav-item-color-border-hover: var(--cbp-nav-item-color-border-hover-dark) !important;
   
-  --cbp-nav-item-color-focus: var(--cbp-nav-item-color-focus-dark);
-  --cbp-nav-item-color-bg-focus: var(--cbp-nav-item-color-bg-focus-dark);
-  --cbp-nav-item-color-outline-focus: var(--cbp-nav-item-color-outline-focus-dark);
+  --cbp-nav-item-color-focus: var(--cbp-nav-item-color-focus-dark) !important;
+  --cbp-nav-item-color-bg-focus: var(--cbp-nav-item-color-bg-focus-dark) !important;
+  --cbp-nav-item-color-outline-focus: var(--cbp-nav-item-color-outline-focus-dark) !important;
 
-  --cbp-nav-item-color-active: var(--cbp-nav-item-color-active-dark);
-  --cbp-nav-item-color-bg-active: var(--cbp-nav-item-color-bg-active-dark);
+  --cbp-nav-item-color-active: var(--cbp-nav-item-color-active-dark) !important;
+  --cbp-nav-item-color-bg-active: var(--cbp-nav-item-color-bg-active-dark) !important;
   
-  --cbp-nav-item-color-current: var(--cbp-nav-item-color-current-dark);
-  --cbp-nav-item-color-border-current: var(---cbp-nav-item-color-border-current-dark);
+  --cbp-nav-item-color-current: var(--cbp-nav-item-color-current-dark) !important;
+  --cbp-nav-item-color-border-current: var(---cbp-nav-item-color-border-current-dark) !important;
 }
 
   /* 

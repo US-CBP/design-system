@@ -72,7 +72,7 @@ const Template = ({ gridColumnStart, gridColumnEnd, gridRowStart, gridRowEnd, al
         ${alignSelf ? `align-self=${alignSelf}` : ''}
         ${justifySelf ? `justify-self=${justifySelf}` : ''}
         ${gridArea ? `grid-area=${gridArea}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${content}
       </cbp-grid-item>

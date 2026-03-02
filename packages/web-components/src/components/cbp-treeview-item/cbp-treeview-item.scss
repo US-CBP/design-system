@@ -24,7 +24,7 @@
  */
 [data-cbp-theme=light] cbp-treeview-item[context*=dark],
 [data-cbp-theme=dark] cbp-treeview-item:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-treeview-item-color: var(--cbp-treeview-item-color-dark);
+  --cbp-treeview-item-color: var(--cbp-treeview-item-color-dark) !important;
 }
 
 

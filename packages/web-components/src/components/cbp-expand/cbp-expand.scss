@@ -43,7 +43,7 @@
  [data-cbp-theme='light'] cbp-expand[context*='dark'],
  [data-cbp-theme='dark'] cbp-expand:not([context='dark-inverts']):not([context='light-always']) {
   
-  --cbp-expand-color: var(--cbp-expand-color-dark);
+  --cbp-expand-color: var(--cbp-expand-color-dark) !important;
   
  }
 

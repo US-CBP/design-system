@@ -102,9 +102,9 @@
    --cbp-accordion-item-color-content: var(--cbp-color-text-lightest);
    --cbp-accordion-item-color-background-content: var(--cbp-color-gray-cool-90);
  
-  --cbp-accordion-item-danger-color: var(--cbp-accordion-item-danger-color-dark);
-  --cbp-accordion-item-danger-color-background: var(--cbp-accordion-item-danger-color-background-dark);
-  --cbp-accordion-item-danger-color-background-hover: var(--cbp-accordion-item-danger-color-background-hover-dark);
+  --cbp-accordion-item-danger-color: var(--cbp-accordion-item-danger-color-dark) !important;
+  --cbp-accordion-item-danger-color-background: var(--cbp-accordion-item-danger-color-background-dark) !important;
+  --cbp-accordion-item-danger-color-background-hover: var(--cbp-accordion-item-danger-color-background-hover-dark) !important;
  }
 
 cbp-accordion-item {
@@ -204,7 +204,7 @@ cbp-accordion-item {
       }
     }
 
-    .cbp-accordion-item--toggle {
+    .cbp-accordion-item--toggle:not(#fakeId) {
       --cbp-button-padding: 0;
       --cbp-button-border-width: 0;
       --cbp-button-focus-outline-width: 0;

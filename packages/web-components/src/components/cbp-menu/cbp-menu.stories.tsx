@@ -26,7 +26,7 @@ const Template = ({ position, context, sx }) => {
       uid="menuId"
       ${position ? `position="${position}"` : ''}
       ${context ? `context="${context}"` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-button
         fill="outline"
@@ -65,7 +65,7 @@ const ActionsMenuTemplate = ({ position, context, sx }) => {
       uid="menuId"
       ${position ? `position="${position}"` : ''}
       ${context ? `context="${context}"` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
 
       <cbp-button

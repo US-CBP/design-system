@@ -22,10 +22,10 @@
 
 [data-cbp-theme=light] cbp-notice[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-notice:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-notice-color-text: var(--cbp-notice-color-text-dark);
-  --cbp-notice-color-title: var(--cbp-notice-color-title-dark);
-  --cbp-notice-color-background: var(--cbp-notice-color-background-dark);
-  --cbp-notice-color-border: var(--cbp-notice-color-border-dark);
+  --cbp-notice-color-text: var(--cbp-notice-color-text-dark) !important;
+  --cbp-notice-color-title: var(--cbp-notice-color-title-dark) !important;
+  --cbp-notice-color-background: var(--cbp-notice-color-background-dark) !important;
+  --cbp-notice-color-border: var(--cbp-notice-color-border-dark) !important;
 }
 
 cbp-notice {

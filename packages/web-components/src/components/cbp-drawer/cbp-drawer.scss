@@ -22,8 +22,8 @@
  */
 [data-cbp-theme=light] cbp-drawer[context*=dark],
 [data-cbp-theme=dark] cbp-drawer:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-drawer-color-bg: var(--cbp-drawer-color-bg-dark);
-  --cbp-drawer-color-backdrop: var(--cbp-drawer-color-backdrop-dark);
+  --cbp-drawer-color-bg: var(--cbp-drawer-color-bg-dark) !important;
+  --cbp-drawer-color-backdrop: var(--cbp-drawer-color-backdrop-dark) !important;
 }
 
 

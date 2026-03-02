@@ -84,7 +84,7 @@ const StatesDropdownTemplate = ({ label, description, fieldId, name, placeholder
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${multiple ? generateMultiSelectItems(items, name, context) : generateItems(items)}
       </cbp-dropdown>
@@ -122,7 +122,7 @@ const CountriesDropdownTemplate = ({ label, description, fieldId, name, placehol
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${multiple ? generateMultiSelectItems(items, name, context) : generateItems(items)}
       </cbp-dropdown>
@@ -182,7 +182,7 @@ const ComboboxTemplate = ({ label, description, fieldId, name, placeholder, filt
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${multiple ? generateMultiSelectItems(items, name, context) : generateItems(items)}
       </cbp-dropdown>
@@ -227,7 +227,7 @@ const DropdownJSONTemplate = ({ label, description, fieldId, name, placeholder, 
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
          <!-- No dropdown items loaded by default -->
       </cbp-dropdown>
@@ -286,7 +286,7 @@ const ComboboxAsyncTemplate = ({ label, description, fieldId, name, placeholder,
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
          <!-- No dropdown items loaded by default -->
       </cbp-dropdown>
@@ -349,7 +349,7 @@ const StatesWithTerritoriesDropdownTemplate = ({ label, description, fieldId, na
         ${value ? `value="${value}"` : ''}
         ${filter ? `filter` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
          ${generateItems(items)}
       </ul>

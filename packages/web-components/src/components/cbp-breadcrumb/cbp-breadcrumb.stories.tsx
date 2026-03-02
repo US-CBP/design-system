@@ -46,7 +46,7 @@ const Template = ({ breadcrumbs, home, divider, context, sx }) => {
     <cbp-breadcrumb
       ${divider ? `divider="${divider}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-button
         tag="a"

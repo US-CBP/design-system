@@ -154,33 +154,33 @@
  * This toggle should have the highest specificity, so that what ever values were specified for the dark version 
  * get written to the light within the scope of this component.
  */
-[data-cbp-theme=light] cbp-toggle[context*=dark]:not([context=light-always]):not(#fakeId),
-[data-cbp-theme=dark] cbp-toggle:not([context=dark-inverts]):not([context=light-always]):not(#fakeId) {
-  --cbp-toggle-text-color: var(--cbp-toggle-text-color-dark);
+[data-cbp-theme=light] cbp-toggle[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-toggle:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-toggle-text-color: var(--cbp-toggle-text-color-dark) !important;
  
-  --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-dark);
-  --cbp-toggle-color-bg-selected: var(--cbp-toggle-color-bg-selected-dark);
-  --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-dark);
-  --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-dark);
-  --cbp-toggle-circle-color-selected: var(--cbp-toggle-circle-color-selected-dark);
-  --cbp-toggle-circle-color-border-selected: var(--cbp-toggle-circle-color-border-selected-dark);
+  --cbp-toggle-color-bg: var(--cbp-toggle-color-bg-dark) !important;
+  --cbp-toggle-color-bg-selected: var(--cbp-toggle-color-bg-selected-dark) !important;
+  --cbp-toggle-circle-color: var(--cbp-toggle-circle-color-dark) !important;
+  --cbp-toggle-circle-color-border: var(--cbp-toggle-circle-color-border-dark) !important;
+  --cbp-toggle-circle-color-selected: var(--cbp-toggle-circle-color-selected-dark) !important;
+  --cbp-toggle-circle-color-border-selected: var(--cbp-toggle-circle-color-border-selected-dark) !important;
 
-  --cbp-toggle-color-bg-hover: var(--cbp-toggle-color-bg-hover-dark);
-  --cbp-toggle-circle-color-selected-hover: var(--cbp-toggle-circle-color-selected-hover-dark);
-  --cbp-toggle-circle-color-border-selected-hover: var(--cbp-toggle-circle-color-border-selected-hover-dark);
-  --cbp-toggle-circle-color-hover: var(--cbp-toggle-circle-color-hover-dark);
-  --cbp-toggle-circle-color-border-hover: var(--cbp-toggle-circle-color-border-hover-dark);
+  --cbp-toggle-color-bg-hover: var(--cbp-toggle-color-bg-hover-dark) !important;
+  --cbp-toggle-circle-color-selected-hover: var(--cbp-toggle-circle-color-selected-hover-dark) !important;
+  --cbp-toggle-circle-color-border-selected-hover: var(--cbp-toggle-circle-color-border-selected-hover-dark) !important;
+  --cbp-toggle-circle-color-hover: var(--cbp-toggle-circle-color-hover-dark) !important;
+  --cbp-toggle-circle-color-border-hover: var(--cbp-toggle-circle-color-border-hover-dark) !important;
 
-  --cbp-toggle-color-bg-focus: var(--cbp-toggle-color-bg-focus-dark);
-  --cbp-toggle-color-outline-focus: var(--cbp-toggle-color-outline-focus-dark);
-  --cbp-toggle-circle-color-selected-focus: var(--cbp-toggle-circle-color-selected-focus-dark);
-  --cbp-toggle-circle-color-border-selected-focus: var(--cbp-toggle-circle-color-border-selected-focus-dark);
-  --cbp-toggle-circle-color-focus: var(--cbp-toggle-circle-color-focus-dark);
-  --cbp-toggle-circle-color-border-focus: var(--cbp-toggle-circle-color-border-focus-dark);
+  --cbp-toggle-color-bg-focus: var(--cbp-toggle-color-bg-focus-dark) !important;
+  --cbp-toggle-color-outline-focus: var(--cbp-toggle-color-outline-focus-dark) !important;
+  --cbp-toggle-circle-color-selected-focus: var(--cbp-toggle-circle-color-selected-focus-dark) !important;
+  --cbp-toggle-circle-color-border-selected-focus: var(--cbp-toggle-circle-color-border-selected-focus-dark) !important;
+  --cbp-toggle-circle-color-focus: var(--cbp-toggle-circle-color-focus-dark) !important;
+  --cbp-toggle-circle-color-border-focus: var(--cbp-toggle-circle-color-border-focus-dark) !important;
 
-  --cbp-toggle-color-bg-disabled: var(--cbp-toggle-color-bg-disabled-dark);
-  --cbp-toggle-circle-color-disabled: var(--cbp-toggle-circle-color-disabled-dark);
-  --cbp-toggle-circle-color-border-disabled: var(--cbp-toggle-circle-color-border-disabled-dark);
+  --cbp-toggle-color-bg-disabled: var(--cbp-toggle-color-bg-disabled-dark) !important;
+  --cbp-toggle-circle-color-disabled: var(--cbp-toggle-circle-color-disabled-dark) !important;
+  --cbp-toggle-circle-color-border-disabled: var(--cbp-toggle-circle-color-border-disabled-dark) !important;
 }
 
 

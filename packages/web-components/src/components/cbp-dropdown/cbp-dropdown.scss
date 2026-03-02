@@ -55,16 +55,16 @@
  */
  [data-cbp-theme=light] cbp-dropdown[context*=dark],
  [data-cbp-theme=dark] cbp-dropdown:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-dropdown-menu-color: var(--cbp-dropdown-menu-color-dark);
-  --cbp-dropdown-menu-color-placeholder: var(--cbp-dropdown-menu-color-placeholder-dark);
-  --cbp-dropdown-menu-color-bg: var(--cbp-dropdown-menu-color-bg-dark);
-  --cbp-dropdown-menu-color-border: var(--cbp-dropdown-menu-color-border-dark);
-  --cbp-dropdown-menu-color-counter: var(--cbp-dropdown-menu-color-counter-dark);
-  --cbp-dropdown-menu-color-bg-counter: var(--cbp-dropdown-menu-color-bg-counter-dark);
-  --cbp-dropdown-menu-color-counter-outline-focus: var(--cbp-dropdown-menu-color-counter-outline-focus-dark);
+  --cbp-dropdown-menu-color: var(--cbp-dropdown-menu-color-dark) !important;
+  --cbp-dropdown-menu-color-placeholder: var(--cbp-dropdown-menu-color-placeholder-dark) !important;
+  --cbp-dropdown-menu-color-bg: var(--cbp-dropdown-menu-color-bg-dark) !important;
+  --cbp-dropdown-menu-color-border: var(--cbp-dropdown-menu-color-border-dark) !important;
+  --cbp-dropdown-menu-color-counter: var(--cbp-dropdown-menu-color-counter-dark) !important;
+  --cbp-dropdown-menu-color-bg-counter: var(--cbp-dropdown-menu-color-bg-counter-dark) !important;
+  --cbp-dropdown-menu-color-counter-outline-focus: var(--cbp-dropdown-menu-color-counter-outline-focus-dark) !important;
   
-  --cbp-dropdown-chevron: var(--cbp-dropdown-chevron-dark);
-  --cbp-dropdown-chevron-down: var(--cbp-dropdown-chevron-down-dark);
+  --cbp-dropdown-chevron: var(--cbp-dropdown-chevron-dark) !important;
+  --cbp-dropdown-chevron-down: var(--cbp-dropdown-chevron-down-dark) !important;
  }
 
 cbp-dropdown {

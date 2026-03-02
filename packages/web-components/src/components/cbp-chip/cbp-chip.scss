@@ -52,20 +52,20 @@
 
 [data-cbp-theme=light] cbp-chip[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-chip:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-chip-color-text: var(--cbp-chip-color-text-dark);
-  --cbp-chip-color-text-hover: var(--cbp-chip-color-text-hover-dark);
-  --cbp-chip-color-text-focus: var(--cbp-chip-color-text-focus-dark);
-  --cbp-chip-color-text-pressed: var(--cbp-chip-color-text-pressed-dark);
-  --cbp-chip-color-text-disabled: var(--cbp-chip-color-text-disabled-dark);
+  --cbp-chip-color-text: var(--cbp-chip-color-text-dark) !important;
+  --cbp-chip-color-text-hover: var(--cbp-chip-color-text-hover-dark) !important;
+  --cbp-chip-color-text-focus: var(--cbp-chip-color-text-focus-dark) !important;
+  --cbp-chip-color-text-pressed: var(--cbp-chip-color-text-pressed-dark) !important;
+  --cbp-chip-color-text-disabled: var(--cbp-chip-color-text-disabled-dark) !important;
 
-  --cbp-chip-color-background: var(--cbp-chip-color-background-dark);
-  --cbp-chip-color-background-hover: var(--cbp-chip-color-background-hover-dark);
-  --cbp-chip-color-background-focus: var(--cbp-chip-color-background-focus-dark);
-  --cbp-chip-icon-color-background-focus: var(--cbp-chip-icon-color-background-focus-dark);
-  --cbp-chip-color-background-pressed: var(--cbp-chip-color-background-pressed-dark);
-  --cbp-chip-color-background-disabled: var(--cbp-chip-color-background-disabled-dark);
+  --cbp-chip-color-background: var(--cbp-chip-color-background-dark) !important;
+  --cbp-chip-color-background-hover: var(--cbp-chip-color-background-hover-dark) !important;
+  --cbp-chip-color-background-focus: var(--cbp-chip-color-background-focus-dark) !important;
+  --cbp-chip-icon-color-background-focus: var(--cbp-chip-icon-color-background-focus-dark) !important;
+  --cbp-chip-color-background-pressed: var(--cbp-chip-color-background-pressed-dark) !important;
+  --cbp-chip-color-background-disabled: var(--cbp-chip-color-background-disabled-dark) !important;
 
-  --cbp-chip-icon-color-outline-focus: var(--cbp-chip-icon-color-outline-focus-dark);
+  --cbp-chip-icon-color-outline-focus: var(--cbp-chip-icon-color-outline-focus-dark) !important;
 }
 
 cbp-chip {

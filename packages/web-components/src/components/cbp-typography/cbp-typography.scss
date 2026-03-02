@@ -26,10 +26,10 @@
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-typography[context*=dark],
 [data-cbp-theme=dark] cbp-typography:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-typography-color-small-text: var(--cbp-typography-color-small-text-dark);
-  --cbp-typography-color-large-text: var(--cbp-typography-color-large-text-dark);
-  --cbp-typography-color-divider-fill: var(--cbp-typography-color-divider-fill-dark);
-  --cbp-typography-color-divider-underline: var(--cbp-typography-color-divider-underline-dark);
+  --cbp-typography-color-small-text: var(--cbp-typography-color-small-text-dark) !important;
+  --cbp-typography-color-large-text: var(--cbp-typography-color-large-text-dark) !important;
+  --cbp-typography-color-divider-fill: var(--cbp-typography-color-divider-fill-dark) !important;
+  --cbp-typography-color-divider-underline: var(--cbp-typography-color-divider-underline-dark) !important;
 }
 
 /* Inherits body text:

@@ -39,7 +39,7 @@ function generateContent(items, context) {
 }
 
 
-const SubnavTemplate = ({ items, accessibilityText, flat, context }) => {
+const SubnavTemplate = ({ items, accessibilityText, flat, context, sx }) => {
   
   // preventDefault on all links in the subnav
   setTimeout(() => {
@@ -56,6 +56,7 @@ const SubnavTemplate = ({ items, accessibilityText, flat, context }) => {
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ``}
       ${flat ? 'flat' : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateContent(items, context)}
     </cbp-subnav>

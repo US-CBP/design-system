@@ -13,7 +13,7 @@
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-menu[context*=dark],
 [data-cbp-theme=dark] cbp-menu:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-menu-color-bg: var(--cbp-menu-color-bg-dark);
+  --cbp-menu-color-bg: var(--cbp-menu-color-bg-dark) !important;
 }
 
 

@@ -43,7 +43,7 @@ const Template = ({ content, background, textColor, width, margins, sx }) => {
         ${textColor ? `text-color=${textColor}` : ''}
         ${width ? `width=${width}` : ''}
         ${margins ? `margins=${margins}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${content}
       </cbp-container>

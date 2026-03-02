@@ -13,8 +13,8 @@
 
 [data-cbp-theme=light] cbp-badge[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-badge:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-badge-color: var(--cbp-badge-color-dark);
-  --cbp-badge-color-background: var(--cbp-badge-color-background-dark);
+  --cbp-badge-color: var(--cbp-badge-color-dark) !important;
+  --cbp-badge-color-background: var(--cbp-badge-color-background-dark) !important;
 }
 
 cbp-badge {

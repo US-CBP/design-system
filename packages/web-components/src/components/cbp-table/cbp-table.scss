@@ -91,7 +91,7 @@
  */
  [data-cbp-theme=light] cbp-table[context*=dark],
  [data-cbp-theme=dark] cbp-table:not([context=dark-inverts]):not([context=light-always]){
-  --cbp-table-color: var(--cbp-table-color-dark);
+  --cbp-table-color: var(--cbp-table-color-dark) !important;
   
   --cbp-table-header-color: var(--cbp-table-header-color-dark) !important;
   --cbp-table-header-color-hover: var(--cbp-table-header-color-hover-dark) !important;

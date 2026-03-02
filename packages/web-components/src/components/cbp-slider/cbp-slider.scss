@@ -52,15 +52,15 @@
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-slider[context*=dark],
 [data-cbp-theme=dark] cbp-slider:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-slider-thumb-color: var(--cbp-slider-thumb-color-dark);
-  --cbp-slider-thumb-color-hover: var(--cbp-slider-thumb-color-hover-dark);
-  --cbp-slider-thumb-color-focus: var(--cbp-slider-thumb-color-focus-dark);
-  --cbp-slider-thumb-color-border: var(--cbp-slider-thumb-color-border-dark);
-  --cbp-slider-thumb-color-border-focus: var(--cbp-slider-thumb-color-border-focus-dark);
-  --cbp-slider-thumb-color-halo-hover: var(--cbp-slider-thumb-color-halo-hover-dark);
-  --cbp-slider-thumb-color-halo-focus: var(--cbp-slider-thumb-color-halo-focus-dark);
-  --cbp-slider-track-color-selected: var(--cbp-slider-track-color-selected-dark);
-  --cbp-slider-track-color-unselected: var(--cbp-slider-track-color-unselected-dark);
+  --cbp-slider-thumb-color: var(--cbp-slider-thumb-color-dark) !important;
+  --cbp-slider-thumb-color-hover: var(--cbp-slider-thumb-color-hover-dark) !important;
+  --cbp-slider-thumb-color-focus: var(--cbp-slider-thumb-color-focus-dark) !important;
+  --cbp-slider-thumb-color-border: var(--cbp-slider-thumb-color-border-dark) !important;
+  --cbp-slider-thumb-color-border-focus: var(--cbp-slider-thumb-color-border-focus-dark) !important;
+  --cbp-slider-thumb-color-halo-hover: var(--cbp-slider-thumb-color-halo-hover-dark) !important ;
+  --cbp-slider-thumb-color-halo-focus: var(--cbp-slider-thumb-color-halo-focus-dark) !important;
+  --cbp-slider-track-color-selected: var(--cbp-slider-track-color-selected-dark) !important;
+  --cbp-slider-track-color-unselected: var(--cbp-slider-track-color-unselected-dark) !important;
 }
 
 

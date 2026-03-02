@@ -86,7 +86,7 @@ const Template = ({ name, color, size, rotate, accessibilityText, sx }) => {
       ${size ? `size=${size}` : ''}
       ${rotate ? `rotate=${rotate}` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     ></cbp-icon>
   `;
 };

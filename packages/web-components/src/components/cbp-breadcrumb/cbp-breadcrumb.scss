@@ -13,7 +13,7 @@
 
 [data-cbp-theme=light] cbp-breadcrumb[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-breadcrumb:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-breadcrumb-color: var(--cbp-breadcrumb-color-dark);
+  --cbp-breadcrumb-color: var(--cbp-breadcrumb-color-dark) !important;
 }
 
 cbp-breadcrumb {

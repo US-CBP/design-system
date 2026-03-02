@@ -93,7 +93,7 @@ const RadioListTemplate = ({ radios, label, description, fieldId, disabled, erro
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateRadios(context, radios)}
     </cbp-form-field>
@@ -114,7 +114,7 @@ const RadioListHorizontalTemplate = ({ radios, label, description, fieldId, disa
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-flex
         ${gap ? `gap="${gap}"` : ''}
@@ -153,7 +153,7 @@ const RadioListMultiColumnTemplate = ({ radios, gap, columns, width, label, desc
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-multicol nobreak
         ${gap ? `gap="${gap}"` : ''}

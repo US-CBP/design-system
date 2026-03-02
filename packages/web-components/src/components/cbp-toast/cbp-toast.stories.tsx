@@ -43,7 +43,7 @@ const Template = ({ open, title, content, buttons, duration, color, context, sx 
       ${duration ? `duration=${duration}` : ''}
       icon=${generateIcon(color)}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >  
       <div slot="cbp-toast-icon">
         <cbp-icon 
@@ -75,7 +75,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       duration=${duration}
       icon=${generateIcon(color)}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <div slot="cbp-toast-icon">
         <cbp-icon name=${generateIcon(color)}"></cbp-icon>
@@ -91,7 +91,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       duration=${duration}
       icon=${generateIcon(color)}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >       
       <div slot="cbp-toast-icon">
         <cbp-icon name=${generateIcon(color)} ></cbp-icon>
@@ -107,7 +107,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       duration=${duration}
       icon=${generateIcon(color)}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >      
       <div slot="cbp-toast-icon">
         <cbp-icon name=${generateIcon(color)}></cbp-icon>
@@ -123,7 +123,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       duration=${duration}
       icon=${generateIcon(color)}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <div slot="cbp-toast-icon">
         <cbp-icon name=${generateIcon(color)}></cbp-icon>

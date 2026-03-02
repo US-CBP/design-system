@@ -42,7 +42,7 @@ const Template = ({ label, content, open, headingLevel, context, sx }) => {
           ${headingLevel ? `heading-level="${headingLevel}"` : ''}
           ${open ? `open` : ''}
           ${context ? `context="${context}"` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
             ${content}
         </cbp-expand>

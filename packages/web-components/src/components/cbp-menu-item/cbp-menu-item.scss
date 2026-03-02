@@ -54,15 +54,15 @@
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-menu[context*=dark] cbp-menu-item,
 [data-cbp-theme=dark] cbp-menu:not([context=dark-inverts]):not([context=light-always]) cbp-menu-item {
-  --cbp-menu-item-color: var(--cbp-menu-item-color-dark);
-  --cbp-menu-item-color-bg: var(--cbp-menu-item-color-bg-dark);
-  --cbp-menu-item-color-hover: var(--cbp-menu-item-color-hover-dark);
-  --cbp-menu-item-color-bg-hover: var(--cbp-menu-item-color-bg-hover-dark);
-  --cbp-menu-item-color-focus: var(--cbp-menu-item-color-focus-dark);
-  --cbp-menu-item-color-bg-focus: var(--cbp-menu-item-color-bg-focus-dark);
-  --cbp-menu-item-color-active: var(--cbp-menu-item-color-active-dark);
-  --cbp-menu-item-color-bg-active: var(--cbp-menu-item-color-bg-active-dark);
-  --cbp-menu-item-color-outline: var(--cbp-menu-item-color-outline-dark);
+  --cbp-menu-item-color: var(--cbp-menu-item-color-dark) !important;
+  --cbp-menu-item-color-bg: var(--cbp-menu-item-color-bg-dark) !important;
+  --cbp-menu-item-color-hover: var(--cbp-menu-item-color-hover-dark) !important;
+  --cbp-menu-item-color-bg-hover: var(--cbp-menu-item-color-bg-hover-dark) !important;
+  --cbp-menu-item-color-focus: var(--cbp-menu-item-color-focus-dark) !important;
+  --cbp-menu-item-color-bg-focus: var(--cbp-menu-item-color-bg-focus-dark) !important;
+  --cbp-menu-item-color-active: var(--cbp-menu-item-color-active-dark) !important;
+  --cbp-menu-item-color-bg-active: var(--cbp-menu-item-color-bg-active-dark) !important;
+  --cbp-menu-item-color-outline: var(--cbp-menu-item-color-outline-dark) !important;
 }
 
 cbp-menu-item {

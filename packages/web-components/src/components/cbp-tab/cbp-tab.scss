@@ -4,25 +4,25 @@
  */
  [data-cbp-theme=light] cbp-tabs[context*=dark] cbp-tab,
  [data-cbp-theme=dark] cbp-tabs:not([context=dark-inverts]):not([context=light-always]) cbp-tab {
-  --cbp-tab-color: var(--cbp-tab-color-dark);
-  --cbp-tab-color-hover: var(--cbp-tab-color-hover-dark);
-  --cbp-tab-color-focus: var(--cbp-tab-color-focus-dark);
-  --cbp-tab-color-active: var(--cbp-tab-color-active-dark);
-  --cbp-tab-color-selected: var(--cbp-tab-color-selected-dark);
+  --cbp-tab-color: var(--cbp-tab-color-dark) !important;
+  --cbp-tab-color-hover: var(--cbp-tab-color-hover-dark) !important;
+  --cbp-tab-color-focus: var(--cbp-tab-color-focus-dark) !important;
+  --cbp-tab-color-active: var(--cbp-tab-color-active-dark) !important;
+  --cbp-tab-color-selected: var(--cbp-tab-color-selected-dark) !important;
 
-  --cbp-tab-color-bg: var(--cbp-tab-color-bg-dark);
-  --cbp-tab-color-bg-hover: var(--cbp-tab-color-bg-hover-dark);
-  --cbp-tab-color-bg-focus: var(--cbp-tab-color-bg-focus-dark);
-  --cbp-tab-color-bg-active: var(--cbp-tab-color-bg-active-dark);
-  --cbp-tab-color-bg-selected: var(--cbp-tab-color-bg-selected-dark);
+  --cbp-tab-color-bg: var(--cbp-tab-color-bg-dark) !important;
+  --cbp-tab-color-bg-hover: var(--cbp-tab-color-bg-hover-dark) !important;
+  --cbp-tab-color-bg-focus: var(--cbp-tab-color-bg-focus-dark) !important;
+  --cbp-tab-color-bg-active: var(--cbp-tab-color-bg-active-dark) !important;
+  --cbp-tab-color-bg-selected: var(--cbp-tab-color-bg-selected-dark) !important;
 
-  --cbp-tab-color-border: var(--cbp-tab-color-border-dark);
-  --cbp-tab-color-border-hover: var(--cbp-tab-color-border-hover-dark);
-  --cbp-tab-color-border-focus: var(--cbp-tab-color-border-focus-dark);
-  --cbp-tab-color-border-active: var(--cbp-tab-color-border-active-dark);
-  --cbp-tab-color-border-selected: var(--cbp-tab-color-border-selected-dark);
+  --cbp-tab-color-border: var(--cbp-tab-color-border-dark) !important;
+  --cbp-tab-color-border-hover: var(--cbp-tab-color-border-hover-dark) !important;
+  --cbp-tab-color-border-focus: var(--cbp-tab-color-border-focus-dark) !important;
+  --cbp-tab-color-border-active: var(--cbp-tab-color-border-active-dark) !important;
+  --cbp-tab-color-border-selected: var(--cbp-tab-color-border-selected-dark) !important;
 
-  --cbp-tab-color-outline-focus: var(--cbp-tab-color-outline-focus-dark);
+  --cbp-tab-color-outline-focus: var(--cbp-tab-color-outline-focus-dark) !important;
 }
 
 cbp-tab {

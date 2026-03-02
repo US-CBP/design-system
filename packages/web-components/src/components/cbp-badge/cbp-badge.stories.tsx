@@ -31,7 +31,7 @@ const BadgeTemplate = ({ label, color, context, sx }) => {
     <cbp-badge
       ${color ? `color=${color}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${label}
     </cbp-badge>

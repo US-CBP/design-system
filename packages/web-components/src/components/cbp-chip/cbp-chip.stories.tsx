@@ -43,7 +43,7 @@ const Template = ({ label, name, value, pressed, disabled, context, sx }) => {
         ${pressed ? 'pressed' : ''}
         ${disabled ? 'disabled' : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${label}
       </cbp-chip>
@@ -61,7 +61,7 @@ const ChipWithCustomIconTemplate = ({ label, name, value, icon, pressed, disable
         ${pressed ? 'pressed' : ''}
         ${disabled ? 'disabled' : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <cbp-icon slot="cbp-chip-icon" name="${icon}"></cbp-icon>
         ${label}

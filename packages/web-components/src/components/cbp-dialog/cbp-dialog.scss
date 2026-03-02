@@ -27,8 +27,8 @@
  */
 [data-cbp-theme=light] cbp-dialog[context*=dark],
 [data-cbp-theme=dark] cbp-dialog:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-dialog-color: var(--cbp-dialog-color-dark);
-  --cbp-dialog-color-bg: var(--cbp-dialog-color-bg-dark);
+  --cbp-dialog-color: var(--cbp-dialog-color-dark) !important;
+  --cbp-dialog-color-bg: var(--cbp-dialog-color-bg-dark) !important;
 }
 
 cbp-dialog {

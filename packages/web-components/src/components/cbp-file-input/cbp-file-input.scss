@@ -57,19 +57,19 @@
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-file-input[context*=dark],
 [data-cbp-theme=dark] cbp-file-input:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-file-input-color-label: var(--cbp-file-input-color-label-dark);
-  --cbp-file-input-color: var(--cbp-file-input-color-dark);
-  --cbp-file-input-color-bg: var(--cbp-file-input-color-bg-dark);
-  --cbp-file-input-color-bg-dragged: var(--cbp-file-input-color-bg-dragged-dark);
-  --cbp-file-input-color-border: var(--cbp-file-input-color-border-dark);
-  --cbp-file-input-color-border-hover: var(--cbp-file-input-color-border-hover-dark);
-  --cbp-file-input-color-border-focus: var(--cbp-file-input-color-border-focus-dark);
-  --cbp-file-input-color-outline: var(--cbp-file-input-color-outline-dark);
-  --cbp-file-input-color-outline-hover: var(--cbp-file-input-color-outline-hover-dark);
-  --cbp-file-input-color-outline-focus: var(--cbp-file-input-color-outline-focus-dark);
+  --cbp-file-input-color-label: var(--cbp-file-input-color-label-dark) !important;
+  --cbp-file-input-color: var(--cbp-file-input-color-dark) !important;
+  --cbp-file-input-color-bg: var(--cbp-file-input-color-bg-dark) !important;
+  --cbp-file-input-color-bg-dragged: var(--cbp-file-input-color-bg-dragged-dark) !important;
+  --cbp-file-input-color-border: var(--cbp-file-input-color-border-dark) !important;
+  --cbp-file-input-color-border-hover: var(--cbp-file-input-color-border-hover-dark) !important;
+  --cbp-file-input-color-border-focus: var(--cbp-file-input-color-border-focus-dark) !important;
+  --cbp-file-input-color-outline: var(--cbp-file-input-color-outline-dark) !important;
+  --cbp-file-input-color-outline-hover: var(--cbp-file-input-color-outline-hover-dark) !important;
+  --cbp-file-input-color-outline-focus: var(--cbp-file-input-color-outline-focus-dark) !important;
   
-  --cbp-file-input-file-color-bg: var(--cbp-file-input-file-color-bg-dark);
-  --cbp-file-input-file-color-bg-error: var(--cbp-file-input-file-color-bg-error-dark);
+  --cbp-file-input-file-color-bg: var(--cbp-file-input-file-color-bg-dark) !important;
+  --cbp-file-input-file-color-bg-error: var(--cbp-file-input-file-color-bg-error-dark) !important;
 }
 
 

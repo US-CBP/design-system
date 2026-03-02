@@ -40,7 +40,7 @@ const Template = ({ text, tag, variant, divider, context, sx }) => {
         ${variant != undefined ? `variant=${variant}` : ''}
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text}
       </cbp-typography>
@@ -62,7 +62,7 @@ return `
         variant = "masthead-1"
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (masthead-1)
       </cbp-typography>
@@ -72,7 +72,7 @@ return `
         variant = "masthead-2"
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (masthead-2)
       </cbp-typography>
@@ -82,7 +82,7 @@ return `
         variant = "heading-xxl"
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-xxl)
       </cbp-typography>
@@ -92,7 +92,7 @@ return `
         variant = "heading-xl"
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-xl)
       </cbp-typography>
@@ -102,7 +102,7 @@ return `
         variant = "heading-lg"
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-lg)
       </cbp-typography>
@@ -112,7 +112,7 @@ return `
         variant = "heading-md"
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-md)
       </cbp-typography>
@@ -122,7 +122,7 @@ return `
         variant = "heading-sm"
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-sm)
       </cbp-typography>
@@ -132,7 +132,7 @@ return `
         variant = "heading-xs"
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-xs)
       </cbp-typography>
@@ -142,7 +142,7 @@ return `
         variant = "body-text"
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (body-text)
       </cbp-typography>
@@ -152,7 +152,7 @@ return `
         variant = "subhead"
         ${divider != 'none' ? `divider=${divider}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (subhead)
       </cbp-typography>

@@ -108,7 +108,7 @@ const Template = ({ tableData, headers, selectable, striped, hover, columnHover,
         ${hover == 'cell' ? `hover="${hover}"` : ''}
         ${columnHover ? `column-hover` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <table style="width: 100%">
           <caption>Table Caption</caption>
@@ -222,7 +222,7 @@ const tableDangerTemplate = ({ tableData, headers, selectable, striped, hover, c
         ${hover == 'cell' ? `hover="${hover}"` : ''}
         ${columnHover ? `column-hover` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <table style="width: 100%">
           <caption>Table Caption</caption>
@@ -337,7 +337,7 @@ const tableHighlightTemplate = ({ tableData, headers, selectable, striped, hover
         ${hover == 'cell' ? `hover="${hover}"` : ''}
         ${columnHover ? `column-hover` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <table style="width: 100%">
           <caption>Table Caption</caption>
