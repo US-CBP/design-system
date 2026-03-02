@@ -53,7 +53,7 @@ const Template = ({ buttons, name, value, multiple, accessibilityText, disabled,
           ${multiple ? `multiple` : ''}
           ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
           ${disabled ? `disabled=${disabled}` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
           ${generateButtons(buttons)}
         </cbp-segmented-button-group>
@@ -90,7 +90,7 @@ const IconTemplate = ({ buttons, multiple, accessibilityText, disabled, sx }) =>
           ${multiple ? `multiple=${multiple}` : ''}
           ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
           ${disabled ? `disabled=${disabled}` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
           ${generateButtons(buttons)}
         </cbp-segmented-button-group>

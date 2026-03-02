@@ -32,7 +32,7 @@ const Template = ({ text, tag, accessibilityText, sx }) => {
       <cbp-section
         ${tag && tag !== 'none' ? `tag=${tag}` : ''}
         ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text}
       </cbp-section>

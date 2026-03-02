@@ -36,12 +36,12 @@
 
 [data-cbp-theme=light] cbp-subnav[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-subnav:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-subnav-item-color: var(--cbp-subnav-item-color-dark);
-  --cbp-subnav-item-color-bg: var(--cbp-subnav-item-color-bg-dark);
-  --cbp-subnav-item-current-border-color: var(--cbp-subnav-item-current-border-color-dark);
-  --cbp-subnav-item-current-color-bg: var(--cbp-subnav-item-current-color-bg-dark);
+  --cbp-subnav-item-color: var(--cbp-subnav-item-color-dark) !important;
+  --cbp-subnav-item-color-bg: var(--cbp-subnav-item-color-bg-dark) !important;
+  --cbp-subnav-item-current-border-color: var(--cbp-subnav-item-current-border-color-dark) !important;
+  --cbp-subnav-item-current-color-bg: var(--cbp-subnav-item-current-color-bg-dark) !important;
 
-  --cbp-subnav-item-hover-border-color: var(--cbp-subnav-item-hover-border-color-dark);
+  --cbp-subnav-item-hover-border-color: var(--cbp-subnav-item-hover-border-color-dark) !important;
 }
 
 cbp-subnav-item {

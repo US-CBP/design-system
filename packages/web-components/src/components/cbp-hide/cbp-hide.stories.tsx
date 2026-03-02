@@ -40,7 +40,7 @@ const Template = ({ display, hide, visuallyHide, hideAt, visuallyHideAt, content
           ${visuallyHide ? 'visually-hide' : ''}
           ${hideAt ? `hide-at="${hideAt}"` : ''}
           ${visuallyHideAt ? `visually-hide-at="${visuallyHideAt}"` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
           ${content}
         </cbp-hide>

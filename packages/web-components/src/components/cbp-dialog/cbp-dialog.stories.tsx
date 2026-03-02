@@ -102,7 +102,7 @@ const Template = ({ title, content, color, open, width, height, uid, withIcon, a
       ${width ? `width=${width}` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
       ${color && color != 'default' ? `color=${color}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       ${uid ? `uid=${uid}` : ''}
     >
       <cbp-typography

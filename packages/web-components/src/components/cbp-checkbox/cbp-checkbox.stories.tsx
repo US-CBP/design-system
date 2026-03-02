@@ -52,7 +52,7 @@ const Template = ({ label, name, value, fieldId, checked, indeterminate, disable
         ${checked ? `checked=${checked}` : ''}
         ${indeterminate ? `indeterminate=${indeterminate}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input 
           type="checkbox" 

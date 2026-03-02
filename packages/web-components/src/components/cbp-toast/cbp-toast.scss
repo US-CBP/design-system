@@ -25,11 +25,11 @@
 
 [data-cbp-theme='light'] cbp-toast[context*='dark']:not([context='light-always']),
 [data-cbp-theme='dark'] cbp-toast:not([context='dark-inverts']):not([context='light-always']) {
-  --cbp-toast-color-bg: var(--cbp-toast-color-bg-dark);
-  --cbp-toast-color: var(--cbp-toast-color-dark);
-  --cbp-toast-color-content: var(--cbp-toast-color-content-dark);
-  --cbp-toast-color-bg-sidebar: var(--cbp-toast-color-bg-sidebar-dark);
-  --cbp-toast-color-icon-sidebar: var(--cbp-toast-color-icon-sidebar-dark);
+  --cbp-toast-color-bg: var(--cbp-toast-color-bg-dark) !important;
+  --cbp-toast-color: var(--cbp-toast-color-dark) !important;
+  --cbp-toast-color-content: var(--cbp-toast-color-content-dark) !important;
+  --cbp-toast-color-bg-sidebar: var(--cbp-toast-color-bg-sidebar-dark) !important;
+  --cbp-toast-color-icon-sidebar: var(--cbp-toast-color-icon-sidebar-dark) !important;
 }
 
 cbp-toast {

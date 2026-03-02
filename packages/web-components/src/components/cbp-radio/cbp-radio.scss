@@ -80,24 +80,24 @@
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-radio[context*=dark],
 [data-cbp-theme=dark] cbp-radio:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-radio-color-bg: var(--cbp-radio-color-bg-dark);
-  --cbp-radio-color-border: var(--cbp-radio-color-border-dark);
-  --cbp-radio-color-border-hover: var(--cbp-radio-color-border-hover-dark);
-  --cbp-radio-color-border-focus: var(--cbp-radio-color-border-focus-dark);
-  --cbp-radio-color-halo: var(--cbp-radio-color-halo-dark);
-  --cbp-radio-color-halo-hover: var(--cbp-radio-color-halo-hover-dark);
-  --cbp-radio-color-halo-focus: var(--cbp-radio-color-halo-focus-dark);
+  --cbp-radio-color-bg: var(--cbp-radio-color-bg-dark) !important;
+  --cbp-radio-color-border: var(--cbp-radio-color-border-dark) !important;
+  --cbp-radio-color-border-hover: var(--cbp-radio-color-border-hover-dark) !important;
+  --cbp-radio-color-border-focus: var(--cbp-radio-color-border-focus-dark) !important;
+  --cbp-radio-color-halo: var(--cbp-radio-color-halo-dark) !important;
+  --cbp-radio-color-halo-hover: var(--cbp-radio-color-halo-hover-dark) !important;
+  --cbp-radio-color-halo-focus: var(--cbp-radio-color-halo-focus-dark) !important;
 
-  --cbp-radio-color-checked: var(--cbp-radio-color-checked-dark);
-  --cbp-radio-color-checked-focus: var(--cbp-radio-color-checked-focus-dark);
-  --cbp-radio-color-bg-checked-focus: var(--cbp-radio-color-bg-checked-focus-dark);
-  --cbp-radio-color-border-checked: var(--cbp-radio-color-border-checked-dark);
-  --cbp-radio-color-border-checked-hover: var(--cbp-radio-color-border-checked-hover-dark);
-  --cbp-radio-color-border-checked-focus: var(--cbp-radio-color-border-checked-focus-dark);
-  --cbp-radio-color-halo-checked-hover: var(--cbp-radio-color-halo-checked-hover-dark);
-  --cbp-radio-color-halo-checked-focus: var(--cbp-radio-color-halo-checked-focus-dark);
+  --cbp-radio-color-checked: var(--cbp-radio-color-checked-dark) !important;
+  --cbp-radio-color-checked-focus: var(--cbp-radio-color-checked-focus-dark) !important;
+  --cbp-radio-color-bg-checked-focus: var(--cbp-radio-color-bg-checked-focus-dark) !important;
+  --cbp-radio-color-border-checked: var(--cbp-radio-color-border-checked-dark) !important;
+  --cbp-radio-color-border-checked-hover: var(--cbp-radio-color-border-checked-hover-dark) !important;
+  --cbp-radio-color-border-checked-focus: var(--cbp-radio-color-border-checked-focus-dark) !important;
+  --cbp-radio-color-halo-checked-hover: var(--cbp-radio-color-halo-checked-hover-dark) !important;
+  --cbp-radio-color-halo-checked-focus: var(--cbp-radio-color-halo-checked-focus-dark) !important;
 
-  --cbp-radio-color-label: var(--cbp-radio-color-label-dark);
+  --cbp-radio-color-label: var(--cbp-radio-color-label-dark) !important;
 }
 
 cbp-radio {

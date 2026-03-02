@@ -35,10 +35,10 @@
 
 [data-cbp-theme=light] cbp-list[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-list:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-list-item-color: var(--cbp-list-item-color-dark);
-  --cbp-link-list-icon-color: var(--cbp-link-list-icon-color-dark);
-  --cbp-desc-list-color: var(--cbp-desc-list-color-dark);
-  --cbp-desc-list-description-color: var(--cbp-desc-list-description-color-dark);
+  --cbp-list-item-color: var(--cbp-list-item-color-dark) !important;
+  --cbp-link-list-icon-color: var(--cbp-link-list-icon-color-dark) !important;
+  --cbp-desc-list-color: var(--cbp-desc-list-color-dark) !important;
+  --cbp-desc-list-description-color: var(--cbp-desc-list-description-color-dark) !important;
 }
 
 cbp-list {

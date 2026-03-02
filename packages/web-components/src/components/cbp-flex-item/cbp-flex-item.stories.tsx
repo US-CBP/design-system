@@ -46,7 +46,7 @@ const Template = ({ order, alignSelf, flexGrow, flexShrink, flexBasis, content, 
         ${flexGrow ? `flex-grow=${flexGrow}` : ''}
         ${flexShrink ? `flex-shrink=${flexShrink}` : ''}
         ${flexBasis ? `flex-basis=${flexBasis}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${content}
       </cbp-flex-item>

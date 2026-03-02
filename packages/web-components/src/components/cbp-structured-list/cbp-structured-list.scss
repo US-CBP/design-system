@@ -62,19 +62,19 @@
 [data-cbp-theme=light] cbp-structured-list[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-structured-list:not([context=dark-inverts]):not([context=light-always]) {
 
-  --cbp-structured-list-color-background: var(--cbp-structured-list-color-background-dark);
-  --cbp-structured-list-color-striped-background: var(--cbp-structured-list-color-striped-background-dark);
-  --cbp-structured-list-color-background-hover: var(--cbp-structured-list-color-background-hover-dark);
-  --cbp-structured-list-color: var(--cbp-structured-list-color-dark);
-  --cbp-structured-list-border-color: var(--cbp-structured-list-border-color-dark);
-  --cbp-structured-list-header-color-background: var(--cbp-structured-list-header-color-background-dark);
-  --cbp-structured-list-header-color: var(--cbp-structured-list-header-color-dark);
+  --cbp-structured-list-color-background: var(--cbp-structured-list-color-background-dark) !important;
+  --cbp-structured-list-color-striped-background: var(--cbp-structured-list-color-striped-background-dark) !important;
+  --cbp-structured-list-color-background-hover: var(--cbp-structured-list-color-background-hover-dark) !important;
+  --cbp-structured-list-color: var(--cbp-structured-list-color-dark) !important;
+  --cbp-structured-list-border-color: var(--cbp-structured-list-border-color-dark) !important;
+  --cbp-structured-list-header-color-background: var(--cbp-structured-list-header-color-background-dark) !important;
+  --cbp-structured-list-header-color: var(--cbp-structured-list-header-color-dark) !important;
 
-  --cbp-structured-list-footer-color-background: var(--cbp-structured-list-footer-color-background-dark);
-  --cbp-structured-list-footer-color: var(--cbp-structured-list-footer-color-dark);
+  --cbp-structured-list-footer-color-background: var(--cbp-structured-list-footer-color-background-dark) !important;
+  --cbp-structured-list-footer-color: var(--cbp-structured-list-footer-color-dark) !important;
 
-  --cbp-structured-list-item-color-background-danger: var(--cbp-structured-list-item-color-background-danger-dark);  
-  --cbp-structured-list-item-color-background-selected: var(--cbp-structured-list-item-color-background-selected-dark);
+  --cbp-structured-list-item-color-background-danger: var(--cbp-structured-list-item-color-background-danger-dark) !important;  
+  --cbp-structured-list-item-color-background-selected: var(--cbp-structured-list-item-color-background-selected-dark) !important;
 }
 
 cbp-structured-list {

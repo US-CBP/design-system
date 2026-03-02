@@ -47,7 +47,7 @@ const TextInputTemplate = ({ label, description, fieldId, error, readonly, disab
       ${disabled ? `disabled` : ''}
       ${readonly ? `readonly` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <input type="text" name="textinput" ${value ? `value="${value}"` : ''} />
     </cbp-form-field>
@@ -70,7 +70,7 @@ const TextareaTemplate = ({ label, description, fieldId, error, readonly, disabl
       ${disabled ? `disabled` : ''}
       ${readonly ? `readonly` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <textarea name="textarea">${value}</textarea>
     </cbp-form-field>
@@ -96,7 +96,7 @@ const SelectTemplate = ({ label, description, fieldId, error, disabled, context,
       ${error ? `error` : ''}
       ${disabled ? `disabled` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <select name="select">
         <option value=""></option>
@@ -128,7 +128,7 @@ const SelectWithOptgroupTemplate = ({ label, description, fieldId, error, disabl
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <select name="select" ${disabled ? `disabled` : ''}>
         <option value=""></option>
@@ -184,7 +184,7 @@ const MultiSelectTemplate = ({ label, description, fieldId, error, disabled, con
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <select name="select" size="5" multiple ${disabled ? `disabled` : ''}>
         <option value=""></option>

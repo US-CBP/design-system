@@ -48,7 +48,7 @@ const FullNameTemplate = ({ label, description, fieldId, error, disabled, contex
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
 
       <cbp-flex 

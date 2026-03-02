@@ -86,26 +86,26 @@
  */
 [data-cbp-theme=light] cbp-card[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark][theme="dark"] cbp-card:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-card-color-background: var(--cbp-card-color-background-dark);
-  --cbp-card-color-border: var(--cbp-card-color-border-dark);
-  --cbp-card-color-title: var(--cbp-card-color-title-dark);
-  --cbp-card-color-text: var(--cbp-card-color-text-dark);
+  --cbp-card-color-background: var(--cbp-card-color-background-dark) !important;
+  --cbp-card-color-border: var(--cbp-card-color-border-dark) !important;
+  --cbp-card-color-title: var(--cbp-card-color-title-dark) !important;
+  --cbp-card-color-text: var(--cbp-card-color-text-dark) !important;
 
-  --cbp-banner-card-color: var(--cbp-banner-card-color-dark);
-  --cbp-banner-card-color-title: var(--cbp-banner-card-color-title-dark);
-  --cbp-banner-card-color-body-background: var(--cbp-banner-card-color-body-background-dark);
-  --cbp-banner-card-color-border: var(--cbp-banner-card-color-border-dark);
+  --cbp-banner-card-color: var(--cbp-banner-card-color-dark) !important;
+  --cbp-banner-card-color-title: var(--cbp-banner-card-color-title-dark) !important;
+  --cbp-banner-card-color-body-background: var(--cbp-banner-card-color-body-background-dark) !important;
+  --cbp-banner-card-color-border: var(--cbp-banner-card-color-border-dark) !important;
 
-  --cbp-flag-card-color: var(--cbp-flag-card-color-dark);
-  --cbp-flag-card-color-background: var(--cbp-flag-card-color-background-dark);
+  --cbp-flag-card-color: var(--cbp-flag-card-color-dark) !important;
+  --cbp-flag-card-color-background: var(--cbp-flag-card-color-background-dark) !important;
 
-  --cbp-card-outline-color-focus: var(--cbp-card-outline-color-focus-dark);
-  --cbp-card-danger-outline-color-focus: var(--cbp-card-danger-outline-color-focus-dark);
+  --cbp-card-outline-color-focus: var(--cbp-card-outline-color-focus-dark) !important;
+  --cbp-card-danger-outline-color-focus: var(--cbp-card-danger-outline-color-focus-dark) !important;
 
-  --cbp-card-color-background-selected: var(--cbp-card-color-background-selected-dark);
-  --cbp-card-color-border-selected: var(--cbp-card-color-border-selected-dark);
-  --cbp-card-color-title-selected: var(--cbp-card-color-title-selected-dark);
-  --cbp-card-color-text-selected: var(--cbp-card-color-text-selected-dark);
+  --cbp-card-color-background-selected: var(--cbp-card-color-background-selected-dark) !important;
+  --cbp-card-color-border-selected: var(--cbp-card-color-border-selected-dark) !important;
+  --cbp-card-color-title-selected: var(--cbp-card-color-title-selected-dark) !important;
+  --cbp-card-color-text-selected: var(--cbp-card-color-text-selected-dark) !important;
 }
 
 cbp-card {

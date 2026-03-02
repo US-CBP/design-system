@@ -92,7 +92,7 @@ const ChecklistTemplate = ({ checkboxes, label, description, fieldId, disabled, 
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateCheckboxes(context, checkboxes)}
     </cbp-form-field>
@@ -113,7 +113,7 @@ const ChecklistHorizontalTemplate = ({ checkboxes, label, description, fieldId, 
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-flex
         ${gap ? `gap="${gap}"` : ''}
@@ -143,7 +143,7 @@ const ChecklistMultiColumnTemplate = ({ checkboxes, gap, columns, width, label, 
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-multicol nobreak
         ${gap ? `gap="${gap}"` : ''}

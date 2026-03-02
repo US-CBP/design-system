@@ -50,7 +50,7 @@ export default {
       <cbp-notice
         ${color ? `color=${color}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <cbp-typography tag='p' slot="cbp-notice-title" context=${context}>
             ${withIcon ? `<cbp-icon name=${generateIcon(color)} sx='{"vertical-align":"bottom"}'></cbp-icon>` : ''}

@@ -133,7 +133,7 @@ const Template = ({
           ${justifyContent ? `justify-content=${justifyContent}` : ''}
           ${gap ? `gap="${gap}"` : ''}
           ${breakpoint ? `breakpoint=${breakpoint}` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
           ${createChildren(content)}
         </cbp-grid>

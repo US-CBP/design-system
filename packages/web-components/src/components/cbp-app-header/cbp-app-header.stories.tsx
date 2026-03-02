@@ -168,7 +168,7 @@ const Template = ({ drawerid, store, search, searchMethod, searchAction, items, 
       ${search ? `search` : ``}
       ${searchMethod ? `search-method=${searchMethod}` : ``}
       ${searchAction ? `search-action=${searchAction}` : ``}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateNavItems(items)}
     </cbp-app-header>
@@ -246,7 +246,7 @@ const AppHeaderWithSubnavTemplate = ({ drawerid, store, search, searchMethod, se
       ${search ? `search` : ``}
       ${searchMethod ? `search-method=${searchMethod}` : ``}
       ${searchAction ? `search-action=${searchAction}` : ``}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateNavItems(items, drawerid)}
     </cbp-app-header>

@@ -73,7 +73,7 @@ const Template = ({ content, columns, width, gap, rule, nobreak, sx }) => {
         ${gap ? `gap="${gap}"` : ''}
         ${rule ? `rule="${rule}"` : ''}
         ${nobreak ? `nobreak` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         role="list"
       >
         ${createChildren(content)}

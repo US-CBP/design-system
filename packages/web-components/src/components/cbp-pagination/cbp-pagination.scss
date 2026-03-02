@@ -12,7 +12,7 @@
  */
  [data-cbp-theme=light] cbp-pagination[context*=dark],
  [data-cbp-theme=dark] cbp-pagination:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-pagination-color: var(--cbp-pagination-color-dark);
+  --cbp-pagination-color: var(--cbp-pagination-color-dark) !important;
  }
 
 

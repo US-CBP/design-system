@@ -42,12 +42,12 @@
  */
 [data-cbp-theme=light] cbp-panel[context*=dark],
 [data-cbp-theme=dark] cbp-panel:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-panel-header-color: var(--cbp-panel-header-color-dark);
-  --cbp-panel-header-color-bg: var(--cbp-panel-header-color-bg-dark);
-  --cbp-panel-header-color-bottom-border: var(--cbp-panel-header-color-bottom-border-dark);
-  --cbp-panel-content-color: var(--cbp-panel-content-color-dark);
-  --cbp-panel-content-color-bg: var(--cbp-panel-content-color-bg-dark);
-  --cbp-panel-content-color-border: var(--cbp-panel-content-color-border-dark);
+  --cbp-panel-header-color: var(--cbp-panel-header-color-dark) !important;
+  --cbp-panel-header-color-bg: var(--cbp-panel-header-color-bg-dark) !important;
+  --cbp-panel-header-color-bottom-border: var(--cbp-panel-header-color-bottom-border-dark) !important;
+  --cbp-panel-content-color: var(--cbp-panel-content-color-dark) !important;
+  --cbp-panel-content-color-bg: var(--cbp-panel-content-color-bg-dark) !important;
+  --cbp-panel-content-color-border: var(--cbp-panel-content-color-border-dark) !important;
 }
 
 cbp-panel {

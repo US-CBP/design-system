@@ -60,7 +60,7 @@ const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText,
       ${persistAt ? `persist-at=${persistAt}` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       ${uid ? `uid=${uid}` : ''}
     >
       <cbp-panel
@@ -108,7 +108,7 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
       ${persistAt ? `persist-at="${persistAt}"` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       ${uid ? `uid=${uid}` : ''}
     >
       <cbp-panel

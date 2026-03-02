@@ -17,8 +17,8 @@
  */
 [data-cbp-theme=light] cbp-tag[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-tag:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-tag-color: var(--cbp-tag-color-dark);
-  --cbp-tag-color-background: var(--cbp-tag-color-background-dark);
+  --cbp-tag-color: var(--cbp-tag-color-dark) !important;
+  --cbp-tag-color-background: var(--cbp-tag-color-background-dark) !important;
 }
 
 cbp-tag {

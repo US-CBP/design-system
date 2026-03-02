@@ -46,7 +46,7 @@ const RangeTemplate = ({ label, description, fieldId, error, readonly, disabled,
         ${disabled ? `disabled` : ''}
         ${readonly ? `readonly` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input 
           type="range" 

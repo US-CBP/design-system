@@ -97,7 +97,7 @@ const FileInputTemplate = ({ label, description, fieldId, name, enhanced, multip
         ${accept ? `accept="${accept}"` : ''}
         ${capture ? `capture="${capture}"` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input type="file" />
       </cbp-file-input>

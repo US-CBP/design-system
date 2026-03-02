@@ -26,9 +26,9 @@
  */
 [data-cbp-theme=light] cbp-dot-indicator[context*=dark],
 [data-cbp-theme=dark] cbp-dot-indicator:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-dot-indicator-color-hover: var(--cbp-dot-indicator-color-hover-dark);
-  --cbp-dot-indicator-color-focus: var(--cbp-dot-indicator-color-focus-dark);
-  --cbp-dot-indicator-color-selected: var(--cbp-dot-indicator-color-selected-dark);
+  --cbp-dot-indicator-color-hover: var(--cbp-dot-indicator-color-hover-dark) !important;
+  --cbp-dot-indicator-color-focus: var(--cbp-dot-indicator-color-focus-dark) !important;
+  --cbp-dot-indicator-color-selected: var(--cbp-dot-indicator-color-selected-dark) !important;
 }
 
 cbp-dot-indicator {

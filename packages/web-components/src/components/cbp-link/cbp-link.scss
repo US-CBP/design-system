@@ -45,13 +45,13 @@
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-link[context*=dark],
 [data-cbp-theme=dark] cbp-link:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-link-color: var(--cbp-link-color-dark);
-  --cbp-link-color-visited: var(--cbp-link-color-visited-dark);
-  --cbp-link-color-hover: var(--cbp-link-color-hover-dark);
-  --cbp-link-color-focus: var(--cbp-link-color-focus-dark);
-  --cbp-link-color-active: var(--cbp-link-color-active-dark);
-  --cbp-link-color-outline-focus: var(--cbp-link-color-outline-focus-dark);
-  --cbp-link-color-disabled: var(--cbp-link-color-disabled-dark);
+  --cbp-link-color: var(--cbp-link-color-dark) !important;
+  --cbp-link-color-visited: var(--cbp-link-color-visited-dark) !important;
+  --cbp-link-color-hover: var(--cbp-link-color-hover-dark) !important;
+  --cbp-link-color-focus: var(--cbp-link-color-focus-dark) !important;
+  --cbp-link-color-active: var(--cbp-link-color-active-dark) !important;
+  --cbp-link-color-outline-focus: var(--cbp-link-color-outline-focus-dark) !important;
+  --cbp-link-color-disabled: var(--cbp-link-color-disabled-dark) !important;
 }
 
 cbp-link {

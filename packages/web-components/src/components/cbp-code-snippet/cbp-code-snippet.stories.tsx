@@ -37,7 +37,7 @@ const Template = ({ codeSnippet, variant, height, context, sx }) => {
         ${variant ? `variant= ${variant}` : ''}
         ${height ? `height= ${height}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${codeSnippet}
       </cbp-code-snippet>
@@ -51,7 +51,7 @@ const BlockTemplate = ({ codeSnippet, height, context, sx }) => {
         variant= block
         ${height ? `height= ${height}` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${codeSnippet}
       </cbp-code-snippet>

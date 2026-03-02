@@ -91,22 +91,22 @@
  */
 [data-cbp-theme=light] cbp-button[context*=dark]:not(#fakeId),
 [data-cbp-theme=dark] cbp-button:not([context=dark-inverts]):not([context=light-always]):not(#fakeId) {
-  --cbp-button-color: var(--cbp-button-color-dark);
-  --cbp-button-color-hover: var(--cbp-button-color-hover-dark);
-  --cbp-button-color-focus: var(--cbp-button-color-focus-dark);
-  --cbp-button-color-active: var(--cbp-button-color-active-dark);
+  --cbp-button-color: var(--cbp-button-color-dark) !important;
+  --cbp-button-color-hover: var(--cbp-button-color-hover-dark) !important;
+  --cbp-button-color-focus: var(--cbp-button-color-focus-dark) !important;
+  --cbp-button-color-active: var(--cbp-button-color-active-dark) !important;
 
-  --cbp-button-color-bg: var(--cbp-button-color-bg-dark);
-  --cbp-button-color-bg-hover: var(--cbp-button-color-bg-hover-dark);
-  --cbp-button-color-bg-focus: var(--cbp-button-color-bg-focus-dark);
-  --cbp-button-color-bg-active: var(--cbp-button-color-bg-active-dark);
+  --cbp-button-color-bg: var(--cbp-button-color-bg-dark) !important;
+  --cbp-button-color-bg-hover: var(--cbp-button-color-bg-hover-dark) !important;
+  --cbp-button-color-bg-focus: var(--cbp-button-color-bg-focus-dark) !important;
+  --cbp-button-color-bg-active: var(--cbp-button-color-bg-active-dark) !important;
   
-  --cbp-button-color-border: var(--cbp-button-color-border-dark);
-  --cbp-button-color-border-hover: var(--cbp-button-color-border-hover-dark);
-  --cbp-button-color-border-focus: var(--cbp-button-color-border-focus-dark);
-  --cbp-button-color-border-active: var(--cbp-button-color-border-active-dark);
+  --cbp-button-color-border: var(--cbp-button-color-border-dark) !important;
+  --cbp-button-color-border-hover: var(--cbp-button-color-border-hover-dark) !important;
+  --cbp-button-color-border-focus: var(--cbp-button-color-border-focus-dark) !important;
+  --cbp-button-color-border-active: var(--cbp-button-color-border-active-dark) !important;
   
-  --cbp-button-color-outline-focus: var(--cbp-button-color-outline-focus-dark);
+  --cbp-button-color-outline-focus: var(--cbp-button-color-outline-focus-dark) !important;
 }
 
 cbp-button {

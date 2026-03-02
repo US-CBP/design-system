@@ -58,15 +58,15 @@
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-form-field[context*=dark],
 [data-cbp-theme=dark] cbp-form-field:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-form-field-color-label: var(--cbp-form-field-color-label-dark);
-  --cbp-form-field-color-description: var(--cbp-form-field-color-description-dark);
-  --cbp-form-field-color: var(--cbp-form-field-color-dark);
-  --cbp-form-field-color-bg: var(--cbp-form-field-color-bg-dark);
-  --cbp-form-field-color-border: var(--cbp-form-field-color-border-dark);
-  --cbp-form-field-color-border-hover: var(--cbp-form-field-color-border-hover-dark);
-  --cbp-form-field-color-border-focus: var(--cbp-form-field-color-border-focus-dark);
-  --cbp-form-field-color-placeholder: var(--cbp-form-field-color-placeholder-dark);
-  --cbp-form-field-select-chevron: var(--cbp-form-field-select-chevron-dark);
+  --cbp-form-field-color-label: var(--cbp-form-field-color-label-dark) !important;
+  --cbp-form-field-color-description: var(--cbp-form-field-color-description-dark) !important;
+  --cbp-form-field-color: var(--cbp-form-field-color-dark) !important;
+  --cbp-form-field-color-bg: var(--cbp-form-field-color-bg-dark) !important;
+  --cbp-form-field-color-border: var(--cbp-form-field-color-border-dark) !important;
+  --cbp-form-field-color-border-hover: var(--cbp-form-field-color-border-hover-dark) !important;
+  --cbp-form-field-color-border-focus: var(--cbp-form-field-color-border-focus-dark) !important;
+  --cbp-form-field-color-placeholder: var(--cbp-form-field-color-placeholder-dark) !important;
+  --cbp-form-field-select-chevron: var(--cbp-form-field-select-chevron-dark) !important;
 }
 
 cbp-form-field {

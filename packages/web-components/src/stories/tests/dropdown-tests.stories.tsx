@@ -123,7 +123,7 @@ const EmptyDropdownTemplate = ({ label, description, fieldId, name, placeholder,
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <!-- No dropdown items loaded by default -->
       </cbp-dropdown>
@@ -198,7 +198,7 @@ const DynamicJSONDropdownTemplate = ({ label, description, fieldId, name, placeh
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <!-- No dropdown items loaded by default -->
       </cbp-dropdown>
@@ -262,7 +262,7 @@ const DebugDropdownTemplate = ({ label, description, fieldId, name, placeholder,
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${multiple ? generateMultiSelectItems(ShortList, name, context) : generateItems(ShortList)}
       </cbp-dropdown>

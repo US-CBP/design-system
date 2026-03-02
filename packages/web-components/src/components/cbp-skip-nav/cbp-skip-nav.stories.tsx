@@ -27,7 +27,7 @@ const Template = ({ text, targetId, shortcutKey, sx }) => {
       <cbp-skip-nav
         ${targetId ? `targetId=${targetId}` : ''}
         ${shortcutKey ? `shortcutKey=${shortcutKey}` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >${text ? text : ''}</cbp-skip-nav>
     `;
 };

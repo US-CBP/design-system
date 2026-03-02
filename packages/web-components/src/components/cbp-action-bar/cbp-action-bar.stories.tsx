@@ -112,7 +112,7 @@ const actionBarInDrawer = ({ variant, actionBarInfo, context, sx }) => {
         <cbp-action-bar
           ${variant ? `variant=${variant}` : ''}
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
           <cbp-typography 
             slot="cbp-action-bar-info"

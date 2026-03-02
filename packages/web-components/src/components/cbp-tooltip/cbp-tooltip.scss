@@ -56,21 +56,21 @@
 [data-cbp-theme=light] cbp-tooltip[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-tooltip:not([context=dark-inverts]):not([context=light-always]) {
 
-  --cbp-tooltip-color-bg: var(--cbp-tooltip-color-bg-dark);
-  --cbp-tooltip-color: var(--cbp-tooltip-color-dark);
+  --cbp-tooltip-color-bg: var(--cbp-tooltip-color-bg-dark) !important;
+  --cbp-tooltip-color: var(--cbp-tooltip-color-dark) !important;
  
-  --cbp-tooltip-control-color-hover: var(--cbp-tooltip-control-color-hover-dark);
-  --cbp-tooltip-control-color-bg-hover: var(--cbp-tooltip-control-color-bg-hover-dark);
+  --cbp-tooltip-control-color-hover: var(--cbp-tooltip-control-color-hover-dark) !important;
+  --cbp-tooltip-control-color-bg-hover: var(--cbp-tooltip-control-color-bg-hover-dark) !important;
 
-  --cbp-tooltip-control-color-focus: var(--cbp-tooltip-control-color-focus-dark);
-  --cbp-tooltip-control-color-bg-focus: var(--cbp-tooltip-control-color-bg-focus-dark);
-  --cbp-tooltip-control-outline-focus: var(--cbp-tooltip-control-outline-focus-dark);
+  --cbp-tooltip-control-color-focus: var(--cbp-tooltip-control-color-focus-dark) !important;
+  --cbp-tooltip-control-color-bg-focus: var(--cbp-tooltip-control-color-bg-focus-dark) !important;
+  --cbp-tooltip-control-outline-focus: var(--cbp-tooltip-control-outline-focus-dark) !important;
 
-  --cbp-tooltip-definition-color: var(--cbp-tooltip-definition-color-dark);
-  --cbp-tooltip-definition-color-hover: var(--cbp-tooltip-definition-color-hover-dark);
+  --cbp-tooltip-definition-color: var(--cbp-tooltip-definition-color-dark) !important;
+  --cbp-tooltip-definition-color-hover: var(--cbp-tooltip-definition-color-hover-dark) !important;
   
-  --cbp-tooltip-definition-color-focus: var(--cbp-tooltip-definition-color-focus-dark);
-  --cbp-tooltip-definition-outline-focus: var(--cbp-tooltip-definition-outline-focus-dark);
+  --cbp-tooltip-definition-color-focus: var(--cbp-tooltip-definition-color-focus-dark) !important;
+  --cbp-tooltip-definition-outline-focus: var(--cbp-tooltip-definition-outline-focus-dark) !important;
 }
 
 cbp-tooltip {

@@ -24,9 +24,9 @@
  * for the dark version get written to the light within the scope of this component.
  */
 [data-cbp-theme=dark] cbp-app-header {
-  --cbp-app-header-color-background: var(--cbp-app-header-color-background-dark);
-  --cbp-app-header-search-color-focus-outline: var(--cbp-app-header-search-color-focus-outline-dark);
-  --cbp-app-header-search-color-placeholder: var(--cbp-app-header-search-color-placeholder-dark);
+  --cbp-app-header-color-background: var(--cbp-app-header-color-background-dark) !important;
+  --cbp-app-header-search-color-focus-outline: var(--cbp-app-header-search-color-focus-outline-dark) !important;
+  --cbp-app-header-search-color-placeholder: var(--cbp-app-header-search-color-placeholder-dark) !important;
 }
 
 cbp-app-header {

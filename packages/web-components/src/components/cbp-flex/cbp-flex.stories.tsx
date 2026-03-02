@@ -82,7 +82,7 @@ const Template = ({ display, wrap, direction, alignItems, alignContent, justifyC
           ${gap ? `gap="${gap}"` : ''}
           ${breakpoint ? `breakpoint=${breakpoint}` : ''}
           ${display ? `display=${display}` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
           ${createChildren(content)}
         </cbp-flex>

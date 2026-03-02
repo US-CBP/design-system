@@ -44,7 +44,7 @@ const Template = ({ treeItems, name, selectable, accessibilityText, context, sx 
       ${name ? `name="${name}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateTreeviewitems(treeItems, selectable)}
     </cbp-treeview>

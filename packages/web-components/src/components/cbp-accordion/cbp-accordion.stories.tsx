@@ -91,7 +91,7 @@ const Template = ({ items, multiple, showBadge, context, sx }) => {
       <cbp-accordion
           ${multiple ? `multiple` : ''}
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
           ${showBadge ? generateSlottedChildren(items, showBadge) : generateChildren(items)}
       </cbp-accordion>
@@ -127,7 +127,7 @@ const AccordionWithSlottedLabelTemplate = ({ items, multiple, showBadge, context
       <cbp-accordion
           ${multiple ? `multiple` : ''}
           ${context && context != 'light-inverts' ? `context=${context}` : ''}
-          ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${generateSlottedChildren(items, showBadge)}
       </cbp-accordion>
