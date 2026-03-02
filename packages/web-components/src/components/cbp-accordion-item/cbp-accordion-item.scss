@@ -204,7 +204,7 @@ cbp-accordion-item {
       }
     }
 
-    .cbp-accordion-item--toggle {
+    .cbp-accordion-item--toggle:not(#fakeId) {
       --cbp-button-padding: 0;
       --cbp-button-border-width: 0;
       --cbp-button-focus-outline-width: 0;
