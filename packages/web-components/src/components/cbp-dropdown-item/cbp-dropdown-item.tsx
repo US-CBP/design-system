@@ -34,7 +34,10 @@ export class CbpDropdownItem {
   /** Specifies if an item is selected */
   @Prop({ reflect: true }) selected: boolean;
 
-
+  /** 
+   * Internal use: A custom event emitted when a dropdown item is clicked/activated and is handled by the 
+   * parent dropdown, also resulting in a `valueChange` event emitted from the dropdown component.
+   */
   @Event() dropdownItemClick: EventEmitter;
   handleClick(e) {
     const { target } = e;
