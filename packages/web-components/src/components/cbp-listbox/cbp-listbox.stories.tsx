@@ -1,6 +1,6 @@
 export default {
   title: 'Components/Listbox',
-  tags: ['new'],
+  tags: ['new','autodocs'],
   argTypes: {
     label: {
       control: 'text',

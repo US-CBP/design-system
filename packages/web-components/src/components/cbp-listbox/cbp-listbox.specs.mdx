@@ -6,12 +6,12 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 
 ## Purpose
 
-A Listbox enhances a standard text or search input by providing suggestions in a format visually similar to a dropdown.
+A Listbox enhances a standard text or search input by providing suggestions in a format visually similar to a dropdown, from which a selection may optionally be made.
 
 ## Functional Requirements
 
 * The Listbox component wraps a native text or search input (or a `cbp-form-field-wrapper` wrapping one).
-* The Listbox component accepts its options as a JSON or JSON string and renders them in a native HTML listbox.
+* The Listbox component accepts its options as JSON or a JSON string and renders them in a native HTML listbox.
 * The Listbox is displayed when focus is placed on the wrapped input and there are items to show.
   * Items may exist as a default list of suggestions that require no typing.
   * Items may also be updated on the fly with each keypress within the input.
@@ -31,13 +31,13 @@ A Listbox enhances a standard text or search input by providing suggestions in a
   * Upon display of the listbox:
     * Focus remains in the input and the user may continue typing
     * Pressing the down arrow will move the visible focus to the first available item in the listbox.
-* Keyboard navigation within the dropdown menu works as follows:
-  * `Arrow Down` and `Arrow Up` navigate the dropdown items, with wrapping at the start and end items.
-  * `Home` jumps to the first dropdown item.
-  * `End` jumps to the last dropdown item.
-  * Pressing `Escape` will close the menu and return focus to the dropdown control.
-  * Pressing `Tab` will close the menu and send focus to the next focusable element on the page.
-  * Clicking outside of the dropdown component will close the menu.
+* Keyboard navigation within the listbox menu works as follows:
+  * `Arrow Down` and `Arrow Up` navigate the listbox items, with wrapping at the start and end items.
+  * `Home` jumps to the first listbox item.
+  * `End` jumps to the last listbox item.
+  * Pressing `Escape` will close the menu and return focus to the wrapped input.
+  * Pressing `Tab` will close the listbox and send focus to the next focusable element on the page.
+  * Clicking outside of the listbox component will close the listbox.
   * Pressing `Enter` will activate the focused item and mark is as selected (see below for more details) and close the menu.
   * While the listbox is open, using any of the navigation keys (Up/Down Arrows, Home, End, Space) will:
     * `preventDefault()` on their `keyDown` events so that they are not also taking action on the input itself.
