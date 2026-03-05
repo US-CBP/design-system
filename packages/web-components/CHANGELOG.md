@@ -4,6 +4,15 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unpublished] TBD
+
+* Initial creation of the `cbp-listbox` component, used to wrap a native text or search input and offer selectable suggestions from a listbox.
+* Added `height` and `width` properties to `cbp-dialog`.
+* Fixed initial flickering of the `cbp-toast` component when revealed or closed.
+* Updated component-level dark mode toggles with `!important` overrides so that if a color is specified via CSS variable, it is still swapped appropriately based on light/dark modes.
+* Updated the `sx` implementation in most stories so that they do not break on whitespace characters.
+* Added packages for generating llms.txt files from Storybook documentation.
+
 ## [0.0.1-develop.31] 02-13-2026
 
 * Initial creation of `cbp-treeview` and `cbp-treeview-item` components.
