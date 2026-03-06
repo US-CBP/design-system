@@ -54,31 +54,28 @@ const Template = ({ records, pagesize, page, context, sx }) => {
           field-id="pagination_pages"
         >
           <cbp-dropdown field-id="pagination_pages">
-
-          <div slot="cbp-dropdown-attached-button-start">
-            <cbp-button
-              fill="solid"
-              color="secondary"
-              variant="square"
-              value="previous page"
-              accessibility-text="Previous page"
-            >
-              <cbp-icon name="chevron-right" rotate="180" />
-            </cbp-button>
-          </div>
-
-          <div slot="cbp-dropdown-attached-button-end">
-            <cbp-button
-              fill="solid"
-              color="secondary"
-              variant="square"
-              value="next page"
-              accessibility-text="Next page"
-            >
-              <cbp-icon name="chevron-right" />
-            </cbp-button>
-          </div>
-
+            <div slot="cbp-dropdown-attached-button-start">
+              <cbp-button
+                fill="solid"
+                color="secondary"
+                variant="square"
+                value="previous page"
+                accessibility-text="Previous page"
+              >
+                <cbp-icon name="chevron-right" rotate="180" />
+              </cbp-button>
+            </div>
+            <div slot="cbp-dropdown-attached-button-end">
+              <cbp-button
+                fill="solid"
+                color="secondary"
+                variant="square"
+                value="next page"
+                accessibility-text="Next page"
+              >
+                <cbp-icon name="chevron-right" />
+              </cbp-button>
+            </div>
           </cbp-dropdown>
         </cbp-form-field>
 
