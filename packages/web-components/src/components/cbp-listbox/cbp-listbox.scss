@@ -57,6 +57,16 @@
   --cbp-listbox-item-color-bg-dark: transparent;
   --cbp-listbox-item-color-border-dark: var(--cbp-color-gray-cool-50);
 
+  --cbp-listbox-item-color-hover: var(--cbp-color-text-lightest);
+  --cbp-listbox-item-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-listbox-item-color-hover-dark: var(--cbp-color-text-darkest);
+  --cbp-listbox-item-color-bg-hover-dark: var(--cbp-color-interactive-secondary-light);
+
+  --cbp-listbox-item-color-focus: var(--cbp-color-text-lightest);
+  --cbp-listbox-item-color-bg-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-listbox-item-color-focus-dark: var(--cbp-color-text-darkest);
+  --cbp-listbox-item-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
+  
   --cbp-listbox-item-border-size: var(--cbp-border-size-sm);
   --cbp-listbox-item-padding-block: var(--cbp-space-2x);
   --cbp-listbox-item-padding-inline-start: var(--cbp-space-1x);
@@ -78,9 +88,13 @@
   --cbp-listbox-menu-color-bg-counter: var(--cbp-listbox-menu-color-bg-counter-dark) !important;
   --cbp-listbox-menu-color-counter-outline-focus: var(--cbp-listbox-menu-color-counter-outline-focus-dark) !important;
   
-  --cbp-listbox-item-color: var(--cbp-listbox-item-color-dark);
-  --cbp-listbox-item-color-bg: var(--cbp-listbox-item-color-bg-dark);
-  --cbp-listbox-item-color-border: var(--cbp-listbox-item-color-border-dark);
+  --cbp-listbox-item-color: var(--cbp-listbox-item-color-dark) !important;
+  --cbp-listbox-item-color-bg: var(--cbp-listbox-item-color-bg-dark) !important;
+  --cbp-listbox-item-color-border: var(--cbp-listbox-item-color-border-dark) !important;
+  --cbp-listbox-item-color-hover: var(--cbp-listbox-item-color-hover-dark) !important;
+  --cbp-listbox-item-color-bg-hover: var(--cbp-listbox-item-color-bg-hover-dark) !important;
+  --cbp-listbox-item-color-focus: var(--cbp-listbox-item-color-focus-dark) !important;
+  --cbp-listbox-item-color-bg-focus: var(--cbp-listbox-item-color-bg-focus-dark) !important;
  }
 
 
@@ -149,22 +163,31 @@ cbp-listbox {
       }
       
       &:hover {
+        --cbp-listbox-item-color: var(--cbp-listbox-item-color-hover);
+        --cbp-listbox-item-color-bg: var(--cbp-listbox-item-color-bg-hover);
+        --cbp-listbox-item-color-border: transparent;
+        /*
         --cbp-listbox-item-color: var(--cbp-color-text-lightest);
         --cbp-listbox-item-color-bg: var(--cbp-color-interactive-secondary-darker);
         --cbp-listbox-item-color-border: transparent;
         --cbp-listbox-item-color-dark: var(--cbp-color-text-darkest);
         --cbp-listbox-item-color-bg-dark: var(--cbp-color-interactive-secondary-light);
         --cbp-listbox-item-color-border-dark: transparent;
+        */
       }
 
-      &.cbp-listbox-current,
-      &:focus {
+      &.cbp-listbox-current {
+        --cbp-listbox-item-color: var(--cbp-listbox-item-color-focus);
+        --cbp-listbox-item-color-bg: var(--cbp-listbox-item-color-bg-focus);
+        --cbp-listbox-item-color-border: transparent;
+        /*
         --cbp-listbox-item-color: var(--cbp-color-text-lightest);
         --cbp-listbox-item-color-bg: var(--cbp-color-interactive-focus-dark);
         --cbp-listbox-item-color-border: transparent;
         --cbp-listbox-item-color-dark: var(--cbp-color-text-darkest);
         --cbp-listbox-item-color-bg-dark: var(--cbp-color-interactive-focus-light);
         --cbp-listbox-item-color-border-dark: transparent;
+        */
       }
     }
   }
