@@ -27,7 +27,19 @@ cbp-pagination {
   [slot=cbp-pagination-items-per-page],
   [slot=cbp-pagination-pages] {
     label {
-      display: none;
+      //display: none;
+      // TechDebt: this should be a mixin
+      border: 0;
+      clip: rect(1px, 1px, 1px, 1px);
+      -webkit-clip-path: inset(50%);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      margin: -1px;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+      white-space: nowrap;
     }
   }
 
