@@ -77,9 +77,12 @@ A Listbox enhances a standard text or search input by providing suggestions in a
 
 ### Additional Notes and Considerations
 
+* Selection from the listbox does not trigger a native change event from the input (updating its value via JavaScript).
+  * It is recommended to listen for the parent `cbp-form-field`'s `valueChange` event.
+  * This event will catch the native change event of the wrapped input as well as selection from the listbox.
 * Decoupling filtering functionality from the component and making it the responsibility of application logic opens up many more options:
-  * Filtering may be done on any substring or only items that start with the substring.
-  * Fuzzy search or AI may be involved in populating the suggestions.
+  * Search/filtering may be done on the full value or only items that start with the search string.
+  * Fuzzy search, AI, or custom weighting may be involved in populating the suggestions.
   * Minimum input length may also be enforced by the application code.
   * A list of default suggestions may be specified via the `items` property, which is displayed upon focusing the wrapped input.
   * It is up to application logic to restore this default list when the input value returns to an empty string or a length of zero.

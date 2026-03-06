@@ -325,13 +325,9 @@ export class CbpListbox {
     });
   }
 
-  componentDidLoad() {
-
-  }
-
   componentDidRender() {
     this.listboxItems = Array.from(this.listbox.querySelectorAll('li'));
-    // The "current" class is added via DOM manipulation, so it can safely be removed on a re-render, which is caused by a change in open or items
+    // The "current" class is added via DOM manipulation, so it can safely be removed after a re-render, which is caused by a change in open or items
     this.listboxItems.forEach( item => {
       item.classList.remove('cbp-listbox-current');
     })
