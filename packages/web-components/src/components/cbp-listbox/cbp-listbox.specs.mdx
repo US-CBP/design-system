@@ -52,6 +52,7 @@ A Listbox wraps a standard text or search input, enhancing it by providing sugge
   * Close and clear the listbox.
   * Return focus to the control.
   * `preventDefault()` is executed on their `keyDown` events so that they are not also taking action on the input itself.
+  * Unlike a dropdown, there is no "selected" state or visual styling.
 * The listbox component and browser autocomplete functionality may conflict - the autocomplete popover overlays the listbox and also steals key presses for navigation. Therefore:
   * When the listbox is shown, the native input's autocomplete is disabled by setting `autocomplete="off"`.
   * When the listbox is closed, the default autocomplete behavior is restored, either by removing the autocomplete attribute or setting it back to its original setting.
@@ -85,4 +86,5 @@ A Listbox wraps a standard text or search input, enhancing it by providing sugge
   * Fuzzy search, AI, or custom weighting may be involved in populating the suggestions.
   * Minimum input length may also be enforced by the application code.
   * A list of default suggestions may be specified via the `items` property, which is displayed upon focusing the wrapped input.
+    * While uncommon, you may wish to check for a (default) value before displaying default suggestions, as this unfiltered list may be confusing in that context.
   * It is up to application logic to restore this default list when the input value returns to an empty string or a length of zero.

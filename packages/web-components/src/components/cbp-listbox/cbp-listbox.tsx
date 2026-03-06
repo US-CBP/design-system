@@ -278,10 +278,6 @@ export class CbpListbox {
     return generatedItems;
   }
 
-
-
-
-
   componentWillLoad() {
     // Generate the items from the property before rendering, if provided. (also done in the @watch if changed)
     if(!!this.items) {
