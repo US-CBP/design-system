@@ -1,6 +1,11 @@
 import { Component, Element, Prop, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, clickAwayListener, createNamespaceKey, createValidId } from '../../utils/utils';
 
+/**
+ * A Listbox wraps a standard text or search input, enhancing it by providing suggestions in a format visually similar to a dropdown, from which a selection may optionally be made.
+ * 
+ * @slot - A native text or search input (or optionally `cbp-form-field-wrapper as well) should be slotted in the default slot.
+ */
 @Component({
   tag: 'cbp-listbox',
   styleUrl: 'cbp-listbox.scss'
@@ -17,7 +22,6 @@ export class CbpListbox {
 
   @Element() private host: HTMLCbpDropdownElement;
 
-
   /** 
    * Optionally specify the ID of the listbox element (role=listbox), which is used to generate related 
    * pattern node IDs and associate it to the wrapped input for accessibility. 
@@ -33,13 +37,6 @@ export class CbpListbox {
    * The expected format is [{"label":"string"}, ...]
    */
   @Prop({mutable: true}) items: string | object;
-
-  /*
-   * Specifies the number of characters need to emit an event to make an API call and return filtered results.
-   * This value should use the default of 0 in the case of a default list of suggestions being provided.
-   */
-  // This can actually be enforced by the application logic more effectively
-  //@Prop() minimumInputLength: number = 0;
 
   /** 
    * Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled.
@@ -87,7 +84,6 @@ export class CbpListbox {
   @Watch('items')
   watchItems(newValue) {
     let items = this.getItems(newValue);
-    console.log('cbp-listbox - items updated: ', items.length);
     this.generatedItems = this.generateItems(items);
     this.focusIndex=-1; // reset this any time the list is updated, which occurs based on user input
     
@@ -122,7 +118,6 @@ export class CbpListbox {
   }
 
   private handleFocus() {
-    console.log('handleFocus: ', !!this.items, this.autocomplete);
     if(this.listboxItems.length) this.showListbox();
     else this.closeListbox();
   }
@@ -144,7 +139,6 @@ export class CbpListbox {
   }
 
   private handleListboxClick(e) {
-    //console.log('Listbox clicked: ',e);
     const {target} = e;
     const listItem = target?.closest('[role=listbox] li');
 
@@ -156,13 +150,19 @@ export class CbpListbox {
       // Clear the list if a selection was made
       this.items='';
       this.listboxItems=[];
-      // Handling this as input causes the listbox to reopen after a selection was made, giving poor feedback
-      //this.handleInput(e);
+
+      // Emit the custom event here; Trying to handle this as input causes the listbox to reopen after a selection, giving poor feedback
+      this.valueChange.emit({
+        host: this.host,
+        nativeElement: this.formField,
+        value: this.formField.value,
+        nativeEvent: e
+      });
     }
   }
 
+  // handle keyboard navigation
   getActionFromKey(event) {
-    //const { key, altKey, ctrlKey, metaKey } = event;
     const { key } = event;
     const selectKeys = ['Enter', ' '];
     const navKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End']; // all keys that will do the default open action
@@ -189,7 +189,6 @@ export class CbpListbox {
 
       // If it was a navigation key
       if (n !== undefined && key !== 'Tab') {
-        console.log('Keyboard nav: ', key, n, this.focusIndex, this.listboxItems?.length);
         this.setCurrent( n, this.focusIndex);
       }
       // Prevent listbox navigation keys from doing things in the input while open, as this may be confusing
@@ -209,9 +208,6 @@ export class CbpListbox {
   }
 
   setCurrent(newValue=0, oldValue=undefined) {
-    //console.log('cbp-listbox debugging - setCurrent(): ', oldValue, ' => ', newValue);
-    //const listboxItems: HTMLLIElement[] = Array.from(this.listbox.querySelectorAll('li'));
- 
     // Unset the old item, if any
     if (oldValue != undefined && oldValue != newValue && this.listboxItems[oldValue]) {
       this.listboxItems?.[oldValue]?.classList.remove('cbp-listbox-current');
@@ -219,7 +215,6 @@ export class CbpListbox {
 
     // Mark the current item and associate it with the control via aria-activedescendant
     if (this.generatedItems[newValue]) {
-      console.log('Setting current: ', this.listboxItems[newValue]);
       this.listboxItems?.[newValue]?.classList.add('cbp-listbox-current');
       this.formField?.setAttribute('aria-activedescendant', this.listboxItems?.[newValue]?.id)
       this.focusIndex = newValue;
@@ -307,12 +302,10 @@ export class CbpListbox {
 
     // Set up a focus listener for showing a default listbox
     this.formField.addEventListener( 'focus', () => {
-      console.log('listbox focused, handle it');
       this.handleFocus();
     });
     // Set up an input listener to emit events for filtering
     this.formField.addEventListener( 'input', (e) => {
-      console.log('input occurred, handle it');
       this.handleInput(e);
     });
 
@@ -351,5 +344,4 @@ export class CbpListbox {
       </Host>
     );
   }
-
 }

@@ -10,7 +10,27 @@
  *  @prop --cbp-listbox-menu-color-bg-counter: var(--cbp-form-field-color-border);
  *  @prop --cbp-listbox-menu-color-counter-dark: var(--cbp-form-field-color);
  *  @prop --cbp-listbox-menu-color-bg-counter-dark: var(--cbp-color-interactive-secondary-light);
- */
+
+*  @prop --cbp-listbox-menu-color-counter-dark: var(--cbp-form-field-color);
+*  @prop --cbp-listbox-menu-color-bg-counter-dark: var(--cbp-color-interactive-secondary-light);
+
+*  @prop --cbp-listbox-menu-color-counter-outline-focus: var(--cbp-color-white);
+*  @prop --cbp-listbox-menu-color-counter-outline-focus-dark: var(--cbp-form-field-color-border);
+
+*  @prop --cbp-listbox-item-color: var(--cbp-listbox-menu-color);
+*  @prop --cbp-listbox-item-color-bg: transparent;
+*  @prop --cbp-listbox-item-color-border: var(--cbp-color-gray-cool-50);
+
+*  @prop --cbp-listbox-item-color-dark: var(--cbp-listbox-menu-color-dark);
+*  @prop --cbp-listbox-item-color-bg-dark: transparent;
+*  @prop --cbp-listbox-item-color-border-dark: var(--cbp-color-gray-cool-50);
+
+*  @prop --cbp-listbox-item-border-size: var(--cbp-border-size-sm);
+*  @prop --cbp-listbox-item-padding-block: var(--cbp-space-2x);
+*  @prop --cbp-listbox-item-padding-inline-start: var(--cbp-space-1x);
+*  @prop --cbp-listbox-item-font-style: normal;
+*  @prop --cbp-listbox-item-font-style-selected: italic;
+*/
 :root {
   // TechDebt: need to weigh this dependency/inheritance vs standalone functionality
   --cbp-listbox-menu-color: var(--cbp-form-field-color);
@@ -87,13 +107,12 @@ cbp-listbox {
     border: var(--cbp-border-size-md) solid var(--cbp-listbox-menu-color-border);
     border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
     height: fit-content;
-    max-height: 13.5rem; // TechDebt: What's the reasoning for this magic number?
-    width: 100%; //calc(100% - 2px);
+    max-height: 13.5rem;
+    width: 100%;
 
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--cbp-listbox-menu-color-border) var(--cbp-form-field-color-bg);
-
 
     &:hover {
       --cbp-form-field-color-border: var(--cbp-form-field-color-border-hover);
@@ -124,8 +143,7 @@ cbp-listbox {
         border-block-end: var(--cbp-listbox-item-border-size) solid var(--cbp-listbox-item-color-border);
       }
 
-
-
+      // No bottom border on last list item
       &:not([hidden]):last-of-type() {
         border-block-end-width: 0;
       }
@@ -159,6 +177,7 @@ cbp-listbox {
     }
   }
 
+  // Error state
   &:has(input[aria-invalid=true]) {
     --cbp-listbox-menu-color-bg: var(--cbp-form-field-color-bg);
     --cbp-listbox-menu-color-border: var(--cbp-form-field-color-border);
@@ -166,14 +185,3 @@ cbp-listbox {
     --cbp-listbox-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
   }
 }
- 
-// Error state defined by parent form field or input
-//cbp-form-field[error] cbp-listbox,
-/*
-cbp-listbox:has(input[aria-invalid=true]) {
-  --cbp-listbox-menu-color-bg: var(--cbp-form-field-color-bg);
-  --cbp-listbox-menu-color-border: var(--cbp-form-field-color-border);
-  --cbp-listbox-menu-color-bg-dark: var(--cbp-form-field-color-bg-dark);
-  --cbp-listbox-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
-}
-*/
