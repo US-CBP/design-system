@@ -28,10 +28,10 @@ export class CbpBanner {
   }
 
   /*
-      TechDebt: should the banner title render a standard heading size? 
-      Leaving it entirely to the developer is prone to inconsistencies.
-      Also, should there be a title prop? (keep optional slot)
-    */
+    TechDebt: should the banner title render a standard heading size? 
+    Leaving it entirely to the developer is prone to inconsistencies.
+    Also, should there be a title prop? (keep optional slot)
+  */
   render() {
     return (
       <Host>
@@ -57,11 +57,10 @@ export class CbpBanner {
               name="circle-xmark" 
               size="var(--cbp-space-5x)"
             />
-            Dismiss
+              Dismiss
           </cbp-button>
         </div>
       </Host>
     );
   }
-
 }
