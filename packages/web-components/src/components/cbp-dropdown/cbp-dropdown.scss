@@ -214,11 +214,8 @@ cbp-dropdown {
   &[error] {
     --cbp-dropdown-menu-color-bg: var(--cbp-form-field-color-bg);
     --cbp-dropdown-menu-color-border: var(--cbp-form-field-color-border);
-
     --cbp-dropdown-menu-color-bg-dark: var(--cbp-form-field-color-bg-dark);
     --cbp-dropdown-menu-color-border-dark: var(--cbp-form-field-color-border-dark);
-
-
   }
 
   &[open] {

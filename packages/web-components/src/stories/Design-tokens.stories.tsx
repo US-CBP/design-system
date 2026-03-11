@@ -147,7 +147,10 @@ function outputTableRow(arr) {
     <tr>
       <td>${token}</td>
       <td>${css}</td>
-      <td>${value}</td>
+      <td>
+        ${ token.includes('color') ? `<span style="display:inline-block;background:var(${css});width:1rem;height:1rem;border:solid 1px #999;border-radius:3px">&nbsp;</span>` : ''}
+        ${value}
+      </td>
     </tr>`;
   });
   return rows;

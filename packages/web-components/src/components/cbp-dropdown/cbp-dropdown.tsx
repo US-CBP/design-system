@@ -140,7 +140,7 @@ export class CbpDropdown {
   @State() private searchString: string = ''; // This needs to be a state so that it can be used in the render method to replace the control label. TODO: test for accessibility.
   
 
-  /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
+  /** A custom event emitted when the a selection is made in the dropdown. */
   @Event() valueChange: EventEmitter;
 
   /** A custom event that is fired when the "create item" option is clicked. */

@@ -1,5 +1,22 @@
 export const createNamespaceKey = (prefix?: string): string => (prefix ? prefix + '-' : '') + (Math.random() + 1).toString(26).slice(2, 7);
 
+/**
+ * Generates a valid HTML ID from a string by slugifying it.
+ * @param {string} str The input string.
+ * @returns {string} A valid HTML ID string.
+ */
+export const createValidId = (str: string): string => {
+  return str
+    .normalize('NFKD')                // Split accented characters into their base characters and diacritical marks
+    .replace(/[\u0300-\u036f]/g, '')  // Remove all the accents
+    .trim()                           // Trim leading or trailing whitespace
+    .toLowerCase()                    // Convert to lowercase
+    .replace(/[^a-z0-9 -]/g, '')      // Remove non-alphanumeric characters except hyphens and spaces
+    .replace(/\s+/g, '-')             // Replace spaces with a single hyphen
+    .replace(/-+/g, '-')              // Collapse multiple hyphens into a single hyphen
+    .replace(/^-|-$/g, '');           // Remove leading or trailing hyphens
+}
+
 export const setCSSProps = <T extends { [key: string]: any }>(host: HTMLElement, { ...props }: T): void => {
   Object.entries(props).forEach(([key, value]): void => {
     try {

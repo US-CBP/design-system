@@ -1,0 +1,90 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Components/Listbox/Specifications" />
+
+# cbp-listbox
+
+## Purpose
+
+A Listbox wraps a standard text or search input, enhancing it by providing suggestions in a format visually similar to a dropdown, from which a selection may optionally be made.
+
+## Functional Requirements
+
+* The Listbox component wraps a native text or search input (or a `cbp-form-field-wrapper` wrapping one).
+* The Listbox component accepts its options as JSON or a JSON string and renders them in a native HTML listbox.
+* The Listbox is displayed when focus is placed on the wrapped input and there are items to show.
+  * Items may exist as a default list of suggestions that require no typing.
+  * Items may also be updated on the fly with each keypress within the input.
+* Selecting a suggestion from the listbox populates the input with that text.
+* Unlike a dropdown, a selection is not required; Typed text may be submitted with a form as-is.
+* All updating of the listbox items is done via application logic:
+  * The component does not do filtering on a static list because it doesn't know if the list is static or will be updated by the application.
+  * This allows the application to easily determine what type of filtering to do - full string or start of string.
+
+## Technical Specifications
+
+### User Interactions
+
+* Activating the Listbox may be achieved by the following user actions:
+  * Placing focus on the wrapped text input will show default listbox items, if specified.
+  * Typing within the wrapped text input will trigger an event to populate the listbox via application logic. If items are returned, the listbox will be populated with them and displayed.
+  * Upon display of the listbox:
+    * Focus remains in the input and the user may continue typing
+    * Pressing the down arrow will move the visible focus to the first available item in the listbox.
+* Keyboard navigation within the listbox menu works as follows:
+  * `Arrow Down` and `Arrow Up` navigate the listbox items, with wrapping at the start and end items.
+  * `Home` jumps to the first listbox item.
+  * `End` jumps to the last listbox item.
+  * Pressing `Escape` will close the menu and return focus to the wrapped input.
+  * Pressing `Tab` will close the listbox and send focus to the next focusable element on the page.
+  * Clicking outside of the listbox component will close the listbox.
+  * Pressing `Enter` will activate the focused item and mark is as selected (see below for more details) and close the menu.
+  * While the listbox is open, using any of the navigation keys (Up/Down Arrows, Home, End, Space) will:
+    * `preventDefault()` on their `keyDown` events so that they are not also taking action on the input itself.
+    * The cursor may still be moved within the input via Left/Right Arrow keys.
+    * Update the `aria-activedescendant` attribute on the control to reference the visually focused item's `id`.
+    * Once the listbox is closed, these keys will work as expected within the input.
+* Listbox Items (with visual focus) may be activated either by clicking with the mouse or pressing `Enter` or `Spacebar`. Activating an item will do the following:
+  * Set the native input value to the innerText of the listbox item activated.
+  * Emit a `valueChange` event to be listened for by the parent `cbp-form-field` component.
+    * Updating the native input value via selection does not trigger a native `change` event.
+    * Listening for the parent `cbp-form-field`'s `valueChange` is the most effective way to get both user inputs (changes from typing or selection).
+  * Close and clear the listbox.
+  * Return focus to the control.
+  * `preventDefault()` is executed on their `keyDown` events so that they are not also taking action on the input itself.
+  * Unlike a dropdown, there is no "selected" state or visual styling.
+* The listbox component and browser autocomplete functionality may conflict - the autocomplete popover overlays the listbox and also steals key presses for navigation. Therefore:
+  * When the listbox is shown, the native input's autocomplete is disabled by setting `autocomplete="off"`.
+  * When the listbox is closed, the default autocomplete behavior is restored, either by removing the autocomplete attribute or setting it back to its original setting.
+* The Listbox will not be shown when the wrapped input is either disabled or readonly.
+
+### Responsiveness
+
+* Since it inherits the same default styling as other form fields, the Listbox is styled at 100% of its container by default, with a max-width of 100% so it cannot break out of its container.
+* Listbox Items will wrap as needed. However, content should not be so long that it wraps more than two lines on a small screen such as a phone.
+
+### Accessibility
+
+* The associated input label and `aria-describedby` are provided by the parent `cbp-form-field` component.
+* The Listbox component enhances the wrapped input, implementing the combobox pattern for accessibility, which means:
+  * The wrapped input gets a `role="combobox"`.
+  * The wrapped input gets an `aria-expanded` attribute, with a value corresponding to the `open` property.
+  * The wrapped input gets an `aria-controls` attribute, with a value referencing the `id` if the listbox.
+  * The wrapped input gets an `aria-haspopup="listbox"` to indicate that it controls a listbox.
+  * When the listbox is opened, focus remains on the wrapped input, while the "current" option is indicated by the `aria-activedescendant` attribute on the control, which references the visibly highlighted option's `id`.
+  * The `ul` containing the list items has a `role="listbox"`.
+  * The list items are rendered as semantic `li` elements.
+  * The component fully supports keyboard navigation, as described above in the User Interactions section.
+
+### Additional Notes and Considerations
+
+* Selection from the listbox does not trigger a native change event from the input (updating its value via JavaScript).
+  * It is recommended to listen for the parent `cbp-form-field`'s `valueChange` event.
+  * This event will catch the native change event of the wrapped input as well as selection from the listbox.
+* Decoupling filtering functionality from the component and making it the responsibility of application logic opens up many more options:
+  * Search/filtering may be done on the full value or only items that start with the search string.
+  * Fuzzy search, AI, or custom weighting may be involved in populating the suggestions.
+  * Minimum input length may also be enforced by the application code.
+  * A list of default suggestions may be specified via the `items` property, which is displayed upon focusing the wrapped input.
+    * While uncommon, you may wish to check for a (default) value before displaying default suggestions, as this unfiltered list may be confusing in that context.
+  * It is up to application logic to restore this default list when the input value returns to an empty string or a length of zero.
