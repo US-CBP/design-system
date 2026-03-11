@@ -55,6 +55,7 @@ export class CbpPagination {
     if (value == 'previous page') this.handlePageChange(this.page-1);
   }
 
+
   handlePageSizeChange( value ) {
     this.page=1; // always reset the current page to 1 when changing the page size
     
@@ -72,7 +73,6 @@ export class CbpPagination {
       this.pagesDropdown.removeAttribute('hidden');
     }
 
-
     // Generate a new array of dropdown-items and replace them in the pages dropdown
     this.pagesDropdownItems=[];
     for (let i=1; i <= this.pages; i++ ) {
@@ -83,6 +83,16 @@ export class CbpPagination {
     }
     this.pagesDropdown.querySelector('[role=listbox]').replaceChildren(...this.pagesDropdownItems);
     
+    // Emit the custom event
+    this.paginationChange.emit({
+      host: this.host,
+      records: this.records,
+      pageSize: this.pageSize,
+      page: this.page,
+      pages: this.pages
+    });
+
+    // Update the current page to page 1 and the button states after it's had time to update
     setTimeout( () => {
       this.pagesDropdown.value=1;
       this.checkPageButtonStates();
@@ -92,6 +102,7 @@ export class CbpPagination {
   handlePageChange(value) {
     this.page = this.pagesDropdown.value = value; // updating this prop will cause a re-render, recalculating the pagination text
 
+    // Emit the custom event
     this.paginationChange.emit({
       host: this.host,
       records: this.records,
