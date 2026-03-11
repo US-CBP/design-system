@@ -25,6 +25,16 @@
 *  @prop --cbp-listbox-item-color-bg-dark: transparent;
 *  @prop --cbp-listbox-item-color-border-dark: var(--cbp-color-gray-cool-50);
 
+*  @prop --cbp-listbox-item-color-hover: var(--cbp-color-text-lightest);
+*  @prop --cbp-listbox-item-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
+*  @prop --cbp-listbox-item-color-hover-dark: var(--cbp-color-text-darkest);
+*  @prop --cbp-listbox-item-color-bg-hover-dark: var(--cbp-color-interactive-secondary-light);
+
+*  @prop --cbp-listbox-item-color-focus: var(--cbp-color-text-lightest);
+*  @prop --cbp-listbox-item-color-bg-focus: var(--cbp-color-interactive-focus-dark);
+*  @prop --cbp-listbox-item-color-focus-dark: var(--cbp-color-text-darkest);
+*  @prop --cbp-listbox-item-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
+
 *  @prop --cbp-listbox-item-border-size: var(--cbp-border-size-sm);
 *  @prop --cbp-listbox-item-padding-block: var(--cbp-space-2x);
 *  @prop --cbp-listbox-item-padding-inline-start: var(--cbp-space-1x);
@@ -32,7 +42,6 @@
 *  @prop --cbp-listbox-item-font-style-selected: italic;
 */
 :root {
-  // TechDebt: need to weigh this dependency/inheritance vs standalone functionality
   --cbp-listbox-menu-color: var(--cbp-form-field-color);
   --cbp-listbox-menu-color-placeholder: var(--cbp-form-field-color-placeholder);
   --cbp-listbox-menu-color-bg: var(--cbp-form-field-color-bg);
@@ -163,31 +172,17 @@ cbp-listbox {
       }
       
       &:hover {
+        // These are at a lower level, post-dark mode swapping, so no dark variants needed
         --cbp-listbox-item-color: var(--cbp-listbox-item-color-hover);
         --cbp-listbox-item-color-bg: var(--cbp-listbox-item-color-bg-hover);
         --cbp-listbox-item-color-border: transparent;
-        /*
-        --cbp-listbox-item-color: var(--cbp-color-text-lightest);
-        --cbp-listbox-item-color-bg: var(--cbp-color-interactive-secondary-darker);
-        --cbp-listbox-item-color-border: transparent;
-        --cbp-listbox-item-color-dark: var(--cbp-color-text-darkest);
-        --cbp-listbox-item-color-bg-dark: var(--cbp-color-interactive-secondary-light);
-        --cbp-listbox-item-color-border-dark: transparent;
-        */
       }
 
       &.cbp-listbox-current {
+        // These are at a lower level, post-dark mode swapping, so no dark variants needed
         --cbp-listbox-item-color: var(--cbp-listbox-item-color-focus);
         --cbp-listbox-item-color-bg: var(--cbp-listbox-item-color-bg-focus);
         --cbp-listbox-item-color-border: transparent;
-        /*
-        --cbp-listbox-item-color: var(--cbp-color-text-lightest);
-        --cbp-listbox-item-color-bg: var(--cbp-color-interactive-focus-dark);
-        --cbp-listbox-item-color-border: transparent;
-        --cbp-listbox-item-color-dark: var(--cbp-color-text-darkest);
-        --cbp-listbox-item-color-bg-dark: var(--cbp-color-interactive-focus-light);
-        --cbp-listbox-item-color-border-dark: transparent;
-        */
       }
     }
   }
