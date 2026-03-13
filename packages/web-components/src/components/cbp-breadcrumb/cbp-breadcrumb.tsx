@@ -1,5 +1,5 @@
 import { Component, Prop, State, Element, Host, h } from '@stencil/core';
-import { setCSSProps, debounce } from '../../utils/utils';
+import { setCSSProps } from '../../utils/utils';
 
 /**
  * Breadcrumbs give users an indicator of where they are within a site/application hierarchy, 
@@ -155,12 +155,9 @@ export class CbpBreadcrumb {
     return (
       <Host>
         <cbp-resize-observer 
-          debounce={50}
+          debounce={10}
           ref={el => this.ro = el}
-          //onResized={(e) => this.handleResize(e.detail.width)}
-          onResized={ debounce((e) => {
-            this.handleResize(e.detail.width);
-          }, 10)}
+          onResized={(e) => this.handleResize(e.detail.width)}
         >
           <nav 
             aria-label="Breadcrumb" 
