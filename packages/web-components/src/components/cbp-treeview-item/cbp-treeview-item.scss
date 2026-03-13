@@ -11,7 +11,7 @@
 :root {
   --cbp-treeview-item-color: var(--cbp-color-text-darkest);
   --cbp-treeview-item-color-dark: var(--cbp-color-text-lightest);
-  --cbp-treeview-item-indent: 0; //1.5rem nested; TechDebt: this should use usable as part of the API, but current implementation prevents it.
+  --cbp-treeview-item-indent: 1.5rem;//0; //1.5rem nested; TechDebt: this should use usable as part of the API, but current implementation prevents it.
   --cbp-treeview-indicator-spacing: 1.5rem;
   --cbp-treeview-connection-width: 2px;
   --cbp-treeview-connection-color: var(--cbp-color-gray-cool-20);
@@ -31,7 +31,6 @@
 cbp-treeview-item {
   display: block;
   color: var(--cbp-treeview-item-color);
-  padding-inline-start: var(--cbp-treeview-item-indent);
   margin-inline-start: calc((var(--cbp-treeview-expand-width) - var(--cbp-treeview-connection-width)) / 2);
 
   .cbp-treeview-item-control {
@@ -105,10 +104,9 @@ cbp-treeview-item {
   // Nested items
   cbp-treeview-item {
     border-left: var(--cbp-treeview-connection-width) solid var(--cbp-treeview-connection-color);
-    --cbp-treeview-item-indent: 1.5rem; // TechDebt: this should be the default value, not reassigned here.
+    padding-inline-start: var(--cbp-treeview-item-indent);
 
     .cbp-treeview-item-control {
-      //--cbp-checkbox-margin: 0;
 
       &::before {
         content: '';
@@ -119,14 +117,14 @@ cbp-treeview-item {
         left: calc(var(--cbp-treeview-connection-width) * -1);
         width: var(--cbp-treeview-item-indent);
         margin-inline-start: calc(var(--cbp-treeview-item-indent) * -1);
-        height: calc(var(--cbp-treeview-indicator-spacing) + var(--cbp-treeview-connection-width));
+        min-height: calc(var(--cbp-treeview-indicator-spacing) + var(--cbp-treeview-connection-width));
         border: solid var(--cbp-treeview-connection-color);
-        border-width: 0 0 var(--cbp-treeview-connection-width) var(--cbp-treeview-connection-width);
+        border-width: 0 0 var(--cbp-treeview-connection-width) 0;//var(--cbp-treeview-connection-width);
       }
     }
   }
 
   &:last-child {
-    border-color: transparent;
+    border-image: linear-gradient(to bottom, var(--cbp-treeview-connection-color) 50%, transparent 50%) 1 100%;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Host, h, Listen, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Host, h, Listen, Prop, Watch } from '@stencil/core';
 import { createNamespaceKey } from '../../utils/utils';
 
 @Component({
@@ -63,10 +63,6 @@ export class CbpTreeviewItem {
   /** Custom event emitted to the parent treeview item to re-evaluate its checked/indeterminate state based on actions below it. */
   @Event() updateTreeviewItemParent: EventEmitter;
 
-
-  // TechDebt: probably need a @Watch on `checked` to handle programmatic updated to items.
-
-
   // listen to the checkbox's stateChange event emitter to update this treeview item (and its children).
   @Listen('stateChanged')
   handleCheck(e = undefined) {
@@ -124,6 +120,12 @@ export class CbpTreeviewItem {
     }
   }
 
+
+  @Watch('checked')
+  watchChecked(newValue: boolean){
+    if (this.checkbox) this.checkbox.checked=newValue;
+  }
+
   toggleOpen() {
     this.open === false ? this.open = true : this.open = false;
   }
@@ -141,11 +143,14 @@ export class CbpTreeviewItem {
   }
 
   render() {
+    // console.log('allchildren: ', this.host, this.allChildren)
     return (
       <Host
         role="treeitem"
         id={this.uid}
         aria-selected={ this.selectable ? `${this.checked}` : false}
+        aria-owns={`${this.uid}-group`}
+        tabIndex= '-1'
       >
         <div class="cbp-treeview-item-control">
           { this.immediateChildren.length > 0 &&
@@ -186,7 +191,11 @@ export class CbpTreeviewItem {
           }
           <slot name="cbp-treeview-item-buttons" />
         </div>
-        <div role="group" class="cbp-treeview-item-children">
+        <div 
+          role="group" 
+          class="cbp-treeview-item-children"
+          id={`${this.uid}-group`}
+        >
           <slot />
         </div>
       </Host>
