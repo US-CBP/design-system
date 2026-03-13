@@ -1,5 +1,5 @@
 import { Component, Element, Prop, Event, EventEmitter, Host, h } from '@stencil/core';
-//import { debounce } from '../../utils/utils';
+import { debounce } from '../../utils/utils';
 
 /**
  * The Resize Observer component is a wrapper that implements a resizeObserver to detect changes to its size,
@@ -20,10 +20,14 @@ export class CbpResizeObserver {
  
   @Element() private host: HTMLElement;
 
-  /** The number of milliseconds to debounce the event emitter. (not currently working) */
+  /**
+   * The number of milliseconds to debounce the event emitter. Defaults to 0.
+   * While the native resize observer is very performant, the calculations within its handler function may
+   * not be, and performance may benefit from debouncing this event emitter.
+   */
   @Prop() debounce: number = 0;
 
-  /** A custom event emitted when the component is resized to give new values for size of component*/
+  /** A custom event emitted when the component is resized to give new values for size of component. */
   @Event() resized!: EventEmitter;
   
 
@@ -56,7 +60,7 @@ export class CbpResizeObserver {
             devicePixelContentBoxSize[]: ResizeObserverSize
             target
     */
-    this.observer = new ResizeObserver( ([{ contentRect }]) => {
+    this.observer = new ResizeObserver( debounce( ([{ contentRect }]) => {
       const {width, height, top, bottom, left, right, x, y} = contentRect;
 
       const customEvent = {
@@ -71,15 +75,10 @@ export class CbpResizeObserver {
         y: y
       }
 
-      // TechDebt: should this be debounced?
-      /* not working
-      debounce( () => {
-        this.resized.emit( customEvent);
-       }, this.debounce);
-      */
       this.resized.emit(customEvent);
+    } , this.debounce)
+  );
 
-    });
 
     // Observe the element
     this.observer.observe(this.observedEl);
