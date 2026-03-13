@@ -17,12 +17,22 @@ export class CbpTable {
   private caption: HTMLTableCaptionElement;
   private columnHeadings: HTMLTableCellElement[];
   private sortableColumns: HTMLTableCellElement[] = [];
+  private wrapper: HTMLElement;
+
+  private scrollLeft: HTMLCbpButtonElement;
+  private scrollRight: HTMLCbpButtonElement;
+
+  private tableWidth;
+  private tableBreakpoint;
   
   @Element() private host: HTMLElement;
 
 
   /** Specifies whether the table is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). */
-  @Prop({ reflect: true }) striped: "odd" | "even";
+  @Prop() overflow: 'scroll' | 'linearize' = 'scroll';
+
+  /** Specifies whether the table is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). */
+  @Prop({ reflect: true }) striped: 'odd' | 'even';
 
   /** Specifies whether the mouse cursor highlights the table row or cell on hover. Defaults to "row". */
   @Prop({ reflect: true }) hover: 'row' | 'cell' = 'row';
@@ -45,7 +55,7 @@ export class CbpTable {
   /** An event emitted when the table is sorted via user interaction activating a table header control. */
   @Event() tableSort: EventEmitter;
 
-  addScope(){
+  private addScope() {
     const columnHeadings = Array.from(this.host.querySelectorAll('thead th'));
     const rowHeadings = Array.from(this.host.querySelectorAll('tbody th'));
 
@@ -58,8 +68,29 @@ export class CbpTable {
     });
   }
 
-  makeSortable(){
-    this.columnHeadings = Array.from(this.host.querySelectorAll('thead th'));
+  // TechDebt: how to make this reactive?
+  private addHeaderDataAttrs() {
+    //const columnHeadings: HTMLElement[] = Array.from(this.host.querySelectorAll('thead th'));
+    //const tableCells: HTMLTableCellElement[] = Array.from(this.table?.querySelectorAll('tbody th,tbody td'));
+    const tableBodyRows: HTMLTableRowElement[] = Array.from(this.table?.querySelectorAll('tbody tr'));
+    
+    // loop over each body row, adding header data to each cell
+    tableBodyRows.forEach( ( row ) => {
+      const tableRowCells: HTMLTableCellElement[] = Array.from(row?.querySelectorAll('th,td'));
+      // We can only add the heading data if the number of headings match the number of cells per row
+      if (this.columnHeadings.length == tableRowCells.length) {
+        tableRowCells.forEach( ( cell, index ) => {
+          if(!!this.columnHeadings[index]?.textContent.trim()){
+            cell.setAttribute('data-column-header', `${this.columnHeadings[index].textContent.trim()}: `);
+          }
+        });
+      }
+    });
+  }
+
+
+  private makeSortable() {
+    //this.columnHeadings = Array.from(this.host.querySelectorAll('thead th'));
     
     this.columnHeadings.forEach( item => {
       const control = item.querySelector('cbp-button');
@@ -148,11 +179,72 @@ export class CbpTable {
     })
   }
 
+  // Called by the resize observer; also fires on initial render.
+  private handleResize(width) {
+    // Get the width of the content (and update the this.tableWidth) before doing responsive adjustments. (tables reflow, so we need to get this each comparison)
+    this.tableWidth = this.table.getBoundingClientRect().width;
+    //console.log(`Resize observer fired - table width=${this.tableWidth}, Observer width=${width}, table breakpoint=${this.tableBreakpoint}`);
+    
+    // If the emitted size is less than the current mode's width, do responsive behavior (use a +5 different to account for table-reflow anomalies)
+    if (width + 5 < this.tableWidth) {
+      this.host.classList.add(`cbp-table-${this.overflow}`);
+      if(this.overflow=='scroll') this.makeScrollable();
+    }
+    // Return to full view (potentially)
+    else if(this.overflow=='linearize') {
+      // For linearization, update the table breakpoint to the closest possible value (could vary slightly each time based on debouncing)
+      if( (this.tableBreakpoint == undefined || width < this.tableBreakpoint) && !this.host.classList.contains(`cbp-table-${this.overflow}`)) {
+        this.tableBreakpoint = width;
+      }
+      // Only remove responsive mode if the width is larger than the breakpoint, or else it removing linearization will bounce between states
+      if(width >= this.tableBreakpoint) {
+        this.host.classList.remove(`cbp-table-${this.overflow}`);
+      }
+    }
+    else {
+      this.host.classList.remove(`cbp-table-${this.overflow}`);
+    }
+  }
+
+  private makeScrollable(){
+    this.scrollRight.disabled=false;
+    this.scrollLeft.disabled=false;
+    console.log('Table width: ', this.table.getBoundingClientRect().width);
+    console.log('Wrapper width: ', this.wrapper.getBoundingClientRect().width);
+  }
+ 
+
+  private doHorizontalScroll(dir) {
+    /*
+        How to make it smarter? 
+          Intersection Observer?
+          Calculate heading sizes?
+          scrollIntoView({  behavior: "instant", block: "nearest", inline: 'start' });
+            scrollLeft  this.wrapper.scrollLeft += 20;
+          this.wrapper.scrollWidth 
+
+          headings scrollOffset
+
+          resizing while there is a scroll changes the wrapper size while the scroll position seems to remain static.
+          This means if you are scrolled to the end, but then shrink the size, more content will be overflowed to the right.
+
+     */
+    const step = 100; //px
+    this.wrapper.scrollBy( step * dir, 0 );
+    console.log('Scrolling: ', step * dir, this.table.getBoundingClientRect().width, this.wrapper.getBoundingClientRect().width);
+  }
+
+
+  private handleSlotChange(e) {
+    console.log(e);
+  }
+
+
   componentWillLoad() {
     this.table = this.host.querySelector('table');
     this.caption = this.table?.querySelector('caption');
     if (!this.caption) console.warn(`cbp-table: A caption tag is required for accessibility. If you don't want a visible caption, add a 'hidden' attribute to it.`);
-    this.columnHeadings=Array.from(this.host.querySelectorAll('thead > th'));
+    this.columnHeadings=Array.from(this.table?.querySelectorAll('thead th'));
 
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
@@ -165,13 +257,56 @@ export class CbpTable {
   componentDidLoad() {
     this.addScope();
     this.makeSortable();
+    if(this.overflow == 'linearize') this.addHeaderDataAttrs();
   }
 
   render() {
     return (
       <Host>
-        <slot name="cbp-table-toolbar" />
-        <slot />
+        <div class="cbp-table-toolbar">
+          <slot name="cbp-table-toolbar" />
+          { this.overflow == 'scroll' &&
+            <div class="cbp-table-toolbar-scroll">
+              <cbp-button
+                color="secondary"
+                fill="outline"
+                variant="square"
+                accessibilityText="Scroll table left"
+                disabled={true}
+                context={this.context}
+                onClick={ () => this.doHorizontalScroll('-1')}
+                ref={el => (this.scrollLeft = el)}
+              >
+                <cbp-icon name="chevron-right" size="var(--cbp-space-5x)" rotate={180}></cbp-icon>
+              </cbp-button>
+              <cbp-button
+                color="secondary"
+                fill="outline"
+                variant="square"
+                accessibilityText="Scroll table right"
+                disabled={true}
+                context={this.context}
+                onClick={ () => this.doHorizontalScroll('1')}
+                ref={el => (this.scrollRight = el)}
+              >
+                <cbp-icon name="chevron-right" size="var(--cbp-space-5x)"></cbp-icon>
+              </cbp-button>
+            </div>
+          }
+        </div>
+
+        <div 
+          class="cbp-table-wrapper"
+          ref={ el => this.wrapper = el}
+        >
+          <div class="cbp-table-scroll-gradient"></div>
+          <cbp-resize-observer
+            debounce={10}
+            onResized={ (e) => this.handleResize(e.detail.width) }
+          >
+            <slot onSlotchange={(e) => this.handleSlotChange(e)}/>
+          </cbp-resize-observer>
+        </div>
       </Host>
     );
   }
