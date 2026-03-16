@@ -18,6 +18,7 @@ export class CbpTreeviewItem {
   private immediateChildren: HTMLCbpTreeviewItemElement[] = [];
   private allChildren: HTMLCbpTreeviewItemElement[] = [];
   private checkbox !: HTMLCbpCheckboxElement; 
+  private eventTimer = 50;
 
   @Element() host: HTMLCbpTreeviewItemElement;
 
@@ -41,10 +42,10 @@ export class CbpTreeviewItem {
   @Prop() value: string;
 
   /** Specifies whether a selectable item (and its rendered checkbox) is in a checked state. */
-  @Prop({ reflect: true, mutable: true }) checked: boolean;
+  @Prop({ reflect: true, mutable: true }) checked = false;
 
   /** Specifies whether a selectable item (and its rendered checkbox) is in an indeterminate state. This logic is handled internally and should not need to be set manually. */
-  @Prop({ reflect: true, mutable: true }) indeterminate: boolean;
+  @Prop({ reflect: true, mutable: true }) indeterminate = false; 
 
   /** 
    * Specifies a unique `id` for the treeview item, used to wire up the controls and accessibility features. 
@@ -70,6 +71,16 @@ export class CbpTreeviewItem {
 
     let checkbox = e?.target || this.checkbox;
     this.checked = checkbox.checked;
+  }
+
+  @Watch('checked')
+  watchChecked(){
+    setTimeout(() => { //Settime out to mirror the updateTreeviewItemParent time out to avoid recursive calls
+    this.doCheck(this.checkbox) 
+    }, this.eventTimer);
+  }
+  
+  private doCheck(checkbox){
     this.indeterminate = false; // if user interaction set the checkbox as checked/unchecked, then it's not indeterminate
 
     this.allChildren.forEach(item => {
@@ -116,17 +127,11 @@ export class CbpTreeviewItem {
           host: this.host,
           parent: this.parent,
         })
-      }, 50);
+      }, this.eventTimer);
     }
   }
 
-
-  @Watch('checked')
-  watchChecked(newValue: boolean){
-    if (this.checkbox) this.checkbox.checked=newValue;
-  }
-
-  toggleOpen() {
+  private toggleOpen() {
     this.open === false ? this.open = true : this.open = false;
   }
 
@@ -138,12 +143,11 @@ export class CbpTreeviewItem {
 
   componentDidLoad() {
     if (this.checked && this.selectable) {
-      this.handleCheck()
+      this.doCheck(this.checkbox);
     }
   }
 
   render() {
-    // console.log('allchildren: ', this.host, this.allChildren)
     return (
       <Host
         role="treeitem"
@@ -201,5 +205,4 @@ export class CbpTreeviewItem {
       </Host>
     );
   }
-
 }

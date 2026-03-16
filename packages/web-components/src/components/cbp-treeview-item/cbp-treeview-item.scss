@@ -11,7 +11,7 @@
 :root {
   --cbp-treeview-item-color: var(--cbp-color-text-darkest);
   --cbp-treeview-item-color-dark: var(--cbp-color-text-lightest);
-  --cbp-treeview-item-indent: 1.5rem;//0; //1.5rem nested; TechDebt: this should use usable as part of the API, but current implementation prevents it.
+  --cbp-treeview-item-indent: 1.5rem;
   --cbp-treeview-indicator-spacing: 1.5rem;
   --cbp-treeview-connection-width: 2px;
   --cbp-treeview-connection-color: var(--cbp-color-gray-cool-20);
@@ -119,7 +119,7 @@ cbp-treeview-item {
         margin-inline-start: calc(var(--cbp-treeview-item-indent) * -1);
         min-height: calc(var(--cbp-treeview-indicator-spacing) + var(--cbp-treeview-connection-width));
         border: solid var(--cbp-treeview-connection-color);
-        border-width: 0 0 var(--cbp-treeview-connection-width) 0;//var(--cbp-treeview-connection-width);
+        border-width: 0 0 var(--cbp-treeview-connection-width) 0;
       }
     }
   }

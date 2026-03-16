@@ -46,10 +46,10 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
   * Has a `role="tree"`.
   * If it is selectable it also has `aria-multiselectable="true"`.
   * Should always contain an aria-label (via `accessibilityText` property) if it does not reference an external heading via `aria-labelledby`.
-  * Has aria-owned populated by root level treeview-items id's
+  * Has `aria-owned` populated by root level treeview-items id's
 * Each child `cbp-treeview-item` element:
   * Has a `role="treeitem"`.
-  * With nested items renders the children inside of container with a `role="group"` and populates an aria-owned on the parent's container with the children's id.
+  * With nested items renders the children inside of container with a `role="group"` and populates an `aria-owned` on the parent's container with the children's id.
 * Each expand control (button) for items with nested children toggles `aria-expanded` when the control is activated.
 * The selection state for each selectable node is indicated with `aria-selected="true"`.
 

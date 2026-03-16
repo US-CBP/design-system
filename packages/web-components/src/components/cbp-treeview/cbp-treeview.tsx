@@ -13,7 +13,7 @@ import { setCSSProps, doKeyboardNav } from '../../utils/utils';
 
 export class CbpTreeview {
 
-  private childIds = 'test';//: string;
+  private childIds: string;
   private treeviewItems: any; //HTMLCbpTreeviewItemElement;
   private focusIndex: number;
 
@@ -87,11 +87,11 @@ export class CbpTreeview {
     }
   }
 
-  handleKeyPress(e){   
+  private handleKeyPress(e){   
     this.treeviewItems = Array.from(this.host.querySelectorAll('cbp-treeview > cbp-treeview-item, cbp-treeview-item[open] > .cbp-treeview-item-children > cbp-treeview-item'));
 
     const { key } = e;
-    const navKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End']; // all keys that will do the default open action
+    const navKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End'];
     if (navKeys.includes(key)) {    
       this.focusIndex = doKeyboardNav(this.treeviewItems, key, this.focusIndex);
       this.setCurrentTreeviewItem(this.focusIndex);
@@ -99,7 +99,7 @@ export class CbpTreeview {
     return;
   }
 
-  setCurrentTreeviewItem(i = 0) {
+  private setCurrentTreeviewItem(i = 0) {
     if(this.treeviewItems[i]?.querySelector('.cbp-treeview-item-toggle > button') != null){
       this.treeviewItems[i]?.querySelector('.cbp-treeview-item-toggle > button').focus();
     }else if(this.treeviewItems[i]?.querySelector('.cbp-treeview-item-control > cbp-checkbox input') != null) { //If i is end node and has a checkbox 
@@ -131,14 +131,11 @@ export class CbpTreeview {
 
   componentDidLoad(){
     this.treeviewItems = Array.from(this.host.querySelectorAll('cbp-treeview > cbp-treeview-item, cbp-treeview-item[open] > .cbp-treeview-item-children > cbp-treeview-item'));
+    this.childIds = Array.from(this.host.querySelectorAll('cbp-treeview > cbp-treeview-item')).map(element => element.id).join(" ")
+    this.host.setAttribute('aria-owns', this.childIds)
   }
 
   render() {
-    setTimeout(() => { //set aria-owns based on populated treeview
-      this.childIds = Array.from(this.host.querySelectorAll('cbp-treeview > cbp-treeview-item')).map(element => element.id).join(" ")
-      this.host.setAttribute('aria-owns', this.childIds)
-    }, 50)
-
     return (
       <Host
         role="tree"
