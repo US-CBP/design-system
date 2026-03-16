@@ -1,0 +1,57 @@
+# cbp-drawer
+
+## Purpose
+
+The Drawer is a container that may be hidden and revealed, sliding in from either side of the viewport, containing application-defined contents.
+
+## Functional Requirements
+
+-   The Drawer is a container and its contents are provided by the application (slotted).
+-   The contents of the drawer are typically held within a nested Panel component, which provides a standard heading and content area.
+-   The Drawer is hidden by default and can be revealed by a control.
+-   The Drawer may slide in from either the left or right side of the viewport, taking up the full height of the viewport.
+-   A backdrop covers the visible portion of the page behind the drawer.
+-   Clicking the backdrop or the designated close button will close (hide) the drawer.
+-   In some instances, it may be desirable for a panel to "mobilize" into a drawer at a certain smaller screen size.
+    -   In this case the drawer acts as a block element while persistent.
+    -   While persistent, the Drawer cannot be closed.
+
+## Technical Specifications
+
+### User Interactions
+
+-   A control on the page should be visible to reveal the Drawer. This is typically a Button component and is not part of the drawer component.
+-   Clicking the backdrop or the designated close button will close (hide) the drawer.
+-   Pressing `escape` will close the drawer.
+
+### Responsiveness
+
+-   Under 600px (37.5rem), the Drawer takes 100% of the width of the viewport.
+-   At larger viewport sizes, the Drawer renders at 25rem (400px at default font sizing) wide.
+-   In some instances, it may be desirable for a panel to "mobilize" into a drawer at a certain smaller screen size.
+    -   In this case, the drawer is considered "persistent" above a specified media query breakpoint and rendered as a block-level element..
+    -   The media query breakpoint is set via the `persistAt` property.
+    -   When this functionality is implemented, the drawer control should be hidden using the `cbp-hide` component with the same breakpoint as the `hideAt` value.
+
+### Accessibility
+
+-   A Drawer is essentially a modal dialog (that is positioned at the edge of the screen) and has a `role="dialog"`.
+-   The drawer has `aria-modal="true"` applied, which tells screen readers that all other content outside of the dialog is inert.
+-   The control references the drawer by `id` with an `aria-controls` attribute.
+-   Drawers should always have at least one focusable control.
+-   When the drawer appears on the screen, keyboard focus should be moved to the default focusable control inside the drawer.
+-   After the drawer is dismissed, keyboard focus should be moved back to where it was before it moved into the drawer.
+-   The expected behavior is that the drawer's tab order wraps.
+-   When a drawer is persistent on-screen (not an overlay):
+    -   Its `role` is changed to "region"
+    -   The `aria-modal` attribute is removed.
+    -   The "close" button is not rendered (and the drawer cannot be closed).
+
+### Additional Notes and Considerations
+
+-   When open, the host tag, which acts as both the container and the backdrop, is positioned using fixed positioning with a high z-index (998).
+    -   As such, where the Drawer is placed in your code should not matter in most cases.
+    -   However, be careful of placing the Drawer inside of a container with its own z-index, as this can cause issues.
+-   TODO: Implement keyboard trap within drawer.
+-   TODO: Implement focus management (return to control when closed)
+-   TODO: Implement State store to handle the connection of the control and drawer more elegantly

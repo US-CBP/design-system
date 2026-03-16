@@ -1,0 +1,33 @@
+# cbp-resize-observer
+
+## Purpose
+
+-   The Resize Observer component is a wrapper that implements a resizeObserver to detect changes to its size, typically to compare to an immediate child that is wrapping a collection of variable-sized elements (e.g., links, tabs, etc.), in order to implement responsive functionality that cannot be accomplished with a media query or container query.
+
+## Functional Requirements
+
+-   The Resize Observer component acts as a wrapper that takes up 100% of the width of its parent, so that it may report changes in size in both directions.
+-   The Resize Observer component allows for overflow so that its children may still report their full dimensions based on their content and overflow may therefore be detected for responsive behavior.
+-   The Resize Observer component emits a custom event, which may be listened for and used for comparisons in components and application logic.
+
+## Technical Specifications
+
+### User Interactions
+
+-   n/a
+
+### Responsiveness
+
+-   The resize observer acts as a wrapper with a max-width of 100% but allowing overflow of its children.
+-   By comparing the size of the resize observer element to the a child wrapper, overflow can be detected and Responsiveness implemented by component or application logic.
+
+### Accessibility
+
+-   As an invisible wrapper tag, there are no accessibility concerns for the Resize Observer component.
+-   The resize observer can be used to make UIs more robust and functional at all screen sizes where media and container queries are not able to.
+
+### Additional Notes and Considerations
+
+-   The native resizeObserver is a performant way of measuring changes to a DOM node's size or positioning.
+-   However, care must be taken that application logic and calculations based on the resize event are not too complex as to impact performance of the UI.
+-   The immediate child should be sized according to its contents; Setting width to 100% will not allow the calculations to work correctly for switching between layouts.

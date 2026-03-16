@@ -1,0 +1,135 @@
+# Test/Size Calculations
+
+## Examples
+
+
+### Size Calculations
+
+```tsx
+() => {
+  return ` 
+    <cbp-accordion>
+          
+      <cbp-accordion-item label="Accordion Item 1">
+        
+         
+        <cbp-breadcrumb>
+          <cbp-button tag="a" fill="ghost" color="primary" variant="square" href="#" accessibility-text="Home">
+            <cbp-icon name="home"></cbp-icon>
+          </cbp-button>
+          <cbp-link href="?o95gn">Page Title Level A</cbp-link>
+          <cbp-link href="?8iehg">Page Title Level B</cbp-link>
+          <cbp-link href="?f8ia0">Page Title Level C</cbp-link>
+          <cbp-link href="?2kepd">Page Title Level D</cbp-link>
+        </cbp-breadcrumb>
+ 
+        <cbp-tabs accessibility-text="Tabs Example">
+          <cbp-tab name="tab1">Tab 1</cbp-tab>
+          <cbp-tab name="tab2">Tab 2</cbp-tab>
+          <cbp-tab name="tab3">Tab 3 is longer</cbp-tab>
+          <cbp-tab name="tab4">Tab 4</cbp-tab>
+          <cbp-tab name="tab5">Tab 5</cbp-tab>
+          <cbp-tab name="tab6">Tab 6</cbp-tab>
+          <cbp-tab name="tab7">Tab 7</cbp-tab>
+        </cbp-tabs>
+
+        <cbp-tab-panel name="tab1">
+          Tab panel 1 content.
+        </cbp-tab-panel>
+        <cbp-tab-panel name="tab2">
+          Tab panel 2 content.
+        </cbp-tab-panel>
+        <cbp-tab-panel name="tab3">
+          Tab panel 3 content.
+        </cbp-tab-panel>
+        <cbp-tab-panel name="tab4">
+          Tab panel 4 content.
+        </cbp-tab-panel>
+        <cbp-tab-panel name="tab5">
+          Tab panel 5 content.
+        </cbp-tab-panel>
+        <cbp-tab-panel name="tab6">
+          Tab panel 6 content.
+        </cbp-tab-panel>
+        <cbp-tab-panel name="tab7">
+          Tab panel 7 content.
+        </cbp-tab-panel>
+
+        <br /><br /><br /><br />
+        
+        <cbp-form-field label="Field Label" description="Field description.">
+          <cbp-form-field-wrapper>
+            <input type="file" name="fileinput">
+            <span slot="cbp-form-field-attached-button">
+              <cbp-button fill="solid" color="secondary" aria-describedby="undefined-label" onclick="event.target.closest('cbp-form-field').querySelector('input').click()">
+                Browse
+              </cbp-button>
+            </span>
+          </cbp-form-field-wrapper>
+        </cbp-form-field>
+
+                
+        <cbp-form-field label="Field Title" description="(HH:MM Format) UTC-6 America/New York">
+          <cbp-form-field-wrapper>  
+            <input placeholder="HH:MM" maxlength="5" name="time">
+            <cbp-icon slot="cbp-form-field-overlay-start" name="clock"></cbp-icon>
+
+            <span slot="cbp-form-field-attached-button">
+              <cbp-segmented-button-group name="time-ampm">
+                <cbp-button type="button" value="AM" pressed="true">
+                  AM
+                </cbp-button>
+
+                <cbp-button type="button" value="PM">
+                  PM
+                </cbp-button>
+
+                <cbp-button type="button" value="24H">
+                  24 hr
+                </cbp-button>
+              </cbp-segmented-button-group>
+            </span>
+
+          </cbp-form-field-wrapper>
+        </cbp-form-field>
+
+
+        <cbp-pagination records="538">
+          <cbp-form-field slot="cbp-pagination-items-per-page" label="Items Per Page" field-id="pagination_size">
+            <cbp-dropdown field-id="pagination_size">
+              <cbp-dropdown-item value="10">10/Page</cbp-dropdown-item>
+              <cbp-dropdown-item value="25">25/Page</cbp-dropdown-item>
+              <cbp-dropdown-item value="50">50/Page</cbp-dropdown-item>
+              <cbp-dropdown-item value="100">100/Page</cbp-dropdown-item>
+              <cbp-dropdown-item value="all">All Results</cbp-dropdown-item>
+            </cbp-dropdown>
+          </cbp-form-field>
+
+          <cbp-form-field slot="cbp-pagination-pages" label="Page Displayed" field-id="pagination_pages">
+            <cbp-dropdown field-id="pagination_pages">
+              <div slot="cbp-dropdown-attached-button-start">
+                <cbp-button fill="solid" color="secondary" variant="square" value="previous page" accessibility-text="Previous page">
+                  <cbp-icon name="chevron-right" rotate="180">
+                </cbp-icon></cbp-button>
+              </div>
+
+              <div slot="cbp-dropdown-attached-button-end">
+                <cbp-button fill="solid" color="secondary" variant="square" value="next page" accessibility-text="Next page">
+                  <cbp-icon name="chevron-right">
+                </cbp-icon></cbp-button>
+              </div>
+            </cbp-dropdown>
+          </cbp-form-field>
+
+        </cbp-pagination>
+
+      </cbp-accordion-item>
+
+      <cbp-accordion-item label="Accordion Item 2">
+        Accordion item 2 content.
+      </cbp-accordion-item>
+
+      </cbp-accordion>
+  `;
+}
+```

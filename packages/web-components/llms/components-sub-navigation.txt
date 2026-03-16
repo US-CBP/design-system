@@ -1,0 +1,36 @@
+# Components/Sub-Navigation
+
+## Examples
+
+
+### Sub-Navigation
+
+```tsx
+({
+  items,
+  accessibilityText,
+  flat,
+  context,
+  sx
+}) => {
+  // preventDefault on all links in the subnav
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-subnav a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
+  }, 500);
+  return ` 
+    <cbp-subnav
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ``}
+      ${flat ? 'flat' : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateContent(items, context)}
+    </cbp-subnav>
+  `;
+}
+```

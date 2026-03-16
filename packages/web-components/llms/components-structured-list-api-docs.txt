@@ -1,0 +1,61 @@
+# cbp-structured-list
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `accessibilityText` | `accessibility-text` | Specifies an accessible label for the list as an `aria-label`, similar to a table `caption`. Since the structured list contains significant amount of data, it is advised to always specify a label describing the list. | `string` | `undefined` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `headerId` | `header-id` | References an `id` placed on the element slotted into the `cbp-structured-list-header` named slot to provide additional accessible context to the list label. | `string` | `undefined` |
+| `selectable` | `selectable` | Specifies whether the list items are selectable (via checkbox - provided by the application). | `boolean` | `undefined` |
+| `striped` | `striped` | Specifies whether the list is "striped,"" with even rows shaded. | `boolean` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-structured-list-border-color` | var(--cbp-color-gray-cool-30); |
+| `--cbp-structured-list-border-color-dark` | var(--cbp-color-gray-cool-50); |
+| `--cbp-structured-list-color` | var(--cbp-color-text-darkest); |
+| `--cbp-structured-list-color-background` | var(--cbp-color-white); |
+| `--cbp-structured-list-color-background-dark` | var(--cbp-color-gray-cool-80); |
+| `--cbp-structured-list-color-background-hover` | var(--cbp-color-gray-cool-10); |
+| `--cbp-structured-list-color-background-hover-dark` | var(--cbp-color-gray-cool-90); |
+| `--cbp-structured-list-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-structured-list-color-striped-background` | var(--cbp-color-gray-cool-4); |
+| `--cbp-structured-list-color-striped-background-dark` | var(--cbp-color-gray-cool-90); |
+| `--cbp-structured-list-footer-color` | var(--cbp-color-text-lightest); |
+| `--cbp-structured-list-footer-color-background` | var(--cbp-color-gray-cool-70); |
+| `--cbp-structured-list-footer-color-background-dark` | var(--cbp-color-gray-cool-5); |
+| `--cbp-structured-list-footer-color-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-structured-list-header-color` | var(--cbp-color-text-darkest); |
+| `--cbp-structured-list-header-color-background` | var(--cbp-color-gray-cool-30); |
+| `--cbp-structured-list-header-color-background-dark` | var(--cbp-color-gray-cool-60); |
+| `--cbp-structured-list-header-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-structured-list-item-padding` | var(--cbp-space-4x); |
+| `--cbp-structured-list-margin-bottom` | var(--cbp-space-4x); |
+
+---
+
+# cbp-structured-list-item
+
+## Overview
+
+The Structured List Item component may optionally be used to hold each list item's content. This component is needed primarily when designating an item with the "danger" color or when list items are selectable.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `color` | `color` | Optionally specifies a color variant based on design tokens. | `"danger"` | `undefined` |
+| `selected` | `selected` | Specifies whether the item is selected. | `boolean` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The list item content is placed in the default slot. Content may be wrapped in a CSS grid (e.g., `cbp-grid`) to give each list item consistent structure and sizing. |
+
+---

@@ -1,0 +1,57 @@
+# cbp-breadcrumb
+
+## Overview
+
+Breadcrumbs give users an indicator of where they are within a site/application hierarchy, especially helpful when deeper within the site’s architecture. This component should wrap links representing the parent sections of the current page, but not including the current page.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `divider` | `divider` | Specifies a character as a divider between breadcrumb links. Defaults to "/". | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The individual links making up the breadcrumbs are placed in the default slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-breadcrumb-color` | var(--cbp-color-text-darkest); |
+| `--cbp-breadcrumb-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-breadcrumb-divider` | "/"; |
+| `--cbp-breadcrumb-gap` | var(--cbp-space-2x); |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-menu-item](../cbp-menu-item)
+-   [cbp-flex](../cbp-flex)
+-   [cbp-icon](../cbp-icon)
+-   [cbp-resize-observer](../cbp-resize-observer)
+-   [cbp-menu](../cbp-menu)
+-   [cbp-button](../cbp-button)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-breadcrumb --> cbp-menu-item
+  cbp-breadcrumb --> cbp-flex
+  cbp-breadcrumb --> cbp-icon
+  cbp-breadcrumb --> cbp-resize-observer
+  cbp-breadcrumb --> cbp-menu
+  cbp-breadcrumb --> cbp-button
+  cbp-menu --> cbp-menu-item
+  cbp-menu --> cbp-button
+  cbp-menu --> cbp-icon
+  style cbp-breadcrumb fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

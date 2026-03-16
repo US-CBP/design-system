@@ -1,0 +1,113 @@
+# cbp-accordion
+
+## Overview
+
+An Accordion is a common paradigm for progressive disclosure, organizing content under a relevant heading that is used as a control for revealing and hiding its content. This component wraps multiple `cbp-accordion-item` tags.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `multiple` | `multiple` | Specifies whether multiple accordion items can be open at the same time. Defaults to false. | `boolean` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Accordion Items shall be slotted in the default slot. While other content may be included within the default slot, it is not recommended. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-accordion-gap` | --cbp-space-3x |
+
+---
+
+# cbp-accordion-item
+
+## Overview
+
+Accordion Items are placed as children of the parent `cbp-accordion` tag. The content is slotted and the heading control text is provided via the label property or the optional named slot.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `color` | `color` | Specifies an optional color variant of the accordion item. | `"danger"` | `undefined` |
+| `headingId` | `heading-id` | Specifies an optional `id` for the accordion item heading, also used to generate an `id` for the accordion item content wrapper. If this property is not specified, a unique string will automatically be generated. | `string` | `createNamespaceKey('cbp-accordion-item')` |
+| `headingLevel` | `heading-level` | The heading level of the accordion item control. Defaults to h3. | `"h2" | "h3" | "h4" | "h5" | "h6"` | `'h3'` |
+| `label` | `label` | The accordion control label. | `string` | `undefined` |
+| `open` | `open` | Specifies whether the accordion is open. | `boolean` | `false` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `accordionItemClick` | A custom event emitted when the accordion item control is activated. | `CustomEvent<any>` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Accordion Item content is placed in the default slot. |
+| `"cbp-accordion-item-label"` | Optionally, an Accordion Item heading with markup may be placed in this slot rather than via the labal property. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-accordion-item-border-radius` | var(--cbp-border-radius-sharp, 0); |
+| `--cbp-accordion-item-border-style` | solid; |
+| `--cbp-accordion-item-border-width` | var(--cbp-border-width-xs); |
+| `--cbp-accordion-item-color` | var(--cbp-color-text-darker); |
+| `--cbp-accordion-item-color-active` | var(--cbp-color-text-lightest); |
+| `--cbp-accordion-item-color-background` | var(--cbp-color-gray-cool-10); |
+| `--cbp-accordion-item-color-background-active` | var(--cbp-color-interactive-active-dark); |
+| `--cbp-accordion-item-color-background-content` | var(--cbp-color-white); |
+| `--cbp-accordion-item-color-background-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-accordion-item-color-background-hover` | var(--cbp-color-interactive-secondary-light); |
+| `--cbp-accordion-item-color-background-open-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-accordion-item-color-content` | var(--cbp-color-text-darkest); |
+| `--cbp-accordion-item-color-focus` | var(--cbp-color-text-lightest); |
+| `--cbp-accordion-item-color-hover` | var(--cbp-color-text-darker); |
+| `--cbp-accordion-item-color-open-hover` | var(--cbp-color-text-lightest); |
+| `--cbp-accordion-item-color-outline-focus` | var(--cbp-color-white); |
+| `--cbp-accordion-item-content-font-family` | inherit; |
+| `--cbp-accordion-item-content-font-size` | var(--cbp-font-size-md); |
+| `--cbp-accordion-item-content-font-weight` | var(--cbp-font-weight-regular); |
+| `--cbp-accordion-item-content-padding` | var(--cbp-space-3x); |
+| `--cbp-accordion-item-control-direction` | row; |
+| `--cbp-accordion-item-control-font-size` | var(--cbp-font-size-heading-sm); |
+| `--cbp-accordion-item-control-font-weight` | var(--cbp-font-weight-semibold); |
+| `--cbp-accordion-item-control-gap` | var(--cbp-space-3x); |
+| `--cbp-accordion-item-control-padding` | var(--cbp-space-3x); |
+| `--cbp-accordion-item-danger-color` | var(--cbp-color-white); |
+| `--cbp-accordion-item-danger-color-background` | var(--cbp-color-danger-base); |
+| `--cbp-accordion-item-danger-color-background-dark` | var(--cbp-color-danger-light); |
+| `--cbp-accordion-item-danger-color-background-hover` | var(--cbp-color-danger-dark); |
+| `--cbp-accordion-item-danger-color-background-hover-dark` | var(--cbp-color-danger-lighter); |
+| `--cbp-accordion-item-danger-color-dark` | var(--cbp-color-text-darkest); |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-button](../cbp-button)
+-   [cbp-icon](../cbp-icon)
+-   [cbp-typography](../cbp-typography)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-accordion-item --> cbp-button
+  cbp-accordion-item --> cbp-icon
+  cbp-accordion-item --> cbp-typography
+  style cbp-accordion-item fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

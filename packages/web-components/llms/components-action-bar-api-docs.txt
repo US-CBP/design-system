@@ -1,0 +1,32 @@
+# cbp-action-bar
+
+## Overview
+
+The Action Bar acts as a container for form controls (buttons) or other tools to affect the content of the page. It is often used for batch actions on table or structured list data.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `variant` | `variant` | Specifies whether the action bar is inline or floating. Defaults to inline. | `"floating" | "inline" | "sticky"` | `'inline'` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Any controls or content may be slotted into the default slot and will be aligned to the right of the bar. |
+| `"cbp-action-bar-info"` | This named slot is intended for information placed before the default slot content, aligned to the left of the bar. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-action-bar-color` | var(--cbp-color-text-darkest); |
+| `--cbp-action-bar-color-bg` | var(--cbp-color-grey-cool-70); |
+| `--cbp-action-bar-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-action-bar-floating-color-bg` | var(--cbp-color-white); |
+| `--cbp-action-bar-floating-color-bg-dark` | var(--cbp-color-gray-cool-90); |
+
+---

@@ -1,0 +1,51 @@
+# cbp-form-field-wrapper
+
+## Purpose
+
+The Form Field Wrapper component offers means for applying overlays and button controls to inputs in accordance with design requirements.
+
+## Functional Requirements
+
+-   The Form Field Wrapper component is meant to be used in the default slot of the `cbp-form-field` component, wrapping the native input.
+-   The Form Field Wrapper component provides a structured way to add additional overlays and related controls to an input field via named slots:
+    -   A left-aligned overlay (e.g., "$")
+    -   A right-aligned overlay (e.g., "kg")
+    -   Buttons that appear attached to the input (e.g., search or password toggle)
+    -   Buttons that appear next to the input, but not attached (e.g., increment/decrement on numeric inputs)
+
+## Technical Specifications
+
+### User Interactions
+
+-   The Form Field Wrapper component does not provide any native interactions.
+-   Any user interactions based on the slotted button controls are application-specified.
+
+### Responsiveness
+
+-   Form controls such as text input, textarea, and selects are styled at 100% of their container by default, with a max-width of 100% so that they cannot break out of their container.
+
+### Accessibility
+
+-   Any slotted buttons should have an accessible label.
+-   Slotted buttons should also specify `aria-describedby` referencing the form field's label for additional context as long as that label is not identical to the button's accessible label. E.g., a search field labelled as "Search" with a button labelled as "Search" should not use `aria-describedby`.
+-   Any slotted overlays (not buttons) shall be added to the field's accessible description.
+
+### Specific Pattern Requirements (implemented by application logic)
+
+-   Password/Obfuscated field toggle:
+    -   The field should include an `input type="password"` with an attached button showing the `eye` icon.
+    -   Upon activating the button, the icon is toggled to `eye-slash` and the input changed to an appropriate type (usually `type="text"`).
+-   Numeric Counter field:
+    -   The field should include an `input type="number"` or `input type="text"` with an unattached decrement and increment buttons per the story.
+        -   Note: Safari does not restrict non-numeric input for `input type="number"` like Chrome does, so validation is always required regardless of the type specified.
+    -   Clicking either button should increment/decrement by the defined `step` attribute on the input.
+        -   If no step is defined, default it to 1.
+        -   If no value is defined, default it to 0.
+        -   Remember that even for `input type="number"` the input value is a string and must be converted to a number to perform arithmetic on. The `Number()` function works great, as does `parseInt()` for integers.
+-   A simple/compact File Input pattern consists of:
+    -   An `input type="file"`.
+    -   An attached "Browse" button that invokes a click() event on the native input when clicked.
+
+### Additional Notes and Considerations
+
+-   For a more advanced/feature-rich File Input pattern, try using the `cbp-file-input` rather than the native `input type="file"`.

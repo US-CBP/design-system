@@ -1,0 +1,54 @@
+# cbp-subnav
+
+## Purpose
+
+Sub-Navigation (Subnav) is meant to be used as a secondary, vertical navigation.
+
+## Functional Requirements
+
+-   Subnav is meant to be used by the application header & is used to display the sub navigation items for a site
+-   Subnav items will be divided into 2 visual types single & parent.
+    -   Single will be items that have no children and are represented via an anchor button w/ href leading to associated page.
+    -   Parent will operate similar to Single but with the addition of an Icon button used to expand/hide the display of its children & a section tag housing its children subnav-items
+-   Will track the 'Current' item to have visual indication of where user is currently on site map.
+    -   Parents of Current item will also be visually distinct
+-   Sub nav will render inside of a navigation tag
+-   Subnav will will be opened via the NavItems with children (notated by the chevron icon) in the App header, clicking which will open a drawer containing the Subnav
+-   Indentation & chevron icon is based on the depth of the child
+-   Indentation can be toggled based off for children based on use case
+
+## Technical Specifications
+
+-   Text for subnav-item is determined by the label prop while icons are slotted in via the slot name='icon'
+-   the href property is used to populate the cbp-button's href prop
+-   Programmatically determine if subnav item is a single or parent type render based on if it has children in the imported structure
+    -   Children are placed in the default slot in a section tag
+-   open property is used to toggle the Parent's section tag visibility. By default this toggle is linked to the Parent subnav-item's icon button Onclick()
+-   Current prop to determine which item is set to current (active on spec)
+-   Accessibility text prop for the navigation tag for screenreaders
+
+### User Interactions
+
+-   Selecting the anchor button will route to associated href
+-   Toggling the icon button will hide/expand children
+-   Subnav items will have hover, focused, pressed, & current states, please note the anchor button & icon button have independent states
+    -   Hover, focus, & pressed will remap the cssvars of the cbp-button
+    -   Current will be unique to Subnav which is used to represent the currently page the user is in the app structure
+
+### Responsiveness
+
+-   Subnav is primarily designed to be inside of a Drawer component, and as such will defer to the responsiveness of the Drawer.
+
+### Accessibility
+
+-   The Sub-Navigation items are wrapped in a semantic `nav` landmark tag.
+    -   Since this is likely not the first or only `nav` tag, it should be supplied with an accessible label.
+    -   The Subnav component sets this accessible label (`aria-label`) to "Sub-Navigation" by default, but it should be overridden with something more contextual when applicable. For example, when used solely for the responsive navigation, perhaps "Mobile Navigation" would be a better description.
+-   The "current" navigation control is denoted via `aria-current="page"` as well as visual styling.
+-   Keyboard navigation allow tabbing to both the anchor and expand button separately.
+-   The expand button is labelled by the Subnav Item's anchor text (via `aria-labelledby`).
+-   The expand button renders an `aria-expanded` attribute to indicate the state of the expanded/collapsed content.
+
+### Additional Notes and Considerations
+
+-   Hierarchy is only visually enforced, items that are 4+ deep will visually be the same

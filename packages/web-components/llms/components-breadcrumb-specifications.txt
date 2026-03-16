@@ -1,0 +1,33 @@
+# cbp-breadcrumb
+
+## Purpose
+
+-   The Breadcrumb component gives users an indicator of where they are within a site/application hierarchy, especially helpful when deeper within the site’s architecture.
+
+## Functional Requirements
+
+-   The Breadcrumb component acts as a wrapper for navigation links.
+-   The Breadcrumb is primarily made up of slotted anchors.
+-   On smaller screens, the breadcrumb links will be collapsed into a Menu component.
+
+## Technical Specifications
+
+### User Interactions
+
+-   The Breadcrumb component itself is a container an has no user interactions.
+-   The links within the breadcrumb component should be simple navigation links (including router links) in accordance with the `cbp-link` component behavior.
+
+### Responsiveness
+
+-   On small screens, the breadcrumbs will be collapsed into a Menu component.
+
+### Accessibility
+
+-   The breadcrumb is a container for link that provides a semantic `nav` tag (and implicit navigation role).
+-   The `nav` tag has an accessible name (`aria-label`) of "Breadcrumbs".
+-   The slotted links within should have unique and accessible labels.
+-   The slotted links must also have an `href` attribute specified in order to be an interactive elements.
+
+### Additional Notes and Considerations
+
+-   TBD

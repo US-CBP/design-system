@@ -1,0 +1,43 @@
+# cbp-resize-observer
+
+## Overview
+
+The Resize Observer component is a wrapper that implements a resizeObserver to detect changes to its size, typically to compare to an immediate child that is wrapping a collection of variable-sized elements (e.g., links, tabs, etc.), in order to implement responsive functionality that cannot be accomplished with a media query or container query.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `debounce` | `debounce` | The number of milliseconds to debounce the event emitter. (not currently working) | `number` | `0` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `resized` | A custom event emitted when the component is resized to give new values for size of component | `CustomEvent<any>` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | any markup or content may be placed in the default slot. |
+
+## Dependencies
+
+### Used by
+
+-   [cbp-app-header](../cbp-app-header)
+-   [cbp-breadcrumb](../cbp-breadcrumb)
+-   [cbp-carousel](../cbp-carousel)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-app-header --> cbp-resize-observer
+  cbp-breadcrumb --> cbp-resize-observer
+  cbp-carousel --> cbp-resize-observer
+  style cbp-resize-observer fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

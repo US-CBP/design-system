@@ -1,0 +1,65 @@
+# cbp-grid
+
+## Overview
+
+The Grid component invokes a CSS Grid context, acting as the grid parent and implementing CSS Grid as a component API. Immediate child nodes are automatically considered grid items.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `alignContent` | `align-content` | Aligns grid content vertically when total grid size is smaller than container. | `"center" | "end" | "normal" | "safe center" | "space-around" | "space-between" | "space-evenly" | "start" | "stretch" | "unsafe center"` | `undefined` |
+| `alignItems` | `align-items` | Aligns grid items in the vertical/column axis, perpendicular to the inline axis. | `"baseline" | "center" | "end" | "first baseline" | "last baseline" | "normal" | "self-end" | "self-start" | "start" | "stretch"` | `undefined` |
+| `breakpoint` | `breakpoint` | The size (in CSS units; preferably relative units such as `rem`) below which the grid items linearize. | `string` | `undefined` |
+| `display` | `display` | Specifies the grid display. Defaults to "grid". | `"grid" | "inline-grid"` | `'grid'` |
+| `gap` | `gap` | Specifies the spacing between grid items in the form of a single value or space-separated row-gap and column-gap values (in CSS units). | `string` | `undefined` |
+| `gridAutoColumns` | `grid-auto-columns` | Specifies the size (in CSS units) of implicitly-created columns using the auto-placement algorithm. | `string` | `undefined` |
+| `gridAutoFlow` | `grid-auto-flow` | Specifies how auto-placed items get flowed into the grid. | `"column dense" | "column" | "row dense" | "row"` | `undefined` |
+| `gridAutoRows` | `grid-auto-rows` | Specifies the size (in CSS units) of implicitly-created rows using the auto-placement algorithm. | `string` | `undefined` |
+| `gridTemplateAreas` | `grid-template-areas` | Defines the grid via named grid areas (providing a visualization of the structure of the grid), which are not associated with any particular grid item, but can be referenced from the grid-placement properties. | `string` | `undefined` |
+| `gridTemplateColumns` | `grid-template-columns` | Specifies the track sizing functions (and optionally line names) of the grid columns as a space-separated track list. | `string` | `undefined` |
+| `gridTemplateRows` | `grid-template-rows` | Specifies the track sizing functions (and optionally line names) of the grid rows as a space-separated track list. | `string` | `undefined` |
+| `justifyContent` | `justify-content` | Justifies grid content horizontally when total grid size is smaller than container. | `"center" | "end" | "left" | "normal" | "right" | "safe center" | "space-around" | "space-between" | "space-evenly" | "start" | "stretch" | "unsafe center"` | `undefined` |
+| `justifyItems` | `justify-items` | Justifies grid content horizontally, along the inline/row axis. | `"baseline" | "center" | "end" | "first baseline" | "last baseline" | "left" | "legacy" | "normal" | "right" | "safe center" | "self-end" | "self-start" | "start" | "stretch" | "unsafe center"` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The default slot accepts grid items. These should be `cbp-grid-item` components or DOM nodes; inserting plain text nodes as a direct descendant of the grid may yield unexpected results. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-grid-linearized-margin` | 0; |
+
+---
+
+# cbp-grid-item
+
+## Overview
+
+The Grid Item component may optionally be used to specify properties of an individual grid item.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `alignSelf` | `align-self` | Aligns this specific grid item in the vertical/column axis, perpendicular to the inline axis, separate from the parent context. | `string` | `undefined` |
+| `gridArea` | `grid-area` | Names the Grid Area for use with grid-template-area on the parent. | `string` | `undefined` |
+| `gridColumnEnd` | `grid-column-end` | Specifies the ending position/edge (non-inclusive) of the grid item in the horizontal/column plane, which is used to calculate the size (including column and row spanning) and location within the grid. | `number | string` | `undefined` |
+| `gridColumnStart` | `grid-column-start` | Specifies the starting position/edge of the grid item in the horizontal/column plane, which is used to calculate the size (including column and row spanning) and location within the grid. | `number | string` | `undefined` |
+| `gridRowEnd` | `grid-row-end` | Specifies the ending position/edge (non-inclusive) of the grid item in the vertical/row plane, which is used to calculate the size (including column and row spanning) and location within the grid. | `number | string` | `undefined` |
+| `gridRowStart` | `grid-row-start` | Specifies the starting position/edge of the grid item in the vertical/row plane, which is used to calculate the size (including column and row spanning) and location within the grid. | `number | string` | `undefined` |
+| `justifySelf` | `justify-self` | Justifies this specific grid item content horizontally, along the inline/row axis, separate from the parent context. | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The default slot may contain any content representing the grid item. |
+
+---

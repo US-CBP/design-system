@@ -1,0 +1,35 @@
+# cbp-app
+
+## Purpose
+
+The App component is a wrapper that packages high level design tokens (as CSS variables) and styles as well as acting as top level control for things like dark mode within the design system/component library.
+
+## Functional Requirements
+
+-   The App component contains necessary high-level CSS to minimize the need for external dependencies referenced by HTML `link` tags.
+-   As the highest level container of the application, system-wide functionality may be hoisted to this tag, such as dark mode, debugging, etc. (TBD)
+
+## Technical Specifications
+
+### User Interactions
+
+-   By setting the `theme` property, the application may be set to light or dark mode independently of the user's operating system settings.
+-   By setting the `debug` property to true, debug info will be logged to the console, including:
+    -   Application name, if specified
+    -   Application version, if specified
+    -   Design System version
+    -   StencilJS version
+
+### Responsiveness
+
+n/a
+
+### Accessibility
+
+n/a
+
+### Additional Notes and Considerations
+
+-   The `cbp-app` component is hidden in most component stories but is still present as a wrapper to load the required CSS and fonts. See the "Page Template" stories for examples where this component is exposed in the story markup.
+-   Embedded fonts were removed from this component to improve the "First Contentful Paint" metric.
+-   TODO: investigate options for dark mode, debugging, performance, etc.

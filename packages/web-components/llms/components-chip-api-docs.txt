@@ -1,0 +1,70 @@
+# cbp-chip
+
+## Overview
+
+The Chip component acts like an interactive version of the Tag and is typically used for selecting or filtering.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `disabled` | `disabled` | Marks the rendered button/link in a disabled state when specified. | `boolean` | `undefined` |
+| `name` | `name` | Specifies the `name` attribute of the rendered button | `string` | `undefined` |
+| `pressed` | `pressed` | Specifies the pressed state of the button and `aria-pressed` attribute of the rendered button | `boolean` | `false` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `value` | `value` | Specifies the `value` attribute of the rendered button | `string` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `chipClick` | A custom event emitted when the chip is activated/toggled. | `CustomEvent<any>` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The default slot defines the chip's label. |
+| `"cbp-chip-icon"` | Optionally slot a custom icon for the default state (will still show the x for removal when pressed). |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-chip-color-background` | var(--cbp-color-interactive-secondary-dark); |
+| `--cbp-chip-color-background-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-chip-color-background-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-chip-color-background-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-chip-color-background-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-chip-color-background-hover-dark` | var(--cbp-color-interactive-secondary-base); |
+| `--cbp-chip-color-background-pressed` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-chip-color-background-pressed-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-chip-color-text` | var(--cbp-color-text-lightest); |
+| `--cbp-chip-color-text-dark` | var(--cbp-color-text-darker); |
+| `--cbp-chip-color-text-focus` | var(--cbp-color-text-lightest); |
+| `--cbp-chip-color-text-focus-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-chip-color-text-hover` | var(--cbp-color-text-lightest); |
+| `--cbp-chip-color-text-hover-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-chip-color-text-pressed` | var(--cbp-color-text-lightest); |
+| `--cbp-chip-color-text-pressed-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-chip-icon-color-background-focus` | transparent; |
+| `--cbp-chip-icon-color-background-focus-dark` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-chip-icon-color-outline-focus` | var(--cbp-color-white); |
+| `--cbp-chip-icon-color-outline-focus-dark` | transparent; |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-icon](../cbp-icon)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-chip --> cbp-icon
+  style cbp-chip fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

@@ -1,0 +1,22 @@
+# Test/Tabs Scrolling
+
+## Examples
+
+
+### Tabs Scrolling
+
+```tsx
+({
+  numberOfCards,
+  cardMinWidth
+}) => {
+  return ` 
+    <cbp-grid
+      grid-template-columns="repeat(auto-fit, minmax(${cardMinWidth},1fr)"
+      gap="var(--cbp-space-4x)"
+    >
+      ${generateCards(numberOfCards)}
+    </cbp-grid>
+  `;
+}
+```

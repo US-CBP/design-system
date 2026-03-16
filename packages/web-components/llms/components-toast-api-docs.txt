@@ -1,0 +1,41 @@
+# cbp-toast
+
+## Overview
+
+The Toast component displays a brief, non-intrusive message that appears on a user interface to provide feedback about an action or status update.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `color` | `color` | specifies the color for the toast | `"danger" | "info" | "success" | "warning"` | `'info'` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `duration` | `duration` | specifies time in seconds for the toast to be displayed | `10 | 3 | 5` | `undefined` |
+| `open` | `open` | When set, specifies that the toast is open | `boolean` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The toast content is slotted in the default slot. |
+| `"cbp-toast-buttons"` | The toast action buttons, including a button to dismiss the toast at a minimum, are placed within this named slot. |
+| `"cbp-toast-icon"` | The large toast icon, usually corresponding to the color variant, is slotted in this named slot. |
+| `"cbp-toast-title"` | The toast title is slotted within this named slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-toast-color` | var(--cbp-color-text-lighter); |
+| `--cbp-toast-color-bg` | var(--cbp-color-info-dark); |
+| `--cbp-toast-color-bg-dark` | var(--cbp-color-info-lighter); |
+| `--cbp-toast-color-bg-sidebar` | var(--cbp-color-info-darker); |
+| `--cbp-toast-color-bg-sidebar-dark` | var(--cbp-color-info-light); |
+| `--cbp-toast-color-content` | var(--cbp-color-text-lighter); |
+| `--cbp-toast-color-content-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-toast-color-dark` | var(--cbp-color-text-darker); |
+| `--cbp-toast-color-icon-sidebar` | var(--cbp-color-text-light); |
+| `--cbp-toast-color-icon-sidebar-dark` | var(--cbp-color-text-darker); |
+
+---

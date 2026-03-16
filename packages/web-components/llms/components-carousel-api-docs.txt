@@ -1,0 +1,59 @@
+# cbp-carousel
+
+## Overview
+
+The Carousel is a control meant to take slotted Carousel-items to visually iterate though to display with a slotted control of a dot-indicator or other control
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `current` | `current` | used to set the current for the carousel | `number` | `0` |
+| `height` | `height` | used to set the height (in CSS units or content values) of the carousel | `string` | `'100%'` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `width` | `width` | used to set the width (in CSS units or content values) of the carousel | `string` | `'100%'` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Intended for a collection of CBP-Carousel-Items to be rendered in the cbp-carousel-container |
+| `"cbp-carousel-controls"` | This named slot is intended for a control of the carousel, for example: cbp-dot-indicator |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-resize-observer](../cbp-resize-observer)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-carousel --> cbp-resize-observer
+  style cbp-carousel fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---
+
+# cbp-carousel-item
+
+## Overview
+
+The Carousel Item is meant to be slotted into the CBP-Carousel and represents a single iteration of content for the CBP-Carousel
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `height` | `height` | used to set the height (in CSS units or content values) of the carousel-item | `string` | `'100%'` |
+| `width` | `width` | used to set the width (in CSS units or content values) of the carousel-item | `string` | `'100%'` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Anything placed into the default slot will be rendered in the cbp-carousel-item |
+
+---

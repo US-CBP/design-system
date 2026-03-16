@@ -1,0 +1,21 @@
+# cbp-skip-nav
+
+## Overview
+
+The Skip Navigation link (or "Skip Nav") is an essential accessibility feature that allows screen reader users to skip repetitive portions of the page and get right to the main content.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `shortcutKey` | `shortcut-key` | Specifies a shortcut key, which is applied as an `accessKey` attribute. | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `targetId` | `target-id` | Specifies the target `id` where focus is sent when the "skip nav" link is activated. Defaults to "main". | `string` | `"main"` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The default slot accepts custom link text, which is only needed if multiple skip links are present. Otherwise, it is advised to use the default "Skip to main content", which has been validated for clarity and pronunciation. |
+
+---

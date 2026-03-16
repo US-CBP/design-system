@@ -1,0 +1,30 @@
+# cbp-section
+
+## Overview
+
+The Section component represents a generic block that may be used for semantic meaning or as a generic container for styling.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `accessibilityText` | `accessibility-text` | Specifies an accessible label as `aria-label` to make a `section` tag an accessible landmark element. Likely has no effect otherwise. | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `tag` | `tag` | Specifies the tag to render. Use `section` with the `accessibilityText` property to make an accessible landmark element. | `"div" | "none" | "section"` | `'none'` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Content slotted in the default slot is rendered inside of the specified tag, if any. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-section-border-style` | solid; |
+| `--cbp-section-border-width` | 0; |
+| `--cbp-section-color-border` | transparent; |
+| `--cbp-section-color-border-dark` | transparent; |
+
+---

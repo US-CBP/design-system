@@ -1,0 +1,74 @@
+# cbp-treeview
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `accessibilityText` | `accessibility-text` | Creates an accessible label for the treeview control if one has not been associated via `aria-labelledby`. | `string` | `undefined` |
+| `context` | `context` | Specifies the context of the component (and its child items) as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `name` | `name` | Specifies the name for all checkboxes in selectable treeviews, similar to a checklist. | `string` | `undefined` |
+| `selectable` | `selectable` | Specifies that the entire tree is selectable. Setting this property at this level overrides all child treeview items. | `boolean` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `valueChange` | A custom event that rolls up all selected values and is emitted when any selectable item is changed. Only selectable items that have both a name and value specified will be included. If all items/checkboxes have the same name, specified by the `cbp-treeview`, then the values are returned as a simple array. If items/checkboxes have individually specified names, values are returned as an array of objects containing name-value pairs. | `CustomEvent<any>` |
+
+---
+
+# cbp-treeview-item
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `checked` | `checked` | Specifies whether a selectable item (and its rendered checkbox) is in a checked state. | `boolean` | `false` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. This property is passed down from the parent `cbp-treeview` and does not need to be set at this level. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `indeterminate` | `indeterminate` | Specifies whether a selectable item (and its rendered checkbox) is in an indeterminate state. This logic is handled internally and should not need to be set manually. | `boolean` | `false` |
+| `label` | `label` | Specifies the label to be displayed in the treeview item control. For selectable items, this becomes the checkbox label. | `string` | `undefined` |
+| `name` | `name` | Specifies a name for a selectable item's checkbox. | `string` | `undefined` |
+| `open` | `open` | Specifies whether the item, if a parent to nested items, is open/expanded. | `boolean` | `false` |
+| `selectable` | `selectable` | Specifies whether this item is selectable, and if so renders a checkbox within the item. This property can be set on the parent `cbp-treeview` component to be applied to all treeview items. | `boolean` | `undefined` |
+| `uid` | `uid` | Specifies a unique `id` for the treeview item, used to wire up the controls and accessibility features. This property is not required and will auto-generate an `id` if none is specified. | `string` | `createNamespaceKey('cbp-treeview-item')` |
+| `value` | `value` | Specifies the value for a selectable item's checkbox and to pass in the `cbp-treeview`'s custom event emitter. | `string` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `updateTreeviewItemParent` | Custom event emitted to the parent treeview item to re-evaluate its checked/indeterminate state based on actions below it. | `CustomEvent<any>` |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-treeview-connection-color` | var(--cbp-color-gray-cool-20); |
+| `--cbp-treeview-connection-color-dark` | var(--cbp-color-gray-cool-40); |
+| `--cbp-treeview-connection-width` | 2px; |
+| `--cbp-treeview-expand-width` | var(--cbp-space-6x) |
+| `--cbp-treeview-indicator-spacing` | 1.5rem; |
+| `--cbp-treeview-item-color` | var(--cbp-color-text-darkest); |
+| `--cbp-treeview-item-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-treeview-item-indent` | 0; |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-button](../cbp-button)
+-   [cbp-icon](../cbp-icon)
+-   [cbp-checkbox](../cbp-checkbox)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-treeview-item --> cbp-button
+  cbp-treeview-item --> cbp-icon
+  cbp-treeview-item --> cbp-checkbox
+  style cbp-treeview-item fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

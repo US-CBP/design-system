@@ -1,0 +1,125 @@
+# cbp-button
+
+## Overview
+
+The Button component represents a UI control visually styled like a button, regardless of whether it renders (or wraps) a button or an anchor tag.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `accessibilityText` | `accessibility-text` | Specifies an accessible label for the button/link as an `aria-label` when the button does not contain label text or a sufficiently unique label. This text overrides the default label and is not additive to it. | `string` | `undefined` |
+| `color` | `color` | The color of the button: primary, secondary, or danger. Defaults to "primary." | `"danger" | "primary" | "secondary"` | `'primary'` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `controlId` | `control-id` | Optionally specify the ID of the control here, which is used to generate related pattern node IDs and associate everything for accessibility | `string` | `createNamespaceKey('cbp-button')` |
+| `controls` | `controls` | Specifies the DOM element that the button controls and results in the `aria-controls` attribute rendered on the button with the specified value. | `string` | `undefined` |
+| `disabled` | `disabled` | Marks the rendered button/link in a disabled state when specified. | `boolean` | `undefined` |
+| `download` | `download` | The `download` attribute of a link button; when present tells the browser to download the specified href URI instead of viewing or navigating to it. | `boolean` | `undefined` |
+| `expanded` | `expanded` | Specifies if a controlled UI widget is expanded and results in `aria-pressed="true|false"` being placed on the button when specified. This property is usually used for progressive disclosure patterns such as accordions, menus, expand/collapse, etc., where focus remains on the control after the user action. | `"false" | "true"` | `undefined` |
+| `fill` | `fill` | The visual fill of the button: solid, outline, or ghost. Defaults to "solid." | `"ghost" | "outline" | "solid"` | `'solid'` |
+| `height` | `height` | Specifies the (min-)height of the button (in CSS units) when different from the default size. | `string` | `undefined` |
+| `href` | `href` | The `href` attribute of a link button. | `string` | `undefined` |
+| `name` | `name` | The `name` attribute of the button, which is passed as part of formData (as a key) for the the pressed submit button. | `string` | `undefined` |
+| `pressed` | `pressed` | Specifies if the button is pressed and results in `aria-pressed="true|false"` being placed on the button when specified. Only valid on actual `button` elements. | `"false" | "true"` | `undefined` |
+| `rel` | `rel` | The `rel` attribute of a link button. | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `tag` | `tag` | Specifies whether the button is a true button element or "link button." | `"a" | "button"` | `'button'` |
+| `target` | `target` | The `target` attribute of a link button. | `string` | `undefined` |
+| `targetProp` | `target-prop` | The property on the target element being toggled by the button/control (e.g., "open"). | `string` | `undefined` |
+| `type` | `type` | The `type` attribute of the button: button, submit, or reset. Defaults to "button." | `"button" | "reset" | "submit"` | `'button'` |
+| `value` | `value` | The `value` attribute of the button, which is passed as part of formData (as a value) for the the pressed submit button. | `string` | `undefined` |
+| `variant` | `variant` | Specifies a variant of the buttons, such as square for buttons with only an icon and call-to-action button. | `"cta" | "square"` | `undefined` |
+| `width` | `width` | Specifies the (min-)width of the button (in CSS units) when different from the default size. | `string` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `buttonClick` | A custom event emitted when the click event occurs for either a rendered button or anchor/link. | `CustomEvent<any>` |
+| `componentLoad` | A custom event emitted when the component has completed loading and its internal lifecycles. | `CustomEvent<any>` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The button's label, which may contain markup such as icons, is placed in the default slot. |
+|  | cbp-button-custom - Custom buttons/anchors may be slotted via named-slot, which prevents the web component from rendering its own tag. In such a case, component properties that render attributes directly onto the rendered button will have no effect, as they are expected to be supplied directly on the slotted element. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-button-border-radius` | var(--cbp-border-radius-soft); |
+| `--cbp-button-border-style` | solid; |
+| `--cbp-button-border-width` | var(--cbp-border-size-md); |
+| `--cbp-button-color` | var(--cbp-color-text-lightest); |
+| `--cbp-button-color-active` | var(--cbp-color-text-lightest); |
+| `--cbp-button-color-active-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-button-color-bg` | var(--cbp-color-interactive-primary-dark); |
+| `--cbp-button-color-bg-active` | var(--cbp-color-interactive-active-dark); |
+| `--cbp-button-color-bg-active-dark` | var(--cbp-color-interactive-active-light); |
+| `--cbp-button-color-bg-dark` | var(--cbp-color-interactive-primary-base); |
+| `--cbp-button-color-bg-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-button-color-bg-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-button-color-bg-hover` | var(--cbp-color-interactive-primary-darker); |
+| `--cbp-button-color-bg-hover-dark` | var(--cbp-color-interactive-primary-light); |
+| `--cbp-button-color-border` | var(--cbp-color-interactive-primary-dark); |
+| `--cbp-button-color-border-active` | var(--cbp-color-interactive-active-dark); |
+| `--cbp-button-color-border-active-dark` | var(--cbp-color-interactive-active-light); |
+| `--cbp-button-color-border-dark` | var(--cbp-color-interactive-primary-base); |
+| `--cbp-button-color-border-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-button-color-border-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-button-color-border-hover` | var(--cbp-color-interactive-primary-darker); |
+| `--cbp-button-color-border-hover-dark` | var(--cbp-color-interactive-primary-light); |
+| `--cbp-button-color-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-button-color-focus` | var(--cbp-color-text-lightest); |
+| `--cbp-button-color-focus-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-button-color-hover` | var(--cbp-color-text-lightest); |
+| `--cbp-button-color-hover-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-button-color-outline-focus` | var(--cbp-color-white); |
+| `--cbp-button-color-outline-focus-dark` | var(--cbp-color-black); |
+| `--cbp-button-gap` | 0 var(--cbp-space-2x); |
+
+## Dependencies
+
+### Used by
+
+-   [cbp-accordion-item](../cbp-accordion-item)
+-   [cbp-app-header](../cbp-app-header)
+-   [cbp-banner](../cbp-banner)
+-   [cbp-breadcrumb](../cbp-breadcrumb)
+-   [cbp-code-snippet](../cbp-code-snippet)
+-   [cbp-dot-indicator](../cbp-dot-indicator)
+-   [cbp-drawer](../cbp-drawer)
+-   [cbp-expand](../cbp-expand)
+-   [cbp-file-input](../cbp-file-input)
+-   [cbp-menu](../cbp-menu)
+-   [cbp-subnav-item](../cbp-subnav-item)
+-   [cbp-tabs](../cbp-tabs)
+-   [cbp-tooltip](../cbp-tooltip)
+-   [cbp-treeview-item](../cbp-treeview-item)
+-   [cbp-usa-banner](../cbp-usa-banner)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-accordion-item --> cbp-button
+  cbp-app-header --> cbp-button
+  cbp-banner --> cbp-button
+  cbp-breadcrumb --> cbp-button
+  cbp-code-snippet --> cbp-button
+  cbp-dot-indicator --> cbp-button
+  cbp-drawer --> cbp-button
+  cbp-expand --> cbp-button
+  cbp-file-input --> cbp-button
+  cbp-menu --> cbp-button
+  cbp-subnav-item --> cbp-button
+  cbp-tabs --> cbp-button
+  cbp-tooltip --> cbp-button
+  cbp-treeview-item --> cbp-button
+  cbp-usa-banner --> cbp-button
+  style cbp-button fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

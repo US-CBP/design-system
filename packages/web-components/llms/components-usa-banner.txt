@@ -1,0 +1,15 @@
+# Components/USA Banner
+
+## Examples
+
+
+### USA Banner
+
+```tsx
+() => {
+  return ` 
+      <cbp-usa-banner>
+      </cbp-usa-banner>
+    `;
+}
+```

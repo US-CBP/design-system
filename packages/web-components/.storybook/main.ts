@@ -34,8 +34,14 @@ const config: StorybookConfig  = {
     getAbsolutePath("@storybook/addon-vitest")
   ],
   staticDirs: [
-    '../dist',
-    '../assets'
+    { from: '../dist', to: '/dist' },
+    { from: '../assets', to: '/assets' },
+    { from: '../llms', to: '/llms' },
+    { from: '../llms.txt', to: '/' },
+    //'../dist',
+    //'../assets',
+    //'../llms/**',
+    //'../llms.txt'
   ],
   core: {
     disableTelemetry: true

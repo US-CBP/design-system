@@ -1,0 +1,30 @@
+# cbp-list
+
+## Purpose
+
+The List component is used to render semantic HTML lists in accordance with the design system, supporting additional variants with custom/user-defined icons and description lists.
+
+## Functional Requirements
+
+-   the List componenet API should support native UL/OL/DL functionality and accessibility
+-   the List maybe supplied slotted content for list items and nested lists
+-   the List supports the option of user defined icons as list item bullets
+
+## Technical Specifications
+
+### User Interactions
+
+-   List is meant to display text in an itemized format, no user interactions are detailed in the ux spec
+
+### Responsiveness
+
+-   Lists are inline elements by default and should wrap, making them flexible at any screen size
+
+### Accessibility
+
+-   LIst supports use of screen reader text via the accessibilityText property
+
+### Additional Notes and Considerations
+
+-   Icons for list are designed to support use of the cbp-icon, other instances of svg's or icons may need additional styling to match look & feel
+-   Unstyled list support both ordered list & unordered list semantically but the list style type will not be visible

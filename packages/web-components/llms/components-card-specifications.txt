@@ -1,0 +1,35 @@
+# cbp-card
+
+## Purpose
+
+The Card component is a visual treatment for a container meant for similarly-sized, repeated chunks of content.
+
+## Functional Requirements
+
+-   The Card is a generic wrapper that supports several variants.
+-   The Card defines several color variants as well, based on design tokens (info, success, warning, danger).
+-   The Card may optionally contain a title and/or actions in the form of buttons (or links).
+-   The Card has an optional property called 'interactive' which enables states (hover, focus, active) for the colors (default & danger)
+    -   Using the 'clickable' option will wrap the card in an anchor tag and use the 'href' property to define what happens on click of the card
+    -   Using the 'multi' option will add a checkbox for the card with the cbp-card-title slot as the label of the checkbox
+    -   the 'select' option is currently in progress due to the radio button work being in process
+
+## Technical Specifications
+
+### User Interactions
+
+-   Cards are essentially containers and any user interactions will be handled by slotted content and components.
+-   The exception is "clickable" cards, which will enable states (hover, focus, active) for the colors and act like a link.
+
+### Responsiveness
+
+-   As a container that is often repeated in rows, the Card works best when it inherits sizing constraints from a surrounding CSS Grid or Flexbox context rather than being given a fixed width or height.
+-   In some cases, the parent CSS Grid or Flexbox may be used to stretch cards to be equal height. In others, the `stretch` property may be needed, which causes the card "body" to expand to fill extra space allotted by the card's parent container.
+
+### Accessibility
+
+-   It is highly recommended that the cards contain a title, using the appropriate level heading.
+
+### Additional Notes and Considerations
+
+-   TBD

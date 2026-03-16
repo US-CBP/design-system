@@ -1,0 +1,66 @@
+# Components/Toggle
+
+## Examples
+
+
+### Multiple Toggle
+
+```tsx
+({
+  ToggleItems,
+  labelWidth,
+  hideStatus,
+  statusTextOn,
+  statusTextOff,
+  disabled,
+  context,
+  sx
+}) => {
+  return `
+    <cbp-form-field
+        label="Settings"
+        description="An example of multiple toggles in a form field"
+        group
+        >
+        ${generateToggles(ToggleItems, labelWidth, hideStatus, statusTextOn, statusTextOff, disabled, context, sx)} 
+    </cbp-form-field>
+    `;
+}
+```
+
+### Toggle
+
+```tsx
+({
+  label,
+  checked,
+  name,
+  value,
+  hideStatus,
+  statusTextOn,
+  statusTextOff,
+  disabled,
+  context,
+  sx
+}) => {
+  return ` 
+        <cbp-toggle
+            ${checked ? 'checked' : ''}
+            ${hideStatus ? `hide-status` : ''}
+            ${statusTextOn ? `status-text-on="${statusTextOn}"` : ''} 
+            ${statusTextOff ? `status-text-off="${statusTextOff}"` : ''}
+            ${disabled ? 'disabled' : ''}
+            ${context && context != 'light-inverts' ? `context=${context}` : ''}
+            ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+            >
+                ${label}
+                <input
+                    type="checkbox"
+                    name="${name}"
+                    value="${value}"
+                />
+            
+        </cbp-toggle>
+    `;
+}
+```

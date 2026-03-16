@@ -1,0 +1,132 @@
+# cbp-app-header
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `search` | `search` | Specifies if there will be a slotted input for global search | `boolean` | `undefined` |
+| `searchAction` | `search-action` | Specifies the action attribute for the search form | `string` | `undefined` |
+| `searchMethod` | `search-method` | Specifies the method attribute for the search form | `string` | `undefined` |
+| `subnavDrawerId` | `subnav-drawer-id` | Specifies the id of the drawer to be launched | `string` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `searchInput` | A custom event emitted in accordance with the native input's onInput event. | `CustomEvent<any>` |
+| `searchSubmit` | A custom event emitted in accordance with the native search form's submit event. | `CustomEvent<any>` |
+
+## Methods
+
+### `closeSearch() => Promise<void>`
+
+A public method to close/hide the search form in the application header.
+
+#### Returns
+
+Type: `Promise<void>`
+
+### `openSearch() => Promise<void>`
+
+A public method to show the search form in the application header.
+
+#### Returns
+
+Type: `Promise<void>`
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The default slot usually contains only `cbp-nav-item` tags, but other content may also be included. |
+|  | cbp-home - The link to the home page containing the Application Name as link text should be placed within this named slot for the intended visual treatment. |
+|  | cbp-app-header-extras - Optional extra buttons/links that are right-aligned may be slotted within the app header but outside of the `nav` landmark. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-app-header-color-background` | var(--cbp-color-white) |
+| `--cbp-app-header-color-background-dark` | var(--cbp-color-gray-cool-60); |
+| `--cbp-app-header-search-color-focus-outline` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-app-header-search-color-focus-outline-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-app-header-search-color-placeholder` | var(--cbp-color-text-dark); |
+| `--cbp-app-header-search-color-placeholder-dark` | var(--cbp-color-text-light); |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-resize-observer](../cbp-resize-observer)
+-   [cbp-button](../cbp-button)
+-   [cbp-icon](../cbp-icon)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-app-header --> cbp-resize-observer
+  cbp-app-header --> cbp-button
+  cbp-app-header --> cbp-icon
+  style cbp-app-header fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---
+
+# cbp-nav-item
+
+## Overview
+
+The Nav Item component wraps each individual control (link or button) within the App Header.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `current` | `current` | Specifies whether this is the Nav Item that represents the current page. Only one item per set should be marked as current. | `boolean` | `undefined` |
+| `name` | `name` | Specifies a name used to associated Nav Items with Subnav Items. | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object. | `any` | `{}` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `navItemClick` |  | `CustomEvent<any>` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Any form of control may be slotted in the default slot (a link, button, link component, button component, component-based Router, etc.). But any components should render a semantic anchor or button element. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-nav-item-color` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-nav-item-color-active` | var(--cbp-color-text-lightest); |
+| `--cbp-nav-item-color-active-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-nav-item-color-bg` | transparent; |
+| `--cbp-nav-item-color-bg-active` | var(--cbp-color-interactive-active-dark); |
+| `--cbp-nav-item-color-bg-active-dark` | var(--cbp-color-interactive-active-light); |
+| `--cbp-nav-item-color-bg-current` | transparent; |
+| `--cbp-nav-item-color-bg-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-nav-item-color-bg-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-nav-item-color-bg-hover` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-nav-item-color-bg-hover-dark` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-nav-item-color-border` | transparent; |
+| `--cbp-nav-item-color-border-current` | var(--cbp-color-interactive-active-dark); |
+| `--cbp-nav-item-color-border-current-dark` | var(--cbp-color-interactive-active-light); |
+| `--cbp-nav-item-color-border-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-nav-item-color-border-hover-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-nav-item-color-current` | var(--cbp-color-interactive-active-dark); |
+| `--cbp-nav-item-color-current-dark` | var(--cbp-color-interactive-active-light); |
+| `--cbp-nav-item-color-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-nav-item-color-focus` | var(--cbp-color-text-lightest); |
+| `--cbp-nav-item-color-focus-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-nav-item-color-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-nav-item-color-hover-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-nav-item-color-outline-focus` | var(--cbp-color-white); |
+| `--cbp-nav-item-color-outline-focus-dark` | var(--cbp-color-black); |
+
+---

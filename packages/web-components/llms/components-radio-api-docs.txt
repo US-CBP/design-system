@@ -1,0 +1,79 @@
+# cbp-radio
+
+## Overview
+
+The Radio component wraps the slotted native form control (`input type="radio"`) and label text, providing cross-browser styling.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `checked` | `checked` | Marks the radio button as checked by default when specified. | `boolean` | `undefined` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `disabled` | `disabled` | Marks the radio button in a disabled state when specified. | `boolean` | `undefined` |
+| `fieldId` | `field-id` | Optionally specify the ID of the checkbox input here, which is used to generate related pattern node IDs and associate everything for accessibility | `string` | `createNamespaceKey('cbp-radio')` |
+| `name` | `name` | The `name` attribute of the radio button, which is passed as part of formData (as a key) only when the radio button is checked. | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `value` | `value` | Optionally set the `value` attribute of the radio button at the component level. Not needed if the slotted radio button has a value. | `string` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `stateChanged` | A custom event emitted when the click event occurs for either a rendered button or anchor/link. | `CustomEvent<any>` |
+
+## Methods
+
+### `reset() => Promise<void>`
+
+A custom method to reset the Radio component to its initial state and value since it does not update properly on a native form reset when the checked state is set via the component property. This method may be called manually, but is automatically called on form reset when using the `cbp-form` component.
+
+#### Returns
+
+Type: `Promise<void>`
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The radio control and label text goes in the default slot, both of which are placed inside of the `label` element. The label should not include excessively long descriptive text. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-radio-color-bg` | var(--cbp-color-white); |
+| `--cbp-radio-color-bg-checked` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-radio-color-bg-checked-dark` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-radio-color-bg-checked-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-radio-color-bg-checked-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-radio-color-bg-dark` | var(--cbp-color-gray-cool-70); |
+| `--cbp-radio-color-border` | var(--cbp-color-interactive-secondary-dark); |
+| `--cbp-radio-color-border-checked` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-radio-color-border-checked-dark` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-radio-color-border-checked-focus` | var(--cbp-color-white); |
+| `--cbp-radio-color-border-checked-focus-dark` | var(--cbp-color-black); |
+| `--cbp-radio-color-border-checked-hover` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-radio-color-border-checked-hover-dark` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-radio-color-border-dark` | var(--cbp-color-interactive-secondary-light); |
+| `--cbp-radio-color-border-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-radio-color-border-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-radio-color-border-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-radio-color-border-hover-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-radio-color-halo` | transparent; |
+| `--cbp-radio-color-halo-checked-focus` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-radio-color-halo-checked-focus-dark` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-radio-color-halo-checked-hover` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-radio-color-halo-checked-hover-dark` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-radio-color-halo-dark` | transparent; |
+| `--cbp-radio-color-halo-focus` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-radio-color-halo-focus-dark` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-radio-color-halo-hover` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-radio-color-halo-hover-dark` | var(--cbp-color-text-darker); |
+| `--cbp-radio-color-label` | var(--cbp-color-text-darkest); |
+| `--cbp-radio-color-label-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-radio-font-weight-label` | var(--cbp-font-weight-bold); |
+| `--cbp-radio-margin` | 0 0 var(--cbp-space-1x) 0; |
+| `--cbp-radio-min-height` | var(--cbp-space-11x); |
+
+---

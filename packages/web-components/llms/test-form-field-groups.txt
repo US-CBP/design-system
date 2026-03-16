@@ -1,0 +1,90 @@
+# Test/Form Field Groups
+
+## Examples
+
+
+### Full Name
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  error,
+  disabled,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+
+      <cbp-flex 
+        wrap="wrap"
+        gap="var(--cbp-space-4x)"
+        breakpoint="20rem"
+      >
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-shrink="0"
+        >
+          <cbp-form-field
+            label="Prefix"
+          >
+            <cbp-dropdown name="prefix" items='${Prefix}'></cbp-dropdown>
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-grow="1"
+        >
+          <cbp-form-field
+            label="First Name"
+          >
+            <input name="firstname" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-form-field
+          label="M.I."
+          sx='{"width":"5ch"}'
+        >
+          <input name="middleinitial" type="text" maxlength="1" />
+        </cbp-form-field>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-grow="1"
+        >
+          <cbp-form-field
+            label="Last Name"
+          >
+            <input name="lastname" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-shrink="0"
+        >
+          <cbp-form-field
+            label="Suffix"
+          >
+            <cbp-dropdown name="suffix" items='${Suffix}'></cbp-dropdown>
+          </cbp-form-field>
+        </cbp-flex-item>
+
+      </cbp-flex>
+    </cbp-form-field>
+  `;
+}
+```

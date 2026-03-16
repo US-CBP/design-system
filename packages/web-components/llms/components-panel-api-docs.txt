@@ -1,0 +1,40 @@
+# cbp-panel
+
+## Overview
+
+A panel is a styled container for displaying information within the main page content area or to either side.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Panel content goes in the default slot. |
+| `"cbp-panel-header"` | The panel header is placed in this named slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-panel-border-radius` | var(--cbp-border-radius-soft); |
+| `--cbp-panel-border-width` | var(--cbp-border-size-md); |
+| `--cbp-panel-content-color` | var(--cbp-color-text-darkest); |
+| `--cbp-panel-content-color-bg` | var(--cbp-color-white); |
+| `--cbp-panel-content-color-bg-dark` | var(--cbp-color-gray-cool-70); |
+| `--cbp-panel-content-color-border` | var(--cbp-color-gray-cool-10); |
+| `--cbp-panel-content-color-border-dark` | var(--cbp-color-gray-cool-60); |
+| `--cbp-panel-content-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-panel-header-color` | var(--cbp-color-text-lighter) |
+| `--cbp-panel-header-color-bg` | var(--cbp-color-base-neutral-dark); |
+| `--cbp-panel-header-color-bg-dark` | var(--cbp-color-gray-cool-10); |
+| `--cbp-panel-header-color-bottom-border` | var(--cbp-color-gray-cool-70); |
+| `--cbp-panel-header-color-bottom-border-dark` | var(--cbp-color-gray-cool-40); |
+| `--cbp-panel-header-color-dark` | var(--cbp-color-text-darker); |
+
+---

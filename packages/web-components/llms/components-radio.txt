@@ -1,0 +1,36 @@
+# Components/Radio
+
+## Examples
+
+
+### Radio
+
+```tsx
+({
+  label,
+  name,
+  value,
+  checked,
+  disabled,
+  context,
+  sx
+}) => {
+  return ` 
+      <cbp-radio
+        ${value ? `value=${value}` : ''}
+        ${disabled ? `disabled` : ''}
+        ${checked ? `checked` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        <input 
+          type="radio" 
+          name="${name}"
+          value="${value}"
+          ${checked ? `checked` : ''}
+        />
+        ${label}
+      </cbp-radio>
+    `;
+}
+```

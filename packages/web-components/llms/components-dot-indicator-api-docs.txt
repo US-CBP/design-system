@@ -1,0 +1,44 @@
+# cbp-dot-indicator
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `current` | `current` | the currently active dot | `number` | `0` |
+| `itemName` | `item-name` | unit of measure for what the dot indicator is measuring | `string` | `'Item'` |
+| `items` | `items` | Length of index dot-indicator is tracking | `number` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `navigateCollection` | Custom event emitted when the Dot-indicator changes active indicator | `CustomEvent<any>` |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-dot-indicator-color-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-dot-indicator-color-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-dot-indicator-color-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-dot-indicator-color-hover-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-dot-indicator-color-selected` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-dot-indicator-color-selected-dark` | var(--cbp-color-interactive-selected-light); |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-button](../cbp-button)
+-   [cbp-icon](../cbp-icon)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-dot-indicator --> cbp-button
+  cbp-dot-indicator --> cbp-icon
+  style cbp-dot-indicator fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

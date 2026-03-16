@@ -1,0 +1,65 @@
+# cbp-dialog
+
+## Overview
+
+The Dialog component represents a dialog overlaid on top of the web page, which can be used similar to an alert/confirm dialog or contain a small form.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `accessibilityText` | `accessibility-text` | Creates an accessible label for the dialog. | `string` | `undefined` |
+| `color` | `color` | Optionally specifies a dialog color (different from the default color) based on predefined design token values. | `"danger" | "info" | "success" | "warning"` | `undefined` |
+| `height` | `height` | Specifies the dialog height in CSS units (preferably relative units such as rem). | `string` | `undefined` |
+| `open` | `open` | When set, specifies that the dialog is open | `boolean` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `uid` | `uid` | Specifies a unique `ID` for the dialog, used to wire up the controls and accessibility features. | `string` | `undefined` |
+| `width` | `width` | Specifies the dialog width in CSS units (preferably relative units such as rem). | `string` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `dialogClose` | Custom event fired when the dialog is closed. | `CustomEvent<any>` |
+| `dialogOpen` | Custom event fired when the dialog is opened. | `CustomEvent<any>` |
+
+## Methods
+
+### `closeDialog() => Promise<void>`
+
+A public method for closing the dialog.
+
+#### Returns
+
+Type: `Promise<void>`
+
+### `openDialog() => Promise<void>`
+
+A public method for opening the dialog.
+
+#### Returns
+
+Type: `Promise<void>`
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The body content of the dialog goes in the default slot. |
+| `"cbp-dialog-actions"` | The dialog actions (buttons) shall be slotted in this named slot. |
+| `"cbp-dialog-body"` | Body content may optionally be slotted into this named slot. |
+| `"cbp-dialog-header"` | The dialog header, which should render a semantic h2 tag, is slotted into this named slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-dialog-border-radius` | var(--cbp-border-radius-softer); |
+| `--cbp-dialog-color` | var(--cbp-color-text-darkest); |
+| `--cbp-dialog-color-bg` | var(--cbp-color-white); |
+| `--cbp-dialog-color-bg-dark` | var(--cbp-color-gray-cool-60); |
+| `--cbp-dialog-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-dialog-padding` | var(--cbp-space-5x); |
+| `--cbp-dialog-shadow` | var(--cbp-shadow-level-5-center); |
+
+---

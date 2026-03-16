@@ -1,0 +1,37 @@
+# cbp-list
+
+## Overview
+
+The List component is used to render semantic HTML lists in accordance with the design system, supporting additional variants with custom/user-defined icons and description lists.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `accessibilityText` | `accessibility-text` | Specifies an accessible label for the list as an `aria-label`, similar to a table `caption`. | `string` | `undefined` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `size` | `size` | Specifies the font size for the list | `"large" | "normal"` | `'normal'` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `tag` | `tag` | Specifies the semantic tag to be rendered. | `"dl" | "ol" | "ul"` | `'ul'` |
+| `variant` | `variant` | Specifies the variant of list (unstyled, icon, special) | `"icon" | "link" | "unstyled"` | `undefined` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Only list items of the proper semantic type should be slotted in the default slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-link-list-icon-color` | var(--cbp-color-interactive-primary-dark); |
+| `--cbp-link-list-icon-color-dark` | var(--cbp-color-interactive-primary-dark); |
+| `--cbp-list-font-size` | var(--cbp-font-size-body); |
+| `--cbp-list-item-color` | var(--cbp-color-text-darkest); |
+| `--cbp-list-item-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-list-item-line-height` | var(--cbp-line-height-sm); |
+| `--cbp-list-item-padding-block` | var(--cbp-space-half-x); |
+| `--cbp-list-padding` | var(--cbp-space-4x); |
+
+---

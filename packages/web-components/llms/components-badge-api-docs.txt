@@ -1,0 +1,30 @@
+# cbp-badge
+
+## Overview
+
+The Badge component is generally used for emphasizing a numeric characteristic of an object (e.g., the number of unread items in a folder).
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `color` | `color` | Specifies a color variant. Currently the only variant supported is "danger". | `"danger" | "default"` | `undefined` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The slotted badge content should be a short 1-2 digit number. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-badge-color` | var(--cbp-color-text-lightest); |
+| `--cbp-badge-color-background` | var(--cbp-color-info-base); |
+| `--cbp-badge-color-background-dark` | var( --cbp-color-interactive-secondary-lighter); |
+| `--cbp-badge-color-dark` | var(--cbp-color-text-darkest); |
+
+---

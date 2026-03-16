@@ -1,0 +1,49 @@
+# cbp-banner
+
+## Overview
+
+The Banner is a container spanning the entire viewport meant to highlight urgent or important content.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `color` | `color` | Specifies a color variant for the banner. | `"info"` | `"info"` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `bannerDismiss` | A custom event emitted with the Banner is dismissed. | `CustomEvent<any>` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The main content of the banner goes in the default slot. |
+| `"cbp-banner-title"` | An optional banner title may be slotted here. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-banner-color` | var(--cbp-color-text-lightest); |
+| `--cbp-banner-color-bg` | var(--cbp-color-info-dark); |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-icon](../cbp-icon)
+-   [cbp-button](../cbp-button)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-banner --> cbp-icon
+  cbp-banner --> cbp-button
+  style cbp-banner fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

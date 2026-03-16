@@ -1,0 +1,136 @@
+# Components/Listbox
+
+## Examples
+
+
+### Listbox
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  name,
+  error,
+  readonly,
+  disabled,
+  inputType,
+  value,
+  context,
+  sx,
+  items,
+  search
+}) => {
+  setTimeout(() => {
+    let input = document.querySelector('cbp-listbox input');
+    input.addEventListener('change', e => {
+      console.log('Native input change event received: ', e);
+    });
+    let formField = document.querySelector('cbp-form-field');
+    formField.addEventListener('valueChange', e => {
+      console.log('Form field valueChange event received: ', e);
+    });
+    let listbox = document.querySelector('cbp-listbox');
+    listbox.addEventListener('updateListboxSuggestions', e => {
+      const {
+        value
+      } = e.detail;
+      if (value.length > 0) {
+        listbox.items = search == 'start' ? filterStartByString(value) : filterByString(value);
+      } else listbox.items = Countries;
+    });
+  }, 1000);
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${name ? `name="${name}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
+      <cbp-listbox
+        ${items && value == '' ? `items='${JSON.stringify(items)}'` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        <input type="${inputType}"
+          ${name ? `name="${name}"` : ''}
+          ${value ? `value="${value}"` : ''}
+        />
+      </cbp-listbox>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Search with Suggestions
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  name,
+  error,
+  readonly,
+  disabled,
+  inputType,
+  value,
+  context,
+  sx,
+  items,
+  search
+}) => {
+  setTimeout(() => {
+    let listbox = document.querySelector('cbp-listbox');
+    listbox.addEventListener('updateListboxSuggestions', e => {
+      const {
+        value
+      } = e.detail;
+      if (value.length > 0) {
+        listbox.items = search == 'start' ? filterStartByString(value) : filterByString(value);
+      } else listbox.items = '';
+    });
+  }, 1000);
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${name ? `name="${name}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
+
+      <cbp-listbox
+        ${items && value == '' ? `items='${JSON.stringify(items)}'` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        <cbp-form-field-wrapper>  
+          <input type="${inputType}"
+            ${name ? `name="${name}"` : ''}
+            ${value ? `value="${value}"` : ''}
+          />
+          <span slot="cbp-form-field-attached-button">
+            <cbp-button
+              type="submit"
+              fill="solid"
+              color="secondary"
+              variant="square"
+              accessibility-text="Search"
+            >
+              <cbp-icon name="magnifying-glass"></cbp-icon>
+            </cbp-button>
+          </span>
+        </cbp-form-field-wrapper>
+      </cbp-listbox>
+    </cbp-form-field>
+  `;
+}
+```

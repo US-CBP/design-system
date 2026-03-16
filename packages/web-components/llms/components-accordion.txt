@@ -1,0 +1,48 @@
+# Components/Accordion
+
+## Examples
+
+
+### Accordion
+
+```tsx
+({
+  items,
+  multiple,
+  showBadge,
+  context,
+  sx
+}) => {
+  return ` 
+      <cbp-accordion
+          ${multiple ? `multiple` : ''}
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+          ${showBadge ? generateSlottedChildren(items, showBadge) : generateChildren(items)}
+      </cbp-accordion>
+    `;
+}
+```
+
+### Accordion With Slotted Label
+
+```tsx
+({
+  items,
+  multiple,
+  showBadge,
+  context,
+  sx
+}) => {
+  return ` 
+      <cbp-accordion
+          ${multiple ? `multiple` : ''}
+          ${context && context != 'light-inverts' ? `context=${context}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${generateSlottedChildren(items, showBadge)}
+      </cbp-accordion>
+    `;
+}
+```

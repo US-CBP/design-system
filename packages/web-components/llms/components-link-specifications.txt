@@ -1,0 +1,43 @@
+# cbp-link
+
+## Purpose
+
+The Link component renders (or wraps) an anchor for navigation styled in accordance to the design system.
+
+## Functional Requirements
+
+-   The Link component API should support native anchor functionality and accessibility.
+-   An anchor may be supplied as slotted content rather than rendered by the web component.
+-   The styling provided by the Link component is meant for standard in-content links; not special cases such as navigation links, which may be styled differently and may have more appropriate components built for those situations.
+-   If an icon is included alongside text, a gap will be automatically applied to separate them.
+
+## Technical Specifications
+
+### User Interactions
+
+-   A link is meant for navigation via http-get, which can be to a new page, to an element on the same page (in-page anchor), or a router event.
+    -   The first two options are native functionality determined by the `href` property or overridden by a custom event handler.
+    -   Routing must be handled by application logic and is not built into this web component.
+-   The Link component emits a custom `linkClick` event when activated.
+-   In the event that a navigation event needs to be canceled, this must be done via the anchor's native `click` event.
+-   A disabled link has its `href` attribute removed automatically and is a non-interactive element (i.e. it cannot be focused or activated).
+
+### Responsiveness
+
+-   Links are inline elements by default and should wrap, making them flexible at any screen size.
+
+### Accessibility
+
+-   A disabled link is represented by `aria-hidden="true"` with a `role="link"` and contains no `href` attribute. Setting the `disabled` property to true will automatically remove the `href` value and render the `aria-hidden` and `role` attributes.
+-   An anchor with no `href` is a non-interactive element. It cannot be focused, is not styled like a link, and often presents accessibility issues.
+-   Specifying alternate text via the `accessibilityText` property renders this text as an `aria-label` on the anchor.
+-   `accessibilityText` is required when a link contains only an icon (without its own accessible label) or when the link text is not sufficiently descriptive and uniquely identifiable.
+
+### Additional Notes and Considerations
+
+-   An anchor may be supplied as slotted content rather than rendered by the web component. This requirement supports frameworks that use component-based routers, such as React or Vue.
+-   The Link component uses an "inline-flex" display to automatically provide a gap between any icons and link text.
+-   On platforms that do not remove white space, be careful not to include spaces between icons and text in addition to the gap.
+-   TODO: investigate side effects and edge cases pertaining to "disabled" links.
+    -   Does a mouse click still emit a click event?
+    -   How can this support a slotted link?

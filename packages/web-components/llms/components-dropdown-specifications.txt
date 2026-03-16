@@ -1,0 +1,156 @@
+# cbp-dropdown and cbp-dropdown-item
+
+## Purpose
+
+The Dropdown component offers an alternative to the native select element that can be fully styled and support additional variants.
+
+## Functional Requirements
+
+-   The Dropdown component can replace the native `select` element (with caveats*).
+-   The Dropdown component supports both single select and multi-select functionality in both standard dropdown and combobox variations:
+    -   Dropdown:
+        -   Single select - items loaded through slot or property, supports key cycling like a standard select element.
+        -   Multi-select - items loaded through slot or property, supports key cycling like a standard select element.
+    -   Combobox:
+        -   Single select with type-ahead filtering - items loaded through slot or property.
+        -   Multi-select with type-ahead filtering - items loaded through slot or property.
+    -   Asynchronous combobox: for large data sets where nothing is loaded until X filter characters are typed; requires filter=true, async=true, and loading items via property as JSON.
+        -   Single select - works normally.
+        -   Multi-select - requires custom integration with chips to make deselecting items easier since they are not persisted in the dropdown once selected.
+-   The Dropdown component will render an `input type="hidden"` element to pass the field value in a native form submission.
+-   The Dropdown component is meant to be used in the default slot of the `cbp-form-field` component, like a native form field, providing:
+    -   Form field styles without duplication
+    -   An accessible form field pattern
+-   The Dropdown options may be specified one of two ways:
+    -   Slotted as child `cbp-dropdown-item` components.
+    -   Specified as JSON (stringified or an object) via the `items` property. This property is reactive, so it can also handle asynchronous filtering.
+-   For single select dropdowns, dropdown items may have individual values specified, separate from the visible label (similar to a native select option element).
+-   For multi-select dropdowns, a `cbp-checkbox` is expected to be slotted within each dropdown item and a native checkbox control within the `cbp-checkbox`.
+    -   If items are specified via JSON, the `cbp-checkbox` will be automatically rendered for multi-select dropdowns.
+-   The Dropdown supports keyboard navigation using the combobox accessibility paradigm and `aria-activedescendant`.
+-   The single-select Dropdown may have default "placeholder" text specified when there is no selection.
+-   For comboboxes (with filtering enabled), the option to create an item is also supported.
+
+## Technical Specifications
+
+### User Interactions
+
+-   The Dropdown component supports readonly and disabled states like any other form control.
+    
+    -   A readonly Dropdown still submits a form value behind the scenes (if specified)
+    -   A disabled Dropdown does not submit a form value, as the corresponding hidden input is also disabled.
+-   Activating the Dropdown menu may be achieved by:
+    
+    -   Clicking on the Dropdown label or control.
+    -   Placing focus on the Dropdown control and pressing `Enter`, `Space`, `Up Arrow`, or `Down Arrow`.
+-   Upon activation of the Dropdown control, the dropdown menu will open and visible focus will automatically be moved to the selected element or the first available item if none are selected.
+    
+-   Keyboard navigation within the dropdown menu works as follows:
+    
+    -   `Arrow Down` and `Arrow Up` navigate the dropdown items, with wrapping at the start and end items.
+    -   `Home` jumps to the first dropdown item.
+    -   `End` jumps to the last dropdown item.
+    -   Pressing `Escape` will close the menu and return focus to the dropdown control.
+    -   Pressing `Tab` will close the menu and send focus to the next focusable element on the page.
+    -   Clicking outside of the dropdown component will close the menu.
+    -   Pressing `Enter` will activate the focused item and mark is as selected (see below for more details) and close the menu.
+    -   By default (without type-ahead filtering), pressing an alphanumeric character will jump to the first item starting with that character (non-case sensitive), mimicking the behavior of a native `select` element.
+        -   Subsequent presses of the same character will cycle through items starting with that character.
+        -   Any other keypress than the same character will interrupt this sequence and take appropriate action.
+    -   When type-ahead filtering is enabled (via the `filter` property):
+        -   Alphanumeric keypresses will be appended to the the search string and dropdown items filter by those that contain the search string.
+        -   Using the arrows for keyboard navigation will move visible focus through the filtered list of options.
+        -   The search string will be shown on the control.
+        -   Backspace or Clear will remove a character from the search string.
+        -   Closing the dropdown will clear the search string and filtering automatically.
+    -   When using the "create" option:
+        -   The item is added directly to the dropdown using the search string text as both the label and value.
+        -   The item is automatically selected (in both single and multi-select comboboxes).
+-   Dropdown Items may be activated either by clicking with the mouse or pressing `Enter` or `Spacebar`.
+    
+-   Activating a Dropdown Item will do the following for single select dropdowns:
+    
+    -   Emit an event, which is listened for by the parent Dropdown component.
+    -   Set the activated item as `selected` (true).
+    -   Update the `aria-activedescendant` attribute on the control to reference the select item's `id`.
+    -   Set the `selected` property for all other Dropdown Items to `false`.
+    -   Update the visible selected value on the Dropdown control to that of the activated Dropdown Item.
+    -   Update the value of the hidden input field to the value of the clicked Dropdown Item. If no value is explicitly set, then the item's `innerText` will be used as the value. For multi-select dropdowns, this field's value is an array of checkbox values of the selected items.
+    -   Emit a valueChange event from the parent Dropdown component.
+    -   Close the dropdown menu.
+    -   Return focus to the control.
+-   Activating a Dropdown Item will do the following for multi-select dropdowns:
+    
+    -   Emit an event, which is listened for by the parent Dropdown component.
+    -   Toggle its `selected` value and checkbox's checked state.
+    -   Update the Dropdown control to show the number of selected items.
+    -   Update the value of the hidden input field to the value of the clicked Dropdown Item. For multi-select dropdowns, this field's value is an array of checkbox values of the selected items.
+    -   Emit a valueChange event from the parent Dropdown component.
+    -   The Dropdown remains open for additional navigation and selection.
+
+### Responsiveness
+
+-   Since it inherits the same default styling as other form fields, the Dropdown is styled at 100% of its container by default, with a max-width of 100% so it cannot break out of its container.
+-   If the control label (of the selected item) overflows the control, it will truncate with an ellipsis.
+-   Drop Down Items will wrap as needed. However, content should not be so long that it wraps more than two lines on a small screen such as a phone.
+
+### Accessibility
+
+-   The associated label and `aria-describedby` are provided by the parent `cbp-form-field` component.
+-   The Dropdown is implemented using the combobox pattern for accessibility, which means:
+    -   The Dropdown control is actually a button with a `role="combobox"`.
+    -   When the dropdown is opened, focus remains on the control, while the "current" option is indicated by the `aria-activedescendant` attribute on the control, which references the visibly highlighted option's `id`.
+    -   The Dropdown menu has a `role="listbox"`.
+    -   The Dropdown Items have `role="option"`.
+    -   The selected Dropdown Item has `aria-selected="true"` while the others have `aria-selected="false"`. (is this relevant since focus is not sent to the options?)
+    -   The component fully supports keyboard navigation, as described above in the User Interactions section.
+
+### Additional Notes and Considerations
+
+-   While visually more consistent with the CBP Design System, the Dropdown component has some drawbacks compared to a native `select` element:
+    -   On mobile devices, a native `select` will be presented as an enlarged overlay of radio options, which is drastically more usable in this context.
+-   Since the main control is a button, it is disabled in "readonly" mode (while the hidden input may still submit the value). Does this cause issues in user expectations?
+-   For common patterns such as State and Country selection where the lists are well-known, do not enable search string filtering. Cycling through those options that begin with a letter by pressing that letter multiple times is a familiar interaction supported for many years by native select fields and search string filtering may be confusing and slower.
+-   The `value` property should not be set explicitly if there are items marked as selected. But in the case that this occurs, the selected items will override the specified value; the value will be updated to match the selected items.
+-   For asynchronous dropdowns:
+    -   A `value` and `selectedLabel` should both be provided if the field has an initial value set.
+    -   Optionally, selected items may be set via a "selected" key in the JSON object. When doing this, the value should be cleared by setting it to an empty string.
+-   When using the "create" option:
+    -   The item added directly to the dropdown uses the search string text as both the label and value. This may not always work in cases where the dropdown values differ from the visible labels.
+    -   An event is also emitted in case the item needs to be created on the fly in the backend (e.g., to provide an `id` as a value from a relational database) and served back to the dropdown via an API call.
+-   TODO: Requires additional testing with `cbp-form-field-wrapper`.
+-   TODO: Investigate persisting selected options in multi-select combobox (especially asynchronous combobox).
+
+#### Dropdown logic flow:
+
+-   On Component Load:
+    
+    -   Look for selected children
+        -   If there are selected items, set the component value, hidden form field value (via render), and display label
+        -   If not, check if the `value` prop was set.
+            -   If so, set the corresponding children as selected.
+                -   Note: children must have a `value` property set for this to work (no guessing by text labels).
+                -   For multi-select dropdowns, setting children as selected will also check the child checkbox.
+-   On User Interaction (a dropdown item is clicked/activated):
+    
+    -   The dropdown item emits an event (containing host, target, label, and value), that is listened for by the parent dropdown.
+        -   If no value is explicitly set, the value passed is derived from the text label (similar to a native select option with no value).
+        -   Toggling the selected state is deferred to the parent dropdown
+    -   Parent dropdown receives the event
+        -   Set the item as selected.
+            -   This will trigger checking the checkbox for multi-select dropdowns.
+        -   For single-select dropdowns, deselect all other items.
+        -   Update the selectedItems array (State) behind a delay.
+        -   Update the hidden form field value.
+        -   Update the dropdown's visible label.
+        -   For single select dropdowns, close the dropdown and send focus back to the main control.
+-   On Dropdown value property being updated externally (reactively):
+    
+    -   Check if the new value is different from the old value. (if not, do nothing)
+    -   If so:
+        -   Select the specified dropdown item(s) based on value(s).
+        -   Update the selectedItems reference.
+        -   Update the dropdown's visible label (of the selected item).
+        -   Update the focusIndex for tracking focus for keyboard navigation.
+        -   For single-select dropdowns, deselect all other dropdown items.
+    -   TODO: This has not yet been implemented for multi-select dropdowns.

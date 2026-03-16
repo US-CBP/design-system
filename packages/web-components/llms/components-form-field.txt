@@ -1,0 +1,39 @@
+# Components/Form Field
+
+## Examples
+
+
+### Range Slider (basic}
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  error,
+  readonly,
+  disabled,
+  value,
+  context,
+  sx
+}) => {
+  return ` 
+      <cbp-form-field
+        ${label ? `label="${label}"` : ''}
+        ${description ? `description="${description}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${error ? `error` : ''}
+        ${disabled ? `disabled` : ''}
+        ${readonly ? `readonly` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        <input 
+          type="range" 
+          name="range" 
+          ${value ? `value="${value}"` : ''} 
+        />
+      </cbp-form-field>
+    `;
+}
+```

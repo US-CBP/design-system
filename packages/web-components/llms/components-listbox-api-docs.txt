@@ -1,0 +1,66 @@
+# cbp-listbox
+
+## Overview
+
+A Listbox wraps a standard text or search input, enhancing it by providing suggestions in a format visually similar to a dropdown, from which a selection may optionally be made.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `items` | `items` | A JSON object (or stringified JSON) containing an array of labels. Labels may contain markup as needed but only the text can be populated into the native input upon selection. The expected format is [{"label":"string"}, ...] | `object | string` | `undefined` |
+| `open` | `open` | Specifies whether the listbox is open/visible. | `boolean` | `false` |
+| `sx` | `sx` | Supports adding inline styles (to the host) as an object. This property is not reactive. | `any` | `{}` |
+| `uid` | `uid` | Optionally specify the ID of the listbox element (role=listbox), which is used to generate related pattern node IDs and associate it to the wrapped input for accessibility. | `string` | `createNamespaceKey('cbp-listbox')` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `updateListboxSuggestions` | A custom event emitted when the value of the wrapped input changes to update the listbox suggestions (items) via application logic. | `CustomEvent<any>` |
+| `valueChange` | A custom event emitted only when a selection is made in the listbox. This event will be listened for in addition to the native input's change event by the parent `cbp-form-field`, as selection does not trigger a native change event on the input. To get all changes to the wrapped input, listen to the `valueChange` event on the parent `cbp-form-field`. | `CustomEvent<any>` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | A native text or search input (or optionally `cbp-form-field-wrapper as well) should be slotted in the default slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-listbox-item-border-size` | var(--cbp-border-size-sm); |
+| `--cbp-listbox-item-color` | var(--cbp-listbox-menu-color); |
+| `--cbp-listbox-item-color-bg` | transparent; |
+| `--cbp-listbox-item-color-bg-dark` | transparent; |
+| `--cbp-listbox-item-color-bg-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-listbox-item-color-bg-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-listbox-item-color-bg-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-listbox-item-color-bg-hover-dark` | var(--cbp-color-interactive-secondary-light); |
+| `--cbp-listbox-item-color-border` | var(--cbp-color-gray-cool-50); |
+| `--cbp-listbox-item-color-border-dark` | var(--cbp-color-gray-cool-50); |
+| `--cbp-listbox-item-color-dark` | var(--cbp-listbox-menu-color-dark); |
+| `--cbp-listbox-item-color-focus` | var(--cbp-color-text-lightest); |
+| `--cbp-listbox-item-color-focus-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-listbox-item-color-hover` | var(--cbp-color-text-lightest); |
+| `--cbp-listbox-item-color-hover-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-listbox-item-font-style` | normal; |
+| `--cbp-listbox-item-font-style-selected` | italic; |
+| `--cbp-listbox-item-padding-block` | var(--cbp-space-2x); |
+| `--cbp-listbox-item-padding-inline-start` | var(--cbp-space-1x); |
+| `--cbp-listbox-menu-color` | var(--cbp-form-field-color); |
+| `--cbp-listbox-menu-color-bg` | var(--cbp-form-field-color-bg); |
+| `--cbp-listbox-menu-color-bg-counter` | var(--cbp-form-field-color-border); |
+| `--cbp-listbox-menu-color-bg-counter-dark` | var(--cbp-color-interactive-secondary-light); |
+| `--cbp-listbox-menu-color-bg-dark` | var(--cbp-form-field-color-bg-dark); |
+| `--cbp-listbox-menu-color-border` | var(--cbp-form-field-color-border); |
+| `--cbp-listbox-menu-color-border-dark` | var(--cbp-form-field-color-border-dark); |
+| `--cbp-listbox-menu-color-counter` | var(--cbp-form-field-color-dark); |
+| `--cbp-listbox-menu-color-counter-dark` | var(--cbp-form-field-color); |
+| `--cbp-listbox-menu-color-counter-outline-focus` | var(--cbp-color-white); |
+| `--cbp-listbox-menu-color-counter-outline-focus-dark` | var(--cbp-form-field-color-border); |
+| `--cbp-listbox-menu-color-dark` | var(--cbp-form-field-color-dark); |
+
+---

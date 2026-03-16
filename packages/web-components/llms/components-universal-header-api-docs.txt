@@ -1,0 +1,20 @@
+# cbp-universal-header
+
+## Overview
+
+The Universal Header component establishes CBP branding, displaying the seal in a standard DHS blue header.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `logoSrcLg` | `logo-src-lg` | Fully qualified or relative URL pointing to the larger SVG containing the CPB seal with text. | `string` | `"/assets/images/cbp-header-logo.svg"` |
+| `logoSrcSm` | `logo-src-sm` | Fully qualified or relative URL pointing to the plain SVG version of the CPB seal for smaller screens ("CBP" text is supplied via CSS automatically). | `string` | `"/assets/images/cbp-seal.svg"` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The default slot may contain any application-specific markup placed to the right of the CBP seal, usually a list of links. |
+
+---

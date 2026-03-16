@@ -1,0 +1,120 @@
+# Components/Toast
+
+## Examples
+
+
+### Multiple Toast
+
+```tsx
+({
+  open,
+  title,
+  content,
+  buttons,
+  duration,
+  color,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-toast
+      ${open ? `open=${open}` : ''}
+      color=${color}
+      duration=${duration}
+      icon=${generateIcon(color)}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <div slot="cbp-toast-icon">
+        <cbp-icon name=${generateIcon(color)}"></cbp-icon>
+      </div>
+      <div slot="cbp-toast-title">${title}</div>
+      ${content}
+      <div slot="cbp-toast-buttons">${buttons}</div>
+    </cbp-toast>
+    
+    <cbp-toast
+      ${open ? `open=${open}` : ''}
+      color=${color}
+      duration=${duration}
+      icon=${generateIcon(color)}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >       
+      <div slot="cbp-toast-icon">
+        <cbp-icon name=${generateIcon(color)} ></cbp-icon>
+      </div>
+      <div slot="cbp-toast-title">${title}</div>
+      ${content}
+      <div slot="cbp-toast-buttons">${buttons}</div>
+    </cbp-toast>
+    
+    <cbp-toast
+      ${open ? `open=${open}` : ''}
+      color=${color}
+      duration=${duration}
+      icon=${generateIcon(color)}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >      
+      <div slot="cbp-toast-icon">
+        <cbp-icon name=${generateIcon(color)}></cbp-icon>
+      </div>
+      <div slot="cbp-toast-title">${title}</div>
+      ${content}
+      <div slot="cbp-toast-buttons">${buttons}</div>
+    </cbp-toast>
+
+    <cbp-toast
+      ${open ? `open=${open}` : ''}
+      color=${color}
+      duration=${duration}
+      icon=${generateIcon(color)}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <div slot="cbp-toast-icon">
+        <cbp-icon name=${generateIcon(color)}></cbp-icon>
+      </div>
+      <div slot="cbp-toast-title">${title}</div>
+      ${content}
+      <div slot="cbp-toast-buttons">${buttons}</div>
+    </cbp-toast>
+  `;
+}
+```
+
+### Toast
+
+```tsx
+({
+  open,
+  title,
+  content,
+  buttons,
+  duration,
+  color,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-toast
+      ${open ? `open` : ''}
+      ${color ? `color=${color}` : ''}
+      ${duration ? `duration=${duration}` : ''}
+      icon=${generateIcon(color)}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >  
+      <div slot="cbp-toast-icon">
+        <cbp-icon 
+          name=${generateIcon(color)}
+        ></cbp-icon>
+      </div>
+      <div slot="cbp-toast-title">${title}</div>
+      ${content}
+      <div slot="cbp-toast-buttons">${buttons}</div>
+    </cbp-toast>
+  `;
+}
+```

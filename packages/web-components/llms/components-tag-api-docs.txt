@@ -1,0 +1,30 @@
+# cbp-tag
+
+## Overview
+
+The Tag component is a non-interactive visual treatment for text, typically representing labels, keywords, or search terms.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `color` | `color` | Specifies a tag color variant. Default does not need to be specified. | `"danger" | "default" | "success" | "warning"` | `undefined` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The tag label or content is placed in the default slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-tag-color` | var(--cbp-color-text-lighter); |
+| `--cbp-tag-color-background` | var(--cbp-color-info-dark); |
+| `--cbp-tag-color-background-dark` | var(--cbp-color-info-light); |
+| `--cbp-tag-color-dark` | var(--cbp-color-info-darker); |
+
+---
