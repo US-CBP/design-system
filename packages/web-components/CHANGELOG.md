@@ -7,6 +7,9 @@ The React components are wrappers generated from this package and will share the
 ## [unpublished] TBD
 
 * Initial creation of the `cbp-listbox` component, used to wrap a native text or search input and offer selectable suggestions from a listbox.
+* Updated `cbp-pagination` with a couple bug fixes:
+  * Fixed the event emitter not firing when the page size dropdown was changed.
+  * Fixed the accessibility of the dropdown labels not being read by using CSS to visually hide them instead of `display: none`.
 * Added `height` and `width` properties to `cbp-dialog`.
 * Fixed initial flickering of the `cbp-toast` component when revealed or closed.
 * Updated component-level dark mode toggles with `!important` overrides so that if a color is specified via CSS variable, it is still swapped appropriately based on light/dark modes.
