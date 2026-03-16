@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Host, h, Listen, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Host, h, Listen, Prop} from '@stencil/core';
 import { createNamespaceKey } from '../../utils/utils';
 
 @Component({
@@ -18,6 +18,7 @@ export class CbpTreeviewItem {
   private immediateChildren: HTMLCbpTreeviewItemElement[] = [];
   private allChildren: HTMLCbpTreeviewItemElement[] = [];
   private checkbox !: HTMLCbpCheckboxElement; 
+  private eventTimer = 50;
 
   @Element() host: HTMLCbpTreeviewItemElement;
 
@@ -41,10 +42,10 @@ export class CbpTreeviewItem {
   @Prop() value: string;
 
   /** Specifies whether a selectable item (and its rendered checkbox) is in a checked state. */
-  @Prop({ reflect: true, mutable: true }) checked: boolean;
+  @Prop({ reflect: true, mutable: true }) checked = false;
 
   /** Specifies whether a selectable item (and its rendered checkbox) is in an indeterminate state. This logic is handled internally and should not need to be set manually. */
-  @Prop({ reflect: true, mutable: true }) indeterminate: boolean;
+  @Prop({ reflect: true, mutable: true }) indeterminate = false; 
 
   /** 
    * Specifies a unique `id` for the treeview item, used to wire up the controls and accessibility features. 
@@ -63,9 +64,7 @@ export class CbpTreeviewItem {
   /** Custom event emitted to the parent treeview item to re-evaluate its checked/indeterminate state based on actions below it. */
   @Event() updateTreeviewItemParent: EventEmitter;
 
-
-  // TechDebt: probably need a @Watch on `checked` to handle programmatic updated to items.
-
+  //Techdebt: Addition of @Watch for checked prop desired, This would require rework of both handleCheck() & handleUpdateTreeviewItemParent() due to much re-evaluation
 
   // listen to the checkbox's stateChange event emitter to update this treeview item (and its children).
   @Listen('stateChanged')
@@ -120,12 +119,13 @@ export class CbpTreeviewItem {
           host: this.host,
           parent: this.parent,
         })
-      }, 50);
+      }, this.eventTimer);
     }
   }
 
-  toggleOpen() {
-    this.open === false ? this.open = true : this.open = false;
+  private toggleOpen() {
+    // this.open === false ? this.open = true : this.open = false;
+    this.open = !this.open;
   }
 
   componentWillLoad() {
@@ -136,7 +136,7 @@ export class CbpTreeviewItem {
 
   componentDidLoad() {
     if (this.checked && this.selectable) {
-      this.handleCheck()
+      this.handleCheck();
     }
   }
 
@@ -146,6 +146,8 @@ export class CbpTreeviewItem {
         role="treeitem"
         id={this.uid}
         aria-selected={ this.selectable ? `${this.checked}` : false}
+        aria-owns={`${this.uid}-group`}
+        tabIndex= '-1'
       >
         <div class="cbp-treeview-item-control">
           { this.immediateChildren.length > 0 &&
@@ -186,11 +188,14 @@ export class CbpTreeviewItem {
           }
           <slot name="cbp-treeview-item-buttons" />
         </div>
-        <div role="group" class="cbp-treeview-item-children">
+        <div 
+          role="group" 
+          class="cbp-treeview-item-children"
+          id={`${this.uid}-group`}
+        >
           <slot />
         </div>
       </Host>
     );
   }
-
 }

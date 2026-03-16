@@ -1,5 +1,5 @@
-import { Component, Prop, Element, Listen, Event, EventEmitter, Host, h } from '@stencil/core';
-import { setCSSProps } from '../../utils/utils';
+import { Component, Prop, Element, Listen, Event, EventEmitter, Host, h} from '@stencil/core';
+import { setCSSProps, doKeyboardNav } from '../../utils/utils';
 @Component({
   tag: 'cbp-treeview',
   styleUrl: 'cbp-treeview.scss',
@@ -12,6 +12,10 @@ import { setCSSProps } from '../../utils/utils';
  */
 
 export class CbpTreeview {
+
+  private childIds: string;
+  private treeviewItems: any; //HTMLCbpTreeviewItemElement;
+  private focusIndex: number;
 
   @Element() host: HTMLCbpTreeviewElement;
 
@@ -83,6 +87,30 @@ export class CbpTreeview {
     }
   }
 
+  private handleKeyPress(e){   
+    this.treeviewItems = Array.from(this.host.querySelectorAll('cbp-treeview > cbp-treeview-item, cbp-treeview-item[open] > .cbp-treeview-item-children > cbp-treeview-item'));
+
+    const { key } = e;
+    const navKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End'];
+    if (navKeys.includes(key)) {    
+      this.focusIndex = doKeyboardNav(this.treeviewItems, key, this.focusIndex);
+      this.setCurrentTreeviewItem(this.focusIndex);
+    }
+    return;
+  }
+
+  private setCurrentTreeviewItem(i = 0) {
+    if(this.treeviewItems[i]?.querySelector('.cbp-treeview-item-toggle > button') != null){
+      this.treeviewItems[i]?.querySelector('.cbp-treeview-item-toggle > button').focus();
+    }else if(this.treeviewItems[i]?.querySelector('.cbp-treeview-item-control > cbp-checkbox input') != null) { //If i is end node and has a checkbox 
+      this.treeviewItems[i]?.querySelector('.cbp-treeview-item-control > cbp-checkbox input').focus();
+    }else if(this.treeviewItems[i]?.querySelector('[slot="cbp-treeview-item-buttons"] > button') != null){ //If i is end node and has a slotted button
+      this.treeviewItems[i]?.querySelector('[slot="cbp-treeview-item-buttons"] > button').focus();
+    }else { //If no expected internal focusable elements then treeview-item itself is focused
+      this.treeviewItems[i].focus();
+    }
+  }
+
   componentWillLoad() {
     const children = Array.from(this.host.querySelectorAll('cbp-treeview-item')) as HTMLCbpTreeviewItemElement[];
     
@@ -101,12 +129,19 @@ export class CbpTreeview {
     });
   }
 
+  componentDidLoad(){
+    this.treeviewItems = Array.from(this.host.querySelectorAll('cbp-treeview > cbp-treeview-item, cbp-treeview-item[open] > .cbp-treeview-item-children > cbp-treeview-item'));
+    this.childIds = Array.from(this.host.querySelectorAll('cbp-treeview > cbp-treeview-item')).map(element => element.id).join(" ")
+    this.host.setAttribute('aria-owns', this.childIds)
+  }
+
   render() {
     return (
       <Host
         role="tree"
         aria-label={this.accessibilityText}
         aria-multiselectable={this.selectable ? "true" : "false"}
+        onKeyDown={(e) => this.handleKeyPress(e)}
       >
         <slot />
       </Host>

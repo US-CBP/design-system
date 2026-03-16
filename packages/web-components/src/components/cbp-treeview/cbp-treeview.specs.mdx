@@ -32,6 +32,7 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
     * If all checkbox controls have the same `name` specified at the `cbp-treeview` level, the rollup of values will be a simple array containing the values of checked items.
     * If the names of the checkbox controls are specified for each individual `cbp-treeview-item`, then the rollup of values will be an array of objects containing name:value pairs.
     * Only those checkboxes with both a `name` and `value` specified will be rolled up, giving the developer control of which items to include in the form submission and `valueChange` event. E.g., omitting the parents as part of the hierarchy/categorization and only including the bottom-level items.
+* Keyboard navigation through tree with ArrowUp, ArrowDown, Home, & End to havigate through the treeview. Will focus to internal control (expand/checkbox/slotted button) but incases where that is not populated will focus to treeview-item itself.
 
 ### Responsiveness
 
@@ -45,9 +46,10 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
   * Has a `role="tree"`.
   * If it is selectable it also has `aria-multiselectable="true"`.
   * Should always contain an aria-label (via `accessibilityText` property) if it does not reference an external heading via `aria-labelledby`.
+  * Has `aria-owned` populated by root level treeview-items id's
 * Each child `cbp-treeview-item` element:
   * Has a `role="treeitem"`.
-  * With nested items renders the children inside of container with a `role="group"`.
+  * With nested items renders the children inside of container with a `role="group"` and populates an `aria-owned` on the host with the children's id.
 * Each expand control (button) for items with nested children toggles `aria-expanded` when the control is activated.
 * The selection state for each selectable node is indicated with `aria-selected="true"`.
 
