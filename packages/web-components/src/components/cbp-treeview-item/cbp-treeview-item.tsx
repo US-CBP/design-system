@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Host, h, Listen, Prop, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Host, h, Listen, Prop} from '@stencil/core';
 import { createNamespaceKey } from '../../utils/utils';
 
 @Component({
@@ -64,6 +64,8 @@ export class CbpTreeviewItem {
   /** Custom event emitted to the parent treeview item to re-evaluate its checked/indeterminate state based on actions below it. */
   @Event() updateTreeviewItemParent: EventEmitter;
 
+  //Techdebt: Addition of @Watch for checked prop desired, This would require rework of both handleCheck() & handleUpdateTreeviewItemParent() due to much re-evaluation
+
   // listen to the checkbox's stateChange event emitter to update this treeview item (and its children).
   @Listen('stateChanged')
   handleCheck(e = undefined) {
@@ -71,16 +73,6 @@ export class CbpTreeviewItem {
 
     let checkbox = e?.target || this.checkbox;
     this.checked = checkbox.checked;
-  }
-
-  @Watch('checked')
-  watchChecked(){
-    setTimeout(() => { //Settime out to mirror the updateTreeviewItemParent time out to avoid recursive calls
-    this.doCheck(this.checkbox) 
-    }, this.eventTimer);
-  }
-  
-  private doCheck(checkbox){
     this.indeterminate = false; // if user interaction set the checkbox as checked/unchecked, then it's not indeterminate
 
     this.allChildren.forEach(item => {
@@ -132,7 +124,8 @@ export class CbpTreeviewItem {
   }
 
   private toggleOpen() {
-    this.open === false ? this.open = true : this.open = false;
+    // this.open === false ? this.open = true : this.open = false;
+    this.open = !this.open;
   }
 
   componentWillLoad() {
@@ -143,7 +136,7 @@ export class CbpTreeviewItem {
 
   componentDidLoad() {
     if (this.checked && this.selectable) {
-      this.doCheck(this.checkbox);
+      this.handleCheck();
     }
   }
 

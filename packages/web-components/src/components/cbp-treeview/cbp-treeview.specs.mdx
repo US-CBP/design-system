@@ -49,7 +49,7 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
   * Has `aria-owned` populated by root level treeview-items id's
 * Each child `cbp-treeview-item` element:
   * Has a `role="treeitem"`.
-  * With nested items renders the children inside of container with a `role="group"` and populates an `aria-owned` on the parent's container with the children's id.
+  * With nested items renders the children inside of container with a `role="group"` and populates an `aria-owned` on the host with the children's id.
 * Each expand control (button) for items with nested children toggles `aria-expanded` when the control is activated.
 * The selection state for each selectable node is indicated with `aria-selected="true"`.
 
