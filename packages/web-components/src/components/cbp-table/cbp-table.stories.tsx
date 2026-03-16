@@ -138,7 +138,7 @@ const Template = ({ tableData, headers, selectable, striped, hover, columnHover,
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${showToolbar ? toolbar() : ''}
-        <table style="min-width:1200px">
+        <table style="width: 100%">
           <caption hidden>Table Caption</caption>
           <thead>
             <tr>

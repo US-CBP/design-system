@@ -34,11 +34,13 @@ The Table component is a wrapper component encapsulating design system styles fo
 * The table uses a resize observer to detect overflow (of the table to its parent) and trigger one of the responsive modes:
   * The default responsive mode is scrolling.
     * Scrolling is optimal for data where comparisons across columns are necessary.
+    * A native horizontal scrollbar is shown below the table when the table is too large to fit in its parent.
+    * Controls to scroll left or right are also displayed above the table in the controls area.
     * If the table body contains row headers, they will be made sticky.
   * The other option is linearization.
     * Linearization stacks the table cells vertically and places the column headings before each cell's data.
-    * The table head is hidden since the heading text is duplicated within each cell.
     * This option allows for scanning of each row's data without comparing columns between rows.
+    * The table head is hidden since the column heading text is duplicated within each cell for context.
 
 ### Accessibility
 
@@ -59,3 +61,6 @@ The Table component is a wrapper component encapsulating design system styles fo
 * The Table component exposes the following classes that you may use on the native table HTML markup:
   * `class="cbp-table--danger"` may be applied to table rows or cells to mark an error or similar state.
   * `class="cbp-table--highlight"` may be applied to table cells when the cell contains matching search/filter text.
+* When the table has a horizontal scrollbar, positioned elements such as tooltips and menus may be adversely affected.
+  * The table then behaves like `position: relative`.
+  * This is native browser behavior when `overflow-x` is applied and cannot be changed.
