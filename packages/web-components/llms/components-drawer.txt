@@ -1,0 +1,121 @@
+# Components/Drawer
+
+## Examples
+
+
+### Drawer
+
+```tsx
+({
+  position,
+  withIcon,
+  open,
+  persistAt,
+  uid,
+  accessibilityText,
+  context,
+  sx
+}) => {
+  return `
+    <cbp-hide 
+      ${persistAt ? `hide-at=${persistAt}` : ''}
+    >
+      <cbp-button
+        type="button"
+        color="secondary"
+        variant="square"
+        accessibility-text="Open Drawer"
+        target-prop="open"
+        controls=${uid}
+      >
+        <cbp-icon name="bars"></cbp-icon>
+      </cbp-button>
+    </cbp-hide>
+
+    <cbp-drawer
+      ${position ? `position=${position}` : ''}
+      ${open ? `open=${open}` : ''}
+      ${persistAt ? `persist-at=${persistAt}` : ''}
+      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      ${uid ? `uid=${uid}` : ''}
+    >
+      <cbp-panel
+        aria-labelledby="panelheader"
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      >
+        <cbp-typography
+          slot="cbp-panel-header"
+          tag="h3"
+          variant="heading-lg"
+          id="panelheader"
+        >
+          ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}
+          Drawer Header
+        </cbp-typography>
+        <p>Sidebar Content</p>
+      </cbp-panel>
+    </cbp-drawer>
+  `;
+}
+```
+
+### User Preferences
+
+```tsx
+({
+  position,
+  open,
+  persistAt,
+  uid,
+  accessibilityText,
+  withIcon,
+  context,
+  sx
+}) => {
+  return `
+    <cbp-button
+      type="button"
+      color="secondary"
+      variant="square"
+      accessibility-text="Open Drawer"
+      target-prop="open"
+      controls=${uid}
+    >
+      <cbp-icon name="bars"></cbp-icon>
+    </cbp-button>
+
+    <cbp-drawer
+      ${position ? `position=${position}` : ''}
+      ${open ? `open=${open}` : ''}
+      ${persistAt ? `persist-at="${persistAt}"` : ''}
+      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      ${uid ? `uid=${uid}` : ''}
+    >
+      <cbp-panel
+        aria-labelledby="userprefs-panel-header"
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        sx='{
+          "--cbp-panel-header-color-dark": "var(--cbp-color-text-lighter)",
+          "--cbp-panel-header-color-bg-dark":"var(--cbp-color-branding-dhs-blue)"
+        }'
+      >
+        <cbp-typography
+          slot="cbp-panel-header"
+          tag="h3"
+          variant="heading-lg"
+          id="userprefs-panel-header"
+        >
+        
+          ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}
+          User Preferences
+        </cbp-typography>
+        <p>Drawer Content</p>
+      </cbp-panel>
+    </cbp-drawer>
+  `;
+}
+```

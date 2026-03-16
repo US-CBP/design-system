@@ -1,0 +1,48 @@
+# cbp-button
+
+## Purpose
+
+The Button component represents a UI control visually styled like a button (regardless of whether it's actually a button or link/anchor).
+
+## Functional Requirements
+
+-   The Button component may render either a `button` or anchor (`a`) tag with a consistent visual style.
+-   Buttons may have a number or variants based on fill (solid, outline, ghost) and color (based on design tokens).
+-   Additional variants include "call-to-action" and "square" (primarily for icons-only).
+-   A Button component may have any content slotted as the label, including icons and other components, barring other interactive elements.
+-   The Button component allows slotting of a custom control (rather than rendering one) to support component-based routers and/or directives places directly on the control.
+-   Buttons are the most common UI control and require a robust implementation, acting as a control for segmented button groups, menus, dialogs, etc.
+
+## Technical Specifications
+
+### User Interactions
+
+-   Other than buttons of "submit" or "reset" types, most interactions are defined by application logic.
+-   When a button is activated by user interaction it emits a custom event that can be listened for.
+
+### Responsiveness
+
+-   The Button's `height` and `width` properties are implemented as `min-height` and `min-width` (respectively) in CSS so as to support users with different default text sizes specified.
+-   A Button's text label may wrap, but should be kept short enough to avoid it in most cases.
+
+### Accessibility
+
+-   If a button does not have text making up its accessible label (e.g., only an icon), use the `accessibilityText` property to specify an accessible label, rendered as `aria-label` on the button or anchor element.
+-   Keep in mind that buttons and anchors should have uniquely identifiable labels. There are a couple of ways to achieve this:
+    -   In the case of repeated buttons with the same text, specify a more unique label with context via the `accessibilityText` property.
+    -   A slightly less ideal alternative is to reference a related element (e.g., table row heading) by `id` using `aria-describedby` on the button.
+-   When used as a control, the following properties mapping to aria-attributes may be appropriate:
+    -   `pressed` is rendered as `aria-pressed` and represents a button's pressed state, if applicable.
+    -   `expanded` is rendered as `aria-expanded` and is useful when a button is acting as a control for some form of dropdown, menu, accordion, etc.
+    -   `controls` is rendered as `aria-controls` and accepts the `id` of the DOM element that it controls (e.g., the menu or accordion-item).
+-   Disabled buttons are non-interactive and cannot be navigated to using the keyboard and should be used with caution (if at all).
+
+### Additional Notes and Considerations
+
+-   Links/anchors should only be used for navigation; the `button` element is the preferred control for all other types of UI interactions.
+-   The Button component uses an "inline-flex" display to automatically provide a gap between any icons and label text on the control.
+    -   As such, if you need to use a `br` tag to force a line break in special cases, you will need to override the CSS display property.
+    -   If the label content contains additional wrapping tags, the flex context may also be lost and manual spacing applied between elements.
+    -   On platforms that do not remove white space, be careful not to include spaces between icons and text in addition to the gap.
+-   Buttons with only an icon (no text label) should use the `variant="square"` property/attribute.
+-   If you hide a text label at small screen sizes (e.g., via `cbp-hide`) and only show an icon, the intent is for the button to be shown as the "square" variant. This cannot be handled internally to the component and should be implemented by the application.

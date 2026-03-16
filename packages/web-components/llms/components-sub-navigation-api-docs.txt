@@ -1,0 +1,89 @@
+# cbp-subnav
+
+## Overview
+
+Sub-Navigation (Subnav) is meant to be used as a secondary, vertical navigation.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `accessibilityText` | `accessibility-text` | Sets the aria-label for the `nav` landmark element rendered by the subnav. | `string` | `'Sub-Navigation'` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `flat` | `flat` | Specifies a flat display, rather than the default indented layout based on tag hierarchy. | `boolean` | `undefined` |
+| `store` | `store` | Specifies whether the Subnav pushes updates to a state store to integrate with the Application Header. | `boolean` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Subnav Items (and rarely anything else) should be slotted in the default slot. |
+
+---
+
+# cbp-subnav-item
+
+## Overview
+
+The Subnav Item component represents a single navigation link and can also be nested multiple levels to convey a site/navigation hierarchy.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `current` | `current` | Specifies the current item within the collection of Subnav Items. | `boolean` | `false` |
+| `href` | `href` | Specifies the href for the Subnav Item anchor. | `string` | `undefined` |
+| `label` | `label` | Specifies the text label for the subnav item. | `string` | `undefined` |
+| `name` | `name` | Specifies a name used to associated Nav Items with Subnav Items. | `string` | `undefined` |
+| `open` | `open` | Specifies whether a Subnav Item with nested children is expanded or collapsed. Primarily used internally for user interactions. | `boolean` | `false` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `uid` | `uid` | Optionally specifies a unique `ID` for the menu, used to wire up the controls and accessibility features. | `string` | `createNamespaceKey('cbp-subnav-item')` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `subnavItemClick` |  | `CustomEvent<any>` |
+| `toggleSubnavItem` |  | `CustomEvent<any>` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The Subnav Item's children are placed in the default slot. |
+|  | cbp-subnav-item-label - An optional slot in support of a label with markup. Replaces the `label` property if used. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-subnav-item-color` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-subnav-item-color-bg` | transparent; |
+| `--cbp-subnav-item-color-bg-dark` | var(--cbp-color-gray-cool-70); |
+| `--cbp-subnav-item-color-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-subnav-item-current-border-color` | var(--cbp-color-interactive-active-dark); |
+| `--cbp-subnav-item-current-border-color-dark` | var(--cbp-color-interactive-active-light); |
+| `--cbp-subnav-item-current-color` | var(--cbp-color-interactive-active-dark); |
+| `--cbp-subnav-item-current-color-bg` | var(--cbp-color-interactive-active-light); |
+| `--cbp-subnav-item-font-size` | var(--cbp-font-size-heading-md); |
+| `--cbp-subnav-item-indent` | var(--cbp-space-4x); |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-button](../cbp-button)
+-   [cbp-icon](../cbp-icon)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-subnav-item --> cbp-button
+  cbp-subnav-item --> cbp-icon
+  style cbp-subnav-item fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

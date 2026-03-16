@@ -1,0 +1,24 @@
+# cbp-form-field-wrapper
+
+## Overview
+
+The Form Field Wrapper component is an optional wrapper that offers means for applying overlays and button controls to form inputs in accordance with design requirements.
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The default slot holds the form control. |
+| `"cbp-form-field-attached-button"` | Optionally slot in any buttons that appear attached to the native form field. |
+| `"cbp-form-field-overlay-end"` | Optionally slot an overlay positioned on the right side of the form field. |
+| `"cbp-form-field-overlay-start"` | Optionally slot an overlay positioned on the left side of the form field. |
+| `"cbp-form-field-unattached-buttons"` | Optionally slot in any buttons that appear horizontally after the native form field, but not attached to it. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-form-field-wrapper-padding-end` | inherit; |
+| `--cbp-form-field-wrapper-padding-start` | inherit; |
+
+---

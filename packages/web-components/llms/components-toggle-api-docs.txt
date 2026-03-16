@@ -1,0 +1,105 @@
+# cbp-toggle
+
+## Overview
+
+The Toggle component is a visual variant of a Boolean selection form control (checkbox), representing an on/off toggle switch.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `checked` | `checked` | Marks the toggle as checked (on) by default when specified. | `boolean` | `undefined` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `disabled` | `disabled` | Marks the toggle in a disabled state when specified. | `boolean` | `undefined` |
+| `hideStatus` | `hide-status` | Hides the status text after the toggle control when specified. | `boolean` | `undefined` |
+| `name` | `name` | Optionally set the `name` attribute of the checkbox at the component level, which is passed as part of formData (as a key) only when the checkbox is checked. Not needed if the slotted checkbox has a name. | `string` | `undefined` |
+| `statusTextOff` | `status-text-off` | Specifies the status text for the false toggle. | `string` | `'Off'` |
+| `statusTextOn` | `status-text-on` | Specifies the status text for the true toggle. | `string` | `'On'` |
+| `sx` | `sx` | Supports adding inline styles as an object. | `any` | `{}` |
+| `value` | `value` | Optionally set the `value` attribute of the checkbox at the component level. Not needed if the slotted checkbox has a value. | `string` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `toggleClick` | Custom event fired when the control is toggled by the user. | `CustomEvent<any>` |
+
+## Methods
+
+### `reset() => Promise<void>`
+
+A custom method to reset the Toggle component to its initial state and value since it does not update properly on a native form reset when the checked state is set via the component property. This method may be called manually, but is automatically called on form reset when using the `cbp-form` component.
+
+#### Returns
+
+Type: `Promise<void>`
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The label text followed by the native `input type="checkbox"` control are provided in the default slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-toggle-circle-border-width` | var(--cbp-border-size-xl); |
+| `--cbp-toggle-circle-color` | var(--cbp-color-white); |
+| `--cbp-toggle-circle-color-border` | var(--cbp-toggle-circle-color); |
+| `--cbp-toggle-circle-color-border-dark` | var(--cbp-toggle-circle-color-dark); |
+| `--cbp-toggle-circle-color-border-disabled` | var(--cbp-color-interactive-disabled-light); |
+| `--cbp-toggle-circle-color-border-disabled-dark` | var(--cbp-color-interactive-disabled-dark); |
+| `--cbp-toggle-circle-color-border-focus` | var(--cbp-color-white); |
+| `--cbp-toggle-circle-color-border-focus-dark` | var(--cbp-color-black); |
+| `--cbp-toggle-circle-color-border-hover` | var(--cbp-color-white); |
+| `--cbp-toggle-circle-color-border-hover-dark` | var(--cbp-color-white); |
+| `--cbp-toggle-circle-color-border-selected` | var(--cbp-color-white); |
+| `--cbp-toggle-circle-color-border-selected-dark` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-toggle-circle-color-border-selected-focus` | var(--cbp-color-white); |
+| `--cbp-toggle-circle-color-border-selected-focus-dark` | var(--cbp-color-black); |
+| `--cbp-toggle-circle-color-border-selected-hover` | var(--cbp-color-white); |
+| `--cbp-toggle-circle-color-border-selected-hover-dark` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-toggle-circle-color-dark` | var(--cbp-color-white); |
+| `--cbp-toggle-circle-color-disabled` | var(--cbp-color-interactive-disabled-light); |
+| `--cbp-toggle-circle-color-disabled-dark` | var(--cbp-color-interactive-disabled-dark); |
+| `--cbp-toggle-circle-color-focus` | var(--cbp-color-white); |
+| `--cbp-toggle-circle-color-focus-dark` | var(--cbp-color-black); |
+| `--cbp-toggle-circle-color-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-toggle-circle-color-hover-dark` | var(--cbp-color-interactive-secondary-base); |
+| `--cbp-toggle-circle-color-selected` | var(--cbp-color-white); |
+| `--cbp-toggle-circle-color-selected-dark` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-toggle-circle-color-selected-focus` | var(--cbp-color-white); |
+| `--cbp-toggle-circle-color-selected-focus-dark` | var(--cbp-color-black); |
+| `--cbp-toggle-circle-color-selected-hover` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-toggle-circle-color-selected-hover-dark` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-toggle-circle-diameter` | var(--cbp-space-4x); |
+| `--cbp-toggle-circle-inset` | 0.375rem; |
+| `--cbp-toggle-color-bg` | var(--cbp-color-interactive-secondary-light); |
+| `--cbp-toggle-color-bg-dark` | var(--cbp-color-interactive-secondary-dark); |
+| `--cbp-toggle-color-bg-disabled` | var(--cbp-color-interactive-disabled-dark); |
+| `--cbp-toggle-color-bg-disabled-dark` | var(--cbp-color-interactive-disabled-light); |
+| `--cbp-toggle-color-bg-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-toggle-color-bg-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-toggle-color-bg-hover` | var(--cbp-color-interactive-secondary-dark); |
+| `--cbp-toggle-color-bg-hover-dark` | var(--cbp-color-interactive-secondary-base); |
+| `--cbp-toggle-color-bg-selected` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-toggle-color-bg-selected-dark` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-toggle-color-outline-focus` | var(--cbp-color-white); |
+| `--cbp-toggle-color-outline-focus-dark` | var(--cbp-color-black); |
+| `--cbp-toggle-control-height` | var(--cbp-space-7x); |
+| `--cbp-toggle-control-width` | 3.25rem; |
+| `--cbp-toggle-custom-icon` | ""; |
+| `--cbp-toggle-custom-icon-off` | ""; |
+| `--cbp-toggle-custom-icon-on` | ""; |
+| `--cbp-toggle-description-text-width` | min-content; |
+| `--cbp-toggle-gap` | var(--cbp-space-4x); |
+| `--cbp-toggle-grid-columns` | 3fr var(--cbp-toggle-control-width) 1fr; |
+| `--cbp-toggle-margin` | 0 0 var(--cbp-space-4x) 0; |
+| `--cbp-toggle-outline-style` | solid; |
+| `--cbp-toggle-outline-width` | var(--cbp-space-half-x); |
+| `--cbp-toggle-status-text-width` | var(--cbp-space-16x); |
+| `--cbp-toggle-text-color` | var(--cbp-color-text-darkest); |
+| `--cbp-toggle-text-color-dark` | var(--cbp-color-text-lightest); |
+
+---

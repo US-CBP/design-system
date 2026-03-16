@@ -1,0 +1,26 @@
+# cbp-form
+
+## Overview
+
+The Form component may optionally be used to wrap a native HTML form, providing enhanced functionality and support for some component functionality that would otherwise not be supported by the native platform, e.g., an enhanced file input that supports manipulating the file list and reset functionality for some custom form components.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `debug` | `debug` |  | `boolean` | `undefined` |
+| `preventSubmit` | `prevent-submit` | When specified, applies preventDefault() to the submit event and emits a custom event with the formData to hand off to the application. | `boolean` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `suppressedSubmit` |  | `CustomEvent<any>` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | This tag is a wrapper for the native `form` tag and its contents, which are slotted in the default slot. |
+
+---

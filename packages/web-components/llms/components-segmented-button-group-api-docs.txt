@@ -1,0 +1,40 @@
+# cbp-segmented-button-group
+
+## Overview
+
+The Segmented Button Group component wraps multiple buttons and can be used as a multi-option toggle or group of controls.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `accessibilityText` | `accessibility-text` | Specifies accessibility text used to label the group, applied to the group via aria-label. | `string` | `undefined` |
+| `disabled` | `disabled` |  | `boolean` | `undefined` |
+| `multiple` | `multiple` | Specifies whether multiple buttons may be activated at the same time. Defaults to false. | `boolean` | `undefined` |
+| `name` | `name` | Optionally specifies the name of the (hidden) form field as a formData key when a value is intended to be passed. | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `value` | `value` | Optionally specifies a value of the group as a way to set the initial button pressed states and/or to be passed as part of submitted formData when a name is also specified. Requires that the individual buttons have a value specified for the group to pass a value. | `any` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `segmentedButtonGroupClick` | A custom event fired when any of the group's buttons are clicked, whether toggled on or off. | `CustomEvent<any>` |
+
+## Methods
+
+### `reset() => Promise<void>`
+
+A custom method to reset the Segmented Button Group component to its initial state and value (when a name is specified) since the hidden input does not update on a native form reset. This method may be called manually, but is automatically called on form reset when using the `cbp-form` component.
+
+#### Returns
+
+Type: `Promise<void>`
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Only `cbp-button` components should be slotted within the default slot to make up the button group. |
+
+---

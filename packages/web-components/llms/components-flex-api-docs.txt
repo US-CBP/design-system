@@ -1,0 +1,89 @@
+# cbp-flex
+
+## Overview
+
+The Flex component invokes a CSS Flexbox context, acting as the flex parent and implementing CSS Flexbox as a component API. Immediate child nodes are automatically considered flex items.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `alignContent` | `align-content` | Specifies the alignment of a flex container's items within the flex container (only when there is extra space in the cross-axis). | `"center" | "flex-end" | "flex-start" | "space-around" | "space-between" | "stretch"` | `'stretch'` |
+| `alignItems` | `align-items` | Specifies the alignment for all of the flex container’s items along the cross-axis. Defaults to "stretch". | `"auto" | "baseline" | "center" | "flex-end" | "flex-start" | "stretch"` | `'stretch'` |
+| `breakpoint` | `breakpoint` | Specifies the size at which the flex children are linearized, specified in CSS units (preferably relative units such as rem). | `string` | `undefined` |
+| `contentBreakpoint` | `content-breakpoint` | Not yet implemented | `string` | `undefined` |
+| `direction` | `direction` | Specifies how flex items are placed in the flex container by setting the direction of the flex container’s main axis. Defaults to "row" for a horizontal flex context. | `"column" | "column-reverse" | "row" | "row-reverse"` | `'row'` |
+| `display` | `display` | Specifies the display mode. Defaults to "flex" | `"flex" | "inline-flex"` | `'flex'` |
+| `gap` | `gap` | Specifies the gap between items in CSS units (preferably relative units such as rem). Accepts a single value for horizontal and vertical gap or two values representing column gap and row gap, respectively. | `string` | `undefined` |
+| `justifyContent` | `justify-content` | Specifies the alignment of flex items along the main axis (of the current line) of the flex container. | `"center" | "flex-end" | "flex-start" | "space-around" | "space-between" | "space-evenly"` | `'flex-start'` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `wrap` | `wrap` | Specifies the wrapping behavior of the flex children. Browser default behavior is "nowrap". | `"nowrap" | "wrap" | "wrap-reverse"` | `undefined` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | DOM nodes placed in the default slot automatically become flex children. The use of `cbp-flex-item` is only required for granular control of individual flex item properties. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-flex-linearized-margin` | 0; |
+
+## Dependencies
+
+### Used by
+
+-   [cbp-breadcrumb](../cbp-breadcrumb)
+-   [cbp-expand](../cbp-expand)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-breadcrumb --> cbp-flex
+  cbp-expand --> cbp-flex
+  style cbp-flex fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---
+
+# cbp-flex-item
+
+## Overview
+
+The Flex Item component may optionally be used to specify properties of an individual flex item.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `alignSelf` | `align-self` | Specifies the alignment of the specific flex item along the cross-axis separate from the parent context. | `"auto" | "baseline" | "center" | "flex-end" | "flex-start" | "stretch"` | `undefined` |
+| `flexBasis` | `flex-basis` | Specifies a basis (in CSS units or content values) for calculating flex behavior different from the default of "auto" (which usually evaluates to "content"). | `string` | `undefined` |
+| `flexGrow` | `flex-grow` | Specifies the growth factor the item will grow at relative to other items. Defaults to zero, as flex items do not grow by default. | `number` | `undefined` |
+| `flexShrink` | `flex-shrink` | Specifies the shrink factor the item will shrink at relative to other items. Defaults to 1, as flex items will shrink at an equal rate by default, taking content size into consideration. | `number` | `undefined` |
+| `order` | `order` | Specifies an ordinal group value for sorting this flex item within its group. Defaults to zero, which renders the items in DOM order. | `number` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Content slotted in the default slot may consist of any combination of text or DOM nodes. |
+
+## Dependencies
+
+### Used by
+
+-   [cbp-expand](../cbp-expand)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-expand --> cbp-flex-item
+  style cbp-flex-item fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

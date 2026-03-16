@@ -1,0 +1,22 @@
+# cbp-container
+
+## Overview
+
+The Container component is a building block component for wrapping content and providing visual treatment such as a background image or color.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `background` | `background` | Specifies the CSS background of the parent container, which could be a solid color, an image, a gradient, or any combination (or multiples) achievable via the CSS `background` property. | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `textColor` | `text-color` | Specifies the text color for content within the container, since it could be on any background. | `string` | `undefined` |
+| `width` | `width` | Specifies the width of the inner container area. | `string` | `undefined` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Any content or layout components may be slotted within the container. |
+
+---

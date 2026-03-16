@@ -1,0 +1,38 @@
+# cbp-segmented-button-group
+
+## Purpose
+
+The Segmented Button Group component wraps multiple buttons and can be used as a multi-option toggle or group of controls.
+
+## Functional Requirements
+
+-   The Segmented Button Group is a wrapper for child Button components.
+-   The group may allow only one option to be selected (pressed) at a time, or multiple items to be selected.
+-   The group may be used as a simple UI toggle or may optionally pass a name/value pair as a form element.
+
+## Technical Specifications
+
+### User Interactions
+
+-   Activating any of the buttons within the group toggles the `pressed` property and likewise `aria-pressed` value on the button element.
+-   If the group allows only one button to be active:
+    -   When pressing a button, all others will be programmatically "unpressed."
+    -   Pressing a button again does not toggle it "unpressed"; it stays pressed, like a radio button.
+-   If the group allows multiple selections, user interaction toggles the pressed state and does not affect the other buttons in the group.
+-   When a button within the group is activated (either pressed state) by user interaction, both the Button and the Segmented Button Group components emit custom events that can be listened for.
+
+### Responsiveness
+
+-   Segmented Button Groups do not wrap and should be tested at small device sizes to make sure they are not truncated.
+-   If icons are intuitive and appropriate, the `cbp-hide` component may be leveraged to visually hide the text labels and show only icons at small screen sizes.
+
+### Accessibility
+
+-   The segmented Button Group has a `role="group"`.
+-   The group should be named with the `accessibilityText` property, which is applied as an `aria-label` to the group. This label gives added context to the buttons within the group.
+-   Each Button within the group should have an accessible label.
+
+### Additional Notes and Considerations
+
+-   While the Button component is capable of rendering both anchors and buttons, only the semantic `button` tag should be used within a Segmented Button Group, as that is the only context in which `aria-pressed` is valid.
+-   Since the `button` element does not pass data to the `formData` object upon form submission by default, specifying a `name` attribute will render a hidden input to pass the group's value as part of the `formData` automatically.

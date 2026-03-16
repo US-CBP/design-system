@@ -1,0 +1,54 @@
+# Components/Segmented Button Group
+
+## Examples
+
+
+### Segmented Button Group
+
+```tsx
+({
+  buttons,
+  name,
+  value,
+  multiple,
+  accessibilityText,
+  disabled,
+  sx
+}) => {
+  return ` 
+        <cbp-segmented-button-group
+          ${name ? `name="${name}"` : ''}
+          ${value ? `value="${value}"` : ''}
+          ${multiple ? `multiple` : ''}
+          ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+          ${disabled ? `disabled=${disabled}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+        >
+          ${generateButtons(buttons)}
+        </cbp-segmented-button-group>
+      `;
+}
+```
+
+### Segmented Button Group Icons
+
+```tsx
+({
+  buttons,
+  multiple,
+  accessibilityText,
+  disabled,
+  sx
+}) => {
+  return ` 
+        <cbp-segmented-button-group
+          ${multiple ? `multiple=${multiple}` : ''}
+          ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+          ${disabled ? `disabled=${disabled}` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+        >
+          ${generateButtons(buttons)}
+        </cbp-segmented-button-group>
+      `;
+}
+```

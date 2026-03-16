@@ -1,0 +1,36 @@
+# cbp-usa-banner
+
+## Overview
+
+The "USA Banner" is similar to the U.S. Web Design System "banner" component, intended to establish trust as a common identifier on public-facing government sites.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `open` | `open` | Specifies that the banner is open. Primarily used for internal component logic. | `boolean` | `false` |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-usa-banner-background-color` | var(--cbp-color-gray-cool-90); |
+| `--cbp-usa-banner-color` | var(--cbp-color-text-lightest); |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-button](../cbp-button)
+-   [cbp-icon](../cbp-icon)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-usa-banner --> cbp-button
+  cbp-usa-banner --> cbp-icon
+  style cbp-usa-banner fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

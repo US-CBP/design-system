@@ -1,0 +1,25 @@
+# Components/Section
+
+## Examples
+
+
+### Section
+
+```tsx
+({
+  text,
+  tag,
+  accessibilityText,
+  sx
+}) => {
+  return ` 
+      <cbp-section
+        ${tag && tag !== 'none' ? `tag=${tag}` : ''}
+        ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${text}
+      </cbp-section>
+    `;
+}
+```

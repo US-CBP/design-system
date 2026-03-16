@@ -1,0 +1,67 @@
+# cbp-loader
+
+## Overview
+
+The Loader is used as a visual indicator of progress during waiting periods.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `determinate` | `determinate` | Defines if the loader will be in determinate/indeterminate, if true loader will display the current value out of max value | `boolean` | `false` |
+| `error` | `error` | Used to set the loader to the 'error' state of the loader | `boolean` | `undefined` |
+| `max` | `max` | Used in deternminate mode to display the max value of loaded content | `number` | `100` |
+| `orientation` | `orientation` | Used to set the text orientation for the circular determinate loader's description | `"horizontal" | "vertical"` | `'horizontal'` |
+| `progressId` | `progress-id` | Specifies a unique `ID` for the loader, used to wire up the controls and accessibility features. | `string` | `createNamespaceKey('cbp-loader')` |
+| `size` | `size` | Defines the size of the loader render, default value of large | `"large" | "small"` | `"large"` |
+| `success` | `success` | Used to set the loader to the 'success' state of the loader | `boolean` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `value` | `value` | Used in deternminate mode to display the current value of loaded content | `number` | `0` |
+| `variant` | `variant` | Defines if the loader will be in displayed as a circular or linear variant | `"circular" | "linear"` | `undefined` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Label text may be provided in the default slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-loader-center-color` | var(--cbp-color-branding-cbp-light); |
+| `--cbp-loader-center-color-dark` | var(--cbp-color-branding-cbp-dark); |
+| `--cbp-loader-circular-determinate` | var(--cbp-loader-track-color); |
+| `--cbp-loader-color` | var(--cbp-color-info-dark); |
+| `--cbp-loader-color-dark` | var(--cbp-color-info-light); |
+| `--cbp-loader-diameter` | var(--cbp-space-12x); |
+| `--cbp-loader-gutter-width` | var(--cbp-space-2x); |
+| `--cbp-loader-linear-flex-direction` | column; |
+| `--cbp-loader-linear-gap` | var(--cbp-space-2x); |
+| `--cbp-loader-linear-height` | var(--cbp-space-2x); |
+| `--cbp-loader-linear-status-width` | var(--cbp-loader-linear-width); |
+| `--cbp-loader-linear-width` | 100%; |
+| `--cbp-loader-status-description-color` | var(--cbp-color-text-darkest); |
+| `--cbp-loader-status-description-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-loader-status-indicator-color` | var(--cbp-color-white); |
+| `--cbp-loader-status-indicator-color-dark` | var(--cbp-color-black); |
+| `--cbp-loader-status-indicator-diameter` | var(--cbp-space-4x); |
+| `--cbp-loader-track-color` | var(--cbp-color-gray-cool-20); |
+| `--cbp-loader-track-color-dark` | var(--cbp-color-gray-cool-50); |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-icon](../cbp-icon)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-loader --> cbp-icon
+  style cbp-loader fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

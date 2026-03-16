@@ -1,0 +1,29 @@
+# Components/Treeview
+
+## Examples
+
+
+### Treeview
+
+```tsx
+({
+  treeItems,
+  name,
+  selectable,
+  accessibilityText,
+  context,
+  sx
+}) => {
+  return `
+    <cbp-treeview
+      ${selectable ? 'selectable' : ''}
+      ${name ? `name="${name}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateTreeviewitems(treeItems, selectable)}
+    </cbp-treeview>
+  `;
+}
+```

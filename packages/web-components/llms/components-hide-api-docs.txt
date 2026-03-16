@@ -1,0 +1,30 @@
+# cbp-hide
+
+## Overview
+
+The Hide component represents a component-based implementation for programmatically hiding (or visually hiding) content based on application logic or media query.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `display` | `display` | Specifies the host's display when visible. The default is `inline`, which is the default display of a custom element. | `string` | `'inline'` |
+| `hide` | `hide` | When set to true, the host is hidden. Allows for toggling via property binding rather than media query. | `boolean` | `undefined` |
+| `hideAt` | `hide-at` | Specifies a valid CSS media query (preferably using relative units), when met will hide the wrapped content using display: none; (e.g., `max-width: 64em`). For complex media queries using AND/OR operators, each condition must be enclosed in parentheses (e.g., `(width < 37.5rem) OR (width > 63rem)`). | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `visuallyHide` | `visually-hide` | When set to true, the host is visually hidden in an accessible manner. Allows for toggling via property binding rather than media query. | `boolean` | `undefined` |
+| `visuallyHideAt` | `visually-hide-at` | Specifies a valid CSS media query (preferably using relative units), when met will visually hide the wrapped content in a way that is it still accessible as a label (e.g., `max-width: 64em`), For complex media queries using AND/OR operators, each condition must be enclosed in parentheses (e.g., `(width < 37.5rem) OR (width > 63rem)`). | `string` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `hideToggle` | A custom event emitted when the accordion item control is activated. | `CustomEvent<any>` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Content in the default slot to be conditionally hidden. |
+
+---

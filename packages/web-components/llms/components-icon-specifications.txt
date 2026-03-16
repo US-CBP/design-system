@@ -1,0 +1,41 @@
+# cbp-icon
+
+## Purpose
+
+The Icon component represents a standard API for embedding accessible Scalable Vector Graphics (SVG) icons into applications/documents.
+
+## Functional Requirements
+
+-   The Icon component packages all icons used within the design system that can be referenced by name.
+-   External icons may be loaded by:
+    -   Slotting component-based icons or native SVGs inside of the Icon component.
+    -   Icons may also be loaded by specifying an external `src` property pointing to the SVG file. (TODO)
+
+## Technical Specifications
+
+### User Interactions
+
+-   Icons themselves are not interactive but may be slotted inside of interactive controls. See accessibility concerns.
+
+### Responsiveness
+
+-   SVG files are scalable and work well at all screen sizes.
+-   Icons maintain a square form factor regardless of the aspect ratio of the `viewbox`.
+    -   This leads to predictable spacing in lists, controls, and columns.
+    -   This also allows a single version of arrows, carets, chevrons, etc. to be rotated to represent 4 directional variants instead of storing separate icons for each.
+-   The icon's default size is `1rem`, which conforms to the 4 pixel grid and represents the default icon size next to body text.
+-   For any other size, the icon's size should always be specified in relative units, preferably using design tokens, via the `size` property.
+
+### Accessibility
+
+-   Specifying alternate text via the `accessibilityText` property renders this text as an `aria-label` on the `svg` element.
+-   `accessibilityText` is required when an icon is not accompanied by text content in a control (e.g., link or button) unless an accessible label is provided on the control itself (e.g., via `aria-label` or `aria-labelledby`).
+-   `accessibilityText` should be specified any time the icon is not purely decorative and this descriptive text is not redundant with a text label.
+-   Not specifying `accessibilityText` defaults to treating the icon as decorative and the component renders the `svg` tag with `role="presentation"` and `aria-hidden="true"`.
+
+### Additional Notes and Considerations
+
+-   The Icon component may be used as a wrapper for native SVG or component-based icons slotted within it, providing a consistent square form factor and styling hooks.
+-   Additional component properties are not passed down to slotted icons at this time, however.
+-   TODO: implement loading of external icons, including different slotting formats (component, SVG, `img` tag).
+-   TODO: investigate and implement caching of externally requested icons.

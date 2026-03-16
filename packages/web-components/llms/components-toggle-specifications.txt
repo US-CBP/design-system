@@ -1,0 +1,45 @@
+# cbp-toggle
+
+## Purpose
+
+The Toggle component is a visual variant of a Boolean selection form control (checkbox), representing an on/off toggle switch.
+
+## Functional Requirements
+
+-   The Toggle component provides visual styling for a checkbox form control to appear as a toggle switch, including its various states, including hover, focus, disabled, for both checked & unchecked states.
+-   The Toggle component is a native HTML `input type="checkbox"` under the hood, which is slotted.
+-   The Toggle component places the label to the left of the control, unlike the Checkbox component.
+-   The Toggle component requires a label for an accessible name for form control.
+-   A Toggle may be used individually as a standalone toggle or within a list (in a `cbp-form-field` group).
+-   An optional text display of the toggle status may be shown next to the control to reduce ambiguity.
+
+## Technical Specifications
+
+-   disabled property is used to functionally & visual disable the control.
+-   hideStatus boolean property is used to specify the display of the toggle status text
+    -   interacts with the statusTextOn & statusTextOff label display
+-   statusTextOn is used to determine the text value of the helper text of a toggle. default value is 'on'
+-   statusTextOff is used to determine the text value of the helper text of a toggle. default value is 'off'
+-   Width css property is used to specify the width of the control for 'stacked' vertical display *TODO: might be managable via sx prop. possible this may not be needed, need to build it first to tell
+-   Gap css property is used to specify the gap property of the control
+
+### User Interactions
+
+-   The user interactions are that of a native checkbox (`input type="checkbox"`) element:
+    -   Clicking anywhere on the form control or label text will place focus on the control and toggle its state.
+    -   Toggle are keyboard accessible by tabbing onto them in either direction, placing focus onto the native form control (*not really native form control).
+    -   Pressing the Spacebar will toggle the focused checkbox state, also emitting a custom event.
+
+### Responsiveness
+
+-   The Toggle label will wrap as needed.
+-   The Toggle control is sized in relative units and will respond to changes in the user's default text size.
+
+### Accessibility
+
+-   The native checkbox (`input type="checkbox"`) element and label text are wrapped within a `label` tag, forming an implicit label association (no `id` needed).
+-   Full keyboard navigation is supported, as detailed under "User Interactions" above.
+
+### Additional Notes and Considerations
+
+-   TODO: 'Special toggles' not currently included, seems to need support for custom sliders/icons

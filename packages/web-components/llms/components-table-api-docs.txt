@@ -1,0 +1,86 @@
+# cbp-table
+
+## Overview
+
+The Table component is a wrapper component encapsulating design system styles for semantic HTML tables as well as applying progressive enhancements to the contained table.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `columnHover` | `column-hover` | Specifies whether a hover effect is applied to columns when the column header is hovered. This feature is opt-in. | `boolean` | `undefined` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `hover` | `hover` | Specifies whether the mouse cursor highlights the table row or cell on hover. Defaults to "row". | `"cell" | "row"` | `'row'` |
+| `striped` | `striped` | Specifies whether the table is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). | `"even" | "odd"` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `tableSort` | An event emitted when the table is sorted via user interaction activating a table header control. | `CustomEvent<any>` |
+
+## Methods
+
+### `doSort(column: number, e?: any) => Promise<void>`
+
+Updates the UI statefullness (`aria-pressed`, `aria-sort`, and visual arrow icon) and emits a custom event to hook up to application logic for the actual sorting
+
+#### Parameters
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `column` | `number` |  |
+| `e` | `any` |  |
+
+#### Returns
+
+Type: `Promise<void>`
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The semantic table HTML is placed within the default slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-table-cell-padding` | var(--cbp-space-4x) var(--cbp-space-3x); |
+| `--cbp-table-color` | var(--cbp-color-text-darkest); |
+| `--cbp-table-color-bg-danger` | var(--cbp-color-danger-lighter); |
+| `--cbp-table-color-bg-danger-dark` | var(--cbp-color-danger-darker); |
+| `--cbp-table-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-table-header-color` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-table-header-color-active` | var(--cbp-color-text-darkest); |
+| `--cbp-table-header-color-active-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-table-header-color-bg` | var(--cbp-color-gray-cool-20); |
+| `--cbp-table-header-color-bg-active` | var(--cbp-color-interactive-active-dark); |
+| `--cbp-table-header-color-bg-active-dark` | var(--cbp-color-interactive-active-light); |
+| `--cbp-table-header-color-bg-dark` | var(--cbp-color-gray-cool-60); |
+| `--cbp-table-header-color-bg-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-table-header-color-bg-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-table-header-color-bg-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-table-header-color-bg-hover-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-table-header-color-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-table-header-color-focus` | var(--cbp-color-text-lightest); |
+| `--cbp-table-header-color-focus-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-table-header-color-hover` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-table-header-color-hover-dark` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-table-header-color-outline` | var(--cbp-color-white); |
+| `--cbp-table-header-color-outline-dark` | var(--cbp-color-black); |
+| `--cbp-table-row-border-size` | var(--cbp-border-size-md); |
+| `--cbp-table-row-color-bg` | var(--cbp-color-white); |
+| `--cbp-table-row-color-bg-dark` | var(--cbp-color-gray-cool-70); |
+| `--cbp-table-row-color-bg-highlight` | var(--cbp-color-highlight); |
+| `--cbp-table-row-color-bg-hover` | var(--cbp-color-gray-cool-10); |
+| `--cbp-table-row-color-bg-hover-dark` | var(--cbp-color-gray-cool-90); |
+| `--cbp-table-row-color-bg-selected` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-table-row-color-bg-selected-dark` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-table-row-color-bg-striped` | var(--cbp-color-gray-cool-4); |
+| `--cbp-table-row-color-bg-striped-dark` | var(--cbp-color-gray-cool-80); |
+| `--cbp-table-row-color-border` | var(--cbp-color-gray-cool-30); |
+| `--cbp-table-row-color-border-dark` | var(--cbp-color-gray-cool-50); |
+
+---

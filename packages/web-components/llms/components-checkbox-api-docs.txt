@@ -1,0 +1,98 @@
+# cbp-checkbox
+
+## Overview
+
+The Checkbox component wraps the slotted native form control (`input type="checkbox"`) and label text, providing cross-browser styling according to the design system specifications.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `checked` | `checked` | Marks the checkbox as checked by default when specified. | `boolean` | `undefined` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `disabled` | `disabled` | Marks the checkbox in a disabled state when specified. | `boolean` | `undefined` |
+| `fieldId` | `field-id` | Optionally specify the ID of the checkbox input here, which is used to generate related pattern node IDs and associate everything for accessibility | `string` | `createNamespaceKey('cbp-checkbox')` |
+| `indeterminate` | `indeterminate` | Marks the checkbox as checked by default when specified. | `boolean` | `undefined` |
+| `name` | `name` | The `name` attribute of the checkbox, which is passed as part of formData (as a key) only when the checkbox is checked. | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `value` | `value` | Optionally set the `value` attribute of the checkbox at the component level. Not needed if the slotted checkbox has a value. | `string` | `undefined` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `stateChanged` | A custom event emitted when the checked state changes due to user interaction. | `CustomEvent<any>` |
+
+## Methods
+
+### `reset() => Promise<void>`
+
+A custom method to reset the Checkbox component to its initial state and value since it does not update properly on a native form reset when the checked state is set via the component property. This method may be called manually, but is automatically called on form reset when using the `cbp-form` component.
+
+#### Returns
+
+Type: `Promise<void>`
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | the checkbox control and label text are placed in the default slot, both of which are rendered inside of the `label` element. The label should not include excessively long descriptive text. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-checkbox-color` | var(--cbp-color-text-lightest); |
+| `--cbp-checkbox-color-bg` | var(--cbp-color-white); |
+| `--cbp-checkbox-color-bg-checked` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-checkbox-color-bg-checked-dark` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-checkbox-color-bg-checked-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-checkbox-color-bg-checked-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-checkbox-color-bg-dark` | var(--cbp-color-gray-cool-70); |
+| `--cbp-checkbox-color-border` | var(--cbp-color-interactive-secondary-dark); |
+| `--cbp-checkbox-color-border-checked` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-checkbox-color-border-checked-dark` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-checkbox-color-border-checked-focus` | var(--cbp-color-white); |
+| `--cbp-checkbox-color-border-checked-focus-dark` | var(--cbp-color-black); |
+| `--cbp-checkbox-color-border-checked-hover` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-checkbox-color-border-checked-hover-dark` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-checkbox-color-border-dark` | var(--cbp-color-interactive-secondary-light); |
+| `--cbp-checkbox-color-border-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-checkbox-color-border-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-checkbox-color-border-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-checkbox-color-border-hover-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-checkbox-color-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-checkbox-color-halo` | transparent; |
+| `--cbp-checkbox-color-halo-checked-focus` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-checkbox-color-halo-checked-focus-dark` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-checkbox-color-halo-checked-hover` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-checkbox-color-halo-checked-hover-dark` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-checkbox-color-halo-dark` | transparent; |
+| `--cbp-checkbox-color-halo-focus` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-checkbox-color-halo-focus-dark` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-checkbox-color-halo-hover` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-checkbox-color-halo-hover-dark` | var(--cbp-color-text-darker); |
+| `--cbp-checkbox-color-label` | var(--cbp-color-text-darkest); |
+| `--cbp-checkbox-color-label-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-checkbox-font-weight-label` | var(--cbp-font-weight-bold); |
+| `--cbp-checkbox-margin` | 0 0 var(--cbp-space-1x) 0; |
+| `--cbp-checkbox-min-height` | var(--cbp-space-11x); |
+
+## Dependencies
+
+### Used by
+
+-   [cbp-dropdown](../cbp-dropdown)
+-   [cbp-treeview-item](../cbp-treeview-item)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-dropdown --> cbp-checkbox
+  cbp-treeview-item --> cbp-checkbox
+  style cbp-checkbox fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

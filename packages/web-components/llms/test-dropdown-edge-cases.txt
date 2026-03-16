@@ -1,0 +1,207 @@
+# Test/Dropdown Edge Cases
+
+## Examples
+
+
+### Dropdown - Short
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  name,
+  placeholder,
+  filter,
+  multiple,
+  create,
+  error,
+  readonly,
+  disabled,
+  value,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
+      <cbp-dropdown
+        ${name ? `name="${name}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${filter ? `filter` : ''}
+        ${multiple ? `multiple` : ''}
+        ${create ? `create` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${multiple ? generateMultiSelectItems(ShortList, name, context) : generateItems(ShortList)}
+      </cbp-dropdown>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Dropdown - Dynamic JSON
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  name,
+  placeholder,
+  filter,
+  multiple,
+  create,
+  error,
+  readonly,
+  disabled,
+  value,
+  context,
+  sx,
+  debug
+}) => {
+  // Set up event handlers for logging and setting errors on files via the `status` prop.
+  setTimeout(() => {
+    const Dropdown = document.querySelector('cbp-app cbp-dropdown') as HTMLCbpDropdownElement;
+    const Buttons: HTMLCbpButtonElement[] = Array.from(document.querySelectorAll('cbp-button[id]'));
+    //console.log(Dropdown, Button);
+
+    Buttons.forEach((item, index) => {
+      item.addEventListener('buttonClick', () => {
+        //console.log('Populating dropdown...');
+        Dropdown.items = DataSet[index];
+      });
+    });
+  }, 500);
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
+      <cbp-dropdown
+        debug=${debug}
+        ${name ? `name="${name}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${filter ? `filter` : ''}
+        ${multiple ? `multiple` : ''}
+        ${create ? `create` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        <!-- No dropdown items loaded by default -->
+      </cbp-dropdown>
+      
+      <br />
+
+      <cbp-button
+        fill="solid"
+        color="secondary"
+        id="dataset1"
+      >
+        DataSet 1
+      </cbp-button>
+
+      <cbp-button
+        fill="solid"
+        color="secondary"
+        id="dataset2"
+      >
+        DataSet 2
+      </cbp-button>
+
+      <cbp-button
+        fill="solid"
+        color="secondary"
+        id="dataset3"
+      >
+        DataSet 3
+      </cbp-button>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Dropdown - Empty
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  name,
+  placeholder,
+  filter,
+  multiple,
+  create,
+  error,
+  readonly,
+  disabled,
+  value,
+  context,
+  sx
+}) => {
+  // Set up event handlers for logging and setting errors on files via the `status` prop.
+  setTimeout(() => {
+    const Dropdown = document.querySelector('cbp-app cbp-dropdown') as HTMLCbpDropdownElement;
+    const Button = document.querySelector('cbp-button#populateDropdown') as HTMLCbpButtonElement;
+    //console.log(Dropdown, Button);
+
+    Button.addEventListener('buttonClick', () => {
+      console.log('Populating dropdown...');
+      Dropdown.items = States;
+    });
+  }, 500);
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    >
+      <cbp-dropdown
+        ${name ? `name="${name}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${filter ? `filter` : ''}
+        ${multiple ? `multiple` : ''}
+        ${create ? `create` : ''}
+        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        <!-- No dropdown items loaded by default -->
+      </cbp-dropdown>
+      
+      <br />
+
+      <cbp-button
+        fill="solid"
+        color="primary"
+        id="populateDropdown"
+      >
+        Populate Dropdown
+      </cbp-button>
+    </cbp-form-field>
+  `;
+}
+```

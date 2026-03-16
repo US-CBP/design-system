@@ -1,0 +1,90 @@
+# cbp-form-field
+
+## Purpose
+
+The Form Field component represents a generic, reusable pattern for form fields of all types, displaying the label and form control, along with optional descriptive text and error state in a consistent and accessible manner.
+
+## Functional Requirements
+
+-   The Form Field component enforces the structure of an input pattern, containing:
+    -   A `label` tag.
+    -   An optional description (or errors).
+    -   The native form control (input, select, textarea, etc.) slotted.
+-   For compound input patterns containing multiple form controls (e.g., checklist, radio list, etc.), this includes:
+    -   A wrapping `fieldset` tag.
+    -   A `legend` tag representing the pattern label.
+    -   An optional description (or errors).
+    -   The native form controls (input, select, textarea, etc.) slotted, with their own labels.
+-   The Form Field component encapsulates styles for all types of HTML form fields that may be slotted within, including various states such as:
+    -   readonly
+    -   disabled
+    -   error state
+-   TODO: The Form Field component can handle single fields or groups such as checklists, radio lists, or compound input patterns (e.g., phone, address).
+
+## Technical Specifications
+
+### User Interactions
+
+-   When a Form Field is activated by user interaction it emits a custom event that can be listened for.
+-   All `textarea` tags are resizable vertically up to a maximum of `80vh` (it should never exceed the screen height, which causes usability issues due to double scroll bars).
+
+### Responsiveness
+
+-   Form controls such as text input, textarea, and selects are styled at 100% of their container by default, with a max-width of 100% so that they cannot break out of their container.
+
+### Accessibility
+
+-   According to CBP Design System guidance, required fields should indicate "Required" in the field description in plain text.
+    -   The `required` attribute should not be used on the native form field because 1. screen readers would read "required" twice and 2. this attribute triggers browser-based validation, which will not behave consistently with application/custom validation.
+    -   Do not place `aria-required` on the native form field, as screen readers would read "required" twice.
+-   For single-input form fields:
+    -   The label is rendered within a semantic `label` tag referencing the slotted form control by `id`.
+    -   The (optional) description is associated to the form control as a description via the `aria-describedby` attribute.
+    -   The `disabled` and `readonly` properties controls the same-named attributes on the native form control.
+    -   The `error` property controls the `aria-invalid` attribute on the native form control.
+-   For multi-input form fields, such as radio lists or checklists:
+    -   The entire patterns is wrapped within a `fieldset`, which provides an inherent "group" role.
+    -   The component label is rendered as a `legend`, which provides the group's label.
+    -   The (optional) description is associated to the `fieldset` via the `aria-describedby` attribute.
+    -   The `disabled` property controls the same-named attribute on the `fieldset`, using a little-known feature to toggle all fields within it disabled.
+    -   The `error` property controls the `aria-invalid` attribute on the `fieldset`. This is the preferred way of marking a checklist or radio list as invalid. For groupings containing multiple discrete form entries, such as a Name or Address pattern, the `error` property should also be used on the individual fields within the group.
+-   Disabled form controls and buttons are non-interactive and cannot be navigated to using the keyboard and should be used with caution (if at all).
+-   Placeholder text should rarely, if ever, be used.
+    -   Especially in forms where the user is expected to enter data, placeholder text with sufficient contrast to the background color may be mistaken as entered input.
+    -   In high contrast mode, placeholder text is displayed exactly the same as entered text, making this issue more likely.
+    -   Placeholder text disappears when the user starts typing in the field, creating more cognitive load than necessary.
+-   Form input patterns using this component and the optional `cbp-form-field-wrapper` component will be read in the following order by screen readers:
+    
+    1.  Field label
+    2.  Form field
+    
+    -   "Edit" or similar control description (e.g., "Spin Button")
+    -   If aria-invalid, reads "invalid entry"
+    -   "Editable" state
+    
+    3.  Accessible Description (via aria-describedby or title if the former does not exist):
+    
+    -   Description prop
+    
+    4.  Field value
+
+### Additional Notes and Considerations
+
+-   This component is required for bringing in the style for all form controls/inputs. It should be flexible enough for various cases such as:
+    -   when the label is hidden
+-   This component may manage the form field (and associated buttons) disabled/readonly/error states, but does its best to get out of the way if the application wants to manage those states directly on the slotted elements.
+-   Overlays and attached buttons are currently handled by child component, `cbp-form-field-wrapper`
+-   When autocomplete/autofill is used to fill the field, the browser adds styling (only visible in light mode).
+-   Textareas now support `field-sizing: content`, which causes the textarea to expand vertically to the size of its content (within the bounds of min- and max-heights). This may not be desireable as a default, but could make a useful option.
+-   Additional notes on slotted form fields and their use, since these are not strictly controlled by the design system:
+    -   Some input types, such as `email`, `tel`, and `url`, should not be used because they invoke browser-based validation, which is inconsistent across browsers and with the design system, and not always accessible.
+    -   Use `inputmode` instead of HTML5 input types to provide a browser hint for the proper virtual keyboard on mobile devices without side effects noted above.
+    -   While the `input type="number"` restricts non-numeric input on Chrome, this is not the case in Safari and Firefox. Implement validation appropriately with the knowledge that non-numeric characters may still be entered.
+    -   The `select` with `multiple` (and `size`) attribute should not be used, as they have poor usability. Use our `cbp-dropdown` instead.
+    -   The `select` element should not use `optgroup` tags within, as these group labels able to be styled on some systems and fail color contrast requirements for accessibility.
+    -   Input types such as `date`, `datetime-local`, `month`, `week`, `time` may also vary by browser and not be fully customized in accordance with the design system.
+    -   Some input types such as `month` and `week` are not supported in Safari and Firefox and should not be used.
+    -   Use of the `size` attribute is discouraged as it does not represent a linear/consistent scale across input sizes and browsers.
+        -   Furthermore, `size` is not valid on some input types such as `type="number"`.
+        -   When necessary, it is recommended to use CSS to style the width of form fields (using a relative unit such as `ch` or `rem`) separate from their containers.
+-   TODO: needs additional testing of nested `cbp-form-field` components, making up compound input patterns (e.g., phone, address).

@@ -1,0 +1,23 @@
+# Components/Skip Navigation Link
+
+## Examples
+
+
+### Skip Navigation Link
+
+```tsx
+({
+  text,
+  targetId,
+  shortcutKey,
+  sx
+}) => {
+  return ` 
+      <cbp-skip-nav
+        ${targetId ? `targetId=${targetId}` : ''}
+        ${shortcutKey ? `shortcutKey=${shortcutKey}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >${text ? text : ''}</cbp-skip-nav>
+    `;
+}
+```

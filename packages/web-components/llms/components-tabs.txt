@@ -1,0 +1,28 @@
+# Components/Tabs
+
+## Examples
+
+
+### Tabs
+
+```tsx
+({
+  tabs,
+  accessibilityText,
+  withIcon,
+  withBadge,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-tabs
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${createTabs(tabs, withIcon, withBadge)}
+    </cbp-tabs>
+    ${createTabPanels(tabs)}
+ `;
+}
+```

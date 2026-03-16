@@ -1,0 +1,99 @@
+# Test/Form Processing
+
+## Examples
+
+
+### Form Component Processing
+
+```tsx
+args => {
+  // Set up event handlers for logging and setting errors on files via the `status` prop.
+  /*
+  setTimeout(() => {
+    const formEl = document.querySelector(`form[name="${args.name}"]`) as HTMLFormElement;
+    const submitButton = document.querySelector('button[type=submit]') as HTMLButtonElement;
+    
+    //console.log('Event Listeners set: ', formEl, submitButton);
+      submitButton?.addEventListener('click', e => {
+      console.log('Submit button pressed', submitButton, e);
+    });
+      formEl?.addEventListener('submit', e => {
+      console.log('Native Form submit', formEl, e);
+      let formData = new FormData(formEl);
+      console.log('Native form submit - formData (array spread): ',[...formData]);
+    });
+  }, 1000);
+  */
+
+  return `
+    <h1>Form Component</h1>
+    <p>
+      Some component-enhanced functionality may not work with the native platform without using the cbp-form component. 
+      This page demonstrates component interactions using a cbp-form wrapping a native HTML form and handling the form events such as submit and reset.
+    </p>
+    <cbp-form 
+      ${args.debug ? 'debug' : ''}
+      ${args.preventSubmit ? 'prevent-submit' : ''}
+    >
+      ${HTMLForm(args)}
+    </cbp-form>
+  `;
+}
+```
+
+### Form Processing
+
+```tsx
+args => {
+  // Set up event handlers for logging and setting errors on files via the `status` prop.
+  setTimeout(() => {
+    const formEl = document.querySelector(`form[name="${args.name}"]`) as HTMLFormElement;
+    const submitButton = document.querySelector('button[type=submit]') as HTMLButtonElement;
+    if (args.debug) console.log('Event Listeners set: ', formEl, submitButton);
+    submitButton?.addEventListener('click', e => {
+      if (args.debug) console.log('Submit button pressed', submitButton, e);
+    });
+    formEl?.addEventListener('submit', e => {
+      if (args.debug) console.log('Native Form submit', formEl, e);
+      if (args.preventSubmit) e.preventDefault();
+      let formData = new FormData(formEl);
+      // Data can be added to the formData for submission:
+      //formData.append("CustomField", "This is some extra data");
+
+      /*
+       * Because formData is an iterable, logging it does not show its name/value pairs.
+       * There are a number of ways to get at this, however, all of which require
+       * adding "dom.iterable", to compilerOptions > lib in tsconfig.json to avoid the 
+       * following TypeScript/compile error:
+       * 
+       * Type 'FormData' must have a '[Symbol.iterator]()' method that returns an iterator.
+       */
+
+      // List key/value pairs
+      /*
+      for(let [name, value] of formData) {
+        console.log(`${name} =`, value);
+      }
+      */
+      // Spreading the formData as an array seems to give the same results as above.
+      if (args.debug) console.log('Native form submit - formData (array spread): ', [...formData]);
+      // This method makes the assumption that object keys are unique and only shows 1 value when they are not.
+      //console.log('formData as JS Object: ', Object.fromEntries(formData.entries()));
+
+      /*
+      formData.append("CustomField", "This is some extra data");
+      // formData can be manually submitted 
+      const response = await fetch("stash.php", {
+        method: "POST",
+        body: formData,
+      });
+      */
+    });
+  }, 2000);
+  return `
+    <h1>Native Form Tag</h1>
+    <p>Some component-enhanced functionality may not work with the native platform without using the cbp-form component. This page demonstrates component interactions with a native HTML form.</p>
+    ${HTMLForm(args)}
+  `;
+}
+```

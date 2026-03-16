@@ -1,0 +1,25 @@
+# Components/Badge
+
+## Examples
+
+
+### Badge
+
+```tsx
+({
+  label,
+  color,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-badge
+      ${color ? `color=${color}` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${label}
+    </cbp-badge>
+  `;
+}
+```

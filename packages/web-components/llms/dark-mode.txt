@@ -1,0 +1,47 @@
+# About Dark Mode
+
+## Dark Mode
+
+### Implementation
+
+The CBP Design System components support both light and dark modes, as indicated by a user's operating system preferences. There is nothing required by the developer for regular light and dark mode toggling based on user preferences other than wrapping the entire site/application template in the `cbp-app` tag.
+
+A developer wishing to create an application-based toggle, which would override the system settings, can do so by togging the `cbp-app` component's `theme` property between "light" and "dark" values. The `cbp-app` component should wrap the entire site (as in the template story) and is meant for hoisting site or page-wide functionality such as light and dark modes.
+
+### Accessibility
+
+While the inclusion of dark mode (user preference) may be considered accessible design, there is no specific WCAG 2.2 Success Criterion that mandates a dark mode/theme. The inclusion of dark mode remains a best practice and a method for meeting the broader intent of WCAG (User Preference and Flexibility), but it is not a Pass/Fail requirement under any single criterion. Dark mode is typically preferred by most users in a low light setting, reduces eye strain for users with light sensitivity, helps people with certain types of visual impairments, and provides essential accommodation for people with migraine disorders or traumatic brain injuries.
+
+Some motivations for wanting a dark mode include:
+
+-   Physical comfort reasons: To reduce eye strain when reading at night or in ambient conditions.
+-   Technical reasons: Dark mode saves energy on battery powered devices.
+-   Aesthetic reasons: Dark mode as design preference looks sleeker to some.
+-   Medical reasons: For people suffering from migraines, light from screen is a trigger and are actually advised to avoid light and sound to reduce the pain.
+
+Conversely, people with astigmatisms, which are very common, may have a harder time with dark mode because it can create a halation effect.
+
+Supporting user preference is important. Surfacing this feature as an application-level control makes it more readily available on a contextual basis, easier than changing it via system settings.
+
+## Dark context
+
+Supporting user preferences is only one facet of a robust dark mode. Another facet is supporting design specifications and context in a flexible manner.
+
+Even in "light mode" (via system preferences), when a section of the page has a dark background, the components placed within that area need to provide appropriate (accessible) contrast. Most components have a `context` property for this purpose. The `context` property describes both the default design (in light mode) and the behavior when switching to dark mode using the following values:
+
+-   `light-inverts` (default and does not need to be explicitly set)
+-   `light-always`
+-   `dark-inverts`
+-   `dark-always`
+
+These values support a range of possibilities to meet various design requirements, because it is not always the case that something with a dark appearance or background in light mode would automatically invert to a light appearance in dark mode.
+
+The values "light-always" and "dark-always" specify a visual design that does not change based on light or dark mode. However, "light-inverts" (the default value) and "dark-inverts" specify a visual design in light mode that inverts when changing to dark mode.
+
+For example, in both light and dark modes, the `cbp-footer` component contains a dark background. Any components slotted within the footer would use the property `context="dark-always"` to maintain the proper colors in both light and dark modes because they are placed on a background (context) that remains dark.
+
+Similarly, a variant of the `cbp-drawer` used for the "User Preferences" drawer in many applications uses a dark background (via `context="dark-always"`). Showing a "dark-always" drawer means that all slotted components, such as the panel, links, typography, etc., must also contain `context="dark-always"` to persist a dark design regardless of light or dark mode.
+
+### Accessibility
+
+The inclusion of light/dark context support in the individual web components is critical in meeting accessible contrast requirements in specific scenarios with dark colored backgrounds regardless of the user's preference of light or dark mode. In cases where custom background colors are used beyond those defined by the design system, most components expose a CSS API of custom properties allowing for both light and dark color overrides.

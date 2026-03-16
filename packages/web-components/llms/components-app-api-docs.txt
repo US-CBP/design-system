@@ -1,0 +1,22 @@
+# cbp-app
+
+## Overview
+
+An overarching App tag acts as a low-barrier way to get core design system elements (design tokens and styles) as well as a way to manage site/page-level settings such as dark mode.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `appName` | `app-name` | Specifies the application name for logging with debug information. | `string` | `undefined` |
+| `appVersion` | `app-version` | Specifies the application version for logging with debug information. This may be automated by importing it from the application's package.json, if used. | `string` | `undefined` |
+| `debug` | `debug` | Turning on debug mode will log the version of the design system package and Stencil version it was built with to the console, in addition to application name and version, if specified. | `boolean` | `undefined` |
+| `theme` | `theme` | Optionally specifies light/dark mode. This is only needed if the application can change the theme separate from OS settings. | `"dark" | "light" | "system"` | `"system"` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | All application markup should be placed within the default slot to inherit the base CSS, design tokens, and dark mode styling. |
+
+---

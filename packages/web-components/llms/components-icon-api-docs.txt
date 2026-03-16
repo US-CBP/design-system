@@ -1,0 +1,82 @@
+# cbp-icon
+
+## Overview
+
+The Icon component represents a standard API for embedding accessible Scalable Vector Graphics (SVG) icons into applications/documents. This component contains a number of icons used by the design system and may be used to wrap external icons for consistent styling via the component API.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `accessibilityText` | `accessibility-text` | For icons that are not decorative, accessibilityText is rendered as an `aria-label` on the `svg` tag. | `string` | `undefined` |
+| `color` | `color` | Optionally specifies the color of the icon (ideally using design-token-based CSS variables). Defaults to "currentColor." | `string` | `undefined` |
+| `name` | `name` | Specifies which icon to use from the built-in set of icons. | `string` | `undefined` |
+| `rotate` | `rotate` | Optionally specify the degrees of rotation. | `number` | `undefined` |
+| `size` | `size` | Optionally specifies the size (both width and height) of the icon, which defaults (via CSS) to `1rem` (16px), the intended size of icons alongside body text. Icon size may be specified via this property/attribute or the custom CSS property `--cbp-icon-size`. | `string` | `undefined` |
+| `src` | `src` | Specifies the exact `src` of an SVG file to use. | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | For icons that are not baked into this component, the SVG of an external icon may be slotted within this component to inherit the component properties for controlling some aspects such as color, sizing, and rotation. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-icon-color` | currentColor; |
+| `--cbp-icon-size` | 1rem; |
+
+## Dependencies
+
+### Used by
+
+-   [cbp-accordion-item](../cbp-accordion-item)
+-   [cbp-app-header](../cbp-app-header)
+-   [cbp-banner](../cbp-banner)
+-   [cbp-breadcrumb](../cbp-breadcrumb)
+-   [cbp-chip](../cbp-chip)
+-   [cbp-code-snippet](../cbp-code-snippet)
+-   [cbp-dot-indicator](../cbp-dot-indicator)
+-   [cbp-drawer](../cbp-drawer)
+-   [cbp-dropdown](../cbp-dropdown)
+-   [cbp-expand](../cbp-expand)
+-   [cbp-file-input](../cbp-file-input)
+-   [cbp-form-field](../cbp-form-field)
+-   [cbp-loader](../cbp-loader)
+-   [cbp-menu](../cbp-menu)
+-   [cbp-subnav-item](../cbp-subnav-item)
+-   [cbp-tabs](../cbp-tabs)
+-   [cbp-tooltip](../cbp-tooltip)
+-   [cbp-treeview-item](../cbp-treeview-item)
+-   [cbp-usa-banner](../cbp-usa-banner)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-accordion-item --> cbp-icon
+  cbp-app-header --> cbp-icon
+  cbp-banner --> cbp-icon
+  cbp-breadcrumb --> cbp-icon
+  cbp-chip --> cbp-icon
+  cbp-code-snippet --> cbp-icon
+  cbp-dot-indicator --> cbp-icon
+  cbp-drawer --> cbp-icon
+  cbp-dropdown --> cbp-icon
+  cbp-expand --> cbp-icon
+  cbp-file-input --> cbp-icon
+  cbp-form-field --> cbp-icon
+  cbp-loader --> cbp-icon
+  cbp-menu --> cbp-icon
+  cbp-subnav-item --> cbp-icon
+  cbp-tabs --> cbp-icon
+  cbp-tooltip --> cbp-icon
+  cbp-treeview-item --> cbp-icon
+  cbp-usa-banner --> cbp-icon
+  style cbp-icon fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---
