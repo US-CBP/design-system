@@ -29,7 +29,7 @@ export class CbpButton {
   /** The color of the button: primary, secondary, or danger. Defaults to "primary." */
   @Prop({ reflect: true }) color: 'primary' | 'secondary' | 'danger' = 'primary';
   /** Specifies a variant of the buttons, such as square for buttons with only an icon and call-to-action button. */
-  @Prop({ reflect: true }) variant: 'square' | 'cta';
+  @Prop({ reflect: true }) variant: 'square' | 'circle' | 'cta';
 
   /** Optionally specify the ID of the control here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() controlId: string = createNamespaceKey('cbp-button');

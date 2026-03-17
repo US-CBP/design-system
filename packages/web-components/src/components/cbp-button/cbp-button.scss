@@ -429,6 +429,16 @@ cbp-button {
     }
   }
 
+  &[variant=circle] {
+    button, a {
+      --cbp-button-height: 2.25rem; 
+      --cbp-button-width: var(--cbp-button-height); 
+      --cbp-button-border-radius: var(--cbp-border-radius-circle);
+      padding: unset;
+      letter-spacing: unset;
+    }
+  }
+
   &[variant=cta] {
     button, a {
       font-size: var(--cbp-font-size-heading-sm);
