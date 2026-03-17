@@ -25,6 +25,7 @@ export default {
   title: 'Design Tokens',
   parameters: {
     options: { showPanel: false },
+    chromatic: { disableSnapshot: true }
   },
 };
 
