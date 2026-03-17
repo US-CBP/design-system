@@ -61,7 +61,7 @@ export default {
     variant: {
       description: 'Variants includes a larger "Call to Action" and a square button for icons-only.',
       control: 'select',
-      options: ['default', 'square', 'cta'],
+      options: ['default', 'square', 'circle', 'cta'],
     },
     accessibilityText: {
       description: 'Accessibility text is applied as an `aria-label` and should be supplied when the button does not contain text or it is not sufficiently and uniquely descriptive.',
