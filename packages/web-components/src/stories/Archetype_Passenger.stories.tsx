@@ -5,6 +5,7 @@ export default {
     html: {
       root: '#storybook-root',
     },
+    chromatic: { ignoreSelectors: ['img[src="https://thispersondoesnotexist.com/"]'] },
   },
   argTypes: {    
     search: {
