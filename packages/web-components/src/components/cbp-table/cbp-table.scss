@@ -162,7 +162,7 @@ cbp-table {
   // Responsive linearized table
   &.cbp-table-linearize {
     thead {
-      display: none; // TechDebt: test for accessibility; possibly needs visually hidden styles
+      display: none;
     }
     td,th {
       display: block;
