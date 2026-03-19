@@ -6,7 +6,7 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
  * tables as well as applying progressive enhancements to the contained table.
  * 
  * @slot - The semantic table HTML is placed within the default slot.
- * @slot cbp-table-live-toolbar - Any sort of filters or table controls may be slotted within this named slot.
+ * @slot cbp-table-toolbar - Any sort of filters or table controls may be slotted within this named slot.
  * @slot cbp-table-live-region - For complex tables with many controls and/or pagination, the state of the data may be quantified and described accessibly via an `aria-live` region, which is hidden from view. E.g., Filtered by the term "test", ordered by Column 1 ascending, displaying records 100-200 of 1234.
  */
 @Component({
@@ -70,8 +70,6 @@ export class CbpTable {
 
   // TechDebt: how to make this reactive?
   private addHeaderDataAttrs() {
-    //const columnHeadings: HTMLElement[] = Array.from(this.host.querySelectorAll('thead th'));
-    //const tableCells: HTMLTableCellElement[] = Array.from(this.table?.querySelectorAll('tbody th,tbody td'));
     const tableBodyRows: HTMLTableRowElement[] = Array.from(this.table?.querySelectorAll('tbody tr'));
     
     // loop over each body row, adding header data to each cell
@@ -90,8 +88,6 @@ export class CbpTable {
 
 
   private makeSortable() {
-    //this.columnHeadings = Array.from(this.host.querySelectorAll('thead th'));
-    
     this.columnHeadings.forEach( item => {
       const control = item.querySelector('cbp-button');
       if(control) {
@@ -180,19 +176,25 @@ export class CbpTable {
     })
   }
 
-
   // TechDebt: linearized starting at small size doesn't work to expand at larger size.
   // Called by the resize observer; also fires on initial render.
   private handleResize(width) {
     // Get the width of the content (and update the this.tableWidth) before doing responsive adjustments. (tables reflow, so we need to get this each comparison)
+    const OldTableWidth = this.tableWidth;
     this.tableWidth = this.table.getBoundingClientRect().width;
     
     // If the emitted size is less than the current mode's width, do responsive behavior (use a +5 different to account for table-reflow anomalies)
     if (width + 5 < this.tableWidth) {
       this.host.classList.add(`cbp-table-${this.overflow}`);
     }
+
     // Return to full view (potentially)
     else if(this.overflow=='linearize') {
+      // If no breakpoint was established, we need to keep trying to find it (only if size is getting larger)
+      if(this.tableBreakpoint == undefined && this.tableWidth > OldTableWidth && this.host.classList.contains(`cbp-table-${this.overflow}`)) {
+          this.host.classList.remove(`cbp-table-${this.overflow}`);
+          this.handleResize(width);
+      }
       // For linearization, update the table breakpoint to the closest possible value (could vary slightly each time based on debouncing)
       if( (this.tableBreakpoint == undefined || width < this.tableBreakpoint) && !this.host.classList.contains(`cbp-table-${this.overflow}`)) {
         this.tableBreakpoint = width;
@@ -202,6 +204,7 @@ export class CbpTable {
         this.host.classList.remove(`cbp-table-${this.overflow}`);
       }
     }
+
     else {
       this.host.classList.remove(`cbp-table-${this.overflow}`);
     }
