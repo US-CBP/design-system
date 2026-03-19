@@ -146,7 +146,8 @@ const Template = ({ tableData, headers, selectable, striped, hover, columnHover,
       >
         ${showToolbar ? toolbar() : ''}
         ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
-        <table style="width: 100%">
+
+        <table style="width:100%">
           <caption ${ showCaption ? '' : 'hidden' }>Table Caption</caption>
           <thead>
             <tr>
@@ -242,43 +243,8 @@ BasicTable.args = {
   ]
 }
 
-const tableDangerTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
-  
-  return ` 
-      <cbp-table
-        ${striped != 'none' ? `striped="${striped}"` : ''}
-        ${hover == 'cell' ? `hover="${hover}"` : ''}
-        ${columnHover ? `column-hover` : ''}
-        ${overflow ? `overflow="${overflow}"` : ''}
-        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        ${showToolbar ? toolbar() : ''}
-        ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
-        <table style="width: 100%">
-          <caption ${ showCaption ? '' : 'hidden' }>Table Caption</caption>
-          <thead>
-            <tr>
-              ${generateTableHeaders(headers, selectable, context)}
-            </tr>
-          </thead>
-          <tbody>
-            ${generateTableRows(tableData, selectable, context)}
-          </tbody>
-        </table>
-      </cbp-table>
-            
-      ${ selectable ? `
-        <cbp-action-bar variant="inline" context="dark-inverts">
-          <div slot="cbp-action-bar-info">0 items selected.</div>
-          <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-        </cbp-action-bar>          
-      ` : ''}
-    `;
-};
 
-export const dangerTable = tableDangerTemplate.bind({});
+export const dangerTable = Template.bind({});
 dangerTable.args = {
   striped: 'even',
   headers: [
@@ -352,43 +318,8 @@ dangerTable.args = {
   ]
 }
 
-const tableHighlightTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
-  
-  return ` 
-      <cbp-table
-        ${striped != 'none' ? `striped="${striped}"` : ''}
-        ${hover == 'cell' ? `hover="${hover}"` : ''}
-        ${columnHover ? `column-hover` : ''}
-        ${overflow ? `overflow="${overflow}"` : ''}
-        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        ${showToolbar ? toolbar() : ''}
-        ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
-        <table style="width: 100%">
-          <caption ${ showCaption ? '' : 'hidden' }>Table Caption</caption>
-          <thead>
-            <tr>
-              ${generateTableHeaders(headers, selectable, context)}
-            </tr>
-          </thead>
-          <tbody>
-            ${generateTableRows(tableData, selectable, context)}
-          </tbody>
-        </table>
-      </cbp-table>
-            
-      ${ selectable ? `
-        <cbp-action-bar variant="inline" context="dark-inverts">
-          <div slot="cbp-action-bar-info">0 items selected.</div>
-          <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-        </cbp-action-bar>          
-      ` : ''}
-    `;
-};
 
-export const highlightTable = tableHighlightTemplate.bind({});
+export const highlightTable = Template.bind({});
 highlightTable.args = {
   striped: 'even',
   headers: [
@@ -462,43 +393,7 @@ highlightTable.args = {
 }
 
 
-const singleRowActionTableTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
-  
-  return ` 
-      <cbp-table
-        ${striped != 'none' ? `striped="${striped}"` : ''}
-        ${hover == 'cell' ? `hover="${hover}"` : ''}
-        ${columnHover ? `column-hover` : ''}
-        ${overflow ? `overflow="${overflow}"` : ''}
-        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >
-        ${showToolbar ? toolbar() : ''}
-        ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
-        <table style="width: 100%">
-          <caption ${ showCaption ? '' : 'hidden' }>Table Caption</caption>
-          <thead>
-            <tr>
-              ${generateTableHeaders(headers, selectable, context)}
-            </tr>
-          </thead>
-          <tbody>
-            ${generateTableRows(tableData, selectable, context)}
-          </tbody>
-        </table>
-      </cbp-table>
-            
-      ${ selectable ? `
-        <cbp-action-bar variant="inline" context="dark-inverts">
-          <div slot="cbp-action-bar-info">0 items selected.</div>
-          <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-        </cbp-action-bar>          
-      ` : ''}
-    `;
-};
-
-export const singleRowActionTable = singleRowActionTableTemplate.bind({});
+export const singleRowActionTable = Template.bind({});
 singleRowActionTable.args = {
   striped: 'even',
   headers: [
@@ -598,43 +493,8 @@ singleRowActionTable.args = {
   ]
 }
 
-const OverflowTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
-  
-  return ` 
-      <cbp-table
-        ${striped != 'none' ? `striped="${striped}"` : ''}
-        ${hover == 'cell' ? `hover="${hover}"` : ''}
-        ${columnHover ? `column-hover` : ''}
-        ${overflow ? `overflow="${overflow}"` : ''}
-        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >
-        ${showToolbar ? toolbar() : ''}
-        ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
-        <table style="width: 100%">
-          <caption ${ showCaption ? '' : 'hidden' }>Table Caption</caption>
-          <thead>
-            <tr>
-              ${generateTableHeaders(headers, selectable, context)}
-            </tr>
-          </thead>
-          <tbody>
-            ${generateTableRows(tableData, selectable, context)}
-          </tbody>
-        </table>
-      </cbp-table>
-            
-      ${ selectable ? `
-        <cbp-action-bar variant="inline" context="dark-inverts">
-          <div slot="cbp-action-bar-info">0 items selected.</div>
-          <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-        </cbp-action-bar>          
-      ` : ''}
-    `;
-};
 
-export const OverflowMenu = OverflowTemplate.bind({});
+export const OverflowMenu = Template.bind({});
 OverflowMenu.storyName = "Single Action Table with Overflow Menu"
 OverflowMenu.args = {
   striped: 'even',
