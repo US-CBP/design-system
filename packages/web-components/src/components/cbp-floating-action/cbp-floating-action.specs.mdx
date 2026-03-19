@@ -1,0 +1,37 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Components/Floating Action/Specifications" />
+
+# cbp-floating-action
+
+## Purpose
+
+The Floating Action is a container component to have buttons, links, or other actionable components that need to be accessible to the user above all other content
+
+## Functional Requirements
+
+* The floating action component is a container used to place the slotted content
+* Floating action will have property to determine the page alignment (bottom-left, bottom-right, top-left, top-right) of content
+* if there are multiple components slotted into the floating action component, visually they will be vertically stacked
+
+## Technical Specifications
+
+* cbp-button components of the circle variant will have their height variable and icon height varible overridden when slotted into the floating action to match visual spec
+* As a positioning container, this element does have context or sx prop but does have overrideable CSSvars to adjust spacing. Slotted content should still have context & sx props to adjust if needed
+
+### User Interactions
+
+* the floating action component is a container, any user interactions would be dependent on the slotted component
+* the flex-direction of the floating action changes depending on alignment (top: column, bottom: column-reverse), to keep the first/primary action in the aligned corner but first in tab order
+
+### Responsiveness
+
+* TBD
+
+### Accessibility
+
+* TBD
+
+### Additional Notes and Considerations
+
+* While floating action will accept any number of slotted elements the visual spec is intended to house 2 elements at most

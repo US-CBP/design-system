@@ -1,0 +1,57 @@
+/**
+ *  @prop --cbp-floating-action-gap: var(--cbp-space-4x);
+ *  @prop --cbp-floating-action-vertical-offset: var(--cbp-space-6x);
+ *  @prop --cbp-floating-action-horizontal-offset: var(--cbp-responsive-spacing-outer);
+
+ 
+ *  @prop --cbp-floating-action-button-height: 3.5rem;
+ *  @prop --cbp-floating-action-button-icon-size: 1.5rem;
+ */
+:root {
+  --cbp-floating-action-gap: var(--cbp-space-4x);
+  --cbp-floating-action-vertical-offset: var(--cbp-space-6x);
+  --cbp-floating-action-horizontal-offset: var(--cbp-responsive-spacing-outer);
+
+  --cbp-floating-action-button-height: 3.5rem;
+  --cbp-floating-action-button-icon-size: 1.5rem;
+}
+cbp-floating-action {
+  display: flex;
+  gap: var(--cbp-floating-action-gap);
+  position: fixed; 
+  z-index: var(--cbp-z-index-level-4);
+  
+  &[alignment="bottom-right"]{
+    flex-direction: column-reverse;
+    bottom: var(--cbp-floating-action-vertical-offset);
+    right: var(--cbp-floating-action-horizontal-offset);
+  }
+  
+  &[alignment="bottom-left"]{
+    flex-direction: column-reverse;
+    bottom: var(--cbp-floating-action-vertical-offset);
+    left: var(--cbp-floating-action-horizontal-offset);
+  }
+
+  &[alignment="top-right"]{
+    flex-direction: column;
+    top: var(--cbp-floating-action-vertical-offset);
+    right: var(--cbp-floating-action-horizontal-offset);
+  }
+
+  &[alignment="top-left"]{
+    flex-direction: column;   
+    top: var(--cbp-floating-action-vertical-offset);
+    left: var(--cbp-floating-action-horizontal-offset);
+  }
+
+  /** override of button cssvars to match spec for floating action button */
+  cbp-button[variant="circle"]{
+    button, a{
+      --cbp-button-height: var(--cbp-floating-action-button-height);
+      svg{
+        --cbp-icon-size: var(--cbp-floating-action-button-icon-size);
+      }
+    }
+  }
+}
