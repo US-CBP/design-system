@@ -274,16 +274,6 @@ export class CbpTable {
     }
   }
 
-  componentDidRender() {
-    const liveRegions = Array.from(this.host.querySelectorAll('[slot=cbp-table-live-region]'))
-    if (liveRegions) {
-      liveRegions.forEach( (item) => {
-        item.setAttribute('aria-live','polite');
-      });
-      this.table.setAttribute('aria-describedby',this.liveRegionId);
-    }
-  }
-
   render() {
     return (
       <Host>
