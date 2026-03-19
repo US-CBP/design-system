@@ -41,11 +41,16 @@ The Table component is a wrapper component encapsulating design system styles fo
     * Linearization stacks the table cells vertically and places the column headings before each cell's data.
     * This option allows for scanning of each row's data without comparing columns between rows.
     * The table head is hidden since the column heading text is duplicated within each cell for context.
+    * This method is not recommended for data that is compared between rows and columns, or for selectable table rows.
 
 ### Accessibility
 
 * The slotted table is expected to be marked up semantically, using `thead` and `tbody` elements and denoting headings with `th` elements (not `td`s).
-* A table caption is mandatory, using the `caption` tag inside of the `table` element. If it is not desired to have a visible caption, place a `hidden` attribute on the `caption` element.
+* Tables must be accessibly labeled. Two of the easiest way to achieve this are:
+  * A table caption may be supplied using the `caption` tag inside of the `table` element.
+    * If it is not desired to have a visible caption, place a `hidden` attribute on the `caption` element.
+    * If the table utilizes a toolbar, it is advised not to show a visible caption.
+  * Specifying an accessible label via an `aria-label` on the native `table` tag.
 * The `summary` attribute of the `table` is deprecated in HTML5 and should not be used.
 * Table headers (`th`) in the `thead` will automatically have `scope="col"` applied to them.
 * Table headers (`th`) in the `tbody` will automatically have `scope="row"` applied to them.
@@ -61,6 +66,10 @@ The Table component is a wrapper component encapsulating design system styles fo
 * The Table component exposes the following classes that you may use on the native table HTML markup:
   * `class="cbp-table--danger"` may be applied to table rows or cells to mark an error or similar state.
   * `class="cbp-table--highlight"` may be applied to table cells when the cell contains matching search/filter text.
+* It is not advised to slot the `cbp-action-bar` or `cbp-pagination` within the `cbp-table` when scrolling is used for responsiveness. Place them after the `cbp-table` so that they are not impacted by the table's responsive behavior.
 * When the table has a horizontal scrollbar, positioned elements such as tooltips and menus may be adversely affected.
   * The table then behaves like `position: relative`.
   * This is native browser behavior when `overflow-x` is applied and cannot be changed.
+* For selectable table rows (multi-row action table pattern):
+  * The checkboxes are slotted and loosely coupled; any functionality including "select all" functionality an optional header checkbox must be implemented via application code.
+  * It is not advised to use linearization for responsive behavior in this case.
