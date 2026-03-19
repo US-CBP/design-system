@@ -1,11 +1,13 @@
 import { Component, Prop, State, Element, Event, EventEmitter, Method, Host, h } from '@stencil/core';
-import { setCSSProps } from '../../utils/utils';
+import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 /**
  * The Table component is a wrapper component encapsulating design system styles for semantic HTML 
  * tables as well as applying progressive enhancements to the contained table.
  * 
  * @slot - The semantic table HTML is placed within the default slot.
+ * @slot cbp-table-live-toolbar - Any sort of filters or table controls may be slotted within this named slot.
+ * @slot cbp-table-live-region - For complex tables with many controls and/or pagination, the state of the data may be quantified and described accessibly via an `aria-live` region, which is hidden from view. E.g., Filtered by the term "test", ordered by Column 1 ascending, displaying records 100-200 of 1234.
  */
 @Component({
   tag: 'cbp-table',
@@ -14,22 +16,17 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpTable {
 
   private table: HTMLTableElement;
-  private caption: HTMLTableCaptionElement;
   private columnHeadings: HTMLTableCellElement[];
   private sortableColumns: HTMLTableCellElement[] = [];
   private wrapper: HTMLElement;
 
-  private scrollLeft: HTMLCbpButtonElement;
-  private scrollRight: HTMLCbpButtonElement;
-
   private tableWidth;
   private tableBreakpoint;
-  
+
+  private liveRegionId=createNamespaceKey('cbp-table-live-region');
+
+
   @Element() private host: HTMLElement;
-
-
-  /** Specifies whether the table is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). */
-  @Prop() overflow: 'scroll' | 'linearize' = 'scroll';
 
   /** Specifies whether the table is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). */
   @Prop({ reflect: true }) striped: 'odd' | 'even';
@@ -40,6 +37,9 @@ export class CbpTable {
   /** Specifies whether a hover effect is applied to columns when the column header is hovered. This feature is opt-in. */
   @Prop({ reflect: true }) columnHover: boolean;
   
+  /** Specifies whether the table is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). */
+  @Prop() overflow: 'scroll' | 'linearize' = 'scroll';
+
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
 
@@ -174,21 +174,22 @@ export class CbpTable {
     this.tableSort.emit({
       host: this.host,
       column: column, 
+      name: ColumnHeading.textContent.trim(),
       direction: direction,
       nativeEvent: e
     })
   }
 
+
+  // TechDebt: linearized starting at small size doesn't work to expand at larger size.
   // Called by the resize observer; also fires on initial render.
   private handleResize(width) {
     // Get the width of the content (and update the this.tableWidth) before doing responsive adjustments. (tables reflow, so we need to get this each comparison)
     this.tableWidth = this.table.getBoundingClientRect().width;
-    //console.log(`Resize observer fired - table width=${this.tableWidth}, Observer width=${width}, table breakpoint=${this.tableBreakpoint}`);
     
     // If the emitted size is less than the current mode's width, do responsive behavior (use a +5 different to account for table-reflow anomalies)
     if (width + 5 < this.tableWidth) {
       this.host.classList.add(`cbp-table-${this.overflow}`);
-      if(this.overflow=='scroll') this.makeScrollable();
     }
     // Return to full view (potentially)
     else if(this.overflow=='linearize') {
@@ -206,44 +207,47 @@ export class CbpTable {
     }
   }
 
-  private makeScrollable(){
-    this.scrollRight.disabled=false;
-    this.scrollLeft.disabled=false;
-    console.log('Table width: ', this.table.getBoundingClientRect().width);
-    console.log('Wrapper width: ', this.wrapper.getBoundingClientRect().width);
-  }
- 
-
+  // Do horizontal scroll via the button controls (recalculates every time in case something has changed such as scrolling or resize)
   private doHorizontalScroll(dir) {
-    /*
-        How to make it smarter? 
-          Intersection Observer?
-          Calculate heading sizes?
-          scrollIntoView({  behavior: "instant", block: "nearest", inline: 'start' });
-            scrollLeft  this.wrapper.scrollLeft += 20;
-          this.wrapper.scrollWidth 
+    let columns: Object[] = [];
+    const wrapperWidth = this.wrapper.getBoundingClientRect().width;
+    const wrapperScrollWidth = this.wrapper.scrollWidth;
+    const wrapperScroll = this.wrapper.scrollLeft;
+    const wrapperLeftBoundary = wrapperScroll;
+    const wrapperRightBoundary = wrapperWidth + wrapperScroll;
+    let firstVisible: number;
+    let lastVisible: number;
 
-          headings scrollOffset
+    // Loop over the column headings and get their positions
+    this.columnHeadings.forEach( (item, index) => {
+      const width = item.getBoundingClientRect().width;
+      const left = item.offsetLeft - this.wrapper.offsetLeft;
+      const right = item.offsetLeft - this.wrapper.offsetLeft + width;
+      let visible = ( left < wrapperLeftBoundary || right > wrapperRightBoundary) ? false : true; // Check if the column heading is fully visible
+      // Set the first and last visible items in the collection (by index)
+      if (visible) {
+        firstVisible == undefined ? firstVisible = index : null;
+        lastVisible = index;
+      }
+      columns = [...columns, { 'header': item, 'visible': visible, 'width': width, 'left': left, 'right': right }];
+    });
 
-          resizing while there is a scroll changes the wrapper size while the scroll position seems to remain static.
-          This means if you are scrolled to the end, but then shrink the size, more content will be overflowed to the right.
-
-     */
-    const step = 100; //px
-    this.wrapper.scrollBy( step * dir, 0 );
-    console.log('Scrolling: ', step * dir, this.table.getBoundingClientRect().width, this.wrapper.getBoundingClientRect().width);
+    // The amount of scrolling is relative to the ratio of the scroll size and visible width of the wrapper
+    if(dir==1) {
+      this.wrapper.scrollLeft = ( (columns?.[lastVisible+1]?.['right'] || wrapperScrollWidth) - wrapperWidth);
+    }
+    else {
+      this.wrapper.scrollLeft = columns?.[firstVisible-1]?.['left'] || 0;
+    }
   }
-
 
   private handleSlotChange(e) {
-    console.log(e);
+    console.log('cbp-table contents changed: ', e);
   }
 
 
   componentWillLoad() {
     this.table = this.host.querySelector('table');
-    this.caption = this.table?.querySelector('caption');
-    if (!this.caption) console.warn(`cbp-table: A caption tag is required for accessibility. If you don't want a visible caption, add a 'hidden' attribute to it.`);
     this.columnHeadings=Array.from(this.table?.querySelectorAll('thead th'));
 
     if (typeof this.sx == 'string') {
@@ -258,6 +262,26 @@ export class CbpTable {
     this.addScope();
     this.makeSortable();
     if(this.overflow == 'linearize') this.addHeaderDataAttrs();
+
+    // Hook up live regions and associate to the table, if they exist
+    // TechDebt: needs testing and also should be more reactive - this component has no insight into slotted content changes right now
+    const liveRegions = Array.from(this.host.querySelectorAll('[slot=cbp-table-live-region]'))
+    if (liveRegions) {
+      liveRegions.forEach( (item) => {
+        item.setAttribute('aria-live','polite');
+      });
+      this.table.setAttribute('aria-describedby',this.liveRegionId);
+    }
+  }
+
+  componentDidRender() {
+    const liveRegions = Array.from(this.host.querySelectorAll('[slot=cbp-table-live-region]'))
+    if (liveRegions) {
+      liveRegions.forEach( (item) => {
+        item.setAttribute('aria-live','polite');
+      });
+      this.table.setAttribute('aria-describedby',this.liveRegionId);
+    }
   }
 
   render() {
@@ -271,11 +295,9 @@ export class CbpTable {
                 color="secondary"
                 fill="outline"
                 variant="square"
-                accessibilityText="Scroll table left"
-                disabled={true}
+                accessibilityText="View table columns to the left"
                 context={this.context}
                 onClick={ () => this.doHorizontalScroll('-1')}
-                ref={el => (this.scrollLeft = el)}
               >
                 <cbp-icon name="chevron-right" size="var(--cbp-space-5x)" rotate={180}></cbp-icon>
               </cbp-button>
@@ -283,23 +305,26 @@ export class CbpTable {
                 color="secondary"
                 fill="outline"
                 variant="square"
-                accessibilityText="Scroll table right"
-                disabled={true}
+                accessibilityText="View table columns to the right"
                 context={this.context}
                 onClick={ () => this.doHorizontalScroll('1')}
-                ref={el => (this.scrollRight = el)}
               >
                 <cbp-icon name="chevron-right" size="var(--cbp-space-5x)"></cbp-icon>
               </cbp-button>
             </div>
           }
         </div>
+        
+        <div hidden 
+          id={this.liveRegionId}
+        >
+          <slot name="cbp-table-live-region" />
+        </div>
 
         <div 
           class="cbp-table-wrapper"
           ref={ el => this.wrapper = el}
         >
-          <div class="cbp-table-scroll-gradient"></div>
           <cbp-resize-observer
             debounce={10}
             onResized={ (e) => this.handleResize(e.detail.width) }
