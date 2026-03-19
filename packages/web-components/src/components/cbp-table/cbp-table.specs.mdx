@@ -33,9 +33,9 @@ The Table component is a wrapper component encapsulating design system styles fo
 * There are a number of ways to display table data responsively, the "best" being largely contextual based on the data presented and its purpose.
 * The table uses a resize observer to detect overflow (of the table to its parent) and trigger one of the responsive modes:
   * The default responsive mode is scrolling.
-    * Scrolling is optimal for data where comparisons across columns are necessary.
+    * Scrolling is optimal for data where comparisons across columns and rows are necessary.
     * A native horizontal scrollbar is shown below the table when the table is too large to fit in its parent.
-    * Controls to scroll left or right are also displayed above the table in the controls area.
+    * Controls to scroll left or right, one column at a time, are also displayed above the table in the controls area.
     * If the table body contains row headers, they will be made sticky.
   * The other option is linearization.
     * Linearization stacks the table cells vertically and places the column headings before each cell's data.

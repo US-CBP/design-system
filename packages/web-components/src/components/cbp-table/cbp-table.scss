@@ -117,7 +117,6 @@
 cbp-table {
   display: block;
   max-width: 100%;
-  //overflow-x: auto;
 
   .cbp-table-toolbar {
     display: flex;
@@ -156,6 +155,7 @@ cbp-table {
 
     // When a row header is used, make it sticky when scrolling overflow
     table:has(tbody th:first-child) th:first-child {
+      // TechDebt: need test case - enable for testing later
       //position: sticky;
       //left: 0;
       inset-inline-start: 0;
@@ -274,7 +274,6 @@ cbp-table {
 
     th, td {
       color: var(--cbp-table-color);
-      //text-align: left;
       vertical-align: top;
       padding: var(--cbp-table-cell-padding);
 
@@ -412,7 +411,7 @@ cbp-table {
   }
 }
 
-
+// Shows a gradient mask on the table for either direction that has overflowed content
 @property --left-fade {
   syntax: "<length>";
   inherits: false;
