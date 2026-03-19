@@ -16,6 +16,19 @@ export default {
     selectable: {
       control: 'boolean'
     },
+    overflow: {
+      control: 'select',
+      options: ['scroll', 'linearize'],
+    },
+    showToolbar: {
+      control: 'boolean'
+    },
+    showCaption: {
+      control: 'boolean'
+    },
+    liveRegion: {
+      control: 'text',
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -32,7 +45,7 @@ function generateTableHeaders(headers, selectable, context) {
   const checkbox = `<th>
       <cbp-checkbox ${context && context != 'light-inverts' ? `context=${context}` : ''}>
         <input type="checkbox" name="selectall" value="1">
-        <span style="display:none">Select All</span>
+        <span style="display:none">Select Rows</span>
       </cbp-checkbox>
     </th>`
   let cells = headers.map( ({label, sortable}, i)  => {
@@ -66,7 +79,7 @@ function generateTableRows(data, selectable, context) {
         `;
       }else if(highlight){
         return `
-          <td class="cbp-table--hightlight">${td}</td>
+          <td class="cbp-table--highlight">${td}</td>
         `;
       }
        return `
@@ -92,26 +105,50 @@ function generateTableRows(data, selectable, context) {
 }
 
 
-const Template = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
-  
- /*
-  const toolbar=`
+function toolbar() {
+  return `
     <div slot="cbp-table-toolbar">
-      Test toolbar.
+      <cbp-form-field sx='{"--cbp-form-field-margin-bottom":"0"}'>
+        <cbp-form-field-wrapper>  
+          <input
+            type="search"
+            name="tablesearch"
+            placeholder="Filter Results"
+          />
+          <span slot="cbp-form-field-attached-button">
+            <cbp-button
+              type="submit"
+              fill="solid"
+              color="secondary"
+              variant="square"
+              accessibility-text="Search"
+            >
+              <cbp-icon name="magnifying-glass"></cbp-icon>
+            </cbp-button>
+          </span>
+         </cbp-form-field-wrapper>
+      </cbp-form-field>
     </div>
   `;
-  */
+}
 
+
+const Template = ({ tableData, headers, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
+  
   return ` 
       <cbp-table
         ${striped != 'none' ? `striped="${striped}"` : ''}
         ${hover == 'cell' ? `hover="${hover}"` : ''}
         ${columnHover ? `column-hover` : ''}
+        ${overflow ? `overflow="${overflow}"` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
-        <table style="width: 100%">
-          <caption>Table Caption</caption>
+        ${showToolbar ? toolbar() : ''}
+        ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
+
+        <table style="width:100%">
+          <caption ${ showCaption ? '' : 'hidden' }>Table Caption</caption>
           <thead>
             <tr>
               ${generateTableHeaders(headers, selectable, context)}
@@ -121,15 +158,15 @@ const Template = ({ tableData, headers, selectable, striped, hover, columnHover,
             ${generateTableRows(tableData, selectable, context)}
           </tbody>
         </table>
-
-        ${ selectable ? `
-            <cbp-action-bar variant="inline" context="dark-inverts">
-              <div slot="cbp-action-bar-info">0 items selected.</div>
-              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-            </cbp-action-bar>          
-          ` : ''}
-      </cbp-typography>
+      </cbp-table>
+      
+      ${ selectable ? `
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>          
+      ` : ''}
     `;
 };
 
@@ -206,48 +243,8 @@ BasicTable.args = {
   ]
 }
 
-const tableDangerTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
-  
- /*
-  const toolbar=`
-    <div slot="cbp-table-toolbar">
-      Test toolbar.
-    </div>
-  `;
-  */
 
-  return ` 
-      <cbp-table
-        ${striped != 'none' ? `striped="${striped}"` : ''}
-        ${hover == 'cell' ? `hover="${hover}"` : ''}
-        ${columnHover ? `column-hover` : ''}
-        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        <table style="width: 100%">
-          <caption>Table Caption</caption>
-          <thead>
-            <tr>
-              ${generateTableHeaders(headers, selectable, context)}
-            </tr>
-          </thead>
-          <tbody>
-            ${generateTableRows(tableData, selectable, context)}
-          </tbody>
-        </table>
-
-        ${ selectable ? `
-            <cbp-action-bar variant="inline" context="dark-inverts">
-              <div slot="cbp-action-bar-info">0 items selected.</div>
-              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-            </cbp-action-bar>          
-          ` : ''}
-      </cbp-typography>
-    `;
-};
-
-export const dangerTable = tableDangerTemplate.bind({});
+export const dangerTable = Template.bind({});
 dangerTable.args = {
   striped: 'even',
   headers: [
@@ -321,48 +318,8 @@ dangerTable.args = {
   ]
 }
 
-const tableHighlightTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
-  
- /*
-  const toolbar=`
-    <div slot="cbp-table-toolbar">
-      Test toolbar.
-    </div>
-  `;
-  */
 
-  return ` 
-      <cbp-table
-        ${striped != 'none' ? `striped="${striped}"` : ''}
-        ${hover == 'cell' ? `hover="${hover}"` : ''}
-        ${columnHover ? `column-hover` : ''}
-        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        <table style="width: 100%">
-          <caption>Table Caption</caption>
-          <thead>
-            <tr>
-              ${generateTableHeaders(headers, selectable, context)}
-            </tr>
-          </thead>
-          <tbody>
-            ${generateTableRows(tableData, selectable, context)}
-          </tbody>
-        </table>
-
-        ${ selectable ? `
-            <cbp-action-bar variant="inline" context="dark-inverts">
-              <div slot="cbp-action-bar-info">0 items selected.</div>
-              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-            </cbp-action-bar>          
-          ` : ''}
-      </cbp-typography>
-    `;
-};
-
-export const highlightTable = tableHighlightTemplate.bind({});
+export const highlightTable = Template.bind({});
 highlightTable.args = {
   striped: 'even',
   headers: [
@@ -436,48 +393,7 @@ highlightTable.args = {
 }
 
 
-const singleRowActionTableTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
-  
- /*
-  const toolbar=`
-    <div slot="cbp-table-toolbar">
-      Test toolbar.
-    </div>
-  `;
-  */
-
-  return ` 
-      <cbp-table
-        ${striped != 'none' ? `striped="${striped}"` : ''}
-        ${hover == 'cell' ? `hover="${hover}"` : ''}
-        ${columnHover ? `column-hover` : ''}
-        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >
-        <table style="width: 100%">
-          <caption>Table Caption</caption>
-          <thead>
-            <tr>
-              ${generateTableHeaders(headers, selectable, context)}
-            </tr>
-          </thead>
-          <tbody>
-            ${generateTableRows(tableData, selectable, context)}
-          </tbody>
-        </table>
-
-        ${ selectable ? `
-            <cbp-action-bar variant="inline" context="dark-inverts">
-              <div slot="cbp-action-bar-info">0 items selected.</div>
-              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-            </cbp-action-bar>          
-          ` : ''}
-      </cbp-typography>
-    `;
-};
-
-export const singleRowActionTable = singleRowActionTableTemplate.bind({});
+export const singleRowActionTable = Template.bind({});
 singleRowActionTable.args = {
   striped: 'even',
   headers: [
@@ -505,7 +421,7 @@ singleRowActionTable.args = {
         {td: 'Row 1 Column 2 Cell Text'},
         {td: 'Row 1 Column 3 Cell Text'},
         {td: `  <cbp-button
-                  fill="ghost"
+                  fill="outline"
                   color="secondary"
                   accessibility-text="View details of Row 1"
                 > 
@@ -520,7 +436,7 @@ singleRowActionTable.args = {
         {td: 'Row 2 Column 2 Cell Text'},
         {td: 'Row 2 Column 3 Cell Text'},
         {td: `  <cbp-button
-                  fill="ghost"
+                  fill="outline"
                   color="secondary"
                   accessibility-text="View details of Row 2"
                 > 
@@ -535,7 +451,7 @@ singleRowActionTable.args = {
         {td: 'Row 3 Column 2 Cell Text'},
         {td: 'Row 3 Column 3 Cell Text'},
         {td: `  <cbp-button
-                  fill="ghost"
+                  fill="outline"
                   color="secondary"
                   accessibility-text="View details of Row 3"
                 > 
@@ -550,7 +466,7 @@ singleRowActionTable.args = {
         {td: 'Row 4 Column 2 Cell Text'},
         {td: 'Row 4 Column 3 Cell Text'},
         {td: `  <cbp-button
-                  fill="ghost"
+                  fill="outline"
                   color="secondary"
                   accessibility-text="View details of Row 4"
                 > 
@@ -565,7 +481,7 @@ singleRowActionTable.args = {
         {td: 'Row 5 Column 2 Cell Text'},
         {td: 'Row 5 Column 3 Cell Text'},
         {td: `  <cbp-button
-                  fill="ghost"
+                  fill="outline"
                   color="secondary"
                   accessibility-text="View details of Row 5"
                 > 
@@ -577,50 +493,9 @@ singleRowActionTable.args = {
   ]
 }
 
-const OverflowTemplate = ({ tableData, headers, selectable, striped, hover, columnHover, context, sx }) => {
-  
- /*
-  const toolbar=`
-    <div slot="cbp-table-toolbar">
-      Test toolbar.
-    </div>
-  `;
-  */
 
-  return ` 
-      <cbp-table
-        ${striped != 'none' ? `striped="${striped}"` : ''}
-        ${hover == 'cell' ? `hover="${hover}"` : ''}
-        ${columnHover ? `column-hover` : ''}
-        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
-      >
-        <table style="width: 100%">
-          <caption>Table Caption</caption>
-          <thead>
-            <tr>
-              ${generateTableHeaders(headers, selectable, context)}
-            </tr>
-          </thead>
-          <tbody>
-            ${generateTableRows(tableData, selectable, context)}
-          </tbody>
-        </table>
-
-        ${ selectable ? `
-            <cbp-action-bar variant="inline" context="dark-inverts">
-              <div slot="cbp-action-bar-info">0 items selected.</div>
-              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-            </cbp-action-bar>          
-          ` : ''}
-      </cbp-typography>
-    `;
-};
-
-export const OverflowMenu = OverflowTemplate.bind({});
+export const OverflowMenu = Template.bind({});
 OverflowMenu.storyName = "Single Action Table with Overflow Menu"
-// AppHeaderWithSubnav.storyName = "Application Header with Sub-Nav"
 OverflowMenu.args = {
   striped: 'even',
   headers: [
@@ -758,7 +633,7 @@ OverflowMenu.args = {
         {td: `
           <cbp-menu
             uid="menuId3"
-            position="top-end"
+            position="bottom-end"
           >
 
             <cbp-button
@@ -812,7 +687,7 @@ OverflowMenu.args = {
         {td: `
           <cbp-menu
             uid="menuId4"
-            position="top-end"
+            position="bottom-end"
           >
 
             <cbp-button
@@ -866,7 +741,7 @@ OverflowMenu.args = {
        {td: `
           <cbp-menu
             uid="menuId5"
-            position="top-end"
+            position="bottom-end"
           >
 
             <cbp-button

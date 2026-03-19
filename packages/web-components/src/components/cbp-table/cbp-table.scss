@@ -1,46 +1,48 @@
 /**
- *  @prop --cbp-table-color: var(--cbp-color-text-darkest);
- *  @prop --cbp-table-color-dark: var(--cbp-color-text-lightest);
+ * @prop --cbp-table-color: var(--cbp-color-text-darkest);
+ * @prop --cbp-table-color-dark: var(--cbp-color-text-lightest);
    
- *  @prop --cbp-table-header-color: var(--cbp-color-interactive-secondary-darker);
- *  @prop --cbp-table-header-color-dark: var(--cbp-color-interactive-secondary-lighter);
- *  @prop --cbp-table-header-color-hover: var(--cbp-color-interactive-secondary-lighter);
- *  @prop --cbp-table-header-color-hover-dark: var(--cbp-color-interactive-secondary-darker);
- *  @prop --cbp-table-header-color-focus: var(--cbp-color-text-lightest);
- *  @prop --cbp-table-header-color-focus-dark: var(--cbp-color-text-darkest);
- *  @prop --cbp-table-header-color-active: var(--cbp-color-text-darkest);
- *  @prop --cbp-table-header-color-active-dark: var(--cbp-color-text-darkest);
+ * @prop --cbp-table-header-color: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-table-header-color-dark: var(--cbp-color-interactive-secondary-lighter);
+ * @prop --cbp-table-header-color-hover: var(--cbp-color-interactive-secondary-lighter);
+ * @prop --cbp-table-header-color-hover-dark: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-table-header-color-focus: var(--cbp-color-text-lightest);
+ * @prop --cbp-table-header-color-focus-dark: var(--cbp-color-text-darkest);
+ * @prop --cbp-table-header-color-active: var(--cbp-color-text-darkest);
+ * @prop --cbp-table-header-color-active-dark: var(--cbp-color-text-darkest);
 
- *  @prop --cbp-table-header-color-bg: var(--cbp-color-gray-cool-20);
- *  @prop --cbp-table-header-color-bg-dark: var(--cbp-color-gray-cool-60);
- *  @prop --cbp-table-header-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
- *  @prop --cbp-table-header-color-bg-hover-dark: var(--cbp-color-interactive-secondary-lighter);
- *  @prop --cbp-table-header-color-bg-focus: var(--cbp-color-interactive-focus-dark);
- *  @prop --cbp-table-header-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
- *  @prop --cbp-table-header-color-bg-active: var(--cbp-color-interactive-active-dark);
- *  @prop --cbp-table-header-color-bg-active-dark: var(--cbp-color-interactive-active-light);
+ * @prop --cbp-table-header-color-bg: var(--cbp-color-gray-cool-20);
+ * @prop --cbp-table-header-color-bg-dark: var(--cbp-color-gray-cool-60);
+ * @prop --cbp-table-header-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
+ * @prop --cbp-table-header-color-bg-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ * @prop --cbp-table-header-color-bg-focus: var(--cbp-color-interactive-focus-dark);
+ * @prop --cbp-table-header-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
+ * @prop --cbp-table-header-color-bg-active: var(--cbp-color-interactive-active-dark);
+ * @prop --cbp-table-header-color-bg-active-dark: var(--cbp-color-interactive-active-light);
 
- *  @prop --cbp-table-header-color-outline: var(--cbp-color-white);
- *  @prop --cbp-table-header-color-outline-dark: var(--cbp-color-black);
+ * @prop --cbp-table-header-color-outline: var(--cbp-color-white);
+ * @prop --cbp-table-header-color-outline-dark: var(--cbp-color-black);
 
- *  @prop --cbp-table-row-color-bg: var(--cbp-color-white);
- *  @prop --cbp-table-row-color-bg-dark: var(--cbp-color-gray-cool-70);
- *  @prop --cbp-table-row-color-bg-striped: var(--cbp-color-gray-cool-4);
- *  @prop --cbp-table-row-color-bg-striped-dark: var(--cbp-color-gray-cool-80);
- *  @prop --cbp-table-row-color-bg-hover: var(--cbp-color-gray-cool-10);
- *  @prop --cbp-table-row-color-bg-hover-dark: var(--cbp-color-gray-cool-90);
- *  @prop --cbp-table-row-color-bg-selected: var(--cbp-color-interactive-selected-light);
- *  @prop --cbp-table-row-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
- *  @prop --cbp-table-color-bg-danger: var(--cbp-color-danger-lighter);
- *  @prop --cbp-table-color-bg-danger-dark: var(--cbp-color-danger-darker);
- *  @prop --cbp-table-row-color-bg-highlight: var(--cbp-color-highlight);
+ * @prop --cbp-table-row-color-bg: var(--cbp-color-white);
+ * @prop --cbp-table-row-color-bg-dark: var(--cbp-color-gray-cool-70);
+ * @prop --cbp-table-row-color-bg-striped: var(--cbp-color-gray-cool-4);
+ * @prop --cbp-table-row-color-bg-striped-dark: var(--cbp-color-gray-cool-80);
+ * @prop --cbp-table-row-color-bg-hover: var(--cbp-color-gray-cool-10);
+ * @prop --cbp-table-row-color-bg-hover-dark: var(--cbp-color-gray-cool-90);
+ * @prop --cbp-table-row-color-bg-selected: var(--cbp-color-interactive-selected-light);
+ * @prop --cbp-table-row-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
+ * @prop --cbp-table-color-bg-danger: var(--cbp-color-danger-lighter);
+ * @prop --cbp-table-color-bg-danger-dark: var(--cbp-color-danger-darker);
+ * @prop --cbp-table-row-color-bg-highlight: var(--cbp-color-highlight);
  
- *  @prop --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
- *  @prop --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
- *  @prop --cbp-table-row-border-size: var(--cbp-border-size-md); 
+ * @prop --cbp-table-row-color-border: var(--cbp-color-gray-cool-30);
+ * @prop --cbp-table-row-color-border-dark: var(--cbp-color-gray-cool-50);
+ * @prop --cbp-table-row-border-size: var(--cbp-border-size-md); 
 
- *  @prop --cbp-table-cell-padding: var(--cbp-space-4x) var(--cbp-space-3x);
+ * @prop --cbp-table-cell-padding: var(--cbp-space-4x) var(--cbp-space-3x);
+ * @prop --cbp-table-linearized-cell-padding: var(--cbp-space-2x) var(--cbp-space-3x);
  */
+
 :root {
   --cbp-table-color: var(--cbp-color-text-darkest);
   --cbp-table-color-dark: var(--cbp-color-text-lightest);
@@ -83,14 +85,14 @@
   --cbp-table-row-border-size: var(--cbp-border-size-md); 
 
   --cbp-table-cell-padding: var(--cbp-space-4x) var(--cbp-space-3x);
+  --cbp-table-linearized-cell-padding: var(--cbp-space-2x) var(--cbp-space-3x);
 }
-
 
 /* 
  * Dark Mode - display dark design based on mode or context
  */
  [data-cbp-theme=light] cbp-table[context*=dark],
- [data-cbp-theme=dark] cbp-table:not([context=dark-inverts]):not([context=light-always]){
+ [data-cbp-theme=dark] cbp-table:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-table-color: var(--cbp-table-color-dark) !important;
   
   --cbp-table-header-color: var(--cbp-table-header-color-dark) !important;
@@ -110,12 +112,68 @@
   --cbp-table-color-bg-danger: var(--cbp-table-color-bg-danger-dark) !important;
 
   --cbp-table-row-color-border: var(--cbp-table-row-color-border-dark) !important;
- }
+}
 
 cbp-table {
   display: block;
   max-width: 100%;
-  overflow-x: auto;
+
+  .cbp-table-toolbar {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: var(--cbp-space-2x);
+    width: 100%;
+    margin-block-end: var(--cbp-space-2x);
+  }
+
+  .cbp-table-toolbar-scroll {
+    display: none;
+    flex-grow: 1;
+    text-align: end;
+  }
+
+  // Responsive horizontally scrolling table
+  &.cbp-table-scroll {
+    .cbp-table-toolbar-scroll {
+      --cbp-button-border-radius: 0;
+      display: block;
+    }
+
+    .cbp-table-wrapper {
+      position: relative;
+      overflow-x: scroll;
+      // Gradient mask for visual affordance of additional content
+      mask: linear-gradient(to right,#0003,#ffff var(--left-fade) calc(100% - var(--right-fade)), #0003);
+      animation: scrollfade;
+      animation-timeline: --scrollfade;
+      scroll-timeline: --scrollfade x;
+    }
+
+    // When a row header is used, make it sticky when scrolling overflow
+    table:has(tbody th:first-child) th:first-child {
+      // TechDebt: need test case - enable for testing later
+      //position: sticky;
+      //left: 0;
+      inset-inline-start: 0;
+    }
+  }
+  
+  // Responsive linearized table
+  &.cbp-table-linearize {
+    thead {
+      display: none;
+    }
+    td,th {
+      display: block;
+      padding: var(--cbp-table-linearized-cell-padding);
+    }
+    tbody td:not(:has(cbp-checkbox))::before {
+      content: attr(data-column-header);
+      font-weight: var(--cbp-font-weight-medium);
+    }
+  }
+  
 
   // General classes for danger and highlighting (selected rows overrides, however)
   .cbp-table--danger td,
@@ -123,8 +181,8 @@ cbp-table {
     background-color: var(--cbp-table-color-bg-danger);
   }
 
-  .cbp-table--hightlight td,
-  td.cbp-table--hightlight {
+  .cbp-table--highlight td,
+  td.cbp-table--highlight {
     color: var(--cbp-color-text-darkest);
     background-color: var(--cbp-table-row-color-bg-highlight);
   }
@@ -154,8 +212,8 @@ cbp-table {
           background-color: var(--cbp-table-row-color-bg-hover);
         }
         
-        td.cbp-table--hightlight,
-        &.cbp-table--hightlight td {
+        td.cbp-table--highlight,
+        &.cbp-table--highlight td {
           color: var(--cbp-color-text-darkest);
           background-color: var(--cbp-table-row-color-bg-highlight);
         }
@@ -169,7 +227,7 @@ cbp-table {
       td:hover{
           background-color: var(--cbp-table-row-color-bg-hover);
         
-        &.cbp-table--hightlight{
+        &.cbp-table--highlight{
           color: var(--cbp-color-text-darkest);
           background-color: var(--cbp-table-row-color-bg-highlight);
         }
@@ -191,7 +249,7 @@ cbp-table {
     table:has(thead tr > *:nth-child(8):hover) tr > *:nth-child(8),
     table:has(thead tr > *:nth-child(9):hover) tr > *:nth-child(9),
     table:has(thead tr > *:nth-child(10):hover) tr > *:nth-child(10) {
-      &:not([aria-sort]):not(.cbp-table--highlight) {
+      &:not([aria-sort]) {
         color: var(--cbp-table-color);
         background-color: var(--cbp-table-row-color-bg-hover);
       }
@@ -202,17 +260,17 @@ cbp-table {
     margin: 0;
     padding: 0;
     max-width: 100%;
+    text-align: left;
     border-collapse: collapse;
 
     caption {
-      text-align: left;
+      text-align: start;
       font-size: var(--cbp-font-size-heading-xl);
       line-height: var(--cbp-line-height-xl);
     }
 
     th, td {
       color: var(--cbp-table-color);
-      text-align: left;
       vertical-align: top;
       padding: var(--cbp-table-cell-padding);
 
@@ -236,7 +294,7 @@ cbp-table {
 
         &[aria-sort=none] button {
           // Use padding as a placeholder to keep columns from shifting when sorted and an icon is added.
-          padding-inline-end: var(--cbp-space-9x); // icon = 4 + gap = 2 + end padding = 3 = 9
+          padding-inline-end: var(--cbp-space-9x); // icon = 4x + gap = 2x + end padding = 3x = 9x
         }
 
         &:has(button) {
@@ -314,7 +372,7 @@ cbp-table {
       tr {
         background-color: var(--cbp-table-row-color-bg);
 
-        // Selected state should override all others (striping, danger, highlight), but still show a hover effect 
+        // Selected state should override all others (striping, danger, highlight)
         &:has(input[type=checkbox]:checked) td {
           color: var(--cbp-table-color);
           background-color: var(--cbp-table-row-color-bg-selected);
@@ -322,7 +380,7 @@ cbp-table {
       }
 
       td:has(cbp-button){
-        padding: 0; // TechDebt: should probably be padding-block, but alignment appears off in both cases.
+        padding-block: 0;
         vertical-align: middle;
       }
     }
@@ -347,5 +405,33 @@ cbp-table {
     td {
       text-wrap: pretty;
     }
+  }
+}
+
+// Shows a gradient mask on the table for either direction that has overflowed content
+@property --left-fade {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --right-fade {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes scrollfade {
+  0% {
+    --left-fade: 0;
+  }
+  10%, 100% {
+    --left-fade: 1rem;
+  }
+  0%, 90% {
+    --right-fade: 1rem;
+  }
+  100% {
+    --right-fade: 0;
   }
 }
