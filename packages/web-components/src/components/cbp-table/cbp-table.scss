@@ -133,10 +133,6 @@ cbp-table {
     text-align: end;
   }
 
-  .cbp-table-scroll-gradient {
-    display: none;
-  }
-
   // Responsive horizontally scrolling table
   &.cbp-table-scroll {
     .cbp-table-toolbar-scroll {
@@ -147,6 +143,7 @@ cbp-table {
     .cbp-table-wrapper {
       position: relative;
       overflow-x: scroll;
+      // Gradient mask for visual affordance of additional content
       mask: linear-gradient(to right,#0003,#ffff var(--left-fade) calc(100% - var(--right-fade)), #0003);
       animation: scrollfade;
       animation-timeline: --scrollfade;
@@ -171,7 +168,7 @@ cbp-table {
       display: block;
       padding: var(--cbp-table-linearized-cell-padding);
     }
-    tbody td::before {
+    tbody td:not(:has(cbp-checkbox))::before {
       content: attr(data-column-header);
       font-weight: var(--cbp-font-weight-medium);
     }

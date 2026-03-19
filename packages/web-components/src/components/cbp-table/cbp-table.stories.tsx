@@ -45,7 +45,7 @@ function generateTableHeaders(headers, selectable, context) {
   const checkbox = `<th>
       <cbp-checkbox ${context && context != 'light-inverts' ? `context=${context}` : ''}>
         <input type="checkbox" name="selectall" value="1">
-        <span style="display:none">Select All</span>
+        <span style="display:none">Select Rows</span>
       </cbp-checkbox>
     </th>`
   let cells = headers.map( ({label, sortable}, i)  => {
