@@ -11,18 +11,21 @@ The Floating Action is a container component to have buttons, links, or other ac
 ## Functional Requirements
 
 * The floating action component is a container used to place the slotted content
-* Floating action will have property to determine the page alignment (bottom-left, bottom-right, top-left, top-right) of content
-* if there are multiple components slotted into the floating action component, visually they will be vertically stacked
+* Floating action will have properties to determine the page alignment of content.
+    *top property sets the css property `top` for the container
+    *right property sets the css property `right` for the container
+    *bottom property sets the css property `bottom` for the container
+    *left property sets the css property `left` for the container
+* recommended to use a cbp-flex to visualy orient if there are multiple slotted items to go inside the floating action
 
 ## Technical Specifications
 
-* cbp-button components of the circle variant will have their height variable and icon height varible overridden when slotted into the floating action to match visual spec
-* As a positioning container, this element does have context or sx prop but does have overrideable CSSvars to adjust spacing. Slotted content should still have context & sx props to adjust if needed
+* A box-shadow will be applied to the `button` tag of any slotted cbp-buttons
+* As a positioning container, this element does have a `context` prop 
 
 ### User Interactions
 
 * the floating action component is a container, any user interactions would be dependent on the slotted component
-* the flex-direction of the floating action changes depending on alignment (top: column, bottom: column-reverse), to keep the first/primary action in the aligned corner but first in tab order
 
 ### Responsiveness
 

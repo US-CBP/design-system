@@ -7,23 +7,19 @@ import { setCSSProps } from '../../utils/utils';
 })
 export class CbpFloatingAction {
 
-
   @Element() private host: HTMLElement;
 
-  /**determines the alignment of the floating action component. defaults to bottom-right*/
-  // @Prop() alignment: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right' = 'bottom-right';
+  /**sets the top css property of the floating action component */
+  @Prop() top: any 
 
   /**sets the top css property of the floating action component */
-  @Prop() top: any //TODO: i think there is a better type for this? like CSSProperty or something
+  @Prop() right: any 
 
   /**sets the top css property of the floating action component */
-  @Prop() right: any //TODO: i think there is a better type for this? like CSSProperty or something
+  @Prop() bottom: any 
 
   /**sets the top css property of the floating action component */
-  @Prop() bottom: any //TODO: i think there is a better type for this? like CSSProperty or something
-
-  /**sets the top css property of the floating action component */
-  @Prop() left: any //TODO: i think there is a better type for this? like CSSProperty or something
+  @Prop() left: any 
 
   /** Supports adding inline styles (to the host) as an object. This property is not reactive. */
   @Prop() sx: any = {};
