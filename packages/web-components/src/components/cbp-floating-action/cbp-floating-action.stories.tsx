@@ -27,7 +27,7 @@ export default {
     top:``,
     left:``,
     bottom: `1.5rem`,
-    right:`1rem`,
+    right:`var(--cbp-responsive-spacing-outer)`,
     additionalButton: false
   },
 };
@@ -41,26 +41,17 @@ const Template = ({top, right, bottom, left, sx}) => {
         left="${left}"
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      <cbp-flex
-        direction="column"
-        gap="1rem"
-      >
       <cbp-button
         color=primary 
         variant= circle
         accessibility-text= 'Floating action button'
+        sx='{"--cbp-button-height":"3.5rem"}'
       >
-        <button
-          slot="cbp-button-custom"
-          style="--cbp-button-height: 3.5rem"
-        >
-          <cbp-icon 
-            name="magnifying-glass"
-            size="1.5rem"
-          ></cbp-icon>
-        </button>
-      </cbp-button>
-      </cbp-flex>
+        <cbp-icon 
+          name="magnifying-glass"
+          size="1.5rem"
+        ></cbp-icon>
+       </cbp-button>
     </cbp-floating-action>
     `;
 };
@@ -78,34 +69,31 @@ const twoButtonTemplate = ({top, right, bottom, left, sx}) => {
     >
       <cbp-flex
         direction="column"
-        gap="1rem"
+        gap="var(--cbp-space-4x)"
       >
-      <cbp-button
-        color=primary 
-        variant= circle
-        accessibility-text= 'Floating action button'
-      >
-        <button
-          slot="cbp-button-custom"
-          style="--cbp-button-height: 3.5rem"
+        <cbp-button
+        <cbp-button
+          color=primary 
+          variant= circle
+          accessibility-text= 'Floating action button'
+          sx='{"--cbp-button-height":"3.5rem"}'
         >
-        <cbp-icon 
-          name="magnifying-glass"
-          size="1.5rem"
-        ></cbp-icon>
-        </button>
-      </cbp-button>
-      <cbp-button
-        color=secondary 
-        variant= circle
-        accessibility-text= 'Floating action button'
-      >
-        <button
-          slot="cbp-button-custom"
-          style="--cbp-button-height: 3.5rem"
+          <cbp-icon 
+            name="magnifying-glass"
+            size="1.5rem"
+          ></cbp-icon>
+        </cbp-button>
+        <cbp-button
+          color=secondary 
+          variant= circle
+          accessibility-text= 'Floating action button'
+        <cbp-button
+          color=primary 
+          variant= circle
+          accessibility-text= 'Floating action button'
+          sx='{"--cbp-button-height":"3.5rem"}'
         >
           <cbp-icon name="circle-info"></cbp-icon>
-        </button>
         </cbp-button>
       </cbp-flex>
     </cbp-floating-action>
