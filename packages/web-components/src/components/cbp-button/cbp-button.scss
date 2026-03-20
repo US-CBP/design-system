@@ -421,19 +421,21 @@ cbp-button {
   }
 
   &[variant=square] {
-    button, a {
       --cbp-button-height: 2.25rem; 
       --cbp-button-width: var(--cbp-button-height); 
+    
+    button, a {
       padding: unset;
       letter-spacing: unset;
     }
   }
 
   &[variant=circle] {
-    button, a {
       --cbp-button-height: 2.25rem; 
       --cbp-button-width: var(--cbp-button-height); 
       --cbp-button-border-radius: var(--cbp-border-radius-circle);
+    
+      button, a {
       padding: unset;
       letter-spacing: unset;
     }
