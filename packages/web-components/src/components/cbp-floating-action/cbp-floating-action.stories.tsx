@@ -24,27 +24,24 @@ export default {
     },
   },
   args: {
-    top:``,
-    left:``,
-    bottom: `1.5rem`,
-    right:`var(--cbp-responsive-spacing-outer)`,
-    additionalButton: false
+    bottom: "1.5rem",
+    right: "var(--cbp-responsive-spacing-outer)"
   },
 };
 
 const Template = ({top, right, bottom, left, sx}) => {
   return `
     <cbp-floating-action
-        top="${top}"
-        right="${right}"
-        bottom="${bottom}"
-        left="${left}"
+        ${top ? `top="${top}"` : ``}
+        ${right ? `right="${right}"` : ``}
+        ${bottom ? `bottom="${bottom}"` : ``}
+        ${left ? `left="${left}"` : ``}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-button
-        color=primary 
-        variant= circle
-        accessibility-text= 'Floating action button'
+        color= "primary" 
+        variant= "circle"
+        accessibility-text= "Floating action button"
         sx='{"--cbp-button-height":"3.5rem"}'
       >
         <cbp-icon 
@@ -72,10 +69,9 @@ const twoButtonTemplate = ({top, right, bottom, left, sx}) => {
         gap="var(--cbp-space-4x)"
       >
         <cbp-button
-        <cbp-button
-          color=primary 
-          variant= circle
-          accessibility-text= 'Floating action button'
+          color= "primary" 
+          variant= "circle"
+          accessibility-text= "Floating action button"
           sx='{"--cbp-button-height":"3.5rem"}'
         >
           <cbp-icon 
@@ -84,16 +80,15 @@ const twoButtonTemplate = ({top, right, bottom, left, sx}) => {
           ></cbp-icon>
         </cbp-button>
         <cbp-button
-          color=secondary 
-          variant= circle
-          accessibility-text= 'Floating action button'
-        <cbp-button
-          color=primary 
-          variant= circle
-          accessibility-text= 'Floating action button'
+          color= "secondary" 
+          variant= "circle"
+          accessibility-text= "Floating action button"
           sx='{"--cbp-button-height":"3.5rem"}'
         >
-          <cbp-icon name="circle-info"></cbp-icon>
+          <cbp-icon 
+            name="circle-info"
+            size="1.5rem"
+          ></cbp-icon>
         </cbp-button>
       </cbp-flex>
     </cbp-floating-action>

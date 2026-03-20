@@ -11,17 +11,11 @@ The Floating Action is a container component to have buttons, links, or other ac
 ## Functional Requirements
 
 * The floating action component is a container used to place the slotted content
-* Floating action will have properties to determine the page alignment of content.
-    *top property sets the css property `top` for the container
-    *right property sets the css property `right` for the container
-    *bottom property sets the css property `bottom` for the container
-    *left property sets the css property `left` for the container
-* recommended to use a cbp-flex to visualy orient if there are multiple slotted items to go inside the floating action
+* Component allows for positioned anywhere relative to the viewport
+* A box-shadow will be applied to the `button` tag of any slotted cbp-buttons
 
 ## Technical Specifications
-
-* A box-shadow will be applied to the `button` tag of any slotted cbp-buttons
-* As a positioning container, this element does have a `context` prop 
+ 
 
 ### User Interactions
 
@@ -29,13 +23,15 @@ The Floating Action is a container component to have buttons, links, or other ac
 
 ### Responsiveness
 
-* TBD
+* Tab order for content of the floating action will be affected by placement in source document.
+* All other accessibility concerns should be managed by the slotted elements.
 
 ### Accessibility
 
-* TBD
+* Suggested to use `--cbp-responsive-spacing-outer` for horizontal positioning via component props to have floating action follow responsive breakpoints of page
+* all other responsive behavior to be implemented by the application logic or css
 
 ### Additional Notes and Considerations
 
 * While floating action will accept any number of slotted elements the visual spec is intended to house 2 elements at most
-* Suggested to use `--cbp-responsive-spacing-outer` for horizontal positioning via component props to have floating action follow responsive breakpoints of page
+* recommended to use a cbp-flex to visualy orient if there are multiple slotted items to go inside the floating action

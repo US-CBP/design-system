@@ -9,17 +9,17 @@ export class CbpFloatingAction {
 
   @Element() private host: HTMLElement;
 
-  /**sets the top css property of the floating action component */
-  @Prop() top: any 
+  /**Sets the top position (in CSS units) of the floating action component within the viewport.*/
+  @Prop() top: string 
 
-  /**sets the top css property of the floating action component */
-  @Prop() right: any 
+  /**Sets the right position (in CSS units) of the floating action component within the viewport. */
+  @Prop() right: string 
 
-  /**sets the top css property of the floating action component */
-  @Prop() bottom: any 
+  /**Sets the bottom position (in CSS units) of the floating action component within the viewport.*/
+  @Prop() bottom: string 
 
-  /**sets the top css property of the floating action component */
-  @Prop() left: any 
+  /**Sets the left position (in CSS units) of the floating action component within the viewport.*/
+  @Prop() left: string 
 
   /** Supports adding inline styles (to the host) as an object. This property is not reactive. */
   @Prop() sx: any = {};
