@@ -11,7 +11,7 @@ cbp-floating-action {
   position: fixed; 
   z-index: var(--cbp-floating-action-z-index);
 
-  /** Add box-shadow to slotted buttons */
+  /** Add box-shadow to slotted buttons. */
   cbp-button{
     button, a{
       box-shadow: var(--cbp-floating-action-box-shadow),

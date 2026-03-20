@@ -3,19 +3,19 @@ export default {
   tags: ['beta'],
   argTypes: {
     top:{
-        description: 'Set the top CSS property for the floating action',
+        description: 'Set the top CSS property for the floating action.',
         control: 'text'
     },
     right:{
-        description: 'Set the right CSS property for the floating action',
+        description: 'Set the right CSS property for the floating action.',
         control: 'text'
     },
     bottom:{
-        description: 'Set the bottom CSS property for the floating action',
+        description: 'Set the bottom CSS property for the floating action.',
         control: 'text'
     },
     left:{
-        description: 'Set the left CSS property for the floating action',
+        description: 'Set the left CSS property for the floating action.',
         control: 'text'
     },
     sx: {
