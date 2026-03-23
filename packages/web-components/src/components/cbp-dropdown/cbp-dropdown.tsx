@@ -130,7 +130,7 @@ export class CbpDropdown {
   /** Supports adding inline styles (to the host) as an object. This property is not reactive. */
   @Prop() sx: any = {};
 
-  /** Turns on debug mode, since the dropdown is complex and has complex integration concerns. */
+  /** Turns on debug mode, since the dropdown is complex and has complex integration concerns. (This prop is temporary and will be removed) */
   @Prop() debug: boolean = false;
 
 
