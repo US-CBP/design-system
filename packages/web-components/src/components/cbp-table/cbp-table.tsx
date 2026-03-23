@@ -237,10 +237,10 @@ export class CbpTable {
 
     // The amount of scrolling is relative to the ratio of the scroll size and visible width of the wrapper
     if(dir==1) {
-      this.wrapper.scrollLeft = ( (columns?.[lastVisible+1]?.['right'] || wrapperScrollWidth) - wrapperWidth);
+      this.wrapper.scrollLeft = ( (columns?.[lastVisible+1]?.['right'] || wrapperScrollWidth) - wrapperWidth + 2);
     }
     else {
-      this.wrapper.scrollLeft = columns?.[firstVisible-1]?.['left'] || 0;
+      this.wrapper.scrollLeft = columns?.[firstVisible-1]?.['left'] - 2 || 0;
     }
   }
 
