@@ -1,5 +1,5 @@
 export default {
-  title: 'Patterns/Page Templates',
+  title: 'Page Templates/Internal',
   parameters: {
     layout: 'fullscreen',
     html: {

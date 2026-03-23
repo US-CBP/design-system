@@ -1,0 +1,60 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Page Templates/Internal/Specifications" />
+
+# CBP Design System Page Templates
+
+## Purpose
+
+* These template stories represent a shell made up of design system components, implementing best practices, and using plain HTML markup, to be used for any internal CBP sites or applications. Internal stater applications may address additional best practices and integration concerns if one exists for your framework of choice.
+
+## Functional Requirements
+
+* The `cbp-app` component should wrap the entire site/template. This imports base styles, design tokens, and handle light/dark mode.
+* The first element inside of the `cbp-app` should be the `cbp-skip-nav` component, which is an accessibility requirement and invisible until focused via keyboard navigation or assistive technology.
+* Optionally, our templates wrap the main template parts in a `cbp-flex` tag, setting it to a column layout with a `min-height: 100vh`. With the main content area set to grow, this pins the footer to the bottom of the page even if the main content is short. This can be omitted if no footer is present.
+* The first visible component is the `cbp-universal-header`, which contains CBP branding as well as standard controls such as: 
+  * A link to the Application Directory
+  * A button to launch the feedback module
+  * A button to launch the User Preferences drawer (drawer code must be included separately)
+* The `cbp-app-header` is placed directly below the universal header and is intended to hold application-specific navigation, including:
+  * A "home" link in the form of the Application's Name.
+  * Additional `cbp-nav-item`s linking to specific pages or opening a drawer if they represent a parent with sub-items.
+  * Optionally (opt-in via component property) a site-wide search field.
+* After the Application Header comes the main content area.
+  * If this only consists of the main content with no side navigation or sidebars, the `main` tag can wrap all of it (with `flex-grow: 1` and `padding: 1rem var(--cbp-responsive-spacing-outer)` applied to it).
+  * If side nav or a sidebar exists, then wrap those with the `main` element in a `cbp-container` with the same `flex-grow` and `padding` applied.
+  * The `main` element should not encompass navigation or sidebars.
+  * The first element inside of the `main` element should be the page title in an `h1` heading. This is typically applied with a `cbp-typography` component with the `divider="underline"` property.
+* The footer is generally the last element making up the layout shell.
+  * The footer should generally be included, but may be omitted for small developer-focused applications.
+  * For applications not listed in the Application Directory, the row of footer navigation may be excluded.
+* Positioned elements such as dialogs and drawers may be included beneath the footer (but within the `cbp-app` tag) to keep the primary page contents less cluttered and for code organization purposes.
+
+## Technical Specifications
+
+### User Interactions
+
+* The User Name or HashID control in the Universal Header shall open the "User Preferences" drawer.
+  * This drawer should contain a light/dark mode toggle so that users may toggle this setting contextually and separately from their OS's light/dark setting. This selection may be persisted using localStorage, sessionStorage, or any other method deemed fitting by the application owner.
+  * Other application settings may be presented in this drawer.
+* Individual navigation items in the `cbp-app-header` shall be represented by links within a `cbp-nav-item` component and can also work as router links.
+* If a navigation item in the Application Header contains nested children, these nav items shall be represented as button controls that open a drawer with the full navigation, implemented using the `cbp-subnav` and `cbp-subnav-item` components. A drawer is preferable to a popup menu because it is a consistent interaction across devices of different sizes and regardless of the complexity of the navigation tree.
+
+### Responsiveness
+
+* The main template parts shall use a design token (`--cbp-responsive-spacing-outer`) for inline-padding that is responsive and changes size at different breakpoints.
+* The Universal Header link and button controls will minimize to their icons at the medium or small breakpoints (<64em or 1024px).
+* The application header will automatically hide its nav-items and show a "hamburger menu" control when it runs out of space to display each of the nav-items (using a resize observer).
+  * The hamburger menu controls the same drawer that any nav items with children would control.
+
+### Accessibility
+
+* Use of the template code directly from Storybook should result in an accessible experience insofar as the parts that it encompasses.
+* The main structure of the template uses HTML landmarks to make screen reader navigation easier.
+* The skip-nav link must be included and point to a valid `id` referencing the main content of the page, preferably the `main` landmark tag. The default `id` referenced is "main" but this can be changed via the component's `targetId` property (or `target-id` attribute).
+* It is up to the developers to ensure that all other components and content added are done so in an accessible manner and to test to verify accessibility.
+
+### Additional Notes and Considerations
+
+TBD
