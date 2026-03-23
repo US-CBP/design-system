@@ -44,7 +44,8 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 ### Responsiveness
 
 * The main template parts shall use a design token (`--cbp-responsive-spacing-outer`) for inline-padding that is responsive and changes size at different breakpoints.
-* The Universal Header link and button controls will minimize to their icons at the medium or small breakpoints (<64em or 1024px).
+* The Universal Header link and button controls will minimize to their icons at the medium or small breakpoints (less than 64em or 1024px).
+* The Universal Header will reduce the text next to the CBP Seal to simply "CBP" at viewports 37.5em (600px) or less
 * The application header will automatically hide its nav-items and show a "hamburger menu" control when it runs out of space to display each of the nav-items (using a resize observer).
   * The hamburger menu controls the same drawer that any nav items with children would control.
 
