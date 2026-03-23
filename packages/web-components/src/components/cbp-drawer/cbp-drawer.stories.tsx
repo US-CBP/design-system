@@ -140,10 +140,4 @@ UserPreferences.args = {
   position: 'right',
   uid: 'drawer',
   context: 'dark-always',
-  sx: {
-    "--cbp-drawer-close-button-color": "var(--cbp-color-interactive-secondary-lighter)",
-    "--cbp-drawer-close-button-color-hover": "var(--cbp-color-interactive-secondary-lighter)",
-    "--cbp-drawer-close-button-color-bg-hover": "var(--cbp-color-interactive-secondary-darker)",
-    "--cbp-drawer-close-button-color-border-hover": "var(--cbp-color-interactive-secondary-darker)",
-  }
 };

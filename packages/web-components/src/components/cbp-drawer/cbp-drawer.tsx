@@ -48,7 +48,6 @@ export class CbpDrawer {
 
   @Watch('open')
   watchOpenHandler(newValue: boolean) {
-    console.log('watchOpen: ', this.host, newValue);
     newValue == true ?  this.setFocus() :
     this.drawerClose.emit({
       host: this.host,

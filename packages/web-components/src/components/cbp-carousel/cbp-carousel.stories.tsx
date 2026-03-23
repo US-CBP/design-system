@@ -52,7 +52,7 @@ Carousel.args = {
     slides: [{
         content: `
                 <cbp-card variant="banner">
-                    <cbp-typography tag="h4" slot"cbp-card-title">
+                    <cbp-typography tag="h4" slot="cbp-card-title">
                         Carousel Card 1 Title
                     </cbp-typography>
                     <p> Content for Carousel Card 1 </p>
@@ -62,7 +62,7 @@ Carousel.args = {
     {
         content: `
                 <cbp-card variant="banner">
-                    <cbp-typography tag="h4" slot"cbp-card-title">
+                    <cbp-typography tag="h4" slot="cbp-card-title">
                         Carousel Card 2 Title
                     </cbp-typography>
                     <p> Content for Carousel Card 2 </p>
@@ -72,7 +72,7 @@ Carousel.args = {
     {
         content: `
                 <cbp-card variant="banner">
-                    <cbp-typography tag="h4" slot"cbp-card-title">
+                    <cbp-typography tag="h4" slot="cbp-card-title">
                         Carousel Card 3 Title
                     </cbp-typography>
                     <p> Content for Carousel Card 3 </p>

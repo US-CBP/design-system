@@ -468,9 +468,6 @@ function renderUserPref(username) {
       uid= "userPref"    
       position= "right"
       accessibility-text= "User Preference Drawer"
-      sx='{
-        "--cbp-drawer-close-button-color":"var(--cbp-color-white)"
-      }'
     >
       <cbp-panel
           sx='{
