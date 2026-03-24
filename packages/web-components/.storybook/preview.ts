@@ -64,25 +64,29 @@ const withAnimationControl: DecoratorFunction<WebComponentsRenderer> = (storyFn)
  *    Switch sx back to single quotes and unescape the JSON double quotes?
  *    Represent booleans properly as just the attribute, without ="" per innerHTML
  *    Remove multiple line breaks
- *    Can we reference the story's root to accurately get the innerHTML of the proper element?
  */
+var DEFAULT_ROOT_SELECTOR = "#storybook-root, #root";
 const renderPreHydrated: DecoratorFunction<WebComponentsRenderer> = (storyFn, context) => {
   //console.log(context);
+  const parameters = context.parameters?.html || {};
+  const rootSelector = parameters.root || DEFAULT_ROOT_SELECTOR;
   const channel = addons.getChannel();
   const story = storyFn();
 
   // Capture before hydration tick
   requestAnimationFrame( () => {
-    const root = document.getElementById('storybook-root');
+    const root = document.querySelector(rootSelector);
     const rawSnapshot = root?.innerHTML;
     // store it somewhere or pass via context
     context.parameters.__preHydratedHTML = rawSnapshot;
+
+    console.log(channel,rawSnapshot);
 
     setTimeout( async () => {
       channel.emit('storybook/html/codeUpdate', {
         code: rawSnapshot?.replace(/<!---->/g,'')
         .split('\n')
-          .slice(1,-1) // replace the cbp-app tag we added via decorator
+          //.filter(line => line.trim() != '' ? line.replace(/^ {0,4}/,'') : null) 
           .map(line => line.replace(/^ {0,4}/,''))
         .join('\n')
       });
