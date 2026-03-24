@@ -22,7 +22,6 @@ export default {
       description: 'Accessibility text is required to label the drawer (dialog) and is applied as an `aria-label`.',
       control: 'text',
     },
-
     withIcon: {
       control: 'boolean',
     },
@@ -89,7 +88,7 @@ Drawer.args = {
 };
 
 
-const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibilityText, withIcon, context, sx }) => {
+const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibilityText, withIcon, context}) => {
   return `
     <cbp-button
       type="button"
@@ -108,7 +107,9 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
       ${persistAt ? `persist-at="${persistAt}"` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      sx='{
+        "--cbp-drawer-close-button-color":"var(--cbp-color-white)"
+      }'
       ${uid ? `uid=${uid}` : ''}
     >
       <cbp-panel
@@ -116,7 +117,7 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         sx='{
           "--cbp-panel-header-color-dark": "var(--cbp-color-text-lighter)",
-          "--cbp-panel-header-color-bg-dark":"var(--cbp-color-branding-dhs-blue)"
+          "--cbp-panel-header-color-bg-dark": "var(--cbp-color-branding-dhs-blue)"
         }'
       >
         <cbp-typography

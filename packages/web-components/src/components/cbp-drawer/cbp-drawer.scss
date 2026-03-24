@@ -9,6 +9,8 @@
   --cbp-drawer-color-bg-dark: var(--cbp-color-gray-cool-70);
   --cbp-drawer-color-backdrop: var(--cbp-color-backdrop-light);
   --cbp-drawer-color-backdrop-dark: var(--cbp-color-backdrop-dark);
+
+  --cbp-drawer-close-button-color: var(--cbp-color-interactive-secondary-darker);
 }
 
 /* 
@@ -62,6 +64,11 @@ cbp-drawer {
       position: absolute;
       right: 1rem;
       top: 1em;
+
+        &[fill][color] {
+        --cbp-button-color: var(--cbp-drawer-close-button-color);
+        // --cbp-button-color-hover: var(--cbp-drawer-close-button-color-hover);
+      }
     }
 
     > cbp-panel{
