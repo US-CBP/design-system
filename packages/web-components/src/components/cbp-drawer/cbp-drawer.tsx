@@ -46,32 +46,25 @@ export class CbpDrawer {
   /** Custom event fired when the drawer is closed. */
   @Event() drawerClose!: EventEmitter;
 
-  // TechDebt: closeDrawer is called (and event emitted) twice in some cases.
   @Watch('open')
   watchOpenHandler(newValue: boolean) {
-    newValue == true ? this.setFocus() : this.closeDrawer();
+    newValue == true ?  this.setFocus() :
+    this.drawerClose.emit({
+      host: this.host,
+      open: this.open,
+    });
   }
 
   /** A public method for opening the drawer. */
   @Method()
-  async openDrawer(e=undefined) {
+  async openDrawer() {
     this.open = true;
-    this.drawerOpen.emit({
-      host: this.host,
-      open: this.open,
-      nativeEvent: e
-    });
   }
 
   /** A public method for closing the drawer. */
   @Method()
-  async closeDrawer(e=undefined) {
+  async closeDrawer() {
     this.open = false;
-    this.drawerClose.emit({
-      host: this.host,
-      open: this.open,
-      nativeEvent: e
-    });
   }
 
   setFocus() {
@@ -85,11 +78,11 @@ export class CbpDrawer {
 
   handleBackdropClick(e) {
     const { target } = e;
-    !target.closest('.cbp-drawer__content') && this.closeDrawer(e);
+    !target.closest('.cbp-drawer__content') && this.closeDrawer();
   }
 
   handleKeyUp(e) {
-    e.key == 'Escape' && this.closeDrawer(e);
+    e.key == 'Escape' && this.closeDrawer();
   }
 
 

@@ -10,11 +10,7 @@
   --cbp-drawer-color-backdrop: var(--cbp-color-backdrop-light);
   --cbp-drawer-color-backdrop-dark: var(--cbp-color-backdrop-dark);
 
-  // TechDebt: duplicates default button[fill=ghost][color=secondary] styles to allow them to be overridden for User Preferences drawer
   --cbp-drawer-close-button-color: var(--cbp-color-interactive-secondary-darker);
-  --cbp-drawer-close-button-color-hover: var(--cbp-color-text-lightest);
-  --cbp-drawer-close-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
-  --cbp-drawer-close-button-color-border-hover: var(--cbp-color-interactive-secondary-darker);
 }
 
 /* 
@@ -69,10 +65,8 @@ cbp-drawer {
       right: 1rem;
       top: 1em;
 
-      // Provided specifically in support of the User Preferences drawer design (to be overridden)
-      &[fill][color] {
+        &[fill][color] {
         --cbp-button-color: var(--cbp-drawer-close-button-color);
-        --cbp-button-color-hover: var(--cbp-drawer-close-button-color-hover);
       }
     }
 

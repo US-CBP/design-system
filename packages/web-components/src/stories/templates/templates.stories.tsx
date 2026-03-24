@@ -1,5 +1,5 @@
 export default {
-  title: 'Page Templates/Internal',
+  title: 'Patterns/Page Templates',
   parameters: {
     layout: 'fullscreen',
     html: {
@@ -475,9 +475,11 @@ function renderUserPref(username) {
       <cbp-panel
           sx='{
             "--cbp-panel-header-color":"var(--cbp-color-white)",
+            "--cbp-panel-header-color-dark": "var(--cbp-color-text-lighter)",
             "--cbp-panel-header-color-bg":"var(--cbp-color-branding-dhs-blue)",
+            "--cbp-panel-header-color-bg-dark": "var(--cbp-color-branding-dhs-blue)",
             "--cbp-panel-header-color-bottom-border":"var(--cbp-color-gray-cool-40)"
-          }'
+            }'
       >
         <cbp-typography
           slot="cbp-panel-header"
