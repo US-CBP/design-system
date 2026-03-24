@@ -32,6 +32,7 @@ export const CbpExpand = /*@__PURE__*/createReactComponent<JSX.CbpExpand, HTMLCb
 export const CbpFileInput = /*@__PURE__*/createReactComponent<JSX.CbpFileInput, HTMLCbpFileInputElement>('cbp-file-input');
 export const CbpFlex = /*@__PURE__*/createReactComponent<JSX.CbpFlex, HTMLCbpFlexElement>('cbp-flex');
 export const CbpFlexItem = /*@__PURE__*/createReactComponent<JSX.CbpFlexItem, HTMLCbpFlexItemElement>('cbp-flex-item');
+export const CbpFloatingAction = /*@__PURE__*/createReactComponent<JSX.CbpFloatingAction, HTMLCbpFloatingActionElement>('cbp-floating-action');
 export const CbpFooter = /*@__PURE__*/createReactComponent<JSX.CbpFooter, HTMLCbpFooterElement>('cbp-footer');
 export const CbpForm = /*@__PURE__*/createReactComponent<JSX.CbpForm, HTMLCbpFormElement>('cbp-form');
 export const CbpFormField = /*@__PURE__*/createReactComponent<JSX.CbpFormField, HTMLCbpFormFieldElement>('cbp-form-field');

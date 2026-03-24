@@ -25,7 +25,7 @@ const config: StorybookConfig  = {
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'
   ],
   addons: [
-    getAbsolutePath("@whitespace/storybook-addon-html"),
+    "@whitespace/storybook-addon-html",
     getAbsolutePath("@storybook/addon-themes"),
     getAbsolutePath("@storybook/addon-a11y"),
     getAbsolutePath("storybook-addon-tag-badges"),
@@ -38,10 +38,6 @@ const config: StorybookConfig  = {
     { from: '../assets', to: '/assets' },
     { from: '../llms', to: '/llms' },
     { from: '../llms.txt', to: '/' },
-    //'../dist',
-    //'../assets',
-    //'../llms/**',
-    //'../llms.txt'
   ],
   core: {
     disableTelemetry: true

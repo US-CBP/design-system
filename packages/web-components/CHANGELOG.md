@@ -4,6 +4,22 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unpublished] TBD
+
+* Initial creation of the `cbp-floating-action` component, used for positioning buttons/controls in a fixed position on the viewport.
+* Added a "circular" variant to `cbp-button`.
+* Updated the `cbp-table` component with responsive functionality and other bug fixes:
+  * Added the `overflow` property, which tells the component how to respond when the table overflows its container:
+    * "Scroll" is the default and displays a horizontal scrollbar and controls above the table to scroll left or right.
+    * "Linearize" may be used when data does not need to be compared across columns and rows.
+  * Added the column name (text) to the `tableSort` event emitter.
+  * Added a named slot for a toolbar, which displays application-specific controls alongside the table scroll buttons (when visible).
+  * Added a named slot for an `aria-live` region to quantify complex table's data (filters, column sort, pagination, etc.).
+* Update the `cbp-treeview` and `cbp-treeview-item` components:
+  * Added keyboard shortcuts for quicker navigation of the treeview control.
+  * Added `aria-owns` to Treeview and Treeview Items with nested children for improved accessibility.
+  * Refactored some CSS to make it more robust.
+
 ## [0.0.1-develop.32] 03-16-2026
 
 * Initial creation of the `cbp-listbox` component, used to wrap a native text or search input and offer selectable suggestions from a listbox.
@@ -15,6 +31,7 @@ The React components are wrappers generated from this package and will share the
 * Updated component-level dark mode toggles with `!important` overrides so that if a color is specified via CSS variable, it is still swapped appropriately based on light/dark modes.
 * Updated the `sx` implementation in most stories so that they do not break on whitespace characters.
 * Added packages for generating llms.txt files from Storybook documentation.
+* llms.txt was generated for this release and will be updated for each release. It is available at https://us-cbp.github.io/design-system/llms.txt.
 
 ## [0.0.1-develop.31] 02-13-2026
 
