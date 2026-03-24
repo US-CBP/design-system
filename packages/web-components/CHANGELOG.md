@@ -6,12 +6,12 @@ The React components are wrappers generated from this package and will share the
 
 ## [unpublished] TBD
 
-* Initial creation of the `cbp-floating-action` component, used for positioning buttons/controls in a fixed position on the viewport.
+* Initial creation of the `cbp-floating-action` component, used for positioning buttons/controls in a fixed position within the viewport.
 * Added a "circular" variant to `cbp-button`.
 * Updated the `cbp-table` component with responsive functionality and other bug fixes:
   * Added the `overflow` property, which tells the component how to respond when the table overflows its container:
     * "Scroll" is the default and displays a horizontal scrollbar and controls above the table to scroll left or right.
-    * "Linearize" may be used when data does not need to be compared across columns and rows.
+    * "Linearize" stacks the table cells and is ideal for when data does not need to be compared across columns and rows.
   * Added the column name (text) to the `tableSort` event emitter.
   * Added a named slot for a toolbar, which displays application-specific controls alongside the table scroll buttons (when visible).
   * Added a named slot for an `aria-live` region to quantify complex table's data (filters, column sort, pagination, etc.).
@@ -19,6 +19,8 @@ The React components are wrappers generated from this package and will share the
   * Added keyboard shortcuts for quicker navigation of the treeview control.
   * Added `aria-owns` to Treeview and Treeview Items with nested children for improved accessibility.
   * Refactored some CSS to make it more robust.
+* Upgraded to Storybook 10.3.3.
+* Fixed the Storybook HTML Panel to work again and show pre-rendered web component code that can easily be copied into your application.
 
 ## [0.0.1-develop.32] 03-16-2026
 
