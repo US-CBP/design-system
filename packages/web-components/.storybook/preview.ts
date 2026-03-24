@@ -4,6 +4,8 @@ import type { DecoratorFunction } from 'storybook/internal/csf';
 import { isChromatic } from './chromatic';
 import {defineCustomElements} from '../dist/loader';
 
+import { addons } from 'storybook/preview-api'
+
 // Used for docs
 import { themes } from 'storybook/theming';
 
@@ -56,8 +58,42 @@ const withAnimationControl: DecoratorFunction<WebComponentsRenderer> = (storyFn)
   return storyFn();
 };
 
+
+// Get the Pre-rendered Stencil web component code for the HTML Panel
+/* TODO: 
+ *    Switch sx back to single quotes and unescape the JSON double quotes?
+ *    Represent booleans properly as just the attribute, without ="" per innerHTML
+ *    Remove multiple line breaks
+ *    Can we reference the story's root to accurately get the innerHTML of the proper element?
+ */
+const renderPreHydrated: DecoratorFunction<WebComponentsRenderer> = (storyFn, context) => {
+  //console.log(context);
+  const channel = addons.getChannel();
+  const story = storyFn();
+
+  // Capture before hydration tick
+  requestAnimationFrame( () => {
+    const root = document.getElementById('storybook-root');
+    const rawSnapshot = root?.innerHTML;
+    // store it somewhere or pass via context
+    context.parameters.__preHydratedHTML = rawSnapshot;
+
+    setTimeout( async () => {
+      channel.emit('storybook/html/codeUpdate', {
+        code: rawSnapshot?.replace(/<!---->/g,'')
+        .split('\n')
+          .slice(1,-1) // replace the cbp-app tag we added via decorator
+          .map(line => line.replace(/^ {0,4}/,''))
+        .join('\n')
+      });
+    }, 1000);
+  });
+  return story;
+}
+
+
 const preview: Preview = {
-  decorators: [withWrapper, withAnimationControl], //, contentDirectionProvider
+  decorators: [renderPreHydrated, withWrapper, withAnimationControl], //, contentDirectionProvider renderPreHydrated
   globalTypes: {
     /*
     layout: {
@@ -116,17 +152,17 @@ const preview: Preview = {
       root: "cbp-app", // default: #storybook-root
       removeComments: true,
       removeEmptyComments: true,
-      prettier: {
-        parser: 'html',
-        tabWidth: 2,
-        useTabs: false,
-        htmlWhitespaceSensitivity: 'css', // ignore?
-        quoteProps: "as-needed",
-        proseWrap: "always",
-        bracketSameLine: false,
-        singleAttributePerLine: true,
-        printWidth: 80,
-      },
+      //prettier: {
+      //  parser: 'html',
+      //  tabWidth: 2,
+      //  useTabs: false,
+      //  htmlWhitespaceSensitivity: 'css', // ignore?
+      //  quoteProps: "as-needed",
+      //  proseWrap: "always",
+      //  bracketSameLine: false,
+      //  singleAttributePerLine: true,
+       // printWidth: 80,
+      //},
       highlighter: {
         showLineNumbers: true,
         wrapLines: false, // enabling this triggers a bug in ReactSyntaxHighlighter that sets each line of code to display:flex

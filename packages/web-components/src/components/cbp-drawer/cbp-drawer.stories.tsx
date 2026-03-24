@@ -54,13 +54,13 @@ const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText,
     </cbp-hide>
 
     <cbp-drawer
-      ${position ? `position=${position}` : ''}
-      ${open ? `open=${open}` : ''}
-      ${persistAt ? `persist-at=${persistAt}` : ''}
-      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+      ${position ? `position="${position}"` : ''}
+      ${open ? 'open' : ''}
+      ${persistAt ? `persist-at="${persistAt}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      ${uid ? `uid=${uid}` : ''}
+      ${uid ? `uid="${uid}"` : ''}
     >
       <cbp-panel
         aria-labelledby="panelheader"
@@ -102,10 +102,10 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
     </cbp-button>
 
     <cbp-drawer
-      ${position ? `position=${position}` : ''}
-      ${open ? `open=${open}` : ''}
+      ${position ? `position="${position}"` : ''}
+      ${open ? 'open' : ''}
       ${persistAt ? `persist-at="${persistAt}"` : ''}
-      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       sx='{
         "--cbp-drawer-close-button-color":"var(--cbp-color-white)"
