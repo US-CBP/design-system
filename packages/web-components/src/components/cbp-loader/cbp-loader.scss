@@ -138,7 +138,10 @@ cbp-loader {
           background-color: var(--cbp-loader-track-color);
         }
 
-        &::-webkit-progress-value,
+        &::-webkit-progress-value{
+          background-color: var(--cbp-loader-color);
+        }
+        
         &::-moz-progress-bar {
           background-color: var(--cbp-loader-color);
         }
