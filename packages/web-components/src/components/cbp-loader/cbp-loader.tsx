@@ -105,15 +105,16 @@ export class CbpLoader {
         }
 
         {this.variant == 'circular' && this.size == 'small' && (this.success || this.error) ? statusIndicator : ``}
-
-        <progress
-          id={this.progressId}
-          value={this.determinate ? this.value : null}
-          max={this.max}
-          hidden={this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error)}
-        >
-        </progress>
-      </Host>
+        <div class='cbp-progress-container'>
+          <progress
+            id={this.progressId}
+            value={this.determinate ? this.value : null}
+            max={this.max}
+            hidden={this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error)}
+          >
+          </progress>  
+        </div>
+        </Host>
     );
   }
 }
