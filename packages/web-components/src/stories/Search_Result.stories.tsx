@@ -1,5 +1,5 @@
 export default {
-  title: 'Archetypes/Search Results',
+  title: 'Archetypes/Search',
   parameters: {
     layout: 'fullscreen',
     html: {
@@ -761,9 +761,9 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
   `;
 };
 
-export const searchTemplate = searchResultsTemplate.bind({});
+export const Search = searchResultsTemplate.bind({});
 
-searchTemplate.args ={
+Search.args ={
     username: 'Johnathan Smithington',
     hashid: 'HASHIDX',
     isLoggedIn: true,

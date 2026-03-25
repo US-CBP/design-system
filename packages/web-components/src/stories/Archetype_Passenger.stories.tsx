@@ -1,5 +1,5 @@
 export default {
-  title: 'Archetypes/Passenger List',
+  title: 'Archetypes/Passenger',
   parameters: {
     layout: 'fullscreen',
     html: {
@@ -1043,10 +1043,10 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
     `;
 };
 
-export const Internal = InternalTemplate.bind({});
+export const Passenger = InternalTemplate.bind({});
 
 //TODO: randomize or update for different displays
-Internal.args = {
+Passenger.args = {
   passengersArgs: [
     {
       name: 'Smithington, Johnathan',

@@ -110,6 +110,10 @@ cbp-loader {
     align-self: flex-start;
   }
 
+  &:not([determinate]):not([success]):not([error]) progress{  
+    visibility: hidden;
+  } 
+
   // Linear variant
   &[variant=linear] {
     --cbp-icon-size: var(--cbp-space-3x);
@@ -119,26 +123,40 @@ cbp-loader {
     align-items: center;
     gap: var(--cbp-loader-linear-gap);
 
-    progress {
-      appearance: none; //Needed to use the below psuedo classes/ affect the progress styles
+    .cbp-progress-container{
+      display: flex;
+      width: 100%;
       height: var(--cbp-loader-linear-height);
-      &::-webkit-progress-bar {
-        background-color: var(--cbp-loader-track-color);
-      }
 
-      &::-webkit-progress-value {
-        background-color: var(--cbp-loader-color);
+      progress {
+        appearance: none; //Needed to use the below psuedo classes/ affect the progress styles
+        border: none;
+        height: var(--cbp-loader-linear-height);
+        background-color: var(--cbp-loader-track-color);
+
+        &::-webkit-progress-bar {
+          background-color: var(--cbp-loader-track-color);
+        }
+
+        &::-webkit-progress-value,
+        &::-moz-progress-bar {
+          background-color: var(--cbp-loader-color);
+        }
       }
     }
 
-    &:not([determinate]):not([error]):not([success]) progress:before {
-      content: '';
-      display: block;
-      height: var(--cbp-loader-linear-height);
-      width: 20%;
-      background-color: var(--cbp-loader-color);
-      position: absolute;
-      animation: slide 2s cubic-bezier(0.2, 0, 0.38, 0.9) infinite;
+    &:not([determinate]):not([error]):not([success]) .cbp-progress-container{
+      background-color: var(--cbp-loader-track-color);
+
+      &::before {
+        content: '';
+        display: block;
+        height: var(--cbp-loader-linear-height);
+        width: 20%;
+        background-color: var(--cbp-loader-color);
+        position: absolute;
+        animation: slide 2s cubic-bezier(0.2, 0, 0.38, 0.9) infinite;
+      }
     }
 
     &[determinate] {
@@ -175,7 +193,7 @@ cbp-loader {
       order: 2;
     }
 
-    progress {
+    .cbp-progress-container{
       height: var(--cbp-loader-diameter);
       width: var(--cbp-loader-diameter);
       display: flex;
@@ -190,7 +208,7 @@ cbp-loader {
         display: none;
       }
 
-      &:before {
+      &::before {
         content: '';
         position: absolute;
         z-index: var(--cbp-z-index-level-1);
@@ -213,8 +231,8 @@ cbp-loader {
       }
     }
     
-    &[size=small][success] progress,
-    &[size=small][error] progress{
+    &[size=small][success] .cbp-progress-container,
+    &[size=small][error] .cbp-progress-container{
       display: none;
     }
 
@@ -227,14 +245,14 @@ cbp-loader {
       z-index: var(--cbp-z-index-level-3);
     }
 
-    &:not([determinate]):not([error]):not([success]) ::before {
+    &:not([determinate]):not([error]):not([success]) .cbp-progress-container::before {
       transform: rotate(45deg);
       animation: spin 2s linear infinite;
     }
 
     &[determinate] {
-      progress {
-        &:before {
+      .cbp-progress-container {
+        &::before {
           background: var(--cbp-loader-circular-determinate);
         }
       }
