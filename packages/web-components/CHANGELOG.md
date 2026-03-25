@@ -20,7 +20,10 @@ The React components are wrappers generated from this package and will share the
   * Added `aria-owns` to Treeview and Treeview Items with nested children for improved accessibility.
   * Refactored some CSS to make it more robust.
 * Upgraded to Storybook 10.3.3.
-* Fixed the Storybook HTML Panel to work again and show pre-rendered web component code that can easily be copied into your application.
+* Fixed the Storybook HTML Panel.
+  * It now displays pre-rendered web component code that can easily be copied into your application.
+  * Boolean attributes such as `checked` are represented properly, without the trailing `=""`.
+  * `sx` is displayed properly with outer single quotes and unescaped double quotes within the stringified JSON.
 
 ## [0.0.1-develop.32] 03-16-2026
 

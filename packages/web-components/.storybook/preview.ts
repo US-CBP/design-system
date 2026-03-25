@@ -60,14 +60,8 @@ const withAnimationControl: DecoratorFunction<WebComponentsRenderer> = (storyFn)
 
 
 // Get the Pre-rendered Stencil web component code for the HTML Panel
-/* TODO: 
- *    Switch sx back to single quotes and unescape the JSON double quotes?
- *    Represent booleans properly as just the attribute, without ="" per innerHTML
- *    Remove multiple line breaks
- */
 var DEFAULT_ROOT_SELECTOR = "#storybook-root, #root";
 const renderPreHydrated: DecoratorFunction<WebComponentsRenderer> = (storyFn, context) => {
-  //console.log(context);
   const parameters = context.parameters?.html || {};
   const rootSelector = parameters.root || DEFAULT_ROOT_SELECTOR;
   const channel = addons.getChannel();
@@ -80,11 +74,12 @@ const renderPreHydrated: DecoratorFunction<WebComponentsRenderer> = (storyFn, co
     // store it somewhere or pass via context
     context.parameters.__preHydratedHTML = rawSnapshot;
 
-    console.log(channel,rawSnapshot);
-
     setTimeout( async () => {
       channel.emit('storybook/html/codeUpdate', {
         code: rawSnapshot?.replace(/<!---->/g,'')
+        .replace(/(checked|indeterminate|selectable|selected|current|disabled|readonly|required|error|success|determinate|hidden|hide|visually-hide|open|pressed|expanded|multiple|inert|controls|download|novalidate|formnovalidate|autofocus|stretch|nobreak|hide-minmax|hide-input|striped|flat|column-hover|hide-status|filter|async|create|enhanced|debug)=""/gi,'$1') // Represent booleans properly with just the attribute without ="" per innerHTML
+        .replace(/sx="/gi,'sx=\'').replace(/}"/gi,'}\'')
+        .replace(/&quot;/gi,'"') // fix sx props in HTML by wrapping the value in single quotes and unescaping the JSON double quotes
         .split('\n')
           //.filter(line => line.trim() != '' ? line.replace(/^ {0,4}/,'') : null) 
           .map(line => line.replace(/^ {0,4}/,''))
