@@ -116,7 +116,7 @@ cbp-structured-list {
     }
   }
 
-  &[striped] [role=list] > *:nth-child(even):not([color]) {
+  &[striped] [role=list] > *:nth-child(even):not([color]):not([selected]) {
     background-color: var(--cbp-structured-list-color-striped-background);
   }
 
