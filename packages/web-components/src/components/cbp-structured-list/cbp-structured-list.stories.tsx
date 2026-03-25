@@ -171,12 +171,12 @@ StructuredListItems.args = {
     },
     {
       content: 'Structured list item 2',
-      color: 'default',
+      color: 'info',
       selected: false
     },
     {
       content: 'Structured list item 3',
-      color: 'default',
+      color: 'success',
       selected: false
     },
     {
@@ -186,7 +186,7 @@ StructuredListItems.args = {
     },
     {
       content: 'Structured list item 5',
-      color: 'default',
+      color: 'warning',
       selected: false
     },
   ]

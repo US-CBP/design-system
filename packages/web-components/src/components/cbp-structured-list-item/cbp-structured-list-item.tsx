@@ -16,7 +16,7 @@ export class CbpStructuredListItem {
   @Element() private host: HTMLElement;
 
   /** Optionally specifies a color variant based on design tokens. */
-  @Prop({ reflect: true }) color: 'danger';
+  @Prop({ reflect: true }) color: 'danger' | 'warning' | 'success' | 'info';
   
   /** Specifies whether the item is selected. */
   @Prop({ reflect: true }) selected: boolean;
