@@ -13,27 +13,27 @@
   striped,
   hover,
   columnHover,
+  overflow,
+  showToolbar,
+  showCaption,
+  liveRegion,
   context,
   sx
 }) => {
-  /*
-   const toolbar=`
-     <div slot="cbp-table-toolbar">
-       Test toolbar.
-     </div>
-   `;
-   */
-
   return ` 
       <cbp-table
         ${striped != 'none' ? `striped="${striped}"` : ''}
         ${hover == 'cell' ? `hover="${hover}"` : ''}
         ${columnHover ? `column-hover` : ''}
+        ${overflow ? `overflow="${overflow}"` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
-        <table style="width: 100%">
-          <caption>Table Caption</caption>
+        ${showToolbar ? toolbar() : ''}
+        ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
+
+        <table style="width:100%">
+          <caption ${showCaption ? '' : 'hidden'}>Table Caption</caption>
           <thead>
             <tr>
               ${generateTableHeaders(headers, selectable, context)}
@@ -43,15 +43,15 @@
             ${generateTableRows(tableData, selectable, context)}
           </tbody>
         </table>
-
-        ${selectable ? `
-            <cbp-action-bar variant="inline" context="dark-inverts">
-              <div slot="cbp-action-bar-info">0 items selected.</div>
-              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-            </cbp-action-bar>          
-          ` : ''}
-      </cbp-typography>
+      </cbp-table>
+      
+      ${selectable ? `
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>          
+      ` : ''}
     `;
 }
 ```
@@ -66,27 +66,27 @@
   striped,
   hover,
   columnHover,
+  overflow,
+  showToolbar,
+  showCaption,
+  liveRegion,
   context,
   sx
 }) => {
-  /*
-   const toolbar=`
-     <div slot="cbp-table-toolbar">
-       Test toolbar.
-     </div>
-   `;
-   */
-
   return ` 
       <cbp-table
         ${striped != 'none' ? `striped="${striped}"` : ''}
         ${hover == 'cell' ? `hover="${hover}"` : ''}
         ${columnHover ? `column-hover` : ''}
+        ${overflow ? `overflow="${overflow}"` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
-        <table style="width: 100%">
-          <caption>Table Caption</caption>
+        ${showToolbar ? toolbar() : ''}
+        ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
+
+        <table style="width:100%">
+          <caption ${showCaption ? '' : 'hidden'}>Table Caption</caption>
           <thead>
             <tr>
               ${generateTableHeaders(headers, selectable, context)}
@@ -96,15 +96,15 @@
             ${generateTableRows(tableData, selectable, context)}
           </tbody>
         </table>
-
-        ${selectable ? `
-            <cbp-action-bar variant="inline" context="dark-inverts">
-              <div slot="cbp-action-bar-info">0 items selected.</div>
-              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-            </cbp-action-bar>          
-          ` : ''}
-      </cbp-typography>
+      </cbp-table>
+      
+      ${selectable ? `
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>          
+      ` : ''}
     `;
 }
 ```
@@ -119,27 +119,27 @@
   striped,
   hover,
   columnHover,
+  overflow,
+  showToolbar,
+  showCaption,
+  liveRegion,
   context,
   sx
 }) => {
-  /*
-   const toolbar=`
-     <div slot="cbp-table-toolbar">
-       Test toolbar.
-     </div>
-   `;
-   */
-
   return ` 
       <cbp-table
         ${striped != 'none' ? `striped="${striped}"` : ''}
         ${hover == 'cell' ? `hover="${hover}"` : ''}
         ${columnHover ? `column-hover` : ''}
+        ${overflow ? `overflow="${overflow}"` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
-        <table style="width: 100%">
-          <caption>Table Caption</caption>
+        ${showToolbar ? toolbar() : ''}
+        ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
+
+        <table style="width:100%">
+          <caption ${showCaption ? '' : 'hidden'}>Table Caption</caption>
           <thead>
             <tr>
               ${generateTableHeaders(headers, selectable, context)}
@@ -149,15 +149,15 @@
             ${generateTableRows(tableData, selectable, context)}
           </tbody>
         </table>
-
-        ${selectable ? `
-            <cbp-action-bar variant="inline" context="dark-inverts">
-              <div slot="cbp-action-bar-info">0 items selected.</div>
-              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-            </cbp-action-bar>          
-          ` : ''}
-      </cbp-typography>
+      </cbp-table>
+      
+      ${selectable ? `
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>          
+      ` : ''}
     `;
 }
 ```
@@ -172,27 +172,27 @@
   striped,
   hover,
   columnHover,
+  overflow,
+  showToolbar,
+  showCaption,
+  liveRegion,
   context,
   sx
 }) => {
-  /*
-   const toolbar=`
-     <div slot="cbp-table-toolbar">
-       Test toolbar.
-     </div>
-   `;
-   */
-
   return ` 
       <cbp-table
         ${striped != 'none' ? `striped="${striped}"` : ''}
         ${hover == 'cell' ? `hover="${hover}"` : ''}
         ${columnHover ? `column-hover` : ''}
+        ${overflow ? `overflow="${overflow}"` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
-        <table style="width: 100%">
-          <caption>Table Caption</caption>
+        ${showToolbar ? toolbar() : ''}
+        ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
+
+        <table style="width:100%">
+          <caption ${showCaption ? '' : 'hidden'}>Table Caption</caption>
           <thead>
             <tr>
               ${generateTableHeaders(headers, selectable, context)}
@@ -202,15 +202,15 @@
             ${generateTableRows(tableData, selectable, context)}
           </tbody>
         </table>
-
-        ${selectable ? `
-            <cbp-action-bar variant="inline" context="dark-inverts">
-              <div slot="cbp-action-bar-info">0 items selected.</div>
-              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-            </cbp-action-bar>          
-          ` : ''}
-      </cbp-typography>
+      </cbp-table>
+      
+      ${selectable ? `
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>          
+      ` : ''}
     `;
 }
 ```
@@ -225,27 +225,27 @@
   striped,
   hover,
   columnHover,
+  overflow,
+  showToolbar,
+  showCaption,
+  liveRegion,
   context,
   sx
 }) => {
-  /*
-   const toolbar=`
-     <div slot="cbp-table-toolbar">
-       Test toolbar.
-     </div>
-   `;
-   */
-
   return ` 
       <cbp-table
         ${striped != 'none' ? `striped="${striped}"` : ''}
         ${hover == 'cell' ? `hover="${hover}"` : ''}
         ${columnHover ? `column-hover` : ''}
+        ${overflow ? `overflow="${overflow}"` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx=${JSON.stringify(sx)}` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
-        <table style="width: 100%">
-          <caption>Table Caption</caption>
+        ${showToolbar ? toolbar() : ''}
+        ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
+
+        <table style="width:100%">
+          <caption ${showCaption ? '' : 'hidden'}>Table Caption</caption>
           <thead>
             <tr>
               ${generateTableHeaders(headers, selectable, context)}
@@ -255,15 +255,15 @@
             ${generateTableRows(tableData, selectable, context)}
           </tbody>
         </table>
-
-        ${selectable ? `
-            <cbp-action-bar variant="inline" context="dark-inverts">
-              <div slot="cbp-action-bar-info">0 items selected.</div>
-              <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-            </cbp-action-bar>          
-          ` : ''}
-      </cbp-typography>
+      </cbp-table>
+      
+      ${selectable ? `
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>          
+      ` : ''}
     `;
 }
 ```

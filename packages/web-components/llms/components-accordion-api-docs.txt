@@ -102,4 +102,12 @@ Accordion Items are placed as children of the parent `cbp-accordion` tag. The co
 
 ### Graph
 
+```mermaid
+graph TD;
+  cbp-accordion-item --> cbp-button
+  cbp-accordion-item --> cbp-icon
+  cbp-accordion-item --> cbp-typography
+  style cbp-accordion-item fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ---

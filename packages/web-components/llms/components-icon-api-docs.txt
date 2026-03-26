@@ -48,6 +48,7 @@ The Icon component represents a standard API for embedding accessible Scalable V
 -   [cbp-loader](../cbp-loader)
 -   [cbp-menu](../cbp-menu)
 -   [cbp-subnav-item](../cbp-subnav-item)
+-   [cbp-table](../cbp-table)
 -   [cbp-tabs](../cbp-tabs)
 -   [cbp-tooltip](../cbp-tooltip)
 -   [cbp-treeview-item](../cbp-treeview-item)
@@ -72,6 +73,7 @@ graph TD;
   cbp-loader --> cbp-icon
   cbp-menu --> cbp-icon
   cbp-subnav-item --> cbp-icon
+  cbp-table --> cbp-icon
   cbp-tabs --> cbp-icon
   cbp-tooltip --> cbp-icon
   cbp-treeview-item --> cbp-icon
