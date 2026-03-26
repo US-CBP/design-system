@@ -410,7 +410,9 @@ function passengerList(passengerArgs) {
     page = paginationComponent.page;
     pageSize = paginationComponent.pageSize;
 
-    structuredListComponent.innerHTML = generatePassengers(passengerArgs, page, pageSize);
+    if(structuredListComponent){
+      structuredListComponent.innerHTML = generatePassengers(passengerArgs, page, pageSize);
+    }
   });
 
   return `
