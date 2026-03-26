@@ -25,29 +25,17 @@ The Drawer is a container that may be hidden and revealed, sliding in from eithe
 
 ## Methods
 
-### `closeDrawer(e?: any) => Promise<void>`
+### `closeDrawer() => Promise<void>`
 
 A public method for closing the drawer.
-
-#### Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `e` | `any` |  |
 
 #### Returns
 
 Type: `Promise<void>`
 
-### `openDrawer(e?: any) => Promise<void>`
+### `openDrawer() => Promise<void>`
 
 A public method for opening the drawer.
-
-#### Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `e` | `any` |  |
 
 #### Returns
 
@@ -63,7 +51,9 @@ Type: `Promise<void>`
 
 | Name | Description |
 | --- | --- |
+| `--cbp-drawer-close-button-color` | var(--cbp-color-interactive-secondary-darker); |
 | `--cbp-drawer-color-backdrop` | var(--cbp-color-backdrop-light); |
+| `--cbp-drawer-color-backdrop-dark` | var(--cbp-color-backdrop-dark); |
 | `--cbp-drawer-color-bg` | var(--cbp-color-white); |
 | `--cbp-drawer-color-bg-dark` | var(--cbp-color-gray-cool-70); |
 

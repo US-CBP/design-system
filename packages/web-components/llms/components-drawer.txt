@@ -33,13 +33,13 @@
     </cbp-hide>
 
     <cbp-drawer
-      ${position ? `position=${position}` : ''}
-      ${open ? `open=${open}` : ''}
-      ${persistAt ? `persist-at=${persistAt}` : ''}
-      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+      ${position ? `position="${position}"` : ''}
+      ${open ? 'open' : ''}
+      ${persistAt ? `persist-at="${persistAt}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      ${uid ? `uid=${uid}` : ''}
+      ${uid ? `uid="${uid}"` : ''}
     >
       <cbp-panel
         aria-labelledby="panelheader"
@@ -71,8 +71,7 @@
   uid,
   accessibilityText,
   withIcon,
-  context,
-  sx
+  context
 }) => {
   return `
     <cbp-button
@@ -87,12 +86,14 @@
     </cbp-button>
 
     <cbp-drawer
-      ${position ? `position=${position}` : ''}
-      ${open ? `open=${open}` : ''}
+      ${position ? `position="${position}"` : ''}
+      ${open ? 'open' : ''}
       ${persistAt ? `persist-at="${persistAt}"` : ''}
-      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context=${context}` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      sx='{
+        "--cbp-drawer-close-button-color":"var(--cbp-color-white)"
+      }'
       ${uid ? `uid=${uid}` : ''}
     >
       <cbp-panel
@@ -100,7 +101,7 @@
         ${context && context != 'light-inverts' ? `context=${context}` : ''}
         sx='{
           "--cbp-panel-header-color-dark": "var(--cbp-color-text-lighter)",
-          "--cbp-panel-header-color-bg-dark":"var(--cbp-color-branding-dhs-blue)"
+          "--cbp-panel-header-color-bg-dark": "var(--cbp-color-branding-dhs-blue)"
         }'
       >
         <cbp-typography

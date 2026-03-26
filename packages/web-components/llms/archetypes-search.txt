@@ -1,9 +1,9 @@
-# Archetypes/Search Results
+# Archetypes/Search
 
 ## Examples
 
 
-### Search Template
+### Search
 
 ```tsx
 ({

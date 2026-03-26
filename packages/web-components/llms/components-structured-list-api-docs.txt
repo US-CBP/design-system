@@ -21,7 +21,7 @@
 | `--cbp-structured-list-color-background` | var(--cbp-color-white); |
 | `--cbp-structured-list-color-background-dark` | var(--cbp-color-gray-cool-80); |
 | `--cbp-structured-list-color-background-hover` | var(--cbp-color-gray-cool-10); |
-| `--cbp-structured-list-color-background-hover-dark` | var(--cbp-color-gray-cool-90); |
+| `--cbp-structured-list-color-background-hover-dark` | var(--cbp-color-black); |
 | `--cbp-structured-list-color-dark` | var(--cbp-color-text-lightest); |
 | `--cbp-structured-list-color-striped-background` | var(--cbp-color-gray-cool-4); |
 | `--cbp-structured-list-color-striped-background-dark` | var(--cbp-color-gray-cool-90); |
@@ -33,6 +33,16 @@
 | `--cbp-structured-list-header-color-background` | var(--cbp-color-gray-cool-30); |
 | `--cbp-structured-list-header-color-background-dark` | var(--cbp-color-gray-cool-60); |
 | `--cbp-structured-list-header-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-structured-list-item-color-background-danger` | var(--cbp-color-danger-lighter); |
+| `--cbp-structured-list-item-color-background-danger-dark` | var(--cbp-color-danger-darker); |
+| `--cbp-structured-list-item-color-background-info` | var(--cbp-color-info-lighter); |
+| `--cbp-structured-list-item-color-background-info-dark` | var(--cbp-color-info-darker); |
+| `--cbp-structured-list-item-color-background-selected` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-structured-list-item-color-background-selected-dark` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-structured-list-item-color-background-success` | var(--cbp-color-success-lighter); |
+| `--cbp-structured-list-item-color-background-success-dark` | var(--cbp-color-success-darker); |
+| `--cbp-structured-list-item-color-background-warning` | var(--cbp-color-warning-lighter); |
+| `--cbp-structured-list-item-color-background-warning-dark` | var(--cbp-color-warning-darker); |
 | `--cbp-structured-list-item-padding` | var(--cbp-space-4x); |
 | `--cbp-structured-list-margin-bottom` | var(--cbp-space-4x); |
 
@@ -48,7 +58,7 @@ The Structured List Item component may optionally be used to hold each list item
 
 | Property | Attribute | Description | Type | Default |
 | --- | --- | --- | --- | --- |
-| `color` | `color` | Optionally specifies a color variant based on design tokens. | `"danger"` | `undefined` |
+| `color` | `color` | Optionally specifies a color variant based on design tokens. | `"danger" | "info" | "success" | "warning"` | `undefined` |
 | `selected` | `selected` | Specifies whether the item is selected. | `boolean` | `undefined` |
 | `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
 

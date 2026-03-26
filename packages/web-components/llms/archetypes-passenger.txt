@@ -1,9 +1,9 @@
-# Archetypes/Passenger List
+# Archetypes/Passenger
 
 ## Examples
 
 
-### Internal
+### Passenger
 
 ```tsx
 ({

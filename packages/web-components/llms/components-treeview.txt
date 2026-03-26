@@ -27,3 +27,26 @@
   `;
 }
 ```
+
+### Treeview with Action Button
+
+```tsx
+({
+  treeItems,
+  name,
+  accessibilityText,
+  context,
+  sx
+}) => {
+  return `
+    <cbp-treeview
+      ${name ? `name="${name}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateTreeviewitems(treeItems, false)}
+    </cbp-treeview>
+  `;
+}
+```
