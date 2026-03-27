@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Structured List',
+  title: 'Content/Structured List',
   tags: ['beta'],
   argTypes: {
     showHeader: {
@@ -51,23 +51,25 @@ function generateItems(items) {
 
 function generateSelectableItems(items, context){
   const html = items.map(({ content, color, selected }, index) => {
-    return `<cbp-structured-list-item ${color != 'default' ? `color="${color}"` : ''} ${selected ? `selected` : ''} >
-    <cbp-checkbox 
-      value= ${index}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
-    >
-      <input
-        type="checkbox"
-        name="checkbox"
-        value=${index}
-      />
-      <cbp-hide
-      visually-hide>
-        Checkbox ${index}
-      </cbp-hide>
-    </cbp-checkbox>
-    ${content}
-    </cbp-structured-list-item>`;
+    return `
+      <cbp-structured-list-item ${color != 'default' ? `color="${color}"` : ''} ${selected ? `selected` : ''} >
+        <cbp-checkbox 
+          value="${index}"
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
+        >
+          <input
+            type="checkbox"
+            name="checkbox"
+            value="${index}"
+          />
+          <cbp-hide visually-hide>
+            Checkbox ${index}
+          </cbp-hide>
+        </cbp-checkbox>
+
+        ${content}
+      </cbp-structured-list-item>
+    `;
   });
   return html.join('');
 }
@@ -75,30 +77,28 @@ function generateSelectableItems(items, context){
 
 const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, context, sx }) => {
   return ` 
-        <cbp-structured-list
-          ${striped ? `striped` : ''}
-          ${selectable ? `selectable` : ''}
-          header-id="list-header"
-          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-          ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
+    <cbp-structured-list
+      ${striped ? 'striped' : ''}
+      ${selectable ? 'selectable' : ''}
+      header-id="list-header"
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list.</div>` : ''}
 
-          ${generateLIs(listItems)}
-
-          
-          ${showFooter      
-            ? ` <div slot="cbp-structured-list-footer">
-                  <cbp-action-bar variant="inline" context="dark-inverts">
-                    <div slot="cbp-action-bar-info">0 items selected.</div>
-                    <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-                    <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-                  </cbp-action-bar>
-                </div>
-              ` 
-            : ''}
-        </cbp-structured-list>
-      `;
+      ${generateLIs(listItems)}
+      
+      ${showFooter ? `
+        <div slot="cbp-structured-list-footer">
+          <cbp-action-bar variant="inline" context="dark-inverts">
+            <div slot="cbp-action-bar-info">0 items selected.</div>
+            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+          </cbp-action-bar>
+        </div>
+      ` : ''}
+    </cbp-structured-list>
+  `;
 };
 export const StructuredList = StructuredListTemplate.bind({});
 StructuredList.argTypes = {
@@ -130,30 +130,28 @@ StructuredList.args = {
 
 const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, context, sx }) => {
   return ` 
-        <cbp-structured-list
-          ${striped ? `striped` : ''}
-          ${selectable ? `selectable` : ''}
-          header-id="list-header"
-          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
+    <cbp-structured-list
+      ${striped ? 'striped' : ''}
+      ${selectable ? 'selectable' : ''}
+      header-id="list-header"
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+    ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
 
-        ${generateItems(listItems)}
+    ${generateItems(listItems)}
 
-        ${showFooter
-            ? `
-            <div slot="cbp-structured-list-footer">
-              <cbp-action-bar variant="inline" context="dark-inverts">
-                <div slot="cbp-action-bar-info">0 items selected.</div>
-                <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-                <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-              </cbp-action-bar>
-            </div>  
-              ` 
-            : ''}
-        </cbp-structured-list>
-      `;
+    ${showFooter ? `
+      <div slot="cbp-structured-list-footer">
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>
+      </div>  
+    ` : ''}
+    </cbp-structured-list>
+  `;
 };
 export const StructuredListItems = StructuredListItemsTemplate.bind({});
 StructuredListItems.argTypes = {
@@ -196,8 +194,8 @@ StructuredListItems.args = {
 const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, headerId, showFooter, context, sx }) => {
   return ` 
         <cbp-structured-list
-          ${striped ? `striped` : ''}
-          ${selectable ? `selectable` : ''}
+          ${striped ? 'striped' : ''}
+          ${selectable ? 'selectable' : ''}
           header-id="list-header"
           ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
           ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -209,18 +207,10 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
               gap="var(--cbp-space-4x)"
               grid-template-columns="repeat(auto-fit, minmax(5rem, 1fr))"
             >
-              <cbp-grid-item>
-                Grid Item 1
-              </cbp-grid-item>
-              <cbp-grid-item>
-                Grid Item 2
-              </cbp-grid-item>
-              <cbp-grid-item>
-                Grid Item 3
-              </cbp-grid-item>
-              <cbp-grid-item>
-                Grid Item 4
-              </cbp-grid-item>
+              <cbp-grid-item>Grid Item 1</cbp-grid-item>
+              <cbp-grid-item>Grid Item 2</cbp-grid-item>
+              <cbp-grid-item>Grid Item 3</cbp-grid-item>
+              <cbp-grid-item>Grid Item 4</cbp-grid-item>
             </cbp-grid>
           </cbp-structured-list-item>
 
@@ -229,18 +219,10 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
               gap="var(--cbp-space-4x)"
               grid-template-columns="repeat(auto-fit, minmax(5rem, 1fr))"
             >
-              <cbp-grid-item>
-                Grid Item 1 is a bit longer
-              </cbp-grid-item>
-              <cbp-grid-item>
-                Grid Item 2
-              </cbp-grid-item>
-              <cbp-grid-item>
-                Grid Item 3 is a whole lot longer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </cbp-grid-item>
-              <cbp-grid-item>
-                Grid Item 4
-              </cbp-grid-item>
+              <cbp-grid-item>Grid Item 1 is a bit longer</cbp-grid-item>
+              <cbp-grid-item>Grid Item 2</cbp-grid-item>
+              <cbp-grid-item>Grid Item 3 is a whole lot longer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</cbp-grid-item>
+              <cbp-grid-item>Grid Item 4</cbp-grid-item>
             </cbp-grid>
           </cbp-structured-list-item>
 
@@ -249,23 +231,14 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
               gap="var(--cbp-space-4x)"
               grid-template-columns="repeat(auto-fit, minmax(5rem, 1fr))"
             >
-              <cbp-grid-item>
-                Grid Item 1
-              </cbp-grid-item>
-              <cbp-grid-item>
-                Grid Item 2 has a little more.
-              </cbp-grid-item>
-              <cbp-grid-item>
-                Grid Item 3
-              </cbp-grid-item>
-              <cbp-grid-item>
-                Grid Item 4 does too.
-              </cbp-grid-item>
+              <cbp-grid-item>Grid Item 1</cbp-grid-item>
+              <cbp-grid-item>Grid Item 2 has a little more.</cbp-grid-item>
+              <cbp-grid-item>Grid Item 3</cbp-grid-item>
+              <cbp-grid-item>Grid Item 4 does too.</cbp-grid-item>
             </cbp-grid>
           </cbp-structured-list-item>
 
-          ${showFooter
-            ? `
+          ${showFooter ? `
             <div slot="cbp-structured-list-footer">
               <cbp-action-bar variant="inline" context="dark-inverts">
                 <div slot="cbp-action-bar-info">0 items selected.</div>
@@ -273,8 +246,7 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
                 <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
               </cbp-action-bar>
             </div>
-              ` 
-            : ''}
+          ` : ''}
         </cbp-structured-list>
       `;
 };
@@ -289,19 +261,16 @@ const StructuredListCollectionTemplate = ({ listItems, striped, selectable, cont
   }, 500);
   
   return ` 
-        <cbp-structured-list
-          ${striped ? `striped` : ''}
-          ${selectable ? `selectable` : ''}
-          header-id="list-header"
-          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-        
-        ${generateItems(listItems)}
-
-        
-        </cbp-structured-list>
-      `;
+    <cbp-structured-list
+      ${striped ? 'striped' : ''}
+      ${selectable ? 'selectable' : ''}
+      header-id="list-header"
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateItems(listItems)}
+    </cbp-structured-list>
+  `;
 };
 export const StructuredListCollection = StructuredListCollectionTemplate.bind({});
 StructuredListCollection.argTypes = {
@@ -357,19 +326,16 @@ const StructuredListMediaTemplate = ({ listItems, striped, selectable, context, 
   }, 500);
 
   return ` 
-        <cbp-structured-list
-          ${striped ? `striped` : ''}
-          ${selectable ? `selectable` : ''}
-          header-id="list-header"
-          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-        
-        ${generateItems(listItems)}
-
-        
-        </cbp-structured-list>
-      `;
+    <cbp-structured-list
+      ${striped ? 'striped' : ''}
+      ${selectable ? 'selectable' : ''}
+      header-id="list-header"
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateItems(listItems)}
+    </cbp-structured-list>
+  `;
 };
 export const StructuredListMedia = StructuredListMediaTemplate.bind({});
 StructuredListMedia.argTypes = {
@@ -415,19 +381,16 @@ const StructuredListMediaCalendarTemplate = ({ listItems, striped, selectable, c
   }, 500);
 
   return ` 
-        <cbp-structured-list
-          ${striped ? `striped` : ''}
-          ${selectable ? `selectable` : ''}
-          header-id="list-header"
-          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-        
-        ${generateItems(listItems)}
-
-        
-        </cbp-structured-list>
-      `;
+    <cbp-structured-list
+      ${striped ? 'striped' : ''}
+      ${selectable ? 'selectable' : ''}
+      header-id="list-header"
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateItems(listItems)}
+    </cbp-structured-list>
+  `;
 };
 export const StructuredListMediaCalendar = StructuredListMediaCalendarTemplate.bind({});
 StructuredListMediaCalendar.argTypes = {
@@ -627,27 +590,26 @@ StructuredListMediaCalendar.args = {
 
 const StructuredListSelectableTemplate = ({ listItems, striped, showHeader, headerId, context, sx }) => {
   return ` 
-       <cbp-structured-list
-          ${striped ? `striped` : ''}
-          selectable
-          header-id="list-header"
-          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-        ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox><input type="checkbox"/><cbp-hide visually-hide>check all</cbp-hide></cbp-checkbox> <span>5 Search Results</span></div>` : ''}
-    
-        ${generateSelectableItems(listItems, context)}
-          <div slot="cbp-structured-list-footer">
-            <cbp-action-bar variant="inline" context="dark-inverts"> 
-              <div slot="cbp-action-bar-info">XXX items selected.</div>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-              <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-            </cbp-action-bar>
-          </div>
-      
-        </cbp-structured-list>
-      `;
-      
+    <cbp-structured-list
+      ${striped ? 'striped' : ''}
+      selectable
+      header-id="list-header"
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox><input type="checkbox"/><cbp-hide visually-hide>check all</cbp-hide></cbp-checkbox> <span>5 Search Results</span></div>` : ''}
+
+      ${generateSelectableItems(listItems, context)}
+
+      <div slot="cbp-structured-list-footer">
+        <cbp-action-bar variant="inline" context="dark-inverts"> 
+          <div slot="cbp-action-bar-info">XXX items selected.</div>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>
+      </div>
+    </cbp-structured-list>
+  `;
 };
 export const StructuredListSelectable = StructuredListSelectableTemplate.bind({});
 StructuredListSelectable.argTypes = {

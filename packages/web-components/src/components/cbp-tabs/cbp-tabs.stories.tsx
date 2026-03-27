@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Tabs',
+  title: 'Content/Tabs',
   tags: ['beta'],
   argTypes: {
     tabs: {
@@ -33,12 +33,10 @@ function createTabs(tabs, withIcon, withBadge,) {
       <cbp-tab 
         name="${name}"
         ${color !== 'default' ? `color="${color}"` : ''}
-        ${accessibilityText ? `accessibility-text=${accessibilityText}}` : ''}
+        ${accessibilityText ? `accessibility-text="${accessibilityText}}"` : ''}
         ${selected == true ? 'selected' : ''}
       >
-        ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
-        ${label}
-        ${withBadge ? `<cbp-badge>22</cbp-badge>` : ''}
+        ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''} ${label} ${withBadge ? `<cbp-badge>22</cbp-badge>` : ''}
       </cbp-tab>
     `;
   });
@@ -48,9 +46,10 @@ function createTabs(tabs, withIcon, withBadge,) {
 function createTabPanels(tabs) {
   const html = tabs.map(({ name, panelContent }) => {
     return `
-      <cbp-tab-panel name=${name}>
-        ${panelContent}
-      </cbp-tab-panel>`;
+    <cbp-tab-panel name="${name}">
+      ${panelContent}
+    </cbp-tab-panel>
+    `;
   });
   return html.join('');
 }
@@ -64,6 +63,7 @@ const Template = ({ tabs, accessibilityText, withIcon, withBadge,context, sx }) 
     >
       ${createTabs(tabs, withIcon, withBadge)}
     </cbp-tabs>
+
     ${createTabPanels(tabs)}
  `;
 };

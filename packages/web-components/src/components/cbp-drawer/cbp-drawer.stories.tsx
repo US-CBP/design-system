@@ -38,9 +38,7 @@ export default {
 
 const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText, context, sx }) => {
   return `
-    <cbp-hide 
-      ${persistAt ? `hide-at="${persistAt}"` : ''}
-    >
+    ${persistAt ? `<cbp-hide hide-at="${persistAt}">` : ''}
       <cbp-button
         color="secondary"
         variant="square"
@@ -50,7 +48,7 @@ const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText,
       >
         <cbp-icon name="bars"></cbp-icon>
       </cbp-button>
-    </cbp-hide>
+    ${persistAt ? `</cbp-hide>` : ''}
 
     <cbp-drawer
       ${uid ? `uid="${uid}"` : ''}

@@ -5,7 +5,7 @@ import { CbpSection } from './cbp-section';
 const { events, args, argTypes, template } = getWcStorybookHelpers("cbp-section");
 
 const meta: Meta<CbpSection> = {
-  title: 'Components/Section',
+  title: 'Layout and Structure/Section',
   tags: ['autodocs'],
   component: "cbp-section",
   args, // <- default values for Storybook v7

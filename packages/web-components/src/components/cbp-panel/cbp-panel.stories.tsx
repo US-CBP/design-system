@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Panel',
+  title: 'Content/Panel',
   tags: ['beta'],
   argTypes: {
     headingLevel: {
@@ -47,8 +47,8 @@ export default {
 };
 
 
-const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabel, showIcon, context, sx }) =>
-  `
+const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabel, showIcon, context, sx }) => {
+  return `
     <cbp-panel
       ${headerId ? `aria-labelledby="${headerId}"` : ''}
       ${role != 'none' ? `role="${role}"` : ''}
@@ -59,17 +59,18 @@ const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabe
     >
       <cbp-typography
         slot="cbp-panel-header"
-        tag=${headingLevel}
+        tag="${headingLevel}"
         variant="heading-lg"
         ${headerId ? `id="${headerId}"` : ''}
       >
-        ${showIcon ? '<cbp-icon name="star" sx=\'{"margin-right":"var(--cbp-space-4x)", "vertical-align":"text-top"}\'></cbp-icon>' : ''}${header}
-      </cbp-typography
-      <div class="cbp-panel__content">
-        <p>${content}</p>
-      </div>
+        ${showIcon ? `<cbp-icon name="star" sx='{"margin-right":"var(--cbp-space-4x)", "vertical-align":"text-top"}'></cbp-icon>` : ''}
+        ${header}
+      </cbp-typography>
+
+      <p>${content}</p>
     </cbp-panel>
   `;
+}
   
 export const Default = PanelTemplate.bind({});
 Default.args = {

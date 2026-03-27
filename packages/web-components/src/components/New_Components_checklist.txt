@@ -19,6 +19,7 @@
   * Make sure all other attribute values are double-quoted (other than those passing stringified JSON, which get single quotes on the outside).
 * Components:
   * Make sure internal variables and functions are marked private.
+  * Boolean properties should never default to "true" and should not be named in the negative.
   * Leverage the component lifecycle:
     * Most things rendered by the component should be updated in the render and not via DOM manipulation.
     * Keep in mind reactivity; logic that runs on in componentWillLoad/componentDidLoad only runs once.

@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Section',
+  title: 'Layout and Structure/Section',
   tags: ['beta'],
   argTypes: {
     text: {
@@ -29,14 +29,14 @@ export default {
 
 const Template = ({ text, tag, accessibilityText, sx }) => {
   return ` 
-      <cbp-section
-        ${tag && tag !== 'none' ? `tag=${tag}` : ''}
-        ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        ${text}
-      </cbp-section>
-    `;
+    <cbp-section
+      ${tag && tag !== 'none' ? `tag="${tag}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${text}
+    </cbp-section>
+  `;
 };
 
 /* JSX format?
