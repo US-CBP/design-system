@@ -8,13 +8,13 @@ The Resize Observer component is a wrapper that implements a resizeObserver to d
 
 | Property | Attribute | Description | Type | Default |
 | --- | --- | --- | --- | --- |
-| `debounce` | `debounce` | The number of milliseconds to debounce the event emitter. (not currently working) | `number` | `0` |
+| `debounce` | `debounce` | The number of milliseconds to debounce the event emitter. Defaults to 0. While the native resize observer is very performant, the calculations within its handler function may not be, and performance may benefit from debouncing this event emitter. | `number` | `0` |
 
 ## Events
 
 | Event | Description | Type |
 | --- | --- | --- |
-| `resized` | A custom event emitted when the component is resized to give new values for size of component | `CustomEvent<any>` |
+| `resized` | A custom event emitted when the component is resized to give new values for size of component. | `CustomEvent<any>` |
 
 ## Slots
 
@@ -29,6 +29,7 @@ The Resize Observer component is a wrapper that implements a resizeObserver to d
 -   [cbp-app-header](../cbp-app-header)
 -   [cbp-breadcrumb](../cbp-breadcrumb)
 -   [cbp-carousel](../cbp-carousel)
+-   [cbp-table](../cbp-table)
 
 ### Graph
 
@@ -37,6 +38,7 @@ graph TD;
   cbp-app-header --> cbp-resize-observer
   cbp-breadcrumb --> cbp-resize-observer
   cbp-carousel --> cbp-resize-observer
+  cbp-table --> cbp-resize-observer
   style cbp-resize-observer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

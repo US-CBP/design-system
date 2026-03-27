@@ -11,6 +11,7 @@ The Table component is a wrapper component encapsulating design system styles fo
 | `columnHover` | `column-hover` | Specifies whether a hover effect is applied to columns when the column header is hovered. This feature is opt-in. | `boolean` | `undefined` |
 | `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
 | `hover` | `hover` | Specifies whether the mouse cursor highlights the table row or cell on hover. Defaults to "row". | `"cell" | "row"` | `'row'` |
+| `overflow` | `overflow` | Specifies whether the table is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). | `"linearize" | "scroll"` | `'scroll'` |
 | `striped` | `striped` | Specifies whether the table is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). | `"even" | "odd"` | `undefined` |
 | `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
 
@@ -42,6 +43,8 @@ Type: `Promise<void>`
 | Slot | Description |
 | --- | --- |
 |  | The semantic table HTML is placed within the default slot. |
+| `"cbp-table-live-region"` | For complex tables with many controls and/or pagination, the state of the data may be quantified and described accessibly via an `aria-live` region, which is hidden from view. E.g., Filtered by the term "test", ordered by Column 1 ascending, displaying records 100-200 of 1234. |
+| `"cbp-table-toolbar"` | Any sort of filters or table controls may be slotted within this named slot. |
 
 ## CSS Custom Properties
 
@@ -70,6 +73,7 @@ Type: `Promise<void>`
 | `--cbp-table-header-color-hover-dark` | var(--cbp-color-interactive-secondary-darker); |
 | `--cbp-table-header-color-outline` | var(--cbp-color-white); |
 | `--cbp-table-header-color-outline-dark` | var(--cbp-color-black); |
+| `--cbp-table-linearized-cell-padding` | var(--cbp-space-2x) var(--cbp-space-3x); |
 | `--cbp-table-row-border-size` | var(--cbp-border-size-md); |
 | `--cbp-table-row-color-bg` | var(--cbp-color-white); |
 | `--cbp-table-row-color-bg-dark` | var(--cbp-color-gray-cool-70); |
@@ -82,5 +86,23 @@ Type: `Promise<void>`
 | `--cbp-table-row-color-bg-striped-dark` | var(--cbp-color-gray-cool-80); |
 | `--cbp-table-row-color-border` | var(--cbp-color-gray-cool-30); |
 | `--cbp-table-row-color-border-dark` | var(--cbp-color-gray-cool-50); |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-button](../cbp-button)
+-   [cbp-icon](../cbp-icon)
+-   [cbp-resize-observer](../cbp-resize-observer)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-table --> cbp-button
+  cbp-table --> cbp-icon
+  cbp-table --> cbp-resize-observer
+  style cbp-table fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ---

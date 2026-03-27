@@ -11,7 +11,7 @@ The Dropdown component offers an alternative to the native select element that c
 | `async` | `async` | Indicates that the filtering will be performed by asynchronous calls (handled by application logic). | `boolean` | `false` |
 | `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
 | `create` | `create` | Specifies that when an exact match is not found for a search string (for combobox functionality), an option to create a new item is presented. | `boolean` | `undefined` |
-| `debug` | `debug` | Turns on debug mode, since the dropdown is complex and has complex integration concerns. | `boolean` | `false` |
+| `debug` | `debug` | Turns on debug mode, since the dropdown is complex and has complex integration concerns. (This prop is temporary and will be removed) | `boolean` | `false` |
 | `disabled` | `disabled` | Specifies that the field is disabled. Primarily controlled by the parent `cbp-form-field` component. | `boolean` | `false` |
 | `error` | `error` | Specifies that the field has an error (and sets aria-invalid accordingly). Primarily controlled by the parent `cbp-form-field` component. | `boolean` | `false` |
 | `fieldId` | `field-id` | Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility. | `string` | `createNamespaceKey('cbp-dropdown')` |
@@ -34,7 +34,7 @@ The Dropdown component offers an alternative to the native select element that c
 | `createItem` | A custom event that is fired when the "create item" option is clicked. | `CustomEvent<any>` |
 | `filterKeypress` | A custom event that is fired when a key is pressed while filtering a combobox. | `CustomEvent<any>` |
 | `populateCombobox` | A custom event emitted for asynchronous comboboxes (`async=true` and `filter=true`) and the search string meets the `minimumInputLength` requirement. This event can be listened for and the `items` (JSON) updated via application logic/service call. | `CustomEvent<any>` |
-| `valueChange` | A custom event emitted when the click event occurs for either a rendered button or anchor/link. | `CustomEvent<any>` |
+| `valueChange` | A custom event emitted when the a selection is made in the dropdown. | `CustomEvent<any>` |
 
 ## Methods
 
@@ -124,7 +124,7 @@ The Dropdown Item represents an individual option for the Dropdown, similar to a
 
 | Event | Description | Type |
 | --- | --- | --- |
-| `dropdownItemClick` |  | `CustomEvent<any>` |
+| `dropdownItemClick` | Internal use: A custom event emitted when a dropdown item is clicked/activated and is handled by the parent dropdown, also resulting in a `valueChange` event emitted from the dropdown component. | `CustomEvent<any>` |
 
 ## Slots
 

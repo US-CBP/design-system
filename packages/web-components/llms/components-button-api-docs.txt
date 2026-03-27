@@ -28,7 +28,7 @@ The Button component represents a UI control visually styled like a button, rega
 | `targetProp` | `target-prop` | The property on the target element being toggled by the button/control (e.g., "open"). | `string` | `undefined` |
 | `type` | `type` | The `type` attribute of the button: button, submit, or reset. Defaults to "button." | `"button" | "reset" | "submit"` | `'button'` |
 | `value` | `value` | The `value` attribute of the button, which is passed as part of formData (as a value) for the the pressed submit button. | `string` | `undefined` |
-| `variant` | `variant` | Specifies a variant of the buttons, such as square for buttons with only an icon and call-to-action button. | `"cta" | "square"` | `undefined` |
+| `variant` | `variant` | Specifies a variant of the buttons, such as square for buttons with only an icon and call-to-action button. | `"circle" | "cta" | "square"` | `undefined` |
 | `width` | `width` | Specifies the (min-)width of the button (in CSS units) when different from the default size. | `string` | `undefined` |
 
 ## Events
@@ -95,6 +95,7 @@ The Button component represents a UI control visually styled like a button, rega
 -   [cbp-file-input](../cbp-file-input)
 -   [cbp-menu](../cbp-menu)
 -   [cbp-subnav-item](../cbp-subnav-item)
+-   [cbp-table](../cbp-table)
 -   [cbp-tabs](../cbp-tabs)
 -   [cbp-tooltip](../cbp-tooltip)
 -   [cbp-treeview-item](../cbp-treeview-item)
@@ -115,6 +116,7 @@ graph TD;
   cbp-file-input --> cbp-button
   cbp-menu --> cbp-button
   cbp-subnav-item --> cbp-button
+  cbp-table --> cbp-button
   cbp-tabs --> cbp-button
   cbp-tooltip --> cbp-button
   cbp-treeview-item --> cbp-button
