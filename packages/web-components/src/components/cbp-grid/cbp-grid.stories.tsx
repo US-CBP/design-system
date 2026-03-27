@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Grid',
+  title: 'Layout and Structure/Grid',
   tags: ['beta', 'code-only'],
   argTypes: {
     display: {
@@ -96,7 +96,9 @@ export default {
 
 function createChildren(children) {
   const html = children.map(({ text }) => {
-    return `<div>${text}</div>`;
+    return `
+        <div>${text}</div>
+    `;
   });
   return html.join('');
 }
@@ -119,25 +121,25 @@ const Template = ({
   sx,
 }) => {
   return ` 
-        <cbp-grid
-          ${display ? `display=${display}` : ''}
-          ${gridTemplateAreas ? `grid-template-areas=${gridTemplateAreas}` : ''}
-          ${gridTemplateColumns ? `grid-template-columns=${gridTemplateColumns}` : ''}
-          ${gridTemplateRows ? `grid-template-rows=${gridTemplateRows}` : ''}
-          ${gridAutoFlow ? `grid-auto-flow=${gridAutoFlow}` : ''}
-          ${gridAutoColumns ? `grid-auto-columns=${gridAutoColumns}` : ''}
-          ${gridAutoRows ? `grid-auto-rows=${gridAutoRows}` : ''}
-          ${alignItems ? `align-items=${alignItems}` : ''}
-          ${alignContent ? `align-content=${alignContent}` : ''}
-          ${justifyItems ? `justify-items=${justifyItems}` : ''}
-          ${justifyContent ? `justify-content=${justifyContent}` : ''}
-          ${gap ? `gap="${gap}"` : ''}
-          ${breakpoint ? `breakpoint=${breakpoint}` : ''}
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-          ${createChildren(content)}
-        </cbp-grid>
-      `;
+    <cbp-grid
+      ${display ? `display="${display}"` : ''}
+      ${gridTemplateAreas ? `grid-template-areas="${gridTemplateAreas}"` : ''}
+      ${gridTemplateColumns ? `grid-template-columns="${gridTemplateColumns}"` : ''}
+      ${gridTemplateRows ? `grid-template-rows="${gridTemplateRows}"` : ''}
+      ${gridAutoFlow ? `grid-auto-flow="${gridAutoFlow}"` : ''}
+      ${gridAutoColumns ? `grid-auto-columns="${gridAutoColumns}"` : ''}
+      ${gridAutoRows ? `grid-auto-rows="${gridAutoRows}"` : ''}
+      ${alignItems ? `align-items="${alignItems}"` : ''}
+      ${alignContent ? `align-content="${alignContent}"` : ''}
+      ${justifyItems ? `justify-items="${justifyItems}"` : ''}
+      ${justifyContent ? `justify-content="${justifyContent}"` : ''}
+      ${gap ? `gap="${gap}"` : ''}
+      ${breakpoint ? `breakpoint="${breakpoint}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${createChildren(content)}
+    </cbp-grid>
+  `;
 };
 
 export const Grid = Template.bind({});

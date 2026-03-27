@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/List',
+  title: 'Content/List',
   tags: ['beta'],
   argTypes: {
       accessibilityText: {
@@ -19,7 +19,8 @@ export default {
 
 function generateItems(items) {
   const html = items.map(({ content}) => {
-      return `<li>${content}</li>`;      
+      return `<li>${content}</li>
+      `;      
   });
   return html.join('');
 }
@@ -29,18 +30,14 @@ function generateItems(items) {
 const Template = ({UnorderedListItems, OrderedListItems, tag, size, accessibilityText, context, sx}) => {
   return ` 
     <cbp-list
-      ${tag ? `tag=${tag}` : ''}
-      ${size ? `size=${size}` : ''}
+      ${tag ? `tag="${tag}"` : ''}
+      ${size ? `size="${size}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}  
       }
     >
-      ${tag == 'ol' ? 
-        generateItems(OrderedListItems)
-        :
-        generateItems(UnorderedListItems)
-      }
+      ${tag == 'ol' ? generateItems(OrderedListItems) : generateItems(UnorderedListItems)}
     </cbp-list>
   `;
 };
@@ -123,8 +120,8 @@ List.argTypes ={
 const UnstyledTemplate = ({listItems, size, accessibilityText, context, sx}) => {
   return ` 
     <cbp-list
-      variant= 'unstyled'
-      ${size ? `size=${size}` : ''}
+      variant="unstyled"
+      ${size ? `size="${size}` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
@@ -175,20 +172,25 @@ function generateLinkListItems(items, size, parentVariant) {
           <cbp-icon 
             ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
             sx='{"color":"var(--cbp-link-list-icon-color)"}'
-          > </cbp-icon>
+          ></cbp-icon>
           <cbp-link href='#' target='_self'>${content}</cbp-link>
           ${parentVariant == 'link-external' ? `<br /><cbp-icon name="globe" /> </cbp-icon><cbp-typography tag="span" variant="body-text" sx='{"color":"var(--cbp-link-list-icon-color)"}'><i> ` + content + ` description </i></cbp-typography>` : ''} 
-        </li>`;      
+        </li>
+      `;
     });
     return html.join('');
-  } else {  //size == 'normal'
+  } 
+  else {  //size == 'normal'
     const html = items.map(({ content}) => {
-      return `<li>
-                <cbp-icon ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
-                  sx='{"color":"var(--cbp-link-list-icon-color)"}'
-                > </cbp-icon>
-                <cbp-link href='#' target='_self'>${content}</cbp-link>
-              </li>`;      
+      return `
+        <li>
+          <cbp-icon
+            ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
+            sx='{"color":"var(--cbp-link-list-icon-color)"}'
+          ></cbp-icon>
+          <cbp-link href='#' target='_self'>${content}</cbp-link>
+        </li>
+      `;
     });
     return html.join('');    
   } 
@@ -205,13 +207,13 @@ const InternalLinkListTemplate = ({linkListItems, size, accessibilityText, conte
   
   return ` 
   <cbp-list
-    variant='link' 
-    ${size ? `size=${size}` : ''}
+    variant="link" 
+    ${size ? `size="${size}"` : ''}
     ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
     ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
   >
-      ${generateLinkListItems(linkListItems, size, 'link-internal')}
+    ${generateLinkListItems(linkListItems, size, 'link-internal')}
   </cbp-list>`;
 };
 
@@ -241,8 +243,8 @@ const ExternalLinkListTemplate = ({linkListItems, size, accessibilityText, conte
 
   return ` 
     <cbp-list
-      variant='link' 
-      ${size ? `size=${size}` : ''}
+      variant="link"
+      ${size ? `size="${size}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -293,7 +295,7 @@ function generateIconItems(items) {
 const IconListTemplate = ({linkListItems, accessibilityText, context, sx}) => {
   return ` 
     <cbp-list
-      variant='icon' 
+      variant="icon"
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -328,7 +330,7 @@ function generateDescriptionItems(items) {
   const html = items.map(({ content, description, icon, color}) => {
     return `
       <dt>
-        <cbp-icon name='${icon}' color='${color}' size='1.25rem'></cbp-icon>
+        <cbp-icon name="${icon}" color="${color}" size="1.25rem"></cbp-icon>
         ${content}
       </dt>
       <dd>
@@ -342,7 +344,7 @@ function generateDescriptionItems(items) {
 const DescriptionListTemplate = ({linkListItems, accessibilityText, context, sx}) => {
   return ` 
     <cbp-list
-      tag='dl' 
+      tag="dl"
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}

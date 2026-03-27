@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Multicol',
+  title: 'Layout and Structure/Multicol',
   tags: ['beta','code-only'],
   argTypes: {
     columns: {
@@ -67,17 +67,17 @@ function createChildren(children) {
 
 const Template = ({ content, columns, width, gap, rule, nobreak, sx }) => {
   return `
-      <cbp-multicol
-        ${columns ? `columns="${columns}"` : ''}
-        ${width ? `width="${width}"` : ''}
-        ${gap ? `gap="${gap}"` : ''}
-        ${rule ? `rule="${rule}"` : ''}
-        ${nobreak ? `nobreak` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        role="list"
-      >
-        ${createChildren(content)}
-      </cbp-multicol>
+    <cbp-multicol
+      ${columns ? `columns="${columns}"` : ''}
+      ${width ? `width="${width}"` : ''}
+      ${gap ? `gap="${gap}"` : ''}
+      ${rule ? `rule="${rule}"` : ''}
+      ${nobreak ? 'nobreak' : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      role="list"
+    >
+      ${createChildren(content)}
+    </cbp-multicol>
   `;
 };
 

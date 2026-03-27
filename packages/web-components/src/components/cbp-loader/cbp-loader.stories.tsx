@@ -1,88 +1,84 @@
 export default {
-    title: 'Components/Loader',
-    tags: ['new'],
-    argTypes: {
-        progressid: {
-            description: 'A unique `id` applied to the dialog and referenced by the control.',
-            control: 'text',
-          },
-        variant : {
-            control: 'select',
-            options: [ "circular", "linear"]
-        },
-        size : {
-            control: 'select',
-            options: ["large" ,  "small"]
-        },
-        determinate : {
-            control: 'boolean'
-        },
-        value : {
-            control: 'number',
-            if: { arg: 'determinate', eq: true },
-        },
-        max : {
-            control: 'number',
-            if: { arg: 'determinate', eq: true },
-        },
-        label : {
-            name: 'label (slotted)',
-            control: 'text',
-        },
-        orientation: {
-            control: 'select',
-            options: ['horizontal', 'vertical'],
-            if: {arg: 'variant', eq: 'circular'}
-        },
-        success : {
-            control: 'boolean'
-        },
-        error : {
-            control: 'boolean'
-        },
-        context : {
-            control: 'select',
-            options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
-        },
-        sx: {
-            description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
-            control: 'object',
-        },
+  title: 'Notifications/Loader',
+  tags: ['new'],
+  argTypes: {
+    progressid: {
+      description: 'A unique `id` applied to the dialog and referenced by the control.',
+      control: 'text',
     },
-    args: {
-        size: 'large'
-    }
-  };
+    variant: {
+      control: 'select',
+      options: ['circular', 'linear'],
+    },
+    size: {
+      control: 'select',
+      options: ['large', 'small'],
+    },
+    determinate: {
+      control: 'boolean',
+    },
+    value: {
+      control: 'number',
+      if: { arg: 'determinate', eq: true },
+    },
+    max: {
+      control: 'number',
+      if: { arg: 'determinate', eq: true },
+    },
+    label: {
+      name: 'label (slotted)',
+      control: 'text',
+    },
+    orientation: {
+      control: 'select',
+      options: ['horizontal', 'vertical'],
+      if: { arg: 'variant', eq: 'circular' },
+    },
+    success: {
+      control: 'boolean',
+    },
+    error: {
+      control: 'boolean',
+    },
+    context: {
+      control: 'select',
+      options: ['light-inverts', 'light-always', 'dark-inverts', 'dark-always'],
+    },
+    sx: {
+      description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
+      control: 'object',
+    },
+  },
+  args: {
+    size: 'large',
+  },
+};
 
-const Template = ({progressid, variant, label, size, determinate, value, max, orientation, success, error, context, sx }) => {
-    return ` 
-        <cbp-loader
-            ${progressid ? `progressid=${progressid}` : ''}
-            ${variant ? `variant=${variant}` : ``}
-            ${size ? `size=${size}` : ``}
-            ${determinate ? 'determinate' : ''}
-            ${value ? `value=${value}` : ``}
-            ${max ? `max=${max}` : ``}
-            ${orientation ? `orientation=${orientation}` : ``}
-            ${success ? 'success' : ''}
-            ${error ? 'error' : ''}
-            ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-            ${sx ? `sx=${JSON.stringify(sx)}` : ``}
-            >
-            ${variant == 'linear' && label && !(success || error)? 
-            `${label}`
-            : ``
-            }
-            ${variant == 'circular' && label && !(success || error)? 
-            `${label}` : `` }
-        </cbp-loader>
-    `;
+const Template = ({ progressid, variant, label, size, determinate, value, max, orientation, success, error, context, sx }) => {
+  return ` 
+    <cbp-loader
+      ${progressid ? `progressid="${progressid}"` : ''}
+      ${variant ? `variant="${variant}"` : ``}
+      ${size ? `size="${size}"` : ``}
+      ${determinate ? 'determinate' : ''}
+      ${value ? `value="${value}"` : ``}
+      ${max ? `max="${max}"` : ``}
+      ${orientation ? `orientation="${orientation}"` : ``}
+      ${success ? 'success' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ``}
+    >
+      ${variant == 'linear' && label && !(success || error) ? `${label}` : ``}
+      ${variant == 'circular' && label && !(success || error) ? `${label}` : ``}
+    </cbp-loader>
+  `;
 };
 export const Loader = Template.bind({});
-  
+
 Loader.args = {
-    variant: "linear",
-    value: 25,
-    max: 100,
-    label: 'Uploading...'
-}
+  variant: 'linear',
+  value: 25,
+  max: 100,
+  label: 'Uploading...',
+};

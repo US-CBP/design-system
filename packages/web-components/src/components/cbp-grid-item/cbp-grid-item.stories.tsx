@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Grid/Grid Item',
+  title: 'Layout and Structure/Grid/Grid Item',
   tags: ['beta', 'code-only'],
   argTypes: {
     gridColumnStart: {
@@ -65,13 +65,13 @@ const Template = ({ gridColumnStart, gridColumnEnd, gridRowStart, gridRowEnd, al
       sx='{"min-height":"200px"}'
     >
       <cbp-grid-item
-        ${gridColumnStart ? `grid-column-start=${gridColumnStart}` : ''}
-        ${gridColumnEnd ? `grid-column-end=${gridColumnEnd}` : ''}
-        ${gridRowStart ? `grid-row-start=${gridRowStart}` : ''}
-        ${gridRowEnd ? `grid-row-end=${gridRowEnd}` : ''}
-        ${alignSelf ? `align-self=${alignSelf}` : ''}
-        ${justifySelf ? `justify-self=${justifySelf}` : ''}
-        ${gridArea ? `grid-area=${gridArea}` : ''}
+        ${gridColumnStart ? `grid-column-start="${gridColumnStart}"` : ''}
+        ${gridColumnEnd ? `grid-column-end="${gridColumnEnd}"` : ''}
+        ${gridRowStart ? `grid-row-start="${gridRowStart}"` : ''}
+        ${gridRowEnd ? `grid-row-end="${gridRowEnd}"` : ''}
+        ${alignSelf ? `align-self="${alignSelf}"` : ''}
+        ${justifySelf ? `justify-self="${justifySelf}"` : ''}
+        ${gridArea ? `grid-area="${gridArea}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${content}

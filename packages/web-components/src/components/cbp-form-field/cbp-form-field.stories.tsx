@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Form Field',
+  title: 'Forms/Form Field',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -43,13 +43,17 @@ const TextInputTemplate = ({ label, description, fieldId, error, readonly, disab
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${disabled ? `disabled` : ''}
-      ${readonly ? `readonly` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${readonly ? 'readonly' : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      <input type="text" name="textinput" ${value ? `value="${value}"` : ''} />
+      <input 
+        type="text"
+        name="textinput"
+        ${value ? `value="${value}"` : ''}
+      />
     </cbp-form-field>
   `;
 };
@@ -66,9 +70,9 @@ const TextareaTemplate = ({ label, description, fieldId, error, readonly, disabl
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${disabled ? `disabled` : ''}
-      ${readonly ? `readonly` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${readonly ? 'readonly' : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -93,8 +97,8 @@ const SelectTemplate = ({ label, description, fieldId, error, disabled, context,
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${disabled ? `disabled` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >

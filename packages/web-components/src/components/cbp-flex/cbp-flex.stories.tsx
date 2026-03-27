@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Flex',
+  title: 'Layout and Structure/Flex',
   tags: ['beta', 'code-only'],
   argTypes: {
     display: {
@@ -65,28 +65,29 @@ export default {
 
 function createChildren(children) {
   const html = children.map(({ text }) => {
-    return `<div>${text}</div>`;
+    return `
+      <div>${text}</div>
+    `;
   });
   return html.join('');
 }
 
 const Template = ({ display, wrap, direction, alignItems, alignContent, justifyContent, gap, breakpoint, content, sx }) => {
   return ` 
-        <cbp-flex
-          ${display ? `display=${display}` : ''}
-          ${wrap ? `wrap=${wrap}` : ''}
-          ${direction ? `direction=${direction}` : ''}
-          ${alignItems ? `align-items=${alignItems}` : ''}
-          ${alignContent ? `align-content=${alignContent}` : ''}
-          ${justifyContent ? `justify-content=${justifyContent}` : ''}
-          ${gap ? `gap="${gap}"` : ''}
-          ${breakpoint ? `breakpoint=${breakpoint}` : ''}
-          ${display ? `display=${display}` : ''}
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-          ${createChildren(content)}
-        </cbp-flex>
-      `;
+    <cbp-flex
+      ${display ? `display="${display}"` : ''}
+      ${wrap ? `wrap="${wrap}"` : ''}
+      ${direction ? `direction="${direction}"` : ''}
+      ${alignItems ? `align-items="${alignItems}"` : ''}
+      ${alignContent ? `align-content="${alignContent}"` : ''}
+      ${justifyContent ? `justify-content="${justifyContent}"` : ''}
+      ${gap ? `gap="${gap}"` : ''}
+      ${breakpoint ? `breakpoint="${breakpoint}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${createChildren(content)}
+    </cbp-flex>
+  `;
 };
 
 export const Flex = Template.bind({});
