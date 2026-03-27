@@ -61,7 +61,7 @@ const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>  
@@ -97,7 +97,7 @@ const FileInputTemplate = ({ label, description, overlayStart, overlayEnd, field
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${name ? `name="${name}"` : ''} 
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>
@@ -153,7 +153,7 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
       ${error ? `error` : ''}
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>
@@ -242,7 +242,7 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
       ${error ? `error` : ''}
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>
@@ -296,7 +296,7 @@ const SearchTemplate = ({ label, description, inputType,  overlayStart, overlayE
       ${error ? `error` : ''}
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>  
@@ -344,7 +344,7 @@ const TimeInputTemplate = ({ label, description, fieldId, name, value, error, re
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>  

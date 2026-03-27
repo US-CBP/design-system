@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Checkbox',
+  title: 'Forms/Checkbox',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -48,17 +48,17 @@ const Template = ({ label, name, value, fieldId, checked, indeterminate, disable
         ${name ? `name="${name}"` : ''}
         ${value ? `value="${value}"` : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
-        ${disabled ? `disabled=${disabled}` : ''}
-        ${checked ? `checked=${checked}` : ''}
-        ${indeterminate ? `indeterminate=${indeterminate}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${disabled ? 'disabled' : ''}
+        ${checked ? 'checked' : ''}
+        ${indeterminate ? 'indeterminate' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input 
           type="checkbox" 
           name="${name}"
           value="${value}"
-          ${checked ? `checked=${checked}` : ''}
+          ${checked ? 'checked' : ''}
         />
         ${label}
       </cbp-checkbox>

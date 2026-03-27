@@ -19,9 +19,10 @@ The React components are wrappers generated from this package and will share the
   * Added keyboard shortcuts for quicker navigation of the treeview control.
   * Added `aria-owns` to Treeview and Treeview Items with nested children for improved accessibility.
   * Refactored some CSS to make it more robust.
+* Fixed the `cbp-loader` indeterminate animations in Firefox.
 * Upgraded to Storybook 10.3.3.
 * Fixed the Storybook HTML Panel.
-  * It now displays pre-rendered web component code that can easily be copied into your application.
+  * It now displays pre-hydrated web component code that can easily be copied into your application.
   * Boolean attributes such as `checked` are represented properly, without the trailing `=""`.
   * `sx` is displayed properly with outer single quotes and unescaped double quotes within the stringified JSON.
 

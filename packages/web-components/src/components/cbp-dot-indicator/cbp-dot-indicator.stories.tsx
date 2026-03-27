@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Dot Indicator',
+  title: 'NAvigation/Dot Indicator',
   tags: ['new'],
   argTypes: {
     current: {
@@ -21,9 +21,9 @@ export default {
 const Template = ({ current, items, itemName }) => {
   return `
     <cbp-dot-indicator
-      ${current ? `current=${current}` : ""}
-      ${items ? `items=${items}` : ""}
-      ${itemName ? `item-name=${itemName}` : ""}
+      ${current ? `current="${current}"` : ""}
+      ${items ? `items="${items}"` : ""}
+      ${itemName ? `item-name="${itemName}"` : ""}
     ></cbp-dot-indicator>
 `;
 };

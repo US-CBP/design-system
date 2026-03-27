@@ -54,7 +54,7 @@ const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabe
       ${role != 'none' ? `role="${role}"` : ''}
       ${ariaLabel ? `aria-label="${ariaLabel}"` : ''}
       ${headerId ? `aria-labelledby="${headerId}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-typography

@@ -49,7 +49,7 @@ export default {
     return ` 
       <cbp-notice
         ${color ? `color=${color}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <cbp-typography tag='p' slot="cbp-notice-title" context=${context}>

@@ -52,7 +52,7 @@ const Template = ({ treeItems, name, selectable, accessibilityText, context, sx 
       ${selectable ? 'selectable' : ''}
       ${name ? `name="${name}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateTreeviewitems(treeItems, selectable)}
@@ -169,7 +169,7 @@ const actionButtonTemplate = ({ treeItems, name,  accessibilityText, context, sx
     <cbp-treeview
       ${name ? `name="${name}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateTreeviewitems(treeItems, false)}

@@ -54,7 +54,7 @@ function generateSelectableItems(items, context){
     return `<cbp-structured-list-item ${color != 'default' ? `color="${color}"` : ''} ${selected ? `selected` : ''} >
     <cbp-checkbox 
       value= ${index}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
     >
       <input
         type="checkbox"
@@ -79,7 +79,7 @@ const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, he
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
-          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
           ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
           ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
@@ -134,7 +134,7 @@ const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeade
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
-          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
           ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
         ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
@@ -199,7 +199,7 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
-          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
           ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
           ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">3 Results, filters applied, etc. This acts as the "aria-description" for the list. </div>` : ''}
@@ -293,7 +293,7 @@ const StructuredListCollectionTemplate = ({ listItems, striped, selectable, cont
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
-          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
           ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
         
@@ -361,7 +361,7 @@ const StructuredListMediaTemplate = ({ listItems, striped, selectable, context, 
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
-          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
           ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
         
@@ -419,7 +419,7 @@ const StructuredListMediaCalendarTemplate = ({ listItems, striped, selectable, c
           ${striped ? `striped` : ''}
           ${selectable ? `selectable` : ''}
           header-id="list-header"
-          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
           ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
         
@@ -631,7 +631,7 @@ const StructuredListSelectableTemplate = ({ listItems, striped, showHeader, head
           ${striped ? `striped` : ''}
           selectable
           header-id="list-header"
-          ${context && context != 'light-inverts' ? `context=${context}` : ''}   
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
           ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
         ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}"><cbp-checkbox><input type="checkbox"/><cbp-hide visually-hide>check all</cbp-hide></cbp-checkbox> <span>5 Search Results</span></div>` : ''}

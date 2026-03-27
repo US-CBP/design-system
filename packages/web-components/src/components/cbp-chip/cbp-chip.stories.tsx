@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Chip',
+  title: 'Controls/Chip',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -42,7 +42,7 @@ const Template = ({ label, name, value, pressed, disabled, context, sx }) => {
         ${value ? `value="${value}"` : ''}
         ${pressed ? 'pressed' : ''}
         ${disabled ? 'disabled' : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${label}
@@ -60,7 +60,7 @@ const ChipWithCustomIconTemplate = ({ label, name, value, icon, pressed, disable
         ${icon ? `icon="${icon}"` : ''}
         ${pressed ? 'pressed' : ''}
         ${disabled ? 'disabled' : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <cbp-icon slot="cbp-chip-icon" name="${icon}"></cbp-icon>

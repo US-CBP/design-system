@@ -81,8 +81,8 @@ const renderPreHydrated: DecoratorFunction<WebComponentsRenderer> = (storyFn, co
         .replace(/sx="/gi,'sx=\'').replace(/}"/gi,'}\'')
         .replace(/&quot;/gi,'"') // fix sx props in HTML by wrapping the value in single quotes and unescaping the JSON double quotes
         .split('\n')
-          //.filter(line => line.trim() != '' ? line.replace(/^ {0,4}/,'') : null) 
-          .map(line => line.replace(/^ {0,4}/,''))
+          //.filter( (line: string) => line.trim() != '' ? line.replace(/^ {0,4}/,'') : null) 
+          .map( (line: string) => line.replace(/^ {0,4}/,''))
         .join('\n')
       });
     }, 1000);
@@ -175,11 +175,17 @@ const preview: Preview = {
           'Introduction',
           'Design Tokens',
           'About Dark Mode',
+          'Layout and Structure',
+          'Navigation',
+          'Content',
+          'Notifications',
+          'Controls',
+          'Forms',
           'Components',
           'Patterns',
-            [
-              'Page Templates',
-            ]
+          'Page Templates',
+          'Archetypes',
+          'Test'
         ]
       },
     },

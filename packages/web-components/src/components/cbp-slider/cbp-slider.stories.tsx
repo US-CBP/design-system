@@ -64,7 +64,7 @@ const SliderTemplate = ({ label, description, fieldId, name, min, max, step, hid
       ${description ? `description="${description}"` : ''}
       ${error ? `error` : ''}
       ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-slider
@@ -75,7 +75,7 @@ const SliderTemplate = ({ label, description, fieldId, name, min, max, step, hid
         ${step ? `step="${step}"` : ''}
         ${hideMinmax ? `hide-minmax` : ''}
         ${hideInput ? `hide-input` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input 
@@ -101,7 +101,7 @@ const VolumeSliderTemplate = ({ label, description, fieldId, name, min, max, ste
       ${description ? `description="${description}"` : ''}
       ${error ? `error` : ''}
       ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-slider
@@ -112,7 +112,7 @@ const VolumeSliderTemplate = ({ label, description, fieldId, name, min, max, ste
         ${step ? `step="${step}"` : ''}
         ${hideMinmax ? `hide-minmax` : ''}
         ${hideInput ? `hide-input` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <cbp-icon size="var(--cbp-font-size-subhead)" slot="cpb-slider-before">
@@ -149,7 +149,7 @@ const RangeSliderTemplate = ({ label, description, fieldId, name, min, max, step
       ${description ? `description="${description}"` : ''}
       ${error ? `error` : ''}
       ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-slider
@@ -161,7 +161,7 @@ const RangeSliderTemplate = ({ label, description, fieldId, name, min, max, step
         ${gap ? `gap="${gap}"` : ''}
         ${hideMinmax ? `hide-minmax` : ''}
         ${hideInput ? `hide-input` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input 

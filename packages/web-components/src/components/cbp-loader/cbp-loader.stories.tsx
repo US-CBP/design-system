@@ -66,7 +66,7 @@ const Template = ({progressid, variant, label, size, determinate, value, max, or
             ${orientation ? `orientation=${orientation}` : ``}
             ${success ? 'success' : ''}
             ${error ? 'error' : ''}
-            ${context && context != 'light-inverts' ? `context=${context}` : ''}
+            ${context && context != 'light-inverts' ? `context="${context}"` : ''}
             ${sx ? `sx=${JSON.stringify(sx)}` : ``}
             >
             ${variant == 'linear' && label && !(success || error)? 

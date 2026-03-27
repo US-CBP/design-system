@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Container',
+  title: 'Layout and Structure/Container',
   tags: ['beta'],
   argTypes: {
     content: {
@@ -38,16 +38,16 @@ export default {
 
 const Template = ({ content, background, textColor, width, margins, sx }) => {
   return ` 
-      <cbp-container
-        ${background ? `background=${background}` : ''}
-        ${textColor ? `text-color=${textColor}` : ''}
-        ${width ? `width=${width}` : ''}
-        ${margins ? `margins=${margins}` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        ${content}
-      </cbp-container>
-      `;
+    <cbp-container
+      ${background ? `background="${background}"` : ''}
+      ${textColor ? `text-color="${textColor}"` : ''}
+      ${width ? `width="${width}"` : ''}
+      ${margins ? `margins="${margins}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${content}
+    </cbp-container>
+  `;
 };
 
 export const Container = Template.bind({});

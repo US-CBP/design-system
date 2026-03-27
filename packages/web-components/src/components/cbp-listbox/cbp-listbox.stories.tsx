@@ -97,11 +97,11 @@ const Template = ({ label, description, fieldId, name, error, readonly, disabled
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-listbox
         ${items && value=='' ? `items='${JSON.stringify(items)}'` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input type="${inputType}"
@@ -149,12 +149,12 @@ const ListboxSearchTemplate = ({ label, description, fieldId, name, error, reado
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
 
       <cbp-listbox
         ${items && value=='' ? `items='${JSON.stringify(items)}'` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <cbp-form-field-wrapper>  

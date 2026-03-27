@@ -45,7 +45,7 @@ const RangeTemplate = ({ label, description, fieldId, error, readonly, disabled,
         ${error ? `error` : ''}
         ${disabled ? `disabled` : ''}
         ${readonly ? `readonly` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input 

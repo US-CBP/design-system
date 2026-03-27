@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Floating Action',
+  title: 'Controls/Floating Action',
   tags: ['new'],
   argTypes: {
     top:{
@@ -32,46 +32,45 @@ export default {
 const Template = ({top, right, bottom, left, sx}) => {
   return `
     <cbp-floating-action
-        ${top ? `top="${top}"` : ``}
-        ${right ? `right="${right}"` : ``}
-        ${bottom ? `bottom="${bottom}"` : ``}
-        ${left ? `left="${left}"` : ``}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      ${top ? `top="${top}"` : ``}
+      ${right ? `right="${right}"` : ``}
+      ${bottom ? `bottom="${bottom}"` : ``}
+      ${left ? `left="${left}"` : ``}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-button
-        color= "primary" 
-        variant= "circle"
-        accessibility-text= "Floating action button"
+        color="primary" 
+        variant="circle"
+        accessibility-text="Action"
         sx='{"--cbp-button-height":"3.5rem"}'
       >
         <cbp-icon 
           name="magnifying-glass"
           size="1.5rem"
         ></cbp-icon>
-       </cbp-button>
+      </cbp-button>
     </cbp-floating-action>
-    `;
+  `;
 };
-
-export const floatingActionContainer = Template.bind({});
+export const floatingAction = Template.bind({});
 
 const twoButtonTemplate = ({top, right, bottom, left, sx}) => {
   return `
     <cbp-floating-action
-        top="${top}"
-        right="${right}"
-        bottom="${bottom}"
-        left="${left}"
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      top="${top}"
+      right="${right}"
+      bottom="${bottom}"
+      left="${left}"
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-flex
         direction="column"
         gap="var(--cbp-space-4x)"
       >
         <cbp-button
-          color= "primary" 
-          variant= "circle"
-          accessibility-text= "Floating action button"
+          color="primary" 
+          variant="circle"
+          accessibility-text="Action 1"
           sx='{"--cbp-button-height":"3.5rem"}'
         >
           <cbp-icon 
@@ -79,10 +78,11 @@ const twoButtonTemplate = ({top, right, bottom, left, sx}) => {
             size="1.5rem"
           ></cbp-icon>
         </cbp-button>
+
         <cbp-button
-          color= "secondary" 
-          variant= "circle"
-          accessibility-text= "Floating action button"
+          color="secondary" 
+          variant="circle"
+          accessibility-text="Action 2"
           sx='{"--cbp-button-height":"3.5rem"}'
         >
           <cbp-icon 
@@ -92,7 +92,6 @@ const twoButtonTemplate = ({top, right, bottom, left, sx}) => {
         </cbp-button>
       </cbp-flex>
     </cbp-floating-action>
-    `;
+  `;
 };
-
-export const floatingActionTwoButton = twoButtonTemplate.bind({});
+export const floatingActions = twoButtonTemplate.bind({});

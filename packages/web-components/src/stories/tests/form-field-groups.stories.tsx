@@ -47,7 +47,7 @@ const FullNameTemplate = ({ label, description, fieldId, error, disabled, contex
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
 

@@ -32,7 +32,7 @@ const Template = ({UnorderedListItems, OrderedListItems, tag, size, accessibilit
       ${tag ? `tag=${tag}` : ''}
       ${size ? `size=${size}` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}  
       }
     >
@@ -126,7 +126,7 @@ const UnstyledTemplate = ({listItems, size, accessibilityText, context, sx}) => 
       variant= 'unstyled'
       ${size ? `size=${size}` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
       ${generateItems(listItems)}
@@ -208,7 +208,7 @@ const InternalLinkListTemplate = ({linkListItems, size, accessibilityText, conte
     variant='link' 
     ${size ? `size=${size}` : ''}
     ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-    ${context && context != 'light-inverts' ? `context=${context}` : ''}
+    ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
   >
       ${generateLinkListItems(linkListItems, size, 'link-internal')}
@@ -244,7 +244,7 @@ const ExternalLinkListTemplate = ({linkListItems, size, accessibilityText, conte
       variant='link' 
       ${size ? `size=${size}` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateLinkListItems(linkListItems, size, 'link-external')}
@@ -295,7 +295,7 @@ const IconListTemplate = ({linkListItems, accessibilityText, context, sx}) => {
     <cbp-list
       variant='icon' 
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateIconItems(linkListItems)}
@@ -344,7 +344,7 @@ const DescriptionListTemplate = ({linkListItems, accessibilityText, context, sx}
     <cbp-list
       tag='dl' 
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateDescriptionItems(linkListItems)}

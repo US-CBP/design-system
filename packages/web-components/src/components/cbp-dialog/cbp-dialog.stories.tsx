@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Dialog',
+  title: 'Content/Dialog',
   tags: ['beta'],
   argTypes: {
     uid: {
@@ -84,10 +84,10 @@ const renderActions = (layout, { btn1, btn2, btn3 }) => {
   }
 };
 
+
 const Template = ({ title, content, color, open, width, height, uid, withIcon, accessibilityText, actionsLayout, actionsConfig, sx }) => {
   return `
     <cbp-button
-      type="button"
       color="secondary"
       accessibility-text="Open Dialog"
       target-prop="open"
@@ -97,13 +97,13 @@ const Template = ({ title, content, color, open, width, height, uid, withIcon, a
     </cbp-button>
 
     <cbp-dialog
-      ${open ? `open=${open}` : ''}
-      ${height ? `height=${height}` : ''}
-      ${width ? `width=${width}` : ''}
-      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
-      ${color && color != 'default' ? `color=${color}` : ''}
+      ${uid ? `uid="${uid}"` : ''}
+      ${open ? 'open' : ''}
+      ${height ? `height="${height}"` : ''}
+      ${width ? `width="${width}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${color && color != 'default' ? `color="${color}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      ${uid ? `uid=${uid}` : ''}
     >
       <cbp-typography
         slot="cbp-dialog-header"

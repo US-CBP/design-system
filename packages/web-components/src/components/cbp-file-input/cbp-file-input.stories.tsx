@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/File Input',
+  title: 'Forms/File Input',
   tags: ['new'],
   argTypes: {
     label: {
@@ -85,9 +85,9 @@ const FileInputTemplate = ({ label, description, fieldId, name, enhanced, multip
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-file-input
         ${name ? `name="${name}"` : ''}
@@ -95,15 +95,16 @@ const FileInputTemplate = ({ label, description, fieldId, name, enhanced, multip
         ${enhanced ? 'enhanced' : ''}
         ${multiple ? 'multiple' : ''}
         ${accept ? `accept="${accept}"` : ''}
-        ${capture ? `capture="${capture}"` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
-        <input type="file" />
+        <input 
+          type="file"
+          ${capture ? `capture="${capture}"` : ''}
+        />
       </cbp-file-input>
     </cbp-form-field>
   `;
 };
-
 export const FileInput = FileInputTemplate.bind({});
 

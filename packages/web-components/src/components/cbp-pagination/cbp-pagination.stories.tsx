@@ -31,7 +31,7 @@ const Template = ({ records, pagesize, page, context, sx }) => {
         ${records ? `records=${records}` : ''}
         ${pagesize ? `page-size=${pagesize}` : ''}
         ${page ? `page=${page}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <cbp-form-field

@@ -39,7 +39,7 @@ const Template = ({ text, tag, variant, divider, context, sx }) => {
         ${tag ? `tag=${tag}` : ''}
         ${variant != undefined ? `variant=${variant}` : ''}
         ${divider != 'none' ? `divider=${divider}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text}
@@ -61,7 +61,7 @@ return `
         ${tag ? `tag=${tag}` : ''}
         variant = "masthead-1"
         ${divider != 'none' ? `divider=${divider}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (masthead-1)
@@ -71,7 +71,7 @@ return `
         ${tag ? `tag=${tag}` : ''}
         variant = "masthead-2"
         ${divider != 'none' ? `divider=${divider}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (masthead-2)
@@ -81,7 +81,7 @@ return `
         ${tag ? `tag=${tag}` : ''}
         variant = "heading-xxl"
         ${divider != 'none' ? `divider=${divider}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-xxl)
@@ -91,7 +91,7 @@ return `
         ${tag ? `tag=${tag}` : ''}
         variant = "heading-xl"
         ${divider != 'none' ? `divider=${divider}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-xl)
@@ -101,7 +101,7 @@ return `
         ${tag ? `tag=${tag}` : ''}
         variant = "heading-lg"
         ${divider != 'none' ? `divider=${divider}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-lg)
@@ -111,7 +111,7 @@ return `
         ${tag ? `tag=${tag}` : ''}
         variant = "heading-md"
         ${divider != 'none' ? `divider=${divider}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-md)
@@ -121,7 +121,7 @@ return `
         ${tag ? `tag=${tag}` : ''}
         variant = "heading-sm"
         ${divider != 'none' ? `divider=${divider}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-sm)
@@ -131,7 +131,7 @@ return `
         ${tag ? `tag=${tag}` : ''}
         variant = "heading-xs"
         ${divider != 'none' ? `divider=${divider}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (heading-xs)
@@ -141,7 +141,7 @@ return `
         ${tag ? `tag=${tag}` : ''}
         variant = "body-text"
         ${divider != 'none' ? `divider=${divider}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (body-text)
@@ -151,7 +151,7 @@ return `
         ${tag ? `tag=${tag}` : ''}
         variant = "subhead"
         ${divider != 'none' ? `divider=${divider}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${text} (subhead)

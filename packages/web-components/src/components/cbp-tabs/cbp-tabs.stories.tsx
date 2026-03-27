@@ -59,7 +59,7 @@ const Template = ({ tabs, accessibilityText, withIcon, withBadge,context, sx }) 
   return ` 
     <cbp-tabs
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${createTabs(tabs, withIcon, withBadge)}

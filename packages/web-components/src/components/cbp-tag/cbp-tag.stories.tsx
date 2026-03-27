@@ -41,7 +41,7 @@ const Template = ({ label, color, withIcon, context, sx }) => {
   return ` 
     <cbp-tag
       ${color && color != 'default' ? `color=${color}` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${Icon ? `<cbp-icon name="${Icon}"></cbp-icon>` : ''}

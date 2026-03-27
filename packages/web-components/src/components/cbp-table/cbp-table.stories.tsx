@@ -43,7 +43,7 @@ export default {
 
 function generateTableHeaders(headers, selectable, context) {
   const checkbox = `<th>
-      <cbp-checkbox ${context && context != 'light-inverts' ? `context=${context}` : ''}>
+      <cbp-checkbox ${context && context != 'light-inverts' ? `context="${context}"` : ''}>
         <input type="checkbox" name="selectall" value="1">
         <span style="display:none">Select Rows</span>
       </cbp-checkbox>
@@ -74,7 +74,7 @@ function generateTableHeaders(headers, selectable, context) {
 function generateTableRows(data, selectable, context) {
   const html = data.map( ({ row, danger }, i) => {
     const checkbox = `<td>
-        <cbp-checkbox ${context && context != 'light-inverts' ? `context=${context}` : ''}>
+        <cbp-checkbox ${context && context != 'light-inverts' ? `context="${context}"` : ''}>
           <input type="checkbox" name="rowid" value="${i+1}">
           <span style="display:none">Select row ${i+1}</span>
         </cbp-checkbox>

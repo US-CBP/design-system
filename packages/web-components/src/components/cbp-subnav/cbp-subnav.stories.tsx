@@ -29,7 +29,7 @@ function generateContent(items, context) {
         href=${href} 
         ${current ? `current=${current}` : ``} 
         ${open ? `open=${open}` : ``} 
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       >
         ${icon ? `<span slot="cbp-subnav-item-label">${icon}${label}</span>` : ``} 
         ${children ? generateContent(children, context) : ``}
@@ -55,7 +55,7 @@ const SubnavTemplate = ({ items, accessibilityText, flat, context, sx }) => {
     <cbp-subnav
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ``}
       ${flat ? 'flat' : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateContent(items, context)}

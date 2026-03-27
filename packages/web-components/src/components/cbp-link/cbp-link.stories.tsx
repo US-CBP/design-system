@@ -86,7 +86,7 @@ const Template = ({ label, withIcon, inText, href, rel, target, download, langua
       ${language ? `lang=${language}` : ''}
       ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
       ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${withIcon == 'before' ? `<cbp-icon name="pen-to-square"></cbp-icon>` : ''}

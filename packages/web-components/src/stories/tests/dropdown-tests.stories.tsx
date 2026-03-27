@@ -66,7 +66,7 @@ function generateMultiSelectItems(items, name, context) {
     return `
       <cbp-dropdown-item  ${value ? `value="${value}"` : ''} ${selected == true ? 'selected' : ''}>
         <cbp-checkbox 
-          ${context && context != 'light-inverts' ? `context=${context}` : ''}
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         >
           <input 
             type="checkbox" 
@@ -112,7 +112,7 @@ const EmptyDropdownTemplate = ({ label, description, fieldId, name, placeholder,
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
@@ -122,7 +122,7 @@ const EmptyDropdownTemplate = ({ label, description, fieldId, name, placeholder,
         ${filter ? `filter` : ''}
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <!-- No dropdown items loaded by default -->
@@ -186,7 +186,7 @@ const DynamicJSONDropdownTemplate = ({ label, description, fieldId, name, placeh
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         debug=${debug}
@@ -197,7 +197,7 @@ const DynamicJSONDropdownTemplate = ({ label, description, fieldId, name, placeh
         ${filter ? `filter` : ''}
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <!-- No dropdown items loaded by default -->
@@ -251,7 +251,7 @@ const DebugDropdownTemplate = ({ label, description, fieldId, name, placeholder,
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
@@ -261,7 +261,7 @@ const DebugDropdownTemplate = ({ label, description, fieldId, name, placeholder,
         ${filter ? `filter` : ''}
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${multiple ? generateMultiSelectItems(ShortList, name, context) : generateItems(ShortList)}

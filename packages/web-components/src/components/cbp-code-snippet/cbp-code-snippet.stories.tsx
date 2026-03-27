@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Code Snippet',
+  title: 'Content/Code Snippet',
   tags: ['new'],
   argTypes: {
     codeSnippet: {
@@ -32,42 +32,30 @@ export default {
 };
 
 const Template = ({ codeSnippet, variant, height, context, sx }) => {
-  return ` 
-      <cbp-code-snippet
-        ${variant ? `variant= ${variant}` : ''}
-        ${height ? `height= ${height}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        ${codeSnippet}
-      </cbp-code-snippet>
-    `;
+  return `
+    <cbp-code-snippet
+      ${variant ? `variant="${variant}"` : ''}
+      ${height ? `height="${height}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${codeSnippet}
+    </cbp-code-snippet>
+  `;
 };
 export const CodeSnippet = Template.bind({});
 
-const BlockTemplate = ({ codeSnippet, height, context, sx }) => {
-  return ` 
-      <cbp-code-snippet
-        variant= block
-        ${height ? `height= ${height}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        ${codeSnippet}
-      </cbp-code-snippet>
-    `;
-};
 
-export const CodeSnippetBlock = BlockTemplate.bind({});
+export const CodeSnippetBlock = Template.bind({});
 CodeSnippetBlock.args ={
   variant: "block",
   codeSnippet: `<a href='#'>test code snippet</a><br />
-<a href='#'>test code snippet</a><br />
-<a href='#'>test code snippet</a><br />
-<a href='#'>test code snippet</a><br />
-<a href='#'>test code snippet</a><br />
-<a href='#'>test code snippet</a><br />
-<a href='#'>test code snippet</a><br />
+    <a href='#'>test code snippet</a><br />
+    <a href='#'>test code snippet</a><br />
+    <a href='#'>test code snippet</a><br />
+    <a href='#'>test code snippet</a><br />
+    <a href='#'>test code snippet</a><br />
+    <a href='#'>test code snippet</a><br />
   `,
   height: "5rem"
 }

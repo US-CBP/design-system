@@ -37,7 +37,7 @@ const Template = ({label, checked, name, value, hideStatus, statusTextOn, status
             ${statusTextOn ? `status-text-on="${statusTextOn}"` : ''} 
             ${statusTextOff ? `status-text-off="${statusTextOff}"` : ''}
             ${disabled ? 'disabled' : ''}
-            ${context && context != 'light-inverts' ? `context=${context}` : ''}
+            ${context && context != 'light-inverts' ? `context="${context}"` : ''}
             ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
             >
                 ${label}
@@ -85,7 +85,7 @@ function generateToggles(items, labelWidth, hideStatus, statusTextOn, statusText
         ${statusTextOff ? `status-text-off="${statusTextOff}"` : ''}
         ${disabled ? 'disabled' : ''}
         ${labelWidth ? `width="${labelWidth}"` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
             ${label} 

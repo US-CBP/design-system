@@ -33,7 +33,7 @@ const Template = ({ open, uid, alignment, title, content, tooltipControl, contex
             ${open ? `open` : ''}
             ${uid ? `uid=${uid}` : ''}
             alignment=${alignment}
-            ${context && context != 'light-inverts' ? `context=${context}` : ''}
+            ${context && context != 'light-inverts' ? `context="${context}"` : ''}
             ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
             >  
             
@@ -64,7 +64,7 @@ const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipContr
             ${uid ? `uid=${uid}` : ''}
             alignment=${alignment}
             variant=definition
-            ${context && context != 'light-inverts' ? `context=${context}` : ''}
+            ${context && context != 'light-inverts' ? `context="${context}"` : ''}
             ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
 
             >  

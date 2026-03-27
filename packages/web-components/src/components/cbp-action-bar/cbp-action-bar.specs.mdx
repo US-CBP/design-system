@@ -1,6 +1,6 @@
 import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 
-<Meta title="Components/Action bar/Specifications" />
+<Meta title="Content/Action bar/Specifications" />
 
 # cbp-action-bar
 
@@ -13,20 +13,27 @@ The Action Bar acts as a container for form controls (buttons) or other tools to
 * The Action Bar is a container with slots for a status or text description as well as controls.
   * The descriptive text in the named slot is aligned left.
   * The controls are aligned to the right.
-* The Action Bar has two variants - inline and floating.
+* The Action Bar has three variants - inline, floating, and sticky.
   * The inline variant is the default and renders in the flow of the document.
   * The floating variant is rendered at bottom of viewport, primarily tools that affect the content of the whole page.
+  * The sticky variant is primarily intended for use within scrolling containers, such as scrolling drawer contents, where fixed positioning in the viewport is not feasible.
+
+## Technical Specifications
+
+### User Interactions
+
+* As a wrapper, all user interactions are handled by the slotted components and application logic.
 
 ### Responsiveness
 
-* The Action Bar will fill 100% of the screen (floating) or parent (inline).
-* The Action Bar will wrap as needed at smaller screen sizes, but... 
-* It is up to the developer to make sure its contents are fully responsive.
-* The floating variant uses the responsive padding token to adjust outer padding at the same ratio as other template elements.
+* The Action Bar will fill 100% of the screen (floating) or parent (inline/sticky).
+* The Action Bar will wrap as needed at smaller screen sizes, but:
+  * It is up to the developer to make sure its contents are fully responsive.
+  * The floating variant uses the responsive padding token to adjust outer padding at the same ratio as other template elements.
 
 ### Accessibility
 
-* The action bar itself does not receive focus and the accessibility of its slotted contents are the responsibility of those components.
+* The Action Bar itself does not receive focus and the accessibility of its slotted contents are the responsibility of those components.
 * When using the floating variant, it is important that the component be placed logically in the source code order so that its controls and content exist in the proper place in the document and tab order.
 
 ### Additional Notes and Considerations

@@ -101,12 +101,17 @@ textarea:read-only {
   display: none !important;
 }
 
-/*
-@media (prefers-color-scheme: dark) {
-  :root {
-    --cbp-app-color-scheme: dark;
-    --cbp-color-body-text: var(--cbp-color-text-lightest);
-    --cbp-color-body-background: var(--cbp-color-branding-cbp-dark);
-  }
+/* Expose a generic class for visually hiding content in an accessible manner */
+.cbp-visually-hidden {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 }
-*/

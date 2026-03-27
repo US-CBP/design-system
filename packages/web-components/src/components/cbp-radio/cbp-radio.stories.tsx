@@ -40,7 +40,7 @@ const Template = ({ label, name, value, checked, disabled, context, sx }) => {
         ${value ? `value=${value}` : ''}
         ${disabled ? `disabled` : ''}
         ${checked ? `checked` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input 

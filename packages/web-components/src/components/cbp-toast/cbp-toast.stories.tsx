@@ -42,7 +42,7 @@ const Template = ({ open, title, content, buttons, duration, color, context, sx 
       ${color ? `color=${color}` : ''}
       ${duration ? `duration=${duration}` : ''}
       icon=${generateIcon(color)}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >  
       <div slot="cbp-toast-icon">
@@ -74,7 +74,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       color=${color}
       duration=${duration}
       icon=${generateIcon(color)}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <div slot="cbp-toast-icon">
@@ -90,7 +90,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       color=${color}
       duration=${duration}
       icon=${generateIcon(color)}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >       
       <div slot="cbp-toast-icon">
@@ -106,7 +106,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       color=${color}
       duration=${duration}
       icon=${generateIcon(color)}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >      
       <div slot="cbp-toast-icon">
@@ -122,7 +122,7 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
       color=${color}
       duration=${duration}
       icon=${generateIcon(color)}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <div slot="cbp-toast-icon">
