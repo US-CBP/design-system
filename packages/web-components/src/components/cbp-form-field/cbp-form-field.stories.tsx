@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Form Field',
+  title: 'Forms/Form Field',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -43,13 +43,17 @@ const TextInputTemplate = ({ label, description, fieldId, error, readonly, disab
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${disabled ? `disabled` : ''}
-      ${readonly ? `readonly` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${readonly ? 'readonly' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      <input type="text" name="textinput" ${value ? `value="${value}"` : ''} />
+      <input 
+        type="text"
+        name="textinput"
+        ${value ? `value="${value}"` : ''}
+      />
     </cbp-form-field>
   `;
 };
@@ -66,10 +70,10 @@ const TextareaTemplate = ({ label, description, fieldId, error, readonly, disabl
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${disabled ? `disabled` : ''}
-      ${readonly ? `readonly` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${readonly ? 'readonly' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <textarea name="textarea">${value}</textarea>
@@ -93,9 +97,9 @@ const SelectTemplate = ({ label, description, fieldId, error, disabled, context,
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <select name="select">
@@ -127,7 +131,7 @@ const SelectWithOptgroupTemplate = ({ label, description, fieldId, error, disabl
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <select name="select" ${disabled ? `disabled` : ''}>
@@ -183,7 +187,7 @@ const MultiSelectTemplate = ({ label, description, fieldId, error, disabled, con
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <select name="select" size="5" multiple ${disabled ? `disabled` : ''}>

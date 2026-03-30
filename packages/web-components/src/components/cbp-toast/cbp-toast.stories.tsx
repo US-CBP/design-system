@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Toast',
+  title: 'Notifications/Toast',
   tags: ['new'],
   argTypes: {
 
@@ -38,17 +38,15 @@ function generateIcon(color) {
 const Template = ({ open, title, content, buttons, duration, color, context, sx }) => {
   return ` 
     <cbp-toast
-      ${open ? `open` : ''}
-      ${color ? `color=${color}` : ''}
-      ${duration ? `duration=${duration}` : ''}
+      ${open ? 'open' : ''}
+      ${color ? `color="${color}"` : ''}
+      ${duration ? `duration="${duration}"` : ''}
       icon=${generateIcon(color)}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >  
       <div slot="cbp-toast-icon">
-        <cbp-icon 
-          name=${generateIcon(color)}
-        ></cbp-icon>
+        <cbp-icon name="${generateIcon(color)}"></cbp-icon>
       </div>
       <div slot="cbp-toast-title">${title}</div>
       ${content}
@@ -58,7 +56,6 @@ const Template = ({ open, title, content, buttons, duration, color, context, sx 
 };
 
 export const Toast = Template.bind({});
-
 Toast.args = {
   open: true,
   color: 'info',
@@ -67,18 +64,21 @@ Toast.args = {
   buttons: `<cbp-button type="button" fill="ghost" color="secondary"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>`
 }
 
+
+
+
 const MultiTemplate = ({ open, title, content, buttons, duration, color, context, sx }) => {
   return ` 
     <cbp-toast
-      ${open ? `open=${open}` : ''}
-      color=${color}
-      duration=${duration}
-      icon=${generateIcon(color)}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${open ? 'open' : ''}
+      color="${color}"
+      duration="${duration}"
+      icon="${generateIcon(color)}"
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <div slot="cbp-toast-icon">
-        <cbp-icon name=${generateIcon(color)}"></cbp-icon>
+        <cbp-icon name="${generateIcon(color)}"></cbp-icon>
       </div>
       <div slot="cbp-toast-title">${title}</div>
       ${content}
@@ -86,15 +86,15 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
     </cbp-toast>
     
     <cbp-toast
-      ${open ? `open=${open}` : ''}
-      color=${color}
-      duration=${duration}
-      icon=${generateIcon(color)}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${open ? 'open' : ''}
+      color="${color}"
+      duration="${duration}"
+      icon="${generateIcon(color)}"
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >       
       <div slot="cbp-toast-icon">
-        <cbp-icon name=${generateIcon(color)} ></cbp-icon>
+        <cbp-icon name="${generateIcon(color)}"></cbp-icon>
       </div>
       <div slot="cbp-toast-title">${title}</div>
       ${content}
@@ -102,15 +102,15 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
     </cbp-toast>
     
     <cbp-toast
-      ${open ? `open=${open}` : ''}
-      color=${color}
-      duration=${duration}
-      icon=${generateIcon(color)}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${open ? 'open' : ''}
+      color="${color}"
+      duration="${duration}"
+      icon="${generateIcon(color)}"
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >      
       <div slot="cbp-toast-icon">
-        <cbp-icon name=${generateIcon(color)}></cbp-icon>
+        <cbp-icon name="${generateIcon(color)}"></cbp-icon>
       </div>
       <div slot="cbp-toast-title">${title}</div>
       ${content}
@@ -118,15 +118,15 @@ const MultiTemplate = ({ open, title, content, buttons, duration, color, context
     </cbp-toast>
 
     <cbp-toast
-      ${open ? `open=${open}` : ''}
-      color=${color}
-      duration=${duration}
-      icon=${generateIcon(color)}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${open ? 'open' : ''}
+      color="${color}"
+      duration="${duration}"
+      icon="${generateIcon(color)}"
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <div slot="cbp-toast-icon">
-        <cbp-icon name=${generateIcon(color)}></cbp-icon>
+        <cbp-icon name="${generateIcon(color)}"></cbp-icon>
       </div>
       <div slot="cbp-toast-title">${title}</div>
       ${content}

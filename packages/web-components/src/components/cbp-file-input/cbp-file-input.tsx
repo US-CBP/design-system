@@ -28,7 +28,10 @@ export class CbpFileInput {
    */
   @Prop({ mutable: true }) fieldId: string = createNamespaceKey('cbp-file-input');
 
-  /** Specifies whether the file input accepts multiple files rather than a single file (may also be set directly on the slotted input). */
+  /** 
+   * Specifies whether the file input accepts multiple files rather than a single file 
+   * (may also be set directly on the slotted input). 
+   */
   @Prop({ reflect: true }) multiple: boolean;
 
   /** 

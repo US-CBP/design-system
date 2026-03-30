@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Button',
+  title: 'Controls/Button',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -111,23 +111,23 @@ export default {
 const Template = ({ label, withIcon, tag, type, value, href, rel, target, download, fill, color, variant, accessibilityText, controls, targetProp, pressed, expanded, disabled, context, sx }) => {
   return ` 
       <cbp-button
-        ${tag !== 'button' ? `tag=${tag}` : ''}
-        ${type ? `type=${type}` : ''}
-        ${value ? `value=${value}` : ''}
-        ${href ? `href=${href}` : ''}
-        ${rel ? `rel=${rel}` : ''}
-        ${target ? `target=${target}` : ''}
+        ${tag !== 'button' ? `tag="${tag}"` : ''}
+        ${type ? `type="${type}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${href ? `href="${href}"` : ''}
+        ${rel ? `rel="${rel}"` : ''}
+        ${target ? `target="${target}"` : ''}
         ${download ? 'download' : ''}
-        ${fill ? `fill=${fill}` : ''}
-        ${color ? `color=${color}` : ''}
-        ${variant !== 'default' ? `variant=${variant}` : ''}
-        ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
-        ${controls ? `controls=${controls}` : ''}
-        ${targetProp ? `target-prop=${targetProp}` : ''}
+        ${fill ? `fill="${fill}"` : ''}
+        ${color ? `color="${color}"` : ''}
+        ${variant !== 'default' ? `variant="${variant}"` : ''}
+        ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+        ${controls ? `controls="${controls}"` : ''}
+        ${targetProp ? `target-prop="${targetProp}"` : ''}
         ${pressed!=undefined ? `pressed="${pressed}"` : ''}
         ${expanded!=undefined ? `expanded="${expanded}"` : ''}
         ${disabled ? 'disabled' : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${withIcon ? `<cbp-icon name="pen-to-square"></cbp-icon>` : ''}
@@ -142,12 +142,12 @@ export const Button = Template.bind({});
 const SlottedButtonTemplate = ({ label, withIcon, tag, href, fill, color, variant, context, sx }) => {
   return `
       <cbp-button
-        ${tag !== 'button' ? `tag=${tag}` : ''}
-        ${href ? `href=${href}` : ''}
-        ${fill ? `fill=${fill}` : ''}
-        ${color ? `color=${color}` : ''}
-        ${variant !== 'default' ? `variant=${variant}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${tag !== 'button' ? `tag="${tag}"` : ''}
+        ${href ? `href="${href}"` : ''}
+        ${fill ? `fill="${fill}"` : ''}
+        ${color ? `color="${color}"` : ''}
+        ${variant !== 'default' ? `variant="${variant}"` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <button 

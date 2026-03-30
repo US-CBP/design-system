@@ -1,12 +1,11 @@
 export default {
-    title: 'Components/USA Banner',
+    title: 'Layout and Structure/USA Banner',
     tags: ['beta'],
   };
   
 const Template = () => {
   return ` 
-      <cbp-usa-banner>
-      </cbp-usa-banner>
+      <cbp-usa-banner></cbp-usa-banner>
     `;
 };
 

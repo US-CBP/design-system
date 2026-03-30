@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Expand',
+  title: 'Content/Expand',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -37,15 +37,15 @@ export default {
 
 const Template = ({ label, content, open, headingLevel, context, sx }) => {
   return ` 
-        <cbp-expand
-          ${label ? `label="${label}"` : ''}
-          ${headingLevel ? `heading-level="${headingLevel}"` : ''}
-          ${open ? `open` : ''}
-          ${context ? `context="${context}"` : ''}
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-            ${content}
-        </cbp-expand>
-      `;
+    <cbp-expand
+      ${label ? `label="${label}"` : ''}
+      ${headingLevel ? `heading-level="${headingLevel}"` : ''}
+      ${open ? 'open' : ''}
+      ${context ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${content}
+    </cbp-expand>
+  `;
 };
 export const Expand = Template.bind({});

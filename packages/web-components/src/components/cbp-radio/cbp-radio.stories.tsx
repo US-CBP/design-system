@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Radio',
+  title: 'Forms/Radio',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -36,22 +36,22 @@ export default {
 
 const Template = ({ label, name, value, checked, disabled, context, sx }) => {
   return ` 
-      <cbp-radio
-        ${value ? `value=${value}` : ''}
-        ${disabled ? `disabled` : ''}
-        ${checked ? `checked` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        <input 
-          type="radio" 
-          name="${name}"
-          value="${value}"
-          ${checked ? `checked` : ''}
-        />
-        ${label}
-      </cbp-radio>
-    `;
+    <cbp-radio
+      ${value ? `value="${value}"` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${checked ? 'checked' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <input 
+        type="radio" 
+        name="${name}"
+        value="${value}"
+        ${checked ? 'checked' : ''}
+      />
+      ${label}
+    </cbp-radio>
+  `;
 };
 
 export const Radio = Template.bind({});

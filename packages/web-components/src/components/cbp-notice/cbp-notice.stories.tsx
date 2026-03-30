@@ -1,5 +1,5 @@
 export default {
-    title: 'Components/Notice',
+    title: 'Notifications/Notice',
     tags: ['beta'],
     argTypes: {
       title: {
@@ -48,14 +48,19 @@ export default {
   const NoticeTemplate = ({ title, withIcon, content, color, context, sx }) => {
     return ` 
       <cbp-notice
-        ${color ? `color=${color}` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${color ? `color="${color}"` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
-        <cbp-typography tag='p' slot="cbp-notice-title" context=${context}>
-            ${withIcon ? `<cbp-icon name=${generateIcon(color)} sx='{"vertical-align":"bottom"}'></cbp-icon>` : ''}
-            ${title}
+        <cbp-typography 
+          tag="p" 
+          slot="cbp-notice-title"
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        >
+          ${withIcon ? `<cbp-icon name="${generateIcon(color)}" sx='{"vertical-align":"bottom"}'></cbp-icon>` : ''}
+          ${title}
         </cbp-typography>
+        
         ${content}
       </cbp-notice>
     `;
@@ -63,8 +68,8 @@ export default {
   
   export const Notice = NoticeTemplate.bind({});
   Notice.args = {    
-      title: 'Notice Title',
-      color: 'info',
-      content: 'Notice: This is default text',
+    title: 'Notice Title',
+    color: 'info',
+    content: 'Notice: This is default text',
   };
   

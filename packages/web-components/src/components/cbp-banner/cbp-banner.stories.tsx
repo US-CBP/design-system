@@ -1,5 +1,5 @@
 export default {
-    title: 'Components/Banner',
+    title: 'Notifications/Banner',
     tags: ['beta'],
     argTypes: {
         bannerTitle: {
@@ -19,22 +19,22 @@ export default {
   
   const Template = ({ bannerTitle, bannerContent}) => {
     return ` 
-        <cbp-banner>
-            <cbp-typography 
-                slot='cbp-banner-title'
-                tag='div'
-                variant='heading-md'
-                context='dark-always'
-            >
-                ${bannerTitle}
-            </cbp-typography>
-                ${bannerContent}
-        </cbp-banner>
-      `;
+      <cbp-banner>
+        <cbp-typography 
+          slot="cbp-banner-title"
+          tag="div"
+          variant="heading-md"
+          context="dark-always"
+        >
+          ${bannerTitle}
+        </cbp-typography>
+        ${bannerContent}
+      </cbp-banner>
+    `;
   };
 
   export const Banner = Template.bind({});
-    Banner.args = {
-        bannerTitle: 'Scheduled Maintenance Notice',
-        bannerContent: 'This application will be undergoing scheduled maintenance from 10/5/XXXX to 10/31/XXXX from 12am - 3am and wil be unavaliable during these times.'
-    };
+  Banner.args = {
+    bannerTitle: 'Scheduled Maintenance Notice',
+    bannerContent: 'This application will be undergoing scheduled maintenance from 10/5/XXXX to 10/31/XXXX from 12am - 3am and wil be unavaliable during these times.'
+  };

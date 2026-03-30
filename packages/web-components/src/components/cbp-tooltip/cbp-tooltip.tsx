@@ -23,7 +23,7 @@ export class CbpTooltip {
 
 
   /** sets where the tooltip will be displayed and where the caret will be placed */
-  @Prop({ reflect: true}) alignment: "top-left" | "top-center" | "top-left" | "right-top" | "right-center" | "right-bottom" | "bottom-left" | "bottom-center" | "bottom-right" | "left-top" | "left-center" | "left-bottom";
+  @Prop({ reflect: true}) alignment: "top-left" | "top-center" | "top-left" | "right-top" | "right-center" | "right-bottom" | "bottom-left" | "bottom-center" | "bottom-right" | "left-top" | "left-center" | "left-bottom" = "top-center";
   
   /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-tooltip');

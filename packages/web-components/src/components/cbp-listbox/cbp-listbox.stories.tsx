@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Listbox',
+  title: 'Forms/Listbox',
   tags: ['new','autodocs'],
   argTypes: {
     label: {
@@ -94,14 +94,14 @@ const Template = ({ label, description, fieldId, name, error, readonly, disabled
       ${name ? `name="${name}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${readonly ? `readonly` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${readonly ? 'readonly' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-listbox
         ${items && value=='' ? `items='${JSON.stringify(items)}'` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input type="${inputType}"
@@ -146,15 +146,14 @@ const ListboxSearchTemplate = ({ label, description, fieldId, name, error, reado
       ${name ? `name="${name}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${readonly ? `readonly` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${readonly ? 'readonly' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
-
       <cbp-listbox
         ${items && value=='' ? `items='${JSON.stringify(items)}'` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <cbp-form-field-wrapper>  

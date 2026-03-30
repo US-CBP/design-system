@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Icon',
+  title: 'Content/Icon',
   tags: ['beta'],
   argTypes: {
     name: {
@@ -81,11 +81,11 @@ export default {
 const Template = ({ name, color, size, rotate, accessibilityText, sx }) => {
   return ` 
     <cbp-icon
-      ${name ? `name=${name}` : ''}
-      ${color ? `color=${color}` : ''}
-      ${size ? `size=${size}` : ''}
-      ${rotate ? `rotate=${rotate}` : ''}
-      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
+      ${name ? `name="${name}"` : ''}
+      ${color ? `color="${color}"` : ''}
+      ${size ? `size="${size}"` : ''}
+      ${rotate ? `rotate="${rotate}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     ></cbp-icon>
   `;

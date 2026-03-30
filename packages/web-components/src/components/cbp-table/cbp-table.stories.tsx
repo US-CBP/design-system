@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Table',
+  title: 'Content/Table',
   tags: ['new'],
   argTypes: {
     striped: {
@@ -42,83 +42,84 @@ export default {
 
 
 function generateTableHeaders(headers, selectable, context) {
-  const checkbox = `<th>
-      <cbp-checkbox ${context && context != 'light-inverts' ? `context=${context}` : ''}>
-        <input type="checkbox" name="selectall" value="1">
-        <span style="display:none">Select Rows</span>
-      </cbp-checkbox>
-    </th>`
+  const checkbox = `
+              <th>
+                <cbp-checkbox ${context && context != 'light-inverts' ? `context="${context}"` : ''}>
+                  <input type="checkbox" name="selectall" value="1">
+                  <span style="display:none">Select Rows</span>
+                </cbp-checkbox>
+              </th>
+  `
   let cells = headers.map( ({label, sortable, alignmentRight}, i)  => {
-    return `${ sortable 
-      ? `<th 
-        ${i == 0 ? `aria-sort="ascending"` : ''}
-        ${alignmentRight ? `style="text-align: right;"` : ''}
-      >
-          <cbp-button fill="ghost" color="secondary" name="${`column-${i}`}" value="${i}">
-            <cbp-icon></cbp-icon>${label}
-          </cbp-button>
-        </th>`
-      : `<th
-          ${alignmentRight ? `style="text-align: right;"` : ''}
-        >
-          ${label}
-        </th>`
+    return `
+      ${ sortable ? `
+              <th 
+                ${i == 0 ? `aria-sort="ascending"` : ''}
+                ${alignmentRight ? `style="text-align: right;"` : ''}
+              >
+                <cbp-button fill="ghost" color="secondary" name="${`column-${i}`}" value="${i}">
+                  <cbp-icon></cbp-icon>${label}
+                </cbp-button>
+              </th>`
+      : `
+              <th
+                ${alignmentRight ? `style="text-align: right;"` : ''}
+              >
+                ${label}
+              </th>`
     }`;
   }).join('');
+
   if (selectable) cells = checkbox + cells;
-  return `
-    ${cells}
-  `;
+  return `${cells}`;
 }
 
 function generateTableRows(data, selectable, context) {
   const html = data.map( ({ row, danger }, i) => {
-    const checkbox = `<td>
-        <cbp-checkbox ${context && context != 'light-inverts' ? `context=${context}` : ''}>
-          <input type="checkbox" name="rowid" value="${i+1}">
-          <span style="display:none">Select row ${i+1}</span>
-        </cbp-checkbox>
-      </td>`
+    const checkbox = `
+            <td>
+              <cbp-checkbox ${context && context != 'light-inverts' ? `context="${context}"` : ''}>
+                <input type="checkbox" name="rowid" value="${i+1}">
+                <span style="display:none">Select row ${i+1}</span>
+              </cbp-checkbox>
+            </td>
+    `;
+
     let cells = row.map( ({td, danger, highlight, alignmentRight})  => {
       if(danger){
         return `
-          <td
-            class="cbp-table--danger"
-            ${alignmentRight ? `style="text-align: right;"` : ''}
-          >
-            ${td}
-          </td>
+              <td
+                class="cbp-table--danger"
+                ${alignmentRight ? `style="text-align: right;"` : ''}
+              >
+                ${td}
+              </td>
         `;
-      }else if(highlight){
+      }
+      else if(highlight){
         return `
-          <td 
-            class="cbp-table--highlight"
-            ${alignmentRight ? `style="text-align: right;"` : ''}
-          >
-            ${td}
-          </td>
+              <td 
+                class="cbp-table--highlight"
+                ${alignmentRight ? `style="text-align: right;"` : ''}
+              >
+                ${td}
+              </td>
         `;
       }
        return `
-        <td
-          ${alignmentRight ? `style="text-align: right;"` : ''}
-        >${td}</td>
+            <td
+              ${alignmentRight ? `style="text-align: right;"` : ''}
+            >${td}</td>
       `;
-      }).join('');
+    }).join('');
+    
     if (selectable) cells = checkbox + cells;
-    if(danger){
-      return `
-          <tr class="cbp-table--danger">
+    
+    return `
+          <tr ${danger ? `class="cbp-table--danger"` :''}>
             ${cells}
           </tr>
-        `;
-    }else{
-      return `
-        <tr>
-          ${cells}
-        </tr>
-      `;
-    }
+    `;
   });
   return html.join('');
 }
@@ -126,28 +127,28 @@ function generateTableRows(data, selectable, context) {
 
 function toolbar() {
   return `
-    <div slot="cbp-table-toolbar">
-      <cbp-form-field sx='{"--cbp-form-field-margin-bottom":"0"}'>
-        <cbp-form-field-wrapper>  
-          <input
-            type="search"
-            name="tablesearch"
-            placeholder="Filter Results"
-          />
-          <span slot="cbp-form-field-attached-button">
-            <cbp-button
-              type="submit"
-              fill="solid"
-              color="secondary"
-              variant="square"
-              accessibility-text="Search"
-            >
-              <cbp-icon name="magnifying-glass"></cbp-icon>
-            </cbp-button>
-          </span>
-         </cbp-form-field-wrapper>
-      </cbp-form-field>
-    </div>
+      <div slot="cbp-table-toolbar">
+        <cbp-form-field sx='{"--cbp-form-field-margin-bottom":"0"}'>
+          <cbp-form-field-wrapper>  
+            <input
+              type="search"
+              name="tablesearch"
+              placeholder="Filter Results"
+            />
+            <span slot="cbp-form-field-attached-button">
+              <cbp-button
+                type="submit"
+                fill="solid"
+                color="secondary"
+                variant="square"
+                accessibility-text="Search"
+              >
+                <cbp-icon name="magnifying-glass"></cbp-icon>
+              </cbp-button>
+            </span>
+          </cbp-form-field-wrapper>
+        </cbp-form-field>
+      </div>
   `;
 }
 
@@ -155,38 +156,38 @@ function toolbar() {
 const Template = ({ tableData, headers, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
   
   return ` 
-      <cbp-table
-        ${striped != 'none' ? `striped="${striped}"` : ''}
-        ${hover == 'cell' ? `hover="${hover}"` : ''}
-        ${columnHover ? `column-hover` : ''}
-        ${overflow ? `overflow="${overflow}"` : ''}
-        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        ${showToolbar ? toolbar() : ''}
-        ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
+    <cbp-table
+      ${striped != 'none' ? `striped="${striped}"` : ''}
+      ${hover == 'cell' ? `hover="${hover}"` : ''}
+      ${columnHover ? 'column-hover' : ''}
+      ${overflow ? `overflow="${overflow}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${showToolbar ? toolbar() : ''}
+      ${liveRegion ? `<div slot="cbp-table-live-region">${liveRegion}</div>` : ''}
 
-        <table style="width:100%">
-          <caption ${ showCaption ? '' : 'hidden' }>Table Caption</caption>
-          <thead>
-            <tr>
-              ${generateTableHeaders(headers, selectable, context)}
-            </tr>
-          </thead>
-          <tbody>
-            ${generateTableRows(tableData, selectable, context)}
-          </tbody>
-        </table>
-      </cbp-table>
-      
-      ${ selectable ? `
-        <cbp-action-bar variant="inline" context="dark-inverts">
-          <div slot="cbp-action-bar-info">0 items selected.</div>
-          <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-        </cbp-action-bar>          
-      ` : ''}
-    `;
+      <table style="width:100%">
+        <caption ${ showCaption ? '' : 'hidden' }>Table Caption</caption>
+        <thead>
+          <tr>
+            ${generateTableHeaders(headers, selectable, context)}
+          </tr>
+        </thead>
+        <tbody>
+          ${generateTableRows(tableData, selectable, context)}
+        </tbody>
+      </table>
+    </cbp-table>
+    
+    ${ selectable ? `
+      <cbp-action-bar variant="inline" context="dark-inverts">
+        <div slot="cbp-action-bar-info">0 items selected.</div>
+        <cbp-button fill="ghost" color="danger" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+        <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+      </cbp-action-bar>          
+    ` : ''}
+  `;
 };
 
 export const BasicTable = Template.bind({});

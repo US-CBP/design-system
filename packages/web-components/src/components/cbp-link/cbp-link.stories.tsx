@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Link',
+  title: 'Navigation/Link',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -78,15 +78,15 @@ const Template = ({ label, withIcon, inText, href, rel, target, download, langua
   return `
     ${ inText ? `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ` : ''}
     <cbp-link
-      ${href ? `href=${href}` : ''}
-      ${rel ? `rel=${rel}` : ''}
-      ${target ? `target=${target}` : ''}
-      ${download ? `download` : ''}
-      ${shortcutKey ? `accesskey=${shortcutKey}` : ''}
-      ${language ? `lang=${language}` : ''}
-      ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
-      ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${href ? `href="${href}"` : ''}
+      ${rel ? `rel="${rel}"` : ''}
+      ${target ? `target="${target}"` : ''}
+      ${download ? 'download' : ''}
+      ${shortcutKey ? `accesskey="${shortcutKey}"` : ''}
+      ${language ? `lang="${language}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${withIcon == 'before' ? `<cbp-icon name="pen-to-square"></cbp-icon>` : ''}

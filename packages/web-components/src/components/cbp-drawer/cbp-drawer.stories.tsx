@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Drawer',
+  title: 'Content/Drawer',
   tags: ['beta'],
   argTypes: {
     position: {
@@ -38,33 +38,30 @@ export default {
 
 const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText, context, sx }) => {
   return `
-    <cbp-hide 
-      ${persistAt ? `hide-at=${persistAt}` : ''}
-    >
+    ${persistAt ? `<cbp-hide hide-at="${persistAt}">` : ''}
       <cbp-button
-        type="button"
         color="secondary"
         variant="square"
         accessibility-text="Open Drawer"
         target-prop="open"
-        controls=${uid}
+        controls="${uid}"
       >
         <cbp-icon name="bars"></cbp-icon>
       </cbp-button>
-    </cbp-hide>
+    ${persistAt ? `</cbp-hide>` : ''}
 
     <cbp-drawer
+      ${uid ? `uid="${uid}"` : ''}
       ${position ? `position="${position}"` : ''}
       ${open ? 'open' : ''}
       ${persistAt ? `persist-at="${persistAt}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      ${uid ? `uid="${uid}"` : ''}
     >
       <cbp-panel
         aria-labelledby="panelheader"
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       >
         <cbp-typography
           slot="cbp-panel-header"
@@ -106,7 +103,7 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
       ${open ? 'open' : ''}
       ${persistAt ? `persist-at="${persistAt}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       sx='{
         "--cbp-drawer-close-button-color":"var(--cbp-color-white)"
       }'
@@ -114,7 +111,7 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
     >
       <cbp-panel
         aria-labelledby="userprefs-panel-header"
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         sx='{
           "--cbp-panel-header-color-dark": "var(--cbp-color-text-lighter)",
           "--cbp-panel-header-color-bg-dark": "var(--cbp-color-branding-dhs-blue)"

@@ -1,0 +1,33 @@
+# New Components Checklist
+
+* You can use Stencil to scaffold a new component by typing `npm run stencil-generate` in command line at the root of the project.
+  * Select only the style sheet to be generate. We will worry about test files later.
+  * This creates the new component in a same-named folder under packages/web-components/src/components/.
+* Edit the generated CSS file:
+  * Rename the CSS file to `.scss`.
+  * Edit the `:host` selector to the component name, which will wrap most of the CSS.
+* Edit the component file to:
+  * Update the styleUrl key in the component decorator to reference the .scss file.
+  * Remove `shadow: true` from teh component decorator (in most cases).
+* Create the component-name.specs.mdx file with functional requirements before coding the component.
+* Create the api-docs.mdx file. If the component has child components make sure they are all included here.
+* Create the Story file with appropriate controls.
+  * Reuse templates as much as possible (multiple exports, 1 template)
+  * Make sure attributes are only rendered if a control value is selected by using ternaries in the template literal.
+  * Make sure properties that have a default value are not needlessly specified in the story/rendered code. Copied code should be as minimal as possible.
+  * Make sure booleans are rendered as HTML booleans (attribute name only when true).
+  * Make sure all other attribute values are double-quoted (other than those passing stringified JSON, which get single quotes on the outside).
+* Components:
+  * Make sure internal variables and functions are marked private.
+  * Boolean properties should never default to "true" and should not be named in the negative.
+  * Leverage the component lifecycle:
+    * Most things rendered by the component should be updated in the render and not via DOM manipulation.
+    * Keep in mind reactivity; logic that runs on in componentWillLoad/componentDidLoad only runs once.
+* Make sure JSDocs are included everywhere required to generate our API docs:
+  * Component description (above the @Component decorator)
+  * Slots, including the default slot (in the same block above the @Component decorator)
+  * Properties
+  * Methods
+  * Event Emitters
+  * CSS custom properties (in the .scss file)
+* Update the component-name.specs.mdx file to reflect specific implementation details in responsiveness, accessibility, and other concerns.

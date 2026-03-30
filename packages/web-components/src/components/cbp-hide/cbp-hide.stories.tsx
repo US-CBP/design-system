@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Hide',
+  title: 'Utilities/Hide',
   tags: ['beta','code-only'],
   argTypes: {
     content: {
@@ -34,17 +34,17 @@ export default {
 
 const Template = ({ display, hide, visuallyHide, hideAt, visuallyHideAt, content, sx }) => {
   return ` 
-        <cbp-hide
-          ${display ? `display="${display}"` : ''}
-          ${hide ? 'hide' : ''}
-          ${visuallyHide ? 'visually-hide' : ''}
-          ${hideAt ? `hide-at="${hideAt}"` : ''}
-          ${visuallyHideAt ? `visually-hide-at="${visuallyHideAt}"` : ''}
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-          ${content}
-        </cbp-hide>
-      `;
+    <cbp-hide
+      ${display ? `display="${display}"` : ''}
+      ${hide ? 'hide' : ''}
+      ${visuallyHide ? 'visually-hide' : ''}
+      ${hideAt ? `hide-at="${hideAt}"` : ''}
+      ${visuallyHideAt ? `visually-hide-at="${visuallyHideAt}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${content}
+    </cbp-hide>
+  `;
 };
 
 export const Hide = Template.bind({});

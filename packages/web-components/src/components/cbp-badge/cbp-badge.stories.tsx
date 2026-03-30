@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Badge',
+  title: 'Content/Badge',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -29,8 +29,8 @@ export default {
 const BadgeTemplate = ({ label, color, context, sx }) => {
   return ` 
     <cbp-badge
-      ${color ? `color=${color}` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${color ? `color="${color}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${label}

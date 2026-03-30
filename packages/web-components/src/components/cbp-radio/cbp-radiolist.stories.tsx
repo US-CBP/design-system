@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Radio/RadioList',
+  title: 'Forms/Radio/RadioList',
   //tags: ['autodocs'],
   argTypes: {
     label: {
@@ -68,14 +68,14 @@ function generateRadios(context, radios) {
   const html = radios.map(({ label, name, value, checked, disabled }) => {
     return `
       <cbp-radio
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       >
         <input 
           type="radio" 
           name="${name}"
           value="${value}"
-          ${checked ? `checked` : ''}
-          ${disabled ? `disabled` : ''}
+          ${checked ? 'checked' : ''}
+          ${disabled ? 'disabled' : ''}
         />
         ${label}
       </cbp-radio>
@@ -90,14 +90,14 @@ const RadioListTemplate = ({ radios, label, description, fieldId, disabled, erro
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateRadios(context, radios)}
     </cbp-form-field>
-    `;
+  `;
 };
 
 export const RadioList = RadioListTemplate.bind({});
@@ -111,9 +111,9 @@ const RadioListHorizontalTemplate = ({ radios, label, description, fieldId, disa
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-flex
@@ -124,7 +124,7 @@ const RadioListHorizontalTemplate = ({ radios, label, description, fieldId, disa
         ${generateRadios(context, radios)}
       </cbp-flex>
     </cbp-form-field>
-    `;
+  `;
 };
 
 /*
@@ -150,9 +150,9 @@ const RadioListMultiColumnTemplate = ({ radios, gap, columns, width, label, desc
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-multicol nobreak
@@ -163,7 +163,7 @@ const RadioListMultiColumnTemplate = ({ radios, gap, columns, width, label, desc
         ${generateRadios(context, radios)}
       </cbp-multicol>
     </cbp-form-field>
-    `;
+  `;
 };
 
 export const RadioListMultiColumn = RadioListMultiColumnTemplate.bind({});

@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Treeview',
+  title: 'Controls/Treeview',
   tags: ['new'],
   argTypes: {
     name: {
@@ -27,8 +27,8 @@ function generateTreeviewitems(tree, selectable) {
     return `
       <cbp-treeview-item
         label="${label}"
-        ${checked && selectable? 'checked' : ''}
         value="${value}"
+        ${checked && selectable? 'checked' : ''}
       >
         ${!selectable && slottedButton ? `
           <cbp-button
@@ -38,7 +38,7 @@ function generateTreeviewitems(tree, selectable) {
           >
             ${slottedButton}
           </cbp-button>
-          ` : ``}
+        ` : ''}
         ${children ? generateTreeviewitems(children, selectable) : ''}
       </cbp-treeview-item>`;
   });
@@ -49,10 +49,10 @@ function generateTreeviewitems(tree, selectable) {
 const Template = ({ treeItems, name, selectable, accessibilityText, context, sx }) => {
   return `
     <cbp-treeview
-      ${selectable ? 'selectable' : ''}
       ${name ? `name="${name}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${selectable ? 'selectable' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateTreeviewitems(treeItems, selectable)}
@@ -169,7 +169,7 @@ const actionButtonTemplate = ({ treeItems, name,  accessibilityText, context, sx
     <cbp-treeview
       ${name ? `name="${name}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateTreeviewitems(treeItems, false)}

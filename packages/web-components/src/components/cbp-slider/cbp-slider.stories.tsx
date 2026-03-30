@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Slider',
+  title: 'Forms/Slider',
   tags: ['new'],
   argTypes: {
     label: {
@@ -62,9 +62,9 @@ const SliderTemplate = ({ label, description, fieldId, name, min, max, step, hid
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
-      ${error ? `error` : ''}
-      ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-slider
@@ -73,9 +73,9 @@ const SliderTemplate = ({ label, description, fieldId, name, min, max, step, hid
         ${min != undefined ? `min="${min}"` : ''}
         ${max ? `max="${max}"` : ''}
         ${step ? `step="${step}"` : ''}
-        ${hideMinmax ? `hide-minmax` : ''}
-        ${hideInput ? `hide-input` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${hideMinmax ? 'hide-minmax' : ''}
+        ${hideInput ? 'hide-input' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input 
@@ -99,9 +99,9 @@ const VolumeSliderTemplate = ({ label, description, fieldId, name, min, max, ste
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
-      ${error ? `error` : ''}
-      ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-slider
@@ -110,9 +110,9 @@ const VolumeSliderTemplate = ({ label, description, fieldId, name, min, max, ste
         ${min != undefined ? `min="${min}"` : ''}
         ${max ? `max="${max}"` : ''}
         ${step ? `step="${step}"` : ''}
-        ${hideMinmax ? `hide-minmax` : ''}
-        ${hideInput ? `hide-input` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${hideMinmax ? 'hide-minmax' : ''}
+        ${hideInput ? 'hide-input' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <cbp-icon size="var(--cbp-font-size-subhead)" slot="cpb-slider-before">
@@ -147,9 +147,9 @@ const RangeSliderTemplate = ({ label, description, fieldId, name, min, max, step
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
-      ${error ? `error` : ''}
-      ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-slider
@@ -159,9 +159,9 @@ const RangeSliderTemplate = ({ label, description, fieldId, name, min, max, step
         ${max ? `max="${max}"` : ''}
         ${step ? `step="${step}"` : ''}
         ${gap ? `gap="${gap}"` : ''}
-        ${hideMinmax ? `hide-minmax` : ''}
-        ${hideInput ? `hide-input` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${hideMinmax ? 'hide-minmax' : ''}
+        ${hideInput ? 'hide-input' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input 

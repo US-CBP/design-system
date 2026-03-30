@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Form Field Wrapper',
+  title: 'Forms/Form Field Wrapper',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -60,8 +60,8 @@ const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>  
@@ -69,13 +69,11 @@ const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart
           type="${inputType}" 
           ${name ? `name="${name}"` : ''} 
           ${value ? `value="${value}"` : ''} 
-          ${readonly ? `readonly` : ''}
-          ${disabled ? `disabled` : ''}
+          ${readonly ? 'readonly' : ''}
+          ${disabled ? 'disabled' : ''}
         />
-
         ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
         ${overlayEnd != undefined ? `<span slot="cbp-form-field-overlay-end">${overlayEnd}</span>` : ''}
-
       </cbp-form-field-wrapper>
     </cbp-form-field>
   `;
@@ -96,16 +94,19 @@ const FileInputTemplate = ({ label, description, overlayStart, overlayEnd, field
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
       ${name ? `name="${name}"` : ''} 
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>
-        <input type="file" name="fileinput" ${readonly ? `readonly` : ''} ${disabled ? `disabled` : ''} />
-
+        <input 
+          type="file" 
+          name="fileinput" 
+          ${readonly ? `readonly` : ''} 
+          ${disabled ? `disabled` : ''} 
+        />
         ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
         ${overlayEnd != undefined ? `<span slot="cbp-form-field-overlay-end">${overlayEnd}</span>` : ''}
-
         <span slot="cbp-form-field-attached-button">
           <cbp-button
             fill="solid"
@@ -150,10 +151,10 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${readonly ? `readonly` : ''}
-      ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${readonly ? 'readonly' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>
@@ -162,14 +163,11 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
           ${name ? `name="${name}"` : ''}
           ${value ? `value="${value}"` : ''}
         />
-
         ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
         ${overlayEnd != undefined ? `<span slot="cbp-form-field-overlay-end">${overlayEnd}</span>` : ''}
-        
         <span slot="cbp-form-field-unattached-buttons">
           <cbp-button
             name="decrement"
-            type="button"
             fill="outline"
             color="secondary"
             variant="square"
@@ -182,7 +180,6 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
 
           <cbp-button
             name="increment"
-            type="button"
             fill="outline"
             color="secondary"
             variant="square"
@@ -192,9 +189,7 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
           >
             <cbp-icon name="plus"></cbp-icon>
           </cbp-button>
-
         </span>
-        
       </cbp-form-field-wrapper>
     </cbp-form-field>
   `;
@@ -239,10 +234,10 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${readonly ? `readonly` : ''}
-      ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${readonly ? 'readonly' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>
@@ -251,14 +246,11 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
           ${name ? `name="${name}"` : ''}
           ${value ? `value="${value}"` : ''}
         />
-
         ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
         ${overlayEnd != undefined ? `<span slot="cbp-form-field-overlay-end">${overlayEnd}</span>` : ''}
-        
         <span slot="cbp-form-field-attached-button">
           <cbp-button
             name="togglepw"
-            type="button"
             fill="solid"
             color="secondary"
             variant="square"
@@ -269,7 +261,6 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
             <cbp-icon name="eye"></cbp-icon>
           </cbp-button>
         </span>
-        
       </cbp-form-field-wrapper>
     </cbp-form-field>
   `;
@@ -293,10 +284,10 @@ const SearchTemplate = ({ label, description, inputType,  overlayStart, overlayE
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${readonly ? `readonly` : ''}
-      ${disabled ? `disabled` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${readonly ? 'readonly' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>  
@@ -305,10 +296,8 @@ const SearchTemplate = ({ label, description, inputType,  overlayStart, overlayE
           ${name ? `name="${name}"` : ''}
           ${value ? `value="${value}"` : ''}
         />
-
         ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
         ${overlayEnd != undefined ? `<span slot="cbp-form-field-overlay-end">${overlayEnd}</span>` : ''}
-        
         <span slot="cbp-form-field-attached-button">
           <cbp-button
             type="submit"
@@ -320,7 +309,6 @@ const SearchTemplate = ({ label, description, inputType,  overlayStart, overlayE
             <cbp-icon name="magnifying-glass"></cbp-icon>
           </cbp-button>
         </span>
-        
       </cbp-form-field-wrapper>
     </cbp-form-field>
   `;
@@ -343,8 +331,8 @@ const TimeInputTemplate = ({ label, description, fieldId, name, value, error, re
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-form-field-wrapper>  
@@ -353,8 +341,8 @@ const TimeInputTemplate = ({ label, description, fieldId, name, value, error, re
           maxlength="5"
           ${name ? `name="${name}"` : ''}
           ${value ? `value="${value}"` : ''}
-          ${readonly ? `readonly` : ''}
-          ${disabled ? `disabled` : ''} 
+          ${readonly ? 'readonly' : ''}
+          ${disabled ? 'disabled' : ''} 
         />
         <cbp-icon 
           slot="cbp-form-field-overlay-start" 
@@ -365,30 +353,11 @@ const TimeInputTemplate = ({ label, description, fieldId, name, value, error, re
           <cbp-segmented-button-group
             name="time-ampm"
           >
-            <cbp-button
-              type="button"
-              value="AM"
-              pressed="true"
-            >
-              AM
-            </cbp-button>
-
-            <cbp-button
-              type="button"
-              value="PM"
-            >
-              PM
-            </cbp-button>
-
-            <cbp-button
-              type="button"
-              value="24H"
-            >
-              24 hr
-            </cbp-button>
+            <cbp-button value="AM" pressed="true">AM</cbp-button>
+            <cbp-button value="PM">PM</cbp-button>
+            <cbp-button value="24H">24 hr</cbp-button>
           </cbp-segmented-button-group>
         </span>
-
       </cbp-form-field-wrapper>
     </cbp-form-field>
   `;

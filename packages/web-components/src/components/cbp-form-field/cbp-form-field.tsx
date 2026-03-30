@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, Listen, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 
 
@@ -60,6 +60,9 @@ export class CbpFormField {
 
   /** A custom event emitted when the the nested input is changed by user interaction. */
   @Event() valueChange: EventEmitter;
+
+
+
   // TechDebt: Seems to be firing twice with a different CurrentTarget on each instance (one on the component, the other on the document/root)
   // TechDebt: needs testing with input groups
   handleChange(e) {
@@ -70,6 +73,25 @@ export class CbpFormField {
       nativeEvent: e
     });
   }
+
+  // Listen for valueChange events from components that may not emit a native change event.
+  @Listen('valueChange')
+  handleValueChange() {
+    //WIP
+    //console.log('cbp-form-field received valueChange event:', e);
+    //e.stopPropagation();
+
+    // Make sure this event is not from itself before emitting a new one
+    /*
+    this.valueChange.emit({
+      host: this.host,
+      nativeElement: e.detail?.nativeElement,
+      value: this.formField?.value,
+      nativeEvent: e.detail?.nativeEvent
+    });
+    */
+  }
+
 
   /*
    * Manage the disabled/readonly/error state of slotted form fields and buttons
@@ -136,27 +158,6 @@ export class CbpFormField {
     setCSSProps(this.host, {
       ...this.sx,
     });
-
-    /* Needs Testing: Moved this logic to componentDidLoad so that it works with buttons rendered by the component lifecycle (not just slotted), such as in file input.
-    if (!this.group) {
-      // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
-      this.formField = this.host.querySelector('input,select,textarea');
-      // Treat nested components separately, as it's hard to modify their rendered content directly
-      this.formFieldComponent = this.host.querySelector('cbp-dropdown'); // , cbp-file-input
-      this.buttons = this.host.querySelectorAll('cbp-button');
-      this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
-      this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
-
-      if (this.formField) {
-        // If the slotted form field has an ID, use it; otherwise, set it.
-        this.formField.getAttribute('id')
-          ? this.fieldId = this.formField.getAttribute('id')
-          : this.formField.setAttribute('id', `${this.fieldId}`);
-        this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
-        this.formField.addEventListener('change', this.handleChange());
-      }
-    }
-    */
   }
 
   componentDidLoad() {
@@ -179,6 +180,8 @@ export class CbpFormField {
           ? this.fieldId = this.formField.getAttribute('id')
           : this.formField.setAttribute('id', `${this.fieldId}`);
         this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
+        
+        // Listen for native change events
         this.formField.addEventListener('change', (e) => this.handleChange(e));
       }
 
@@ -209,6 +212,11 @@ export class CbpFormField {
           if (this.error) el.color="danger";
         });
       }
+    }
+
+    // Handle groups
+    else {
+
     }
   }
 

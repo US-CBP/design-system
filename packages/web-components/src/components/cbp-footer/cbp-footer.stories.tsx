@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Footer',
+  title: 'Layout and Structure/Footer',
   tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
@@ -16,9 +16,11 @@ export default {
 function generateFooterNav(footerNav) {
   const html = footerNav.map(({ label, href }) => {
     return `
-      <cbp-flex-item role="listitem">
-        <cbp-button tag="a" href=${href} color="secondary" fill="ghost" context="dark-always">${label}</cbp-button>
-      </cbp-flex-item>
+          <cbp-flex-item role="listitem">
+            <cbp-button tag="a" href=${href} color="secondary" fill="ghost" context="dark-always">
+              ${label}
+            </cbp-button>
+          </cbp-flex-item>
     `;
   });
   return html.join('');
@@ -72,5 +74,4 @@ InternalFooter.args = {
     },
   ],
 };
-
 InternalFooter.storyName = 'Internal';

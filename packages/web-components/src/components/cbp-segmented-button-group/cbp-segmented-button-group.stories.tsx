@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Segmented Button Group',
+  title: 'Controls/Segmented Button Group',
   tags: ['beta'],
   argTypes: {
     buttons: {
@@ -33,9 +33,9 @@ function generateButtons(buttons) {
     return `
       <cbp-button 
         value="${value}" 
+        ${variant ? `variant="${variant}"` : ''}
         ${pressed == true ? `pressed="${pressed}"` : ''}
         ${disabled == true ? 'disabled' : ''}
-        ${variant ? `variant="${variant}"` : ''}
       >
         ${label}
       </cbp-button>
@@ -45,19 +45,18 @@ function generateButtons(buttons) {
 }
 
 const Template = ({ buttons, name, value, multiple, accessibilityText, disabled, sx }) => {
-  
   return ` 
-        <cbp-segmented-button-group
-          ${name ? `name="${name}"` : ''}
-          ${value ? `value="${value}"` : ''}
-          ${multiple ? `multiple` : ''}
-          ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
-          ${disabled ? `disabled=${disabled}` : ''}
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-          ${generateButtons(buttons)}
-        </cbp-segmented-button-group>
-      `;
+    <cbp-segmented-button-group
+      ${name ? `name="${name}"` : ''}
+      ${value ? `value="${value}"` : ''}
+      ${multiple ? 'multiple' : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateButtons(buttons)}
+    </cbp-segmented-button-group>
+  `;
 };
 
 export const SegmentedButtonGroup = Template.bind({});
@@ -84,20 +83,8 @@ SegmentedButtonGroup.args = {
   ],
 };
 
-const IconTemplate = ({ buttons, multiple, accessibilityText, disabled, sx }) => {
-  return ` 
-        <cbp-segmented-button-group
-          ${multiple ? `multiple=${multiple}` : ''}
-          ${accessibilityText ? `accessibility-text=${accessibilityText}` : ''}
-          ${disabled ? `disabled=${disabled}` : ''}
-          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-        >
-          ${generateButtons(buttons)}
-        </cbp-segmented-button-group>
-      `;
-};
 
-export const SegmentedButtonGroupIcons = IconTemplate.bind({});
+export const SegmentedButtonGroupIcons = Template.bind({});
 SegmentedButtonGroupIcons.args = {
   buttons: [
     {

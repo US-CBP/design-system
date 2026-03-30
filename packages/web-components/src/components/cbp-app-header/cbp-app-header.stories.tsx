@@ -1,11 +1,11 @@
 export default {
-  title: 'Components/Application Header',
+  title: 'Navigation/Application Header',
   tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
   },
   argTypes: {
-    drawerid: {
+    drawerId: {
       description: 'A unique `id` applied to the drawer and referenced by the control.',
       control: 'text',
     },
@@ -36,6 +36,7 @@ export default {
   }
 };
 
+
 function generateNavItems(items, drawerid=undefined){
   const html =  items.map(({ label, name, href, current, children}, index) => {
     if(!children){
@@ -45,9 +46,7 @@ function generateNavItems(items, drawerid=undefined){
           ${index == 0 ? `slot="cbp-home"` : ''}
           ${current ? 'current' : ''}
         >
-          <a href="${href}">
-            ${label}
-          </a>
+          <a href="${href}">${label}</a>
         </cbp-nav-item>
       `;
     }
@@ -74,6 +73,7 @@ function generateNavItems(items, drawerid=undefined){
   return html.join('');
 }
 
+
 function generateSubnav(items){
   const html = items.map(({ icon, label, name, href, children, current }) => {
       return `
@@ -91,62 +91,61 @@ function generateSubnav(items){
       return html.join('');
 }
 
-function renderDrawer(items, drawerid, store){
 
+function renderDrawer(items, drawerId, store){
   if(items.length > 1){
     return `
-    <cbp-drawer
-        ${drawerid ? `uid=${drawerid}` : ''}
+      <cbp-drawer
+        ${drawerId ? `uid="${drawerId}"` : ''}
+      >
+        <cbp-panel
+          aria-labelledby="panelheader"
+          role="complementary"
         >
-          <cbp-panel
-            aria-labelledby="panelheader"
-            role="complementary"
+          <cbp-typography
+            slot="cbp-panel-header"
+            tag="h3"
+            variant="heading-lg"
+            id="panelheader"
           >
-            <cbp-typography
-              slot="cbp-panel-header"
-              tag="h3"
-              variant="heading-lg"
-              id="panelheader"
-            >
-              Application Name
-            </cbp-typography>
+            Application Name
+          </cbp-typography>
 
-            <cbp-form-field 
-              label="Search"
-            >
-              <cbp-form-field-wrapper>
-                <input
-                  type="search"
-                  name="search"
-                />
-                <span slot="cbp-form-field-attached-button">
-                  <cbp-button
-                    type="submit"
-                    fill="solid"
-                    color="secondary"
-                    variant="square"
-                    accessibility-text="Search"
-                  >
-                    <cbp-icon name="magnifying-glass"></cbp-icon>
-                  </cbp-button>
-                </span>
-              </cbp-form-field-wrapper>
-            </cbp-form-field>
+          <cbp-form-field 
+            label="Search"
+          >
+            <cbp-form-field-wrapper>
+              <input type="search" name="search" />
+              <span slot="cbp-form-field-attached-button">
+                <cbp-button
+                  type="submit"
+                  fill="solid"
+                  color="secondary"
+                  variant="square"
+                  accessibility-text="Search"
+                >
+                  <cbp-icon name="magnifying-glass"></cbp-icon>
+                </cbp-button>
+              </span>
+            </cbp-form-field-wrapper>
+          </cbp-form-field>
 
-            <cbp-subnav
+          <cbp-subnav
             ${store ? 'store' : ''}
-            >
-              ${generateSubnav(items)}
-            </cbp-subnav>
-
-          </cbp-panel>
-        </cbp-drawer> 
+          >
+            ${generateSubnav(items)}
+          </cbp-subnav>
+        </cbp-panel>
+      </cbp-drawer> 
     `;
-  }else {
+  }
+  else {
     return '';
   }
 }
-const Template = ({ drawerid, store, search, searchMethod, searchAction, items, sx }) => {  
+
+
+const Template = ({ drawerId, store, search, searchMethod, searchAction, items, sx }) => {  
   
   setTimeout(() => {
     // Cancel form submit event on search to prevent full page reload
@@ -164,16 +163,16 @@ const Template = ({ drawerid, store, search, searchMethod, searchAction, items, 
 
   return ` 
     <cbp-app-header    
-      ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
-      ${search ? `search` : ``}
-      ${searchMethod ? `search-method=${searchMethod}` : ``}
-      ${searchAction ? `search-action=${searchAction}` : ``}
+      ${drawerId ? `subnav-drawer-id="${drawerId}"`: ''}
+      ${search ? 'search' : ''}
+      ${searchMethod ? `search-method="${searchMethod}"` : ''}
+      ${searchAction ? `search-action="${searchAction}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateNavItems(items)}
     </cbp-app-header>
 
-    ${renderDrawer(items, drawerid, store)}
+    ${renderDrawer(items, drawerId, store)}
   `;
 };
 
@@ -196,7 +195,7 @@ const Template = ({ drawerid, store, search, searchMethod, searchAction, items, 
 export const ApplicationHeader = Template.bind({});
 //ApplicationHeader.StoryName = "Application Header (Simple)"
 ApplicationHeader.args = {
-  drawerid: 'navDrawer',
+  drawerId: 'navDrawer',
   items: [
     {
       label: 'Application Name',
@@ -224,9 +223,9 @@ ApplicationHeader.args = {
 
 
 
-const AppHeaderWithSubnavTemplate = ({ drawerid, store, search, searchMethod, searchAction, items, sx }) => {  
+const AppHeaderWithSubnavTemplate = ({ drawerId, store, search, searchMethod, searchAction, items, sx }) => {  
   
-    setTimeout(() => {
+  setTimeout(() => {
     // Cancel form submit event on search to prevent full page reload
     const AppHeader = document.querySelector('cbp-app-header');
     AppHeader?.addEventListener('searchSubmit', function(e) {
@@ -242,16 +241,16 @@ const AppHeaderWithSubnavTemplate = ({ drawerid, store, search, searchMethod, se
 
   return ` 
     <cbp-app-header
-      ${drawerid ? `subnav-drawer-id=${drawerid}`: ``}
-      ${search ? `search` : ``}
-      ${searchMethod ? `search-method=${searchMethod}` : ``}
-      ${searchAction ? `search-action=${searchAction}` : ``}
+      ${drawerId ? `subnav-drawer-id="${drawerId}"`: ``}
+      ${search ? 'search' : ''}
+      ${searchMethod ? `search-method="${searchMethod}"` : ''}
+      ${searchAction ? `search-action="${searchAction}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      ${generateNavItems(items, drawerid)}
+      ${generateNavItems(items, drawerId)}
     </cbp-app-header>
     
-    ${renderDrawer(items, drawerid, store)}  
+    ${renderDrawer(items, drawerId, store)}  
   `;
 };
 
@@ -259,7 +258,7 @@ const AppHeaderWithSubnavTemplate = ({ drawerid, store, search, searchMethod, se
 export const AppHeaderWithSubnav = AppHeaderWithSubnavTemplate.bind({});
 AppHeaderWithSubnav.storyName = "Application Header with Sub-Nav"
 AppHeaderWithSubnav.args = {
-  drawerid: 'navDrawer',
+  drawerId: 'navDrawer',
   items: [
     {
       label: 'Application Name',

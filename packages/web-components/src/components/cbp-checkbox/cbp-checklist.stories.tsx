@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Checkbox/Checklist',
+  title: 'Forms/Checkbox/Checklist',
   //tags: ['autodocs'],
   argTypes: {
     label: {
@@ -67,18 +67,19 @@ export default {
 function generateCheckboxes(context, checkboxes) {
   const html = checkboxes.map(({ label, name, value, checked, disabled }) => {
     return `
-    <cbp-checkbox
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
-    >
-      <input 
-        type="checkbox" 
-        name="${name}"
-        value="${value}"
-        ${checked ? `checked` : ''}
-        ${disabled ? `disabled` : ''}
-      />
-      ${label}
-    </cbp-checkbox>`;
+      <cbp-checkbox
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      >
+        <input 
+          type="checkbox" 
+          name="${name}"
+          value="${value}"
+          ${checked ? 'checked' : ''}
+          ${disabled ? 'disabled' : ''}
+        />
+        ${label}
+      </cbp-checkbox>
+    `;
   });
   return html.join('');
 }
@@ -89,14 +90,14 @@ const ChecklistTemplate = ({ checkboxes, label, description, fieldId, disabled, 
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateCheckboxes(context, checkboxes)}
     </cbp-form-field>
-    `;
+  `;
 };
 
 export const Checklist = ChecklistTemplate.bind({});
@@ -110,9 +111,9 @@ const ChecklistHorizontalTemplate = ({ checkboxes, label, description, fieldId, 
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-flex
@@ -140,9 +141,9 @@ const ChecklistMultiColumnTemplate = ({ checkboxes, gap, columns, width, label, 
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-multicol nobreak
@@ -153,7 +154,7 @@ const ChecklistMultiColumnTemplate = ({ checkboxes, gap, columns, width, label, 
         ${generateCheckboxes(context, checkboxes)}
       </cbp-multicol>
     </cbp-form-field>
-    `;
+  `;
 };
 
 export const ChecklistMultiColumn = ChecklistMultiColumnTemplate.bind({});

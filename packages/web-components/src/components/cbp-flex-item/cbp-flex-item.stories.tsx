@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Flex/Flex Item',
+  title: 'Layout and Structure/Flex/Flex Item',
   tags: ['beta','code-only'],
   argTypes: {
     order: {
@@ -41,11 +41,11 @@ const Template = ({ order, alignSelf, flexGrow, flexShrink, flexBasis, content, 
       sx='{"min-height":"200px"}'
     >
       <cbp-flex-item
-        ${order ? `order=${order}` : ''}
-        ${alignSelf ? `align-self=${alignSelf}` : ''}
-        ${flexGrow ? `flex-grow=${flexGrow}` : ''}
-        ${flexShrink ? `flex-shrink=${flexShrink}` : ''}
-        ${flexBasis ? `flex-basis=${flexBasis}` : ''}
+        ${order ? `order="${order}"` : ''}
+        ${alignSelf ? `align-self="${alignSelf}"` : ''}
+        ${flexGrow ? `flex-grow="${flexGrow}"` : ''}
+        ${flexShrink ? `flex-shrink="${flexShrink}"` : ''}
+        ${flexBasis ? `flex-basis="${flexBasis}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${content}

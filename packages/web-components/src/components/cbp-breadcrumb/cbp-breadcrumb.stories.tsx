@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Breadcrumb',
+  title: 'Navigation/Breadcrumb',
   tags: ['beta'],
   argTypes: {
     divider: {
@@ -20,7 +20,11 @@ export default {
 
 function generateBreadcrumbs(breadcrumbs, context) {
   const html = breadcrumbs.map(({ text, href }) => {
-    return `<cbp-link href=${generateUnvisitedLink(href)} ${context && context != 'light-inverts' ? `context=${context}` : ''}>${text}</cbp-link>`
+    return `
+      <cbp-link href=${generateUnvisitedLink(href)} ${context && context != 'light-inverts' ? `context="${context}"` : ''}>
+        ${text}
+      </cbp-link>
+    `;
   }
   );
   return html.join('');

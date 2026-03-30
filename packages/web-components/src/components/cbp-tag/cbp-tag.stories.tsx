@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Tag',
+  title: 'Content/Tag',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -40,8 +40,8 @@ const Template = ({ label, color, withIcon, context, sx }) => {
 
   return ` 
     <cbp-tag
-      ${color && color != 'default' ? `color=${color}` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${color && color != 'default' ? `color="${color}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${Icon ? `<cbp-icon name="${Icon}"></cbp-icon>` : ''}

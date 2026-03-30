@@ -1,5 +1,5 @@
 export default {
-  title: 'Components/Dropdown',
+  title: 'Forms/Dropdown',
   tags: ['beta'],
   argTypes: {
     label: {
@@ -56,7 +56,9 @@ export default {
 
 function generateItems(items) {
   const html = items.map(({ label, value=label, selected }) => {
-    return `<cbp-dropdown-item  ${value ? `value="${value}"` : ''} ${selected == true ? 'selected' : ''}>${label}</cbp-dropdown-item>`;
+    return `
+        <cbp-dropdown-item  ${value ? `value="${value}"` : ''} ${selected == true ? 'selected' : ''}>${label}</cbp-dropdown-item>
+      `;
   });
   return html.join('');
 }
@@ -73,17 +75,17 @@ const StatesDropdownTemplate = ({ label, description, fieldId, name, placeholder
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${value ? `value="${value}"` : ''}
-        ${filter ? `filter` : ''}
-        ${multiple ? `multiple` : ''}
-        ${create ? `create` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${filter ? 'filter' : ''}
+        ${multiple ? 'multiple' : ''}
+        ${create ? 'create' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${multiple ? generateMultiSelectItems(items, name, context) : generateItems(items)}
@@ -108,20 +110,20 @@ const CountriesDropdownTemplate = ({ label, description, fieldId, name, placehol
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
-      ${readonly ? `readonly` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${readonly ? 'readonly' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${value ? `value="${value}"` : ''}
-        ${filter ? `filter` : ''}
-        ${multiple ? `multiple` : ''}
-        ${create ? `create` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${filter ? 'filter' : ''}
+        ${multiple ? 'multiple' : ''}
+        ${create ? 'create' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${multiple ? generateMultiSelectItems(items, name, context) : generateItems(items)}
@@ -146,12 +148,12 @@ function generateMultiSelectItems(items, name, context) {
     return `
       <cbp-dropdown-item  ${value ? `value="${value}"` : ''} ${selected == true ? 'selected' : ''}>
         <cbp-checkbox 
-          ${context && context != 'light-inverts' ? `context=${context}` : ''}
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         >
           <input 
             type="checkbox" 
             name="${`${name}-selection`}"
-            ${value ? `value=${value || label}` : ''}
+            ${value ? `value="${value || label}"` : ''}
           />
           ${label}
         </cbp-checkbox>
@@ -168,20 +170,20 @@ const ComboboxTemplate = ({ label, description, fieldId, name, placeholder, filt
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
-      ${readonly ? `readonly` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${readonly ? 'readonly' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${value ? `value="${value}"` : ''}
-        ${filter ? `filter` : ''}
-        ${multiple ? `multiple` : ''}
-        ${create ? `create` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${filter ? 'filter' : ''}
+        ${multiple ? 'multiple' : ''}
+        ${create ? 'create' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${multiple ? generateMultiSelectItems(items, name, context) : generateItems(items)}
@@ -210,10 +212,10 @@ const DropdownJSONTemplate = ({ label, description, fieldId, name, placeholder, 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
-      ${readonly ? `readonly` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${readonly ? 'readonly' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
@@ -221,12 +223,12 @@ const DropdownJSONTemplate = ({ label, description, fieldId, name, placeholder, 
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${value ? `value="${value}"` : ''}
         ${items ? `items='${items}'` : ''}
-        ${filter ? `filter` : ''}
-        ${async ? `async` : ''}
+        ${filter ? 'filter' : ''}
+        ${async ? 'async' : ''}
         ${minimumInputLength ? `minimum-input-length="${minimumInputLength}"` : ''}
-        ${multiple ? `multiple` : ''}
-        ${create ? `create` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${multiple ? 'multiple' : ''}
+        ${create ? 'create' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
          <!-- No dropdown items loaded by default -->
@@ -269,10 +271,10 @@ const ComboboxAsyncTemplate = ({ label, description, fieldId, name, placeholder,
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
-      ${readonly ? `readonly` : ''}
-      ${disabled ? `disabled` : ''}
-      ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${readonly ? 'readonly' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
@@ -280,12 +282,12 @@ const ComboboxAsyncTemplate = ({ label, description, fieldId, name, placeholder,
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${value ? `value="${value}"` : ''}
         ${selectedLabel ? `selected-label="${selectedLabel}"` : ''}
-        ${filter ? `filter` : ''}
-        ${async ? `async` : ''}
+        ${filter ? 'filter' : ''}
+        ${async ? 'async' : ''}
         ${minimumInputLength ? `minimum-input-length="${minimumInputLength}"` : ''}
-        ${multiple ? `multiple` : ''}
-        ${create ? `create` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${multiple ? 'multiple' : ''}
+        ${create ? 'create' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
          <!-- No dropdown items loaded by default -->
@@ -340,7 +342,7 @@ const StatesWithTerritoriesDropdownTemplate = ({ label, description, fieldId, na
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
@@ -348,7 +350,7 @@ const StatesWithTerritoriesDropdownTemplate = ({ label, description, fieldId, na
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${value ? `value="${value}"` : ''}
         ${filter ? `filter` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
          ${generateItems(items)}
