@@ -121,7 +121,7 @@ const UnstyledTemplate = ({listItems, size, accessibilityText, context, sx}) => 
   return ` 
     <cbp-list
       variant="unstyled"
-      ${size ? `size="${size}` : ''}
+      ${size ? `size="${size}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
