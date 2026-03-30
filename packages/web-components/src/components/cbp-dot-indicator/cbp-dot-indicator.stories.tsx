@@ -1,5 +1,5 @@
 export default {
-  title: 'NAvigation/Dot Indicator',
+  title: 'Navigation/Dot Indicator',
   tags: ['new'],
   argTypes: {
     current: {
