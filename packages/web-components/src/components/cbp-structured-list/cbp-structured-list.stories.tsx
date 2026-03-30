@@ -37,14 +37,20 @@ export default {
 
 function generateLIs(items) {
   const html = items.map(({ content }) => {
-    return `<li>${content}</li>`;
+    return `
+      <li>${content}</li>
+    `;
   });
   return html.join('');
 }
 
 function generateItems(items) {
   const html = items.map(({ content, color, selected }) => {
-    return `<cbp-structured-list-item ${color != 'default' ? `color="${color}"` : ''} ${selected ? `selected` : ''}>${content}</cbp-structured-list-item>`;
+    return `
+      <cbp-structured-list-item ${color != 'default' ? `color="${color}"` : ''} ${selected ? `selected` : ''}>
+        ${content}
+      </cbp-structured-list-item>
+    `;
   });
   return html.join('');
 }
