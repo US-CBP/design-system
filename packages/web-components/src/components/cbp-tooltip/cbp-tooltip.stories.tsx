@@ -62,7 +62,6 @@ export const Tooltip = Template.bind({});
 
 Tooltip.args = {
   uid: 'tooltip',
-  alignment: 'top-left',
   title: 'Test Tooltip Title',
   content: 'Stub text for tooltip.',
   tooltipControl: '<cbp-icon name="user" accessibility-text="User"></cbp-icon>',
@@ -91,7 +90,6 @@ const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipContr
 export const DefinitionTooltip = DefinitionTemplate.bind({});
 DefinitionTooltip.args = {
   uid: 'tooltip',
-  alignment: 'top-left',
   title: 'Test Definition Tooltip Title',
   content: 'Stub text for definition tooltip.',
   tooltipControl: `TASPD`,
