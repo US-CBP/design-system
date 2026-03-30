@@ -4,6 +4,11 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unpublished] TBD
+
+* Made alignment default to "top-center" on `cbp-tooltip`.
+* Reorganized components in Storybook, grouping them by function.
+
 ## [0.0.1-develop.33] 03-26-2026
 
 * Initial creation of the `cbp-floating-action` component, used for positioning buttons/controls in a fixed position within the viewport.

@@ -1,6 +1,6 @@
 import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 
-<Meta title="Components/Treeview/Specifications" />
+<Meta title="Controls/Treeview/Specifications" />
 
 # cbp-treeview and cbp-treeview-item
 
@@ -63,4 +63,4 @@ When tabbing into the control to the first expand button or checkbox, the screen
 
 ### Additional Notes and Considerations
 
-* For selectable treeviews, only those checkboxes with both a `name` and `value` specified will be rolled up, giving the developer control of which items to include in the form submission and `valueChange` event. E.g., omitting the parents as part of the hierarchy/categorization and only including the bottom-level items.
+* For selectable treeviews, only those checkboxes with both a `name` and `value` specified will be rolled up in the event emitter (like a native form post), giving the developer control of which items to include in the form submission and `valueChange` event. E.g., omitting the parents as part of the hierarchy/categorization and only including the bottom-level items.

@@ -92,7 +92,7 @@ const renderPreHydrated: DecoratorFunction<WebComponentsRenderer> = (storyFn, co
 
 
 const preview: Preview = {
-  decorators: [renderPreHydrated, withWrapper, withAnimationControl], //, contentDirectionProvider renderPreHydrated
+  decorators: [renderPreHydrated, withWrapper, withAnimationControl], //, contentDirectionProvider
   globalTypes: {
     /*
     layout: {
