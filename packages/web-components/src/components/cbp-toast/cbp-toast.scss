@@ -53,7 +53,6 @@ cbp-toast {
     animation: dismiss 1s ease-in-out forwards;
   }
 
-  // TechDebt: Can the color be set here too rather than inline in the story code?
   .cbp-toast-sidebar {
     --cbp-icon-size: var(--cbp-space-8x);
     display: flex;
@@ -92,7 +91,7 @@ cbp-toast {
   .cbp-toast-button-bar {
     display: flex;
     justify-content: center;
-    padding-top: var(--cbp-space-3x); //TODO: confrim this is correct on spec. might be needed around sides/inbetween buttons as well
+    padding-top: var(--cbp-space-3x);
 
     & > div {
       display: flex;
