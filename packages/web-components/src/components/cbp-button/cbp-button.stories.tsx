@@ -47,6 +47,12 @@ export default {
       control: 'boolean',
       if: { arg: 'tag', eq: 'a' },
     },
+    downloadFileName: {
+      description:
+        'Optionally specifies the file name of the file to be downloaded (different from the file name as it exists on the server).',
+      control: 'text',
+      if: { arg: 'download', eq: true },
+    },
     fill: {
       description: 'Displays button fill in the overall button hierarchy. Available options are: `Solid`, `Outline` and `Ghost`.',
       control: 'select',
@@ -108,7 +114,7 @@ export default {
   },
 };
 
-const Template = ({ label, withIcon, tag, type, value, href, rel, target, download, fill, color, variant, accessibilityText, controls, targetProp, pressed, expanded, disabled, context, sx }) => {
+const Template = ({ label, withIcon, tag, type, value, href, rel, target, download, downloadFileName, fill, color, variant, accessibilityText, controls, targetProp, pressed, expanded, disabled, context, sx }) => {
   return ` 
       <cbp-button
         ${tag !== 'button' ? `tag="${tag}"` : ''}
@@ -117,7 +123,7 @@ const Template = ({ label, withIcon, tag, type, value, href, rel, target, downlo
         ${href ? `href="${href}"` : ''}
         ${rel ? `rel="${rel}"` : ''}
         ${target ? `target="${target}"` : ''}
-        ${download ? 'download' : ''}
+        ${download ? `download${ downloadFileName ? `="${downloadFileName}"` : ''}` : ''}
         ${fill ? `fill="${fill}"` : ''}
         ${color ? `color="${color}"` : ''}
         ${variant !== 'default' ? `variant="${variant}"` : ''}
@@ -135,6 +141,8 @@ const Template = ({ label, withIcon, tag, type, value, href, rel, target, downlo
       </cbp-button>
     `;
 };
+
+// implement the height and width (instead of min-height and min-width)
 
 export const Button = Template.bind({});
 

@@ -48,7 +48,7 @@ export class CbpButton {
    * The `download` attribute of a link button; when present tells the browser to download the specified href URI instead
    * of viewing or navigating to it.
    */
-  @Prop() download: boolean;
+  @Prop() download: boolean | string;
 
   /** Specifies the (min-)width of the button (in CSS units) when different from the default size. */
   @Prop() width: string;
