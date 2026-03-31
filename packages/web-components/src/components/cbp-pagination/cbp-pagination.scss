@@ -27,7 +27,7 @@ cbp-pagination {
   [slot=cbp-pagination-items-per-page],
   [slot=cbp-pagination-pages] {
     label {
-      @include hiddenText //see global/styles/index.scss for declaration
+      @include visuallyHidden //see global/styles/index.scss for declaration
     }
   }
 
