@@ -56,7 +56,6 @@ export default {
   },
 };
 
-// TechDebt: I can't figure out why it is not setting the CSS props for gridColumnStart, gridColumnEnd, gridRowStart, gridRowEnd
 const Template = ({ gridColumnStart, gridColumnEnd, gridRowStart, gridRowEnd, alignSelf, justifySelf, gridArea, content, sx }) => {
   return ` 
     <cbp-grid
