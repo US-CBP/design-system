@@ -16,6 +16,9 @@ export default {
     selectable: {
       control: 'boolean'
     },
+    useRowHeader: {
+      control: 'boolean'
+    },
     overflow: {
       control: 'select',
       options: ['scroll', 'linearize'],
@@ -88,31 +91,29 @@ function generateTableRows(data, useRowHeader, selectable, context) {
     let cells = row.map( ({td, danger, highlight, alignmentRight}, j)  => {
       if(danger){
         return `
-              <td
+              ${useRowHeader && j==0 ? `<th` : `<td`}
                 class="cbp-table--danger"
-                ${useRowHeader && j==0 ? `scope="row"` : ''}
                 ${alignmentRight ? `style="text-align: right;"` : ''}
               >
                 ${td}
-              </td>
+              ${useRowHeader && j==0 ? `</th>` : `</td>`}
         `;
       }
       else if(highlight){
         return `
-              <td 
+              ${useRowHeader && j==0 ? `<th` : `<td`}
                 class="cbp-table--highlight"
-                ${useRowHeader && j==0 ? `scope="row"` : ''}
                 ${alignmentRight ? `style="text-align: right;"` : ''}
               >
                 ${td}
-              </td>
+              ${useRowHeader && j==0 ? `</th>` : `</td>`}
         `;
       }
        return `
-            <td
-              ${useRowHeader && j==0 ? `scope="row"` : ''}
+            ${useRowHeader && j==0 ? `<th` : `<td`}
               ${alignmentRight ? `style="text-align: right;"` : ''}
-            >${td}</td>
+            >${td}
+            ${useRowHeader && j==0 ? `</th>` : `</td>`}
       `;
     }).join('');
     
@@ -780,80 +781,6 @@ OverflowMenu.args = {
           </cbp-menu>`,
           alignmentRight: true
         }
-      ]
-    },
-  ]
-}
-
-export const rowHeaderTable = Template.bind({});
-rowHeaderTable.args = {
-  striped: 'even',
-  useRowHeader: true,
-  headers: [
-    {
-      label: "Header 1",
-      sortable: true,
-    },
-    {
-      label: "Header 2",
-      sortable: true,
-    },
-    {
-      label: "Header 3 is longer",
-      sortable: true,
-    },
-    {
-      label: "Header 4",
-      sortable: true,
-    },
-    {
-      label: "Header 5",
-      sortable: false,
-    },
-  ],
-  tableData: [
-    {
-      row: [
-        {td: 'Row 1 Column 1 Cell Text'},
-        {td: 'Row 1 Column 2 Cell Text'},
-        {td: 'Row 1 Column 3 Cell Text'},
-        {td: 'Row 1 Column 4 Cell Text'},
-        {td: 'Row 1 Column 4 Cell Text'},
-      ]
-    },
-    {
-      row: [
-        {td: 'Row 2 Column 1 Cell Text'},
-        {td: 'Row 2 Column 2 Cell Text'},
-        {td: 'Row 2 Column 3 Cell Text'},
-        {td: 'Row 2 Column 4 Cell Text'},
-        {td: 'Row 2 Column 5 Cell Text'},
-      ]
-    },
-    {
-      row: [
-        {td: 'Row 3 Column 1 Cell Text'},
-        {td: 'Row 3 Column 2 Cell Text'},
-        {td: 'Row 3 Column 3 Cell Text'},
-        {td: 'Row 3 Column 4 Cell Text is longer than the rest'},
-        {td: 'Row 3 Column 5 Cell Text'},      ]
-    },
-    {
-      row: [
-        {td: 'Row 4 Column 1 Cell Text'},
-        {td: 'Row 4 Column 2 Cell Text'},
-        {td: 'Row 4 Column 3 Cell Text'},
-        {td: 'Row 4 Column 4 Cell Text'},
-        {td: 'Row 4 Column 5 Cell Text'},
-      ]
-    },
-    {
-      row: [
-        {td: 'Row 5 Column 1 Cell Text'},
-        {td: 'Row 5 Column 2 Cell Text'},
-        {td: 'Row 5 Column 3 Cell Text'},
-        {td: 'Row 5 Column 4 Cell Text'},
-        {td: 'Row 5 Column 5 Cell Text'},
       ]
     },
   ]

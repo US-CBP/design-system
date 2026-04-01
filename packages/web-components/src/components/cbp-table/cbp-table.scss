@@ -152,9 +152,8 @@ cbp-table {
 
     // When a row header is used, make it sticky when scrolling overflow
     table:has(tbody th:first-child) th:first-child {
-      // TechDebt: need test case - enable for testing later
-      //position: sticky;
-      //left: 0;
+      position: sticky;
+      left: 0;
       inset-inline-start: 0;
     }
   }
@@ -177,12 +176,16 @@ cbp-table {
 
   // General classes for danger and highlighting (selected rows overrides, however)
   .cbp-table--danger td,
-  td.cbp-table--danger {
+  .cbp-table--danger th,
+  td.cbp-table--danger,
+  th.cbp-table--danger {
     background-color: var(--cbp-table-color-bg-danger);
   }
 
   .cbp-table--highlight td,
-  td.cbp-table--highlight {
+  .cbp-table--highlight th,
+  td.cbp-table--highlight,
+  th.cbp-table--highlight {
     color: var(--cbp-color-text-darkest);
     background-color: var(--cbp-table-row-color-bg-highlight);
   }
@@ -208,7 +211,7 @@ cbp-table {
   &[hover=row] {
     tbody {
       tr:hover {
-        td {
+        th, td {
           background-color: var(--cbp-table-row-color-bg-hover);
         }
         
@@ -291,6 +294,16 @@ cbp-table {
         font-size: var(--cbp-font-size-heading-xs);
         vertical-align: bottom;
         transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
+        --cbp-button-color: var(--cbp-table-header-color);
+        --cbp-button-color-dark: var(--cbp-table-header-color-dark);
+        color: var(--cbp-table-header-color);
+        background-color: var(--cbp-table-header-color-bg);
+        font-weight: var(--cbp-font-weight-medium);
+        text-wrap: balance;
+        outline-width: 0;
+        outline-style: solid;
+        outline-color: var(--cbp-table-header-color-outline);
+        outline-offset: calc(var(--cbp-space-1x) * -1);
 
         &[aria-sort=none] button {
           // Use padding as a placeholder to keep columns from shifting when sorted and an icon is added.
@@ -389,23 +402,18 @@ cbp-table {
       border-bottom: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
     }
 
-    th,
-    td[scope="row"] {
-      --cbp-button-color: var(--cbp-table-header-color);
-      --cbp-button-color-dark: var(--cbp-table-header-color-dark);
-      color: var(--cbp-table-header-color);
-      background-color: var(--cbp-table-header-color-bg);
+    th {
       font-weight: var(--cbp-font-weight-medium);
-      text-wrap: balance;
-      outline-width: 0;
-      outline-style: solid;
-      outline-color: var(--cbp-table-header-color-outline);
-      outline-offset: calc(var(--cbp-space-1x) * -1);
+
+      &[scope="row"]{
+        border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
+      }
+     
+      &[colspan]{
+        text-align: center;
+      }
     }
 
-    td[scope="row"]{
-      border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
-    }
 
     td {
       text-wrap: pretty;

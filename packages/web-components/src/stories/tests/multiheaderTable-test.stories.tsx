@@ -54,10 +54,9 @@ function generateTableHeaders(headerData, selectable, context) {
         `
         let cells = header.map( ({label, colspan, sortable, alignmentRight}, i)  => {
             return `
-            ${ sortable ? `
+            ${ sortable && !colspan? `
                     <th 
                         ${i == 0 ? `aria-sort="ascending"` : ''}
-                        ${colspan ? `colspan="${colspan}"` : ''}
                         ${alignmentRight ? `style="text-align: right;"` : ''}
                     >
                         <cbp-button fill="ghost" color="secondary" name="${`column-${i}`}" value="${i}">
@@ -66,6 +65,7 @@ function generateTableHeaders(headerData, selectable, context) {
                     </th>`
             : `
                     <th
+                        ${colspan ? `colspan="${colspan}"` : ''}
                         ${alignmentRight ? `style="text-align: right;"` : ''}
                     >
                         ${label}
@@ -234,7 +234,7 @@ multiHeaderTable.args = {
         },
         {
             label: "Header 5",
-            sortable: false,
+            sortable: true,
         },
         ],
     }
