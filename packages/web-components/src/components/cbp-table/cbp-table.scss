@@ -389,7 +389,8 @@ cbp-table {
       border-bottom: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
     }
 
-    th {
+    th,
+    td[scope="row"] {
       --cbp-button-color: var(--cbp-table-header-color);
       --cbp-button-color-dark: var(--cbp-table-header-color-dark);
       color: var(--cbp-table-header-color);
@@ -400,6 +401,10 @@ cbp-table {
       outline-style: solid;
       outline-color: var(--cbp-table-header-color-outline);
       outline-offset: calc(var(--cbp-space-1x) * -1);
+    }
+
+    td[scope="row"]{
+      border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
     }
 
     td {

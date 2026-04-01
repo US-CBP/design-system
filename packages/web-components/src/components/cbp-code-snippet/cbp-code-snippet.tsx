@@ -80,7 +80,7 @@ export class CbpCodeSnippet {
     this.host.querySelector('code').innerHTML = this.codeBlock.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
     setTimeout(() => {
-      // timeout need for innherHTML to render and get correct dimensions
+      // timeout need for innerHTML to render and get correct dimensions
       this.codeContainerHeight = this.host.offsetHeight;
       this.codeBlockHeight = this.host.querySelector('pre').scrollHeight;
     }, 100);

@@ -74,7 +74,7 @@ function generateTableHeaders(headers, selectable, context) {
   return `${cells}`;
 }
 
-function generateTableRows(data, selectable, context) {
+function generateTableRows(data, useRowHeader, selectable, context) {
   const html = data.map( ({ row, danger }, i) => {
     const checkbox = `
             <td>
@@ -85,11 +85,12 @@ function generateTableRows(data, selectable, context) {
             </td>
     `;
 
-    let cells = row.map( ({td, danger, highlight, alignmentRight})  => {
+    let cells = row.map( ({td, danger, highlight, alignmentRight}, j)  => {
       if(danger){
         return `
               <td
                 class="cbp-table--danger"
+                ${useRowHeader && j==0 ? `scope="row"` : ''}
                 ${alignmentRight ? `style="text-align: right;"` : ''}
               >
                 ${td}
@@ -100,6 +101,7 @@ function generateTableRows(data, selectable, context) {
         return `
               <td 
                 class="cbp-table--highlight"
+                ${useRowHeader && j==0 ? `scope="row"` : ''}
                 ${alignmentRight ? `style="text-align: right;"` : ''}
               >
                 ${td}
@@ -108,6 +110,7 @@ function generateTableRows(data, selectable, context) {
       }
        return `
             <td
+              ${useRowHeader && j==0 ? `scope="row"` : ''}
               ${alignmentRight ? `style="text-align: right;"` : ''}
             >${td}</td>
       `;
@@ -153,7 +156,7 @@ function toolbar() {
 }
 
 
-const Template = ({ tableData, headers, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
+const Template = ({ tableData, headers, useRowHeader, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
   
   return ` 
     <cbp-table
@@ -175,7 +178,7 @@ const Template = ({ tableData, headers, selectable, striped, hover, columnHover,
           </tr>
         </thead>
         <tbody>
-          ${generateTableRows(tableData, selectable, context)}
+          ${generateTableRows(tableData, useRowHeader, selectable, context)}
         </tbody>
       </table>
     </cbp-table>
@@ -777,6 +780,80 @@ OverflowMenu.args = {
           </cbp-menu>`,
           alignmentRight: true
         }
+      ]
+    },
+  ]
+}
+
+export const rowHeaderTable = Template.bind({});
+rowHeaderTable.args = {
+  striped: 'even',
+  useRowHeader: true,
+  headers: [
+    {
+      label: "Header 1",
+      sortable: true,
+    },
+    {
+      label: "Header 2",
+      sortable: true,
+    },
+    {
+      label: "Header 3 is longer",
+      sortable: true,
+    },
+    {
+      label: "Header 4",
+      sortable: true,
+    },
+    {
+      label: "Header 5",
+      sortable: false,
+    },
+  ],
+  tableData: [
+    {
+      row: [
+        {td: 'Row 1 Column 1 Cell Text'},
+        {td: 'Row 1 Column 2 Cell Text'},
+        {td: 'Row 1 Column 3 Cell Text'},
+        {td: 'Row 1 Column 4 Cell Text'},
+        {td: 'Row 1 Column 4 Cell Text'},
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 2 Column 1 Cell Text'},
+        {td: 'Row 2 Column 2 Cell Text'},
+        {td: 'Row 2 Column 3 Cell Text'},
+        {td: 'Row 2 Column 4 Cell Text'},
+        {td: 'Row 2 Column 5 Cell Text'},
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 3 Column 1 Cell Text'},
+        {td: 'Row 3 Column 2 Cell Text'},
+        {td: 'Row 3 Column 3 Cell Text'},
+        {td: 'Row 3 Column 4 Cell Text is longer than the rest'},
+        {td: 'Row 3 Column 5 Cell Text'},      ]
+    },
+    {
+      row: [
+        {td: 'Row 4 Column 1 Cell Text'},
+        {td: 'Row 4 Column 2 Cell Text'},
+        {td: 'Row 4 Column 3 Cell Text'},
+        {td: 'Row 4 Column 4 Cell Text'},
+        {td: 'Row 4 Column 5 Cell Text'},
+      ]
+    },
+    {
+      row: [
+        {td: 'Row 5 Column 1 Cell Text'},
+        {td: 'Row 5 Column 2 Cell Text'},
+        {td: 'Row 5 Column 3 Cell Text'},
+        {td: 'Row 5 Column 4 Cell Text'},
+        {td: 'Row 5 Column 5 Cell Text'},
       ]
     },
   ]
