@@ -231,8 +231,10 @@ cbp-table {
   }
 
   // Cell hover effect
+  //".cbp-table-wrapper table tbody tr" selectors to up specificity so hover override the striped styling
   &[hover=cell] {
-    tbody {
+    .cbp-table-wrapper table tbody tr {
+      th:hover,
       td:hover{
           background-color: var(--cbp-table-row-color-bg-hover);
         
