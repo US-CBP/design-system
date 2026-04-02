@@ -1,5 +1,6 @@
 export default {
-  title: "Test/Multi Header Table",argTypes: {
+  title: "Test/Table with Multiple Headers",
+  argTypes: {
     striped: {
       control: 'select',
       options: ['none', 'even', 'odd'],
@@ -176,18 +177,19 @@ const Template = ({ tableData, headerData, useRowHeader, selectable, striped, ho
 };
 
 export const multiHeaderTable = Template.bind({});
+multiHeaderTable.storyName="Table with Multiple Headers";
 multiHeaderTable.args = {
   striped: 'even',
   headerData:[
     {
         header: [
             {
-                label: "Header 1",
+                label: "Group Header 1",
                 colspan: 2,
                 sortable: true,
             },
             {
-                label: "Header 2",
+                label: "Group Header 2",
                 colspan: 3,
                 sortable: true,
             }
