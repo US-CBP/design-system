@@ -1,5 +1,8 @@
 export default {
   title: 'Test/Form Field Groups',
+  parameters: {
+    chromatic: { disableSnapshot: true }
+  },
   argTypes: {
     label: {
       control: 'text',

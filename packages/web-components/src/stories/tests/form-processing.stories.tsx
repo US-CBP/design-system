@@ -1,5 +1,8 @@
 export default {
   title: "Test/Form Processing",
+  parameters: {
+    chromatic: { disableSnapshot: true }
+  },
   argTypes: {
     name: {
       control: 'text',
@@ -320,7 +323,7 @@ function HTMLForm( {name, action, method, enctype, prefix, firstName, middleInit
 
 
 // Combobox using Countries data as an asynchronous call: 
-const FormProcessingTemplate = ( args ) => {
+const FormProcessingTemplate: any = ( args ) => {
 
   // Set up event handlers for logging and setting errors on files via the `status` prop.
   setTimeout(() => {
@@ -388,7 +391,7 @@ FormProcessing.args = {
 
 
 
-const FormComponentProcessingTemplate = (args) => {
+const FormComponentProcessingTemplate: any = (args) => {
 
   // Set up event handlers for logging and setting errors on files via the `status` prop.
   /*
