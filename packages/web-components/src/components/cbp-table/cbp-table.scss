@@ -156,13 +156,6 @@ cbp-table {
       left: 0;
       inset-inline-start: 0;
     }
-    
-    tbody th{
-      &[scope="row"],
-      &[colspan]:not(:last-child){
-        border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
-      }
-    }
   }
   
   // Responsive linearized table
@@ -423,21 +416,23 @@ cbp-table {
     th {
       font-weight: var(--cbp-font-weight-medium);
 
-      // &[scope="row"],
-      // &[colspan]:not(:last-child){
-      //   border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
-      // }
-     
       &[colspan]{
         text-align: center;
+        
+        &:not(:last-child){
+        border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
+      }
       }
     }
-
 
     td {
       text-wrap: pretty;
     }
   }
+  
+  &:not(.cbp-table-linearize ) table th[scope="row"]{
+    border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
+  } 
 }
 
 // Shows a gradient mask on the table for either direction that has overflowed content
