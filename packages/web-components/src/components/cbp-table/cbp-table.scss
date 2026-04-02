@@ -175,34 +175,40 @@ cbp-table {
   
 
   // General classes for danger and highlighting (selected rows overrides, however)
-  .cbp-table--danger td,
-  .cbp-table--danger th,
-  td.cbp-table--danger,
-  th.cbp-table--danger {
-    background-color: var(--cbp-table-color-bg-danger);
-  }
+  //added ".cbp-table-wrapper table tbody tr" selectors to up specificity so danger/highlight override the striped styling
+  .cbp-table-wrapper table tbody tr {
+    &.cbp-table--danger td,
+    &.cbp-table--danger th,
+    td.cbp-table--danger,
+    th.cbp-table--danger {
+      background-color: var(--cbp-table-color-bg-danger);
+    }
 
-  .cbp-table--highlight td,
-  .cbp-table--highlight th,
-  td.cbp-table--highlight,
-  th.cbp-table--highlight {
-    color: var(--cbp-color-text-darkest);
-    background-color: var(--cbp-table-row-color-bg-highlight);
+    &.cbp-table--highlight td,
+    &.cbp-table--highlight th,
+    td.cbp-table--highlight,
+    th.cbp-table--highlight {
+      color: var(--cbp-color-text-darkest);
+      background-color: var(--cbp-table-row-color-bg-highlight);
+    }
   }
-
   // Striped rows
   &[striped=odd] {
     tbody {
       tr:nth-child(odd) {
-        background-color: var(--cbp-table-row-color-bg-striped);
-      }
+        td, th{
+            background-color: var(--cbp-table-row-color-bg-striped);
+          } 
+        }
     }
   }
 
   &[striped=even] {
     tbody {
       tr:nth-child(even) {
-        background-color: var(--cbp-table-row-color-bg-striped);
+        td, th{
+          background-color: var(--cbp-table-row-color-bg-striped);    
+        }
       }
     }
   }
@@ -383,8 +389,10 @@ cbp-table {
 
     tbody {
       tr {
-        background-color: var(--cbp-table-row-color-bg);
-
+        td, th{
+          background-color: var(--cbp-table-row-color-bg);
+        }
+        
         // Selected state should override all others (striping, danger, highlight)
         &:has(input[type=checkbox]:checked) td {
           color: var(--cbp-table-color);
@@ -411,6 +419,11 @@ cbp-table {
      
       &[colspan]{
         text-align: center;
+        border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
+
+        &:last-of-type{
+          border: none;
+        }
       }
     }
 
