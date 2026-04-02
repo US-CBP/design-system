@@ -152,9 +152,8 @@ cbp-table {
 
     // When a row header is used, make it sticky when scrolling overflow
     table:has(tbody th:first-child) th:first-child {
-      // TechDebt: need test case - enable for testing later
-      //position: sticky;
-      //left: 0;
+      position: sticky;
+      left: 0;
       inset-inline-start: 0;
     }
   }
@@ -176,30 +175,40 @@ cbp-table {
   
 
   // General classes for danger and highlighting (selected rows overrides, however)
-  .cbp-table--danger td,
-  td.cbp-table--danger {
-    background-color: var(--cbp-table-color-bg-danger);
-  }
+  //added ".cbp-table-wrapper table tbody tr" selectors to up specificity so danger/highlight override the striped styling
+  .cbp-table-wrapper table tbody tr {
+    &.cbp-table--danger td,
+    &.cbp-table--danger th,
+    td.cbp-table--danger,
+    th.cbp-table--danger {
+      background-color: var(--cbp-table-color-bg-danger);
+    }
 
-  .cbp-table--highlight td,
-  td.cbp-table--highlight {
-    color: var(--cbp-color-text-darkest);
-    background-color: var(--cbp-table-row-color-bg-highlight);
+    &.cbp-table--highlight td,
+    &.cbp-table--highlight th,
+    td.cbp-table--highlight,
+    th.cbp-table--highlight {
+      color: var(--cbp-color-text-darkest);
+      background-color: var(--cbp-table-row-color-bg-highlight);
+    }
   }
-
   // Striped rows
   &[striped=odd] {
     tbody {
       tr:nth-child(odd) {
-        background-color: var(--cbp-table-row-color-bg-striped);
-      }
+        td, th{
+            background-color: var(--cbp-table-row-color-bg-striped);
+          } 
+        }
     }
   }
 
   &[striped=even] {
     tbody {
       tr:nth-child(even) {
-        background-color: var(--cbp-table-row-color-bg-striped);
+        td, th{
+          background-color: var(--cbp-table-row-color-bg-striped);    
+        }
       }
     }
   }
@@ -208,7 +217,7 @@ cbp-table {
   &[hover=row] {
     tbody {
       tr:hover {
-        td {
+        th, td {
           background-color: var(--cbp-table-row-color-bg-hover);
         }
         
@@ -222,8 +231,10 @@ cbp-table {
   }
 
   // Cell hover effect
+  //".cbp-table-wrapper table tbody tr" selectors to up specificity so hover override the striped styling
   &[hover=cell] {
-    tbody {
+    .cbp-table-wrapper table tbody tr {
+      th:hover,
       td:hover{
           background-color: var(--cbp-table-row-color-bg-hover);
         
@@ -291,6 +302,16 @@ cbp-table {
         font-size: var(--cbp-font-size-heading-xs);
         vertical-align: bottom;
         transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
+        --cbp-button-color: var(--cbp-table-header-color);
+        --cbp-button-color-dark: var(--cbp-table-header-color-dark);
+        color: var(--cbp-table-header-color);
+        background-color: var(--cbp-table-header-color-bg);
+        font-weight: var(--cbp-font-weight-medium);
+        text-wrap: balance;
+        outline-width: 0;
+        outline-style: solid;
+        outline-color: var(--cbp-table-header-color-outline);
+        outline-offset: calc(var(--cbp-space-1x) * -1);
 
         &[aria-sort=none] button {
           // Use padding as a placeholder to keep columns from shifting when sorted and an icon is added.
@@ -370,12 +391,17 @@ cbp-table {
 
     tbody {
       tr {
-        background-color: var(--cbp-table-row-color-bg);
-
+        td, th{
+          background-color: var(--cbp-table-row-color-bg);
+        }
+        
         // Selected state should override all others (striping, danger, highlight)
-        &:has(input[type=checkbox]:checked) td {
-          color: var(--cbp-table-color);
-          background-color: var(--cbp-table-row-color-bg-selected);
+        &:has(input[type=checkbox]:checked){
+          td,
+          th {
+            color: var(--cbp-table-color);
+            background-color: var(--cbp-table-row-color-bg-selected);
+          }
         }
       }
 
@@ -390,22 +416,25 @@ cbp-table {
     }
 
     th {
-      --cbp-button-color: var(--cbp-table-header-color);
-      --cbp-button-color-dark: var(--cbp-table-header-color-dark);
-      color: var(--cbp-table-header-color);
-      background-color: var(--cbp-table-header-color-bg);
       font-weight: var(--cbp-font-weight-medium);
-      text-wrap: balance;
-      outline-width: 0;
-      outline-style: solid;
-      outline-color: var(--cbp-table-header-color-outline);
-      outline-offset: calc(var(--cbp-space-1x) * -1);
+
+      &[colspan]{
+        text-align: center;
+        
+        &:not(:last-child){
+        border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
+      }
+      }
     }
 
     td {
       text-wrap: pretty;
     }
   }
+  
+  &:not(.cbp-table-linearize ) table th[scope="row"]{
+    border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
+  } 
 }
 
 // Shows a gradient mask on the table for either direction that has overflowed content

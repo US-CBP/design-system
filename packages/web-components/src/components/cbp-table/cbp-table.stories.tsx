@@ -16,6 +16,9 @@ export default {
     selectable: {
       control: 'boolean'
     },
+    useRowHeader: {
+      control: 'boolean'
+    },
     overflow: {
       control: 'select',
       options: ['scroll', 'linearize'],
@@ -74,7 +77,7 @@ function generateTableHeaders(headers, selectable, context) {
   return `${cells}`;
 }
 
-function generateTableRows(data, selectable, context) {
+function generateTableRows(data, useRowHeader, selectable, context) {
   const html = data.map( ({ row, danger }, i) => {
     const checkbox = `
             <td>
@@ -85,31 +88,13 @@ function generateTableRows(data, selectable, context) {
             </td>
     `;
 
-    let cells = row.map( ({td, danger, highlight, alignmentRight})  => {
-      if(danger){
-        return `
-              <td
-                class="cbp-table--danger"
-                ${alignmentRight ? `style="text-align: right;"` : ''}
-              >
-                ${td}
-              </td>
-        `;
-      }
-      else if(highlight){
-        return `
-              <td 
-                class="cbp-table--highlight"
-                ${alignmentRight ? `style="text-align: right;"` : ''}
-              >
-                ${td}
-              </td>
-        `;
-      }
+    let cells = row.map( ({td, danger, highlight, alignmentRight}, j)  => {
        return `
-            <td
+            ${useRowHeader && j==0 ? `<th` : `<td`}
+              ${danger ? `class="cbp-table--danger"` : highlight ? `class="cbp-table--highlight"` : ``}
               ${alignmentRight ? `style="text-align: right;"` : ''}
-            >${td}</td>
+            >${td}
+            ${useRowHeader && j==0 ? `</th>` : `</td>`}
       `;
     }).join('');
     
@@ -153,7 +138,7 @@ function toolbar() {
 }
 
 
-const Template = ({ tableData, headers, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
+const Template = ({ tableData, headers, useRowHeader, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
   
   return ` 
     <cbp-table
@@ -175,7 +160,7 @@ const Template = ({ tableData, headers, selectable, striped, hover, columnHover,
           </tr>
         </thead>
         <tbody>
-          ${generateTableRows(tableData, selectable, context)}
+          ${generateTableRows(tableData, useRowHeader, selectable, context)}
         </tbody>
       </table>
     </cbp-table>
