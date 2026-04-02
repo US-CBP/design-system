@@ -77,8 +77,9 @@
   --cbp-button-border-style: solid;
   --cbp-button-border-radius: var(--cbp-border-radius-soft);
 
+  // Defaulting min-width/height causes issues, but these variables are used as part of the API elsewhere
   --cbp-button-min-width: auto;
-  --cbp-button-min-height: 2.25rem;
+  --cbp-button-min-height: auto;
   --cbp-button-width: auto;
   --cbp-button-height: auto;
   --cbp-button-gap: 0 var(--cbp-space-2x);
@@ -110,7 +111,6 @@
 }
 
 cbp-button {
-  display: inline-block;
   width: var(--cbp-button-width);
   height: var(--cbp-button-height);
 
@@ -421,7 +421,7 @@ cbp-button {
   }
 
   &[variant=square] {
-      --cbp-button-height: 2.25rem; 
+      --cbp-button-height: 2.25rem;
       --cbp-button-width: var(--cbp-button-height); 
     
     button, a {

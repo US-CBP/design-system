@@ -7,6 +7,8 @@ The React components are wrappers generated from this package and will share the
 ## [unpublished] TBD
 
 * Made alignment default to "top-center" on `cbp-tooltip`.
+* Updated the `cbp-button` CSS implementation to work better with custom values via props or CSS variables.
+* Updated the `download` property on both `cbp-button` and `cbp-link` to accept either a boolean or optionally a string to specify the download filename.
 * Reorganized components in Storybook, grouping them by function.
 
 ## [0.0.1-develop.33] 03-26-2026

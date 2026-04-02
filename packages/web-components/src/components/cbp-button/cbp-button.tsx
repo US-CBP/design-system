@@ -169,9 +169,9 @@ export class CbpButton {
       if (this.disabled) this.button.setAttribute('disabled', '');
     }
 
-    setCSSProps(this.button, {
-      'min-width': this.width,
-      'min-height': this.height,
+    setCSSProps(this.host, {
+      '--cbp-button-width': this.width,
+      '--cbp-button-height': this.height,
     });
 
     // Remove any persisted aria-* attributes from the host because they don't really make sense there.
