@@ -90,31 +90,10 @@ function generateTableRows(data, useRowHeader, selectable, context) {
             </td>
     `;
 
-    let cells = row.map( ({td, danger, highlight, alignmentRight}, j)  => {
-      if(danger){
-        return `
-              <td
-                class="cbp-table--danger"
-                ${useRowHeader && j==0 ? `scope="row"` : ''}
-                ${alignmentRight ? `style="text-align: right;"` : ''}
-              >
-                ${td}
-              </td>
-        `;
-      }
-      else if(highlight){
-        return `
-              <td 
-                class="cbp-table--highlight"
-                ${useRowHeader && j==0 ? `scope="row"` : ''}
-                ${alignmentRight ? `style="text-align: right;"` : ''}
-              >
-                ${td}
-              </td>
-        `;
-      }
+    let cells = row.map( ({td, danger, highlight, alignmentRight}, j)  => {    
        return `
             <td
+              ${danger ? `class="cbp-table--danger"` : highlight ? `class="cbp-table--highlight"` : ``}
               ${useRowHeader && j==0 ? `scope="row"` : ''}
               ${alignmentRight ? `style="text-align: right;"` : ''}
             >${td}</td>

@@ -156,6 +156,13 @@ cbp-table {
       left: 0;
       inset-inline-start: 0;
     }
+    
+    tbody th{
+      &[scope="row"],
+      &[colspan]:not(:last-child){
+        border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
+      }
+    }
   }
   
   // Responsive linearized table
@@ -394,9 +401,12 @@ cbp-table {
         }
         
         // Selected state should override all others (striping, danger, highlight)
-        &:has(input[type=checkbox]:checked) td {
-          color: var(--cbp-table-color);
-          background-color: var(--cbp-table-row-color-bg-selected);
+        &:has(input[type=checkbox]:checked){
+          td,
+          th {
+            color: var(--cbp-table-color);
+            background-color: var(--cbp-table-row-color-bg-selected);
+          }
         }
       }
 
@@ -413,17 +423,13 @@ cbp-table {
     th {
       font-weight: var(--cbp-font-weight-medium);
 
-      &[scope="row"]{
-        border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
-      }
+      // &[scope="row"],
+      // &[colspan]:not(:last-child){
+      //   border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
+      // }
      
       &[colspan]{
         text-align: center;
-        border-right: solid var(--cbp-table-row-border-size) var(--cbp-table-row-color-border);
-
-        &:last-of-type{
-          border: none;
-        }
       }
     }
 
