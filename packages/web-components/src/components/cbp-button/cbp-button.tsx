@@ -48,7 +48,7 @@ export class CbpButton {
    * The `download` attribute of a link button; when present tells the browser to download the specified href URI instead
    * of viewing or navigating to it.
    */
-  @Prop() download: boolean;
+  @Prop() download: boolean | string;
 
   /** Specifies the (min-)width of the button (in CSS units) when different from the default size. */
   @Prop() width: string;
@@ -134,6 +134,8 @@ export class CbpButton {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.host, {
+      '--cbp-button-width': this.width,
+      '--cbp-button-height': this.height,
       ...this.sx,
     });
 
@@ -168,11 +170,6 @@ export class CbpButton {
         : this.button.setAttribute('id', `${this.controlId}`);
       if (this.disabled) this.button.setAttribute('disabled', '');
     }
-
-    setCSSProps(this.button, {
-      'min-width': this.width,
-      'min-height': this.height,
-    });
 
     // Remove any persisted aria-* attributes from the host because they don't really make sense there.
     for (const [key] of Object.entries(this.persistedAttrs)) {

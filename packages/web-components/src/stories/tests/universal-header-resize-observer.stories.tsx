@@ -2,6 +2,7 @@ export default {
   title: 'Test/Universal Header Resize Observer',
   parameters: {
     layout: 'fullscreen',
+    chromatic: { disableSnapshot: true }
   },
   argTypes: {
     logoSrcLg: {
@@ -16,7 +17,7 @@ export default {
 };
 
 
-const UniversalHeaderResizeObserverTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn }) => {
+const UniversalHeaderResizeObserverTemplate: any = ({ logoSrcLg, logoSrcSm, username, isLoggedIn }) => {
 
   setTimeout(() => {
     // Cancel events on anchors to prevent navigating away from the story
@@ -25,7 +26,7 @@ const UniversalHeaderResizeObserverTemplate = ({ logoSrcLg, logoSrcSm, username,
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
 
-    let ro = document.querySelector('cbp-universal-header cbp-resize-observer');
+    let ro = document.querySelector('cbp-universal-header cbp-resize-observer') as HTMLElement;
     ro.addEventListener('resized', function(e) {
       console.log('Resized: ', e);
     });

@@ -1,5 +1,9 @@
 export default {
   title: "Test/Size Calculations",
+  parameters: {
+    chromatic: { disableSnapshot: true }
+  },
+
 };
 
 

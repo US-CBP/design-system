@@ -69,7 +69,7 @@ After a few iterations and testing, the actual dark mode/context implementation 
 
 The following CSS implements dark mode (and context) design for the link component:
 
-```
+```CSS
 :root {
   --cbp-link-color: var(--cbp-color-interactive-primary-dark);
   --cbp-link-color-dark: var(--cbp-color-interactive-primary-light);
@@ -133,7 +133,6 @@ This method may seem a little verbose, setting "color" to "color-dark" instead o
 
 1) Your dark values are part of the component's CSS API - without this, it's not possible to override the dark values easily from within another component or as a one-off via `sx` (an issue I stumbled on and refactored around) and
 2) You are always working within the component API rather than overriding property values directly, which quickly turns into a specificity and maintenance nightmare.
-
 
 ## Results
 

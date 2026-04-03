@@ -31,6 +31,12 @@ export default {
         'Indicates whether the `download` attribute is placed on the rendered anchor tag as a browser hint indicating that the linked contents specified in the `href` should be downloaded rather than navigated to.',
       control: 'boolean',
     },
+    downloadFileName: {
+      description:
+        'Optionally specifies the file name of the file to be downloaded (different from the file name as it exists on the server).',
+      control: 'text',
+      if: { arg: 'download', eq: true },
+    },
     language: {
       description:
         'Specifies the `lang` attribute on the rendered anchor tag, which is required when the link points to content in a language different than the current document.',
@@ -65,12 +71,13 @@ export default {
   },
 };
 
-const Template = ({ label, withIcon, inText, href, rel, target, download, language, shortcutKey, accessibilityText, disabled, context, sx }) => {
+const Template = ({ label, withIcon, inText, href, rel, target, download, downloadFileName, language, shortcutKey, accessibilityText, disabled, context, sx }) => {
  
     setTimeout(() => {
       let anchors = document.querySelectorAll('cbp-link a');
       anchors.forEach(anchor => {
-        anchor.addEventListener('click', function(e) { e.preventDefault(); })
+        // only prevent default for navigation
+        if(!anchor.hasAttribute('download')) anchor.addEventListener('click', function(e) { e.preventDefault(); })
       });
     }, 500);
     
@@ -81,7 +88,7 @@ const Template = ({ label, withIcon, inText, href, rel, target, download, langua
       ${href ? `href="${href}"` : ''}
       ${rel ? `rel="${rel}"` : ''}
       ${target ? `target="${target}"` : ''}
-      ${download ? 'download' : ''}
+      ${download ? `download${ downloadFileName ? `="${downloadFileName}"` : ''}` : ''}
       ${shortcutKey ? `accesskey="${shortcutKey}"` : ''}
       ${language ? `lang="${language}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}

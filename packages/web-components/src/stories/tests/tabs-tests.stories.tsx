@@ -1,5 +1,8 @@
 export default {
   title: 'Test/Tabs Scrolling',
+  parameters: {
+    chromatic: { disableSnapshot: true }
+  },
   argTypes: {
     numberOfCards: {
       control: 'number'
@@ -64,7 +67,7 @@ function generateCards(numberOfCards) {
 
 
 // Combobox using Countries data as an asynchronous call: 
-const TabsScrollingTemplate = ({ numberOfCards, cardMinWidth }) => {
+const TabsScrollingTemplate: any = ({ numberOfCards, cardMinWidth }) => {
 
   return ` 
     <cbp-grid
