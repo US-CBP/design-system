@@ -13,7 +13,7 @@ The React components are wrappers generated from this package and will share the
   * (Potentially breaking): Apply `sx` and `height` and `width` props to the host instead of the button tag. This makes variable overrides work as expected, while it may break setting CSS properties directly on the button that aren't represented by the component CSS API.
 * Update `cbp-tag` CSS to work better with custom cases (using `align-items: stretch` rather than `center` now).
 * Updated the `download` property on both `cbp-button` and `cbp-link` to accept either a boolean or optionally a string to specify the download filename.
-* Updated `cbp-table` CSS to fix some styles that were inadvertently overriding others that they shouldn't.
+* Updated `cbp-table` CSS to fix some styles that were inadvertently overriding others that they shouldn't and added styling for row headers and group headers.
 * Reorganized components in Storybook, grouping them by function.
 
 ## [0.0.1-develop.33] 03-26-2026
