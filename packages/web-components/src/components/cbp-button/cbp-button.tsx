@@ -134,6 +134,8 @@ export class CbpButton {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.host, {
+      '--cbp-button-width': this.width,
+      '--cbp-button-height': this.height,
       ...this.sx,
     });
 
@@ -168,11 +170,6 @@ export class CbpButton {
         : this.button.setAttribute('id', `${this.controlId}`);
       if (this.disabled) this.button.setAttribute('disabled', '');
     }
-
-    setCSSProps(this.host, {
-      '--cbp-button-width': this.width,
-      '--cbp-button-height': this.height,
-    });
 
     // Remove any persisted aria-* attributes from the host because they don't really make sense there.
     for (const [key] of Object.entries(this.persistedAttrs)) {
