@@ -86,7 +86,7 @@ const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, he
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       ${selectable ? 'selectable' : ''}
-      header-id="list-header"
+      header-id="${headerId}"
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -139,7 +139,7 @@ const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeade
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       ${selectable ? 'selectable' : ''}
-      header-id="list-header"
+      header-id="${headerId}"
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -202,7 +202,7 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
         <cbp-structured-list
           ${striped ? 'striped' : ''}
           ${selectable ? 'selectable' : ''}
-          header-id="list-header"
+          header-id="${headerId}"
           ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
           ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
@@ -257,7 +257,7 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
       `;
 };
 
-const StructuredListCollectionTemplate = ({ listItems, striped, selectable, context, sx }) => {
+const StructuredListCollectionTemplate = ({ listItems, striped, selectable, showHeader, headerId, context, sx }) => {
   
   setTimeout(() => {
     let anchors = document.querySelectorAll('cbp-structured-list a');
@@ -270,10 +270,12 @@ const StructuredListCollectionTemplate = ({ listItems, striped, selectable, cont
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       ${selectable ? 'selectable' : ''}
-      header-id="list-header"
+      header-id="${headerId}"
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
+      ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list.</div>` : ''}
+
       ${generateItems(listItems)}
     </cbp-structured-list>
   `;
@@ -322,7 +324,7 @@ export const StructuredListWithGrid = StructuredListWithGridTemplate.bind({});
 
 /*<------------------------------------Media---------------------------------------->*/
 
-const StructuredListMediaTemplate = ({ listItems, striped, selectable, context, sx }) => {
+const StructuredListMediaTemplate = ({ listItems, striped, selectable, showHeader, headerId, context, sx }) => {
 
   setTimeout(() => {
     let anchors = document.querySelectorAll('cbp-structured-list a');
@@ -335,10 +337,12 @@ const StructuredListMediaTemplate = ({ listItems, striped, selectable, context, 
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       ${selectable ? 'selectable' : ''}
-      header-id="list-header"
+      header-id="${headerId}"
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
+       ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list.</div>` : ''}
+
       ${generateItems(listItems)}
     </cbp-structured-list>
   `;
@@ -377,7 +381,7 @@ StructuredListMedia.args = {
 }
 
 /*<------------------------------------ Collection w/ Calendar ---------------------------------------->*/
-const StructuredListMediaCalendarTemplate = ({ listItems, striped, selectable, context, sx }) => {
+const StructuredListMediaCalendarTemplate = ({ listItems, striped, selectable, showHeader, headerId, context, sx }) => {
   
   setTimeout(() => {
     let anchors = document.querySelectorAll('cbp-structured-list a');
@@ -390,10 +394,12 @@ const StructuredListMediaCalendarTemplate = ({ listItems, striped, selectable, c
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       ${selectable ? 'selectable' : ''}
-      header-id="list-header"
+      header-id="${headerId}"
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
+       ${showHeader ? `<div slot="cbp-structured-list-header" id="${headerId}">${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list.</div>` : ''}
+
       ${generateItems(listItems)}
     </cbp-structured-list>
   `;
@@ -599,7 +605,7 @@ const StructuredListSelectableTemplate = ({ listItems, striped, showHeader, head
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       selectable
-      header-id="list-header"
+      header-id="${headerId}"
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >

@@ -124,6 +124,9 @@ const FileInputTemplate = ({ label, description, overlayStart, overlayEnd, field
 
 export const FileInput = FileInputTemplate.bind({});
 FileInput.storyName="File Input (Simple)"
+FileInput.args = {
+  fieldId: 'file-input',
+};
 
 
 

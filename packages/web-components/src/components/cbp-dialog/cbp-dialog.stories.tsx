@@ -59,33 +59,33 @@ export default {
 };
 
 
-const renderActions = (layout, { btn1, btn2, btn3 }) => {
+const renderActions = (layout, id, { btn1, btn2, btn3 }) => {
   if (layout === 'double') {
     return `
       <div slot="cbp-dialog-actions">
-        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn2.color}" aria-describedby="card-heading-1">${btn2.label}</cbp-button>
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn1.color}" aria-describedby="card-heading-1">${btn1.label}</cbp-button>
+        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn2.color}" aria-describedby="${id}">${btn2.label}</cbp-button>
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn1.color}" aria-describedby="${id}">${btn1.label}</cbp-button>
       </div>
     `;
   } else if (layout === 'triple') {
     return `
       <div slot="cbp-dialog-actions">
-        <cbp-button tag="${btn3.tag}" ${btn3.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn3.color}" aria-describedby="card-heading-1">${btn3.label}</cbp-button>
-        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn2.color}" aria-describedby="card-heading-1">${btn2.label}</cbp-button>
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn1.color}" aria-describedby="card-heading-1">${btn1.label}</cbp-button>
+        <cbp-button tag="${btn3.tag}" ${btn3.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn3.color}" aria-describedby="${id}">${btn3.label}</cbp-button>
+        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn2.color}" aria-describedby="${id}">${btn2.label}</cbp-button>
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn1.color}" aria-describedby="${id}">${btn1.label}</cbp-button>
       </div>
     `;
   } else {
     return `
       <div slot="cbp-dialog-actions">
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn1.color}" aria-describedby="card-heading-1">${btn1.label}</cbp-button>
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="solid" color="${btn1.color}" aria-describedby="${id}">${btn1.label}</cbp-button>
       </div>
     `;
   }
 };
 
 
-const Template = ({ title, content, color, open, width, height, uid, withIcon, accessibilityText, actionsLayout, actionsConfig, sx }) => {
+const Template = ({ title, id, content, color, open, width, height, uid, withIcon, accessibilityText, actionsLayout, actionsConfig, sx }) => {
   return `
     <cbp-button
       color="secondary"
@@ -106,6 +106,7 @@ const Template = ({ title, content, color, open, width, height, uid, withIcon, a
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-typography
+        id="${id}"
         slot="cbp-dialog-header"
         tag="h2"
         variant="heading-dialog"
@@ -128,7 +129,7 @@ const Template = ({ title, content, color, open, width, height, uid, withIcon, a
         ${content}
       </cbp-typography>
 
-      ${renderActions(actionsLayout, actionsConfig)}
+      ${renderActions(actionsLayout, id, actionsConfig)}
     </cbp-dialog>
   `;
 };
@@ -136,6 +137,7 @@ const Template = ({ title, content, color, open, width, height, uid, withIcon, a
 export const Dialog = Template.bind({});
 Dialog.args = {
   title: 'Dialog Title',
+  id: 'dialogTitle',
   content: 'Here is an example of some body text for this dialog.',
   uid: 'dialog',
   actionsLayout: 'single',
