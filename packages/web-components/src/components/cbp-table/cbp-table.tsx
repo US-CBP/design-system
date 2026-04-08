@@ -18,7 +18,7 @@ export class CbpTable {
   private table: HTMLTableElement;
   private columnHeadings: HTMLTableCellElement[];
   private sortableColumns: HTMLTableCellElement[] = [];
-  private wrapper: HTMLElement;
+  private wrapper: HTMLDivElement;
 
   private tableWidth;
   private tableBreakpoint;
@@ -40,7 +40,13 @@ export class CbpTable {
   /** Specifies whether the table is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). */
   @Prop() overflow: 'scroll' | 'linearize' = 'scroll';
 
-  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
+  /** Turning on debug mode will log some calculations to the console for troubleshooting. */
+  @Prop() debug: boolean;
+
+  /** 
+   * Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. 
+   * Default behavior is "light-inverts" and does not have to be specified. 
+   */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
 
   /** Supports adding inline styles as an object */
@@ -116,11 +122,11 @@ export class CbpTable {
     });
 
     // Set initial sort state
-    const sortedColumn: HTMLTableCellElement = this.host.querySelector('th[aria-sort]');
+    const sortedColumn = this.host.querySelector('th[aria-sort]') as HTMLTableCellElement;
     if (sortedColumn) {
       this.sort = {
         columnHeading: sortedColumn,
-        direction: sortedColumn.getAttribute('aria-sort')
+        direction: sortedColumn?.getAttribute('aria-sort') || ''
       }
     }
   }
@@ -130,7 +136,7 @@ export class CbpTable {
    * emits a custom event to hook up to application logic for the actual sorting 
    */
   @Method()
-  async doSort(column: number, e=undefined) {
+  async doSort(column: number, e:any = undefined) {
     const ColumnHeading: HTMLTableCellElement = this.columnHeadings[column];
     const CbpButton = ColumnHeading.querySelector('cbp-button') as HTMLCbpButtonElement ;
     const Icon = ColumnHeading.querySelector('button cbp-icon') as HTMLCbpIconElement;
@@ -146,9 +152,9 @@ export class CbpTable {
     else {
       // If a new header was pressed, reset the previous sort state
       this.sort.columnHeading.setAttribute('aria-sort','none');
-      this.sort.columnHeading.querySelector('cbp-button').pressed="false";
-      (this.sort.columnHeading.querySelector('button cbp-icon') as HTMLCbpIconElement).name=undefined;
-      (this.sort.columnHeading.querySelector('button cbp-icon')).setAttribute('hidden','');
+      (this.sort.columnHeading.querySelector('cbp-button') as HTMLCbpButtonElement).pressed="false";
+      (this.sort.columnHeading.querySelector('button cbp-icon') as HTMLCbpIconElement).name='';
+      (this.sort.columnHeading.querySelector('button cbp-icon') as HTMLCbpIconElement).setAttribute('hidden','');
   
       // Set the new sort state
       CbpButton.pressed="true";
@@ -176,16 +182,18 @@ export class CbpTable {
     })
   }
 
-  // TechDebt: linearized starting at small size doesn't work to expand at larger size.
   // Called by the resize observer; also fires on initial render.
   private handleResize(width) {
     // Get the width of the content (and update the this.tableWidth) before doing responsive adjustments. (tables reflow, so we need to get this each comparison)
     const OldTableWidth = this.tableWidth;
     this.tableWidth = this.table.getBoundingClientRect().width;
     
+    if (this.debug) console.log('cbp-table - handleResize: ', width, this.tableWidth);
+
     // If the emitted size is less than the current mode's width, do responsive behavior (use a +5 different to account for table-reflow anomalies)
     if (width + 5 < this.tableWidth) {
       this.host.classList.add(`cbp-table-${this.overflow}`);
+      if (this.debug) console.log(`cbp-table - handleResize: entering responsive mode (${this.overflow}).`);
     }
 
     // Return to full view (potentially)
@@ -204,7 +212,6 @@ export class CbpTable {
         this.host.classList.remove(`cbp-table-${this.overflow}`);
       }
     }
-
     else {
       this.host.classList.remove(`cbp-table-${this.overflow}`);
     }
@@ -218,22 +225,31 @@ export class CbpTable {
     const wrapperScroll = this.wrapper.scrollLeft;
     const wrapperLeftBoundary = wrapperScroll;
     const wrapperRightBoundary = wrapperWidth + wrapperScroll;
-    let firstVisible: number;
-    let lastVisible: number;
+    let firstVisible: number | undefined = undefined;
+    let lastVisible: number | undefined = undefined;
 
-    // Loop over the column headings and get their positions
+    // Loop over the column headings and get their positions (relative to the offsetParent)
     this.columnHeadings.forEach( (item, index) => {
       const width = item.getBoundingClientRect().width;
-      const left = item.offsetLeft - this.wrapper.offsetLeft;
-      const right = item.offsetLeft - this.wrapper.offsetLeft + width;
+      //const left = item.offsetLeft - this.wrapper.offsetLeft;
+      const left = item.offsetLeft;
+      //const right = item.offsetLeft - this.wrapper.offsetLeft + width;
+      const right = item.offsetLeft + width;
       let visible = ( left < wrapperLeftBoundary || right > wrapperRightBoundary) ? false : true; // Check if the column heading is fully visible
       // Set the first and last visible items in the collection (by index)
       if (visible) {
-        firstVisible == undefined ? firstVisible = index : null;
+        firstVisible == undefined ? firstVisible = index : undefined;
         lastVisible = index;
       }
+      if (this.debug) console.log('Visible: ',visible,'First visible: ', firstVisible,'Last visible: ',lastVisible, 'item.offsetLeft: ',item.offsetLeft, 'wrapper.offsetLeft: ',this.wrapper.offsetLeft);
       columns = [...columns, { 'header': item, 'visible': visible, 'width': width, 'left': left, 'right': right }];
     });
+
+    if (this.debug) {
+      console.log('First visible: ', firstVisible,'Last visible: ',lastVisible,dir);
+      console.log({wrapperWidth},{wrapperScrollWidth},{wrapperScroll},{wrapperLeftBoundary},{wrapperRightBoundary},this.wrapper.offsetLeft)
+      console.log(columns);
+    }
 
     // The amount of scrolling is relative to the ratio of the scroll size and visible width of the wrapper
     if(dir==1) {
@@ -250,7 +266,7 @@ export class CbpTable {
 
 
   componentWillLoad() {
-    this.table = this.host.querySelector('table');
+    this.table = this.host.querySelector('table') as HTMLTableElement;
     this.columnHeadings=Array.from(this.table?.querySelectorAll('thead th'));
 
     if (typeof this.sx == 'string') {
@@ -271,7 +287,7 @@ export class CbpTable {
     const liveRegions = Array.from(this.host.querySelectorAll('[slot=cbp-table-live-region]'))
     if (liveRegions) {
       liveRegions.forEach( (item) => {
-        item.setAttribute('aria-live','polite');
+        item.setAttribute('aria-live','assertive');
       });
       this.table.setAttribute('aria-describedby',this.liveRegionId);
     }
@@ -316,7 +332,7 @@ export class CbpTable {
 
         <div 
           class="cbp-table-wrapper"
-          ref={ el => this.wrapper = el}
+          ref={ el => this.wrapper = el! }
         >
           <cbp-resize-observer
             debounce={10}
