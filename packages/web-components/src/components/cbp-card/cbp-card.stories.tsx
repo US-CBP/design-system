@@ -29,16 +29,16 @@ export default {
   },
 };
 
-const renderActions = (layout, fill, color, context, withIcon, { btn1, btn2, btn3 }) => {
+const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1, btn2, btn3 }) => {
   
   if (layout === 'double') {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}">
           ${withIcon ? `<cbp-icon name="arrow-right"></cbp-icon>` : ''}
           ${btn2.label}
         </cbp-button>
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}">
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
@@ -48,15 +48,15 @@ const renderActions = (layout, fill, color, context, withIcon, { btn1, btn2, btn
   else if (layout === 'triple') {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn3.tag}" ${btn3.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn3.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn3.tag}" ${btn3.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn3.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="eye"></cbp-icon>` : ''} 
           ${btn3.label}
         </cbp-button>
-        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="arrow-right"></cbp-icon>` : ''}
           ${btn2.label}
         </cbp-button>
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
@@ -65,7 +65,7 @@ const renderActions = (layout, fill, color, context, withIcon, { btn1, btn2, btn
   } else {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" context="${context}" aria-describedby="card-heading-1">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
@@ -90,7 +90,7 @@ const GeneralTemplate = ({ color, title, bodyText, withIcon, context, sx }) => {
   `;
 };
 
-const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, context, sx }) => {
+const DecisionTemplate = ({ title, headingId, color, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       variant="decision" 
@@ -98,12 +98,12 @@ const DecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsFill, 
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      <cbp-typography tag="h4" slot="cbp-card-title" id="card-heading-1">
+      <cbp-typography tag="h4" slot="cbp-card-title" ${headingId ? `id=${headingId}` : ``}>
         ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
         ${title}
       </cbp-typography>
       <p>${bodyText}</p>  
-      ${renderActions(actionsLayout, actionsFill, color,context, withIcon, actionsConfig)}
+      ${renderActions(actionsLayout, actionsFill, color,context, withIcon, headingId, actionsConfig)}
     </cbp-card>
   `;
 };
@@ -218,6 +218,7 @@ GeneralCard.argTypes = {};
 export const DecisionCard = DecisionTemplate.bind({});
 DecisionCard.args = {
   title: "Card Title",
+  headingId: "decision-card-heading",
   bodyText: "Here is an example of some body text for this decision card.",
   actionsLayout: "single",
   actionsFill: "solid",
@@ -320,7 +321,7 @@ InteractiveCard.argTypes = {
 };
 
 
-const BannerAndDecisionTemplate = ({ title, color, bodyText, actionsLayout, actionsConfig, withIcon, context, sx }) => { 
+const BannerAndDecisionTemplate = ({ title, headingId, color, bodyText, actionsLayout, actionsConfig, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       variant="banner"
@@ -328,12 +329,12 @@ const BannerAndDecisionTemplate = ({ title, color, bodyText, actionsLayout, acti
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      <cbp-typography tag="h4" slot="cbp-card-title">
+      <cbp-typography tag="h4" slot="cbp-card-title" ${headingId ? `id=${headingId}` : ``}>
         ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
         ${title}
       </cbp-typography>
       <p>${bodyText}</p>
-      ${renderActions(actionsLayout, "solid", color,context, withIcon, actionsConfig)}  
+      ${renderActions(actionsLayout, "solid", color,context, withIcon, headingId, actionsConfig)}  
     </cbp-card>
   `;
 };
@@ -341,6 +342,7 @@ const BannerAndDecisionTemplate = ({ title, color, bodyText, actionsLayout, acti
 export const BannerAndDecisionCard = BannerAndDecisionTemplate.bind({});
 BannerAndDecisionCard.args = {
   title: "Banner Card Title",
+  headingId: "banner-and-decision-card",
   bodyText: "Here is an example of some supplementary text for this purely informational card",
   actionsLayout: "single",
   actionsConfig: {

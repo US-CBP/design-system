@@ -272,6 +272,7 @@ export class CbpSlider {
 
   componentDidRender(){
     // remove aria-describedby from the numeric input, which is inadvertently set by the cbp-form-field (it's meant for the slider)
+    //Techdebt: a11y issue with form field wrapper an aria-describedby on first input for range variant onLoad(), issue is resolved on rerender of slider component
     this.valueFields.forEach( item => {
       item?.removeAttribute('aria-describedby');
     });

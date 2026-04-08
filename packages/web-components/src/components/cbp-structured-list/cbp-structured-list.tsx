@@ -56,7 +56,7 @@ export class CbpStructuredList {
  
         <div role="list"
           aria-label={this.accessibilityText}
-          aria-describedby={this.headerId}
+          aria-describedby={this.host.querySelector('[slot="cbp-structured-list-header"]') ? this.headerId : false}
         >
           <slot />
         </div>
