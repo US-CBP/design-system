@@ -86,7 +86,7 @@ const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, he
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       ${selectable ? 'selectable' : ''}
-      ${headerId ? 'header-id="${headerId}"' : ''}
+      ${headerId ? `header-id="${headerId}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -139,7 +139,7 @@ const StructuredListItemsTemplate = ({ listItems, striped, selectable, showHeade
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       ${selectable ? 'selectable' : ''}
-      ${headerId ? 'header-id="${headerId}"' : ''}
+      ${headerId ? `header-id="${headerId}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -202,7 +202,7 @@ const StructuredListWithGridTemplate = ({ striped, selectable, showHeader, heade
         <cbp-structured-list
           ${striped ? 'striped' : ''}
           ${selectable ? 'selectable' : ''}
-          ${headerId ? 'header-id="${headerId}"' : ''}
+          ${headerId ? `header-id="${headerId}"` : ``}
           ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
           ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
         >
@@ -270,7 +270,7 @@ const StructuredListCollectionTemplate = ({ listItems, striped, selectable, show
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       ${selectable ? 'selectable' : ''}
-      ${headerId ? 'header-id="${headerId}"' : ''}
+      ${headerId ? `header-id="${headerId}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -337,7 +337,7 @@ const StructuredListMediaTemplate = ({ listItems, striped, selectable, showHeade
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       ${selectable ? 'selectable' : ''}
-      ${headerId ? 'header-id="${headerId}"' : ''}
+      ${headerId ? `header-id="${headerId}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -394,7 +394,7 @@ const StructuredListMediaCalendarTemplate = ({ listItems, striped, selectable, s
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       ${selectable ? 'selectable' : ''}
-      ${headerId ? 'header-id="${headerId}"' : ''}
+      ${headerId ? `header-id="${headerId}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -605,7 +605,7 @@ const StructuredListSelectableTemplate = ({ listItems, striped, showHeader, head
     <cbp-structured-list
       ${striped ? 'striped' : ''}
       selectable
-      ${headerId ? 'header-id="${headerId}"' : ''}
+      ${headerId ? `header-id="${headerId}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >

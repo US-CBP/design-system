@@ -106,7 +106,7 @@ const Template = ({ title, headingId, content, color, open, width, height, uid, 
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-typography
-        id="${headingId}"
+        ${headingId ? `id=${headingId}` : ``}
         slot="cbp-dialog-header"
         tag="h2"
         variant="heading-dialog"
