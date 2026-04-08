@@ -5,12 +5,13 @@
     "allowUnreachableCode": false,
     "declaration": false,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "lib": [
       "dom",
       "dom.iterable",
       "es2017"
     ],
-    "moduleResolution": "bundler",
+    "moduleResolution": "node", //"bundler"? "node"
     "module": "esnext",
     "target": "es2017",
     "noUnusedLocals": true,
@@ -30,6 +31,6 @@
     "src"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
   ]
 }
