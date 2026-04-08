@@ -34,11 +34,11 @@ const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1,
   if (layout === 'double') {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} aria-describedby="${headingId}">
+        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}">
           ${withIcon ? `<cbp-icon name="arrow-right"></cbp-icon>` : ''}
           ${btn2.label}
         </cbp-button>
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} aria-describedby="${headingId}">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}">
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
@@ -48,15 +48,15 @@ const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1,
   else if (layout === 'triple') {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn3.tag}" ${btn3.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn3.color}" ${context ? `context="${context}"` : ``} aria-describedby="${headingId}">
+        <cbp-button tag="${btn3.tag}" ${btn3.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn3.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="eye"></cbp-icon>` : ''} 
           ${btn3.label}
         </cbp-button>
-        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} aria-describedby="${headingId}">
+        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="arrow-right"></cbp-icon>` : ''}
           ${btn2.label}
         </cbp-button>
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} aria-describedby="${headingId}">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
@@ -65,7 +65,7 @@ const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1,
   } else {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} aria-describedby="${headingId}">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
