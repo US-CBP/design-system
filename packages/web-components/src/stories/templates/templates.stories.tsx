@@ -95,7 +95,7 @@ function initThemeSwitcher() {
 
 
 
-const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, }) => {
+const InternalTemplate: any = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, }) => {
 
   setTimeout(() => {
     initThemeSwitcher();
@@ -209,7 +209,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
 export const Internal = InternalTemplate.bind({});
 
 
-const Internal2ColumnTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
+const Internal2ColumnTemplate: any = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
   
   setTimeout(() => {
     initThemeSwitcher();
@@ -352,7 +352,7 @@ Internal2Column.args = {
 }
 
 
-function generateNavItems(items, drawerid=undefined){
+function generateNavItems(items, drawerid:string|undefined=undefined){
   const html =  items.map(({ label, name, href, current, children}, index) => {
     if(!children){
       return `
@@ -608,7 +608,7 @@ function generateCards(numberOfCards) {
 
 
 
-const InternalCardsLayoutTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, numberOfCards, cardMinWidth }) => {
+const InternalCardsLayoutTemplate: any = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, numberOfCards, cardMinWidth }) => {
   
   setTimeout(() => {
     initThemeSwitcher();

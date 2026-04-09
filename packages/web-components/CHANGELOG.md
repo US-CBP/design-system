@@ -10,7 +10,6 @@ The React components are wrappers generated from this package and will share the
 * Updated the `cbp-button` CSS implementation to work better with custom values via props or CSS variables.
   * Removed default minimum height, which was making `cbp-accordion-item` taller than desired.
   * Setting `width` and `height` properties now overrides the corresponding CSS variables, `--cbp-button-width` and `--cbp-button-height` respectively.
-  * (Potentially breaking): Apply `sx` and `height` and `width` props to the host instead of the button tag. This makes variable overrides work as expected, while it may break setting CSS properties directly on the button that aren't represented by the component CSS API.
 * Update `cbp-tag` CSS to work better with custom cases (using `align-items: stretch` rather than `center` now).
 * Updated the `download` property on both `cbp-button` and `cbp-link` to accept either a boolean or optionally a string to specify the download filename.
 * Updated `cbp-table` CSS to fix some styles that were inadvertently overriding others that they shouldn't and added styling for row headers and group headers.

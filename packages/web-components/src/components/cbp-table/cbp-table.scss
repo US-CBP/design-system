@@ -247,19 +247,20 @@ cbp-table {
   }
 
   
-  // Column highlighting on hover (except for column header when sortable)
+  // Column highlighting on hover (except for column header when sortable; updated to work with multi-row headers using the bottom row)
   // TechDebt: doesn't scale; this would be better, but still experimental: https://developer.mozilla.org/en-US/docs/Web/CSS/Column_combinator#browser_compatibility
   &[column-hover] {
-    table:has(thead tr > *:nth-child(1):hover) tr > *:nth-child(1),
-    table:has(thead tr > *:nth-child(2):hover) tr > *:nth-child(2),
-    table:has(thead tr > *:nth-child(3):hover) tr > *:nth-child(3),
-    table:has(thead tr > *:nth-child(4):hover) tr > *:nth-child(4),
-    table:has(thead tr > *:nth-child(5):hover) tr > *:nth-child(5),
-    table:has(thead tr > *:nth-child(6):hover) tr > *:nth-child(6),
-    table:has(thead tr > *:nth-child(7):hover) tr > *:nth-child(7),
-    table:has(thead tr > *:nth-child(8):hover) tr > *:nth-child(8),
-    table:has(thead tr > *:nth-child(9):hover) tr > *:nth-child(9),
-    table:has(thead tr > *:nth-child(10):hover) tr > *:nth-child(10) {
+    table thead tr:last-child th:hover,
+    table:has(thead tr:last-child > *:nth-child(1):hover) tbody tr > *:nth-child(1),
+    table:has(thead tr:last-child > *:nth-child(2):hover) tbody tr > *:nth-child(2),
+    table:has(thead tr:last-child > *:nth-child(3):hover) tbody tr > *:nth-child(3),
+    table:has(thead tr:last-child > *:nth-child(4):hover) tbody tr > *:nth-child(4),
+    table:has(thead tr:last-child > *:nth-child(5):hover) tbody tr > *:nth-child(5),
+    table:has(thead tr:last-child > *:nth-child(6):hover) tbody tr > *:nth-child(6),
+    table:has(thead tr:last-child > *:nth-child(7):hover) tbody tr > *:nth-child(7),
+    table:has(thead tr:last-child > *:nth-child(8):hover) tbody tr > *:nth-child(8),
+    table:has(thead tr:last-child > *:nth-child(9):hover) tbody tr > *:nth-child(9),
+    table:has(thead tr:last-child > *:nth-child(10):hover) tbody tr > *:nth-child(10) {
       &:not([aria-sort]) {
         color: var(--cbp-table-color);
         background-color: var(--cbp-table-row-color-bg-hover);
