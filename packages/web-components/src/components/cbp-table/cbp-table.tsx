@@ -231,9 +231,7 @@ export class CbpTable {
     // Loop over the column headings and get their positions (relative to the offsetParent)
     this.columnHeadings.forEach( (item, index) => {
       const width = item.getBoundingClientRect().width;
-      //const left = item.offsetLeft - this.wrapper.offsetLeft;
       const left = item.offsetLeft;
-      //const right = item.offsetLeft - this.wrapper.offsetLeft + width;
       const right = item.offsetLeft + width;
       let visible = ( left < wrapperLeftBoundary || right > wrapperRightBoundary) ? false : true; // Check if the column heading is fully visible
       // Set the first and last visible items in the collection (by index)
