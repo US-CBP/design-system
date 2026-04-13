@@ -13,7 +13,15 @@ export default {
     value: {
       control: 'text',
     },
-    icon:{
+    pressed: {
+      description: 'The initial active/selected state.',
+      control: 'boolean',
+    },
+    disabled: {
+      description: '',
+      control: 'boolean'
+    },
+    customIcon:{
       control: 'select',
       options: [
         'address-book',
@@ -60,14 +68,6 @@ export default {
         'user',
       ],
     },
-    pressed: {
-      description: 'The initial active/selected state.',
-      control: 'boolean',
-    },
-    disabled: {
-      description: '',
-      control: 'boolean'
-    },
     context: {
       control: 'select',
       options: ["light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -82,18 +82,17 @@ export default {
   },
 };
 
-const Template = ({ label, name, value, icon, pressed, disabled, context, sx }) => {
+const Template = ({ label, name, value, customIcon, pressed, disabled, context, sx }) => {
   return ` 
       <cbp-chip
         ${name ? `name="${name}"` : ''}
         ${value ? `value="${value}"` : ''}
-        ${icon ? `icon="${icon}"` : ''}
         ${pressed ? 'pressed' : ''}
         ${disabled ? 'disabled' : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
-        ${icon ? `<cbp-icon slot="cbp-chip-icon" name="${icon}"></cbp-icon>` : ``}
+        ${customIcon ? `<cbp-icon slot="cbp-chip-icon" name="${customIcon}"></cbp-icon>` : ''}
         ${label}
       </cbp-chip>
     `;
