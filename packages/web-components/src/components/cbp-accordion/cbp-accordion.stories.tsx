@@ -43,7 +43,7 @@ export default {
       {
         label: 'Accordion Item 3',
         open: false,
-        headingLevel: '',
+        headingLevel: 'h3',
         color: 'danger',
         content: 'Accordion item 3 content.',
       },

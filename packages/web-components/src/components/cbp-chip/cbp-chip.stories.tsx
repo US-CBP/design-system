@@ -13,6 +13,53 @@ export default {
     value: {
       control: 'text',
     },
+    icon:{
+      control: 'select',
+      options: [
+        'address-book',
+        'angle-down',
+        'arrow-right',
+        'bars',
+        'book',
+        'caret-down',
+        'check',
+        'chevron-right',
+        'circle',
+        'circle-info',
+        'circle-xmark',
+        'clock',
+        'clone',
+        'computer',
+        'ellipsis-vertical',
+        'envelope',
+        'external-link-alt',
+        'eye',
+        'eye-slash',
+        'filter',
+        'globe',
+        'home',
+        'landmark',
+        'lock',
+        'magnifying-glass',
+        'minus',
+        'moon',
+        'pen-to-square',
+        'plus',
+        'right-to-bracket',
+        'right-from-bracket',
+        'rotate',
+        'sort-asc',
+        'sort-desc',
+        'square',
+        'star',
+        'star-solid',
+        'sun',
+        'times',
+        'triangle-exclamation',
+        'up-right-from-square',
+        'user',
+      ],
+    },
     pressed: {
       description: 'The initial active/selected state.',
       control: 'boolean',
@@ -35,24 +82,7 @@ export default {
   },
 };
 
-const Template = ({ label, name, value, pressed, disabled, context, sx }) => {
-  return ` 
-      <cbp-chip
-        ${name ? `name="${name}"` : ''}
-        ${value ? `value="${value}"` : ''}
-        ${pressed ? 'pressed' : ''}
-        ${disabled ? 'disabled' : ''}
-        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        ${label}
-      </cbp-chip>
-    `;
-};
-export const Chip = Template.bind({});
-
-
-const ChipWithCustomIconTemplate = ({ label, name, value, icon, pressed, disabled, context, sx }) => {
+const Template = ({ label, name, value, icon, pressed, disabled, context, sx }) => {
   return ` 
       <cbp-chip
         ${name ? `name="${name}"` : ''}
@@ -63,12 +93,9 @@ const ChipWithCustomIconTemplate = ({ label, name, value, icon, pressed, disable
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
-        <cbp-icon slot="cbp-chip-icon" name="${icon}"></cbp-icon>
+        ${icon ? `<cbp-icon slot="cbp-chip-icon" name="${icon}"></cbp-icon>` : ``}
         ${label}
       </cbp-chip>
     `;
 };
-export const ChipWithCustomIcon = ChipWithCustomIconTemplate.bind({});
-ChipWithCustomIcon.args = {
-  icon: 'filter'
-}
+export const Chip = Template.bind({});
