@@ -60,7 +60,9 @@
   --cbp-structured-list-item-color-background-danger: var(--cbp-color-danger-lighter);
   --cbp-structured-list-item-color-background-danger-dark: var(--cbp-color-danger-darker);
   --cbp-structured-list-item-color-background-warning: var(--cbp-color-warning-lighter);
-  --cbp-structured-list-item-color-background-warning-dark: var(--cbp-color-warning-darker);
+  --cbp-structured-list-item-color-background-warning-dark: var(--cbp-color-warning-dark);
+  --cbp-structured-list-item-color-warning: var(--cbp-color-text-darkest);
+  --cbp-structured-list-item-color-warning-dark: var(--cbp-color-text-darkest);
   --cbp-structured-list-item-color-background-success: var(--cbp-color-success-lighter);
   --cbp-structured-list-item-color-background-success-dark: var(--cbp-color-success-darker);
   --cbp-structured-list-item-color-background-info: var(--cbp-color-info-lighter);
@@ -87,7 +89,8 @@
   --cbp-structured-list-footer-color: var(--cbp-structured-list-footer-color-dark) !important;
 
   --cbp-structured-list-item-color-background-danger: var(--cbp-structured-list-item-color-background-danger-dark) !important;
-  --cbp-structured-list-item-color-background-warning: var(--cbp-structured-list-item-color-background-warning-dark) !important;  
+  --cbp-structured-list-item-color-background-warning: var(--cbp-structured-list-item-color-background-warning-dark) !important; 
+  --cbp-structured-list-item-color-warning: var(--cbp-structured-list-item-color-warning-dark); 
   --cbp-structured-list-item-color-background-success: var(--cbp-structured-list-item-color-background-success-dark) !important;  
   --cbp-structured-list-item-color-background-info: var(--cbp-structured-list-item-color-background-info-dark) !important;    
   --cbp-structured-list-item-color-background-selected: var(--cbp-structured-list-item-color-background-selected-dark) !important;
@@ -129,6 +132,7 @@ cbp-structured-list {
     border-bottom-color: var(--cbp-structured-list-border-color);
 
     &:hover {
+      color: var(--cbp-structured-list-color) !important;
       background-color: var(--cbp-structured-list-color-background-hover) !important;
     }
   }
@@ -175,6 +179,7 @@ cbp-structured-list {
     }
     
     &[color=warning]:not([selected]) {
+      color: var(--cbp-structured-list-item-color-warning);
       background-color: var(--cbp-structured-list-item-color-background-warning);
     }
 

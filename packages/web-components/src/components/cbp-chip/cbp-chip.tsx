@@ -84,6 +84,7 @@ export class CbpChip {
       <Host>
         <button
           type="button"
+          name={this.name}
           value={this.value}
           aria-pressed={`${this.pressed}`}
           ref={(el) => this.button = el}
@@ -95,7 +96,7 @@ export class CbpChip {
           </span>
           {this.host.querySelector('[slot=cbp-chip-icon]')
             ? <slot name="cbp-chip-icon" />
-            : <cbp-icon name="plus" ref={el => this.icon = el} />
+            : <cbp-icon name="plus" ref={el => this.icon = el!} />
           }
         </button>
       </Host>
