@@ -105,7 +105,6 @@ const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, he
   return ` 
     <cbp-structured-list
       ${striped ? `striped=${striped}` : ''}
-      ${selectable ? 'selectable' : ''}
       ${headerId ? `header-id="${headerId}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
