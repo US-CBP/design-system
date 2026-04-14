@@ -10,35 +10,31 @@ The Loader is used as a visual indicator of progress during waiting periods.
 
 ## Functional Requirements
 
-* Loader will render as 'progress' while loading and will either finish as a 'success' or an 'error' as determined by app logic
-    * Please note the 'error' state does not display details about the error, only changes the visual state of the Loader component
-    * In both circular and linear forms both the 'success' & 'error' state have associated icons which are not present in the 'progress' state
-    * The text for the describing the current state is present in the circular Loader small size & in both sizes of the linear Loader
+* The Loader renders a native HTML `progress` element under the hood, which may be visible or hidden based on which variant is used.
+* The Loader can render a linear or circular indicator, in large or small sizes.
+* Any of those variants may be indeterminate, displaying a looping animation, or have an explicit value set (and updated dynamically).
+* The Loader also supports "success" and "error" states:
+  * Application logic shall determine what state is appropriate and the specific messaging.
+  * The `success` and `error` properties are independent but should not both be true.
+  * If both `success` and `error` properties are set to true inadvertently, then the success state overrides the error styling.
 
 ## Technical Specifications
 
-* Variant property is used to specify if the render returns a circular Loader or a linear Loader
-* Success is a property used indicate when the Loader has finished successfuly. Setting the boolean to be true will change the associated color & icons
-* Error is a property used indicate when the Loader has an issue and has stopped. Setting the boolean to be true will change the associated color & icons
-* Size property is used to determine the size of rendered Loader. options include small or large
-* Determinate is used to determine if the Loader is displaying the progress completed. Loader will default to indeterminate but if value is true it will support the below props as a determinate loader 
-    * Value specifics how much of the current task is completed. this is used to populate the html attribute value of the progress
-    * Max specifies the current task requires, meeting this would be considered 'complete'. this is uesed to populate the html attribute max of the progress
-* Uid is used to set a unique id for the component, users can set a custom value or used the default generated value prefixed by 'cbp-loader'
-
 ### User Interactions
 
-* The Success and Error properties are independent, allowing the app logic to determine what state is appropriate. If both are set to true then the success override the error colors & icon
-* the Loader doesn't have any user interactions (hover, focus, selected, or disabled)
+* The Loader does not have any user interactions and is generally controlled via application logic.
 
 ### Responsiveness
 
-* linear Loaders are 100% width to match parents spacing, circular Loaders will are set with specific width/height
+* Linear loaders are 100% width to fill their parent and match parent spacing.
+* Circular loaders are set with specific width and height values (preferably using relative CSS units).
+* Be aware of how the text is displayed in each variant and use an appropriate amount of text for that case, which will work on various screen sizes.
 
 ### Accessibility
 
-* aria-labelledby is added to the slotted label of text for the Loader. this is visible in the determinate linear case of the component
+* When a semantic `progress` element is rendered by the component, it is labelled accessibly with a `label` tag containing the application-specified slotted text.
+* This slotted text should be changed by the application to contextually relevant messaging when and if error or success states are triggered.
 
 ### Additional Notes and Considerations
 
-* See documentation for progress tag: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress
+* See documentation for the native HTML progress tag: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress
