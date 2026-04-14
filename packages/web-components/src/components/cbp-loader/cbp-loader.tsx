@@ -42,7 +42,10 @@ export class CbpLoader {
   /** Used to set the loader to the 'error' state of the loader */
   @Prop({ mutable: true, reflect: true }) error: boolean;
 
-  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
+  /** 
+   * Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. 
+   * Default behavior is "light-inverts" and does not have to be specified. 
+   */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
 
   /** Supports adding inline styles as an object */
@@ -66,30 +69,15 @@ export class CbpLoader {
   render() {
     let statusIndicator;
 
-    if (this.success) {
-      statusIndicator = <cbp-icon name="check-circle" color="var(--cbp-loader-status-indicator-color)"></cbp-icon>
-    }
-    else if (this.error) {
-      statusIndicator = <cbp-icon name="exclamation-circle" color="var(--cbp-loader-status-indicator-color)"></cbp-icon>
-    }
-    else {
-      statusIndicator = Math.round((this.value / this.max) * 100) + "%"
-    }
+    if (this.success) statusIndicator = <cbp-icon name="check-circle" color="var(--cbp-loader-status-indicator-color)"></cbp-icon>;
+    else if (this.error) statusIndicator = <cbp-icon name="exclamation-circle" color="var(--cbp-loader-status-indicator-color)"></cbp-icon>;
+    else statusIndicator = Math.round((this.value / this.max) * 100) + "%";
 
-    if(this.success){
-      this.value = this.max;
-    }
+    if(this.success) this.value = this.max;
 
     return (
       <Host>
         <label htmlFor={this.progressId}>
-          {(this.success)
-            ? `Complete`
-            : (this.error
-              ? `Error`
-              : null
-            )
-          }
           <slot />
 
           {(this.success || this.error) && this.variant == 'linear' &&
@@ -108,7 +96,7 @@ export class CbpLoader {
         <div class='cbp-progress-container'>
           <progress
             id={this.progressId}
-            value={this.determinate ? this.value : null}
+            value={this.determinate ? this.value : undefined}
             max={this.max}
             hidden={this.determinate && this.variant == 'circular' && this.size == 'small' && (this.success || this.error)}
           >
