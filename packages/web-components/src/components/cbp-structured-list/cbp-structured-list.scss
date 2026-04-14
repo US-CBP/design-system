@@ -137,7 +137,7 @@ cbp-structured-list {
     border-bottom-color: var(--cbp-structured-list-border-color);
 
     &:hover {
-      // color: var(--cbp-structured-list-color) !important;
+      color: var(--cbp-structured-list-color) !important;
       background-color: var(--cbp-structured-list-color-background-hover) !important;
     }
   }
@@ -185,8 +185,8 @@ cbp-structured-list {
       --cbp-structured-list-color-background: var(--cbp-structured-list-item-color-background-danger);
     }
     
-    &[color=warning]:not([selected]) {
-      --cbp-structured-list-header-color: var(--cbp-structured-list-item-color-warning);
+    &[color=warning]:not([selected]):not(:hover) {
+      --cbp-structured-list-color: var(--cbp-structured-list-item-color-warning);
       --cbp-structured-list-color-background: var(--cbp-structured-list-item-color-background-warning);
     }
 
