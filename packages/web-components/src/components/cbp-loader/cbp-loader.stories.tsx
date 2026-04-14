@@ -54,7 +54,7 @@ export default {
   },
 };
 
-const Template = ({ progressid, variant, label, size, determinate, value, max, orientation, success, error, context, sx }) => {
+const Template: any = ({ progressid, variant, label, size, determinate, value, max, orientation, success, error, context, sx }) => {
   return ` 
     <cbp-loader
       ${progressid ? `progressid="${progressid}"` : ''}
@@ -69,8 +69,7 @@ const Template = ({ progressid, variant, label, size, determinate, value, max, o
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx=${JSON.stringify(sx)}` : ``}
     >
-      ${variant == 'linear' && label && !(success || error) ? `${label}` : ``}
-      ${variant == 'circular' && label && !(success || error) ? `${label}` : ``}
+      ${success ? 'Success' : (error ? 'Error' : `${label}`)}
     </cbp-loader>
   `;
 };
