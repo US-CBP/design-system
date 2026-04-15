@@ -100,9 +100,11 @@ cbp-structured-list {
     }
   }
 
-  &[striped=even] [role=list] > *:nth-child(even):not([color]):not([selected]),
-  &[striped=odd] [role=list] > *:nth-child(odd):not([color]):not([selected]) {
-    background-color: var(--cbp-structured-list-color-bg-striped);
+  &[striped=even],
+  &[striped=odd]{
+    [role=list] > *:nth-child(even):not([color]):not(:has(input[type=checkbox]:checked)){
+      background-color: var(--cbp-structured-list-color-bg-striped);
+    }
   }
 
   // Style all list items regardless of the element used to wrap/define them (don't leave this to cbp-structured-list-item)

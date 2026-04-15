@@ -69,7 +69,7 @@ function generateLIs(items, selectable, context) {
 function generateItems(items, selectable, context) {
   const html = items.map(({ content, color}, index) => {
     return `
-      <cbp-structured-list-item ${color != 'default' ? `color="${color}"` : ''} >
+      <cbp-structured-list-item ${color ? `color="${color}"` : ''} >
         ${selectable ?
           `<cbp-checkbox 
           value="${index}"
