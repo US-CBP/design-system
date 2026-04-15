@@ -8,8 +8,6 @@
  * @prop --cbp-structured-list-item-color-bg-success-dark: var(--cbp-color-success-darker);
  * @prop --cbp-structured-list-item-color-bg-info: var(--cbp-color-info-lighter);
  * @prop --cbp-structured-list-item-color-bg-info-dark: var(--cbp-color-info-darker);
- * @prop --cbp-structured-list-item-color-bg-selected: var(--cbp-color-interactive-selected-light);
- * @prop --cbp-structured-list-item-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
 */
 :root {
     --cbp-structured-list-item-color-bg-danger: var(--cbp-color-danger-lighter);
@@ -22,8 +20,6 @@
     --cbp-structured-list-item-color-bg-success-dark: var(--cbp-color-success-darker);
     --cbp-structured-list-item-color-bg-info: var(--cbp-color-info-lighter);
     --cbp-structured-list-item-color-bg-info-dark: var(--cbp-color-info-darker);
-    --cbp-structured-list-item-color-bg-selected: var(--cbp-color-interactive-selected-light);
-    --cbp-structured-list-item-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
 }
 
 [data-cbp-theme=light] cbp-structured-list[context*=dark]:not([context=light-always]),
@@ -34,42 +30,27 @@
     --cbp-structured-list-item-color-warning: var(--cbp-structured-list-item-color-warning-dark) !important;
     --cbp-structured-list-item-color-bg-success: var(--cbp-structured-list-item-color-bg-success-dark) !important;
     --cbp-structured-list-item-color-bg-info: var(--cbp-structured-list-item-color-bg-info-dark) !important;
-    --cbp-structured-list-item-color-bg-selected: var(--cbp-structured-list-item-color-bg-selected-dark) !important;
 }
 
 cbp-structured-list-item {
-    display: block;
-    background-color: var(--cbp-structured-list-color-bg);
-    color: var(--cbp-structured-list-color);
+  display: block;
+  background-color: var(--cbp-structured-list-color-bg);
+  color: var(--cbp-structured-list-color);
 
-    &[color=danger]:not(:has(input[type=checkbox]:checked)) {
-      --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-danger);
-    }
-    
-    &[color=warning]:not(:has(input[type=checkbox]:checked)):not(:hover) {
-      --cbp-structured-list-color: var(--cbp-structured-list-item-color-warning);
-      --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-warning);
-    }
-
-    &[color=success]:not(:has(input[type=checkbox]:checked)) {
-      --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-success);
-    }
-
-    &[color=info]:not(:has(input[type=checkbox]:checked)) {
-      --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-info);
-    }
+  &[color=danger] {
+    --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-danger);
+  }
   
-    &:has(input[type=checkbox]:checked){
+  &[color=warning] {
+    --cbp-structured-list-color: var(--cbp-structured-list-item-color-warning);
+    --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-warning);
+  }
 
-      background-color: var(--cbp-structured-list-item-color-bg-selected);
-      --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
-      --cbp-structured-list-border-color-dark: var(--cbp-color-gray-cool-50);
+  &[color=success] {
+    --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-success);
+  }
 
-        &:hover{
-        --cbp-structured-list-item-color-bg-selected: var(--cbp-color-gray-cool-10);
-        --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
-        --cbp-structured-list-item-color-bg-selected-dark: var(--cbp-color-gray-cool-90);
-        --cbp-structured-list-border-color-dark: var(--cbp-color-gray-cool-50);
-        }
-    }
+  &[color=info] {
+    --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-info);
+  }
 }

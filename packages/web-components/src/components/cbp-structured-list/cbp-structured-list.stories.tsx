@@ -42,7 +42,7 @@ export default {
 function generateLIs(items, selectable, context) {
   const html = items.map(({ content }, index) => {
     return `
-        <li style="display:flex; align-items:center;">
+        <li>
         ${selectable ?
             `<cbp-checkbox 
               value="${index}"

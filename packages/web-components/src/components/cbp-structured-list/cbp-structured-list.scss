@@ -18,6 +18,10 @@
  * @prop --cbp-structured-list-footer-color-bg-dark: var(--cbp-color-gray-cool-5);
  * @prop --cbp-structured-list-footer-color: var(--cbp-color-text-lightest);
  * @prop --cbp-structured-list-footer-color-dark: var(--cbp-color-text-darkest);
+ * @prop --cbp-structured-list-item-color-bg-selected: var(--cbp-color-interactive-selected-light);
+ * @prop --cbp-structured-list-item-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
+ * @prop --cbp-structured-list-item-color-bg-selected-hover: var(--cbp-color-gray-cool-10);
+ * @prop --cbp-structured-list-item-color-bg-selected-hover-dark: var(--cbp-color-gray-cool-90);
 
  * @prop --cbp-structured-list-margin-bottom: var(--cbp-space-4x);
 */
@@ -32,6 +36,9 @@
   --cbp-structured-list-color-bg-hover-dark: var(--cbp-color-black);
   --cbp-structured-list-color: var(--cbp-color-text-darkest);
   --cbp-structured-list-color-dark: var(--cbp-color-text-lightest);
+  --cbp-structured-list-color-hover: var(--cbp-color-text-darkest);
+  --cbp-structured-list-color-hover-dark: var(--cbp-color-text-lightest);
+
   --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
   --cbp-structured-list-border-color-dark: var(--cbp-color-gray-cool-50);
 
@@ -47,6 +54,12 @@
   
   --cbp-structured-list-item-padding: var(--cbp-space-4x);
   --cbp-structured-list-margin-bottom: var(--cbp-space-4x);
+
+  
+  --cbp-structured-list-item-color-bg-selected: var(--cbp-color-interactive-selected-light);
+  --cbp-structured-list-item-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
+  --cbp-structured-list-item-color-bg-selected-hover: var(--cbp-color-gray-cool-10);
+  --cbp-structured-list-item-color-bg-selected-hover-dark: var(--cbp-color-gray-cool-90);
 }
 
 [data-cbp-theme=light] cbp-structured-list[context*=dark]:not([context=light-always]),
@@ -56,9 +69,13 @@
   --cbp-structured-list-color-bg-striped: var(--cbp-structured-list-color-bg-striped-dark) !important;
   --cbp-structured-list-color-bg-hover: var(--cbp-structured-list-color-bg-hover-dark) !important;
   --cbp-structured-list-color: var(--cbp-structured-list-color-dark) !important;
+  --cbp-structured-list-color-hover: var(--cbp-structured-list-color-hover-dark) !important;
   --cbp-structured-list-border-color: var(--cbp-structured-list-border-color-dark) !important;
   --cbp-structured-list-header-color-bg: var(--cbp-structured-list-header-color-bg-dark) !important;
   --cbp-structured-list-header-color: var(--cbp-structured-list-header-color-dark) !important;
+
+  --cbp-structured-list-item-color-bg-selected: var(--cbp-structured-list-item-color-bg-selected-dark) !important;
+  --cbp-structured-list-item-color-bg-selected-hover: var(--cbp-structured-list-item-color-bg-selected-hover-dark) !important;
 
   --cbp-structured-list-footer-color-bg: var(--cbp-structured-list-footer-color-bg-dark) !important;
   --cbp-structured-list-footer-color: var(--cbp-structured-list-footer-color-dark) !important;
@@ -101,8 +118,8 @@ cbp-structured-list {
     border-bottom-color: var(--cbp-structured-list-border-color);
 
     &:hover {
-      color: var(--cbp-structured-list-color) !important;
-      background-color: var(--cbp-structured-list-color-bg-hover) !important;
+      --cbp-structured-list-color: var(--cbp-structured-list-color-hover);
+      --cbp-structured-list-color-bg: var(--cbp-structured-list-color-bg-hover);
     }
   }
 
@@ -118,10 +135,24 @@ cbp-structured-list {
     gap: var(--cbp-space-4x);
   }
 
-  &:has(input[type=checkbox]) cbp-structured-list-item{
+  div[role=list] cbp-structured-list-item:has(input[type=checkbox]),
+  div[role=list] li:has(input[type=checkbox]) {
     display: flex;
     flex-direction: row; 
     align-items: center;
     gap: var(--cbp-space-4x);
+    background-color: var(--cbp-structured-list-color-bg);
   } 
+
+  cbp-structured-list-item:has(input[type=checkbox]:checked),
+  li:has(input[type=checkbox]:checked){
+    --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-selected);
+
+    --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
+    --cbp-structured-list-border-color-dark: var(--cbp-color-gray-cool-50);
+
+      &:hover{
+        --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-selected-hover);
+      }
+  }
 }
