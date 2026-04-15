@@ -41,7 +41,7 @@ cbp-structured-list-item {
     --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-danger);
   }
   
-  &[color=warning]:not(:has(input[type=checkbox]:checked)) {
+  &[color=warning] {
     --cbp-structured-list-color: var(--cbp-structured-list-item-color-warning);
     --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-warning);
   }
