@@ -20,9 +20,6 @@
  * @prop --cbp-structured-list-footer-color-dark: var(--cbp-color-text-darkest);
  * @prop --cbp-structured-list-item-color-bg-selected: var(--cbp-color-interactive-selected-light);
  * @prop --cbp-structured-list-item-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
- * @prop --cbp-structured-list-item-color-bg-selected-hover: var(--cbp-color-gray-cool-10);
- * @prop --cbp-structured-list-item-color-bg-selected-hover-dark: var(--cbp-color-gray-cool-90);
-
  * @prop --cbp-structured-list-margin-bottom: var(--cbp-space-4x);
 */
 :root {
@@ -58,8 +55,6 @@
   
   --cbp-structured-list-item-color-bg-selected: var(--cbp-color-interactive-selected-light);
   --cbp-structured-list-item-color-bg-selected-dark: var(--cbp-color-interactive-selected-dark);
-  --cbp-structured-list-item-color-bg-selected-hover: var(--cbp-color-gray-cool-10);
-  --cbp-structured-list-item-color-bg-selected-hover-dark: var(--cbp-color-gray-cool-90);
 }
 
 [data-cbp-theme=light] cbp-structured-list[context*=dark]:not([context=light-always]),
@@ -75,7 +70,6 @@
   --cbp-structured-list-header-color: var(--cbp-structured-list-header-color-dark) !important;
 
   --cbp-structured-list-item-color-bg-selected: var(--cbp-structured-list-item-color-bg-selected-dark) !important;
-  --cbp-structured-list-item-color-bg-selected-hover: var(--cbp-structured-list-item-color-bg-selected-hover-dark) !important;
 
   --cbp-structured-list-footer-color-bg: var(--cbp-structured-list-footer-color-bg-dark) !important;
   --cbp-structured-list-footer-color: var(--cbp-structured-list-footer-color-dark) !important;
@@ -137,11 +131,16 @@ cbp-structured-list {
 
   div[role=list] cbp-structured-list-item:has(input[type=checkbox]),
   div[role=list] li:has(input[type=checkbox]) {
-    display: flex;
-    flex-direction: row; 
+    display: grid;
+    grid-template-columns: var(--cbp-space-6x) 1fr;
     align-items: center;
     gap: var(--cbp-space-4x);
     background-color: var(--cbp-structured-list-color-bg);
+
+    cbp-checkbox {
+      --cbp-checkbox-min-height: 0;
+      --cbp-checkbox-margin: 0;
+    }
   } 
 
   cbp-structured-list-item:has(input[type=checkbox]:checked),
@@ -151,8 +150,5 @@ cbp-structured-list {
     --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
     --cbp-structured-list-border-color-dark: var(--cbp-color-gray-cool-50);
 
-      &:hover{
-        --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-selected-hover);
-      }
   }
 }

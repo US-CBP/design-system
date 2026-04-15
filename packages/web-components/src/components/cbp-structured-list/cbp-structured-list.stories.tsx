@@ -67,9 +67,9 @@ function generateLIs(items, selectable, context) {
 }
 
 function generateItems(items, selectable, context) {
-  const html = items.map(({ content, color, selected }, index) => {
+  const html = items.map(({ content, color}, index) => {
     return `
-      <cbp-structured-list-item ${color != 'default' ? `color="${color}"` : ''} ${selected ? `selected` : ''}>
+      <cbp-structured-list-item ${color != 'default' ? `color="${color}"` : ''} >
         ${selectable ?
           `<cbp-checkbox 
           value="${index}"
@@ -126,6 +126,7 @@ const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, he
   `;
 };
 export const StructuredList = StructuredListTemplate.bind({});
+StructuredList.storyName = "Structured List (Simple)"
 StructuredList.argTypes = {
   listItems: {
     description: 'Configure various aspects of the list items within the structured list.',
@@ -148,45 +149,8 @@ StructuredList.args = {
       content: 'Structured list item 4'
     },
     {
-      content: 'Structured list item 5'
-    },
-  ]
-}
-
-export const StructuredListItems = StructuredListTemplate.bind({});
-StructuredListItems.argTypes = {
-  listItems: {
-    description: 'Configure various aspects of the list items within the structured list.',
-    control: 'object',
-  },
-}
-StructuredListItems.args = {
-  listItemType: "structured list item",
-  listItems: [
-    {
-      content: 'Structured list item 1',
-      color: 'default',
-      selected: false
-    },
-    {
-      content: 'Structured list item 2',
-      color: 'info',
-      selected: false
-    },
-    {
-      content: 'Structured list item 3',
-      color: 'success',
-      selected: false
-    },
-    {
-      content: 'Structured list item 4',
-      color: 'danger',
-      selected: false
-    },
-    {
       content: 'Structured list item 5',
-      color: 'warning',
-      selected: false
+      color: 'danger'
     },
   ]
 }
@@ -198,17 +162,14 @@ StructuredListWithGrid.args = {
     {
       content: "<cbp-grid gap='var(--cbp-space-4x)'  grid-template-columns='repeat(auto-fit, minmax(5rem, 1fr))'><cbp-grid-item>Grid Item 1</cbp-grid-item><cbp-grid-item>Grid Item 2</cbp-grid-item><cbp-grid-item>Grid Item 3</cbp-grid-item><cbp-grid-item>Grid Item 4</cbp-grid-item></cbp-grid>",
       color: 'default',
-      selected: false
     },
     {
       content: "<cbp-grid gap='var(--cbp-space-4x)' grid-template-columns='repeat(auto-fit, minmax(5rem, 1fr))'> <cbp-grid-item>Grid Item 1 is a bit longer</cbp-grid-item><cbp-grid-item>Grid Item 2</cbp-grid-item><cbp-grid-item>Grid Item 3 is a whole lot longer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</cbp-grid-item><cbp-grid-item>Grid Item 4</cbp-grid-item></cbp-grid>",
       color: 'default',
-      selected: false
     },
     {
       content: "<cbp-grid gap='var(--cbp-space-4x)' grid-template-columns='repeat(auto-fit, minmax(5rem, 1fr))'> <cbp-grid-item>Grid Item 1</cbp-grid-item><cbp-grid-item>Grid Item 2 has a little more.</cbp-grid-item><cbp-grid-item>Grid Item 3</cbp-grid-item><cbp-grid-item>Grid Item 4 does too.</cbp-grid-item></cbp-grid>",
       color: 'default',
-      selected: false
     },
   ]
 }
@@ -227,27 +188,22 @@ StructuredListCollection.args = {
     {
       content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
       color: 'default',
-      selected: false
     },
     {
       content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
       color: 'default',
-      selected: false
     },
     {
       content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
       color: 'default',
-      selected: false
     },
     {
       content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
       color: 'default',
-      selected: false
     },
     {
       content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
       color: 'default',
-      selected: false
     },
   ]
 }
@@ -267,22 +223,18 @@ StructuredListMedia.args = {
     {
       content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
-      selected: false
     },
     {
       content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
-      selected: false
     },
     {
       content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
-      selected: false
     },
     {
       content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
       color: 'default',
-      selected: false
     },
   ]
 }
@@ -357,7 +309,6 @@ StructuredListMediaCalendar.args = {
                   </div>
                 <cbp-grid>`,
       color: 'default',
-      selected: false
     },
     {
       content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
@@ -418,7 +369,6 @@ StructuredListMediaCalendar.args = {
                 <cbp-grid>
       `,
       color: 'default',
-      selected: false
     },
     {
       content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
@@ -478,49 +428,6 @@ StructuredListMediaCalendar.args = {
                 <cbp-grid>
       `,
       color: 'default',
-      selected: false
     }
-  ]
-}
-
-export const StructuredListSelectable = StructuredListTemplate.bind({});
-
-StructuredListSelectable.argTypes = {
-  listItems: {
-    description: 'Configure various aspects of the list items within the structured list.',
-    control: 'object',
-  },
-}
-StructuredListSelectable.args = {
-  showHeader: true,
-  selectable: true,
-  listItemType: "structured list item",
-  listItems: [
-    {
-      content: "Structured List Selectable Item 1",
-      color: 'default',
-      selected: false
-    },
-    {
-      content: "Structured List Selectable Item 2",
-      color: 'default', 
-      selected: false
-    },
-    {
-      content: "Structured List Selectable Item 3",
-      color: 'default',
-      selected: false
-    },
-    {
-      content: "Structured List Selectable Item 4: this is a very looooooooooooooooooong entry to show what some text wrap looks like with a while the structured list is in the selectable state",
-      color: 'default',
-      selected: false
-    },
-    {
-      content: "Structured List Selectable Item 5",
-      color: 'danger',
-      selected: false
-    },
-
   ]
 }

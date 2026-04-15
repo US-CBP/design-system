@@ -1,11 +1,6 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
-@Component({
-  tag: 'cbp-structured-list',
-  styleUrl: 'cbp-structured-list.scss'
-})
-
 /**
  * Structured lists are a way of displaying long lists of data where the user is not directly comparing 
  * raw data one row at a time.
@@ -14,6 +9,13 @@ import { setCSSProps } from '../../utils/utils';
  * @slot cbp-structured-list-header - Optional information such as number of results, filters, etc. are provided by the application and slotted into this named slot.
  * @slot cbp-structured-list-footer - Optional information and/or interactive elements are provided by the application and slotted into this named slot.
  */
+
+@Component({
+  tag: 'cbp-structured-list',
+  styleUrl: 'cbp-structured-list.scss'
+})
+
+
 export class CbpStructuredList {
   
   @Element() private host: HTMLElement;
