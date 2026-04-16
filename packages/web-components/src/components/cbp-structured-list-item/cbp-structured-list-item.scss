@@ -34,23 +34,22 @@
 
 cbp-structured-list-item {
   display: block;
-  background-color: var(--cbp-structured-list-color-bg);
   color: var(--cbp-structured-list-color);
 
   &[color=danger] {
-    --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-danger);
+    --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-danger);
   }
   
   &[color=warning] {
     --cbp-structured-list-color: var(--cbp-structured-list-item-color-warning);
-    --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-warning);
+    --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-warning);
   }
 
   &[color=success] {
-    --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-success);
+    --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-success);
   }
 
   &[color=info] {
-    --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-info);
+    --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-info);
   }
 }

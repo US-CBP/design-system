@@ -1,11 +1,11 @@
 /** 
  * @prop --cbp-structured-list-item-padding: var(--cbp-space-4x);
- * @prop --cbp-structured-list-color-bg: var(--cbp-color-white);
- * @prop --cbp-structured-list-color-bg-dark: var(--cbp-color-gray-cool-80);
- * @prop --cbp-structured-list-color-bg-striped: var(--cbp-color-gray-cool-4);
- * @prop --cbp-structured-list-color-bg-striped-dark: var(--cbp-color-gray-cool-90);
- * @prop --cbp-structured-list-color-bg-hover: var(--cbp-color-gray-cool-10);
- * @prop --cbp-structured-list-color-bg-hover-dark: var(--cbp-color-black);
+ * @prop --cbp-structured-list-item-color-bg: var(--cbp-color-white);
+ * @prop --cbp-structured-list-item-color-bg-dark: var(--cbp-color-gray-cool-80);
+ * @prop --cbp-structured-list-item-color-bg-striped: var(--cbp-color-gray-cool-4);
+ * @prop --cbp-structured-list-item-color-bg-striped-dark: var(--cbp-color-gray-cool-90);
+ * @prop --cbp-structured-list-item-color-bg-hover: var(--cbp-color-gray-cool-10);
+ * @prop --cbp-structured-list-item-color-bg-hover-dark: var(--cbp-color-black);
  * @prop --cbp-structured-list-color: var(--cbp-color-text-darkest);
  * @prop --cbp-structured-list-color-dark: var(--cbp-color-text-lightest);
  * @prop --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
@@ -25,12 +25,12 @@
 :root {
   --cbp-structured-list-item-padding: var(--cbp-space-4x);
 
-  --cbp-structured-list-color-bg: var(--cbp-color-white);
-  --cbp-structured-list-color-bg-dark: var(--cbp-color-gray-cool-80);
-  --cbp-structured-list-color-bg-striped: var(--cbp-color-gray-cool-4);
-  --cbp-structured-list-color-bg-striped-dark: var(--cbp-color-gray-cool-90);
-  --cbp-structured-list-color-bg-hover: var(--cbp-color-gray-cool-10);
-  --cbp-structured-list-color-bg-hover-dark: var(--cbp-color-black);
+  --cbp-structured-list-item-color-bg: var(--cbp-color-white);
+  --cbp-structured-list-item-color-bg-dark: var(--cbp-color-gray-cool-80);
+  --cbp-structured-list-item-color-bg-striped: var(--cbp-color-gray-cool-4);
+  --cbp-structured-list-item-color-bg-striped-dark: var(--cbp-color-gray-cool-90);
+  --cbp-structured-list-item-color-bg-hover: var(--cbp-color-gray-cool-10);
+  --cbp-structured-list-item-color-bg-hover-dark: var(--cbp-color-black);
   --cbp-structured-list-color: var(--cbp-color-text-darkest);
   --cbp-structured-list-color-dark: var(--cbp-color-text-lightest);
   --cbp-structured-list-color-hover: var(--cbp-color-text-darkest);
@@ -61,9 +61,9 @@
 [data-cbp-theme=light] cbp-structured-list[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-structured-list:not([context=dark-inverts]):not([context=light-always]) {
 
-  --cbp-structured-list-color-bg: var(--cbp-structured-list-color-bg-dark) !important;
-  --cbp-structured-list-color-bg-striped: var(--cbp-structured-list-color-bg-striped-dark) !important;
-  --cbp-structured-list-color-bg-hover: var(--cbp-structured-list-color-bg-hover-dark) !important;
+  --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-dark) !important;
+  --cbp-structured-list-item-color-bg-striped: var(--cbp-structured-list-item-color-bg-striped-dark) !important;
+  --cbp-structured-list-item-color-bg-hover: var(--cbp-structured-list-item-color-bg-hover-dark) !important;
   --cbp-structured-list-color: var(--cbp-structured-list-color-dark) !important;
   --cbp-structured-list-color-hover: var(--cbp-structured-list-color-hover-dark) !important;
   --cbp-structured-list-border-color: var(--cbp-structured-list-border-color-dark) !important;
@@ -79,7 +79,6 @@
 
 cbp-structured-list {
   display: block; 
-  background-color: var(--cbp-structured-list-color-bg);
   color: var(--cbp-structured-list-color);
   margin-bottom: var(--cbp-structured-list-margin-bottom);
   
@@ -100,12 +99,7 @@ cbp-structured-list {
     }
   }
 
-  &[striped=even] [role=list] > *:nth-child(even),
-  &[striped=odd] [role=list] > *:nth-child(odd){
-    &:not([color]):not(:has(input[type=checkbox]:checked)){
-      --cbp-structured-list-color-bg: var(--cbp-structured-list-color-bg-striped);
-    }
-  }
+ 
 
   // Style all list items regardless of the element used to wrap/define them (don't leave this to cbp-structured-list-item)
   div[role=list] > * {
@@ -114,10 +108,18 @@ cbp-structured-list {
     border-bottom-style: solid;
     border-bottom-width: var(--cbp-border-size-md);
     border-bottom-color: var(--cbp-structured-list-border-color);
+    background-color: var(--cbp-structured-list-item-color-bg);  
 
     &:hover {
       --cbp-structured-list-color: var(--cbp-structured-list-color-hover) !important;
-      --cbp-structured-list-color-bg: var(--cbp-structured-list-color-bg-hover) !important;
+      --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-hover) !important;
+    }
+  }
+
+ &[striped=even] [role=list] > *:nth-child(even),
+  &[striped=odd] [role=list] > *:nth-child(odd){
+    &:not([color]):not(:has(input[type=checkbox]:checked)){
+      --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-striped);
     }
   }
 
@@ -139,7 +141,7 @@ cbp-structured-list {
     grid-template-columns: var(--cbp-space-6x) 1fr;
     align-items: center;
     gap: var(--cbp-space-4x);
-    background-color: var(--cbp-structured-list-color-bg);
+    background-color: var(--cbp-structured-list-item-color-bg);
 
     cbp-checkbox {
       --cbp-checkbox-min-height: 0;
@@ -150,7 +152,7 @@ cbp-structured-list {
   cbp-structured-list-item:has(input[type=checkbox]:checked),
   li:has(input[type=checkbox]:checked){
     --cbp-structured-list-color: var(--cbp-structured-list-color-selected);
-    --cbp-structured-list-color-bg: var(--cbp-structured-list-item-color-bg-selected);
+    --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-selected);
 
     --cbp-structured-list-border-color: var(--cbp-color-gray-cool-30);
     --cbp-structured-list-border-color-dark: var(--cbp-color-gray-cool-50);
