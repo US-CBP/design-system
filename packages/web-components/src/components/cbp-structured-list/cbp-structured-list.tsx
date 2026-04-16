@@ -1,11 +1,6 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
-@Component({
-  tag: 'cbp-structured-list',
-  styleUrl: 'cbp-structured-list.scss'
-})
-
 /**
  * Structured lists are a way of displaying long lists of data where the user is not directly comparing 
  * raw data one row at a time.
@@ -14,6 +9,13 @@ import { setCSSProps } from '../../utils/utils';
  * @slot cbp-structured-list-header - Optional information such as number of results, filters, etc. are provided by the application and slotted into this named slot.
  * @slot cbp-structured-list-footer - Optional information and/or interactive elements are provided by the application and slotted into this named slot.
  */
+
+@Component({
+  tag: 'cbp-structured-list',
+  styleUrl: 'cbp-structured-list.scss'
+})
+
+
 export class CbpStructuredList {
   
   @Element() private host: HTMLElement;
@@ -27,14 +29,11 @@ export class CbpStructuredList {
   /** References an `id` placed on the element slotted into the `cbp-structured-list-header` named slot to provide additional accessible context to the list label. */
   @Prop() headerId: string;
 
-  /** Specifies whether the list is "striped,"" with even rows shaded. */
-  @Prop({ reflect: true }) striped: boolean;
+  /** Specifies whether the list is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). */
+  @Prop({ reflect: true }) striped: 'odd' | 'even';
 
-  /** Specifies whether the list items are selectable (via checkbox - provided by the application). */
-  @Prop({ reflect: true }) selectable: boolean;
-
-   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
-   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
+  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
+  @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
   
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};

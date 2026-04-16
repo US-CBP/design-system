@@ -1,0 +1,53 @@
+/** 
+ * @prop --cbp-structured-list-item-padding: var(--cbp-space-4x);
+ * @prop --cbp-structured-list-item-color-bg-danger: var(--cbp-color-danger-lighter);
+ * @prop --cbp-structured-list-item-color-bg-danger-dark: var(--cbp-color-danger-darker);
+ * @prop --cbp-structured-list-item-color-bg-warning: var(--cbp-color-warning-lighter);
+ * @prop --cbp-structured-list-item-color-bg-warning-dark: var(--cbp-color-warning-darker);
+ * @prop --cbp-structured-list-item-color-bg-success: var(--cbp-color-success-lighter);
+ * @prop --cbp-structured-list-item-color-bg-success-dark: var(--cbp-color-success-darker);
+ * @prop --cbp-structured-list-item-color-bg-info: var(--cbp-color-info-lighter);
+ * @prop --cbp-structured-list-item-color-bg-info-dark: var(--cbp-color-info-darker);
+*/
+:root {
+    --cbp-structured-list-item-color-bg-danger: var(--cbp-color-danger-lighter);
+    --cbp-structured-list-item-color-bg-danger-dark: var(--cbp-color-danger-darker);
+    --cbp-structured-list-item-color-bg-warning: var(--cbp-color-warning-lighter);
+    --cbp-structured-list-item-color-bg-warning-dark: var(--cbp-color-warning-dark);
+    --cbp-structured-list-item-color-warning: var(--cbp-color-text-darkest);
+    --cbp-structured-list-item-color-warning-dark: var(--cbp-color-text-darkest);
+    --cbp-structured-list-item-color-bg-success: var(--cbp-color-success-lighter);
+    --cbp-structured-list-item-color-bg-success-dark: var(--cbp-color-success-darker);
+    --cbp-structured-list-item-color-bg-info: var(--cbp-color-info-lighter);
+    --cbp-structured-list-item-color-bg-info-dark: var(--cbp-color-info-darker);
+}
+
+[data-cbp-theme=light] cbp-structured-list[context*=dark]:not([context=light-always]),
+[data-cbp-theme=dark] cbp-structured-list:not([context=dark-inverts]):not([context=light-always]) {
+
+    --cbp-structured-list-item-color-bg-danger: var(--cbp-structured-list-item-color-bg-danger-dark) !important;
+    --cbp-structured-list-item-color-bg-warning: var(--cbp-structured-list-item-color-bg-warning-dark) !important;
+    --cbp-structured-list-item-color-warning: var(--cbp-structured-list-item-color-warning-dark) !important;
+    --cbp-structured-list-item-color-bg-success: var(--cbp-structured-list-item-color-bg-success-dark) !important;
+    --cbp-structured-list-item-color-bg-info: var(--cbp-structured-list-item-color-bg-info-dark) !important;
+}
+
+cbp-structured-list-item {
+
+  &[color=danger] {
+    --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-danger);
+  }
+  
+  &[color=warning] {
+    --cbp-structured-list-item-color: var(--cbp-structured-list-item-color-warning);
+    --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-warning);
+  }
+
+  &[color=success] {
+    --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-success);
+  }
+
+  &[color=info] {
+    --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-info);
+  }
+}
