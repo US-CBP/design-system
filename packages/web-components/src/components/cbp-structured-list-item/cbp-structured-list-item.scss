@@ -33,15 +33,13 @@
 }
 
 cbp-structured-list-item {
-  display: block;
-  color: var(--cbp-structured-list-color);
 
   &[color=danger] {
     --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-danger);
   }
   
   &[color=warning] {
-    --cbp-structured-list-color: var(--cbp-structured-list-item-color-warning);
+    --cbp-structured-list-item-color: var(--cbp-structured-list-item-color-warning);
     --cbp-structured-list-item-color-bg: var(--cbp-structured-list-item-color-bg-warning);
   }
 
