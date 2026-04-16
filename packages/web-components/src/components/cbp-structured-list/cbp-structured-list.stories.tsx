@@ -161,15 +161,12 @@ StructuredListWithGrid.args = {
    listItems: [
     {
       content: "<cbp-grid gap='var(--cbp-space-4x)'  grid-template-columns='repeat(auto-fit, minmax(5rem, 1fr))'><cbp-grid-item>Grid Item 1</cbp-grid-item><cbp-grid-item>Grid Item 2</cbp-grid-item><cbp-grid-item>Grid Item 3</cbp-grid-item><cbp-grid-item>Grid Item 4</cbp-grid-item></cbp-grid>",
-      color: 'default',
     },
     {
       content: "<cbp-grid gap='var(--cbp-space-4x)' grid-template-columns='repeat(auto-fit, minmax(5rem, 1fr))'> <cbp-grid-item>Grid Item 1 is a bit longer</cbp-grid-item><cbp-grid-item>Grid Item 2</cbp-grid-item><cbp-grid-item>Grid Item 3 is a whole lot longer. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</cbp-grid-item><cbp-grid-item>Grid Item 4</cbp-grid-item></cbp-grid>",
-      color: 'default',
     },
     {
       content: "<cbp-grid gap='var(--cbp-space-4x)' grid-template-columns='repeat(auto-fit, minmax(5rem, 1fr))'> <cbp-grid-item>Grid Item 1</cbp-grid-item><cbp-grid-item>Grid Item 2 has a little more.</cbp-grid-item><cbp-grid-item>Grid Item 3</cbp-grid-item><cbp-grid-item>Grid Item 4 does too.</cbp-grid-item></cbp-grid>",
-      color: 'default',
     },
   ]
 }
@@ -187,23 +184,18 @@ StructuredListCollection.args = {
   listItems: [
     {
       content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
-      color: 'default',
     },
     {
       content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
-      color: 'default',
     },
     {
       content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
-      color: 'default',
     },
     {
       content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
-      color: 'default',
     },
     {
       content: "<cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>Internal Link</cbp-link></cbp-typography><cbp-typography tag='p'> Description text</cbp-typography><cbp-typography tag='p'> <cbp-icon name='user'></cbp-icon> <i>https://www.text-link.com/help-me</i></cbp-typography><cbp-tag> Tag </cbp-tag>",
-      color: 'default',
     },
   ]
 }
@@ -222,19 +214,15 @@ StructuredListMedia.args = {
   listItems: [
     {
       content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
-      color: 'default',
     },
     {
       content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' style='width: 100px' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
-      color: 'default',
     },
     {
       content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
-      color: 'default',
     },
     {
       content: "<cbp-grid grid-template-columns='100px 1fr' gap='1rem'><div><img src='./assets/images/cbp-seal.svg' alt=''/></div><div><cbp-typography tag='p'><cbp-link href='#'><cbp-icon name='arrow-right'></cbp-icon>CBP Seizes over 2 Million Pounds of Cocaine</cbp-link></cbp-typography><cbp-typography tag='p'>CBP officers out of the Port of Baltimore Narcotics task force seized more than 2 million pounds of cocaine tuesday. It is one of the largest single seizures of cocaine ever recorded</cbp-typography><cbp-typography tag='p'><cbp-icon name='globe'></cbp-icon> <i>https://www.cbp.dhs.gov/news/cocaine</i></cbp-typography><cbp-tag> News</cbp-tag></div><cbp-grid>",
-      color: 'default',
     },
   ]
 }
@@ -308,7 +296,6 @@ StructuredListMediaCalendar.args = {
                     </cbp-typography>
                   </div>
                 <cbp-grid>`,
-      color: 'default',
     },
     {
       content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
@@ -368,7 +355,6 @@ StructuredListMediaCalendar.args = {
                   </div>
                 <cbp-grid>
       `,
-      color: 'default',
     },
     {
       content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
@@ -427,7 +413,6 @@ StructuredListMediaCalendar.args = {
                   </div>
                 <cbp-grid>
       `,
-      color: 'default',
     }
   ]
 }

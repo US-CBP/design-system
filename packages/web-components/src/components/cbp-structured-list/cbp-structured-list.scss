@@ -100,9 +100,9 @@ cbp-structured-list {
     }
   }
 
-  &[striped=even],
-  &[striped=odd]{
-    [role=list] > *:nth-child(even):not([color]):not(:has(input[type=checkbox]:checked)){
+  &[striped=even] [role=list] > *:nth-child(even),
+  &[striped=odd] [role=list] > *:nth-child(odd){
+    &:not([color]):not(:has(input[type=checkbox]:checked)){
       background-color: var(--cbp-structured-list-color-bg-striped);
     }
   }
