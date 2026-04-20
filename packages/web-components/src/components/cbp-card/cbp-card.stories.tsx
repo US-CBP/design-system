@@ -6,7 +6,7 @@ export default {
       name: "Variant",
       description: "set Variant of the card",
       control: "select",
-      options: ["generic", "banner", "decision", "flag"]
+      options: ["banner", "flag"]
     },
     title: {
       name: 'Title (slotted)',
@@ -33,7 +33,7 @@ export default {
       if: {arg: "actionsLayout"}
     },
     actionsConfig: {
-      name: "Decision Card Actions",
+      name: "Card Actions",
       description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
       control: "object",
       if: {arg: "actionsLayout"}
@@ -110,8 +110,8 @@ const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1,
 const GeneralTemplate = ({ variant, color, title, headingId, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, stretch, context, sx }) => {
   return ` 
     <cbp-card
-      ${variant != 'generic'? `variant=${variant}` : ``}
-      ${color ? `color="${color}"` : ''}
+      ${variant? `variant=${variant}` : ``}
+      ${color !="default"? `color="${color}"` : ''}
       ${stretch ? `stretch` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}      
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -158,7 +158,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
 
   return ` 
     <cbp-card
-      ${variant !=='generic' ? `variant="${variant}"` : ''}
+      ${variant ? `variant="${variant}"` : ''}
       ${interactive ? `interactive="${interactive}"` : ''}
       ${href ? `href="${href}"` : ''}
       ${disabled ? 'disabled' : ''}
@@ -233,27 +233,6 @@ GeneralCard.args = {
     },
   },
 };
-// GeneralCard.argTypes = {
-//   actionsLayout:{
-//     name: "Actions Layout",
-//     description: "Choose actions layout of the card component",
-//     control: "select",
-//     options: ["single", "double", "triple"],
-//   },
-//   actionsFill: {
-//     name: "Actions Fill",
-//     description: "Choose the fill of the actions in the card component",
-//     control: "radio",
-//     options: ["solid", "outline", "ghost"],
-//     if: {arg: "actionsLayout"}
-//   },
-//   actionsConfig: {
-//     name: "Decision Card Actions",
-//     description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
-//     control: "object",
-//     if: {arg: "actionsLayout"}
-//   },
-// };
 
 export const BannerCard = GeneralTemplate.bind({});
 BannerCard.args = {
@@ -281,28 +260,6 @@ BannerCard.args = {
   }
 };
 
-// BannerCard.argTypes={
-//   actionsLayout:{
-//     name: "Actions Layout",
-//     description: "Choose actions layout of the card component",
-//     control: "select",
-//     options: ["single", "double", "triple"],
-//   },
-//   actionsFill: {
-//     name: "Actions Fill",
-//     description: "Choose the fill of the actions in the card component",
-//     control: "radio",
-//     options: ["solid", "outline", "ghost"],
-//     if: {arg: "actionsLayout"}
-//   },
-//   actionsConfig: {
-//     name: "Decision Card Actions",
-//     description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
-//     control: "object",
-//     if: {arg: "actionsLayout"}
-//   },
-// }
-
 export const FlagCard = FlagTemplate.bind({});
 FlagCard.args = {
   title: "Card Title",
@@ -310,7 +267,10 @@ FlagCard.args = {
 };
 
 FlagCard.argTypes ={
-  actionLayout: {
+  actionsLayout: {
+    control: false
+  },
+  variant:{
     control: false
   }
 }
@@ -320,7 +280,6 @@ InteractiveCard.args = {
   title: "Banner Card Title",
   bodyText: "Here is an example of some supplementary text for this purely informational card",
   interactive: "clickable",
-  variant: "generic",
   href: "https://us-cbp.github.io/design-system/?path=/story/introduction--introduction"
 };
 
@@ -337,12 +296,12 @@ InteractiveCard.argTypes = {
   disabled: {
     control: "boolean",
   },
-  actionLayout: {
+  actionsLayout: {
     control: false
   }
 };
 
-const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIcon, href, variant, context, sx }) => {
+const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIcon, href, context, sx }) => {
 
   return ` 
     <cbp-form-field group
@@ -351,7 +310,6 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
       field-id="cardRadioGroup"
     >
       <cbp-card
-        ${variant !=='default' ? `variant="${variant}"` : ''}
         interactive="radio"
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
@@ -374,7 +332,6 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
       </cbp-card>
       
       <cbp-card
-        ${variant !=='default' ? `variant="${variant}"` : ''}
         interactive="radio"
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
@@ -397,7 +354,6 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
       </cbp-card>
 
       <cbp-card
-        ${variant !=='default' ? `variant="${variant}"` : ''}
         interactive= 'radio'
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
@@ -428,7 +384,6 @@ InteractiveRadioList.args = {
   title: "Banner Card Title",
   bodyText: "Here is an example of some supplementary text for this purely informational card",
   interactive: "clickable",
-  variant: "generic",
   href: "https://us-cbp.github.io/design-system/?path=/story/introduction--introduction",
   sx: {"margin-bottom":"var(--cbp-space-1x)"}
 };
@@ -446,7 +401,10 @@ InteractiveRadioList.argTypes = {
   disabled: {
     control: "boolean",
   },
-  actionLayout: {
+  actionsLayout: {
+    control: false
+  },
+  variant:{
     control: false
   }
 };

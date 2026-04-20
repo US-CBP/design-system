@@ -149,9 +149,9 @@ cbp-card {
     }
   }
 
-  &[variant=decision] [slot=cbp-card-title] {
-    margin-bottom: var(--cbp-space-2x);
-  }
+  // &:has([slot="cbp-card-actions"]) [slot=cbp-card-title] {
+  //   margin-bottom: var(--cbp-space-2x);
+  // }
   
   &[color=info] {
     --cbp-card-color-background: var(--cbp-color-info-lighter);
@@ -198,7 +198,7 @@ cbp-card {
   }
 
   // Decision Card Variant
-  &[variant=decision] {
+  &:has([slot="cbp-card-actions"]){
     border: 0;
 
      .cbp-card-body {
