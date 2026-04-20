@@ -298,6 +298,9 @@ InteractiveCard.argTypes = {
   },
   actionsLayout: {
     control: false
+  },
+  variant:{
+    control: false
   }
 };
 
