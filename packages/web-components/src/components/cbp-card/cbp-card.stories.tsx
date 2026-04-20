@@ -18,6 +18,12 @@ export default {
     withIcon: {
       control: 'boolean',
     },
+    color: {
+      name: "Color",
+      description: "Set the color of the card",
+      control: "select",
+      options: ["default", "info", "success", "warning", "danger"],
+    },
     context : {
       control: 'select',
       options: [ 'light-inverts', 'light-always', 'dark-inverts', 'dark-always']
@@ -74,10 +80,11 @@ const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1,
   }
 };
 
-const GeneralTemplate = ({ color, title, bodyText, withIcon, context, sx }) => {
+const GeneralTemplate = ({ color, title, headingId, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, stretch, context, sx }) => {
   return ` 
     <cbp-card
       ${color ? `color="${color}"` : ''}
+      ${stretch ? `stretch` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}      
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -86,29 +93,12 @@ const GeneralTemplate = ({ color, title, bodyText, withIcon, context, sx }) => {
         ${title}
       </cbp-typography>
       <p>${bodyText}</p>
+      ${actionsLayout ? renderActions(actionsLayout, actionsFill, color, context, withIcon, headingId, actionsConfig) : ``}
     </cbp-card>
   `;
 };
 
-const DecisionTemplate = ({ title, headingId, color, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, context, sx }) => {
-  return ` 
-    <cbp-card
-      variant="decision" 
-      ${color ? `color="${color}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      <cbp-typography tag="h4" slot="cbp-card-title" ${headingId ? `id=${headingId}` : ``}>
-        ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
-        ${title}
-      </cbp-typography>
-      <p>${bodyText}</p>  
-      ${renderActions(actionsLayout, actionsFill, color,context, withIcon, headingId, actionsConfig)}
-    </cbp-card>
-  `;
-};
-
-const BannerTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
+const BannerTemplate = ({ title, headingId, color, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       variant="banner"
@@ -121,6 +111,7 @@ const BannerTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
         ${title}
       </cbp-typography>
       <p>${bodyText}</p>  
+      ${actionsLayout ? renderActions(actionsLayout, actionsFill, color, context, withIcon, headingId, actionsConfig) : ``}
     </cbp-card>
   `;
 };
@@ -141,7 +132,7 @@ const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
         ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
         ${title}
       </cbp-typography>
-      <p>${bodyText}</p>  
+      <p>${bodyText}</p>
     </cbp-card>
   `;
 };
@@ -211,16 +202,8 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
 export const GeneralCard = GeneralTemplate.bind({});
 GeneralCard.args = {
   title: "Card Title",
+  headingId: "card-heading",
   bodyText: "Here is an example of some body text for this purely informational card",
-};
-GeneralCard.argTypes = {};
-
-export const DecisionCard = DecisionTemplate.bind({});
-DecisionCard.args = {
-  title: "Card Title",
-  headingId: "decision-card-heading",
-  bodyText: "Here is an example of some body text for this decision card.",
-  actionsLayout: "single",
   actionsFill: "solid",
   actionsConfig: {
     btn1: {
@@ -240,17 +223,56 @@ DecisionCard.args = {
     },
   },
 };
-DecisionCard.argTypes = {
-  color: {
-    name: "Color",
-    description: "Set the color of the card",
-    control: "select",
-    options: ["default", "danger"],
-  },
-  actionsLayout: {
+GeneralCard.argTypes = {
+actionsLayout:{
+      name: "Actions Layout",
+      description: "Choose actions layout of the card component",
+      control: "select",
+      options: ["single", "double", "triple"],
+    },
+    actionsFill: {
+      name: "Actions Fill",
+      description: "Choose the fill of the actions in the card component",
+      control: "radio",
+      options: ["solid", "outline", "ghost"]
+    },
+    actionsConfig: {
+      name: "Decision Card Actions",
+      description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
+      control: "object",
+    },
+};
+
+export const BannerCard = BannerTemplate.bind({});
+BannerCard.args = {
+  title: "Banner Card Title",
+  headingId: "banner-card-heading",
+  bodyText: "Here is an example of some supplementary text for this purely informational card",
+  actionsFill: "solid",
+  actionsConfig: {
+    btn1: {
+      label: "Action 1",
+      tag: "button",
+      color: "primary",
+    },
+    btn2: {
+      label: "Action 2",
+      tag: "button",
+      color: "secondary",
+    },
+    btn3: {
+      label: "Action 3",
+      tag: "button",
+      color: "tertiary",
+    },
+  }
+};
+
+BannerCard.argTypes={
+  actionsLayout:{
     name: "Actions Layout",
     description: "Choose actions layout of the card component",
-    control: "radio",
+    control: "select",
     options: ["single", "double", "triple"],
   },
   actionsFill: {
@@ -264,26 +286,12 @@ DecisionCard.argTypes = {
     description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
     control: "object",
   },
-};
-
-export const BannerCard = BannerTemplate.bind({});
-BannerCard.args = {
-  title: "Banner Card Title",
-  bodyText: "Here is an example of some supplementary text for this purely informational card",
-};
+}
 
 export const FlagCard = FlagTemplate.bind({});
 FlagCard.args = {
   title: "Card Title",
   bodyText: "Here is an example of some body text for this purely informational card",
-};
-FlagCard.argTypes = {
-  color: {
-    name: "Color",
-    description: "Set the color of the card",
-    control: "select",
-    options: ["default", "info", "success", "warning", "danger"],
-  },
 };
 
 export const InteractiveCard = InteractiveTemplate.bind({});
@@ -308,59 +316,11 @@ InteractiveCard.argTypes = {
   disabled: {
     control: "boolean",
   },
-  color: {
-    control: "select",
-    options: ["default", "danger"],
-  },
   variant: {
     name: "Variant",
     description: "set Variant of the card",
     control: "select",
     options: ["default", "flag"]
-  },
-};
-
-
-const BannerAndDecisionTemplate = ({ title, headingId, color, bodyText, actionsLayout, actionsConfig, withIcon, context, sx }) => {
-  return ` 
-    <cbp-card
-      variant="banner"
-      ${color ? `color="${color}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      <cbp-typography tag="h4" slot="cbp-card-title" ${headingId ? `id=${headingId}` : ``}>
-        ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
-        ${title}
-      </cbp-typography>
-      <p>${bodyText}</p>
-      ${renderActions(actionsLayout, "solid", color,context, withIcon, headingId, actionsConfig)}  
-    </cbp-card>
-  `;
-};
-
-export const BannerAndDecisionCard = BannerAndDecisionTemplate.bind({});
-BannerAndDecisionCard.args = {
-  title: "Banner Card Title",
-  headingId: "banner-and-decision-card",
-  bodyText: "Here is an example of some supplementary text for this purely informational card",
-  actionsLayout: "single",
-  actionsConfig: {
-    btn1: {
-      label: "Action 1",
-      tag: "button",
-      color: "primary",
-    },
-    btn2: {
-      label: "Action 2",
-      tag: "button",
-      color: "secondary",
-    },
-    btn3: {
-      label: "Action 3",
-      tag: "button",
-      color: "tertiary",
-    },
   },
 };
 
@@ -467,10 +427,6 @@ InteractiveRadioList.argTypes = {
   },
   disabled: {
     control: "boolean",
-  },
-  color: {
-    control: "select",
-    options: ["default", "danger"],
   },
   variant: {
     name: "Variant",
