@@ -80,9 +80,10 @@ const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1,
   }
 };
 
-const GeneralTemplate = ({ color, title, headingId, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, stretch, context, sx }) => {
+const GeneralTemplate = ({ variant, color, title, headingId, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, stretch, context, sx }) => {
   return ` 
     <cbp-card
+      ${variant ? `variant=${variant}` : ``}
       ${color ? `color="${color}"` : ''}
       ${stretch ? `stretch` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}      
@@ -93,24 +94,6 @@ const GeneralTemplate = ({ color, title, headingId, bodyText, actionsLayout, act
         ${title}
       </cbp-typography>
       <p>${bodyText}</p>
-      ${actionsLayout ? renderActions(actionsLayout, actionsFill, color, context, withIcon, headingId, actionsConfig) : ``}
-    </cbp-card>
-  `;
-};
-
-const BannerTemplate = ({ title, headingId, color, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, context, sx }) => {
-  return ` 
-    <cbp-card
-      variant="banner"
-      ${color ? `color="${color}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      <cbp-typography tag="h4" slot="cbp-card-title">
-        ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
-        ${title}
-      </cbp-typography>
-      <p>${bodyText}</p>  
       ${actionsLayout ? renderActions(actionsLayout, actionsFill, color, context, withIcon, headingId, actionsConfig) : ``}
     </cbp-card>
   `;
@@ -243,8 +226,9 @@ actionsLayout:{
     },
 };
 
-export const BannerCard = BannerTemplate.bind({});
+export const BannerCard = GeneralTemplate.bind({});
 BannerCard.args = {
+  variant: "banner",
   title: "Banner Card Title",
   headingId: "banner-card-heading",
   bodyText: "Here is an example of some supplementary text for this purely informational card",
