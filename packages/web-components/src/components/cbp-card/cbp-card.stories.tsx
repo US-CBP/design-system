@@ -2,6 +2,12 @@ export default {
   title: 'Content/Card',
   tags: ['beta'],
   argTypes: {
+    variant: {
+      name: "Variant",
+      description: "set Variant of the card",
+      control: "select",
+      options: ["banner", "flag"]
+    },
     title: {
       name: 'Title (slotted)',
       description: 'Set the title in the banner area of the card',
@@ -12,11 +18,38 @@ export default {
       description: 'Set the body text of the card',
       control: 'text',
     },
+
+    actionsLayout:{
+      name: "Actions Layout",
+      description: "Choose actions layout of the card component",
+      control: "select",
+      options: ["single", "double", "triple"],
+    },
+    actionsFill: {
+      name: "Actions Fill",
+      description: "Choose the fill of the actions in the card component",
+      control: "radio",
+      options: ["solid", "outline", "ghost"],
+      if: {arg: "actionsLayout"}
+    },
+    actionsConfig: {
+      name: "Card Actions",
+      description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
+      control: "object",
+      if: {arg: "actionsLayout"}
+    },
+
     stretch: {
       control: 'boolean',
     },
     withIcon: {
       control: 'boolean',
+    },
+    color: {
+      name: "Color",
+      description: "Set the color of the card",
+      control: "select",
+      options: ["default", "info", "success", "warning", "danger"],
     },
     context : {
       control: 'select',
@@ -74,53 +107,21 @@ const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1,
   }
 };
 
-const GeneralTemplate = ({ color, title, bodyText, withIcon, context, sx }) => {
+const GeneralTemplate = ({ variant, color, title, headingId, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, stretch, context, sx }) => {
   return ` 
     <cbp-card
-      ${color ? `color="${color}"` : ''}
+      ${variant? `variant=${variant}` : ``}
+      ${color !="default"? `color="${color}"` : ''}
+      ${stretch ? `stretch` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}      
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      <cbp-typography tag="h4" slot="cbp-card-title">
+      <cbp-typography tag="h4" slot="cbp-card-title" id=${headingId}>
         ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
         ${title}
       </cbp-typography>
       <p>${bodyText}</p>
-    </cbp-card>
-  `;
-};
-
-const DecisionTemplate = ({ title, headingId, color, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, context, sx }) => {
-  return ` 
-    <cbp-card
-      variant="decision" 
-      ${color ? `color="${color}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      <cbp-typography tag="h4" slot="cbp-card-title" ${headingId ? `id=${headingId}` : ``}>
-        ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
-        ${title}
-      </cbp-typography>
-      <p>${bodyText}</p>  
-      ${renderActions(actionsLayout, actionsFill, color,context, withIcon, headingId, actionsConfig)}
-    </cbp-card>
-  `;
-};
-
-const BannerTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
-  return ` 
-    <cbp-card
-      variant="banner"
-      ${color ? `color="${color}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      <cbp-typography tag="h4" slot="cbp-card-title">
-        ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
-        ${title}
-      </cbp-typography>
-      <p>${bodyText}</p>  
+      ${actionsLayout ? renderActions(actionsLayout, actionsFill, color, context, withIcon, headingId, actionsConfig) : ``}
     </cbp-card>
   `;
 };
@@ -137,11 +138,11 @@ const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
       <div slot="cbp-card-flag">
         <img src="https://api.dicebear.com/9.x/personas/svg" alt="Flag Card random image"/>
       </div>
-      <cbp-typography tag="h4" slot="cbp-card-title">
+      <cbp-typography tag="h4" slot="cbp-card-title" >
         ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
         ${title}
       </cbp-typography>
-      <p>${bodyText}</p>  
+      <p>${bodyText}</p>
     </cbp-card>
   `;
 };
@@ -157,7 +158,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
 
   return ` 
     <cbp-card
-      ${variant !=='default' ? `variant="${variant}"` : ''}
+      ${variant ? `variant="${variant}"` : ''}
       ${interactive ? `interactive="${interactive}"` : ''}
       ${href ? `href="${href}"` : ''}
       ${disabled ? 'disabled' : ''}
@@ -211,16 +212,8 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
 export const GeneralCard = GeneralTemplate.bind({});
 GeneralCard.args = {
   title: "Card Title",
+  headingId: "card-heading",
   bodyText: "Here is an example of some body text for this purely informational card",
-};
-GeneralCard.argTypes = {};
-
-export const DecisionCard = DecisionTemplate.bind({});
-DecisionCard.args = {
-  title: "Card Title",
-  headingId: "decision-card-heading",
-  bodyText: "Here is an example of some body text for this decision card.",
-  actionsLayout: "single",
   actionsFill: "solid",
   actionsConfig: {
     btn1: {
@@ -240,111 +233,14 @@ DecisionCard.args = {
     },
   },
 };
-DecisionCard.argTypes = {
-  color: {
-    name: "Color",
-    description: "Set the color of the card",
-    control: "select",
-    options: ["default", "danger"],
-  },
-  actionsLayout: {
-    name: "Actions Layout",
-    description: "Choose actions layout of the card component",
-    control: "radio",
-    options: ["single", "double", "triple"],
-  },
-  actionsFill: {
-    name: "Actions Fill",
-    description: "Choose the fill of the actions in the card component",
-    control: "radio",
-    options: ["solid", "outline", "ghost"]
-  },
-  actionsConfig: {
-    name: "Decision Card Actions",
-    description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
-    control: "object",
-  },
-};
 
-export const BannerCard = BannerTemplate.bind({});
+export const BannerCard = GeneralTemplate.bind({});
 BannerCard.args = {
+  variant: "banner",
   title: "Banner Card Title",
+  headingId: "banner-card-heading",
   bodyText: "Here is an example of some supplementary text for this purely informational card",
-};
-
-export const FlagCard = FlagTemplate.bind({});
-FlagCard.args = {
-  title: "Card Title",
-  bodyText: "Here is an example of some body text for this purely informational card",
-};
-FlagCard.argTypes = {
-  color: {
-    name: "Color",
-    description: "Set the color of the card",
-    control: "select",
-    options: ["default", "info", "success", "warning", "danger"],
-  },
-};
-
-export const InteractiveCard = InteractiveTemplate.bind({});
-InteractiveCard.args = {
-  title: "Banner Card Title",
-  bodyText: "Here is an example of some supplementary text for this purely informational card",
-  interactive: "clickable",
-  variant: "default",
-  href: "https://us-cbp.github.io/design-system/?path=/story/introduction--introduction"
-};
-
-InteractiveCard.argTypes = {
-  interactive: {
-    name: "Interactive",
-    description: "Set the interactivity of the card",
-    control: "select",
-    options: ["clickable", "selectable", "radio"],
-  },
-  href:{
-    control: "text"
-  },
-  disabled: {
-    control: "boolean",
-  },
-  color: {
-    control: "select",
-    options: ["default", "danger"],
-  },
-  variant: {
-    name: "Variant",
-    description: "set Variant of the card",
-    control: "select",
-    options: ["default", "flag"]
-  },
-};
-
-
-const BannerAndDecisionTemplate = ({ title, headingId, color, bodyText, actionsLayout, actionsConfig, withIcon, context, sx }) => {
-  return ` 
-    <cbp-card
-      variant="banner"
-      ${color ? `color="${color}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      <cbp-typography tag="h4" slot="cbp-card-title" ${headingId ? `id=${headingId}` : ``}>
-        ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
-        ${title}
-      </cbp-typography>
-      <p>${bodyText}</p>
-      ${renderActions(actionsLayout, "solid", color,context, withIcon, headingId, actionsConfig)}  
-    </cbp-card>
-  `;
-};
-
-export const BannerAndDecisionCard = BannerAndDecisionTemplate.bind({});
-BannerAndDecisionCard.args = {
-  title: "Banner Card Title",
-  headingId: "banner-and-decision-card",
-  bodyText: "Here is an example of some supplementary text for this purely informational card",
-  actionsLayout: "single",
+  actionsFill: "solid",
   actionsConfig: {
     btn1: {
       label: "Action 1",
@@ -361,10 +257,54 @@ BannerAndDecisionCard.args = {
       tag: "button",
       color: "tertiary",
     },
-  },
+  }
 };
 
-const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIcon, href, variant, context, sx }) => {
+export const FlagCard = FlagTemplate.bind({});
+FlagCard.args = {
+  title: "Card Title",
+  bodyText: "Here is an example of some body text for this purely informational card",
+};
+
+FlagCard.argTypes ={
+  actionsLayout: {
+    control: false
+  },
+  variant:{
+    control: false
+  }
+}
+
+export const InteractiveCard = InteractiveTemplate.bind({});
+InteractiveCard.args = {
+  title: "Banner Card Title",
+  bodyText: "Here is an example of some supplementary text for this purely informational card",
+  interactive: "clickable",
+  href: "https://us-cbp.github.io/design-system/?path=/story/introduction--introduction"
+};
+
+InteractiveCard.argTypes = {
+  interactive: {
+    name: "Interactive",
+    description: "Set the interactivity of the card",
+    control: "select",
+    options: ["clickable", "selectable", "radio"],
+  },
+  href:{
+    control: "text"
+  },
+  disabled: {
+    control: "boolean",
+  },
+  actionsLayout: {
+    control: false
+  },
+  variant:{
+    control: false
+  }
+};
+
+const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIcon, href, context, sx }) => {
 
   return ` 
     <cbp-form-field group
@@ -373,7 +313,6 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
       field-id="cardRadioGroup"
     >
       <cbp-card
-        ${variant !=='default' ? `variant="${variant}"` : ''}
         interactive="radio"
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
@@ -396,7 +335,6 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
       </cbp-card>
       
       <cbp-card
-        ${variant !=='default' ? `variant="${variant}"` : ''}
         interactive="radio"
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
@@ -419,7 +357,6 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
       </cbp-card>
 
       <cbp-card
-        ${variant !=='default' ? `variant="${variant}"` : ''}
         interactive= 'radio'
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
@@ -450,7 +387,6 @@ InteractiveRadioList.args = {
   title: "Banner Card Title",
   bodyText: "Here is an example of some supplementary text for this purely informational card",
   interactive: "clickable",
-  variant: "default",
   href: "https://us-cbp.github.io/design-system/?path=/story/introduction--introduction",
   sx: {"margin-bottom":"var(--cbp-space-1x)"}
 };
@@ -468,14 +404,10 @@ InteractiveRadioList.argTypes = {
   disabled: {
     control: "boolean",
   },
-  color: {
-    control: "select",
-    options: ["default", "danger"],
+  actionsLayout: {
+    control: false
   },
-  variant: {
-    name: "Variant",
-    description: "set Variant of the card",
-    control: "select",
-    options: ["default", "flag"]
+  variant:{
+    control: false
   }
 };

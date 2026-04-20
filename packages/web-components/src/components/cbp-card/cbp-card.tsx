@@ -6,7 +6,7 @@ import { setCSSProps } from '../../utils/utils';
  * 
  * @slot - The default slot contains the body of the card.
  * @slot cbp-card-title - Contains the card title, if present.
- * @slot cbp-card-actions - Contains the links/buttons for decision cards.
+ * @slot cbp-card-actions - Contains the links/buttons for cards.
  */
 @Component({
   tag: 'cbp-card',
@@ -19,7 +19,7 @@ export class CbpCard {
   @Prop({ reflect: true }) color: "info" | "success" | "warning" | "danger";
   
   /** Specifies optional variants with difference from the default card. */
-  @Prop({ reflect: true }) variant: "banner" | "decision" | "flag";
+  @Prop({ reflect: true }) variant: "banner" | "flag";
 
   /** Specifies the interactivity of the card. */
   @Prop({ reflect: true}) interactive: "clickable" | "selectable" | "radio";
