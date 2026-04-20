@@ -2,6 +2,12 @@ export default {
   title: 'Content/Card',
   tags: ['beta'],
   argTypes: {
+    variant: {
+      name: "Variant",
+      description: "set Variant of the card",
+      control: "select",
+      options: ["generic", "banner", "decision", "flag"]
+    },
     title: {
       name: 'Title (slotted)',
       description: 'Set the title in the banner area of the card',
@@ -12,6 +18,27 @@ export default {
       description: 'Set the body text of the card',
       control: 'text',
     },
+
+    actionsLayout:{
+      name: "Actions Layout",
+      description: "Choose actions layout of the card component",
+      control: "select",
+      options: ["single", "double", "triple"],
+    },
+    actionsFill: {
+      name: "Actions Fill",
+      description: "Choose the fill of the actions in the card component",
+      control: "radio",
+      options: ["solid", "outline", "ghost"],
+      if: {arg: "actionsLayout"}
+    },
+    actionsConfig: {
+      name: "Decision Card Actions",
+      description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
+      control: "object",
+      if: {arg: "actionsLayout"}
+    },
+
     stretch: {
       control: 'boolean',
     },
@@ -83,13 +110,13 @@ const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1,
 const GeneralTemplate = ({ variant, color, title, headingId, bodyText, actionsLayout, actionsFill, actionsConfig, withIcon, stretch, context, sx }) => {
   return ` 
     <cbp-card
-      ${variant ? `variant=${variant}` : ``}
+      ${variant != 'generic'? `variant=${variant}` : ``}
       ${color ? `color="${color}"` : ''}
       ${stretch ? `stretch` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}      
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      <cbp-typography tag="h4" slot="cbp-card-title">
+      <cbp-typography tag="h4" slot="cbp-card-title" id=${headingId}>
         ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
         ${title}
       </cbp-typography>
@@ -111,7 +138,7 @@ const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
       <div slot="cbp-card-flag">
         <img src="https://api.dicebear.com/9.x/personas/svg" alt="Flag Card random image"/>
       </div>
-      <cbp-typography tag="h4" slot="cbp-card-title">
+      <cbp-typography tag="h4" slot="cbp-card-title" >
         ${withIcon ? `<cbp-icon name="triangle-exclamation" size="1.25rem"></cbp-icon>` : ''}
         ${title}
       </cbp-typography>
@@ -131,7 +158,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
 
   return ` 
     <cbp-card
-      ${variant !=='default' ? `variant="${variant}"` : ''}
+      ${variant !=='generic' ? `variant="${variant}"` : ''}
       ${interactive ? `interactive="${interactive}"` : ''}
       ${href ? `href="${href}"` : ''}
       ${disabled ? 'disabled' : ''}
@@ -206,25 +233,27 @@ GeneralCard.args = {
     },
   },
 };
-GeneralCard.argTypes = {
-actionsLayout:{
-      name: "Actions Layout",
-      description: "Choose actions layout of the card component",
-      control: "select",
-      options: ["single", "double", "triple"],
-    },
-    actionsFill: {
-      name: "Actions Fill",
-      description: "Choose the fill of the actions in the card component",
-      control: "radio",
-      options: ["solid", "outline", "ghost"]
-    },
-    actionsConfig: {
-      name: "Decision Card Actions",
-      description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
-      control: "object",
-    },
-};
+// GeneralCard.argTypes = {
+//   actionsLayout:{
+//     name: "Actions Layout",
+//     description: "Choose actions layout of the card component",
+//     control: "select",
+//     options: ["single", "double", "triple"],
+//   },
+//   actionsFill: {
+//     name: "Actions Fill",
+//     description: "Choose the fill of the actions in the card component",
+//     control: "radio",
+//     options: ["solid", "outline", "ghost"],
+//     if: {arg: "actionsLayout"}
+//   },
+//   actionsConfig: {
+//     name: "Decision Card Actions",
+//     description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
+//     control: "object",
+//     if: {arg: "actionsLayout"}
+//   },
+// };
 
 export const BannerCard = GeneralTemplate.bind({});
 BannerCard.args = {
@@ -252,25 +281,27 @@ BannerCard.args = {
   }
 };
 
-BannerCard.argTypes={
-  actionsLayout:{
-    name: "Actions Layout",
-    description: "Choose actions layout of the card component",
-    control: "select",
-    options: ["single", "double", "triple"],
-  },
-  actionsFill: {
-    name: "Actions Fill",
-    description: "Choose the fill of the actions in the card component",
-    control: "radio",
-    options: ["solid", "outline", "ghost"]
-  },
-  actionsConfig: {
-    name: "Decision Card Actions",
-    description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
-    control: "object",
-  },
-}
+// BannerCard.argTypes={
+//   actionsLayout:{
+//     name: "Actions Layout",
+//     description: "Choose actions layout of the card component",
+//     control: "select",
+//     options: ["single", "double", "triple"],
+//   },
+//   actionsFill: {
+//     name: "Actions Fill",
+//     description: "Choose the fill of the actions in the card component",
+//     control: "radio",
+//     options: ["solid", "outline", "ghost"],
+//     if: {arg: "actionsLayout"}
+//   },
+//   actionsConfig: {
+//     name: "Decision Card Actions",
+//     description: "Configure card button labels and colors. Available button colors: `primary`, `secondary`, `tertiary` and `danger`",
+//     control: "object",
+//     if: {arg: "actionsLayout"}
+//   },
+// }
 
 export const FlagCard = FlagTemplate.bind({});
 FlagCard.args = {
@@ -278,12 +309,18 @@ FlagCard.args = {
   bodyText: "Here is an example of some body text for this purely informational card",
 };
 
+FlagCard.argTypes ={
+  actionLayout: {
+    control: false
+  }
+}
+
 export const InteractiveCard = InteractiveTemplate.bind({});
 InteractiveCard.args = {
   title: "Banner Card Title",
   bodyText: "Here is an example of some supplementary text for this purely informational card",
   interactive: "clickable",
-  variant: "default",
+  variant: "generic",
   href: "https://us-cbp.github.io/design-system/?path=/story/introduction--introduction"
 };
 
@@ -300,12 +337,9 @@ InteractiveCard.argTypes = {
   disabled: {
     control: "boolean",
   },
-  variant: {
-    name: "Variant",
-    description: "set Variant of the card",
-    control: "select",
-    options: ["default", "flag"]
-  },
+  actionLayout: {
+    control: false
+  }
 };
 
 const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIcon, href, variant, context, sx }) => {
@@ -394,7 +428,7 @@ InteractiveRadioList.args = {
   title: "Banner Card Title",
   bodyText: "Here is an example of some supplementary text for this purely informational card",
   interactive: "clickable",
-  variant: "default",
+  variant: "generic",
   href: "https://us-cbp.github.io/design-system/?path=/story/introduction--introduction",
   sx: {"margin-bottom":"var(--cbp-space-1x)"}
 };
@@ -412,10 +446,7 @@ InteractiveRadioList.argTypes = {
   disabled: {
     control: "boolean",
   },
-  variant: {
-    name: "Variant",
-    description: "set Variant of the card",
-    control: "select",
-    options: ["default", "flag"]
+  actionLayout: {
+    control: false
   }
 };
