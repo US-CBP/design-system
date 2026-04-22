@@ -6,12 +6,18 @@ The React components are wrappers generated from this package and will share the
 
 ## [unpublished] TBD
 
-* Significant refactor of the combobox variation of `cbp-dropdown` (using filter=true):
+* Updates to `cbp-structured-list` and `cbp-structured-list-item` to align their implementation with that of `cbp-table`.
+  * BREAKING: The `striped` property on `cbp-structured-list` is no longer a Boolean; it now accepts "odd" or "even" values (defaults to undefined/none).
+  * BREAKING: Removed the `selected` property from `cbp-structured-list`, matching the implementation of the Table component, as it was not synchronized with the slotted checkbox.
+  * Implemented all `color` variants in `cbp-structured-list-item`: "danger", "warning", "success", and "info" are now supported;
+* Refactor of the combobox variation of `cbp-dropdown` (using filter=true):
   * Now renders a native HTML `input type="text"` for the control, which properly triggers the virtual keyboard on touch devices.
+  * This text input does not have a `name` to be submitted with a form POST, as the selected values are passed via a hidden input.
   * Triggers filtering and async event emitters based on the "input" event rather than "keydown".
-  * This allows for arbitrary character deletion in the search string as well as pasting from the clipboard.
+  * This allows for arbitrary typing and deletion in the search string as well as pasting from the clipboard.
   * BREAKING: the "filterKeypress" and "populateCombobox" event emitters no longer pass the keys: "key", "altKey", "ctrlKey", or "metaKey" because these are not present in the input event.
   * The "searchString" value passed is those event emitters is already converted to lowercase.
+* BREAKING: Updated `cbp-card` by removing the "decision" `variant`, as it was not implemented in component logic (only styling), and is not mutually exclusive to other variants.
 * Updated the `cbp-button` CSS implementation to work better with custom values via props or CSS variables.
   * Removed default minimum height, which was making `cbp-accordion-item` taller than desired.
   * Setting `width` and `height` properties now overrides the corresponding CSS variables, `--cbp-button-width` and `--cbp-button-height` respectively.
@@ -24,7 +30,7 @@ The React components are wrappers generated from this package and will share the
 * Updated the `cbp-loader` component by removing the error and success messaging from the component.
   * The story appears identical, as the messaging was moved to story code.
   * This messaging should be contextual and provided by the consuming application.
-* Made alignment default to "top-center" on `cbp-tooltip`.
+* Made alignment default to "top-center" on `cbp-tooltip` (previously no default provided).
 * Fixed a number of accessibility defects caused by `aria-describedby` referencing `id`s that did not exist in the default stories.
 * Reorganized components in Storybook, grouping them by function.
 
