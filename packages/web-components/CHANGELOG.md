@@ -6,13 +6,26 @@ The React components are wrappers generated from this package and will share the
 
 ## [unpublished] TBD
 
-* Made alignment default to "top-center" on `cbp-tooltip`.
+* Significant refactor of the combobox variation of `cbp-dropdown` (using filter=true):
+  * Now renders a native HTML `input type="text"` for the control, which properly triggers the virtual keyboard on touch devices.
+  * Triggers filtering and async event emitters based on the "input" event rather than "keydown".
+  * This allows for arbitrary character deletion in the search string as well as pasting from the clipboard.
+  * BREAKING: the "filterKeypress" and "populateCombobox" event emitters no longer pass the keys: "key", "altKey", "ctrlKey", or "metaKey" because these are not present in the input event.
+  * The "searchString" value passed is those event emitters is already converted to lowercase.
 * Updated the `cbp-button` CSS implementation to work better with custom values via props or CSS variables.
   * Removed default minimum height, which was making `cbp-accordion-item` taller than desired.
   * Setting `width` and `height` properties now overrides the corresponding CSS variables, `--cbp-button-width` and `--cbp-button-height` respectively.
 * Update `cbp-tag` CSS to work better with custom cases (using `align-items: stretch` rather than `center` now).
 * Updated the `download` property on both `cbp-button` and `cbp-link` to accept either a boolean or optionally a string to specify the download filename.
-* Updated `cbp-table` CSS to fix some styles that were inadvertently overriding others that they shouldn't and added styling for row headers and group headers.
+* Updated `cbp-table` with the following:
+  * Fixed a bug in responsive behavior calculations.
+  * Fix some styles that were inadvertently overriding others that they shouldn't and added styling for row headers and group headers.
+  * Fixed column hover effect for complex, multi-row table headers.
+* Updated the `cbp-loader` component by removing the error and success messaging from the component.
+  * The story appears identical, as the messaging was moved to story code.
+  * This messaging should be contextual and provided by the consuming application.
+* Made alignment default to "top-center" on `cbp-tooltip`.
+* Fixed a number of accessibility defects caused by `aria-describedby` referencing `id`s that did not exist in the default stories.
 * Reorganized components in Storybook, grouping them by function.
 
 ## [0.0.1-develop.33] 03-26-2026
@@ -49,7 +62,7 @@ The React components are wrappers generated from this package and will share the
 * Updated component-level dark mode toggles with `!important` overrides so that if a color is specified via CSS variable, it is still swapped appropriately based on light/dark modes.
 * Updated the `sx` implementation in most stories so that they do not break on whitespace characters.
 * Added packages for generating llms.txt files from Storybook documentation.
-* llms.txt was generated for this release and will be updated for each release. It is available at https://us-cbp.github.io/design-system/llms.txt.
+* llms.txt was generated for this release and will be updated for each release. It is [available here](https://us-cbp.github.io/design-system/llms.txt).
 
 ## [0.0.1-develop.31] 02-13-2026
 
