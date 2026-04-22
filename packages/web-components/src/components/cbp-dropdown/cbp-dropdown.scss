@@ -154,8 +154,15 @@ cbp-dropdown {
       min-height: var(--cbp-space-9x);
       background: right calc( (var(--cbp-space-9x) / 2 ) - 8px) top calc( (var(--cbp-space-9x) / 2 ) - 8px) no-repeat var(--cbp-form-field-select-chevron), 
                   var(--cbp-form-field-color-border);
-      pointer-events: all;
     }
+  }
+
+  // The combobox faux-button (::before) does not inherit the hover and focus states because it's not encapsulated by the interactive element like the button version.
+  div:has(input.cbp-custom-form-control:hover) {
+    --cbp-form-field-color-border: var(--cbp-form-field-color-border-hover);
+  }
+  div:has(input.cbp-custom-form-control:focus) {
+    --cbp-form-field-color-border: var(--cbp-form-field-color-border-focus);
   }
 
   // Most visual styles for `.cbp-custom-form-control` are inherited from `cbp-form-field`.
@@ -223,15 +230,12 @@ cbp-dropdown {
     scrollbar-width: thin;
     scrollbar-color: var(--cbp-dropdown-menu-color-border) var(--cbp-form-field-color-bg);
 
-
     &:hover {
       --cbp-form-field-color-border: var(--cbp-form-field-color-border-hover);
     }
-
     &:focus-within {
       --cbp-form-field-color-border: var(--cbp-form-field-color-border-focus);
     }
-
   }
 
   &[error] {
@@ -244,23 +248,16 @@ cbp-dropdown {
   &[open] {
     --cbp-form-field-border-radius: var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0;
 
-    button::before {
+    // Rotate the faux-button (chevron) when open
+    button::before,
+    div:has(input.cbp-custom-form-control)::before {
       transform: rotate(180deg);
     }
-
+    // Reveal the hidden listbox
     .cbp-dropdown-menu {
       display: block;
     }
   }
-
-
-
-  // Keep focus style on the control when a dropdown menu has focus
-  /*
-  &:has(.cbp-dropdown-menu:focus-within) .cbp-custom-form-control {
-    outline-width: var(--cbp-border-size-lg); // This is set to 3px because of the 1px inset, overlapping the border; border+outline = 4px total.
-  }
-  */
 
   &[multiple] {
     --cbp-dropdown-item-padding-inline-start: 0;
