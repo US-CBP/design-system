@@ -42,8 +42,10 @@
   --cbp-dropdown-menu-color-counter-outline-focus-dark: var(--cbp-form-field-color-border);
 
   // These are used by the component and are not intended to be used by consumers
-  --cbp-dropdown-attached-button-start-width: 0;
-  --cbp-dropdown-attached-button-end-width: 0;
+  --cbp-dropdown-attached-button-start-width: 0px;
+  --cbp-dropdown-attached-button-end-width: 0px;
+  --cbp-dropdown-multiselect-indent: 0px; // override for combobox
+
   // On dark "button" background
   --cbp-dropdown-chevron-down: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="%23fcfcfc"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
   --cbp-dropdown-chevron-down-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="%231b1b1b"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
@@ -76,7 +78,7 @@ cbp-dropdown {
     --cbp-dropdown-chevron-down: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%231b1b1b"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
     --cbp-dropdown-chevron-down-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%23fcfcfc"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
     
-    .cbp-custom-form-control {
+    button.cbp-custom-form-control {
       --cbp-dropdown-chevron: var(--cbp-dropdown-chevron-down);
       background: right calc(var(--cbp-dropdown-attached-button-end-width) + 1.125rem - 8px) top calc(1rem - 8px) no-repeat var(--cbp-dropdown-chevron),
         var(--cbp-form-field-color-bg);
@@ -84,7 +86,7 @@ cbp-dropdown {
   }
 
   // Apply focus outline to dropdown menu as well
-  &:has(button[role=combobox]:focus) .cbp-dropdown-menu {
+  &:has([role=combobox]:focus) .cbp-dropdown-menu {
     outline: var(--cbp-border-size-md) solid var(--cbp-form-field-color-border-focus);
     border-color: var(--cbp-form-field-color-border-focus);
     scrollbar-color: var(--cbp-form-field-color-border-focus) var(--cbp-form-field-color-bg);
@@ -95,9 +97,24 @@ cbp-dropdown {
     display: block;
     flex-basis: 100%; // for child flex context
 
+    .cbp-combobox-wrapper {
+      position: relative;
+
+      .cbp-dropdown-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        height: var(--cbp-space-9x);
+        padding-inline-start: calc(var(--cbp-dropdown-attached-button-start-width) + var(--cbp-form-field-padding-inline) + var(--cbp-space-1x) - var(--cbp-border-size-md));
+        padding-inline-end: calc(var(--cbp-dropdown-attached-button-end-width) + var(--cbp-form-field-padding-inline) + var(--cbp-space-9x));
+      }
+    }
+
     // Override the input padding based on overlay size to prevent input text from being obscured (text may still be obscured if there's not enough space for it)
     .cbp-custom-form-control {
-      padding-inline-start: calc(var(--cbp-dropdown-attached-button-start-width) + var(--cbp-form-field-padding-inline));
+      padding-inline-start: calc(var(--cbp-dropdown-attached-button-start-width) + var(--cbp-form-field-padding-inline) + var(--cbp-dropdown-multiselect-indent));
       padding-inline-end: calc(var(--cbp-dropdown-attached-button-end-width) + var(--cbp-form-field-padding-inline) + var(--cbp-space-9x));
     }
 
@@ -122,11 +139,9 @@ cbp-dropdown {
   }
 
 
-  button.cbp-custom-form-control {
-    appearance: none;
-    white-space: nowrap;
-    padding-inline-end: var(--cbp-space-9x);
-
+  button.cbp-custom-form-control,
+  div:has(input.cbp-custom-form-control) {
+    // Before pseudo-element cannot be attached to input directly
     &::before {
       box-sizing: border-box;
       content: '';
@@ -137,48 +152,56 @@ cbp-dropdown {
       border-radius: 0 var(--cbp-form-field-border-radius) var(--cbp-form-field-border-radius) 0;
       width: var(--cbp-space-9x);
       min-height: var(--cbp-space-9x);
-      background: right calc( (var(--cbp-space-9x) / 2 ) - 8px) top calc( (var(--cbp-space-9x) / 2 ) - 8px)  no-repeat var(--cbp-form-field-select-chevron), 
+      background: right calc( (var(--cbp-space-9x) / 2 ) - 8px) top calc( (var(--cbp-space-9x) / 2 ) - 8px) no-repeat var(--cbp-form-field-select-chevron), 
                   var(--cbp-form-field-color-border);
+      pointer-events: all;
+    }
+  }
+
+  // Most visual styles for `.cbp-custom-form-control` are inherited from `cbp-form-field`.
+  button.cbp-custom-form-control,
+  input.cbp-custom-form-control {
+    appearance: none;
+    white-space: nowrap;
+    padding-inline-end: var(--cbp-space-9x);
+  }
+  
+  .cbp-dropdown-label,
+  .cbp-dropdown-placeholder {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-inline-end: var(--cbp-space-2x);
+  }
+
+  .cbp-dropdown-placeholder {
+    color: var(--cbp-dropdown-menu-color-placeholder);
+    font-style: italic;
+  }
+
+  .cbp-dropdown-multiselect-counter {
+    display: inline-block;
+    color: var(--cbp-dropdown-menu-color-counter);
+    background-color: var(--cbp-dropdown-menu-color-bg-counter);
+    font-size: var(--cbp-font-size-subhead);
+    font-weight: var(--cbp-font-weight-medium);
+    font-style: normal;
+    line-height: var(--cbp-space-3x);
+    padding: var(--cbp-space-1x) var(--cbp-space-2x);
+    margin-inline: var(--cbp-space-1x) var(--cbp-space-3x);
+    border-radius: var(--cbp-border-radius-pill);
+    outline: 0px solid var(--cbp-dropdown-menu-color-counter-outline-focus);
+    outline-offset: calc(-1 * (var(--cbp-space-1x) - 1px));
+
+    &:hover {
+      --cbp-dropdown-menu-color-bg-counter: var(--cbp-form-field-color-border-hover);
+      --cbp-dropdown-menu-color-bg-counter-dark: var(--cbp-form-field-color-border-hover-dark);
     }
 
-    .cbp-dropdown-label,
-    .cbp-dropdown-placeholder {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      padding-inline-end: var(--cbp-space-2x);
+    &:focus {
+      --cbp-dropdown-menu-color-bg-counter: var(--cbp-form-field-color-border-focus);
+      --cbp-dropdown-menu-color-bg-counter-dark: var(--cbp-form-field-color-border-focus-dark);
+      outline-width: var(--cbp-border-size-md);
     }
-
-    .cbp-dropdown-placeholder {
-      color: var(--cbp-dropdown-menu-color-placeholder);
-      font-style: italic;
-    }
-
-    .cbp-dropdown-multiselect-counter {
-      display: inline-block;
-      color: var(--cbp-dropdown-menu-color-counter);
-      background-color: var(--cbp-dropdown-menu-color-bg-counter);
-      font-size: var(--cbp-font-size-subhead);
-      font-weight: var(--cbp-font-weight-medium);
-      font-style: normal;
-      line-height: var(--cbp-space-3x);
-      padding: var(--cbp-space-1x) var(--cbp-space-2x);
-      margin-inline: var(--cbp-space-1x) var(--cbp-space-3x);
-      border-radius: var(--cbp-border-radius-pill);
-      outline: 0px solid var(--cbp-dropdown-menu-color-counter-outline-focus);
-      outline-offset: calc(-1 * (var(--cbp-space-1x) - 1px));
-
-      &:hover {
-        --cbp-dropdown-menu-color-bg-counter: var(--cbp-form-field-color-border-hover);
-        --cbp-dropdown-menu-color-bg-counter-dark: var(--cbp-form-field-color-border-hover-dark);
-      }
-
-      &:focus {
-        --cbp-dropdown-menu-color-bg-counter: var(--cbp-form-field-color-border-focus);
-        --cbp-dropdown-menu-color-bg-counter-dark: var(--cbp-form-field-color-border-focus-dark);
-        outline-width: var(--cbp-border-size-md);
-      }
-    }
-
   }
 
   .cbp-dropdown-menu {
@@ -243,5 +266,11 @@ cbp-dropdown {
     --cbp-dropdown-item-padding-inline-start: 0;
     --cbp-dropdown-item-padding-block: var(--cbp-space-1x);
     --cbp-dropdown-item-font-style-selected: normal;
+
+    .cbp-combobox-wrapper {
+      .cbp-custom-form-control {
+        --cbp-dropdown-multiselect-indent: calc(3.5rem + var(--cbp-space-1x));
+      }
+    }
   }
 }
