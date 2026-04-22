@@ -97,11 +97,12 @@ The Dropdown component offers an alternative to the native select element that c
 
 * The associated label and `aria-describedby` are provided by the parent `cbp-form-field` component.
 * The Dropdown is implemented using the combobox pattern for accessibility, which means:
-  * The Dropdown control is actually a button with a `role="combobox"`.
+  * For Dropdowns, the Dropdown control is actually a button with a `role="combobox"`.
+  * For Comboboxes (filter=true), the control is an `input type="text"` with a `role="combobox"`.
   * When the dropdown is opened, focus remains on the control, while the "current" option is indicated by the `aria-activedescendant` attribute on the control, which references the visibly highlighted option's `id`.
   * The Dropdown menu has a `role="listbox"`.
   * The Dropdown Items have `role="option"`.
-  * The selected Dropdown Item has `aria-selected="true"` while the others have `aria-selected="false"`. (is this relevant since focus is not sent to the options?)
+  * The selected Dropdown Item has `aria-selected="true"` while the others have `aria-selected="false"`.
   * The component fully supports keyboard navigation, as described above in the User Interactions section.
 
 ### Additional Notes and Considerations
@@ -119,6 +120,7 @@ The Dropdown component offers an alternative to the native select element that c
   * An event is also emitted in case the item needs to be created on the fly in the backend (e.g., to provide an `id` as a value from a relational database) and served back to the dropdown via an API call.
 * TODO: Requires additional testing with `cbp-form-field-wrapper`.
 * TODO: Investigate persisting selected options in multi-select combobox (especially asynchronous combobox).
+* TODO: Refactor filter/combobox functionality into its own `cbp-combobox` component, as `cbp-dropdown` is doing too many things and getting unwieldy.
 
 #### Dropdown logic flow:
 

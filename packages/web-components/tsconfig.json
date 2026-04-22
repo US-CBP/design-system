@@ -6,6 +6,7 @@
     "declaration": false,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+    "strictNullChecks": false,
     "lib": [
       "dom",
       "dom.iterable",

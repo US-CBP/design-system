@@ -25,19 +25,19 @@ export class CbpDropdown {
     This needs to be stripped down and revisited.
   */
 
-
-  private control: HTMLButtonElement;
+  private control: HTMLButtonElement | HTMLInputElement;
   private formField: HTMLInputElement; // the hidden input that stores the dropdown value for form posts
+  
   private initialValue: any // string | object - Save the initial value to support reset functionality
 
   private listbox: HTMLElement;
   private dropdownItems: HTMLCbpDropdownItemElement[] = [];
   // even with the same typings, these are JSX nodes and behaving differently than Array.from()
   private generatedItems: HTMLCbpDropdownItemElement[] = [];
-  private focusIndex: number;
+  private focusIndex: number | undefined;
 
   private matches: number[] = []; // an array of indexes (to dropdownItems) of the matches.
-  private matchIndex: number; // like focusIndex, but to the matches array
+  private matchIndex: number | undefined; // like focusIndex, but to the matches array
 
   private counterControl: HTMLElement;
   private createOption: HTMLCbpDropdownItemElement;
@@ -47,7 +47,7 @@ export class CbpDropdown {
   private attachedButtonStartWidth;
   private attachedButtonEndWidth;
 
-  private createLabel: string; // the button label when the create option is in use
+  private createLabel: string | undefined; // the button label when the create option is in use
 
   private visible: boolean = false; // tracked for size calculations
   private observer: ResizeObserver;
@@ -57,7 +57,10 @@ export class CbpDropdown {
 
   @Element() private host: HTMLCbpDropdownElement;
 
-  /** Specifies whether multiple selections are supported, in which case checkboxes shall be slotted in accordance with the design system specified pattern. Defaults to false, which renders a single-select dropdown. */
+  /** 
+   * Specifies whether multiple selections are supported, in which case checkboxes shall be slotted in accordance 
+   * with the design system specified pattern. Defaults to false, which renders a single-select dropdown. 
+   */
   @Prop({ reflect: true }) multiple: boolean = false;
 
   /** Specifies whether the dropdown accepts key presses to filter results, enabling combobox functionality. */
@@ -101,7 +104,7 @@ export class CbpDropdown {
    * Specifies the visible label on the dropdown control of the selected item. 
    * Primarily updated dynamically by the component. 
    */
-  @Prop({ mutable: true }) selectedLabel: string;
+  @Prop({ mutable: true }) selectedLabel: string | undefined;
 
   /** 
    * Specifies the value of the hidden input holding the value (or barring one, the text label) 
@@ -161,7 +164,7 @@ export class CbpDropdown {
   @Listen('dropdownItemClick')
   handleDropdownItemClick(e) {
     const { host, label, value } = e.detail;
-    let oldIndex=this.focusIndex;
+    let oldIndex = this.focusIndex;
 
     // If this was a "Create" item, then ignore all other behavior
     if (this.create && label==`Create "${value}"`) {
@@ -207,8 +210,10 @@ export class CbpDropdown {
         });
         // Update values at this level, close the menu, and return focus to the control
         this.selectedLabel = label;
+        this.control.value = this.searchString = label; // update the control value, which only has a visible effect for the combobox text input
         this.value = value;
         this.open = false;
+        
         // Delay sending focus a bit to prevent enter from re-opening the dropdown (verified)
         setTimeout(() => {
           this.control.focus();
@@ -269,8 +274,11 @@ export class CbpDropdown {
         item.current=false;
       })
       this.control.removeAttribute('aria-activedescendant');
-      //this.focusIndex = newValue; // TechDebt: This should persist in some cases. But not in others - which ones?
-      this.clearFilters();
+      
+      // Clear multi-select comboboxes (to show default state), but not single select comboboxes, which retain the selection text.
+      if (this.multiple && this.filter) {
+        this.clearFilters();
+      }
     }
   }
 
@@ -299,8 +307,8 @@ export class CbpDropdown {
       this.selectedItems=[];
       this.selectedItemCount=0;
 
-      let matches=[];
-      this.generatedItems.forEach( (index) => {
+      let matches: number[] = [];
+      this.generatedItems.forEach( (_, index) => {
         matches = [...matches, index];
       })
       this.matches = matches;
@@ -344,7 +352,7 @@ export class CbpDropdown {
     });
 
     // reset the value
-    this.multiple ? (this.value = []) : (this.formField.value = undefined);
+    this.multiple ? (this.value = []) : (this.formField.value = '');
 
     // Update the selectedItems state after all of the items have been deselected
     setTimeout(() => {
@@ -415,7 +423,6 @@ export class CbpDropdown {
         items = JSON.parse(this.items) || {};
       }
       else items = this.items;
-      //console.log(items);
       const newItemJSON: object = {label : e.detail.value, value : e.detail.value};
       this.items = [...items, newItemJSON]
     }
@@ -437,7 +444,7 @@ export class CbpDropdown {
     if (this.multiple) {
         // If there is already a value, turn it into an array
         if(this.value && typeof this.value == "string") this.value=this.value.split(',');
-        // update the values array based on selected/unselected state of the clicked item
+        // Update the values array based on selected/unselected state of the clicked item
         selected ? (this.value = [...this.value, value]) : (this.value = this.value.filter(item => item !== value));
     }
     // single select
@@ -497,9 +504,9 @@ export class CbpDropdown {
 
     if (this.multiple) {
       if (!!this.selectedItems) this.value=[];
-      let temp=[]; // make an array of the values of selected items
+      let temp: string[] = []; // make an array of the values of selected items
       this.selectedItems.forEach(item => {
-        const checkbox: HTMLInputElement = item.querySelector('input[type=checkbox]');
+        const checkbox = item.querySelector('input[type=checkbox]') as HTMLInputElement;
         temp = [...temp, checkbox.value];
       });
       this.value=temp;
@@ -532,14 +539,12 @@ export class CbpDropdown {
 
   */
   generateItems(items) {
-    //if(this.debug) console.log('cbp-dropdown debugging - generateItems from JSON items property:', items, this.value, this.host);
-
     // Parse stringified JSON into an object for easier manipulation
     if (typeof items == 'string') {
       items = JSON.parse(items) || {};
     }
 
-    let firstSelected: number;
+    let firstSelected: number | undefined;
     let newValue: any;
 
     // Search the JSON to see if selected items are being set explicitly
@@ -612,7 +617,6 @@ export class CbpDropdown {
               : (!this.multiple && this.value==value) 
                 ? true
                 : false;
-      //console.log(`${label} selected? `, ItemSelected);
 
       let newItem: HTMLCbpDropdownItemElement =  
         <cbp-dropdown-item 
@@ -662,6 +666,7 @@ export class CbpDropdown {
   }
 
 
+  // Check existing items in a combobox for an exact match to hide the "create" option in that case
   checkExactMatch(): boolean {
     let exactMatch: boolean = false;
     this.dropdownItems.forEach( item => {
@@ -694,11 +699,14 @@ export class CbpDropdown {
 
   // This handles activating the button via touch, Space or Enter as well (as long as it's not readonly or disabled).
   handleDropdownClick(e) {
-    if (e.detail && !this.readonly && !this.disabled) this.open = !this.open;
+    if (e.detail && !this.readonly && !this.disabled) {
+      this.open = !this.open;
+      this.control?.focus();
+    }
   }
 
-  // Testing...
-  getActionFromKey( event) {
+  // Handles navigation and selection keys
+  getActionFromKey(event) {
     const { key, altKey, ctrlKey, metaKey } = event;
     const selectKeys = ['Enter', ' '];
     const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ']; // all keys that will do the default open action
@@ -708,8 +716,8 @@ export class CbpDropdown {
     // with an exception for pressing space as part of a combobox searchString (not the first character).
     // Run this first, before the menu may be opened by later code.
     if (this.open && selectKeys.includes(key) && !this.typingMode) {
-      //event.preventDefault();
-      this.dropdownItems[this.focusIndex]?.click();
+      event.preventDefault();
+      this.dropdownItems[this.focusIndex!]?.click();
       return;
     }
 
@@ -719,17 +727,16 @@ export class CbpDropdown {
       const l = (this.filter && this.searchString) ? this.matches?.length -1 || 0: this.dropdownItems?.length - 1 || 0; // length
       const n = {
         Home: 0,
-        ArrowUp: -1 < i + -1 ? i + -1 : l,
-        ArrowDown: l + 1 > i + 1 ? i + 1 : 0,
+        ArrowUp: -1 < i! + -1 ? i! + -1 : l,
+        ArrowDown: l + 1 > i! + 1 ? i! + 1 : 0,
         End: l,
       }[key]; //navigation key pressed
 
       // If it was a navigation key
       if (n !== undefined && key !== 'Tab') {
-        //console.log('Keyboard nav: ',key);
         this.typingMode=false;
         this.matchIndex = n;
-        this.setCurrent( (this.filter && this.searchString) ? this.matches[n] : n, this.focusIndex);
+        this.setCurrent( (this.filter && (this.searchString)) ? this.matches[n] : n, this.focusIndex); // default to 0 if create?
         if (!this.filter) this.searchString='';
       }
     }
@@ -765,13 +772,11 @@ export class CbpDropdown {
           !navKeys.includes(key)
         )
     ) {
-      //console.log('Typing Mode = true: ',key);
       this.open=true;
       if(this.filter) this.typingMode=true;
-      this.filter ? this.searchByString(key.toLowerCase(), event) : this.jumpToLetter(key.toLowerCase());
+      if(!this.filter) this.jumpToLetter(key.toLowerCase()); // combobox will pass through functionality to onInput to make use of the modified input
     }
   }
-
 
   /*
    *  Single letter cycling (like a native select)
@@ -790,15 +795,15 @@ export class CbpDropdown {
     // If the letter pressed matched the last one, cycle through the matches
     else {
       if (this.matches.length > 0) {
-        if (this.matchIndex+1 < this.matches.length) this.matchIndex += 1;
+        if (this.matchIndex! + 1 < this.matches.length) this.matchIndex! += 1;
         else this.matchIndex = 0;
-        this.setCurrent(this.matches[this.matchIndex],this.focusIndex);
+        this.setCurrent(this.matches[this.matchIndex!],this.focusIndex);
       }
     }
   }
 
   getFirstLetterMatches(letter) {
-    let matches=[];
+    let matches: number[] = [];
     this.dropdownItems.forEach( (item, index) => {
       const label=item.innerText.toLowerCase().trim();
       // does this item start with the character pressed?
@@ -808,34 +813,20 @@ export class CbpDropdown {
     });
     this.matches = matches;
   }
-  
 
-  // Filtering by search string
-  searchByString(letter,e) {
-    const { altKey, ctrlKey, metaKey } = e;
-    
-    // handle deletion of a character
-    if ( letter == 'backspace' || letter == 'clear') {
-      const l = this.searchString.length;
-      if (l <= 1) {
-        this.clearFilters();
-        return;
-      }
-      else this.searchString = this.searchString.substring(0, l - 1);
-    }
-    // Otherwise append the letter to the searchString
-    else {
-      this.searchString += letter;
-    }
 
+  // The input even now triggers filtering in a combobox after keyboard navigation has been filtered out
+  handleComboBoxInput(event) {
+    this.searchString = this.control.value.toLowerCase();
+    this.searchByString(this.searchString, event);
+  }
+
+  // Filtering by search string via "input" event rather than keypress (supports arbitrary typing/deletion as well as paste)
+  searchByString(searchString,e) {
     // Emit the filterKeypress event once the search string is updated
     this.filterKeypress.emit({
       host: this.host,
-      key: letter,
-      altKey: altKey,
-      ctrlKey: ctrlKey,
-      metaKey: metaKey,
-      searchString: this.searchString,
+      searchString: searchString,
       nativeEvent: e
     })
 
@@ -845,11 +836,7 @@ export class CbpDropdown {
       if (this.searchString.length >= this.minimumInputLength) {
         this.populateCombobox.emit({
           host: this.host,
-          key: letter,
-          altKey: altKey,
-          ctrlKey: ctrlKey,
-          metaKey: metaKey,
-          searchString: this.searchString,
+          searchString: searchString,
           nativeEvent: e
         });
       }
@@ -864,7 +851,7 @@ export class CbpDropdown {
 
     // If not async filter within them
     else {
-      this.getSearchStringMatches(this.searchString);
+      this.getSearchStringMatches(searchString);
       this.filterDropdownItems(this.matches);
       if (this.matches.length > 0) {
         this.setCurrent(this.matches[0],this.focusIndex);
@@ -872,9 +859,9 @@ export class CbpDropdown {
     }
   };
   
-  // Updates the matches[], based on search string matches
+  // Updates the matches[], based on search string matches (searching the entire collection of dropdown items)
   getSearchStringMatches(searchString) {
-    let matches=[];
+    let matches: number[] = [];
     this.dropdownItems.forEach( (item, index) => {
       const label=item.innerText.toLowerCase().trim();
 
@@ -891,7 +878,7 @@ export class CbpDropdown {
     this.matchIndex=0;
   }
 
-  // Updates the selectable dropdown items based on matches[]
+  // Updates the selectable dropdown items based on matches[] by hiding the rest
   filterDropdownItems(matches){
     this.dropdownItems.forEach( (item, index) => {
       matches.includes(index) ? item.removeAttribute('hidden') : item.setAttribute('hidden','');
@@ -903,6 +890,7 @@ export class CbpDropdown {
     this.matches=[];
     this.matchIndex=undefined;
     this.searchString='';
+    this.control.value='';
     this.dropdownItems.forEach( item => {
       if (!item.classList.contains('cbp-dropdown-item-no-results')) item.removeAttribute('hidden');
     });
@@ -928,8 +916,9 @@ export class CbpDropdown {
     this.setCurrent(newIndex,oldIndex);
   }
 
-  //
-  setCurrent(newValue=0, oldValue=undefined) {
+
+  // Sets the "current" item during keyboard navigation
+  setCurrent(newValue: number = 0, oldValue: number | undefined = undefined) {
     if(this.debug) console.log('cbp-dropdown debugging - setCurrent(): ', oldValue, ' => ', newValue);
 
     // Unset the old item, if any
@@ -1017,9 +1006,9 @@ export class CbpDropdown {
     // TechDebt: Use the dropdown values as they should match the checkbox values
     if (this.multiple && !this.value) {
       if (!!this.selectedItems) this.value=[];
-      let temp=[]; // make an array of the values of selected items
+      let temp: string[] = []; // make an array of the values of selected items
       this.selectedItems.forEach(item => {
-        const checkbox: HTMLInputElement = item.querySelector('input[type=checkbox]');
+        const checkbox = item.querySelector('input[type=checkbox]') as HTMLInputElement;
         temp = [...temp, checkbox.value];
       });
       this.value=temp;
@@ -1115,7 +1104,7 @@ export class CbpDropdown {
     if (this.multiple) {
       this.selectedItemCount = this.value.length; // value was already split on initial load
     }
-    this.createLabel = (this.create && this.searchString.length >= this.minimumInputLength) ? `Create "${this.searchString}"` : undefined;
+    this.createLabel = (this.create && this.searchString.length >= this.minimumInputLength) ? `Create "${this.control.value}"` : undefined;
 
     return (
       <Host>
@@ -1125,24 +1114,26 @@ export class CbpDropdown {
        
           <slot name="cbp-dropdown-attached-button-start" />
 
-          <button
-            type="button"
-            class="cbp-custom-form-control"
-            id={this.fieldId}
-            role="combobox"
-            aria-controls={`${this.fieldId}-menu`}
-            aria-expanded={`${this.open}`}
-            aria-haspopup="listbox"
-            aria-invalid={this.error ? 'true' : false}
-            disabled={this.disabled || this.readonly} 
-            onClick={e => this.handleDropdownClick(e)}
-            onKeyDown={e => this.getActionFromKey(e)}
-            ref={el => (this.control = el)}
-          >
-            { (this.selectedLabel || (this.filter && this.searchString)) 
-              ? <div class="cbp-dropdown-label">{this.filter && this.searchString ? this.searchString : this.selectedLabel}</div>
-              : <div class="cbp-dropdown-placeholder">
-                {this.multiple && (
+          { this.filter ?
+            <div class="cbp-combobox-wrapper" onClick={e => this.handleDropdownClick(e)}>
+              <input
+                type="text"
+                class="cbp-custom-form-control"
+                id={this.fieldId}
+                placeholder={!this.multiple ? this.placeholder : undefined}
+                role="combobox"
+                aria-controls={`${this.fieldId}-menu`}
+                aria-expanded={`${this.open}`}
+                aria-haspopup="listbox"
+                aria-invalid={this.error ? 'true' : false}
+                disabled={this.disabled || this.readonly} 
+                autocomplete="off"
+                onKeyDown={e => this.getActionFromKey(e)}
+                onInput={e => this.handleComboBoxInput(e)}
+                ref={el => (this.control = el!)}
+              />
+              { this.multiple && (
+                <div class="cbp-dropdown-placeholder">
                   <span
                     role="button"
                     tabindex={0}
@@ -1150,7 +1141,7 @@ export class CbpDropdown {
                     title={`Click to clear selections`}
                     onClick={e => this.handleCounterClick(e)}
                     onKeyDown={e => this.handleCounterKeydown(e)}
-                    ref={el => (this.counterControl = el)}
+                    ref={el => (this.counterControl = el!)}
                   >
                     {this.selectedItemCount}
                     <cbp-icon 
@@ -1159,11 +1150,52 @@ export class CbpDropdown {
                       sx={{ 'margin-inline-start': 'var(--cbp-space-2x)' }} 
                     />
                   </span>
-                )}
-                {this.placeholder}
-              </div>
+                  {!this.searchString ? this.placeholder : ''}
+                </div>
+              )}
+            </div>
+
+          :
+            <button
+              type="button"
+              class="cbp-custom-form-control"
+              id={this.fieldId}
+              role="combobox"
+              aria-controls={`${this.fieldId}-menu`}
+              aria-expanded={`${this.open}`}
+              aria-haspopup="listbox"
+              aria-invalid={this.error ? 'true' : false}
+              disabled={this.disabled || this.readonly} 
+              onClick={e => this.handleDropdownClick(e)}
+              onKeyDown={e => this.getActionFromKey(e)}
+              ref={el => (this.control = el!)}
+            >
+              { (this.selectedLabel || (this.filter && this.searchString)) 
+                ? <div class="cbp-dropdown-label">{this.filter && this.searchString ? this.searchString : this.selectedLabel}</div>
+                : <div class="cbp-dropdown-placeholder">
+                  {this.multiple && (
+                    <span
+                      role="button"
+                      tabindex={0}
+                      class="cbp-dropdown-multiselect-counter"
+                      title={`Click to clear selections`}
+                      onClick={e => this.handleCounterClick(e)}
+                      onKeyDown={e => this.handleCounterKeydown(e)}
+                      ref={el => (this.counterControl = el!)}
+                    >
+                      {this.selectedItemCount}
+                      <cbp-icon 
+                        name="circle-xmark" 
+                        size="var(--cbp-space-3x)" 
+                        sx={{ 'margin-inline-start': 'var(--cbp-space-2x)' }} 
+                      />
+                    </span>
+                  )}
+                  {this.placeholder}
+                </div>
+            }
+            </button>
           }
-          </button>
 
           <slot name="cbp-dropdown-attached-button-end" />
 
@@ -1173,7 +1205,7 @@ export class CbpDropdown {
             name={`${this.name}`}
             value={ this.value != undefined ? `${this.value}` : ''}
             disabled={this.disabled}
-            ref={el => (this.formField = el)}
+            ref={el => (this.formField = el!)}
           />
 
           <div
@@ -1181,7 +1213,7 @@ export class CbpDropdown {
             class="cbp-dropdown-menu"
             tabIndex={-1}
             id={`${this.fieldId}-menu`}
-            ref={el => (this.listbox = el)}
+            ref={el => (this.listbox = el!)}
           >
             <cbp-dropdown-item 
               value=""
@@ -1215,7 +1247,7 @@ export class CbpDropdown {
                 class="cbp-dropdown-create-item"
                 key="cbp-dropdown-create-item" 
                 selected={false}
-                ref={el => this.createOption = el}
+                ref={el => this.createOption = el!}
               >
                 {this.createLabel}
               </cbp-dropdown-item>

@@ -74,4 +74,4 @@ The Table component is a wrapper component encapsulating design system styles fo
 * For selectable table rows (multi-row action table pattern):
   * The checkboxes are slotted and loosely coupled; any functionality including "select all" functionality an optional header checkbox must be implemented via application code.
   * It is not advised to use linearization for responsive behavior in this case.
-* Column highlighting on hover should not be used on tables that have complex/multi-row column headers.
+* For tables with complex, multi-row headings, column highlighting is only applied to the columns beneath each of the last header row headings.
