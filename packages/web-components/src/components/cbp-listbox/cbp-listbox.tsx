@@ -13,7 +13,7 @@ import { setCSSProps, clickAwayListener, createNamespaceKey, createValidId } fro
 export class CbpListbox {
 
   private formField: HTMLInputElement; // the hidden input that stores the dropdown value for form posts
-  private autocomplete: string;
+  private autocomplete: string | null;
   private value: string =''; // track the value of the wrapped input as a sort of internal state
   private listbox: HTMLElement;
   private listboxItems: HTMLLIElement[] = [];
@@ -172,7 +172,7 @@ export class CbpListbox {
     // Run this first, before the menu may be opened by later code.
     if (this.open && selectKeys.includes(key)) {
       event.preventDefault();
-      this.listboxItems[this.focusIndex]?.click();
+      this.listboxItems[this.focusIndex!]?.click();
       return;
     }
 
@@ -285,9 +285,9 @@ export class CbpListbox {
     }
 
     // Get a reference to the slotted native input (text or search)
-    this.formField=this.host.querySelector('input');
+    this.formField = this.host.querySelector('input') as HTMLInputElement;
     // save the default autocomplete attribute if set so it can be reverted properly
-    this.autocomplete=this.formField?.getAttribute('autocomplete');
+    this.autocomplete = this.formField.getAttribute('autocomplete');
 
     // Update attributes directly on the input to make it an accessible combobox
     this.formField?.setAttribute('role','combobox');
@@ -332,7 +332,7 @@ export class CbpListbox {
           role="listbox"
           hidden={!this.open}
           tabindex={-1}
-          ref={ (el) => this.listbox = el}
+          ref={ (el) => this.listbox = el!}
           onClick={(e) => this.handleListboxClick(e)}
         >
           {[...this.generatedItems]}
