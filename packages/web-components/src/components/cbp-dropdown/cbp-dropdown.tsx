@@ -29,7 +29,6 @@ export class CbpDropdown {
   private formField: HTMLInputElement; // the hidden input that stores the dropdown value for form posts
   
   private initialValue: any // string | object - Save the initial value to support reset functionality
-  //private initialLabel: any // string | object - Save the visible selection label to support reset functionality
 
   private listbox: HTMLElement;
   private dropdownItems: HTMLCbpDropdownItemElement[] = [];
@@ -58,7 +57,10 @@ export class CbpDropdown {
 
   @Element() private host: HTMLCbpDropdownElement;
 
-  /** Specifies whether multiple selections are supported, in which case checkboxes shall be slotted in accordance with the design system specified pattern. Defaults to false, which renders a single-select dropdown. */
+  /** 
+   * Specifies whether multiple selections are supported, in which case checkboxes shall be slotted in accordance 
+   * with the design system specified pattern. Defaults to false, which renders a single-select dropdown. 
+   */
   @Prop({ reflect: true }) multiple: boolean = false;
 
   /** Specifies whether the dropdown accepts key presses to filter results, enabling combobox functionality. */
@@ -211,6 +213,7 @@ export class CbpDropdown {
         this.control.value = this.searchString = label; // update the control value, which only has a visible effect for the combobox text input
         this.value = value;
         this.open = false;
+        
         // Delay sending focus a bit to prevent enter from re-opening the dropdown (verified)
         setTimeout(() => {
           this.control.focus();
@@ -381,7 +384,6 @@ export class CbpDropdown {
 
   // Create a new dropdown item (and select it) after the user clicked the "Create" item
   doCreateItem(e){
-    console.log(e);
     const { value } = e.detail;
     e.stopPropagation();
 
@@ -421,7 +423,6 @@ export class CbpDropdown {
         items = JSON.parse(this.items) || {};
       }
       else items = this.items;
-      //console.log(items);
       const newItemJSON: object = {label : e.detail.value, value : e.detail.value};
       this.items = [...items, newItemJSON]
     }
@@ -443,7 +444,7 @@ export class CbpDropdown {
     if (this.multiple) {
         // If there is already a value, turn it into an array
         if(this.value && typeof this.value == "string") this.value=this.value.split(',');
-        // update the values array based on selected/unselected state of the clicked item
+        // Update the values array based on selected/unselected state of the clicked item
         selected ? (this.value = [...this.value, value]) : (this.value = this.value.filter(item => item !== value));
     }
     // single select
@@ -538,8 +539,6 @@ export class CbpDropdown {
 
   */
   generateItems(items) {
-    //if(this.debug) console.log('cbp-dropdown debugging - generateItems from JSON items property:', items, this.value, this.host);
-
     // Parse stringified JSON into an object for easier manipulation
     if (typeof items == 'string') {
       items = JSON.parse(items) || {};
@@ -618,7 +617,6 @@ export class CbpDropdown {
               : (!this.multiple && this.value==value) 
                 ? true
                 : false;
-      //console.log(`${label} selected? `, ItemSelected);
 
       let newItem: HTMLCbpDropdownItemElement =  
         <cbp-dropdown-item 
@@ -707,14 +705,12 @@ export class CbpDropdown {
     }
   }
 
-  // Testing...
+  // Handles navigation and selection keys
   getActionFromKey(event) {
     const { key, altKey, ctrlKey, metaKey } = event;
     const selectKeys = ['Enter', ' '];
     const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ']; // all keys that will do the default open action
     const navKeys = ['ArrowDown', 'ArrowUp', 'Enter', 'Home', 'End']; // all keys that will do the default open action
-
-    console.log(event, this.matches);
 
     // If the menu is already open, pressing enter or space triggers a click on the current item -
     // with an exception for pressing space as part of a combobox searchString (not the first character).
@@ -738,7 +734,6 @@ export class CbpDropdown {
 
       // If it was a navigation key
       if (n !== undefined && key !== 'Tab') {
-        //console.log('Keyboard nav: ',key);
         this.typingMode=false;
         this.matchIndex = n;
         this.setCurrent( (this.filter && (this.searchString)) ? this.matches[n] : n, this.focusIndex); // default to 0 if create?
@@ -777,12 +772,9 @@ export class CbpDropdown {
           !navKeys.includes(key)
         )
     ) {
-      //console.log('Typing Mode = true: ',key);
       this.open=true;
       if(this.filter) this.typingMode=true;
-
-      //this.filter ? this.searchByString(key.toLowerCase(), event) : this.jumpToLetter(key.toLowerCase());
-      if (!this.filter) this.jumpToLetter(key.toLowerCase()); // combobox will pass through functionality to onInput to make use of the modified input
+      if(!this.filter) this.jumpToLetter(key.toLowerCase()); // combobox will pass through functionality to onInput to make use of the modified input
     }
   }
 
@@ -823,35 +815,14 @@ export class CbpDropdown {
   }
 
 
+  // The input even now triggers filtering in a combobox after keyboard navigation has been filtered out
   handleComboBoxInput(event) {
-    console.log('Handling ComboBox Input: ', event);
     this.searchString = this.control.value.toLowerCase();
     this.searchByString(this.searchString, event);
   }
 
-
-  // Filtering by search string via "input" event rather than keypress (supports arbitrary character deletion as well as paste)
+  // Filtering by search string via "input" event rather than keypress (supports arbitrary typing/deletion as well as paste)
   searchByString(searchString,e) {
-    //const { altKey, ctrlKey, metaKey } = e;
-    
-    /*
-    // handle deletion of a character
-    if ( letter == 'backspace' || letter == 'clear') {
-      const l = this.searchString.length;
-      if (l <= 1) {
-        this.clearFilters();
-        return;
-      }
-      //else this.searchString = this.searchString.substring(0, l - 1);
-      else this.searchString = this.control.value.substring(0, l - 1);
-    }
-    // Otherwise append the letter to the searchString
-    else {
-      this.searchString = this.control.value + letter;
-    }
-    */
-    console.log('searchByString(): ', searchString, e);
-
     // Emit the filterKeypress event once the search string is updated
     this.filterKeypress.emit({
       host: this.host,
@@ -949,7 +920,6 @@ export class CbpDropdown {
   // Sets the "current" item during keyboard navigation
   setCurrent(newValue: number = 0, oldValue: number | undefined = undefined) {
     if(this.debug) console.log('cbp-dropdown debugging - setCurrent(): ', oldValue, ' => ', newValue);
-    console.log('cbp-dropdown debugging - setCurrent(): ', oldValue, ' => ', newValue);
 
     // Unset the old item, if any
     if (oldValue != undefined && oldValue != newValue && this.dropdownItems[oldValue]) {
@@ -1158,16 +1128,12 @@ export class CbpDropdown {
                 aria-invalid={this.error ? 'true' : false}
                 disabled={this.disabled || this.readonly} 
                 autocomplete="off"
-                //onClick={e => this.handleDropdownClick(e)}
                 onKeyDown={e => this.getActionFromKey(e)}
                 onInput={e => this.handleComboBoxInput(e)}
                 ref={el => (this.control = el!)}
               />
               { this.multiple && (
-                <div 
-                  class="cbp-dropdown-placeholder" 
-                  //onClick={e => this.handleDropdownClick(e)}
-                >
+                <div class="cbp-dropdown-placeholder">
                   <span
                     role="button"
                     tabindex={0}
