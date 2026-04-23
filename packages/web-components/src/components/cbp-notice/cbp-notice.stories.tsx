@@ -45,7 +45,7 @@ export default {
     }
   }
 
-  const NoticeTemplate = ({ title, withIcon, content, color, context, sx }) => {
+  const NoticeTemplate: any = ({ title, withIcon, content, color, context, sx }) => {
     return ` 
       <cbp-notice
         ${color ? `color="${color}"` : ''}

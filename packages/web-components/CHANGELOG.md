@@ -18,6 +18,7 @@ The React components are wrappers generated from this package and will share the
   * BREAKING: the "filterKeypress" and "populateCombobox" event emitters no longer pass the keys: "key", "altKey", "ctrlKey", or "metaKey" because these are not present in the input event.
   * The "searchString" value passed is those event emitters is already converted to lowercase.
 * BREAKING: Updated `cbp-card` by removing the "decision" `variant`, as it was not implemented in component logic (only styling), and is not mutually exclusive to other variants.
+* Updated the `cbp-pagination` component with the new `maxPages` property, which may be used to limit the number of pages rendered in the dropdown, preventing performance degradation for very large data sets.
 * Updated the `cbp-button` CSS implementation to work better with custom values via props or CSS variables.
   * Removed default minimum height, which was making `cbp-accordion-item` taller than desired.
   * Setting `width` and `height` properties now overrides the corresponding CSS variables, `--cbp-button-width` and `--cbp-button-height` respectively.

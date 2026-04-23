@@ -210,7 +210,8 @@ export class CbpDropdown {
         });
         // Update values at this level, close the menu, and return focus to the control
         this.selectedLabel = label;
-        this.control.value = this.searchString = label; // update the control value, which only has a visible effect for the combobox text input
+        this.control.value = label; // update the control value, which only has a visible effect for the combobox text input
+        if(this.filter) this.searchString = label;
         this.value = value;
         this.open = false;
         
@@ -1220,6 +1221,7 @@ export class CbpDropdown {
               key="cbp-dropdown-item-no-results" 
               class="cbp-dropdown-item-no-results"
               disabled
+              // hidden if none of the grouped conditions are met
               hidden={ !(
                 (this.dropdownItems?.length == 0 && this.matches?.length == 0 && !this.items) ||
                 (!this.create && (this.async || !!this.searchString) && this.matches?.length == 0) ||

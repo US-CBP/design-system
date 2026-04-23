@@ -14,6 +14,13 @@ export default {
       description: 'Specifies the current page.',
       type: 'number',
     },
+    showAllOption: {
+      description: 'The option to show all items should only be used when the data set is known to be limited to a reasonable number of items to view on-screen at once.',
+      control: 'boolean',
+    },
+    maxPages: {
+      type: 'number',
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -25,12 +32,13 @@ export default {
   },
 };
 
-const Template = ({ records, pagesize, page, context, sx }) => {
+const Template: any = ({ records, pagesize, page, showAllOption, maxPages, context, sx }) => {
   return ` 
     <cbp-pagination
       ${records ? `records="${records}"` : ''}
       ${pagesize ? `page-size="${pagesize}"` : ''}
       ${page ? `page="${page}"` : ''}
+      ${maxPages ? `max-pages="${maxPages}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -44,7 +52,7 @@ const Template = ({ records, pagesize, page, context, sx }) => {
           <cbp-dropdown-item value="25">25/Page</cbp-dropdown-item>
           <cbp-dropdown-item value="50">50/Page</cbp-dropdown-item>
           <cbp-dropdown-item value="100">100/Page</cbp-dropdown-item>
-          <cbp-dropdown-item value="all">All Results</cbp-dropdown-item>
+          ${showAllOption ? `<cbp-dropdown-item value="all">All Results</cbp-dropdown-item>` : ''}
         </cbp-dropdown>
       </cbp-form-field>
 
