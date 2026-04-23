@@ -36,8 +36,19 @@ function generateIcon(color) {
 }
 
 const Template = ({ open, title, content, buttons, duration, color, context, sx }) => {
+
+  document.addEventListener('buttonClick', function(e) {
+    const buttonComponent = e.target as HTMLCbpButtonElement;
+    const toast = buttonComponent.closest('cbp-toast')
+   
+    if(buttonComponent.targetProp == "open") {
+      toast.open=false;
+    }
+  });
+
   return ` 
     <cbp-toast
+      id="cbp-toast-1"
       ${open ? 'open' : ''}
       ${color ? `color="${color}"` : ''}
       ${duration ? `duration="${duration}"` : ''}
@@ -61,13 +72,22 @@ Toast.args = {
   color: 'info',
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
-  buttons: `<cbp-button type="button" fill="ghost" color="secondary"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>`
+  buttons: `<cbp-button type="button" fill="ghost" color="secondary" target-prop="open"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>`
 }
 
 
 
 
 const MultiTemplate = ({ open, title, content, buttons, duration, color, context, sx }) => {
+  document.addEventListener('buttonClick', function(e) {
+    const buttonComponent = e.target as HTMLCbpButtonElement;
+    const toast = buttonComponent.closest('cbp-toast')
+   
+    if(buttonComponent.targetProp == "open") {
+      toast.open=false;
+    }
+  });
+  
   return ` 
     <cbp-toast
       ${open ? 'open' : ''}
@@ -142,5 +162,5 @@ MultipleToast.args = {
   color: 'info',
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
-  buttons: '<cbp-button type="button" fill="ghost" color="secondary"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>'
+  buttons: '<cbp-button type="button" fill="ghost" color="secondary" target-prop="open"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>'
 }
