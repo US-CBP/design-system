@@ -52,7 +52,7 @@ const Template: any = ({ records, pagesize, page, showAllOption, maxPages, conte
           <cbp-dropdown-item value="25">25/Page</cbp-dropdown-item>
           <cbp-dropdown-item value="50">50/Page</cbp-dropdown-item>
           <cbp-dropdown-item value="100">100/Page</cbp-dropdown-item>
-          ${showAllOption ? `cbp-dropdown-item value="all">All Results</cbp-dropdown-item>` : ''}
+          ${showAllOption ? `<cbp-dropdown-item value="all">All Results</cbp-dropdown-item>` : ''}
         </cbp-dropdown>
       </cbp-form-field>
 
