@@ -36,16 +36,17 @@ function generateIcon(color) {
 }
 
 const Template = ({ open, title, content, buttons, duration, color, context, sx }) => {
-
-  document.addEventListener('buttonClick', function(e) {
-    const buttonComponent = e.target as HTMLCbpButtonElement;
+  setTimeout(() => {
+  const dismiss = document.querySelector('cbp-button[name="dismiss"]');
+  dismiss.addEventListener('buttonClick', function(e) {
+  const buttonComponent = e.target as HTMLCbpButtonElement;
     const toast = buttonComponent.closest('cbp-toast')
    
     if(buttonComponent.targetProp == "open") {
       toast.open=false;
     }
   });
-
+}, 10);
   return ` 
     <cbp-toast
       id="cbp-toast-1"
@@ -72,21 +73,32 @@ Toast.args = {
   color: 'info',
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
-  buttons: `<cbp-button type="button" fill="ghost" color="secondary" target-prop="open"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>`
+  buttons: `<cbp-button fill="ghost" color="secondary" target-prop="open" name="dismiss">
+   Dismiss 
+   </cbp-button>
+   <cbp-button fill="ghost" color="secondary">
+    Default 2
+    </cbp-button>`
 }
 
 
 
 
 const MultiTemplate = ({ open, title, content, buttons, duration, color, context, sx }) => {
-  document.addEventListener('buttonClick', function(e) {
-    const buttonComponent = e.target as HTMLCbpButtonElement;
-    const toast = buttonComponent.closest('cbp-toast')
-   
-    if(buttonComponent.targetProp == "open") {
-      toast.open=false;
-    }
-  });
+
+  setTimeout(() => {
+  const dismissButtons = document.querySelectorAll('cbp-button[name="dismiss"]');
+  dismissButtons.forEach(dismiss => {
+    dismiss.addEventListener('buttonClick', function(e) {
+      const buttonComponent = e.target as HTMLCbpButtonElement;
+        const toast = buttonComponent.closest('cbp-toast')
+      
+        if(buttonComponent.targetProp == "open") {
+          toast.open=false;
+        }
+      });
+    }, 10);
+  })
   
   return ` 
     <cbp-toast
@@ -162,5 +174,10 @@ MultipleToast.args = {
   color: 'info',
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
-  buttons: '<cbp-button type="button" fill="ghost" color="secondary" target-prop="open"> Dismiss </cbp-button> <cbp-button type="button" fill="ghost" color="secondary"> Default 2</cbp-button>'
+  buttons: `<cbp-button fill="ghost" color="secondary" target-prop="open" name="dismiss">
+   Dismiss 
+   </cbp-button>
+    <cbp-button fill="ghost" color="secondary">
+     Default 2
+    </cbp-button>`
 }

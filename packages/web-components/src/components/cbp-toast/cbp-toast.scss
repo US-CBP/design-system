@@ -33,7 +33,7 @@
 }
 
 cbp-toast {
-  display: flex;
+  display: none;
   margin-inline-start: auto;
   margin-block-end: var(--cbp-space-6x);
   width: min(100%, 30rem);

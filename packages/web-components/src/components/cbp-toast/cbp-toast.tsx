@@ -48,6 +48,7 @@ export class CbpToast {
       if(this.open){ 
         this.host.classList.add('cbp-toast--open');
         this.host.classList.remove('cbp-toast--close');
+        this.host.style.display='flex'
       }else {
         this.host.classList.remove('cbp-toast--open');
         this.host.classList.add('cbp-toast--close');
