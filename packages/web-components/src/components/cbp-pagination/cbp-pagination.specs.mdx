@@ -19,6 +19,7 @@ The Pagination component presents a common UI pattern for displaying data sets b
   * Changes to the component properties such as records, pagesize, and page are reactive and will cause the pagination component to re-render.
 * The "items per page" dropdown is application-specified. It may be copied from Storybook as-is or modified.
 * The "pages" dropdown is managed by the Pagination component based on the number of records and page size (items per page) values. 
+* For large data sets, a maximum number of pages may be specified for the "pages" dropdown to prevent performance degradation.
 * The empty `cbp-dropdown` with desired properties will be slotted by the application with the "next/previous" attached button controls.
 * The "previous" button will be disabled when the first item in the "pages" dropdown is selected.
 * The "next" button will be disabled when the last item in the "pages" dropdown is selected.
@@ -48,4 +49,8 @@ The Pagination component presents a common UI pattern for displaying data sets b
 * Applications with access to large data sets should never return the entire data set to the front-end framework or UI.
   * "Chunking" data involves returning part of the data set (whether from a database or API) that is needed for display rather than the entire data set.
   * When paginating such large data sets, the "All Records" options should be omitted from the items per page dropdown.
-  * If "All Records" is selected for a data set over 500 records, a warning will be posted to the browser console as a reminder.
+  * Additionally, if the data set results in a large number of pages, you may also limit the number of pages rendered by the dropdown.
+    * The dropdown component may experience performance degradation with thousands of pages represented as options.
+    * A dropdown with this many items is not usable by humans anyway; it is doubtful that a data set this large will ever be browsed.
+* The option to show all records in the "items per page" dropdown should only be used/shown when the data set is known to be limited to a reasonable number of items to view on-screen at once.
+* If "All Records" is selected for a data set over 500 records, a warning will be posted to the browser console as a reminder. This is an extreme number and 500 records is likely never a "reasonable number of items to view on-screen at once."

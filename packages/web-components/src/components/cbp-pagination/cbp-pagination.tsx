@@ -34,29 +34,33 @@ export class CbpPagination {
   /** Specifies the current page being viewed. Defaults to 1. */
   @Prop({mutable: true}) page: number = 1;
 
+  /** 
+   * Specifies the current maximum number of pages allowed. This property should be used for extremely large data sets 
+   * that have the potential to returns hundreds or thousands of pages.
+  */
+  @Prop() maxPages: number | undefined;
+
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-
   @State() private pagesDropdownItems: HTMLCbpDropdownItemElement[];
   @State() private showingText: string;
-
   
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() paginationChange: EventEmitter;
 
 
   @Listen('buttonClick')
-  handlePagesButtonNav( {detail: {value} }  ) {
+  handlePagesButtonNav( {detail: {value} } ) {
     if (value == 'next page') this.handlePageChange(this.page+1);
     if (value == 'previous page') this.handlePageChange(this.page-1);
   }
 
 
-  handlePageSizeChange( value ) {
+  private handlePageSizeChange( value ) {
     this.page=1; // always reset the current page to 1 when changing the page size
     
     // Recalculate and populate the pages dropdown
@@ -73,15 +77,8 @@ export class CbpPagination {
       this.pagesDropdown.removeAttribute('hidden');
     }
 
-    // Generate a new array of dropdown-items and replace them in the pages dropdown
-    this.pagesDropdownItems=[];
-    for (let i=1; i <= this.pages; i++ ) {
-      let newItem: HTMLCbpDropdownItemElement = document.createElement("cbp-dropdown-item");
-      newItem.value=`${i}`;
-      newItem.innerText=`${this.pages <100 ? 'Page' : ''} ${i} of ${this.pages}`;
-      this.pagesDropdownItems=[...this.pagesDropdownItems, newItem];
-    }
-    this.pagesDropdown.querySelector('[role=listbox]').replaceChildren(...this.pagesDropdownItems);
+    // Update the pages dropdown
+    this.updatePages();
     
     // Emit the custom event
     this.paginationChange.emit({
@@ -99,7 +96,7 @@ export class CbpPagination {
     }, 100);
   }
   
-  handlePageChange(value) {
+  private handlePageChange(value) {
     this.page = this.pagesDropdown.value = value; // updating this prop will cause a re-render, recalculating the pagination text
 
     // Emit the custom event
@@ -114,11 +111,25 @@ export class CbpPagination {
     this.checkPageButtonStates();
   }
 
-  checkPageButtonStates(){
+  private checkPageButtonStates(){
     if (this.nextPageButton) this.nextPageButton.disabled = this.page == this.pagesDropdownItems?.length || !this.pagesDropdownItems?.length;
     if (this.previousPageButton) this.previousPageButton.disabled = this.page == 1 || !this.pagesDropdownItems?.length;
   }
 
+  // Updates the pages dropdown when the pageSize is changed
+  // TechDebt: This can be improved by making the dropdown act like a dial. (calculate pages to render based on this.page and this.maxPages, taking into account proximity to both ends.)
+  private updatePages() {
+    this.pagesDropdownItems=[];
+    let max: number = (this.maxPages && this.maxPages < this.pages) ? this.maxPages : this.pages;
+    // Generate a new array of dropdown-items and replace them in the pages dropdown
+    for (let i=1; i <= max; i++ ) {
+      let newItem: HTMLCbpDropdownItemElement = document.createElement("cbp-dropdown-item");
+      newItem.value=`${i}`;
+      newItem.innerText=`${this.pages <100 ? 'Page' : ''} ${i} of ${this.pages}`;
+      this.pagesDropdownItems=[...this.pagesDropdownItems, newItem];
+    }
+    this.pagesDropdown.querySelector('[role=listbox]').replaceChildren(...this.pagesDropdownItems);
+  }
 
   componentWillLoad() {
     if (typeof this.sx == 'string') {
@@ -166,5 +177,4 @@ export class CbpPagination {
       </Host>
     );
   }
-
 }
