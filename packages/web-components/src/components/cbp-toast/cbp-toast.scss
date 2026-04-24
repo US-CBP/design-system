@@ -34,15 +34,20 @@
 
 cbp-toast {
   display: none;
-  margin-inline-start: auto;
-  margin-block-end: var(--cbp-space-6x);
   width: min(100%, 30rem);
   background-color: var(--cbp-toast-color-bg);
   color: var(--cbp-toast-color);
   box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.3);
   border-radius: var(--cbp-border-radius-softer);
   opacity: 0;
+  position: fixed;
+  right: var(--cbp-space-6x);
+  z-index:var(--cbp-z-index-level-top);
   
+  &[open]{
+    display:flex;
+  }
+
   &.cbp-toast--open{
     visibility: visible;
     animation: show 600ms 100ms ease-in-out forwards;
