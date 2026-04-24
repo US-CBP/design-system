@@ -42,6 +42,20 @@ export class CbpToast {
     });
   }
 
+  componentDidRender() {
+    // Support animation by doing it this way
+    setTimeout(() => {
+      if(this.open){ 
+        this.host.classList.add('cbp-toast--open');
+        this.host.classList.remove('cbp-toast--close');
+      }else {
+        this.host.classList.remove('cbp-toast--open');
+        this.host.classList.add('cbp-toast--close');
+        setTimeout(()=>{this.host.style.display='none'}, 1000) //setting display:none here so animations run smoothly but don't take up visual realestate when complete
+      }
+    }, 10);
+  }
+
   render() {
 
     if(this.open && this.duration){
