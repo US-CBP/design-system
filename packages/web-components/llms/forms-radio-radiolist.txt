@@ -1,0 +1,108 @@
+# Forms/Radio/RadioList
+
+## Examples
+
+
+### Radio List
+
+```tsx
+({
+  radios,
+  label,
+  description,
+  fieldId,
+  disabled,
+  error,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateRadios(context, radios)}
+    </cbp-form-field>
+  `;
+}
+```
+
+### Radio List Horizontal
+
+```tsx
+({
+  radios,
+  label,
+  description,
+  fieldId,
+  disabled,
+  error,
+  gap,
+  breakpoint,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <cbp-flex
+        ${gap ? `gap="${gap}"` : ''}
+        ${breakpoint ? `breakpoint="${breakpoint}"` : ''}
+        sx='{"width":"max-content"}'
+      >
+        ${generateRadios(context, radios)}
+      </cbp-flex>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Radio List Multi Column
+
+```tsx
+({
+  radios,
+  gap,
+  columns,
+  width,
+  label,
+  description,
+  fieldId,
+  disabled,
+  error,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <cbp-multicol nobreak
+        ${gap ? `gap="${gap}"` : ''}
+        ${columns ? `columns="${columns}"` : ''}
+        ${width ? `width="${width}"` : ''}
+      >
+        ${generateRadios(context, radios)}
+      </cbp-multicol>
+    </cbp-form-field>
+  `;
+}
+```

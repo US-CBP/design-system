@@ -1,0 +1,82 @@
+# Content/Panel
+
+## Examples
+
+
+### Default
+
+```tsx
+({
+  role,
+  headingLevel,
+  header,
+  headerId,
+  content,
+  ariaLabel,
+  showIcon,
+  context,
+  sx
+}) => {
+  return `
+    <cbp-panel
+      ${headerId ? `aria-labelledby="${headerId}"` : ''}
+      ${role != 'none' ? `role="${role}"` : ''}
+      ${ariaLabel ? `aria-label="${ariaLabel}"` : ''}
+      ${headerId ? `aria-labelledby="${headerId}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <cbp-typography
+        slot="cbp-panel-header"
+        tag="${headingLevel}"
+        variant="heading-lg"
+        ${headerId ? `id="${headerId}"` : ''}
+      >
+        ${showIcon ? `<cbp-icon name="star" sx='{"margin-right":"var(--cbp-space-4x)", "vertical-align":"text-top"}'></cbp-icon>` : ''}
+        ${header}
+      </cbp-typography>
+
+      <p>${content}</p>
+    </cbp-panel>
+  `;
+}
+```
+
+### Sidebar
+
+```tsx
+({
+  role,
+  headingLevel,
+  header,
+  headerId,
+  content,
+  ariaLabel,
+  showIcon,
+  context,
+  sx
+}) => {
+  return `
+    <cbp-panel
+      ${headerId ? `aria-labelledby="${headerId}"` : ''}
+      ${role != 'none' ? `role="${role}"` : ''}
+      ${ariaLabel ? `aria-label="${ariaLabel}"` : ''}
+      ${headerId ? `aria-labelledby="${headerId}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <cbp-typography
+        slot="cbp-panel-header"
+        tag="${headingLevel}"
+        variant="heading-lg"
+        ${headerId ? `id="${headerId}"` : ''}
+      >
+        ${showIcon ? `<cbp-icon name="star" sx='{"margin-right":"var(--cbp-space-4x)", "vertical-align":"text-top"}'></cbp-icon>` : ''}
+        ${header}
+      </cbp-typography>
+
+      <p>${content}</p>
+    </cbp-panel>
+  `;
+}
+```

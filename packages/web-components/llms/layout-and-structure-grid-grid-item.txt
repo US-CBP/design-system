@@ -1,0 +1,45 @@
+# Layout and Structure/Grid/Grid Item
+
+## Examples
+
+
+### Grid Item
+
+```tsx
+({
+  gridColumnStart,
+  gridColumnEnd,
+  gridRowStart,
+  gridRowEnd,
+  alignSelf,
+  justifySelf,
+  gridArea,
+  content,
+  sx
+}) => {
+  return ` 
+    <cbp-grid
+      grid-template-columns="repeat(5,1fr)"
+      gap="1rem"
+      sx='{"min-height":"200px"}'
+    >
+      <cbp-grid-item
+        ${gridColumnStart ? `grid-column-start="${gridColumnStart}"` : ''}
+        ${gridColumnEnd ? `grid-column-end="${gridColumnEnd}"` : ''}
+        ${gridRowStart ? `grid-row-start="${gridRowStart}"` : ''}
+        ${gridRowEnd ? `grid-row-end="${gridRowEnd}"` : ''}
+        ${alignSelf ? `align-self="${alignSelf}"` : ''}
+        ${justifySelf ? `justify-self="${justifySelf}"` : ''}
+        ${gridArea ? `grid-area="${gridArea}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${content}
+      </cbp-grid-item>
+      <div>Grid Item 2</div>
+      <div>Grid Item 3</div>
+      <div>Grid Item 4</div>
+      <div>Grid Item 5</div>
+    </cbp-grid>
+  `;
+}
+```

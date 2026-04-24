@@ -1,0 +1,48 @@
+# Notifications/Toast
+
+## Examples
+
+
+### Toast
+
+```tsx
+({
+  open,
+  title,
+  content,
+  buttons,
+  duration,
+  color,
+  context,
+  sx
+}) => {
+  setTimeout(() => {
+    const dismiss = document.querySelector('cbp-button[name="dismiss"]') as HTMLCbpButtonElement;
+    dismiss.addEventListener('buttonClick', e => {
+      const buttonComponent = e.target as HTMLCbpButtonElement;
+      const toast = buttonComponent.closest('cbp-toast');
+      toast.open = false;
+    });
+  }, 10);
+  return ` 
+    <cbp-toast
+      id="cbp-toast-1"
+      ${open ? 'open' : ''}
+      ${color ? `color="${color}"` : ''}
+      ${duration ? `duration="${duration}"` : ''}
+      icon=${generateIcon(color)}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >  
+      <div slot="cbp-toast-icon">
+        <cbp-icon name="${generateIcon(color)}"></cbp-icon>
+      </div>
+      <div slot="cbp-toast-title">${title}</div>
+      ${content}
+      <div slot="cbp-toast-buttons">
+        ${buttons}
+      </div>
+    </cbp-toast>
+  `;
+}
+```

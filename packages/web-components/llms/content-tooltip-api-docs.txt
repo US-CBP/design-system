@@ -1,0 +1,65 @@
+# cbp-tooltip
+
+## Overview
+
+The Tooltip component allows for the disclosure of supplemental, non-essential information via a triggering element.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `alignment` | `alignment` | sets where the tooltip will be displayed and where the caret will be placed | `"bottom-center" | "bottom-left" | "bottom-right" | "left-bottom" | "left-center" | "left-top" | "right-bottom" | "right-center" | "right-top" | "top-center" | "top-left"` | `"top-center"` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `fieldId` | `field-id` | Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility | `string` | `createNamespaceKey('cbp-tooltip')` |
+| `open` | `open` | When set, specifies that the tooltip is open | `boolean` | `false` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `variant` | `variant` | used to set styles for the definition link for text controls | `"definition"` | `undefined` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The tooltip control label is provided in the default slot. |
+| `"cbp-tooltip-content"` | The tooltip content is placed in this named slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-tooltip-caret-offset` | calc(var(--cbp-tooltip-caret-size) / 2); |
+| `--cbp-tooltip-caret-size` | 15px; |
+| `--cbp-tooltip-color` | var(--cbp-color-text-lightest); |
+| `--cbp-tooltip-color-bg` | var(--cbp-color-gray-cool-80); |
+| `--cbp-tooltip-color-bg-dark` | var(--cbp-color-gray-cool-5); |
+| `--cbp-tooltip-color-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-tooltip-control-color-bg-focus` | var(--cbp-color-interactive-focus-dark); |
+| `--cbp-tooltip-control-color-bg-focus-dark` | var(--cbp-color-interactive-focus-light); |
+| `--cbp-tooltip-control-color-bg-hover` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-tooltip-control-color-bg-hover-dark` | var(--cbp-color-interactive-disabled-light); |
+| `--cbp-tooltip-control-color-focus` | var(--cbp-color-text-lightest); |
+| `--cbp-tooltip-control-color-focus-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-tooltip-control-color-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-tooltip-control-color-hover-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-tooltip-control-focus` | 1px solid red; |
+| `--cbp-tooltip-control-focus-dark` | 1px solid cyan; |
+| `--cbp-tooltip-gap` | 0px; |
+| `--cbp-tooltip-offset` | 0px; |
+| `--cbp-tooltip-padding` | var(--cbp-space-inset-4x, 1rem); |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-button](../cbp-button)
+-   [cbp-icon](../cbp-icon)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-tooltip --> cbp-button
+  cbp-tooltip --> cbp-icon
+  style cbp-tooltip fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

@@ -1,0 +1,22 @@
+# Navigation/Dot Indicator
+
+## Examples
+
+
+### Dot Indicator
+
+```tsx
+({
+  current,
+  items,
+  itemName
+}) => {
+  return `
+    <cbp-dot-indicator
+      ${current ? `current="${current}"` : ""}
+      ${items ? `items="${items}"` : ""}
+      ${itemName ? `item-name="${itemName}"` : ""}
+    ></cbp-dot-indicator>
+`;
+}
+```

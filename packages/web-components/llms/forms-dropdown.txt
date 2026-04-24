@@ -1,0 +1,78 @@
+# Forms/Dropdown
+
+## Examples
+
+
+### Dropdown
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  name,
+  placeholder,
+  multiple,
+  filter,
+  async,
+  minimumInputLength,
+  dropdownItems,
+  dataset,
+  items,
+  create,
+  error,
+  readonly,
+  disabled,
+  value,
+  context,
+  sx
+}) => {
+  if (dataset == 'Countries') items = Countries;
+  if (dataset == 'States') items = States;
+  if (dataset == 'Custom') items = Custom;
+  if (async) dropdownItems = "JSON";
+
+  // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
+  let asyncCombobox;
+  setTimeout(() => {
+    asyncCombobox = document.querySelector('cbp-dropdown[async]') as HTMLCbpDropdownElement;
+    if (asyncCombobox) {
+      asyncCombobox.addEventListener('populateCombobox', e => {
+        let searchString = e.detail.searchString;
+        // filter the JSON natively in JavaScript
+        let filteredJSON = items.filter(item => item.label.toLowerCase().indexOf(searchString) != -1);
+        // return the filtered JSON result to the component via the items property
+        asyncCombobox.items = filteredJSON;
+      });
+    }
+  }, 100);
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+    >
+      <cbp-dropdown
+        ${name ? `name="${name}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${multiple ? 'multiple' : ''}
+        ${filter ? 'filter' : ''}
+        ${async ? 'async' : ''}
+        ${items && dropdownItems == 'JSON' && !async ? `items='${JSON.stringify(items)}'` : ''}
+        ${minimumInputLength ? `minimum-input-length="${minimumInputLength}"` : ''}
+        ${create ? 'create' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${dropdownItems == "Slotted" ? multiple ? generateMultiSelectItems(items, name, context) : generateItems(items) : ''}
+      </cbp-dropdown>
+    </cbp-form-field>
+  `;
+}
+```

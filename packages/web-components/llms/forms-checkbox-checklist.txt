@@ -1,0 +1,108 @@
+# Forms/Checkbox/Checklist
+
+## Examples
+
+
+### Checklist
+
+```tsx
+({
+  checkboxes,
+  label,
+  description,
+  fieldId,
+  disabled,
+  error,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateCheckboxes(context, checkboxes)}
+    </cbp-form-field>
+  `;
+}
+```
+
+### Checklist Horizontal
+
+```tsx
+({
+  checkboxes,
+  label,
+  description,
+  fieldId,
+  disabled,
+  error,
+  gap,
+  breakpoint,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <cbp-flex
+        ${gap ? `gap="${gap}"` : ''}
+        ${breakpoint ? `breakpoint="${breakpoint}"` : ''}
+        sx='{"width":"max-content"}'
+      >
+        ${generateCheckboxes(context, checkboxes)}
+      </cbp-flex>
+    </cbp-form-field>
+    `;
+}
+```
+
+### Checklist Multi Column
+
+```tsx
+({
+  checkboxes,
+  gap,
+  columns,
+  width,
+  label,
+  description,
+  fieldId,
+  disabled,
+  error,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <cbp-multicol nobreak
+        ${gap ? `gap="${gap}"` : ''}
+        ${columns ? `columns="${columns}"` : ''}
+        ${width ? `width="${width}"` : ''}
+      >
+        ${generateCheckboxes(context, checkboxes)}
+      </cbp-multicol>
+    </cbp-form-field>
+  `;
+}
+```

@@ -1,0 +1,64 @@
+# cbp-card
+
+## Overview
+
+The Card component is a visual treatment for a container meant for similarly-sized, repeated chunks of content.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `color` | `color` | Optionally specifies a card color (different from the default color) based on predefined design token values. | `"danger" | "info" | "success" | "warning"` | `undefined` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `disabled` | `disabled` | Marks the rendered card in a disabled state when specified. | `boolean` | `undefined` |
+| `href` | `href` | Specifies the `href` value for the "clickable" interactive cards. | `string` | `undefined` |
+| `interactive` | `interactive` | Specifies the interactivity of the card. | `"clickable" | "radio" | "selectable"` | `undefined` |
+| `stretch` | `stretch` | When present, the card will stretch vertically to fill its parent container; most useful when placed in an equally sized grid or row of cards. | `boolean` | `false` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+| `variant` | `variant` | Specifies optional variants with difference from the default card. | `"banner" | "flag"` | `undefined` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The default slot contains the body of the card. |
+| `"cbp-card-actions"` | Contains the links/buttons for cards. |
+| `"cbp-card-title"` | Contains the card title, if present. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-banner-card-color` | var(--cbp-color-gray-cool-60); |
+| `--cbp-banner-card-color-body-background` | var(--cbp-color-white); |
+| `--cbp-banner-card-color-body-background-dark` | var(--cbp-color-gray-cool-60); |
+| `--cbp-banner-card-color-border` | var(--cbp-color-base-neutral-lighter); |
+| `--cbp-banner-card-color-border-dark` | var(--cbp-color-gray-cool-50); |
+| `--cbp-banner-card-color-dark` | var(--cbp-color-gray-cool-20); |
+| `--cbp-banner-card-color-title` | var(--cbp-color-text-lighter); |
+| `--cbp-banner-card-color-title-dark` | var(--cbp-color-text-darker); |
+| `--cbp-card-color-background` | var(--cbp-color-white) |
+| `--cbp-card-color-background-dark` | var(--cbp-color-gray-cool-60); |
+| `--cbp-card-color-background-selected` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-card-color-background-selected-dark` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-card-color-border` | var(--cbp-color-gray-cool-10); |
+| `--cbp-card-color-border-dark` | var(--cbp-color-gray-cool-50); |
+| `--cbp-card-color-border-selected` | var(--cbp-color-interactive-secondary-light); |
+| `--cbp-card-color-border-selected-dark` | var(--cbp-color-interactive-secondary-base); |
+| `--cbp-card-color-text-selected` | var(--cbp-color-text-lighter); |
+| `--cbp-card-color-text-selected-dark` | var(--cbp-color-text-darker); |
+| `--cbp-card-color-title` | var(--cbp-color-text-darker); |
+| `--cbp-card-color-title-dark` | var(--cbp-color-text-lighter); |
+| `--cbp-card-color-title-selected` | var(--cbp-color-text-lighter); |
+| `--cbp-card-color-title-selected-dark` | var(--cbp-color-text-darker); |
+| `--cbp-card-danger-outline-focus` | var(--cbp-color-white); |
+| `--cbp-card-danger-outline-focus-dark` | var(--cbp-color-black); |
+| `--cbp-card-outline-focus` | var(--cbp-color-white); |
+| `--cbp-card-outline-focus-dark` | var(--cbp-color-black); |
+| `--cbp-flag-card-color` | var(--cbp-color-text-lighter); |
+| `--cbp-flag-card-color-background` | var(--cbp-color-gray-cool-60); |
+| `--cbp-flag-card-color-background-dark` | var(--cbp-color-gray-cool-30); |
+| `--cbp-flag-card-color-dark` | var(--cbp-color-text-darker); |
+| `--cbp-flag-card-min-width` | 7rem; |
+
+---

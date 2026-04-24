@@ -1,0 +1,90 @@
+# Navigation/Application Header
+
+## Examples
+
+
+### Application Header with Sub-Nav
+
+```tsx
+({
+  drawerId,
+  store,
+  search,
+  searchMethod,
+  searchAction,
+  items,
+  sx
+}) => {
+  setTimeout(() => {
+    // Cancel form submit event on search to prevent full page reload
+    const AppHeader = document.querySelector('cbp-app-header');
+    AppHeader?.addEventListener('searchSubmit', function (e) {
+      e.detail.nativeEvent.preventDefault();
+    });
+
+    // Cancel events on anchors to prevent navigating away from the story
+    let anchors = document.querySelectorAll('cbp-app-header a, cbp-subnav a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
+  }, 500);
+  return ` 
+    <cbp-app-header
+      ${drawerId ? `subnav-drawer-id="${drawerId}"` : ``}
+      ${search ? 'search' : ''}
+      ${searchMethod ? `search-method="${searchMethod}"` : ''}
+      ${searchAction ? `search-action="${searchAction}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateNavItems(items, drawerId)}
+    </cbp-app-header>
+    
+    ${renderDrawer(items, drawerId, store)}  
+  `;
+}
+```
+
+### Application Header
+
+```tsx
+({
+  drawerId,
+  store,
+  search,
+  searchMethod,
+  searchAction,
+  items,
+  sx
+}) => {
+  setTimeout(() => {
+    // Cancel form submit event on search to prevent full page reload
+    const AppHeader = document.querySelector('cbp-app-header');
+    AppHeader?.addEventListener('searchSubmit', function (e) {
+      e.detail.nativeEvent.preventDefault();
+    });
+
+    // Cancel events on anchors to prevent navigating away from the story
+    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
+  }, 500);
+  return ` 
+    <cbp-app-header    
+      ${drawerId ? `subnav-drawer-id="${drawerId}"` : ''}
+      ${search ? 'search' : ''}
+      ${searchMethod ? `search-method="${searchMethod}"` : ''}
+      ${searchAction ? `search-action="${searchAction}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateNavItems(items)}
+    </cbp-app-header>
+
+    ${renderDrawer(items, drawerId, store)}
+  `;
+}
+```

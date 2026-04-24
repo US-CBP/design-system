@@ -1,0 +1,37 @@
+# Layout and Structure/Flex
+
+## Examples
+
+
+### Flex
+
+```tsx
+({
+  display,
+  wrap,
+  direction,
+  alignItems,
+  alignContent,
+  justifyContent,
+  gap,
+  breakpoint,
+  content,
+  sx
+}) => {
+  return ` 
+    <cbp-flex
+      ${display ? `display="${display}"` : ''}
+      ${wrap ? `wrap="${wrap}"` : ''}
+      ${direction ? `direction="${direction}"` : ''}
+      ${alignItems ? `align-items="${alignItems}"` : ''}
+      ${alignContent ? `align-content="${alignContent}"` : ''}
+      ${justifyContent ? `justify-content="${justifyContent}"` : ''}
+      ${gap ? `gap="${gap}"` : ''}
+      ${breakpoint ? `breakpoint="${breakpoint}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${createChildren(content)}
+    </cbp-flex>
+  `;
+}
+```

@@ -1,0 +1,36 @@
+# cbp-loader
+
+## Purpose
+
+The Loader is used as a visual indicator of progress during waiting periods.
+
+## Functional Requirements
+
+-   The Loader renders a native HTML `progress` element under the hood, which may be visible or hidden based on which variant is used.
+-   The Loader can render a linear or circular indicator, in large or small sizes.
+-   Any of those variants may be indeterminate, displaying a looping animation, or have an explicit value set (and updated dynamically).
+-   The Loader also supports "success" and "error" states:
+    -   Application logic shall determine what state is appropriate and the specific messaging.
+    -   The `success` and `error` properties are independent but should not both be true.
+    -   If both `success` and `error` properties are set to true inadvertently, then the success state overrides the error styling.
+
+## Technical Specifications
+
+### User Interactions
+
+-   The Loader does not have any user interactions and is generally controlled via application logic.
+
+### Responsiveness
+
+-   Linear loaders are 100% width to fill their parent and match parent spacing.
+-   Circular loaders are set with specific width and height values (preferably using relative CSS units).
+-   Be aware of how the text is displayed in each variant and use an appropriate amount of text for that case, which will work on various screen sizes.
+
+### Accessibility
+
+-   When a semantic `progress` element is rendered by the component, it is labelled accessibly with a `label` tag containing the application-specified slotted text.
+-   This slotted text should be changed by the application to contextually relevant messaging when and if error or success states are triggered.
+
+### Additional Notes and Considerations
+
+-   See documentation for the native HTML progress tag: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress

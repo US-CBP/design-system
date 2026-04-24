@@ -1,0 +1,32 @@
+# Content/Carousel
+
+## Examples
+
+
+### Carousel
+
+```tsx
+({
+  slides,
+  height,
+  width,
+  current,
+  sx
+}) => {
+  return `
+    <cbp-carousel
+      ${height ? `height="${height}"` : ''}
+      ${width ? `width="${width}"` : ''}
+      ${current ? `current="${current}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateSlides(slides)}
+      <cbp-dot-indicator 
+        slot="cbp-carousel-controls"
+        current="${current ? current : '0'}"
+        items="${slides.length}"
+      ></cbp-dot-indicator>
+    </cbp-carousel>
+  `;
+}
+```
