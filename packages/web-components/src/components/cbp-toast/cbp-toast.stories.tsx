@@ -35,18 +35,16 @@ function generateIcon(color) {
   }
 }
 
-const Template = ({ open, title, content, buttons, duration, color, context, sx }) => {
+const Template: any = ({ open, title, content, buttons, duration, color, context, sx }) => {
   setTimeout(() => {
-  const dismiss = document.querySelector('cbp-button[name="dismiss"]');
-  dismiss.addEventListener('buttonClick', function(e) {
-  const buttonComponent = e.target as HTMLCbpButtonElement;
-    const toast = buttonComponent.closest('cbp-toast')
-   
-    if(buttonComponent.targetProp == "open") {
+    const dismiss = document.querySelector('cbp-button[name="dismiss"]') as HTMLCbpButtonElement;
+    dismiss.addEventListener('buttonClick', e => {
+    const buttonComponent = e.target as HTMLCbpButtonElement;
+      const toast = buttonComponent.closest('cbp-toast');
       toast.open=false;
-    }
-  });
-}, 10);
+    });
+  }, 10);
+
   return ` 
     <cbp-toast
       id="cbp-toast-1"
@@ -62,7 +60,9 @@ const Template = ({ open, title, content, buttons, duration, color, context, sx 
       </div>
       <div slot="cbp-toast-title">${title}</div>
       ${content}
-      <div slot="cbp-toast-buttons">${buttons}</div>
+      <div slot="cbp-toast-buttons">
+        ${buttons}
+      </div>
     </cbp-toast>
   `;
 };
@@ -73,12 +73,12 @@ Toast.args = {
   color: 'info',
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
-  buttons: `<cbp-button fill="ghost" color="secondary" target-prop="open" name="dismiss">
-   Dismiss 
-   </cbp-button>
-   <cbp-button fill="ghost" color="secondary">
-    Default 2
-    </cbp-button>`
+  buttons: `<cbp-button fill="ghost" color="secondary" name="dismiss">
+          Dismiss 
+        </cbp-button>
+        <cbp-button fill="ghost" color="secondary">
+          Default 2
+        </cbp-button>`
 }
 
 
@@ -92,13 +92,10 @@ Toast.args = {
 //     dismiss.addEventListener('buttonClick', function(e) {
 //       const buttonComponent = e.target as HTMLCbpButtonElement;
 //         const toast = buttonComponent.closest('cbp-toast')
-      
-//         if(buttonComponent.targetProp == "open") {
 //           toast.open=false;
-//         }
 //       });
-//     }, 10);
-//   })
+//     });
+//   }, 10);
   
 //   return ` 
 //     <cbp-toast
@@ -174,7 +171,7 @@ Toast.args = {
 //   color: 'info',
 //   title: 'Test Toast Title',
 //   content: 'Notification Description - A rule you are following just fired.',
-//   buttons: `<cbp-button fill="ghost" color="secondary" target-prop="open" name="dismiss">
+//   buttons: `<cbp-button fill="ghost" color="secondary" name="dismiss">
 //    Dismiss 
 //    </cbp-button>
 //     <cbp-button fill="ghost" color="secondary">
