@@ -20,7 +20,7 @@
         e.preventDefault();
       });
     });
-    let ro = document.querySelector('cbp-universal-header cbp-resize-observer');
+    let ro = document.querySelector('cbp-universal-header cbp-resize-observer') as HTMLElement;
     ro.addEventListener('resized', function (e) {
       console.log('Resized: ', e);
     });

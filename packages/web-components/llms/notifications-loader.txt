@@ -1,0 +1,41 @@
+# Notifications/Loader
+
+## Examples
+
+
+### Loader
+
+```tsx
+({
+  progressid,
+  variant,
+  label,
+  size,
+  determinate,
+  value,
+  max,
+  orientation,
+  success,
+  error,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-loader
+      ${progressid ? `progressid="${progressid}"` : ''}
+      ${variant ? `variant="${variant}"` : ``}
+      ${size ? `size="${size}"` : ``}
+      ${determinate ? 'determinate' : ''}
+      ${value ? `value="${value}"` : ``}
+      ${max ? `max="${max}"` : ``}
+      ${orientation ? `orientation="${orientation}"` : ``}
+      ${success ? 'success' : ''}
+      ${error ? 'error' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx=${JSON.stringify(sx)}` : ``}
+    >
+      ${success ? 'Success' : error ? 'Error' : `${label}`}
+    </cbp-loader>
+  `;
+}
+```

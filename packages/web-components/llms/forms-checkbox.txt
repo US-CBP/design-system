@@ -1,0 +1,41 @@
+# Forms/Checkbox
+
+## Examples
+
+
+### Checkbox
+
+```tsx
+({
+  label,
+  name,
+  value,
+  fieldId,
+  checked,
+  indeterminate,
+  disabled,
+  context,
+  sx
+}) => {
+  return ` 
+      <cbp-checkbox
+        ${name ? `name="${name}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${disabled ? 'disabled' : ''}
+        ${checked ? 'checked' : ''}
+        ${indeterminate ? 'indeterminate' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        <input 
+          type="checkbox" 
+          name="${name}"
+          value="${value}"
+          ${checked ? 'checked' : ''}
+        />
+        ${label}
+      </cbp-checkbox>
+    `;
+}
+```

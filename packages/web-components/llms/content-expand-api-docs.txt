@@ -1,0 +1,74 @@
+# cbp-expand
+
+## Overview
+
+A standalone component used for progressive disclosure, the Expand component organizes content under a relevant heading, which is used as a control for revealing and hiding its content.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `headingId` | `heading-id` | Specifies an optional `id` for the component item heading, also used to generate an `id` for the content wrapper. If this property is not specified, a unique string will automatically be generated. | `string` | `createNamespaceKey('cbp-expand')` |
+| `headingLevel` | `heading-level` | The heading level of the expand item control. Defaults to h3. | `"h2" | "h3" | "h4" | "h5" | "h6"` | `'h4'` |
+| `label` | `label` | The component control label. | `string` | `undefined` |
+| `open` | `open` | Specifies whether the content is expanded and visible. | `boolean` | `false` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `expandClick` | A custom event emitted when the accordion item control is activated. | `CustomEvent<any>` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Hidden/revealed content is placed in the default slot. |
+| `"cbp-expand-label"` | Optionally the component label/heading may be slotted via named slot if it contains markup rather than plain text. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-accordion-item-control-font-size` | var(--cbp-font-size-heading-sm); |
+| `--cbp-accordion-item-control-font-weight` | var(--cbp-font-weight-semibold); |
+| `--cbp-expand-button-color-fill` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-expand-button-color-fill-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-expand-button-color-fill-hover` | var(--cbp-color-interactive-secondary-darker); |
+| `--cbp-expand-button-color-fill-hover-dark` | var(--cbp-color-interactive-secondary-lighter); |
+| `--cbp-expand-button-color-text` | var(--cbp-color-text-lightest); |
+| `--cbp-expand-button-color-text-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-expand-button-color-text-hover` | var(--cbp-color-text-lightest); |
+| `--cbp-expand-button-color-text-hover-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-expand-color` | var(--cbp-color-text-darkest); |
+| `--cbp-expand-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-expand-content-padding` | var(--cbp-space-3x); |
+| `--cbp-expand-control-gap` | var(--cbp-space-1x); |
+| `--cbp-expand-control-padding` | var(--cbp-space-3x); |
+| `--cbp-expand-margin-bottom` | var(--cbp-space-2x); |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-flex](../cbp-flex)
+-   [cbp-flex-item](../cbp-flex-item)
+-   [cbp-button](../cbp-button)
+-   [cbp-icon](../cbp-icon)
+-   [cbp-typography](../cbp-typography)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-expand --> cbp-flex
+  cbp-expand --> cbp-flex-item
+  cbp-expand --> cbp-button
+  cbp-expand --> cbp-icon
+  cbp-expand --> cbp-typography
+  style cbp-expand fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

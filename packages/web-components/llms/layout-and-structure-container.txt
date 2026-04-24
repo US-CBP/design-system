@@ -1,0 +1,29 @@
+# Layout and Structure/Container
+
+## Examples
+
+
+### Container
+
+```tsx
+({
+  content,
+  background,
+  textColor,
+  width,
+  margins,
+  sx
+}) => {
+  return ` 
+    <cbp-container
+      ${background ? `background="${background}"` : ''}
+      ${textColor ? `text-color="${textColor}"` : ''}
+      ${width ? `width="${width}"` : ''}
+      ${margins ? `margins="${margins}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${content}
+    </cbp-container>
+  `;
+}
+```

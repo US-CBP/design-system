@@ -1,0 +1,33 @@
+# Controls/Chip
+
+## Examples
+
+
+### Chip
+
+```tsx
+({
+  label,
+  name,
+  value,
+  customIcon,
+  pressed,
+  disabled,
+  context,
+  sx
+}) => {
+  return ` 
+      <cbp-chip
+        ${name ? `name="${name}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${pressed ? 'pressed' : ''}
+        ${disabled ? 'disabled' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${customIcon ? `<cbp-icon slot="cbp-chip-icon" name="${customIcon}"></cbp-icon>` : ''}
+        ${label}
+      </cbp-chip>
+    `;
+}
+```

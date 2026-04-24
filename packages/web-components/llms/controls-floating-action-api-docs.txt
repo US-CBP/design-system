@@ -1,0 +1,20 @@
+# cbp-floating-action
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `bottom` | `bottom` | Sets the bottom position (in CSS units) of the floating action component within the viewport. | `string` | `undefined` |
+| `left` | `left` | Sets the left position (in CSS units) of the floating action component within the viewport. | `string` | `undefined` |
+| `right` | `right` | Sets the right position (in CSS units) of the floating action component within the viewport. | `string` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles (to the host) as an object. This property is not reactive. | `any` | `{}` |
+| `top` | `top` | Sets the top position (in CSS units) of the floating action component within the viewport. | `string` | `undefined` |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-floating-action-box-shadow` | var(--cbp-shadow-level-2-center); |
+| `--cbp-floating-action-z-index` | var(--cbp-z-index-level-4); |
+
+---

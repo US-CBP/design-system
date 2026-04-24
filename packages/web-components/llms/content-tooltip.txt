@@ -1,0 +1,68 @@
+# Content/Tooltip
+
+## Examples
+
+
+### Definition Tooltip
+
+```tsx
+({
+  open,
+  uid,
+  alignment,
+  title,
+  content,
+  tooltipControl,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-tooltip
+      ${open ? 'open' : ''}
+      ${uid ? `uid="${uid}"` : ''}
+      ${alignment ? `alignment="${alignment}"` : ''}
+      variant="definition"
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+
+    >  
+      ${tooltipControl}
+      <div slot="cbp-tooltip-content">
+        <div style="font-weight: var(--cbp-font-weight-bold)">${title}</div>
+        <div>${content}</div>
+      </div>
+    </cbp-tooltip>
+  `;
+}
+```
+
+### Tooltip
+
+```tsx
+({
+  open,
+  uid,
+  alignment,
+  title,
+  content,
+  tooltipControl,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-tooltip
+      ${open ? 'open' : ''}
+      ${uid ? `uid="${uid}"` : ''}
+      ${alignment ? `alignment="${alignment}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >  
+      ${tooltipControl}
+      <div slot="cbp-tooltip-content">
+        <div style="font-weight: var(--cbp-font-weight-bold)">${title}</div>
+        <div>${content}</div>
+      </div>
+    </cbp-tooltip>
+  `;
+}
+```

@@ -1,0 +1,41 @@
+# Layout and Structure/Flex/Flex Item
+
+## Examples
+
+
+### Flex Item
+
+```tsx
+({
+  order,
+  alignSelf,
+  flexGrow,
+  flexShrink,
+  flexBasis,
+  content,
+  sx
+}) => {
+  return ` 
+    <cbp-flex
+      wrap="wrap"
+      gap="1rem" 
+      sx='{"min-height":"200px"}'
+    >
+      <cbp-flex-item
+        ${order ? `order="${order}"` : ''}
+        ${alignSelf ? `align-self="${alignSelf}"` : ''}
+        ${flexGrow ? `flex-grow="${flexGrow}"` : ''}
+        ${flexShrink ? `flex-shrink="${flexShrink}"` : ''}
+        ${flexBasis ? `flex-basis="${flexBasis}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${content}
+      </cbp-flex-item>
+      <div>Flex Item 2</div>
+      <div>Flex Item 3</div>
+      <div>Flex Item 4</div>
+      <div>Flex Item 5</div>
+    </cbp-flex>      
+  `;
+}
+```

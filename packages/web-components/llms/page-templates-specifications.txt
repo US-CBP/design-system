@@ -10,9 +10,10 @@
 -   The first element inside of the `cbp-app` should be the `cbp-skip-nav` component, which is an accessibility requirement and invisible until focused via keyboard navigation or assistive technology.
 -   Optionally, our templates wrap the main template parts in a `cbp-flex` tag, setting it to a column layout with a `min-height: 100vh`. With the main content area set to grow, this pins the footer to the bottom of the page even if the main content is short. This can be omitted if no footer is present.
 -   The first visible component is the `cbp-universal-header`, which contains CBP branding as well as standard controls such as:
-    -   A link to the Application Directory
-    -   A button to launch the feedback module
-    -   A button to launch the User Preferences drawer (drawer code must be included separately)
+    -   A login link (ghost button), or once logged in:
+        -   A link to the Application Directory
+        -   A button to launch the feedback module
+        -   A button to launch the User Preferences drawer (drawer code must be included separately)
 -   The `cbp-app-header` is placed directly below the universal header and is intended to hold application-specific navigation, including:
     -   A "home" link in the form of the Application's Name.
     -   Additional `cbp-nav-item`s linking to specific pages or opening a drawer if they represent a parent with sub-items.
@@ -40,8 +41,7 @@
 ### Responsiveness
 
 -   The main template parts shall use a design token (`--cbp-responsive-spacing-outer`) for inline-padding that is responsive and changes size at different breakpoints.
--   The Universal Header link and button controls will minimize to their icons at the medium or small breakpoints (less than 64em or 1024px).
--   The Universal Header will reduce the text next to the CBP Seal to simply "CBP" at viewports 37.5em (600px) or less
+-   The Universal Header link and button controls (when logged in) will minimize to their icons at the medium or small breakpoints (less than 64em or 1024px) and the seal will also collapse to a smaller version at viewports 37.5em (600px) or less.
 -   The application header will automatically hide its nav-items and show a "hamburger menu" control when it runs out of space to display each of the nav-items (using a resize observer).
     -   The hamburger menu controls the same drawer that any nav items with children would control.
 

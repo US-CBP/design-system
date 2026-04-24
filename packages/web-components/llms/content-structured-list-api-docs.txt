@@ -1,0 +1,87 @@
+# cbp-structured-list
+
+## Overview
+
+Structured lists are a way of displaying long lists of data where the user is not directly comparing raw data one row at a time.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `accessibilityText` | `accessibility-text` | Specifies an accessible label for the list as an `aria-label`, similar to a table `caption`. Since the structured list contains significant amount of data, it is advised to always specify a label describing the list. | `string` | `undefined` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `headerId` | `header-id` | References an `id` placed on the element slotted into the `cbp-structured-list-header` named slot to provide additional accessible context to the list label. | `string` | `undefined` |
+| `striped` | `striped` | Specifies whether the list is striped, designating whether the colored rows are the odd or even rows (CBP DS standard is even when used). | `"even" | "odd"` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Only list items may be slotted within the default content. |
+| `"cbp-structured-list-footer"` | Optional information and/or interactive elements are provided by the application and slotted into this named slot. |
+| `"cbp-structured-list-header"` | Optional information such as number of results, filters, etc. are provided by the application and slotted into this named slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-structured-list-border-color` | var(--cbp-color-gray-cool-30); |
+| `--cbp-structured-list-border-color-dark` | var(--cbp-color-gray-cool-50); |
+| `--cbp-structured-list-footer-color` | var(--cbp-color-text-lightest); |
+| `--cbp-structured-list-footer-color-bg` | var(--cbp-color-gray-cool-70); |
+| `--cbp-structured-list-footer-color-bg-dark` | var(--cbp-color-gray-cool-5); |
+| `--cbp-structured-list-footer-color-dark` | var(--cbp-color-text-darkest); |
+| `--cbp-structured-list-header-color` | var(--cbp-color-text-darkest); |
+| `--cbp-structured-list-header-color-bg` | var(--cbp-color-gray-cool-30); |
+| `--cbp-structured-list-header-color-bg-dark` | var(--cbp-color-gray-cool-60); |
+| `--cbp-structured-list-header-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-structured-list-item-color` | var(--cbp-color-text-darkest); |
+| `--cbp-structured-list-item-color-bg` | var(--cbp-color-white); |
+| `--cbp-structured-list-item-color-bg-dark` | var(--cbp-color-gray-cool-80); |
+| `--cbp-structured-list-item-color-bg-hover` | var(--cbp-color-gray-cool-10); |
+| `--cbp-structured-list-item-color-bg-hover-dark` | var(--cbp-color-black); |
+| `--cbp-structured-list-item-color-bg-selected` | var(--cbp-color-interactive-selected-light); |
+| `--cbp-structured-list-item-color-bg-selected-dark` | var(--cbp-color-interactive-selected-dark); |
+| `--cbp-structured-list-item-color-bg-striped` | var(--cbp-color-gray-cool-4); |
+| `--cbp-structured-list-item-color-bg-striped-dark` | var(--cbp-color-gray-cool-90); |
+| `--cbp-structured-list-item-color-dark` | var(--cbp-color-text-lightest); |
+| `--cbp-structured-list-item-padding` | var(--cbp-space-4x); |
+| `--cbp-structured-list-margin-bottom` | var(--cbp-space-4x); |
+
+---
+
+# cbp-structured-list-item
+
+## Overview
+
+The Structured List Item component may optionally be used to hold each list item's content. This component is needed primarily when designating an item with the "danger" color or when list items are selectable.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `color` | `color` | Optionally specifies a color variant based on design tokens. | `"danger" | "info" | "success" | "warning"` | `undefined` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | The list item content is placed in the default slot. Content may be wrapped in a CSS grid (e.g., `cbp-grid`) to give each list item consistent structure and sizing. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-structured-list-item-color-bg-danger` | var(--cbp-color-danger-lighter); |
+| `--cbp-structured-list-item-color-bg-danger-dark` | var(--cbp-color-danger-darker); |
+| `--cbp-structured-list-item-color-bg-info` | var(--cbp-color-info-lighter); |
+| `--cbp-structured-list-item-color-bg-info-dark` | var(--cbp-color-info-darker); |
+| `--cbp-structured-list-item-color-bg-success` | var(--cbp-color-success-lighter); |
+| `--cbp-structured-list-item-color-bg-success-dark` | var(--cbp-color-success-darker); |
+| `--cbp-structured-list-item-color-bg-warning` | var(--cbp-color-warning-lighter); |
+| `--cbp-structured-list-item-color-bg-warning-dark` | var(--cbp-color-warning-darker); |
+| `--cbp-structured-list-item-padding` | var(--cbp-space-4x); |
+
+---

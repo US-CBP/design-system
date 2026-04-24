@@ -30,7 +30,7 @@
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
@@ -40,7 +40,7 @@
         ${filter ? `filter` : ''}
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         ${multiple ? generateMultiSelectItems(ShortList, name, context) : generateItems(ShortList)}
@@ -91,7 +91,7 @@
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         debug=${debug}
@@ -102,7 +102,7 @@
         ${filter ? `filter` : ''}
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <!-- No dropdown items loaded by default -->
@@ -176,7 +176,7 @@
       ${readonly ? `readonly` : ''}
       ${disabled ? `disabled` : ''}
       ${error ? `error` : ''}
-      ${context && context != 'light-inverts' ? `context=${context}` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
@@ -186,7 +186,7 @@
         ${filter ? `filter` : ''}
         ${multiple ? `multiple` : ''}
         ${create ? `create` : ''}
-        ${context && context != 'light-inverts' ? `context=${context}` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <!-- No dropdown items loaded by default -->

@@ -1,0 +1,55 @@
+# Navigation/Link
+
+## Examples
+
+
+### Link
+
+```tsx
+({
+  label,
+  withIcon,
+  inText,
+  href,
+  rel,
+  target,
+  download,
+  downloadFileName,
+  language,
+  shortcutKey,
+  accessibilityText,
+  disabled,
+  context,
+  sx
+}) => {
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-link a');
+    anchors.forEach(anchor => {
+      // only prevent default for navigation
+      if (!anchor.hasAttribute('download')) anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
+  }, 500);
+  return `
+    ${inText ? `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ` : ''}
+    <cbp-link
+      ${href ? `href="${href}"` : ''}
+      ${rel ? `rel="${rel}"` : ''}
+      ${target ? `target="${target}"` : ''}
+      ${download ? `download${downloadFileName ? `="${downloadFileName}"` : ''}` : ''}
+      ${shortcutKey ? `accesskey="${shortcutKey}"` : ''}
+      ${language ? `lang="${language}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${disabled ? 'disabled' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${withIcon == 'before' ? `<cbp-icon name="pen-to-square"></cbp-icon>` : ''}
+      ${label}
+      ${withIcon == 'after' ? `<cbp-icon name="up-right-from-square"></cbp-icon>` : ''}
+    </cbp-link>
+    ${inText ? ` Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>` : ''}
+  `;
+}
+```

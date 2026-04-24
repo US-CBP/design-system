@@ -1,0 +1,108 @@
+# Forms/Form Field
+
+## Examples
+
+
+### Select
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  error,
+  disabled,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <select name="select">
+        <option value=""></option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+        <option value="4">Option 4</option>
+        <option value="5">Option 5</option>
+        <option value="6">Option 6</option>
+        <option value="7">Option 7</option>
+        <option value="8">Option 8</option>
+      </select>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Text Input
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  error,
+  readonly,
+  disabled,
+  value,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${readonly ? 'readonly' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <input 
+        type="text"
+        name="textinput"
+        ${value ? `value="${value}"` : ''}
+      />
+    </cbp-form-field>
+  `;
+}
+```
+
+### Textarea
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  error,
+  readonly,
+  disabled,
+  value,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${error ? 'error' : ''}
+      ${disabled ? 'disabled' : ''}
+      ${readonly ? 'readonly' : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <textarea name="textarea">${value}</textarea>
+    </cbp-form-field>
+  `;
+}
+```

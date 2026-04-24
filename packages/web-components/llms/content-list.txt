@@ -1,0 +1,162 @@
+# Content/List
+
+## Examples
+
+
+### Description Link List
+
+```tsx
+({
+  linkListItems,
+  accessibilityText,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-list
+      tag="dl"
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateDescriptionItems(linkListItems)}
+  </cbp-list>
+  `;
+}
+```
+
+### External Link List
+
+```tsx
+({
+  linkListItems,
+  size,
+  accessibilityText,
+  context,
+  sx
+}) => {
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-list a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
+  }, 500);
+  return ` 
+    <cbp-list
+      variant="link"
+      ${size ? `size="${size}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateLinkListItems(linkListItems, size, 'link-external')}
+  </cbp-list>
+  `;
+}
+```
+
+### Icon Link List
+
+```tsx
+({
+  linkListItems,
+  accessibilityText,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-list
+      variant="icon"
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${generateIconItems(linkListItems)}
+    </cbp-list>
+  `;
+}
+```
+
+### Internal Link List
+
+```tsx
+({
+  linkListItems,
+  size,
+  accessibilityText,
+  context,
+  sx
+}) => {
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-list a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
+  }, 500);
+  return ` 
+  <cbp-list
+    variant="link" 
+    ${size ? `size="${size}"` : ''}
+    ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+    ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+    ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+  >
+    ${generateLinkListItems(linkListItems, size, 'link-internal')}
+  </cbp-list>`;
+}
+```
+
+### List
+
+```tsx
+({
+  UnorderedListItems,
+  OrderedListItems,
+  tag,
+  size,
+  accessibilityText,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-list
+      ${tag ? `tag="${tag}"` : ''}
+      ${size ? `size="${size}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}  
+      }
+    >
+      ${tag == 'ol' ? generateItems(OrderedListItems) : generateItems(UnorderedListItems)}
+    </cbp-list>
+  `;
+}
+```
+
+### Unstyled List
+
+```tsx
+({
+  listItems,
+  size,
+  accessibilityText,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-list
+      variant="unstyled"
+      ${size ? `size="${size}"` : ''}
+      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? 'sx=' + JSON.stringify(sx) : ''}
+    >
+      ${generateItems(listItems)}
+    </cbp-list>
+  `;
+}
+```

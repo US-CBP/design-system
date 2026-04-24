@@ -1,0 +1,46 @@
+# Navigation/Breadcrumb
+
+## Examples
+
+
+### Breadcrumb
+
+```tsx
+({
+  breadcrumbs,
+  home,
+  divider,
+  context,
+  sx
+}) => {
+  // preventDefault on all links in the breadcrumbs
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-breadcrumb a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
+  }, 1000);
+  return ` 
+    <cbp-breadcrumb
+      ${divider ? `divider="${divider}"` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      <cbp-button
+        tag="a"
+        fill="ghost"
+        color="primary"
+        variant="square"
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        href="${home}"
+        accessibility-text="Home"
+      >
+        <cbp-icon name="home"></cbp-icon>
+      </cbp-button>
+      ${generateBreadcrumbs(breadcrumbs, context)}
+    </cbp-breadcrumb>
+  `;
+}
+```
