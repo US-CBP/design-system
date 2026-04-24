@@ -4,8 +4,9 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [unpublished] TBD
+## [0.0.1-develop.34] 04-24-2026
 
+* BREAKING: Updated `cbp-card` by removing the "decision" `variant`, as it was not implemented in component logic (only styling), and is not mutually exclusive to other variants.
 * Updates to `cbp-structured-list` and `cbp-structured-list-item` to align their implementation with that of `cbp-table`.
   * BREAKING: The `striped` property on `cbp-structured-list` is no longer a Boolean; it now accepts "odd" or "even" values (defaults to undefined/none).
   * BREAKING: Removed the `selected` property from `cbp-structured-list`, matching the implementation of the Table component, as it was not synchronized with the slotted checkbox.
@@ -17,7 +18,6 @@ The React components are wrappers generated from this package and will share the
   * This allows for arbitrary typing and deletion in the search string as well as pasting from the clipboard.
   * BREAKING: the "filterKeypress" and "populateCombobox" event emitters no longer pass the keys: "key", "altKey", "ctrlKey", or "metaKey" because these are not present in the input event.
   * The "searchString" value passed is those event emitters is already converted to lowercase.
-* BREAKING: Updated `cbp-card` by removing the "decision" `variant`, as it was not implemented in component logic (only styling), and is not mutually exclusive to other variants.
 * Updated the `cbp-pagination` component with the new `maxPages` property, which may be used to limit the number of pages rendered in the dropdown, preventing performance degradation for very large data sets.
 * Updated the `cbp-button` CSS implementation to work better with custom values via props or CSS variables.
   * Removed default minimum height, which was making `cbp-accordion-item` taller than desired.
@@ -32,6 +32,7 @@ The React components are wrappers generated from this package and will share the
   * The story appears identical, as the messaging was moved to story code.
   * This messaging should be contextual and provided by the consuming application.
 * Made alignment default to "top-center" on `cbp-tooltip` (previously no default provided).
+* Fixed some CSS bugs in `cbp-toast`, including missing `z-index`.
 * Fixed a number of accessibility defects caused by `aria-describedby` referencing `id`s that did not exist in the default stories.
 * Reorganized components in Storybook, grouping them by function.
 
