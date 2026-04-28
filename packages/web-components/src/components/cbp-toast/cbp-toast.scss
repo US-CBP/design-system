@@ -33,7 +33,7 @@
 }
 
 cbp-toast {
-  display: none;
+  display: none; //TODO: local testing, probably need to refactor somthing around this for dismiss animations to display(animations look good with 'display:flex')
   width: min(100%, 30rem);
   background-color: var(--cbp-toast-color-bg);
   color: var(--cbp-toast-color);
@@ -44,17 +44,46 @@ cbp-toast {
   right: var(--cbp-space-6x);
   z-index:var(--cbp-z-index-level-top);
   
+
+  cbp-toast-container &{
+    position: initial;
+  }
+
   &[open]{
     display:flex;
   }
 
   &.cbp-toast--open{
     visibility: visible;
-    animation: show 600ms 100ms ease-in-out forwards;
+
+    &[animation='top']{
+      animation: show-top 600ms 100ms ease-in-out forwards;
+    }
+    &[animation='right']{
+      animation: show-right 600ms 100ms ease-in-out forwards;
+    }
+    &[animation='bottom']{
+      animation: show-bottom 600ms 100ms ease-in-out forwards;
+    }
+    &[animation='left']{
+      animation: show-left 600ms 100ms ease-in-out forwards;
+    }
   }
 
   &.cbp-toast--close{
-    animation: dismiss 1s ease-in-out forwards;
+    
+    &[animation='top']{
+      animation: dismiss-top 1s ease-in-out forwards;
+    }
+    &[animation='right']{
+      animation: dismiss-right 1s ease-in-out forwards;
+    }
+    &[animation='bottom']{
+      animation: dismiss-bottom 1s ease-in-out forwards;
+    }
+    &[animation='left']{
+      animation: dismiss-left 1s ease-in-out forwards;
+    }
   }
 
   .cbp-toast-sidebar {
@@ -157,7 +186,17 @@ cbp-toast {
   }
 }
 
-@keyframes show {
+
+@keyframes show-top {
+  0% {
+    transform: translateY(-100%);
+  }
+  100%{
+    opacity:1;
+  }
+}
+
+@keyframes show-right {
   0% {
     transform: translateX(100%);
   }
@@ -166,12 +205,68 @@ cbp-toast {
   }
 }
 
-@keyframes dismiss {
+@keyframes show-bottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100%{
+    opacity:1;
+  }
+}
+
+@keyframes show-left {
+  0% {
+    transform: translateX(-100%);
+  }
+  100%{
+    opacity:1;
+  }
+}
+
+@keyframes dismiss-top {
+  0%{
+    opacity: 1;
+  }
+  99% {
+    transform: translateY(-200%);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes dismiss-right {
   0%{
     opacity: 1;
   }
   99% {
     transform: translateX(200%);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes dismiss-bottom {
+  0%{
+    opacity: 1;
+  }
+  99% {
+    transform: translateY(200%);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@keyframes dismiss-left {
+  0%{
+    opacity: 1;
+  }
+  99% {
+    transform: translateX(-200%);
   }
   100% {
     opacity: 0;

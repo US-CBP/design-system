@@ -27,6 +27,9 @@ export class CbpToast {
   /** When set, specifies that the toast is open */
   @Prop({ reflect: true }) open: boolean;
 
+  /** Determine the side from which toast will animate in*/
+  @Prop({ reflect: true }) animation: 'top' | 'right' | 'bottom' | 'left' = 'right';
+
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
   
@@ -40,6 +43,29 @@ export class CbpToast {
     setCSSProps(this.host, {
       ...this.sx,
     });
+  }
+
+  componentWillRender() {
+    if (this.host.parentElement.tagName == 'CBP-TOAST-CONTAINER'){
+      const toastContainer = this.host.closest('cbp-toast-container');
+      console.log('toast container: ', toastContainer, this.host);
+      switch (toastContainer.orientation){
+        case 'top-left' :
+        case 'bottom-left': 
+          this.animation = 'left';
+          break;
+        case 'top-right':
+        case 'bottom-right':
+          this.animation = 'right';
+          break;
+        case 'bottom-center': 
+          this.animation = 'bottom';
+          break;
+        case 'top-center':
+          this.animation = 'top'
+          break;
+      }
+    }
   }
 
   componentDidRender() {
