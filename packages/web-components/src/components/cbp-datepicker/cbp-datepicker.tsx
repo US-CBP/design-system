@@ -91,9 +91,11 @@ export class CbpDatepicker {
   // Don't allow enter or space to open the native date picker dialog
   private preventNativeDatePicker(e) {
     const { key } = e;
-    if (!this.disabled && !this.readonly && (key == 'Enter' || key ==' ')) {
+    if (key == 'Enter' || key ==' ') {
       e.preventDefault();
-      this.toggleDatePicker();
+      if (!this.disabled && !this.readonly){
+        this.toggleDatePicker();
+      }
     }
     return true;
   }
