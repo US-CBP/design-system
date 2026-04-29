@@ -68,16 +68,19 @@ export class CbpToast {
 
   componentDidRender() {
     setTimeout(() => {
-      this.open ? this.openToast() : this.dismissToast();
+      this.open ? this.showToast() : this.dismissToast();
     }, 10);
   }
 
+  /** a public method to show toast animations */
   @Method()
-  async openToast(){
+  async showToast(){
         this.host.classList.add('cbp-toast--open');
         this.host.classList.remove('cbp-toast--close');
   }
 
+  
+  /** a public method to dismiss toast animations */
   @Method()
   async dismissToast(){
       this.host.classList.remove('cbp-toast--open');

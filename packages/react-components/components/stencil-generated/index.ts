@@ -68,6 +68,7 @@ export const CbpTable = /*@__PURE__*/createReactComponent<JSX.CbpTable, HTMLCbpT
 export const CbpTabs = /*@__PURE__*/createReactComponent<JSX.CbpTabs, HTMLCbpTabsElement>('cbp-tabs');
 export const CbpTag = /*@__PURE__*/createReactComponent<JSX.CbpTag, HTMLCbpTagElement>('cbp-tag');
 export const CbpToast = /*@__PURE__*/createReactComponent<JSX.CbpToast, HTMLCbpToastElement>('cbp-toast');
+export const CbpToastContainer = /*@__PURE__*/createReactComponent<JSX.CbpToastContainer, HTMLCbpToastContainerElement>('cbp-toast-container');
 export const CbpToggle = /*@__PURE__*/createReactComponent<JSX.CbpToggle, HTMLCbpToggleElement>('cbp-toggle');
 export const CbpTooltip = /*@__PURE__*/createReactComponent<JSX.CbpTooltip, HTMLCbpTooltipElement>('cbp-tooltip');
 export const CbpTreeview = /*@__PURE__*/createReactComponent<JSX.CbpTreeview, HTMLCbpTreeviewElement>('cbp-treeview');

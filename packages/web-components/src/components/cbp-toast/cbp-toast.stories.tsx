@@ -90,7 +90,6 @@ Toast.argTypes={
 
 Toast.args = {
   open: true,
-  color: 'info',
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
   buttons: `<cbp-button fill="ghost" color="secondary" name="dismiss">
@@ -118,8 +117,8 @@ setTimeout(() => {
     toastHTML+= ` 
       <cbp-toast
         ${open ? 'open' : ''}
-        color="${color}"
-        duration="${duration}"
+        ${color ? color=`${color}` : ``}
+        ${duration ? duration=`${duration}` : ``}
         icon="${generateIcon(color)}"
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -128,8 +127,10 @@ setTimeout(() => {
           <cbp-icon name="${generateIcon(color)}"></cbp-icon>
         </div>
         <div slot="cbp-toast-title">${title}</div>
-        ${content}
-        <div slot="cbp-toast-buttons">${buttons}</div>
+          ${content}
+        <div slot="cbp-toast-buttons">
+          ${buttons}
+        </div>
       </cbp-toast>`
   }
 
@@ -147,13 +148,12 @@ export const MultipleToast = MultiTemplate.bind({});
 MultipleToast.args = {
   multipleToast: 3,
   open: true,
-  color: 'info',
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
   buttons: `<cbp-button fill="ghost" color="secondary" name="dismiss">
-   Dismiss 
-   </cbp-button>
-    <cbp-button fill="ghost" color="secondary">
-     Default 2
-    </cbp-button>`
+              Dismiss 
+           </cbp-button>
+          <cbp-button fill="ghost" color="secondary">
+            Default 2
+          </cbp-button>`
 }

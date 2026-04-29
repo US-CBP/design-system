@@ -33,7 +33,7 @@
 }
 
 cbp-toast {
-  display: none; //TODO: local testing, probably need to refactor somthing around this for dismiss animations to display(animations look good with 'display:flex')
+  display: none;
   width: min(100%, 30rem);
   background-color: var(--cbp-toast-color-bg);
   color: var(--cbp-toast-color);
@@ -49,7 +49,6 @@ cbp-toast {
     position: initial;
 
     &.cbp-toast--open{
-    visibility: visible;
 
     &[data-animation='top']{
       animation: show-top 600ms 100ms ease-in-out forwards;
@@ -88,7 +87,6 @@ cbp-toast {
 
   //Animation for single Toast without container
   &.cbp-toast--open{
-    visibility: visible;
     animation: show-right 600ms 100ms ease-in-out forwards;
 
   }

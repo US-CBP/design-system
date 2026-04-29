@@ -1,13 +1,4 @@
-/**
- * @prop  --cbp-toast-container-direction: column;
- * @prop  --cbp-toast-container-direction: column;
- * @prop  --cbp-toast-container-top: unset;
- * @prop  --cbp-toast-container-right: unset;
- * @prop  --cbp-toast-container-bottom: unset;
- * @prop  --cbp-toast-container-left: unset;
-*/
 :root {
-  --cbp-toast-container-direction: column;
   --cbp-toast-container-top: unset;
   --cbp-toast-container-right: unset;
   --cbp-toast-container-bottom: unset;
@@ -16,7 +7,7 @@
 
 cbp-toast-container {
   display: flex;
-  flex-direction: var(--cbp-toast-container-direction);
+  flex-direction: column;
   gap: var(--cbp-space-4x);
   max-height: 100%;
   overflow-y: auto;
@@ -37,8 +28,8 @@ cbp-toast-container {
   &[position='bottom-center'],
   &[position='bottom-right']
   {
-    --cbp-toast-container-bottom: var(--cbp-space-4x);
-    --cbp-toast-container-direction: column-reverse;
+    --cbp-toast-container-bottom: var(--cbp-space-4x);  
+    flex-direction: column-reverse;
   }
 
   &[position='top-left'],
