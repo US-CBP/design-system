@@ -17,6 +17,8 @@ export class CbpDatepicker {
 
   private formField: HTMLInputElement;
   //private initialValue: any; // Save the initial value to support reset functionality
+  private disabled: boolean;
+  private readonly: boolean;
 
   @Element() private host: HTMLElement;
 
@@ -89,7 +91,7 @@ export class CbpDatepicker {
   // Don't allow enter or space to open the native date picker dialog
   private preventNativeDatePicker(e) {
     const { key } = e;
-    if (key == 'Enter' || key ==' ') {
+    if (!this.disabled && !this.readonly && (key == 'Enter' || key ==' ')) {
       e.preventDefault();
       this.toggleDatePicker();
     }
@@ -98,7 +100,9 @@ export class CbpDatepicker {
 
   // Clicking the button or hitting enter/space toggles the picker
   private toggleDatePicker() {
-    this.open = !this.open;
+    if (!this.disabled && !this.readonly) {
+      this.open = !this.open;
+    }
   }
 
   // Pressing ESC closes the picker
@@ -138,12 +142,17 @@ export class CbpDatepicker {
       const dateInput = this.formField.getAttribute('type') == "date" ? true : false;
       if (dateInput) {
         this.formField.addEventListener('keydown', (e) => this.preventNativeDatePicker(e));
-        this.formField.addEventListener('focus', (e) => e.preventDefault);
-        this.formField.addEventListener('click', (e) => e.preventDefault);
+        this.formField.addEventListener('focus', (e) => e.preventDefault());
+        this.formField.addEventListener('click', (e) => e.preventDefault());
       }
     }
   }
 
+  componentWillRender() {
+    this.disabled = !!this.formField?.getAttribute('disabled');
+    this.readonly = !!this.formField?.getAttribute('readonly');
+    console.log(this.disabled, this.readonly);
+  }
 
   render() {
     return (
@@ -174,5 +183,4 @@ export class CbpDatepicker {
       </Host>
     );
   }
-
 }
