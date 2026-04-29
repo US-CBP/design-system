@@ -19,7 +19,8 @@ cbp-toast-container {
   flex-direction: var(--cbp-toast-container-direction);
   gap: var(--cbp-space-4x);
   max-height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: fixed;
   top: var(--cbp-toast-container-top);
   right: var(--cbp-toast-container-right);
