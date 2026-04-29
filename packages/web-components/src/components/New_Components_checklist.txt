@@ -8,7 +8,7 @@
   * Edit the `:host` selector to the component name, which will wrap most of the CSS.
 * Edit the component file to:
   * Update the styleUrl key in the component decorator to reference the .scss file.
-  * Remove `shadow: true` from teh component decorator (in most cases).
+  * Remove `shadow: true` from the component decorator (in most cases).
 
 * Create the component-name.specs.mdx file with functional requirements before coding the component.
 * Create the api-docs.mdx file. If the component has child components make sure they are all included here.
@@ -18,6 +18,8 @@
   * Make sure properties that have a default value are not needlessly specified in the story/rendered code. Copied code should be as minimal as possible.
   * Make sure booleans are rendered as HTML booleans (attribute name only when true).
   * Make sure all other attribute values are double-quoted (other than those passing stringified JSON, which get single quotes on the outside).
+  * If an ID is required to make the story accessible by default, use "insert-unique-id" or something slightly more contextual like "insert-unique-fileinput-id".
+  * For form fields, a name should always be specified. Use something contextual like "insert-datepicker-field-name".
 
 * Components:
   * Make sure internal variables and functions are marked private.
