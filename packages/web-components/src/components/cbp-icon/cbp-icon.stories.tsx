@@ -11,6 +11,7 @@ export default {
         'arrow-right',
         'bars',
         'book',
+        'calendar-days',
         'caret-down',
         'check',
         'chevron-right',
