@@ -90,6 +90,8 @@ export class CbpDatepicker {
 
   // Don't allow enter or space to open the native date picker dialog
   private preventNativeDatePicker(e) {
+    console.log(e);
+    
     const { key } = e;
     if (key == 'Enter' || key ==' ') {
       e.preventDefault();
