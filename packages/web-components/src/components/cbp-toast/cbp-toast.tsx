@@ -17,22 +17,46 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpToast {
 
   @Element() private host: HTMLElement;
+
   private animation: 'top' | 'right' | 'bottom' | 'left' = 'right';
 
-  /** specifies the color for the toast */
+  /** Specifies the color of the toast. Defaults to "info". */
   @Prop({ reflect: true }) color: 'info' | 'danger' | 'success' | 'warning' = 'info';
 
-  /** specifies time in seconds for the toast to be displayed */
+  /** Specifies time in seconds for the toast to be displayed. Defaults to persistent until dismissed. */
   @Prop() duration: 3 | 5 | 10;
 
-  /** When set, specifies that the toast is open */
+  /**
+   * When set, specifies that the toast is visible. To show and dismiss a toast programmatically after a page has loaded, 
+   * use the showToast() and dismissToast() methods, respectively.
+  */
   @Prop({ reflect: true }) open: boolean;
   
-  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
+  /** 
+   * Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. 
+   * Default behavior is "light-inverts" and does not have to be specified. 
+   */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
   
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
+
+
+  /** A public method to show a toast notification with its animation. */
+  @Method()
+  async showToast(){
+    this.host.classList.add('cbp-toast--open');
+    this.host.classList.remove('cbp-toast--close');
+  }
+  
+  /** A public method to dismiss a toast notification. */
+  @Method()
+  async dismissToast(){
+    this.host.classList.remove('cbp-toast--open');
+    this.host.classList.add('cbp-toast--close');
+    setTimeout(() => {this.open = false}, 1000);
+  }
+  
 
   componentWillLoad() {
     if (typeof this.sx == 'string') {
@@ -72,26 +96,9 @@ export class CbpToast {
     }, 10);
   }
 
-  /** a public method to show toast animations */
-  @Method()
-  async showToast(){
-        this.host.classList.add('cbp-toast--open');
-        this.host.classList.remove('cbp-toast--close');
-  }
-
-  
-  /** a public method to dismiss toast animations */
-  @Method()
-  async dismissToast(){
-      this.host.classList.remove('cbp-toast--open');
-      this.host.classList.add('cbp-toast--close');
-      setTimeout(() => {this.open = false}, 1000);
-  }
-  
   render() {
-
     if(this.open && this.duration){
-      setTimeout(() => { this.open = false }, this.duration * 1000)
+      setTimeout(() => { this.dismissToast() }, this.duration * 1000)
     }
     
     return (

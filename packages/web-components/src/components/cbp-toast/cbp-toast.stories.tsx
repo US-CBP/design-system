@@ -100,7 +100,7 @@ Toast.args = {
         </cbp-button>`
 }
 
-const MultiTemplate = ({position, multipleToast, open, title, content, buttons, duration, color, context, sx }) => {
+const MultiTemplate: any = ({position, multipleToast, open, title, content, buttons, duration, color, context, sx }) => {
 setTimeout(() => {
   const dismissButtons = document.querySelectorAll('cbp-button[name="dismiss"]');
   dismissButtons.forEach(dismiss => {
@@ -126,7 +126,9 @@ setTimeout(() => {
         <div slot="cbp-toast-icon">
           <cbp-icon name="${generateIcon(color)}"></cbp-icon>
         </div>
-        <div slot="cbp-toast-title">${title}</div>
+        <div slot="cbp-toast-title">
+          ${title} ${x+1}
+        </div>
           ${content}
         <div slot="cbp-toast-buttons">
           ${buttons}
