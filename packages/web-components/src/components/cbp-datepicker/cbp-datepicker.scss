@@ -1,0 +1,60 @@
+/**
+
+ */
+
+
+:root{
+
+}
+
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-datepicker[context*=dark],
+[data-cbp-theme=dark] cbp-datepicker:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-file-input-color-label: var(--cbp-file-input-color-label-dark) !important;
+  --cbp-file-input-color: var(--cbp-file-input-color-dark) !important;
+  --cbp-file-input-color-bg: var(--cbp-file-input-color-bg-dark) !important;
+  --cbp-file-input-color-bg-dragged: var(--cbp-file-input-color-bg-dragged-dark) !important;
+  --cbp-file-input-color-border: var(--cbp-file-input-color-border-dark) !important;
+  --cbp-file-input-color-border-hover: var(--cbp-file-input-color-border-hover-dark) !important;
+  --cbp-file-input-color-border-focus: var(--cbp-file-input-color-border-focus-dark) !important;
+  --cbp-file-input-color-outline: var(--cbp-file-input-color-outline-dark) !important;
+  --cbp-file-input-color-outline-hover: var(--cbp-file-input-color-outline-hover-dark) !important;
+  --cbp-file-input-color-outline-focus: var(--cbp-file-input-color-outline-focus-dark) !important;
+  
+  --cbp-file-input-file-color-bg: var(--cbp-file-input-file-color-bg-dark) !important;
+  --cbp-file-input-file-color-bg-error: var(--cbp-file-input-file-color-bg-error-dark) !important;
+}
+
+
+cbp-datepicker {
+  //display: block;
+  position: relative;
+
+  // TIL: appearance: none doesn't affect native date inputs
+  /*
+  input[type=date]:not(#fakeId) {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  */
+  input[type=date]::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none;
+  }
+  [type=date]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+
+  [role=dialog] {
+    background-color: gray;
+    width: 20.75rem;
+    height: 23rem;
+  }
+
+
+  //.datetime-calendar-button 
+}
