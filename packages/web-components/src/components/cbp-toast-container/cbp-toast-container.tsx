@@ -8,7 +8,7 @@ import { Component, Host, h, Prop } from '@stencil/core';
 export class CbpToastContainer {
 
   /** specifies the position of the toast Container */
-  @Prop({ reflect: true }) orientation: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right' = 'top-right';
+  @Prop({ reflect: true }) position: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right' = 'top-right';
 
   render() {
     return (

@@ -22,6 +22,11 @@ like error messages to also be populated elsewhere in app so that they don't get
         *content: Slot for the content of the toast, used for description of error or progress bar for example. 
         *buttons: Slot intended for 1 or 2 buttons, UX design intended for these to be a dismiss (of the toast) and/or a button to link to log/more detailed section explaining the toast
 
+*Multiple toast should be placed in a cbp-toast-container to manage placement
+    *Props:
+        *position: used to align toast-container in viewport, options include (top-left, top-center, top-left, bottom-left, bottom-center, bottom-left) defaulting to top-right
+            *position prop is also used to educate the toast animations so that toasts open/dismiss will correctly animate on/off screen
+            
 ## Technical Specifications
 
 ### User Interactions

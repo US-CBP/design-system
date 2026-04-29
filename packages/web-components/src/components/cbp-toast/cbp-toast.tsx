@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Host, h, Method } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
@@ -17,6 +17,7 @@ import { setCSSProps } from '../../utils/utils';
 export class CbpToast {
 
   @Element() private host: HTMLElement;
+  private animation: 'top' | 'right' | 'bottom' | 'left' = 'right';
 
   /** specifies the color for the toast */
   @Prop({ reflect: true }) color: 'info' | 'danger' | 'success' | 'warning' = 'info';
@@ -26,10 +27,7 @@ export class CbpToast {
 
   /** When set, specifies that the toast is open */
   @Prop({ reflect: true }) open: boolean;
-
-  /** Determine the side from which toast will animate in*/
-  @Prop({ reflect: true }) animation: 'top' | 'right' | 'bottom' | 'left' = 'right';
-
+  
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
   
@@ -48,8 +46,7 @@ export class CbpToast {
   componentWillRender() {
     if (this.host.parentElement.tagName == 'CBP-TOAST-CONTAINER'){
       const toastContainer = this.host.closest('cbp-toast-container');
-      console.log('toast container: ', toastContainer, this.host);
-      switch (toastContainer.orientation){
+      switch (toastContainer.position){
         case 'top-left' :
         case 'bottom-left': 
           this.animation = 'left';
@@ -65,23 +62,29 @@ export class CbpToast {
           this.animation = 'top'
           break;
       }
+      this.host.setAttribute('data-animation', this.animation);
     }
   }
 
   componentDidRender() {
-    // Support animation by doing it this way
     setTimeout(() => {
-      if(this.open){ 
-        this.host.classList.add('cbp-toast--open');
-        this.host.classList.remove('cbp-toast--close');
-      }else {
-        this.host.classList.remove('cbp-toast--open');
-        this.host.classList.add('cbp-toast--close');
-        setTimeout(()=>{this.host.style.display='none'}, 1000) //setting display:none here so animations run smoothly but don't take up visual realestate when complete
-      }
+      this.open ? this.openToast() : this.dismissToast();
     }, 10);
   }
 
+  @Method()
+  async openToast(){
+        this.host.classList.add('cbp-toast--open');
+        this.host.classList.remove('cbp-toast--close');
+  }
+
+  @Method()
+  async dismissToast(){
+      this.host.classList.remove('cbp-toast--open');
+      this.host.classList.add('cbp-toast--close');
+      setTimeout(() => {this.open = false}, 1000);
+  }
+  
   render() {
 
     if(this.open && this.duration){

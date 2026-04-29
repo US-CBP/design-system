@@ -47,43 +47,55 @@ cbp-toast {
 
   cbp-toast-container &{
     position: initial;
-  }
 
-  &[open]{
-    display:flex;
-  }
-
-  &.cbp-toast--open{
+    &.cbp-toast--open{
     visibility: visible;
 
-    &[animation='top']{
+    &[data-animation='top']{
       animation: show-top 600ms 100ms ease-in-out forwards;
     }
-    &[animation='right']{
+    &[data-animation='right']{
       animation: show-right 600ms 100ms ease-in-out forwards;
     }
-    &[animation='bottom']{
+    &[data-animation='bottom']{
       animation: show-bottom 600ms 100ms ease-in-out forwards;
     }
-    &[animation='left']{
+    &[data-animation='left']{
       animation: show-left 600ms 100ms ease-in-out forwards;
     }
   }
 
   &.cbp-toast--close{
     
-    &[animation='top']{
+    &[data-animation='top']{
       animation: dismiss-top 1s ease-in-out forwards;
     }
-    &[animation='right']{
+    &[data-animation='right']{
       animation: dismiss-right 1s ease-in-out forwards;
     }
-    &[animation='bottom']{
+    &[data-animation='bottom']{
       animation: dismiss-bottom 1s ease-in-out forwards;
     }
-    &[animation='left']{
+    &[data-animation='left']{
       animation: dismiss-left 1s ease-in-out forwards;
     }
+  }
+  }
+
+  &[open]{
+    display:flex;
+  }
+
+  //Animation for single Toast without container
+  &.cbp-toast--open{
+    visibility: visible;
+    animation: show-right 600ms 100ms ease-in-out forwards;
+
+  }
+
+  &.cbp-toast--close{
+    animation: dismiss-right 1s ease-in-out forwards;
+
   }
 
   .cbp-toast-sidebar {
