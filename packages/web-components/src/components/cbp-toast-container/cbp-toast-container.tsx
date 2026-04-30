@@ -1,10 +1,10 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 
 /**
- * The Toast container is to position a collection of toast components in app
- * @slot - The default slot is to be populated with cbp-toasts
+ * The Toast container is used to hold and position multiple toasts.
+ *
+ * @slot - Only `cbp-toast` components shall be placed in the default slot.
  */
-
 @Component({
   tag: 'cbp-toast-container',
   styleUrl: 'cbp-toast-container.scss'
@@ -12,13 +12,13 @@ import { Component, Host, h, Prop } from '@stencil/core';
 
 export class CbpToastContainer {
 
-  /** specifies the position of the toast Container */
+  /** Specifies the position of the toast container relative to the viewport. */
   @Prop({ reflect: true }) position: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right' = 'top-right';
 
   render() {
     return (
       <Host>
-        <slot></slot>
+        <slot />
       </Host>
     );
   }

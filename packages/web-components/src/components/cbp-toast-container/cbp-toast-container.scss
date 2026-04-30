@@ -1,4 +1,5 @@
 :root {
+  // These are used internally and not exposed as part of the CSS API
   --cbp-toast-container-top: unset;
   --cbp-toast-container-right: unset;
   --cbp-toast-container-bottom: unset;
@@ -18,36 +19,56 @@ cbp-toast-container {
   bottom: var(--cbp-toast-container-bottom);
   left: var(--cbp-toast-container-left);
 
+/*
   &[position='top-left'],
   &[position='top-center'],
-  &[position='top-right']{
+  &[position='top-right'] {
     --cbp-toast-container-top: var(--cbp-space-4x);
   }
   
   &[position='bottom-left'],
   &[position='bottom-center'],
-  &[position='bottom-right']
-  {
+  &[position='bottom-right'] {
     --cbp-toast-container-bottom: var(--cbp-space-4x);  
     flex-direction: column-reverse;
   }
 
   &[position='top-left'],
-  &[position='bottom-left']
-  {
+  &[position='bottom-left'] {
     --cbp-toast-container-left: var(--cbp-responsive-spacing-outer);
   }
 
   &[position='top-center'],
-  &[position='bottom-center']
-  {
+  &[position='bottom-center'] {
     --cbp-toast-container-left: 50%;
     transform: translateX(-50%);
   }
   
   &[position='top-right'],
-  &[position='bottom-right']
-  {
+  &[position='bottom-right'] {
     --cbp-toast-container-right: var(--cbp-responsive-spacing-outer);
+  }
+*/
+
+  &[position*=top] {
+    --cbp-toast-container-top: var(--cbp-space-4x);
+  }
+
+  &[position*=bottom] {
+    --cbp-toast-container-bottom: var(--cbp-space-4x);  
+    flex-direction: column-reverse;
+  }
+
+  &[position*=left] {
+    --cbp-toast-container-left: var(--cbp-responsive-spacing-outer);
+  }
+
+  &[position*=right] {
+    --cbp-toast-container-right: var(--cbp-responsive-spacing-outer);
+  }
+  
+  &[position*=center] {
+    --cbp-toast-container-left: 50%;
+    transform: translateX(-50%);
   }
 }
