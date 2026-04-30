@@ -1,0 +1,43 @@
+:root {
+  // These are used internally and not exposed as part of the CSS API
+  --cbp-toast-container-top: unset;
+  --cbp-toast-container-right: unset;
+  --cbp-toast-container-bottom: unset;
+  --cbp-toast-container-left: unset;
+}
+
+cbp-toast-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cbp-space-4x);
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: fixed;
+  top: var(--cbp-toast-container-top);
+  right: var(--cbp-toast-container-right);
+  bottom: var(--cbp-toast-container-bottom);
+  left: var(--cbp-toast-container-left);
+
+  &[position*=top] {
+    --cbp-toast-container-top: var(--cbp-space-4x);
+  }
+
+  &[position*=bottom] {
+    --cbp-toast-container-bottom: var(--cbp-space-4x);  
+    flex-direction: column-reverse;
+  }
+
+  &[position*=left] {
+    --cbp-toast-container-left: var(--cbp-responsive-spacing-outer);
+  }
+
+  &[position*=right] {
+    --cbp-toast-container-right: var(--cbp-responsive-spacing-outer);
+  }
+  
+  &[position*=center] {
+    --cbp-toast-container-left: 50%;
+    transform: translateX(-50%);
+  }
+}

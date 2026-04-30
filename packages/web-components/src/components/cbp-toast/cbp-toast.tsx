@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Host, h, Method } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
@@ -18,20 +18,45 @@ export class CbpToast {
 
   @Element() private host: HTMLElement;
 
-  /** specifies the color for the toast */
+  private animation: 'top' | 'right' | 'bottom' | 'left' = 'right';
+
+  /** Specifies the color of the toast. Defaults to "info". */
   @Prop({ reflect: true }) color: 'info' | 'danger' | 'success' | 'warning' = 'info';
 
-  /** specifies time in seconds for the toast to be displayed */
+  /** Specifies time in seconds for the toast to be displayed. Defaults to persistent until dismissed. */
   @Prop() duration: 3 | 5 | 10;
 
-  /** When set, specifies that the toast is open */
+  /**
+   * When set, specifies that the toast is visible. To show and dismiss a toast programmatically after a page has loaded, 
+   * use the showToast() and dismissToast() methods, respectively.
+  */
   @Prop({ reflect: true }) open: boolean;
-
-  /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
+  
+  /** 
+   * Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. 
+   * Default behavior is "light-inverts" and does not have to be specified. 
+   */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
   
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
+
+
+  /** A public method to show a toast notification with its animation. */
+  @Method()
+  async showToast(){
+    this.host.classList.add('cbp-toast--open');
+    this.host.classList.remove('cbp-toast--close');
+  }
+  
+  /** A public method to dismiss a toast notification. */
+  @Method()
+  async dismissToast(){
+    this.host.classList.remove('cbp-toast--open');
+    this.host.classList.add('cbp-toast--close');
+    setTimeout(() => {this.open = false}, 1000);
+  }
+  
 
   componentWillLoad() {
     if (typeof this.sx == 'string') {
@@ -42,24 +67,38 @@ export class CbpToast {
     });
   }
 
-  componentDidRender() {
-    // Support animation by doing it this way
-    setTimeout(() => {
-      if(this.open){ 
-        this.host.classList.add('cbp-toast--open');
-        this.host.classList.remove('cbp-toast--close');
-      }else {
-        this.host.classList.remove('cbp-toast--open');
-        this.host.classList.add('cbp-toast--close');
-        setTimeout(()=>{this.host.style.display='none'}, 1000) //setting display:none here so animations run smoothly but don't take up visual realestate when complete
+  componentWillRender() {
+    if (this.host.parentElement.tagName == 'CBP-TOAST-CONTAINER'){
+      const toastContainer = this.host.closest('cbp-toast-container');
+      switch (toastContainer.position){
+        case 'top-left' :
+        case 'bottom-left': 
+          this.animation = 'left';
+          break;
+        case 'top-right':
+        case 'bottom-right':
+          this.animation = 'right';
+          break;
+        case 'bottom-center': 
+          this.animation = 'bottom';
+          break;
+        case 'top-center':
+          this.animation = 'top'
+          break;
       }
+      this.host.setAttribute('data-animation', this.animation);
+    }
+  }
+
+  componentDidRender() {
+    setTimeout(() => {
+      this.open ? this.showToast() : this.dismissToast();
     }, 10);
   }
 
   render() {
-
     if(this.open && this.duration){
-      setTimeout(() => { this.open = false }, this.duration * 1000)
+      setTimeout(() => { this.dismissToast() }, this.duration * 1000)
     }
     
     return (

@@ -1,3 +1,5 @@
+import { CbpToast } from "./cbp-toast";
+
 export default {
   title: 'Notifications/Toast',
   tags: ['new'],
@@ -10,6 +12,14 @@ export default {
     color: {
       control: 'select',
       options: ['info', 'danger', 'success', 'warning']
+    },  
+    position:{
+      control: 'select',
+      options: ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right']
+    },
+    multipleToast:{
+      description: 'Generate X number of Toast components',
+      control: 'number'
     },
     context: {
       control: 'select',
@@ -35,13 +45,26 @@ function generateIcon(color) {
   }
 }
 
-const Template: any = ({ open, title, content, buttons, duration, color, context, sx }) => {
+function generateButton(text, context){
+return `
+  <cbp-button 
+    fill="ghost" 
+    color="secondary" 
+    name=${text}
+    ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+  >
+    ${text}
+  </cbp-button>
+`;
+}
+
+const Template: any = ({ open, title, content, duration, color, context, sx }) => {
   setTimeout(() => {
     const dismiss = document.querySelector('cbp-button[name="dismiss"]') as HTMLCbpButtonElement;
     dismiss.addEventListener('buttonClick', e => {
     const buttonComponent = e.target as HTMLCbpButtonElement;
-      const toast = buttonComponent.closest('cbp-toast');
-      toast.open=false;
+    const toast = buttonComponent.closest('cbp-toast') as any as CbpToast;
+    toast.dismissToast();
     });
   }, 10);
 
@@ -61,120 +84,81 @@ const Template: any = ({ open, title, content, buttons, duration, color, context
       <div slot="cbp-toast-title">${title}</div>
       ${content}
       <div slot="cbp-toast-buttons">
-        ${buttons}
+      ${generateButton('dismiss', context)}
+      ${generateButton('default', context)}
       </div>
     </cbp-toast>
   `;
 };
 
 export const Toast = Template.bind({});
-Toast.args = {
-  open: true,
-  color: 'info',
-  title: 'Test Toast Title',
-  content: 'Notification Description - A rule you are following just fired.',
-  buttons: `<cbp-button fill="ghost" color="secondary" name="dismiss">
-          Dismiss 
-        </cbp-button>
-        <cbp-button fill="ghost" color="secondary">
-          Default 2
-        </cbp-button>`
+
+Toast.argTypes={
+  position: {
+    control: false
+  },
+  multipleToast:{
+    control: false
+  }
 }
 
+Toast.args = {
+  open: true,
+  title: 'Test Toast Title',
+  content: 'Notification Description - A rule you are following just fired.',
+}
 
+const MultiTemplate: any = ({position, multipleToast, open, title, content, duration, color, context, sx }) => {
+setTimeout(() => {
+  const dismissButtons = document.querySelectorAll('cbp-button[name="dismiss"]');
+  dismissButtons.forEach(dismiss => {
+    dismiss.addEventListener('buttonClick', function(e) {
+      const buttonComponent = e.target as HTMLCbpButtonElement;
+      const toast = buttonComponent.closest('cbp-toast') as any as CbpToast;
+      toast.dismissToast();
+      });
+    });
+  }, 10);
 
+  let toastHTML=``;
+  for(let x=0; x < multipleToast; x++){
+    toastHTML+= ` 
+      <cbp-toast
+        ${open ? 'open' : ''}
+        ${color ? `color=${color}` : ``}
+        ${duration ? duration=`${duration}` : ``}
+        icon="${generateIcon(color)}"
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        <div slot="cbp-toast-icon">
+          <cbp-icon name="${generateIcon(color)}"></cbp-icon>
+        </div>
+        <div slot="cbp-toast-title">
+          ${title} ${x+1}
+        </div>
+          ${content}
+        <div slot="cbp-toast-buttons">
+          ${generateButton('dismiss', context)}
+          ${generateButton('default', context)}
+        </div>
+      </cbp-toast>`
+  }
 
-// const MultiTemplate = ({ open, title, content, buttons, duration, color, context, sx }) => {
+  return `
+    <cbp-toast-container
+      ${position ? `position=${position}` : ``}
+    >
+      ${toastHTML} 
+    </cbp-toast-container>
+  `
+}
 
-//   setTimeout(() => {
-//   const dismissButtons = document.querySelectorAll('cbp-button[name="dismiss"]');
-//   dismissButtons.forEach(dismiss => {
-//     dismiss.addEventListener('buttonClick', function(e) {
-//       const buttonComponent = e.target as HTMLCbpButtonElement;
-//         const toast = buttonComponent.closest('cbp-toast')
-//           toast.open=false;
-//       });
-//     });
-//   }, 10);
-  
-//   return ` 
-//     <cbp-toast
-//       ${open ? 'open' : ''}
-//       color="${color}"
-//       duration="${duration}"
-//       icon="${generateIcon(color)}"
-//       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-//       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-//     >
-//       <div slot="cbp-toast-icon">
-//         <cbp-icon name="${generateIcon(color)}"></cbp-icon>
-//       </div>
-//       <div slot="cbp-toast-title">${title}</div>
-//       ${content}
-//       <div slot="cbp-toast-buttons">${buttons}</div>
-//     </cbp-toast>
-    
-//     <cbp-toast
-//       ${open ? 'open' : ''}
-//       color="${color}"
-//       duration="${duration}"
-//       icon="${generateIcon(color)}"
-//       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-//       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-//     >       
-//       <div slot="cbp-toast-icon">
-//         <cbp-icon name="${generateIcon(color)}"></cbp-icon>
-//       </div>
-//       <div slot="cbp-toast-title">${title}</div>
-//       ${content}
-//       <div slot="cbp-toast-buttons">${buttons}</div>
-//     </cbp-toast>
-    
-//     <cbp-toast
-//       ${open ? 'open' : ''}
-//       color="${color}"
-//       duration="${duration}"
-//       icon="${generateIcon(color)}"
-//       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-//       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-//     >      
-//       <div slot="cbp-toast-icon">
-//         <cbp-icon name="${generateIcon(color)}"></cbp-icon>
-//       </div>
-//       <div slot="cbp-toast-title">${title}</div>
-//       ${content}
-//       <div slot="cbp-toast-buttons">${buttons}</div>
-//     </cbp-toast>
+export const MultipleToast = MultiTemplate.bind({});
 
-//     <cbp-toast
-//       ${open ? 'open' : ''}
-//       color="${color}"
-//       duration="${duration}"
-//       icon="${generateIcon(color)}"
-//       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-//       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-//     >
-//       <div slot="cbp-toast-icon">
-//         <cbp-icon name="${generateIcon(color)}"></cbp-icon>
-//       </div>
-//       <div slot="cbp-toast-title">${title}</div>
-//       ${content}
-//       <div slot="cbp-toast-buttons">${buttons}</div>
-//     </cbp-toast>
-//   `;
-// };
-
-// export const MultipleToast = MultiTemplate.bind({});
-
-// MultipleToast.args = {
-//   open: true,
-//   color: 'info',
-//   title: 'Test Toast Title',
-//   content: 'Notification Description - A rule you are following just fired.',
-//   buttons: `<cbp-button fill="ghost" color="secondary" name="dismiss">
-//    Dismiss 
-//    </cbp-button>
-//     <cbp-button fill="ghost" color="secondary">
-//      Default 2
-//     </cbp-button>`
-// }
+MultipleToast.args = {
+  multipleToast: 3,
+  open: true,
+  title: 'Test Toast Title',
+  content: 'Notification Description - A rule you are following just fired.',
+}
