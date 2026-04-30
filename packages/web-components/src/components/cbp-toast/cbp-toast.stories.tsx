@@ -45,7 +45,20 @@ function generateIcon(color) {
   }
 }
 
-const Template: any = ({ open, title, content, buttons, duration, color, context, sx }) => {
+function generateButton(text, context){
+return `
+  <cbp-button 
+    fill="ghost" 
+    color="secondary" 
+    name=${text}
+    ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+  >
+    ${text}
+  </cbp-button>
+`;
+}
+
+const Template: any = ({ open, title, content, duration, color, context, sx }) => {
   setTimeout(() => {
     const dismiss = document.querySelector('cbp-button[name="dismiss"]') as HTMLCbpButtonElement;
     dismiss.addEventListener('buttonClick', e => {
@@ -71,7 +84,8 @@ const Template: any = ({ open, title, content, buttons, duration, color, context
       <div slot="cbp-toast-title">${title}</div>
       ${content}
       <div slot="cbp-toast-buttons">
-        ${buttons}
+      ${generateButton('dismiss', context)}
+      ${generateButton('default', context)}
       </div>
     </cbp-toast>
   `;
@@ -92,15 +106,9 @@ Toast.args = {
   open: true,
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
-  buttons: `<cbp-button fill="ghost" color="secondary" name="dismiss">
-          Dismiss 
-        </cbp-button>
-        <cbp-button fill="ghost" color="secondary">
-          Default 2
-        </cbp-button>`
 }
 
-const MultiTemplate: any = ({position, multipleToast, open, title, content, buttons, duration, color, context, sx }) => {
+const MultiTemplate: any = ({position, multipleToast, open, title, content, duration, color, context, sx }) => {
 setTimeout(() => {
   const dismissButtons = document.querySelectorAll('cbp-button[name="dismiss"]');
   dismissButtons.forEach(dismiss => {
@@ -117,7 +125,7 @@ setTimeout(() => {
     toastHTML+= ` 
       <cbp-toast
         ${open ? 'open' : ''}
-        ${color ? color=`${color}` : ``}
+        ${color ? `color=${color}` : ``}
         ${duration ? duration=`${duration}` : ``}
         icon="${generateIcon(color)}"
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
@@ -131,7 +139,8 @@ setTimeout(() => {
         </div>
           ${content}
         <div slot="cbp-toast-buttons">
-          ${buttons}
+          ${generateButton('dismiss', context)}
+          ${generateButton('default', context)}
         </div>
       </cbp-toast>`
   }
@@ -152,10 +161,4 @@ MultipleToast.args = {
   open: true,
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
-  buttons: `<cbp-button fill="ghost" color="secondary" name="dismiss">
-              Dismiss 
-           </cbp-button>
-          <cbp-button fill="ghost" color="secondary">
-            Default 2
-          </cbp-button>`
 }
