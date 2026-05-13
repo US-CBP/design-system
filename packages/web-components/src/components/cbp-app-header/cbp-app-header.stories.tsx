@@ -9,6 +9,10 @@ export default {
       description: 'A unique `id` applied to the drawer and referenced by the control.',
       control: 'text',
     },
+    sticky:{
+      description: 'boolean to set if the app header is sticky.',
+      control: 'boolean'
+    },
     store: {
       control: 'boolean'
     },
@@ -145,7 +149,7 @@ function renderDrawer(items, drawerId, store){
 }
 
 
-const Template = ({ drawerId, store, search, searchMethod, searchAction, items, sx }) => {  
+const Template = ({ drawerId, sticky, store, search, searchMethod, searchAction, items, sx }) => {  
   
   setTimeout(() => {
     // Cancel form submit event on search to prevent full page reload
@@ -164,6 +168,7 @@ const Template = ({ drawerId, store, search, searchMethod, searchAction, items, 
   return ` 
     <cbp-app-header    
       ${drawerId ? `subnav-drawer-id="${drawerId}"`: ''}
+      ${sticky ? `sticky` : ``}
       ${search ? 'search' : ''}
       ${searchMethod ? `search-method="${searchMethod}"` : ''}
       ${searchAction ? `search-action="${searchAction}"` : ''}
@@ -218,12 +223,13 @@ ApplicationHeader.args = {
       name: 'Nav Item 3',
       href: './?path=/story/components-application-header--application-header#',
     },
-  ] 
+  ],
+  sticky: true
 }
 
 
 
-const AppHeaderWithSubnavTemplate = ({ drawerId, store, search, searchMethod, searchAction, items, sx }) => {  
+const AppHeaderWithSubnavTemplate = ({ drawerId, store, search, searchMethod, searchAction, sticky, items, sx }) => {  
   
   setTimeout(() => {
     // Cancel form submit event on search to prevent full page reload
@@ -245,6 +251,7 @@ const AppHeaderWithSubnavTemplate = ({ drawerId, store, search, searchMethod, se
       ${search ? 'search' : ''}
       ${searchMethod ? `search-method="${searchMethod}"` : ''}
       ${searchAction ? `search-action="${searchAction}"` : ''}
+      ${sticky ? `sticky` : ``}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateNavItems(items, drawerId)}
@@ -338,5 +345,6 @@ AppHeaderWithSubnav.args = {
       name: 'Nav Item 3',
       href: './?path=/story/components-application-header--application-header#',
     },
-  ] 
+  ],
+  sticky: true 
 }

@@ -552,16 +552,16 @@ OverflowMenu.args = {
             </cbp-button>
 
             <cbp-menu-item>
-              <cbp-button> 
+              <a href="#" target="_self"> 
                 <cbp-icon name="eye"></cbp-icon>
                 View
-              </cbp-button>
+              </a>
             </cbp-menu-item>
             <cbp-menu-item>
-              <cbp-button> 
+              <a href="#" target="_self"> 
                 <cbp-icon name="pen-to-square"></cbp-icon>
                 Edit
-              </cbp-button>
+              </a>
             </cbp-menu-item>
             <cbp-menu-item color="danger">
               <cbp-button fill="ghost" color="danger">   
