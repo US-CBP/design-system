@@ -22,13 +22,18 @@ export default {
 
 function generateMenuItem(items){
   console.log('items: ', items);
-  const html = items.map(({tag, color, icon, text}) =>{
+  const html = items.map(({tag, color, icon, svg, text}) =>{
     return `
     <cbp-menu-item
       ${color ? `color="${color}"` : ``}
     >
       <${tag}>
         ${icon ? `<cbp-icon name="${icon}"></cbp-icon>` : ``}
+        ${svg ? `
+          <cbp-icon>
+            <svg ${svg}/></svg>
+          </cbp-icon>
+          ` : ``}
         ${text}
       </${tag}>
     </cbp-menu-item>
@@ -102,29 +107,6 @@ const ActionsMenuTemplate = ({ position, items, context, sx }) => {
   `;
 };
 
-/*
-<cbp-menu-item>
-        <cbp-button tag="a" href="#"> 
-          <cbp-icon name="eye"></cbp-icon>
-          View
-        </cbp-button>
-      </cbp-menu-item>
-      <cbp-menu-item>
-        <cbp-button tag="a" href="#">
-          <cbp-icon name="pen-to-square"></cbp-icon>
-          Edit
-        </cbp-button>
-      </cbp-menu-item>
-      <cbp-menu-item color="danger">
-        <cbp-button fill="ghost" color="danger">   
-          <cbp-icon>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-          </cbp-icon>
-          Delete
-        </cbp-button>
-      </cbp-menu-item>
-      */
-
 export const ActionsMenu = ActionsMenuTemplate.bind({});
 ActionsMenu.args = {
   items:[
@@ -140,17 +122,10 @@ ActionsMenu.args = {
     },
     {
       tag: 'cbp-button tag="button"',
+      svg: 'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"',
       color: 'danger',
       text: 'Delete'
     },
-    {
-      tag: 'a',
-      text: 'Action 1'
-    },
-    {
-      tag: 'button',
-      text: 'Action 2'
-    }
   ]
 };
 

@@ -30,7 +30,11 @@ export default {
       description: 'set the action attribute on the form for search',
       control: 'text',
       if:{ arg: 'search'}
-    }
+    },
+    stickyHeader:{
+      description: 'boolean to set if the app header is sticky.',
+      control: 'boolean'
+    },
   },
   args: {
     username: 'Johnathan Smithington',
@@ -70,7 +74,8 @@ export default {
       name: 'Nav Item 3',
       href: './?path=/story/components-application-header--application-header#',
     },
-  ] 
+  ], 
+  stickyHeader: true
   },
 };
 
@@ -95,7 +100,7 @@ function initThemeSwitcher() {
 
 
 
-const InternalTemplate: any = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, }) => {
+const InternalTemplate: any = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, stickyHeader}) => {
 
   setTimeout(() => {
     initThemeSwitcher();
@@ -152,7 +157,7 @@ const InternalTemplate: any = ({ isLoggedIn, username, hashid, navItems, search,
       </cbp-universal-header>
 
       <cbp-app-header
-        sticky
+        ${stickyHeader ? `sticky` : ``}
         subnav-drawer-id="appheaderdrawer"
         ${search ? `search` : ``}
         ${searchMethod ? `search-method=${searchMethod}` : ``}
@@ -210,7 +215,7 @@ const InternalTemplate: any = ({ isLoggedIn, username, hashid, navItems, search,
 export const Internal = InternalTemplate.bind({});
 
 
-const Internal2ColumnTemplate: any = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
+const Internal2ColumnTemplate: any = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, stickyHeader, contentGridSize, sidebarGridSize, gridBreakpoint }) => {
   
   setTimeout(() => {
     initThemeSwitcher();
@@ -267,7 +272,7 @@ const Internal2ColumnTemplate: any = ({ isLoggedIn, username, hashid, navItems, 
       </cbp-universal-header>
 
       <cbp-app-header
-        sticky
+        ${stickyHeader ? `sticky` : ``}
         subnav-drawer-id="appheaderdrawer"
         ${search ? `search` : ``}
         ${searchMethod ? `search-method=${searchMethod}` : ``}
@@ -610,7 +615,7 @@ function generateCards(numberOfCards) {
 
 
 
-const InternalCardsLayoutTemplate: any = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, numberOfCards, cardMinWidth }) => {
+const InternalCardsLayoutTemplate: any = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, stickyHeader, searchAction, numberOfCards, cardMinWidth }) => {
   
   setTimeout(() => {
     initThemeSwitcher();
@@ -667,7 +672,7 @@ const InternalCardsLayoutTemplate: any = ({ isLoggedIn, username, hashid, navIte
       </cbp-universal-header>
 
       <cbp-app-header
-        sticky
+        ${stickyHeader ? `sticky` : ``}
         subnav-drawer-id="appheaderdrawer"
         ${search ? `search` : ``}
         ${searchMethod ? `search-method=${searchMethod}` : ``}

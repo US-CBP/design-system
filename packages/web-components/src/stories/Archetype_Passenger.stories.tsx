@@ -21,7 +21,11 @@ export default {
       description: 'set the action attribute on the form for search',
       control: 'text',
       if:{ arg: 'search'}
-    }
+    },
+    stickyHeader:{
+      description: 'boolean to set if the app header is sticky.',
+      control: 'boolean'
+    },
   },
   args: {
     username: 'Johnathan Smithington',
@@ -50,7 +54,7 @@ export default {
         href: './?path=/story/components-application-header--application-header#',
       },
     ],
-
+    stickyHeader: true
   },
 };
 
@@ -908,7 +912,7 @@ function initThemeSwitcher() {
 }
 
 
-const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, passengersArgs, manifestArgs }) => {
+const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, stickyHeader, passengersArgs, manifestArgs }) => {
   /** Techdebt for iteration on filter & manifest pane:
    * Icon for the app directory button is incorrect, verify all icons in buttons, most of these are initial stubs
    * Buttons in the universal header need spacing between icon & text
@@ -986,7 +990,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
     </cbp-universal-header>
 
     <cbp-app-header
-      sticky
+      ${stickyHeader ? `sticky` : ``}
       subnav-drawer-id="appheaderdrawer"
       ${search ? `search` : ``}
       ${searchMethod ? `search-method=${searchMethod}` : ``}
