@@ -229,7 +229,7 @@ ApplicationHeader.args = {
 
 
 
-const AppHeaderWithSubnavTemplate = ({ drawerId, store, search, searchMethod, searchAction, items, sx }) => {  
+const AppHeaderWithSubnavTemplate = ({ drawerId, store, search, searchMethod, searchAction, sticky, items, sx }) => {  
   
   setTimeout(() => {
     // Cancel form submit event on search to prevent full page reload
@@ -251,6 +251,7 @@ const AppHeaderWithSubnavTemplate = ({ drawerId, store, search, searchMethod, se
       ${search ? 'search' : ''}
       ${searchMethod ? `search-method="${searchMethod}"` : ''}
       ${searchAction ? `search-action="${searchAction}"` : ''}
+      ${sticky ? `sticky` : ``}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateNavItems(items, drawerId)}
