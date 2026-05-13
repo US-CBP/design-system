@@ -986,6 +986,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
     </cbp-universal-header>
 
     <cbp-app-header
+      sticky
       subnav-drawer-id="appheaderdrawer"
       ${search ? `search` : ``}
       ${searchMethod ? `search-method=${searchMethod}` : ``}

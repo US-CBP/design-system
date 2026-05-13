@@ -152,6 +152,7 @@ const InternalTemplate: any = ({ isLoggedIn, username, hashid, navItems, search,
       </cbp-universal-header>
 
       <cbp-app-header
+        sticky
         subnav-drawer-id="appheaderdrawer"
         ${search ? `search` : ``}
         ${searchMethod ? `search-method=${searchMethod}` : ``}
@@ -266,6 +267,7 @@ const Internal2ColumnTemplate: any = ({ isLoggedIn, username, hashid, navItems, 
       </cbp-universal-header>
 
       <cbp-app-header
+        sticky
         subnav-drawer-id="appheaderdrawer"
         ${search ? `search` : ``}
         ${searchMethod ? `search-method=${searchMethod}` : ``}
@@ -665,6 +667,7 @@ const InternalCardsLayoutTemplate: any = ({ isLoggedIn, username, hashid, navIte
       </cbp-universal-header>
 
       <cbp-app-header
+        sticky
         subnav-drawer-id="appheaderdrawer"
         ${search ? `search` : ``}
         ${searchMethod ? `search-method=${searchMethod}` : ``}

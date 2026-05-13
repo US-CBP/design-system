@@ -20,6 +20,23 @@ export default {
   },
 };
 
+function generateMenuItem(items){
+  console.log('items: ', items);
+  const html = items.map(({tag, color, icon, text}) =>{
+    return `
+    <cbp-menu-item
+      ${color ? `color="${color}"` : ``}
+    >
+      <${tag}>
+        ${icon ? `<cbp-icon name="${icon}"></cbp-icon>` : ``}
+        ${text}
+      </${tag}>
+    </cbp-menu-item>
+    `
+  })
+  return html.join('');
+}
+
 const Template = ({ position, context, sx }) => {
   return ` 
     <cbp-menu
@@ -59,7 +76,7 @@ Menu.args = {};
 
 
 
-const ActionsMenuTemplate = ({ position, context, sx }) => {
+const ActionsMenuTemplate = ({ position, items, context, sx }) => {
   return ` 
     <cbp-menu
       uid="menuId"
@@ -79,7 +96,14 @@ const ActionsMenuTemplate = ({ position, context, sx }) => {
         <cbp-icon name="ellipsis-vertical"></cbp-icon>
       </cbp-button>
 
-      <cbp-menu-item>
+      ${generateMenuItem(items)}
+      
+    </cbp-menu>
+  `;
+};
+
+/*
+<cbp-menu-item>
         <cbp-button tag="a" href="#"> 
           <cbp-icon name="eye"></cbp-icon>
           View
@@ -99,12 +123,36 @@ const ActionsMenuTemplate = ({ position, context, sx }) => {
           Delete
         </cbp-button>
       </cbp-menu-item>
-    </cbp-menu>
-  `;
-};
+      */
 
 export const ActionsMenu = ActionsMenuTemplate.bind({});
-ActionsMenu.args = {};
+ActionsMenu.args = {
+  items:[
+    {
+      tag: 'cbp-link',
+      icon:'eye',
+      text: 'View'
+    },
+    {
+      tag: 'cbp-button tag="a"',
+      icon: 'pen-to-square',
+      text: 'Edit'
+    },
+    {
+      tag: 'cbp-button tag="button"',
+      color: 'danger',
+      text: 'Delete'
+    },
+    {
+      tag: 'a',
+      text: 'Action 1'
+    },
+    {
+      tag: 'button',
+      text: 'Action 2'
+    }
+  ]
+};
 
 
 /* Old menu code

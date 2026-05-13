@@ -703,6 +703,7 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
       </cbp-universal-header>
 
       <cbp-app-header
+        sticky
         subnav-drawer-id="appheaderdrawer"
         ${search ? `search` : ``}
         ${searchMethod ? `search-method=${searchMethod}` : ``}
