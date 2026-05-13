@@ -9,7 +9,7 @@ export default {
       description: 'A unique `id` applied to the drawer and referenced by the control.',
       control: 'text',
     },
-    stickyHeader:{
+    sticky:{
       description: 'boolean to set if the app header is sticky.',
       control: 'boolean'
     },
@@ -149,7 +149,7 @@ function renderDrawer(items, drawerId, store){
 }
 
 
-const Template = ({ drawerId, stickyHeader, store, search, searchMethod, searchAction, items, sx }) => {  
+const Template = ({ drawerId, sticky, store, search, searchMethod, searchAction, items, sx }) => {  
   
   setTimeout(() => {
     // Cancel form submit event on search to prevent full page reload
@@ -168,7 +168,7 @@ const Template = ({ drawerId, stickyHeader, store, search, searchMethod, searchA
   return ` 
     <cbp-app-header    
       ${drawerId ? `subnav-drawer-id="${drawerId}"`: ''}
-      ${stickyHeader ? `sticky` : ``}
+      ${sticky ? `sticky` : ``}
       ${search ? 'search' : ''}
       ${searchMethod ? `search-method="${searchMethod}"` : ''}
       ${searchAction ? `search-action="${searchAction}"` : ''}
@@ -224,7 +224,7 @@ ApplicationHeader.args = {
       href: './?path=/story/components-application-header--application-header#',
     },
   ],
-  stickyHeader: true
+  sticky: true
 }
 
 
@@ -345,5 +345,5 @@ AppHeaderWithSubnav.args = {
       href: './?path=/story/components-application-header--application-header#',
     },
   ],
-  stickyHeader: true 
+  sticky: true 
 }
