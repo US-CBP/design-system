@@ -21,6 +21,9 @@ export class CbpTypography {
   /** Specifies the visual style of the text regardless of the semantic tag. */
   @Prop({ reflect: true }) variant: 'masthead-1' | 'masthead-2' | 'heading-xxl' | 'heading-xl' | 'heading-lg' | 'heading-md' | 'heading-sm' | 'heading-xs' | 'body-text' | 'subhead' | 'heading-dialog';
 
+  /** Specifies the visual size of a the text which will set the font-size and line-height of component but not color  */
+  @Prop({ reflect: true }) size: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19' | '20';
+
   /** Specifies whether the text contains visual treatments that act as a divider. */
   @Prop({ reflect: true }) divider: 'underline' | 'fill';
 
