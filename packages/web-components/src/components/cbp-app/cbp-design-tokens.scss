@@ -366,13 +366,6 @@
   --cbp-line-height-16: 6.5rem;
   --cbp-line-height-17: 7.25rem;
   --cbp-line-height-18: 8rem;
-  --cbp-line-height-xs: 1.25rem;
-  --cbp-line-height-sm: 1.5rem;
-  --cbp-line-height-md: 1.75rem;
-  --cbp-line-height-lg: 2rem;
-  --cbp-line-height-xl: 2.25rem;
-  --cbp-line-height-xxl: 2.5rem;
-  --cbp-line-height-xxxl: 2.75rem;
   --cbp-line-length-shortest: 44ch;
   --cbp-line-length-short: 60ch;
   --cbp-line-length-medium: 64ch;
@@ -448,8 +441,6 @@
   --cbp-color-interactive-selected-dark: var(--cbp-color-blue-warm-60);
   --cbp-color-interactive-visited-light: var(--cbp-color-blue-cool-20);
   --cbp-color-interactive-visited-dark: var(--cbp-color-blue-cool-70);
-  --cbp-font-size-masthead-1: var(--cbp-font-size-11);
-  --cbp-font-size-masthead-2: var(--cbp-font-size-10);
   --cbp-font-size-heading-xxl: var(--cbp-font-size-9);
   --cbp-font-size-heading-xl: var(--cbp-font-size-8);
   --cbp-font-size-heading-lg: var(--cbp-font-size-7);
@@ -459,4 +450,11 @@
   --cbp-font-size-body: var(--cbp-font-size-3);
   --cbp-font-size-button: var(--cbp-font-size-3);
   --cbp-font-size-subhead: var(--cbp-font-size-2);
+  --cbp-line-height-xs: var(--cbp-line-height-3);
+  --cbp-line-height-sm: var(--cbp-line-height-4);
+  --cbp-line-height-md: var(--cbp-line-height-5);
+  --cbp-line-height-lg: var(--cbp-line-height-6);
+  --cbp-line-height-xl: var(--cbp-line-height-7);
+  --cbp-line-height-xxl: var(--cbp-line-height-8);
+  --cbp-line-height-xxxl: var(--cbp-line-height-9);
 }

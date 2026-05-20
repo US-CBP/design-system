@@ -19,11 +19,17 @@ export class CbpTypography {
   @Prop() tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'code' | 'pre' | 'div' | 'span' = "span";
   
   /** Specifies the visual style of the text regardless of the semantic tag. */
-  @Prop({ reflect: true }) variant: 'masthead-1' | 'masthead-2' | 'heading-xxl' | 'heading-xl' | 'heading-lg' | 'heading-md' | 'heading-sm' | 'heading-xs' | 'body-text' | 'subhead' | 'heading-dialog';
+  @Prop({ reflect: true }) variant: 'heading-xxl' | 'heading-xl' | 'heading-lg' | 'heading-md' | 'heading-sm' | 'heading-xs' | 'body-text' | 'subhead' | 'heading-dialog';
 
-  /** Specifies the visual size of a the text which will set the font-size and line-height of component but not color  */
+  /** Specifies the visual size of a the text which will set the font-size */
   @Prop({ reflect: true }) size: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19' | '20';
 
+  /** Specifies the line-height of a the text */
+  @Prop({ reflect: true }) lineheight: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18';
+
+  /** Specifies the font-weight of a the text */
+  @Prop({ reflect: true }) fontweight: 'thin' | 'light' | 'regular' | 'medium' | 'bold' | 'black' ;
+  
   /** Specifies whether the text contains visual treatments that act as a divider. */
   @Prop({ reflect: true }) divider: 'underline' | 'fill';
 

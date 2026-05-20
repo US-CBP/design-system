@@ -12,16 +12,6 @@
     },
 
     "size": {
-      "masthead": {
-        "1": {
-          "value": "{font.size.11}",
-          "attributes": { "use": "typography", "type": "font" }
-        },
-        "2": {
-          "value": "{font.size.10}",
-          "attributes": { "use": "typography", "type": "font" }
-        }
-      },
       "heading": {
         "xxl": {
           "value": "{font.size.9}",
@@ -188,31 +178,31 @@
 
   "line-height": {
     "xs": {
-      "value": "1.25rem",
+      "value": "{line-height.3}",
       "attributes": { "use": "typography" }
     },
     "sm": {
-      "value": "1.5rem",
+      "value": "{line-height.4}",
       "attributes": { "use": "typography" }
     },
     "md": {
-      "value": "1.75rem",
+      "value": "{line-height.5}",
       "attributes": { "use": "typography" }
     },
     "lg": {
-      "value": "2rem",
+      "value": "{line-height.6}",
       "attributes": { "use": "typography" }
     },
     "xl": {
-      "value": "2.25rem",
+      "value": "{line-height.7}",
       "attributes": { "use": "typography" }
     },
     "xxl": {
-      "value": "2.5rem",
+      "value": "{line-height.8}",
       "attributes": { "use": "typography" }
     },
     "xxxl": {
-      "value": "2.75rem",
+      "value": "{line-height.9}",
       "attributes": { "use": "typography" }
     },
     "1":{
