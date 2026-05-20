@@ -107,6 +107,8 @@ export class CbpFormField {
     if (this.formFieldComponent) {
       this.formFieldComponent.readonly = newValue;
     }
+    // Make sure we have all the buttons before taking action on them (nested buttons may not have been discovered properly)
+    this.buttons = this.host.querySelectorAll('cbp-button');
     if(this.buttons) {
       this.buttons.forEach( (el) => {
         el.disabled = this.disabled || this.readonly;
@@ -124,6 +126,8 @@ export class CbpFormField {
     if (this.formFieldComponent) {
       this.formFieldComponent.disabled = newValue;
     }
+    // Make sure we have all the buttons before taking action on them (nested buttons may not have been discovered properly)
+    this.buttons = this.host.querySelectorAll('cbp-button');
     if(this.buttons) {
       this.buttons.forEach( (el) => {
         el.disabled= this.disabled || this.readonly;
@@ -142,6 +146,8 @@ export class CbpFormField {
     if (this.formFieldComponent) {
       this.formFieldComponent.error = newValue;
     }
+    // Make sure we have all the buttons before taking action on them (nested buttons may not have been discovered properly)
+    this.buttons = this.host.querySelectorAll('cbp-button');
     if(this.buttons) {
       this.buttons.forEach( (el) => {
         (newValue) 

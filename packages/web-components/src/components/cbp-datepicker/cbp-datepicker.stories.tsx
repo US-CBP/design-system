@@ -8,6 +8,10 @@ export default {
     description: {
       control: 'text',
     },
+    inputType: {
+      control: 'select',
+      options: [ "date", "datetime-local", "month", "week", "time", "text", "number" ]
+    },
     fieldId: {
       control: 'text',
     },
@@ -38,14 +42,15 @@ export default {
   args: {
     label: 'Field Label',
     description: 'Field description.',
-    fieldId: 'insert-unique-id',
-    name: 'insert-datepicker',
+    inputType: "date",
+    fieldId: 'insert-unique-datepicker-id',
+    name: 'insert-datepicker-field-name',
     //value: '2017-06-01'
   },
 };
 
 
-const Template: any = ({ label, description, fieldId, name, value, error, disabled, readonly, context, sx }) => {
+const Template: any = ({ label, description, inputType, fieldId, name, value, error, disabled, readonly, context, sx }) => {
   
   // Set up event handlers for logging and setting errors on files via the `status` prop.
   /*
@@ -83,10 +88,8 @@ const Template: any = ({ label, description, fieldId, name, value, error, disabl
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
         <input
-          type="date"
+          type="${inputType}"
           ${value ? `value="${value}"` : ''}
-          min="1000-01-01"
-          max="9999-12-31"
          />
       </cbp-file-input>
     </cbp-form-field>

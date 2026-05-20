@@ -4,41 +4,40 @@
 
 
 :root{
+  --cbp-datepicker-color: var(--cbp-form-field-color);
+  --cbp-datepicker-color-bg: var(--cbp-form-field-color-bg);
+  --cbp-datepicker-color-border: var(--cbp-form-field-color-border);
 
+  --cbp-datepicker-color-dark: var(--cbp-form-field-color-dark);
+  --cbp-datepicker-color-bg-dark: var(--cbp-form-field-color-bg-dark);
+  --cbp-datepicker-color-border-dark: var(--cbp-form-field-color-border-dark);
+
+  --cbp-datepicker-width: 20.75rem;
+  --cbp-datepicker-height: 23rem;
 }
 
 
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-datepicker[context*=dark],
 [data-cbp-theme=dark] cbp-datepicker:not([context=dark-inverts]):not([context=light-always]) {
-  --cbp-file-input-color-label: var(--cbp-file-input-color-label-dark) !important;
-  --cbp-file-input-color: var(--cbp-file-input-color-dark) !important;
-  --cbp-file-input-color-bg: var(--cbp-file-input-color-bg-dark) !important;
-  --cbp-file-input-color-bg-dragged: var(--cbp-file-input-color-bg-dragged-dark) !important;
-  --cbp-file-input-color-border: var(--cbp-file-input-color-border-dark) !important;
-  --cbp-file-input-color-border-hover: var(--cbp-file-input-color-border-hover-dark) !important;
-  --cbp-file-input-color-border-focus: var(--cbp-file-input-color-border-focus-dark) !important;
-  --cbp-file-input-color-outline: var(--cbp-file-input-color-outline-dark) !important;
-  --cbp-file-input-color-outline-hover: var(--cbp-file-input-color-outline-hover-dark) !important;
-  --cbp-file-input-color-outline-focus: var(--cbp-file-input-color-outline-focus-dark) !important;
-  
-  --cbp-file-input-file-color-bg: var(--cbp-file-input-file-color-bg-dark) !important;
-  --cbp-file-input-file-color-bg-error: var(--cbp-file-input-file-color-bg-error-dark) !important;
+  --cbp-datepicker-color: var(--cbp-datepicker-color-dark) !important;
+  --cbp-datepicker-color-bg: var(--cbp-datepicker-color-bg-dark) !important;
+  --cbp-datepicker-color-border: var(--cbp-datepicker-color-border-dark) !important;
 }
 
 
 cbp-datepicker {
-  //display: block;
+  display: block;
   position: relative;
+  width: var(--cbp-datepicker-width);
 
   // TIL: appearance: none doesn't affect native date inputs
-  /*
   input[type=date]:not(#fakeId) {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
   }
-  */
+
   input[type=date]::-webkit-inner-spin-button {
     display: none;
     -webkit-appearance: none;
@@ -48,11 +47,53 @@ cbp-datepicker {
     -webkit-appearance: none;
   }
 
+  // Apply focus outline to dropdown menu as well
+  &:focus-within {
+    input {
+      outline: var(--cbp-border-size-lg) solid var(--cbp-form-field-color-border-focus);
+      border-color: var(--cbp-form-field-color-border-focus);
+    }
+
+    [role=dialog] {
+      outline: var(--cbp-border-size-md) solid var(--cbp-form-field-color-border-focus);
+      border-color: var(--cbp-form-field-color-border-focus);
+      scrollbar-color: var(--cbp-form-field-color-border-focus) var(--cbp-form-field-color-bg);
+    }
+  }
+
+  // When the dialog is open, highlight the calendar button in a focus color
+  &:has([role=dialog]:not([hidden])) cbp-button[slot=cbp-form-field-attached-button] {
+    --cbp-button-color-bg: var(--cbp-form-field-color-border-focus);
+    --cbp-button-color-bg-dark: var(--cbp-form-field-color-border-focus-dark);
+    --cbp-button-color-border: var(--cbp-form-field-color-border-focus);
+    --cbp-button-color-border-dark: var(--cbp-form-field-color-border-focus-dark);
+  }
+
+
 
   [role=dialog] {
-    background-color: gray;
-    width: 20.75rem;
-    height: 23rem;
+    position: absolute;
+    z-index: var(--cbp-z-index-level-4);
+    //width: var(--cbp-datepicker-width);
+    width: 100%;
+    max-height: var(--cbp-datepicker-height);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cbp-dropdown-menu-color-border) var(--cbp-form-field-color-bg);
+
+    color: var(--cbp-datepicker-color);
+    background-color: var(--cbp-datepicker-color-bg);
+    border: var(--cbp-border-size-md) solid var(--cbp-datepicker-color-border);
+    border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
+
+    padding: var(--cbp-space-3x);
+
+    /*
+    &:focus-within {
+      --cbp-form-field-color-border: var(--cbp-form-field-color-border-focus);
+    }
+    */
   }
 
 

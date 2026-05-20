@@ -1,5 +1,5 @@
-import { Component, Element, Prop, State, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
-import { setCSSProps, createNamespaceKey } from '../../utils/utils';
+import { Component, Element, Prop, Method, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
+import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/utils';
 
 
 /** 
@@ -16,9 +16,12 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 export class CbpDatepicker {
 
   private formField: HTMLInputElement;
+  private datePicker: HTMLCbpDatepickerCalendarElement;
   //private initialValue: any; // Save the initial value to support reset functionality
   private disabled: boolean;
   private readonly: boolean;
+
+  private today: Date = new Date();
 
   @Element() private host: HTMLElement;
 
@@ -30,6 +33,9 @@ export class CbpDatepicker {
    * node IDs and associate everything for accessibility. 
    */
   @Prop({ mutable: true }) fieldId: string = createNamespaceKey('cbp-datepicker');
+
+  @Prop({ mutable: true }) min: string = '1900-01-01';
+  @Prop({ mutable: true }) max: string = '2099-12-31';
 
   /* The `value` attribute of the input, which is passed as part of formData. */
   //@Prop({ mutable: true }) value: string;
@@ -44,6 +50,8 @@ export class CbpDatepicker {
   /* Specifies that the field is disabled. Primarily controlled by the parent `cbp-form-field` component. */
   //@Prop({ reflect: true, mutable: true }) disabled: boolean = false;
 
+  @Prop({ reflect: true, mutable: true }) open: boolean = false;
+
   /** 
    * Specifies the context of the component as it applies to the visual design and whether 
    * it inverts when light/dark mode is toggled. 
@@ -54,8 +62,7 @@ export class CbpDatepicker {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {}
 
-
-  @State() private open: boolean = false;
+  //@State() private open: boolean = false;
 
   /** 
    * A custom event emitted when the value of the component changes, either by selecting (non-duplicate) files 
@@ -64,7 +71,7 @@ export class CbpDatepicker {
   @Event() valueChange: EventEmitter;
   handleChange(e) {
     // send focus back to the form field just in case focus was lost/not applied automatically by the browser.
-    this.formField.focus();
+    //this.formField.focus();
 
     // Only emit the value if the value actually changed
     this.valueChange.emit({
@@ -76,8 +83,17 @@ export class CbpDatepicker {
     });
   }
 
-
-
+  @Watch('open')
+  watchOpen(newValue) {
+    if (newValue) {
+      this.datePicker.setFocus(this.today.toJSON().slice(0, 10));
+      
+      // Set up a clickaway listener to close the menu
+      clickAwayListener(this.host, _ => {
+        this.open = false;
+      });
+    }
+  }
 
   @Watch('disabled')
   watchDisabledHandler(newValue: boolean) {
@@ -88,10 +104,17 @@ export class CbpDatepicker {
     }
   }
 
+  /** Closes the datepicker dialog and returns focus to the form field. */
+  @Method()
+  async close() {
+    this.open = false;
+    this.formField.focus();
+  }
+
   // Don't allow enter or space to open the native date picker dialog
   private preventNativeDatePicker(e) {
     console.log(e);
-    
+
     const { key } = e;
     if (key == 'Enter' || key ==' ') {
       e.preventDefault();
@@ -143,7 +166,11 @@ export class CbpDatepicker {
       //this.formField.addEventListener('change', (e) => this.handleChange(e));
 
       // If a native date input is used (preferred), prevent it from opening the native date picker dialog
-      const dateInput = this.formField.getAttribute('type') == "date" ? true : false;
+      const dateTypes = ["date", "month", "week"];
+      const inputType = this.formField?.getAttribute('type');
+      const dateInput = dateTypes.some( keyword => inputType.includes(keyword));
+      console.log('Date type detected? : ',dateInput, inputType);
+      //const dateInput = this.formField.getAttribute('type').includes("date") ? true : false;
       if (dateInput) {
         this.formField.addEventListener('keydown', (e) => this.preventNativeDatePicker(e));
         this.formField.addEventListener('focus', (e) => e.preventDefault());
@@ -155,7 +182,7 @@ export class CbpDatepicker {
   componentWillRender() {
     this.disabled = !!this.formField?.getAttribute('disabled');
     this.readonly = !!this.formField?.getAttribute('readonly');
-    console.log(this.disabled, this.readonly);
+    //console.log(this.disabled, this.readonly);
   }
 
   render() {
@@ -182,7 +209,12 @@ export class CbpDatepicker {
           tabindex={-1}
           arial-label="Select Date"
         >
-          Datepicker goes here.
+          <cbp-datepicker-calendar
+            min={this.min}
+            max={this.max}
+            date={this.formField.value ? this.formField.value : null}
+            ref={el => this.datePicker = el!}
+          />
         </div>
       </Host>
     );

@@ -12,13 +12,19 @@ The Date Picker component offers a calendar to choose a date for a form field in
 
 * The Date Picker component wraps a native `input type="text"`.
 * The Date Picker shall be slotted within the `cbp-form-field` component to provide a consistent and accessible input pattern.
-* Does the datepicker overlay appear on click or focus (or both)?
+* The Date Picker accepts a slotted `input`, which can be `type="text"` or `type="date"`, and wraps this in a `cbp-form-field-wrapper` with an attached calendar icon button that toggles the date picker dialog open and closed.
+* For `input type="date"`, pressing `Enter` or `Space` while focused on the input toggles the date picker dialog (same as the native control) while suppressing the native control.
+
 
 ## Technical Specifications
 
 ### User Interactions
 
-TBD
+* The Date Picker dialog may be activated (toggled) a number of ways:
+  * Pressing the calendar icon button is the most universal way.
+  * For native `input type="date"` fields, pressing `Enter` or `Space` while the field is in focus will toggle the date picker dialog.
+  * For native `input type="text"` fields, pressing `Enter` while the field is in focus will toggle the date picker dialog.
+  * Pressing `Escape` while focus is anywhere within the pattern (input, button, or dialog) will close the dialog.
 
 ### Responsiveness
 

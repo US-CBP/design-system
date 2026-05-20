@@ -1,0 +1,43 @@
+/*
+:host {
+  display: block;
+}
+*/
+
+:root {
+  --cbp-datepicker-calendar-grid-columns: 7;
+}
+
+cbp-datepicker-calendar {
+  .cbp-datepicker-calendar-toolbar {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    text-align: left;
+  }
+
+  [role=application] {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    gap: var(--cbp-space-1x);
+  }
+
+  &[panel=day] {
+    [role=application] {
+      grid-template-columns: repeat(var(--cbp-datepicker-calendar-grid-columns),1fr);
+    }
+  }
+
+  &[panel=month] {
+    [role=application] {
+      grid-template-columns: repeat(var(--cbp-datepicker-calendar-grid-columns),1fr);
+    }
+  }
+  
+  &[panel=year] {
+    [role=application] {
+      grid-template-columns: repeat(var(--cbp-datepicker-calendar-grid-columns),1fr);
+    }
+  }
+}

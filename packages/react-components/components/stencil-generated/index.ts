@@ -24,6 +24,7 @@ export const CbpChip = /*@__PURE__*/createReactComponent<JSX.CbpChip, HTMLCbpChi
 export const CbpCodeSnippet = /*@__PURE__*/createReactComponent<JSX.CbpCodeSnippet, HTMLCbpCodeSnippetElement>('cbp-code-snippet');
 export const CbpContainer = /*@__PURE__*/createReactComponent<JSX.CbpContainer, HTMLCbpContainerElement>('cbp-container');
 export const CbpDatepicker = /*@__PURE__*/createReactComponent<JSX.CbpDatepicker, HTMLCbpDatepickerElement>('cbp-datepicker');
+export const CbpDatepickerCalendar = /*@__PURE__*/createReactComponent<JSX.CbpDatepickerCalendar, HTMLCbpDatepickerCalendarElement>('cbp-datepicker-calendar');
 export const CbpDialog = /*@__PURE__*/createReactComponent<JSX.CbpDialog, HTMLCbpDialogElement>('cbp-dialog');
 export const CbpDotIndicator = /*@__PURE__*/createReactComponent<JSX.CbpDotIndicator, HTMLCbpDotIndicatorElement>('cbp-dot-indicator');
 export const CbpDrawer = /*@__PURE__*/createReactComponent<JSX.CbpDrawer, HTMLCbpDrawerElement>('cbp-drawer');
