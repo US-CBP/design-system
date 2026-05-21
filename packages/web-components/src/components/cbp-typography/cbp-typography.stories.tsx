@@ -79,7 +79,7 @@ Typography.argTypes = {
 // TechDebt: This can be more efficiently achieved by looping over an array of all variants; refactor when we add the additional variants/tokens.
 const AllStyles = ({ text, tag, divider,  context, sx }) => {
   
-  var variants = [ 'subhead', 'body-text', 'heading-xs', 'heading-sm', 'heading-md', 'heading-lg', 'heading-xl', 'heading-xxl',];
+  var variants = [ 'heading-xxl', 'heading-xl', 'heading-lg', 'heading-md', 'heading-sm', 'heading-xs', 'body-text', 'subhead'];;
   var htmlVariant = ``;
   var htmlSize = ``;
 
