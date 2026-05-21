@@ -130,7 +130,7 @@ const Template: any = () => {
   }, 500);
 
   return ` 
-<cbp-app theme="system"> 
+<cbp-app> 
 <cbp-skip-nav></cbp-skip-nav>
 <cbp-flex direction="column" sx='{"min-height":"100vh"}'>
   <cbp-universal-header logo-src-lg="./assets/images/cbp-header-logo.svg" logo-src-sm="./assets/images/cbp-seal.svg">

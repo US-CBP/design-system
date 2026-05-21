@@ -19,7 +19,7 @@ const withWrapper: DecoratorFunction<WebComponentsRenderer, { [x: string]: unkno
     globals: { theme, mode },
   } = context;
 
-  return `<cbp-app theme="${mode != '_reset' ? mode : 'system'}">${storyFn()}</cbp-app>`;
+  return `<cbp-app ${mode != '_reset' && mode != 'system' ? `theme="${mode}"` : ''}>${storyFn()}</cbp-app>`;
 };
 
 
