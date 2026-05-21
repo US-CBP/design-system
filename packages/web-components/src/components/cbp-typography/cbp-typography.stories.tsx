@@ -39,8 +39,8 @@ const Template = ({ text, tag, variant, size, lineheight, fontweight, divider, c
       ${tag ? `tag="${tag}"` : ''}
       ${variant != undefined ? `variant="${variant}"` : ''}
       ${size != undefined ? `size="${size}"` : ''}
-      ${lineheight != undefined ? `lineheight="${lineheight}"` : ''}
-      ${fontweight != undefined ? `fontweight="${fontweight}"` : ''}
+      ${lineheight != undefined ? `line-height="${lineheight}"` : ''}
+      ${fontweight != undefined ? `font-weight="${fontweight}"` : ''}
       ${divider != 'none' ? `divider="${divider}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -79,7 +79,7 @@ Typography.argTypes = {
 // TechDebt: This can be more efficiently achieved by looping over an array of all variants; refactor when we add the additional variants/tokens.
 const AllStyles = ({ text, tag, divider,  context, sx }) => {
   
-  var variants = [ 'heading-xxl', 'heading-xl', 'heading-lg', 'heading-md', 'heading-sm', 'heading-xs', 'body-text', 'subhead'];
+  var variants = [ 'subhead', 'body-text', 'heading-xs', 'heading-sm', 'heading-md', 'heading-lg', 'heading-xl', 'heading-xxl',];
   var htmlVariant = ``;
   var htmlSize = ``;
 
@@ -97,7 +97,7 @@ const AllStyles = ({ text, tag, divider,  context, sx }) => {
     `
   }
 
-  for(var x=20; x > 0; x--){
+  for(var x=1; x < 20; x++){
   htmlSize +=`
       <cbp-typography
         size=${x}

@@ -25,11 +25,11 @@ export class CbpTypography {
   @Prop({ reflect: true }) size: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19' | '20';
 
   /** Specifies the line-height of a the text */
-  @Prop({ reflect: true }) lineheight: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18';
+  @Prop({ reflect: true }) lineHeight: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18';
 
   /** Specifies the font-weight of a the text */
-  @Prop({ reflect: true }) fontweight: 'thin' | 'light' | 'regular' | 'medium' | 'bold' | 'black' ;
-  
+  @Prop({ reflect: true }) fontWeight: 'thin' | 'light' | 'regular' | 'medium' | 'bold' | 'black' ;
+
   /** Specifies whether the text contains visual treatments that act as a divider. */
   @Prop({ reflect: true }) divider: 'underline' | 'fill';
 
