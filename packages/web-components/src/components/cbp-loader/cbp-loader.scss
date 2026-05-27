@@ -262,7 +262,7 @@ cbp-loader {
     &[determinate] {
       .cbp-progress-container {
         &::before {
-          transition: background 1s ease-in-out;
+          transition: all 1s linear;
           background: var(--cbp-loader-circular-determinate);
         }
       }
