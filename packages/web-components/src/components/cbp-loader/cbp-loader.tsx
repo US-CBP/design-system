@@ -60,7 +60,7 @@ export class CbpLoader {
     });
   }
 
-  componentDidLoad() {
+  componentDidRender(){
     if (this.determinate && this.variant == 'circular') {
       this.host.style.setProperty("--cbp-loader-circular-determinate", `conic-gradient(var(--cbp-loader-color) ${((this.value / this.max) * 100) * 3.6}deg, var(--cbp-loader-track-color) 0deg)`)
     }

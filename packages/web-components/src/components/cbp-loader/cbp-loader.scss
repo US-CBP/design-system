@@ -163,6 +163,12 @@ cbp-loader {
     }
 
     &[determinate] {
+      
+      progress::-moz-progress-bar,
+      progress::-webkit-progress-value{
+        transition: width 2s linear 1s;
+      }
+      
       label {
         color: var(--cbp-loader-status-description-color);
         display: inline-flex;
@@ -256,6 +262,7 @@ cbp-loader {
     &[determinate] {
       .cbp-progress-container {
         &::before {
+          transition: background 1s ease-in-out;
           background: var(--cbp-loader-circular-determinate);
         }
       }
