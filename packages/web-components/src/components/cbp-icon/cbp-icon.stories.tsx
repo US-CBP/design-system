@@ -51,10 +51,13 @@ export default {
         'star-solid',
         'sun',
         'times',
+        'trash',
         'triangle-exclamation',
         'up-right-from-square',
         'upload',
         'user',
+        'volume',
+        'volume-down',
       ],
     },
     color: {
