@@ -32,6 +32,60 @@ const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn })
       ${logoSrcLg ? `logo-src-lg=${logoSrcLg}` : ''}
       ${logoSrcSm ? `logo-src-sm=${logoSrcSm}` : ''}
     >
+      <cbp-flex
+        gap="var(--cbp-space-4x)"
+      >
+      ${isLoggedIn ? `
+        <cbp-flex-item>
+          <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
+            <cbp-icon name="book"></cbp-icon>
+            <cbp-hide visually-hide-at="max-width: 64em">
+              App Directory
+            </cbp-hide>
+          </cbp-button>
+        </cbp-flex-item>
+
+        <cbp-flex-item>
+          <cbp-button color="secondary" fill="ghost" context="dark-always">
+            <cbp-icon name="comment"></cbp-icon>  
+            <cbp-hide visually-hide-at="max-width: 64em">
+              Feedback
+            </cbp-hide>
+          </cbp-button>
+        </cbp-flex-item>
+
+        <cbp-flex-item>
+          <cbp-button
+            color="secondary"
+            fill="ghost"
+            context="dark-always"
+          >
+            <cbp-icon name="user"></cbp-icon>
+            <cbp-hide visually-hide-at="max-width: 64em">
+              ${username}
+            </cbp-hide>
+          </cbp-button>
+        </cbp-flex-item>
+      ` : `
+        <cbp-flex-item>
+          <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
+          <cbp-icon name="right-to-bracket"></cbp-icon>
+          Login
+          </cbp-button>
+        </cbp-flex-item>
+        `
+      }
+      </cbp-flex>
+    </cbp-universal-header>
+  `;
+
+  /***
+   * Deprecated code for Universal header using UL/LI instead of cbp-flex/cbp-flex-item
+   * return `
+    <cbp-universal-header
+      ${logoSrcLg ? `logo-src-lg=${logoSrcLg}` : ''}
+      ${logoSrcSm ? `logo-src-sm=${logoSrcSm}` : ''}
+    >
       <ul>
       ${isLoggedIn ? `
         <li>
@@ -76,6 +130,7 @@ const UniversalHeaderTemplate = ({ logoSrcLg, logoSrcSm, username, isLoggedIn })
       </ul>
     </cbp-universal-header>
   `;
+   */
 };
 
 export const UniversalHeader = UniversalHeaderTemplate.bind({});
