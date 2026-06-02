@@ -1,0 +1,365 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Typography" />
+
+# Typography
+
+## Why is Typography important in the CBP Design System?
+
+At CBP, all of our applications and websites serve a singular purpose: communication. Strip away all of the images and user interface elements and what you’re left with is raw content. Having a well thought-out and managed typography system drives retention and understanding of information, and helps our users focus on the informed decisions that keep our country safe.
+
+This isn't simply what typeface we would like to use, but also the hierarchy, treatments, spacial relationships, and other refinements that augment legibility. The typographic settings we create have consequences for every component and page we build. At its core, the CBP Design System values consistency, accessibility, and legibility above all other style considerations.
+
+## Implementation Checklist
+
+- [ ]  **Is your application or site using Roboto/Roboto Mono font families exclusively?** *These are the only allowed fonts in CBP systems. Other Fonts in the Font Stack do not constitute a replacement for Roboto, but are simply there in case of cascading failure to load the proper typeface.*
+- [ ]  **Are you setting your type sizes using the typography component?** *If you are creating custom typography classes, please use the suggested line-height token pairing to maintain consistent alignment with optical leading, and to our 4px baseline grid. The root value (rem) for CBP applications is 16px, all font-size settings are pegged against this standard using the "major-second type scale" of 1.125. Do not create custom font sizing. For example the body style is set to 0.875rem (type-size-3) which comes out to 14px.*
+- [ ]  **If you are creating custom type classes, are you using CBP DS design tokens?**
+- [ ]  **Are you assigning the correct and appropriate semantic HTML tags to your typographic elements?** *(ie. h1, h2, p, etc.) Semantic tags are purposely decoupled from font styling settings, but all typographic elements on your page should use the correct and consistent semantic tag based on your page's hierarchy. When building the typographic outline for your page, do not skip semantic heading sizes (Do use H1, H2, H3, do not assign headings as H1, H4, H6 etc).*
+- [ ]  **Is there exactly one typographic element on the page that is assigned the semantic h1 tag?** *It should match the "title" listed in head (ie. it should match what the title says in the browser tab).*
+- [ ]  **Are you applying styling to your typographic elements consistently?** *Heading elements on your page that occupy the same level in your page's outline hierarchy should be styled similarly, using the same type-size and font-weight tokens, but may vary with other settings like color based on your individual page's layout.*
+- [ ]  **Are the typographic elements on your page aligned left?** *The default justification for text should be left-aligned, but in certain circumstances may be centered or right aligned. Do not under any circumstance use the justified alignment .*
+- [ ]  **Are the typographic elements in logical reading order?** *Page content should be laid out and coded in logical reading order (in the western world that is top-down, left-right).*
+- [ ]  **Do your type elements fit logically in your page’s overall visual hierarchy?**
+- [ ]  **Have you tested your layout at multiple breakpoints to look for reflow issues, widow/orphans, or other typographic responsive design issues?**
+
+## CBP DS Type Families
+
+### Roboto
+
+The official typeface for CBP applications is Roboto. We use this font exclusively in our products. Other typefaces should not be used in CBP applications.
+
+*See the Google™ Specifications for Roboto here: [https://fonts.google.com/specimen/Roboto](https://fonts.google.com/specimen/Roboto)*
+
+### Roboto Mono
+
+In certain, specific contexts where content absolutely needs to have even, identical character widths use Roboto Mono.
+
+*License information for Roboto (as of time of writing): [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)*
+
+### Download Instructions and Installing fonts on your machine
+
+For our internal CBP customers if you are following our default DS installation instructions you should get the font assets automatically without you needing to do anything. We host all of our required typefaces on an enterprise CDN (content delivery network) which allows us to properly cache these files for faster loading times, improved performance, and a more secure delivery mechanism. Internal teams should not be referencing Google Font’s API for serving these assets. 
+
+For local installation on your machine (desktop), please download the following folder of .ttf(truetype) formatted files and install them on your machine (you may require assistance from your IT dept. in some instances to install local files). (Download link here)
+
+Because Google™ is constantly revising and improving these files you can visit the Google™ Fonts website to follow the instructions for downloading the most up-to-date font files. This will keep your local files up-to-date. We will periodically update the files hosted on our CDN and the folder above to make sure we are taking advantage of new efficiencies. **Remember to download the complete font families**. 
+
+A note for CBP Design System users who are self-hosting font files. Please remember to only provide the .woff (IE 9+ compatibility) and .woff2 (all modern browsers) file types when hosting. Remove any reference to extraneous filetypes like .eot, .svg, etc. as this can affect how the font is rendered on the page (Be particularly cautious with .eot files, as they often cause rendering issues). 
+
+## Using Our Typography in your Application
+
+In the CBP Design System we provide two groups of typographic assets for you to use when designing your pages. The Typography Component bundles together various typographic properties where you can quickly style text in a consistent manner. We also provide the raw design tokens that those classes are created from so that you can create custom styling when your design warrants it.
+
+## The Typography Component
+
+The Typography component encapsulates predefined styles for different kinds of text that makes up a website, merging design language with CSS and HTML implementations. To learn more, (view the Typography API docs)[https://us-cbp.github.io/design-system/?path=/docs/content-typography-api-docs--docs].
+
+### Headings
+
+These default settings are for styling purposes only, you will still need to manually assign appropriate semantic heading tags (H1, H2, H3…). Each heading class has a suggested semantic tag listed with it which is appropriate as long as your semantic structure and the styling structure align 1-1. All of these classes have hooks to override styling based on your particular needs, but in general the only properties you should be overriding are color, font-weight, and in certain limited use cases line-height. Do not override the font-size property, each of these classes are carefully calibrated to fit on our baseline grid and to the overall hierarchy with each other. If you need a different size than is provided, consider creating a custom font class instead using our design tokens.
+
+**Heading-XXL (semantic tag pairing suggestion H1)**
+
+- font-weight: cbp-font-weight-light
+- case: sentence
+- font-size: cbp-font-size-9
+- line-height: cbp-line-height-7
+- letter-spacing: auto
+- color: cbp-color-text-darker
+- font-smoothing: anti-aliased
+
+**Heading-XL (semantic tag pairing suggestion H2)**
+
+- font-weight: cbp-font-weight-regular
+- case: sentence
+- font-size: cbp-font-size-8
+- line-height: cbp-line-height-6
+- letter-spacing: auto
+- color: Light BG: cbp-color-text-darker / Dark BG: cbp-color-text-lighter
+- font-smoothing: anti-aliased
+
+**Heading-LG (semantic tag pairing suggestion H3)**
+
+- font-weight: cbp-font-weight-regular
+- case: sentence
+- font-size: cbp-font-size-7
+- line-height: cbp-line-height-5
+- letter-spacing: auto
+- color: Light BG: cbp-color-text-darker / Dark BG: cbp-color-text-lighter
+- font-smoothing: anti-aliased
+
+**Heading-MD (semantic tag pairing suggestion H4)**
+
+- font-weight: cbp-font-weight-medium
+- case: sentence
+- font-size: cbp-font-size-6
+- line-height: cbp-line-height-4
+- letter-spacing: auto
+- color: Light BG: cbp-color-text-darker / Dark BG: cbp-color-text-lighter
+- font-smoothing: anti-aliased
+
+**Heading-SM (semantic tag pairing suggestion H5)**
+
+- font-weight: cbp-font-weight-medium
+- case: sentence
+- font-size: cbp-font-size-5
+- line-height: cbp-line-height-4
+- letter-spacing: auto
+- color: Light BG: cbp-color-text-darker / Dark BG: cbp-color-text-lighter
+- font-smoothing: anti-aliased
+
+**Heading-XS (semantic tag pairing suggestion H6)**
+
+- font-weight: cbp-font-weight-bold
+- case: sentence
+- font-size: cbp-font-size-4
+- line-height: cbp-line-height-4
+- letter-spacing: auto
+- color: Light BG: cbp-color-text-darkest / Dark BG: cbp-color-text-lightest
+- font-smoothing: anti-aliased
+
+### Body (paragraph)
+
+The bulk of all text on the page that are not headings will be styled with these properties. Font-weight will be the most common property overridden here. As with the headings, do not override the font-size property.
+
+**body (semantic tag pairing suggestion p)**
+
+- font-weight: cbp-font-weight-regular
+- case: sentence
+- font-size: cbp-font-size-3
+- line-height: cbp-line-height-3
+- letter-spacing: auto
+- color: Light BG: cbp-color-text-darkest / Dark BG: cbp-color-text-lightest
+- font-smoothing: anti-aliased
+
+### Supporting Text Classes
+
+These are text classes with special functions. Each supporting class may have a different semantic tag associated with it. This section may grow over time to accommodate special text classes that are added.
+
+**subhead (semantic tag pairing suggestion: depends, this is usually used in text fields but use case varies)**
+
+- font-weight: cbp-font-weight-medium
+- case: sentence
+- font-size: cbp-font-size-2
+- line-height: cbp-line-height-2
+- letter-spacing: auto
+- color: Light BG: cbp-color-text-darkest / Dark BG: cbp-color-text-lightest
+- font-smoothing: anti-aliased
+
+**button (semantic tag suggestion: see button component)**
+
+- font-weight: cbp-font-weight-medium
+- case: text-transform: uppercase
+- font-size: cbp-font-size-3
+- line-height: normal (button text should never wrap and it is always wrapped in another container that defines this element's height)
+- letter-spacing: loose
+- color: Light BG: cbp-color-text-darkest / Dark BG: cbp-color-text-lightest (see button component for complete guidance)
+- font-smoothing: anti-aliased
+
+## Typography Design Tokens
+
+Design tokens are an essential part of the CBP Design System and within the category of typography there are several properties that have been tokenized. If you have a particular design need not being served by the typography component, ie. a very large display font, etc. then use these design tokens to create custom styles.
+
+### Font Family (font-stack)
+
+The CBP Design System Fallback stack is ( font-family: Roboto, calibri, tahoma, sans-serif....; ). This stack exists to allow the browser to correct for scenarios where the Roboto font file doesn't load properly, encounters "FOUT" loading issues (explained in more detail in the Deep Dive section), or encounters a unicode symbol for which Roboto does not have a specification. *This does not constitute an endorsement of using any other font in this stack as a replacement for Roboto.*
+
+```CSS
+font-family-roboto: 'Roboto', Calibri, Tahoma, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, 'Apple color emoji', 'Segoe UI Emoji', 'Segoe Ui Symbol', sans-serif
+```
+
+```CSS
+font-family-robot-mono: 'Roboto-mono', 'Roboto Mono Web', Consolas, 'Bitstream Vera Sans Mono', Courier, monospace
+```
+
+Acceptable use cases for Roboto Mono include:
+
+- Numeric Content in Data Tables
+- Code (Software Development)
+- Serial Numbers
+- Tabular Content (mathematical equations, receipts, etc)
+- Technical Documentation & Logs
+- Subtitles on Videos
+- Relevant Scientific Notations (Genomic Sequencing etc.)
+
+### Font Size
+
+These tokens represent the physical size of the type expressed as REM values. There is quite a range of tokens available so there should be no need to create custom sizing tokens. When creating custom font classes please use the suggested line-height token pairing, unless there is very specific, valid design decision on why to diverge (rare).
+
+**Root REM based on 1rem = 16px / Type Scale of Major Second 1.125**
+
+- Size 1: 0.625rem (10px) / Suggested Line-height paring: line-height-1
+- Size 2: 0.75rem (12px) / Suggested Line-height paring: line-height-2
+- Size 3: 0.875rem (14px - This is the Body size) / Suggested Line-height paring: line-height-3
+- Size 4: 1rem (16px) / Suggested Line-height paring: line-height-4
+- Size 5: 1.125rem (18px) / Suggested Line-height paring: line-height-4
+- Size 6: 1.266rem (20.25px ~20px) / Suggested Line-height paring: line-height-4
+- Size 7: 1.424rem (22.78px ~ 23px) / Suggested Line-height paring: line-height-5
+- Size 8: 1.602rem (25.63px ~26px) / Suggested Line-height paring: line-height-6
+- Size 9: 1.802rem (28.83px ~ 29px) / Suggested Line-height paring: line-height-7
+- Size 10: 2.027rem (32.44px ~ 32px) / Suggested Line-height paring: line-height-8
+- Size 11: 2.281rem (36.49px ~ 36px) / Suggested Line-height paring: line-height-9
+- Size 12: 2.566rem (41.05px ~ 41px) / Suggested Line-height paring: line-height-10
+- Size 13: 2.887rem (46.18px ~ 46px) / Suggested Line-height paring: line-height-11
+- Size 14: 3.247rem (51.96px ~52px) / Suggested Line-height paring: line-height-12
+- Size 15: 3.653rem (58.45px ~ 58px) / Suggested Line-height paring: line-height-13
+- Size 16: 4.110rem (65.76px ~ 66px) / Suggested Line-height paring: line-height-14
+- Size 17: 4.624rem (73.98px ~74px) / Suggested Line-height paring: line-height-15
+- Size 18: 5.202rem (83.22px ~ 83px) / Suggested Line-height paring: line-height-16
+- Size 19: 5.852rem (93.63px ~ 94px) / Suggested Line-height paring: line-height-17
+- Size 20: 6.583rem (105.33px ~ 105px) / Suggested Line-height paring: line-height-18
+
+### Font Weight
+
+This sets the "thickness" of character strokes in the font. When applying emphasis or strong to text, make sure to apply a corrective styling class to make sure the correct font-weight is applied.
+
+**Roboto (includes italics of these weights)**
+
+- Font-weight-thin: 100
+- Font-weight-light: 300
+- Font-weight-regular: 400
+- Font-weight-medium: 500
+- Font-weight-bold: 700
+- Font-weight-black: 900
+
+**Roboto Mono (includes italics of these weights)**
+
+- Font-weight-regular: 400
+- Font-weight-bold: 700
+
+### Line Height
+
+These settings control the "leading" or space between lines of text. We also use the line-height property to keep blocks of texts aligned to our 4px baseline grid. As such, only use our line-height tokens when setting type, otherwise you might disrupt the vertical rhythm of the page. 
+
+**Root REM based on 1rem = 16px (always in intervals of 4px to align to baseline grid)**
+
+- Line Height 1: 0.75rem (12px)
+- Line Height 2: 1rem (16px)
+- Line Heigh 3: 1.25rem (20px)
+- Line Height 4: 1.5rem (24px)
+- Line Height 5: 1.75rem (28x)
+- Line Height 6: 2rem (32px)
+- Line Height 7: 2.25rem (36px)
+- Line Height 8: 2.5rem (40px)
+- Line Height 9: 2.75rem (44px)
+- Line Height 10: 3rem (48px)
+- Line Height 11: 3.5rem (56px)
+- Line Height 12: 4rem (64px)
+- Line Height 13: 4.5rem (72px)
+- Line Height 14: 5.25rem (84px)
+- Line Height 15: 6rem (96px)
+- Line Height 16: 6.5rem (104px)
+- Line Height 17: 7.25rem (116px)
+- Line Height 18: 8rem (128px)
+
+### Line Length
+
+This refers to a "cut-off" point where we force long blocks of text to wrap to a new line to maintain readability expressed a character "ch" value. Ideally these should only be applied to body elements and not to headings as they should not have enough text to warrant needing this parameter. Lines that are too long can lead to "doubling" or accidentally rereading a line multiple times, while lines that are too short can hurt reading flow. This setting is designed to reduce eye strain and generally falls into two categories. Because layouts vary from application to application this attribute is not attached any default font class and should only be applied in contexts where there are large amounts of text to be read.
+
+**Single column: ***For these layouts, use medium, long, longer, or longest depending on your individual needs. Generally you should be aiming for 10-15 words per line.*
+
+**Multi column:** *For these layouts, use shortest, short, or medium depending on your individual needs. Generally you should be aiming for 6-10 words per line.*
+
+**Headings:** *for headings consider using (font-wrap:balance) to avoid inconsistent line length when text wraps to multiple lines. Do not apply line-length tokens to headings.*
+
+To learn more about legibility and readability view their respective sections in the deep dive tab.
+
+- line-length-shortest: 44ch
+- line-length-short: 60ch
+- line-length-medium: 64ch
+- line-length-long: 68ch
+- line-length-longer: 72ch
+- line-length-longest: 88ch
+
+### Letter Spacing
+
+Letter spacing refers to the space between individual characters or "kerning". In general letter-spacing is not a token you should be applying often or at all. In the CBP Design System we do apply looser letter spacing with certain font classes like button text because that text is in all caps and this helps with legibility.
+
+- letter-spacing-loosest: 0.2em
+- letter-spacing-loose: 0.12em
+- letter-spacing-regular: auto
+
+## Semantic Tags & Typography
+
+No matter which elements you are adding to your pages, using the correct corresponding semantic HTML element tag should always be utilized. Properly tagging text elements on the page will allow assistive technologies to correctly interpret all the information on the page. With the CBP Design System we purposefully decoupled applying styling directly to semantic tags to allow our developers more control of their content without introducing potential styling conflicts that have to be overwritten. Semantic tags describe the role and function of the element and not it's visual style.
+
+### Maintaining Proper Heading Structure
+
+Thinking of your page's content structure as an outline, headings should have semantic heading tags applied in a consistent, descending, and properly nested order (H1, H2, H3, H4, H5, H6). There should only ever be 1 `<h1>` tag on any given page, and it should match the page's title. Sibling heading elements should use the same heading tag, but should also have similar or identical styling applied, most importantly font-sizing. For most applications using the default heading classes should be sufficient. Each of these classes is loosely coupled with a corresponding semantic tag, but the only requirement is that you use the styling classes consistently with their semantic tags (ie using cbp-heading-large with all h3 items on the page etc and not mixing and matching). Even if you do skip styling classes between heading levels the semantic tags should always be in descending order. For example:
+
+```HTML
+<h1>Heading XXL</h1>
+
+<h2>Heading MD</h2>
+
+<h2>Heading MD</h2>
+<h3>Heading XS</h3>
+<h3>Heading XS</h3>
+<h3>Heading XS</h3>
+
+<h2>Heading MD</h2>
+```
+
+### Applying other Semantic Tags to Type
+
+#### **Body**
+
+The body (`<p>`) tag is normally applied to large blocks of text and where the text does not perform the role of a heading in the content structure.
+
+#### **Quote & Blockquote**
+
+The quote tag (`<q>`) is used to wrap text in "quotes." The blockquote tag (`<blockquote>`) is used to describe content that is a "pullout" of sorts. The CBP DS has its own component for this and you should use that component's guidance when using this element.
+
+#### **Ordered/Unordered Lists**
+
+These semantic tags apply specifically to items in a list. The CBP Design System has a components devoted entirely to this purpose, so please use them and refer to their particular guidance when creating lists.
+
+#### **Emphasis, Strong, and Span**
+
+Placing emphasis (`<em>`) around text in your HTML file by default "italicizes" your text. This is a useful tool when you want to create a visual difference in a block of text and it gives assistive technologies a good cue to help their users understand the content better.
+
+Placing strong (`<strong>`) around text in your HTML file by default "bolds" your text. This like emphasis is another way of creating distinction in the block of text. J
+
+The Span (`<span>`) tag is a general multi-purpose inline tag where you can add in additional styling classes to transform the affected type any way you want. Be sure to keep the same font-sizing when you are applying a span within a block of text to avoid any complications with reflow.
+
+## Paragraph Breaks
+
+When you have multiple paragraphs of text that immediately follow one another, the CBP Design System's preferred styling is to have a complete line break between paragraphs rather than a simple indentation. WCAG accessibility rules state that there should be a least a 1.5x line height when one paragraph immediately follows another. For example with our body styling the default line height applied is 20px, so multiply this by 1.5x and you get 30px (we need to round this up in order to keep our text block on our 4px baseline grid to 32px ie. 1.6x). So we write a new rule as follows:
+
+```CSS
+p {margin-block-end: 1rem}
+```
+
+## Applying Color To Text
+
+For the most part, blocks of text like headings and paragraphs should only have color tokens from the text reserved palette applied (text-lightest, text-darkest, text-base, etc.). If you are using one of the CBP DS' default type classes the color already applied for the context you are in (light mode/dark mode) should be sufficient. Where this may need adjusting is where you have text applied inside of a container with a particular background applied and the text no longer meets minimum color contrast requirements. In these situations you should adjust the color for the text to meet the following accessibility requirements:
+
+- Small text (under 24px for regular weight/under 18.66px for bold weight): minimum contrast ratio is 4.5:1
+- Large text (24px or larger for regular weight/18.66px or larger for bold weight): minimum contrast ratio is 3:1
+
+Exceptions to this include incidental text or images of text that are part of an inactive user interface (disabled states), text that is pure decoration, text that is not visible on the page to anyone, text that is part of a picture that contains significant other visual content, and type that is part of a logo (logotype).
+
+Applying other color tokens to type should be rare and limited, but can have good value when applied appropriately. Discretion is given to development teams to apply color as long as the color applied is from the CBP DS' color palette. In general it is hard to make a concrete rule for this, but instead it's more of a knowing when you see it kind of restriction and handled on a case-by-case basis. For color settings of typography that occur within other components please refer to that particular component's guidance.
+
+### Light Mode/Dark Mode
+
+If you are using the typography component, changing the application’s display mode from light to dark or visa versa will automatically change your typography’s “context” settings. This will invert the color applied to your text. For example with body text in a light mode context (the background the text is applied to is “light”) the color applied to your type will be text-darkest. If you change to a dark mode context (the background the text is applied to is “dark”) the color applied to your type will then be text-lightest. 
+
+Where you will need to intervene is where you have applied text to a container with a background color that causes the color applied to the text to fail accessibility requirements, or where you have overridden the color for a particular use case. You will need to make sure you adjust the color property accordingly for both light and dark contexts.
+
+## Text Alignment
+
+In almost all instances text should be aligned left. There may be certain situations in expressive type sites where centered or right aligned text is appropriate but these are also rare and should be limited to blocks of text that are very short in length. When in doubt think about logical reading order and how your text is arranged on the page. Absolutely, under no circumstances should you use justified alignment with your text.
+
+## Typographic Hierarchy
+
+Typographic hierarchy is the intentional organization of type to communicate structure and importance. It helps users scan quickly, understand what is primary vs. supporting information, and build a mental model of your page or screen. In CBP applications this is especially important because the information density in our product layouts is often very heavy. We want to make sure our primary goal is always legibility first. Then, can the user adequately understand the content you’re providing to them in fashion where they can make quick, critical decisions that may affect real people’s lives, and our national security. 
+
+### To Achieve Typographic Hierarchy in Your Product:
+
+1. **Start with semantics (structure).** *Write the page’s content as an outline using semantic tags (H1 > H2 > H3… and P for body). Do not skip heading levels. Use the suggested semantic pairing when your page outline matches the default typography component settings. When you deviate, make sure that you keep your tags in descending order.* 
+2. **There should be exactly one H1 per page.** *H1 is the page’s primary heading and should match the page title in the browser tab. This element should also be located in the page’s main UI region. In certain, limited cases such as a one-page application that is entirely a map where the page title is essentially the name of the application this element may be applied in other manners. (see UI regions guidance for more information).*
+3. **Apply consistent styling (presentation).** *Use the CBP DS typography component, design tokens to style your typographic content consistently across the page. Headings that represent the same level in the outline should use the same CBP DS type-size and font-weight tokens. Color can vary only when it supports layout needs and remains accessible.*
+4. **Use spacing to reinforce relationships.** *Use spacing tokens to show parent/child groupings (a heading with its supporting content) vs. separation between sections.*
+5. **Hierarchy is more than just font-size.** *Use font-weight, color (from the text palette preferably), and spacing to create emphasis—do not change font-size outside of provided tokens/classes.*
