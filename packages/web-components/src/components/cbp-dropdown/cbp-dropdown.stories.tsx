@@ -111,6 +111,19 @@ const Custom=[{"label":"Option 1","value":"1"},{"label":"Option 2","value":"2"},
 
 //let selectedDataset;
 
+
+
+
+function removeSelection(value){
+  let dropdown=document.querySelector('cbp-dropdown') as HTMLCbpDropdownElement;
+  //let updatedValues = dropdown.value.pop(dropdown.value.indexOf(value));
+  console.log(dropdown.value);
+  dropdown.value = dropdown.value.filter( (item) => item !== value);
+  console.log(dropdown.value);
+  //let selectedItems = items.filter( (item) =>  item.value ? dropdown.value.includes(item.value) : dropdown.value.includes(item.label));
+  //dropdown.value=updatedValues;
+}
+
 const Template: any = ({ label, description, fieldId, name, placeholder, multiple, filter, async, minimumInputLength, dropdownItems, dataset, items, create, error, readonly, disabled, value, context, sx }) => {
 
   if (dataset == 'Countries') items = Countries;
@@ -118,18 +131,90 @@ const Template: any = ({ label, description, fieldId, name, placeholder, multipl
   if (dataset == 'Custom') items = Custom;
   if (async) dropdownItems = "JSON";
 
-  // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
-  let asyncCombobox;
-  setTimeout(() => {
-    asyncCombobox=document.querySelector('cbp-dropdown[async]') as HTMLCbpDropdownElement;
+  // The native JSON objects may not be properly sorted (such as Countries, which has more appended to the end out of order),
+  // so sort them alphabetically.
+  items.sort(function(a, b) {
+    return a.label.localeCompare(b.label);
+  });
 
-    if(asyncCombobox) {
-      asyncCombobox.addEventListener('populateCombobox', (e) => {
+
+  // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
+  let formField;
+  let dropdown;
+  setTimeout(() => {
+    formField=document.querySelector('cbp-form-field') as HTMLCbpFormFieldElement;
+    dropdown=document.querySelector('cbp-dropdown') as HTMLCbpDropdownElement;
+
+    if(async) {
+      dropdown.addEventListener('populateCombobox', (e) => {
         let searchString = e.detail.searchString;
         // filter the JSON natively in JavaScript
         let filteredJSON = items.filter( (item) => item.label.toLowerCase().indexOf(searchString) != -1);
         // return the filtered JSON result to the component via the items property
-        asyncCombobox.items = filteredJSON;
+        dropdown.items = filteredJSON;
+      });
+    }
+
+    // For asynchronous multi-select dropdowns, all possible items are never shown. 
+    // So for usability reasons, it makes sense to show the selected items as chips below the dropdown
+    if(async && filter && multiple) {
+      dropdown.addEventListener('valueChange', (e) => {
+        let selectedItems = items.filter( (item) =>  item.value ? e.detail.value.includes(item.value) : e.detail.value.includes(item.label));
+        console.log(e, selectedItems);
+
+        let chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+        if(!chipsContainer) {
+          let newChipsContainer = document.createElement('cbp-flex');
+          newChipsContainer.gap='.5rem';
+          newChipsContainer.wrap='wrap';
+          newChipsContainer.classList.add('cbp-dropdown-chips-container');
+          newChipsContainer.style.setProperty('margin-block-start','1rem');
+
+          formField.appendChild(newChipsContainer);
+          chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+          chipsContainer.addEventListener('chipClick', (e:any) => {
+            console.log(e);
+            // remove the value from selected items and update the dropdown value
+            removeSelection(e.detail.value);
+            e.detail.host.remove();
+          });
+
+        }
+
+        //let chips;
+        // empty the container before repopulating it (this is not ideal and much easier in a JS framework that maintains the DOM)
+        chipsContainer?.replaceChildren();
+        selectedItems.forEach( item => {
+          let newChip = document.createElement('cbp-chip');
+          newChip.pressed=true;
+          newChip.value=item.value || item.label;
+          newChip.innerText=item.label;
+          chipsContainer.appendChild(newChip);
+        });
+
+        //
+      });
+    }
+
+
+
+    // For any sort of long multi-select, it may be more usable if selected items are filtered to the top of the list.
+    // This can only be achieved using the items property and feeding in a custom sorted JSON object/string.
+    
+    // Updating this list live while the dropdown is open (for multi-selects), however, 
+    // causes problems with focus and should be incorporated into the web component itself.
+    if(multiple && !async && items && dropdownItems == 'JSON') {
+      dropdown.addEventListener('valueChange', (e) => {
+        console.log(e);
+        //let selectedItems = items.filter( (item) => item?.value.includes(e.detail.value) || item.label.includes(e.detail.value));
+        let selectedItems = items.filter( (item) =>  item.value ? e.detail.value.includes(item.value) : e.detail.value.includes(item.label));
+        let unselectedItems = items.filter( (item) =>  item.value ? !e.detail.value.includes(item.value) : !e.detail.value.includes(item.label));
+
+        //let searchString = e.detail.searchString;
+        // filter the JSON natively in JavaScript
+        //let filteredJSON = items.filter( (item) => item.label.toLowerCase().indexOf(searchString) != -1);
+        // return the filtered JSON result to the component via the items property
+        dropdown.items = [...selectedItems, ...unselectedItems];
       });
     }
   }, 100);
