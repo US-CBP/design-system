@@ -24,6 +24,9 @@ The React components are wrappers generated from this package and will share the
 * Created the `cbp-toast-container` component to hold and position multiple toast notifications.
   * The default story code now includes this wrapper component.
   * An individual toast may be used without the container, but it is always placed in the upper right of the viewport.
+* Updated the `cbp-universal-header` story code to use slotted `cbp-flex` and `cbp-flex-item` tags around the buttons.
+  * This avoids needing arbitrary HTML that requires styling within the component.
+  * The previous markup will continue to work until the official release, at which point the styling within the component will be removed.
 
 ## [0.0.1-develop.34] 04-24-2026
 
