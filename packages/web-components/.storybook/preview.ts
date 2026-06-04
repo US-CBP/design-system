@@ -19,7 +19,7 @@ const withWrapper: DecoratorFunction<WebComponentsRenderer, { [x: string]: unkno
     globals: { theme, mode },
   } = context;
 
-  return `<cbp-app theme="${mode != '_reset' ? mode : 'system'}">${storyFn()}</cbp-app>`;
+  return `<cbp-app ${mode != '_reset' && mode != 'system' ? `theme="${mode}"` : ''}>${storyFn()}</cbp-app>`;
 };
 
 
@@ -173,8 +173,15 @@ const preview: Preview = {
         //method: 'alphabetical',
         order: [
           'Introduction',
+          'What is a Design System?',
           'Design Tokens',
-          'About Dark Mode',
+          'Typography',
+          'Iconography',
+          'Dark Mode',
+          'Using the Web Components',
+          'Web Components and APIs',
+          'Supporting AI',
+          'Change Log',
           'Layout and Structure',
           'Navigation',
           'Content',

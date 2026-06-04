@@ -14,7 +14,7 @@ Design Implementation must support:
 
 ## Use Cases
 
-### Light/Dark Mode  - Toggle with User Settings 
+### Light/Dark Mode  - Toggle with User Settings
 
 The entire site/page should support a "dark theme" for system-wide dark mode settings or a site-specific dark mode toggle. E.g., cards, buttons, inputs, etc. on the page background switch to dark mode with system settings or site toggle.
 

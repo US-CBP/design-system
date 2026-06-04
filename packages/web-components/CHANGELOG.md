@@ -4,6 +4,30 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unreleased] TBD
+
+* BREAKING: Updated design tokens as follows:
+  * Updated "primary" and "secondary" "dark" and "darker" color values to be a shade darker for better contrast.
+  * Added new, more granular font-size tokens numbered from 1 through 20. These are in addition to the named sizes and `cbp-typography` variants such as "heading-xxl".
+  * Added new, more granular line-height tokens numbered from 1 through 18. These are in addition to the named sizes and are now exposed in `cbp-typography` directly.
+  * Removed "masthead" font size tokens and corresponding `cbp-typography` variants. These can now be replicated with new, more granular "size" tokens.
+  * These tokens are bundled as CSS custom properties (variables) by the `cbp-app` component to be made available to all other components and application code.
+* BREAKING: Updated the `cbp-app-header` to make sticky behavior opt-in.
+  * The `sticky` attribute should be added to all current applications using the design system to preserve this functionality.
+  * The `sticky` attribute has been added to the `cbp-app-header` component in all applicable stories in this Storybook.
+  * "Sticky" functionality may be disabled by toggling the corresponding control in those stories or removing the attribute if present.
+* BREAKING: Updated all icons in the `cbp-icon` component and stories to use Font Awesome 7 icons (upgraded from v6).
+  * There were no breaking changes in icon names used by the `cbp-icon` component or in the design system.
+  * However, there are SVG icons embedded in a few stories directly that should be updated manually if already in use, including:
+    * `cbp-menu` (and the `cbp-table` with overflow menu story) - "trashcan" icon has been added to the `cbp-icon` component and the stories updated to use this.
+    * The volume slider story of `cbp-slider`.
+* Created the `cbp-toast-container` component to hold and position multiple toast notifications.
+  * The default story code now includes this wrapper component.
+  * An individual toast may be used without the container, but it is always placed in the upper right of the viewport.
+* Updated the `cbp-universal-header` story code to use slotted `cbp-flex` and `cbp-flex-item` tags around the buttons.
+  * This avoids needing arbitrary HTML that requires styling within the component.
+  * The previous markup will continue to work until the official release, at which point the styling within the component will be removed.
+
 ## [0.0.1-develop.34] 04-24-2026
 
 * BREAKING: Updated `cbp-card` by removing the "decision" `variant`, as it was not implemented in component logic (only styling), and is not mutually exclusive to other variants.

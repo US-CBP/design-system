@@ -418,56 +418,57 @@ const html = items.map(({ anchorTitle, location, pageCreation, lastEdited, textB
       return `
           <cbp-structured-list-item>
             <cbp-flex
-                direction="column"
-                gap="0.5rem"
+              direction="column"
+              gap="0.5rem"
             >
+              <cbp-flex-item>
+                <cbp-typography tag="h6">
+                    <cbp-link href="#">
+                        <cbp-icon name="arrow-right"></cbp-icon>
+                        ${anchorTitle}
+                    </cbp-link>
+                </cbp-typography>
+              </cbp-flex-item>
+              <cbp-flex-item>
+                <div>
+                  <cbp-typography tag="span">
+                    <b>${location}</b>
+                  </cbp-typography>
+                </div>
+                <div>
+                  <cbp-typography tag="span">
+                    <b>Page Created:</b>
+                  </cbp-typography>
+                  ${pageCreation}
+                  <cbp-typography
+                    tag="span"
+                    sx='{"margin-left":"0.25rem"}'
+                  >
+                      <b>Last Edited:</b>
+                  </cbp-typography>
+                  ${lastEdited}
+                </div>
+              </cbp-flex-item>
                 <cbp-flex-item>
-                
-                    <cbp-typography
-                        tag="h6"
-                    >
-                        <cbp-link
-                            href="#"
-                        >
-                            <cbp-icon name="arrow-right"></cbp-icon>
-                            ${anchorTitle}
-                        </cbp-link>
-                    </cbp-typography>
-                </cbp-flex-item>
-                <cbp-flex-item>
-                    <div>
-                        <cbp-typography
-                            tag="span"
-                        >
-                            <b>${location}</b>
-                        </cbp-typography>
-                    </div>
-                    <div>
-                        <cbp-typography
-                            tag="span"
-                        >
-                            <b>Page Created:</b>
-                        </cbp-typography>
-                        ${pageCreation}
-                        <cbp-typography
-                            tag="span"
-                            sx='{"margin-left":"0.25rem"}'
-                        >
-                            <b>Last Edited:</b>
-                        </cbp-typography>
-                        ${lastEdited}
-                    </div>
-                </cbp-flex-item>
-                <cbp-flex-item>
-                    <cbp-typography
-                        tag="p"
-                        variant="body-text"
-                        sx='{"--cbp-line-length-longer":"100%"}'
+                  <cbp-typography
+                    tag="p"
+                    variant="body-text"
+                  >
+                    <mark>
+                      ${searchText}
+                    </mark>
+                    ${textBlock}
+                  </cbp-typography>
+
+                   <cbp-typography
+                      tag="p"
+                      variant="body-text"
+                      sx='{"--cbp-line-length-longer":"100%"}'
                     >
                       <mark>
                         ${searchText}
                       </mark>
-                        ${textBlock}
+                      ${textBlock}
                     </cbp-typography>
                 </cbp-flex-item>
             </cbp-flex>
