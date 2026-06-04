@@ -122,38 +122,40 @@ const InternalTemplate: any = ({ isLoggedIn, username, hashid, navItems, search,
         logo-src-lg="./assets/images/cbp-header-logo.svg"
         logo-src-sm="./assets/images/cbp-seal.svg"
       >
-        <ul>
+        <cbp-flex
+          gap="var(--cbp-space-4x)"
+        >
         ${ isLoggedIn
           ? `
-          <li>
+          <cbp-flex-item>
             <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="book"></cbp-icon>
               <cbp-hide visually-hide-at="max-width: 64em">App Directory</cbp-hide>
             </cbp-button>
-          </li>
-          <li>
+          </cbp-flex-item>
+          <cbp-flex-item>
             <cbp-button color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="comment"></cbp-icon>  
               <cbp-hide visually-hide-at="max-width: 64em">Feedback</cbp-hide>
             </cbp-button>
-          </li>
-          <li>
+          </cbp-flex-item>
+          <cbp-flex-item>
             <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
               <cbp-icon name="user"></cbp-icon>
               <cbp-hide visually-hide-at="max-width: 64em">${hashid}</cbp-hide>
             </cbp-button>
-          </li>
+          </cbp-flex-item>
           `
           : `
-          <li>
+          <cbp-flex-item>
             <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
             <cbp-icon name="right-to-bracket"></cbp-icon>
             Login
             </cbp-button>
-          </li>
+          </cbp-flex-item>
           `
         }
-        </ul>
+        </cbp-flex>
       </cbp-universal-header>
 
       <cbp-app-header
@@ -237,38 +239,40 @@ const Internal2ColumnTemplate: any = ({ isLoggedIn, username, hashid, navItems, 
         logo-src-lg="./assets/images/cbp-header-logo.svg"
         logo-src-sm="./assets/images/cbp-seal.svg"
       >
-        <ul>
+        <cbp-flex
+          gap="var(--cbp-space-4x)"
+        >
         ${ isLoggedIn
           ? `
-          <li>
+          <cbp-flex-item>
             <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="book"></cbp-icon>
               <cbp-hide visually-hide-at="max-width:64em">App Directory</cbp-hide>
             </cbp-button>
-          </li>
-          <li>
+          </cbp-flex-item>
+          <cbp-flex-item>
             <cbp-button color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="comment"></cbp-icon>  
               <cbp-hide visually-hide-at="max-width:64em">Feedback</cbp-hide>
             </cbp-button>
-          </li>
-          <li>
+          </cbp-flex-item>
+          <cbp-flex-item>
             <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
               <cbp-icon name="user"></cbp-icon>
               <cbp-hide visually-hide-at="max-width:64em">${hashid}</cbp-hide>
             </cbp-button>
-          </li>
+          </cbp-flex-item>
           `
           : `
-          <li>
+          <cbp-flex-item>
             <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
             <cbp-icon name="right-to-bracket"></cbp-icon>
             Login
             </cbp-button>
-          </li>
+          </cbp-flex-item>
           `
         }
-        </ul>
+        </cbp-flex>
       </cbp-universal-header>
 
       <cbp-app-header
@@ -461,16 +465,6 @@ function renderDrawer(items, drawerid, store){
 
 function renderUserPref(username) {
   return `
-
-      <style>
-      cbp-toggle#darkmode {
-        --cbp-toggle-custom-icon-off: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" style="fill:rgb(92 72 9)" viewBox="0 0 512 512"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>');
-
-        --cbp-toggle-custom-icon-on: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" style="fill:rgb(254 230 133)" viewBox="0 0 640 640"><path d="M320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576C388.8 576 451.3 548.8 497.3 504.6C504.6 497.6 506.7 486.7 502.6 477.5C498.5 468.3 488.9 462.6 478.8 463.4C473.9 463.8 469 464 464 464C362.4 464 280 381.6 280 280C280 207.9 321.5 145.4 382.1 115.2C391.2 110.7 396.4 100.9 395.2 90.8C394 80.7 386.6 72.5 376.7 70.3C358.4 66.2 339.4 64 320 64z"/></svg>');
-      }
-    </style>
-
-
     <cbp-drawer
       uid= "userPref"    
       position= "right"
@@ -637,38 +631,40 @@ const InternalCardsLayoutTemplate: any = ({ isLoggedIn, username, hashid, navIte
         logo-src-lg="./assets/images/cbp-header-logo.svg"
         logo-src-sm="./assets/images/cbp-seal.svg"
       >
-        <ul>
+        <cbp-flex
+          gap="var(--cbp-space-4x)"
+        >
         ${ isLoggedIn
           ? `
-          <li>
+          <cbp-flex-item>
             <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="book"></cbp-icon>
               <cbp-hide visually-hide-at="max-width:64em">App Directory</cbp-hide>
             </cbp-button>
-          </li>
-          <li>
+          </cbp-flex-item>
+          <cbp-flex-item>
             <cbp-button color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="comment"></cbp-icon>  
               <cbp-hide visually-hide-at="max-width:64em">Feedback</cbp-hide>
             </cbp-button>
-          </li>
-          <li>
+          </cbp-flex-item>
+          <cbp-flex-item>
             <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
               <cbp-icon name="user"></cbp-icon>
               <cbp-hide visually-hide-at="max-width:64em">${hashid}</cbp-hide>
             </cbp-button>
-          </li>
+          </cbp-flex-item>
           `
           : `
-          <li>
+          <cbp-flex-item>
             <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
             <cbp-icon name="right-to-bracket"></cbp-icon>
             Login
             </cbp-button>
-          </li>
+          </cbp-flex-item>
           `
         }
-        </ul>
+        </cbp-flex>
       </cbp-universal-header>
 
       <cbp-app-header
