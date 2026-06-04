@@ -74,6 +74,18 @@ cbp-tab {
       --cbp-tab-color-border: var(--cbp-tab-color-border-active);
       outline: none;
     }
+
+    cbp-tabs[orientation=vertical] &{
+      width: 100%;
+
+      cbp-badge{
+        margin-left: auto;
+      }
+
+      // &:has(cbp-icon:only-child){
+      //   min-height: var(--cbp-space-6x);
+      // }
+    }
   }
 
   &[color=danger] {

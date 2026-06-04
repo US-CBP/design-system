@@ -7,6 +7,10 @@ export default {
       description: 'Controls props and content for the child components.',
       control: 'object',
     },
+    orientation: {
+      control: 'select',
+      options: ['horizontal', 'vertical']
+    },
     accessibilityText: {
       control: 'text',
     },
@@ -36,7 +40,7 @@ function createTabs(tabs, withIcon, withBadge,) {
         ${accessibilityText ? `accessibility-text="${accessibilityText}}"` : ''}
         ${selected == true ? 'selected' : ''}
       >
-        ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''} ${label} ${withBadge ? `<cbp-badge>22</cbp-badge>` : ''}
+        ${withIcon ? `<cbp-icon ${label=='' ? `size=var(--cbp-space-6x)`: ''} name="check"></cbp-icon>` : ''} ${label ? label : ''} ${withBadge ? `<cbp-badge>22</cbp-badge>` : ''}
       </cbp-tab>
     `;
   });
@@ -54,9 +58,10 @@ function createTabPanels(tabs) {
   return html.join('');
 }
 
-const Template = ({ tabs, accessibilityText, withIcon, withBadge,context, sx }) => {
+const Template = ({ tabs, orientation, accessibilityText, withIcon, withBadge,context, sx }) => {
   return ` 
     <cbp-tabs
+      ${orientation ? `orientation="${orientation}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -131,5 +136,68 @@ Tabs.args = {
       selected: false,
     },
   ],
+  orientation: 'vertical',
+  accessibilityText: 'Tabs Example',
+};
+
+
+export const IconTabs = Template.bind({});
+
+IconTabs.args = {
+  tabs: [
+    {
+      name: 'tab1',
+      accessibilityText: '',
+      color: 'default',
+      panelContent: 'Tab panel 1 content.',
+      selected: false,
+      withIcon: true,
+      withBadge: true
+    },
+    {
+      name: 'tab2',
+      accessibilityText: '',
+      color: 'default',
+      panelContent: 'Tab panel 2 content.',
+      selected: false,
+    },
+    {
+      name: 'tab3',
+      accessibilityText: '',
+      color: 'default',
+      panelContent: 'Tab panel 3 content.',
+      selected: false,
+    },
+    {
+      name: 'tab4',
+      accessibilityText: '',
+      color: 'default',
+      panelContent: 'Tab panel 4 content.',
+      selected: false,
+    },
+    {
+      name: 'tab5',
+      accessibilityText: '',
+      color: 'default',
+      panelContent: 'Tab panel 5 content.',
+      selected: false,
+    },
+    {
+      name: 'tab6',
+      accessibilityText: '',
+      color: 'default',
+      panelContent: 'Tab panel 6 content.',
+      selected: false,
+    },
+    {
+      name: 'tab7',
+      accessibilityText: '',
+      color: 'default',
+      panelContent: 'Tab panel 7 content.',
+      selected: false,
+    },
+  ],
+  withIcon: true,
+  orientation: 'vertical',
   accessibilityText: 'Tabs Example',
 };

@@ -28,6 +28,9 @@ export class CbpTabs {
   
   @Element() private host: HTMLElement;
 
+  /** Determines the ortientation that the tabs are displayed*/
+  @Prop() orientation: 'horizontal' | 'vertical' ='horizontal'
+
   /** The accessible label of the tablist. Required unless `aria-labelledby` is specified on the host tag directly. */
   @Prop() accessibilityText: string;
 
@@ -183,7 +186,7 @@ export class CbpTabs {
             aria-label="Previous Tab"
             slot="cbp-button-custom"
           >
-            <cbp-icon name="chevron-right" size="var(--cbp-space-5x)" rotate={180}></cbp-icon>
+            <cbp-icon name="chevron-right" size="var(--cbp-space-6x)" rotate={180}></cbp-icon>
           </button>
         </cbp-button>
 
@@ -210,7 +213,7 @@ export class CbpTabs {
             aria-label="Next Tab"
             slot="cbp-button-custom"
           >
-            <cbp-icon name="chevron-right" size="var(--cbp-space-5x)"></cbp-icon>
+            <cbp-icon name="chevron-right" size="var(--cbp-space-6x)"></cbp-icon>
           </button>
         </cbp-button>
       </Host>
