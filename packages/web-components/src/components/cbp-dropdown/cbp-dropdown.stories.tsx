@@ -23,6 +23,10 @@ export default {
     multiple: {
       control: 'boolean',
     },
+    multipleWithChips: {
+      control: 'boolean',
+      if: { arg: 'multiple', eq: true },
+    },
     filter: {
       control: 'boolean',
     },
@@ -113,18 +117,14 @@ const Custom=[{"label":"Option 1","value":"1"},{"label":"Option 2","value":"2"},
 
 
 
-
+/*
 function removeSelection(value){
   let dropdown=document.querySelector('cbp-dropdown') as HTMLCbpDropdownElement;
-  //let updatedValues = dropdown.value.pop(dropdown.value.indexOf(value));
-  console.log(dropdown.value);
   dropdown.value = dropdown.value.filter( (item) => item !== value);
-  console.log(dropdown.value);
-  //let selectedItems = items.filter( (item) =>  item.value ? dropdown.value.includes(item.value) : dropdown.value.includes(item.label));
-  //dropdown.value=updatedValues;
 }
+*/
 
-const Template: any = ({ label, description, fieldId, name, placeholder, multiple, filter, async, minimumInputLength, dropdownItems, dataset, items, create, error, readonly, disabled, value, context, sx }) => {
+const Template: any = ({ label, description, fieldId, name, placeholder, multiple, multipleWithChips, filter, async, minimumInputLength, dropdownItems, dataset, items, create, error, readonly, disabled, value, context, sx }) => {
 
   if (dataset == 'Countries') items = Countries;
   if (dataset == 'States') items = States;
@@ -155,12 +155,13 @@ const Template: any = ({ label, description, fieldId, name, placeholder, multipl
       });
     }
 
+
     // For asynchronous multi-select dropdowns, all possible items are never shown. 
-    // So for usability reasons, it makes sense to show the selected items as chips below the dropdown
-    if(async && filter && multiple) {
+    // So for usability reasons, it makes sense to show the selected items as chips below the dropdown.
+    // This is also a valid usability feature for any multi-select dropdown.
+    if(multipleWithChips) {
       dropdown.addEventListener('valueChange', (e) => {
         let selectedItems = items.filter( (item) =>  item.value ? e.detail.value.includes(item.value) : e.detail.value.includes(item.label));
-        console.log(e, selectedItems);
 
         let chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
         if(!chipsContainer) {
@@ -173,15 +174,13 @@ const Template: any = ({ label, description, fieldId, name, placeholder, multipl
           formField.appendChild(newChipsContainer);
           chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
           chipsContainer.addEventListener('chipClick', (e:any) => {
-            console.log(e);
             // remove the value from selected items and update the dropdown value
-            removeSelection(e.detail.value);
+            dropdown.value = dropdown.value.filter( (item) => item !== e.detail.value);
+            // remove the chip that was just clicked
             e.detail.host.remove();
           });
-
         }
 
-        //let chips;
         // empty the container before repopulating it (this is not ideal and much easier in a JS framework that maintains the DOM)
         chipsContainer?.replaceChildren();
         selectedItems.forEach( item => {
@@ -191,30 +190,6 @@ const Template: any = ({ label, description, fieldId, name, placeholder, multipl
           newChip.innerText=item.label;
           chipsContainer.appendChild(newChip);
         });
-
-        //
-      });
-    }
-
-
-
-    // For any sort of long multi-select, it may be more usable if selected items are filtered to the top of the list.
-    // This can only be achieved using the items property and feeding in a custom sorted JSON object/string.
-    
-    // Updating this list live while the dropdown is open (for multi-selects), however, 
-    // causes problems with focus and should be incorporated into the web component itself.
-    if(multiple && !async && items && dropdownItems == 'JSON') {
-      dropdown.addEventListener('valueChange', (e) => {
-        console.log(e);
-        //let selectedItems = items.filter( (item) => item?.value.includes(e.detail.value) || item.label.includes(e.detail.value));
-        let selectedItems = items.filter( (item) =>  item.value ? e.detail.value.includes(item.value) : e.detail.value.includes(item.label));
-        let unselectedItems = items.filter( (item) =>  item.value ? !e.detail.value.includes(item.value) : !e.detail.value.includes(item.label));
-
-        //let searchString = e.detail.searchString;
-        // filter the JSON natively in JavaScript
-        //let filteredJSON = items.filter( (item) => item.label.toLowerCase().indexOf(searchString) != -1);
-        // return the filtered JSON result to the component via the items property
-        dropdown.items = [...selectedItems, ...unselectedItems];
       });
     }
   }, 100);
@@ -250,6 +225,7 @@ const Template: any = ({ label, description, fieldId, name, placeholder, multipl
   `;
 };
 
+
 export const Dropdown = Template.bind({});
 Dropdown.args = {
   name: 'dropdown',
@@ -257,7 +233,53 @@ Dropdown.args = {
   fieldId: 'dropdown-id',
   dropdownItems: 'Slotted',
   dataset: 'Custom',
-  //items: items
+};
+
+export const MultiSelect = Template.bind({});
+MultiSelect.storyName="Multi-Select Dropdown";
+MultiSelect.args = {
+  name: 'dropdown',
+  value: '',
+  fieldId: 'dropdown-id',
+  dropdownItems: 'Slotted',
+  dataset: 'Countries',
+  multiple: true
+};
+
+export const MultiSelectWithChips = Template.bind({});
+MultiSelectWithChips.storyName="Multi-Select with Chips";
+MultiSelectWithChips.args = {
+  name: 'dropdown',
+  value: '',
+  fieldId: 'dropdown-id',
+  dropdownItems: 'Slotted',
+  dataset: 'Countries',
+  multiple: true,
+  multipleWithChips: true
+};
+
+export const ComboBox = Template.bind({});
+ComboBox.storyName="Combobox";
+ComboBox.args = {
+  name: 'dropdown',
+  value: '',
+  fieldId: 'dropdown-id',
+  dropdownItems: 'Slotted',
+  dataset: 'Countries',
+  filter: true
+};
+
+export const AsyncComboBox = Template.bind({});
+AsyncComboBox.storyName="Asynchronous Combobox";
+AsyncComboBox.args = {
+  name: 'dropdown',
+  value: '',
+  fieldId: 'dropdown-id',
+  dropdownItems: 'Slotted',
+  dataset: 'Countries',
+  filter: true,
+  async: true,
+  minimumInputLength: 2
 };
 
 
