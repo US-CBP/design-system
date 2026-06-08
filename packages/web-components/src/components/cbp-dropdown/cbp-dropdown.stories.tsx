@@ -113,17 +113,6 @@ const Countries=[{"label":"Afghanistan"},{"label":"Albania"},{"label":"Algeria"}
 // Custom dataset: 
 const Custom=[{"label":"Option 1","value":"1"},{"label":"Option 2","value":"2"},{"label":"Option 3","value":"3"},{"label":"Option 4","value":"4"},{"label":"Option 5","value":"5"}];
 
-//let selectedDataset;
-
-
-
-/*
-function removeSelection(value){
-  let dropdown=document.querySelector('cbp-dropdown') as HTMLCbpDropdownElement;
-  dropdown.value = dropdown.value.filter( (item) => item !== value);
-}
-*/
-
 const Template: any = ({ label, description, fieldId, name, placeholder, multiple, multipleWithChips, filter, async, minimumInputLength, dropdownItems, dataset, items, create, error, readonly, disabled, value, context, sx }) => {
 
   if (dataset == 'Countries') items = Countries;
