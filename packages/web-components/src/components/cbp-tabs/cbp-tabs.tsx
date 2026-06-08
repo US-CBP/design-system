@@ -1,5 +1,5 @@
 import { Component, Element, Prop, Host, h } from '@stencil/core';
-import { setCSSProps } from '../../utils/utils';
+import { setCSSProps, doKeyboardNav, } from '../../utils/utils';
 
 /**
  * Tabs are a common UI pattern of progressive disclosure mimicking the real world paradigm of tabbed 
@@ -29,7 +29,7 @@ export class CbpTabs {
   @Element() private host: HTMLElement;
 
   /** Determines the ortientation that the tabs are displayed*/
-  @Prop() orientation: 'horizontal' | 'vertical' ='horizontal'
+  @Prop({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal'
 
   /** The accessible label of the tablist. Required unless `aria-labelledby` is specified on the host tag directly. */
   @Prop() accessibilityText: string;
@@ -78,22 +78,28 @@ export class CbpTabs {
   }
 
   keyboardNav(key) {
-    const l = this.tabs.length - 1;
-    const n = {
-      Home: 0,
-      ArrowLeft: -1 < this.focusIndex + -1 ? this.focusIndex + -1 : l,
-      ArrowRight: l + 1 > this.focusIndex + 1 ? this.focusIndex + 1 : 0,
-      End: l,
-      Tab: this.focusIndex=this.selectedIndex, // reset the focusIndex when tabbing out of the tablist
-    }[key];
-    const d = (key == 'ArrowLeft') ?  'end' : 'start';
-    if (n !== undefined && key !== 'Tab') {
-      this.tabs[n].scrollIntoView({ behavior: "instant", block: "nearest", inline: d });
-      setTimeout(() => {
-        this.tabs[n].querySelector('button')?.focus();
-      }, 20);
-      this.focusIndex = n;
+    let navKey;
+    if(this.orientation == 'vertical'){
+      navKey = ['ArrowDown',  'ArrowUp', 'Enter', 'Home', 'End'];
+    }else{
+      navKey = ['ArrowRight','ArrowLeft', 'Enter', 'Home', 'End'];
     }
+
+    if (navKey.includes(key)) {
+      this.focusIndex = doKeyboardNav(this.tabs, key, this.focusIndex);
+      this.tabs[this.focusIndex].focus();
+    }else if(key == 'Tab'){
+      this.focusIndex = this.selectedIndex;
+    }
+
+    const d = (key == 'ArrowLeft') ?  'end' : 'start';
+    if (this.focusIndex !== undefined && key !== 'Tab') {
+      this.tabs[this.focusIndex].scrollIntoView({ behavior: "instant", block: "nearest", inline: d });
+      setTimeout(() => {
+        this.tabs[this.focusIndex].querySelector('button')?.focus();
+      }, 20);
+    }
+
   }
 
   responsiveNav(direction) {

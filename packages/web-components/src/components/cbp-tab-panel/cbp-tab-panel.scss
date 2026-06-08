@@ -3,5 +3,9 @@ cbp-tab-panel {
 
   &[selected]{
     display: block;
+
+    cbp-tabs[orientation="vertical"] + &{
+      display: inline-block;
+    }
   }
 }

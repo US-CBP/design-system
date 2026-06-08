@@ -103,17 +103,18 @@
 }
 
 cbp-tabs {
-  display: flex;
   overflow: hidden;
   // background: linear-gradient(to top, var(--cbp-tabs-color-border) var(--cbp-border-size-md), transparent var(--cbp-border-size-md));
   margin-bottom: var(--cbp-space-4x);
 
   &[orientation=horizontal]{
     max-width: 100%;
+    display: flex;
     flex-direction: column;
   }
 
   &[orientation=vertical]{
+    display: inline-flex;
     flex-direction: row;
   }
 

@@ -17,6 +17,9 @@ export default {
     withIcon: {
       control: 'boolean',
     },
+    onlyIcon:{
+      control: 'boolean'
+    },
     withBadge: {
       control: 'boolean',
     },
@@ -31,8 +34,8 @@ export default {
   },
 };
 
-function createTabs(tabs, withIcon, withBadge,) {
-  const html = tabs.map(({ name, label, color, accessibilityText,  selected }) => {
+function createTabs(tabs, withIcon, onlyIcon, withBadge, orientation) {
+  const html = tabs.map(({ name, label, icon, color, accessibilityText,  selected }) => {
     return `
       <cbp-tab 
         name="${name}"
@@ -40,7 +43,7 @@ function createTabs(tabs, withIcon, withBadge,) {
         ${accessibilityText ? `accessibility-text="${accessibilityText}}"` : ''}
         ${selected == true ? 'selected' : ''}
       >
-        ${withIcon ? `<cbp-icon ${label=='' ? `size=var(--cbp-space-6x)`: ''} name="check"></cbp-icon>` : ''} ${label ? label : ''} ${withBadge ? `<cbp-badge>22</cbp-badge>` : ''}
+        ${withIcon || onlyIcon ? `<cbp-icon ${label ? '' : `size=var(--cbp-space-6x)`} name="${icon}"}></cbp-icon>` : ''} ${label && !onlyIcon ? label : ''} ${withBadge && !onlyIcon ? `<cbp-badge ${orientation=="vertical" ? `sx='{"margin-left": "auto"}'`: ``}>22</cbp-badge>` : ''}
       </cbp-tab>
     `;
   });
@@ -58,7 +61,7 @@ function createTabPanels(tabs) {
   return html.join('');
 }
 
-const Template = ({ tabs, orientation, accessibilityText, withIcon, withBadge,context, sx }) => {
+const Template = ({ tabs, orientation, accessibilityText, withIcon, onlyIcon, withBadge,context, sx }) => {
   return ` 
     <cbp-tabs
       ${orientation ? `orientation="${orientation}"` : ''}
@@ -66,7 +69,7 @@ const Template = ({ tabs, orientation, accessibilityText, withIcon, withBadge,co
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      ${createTabs(tabs, withIcon, withBadge)}
+      ${createTabs(tabs, withIcon, onlyIcon, withBadge, orientation)}
     </cbp-tabs>
 
     ${createTabPanels(tabs)}
@@ -80,6 +83,7 @@ Tabs.args = {
     {
       name: 'tab1',
       label: 'Tab 1',
+      icon: 'address-book',
       accessibilityText: '',
       color: 'default',
       panelContent: 'Tab panel 1 content.',
@@ -90,6 +94,7 @@ Tabs.args = {
     {
       name: 'tab2',
       label: 'Tab 2',
+      icon: 'angle-down',
       accessibilityText: '',
       color: 'default',
       panelContent: 'Tab panel 2 content.',
@@ -98,6 +103,7 @@ Tabs.args = {
     {
       name: 'tab3',
       label: 'Tab 3 is longer',
+      icon: 'arrow-right',
       accessibilityText: '',
       color: 'default',
       panelContent: 'Tab panel 3 content.',
@@ -106,6 +112,7 @@ Tabs.args = {
     {
       name: 'tab4',
       label: 'Tab 4',
+      icon: 'arrow-right-from-bracket',
       accessibilityText: '',
       color: 'default',
       panelContent: 'Tab panel 4 content.',
@@ -114,6 +121,7 @@ Tabs.args = {
     {
       name: 'tab5',
       label: 'Tab 5',
+      icon: 'bars',
       accessibilityText: '',
       color: 'default',
       panelContent: 'Tab panel 5 content.',
@@ -122,6 +130,7 @@ Tabs.args = {
     {
       name: 'tab6',
       label: 'Tab 6',
+      icon: 'book',
       accessibilityText: '',
       color: 'default',
       panelContent: 'Tab panel 6 content.',
@@ -130,74 +139,12 @@ Tabs.args = {
     {
       name: 'tab7',
       label: 'Tab 7',
+      icon: 'caret-down',
       accessibilityText: '',
       color: 'default',
       panelContent: 'Tab panel 7 content.',
       selected: false,
     },
   ],
-  orientation: 'vertical',
-  accessibilityText: 'Tabs Example',
-};
-
-
-export const IconTabs = Template.bind({});
-
-IconTabs.args = {
-  tabs: [
-    {
-      name: 'tab1',
-      accessibilityText: '',
-      color: 'default',
-      panelContent: 'Tab panel 1 content.',
-      selected: false,
-      withIcon: true,
-      withBadge: true
-    },
-    {
-      name: 'tab2',
-      accessibilityText: '',
-      color: 'default',
-      panelContent: 'Tab panel 2 content.',
-      selected: false,
-    },
-    {
-      name: 'tab3',
-      accessibilityText: '',
-      color: 'default',
-      panelContent: 'Tab panel 3 content.',
-      selected: false,
-    },
-    {
-      name: 'tab4',
-      accessibilityText: '',
-      color: 'default',
-      panelContent: 'Tab panel 4 content.',
-      selected: false,
-    },
-    {
-      name: 'tab5',
-      accessibilityText: '',
-      color: 'default',
-      panelContent: 'Tab panel 5 content.',
-      selected: false,
-    },
-    {
-      name: 'tab6',
-      accessibilityText: '',
-      color: 'default',
-      panelContent: 'Tab panel 6 content.',
-      selected: false,
-    },
-    {
-      name: 'tab7',
-      accessibilityText: '',
-      color: 'default',
-      panelContent: 'Tab panel 7 content.',
-      selected: false,
-    },
-  ],
-  withIcon: true,
-  orientation: 'vertical',
   accessibilityText: 'Tabs Example',
 };

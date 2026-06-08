@@ -77,14 +77,6 @@ cbp-tab {
 
     cbp-tabs[orientation=vertical] &{
       width: 100%;
-
-      cbp-badge{
-        margin-left: auto;
-      }
-
-      // &:has(cbp-icon:only-child){
-      //   min-height: var(--cbp-space-6x);
-      // }
     }
   }
 
