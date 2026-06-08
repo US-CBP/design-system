@@ -128,12 +128,12 @@ cbp-dropdown {
     }
 
     // Attached buttons act like an overlay in order to wrap the input focus highlight around them.
-    [slot="cbp-dropdown-attached-button-start"] {
+    [slot=cbp-dropdown-attached-button-start] {
       --cbp-button-border-radius: var(--cbp-border-radius-soft) 0 0 var(--cbp-border-radius-soft);
       inset-inline-start: 0;
     }
 
-    [slot="cbp-dropdown-attached-button-end"] {
+    [slot=cbp-dropdown-attached-button-end] {
       --cbp-button-border-radius: 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0;
       inset-inline-end: 0;
     }
@@ -200,6 +200,10 @@ cbp-dropdown {
     border-radius: var(--cbp-border-radius-pill);
     outline: 0px solid var(--cbp-dropdown-menu-color-counter-outline-focus);
     outline-offset: calc(-1 * (var(--cbp-space-1x) - 1px));
+
+    cbp-icon {
+      vertical-align: bottom; // anything else other than top/bottom causes growth in height by 1-2px or more
+    }
 
     &:hover {
       --cbp-dropdown-menu-color-bg-counter: var(--cbp-form-field-color-border-hover);
