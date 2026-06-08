@@ -39,13 +39,20 @@ cbp-tab {
     font-size: var(--cbp-font-size-heading-xs);
     font-weight: var(--cbp-font-weight-medium);
     white-space: nowrap;
-    border-bottom: var(--cbp-border-size-xl) solid var(--cbp-tab-color-border);
     border-radius: var(--cbp-tab-border-radius);
     outline-width: var(--cbp-border-size-md);
     outline-style: none;
     outline-color: var(--cbp-button-color-outline-focus);
     outline-offset: calc(-1 * var(--cbp-space-1x));
     
+    cbp-tabs[orientation=horizontal] &{
+      border-bottom: var(--cbp-border-size-xl) solid var(--cbp-tab-color-border); 
+    }
+
+    cbp-tabs[orientation=vertical] &{
+    border-right: var(--cbp-border-size-xl) solid var(--cbp-tab-color-border);
+    }
+
     // The selected tab should appear non-interactive on the surface because selecting it again won't do anything
     &:hover {
       --cbp-tab-color: var(--cbp-tab-color-hover);

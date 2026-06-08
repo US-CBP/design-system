@@ -53,9 +53,9 @@ function createTabs(tabs, withIcon, onlyIcon, withBadge, orientation) {
 function createTabPanels(tabs) {
   const html = tabs.map(({ name, panelContent }) => {
     return `
-    <cbp-tab-panel name="${name}">
-      ${panelContent}
-    </cbp-tab-panel>
+      <cbp-tab-panel name="${name}">
+        ${panelContent}
+      </cbp-tab-panel>
     `;
   });
   return html.join('');
@@ -63,21 +63,34 @@ function createTabPanels(tabs) {
 
 const Template = ({ tabs, orientation, accessibilityText, withIcon, onlyIcon, withBadge,context, sx }) => {
   return ` 
-    <cbp-tabs
-      ${orientation ? `orientation="${orientation}"` : ''}
-      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    <cbp-flex
+      ${orientation =='vertical' ? "direction='row'": "direction='column'"}
+      gap="1rem"
     >
-      ${createTabs(tabs, withIcon, onlyIcon, withBadge, orientation)}
-    </cbp-tabs>
-
-    ${createTabPanels(tabs)}
+      <cbp-flex-item
+        flex-basis='auto'
+      >
+        <cbp-tabs
+          ${orientation ? `orientation="${orientation}"` : ''}
+          ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+        >
+          ${createTabs(tabs, withIcon, onlyIcon, withBadge, orientation)}
+        </cbp-tabs>
+      </cbp-flex-item>
+      
+      <cbp-flex-item
+        flex-grow='1'
+      >
+        ${createTabPanels(tabs)}
+      </cbp-flex-item>
+    </cbp-flex>
  `;
 };
 
 export const Tabs = Template.bind({});
-4;
+
 Tabs.args = {
   tabs: [
     {
@@ -86,7 +99,7 @@ Tabs.args = {
       icon: 'address-book',
       accessibilityText: '',
       color: 'default',
-      panelContent: 'Tab panel 1 content.',
+      panelContent: 'Tab panel 1 content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       selected: false,
       withIcon: true,
       withBadge: true
@@ -94,10 +107,10 @@ Tabs.args = {
     {
       name: 'tab2',
       label: 'Tab 2',
-      icon: 'angle-down',
+      icon: 'clock',
       accessibilityText: '',
       color: 'default',
-      panelContent: 'Tab panel 2 content.',
+      panelContent: 'Tab panel 2 content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       selected: false,
     },
     {
@@ -106,7 +119,7 @@ Tabs.args = {
       icon: 'arrow-right',
       accessibilityText: '',
       color: 'default',
-      panelContent: 'Tab panel 3 content.',
+      panelContent: 'Tab panel 3 content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       selected: false,
     },
     {
@@ -115,16 +128,16 @@ Tabs.args = {
       icon: 'arrow-right-from-bracket',
       accessibilityText: '',
       color: 'default',
-      panelContent: 'Tab panel 4 content.',
+      panelContent: 'Tab panel 4 content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       selected: false,
     },
     {
       name: 'tab5',
       label: 'Tab 5',
-      icon: 'bars',
+      icon: 'computer',
       accessibilityText: '',
       color: 'default',
-      panelContent: 'Tab panel 5 content.',
+      panelContent: 'Tab panel 5 content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       selected: false,
     },
     {
@@ -133,16 +146,16 @@ Tabs.args = {
       icon: 'book',
       accessibilityText: '',
       color: 'default',
-      panelContent: 'Tab panel 6 content.',
+      panelContent: 'Tab panel 6 content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       selected: false,
     },
     {
       name: 'tab7',
       label: 'Tab 7',
-      icon: 'caret-down',
+      icon: 'circle-info',
       accessibilityText: '',
       color: 'default',
-      panelContent: 'Tab panel 7 content.',
+      panelContent: 'Tab panel 7 content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       selected: false,
     },
   ],
