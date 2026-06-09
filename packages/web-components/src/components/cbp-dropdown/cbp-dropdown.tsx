@@ -290,8 +290,7 @@ export class CbpDropdown {
 
     // Only update the selection if the value is different from the hidden field's value (externally updated).
     // TechDebt: verify this isn't prone to race conditions when re-rendering
-    //if (newValue != this.formField?.value && newValue != '') {
-    if (newValue != this.formField?.value) {
+        if (newValue != this.formField?.value) {
       this.setSelectedFromValue();
     }
     //else console.log('Value Watch on dropdown fired - component and form values already match, so no action needed.');
@@ -383,8 +382,20 @@ export class CbpDropdown {
     }
   }
 
+
+  // TODO: Reorder multi-select dropdowns with selected items at the start (only works with JSON items)
+  /*
+  multiSelectReorderSelected() {
+    itemsJSON = 
+    let selectedItems = this.items.filter( (item) =>  item.value ? this.value.includes(item.value) : this.value.includes(item.label));
+    let unselectedItems = this.items.filter( (item) =>  item.value ? !e.detail.value.includes(item.value) : !e.detail.value.includes(item.label));
+    // return the filtered JSON result to the component via the items property
+    this.items = [...selectedItems, ...unselectedItems];
+  }
+  */
+
   // Create a new dropdown item (and select it) after the user clicked the "Create" item
-  doCreateItem(e){
+  doCreateItem(e: CustomEvent){
     const { value } = e.detail;
     e.stopPropagation();
 
@@ -463,7 +474,13 @@ export class CbpDropdown {
     
     if(this.multiple) {
       let values = (typeof this.value == "string") ? this.value.split(",") : this.value;
-      
+
+      // deselect them all first
+      this.dropdownItems.forEach( item => {
+        item.selected=false;
+      });
+
+      // now select those from the values
       this.dropdownItems.forEach( item => {
         if(item.value) {
           if(values.includes(item.value)) {
