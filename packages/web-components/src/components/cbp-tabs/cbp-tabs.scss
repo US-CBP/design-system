@@ -106,7 +106,6 @@ cbp-tabs {
   &[orientation=horizontal]{
     max-width: 100%;
     display: flex;
-    flex-direction: column;
   }
 
   &[orientation=vertical]{
