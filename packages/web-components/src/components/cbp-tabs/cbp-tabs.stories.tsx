@@ -11,8 +11,8 @@ export default {
       control: 'select',
       options: ['horizontal', 'vertical']
     },
-    flexBasis:{
-      description: 'Sets the flex-basis of the tab container',
+    gridTemplateColumn:{
+      description: 'Sets the grid-template-column of the tab container',
       control: 'text',
       if: {arg: "orientation", eq: "vertical"}
     },
@@ -49,7 +49,7 @@ function createTabs(tabs, withIcon, onlyIcon, withBadge, orientation) {
         ${accessibilityText ? `accessibility-text="${accessibilityText}}"` : ''}
         ${selected == true ? 'selected' : ''}
       >
-        ${withIcon || onlyIcon ? `<cbp-icon ${label == undefined ? '' : `size=var(--cbp-space-6x)`} name="${icon}"></cbp-icon>` : ''} ${label && !onlyIcon ? label : ''} ${withBadge && !onlyIcon ? `<cbp-badge ${orientation=="vertical" ? `sx='{"margin-left": "auto"}'`: ``}>22</cbp-badge>` : ''}
+        ${withIcon || onlyIcon ? `<cbp-icon ${onlyIcon ? `size=var(--cbp-space-6x)` : ``} name="${icon}"></cbp-icon>` : ''} ${label && !onlyIcon ? label : ''} ${withBadge && !onlyIcon ? `<cbp-badge ${orientation=="vertical" ? `sx='{"margin-left": "auto"}'`: ``}>22</cbp-badge>` : ''}
       </cbp-tab>
     `;
   });
@@ -67,17 +67,15 @@ function createTabPanels(tabs) {
   return html.join('');
 }
 
-const Template = ({ tabs, orientation, flexBasis, accessibilityText, withIcon, onlyIcon, withBadge,context, sx }) => {
- return `
- ${orientation =='vertical' ? `
-    <cbp-flex
-      direction='row'
+const Template = ({ tabs, orientation, gridTemplateColumn, accessibilityText, withIcon, onlyIcon, withBadge,context, sx }) => {
+ 
+  if(orientation == 'vertical'){
+  return `
+    <cbp-grid 
+      grid-template-columns="${gridTemplateColumn}" 
       gap="1rem"
     >
-      <cbp-flex-item
-        flex-basis=${flexBasis}
-      >
-        ` : ``}
+
         <cbp-tabs
           ${orientation ? `orientation="${orientation}"` : ''}
           ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
@@ -86,19 +84,24 @@ const Template = ({ tabs, orientation, flexBasis, accessibilityText, withIcon, o
         >
           ${createTabs(tabs, withIcon, onlyIcon, withBadge, orientation)}
         </cbp-tabs>
-
-        ${orientation =='vertical' ? `
- 
-      </cbp-flex-item>
-      
-      <cbp-flex-item
-        flex-grow='1'
-      >` : ``}
-        ${createTabPanels(tabs)}
-      ${orientation =='vertical' ? `
-        </cbp-flex-item>
-    </cbp-flex>` : ``}
+        <cbp-grid-item>
+          ${createTabPanels(tabs)}
+        </cbp-grid-item>
+    </cbp-grid>
  `;
+  }else {
+    return `
+      <cbp-tabs
+        ${orientation ? `orientation="${orientation}"` : ''}
+        ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${createTabs(tabs, withIcon, onlyIcon, withBadge, orientation)}
+      </cbp-tabs>
+      ${createTabPanels(tabs)}
+    `;
+  }
 };
 
 export const Tabs = Template.bind({});
@@ -172,5 +175,5 @@ Tabs.args = {
     },
   ],
   accessibilityText: 'Tabs Example',
-  flexBasis: 'auto'
+  gridTemplateColumn: 'auto auto'
 };

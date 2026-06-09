@@ -100,17 +100,11 @@
 
 cbp-tabs {
   overflow: hidden;
-  // background: linear-gradient(to top, var(--cbp-tabs-color-border) var(--cbp-border-size-md), transparent var(--cbp-border-size-md));
   margin-bottom: var(--cbp-space-4x);
 
   &[orientation=horizontal]{
     max-width: 100%;
     display: flex;
-  }
-
-  &[orientation=vertical]{
-    display: inline-flex;
-    flex-direction: row;
   }
 
   // overrides for responsive controls
