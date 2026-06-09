@@ -62,14 +62,42 @@ function createTabPanels(tabs) {
 }
 
 const Template = ({ tabs, orientation, accessibilityText, withIcon, onlyIcon, withBadge,context, sx }) => {
-  return ` 
+//   return ` 
+//     <cbp-flex
+//       ${orientation =='vertical' ? "direction='row'": "direction='column'"}
+//       gap="1rem"
+//     >
+//       <cbp-flex-item
+//         flex-basis='auto'
+//       >
+//         <cbp-tabs
+//           ${orientation ? `orientation="${orientation}"` : ''}
+//           ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+//           ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+//           ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+//         >
+//           ${createTabs(tabs, withIcon, onlyIcon, withBadge, orientation)}
+//         </cbp-tabs>
+//       </cbp-flex-item>
+      
+//       <cbp-flex-item
+//         flex-grow='1'
+//       >
+//         ${createTabPanels(tabs)}
+//       </cbp-flex-item>
+//     </cbp-flex>
+//  `;
+ return `
+
+ ${orientation =='vertical' ? `
     <cbp-flex
-      ${orientation =='vertical' ? "direction='row'": "direction='column'"}
+      direction='row'
       gap="1rem"
     >
       <cbp-flex-item
         flex-basis='auto'
       >
+        ` : ``}
         <cbp-tabs
           ${orientation ? `orientation="${orientation}"` : ''}
           ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
@@ -78,14 +106,18 @@ const Template = ({ tabs, orientation, accessibilityText, withIcon, onlyIcon, wi
         >
           ${createTabs(tabs, withIcon, onlyIcon, withBadge, orientation)}
         </cbp-tabs>
+
+        ${orientation =='vertical' ? `
+ 
       </cbp-flex-item>
       
       <cbp-flex-item
         flex-grow='1'
-      >
+      >` : ``}
         ${createTabPanels(tabs)}
-      </cbp-flex-item>
-    </cbp-flex>
+      ${orientation =='vertical' ? `
+        </cbp-flex-item>
+    </cbp-flex>` : ``}
  `;
 };
 
@@ -116,7 +148,7 @@ Tabs.args = {
     {
       name: 'tab3',
       label: 'Tab 3 is longer',
-      icon: 'arrow-right',
+      icon: 'headset',
       accessibilityText: '',
       color: 'default',
       panelContent: 'Tab panel 3 content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -125,7 +157,7 @@ Tabs.args = {
     {
       name: 'tab4',
       label: 'Tab 4',
-      icon: 'arrow-right-from-bracket',
+      icon: 'landmark',
       accessibilityText: '',
       color: 'default',
       panelContent: 'Tab panel 4 content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
