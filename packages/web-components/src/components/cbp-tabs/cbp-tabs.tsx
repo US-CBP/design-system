@@ -1,5 +1,5 @@
 import { Component, Element, Prop, Host, h } from '@stencil/core';
-import { setCSSProps } from '../../utils/utils';
+import { setCSSProps, doKeyboardNav, } from '../../utils/utils';
 
 /**
  * Tabs are a common UI pattern of progressive disclosure mimicking the real world paradigm of tabbed 
@@ -27,6 +27,9 @@ export class CbpTabs {
   private responsive: boolean = false;
   
   @Element() private host: HTMLElement;
+
+  /** Determines the ortientation that the tabs are displayed*/
+  @Prop({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal'
 
   /** The accessible label of the tablist. Required unless `aria-labelledby` is specified on the host tag directly. */
   @Prop() accessibilityText: string;
@@ -74,23 +77,50 @@ export class CbpTabs {
     });
   }
 
+  setResizeObserver() {
+    // Set up a resize observer to compare the host (cbp-tabs) to its child wrapper (div.cbp-tabs-wrapper), looking for overflow.
+    this.observer = new ResizeObserver(([{ contentRect: { width } }]) => {
+      // When using browser zoom, the numbers reported back are sometimes sub-pixel and trigger a flickering 
+      // of the controls; adding +1 fixes this.
+      if (width+1 > this.wrapper.scrollWidth) {
+        this.responsive=false;
+        this.previousControl.setAttribute('hidden','');
+        this.nextControl.setAttribute('hidden','');
+      }
+      // Show buttons when the container is too small to hold all the tabs
+      else {
+        this.responsive=true;
+        this.previousControl.removeAttribute('hidden');
+        this.nextControl.removeAttribute('hidden');
+      }
+    });
+    this.observedEl = this.host;
+    this.observer.observe(this.observedEl);
+  }
+
   keyboardNav(key) {
-    const l = this.tabs.length - 1;
-    const n = {
-      Home: 0,
-      ArrowLeft: -1 < this.focusIndex + -1 ? this.focusIndex + -1 : l,
-      ArrowRight: l + 1 > this.focusIndex + 1 ? this.focusIndex + 1 : 0,
-      End: l,
-      Tab: this.focusIndex=this.selectedIndex, // reset the focusIndex when tabbing out of the tablist
-    }[key];
-    const d = (key == 'ArrowLeft') ?  'end' : 'start';
-    if (n !== undefined && key !== 'Tab') {
-      this.tabs[n].scrollIntoView({ behavior: "instant", block: "nearest", inline: d });
-      setTimeout(() => {
-        this.tabs[n].querySelector('button')?.focus();
-      }, 20);
-      this.focusIndex = n;
+    let navKey;
+    if(this.orientation == 'vertical'){
+      navKey = ['ArrowDown',  'ArrowUp', 'Enter', 'Home', 'End'];
+    }else{
+      navKey = ['ArrowRight','ArrowLeft', 'Enter', 'Home', 'End'];
     }
+
+    if (navKey.includes(key)) {
+      this.focusIndex = doKeyboardNav(this.tabs, key, this.focusIndex);
+      this.tabs[this.focusIndex].focus();
+    }else if(key == 'Tab'){
+      this.focusIndex = this.selectedIndex;
+    }
+
+    const d = (key == 'ArrowLeft') ?  'end' : 'start';
+    if (this.focusIndex !== undefined && key !== 'Tab') {
+      this.tabs[this.focusIndex].scrollIntoView({ behavior: "instant", block: "nearest", inline: d });
+      setTimeout(() => {
+        this.tabs[this.focusIndex].querySelector('button')?.focus();
+      }, 20);
+    }
+
   }
 
   responsiveNav(direction) {
@@ -131,24 +161,9 @@ export class CbpTabs {
   componentDidLoad() {
     this.initTabset();
 
-    // Set up a resize observer to compare the host (cbp-tabs) to its child wrapper (div.cbp-tabs-wrapper), looking for overflow.
-    this.observer = new ResizeObserver(([{ contentRect: { width } }]) => {
-      // When using browser zoom, the numbers reported back are sometimes sub-pixel and trigger a flickering 
-      // of the controls; adding +1 fixes this.
-      if (width+1 > this.wrapper.scrollWidth) {
-        this.responsive=false;
-        this.previousControl.setAttribute('hidden','');
-        this.nextControl.setAttribute('hidden','');
-      }
-      // Show buttons when the container is too small to hold all the tabs
-      else {
-        this.responsive=true;
-        this.previousControl.removeAttribute('hidden');
-        this.nextControl.removeAttribute('hidden');
-      }
-    });
-    this.observedEl = this.host;
-    this.observer.observe(this.observedEl);
+    if(this.orientation === 'horizontal'){
+      this.setResizeObserver()
+    }
   }
 
   disconnectedCallback() {
@@ -167,6 +182,8 @@ export class CbpTabs {
           this.keyboardNav(key);
         }}
       >
+
+      {this.orientation === 'horizontal'  &&
         <cbp-button
           color="secondary"
           fill="outline"
@@ -183,10 +200,10 @@ export class CbpTabs {
             aria-label="Previous Tab"
             slot="cbp-button-custom"
           >
-            <cbp-icon name="chevron-right" size="var(--cbp-space-5x)" rotate={180}></cbp-icon>
+            <cbp-icon name="chevron-right" size="var(--cbp-space-6x)" rotate={180}></cbp-icon>
           </button>
         </cbp-button>
-
+      }
         <div
           class="cbp-tabs-wrapper"
           ref={el => (this.wrapper = el)}
@@ -194,6 +211,7 @@ export class CbpTabs {
           <slot />
         </div>
 
+      {this.orientation === 'horizontal' &&
         <cbp-button
           color="secondary"
           fill="outline"
@@ -210,9 +228,10 @@ export class CbpTabs {
             aria-label="Next Tab"
             slot="cbp-button-custom"
           >
-            <cbp-icon name="chevron-right" size="var(--cbp-space-5x)"></cbp-icon>
+            <cbp-icon name="chevron-right" size="var(--cbp-space-6x)"></cbp-icon>
           </button>
         </cbp-button>
+      }
       </Host>
     );
   }
