@@ -77,6 +77,27 @@ export class CbpTabs {
     });
   }
 
+  setResizeObserver() {
+    // Set up a resize observer to compare the host (cbp-tabs) to its child wrapper (div.cbp-tabs-wrapper), looking for overflow.
+    this.observer = new ResizeObserver(([{ contentRect: { width } }]) => {
+      // When using browser zoom, the numbers reported back are sometimes sub-pixel and trigger a flickering 
+      // of the controls; adding +1 fixes this.
+      if (width+1 > this.wrapper.scrollWidth) {
+        this.responsive=false;
+        this.previousControl.setAttribute('hidden','');
+        this.nextControl.setAttribute('hidden','');
+      }
+      // Show buttons when the container is too small to hold all the tabs
+      else {
+        this.responsive=true;
+        this.previousControl.removeAttribute('hidden');
+        this.nextControl.removeAttribute('hidden');
+      }
+    });
+    this.observedEl = this.host;
+    this.observer.observe(this.observedEl);
+  }
+
   keyboardNav(key) {
     let navKey;
     if(this.orientation == 'vertical'){
@@ -141,30 +162,8 @@ export class CbpTabs {
     this.initTabset();
 
     if(this.orientation === 'horizontal'){
-      this.resizeObserver()
+      this.setResizeObserver()
     }
-  }
-
-  resizeObserver() {
-    // Set up a resize observer to compare the host (cbp-tabs) to its child wrapper (div.cbp-tabs-wrapper), looking for overflow.
-    this.observer = new ResizeObserver(([{ contentRect: { width } }]) => {
-      // When using browser zoom, the numbers reported back are sometimes sub-pixel and trigger a flickering 
-      // of the controls; adding +1 fixes this.
-      if (width+1 > this.wrapper.scrollWidth) {
-        this.responsive=false;
-        this.previousControl.setAttribute('hidden','');
-        this.nextControl.setAttribute('hidden','');
-      }
-      // Show buttons when the container is too small to hold all the tabs
-      else {
-        this.responsive=true;
-        this.previousControl.removeAttribute('hidden');
-        this.nextControl.removeAttribute('hidden');
-      }
-    });
-    this.observedEl = this.host;
-    this.observer.observe(this.observedEl);
-  
   }
 
   disconnectedCallback() {
@@ -183,6 +182,8 @@ export class CbpTabs {
           this.keyboardNav(key);
         }}
       >
+
+      {this.orientation !== 'vertical' ?
         <cbp-button
           color="secondary"
           fill="outline"
@@ -202,7 +203,7 @@ export class CbpTabs {
             <cbp-icon name="chevron-right" size="var(--cbp-space-6x)" rotate={180}></cbp-icon>
           </button>
         </cbp-button>
-
+      : ``}
         <div
           class="cbp-tabs-wrapper"
           ref={el => (this.wrapper = el)}
@@ -210,6 +211,7 @@ export class CbpTabs {
           <slot />
         </div>
 
+      {this.orientation !== 'vertical' ?
         <cbp-button
           color="secondary"
           fill="outline"
@@ -229,6 +231,7 @@ export class CbpTabs {
             <cbp-icon name="chevron-right" size="var(--cbp-space-6x)"></cbp-icon>
           </button>
         </cbp-button>
+      : ``}
       </Host>
     );
   }

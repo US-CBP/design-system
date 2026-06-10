@@ -11,7 +11,7 @@ export default {
       control: 'select',
       options: ['horizontal', 'vertical']
     },
-    gridTemplateColumn:{
+    gridTemplateColumns:{
       description: 'Sets the grid-template-column of the tab container',
       control: 'text',
       if: {arg: "orientation", eq: "vertical"}
@@ -66,12 +66,12 @@ function createTabPanels(tabs) {
   return html.join('');
 }
 
-const Template = ({ tabs, orientation, gridTemplateColumn, accessibilityText, withIcon, onlyIcon, withBadge,context, sx }) => {
+const Template = ({ tabs, orientation, gridTemplateColumns, accessibilityText, withIcon, onlyIcon, withBadge,context, sx }) => {
  
   if(orientation == 'vertical'){
   return `
     <cbp-grid 
-      grid-template-columns="${gridTemplateColumn}" 
+      grid-template-columns="${gridTemplateColumns}" 
       gap="1rem"
     >
 
@@ -174,5 +174,5 @@ Tabs.args = {
     },
   ],
   accessibilityText: 'Tabs Example',
-  gridTemplateColumn: 'auto 1fr'
+  gridTemplateColumns: 'auto 1fr'
 };
