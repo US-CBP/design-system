@@ -183,7 +183,7 @@ export class CbpTabs {
         }}
       >
 
-      {this.orientation !== 'vertical' ?
+      {this.orientation !== 'vertical'  &&
         <cbp-button
           color="secondary"
           fill="outline"
@@ -203,7 +203,7 @@ export class CbpTabs {
             <cbp-icon name="chevron-right" size="var(--cbp-space-6x)" rotate={180}></cbp-icon>
           </button>
         </cbp-button>
-      : ``}
+      }
         <div
           class="cbp-tabs-wrapper"
           ref={el => (this.wrapper = el)}
@@ -211,7 +211,7 @@ export class CbpTabs {
           <slot />
         </div>
 
-      {this.orientation !== 'vertical' ?
+      {this.orientation !== 'vertical' &&
         <cbp-button
           color="secondary"
           fill="outline"
@@ -231,7 +231,7 @@ export class CbpTabs {
             <cbp-icon name="chevron-right" size="var(--cbp-space-6x)"></cbp-icon>
           </button>
         </cbp-button>
-      : ``}
+      }
       </Host>
     );
   }

@@ -48,7 +48,7 @@ function createTabs(tabs, withIcon, onlyIcon, withBadge, orientation) {
         ${accessibilityText ? `accessibility-text="${accessibilityText}}"` : ''}
         ${selected == true ? 'selected' : ''}
       >
-        ${withIcon || onlyIcon ? `<cbp-icon ${onlyIcon ? `size="var(--cbp-space-6x)"` : ``} name="${icon}"></cbp-icon>` : ''} ${label && !onlyIcon ? label : ''} ${withBadge && !onlyIcon ? `<cbp-badge ${orientation=="vertical" ? `sx='{"margin-left": "auto"}'`: ``}>22</cbp-badge>` : ''}
+        ${withIcon || onlyIcon ? `<cbp-icon ${onlyIcon ? `size="var(--cbp-space-6x)" accessibility-text="${label}"` : ``} name="${icon}"></cbp-icon>` : ''} ${label && !onlyIcon ? label : ''} ${withBadge && !onlyIcon ? `<cbp-badge ${orientation=="vertical" ? `sx='{"margin-left": "auto", "flex-shrink": "1"}'`: ``}>22</cbp-badge>` : ''}
       </cbp-tab>
     `;
   });

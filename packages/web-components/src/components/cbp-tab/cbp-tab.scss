@@ -84,6 +84,7 @@ cbp-tab {
 
     cbp-tabs[orientation=vertical] &{
       width: 100%;
+      text-wrap: wrap;
     }
   }
 
