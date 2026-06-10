@@ -140,6 +140,12 @@ export class CbpTabs {
   componentDidLoad() {
     this.initTabset();
 
+    if(this.orientation === 'horizontal'){
+      this.resizeObserver()
+    }
+  }
+
+  resizeObserver() {
     // Set up a resize observer to compare the host (cbp-tabs) to its child wrapper (div.cbp-tabs-wrapper), looking for overflow.
     this.observer = new ResizeObserver(([{ contentRect: { width } }]) => {
       // When using browser zoom, the numbers reported back are sometimes sub-pixel and trigger a flickering 
@@ -158,6 +164,7 @@ export class CbpTabs {
     });
     this.observedEl = this.host;
     this.observer.observe(this.observedEl);
+  
   }
 
   disconnectedCallback() {

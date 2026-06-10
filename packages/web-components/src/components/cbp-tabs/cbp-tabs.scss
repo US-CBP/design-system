@@ -12,7 +12,7 @@
  * @prop --cbp-tab-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
  * @prop --cbp-tab-color-bg-focus: var(--cbp-color-interactive-focus-dark);
  * @prop --cbp-tab-color-bg-active: var(--cbp-color-interactive-active-dark);
- * @prop --cbp-tab-color-bg-selected: transparent;
+ * @prop --cbp-tab-color-bg-selected: var(--cbp-color-interactive-active-light);
 
  * @prop --cbp-tab-color-border: transparent;
  * @prop --cbp-tab-color-border-hover: var(--cbp-color-interactive-secondary-lighter);
@@ -30,7 +30,7 @@
  * @prop --cbp-tab-color-bg-hover-dark: var(--cbp-color-interactive-secondary-darker);
  * @prop --cbp-tab-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
  * @prop --cbp-tab-color-bg-active-dark: var(--cbp-color-interactive-active-light);
- * @prop --cbp-tab-color-bg-selected-dark: transparent;
+ * @prop --cbp-tab-color-bg-selected-dark: var(--cbp-color-interactive-active-dark);
 
  * @prop --cbp-tab-color-border-dark: transparent;
  * @prop --cbp-tab-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
@@ -50,14 +50,14 @@
   --cbp-tab-color: var(--cbp-color-interactive-secondary-darker);
   --cbp-tab-color-hover: var(--cbp-color-interactive-secondary-darker);
   --cbp-tab-color-focus: var(--cbp-color-text-lightest);
-  --cbp-tab-color-active: var(--cbp-color-interactive-active-dark);
+  --cbp-tab-color-active: var(--cbp-color-text-lightest);
   --cbp-tab-color-selected: var(--cbp-color-interactive-active-dark);
 
   --cbp-tab-color-bg: var(--cbp-color-white);
   --cbp-tab-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
   --cbp-tab-color-bg-focus: var(--cbp-color-interactive-focus-dark);
   --cbp-tab-color-bg-active: var(--cbp-color-interactive-active-light);
-  --cbp-tab-color-bg-selected: var(--cbp-color-white);;
+  --cbp-tab-color-bg-selected: var(--cbp-color-interactive-active-light);
 
   --cbp-tab-color-border: transparent;
   --cbp-tab-color-border-hover: var(--cbp-color-interactive-secondary-darker);
@@ -68,14 +68,14 @@
   --cbp-tab-color-dark: var(--cbp-color-interactive-secondary-lighter);
   --cbp-tab-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
   --cbp-tab-color-focus-dark: var(--cbp-color-text-darkest);
-  --cbp-tab-color-active-dark: var(--cbp-color-interactive-active-light);
+  --cbp-tab-color-active-dark: var(--cbp-color-text-darkest);
   --cbp-tab-color-selected-dark: var(--cbp-color-interactive-active-light);
   
   --cbp-tab-color-bg-dark: var(--cbp-color-gray-cool-90);
   --cbp-tab-color-bg-hover-dark: var(--cbp-color-interactive-secondary-darker);
   --cbp-tab-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
   --cbp-tab-color-bg-active-dark: var(--cbp-color-interactive-active-dark);
---cbp-tab-color-bg-selected-dark: var(--cbp-color-gray-cool-90);
+  --cbp-tab-color-bg-selected-dark: var(--cbp-color-interactive-active-dark);
 
   --cbp-tab-color-border-dark: transparent;
   --cbp-tab-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
@@ -107,6 +107,12 @@ cbp-tabs {
     display: flex;
   }
 
+  &[orientation=vertical]{
+  
+    cbp-button{
+      display: none;
+    }
+  }
   // overrides for responsive controls
   cbp-button[fill][color] {
     align-self: flex-start;

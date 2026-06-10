@@ -46,11 +46,11 @@ cbp-tab {
     outline-offset: calc(-1 * var(--cbp-space-1x));
     
     cbp-tabs[orientation=horizontal] &{
-      border-bottom: var(--cbp-border-size-xl) solid var(--cbp-tab-color-border); 
+      border-block-end: var(--cbp-border-size-xl) solid var(--cbp-tab-color-border); 
     }
 
     cbp-tabs[orientation=vertical] &{
-    border-right: var(--cbp-border-size-xl) solid var(--cbp-tab-color-border);
+      border-inline-end: var(--cbp-border-size-xl) solid var(--cbp-tab-color-border);
     }
 
     // The selected tab should appear non-interactive on the surface because selecting it again won't do anything

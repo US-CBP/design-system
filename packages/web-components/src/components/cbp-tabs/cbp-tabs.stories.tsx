@@ -41,7 +41,6 @@ export default {
 
 function createTabs(tabs, withIcon, onlyIcon, withBadge, orientation) {
   const html = tabs.map(({ name, label, icon, color, accessibilityText,  selected }) => {
-    console.log('logic check: ', withIcon, onlyIcon, label);
     return `
       <cbp-tab 
         name="${name}"
@@ -49,7 +48,7 @@ function createTabs(tabs, withIcon, onlyIcon, withBadge, orientation) {
         ${accessibilityText ? `accessibility-text="${accessibilityText}}"` : ''}
         ${selected == true ? 'selected' : ''}
       >
-        ${withIcon || onlyIcon ? `<cbp-icon ${onlyIcon ? `size=var(--cbp-space-6x)` : ``} name="${icon}"></cbp-icon>` : ''} ${label && !onlyIcon ? label : ''} ${withBadge && !onlyIcon ? `<cbp-badge ${orientation=="vertical" ? `sx='{"margin-left": "auto"}'`: ``}>22</cbp-badge>` : ''}
+        ${withIcon || onlyIcon ? `<cbp-icon ${onlyIcon ? `size="var(--cbp-space-6x)"` : ``} name="${icon}"></cbp-icon>` : ''} ${label && !onlyIcon ? label : ''} ${withBadge && !onlyIcon ? `<cbp-badge ${orientation=="vertical" ? `sx='{"margin-left": "auto"}'`: ``}>22</cbp-badge>` : ''}
       </cbp-tab>
     `;
   });
@@ -175,5 +174,5 @@ Tabs.args = {
     },
   ],
   accessibilityText: 'Tabs Example',
-  gridTemplateColumn: 'auto auto'
+  gridTemplateColumn: 'auto 1fr'
 };
