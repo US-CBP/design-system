@@ -183,7 +183,7 @@ export class CbpTabs {
         }}
       >
 
-      {this.orientation !== 'vertical'  &&
+      {this.orientation === 'horizontal'  &&
         <cbp-button
           color="secondary"
           fill="outline"
@@ -211,7 +211,7 @@ export class CbpTabs {
           <slot />
         </div>
 
-      {this.orientation !== 'vertical' &&
+      {this.orientation === 'horizontal' &&
         <cbp-button
           color="secondary"
           fill="outline"
