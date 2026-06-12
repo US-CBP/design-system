@@ -3,8 +3,21 @@
   --cbp-container-color-background: transparent;
   --cbp-container-color-inner-background: var(--cbp-container-color-background);
 
+  --cbp-container-color-text-dark: inherit;
+  --cbp-container-color-background-dark: transparent;
+
   --cbp-container-content-padding: 0;
   --cbp-container-inner-width: auto;
+}
+
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-container[context*=dark],
+[data-cbp-theme=dark] cbp-container:not([context=dark-inverts]):not([context=light-always]) {
+
+  --cbp-container-color-text: var(--cbp-container-color-text-dark) !important;
+  --cbp-container-color-background: var(--cbp-container-color-background-dark) !important;
+
 }
 
 cbp-container {
