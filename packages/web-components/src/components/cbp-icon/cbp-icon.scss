@@ -1,10 +1,14 @@
 /**
  * @prop --cbp-icon-color: currentColor;
  * @prop --cbp-icon-size: 1rem;
+ * @prop --cbp-icon-width: var(--cbp-icon-size);
+ * @prop --cbp-icon-height: var(--cbp-icon-size);
  */
 :root {
   --cbp-icon-color: currentColor;
   --cbp-icon-size: 1rem;
+  --cbp-icon-width: var(--cbp-icon-size);
+  --cbp-icon-height: var(--cbp-icon-size);
 }
 
 cbp-icon {
@@ -17,10 +21,9 @@ cbp-icon {
   // support as a wrapper for icons pulled in via external components (in the DOM or not) with greater specificity
   &:not([name]) > *,
   &:not([name]) svg {
-    width: var(--cbp-icon-size);
-    height: var(--cbp-icon-size);
+    width: var(--cbp-icon-width);
+    height: var(--cbp-icon-height);
     fill: var(--cbp-icon-color);
     vertical-align: top;
   }
-
 }
