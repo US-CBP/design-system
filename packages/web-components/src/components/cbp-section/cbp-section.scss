@@ -3,6 +3,11 @@
  * @prop --cbp-section-color-border-dark: transparent;
  * @prop --cbp-section-border-width: 0;
  * @prop --cbp-section-border-style: solid;
+ * @prop --cbp-section-color: inherit;
+ * @prop --cbp-section-color-bg: transparent;
+ * @prop --cbp-section-color-dark: inherit;
+ * @prop --cbp-section-color-bg-dark: transparent;
+
  */
 :root {
   --cbp-section-color-border: transparent;
@@ -10,10 +15,10 @@
   --cbp-section-border-width: 0;
   --cbp-section-border-style: solid;
 
-  --cbp-section-color: var(--cbp-color-body-text);
+  --cbp-section-color: inherit;
   --cbp-section-color-bg: transparent;
 
-  --cbp-section-color-dark: var(--cbp-color-body-text);
+  --cbp-section-color-dark: inherit;
   --cbp-section-color-bg-dark: transparent;
 }
 
