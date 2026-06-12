@@ -12,6 +12,8 @@
 }
 
 cbp-icon {
+  --cbp-icon-width: var(--cbp-icon-size);
+  --cbp-icon-height: var(--cbp-icon-size);
   display: inline-flex;
   align-items: center;
   justify-content: center;
