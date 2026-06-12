@@ -13,10 +13,14 @@ cbp-icon {
   justify-content: center;
   vertical-align: text-top;
 
-  svg {
+  svg,
+  // support as a wrapper for icons pulled in via external components (in the DOM or not) with greater specificity
+  &:not([name]) > *,
+  &:not([name]) svg {
     width: var(--cbp-icon-size);
     height: var(--cbp-icon-size);
     fill: var(--cbp-icon-color);
     vertical-align: top;
   }
+
 }
