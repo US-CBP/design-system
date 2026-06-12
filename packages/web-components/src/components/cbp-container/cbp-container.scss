@@ -1,7 +1,7 @@
 /**
  * @prop --cbp-container-color: inherit;
  * @prop --cbp-container-color-bg: transparent;
- * @prop --cbp-container-color-inner-background: var(--cbp-container-color-background);
+ * @prop --cbp-container-inner-color-bg: var(--cbp-container-color-background);
  * @prop --cbp-container-color-dark: inherit;
  * @prop --cbp-container-color-bg-dark: transparent;
  * @prop --cbp-container-color-border: transparent;
@@ -15,7 +15,8 @@
 :root {
   --cbp-container-color: inherit;
   --cbp-container-color-bg: transparent;
-  --cbp-container-color-inner-background: var(--cbp-container-color-background);
+  --cbp-container-inner-color-bg: var(--cbp-container-color-background);
+  --cbp-container-inner-color-bg-dark: var(--cbp-container-color-background);
 
   --cbp-container-color-dark: inherit;
   --cbp-container-color-bg-dark: transparent;
@@ -37,6 +38,7 @@
 
   --cbp-container-color: var(--cbp-container-color-dark) !important;
   --cbp-container-color-bg: var(--cbp-container-color-bg-dark) !important;
+  --cbp-container-inner-color-bg: var(--cbp-container-inner-color-bg-dark) !important;
   --cbp-container-color-border: var(--cbp-container-color-border-dark) !important;
 
 }
@@ -53,7 +55,7 @@ cbp-container {
 
   .cbp-container--inner {
     display: block;
-    background: var(--cbp-container-color-inner-background);
+    background: var(--cbp-container-inner-color-bg);
     margin: auto;
     width: var(--cbp-container-inner-width);
   }
