@@ -3,12 +3,23 @@
  * @prop --cbp-section-color-border-dark: transparent;
  * @prop --cbp-section-border-width: 0;
  * @prop --cbp-section-border-style: solid;
+ * @prop --cbp-section-color: inherit;
+ * @prop --cbp-section-color-bg: transparent;
+ * @prop --cbp-section-color-dark: inherit;
+ * @prop --cbp-section-color-bg-dark: transparent;
+
  */
 :root {
   --cbp-section-color-border: transparent;
   --cbp-section-color-border-dark: transparent;
   --cbp-section-border-width: 0;
   --cbp-section-border-style: solid;
+
+  --cbp-section-color: inherit;
+  --cbp-section-color-bg: transparent;
+
+  --cbp-section-color-dark: inherit;
+  --cbp-section-color-bg-dark: transparent;
 }
 
 /* 
@@ -17,10 +28,14 @@
 [data-cbp-theme=light] cbp-section[context*=dark],
 [data-cbp-theme=dark] cbp-section:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-section-color-border: var(--cbp-section-color-border-dark) !important;
+  --cbp-section-color: var(--cbp-section-color-dark) !important;
+  --cbp-section-color-bg: var(--cbp-section-color-bg-dark) !important;
 }
 
 cbp-section:not([hidden]) {
   display: block;
+  color: var(--cbp-section-color);
+  background-color: var(--cbp-section-color-bg);
   border-width: var(--cbp-section-border-width);
   border-style: var(--cbp-section-border-style);
   border-color: var(--cbp-section-color-border);

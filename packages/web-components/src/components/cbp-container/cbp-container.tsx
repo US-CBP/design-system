@@ -32,8 +32,10 @@ export class CbpContainer {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.host, {
-      "--cbp-container-color-text": this.textColor,
-      "--cbp-container-color-background": this.background,
+      "--cbp-container-color": this.textColor,
+      "--cbp-container-color-dark": this.textColor,
+      "--cbp-container-color-bg": this.background,
+      "--cbp-container-color-bg-dark": this.background,
       "--cbp-container-inner-width": this.width,
       ...this.sx,
     });
