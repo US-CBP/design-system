@@ -73,7 +73,6 @@ const Template = ({ tabs, orientation, gridTemplateColumns, accessibilityText, w
     <cbp-grid 
       grid-template-columns="${gridTemplateColumns}" 
       gap="1rem"
-      sx ='{"height": "30rem"}'
     >
 
         <cbp-tabs
