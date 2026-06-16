@@ -53,7 +53,8 @@
   --cbp-tab-color-active: var(--cbp-color-text-lightest);
   --cbp-tab-color-selected: var(--cbp-color-interactive-active-dark);
 
-  --cbp-tab-color-bg: var(--cbp-color-white);
+  --cbp-tabs-color-bg: var(--cbp-color-white);
+  --cbp-tab-color-bg: transparent;
   --cbp-tab-color-bg-hover: var(--cbp-color-interactive-secondary-lighter);
   --cbp-tab-color-bg-focus: var(--cbp-color-interactive-focus-dark);
   --cbp-tab-color-bg-active: var(--cbp-color-interactive-active-dark);
@@ -71,7 +72,8 @@
   --cbp-tab-color-active-dark: var(--cbp-color-text-darkest);
   --cbp-tab-color-selected-dark: var(--cbp-color-interactive-active-light);
   
-  --cbp-tab-color-bg-dark: var(--cbp-color-gray-cool-90);
+  --cbp-tabs-color-bg-dark: var(--cbp-color-gray-cool-90);
+  --cbp-tab-color-bg-dark: transparent;
   --cbp-tab-color-bg-hover-dark: var(--cbp-color-interactive-secondary-darker);
   --cbp-tab-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
   --cbp-tab-color-bg-active-dark: var(--cbp-color-interactive-active-light);
@@ -95,17 +97,23 @@
 [data-cbp-theme=light] cbp-tabs[context*=dark],
 [data-cbp-theme=dark] cbp-tabs:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-tabs-color-border: var(--cbp-tabs-color-border-dark) !important;
-  --cbp-tab-color-bg: var(--cbp-tab-color-bg-dark);
+  --cbp-tabs-color-bg: var(--cbp-tabs-color-bg-dark) !important;
 }
 
 cbp-tabs {
   overflow: hidden;
   margin-bottom: var(--cbp-space-4x);
+  
 
   &[orientation=horizontal]{
     max-width: 100%;
     display: flex;
-  }
+    background: linear-gradient(to top, var(--cbp-tabs-color-border) var(--cbp-border-size-md), var(--cbp-tabs-color-bg) var(--cbp-border-size-md)); 
+    }
+
+  &[orientation=vertical]{
+    background: linear-gradient(to left, var(--cbp-tabs-color-border) var(--cbp-border-size-md), var(--cbp-tabs-color-bg) var(--cbp-border-size-md));
+    }
 
   // overrides for responsive controls
   cbp-button[fill][color] {

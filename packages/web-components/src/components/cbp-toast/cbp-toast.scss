@@ -34,7 +34,7 @@
 
 cbp-toast {
   display: none;
-  width: min(100%, 30rem);
+  width: min(100%, 20rem);
   background-color: var(--cbp-toast-color-bg);
   color: var(--cbp-toast-color);
   box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.3);
@@ -138,19 +138,8 @@ cbp-toast {
     }
 
     cbp-button[fill='ghost'][color='secondary'] {
-      //match button color to text color for toast
-      --cbp-button-color: var(--cbp-toast-color);
-      --cbp-button-color-dark: var(--cbp-toast-color-dark);
-
       --cbp-button-width: 100%;
       --cbp-button-border-radius: var(--cbp-border-radius-sharp);
-
-      --cbp-button-color-hover: var(--cbp-color-text-lightest);
-      --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
-      --cbp-button-color-border-hover: var(--cbp-color-interactive-secondary-darker);
-      --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
-      --cbp-button-color-bg-hover-dark: var(--cbp-color-interactive-secondary-lighter);
-      --cbp-button-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
 
       &:last-child {
         --cbp-button-border-radius: 0 0 var(--cbp-border-radius-softer) 0;
@@ -181,7 +170,8 @@ cbp-toast {
     --cbp-toast-color-dark: var(--cbp-color-text-darkest);
     --cbp-toast-color-content: var(--cbp-color-text-darker);
     --cbp-toast-color-content-dark: var(--cbp-color-text-darker);
-    --cbp-toast-color-icon-sidebar-dark: var(--cbp-color-text-darker);
+    // --cbp-toast-color-icon-sidebar-dark: var(--cbp-color-text-darker);  
+    --cbp-toast-color-icon-sidebar-dark: var(--cbp-color-text-darkest);
   }
 
   &[color='danger'] {

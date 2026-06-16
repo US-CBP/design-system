@@ -24,7 +24,7 @@ export class CbpToast {
   @Prop({ reflect: true }) color: 'info' | 'danger' | 'success' | 'warning' = 'info';
 
   /** Specifies time in seconds for the toast to be displayed. Defaults to persistent until dismissed. */
-  @Prop() duration: 3 | 5 | 10;
+  @Prop() duration: number;
 
   /**
    * When set, specifies that the toast is visible. To show and dismiss a toast programmatically after a page has loaded, 
