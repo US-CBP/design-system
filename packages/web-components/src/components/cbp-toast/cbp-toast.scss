@@ -170,7 +170,8 @@ cbp-toast {
     --cbp-toast-color-dark: var(--cbp-color-text-darkest);
     --cbp-toast-color-content: var(--cbp-color-text-darker);
     --cbp-toast-color-content-dark: var(--cbp-color-text-darker);
-    --cbp-toast-color-icon-sidebar-dark: var(--cbp-color-text-darker);
+    // --cbp-toast-color-icon-sidebar-dark: var(--cbp-color-text-darker);  
+    --cbp-toast-color-icon-sidebar-dark: var(--cbp-color-text-darkest);
   }
 
   &[color='danger'] {

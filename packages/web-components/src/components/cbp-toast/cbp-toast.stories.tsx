@@ -55,7 +55,7 @@ return `
     fill="ghost" 
     color="secondary" 
     name=${text}
-    ${color != 'warning' ? `context=${getInvertedContext(context)}` : `context=${context}`}
+    ${color != 'warning' ? `context=${getInvertedContext(context)}` : `context='light-always'`}
   >
     ${text}
   </cbp-button>
