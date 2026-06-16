@@ -130,7 +130,7 @@ setTimeout(() => {
       <cbp-toast
         ${open ? 'open' : ''}
         ${color ? `color=${color}` : ``}
-        ${duration ? duration=`${duration}` : ``}
+        ${duration ? `duration="${duration}"` : ``}
         icon="${generateIcon(color)}"
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
