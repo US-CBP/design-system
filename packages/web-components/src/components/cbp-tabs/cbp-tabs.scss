@@ -101,11 +101,17 @@
 cbp-tabs {
   overflow: hidden;
   margin-bottom: var(--cbp-space-4x);
+  
 
   &[orientation=horizontal]{
     max-width: 100%;
     display: flex;
-  }
+    background: linear-gradient(to top, var(--cbp-tabs-color-border) var(--cbp-border-size-md), transparent var(--cbp-border-size-md)); 
+    }
+
+  &[orientation=vertical]{
+    background: linear-gradient(to left, var(--cbp-tabs-color-border) var(--cbp-border-size-md), transparent var(--cbp-border-size-md));
+    }
 
   // overrides for responsive controls
   cbp-button[fill][color] {

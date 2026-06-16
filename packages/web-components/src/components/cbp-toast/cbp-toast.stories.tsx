@@ -1,3 +1,4 @@
+import { getInvertedContext } from "../../utils/utils";
 import { CbpToast } from "./cbp-toast";
 
 export default {
@@ -42,16 +43,19 @@ function generateIcon(color) {
       return 'exclamation-circle';
     case "danger":
       return 'triangle-exclamation';
+    default:
+      return 'circle-info'
   }
 }
 
-function generateButton(text, context){
+function generateButton(text, color, context){
+
 return `
   <cbp-button 
     fill="ghost" 
     color="secondary" 
     name=${text}
-    ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+    ${color != 'warning' ? `context=${getInvertedContext(context)}` : `context=${context}`}
   >
     ${text}
   </cbp-button>
@@ -84,8 +88,8 @@ const Template: any = ({ open, title, content, duration, color, context, sx }) =
       <div slot="cbp-toast-title">${title}</div>
       ${content}
       <div slot="cbp-toast-buttons">
-      ${generateButton('dismiss', context)}
-      ${generateButton('default', context)}
+      ${generateButton('dismiss', color, context)}
+      ${generateButton('default', color, context)}
       </div>
     </cbp-toast>
   `;
@@ -139,8 +143,8 @@ setTimeout(() => {
         </div>
           ${content}
         <div slot="cbp-toast-buttons">
-          ${generateButton('dismiss', context)}
-          ${generateButton('default', context)}
+          ${generateButton('dismiss', color,  context)}
+          ${generateButton('default', color, context)}
         </div>
       </cbp-toast>`
   }
@@ -161,4 +165,5 @@ MultipleToast.args = {
   open: true,
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
+
 }
