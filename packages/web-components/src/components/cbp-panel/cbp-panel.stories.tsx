@@ -50,7 +50,6 @@ export default {
 const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabel, showIcon, context, sx }) => {
   return `
     <cbp-panel
-      ${headerId ? `aria-labelledby="${headerId}"` : ''}
       ${role != 'none' ? `role="${role}"` : ''}
       ${ariaLabel ? `aria-label="${ariaLabel}"` : ''}
       ${headerId ? `aria-labelledby="${headerId}"` : ''}
