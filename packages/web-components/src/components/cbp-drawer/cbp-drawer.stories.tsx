@@ -60,14 +60,12 @@ const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText,
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-panel
-        aria-labelledby="panelheader"
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       >
         <cbp-typography
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="panelheader"
         >
           ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}
           Drawer Header
@@ -82,6 +80,7 @@ export const Drawer = Template.bind({});
 Drawer.args = {
   position: 'left',
   uid: 'drawer',
+  accessibilityText: 'Drawer Header'
 };
 
 
@@ -110,7 +109,6 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
       ${uid ? `uid=${uid}` : ''}
     >
       <cbp-panel
-        aria-labelledby="userprefs-panel-header"
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         sx='{
           "--cbp-panel-header-color-dark": "var(--cbp-color-text-lighter)",
@@ -121,7 +119,6 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="userprefs-panel-header"
         >
         
           ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}
@@ -138,4 +135,5 @@ UserPreferences.args = {
   position: 'right',
   uid: 'drawer',
   context: 'dark-always',
+  accessibilityText: 'User Preferences'
 };
