@@ -66,7 +66,6 @@ const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText,
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="panelheader"
         >
           ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}
           Drawer Header
@@ -120,7 +119,6 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="userprefs-panel-header"
         >
         
           ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}
