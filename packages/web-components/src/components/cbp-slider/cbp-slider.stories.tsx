@@ -87,7 +87,7 @@ const SliderTemplate = ({ label, description, fieldId, name, min, max, step, hid
   `;
 };
 
-export const Slider = SliderTemplate.bind({});
+export const Slider: any = SliderTemplate.bind({});
 Slider.args = {
   name: 'range',
 };
@@ -115,7 +115,7 @@ const VolumeSliderTemplate = ({ label, description, fieldId, name, min, max, ste
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
-        <cbp-icon name="volume-down" size="var(--cbp-font-size-subhead)" slot="cpb-slider-before"></cbp-icon>
+        <cbp-icon name="volume-down" size="var(--cbp-font-size-body)" slot="cpb-slider-before"></cbp-icon>
 
         <input 
           type="range" 
@@ -129,7 +129,7 @@ const VolumeSliderTemplate = ({ label, description, fieldId, name, min, max, ste
   `;
 };
 
-export const VolumeSlider = VolumeSliderTemplate.bind({});
+export const VolumeSlider: any = VolumeSliderTemplate.bind({});
 VolumeSlider.args = {
   name: 'range',
   hideMinmax: true,
@@ -173,7 +173,7 @@ const RangeSliderTemplate = ({ label, description, fieldId, name, min, max, step
   `;
 };
 
-export const RangeSlider = RangeSliderTemplate.bind({});
+export const RangeSlider: any = RangeSliderTemplate.bind({});
 RangeSlider.argTypes = {
   max: {
     control: 'number',
