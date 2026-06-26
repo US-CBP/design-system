@@ -1,0 +1,258 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Forms/Overview" />
+
+# Forms and Form Controls
+
+## Patterns vs Components
+
+Most of the design system form controls are patterns made up of multiple components built for composability. This document discusses forms and form controls at a high level. View the API documentation for each individual component mentioned for full details about using and configuring those components.
+
+Rather than recreate native HTML elements as web components, the native HTML tags may be slotted within the `cbp-form-field` web component, giving frameworks direct access to them (as opposed to being rendered behind a web component's own asynchronous lifecycle).
+
+**Caveat**: Before diving into specifics, it should be stated that even though some frameworks handle forms differently, it is advised to follow native standard-based practices, such as:
+
+* Always wrap your form fields in a `form`; Form controls behave differently without a parent `form` tag, and features like autocomplete may not work without it, in addition to affecting accessibility and assistive technologies.
+* Always name individual form controls with the `name` attribute if they are intended to be submitted; in a native form submission, only named elements are included in the roll-up of `formData`, as it is comprised of name-value pairs.
+
+## Form Component (`cbp-form`)
+
+The `cbp-form` component is optional and only needed in specific cases. It does not replace the native `form` tag, but rather wraps it and listens for native form events in order to address integration concerns with some design system web components. You should use the `cbp-form` component when:
+
+* Your form uses `cbp-file-input` with multiple files support.
+  * Native file inputs do not allow manipulation of the file list for removing single files or adding to an existing selection, so this enhanced functionality requires the modified fileList object to be manually appended to the `formData` object.
+  * This is handled automatically by the wrapping `cbp-form` listening for the native submit event.
+* Your form has a reset function and uses custom form control web components, such as `cbp-dropdown`, `cbp-file-input`, `cbp-slider`, or any other patterns where the value is supplied to the web component and passed down to the native/rendered form field.
+  * The `cbp-form` component listens for the native form reset event and runs reset methods on each web component as needed.
+  * You can test this easily enough by attempting to reset your form and seeing which fields do not revert to their original states properly.
+* You can also use `cbp-form` to prevent default submission, but to access the collected (and potentially modified) `formData` object for validation, asynchronous submission, etc.
+
+Even if the above cases are true, you may not need to use the `cbp-form` component if your framework integration makes it unnecessary.
+
+## Form Field Component (`cbp-form-field`)
+
+The `cbp-form-field` component is intended to wrap form fields such as native `input`, `select`, and `textarea`, as well as custom web component form controls. The exceptions are checkboxes (`cbp-checkbox`), radio list items (`cbp-radio`), and toggles (`cbp-toggle`), which have their own components (and accept the native form control as a slotted element). The `cbp-form-field` handles a number of facets of the input patterns, making their implementation standardized and accessible, including:
+
+* Provide and associate the `label` to the form control.
+* Associate optional descriptive text to the form control.
+* Generate unique `id`s for the form control (if none is provided) and different parts of the pattern to facilitate these accessible associations.
+* Provide reactive properties for setting the pattern and interactive controls disabled, readonly, or in an error state.
+* Encapsulates all shared styles for disabled, readonly, error, and interactive states (hover, focus) in light and dark modes/contexts.
+
+In most instances, it's easy enough to specify a label and description as plain text via the corresponding properties. However, in the rare cases that the label or description contains markup, such as an icon, HTML formatting tags, or another component, the property will not work. The `cbp-form-field` contains "optional slots" ("cbp-form-field-label" and "cbp-form-field-description") for this case, which can be used as an alternative means to supply this content.
+
+### Wrapping Native Form Controls
+
+As mentioned, you can wrap (or slot) native `input`, `select`, and `textarea` tags within the `cbp-form-field` web component to create a simple input pattern. Everything 
+
+A simple example of a text `input` is as follows:
+
+```HTML
+<cbp-form-field label="Field Label" description="Field description.">
+  <input type="text" name="textinput">
+</cbp-form-field>
+```
+
+A `textarea` is virtually identical:
+
+```HTML
+<cbp-form-field label="Field Label" description="Field description.">
+  <textarea name="textarea"></textarea>
+</cbp-form-field>
+```
+
+In both of the above cases, the developer is free to supply any other valid attributes on the slotted `input` or `textarea`, such as `maxlength`, `inputmode`, etc.
+
+The `cbp-form-field` component may manage the form field (and associated buttons) disabled/readonly/error states, but does its best to get out of the way if the application wants to manage those states directly on the slotted elements.
+
+### Wrapping Custom Form Controls
+
+The design system does offer some custom form controls that provide enhanced functionality not offered by native HTML tags. `cbp-dropdown` (which handles single select, multi-select, and combobox functionality), `cbp-file-input`, and `cbp-slider` all behave as custom form controls, which are slotted within the `cbp-form-field` to create a standardized and accessible pattern.
+
+For example, a custom dropdown looks very similar to a native `select` in composition and implementation:
+
+```HTML
+<cbp-form-field label="Field Label" description="Field description." field-id="dropdown-id">
+  <cbp-dropdown name="dropdown" field-id="dropdown-id">
+    <cbp-dropdown-item value="1">Option 1</cbp-dropdown-item>
+    <cbp-dropdown-item value="2">Option 2</cbp-dropdown-item>
+    <cbp-dropdown-item value="3">Option 3</cbp-dropdown-item>
+    <cbp-dropdown-item value="4">Option 4</cbp-dropdown-item>
+    <cbp-dropdown-item value="5">Option 5</cbp-dropdown-item>
+  </cbp-dropdown>
+</cbp-form-field>
+```
+
+### Form Field Groups
+
+The same `cbp-form-field` component may also wrap groups of inputs, such as checklists, radio lists, or compound input patterns containing multiple distinct, but related form controls (e.g., address, phone number, etc.). This is easily achieved by adding the `group` property/attribute to the host tag. In this case, the component renders and `fieldset` (which groups the slotted inputs), and a `legend` rather than `label` tied to a single form control. 
+
+This acts as an implicit `role="group"` for describing each input contained within, giving them greater context from the group when using assistive technologies, such as a screen reader. For example, a checklist of fruits containing "apples", "oranges", "bananas", etc. might be unclear without the context of the group label (legend), which could be "Grocery List" or "Favorite Fruits", changing the meaning of the selections significantly.
+
+```HTML
+<cbp-form-field group label="Checklist Group Label" description="Field description.">
+  <cbp-checkbox>
+    <input type="checkbox" name="checkbox" value="1">
+    Checkbox 1
+  </cbp-checkbox>
+  <cbp-checkbox>
+    <input type="checkbox" name="checkbox" value="2">
+    Checkbox 2
+  </cbp-checkbox>
+  <cbp-checkbox>
+    <input type="checkbox" name="checkbox" value="3">
+    Checkbox 3
+  </cbp-checkbox>
+  <cbp-checkbox>
+    <input type="checkbox" name="checkbox" value="4">
+    Checkbox 4
+  </cbp-checkbox>
+</cbp-form-field>
+```
+
+## Form Field Wrapper Component (`cbp-form-field-wrapper`)
+
+The `cbp-form-field-wrapper` is an optional component placed inside of the `cbp-form-field` that wraps the native HTML input. This wrapper is only needed when overlays or attached/unattached buttons are associated with the input pattern, and offers these options via named slots.
+
+An example using both overlays might be a monetary input specifying USD such as:
+
+```HTML
+<cbp-form-field label="Field Label" description="Field description.">
+  <cbp-form-field-wrapper>  
+    <input type="number" name="money">
+    <span slot="cbp-form-field-overlay-start">$</span>
+    <span slot="cbp-form-field-overlay-end">USD</span>
+  </cbp-form-field-wrapper>
+</cbp-form-field>
+```
+
+An common example using an attached button control is a password field with visibility toggle (these are loosely coupled and need to be hooked up with application logic, which is typically a small function in this case):
+
+```HTML
+<cbp-form-field label="Password" field-id="pw">
+  <cbp-form-field-wrapper>
+    <input type="password" name="password">
+    
+    <span slot="cbp-form-field-attached-button">
+      <cbp-button 
+        name="togglepw" 
+        fill="solid" 
+        color="secondary" 
+        variant="square" 
+        accessibility-text="Toggle visibility" 
+        controls="pw" 
+        aria-describedby="pw-label"
+      >
+        <cbp-icon name="eye"></cbp-icon>
+      </cbp-button>
+    </span>
+  </cbp-form-field-wrapper>
+</cbp-form-field>
+```
+
+A compact file input is another common input with an attached button:
+
+```HTML
+<cbp-form-field label="Field Label" description="Field description." field-id="file-input">
+  <cbp-form-field-wrapper>
+    <input type="file" name="fileinput">
+    
+    <span slot="cbp-form-field-attached-button">
+      <cbp-button 
+        fill="solid" 
+        color="secondary" 
+        aria-describedby="file-input-label" 
+        onclick="event.target.closest('cbp-form-field').querySelector('input').click()"
+      >
+        Browse
+      </cbp-button>
+    </span>
+  </cbp-form-field-wrapper>
+</cbp-form-field>
+```
+
+The design system's time pattern uses a segmented button group as an attached button:
+
+```HTML
+<cbp-form-field label="Field Title" description="(HH:MM Format) UTC-6 America/New York">
+  <cbp-form-field-wrapper>  
+    <input placeholder="HH:MM" maxlength="5" name="time">
+    <cbp-icon slot="cbp-form-field-overlay-start" name="clock"></cbp-icon>
+
+    <span slot="cbp-form-field-attached-button">
+      <cbp-segmented-button-group name="time-ampm">
+        <cbp-button value="AM" pressed="true">AM</cbp-button>
+        <cbp-button value="PM">PM</cbp-button>
+        <cbp-button value="24H">24 hr</cbp-button>
+      </cbp-segmented-button-group>
+    </span>
+  </cbp-form-field-wrapper>
+</cbp-form-field>
+```
+
+You can find more patterns like these under the [Form Field Wrapper group](./?path=/docs/forms-form-field-wrapper-specifications--docs) in the navigation panel.
+
+## Listbox (`cbp-listbox`)
+
+Similar to the `cbp-form-field-wrapper` the `cbp-listbox` is meant to wrap a native HTML text (or search) input and enhance it with autocomplete/type-ahead functionality.
+
+This component requires application logic to provide the `items` property as a JSON object or stringified JSON, which in intended to update as the user types in the wrapped input. Selecting a suggestion from the listbox populates the input with that text, but unlike a dropdown, a selection is not required; Typed text may be submitted with a form as-is.
+
+See the [API Docs](./?path=/docs/forms-listbox-api-docs--docs) for more details using the Listbox component.
+
+## Checkboxes, Radio Buttons, and Toggles
+
+Checkboxes (`cbp-checkbox`), Radio Buttons (`cbp-radio`), and Toggles (`cbp-toggle`) all work similarly. Like the `cbp-form-field` component, their respective components encapsulate their respective CSS and accessibly associate the label to the slotted form control.
+
+Checkboxes and Toggles may stand alone or exist in a group wrapped by `cbp-form-field` tag with the `group` property/attribute specified. 
+
+Radio Buttons should not stand alone; they should always exist in a group (`<cbp-form-field group>`) and have the same `name` value.
+
+You can find standalone and grouped examples of each under their respective sections in this Storybook site.
+
+## Dropdown (`cbp-dropdown`)
+
+As mentioned above, the `cbp-dropdown` component provides single select, multi-select, and combobox functionality. Dropdown Items may be slotted or provided via the `items` property as a JSON object or stringified JSON.
+
+For multi-select dropdowns, the embedded checkboxes intentionally omit the `name` attribute, as the dropdown's value is stored in a hidden input for all variations.
+
+See the [API Docs](./?path=/docs/forms-dropdown-api-docs--docs) for more details using the Dropdown component.
+
+## File Input (`cbp-file-input`)
+
+The native file input is notoriously ugly and  user unfriendly, especially when selecting multiple files. The `cbp-file-input` aims to address those concerns.
+
+In addition to providing a nicer looking control, the `cbp-file-input` enhances the functionality when multiple files may be selected. Native file inputs do not allow manipulation of the file list for removing single files or adding to an existing selection, both of which the web component enables. 
+
+This enhanced functionality requires the modified fileList object to be manually appended to the `formData` object, and wrapping your form in the `cbp-form` component will accomplish this automatically.
+
+Like many other patterns, the native HTML file input is slotted for easy access to it.
+
+```HTML
+<cbp-form-field label="Field Label" description="Field description.">
+  <cbp-file-input name="fileupload">
+    <input type="file">
+  </cbp-file-input>
+</cbp-form-field>
+```
+
+See the [API Docs](./?path=/docs/forms-file-input-api-docs--docs) for more details using the File Input component.
+
+## Slider (`cbp-slider`)
+
+The slider provides a consistent, accessible, cross-browser alternative to `<input type="range" />` that also supports two inputs for a true range.
+
+The slider provides numeric entry for each input, in case it is easier to select a precise value than the slider control itself.
+
+Like many other patterns, the native HTML inputs are slotted for easy access to them. The range slider is fairly simple, providing two slotted inputs, as below:
+
+```HTML
+<cbp-form-field label="Field Label" description="Field description.">
+  <cbp-slider value="30,70">
+    <input type="range" name="range-start">
+    <input type="range" name="range-end">
+  </cbp-slider>
+</cbp-form-field>
+```
+
+See the [API Docs](./?path=/docs/forms-slider-api-docs--docs) for more details using the Slider component.

@@ -188,6 +188,7 @@ const preview: Preview = {
           'Notifications',
           'Controls',
           'Forms',
+          ['Overview'],
           'Utilities',
           'Components',
           'Patterns',

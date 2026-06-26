@@ -30,7 +30,7 @@ export class CbpSlider {
 
   /** 
    * Specifies the value of the slider and numeric entry field. It is highly recommended to set a contextually sensible default because
-   * the native `input type="range" cannot have an undefined or empty string as a value. If no value is specified, the default value will 
+   * the native `input type="range"` cannot have an undefined or empty string as a value. If no value is specified, the default value will 
    * be reported (and submitted) as halfway between the specified minimum and maximum; unless the maximum is actually less than the minimum, 
    * in which case the default is set to the value of the minimum attribute.
    * This prop should be set on this component rather than (or in addition to) the slotted `input type="range"`. 
