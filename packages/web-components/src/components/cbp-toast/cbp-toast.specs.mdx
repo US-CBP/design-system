@@ -1,4 +1,4 @@
-import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+import { Meta, Markdown } from '@storybook/addon-docs/blocks';
 
 <Meta title="Notifications/Toast/Specifications" />
 
@@ -6,38 +6,34 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 
 ## Purpose
 
-* Toast is intended to temporarialy display messages to users such as error or warning messages about an form input, or confrimation of a file upload. It is the intent of the designer that for things
-like error messages to also be populated elsewhere in app so that they don't get 'lost'. 
+* A Toast is a way to display messages or notifications, often temporarily, that pop out from the edge of the browser viewport.
 
 ## Functional Requirements
 
-* Toast expects for users to define the below props/slots
-    * Props:
-        * Icon: sets the name prop for the icon in the sidebar. default value of 'user'
-        * timer: provides 3 options (3sec, 5sec, or 10sec) which determines how long the toast will be visible. if this is not set the toast will persist, which is intended for development, not final 
-            User experience
-        * color: provides 4 options (info, success, warning, & danger) defaulting to info. determines the color palette used for the background & text color for the toast
-    * Slots:
-        * title: Slot for the title section of the Toast, intended for text or typography tags
-        * content: Slot for the content of the toast, used for description of error or progress bar for example. 
-        * buttons: Slot intended for 1 or 2 buttons, UX design intended for these to be a dismiss (of the toast) and/or a button to link to log/more detailed section explaining the toast
-* Multiple toast should be placed in a cbp-toast-container to manage placement (top-left, top-center, top-left, bottom-left, bottom-center, bottom-left) defaulting to top-right
-        * position prop is also used to educate the toast animations so that toasts open/dismiss will correctly animate on/off screen
-            
+* The Toast component is made of up several parts, which may be customized by the developer:
+  * The Toast shall contain an icon to the left of the message, which is slotted.
+  * The Toast shall have a title, which is slotted.
+  * The toast content is also slotted and may include various content such as the description of an error, a progress bar, etc.
+  * Action buttons may be slotted to dismiss a Toast or perform other application-specific actions.
+* A Toast may be in any of the design system standard colors of: info, success, warning, or danger. The default is "info."
+* A toast may be persistent until dismissed or show for a developer-specified amount of time before disappearing.
+* Multiple toast notifications may be grouped within a container, `cbp-toast-container`, to manage placement (top-left, top-center, top-left, bottom-left, bottom-center, bottom-left), defaulting to top-right.
+
 ## Technical Specifications
 
 ### User Interactions
 
-* Toast is intended to temporarialy draw attention to items/actions for the user as such they are meant to have an internal timer to display & have the displayed content in a log elsewhere for user to
-    review after the toast is gone. 
+* User interactions via the slotted buttons are application-defined.
+* Toasts should not otherwise contain interactive controls.
 
 ### Responsiveness
 
-* Toast's width is set to the max-content of the toast, with a max-width on the toast of 50% of the viewportS 
+* Toasts and the Toast Container are sized to fit on a mobile device screen without scrolling by default.
 
 ### Accessibility
 
-* Toast being on a timer is an Accessibility concern, which is why it is advised to have a log of toasts perserved elsewhere in the app as mentioned above
-* Slotted content is Accessibile via keyboard, primarily use being the slotted buttons
+* Toasts using a timer is an accessibility concern, and it is advised to have a log of toasts preserved in the application for reference.
 
 ### Additional Notes and Considerations
+
+* Important notifications should be persisted within the application so they can be revisited in a log format.
