@@ -16,10 +16,9 @@ const Template = () => {
         <cbp-typography tag="h2" sx='{"margin-bottom":"1rem"}'>Work in Progress</cbp-typography>
 
         <p>
-          The CBP Design System (1.0) is still in active development.
-          As such, breaking changes may be introduced but will be documented as such.
-          While we encourage you to explore our offerings, please do so with the knowledge that the codebase in these repositories may change.
-          Use at your own risk. We will communicate when a stable release will be made available.
+          The CBP Design System is in BETA release status.
+          Most components have been well-tested and are stable, but breaking changes may be introduced if absolutely necessary (and will be documented as such).
+          New components may be introduced (and marked as such), which require additional testing before considered stable or BETA-worthy.
         </p>
     </cbp-app>
   `;
