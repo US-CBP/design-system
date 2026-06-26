@@ -1,25 +1,25 @@
 export default {
-    title: 'Introduction',
-    parameters: {
-      options: { showPanel: false },
-    },
-  };
+  title: 'Introduction',
+  parameters: {
+    options: { showPanel: false },
+  },
+};
 
 
 const Template = () => {
-    return `
+  return `
     <cbp-app>
-        <img src="assets/images/cbp-seal.svg" height="245" width="245" alt="U.S. Customs and Border Protection Seal" style="margin-bottom: 2rem; margin-inline: auto" />
+      <img src="assets/images/cbp-seal.svg" height="245" width="245" alt="U.S. Customs and Border Protection Seal" style="margin-bottom: 2rem; margin-inline: auto" />
 
-        <cbp-typography tag="h1" sx='{"text-align":"center","margin-bottom":"1rem"}'>CBP Design System</cbp-typography>
+      <cbp-typography tag="h1" sx='{"text-align":"center","margin-bottom":"1rem"}'>CBP Design System</cbp-typography>
 
-        <cbp-typography tag="h2" sx='{"margin-bottom":"1rem"}'>Work in Progress</cbp-typography>
+      <cbp-typography tag="h2" sx='{"margin-bottom":"1rem"}'>Work in Progress</cbp-typography>
 
-        <p>
-          The CBP Design System is in BETA release status.
-          Most components have been well-tested and are stable, but breaking changes may be introduced if absolutely necessary (and will be documented as such).
-          New components may be introduced (and marked as such), which require additional testing before considered stable or BETA-worthy.
-        </p>
+      <p>
+        The CBP Design System is in BETA release status.
+        Most components have been well-tested and are stable, but breaking changes may be introduced if absolutely necessary (and will be documented as such).
+        New components may be introduced (and marked as such), which require additional testing before considered stable or BETA-worthy.
+      </p>
     </cbp-app>
   `;
 };
