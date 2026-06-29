@@ -8,6 +8,7 @@
 ```tsx
 ({
   label,
+  labelSlotted,
   content,
   open,
   headingLevel,
@@ -16,12 +17,13 @@
 }) => {
   return ` 
     <cbp-expand
-      ${label ? `label="${label}"` : ''}
+      ${label && !labelSlotted ? `label="${label}"` : ''}
       ${headingLevel ? `heading-level="${headingLevel}"` : ''}
       ${open ? 'open' : ''}
       ${context ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
+      ${labelSlotted ? `<span slot="cbp-expand-label">${labelSlotted}</span>` : ''}
       ${content}
     </cbp-expand>
   `;

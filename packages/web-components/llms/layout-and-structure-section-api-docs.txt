@@ -24,7 +24,11 @@ The Section component represents a generic block that may be used for semantic m
 | --- | --- |
 | `--cbp-section-border-style` | solid; |
 | `--cbp-section-border-width` | 0; |
+| `--cbp-section-color` | inherit; |
+| `--cbp-section-color-bg` | transparent; |
+| `--cbp-section-color-bg-dark` | transparent; |
 | `--cbp-section-color-border` | transparent; |
 | `--cbp-section-color-border-dark` | transparent; |
+| `--cbp-section-color-dark` | inherit; |
 
 ---

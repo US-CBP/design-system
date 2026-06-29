@@ -7,14 +7,33 @@
 
 ```tsx
 () => {
+  let toc = '';
   let pageContents = '';
+  AllTokenNames.forEach((item, index) => {
+    //if(index < 7){
+    toc += `
+        <li>
+          <a href="${`#${AllTokenNames[index].toLowerCase()}-tokens`}" 
+            data-id="${`${AllTokenNames[index].toLowerCase()}-tokens`}"
+            onClick="inPageNavigation(event);"
+          >
+            ${item}
+          </a>
+        </li>
+      `;
+    //}
+  });
+  toc = `<ul>${toc}</ul><br /><br />`;
   AllTokens.forEach((item, index) => {
     let contents = iterateObj(item);
     output = [];
     currentObj = [];
     pageContents += `
       <cbp-typography 
+        id="${`${AllTokenNames[index].toLowerCase()}-tokens`}"
+        name="${`${AllTokenNames[index].toLowerCase()}-tokens`}"
         tag="h2" 
+        tabindex="-1"
         sx='{"margin-block-end":"var(--cbp-space-2x)"}'
       >
         ${AllTokenNames[index]}
@@ -56,6 +75,7 @@
         This extra level of abstraction leads to more maintainable code, reduces design decisions that don't align with the design system, and results in fewer "one-offs."
       </p>
 
+      ${toc}
       ${pageContents}
     </main>
 `;

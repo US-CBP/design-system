@@ -1,0 +1,13 @@
+# Supporting Artificial Intelligence
+
+The CBP Design System team is evaluating how to best support artificial intelligence (AI) tools to increase productivity and compliance when using the design system.
+
+## llms.txt
+
+As a first step, the CBP Design System has crawled its Storybook documentation files and output them in [llms.txt](https://us-cbp.github.io/design-system/llms.txt) format for large language models to consume.
+
+Llms.txt documentation is re-generated upon each release so that it reflects the latest npm package release; not necessarily what is on Storybook, which may contain merged code that has not yet been released via npm package.
+
+## More to Come
+
+The design system team will continue to investigate how AI may be leveraged as well as Storybook's built-in offerings, which includes an MCP server, for future inclusion.

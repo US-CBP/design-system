@@ -3,7 +3,7 @@
 ## Examples
 
 
-### Dropdown
+### Asynchronous Combobox
 
 ```tsx
 ({
@@ -13,6 +13,7 @@
   name,
   placeholder,
   multiple,
+  multipleWithChips,
   filter,
   async,
   minimumInputLength,
@@ -32,17 +33,532 @@
   if (dataset == 'Custom') items = Custom;
   if (async) dropdownItems = "JSON";
 
+  // The native JSON objects may not be properly sorted (such as Countries, which has more appended to the end out of order),
+  // so sort them alphabetically.
+  items.sort(function (a, b) {
+    return a.label.localeCompare(b.label);
+  });
+
   // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
-  let asyncCombobox;
+  let formField;
+  let dropdown;
   setTimeout(() => {
-    asyncCombobox = document.querySelector('cbp-dropdown[async]') as HTMLCbpDropdownElement;
-    if (asyncCombobox) {
-      asyncCombobox.addEventListener('populateCombobox', e => {
+    formField = document.querySelector('cbp-form-field') as HTMLCbpFormFieldElement;
+    dropdown = document.querySelector('cbp-dropdown') as HTMLCbpDropdownElement;
+    if (async) {
+      dropdown.addEventListener('populateCombobox', e => {
         let searchString = e.detail.searchString;
         // filter the JSON natively in JavaScript
         let filteredJSON = items.filter(item => item.label.toLowerCase().indexOf(searchString) != -1);
         // return the filtered JSON result to the component via the items property
-        asyncCombobox.items = filteredJSON;
+        dropdown.items = filteredJSON;
+      });
+    }
+
+    // For asynchronous multi-select dropdowns, all possible items are never shown. 
+    // So for usability reasons, it makes sense to show the selected items as chips below the dropdown.
+    // This is also a valid usability feature for any multi-select dropdown.
+    if (multipleWithChips) {
+      dropdown.addEventListener('valueChange', e => {
+        let selectedItems = items.filter(item => item.value ? e.detail.value.includes(item.value) : e.detail.value.includes(item.label));
+        let chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+        if (!chipsContainer) {
+          let newChipsContainer = document.createElement('cbp-flex');
+          newChipsContainer.gap = '.5rem';
+          newChipsContainer.wrap = 'wrap';
+          newChipsContainer.classList.add('cbp-dropdown-chips-container');
+          newChipsContainer.style.setProperty('margin-block-start', '1rem');
+          formField.appendChild(newChipsContainer);
+          chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+          chipsContainer.addEventListener('chipClick', (e: any) => {
+            // remove the value from selected items and update the dropdown value
+            dropdown.value = dropdown.value.filter(item => item !== e.detail.value);
+            // remove the chip that was just clicked
+            e.detail.host.remove();
+          });
+        }
+
+        // empty the container before repopulating it (this is not ideal and much easier in a JS framework that maintains the DOM)
+        chipsContainer?.replaceChildren();
+        selectedItems.forEach(item => {
+          let newChip = document.createElement('cbp-chip');
+          newChip.pressed = true;
+          newChip.value = item.value || item.label;
+          newChip.innerText = item.label;
+          chipsContainer.appendChild(newChip);
+        });
+      });
+    }
+  }, 100);
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+    >
+      <cbp-dropdown
+        ${name ? `name="${name}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${multiple ? 'multiple' : ''}
+        ${filter ? 'filter' : ''}
+        ${async ? 'async' : ''}
+        ${items && dropdownItems == 'JSON' && !async ? `items='${JSON.stringify(items)}'` : ''}
+        ${minimumInputLength ? `minimum-input-length="${minimumInputLength}"` : ''}
+        ${create ? 'create' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${dropdownItems == "Slotted" ? multiple ? generateMultiSelectItems(items, name, context) : generateItems(items) : ''}
+      </cbp-dropdown>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Combobox
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  name,
+  placeholder,
+  multiple,
+  multipleWithChips,
+  filter,
+  async,
+  minimumInputLength,
+  dropdownItems,
+  dataset,
+  items,
+  create,
+  error,
+  readonly,
+  disabled,
+  value,
+  context,
+  sx
+}) => {
+  if (dataset == 'Countries') items = Countries;
+  if (dataset == 'States') items = States;
+  if (dataset == 'Custom') items = Custom;
+  if (async) dropdownItems = "JSON";
+
+  // The native JSON objects may not be properly sorted (such as Countries, which has more appended to the end out of order),
+  // so sort them alphabetically.
+  items.sort(function (a, b) {
+    return a.label.localeCompare(b.label);
+  });
+
+  // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
+  let formField;
+  let dropdown;
+  setTimeout(() => {
+    formField = document.querySelector('cbp-form-field') as HTMLCbpFormFieldElement;
+    dropdown = document.querySelector('cbp-dropdown') as HTMLCbpDropdownElement;
+    if (async) {
+      dropdown.addEventListener('populateCombobox', e => {
+        let searchString = e.detail.searchString;
+        // filter the JSON natively in JavaScript
+        let filteredJSON = items.filter(item => item.label.toLowerCase().indexOf(searchString) != -1);
+        // return the filtered JSON result to the component via the items property
+        dropdown.items = filteredJSON;
+      });
+    }
+
+    // For asynchronous multi-select dropdowns, all possible items are never shown. 
+    // So for usability reasons, it makes sense to show the selected items as chips below the dropdown.
+    // This is also a valid usability feature for any multi-select dropdown.
+    if (multipleWithChips) {
+      dropdown.addEventListener('valueChange', e => {
+        let selectedItems = items.filter(item => item.value ? e.detail.value.includes(item.value) : e.detail.value.includes(item.label));
+        let chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+        if (!chipsContainer) {
+          let newChipsContainer = document.createElement('cbp-flex');
+          newChipsContainer.gap = '.5rem';
+          newChipsContainer.wrap = 'wrap';
+          newChipsContainer.classList.add('cbp-dropdown-chips-container');
+          newChipsContainer.style.setProperty('margin-block-start', '1rem');
+          formField.appendChild(newChipsContainer);
+          chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+          chipsContainer.addEventListener('chipClick', (e: any) => {
+            // remove the value from selected items and update the dropdown value
+            dropdown.value = dropdown.value.filter(item => item !== e.detail.value);
+            // remove the chip that was just clicked
+            e.detail.host.remove();
+          });
+        }
+
+        // empty the container before repopulating it (this is not ideal and much easier in a JS framework that maintains the DOM)
+        chipsContainer?.replaceChildren();
+        selectedItems.forEach(item => {
+          let newChip = document.createElement('cbp-chip');
+          newChip.pressed = true;
+          newChip.value = item.value || item.label;
+          newChip.innerText = item.label;
+          chipsContainer.appendChild(newChip);
+        });
+      });
+    }
+  }, 100);
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+    >
+      <cbp-dropdown
+        ${name ? `name="${name}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${multiple ? 'multiple' : ''}
+        ${filter ? 'filter' : ''}
+        ${async ? 'async' : ''}
+        ${items && dropdownItems == 'JSON' && !async ? `items='${JSON.stringify(items)}'` : ''}
+        ${minimumInputLength ? `minimum-input-length="${minimumInputLength}"` : ''}
+        ${create ? 'create' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${dropdownItems == "Slotted" ? multiple ? generateMultiSelectItems(items, name, context) : generateItems(items) : ''}
+      </cbp-dropdown>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Dropdown
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  name,
+  placeholder,
+  multiple,
+  multipleWithChips,
+  filter,
+  async,
+  minimumInputLength,
+  dropdownItems,
+  dataset,
+  items,
+  create,
+  error,
+  readonly,
+  disabled,
+  value,
+  context,
+  sx
+}) => {
+  if (dataset == 'Countries') items = Countries;
+  if (dataset == 'States') items = States;
+  if (dataset == 'Custom') items = Custom;
+  if (async) dropdownItems = "JSON";
+
+  // The native JSON objects may not be properly sorted (such as Countries, which has more appended to the end out of order),
+  // so sort them alphabetically.
+  items.sort(function (a, b) {
+    return a.label.localeCompare(b.label);
+  });
+
+  // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
+  let formField;
+  let dropdown;
+  setTimeout(() => {
+    formField = document.querySelector('cbp-form-field') as HTMLCbpFormFieldElement;
+    dropdown = document.querySelector('cbp-dropdown') as HTMLCbpDropdownElement;
+    if (async) {
+      dropdown.addEventListener('populateCombobox', e => {
+        let searchString = e.detail.searchString;
+        // filter the JSON natively in JavaScript
+        let filteredJSON = items.filter(item => item.label.toLowerCase().indexOf(searchString) != -1);
+        // return the filtered JSON result to the component via the items property
+        dropdown.items = filteredJSON;
+      });
+    }
+
+    // For asynchronous multi-select dropdowns, all possible items are never shown. 
+    // So for usability reasons, it makes sense to show the selected items as chips below the dropdown.
+    // This is also a valid usability feature for any multi-select dropdown.
+    if (multipleWithChips) {
+      dropdown.addEventListener('valueChange', e => {
+        let selectedItems = items.filter(item => item.value ? e.detail.value.includes(item.value) : e.detail.value.includes(item.label));
+        let chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+        if (!chipsContainer) {
+          let newChipsContainer = document.createElement('cbp-flex');
+          newChipsContainer.gap = '.5rem';
+          newChipsContainer.wrap = 'wrap';
+          newChipsContainer.classList.add('cbp-dropdown-chips-container');
+          newChipsContainer.style.setProperty('margin-block-start', '1rem');
+          formField.appendChild(newChipsContainer);
+          chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+          chipsContainer.addEventListener('chipClick', (e: any) => {
+            // remove the value from selected items and update the dropdown value
+            dropdown.value = dropdown.value.filter(item => item !== e.detail.value);
+            // remove the chip that was just clicked
+            e.detail.host.remove();
+          });
+        }
+
+        // empty the container before repopulating it (this is not ideal and much easier in a JS framework that maintains the DOM)
+        chipsContainer?.replaceChildren();
+        selectedItems.forEach(item => {
+          let newChip = document.createElement('cbp-chip');
+          newChip.pressed = true;
+          newChip.value = item.value || item.label;
+          newChip.innerText = item.label;
+          chipsContainer.appendChild(newChip);
+        });
+      });
+    }
+  }, 100);
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+    >
+      <cbp-dropdown
+        ${name ? `name="${name}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${multiple ? 'multiple' : ''}
+        ${filter ? 'filter' : ''}
+        ${async ? 'async' : ''}
+        ${items && dropdownItems == 'JSON' && !async ? `items='${JSON.stringify(items)}'` : ''}
+        ${minimumInputLength ? `minimum-input-length="${minimumInputLength}"` : ''}
+        ${create ? 'create' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${dropdownItems == "Slotted" ? multiple ? generateMultiSelectItems(items, name, context) : generateItems(items) : ''}
+      </cbp-dropdown>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Multi-Select Dropdown
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  name,
+  placeholder,
+  multiple,
+  multipleWithChips,
+  filter,
+  async,
+  minimumInputLength,
+  dropdownItems,
+  dataset,
+  items,
+  create,
+  error,
+  readonly,
+  disabled,
+  value,
+  context,
+  sx
+}) => {
+  if (dataset == 'Countries') items = Countries;
+  if (dataset == 'States') items = States;
+  if (dataset == 'Custom') items = Custom;
+  if (async) dropdownItems = "JSON";
+
+  // The native JSON objects may not be properly sorted (such as Countries, which has more appended to the end out of order),
+  // so sort them alphabetically.
+  items.sort(function (a, b) {
+    return a.label.localeCompare(b.label);
+  });
+
+  // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
+  let formField;
+  let dropdown;
+  setTimeout(() => {
+    formField = document.querySelector('cbp-form-field') as HTMLCbpFormFieldElement;
+    dropdown = document.querySelector('cbp-dropdown') as HTMLCbpDropdownElement;
+    if (async) {
+      dropdown.addEventListener('populateCombobox', e => {
+        let searchString = e.detail.searchString;
+        // filter the JSON natively in JavaScript
+        let filteredJSON = items.filter(item => item.label.toLowerCase().indexOf(searchString) != -1);
+        // return the filtered JSON result to the component via the items property
+        dropdown.items = filteredJSON;
+      });
+    }
+
+    // For asynchronous multi-select dropdowns, all possible items are never shown. 
+    // So for usability reasons, it makes sense to show the selected items as chips below the dropdown.
+    // This is also a valid usability feature for any multi-select dropdown.
+    if (multipleWithChips) {
+      dropdown.addEventListener('valueChange', e => {
+        let selectedItems = items.filter(item => item.value ? e.detail.value.includes(item.value) : e.detail.value.includes(item.label));
+        let chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+        if (!chipsContainer) {
+          let newChipsContainer = document.createElement('cbp-flex');
+          newChipsContainer.gap = '.5rem';
+          newChipsContainer.wrap = 'wrap';
+          newChipsContainer.classList.add('cbp-dropdown-chips-container');
+          newChipsContainer.style.setProperty('margin-block-start', '1rem');
+          formField.appendChild(newChipsContainer);
+          chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+          chipsContainer.addEventListener('chipClick', (e: any) => {
+            // remove the value from selected items and update the dropdown value
+            dropdown.value = dropdown.value.filter(item => item !== e.detail.value);
+            // remove the chip that was just clicked
+            e.detail.host.remove();
+          });
+        }
+
+        // empty the container before repopulating it (this is not ideal and much easier in a JS framework that maintains the DOM)
+        chipsContainer?.replaceChildren();
+        selectedItems.forEach(item => {
+          let newChip = document.createElement('cbp-chip');
+          newChip.pressed = true;
+          newChip.value = item.value || item.label;
+          newChip.innerText = item.label;
+          chipsContainer.appendChild(newChip);
+        });
+      });
+    }
+  }, 100);
+  return ` 
+    <cbp-form-field
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? `readonly` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+    >
+      <cbp-dropdown
+        ${name ? `name="${name}"` : ''}
+        ${value ? `value="${value}"` : ''}
+        ${fieldId ? `field-id="${fieldId}"` : ''}
+        ${placeholder ? `placeholder="${placeholder}"` : ''}
+        ${multiple ? 'multiple' : ''}
+        ${filter ? 'filter' : ''}
+        ${async ? 'async' : ''}
+        ${items && dropdownItems == 'JSON' && !async ? `items='${JSON.stringify(items)}'` : ''}
+        ${minimumInputLength ? `minimum-input-length="${minimumInputLength}"` : ''}
+        ${create ? 'create' : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${dropdownItems == "Slotted" ? multiple ? generateMultiSelectItems(items, name, context) : generateItems(items) : ''}
+      </cbp-dropdown>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Multi-Select with Chips
+
+```tsx
+({
+  label,
+  description,
+  fieldId,
+  name,
+  placeholder,
+  multiple,
+  multipleWithChips,
+  filter,
+  async,
+  minimumInputLength,
+  dropdownItems,
+  dataset,
+  items,
+  create,
+  error,
+  readonly,
+  disabled,
+  value,
+  context,
+  sx
+}) => {
+  if (dataset == 'Countries') items = Countries;
+  if (dataset == 'States') items = States;
+  if (dataset == 'Custom') items = Custom;
+  if (async) dropdownItems = "JSON";
+
+  // The native JSON objects may not be properly sorted (such as Countries, which has more appended to the end out of order),
+  // so sort them alphabetically.
+  items.sort(function (a, b) {
+    return a.label.localeCompare(b.label);
+  });
+
+  // Ideally, this should be placed on the button component itself, not the document; but the event bubbles, so it works here.
+  let formField;
+  let dropdown;
+  setTimeout(() => {
+    formField = document.querySelector('cbp-form-field') as HTMLCbpFormFieldElement;
+    dropdown = document.querySelector('cbp-dropdown') as HTMLCbpDropdownElement;
+    if (async) {
+      dropdown.addEventListener('populateCombobox', e => {
+        let searchString = e.detail.searchString;
+        // filter the JSON natively in JavaScript
+        let filteredJSON = items.filter(item => item.label.toLowerCase().indexOf(searchString) != -1);
+        // return the filtered JSON result to the component via the items property
+        dropdown.items = filteredJSON;
+      });
+    }
+
+    // For asynchronous multi-select dropdowns, all possible items are never shown. 
+    // So for usability reasons, it makes sense to show the selected items as chips below the dropdown.
+    // This is also a valid usability feature for any multi-select dropdown.
+    if (multipleWithChips) {
+      dropdown.addEventListener('valueChange', e => {
+        let selectedItems = items.filter(item => item.value ? e.detail.value.includes(item.value) : e.detail.value.includes(item.label));
+        let chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+        if (!chipsContainer) {
+          let newChipsContainer = document.createElement('cbp-flex');
+          newChipsContainer.gap = '.5rem';
+          newChipsContainer.wrap = 'wrap';
+          newChipsContainer.classList.add('cbp-dropdown-chips-container');
+          newChipsContainer.style.setProperty('margin-block-start', '1rem');
+          formField.appendChild(newChipsContainer);
+          chipsContainer = document.querySelector('.cbp-dropdown-chips-container');
+          chipsContainer.addEventListener('chipClick', (e: any) => {
+            // remove the value from selected items and update the dropdown value
+            dropdown.value = dropdown.value.filter(item => item !== e.detail.value);
+            // remove the chip that was just clicked
+            e.detail.host.remove();
+          });
+        }
+
+        // empty the container before repopulating it (this is not ideal and much easier in a JS framework that maintains the DOM)
+        chipsContainer?.replaceChildren();
+        selectedItems.forEach(item => {
+          let newChip = document.createElement('cbp-chip');
+          newChip.pressed = true;
+          newChip.value = item.value || item.label;
+          newChip.innerText = item.label;
+          chipsContainer.appendChild(newChip);
+        });
       });
     }
   }, 100);
