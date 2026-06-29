@@ -1,6 +1,6 @@
 export default {
   title: 'Navigation/Sub-Navigation',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     accessibilityText: {
       description: 'Sets accessibilityText prop for the subnav component',

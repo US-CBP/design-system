@@ -1,6 +1,6 @@
 export default {
   title: 'Forms/Toggle',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     hideStatus: {
       description: 'Determines if the status text for the `on` and `off` is visible for the toggle control',

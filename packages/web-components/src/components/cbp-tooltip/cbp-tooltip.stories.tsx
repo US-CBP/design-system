@@ -1,6 +1,6 @@
 export default {
   title: 'Content/Tooltip',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     uid: {
       description: 'A unique `id` applied to the dialog and referenced by the control.',

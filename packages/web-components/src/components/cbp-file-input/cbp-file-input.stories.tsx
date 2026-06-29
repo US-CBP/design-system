@@ -1,6 +1,6 @@
 export default {
   title: 'Forms/File Input',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     label: {
       control: 'text',

@@ -3,7 +3,7 @@ import { CbpToast } from "./cbp-toast";
 
 export default {
   title: 'Notifications/Toast',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
 
     duration: {

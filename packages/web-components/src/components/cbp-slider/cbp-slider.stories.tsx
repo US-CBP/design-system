@@ -1,6 +1,6 @@
 export default {
   title: 'Forms/Slider',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     label: {
       control: 'text',

@@ -1,6 +1,6 @@
 export default {
   title: 'Controls/Floating Action',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     top:{
         description: 'Set the top CSS property for the floating action.',
