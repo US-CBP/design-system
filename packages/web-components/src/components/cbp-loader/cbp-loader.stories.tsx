@@ -1,6 +1,6 @@
 export default {
   title: 'Notifications/Loader',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     progressid: {
       description: 'A unique `id` applied to the dialog and referenced by the control.',

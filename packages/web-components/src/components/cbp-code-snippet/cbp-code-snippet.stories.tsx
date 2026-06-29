@@ -1,6 +1,6 @@
 export default {
   title: 'Content/Code Snippet',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     codeSnippet: {
       description: 'Code to slot into code snippet',

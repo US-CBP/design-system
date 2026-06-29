@@ -3,7 +3,7 @@ export default {
   parameters: {
     layout: 'centered',
   },
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     position: {
       control: 'select',

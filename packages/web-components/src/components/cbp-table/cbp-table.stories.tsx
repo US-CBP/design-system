@@ -1,6 +1,6 @@
 export default {
   title: 'Content/Table',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     striped: {
       control: 'select',
