@@ -19,4 +19,20 @@ The Container component is a building block component for wrapping content and p
 | --- | --- |
 |  | Any content or layout components may be slotted within the container. |
 
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-container-border-style` | solid; |
+| `--cbp-container-border-width` | 0; |
+| `--cbp-container-color` | inherit; |
+| `--cbp-container-color-bg` | transparent; |
+| `--cbp-container-color-bg-dark` | transparent; |
+| `--cbp-container-color-border` | transparent; |
+| `--cbp-container-color-border-dark` | transparent; |
+| `--cbp-container-color-dark` | inherit; |
+| `--cbp-container-content-padding` | 0; |
+| `--cbp-container-inner-color-bg` | var(--cbp-container-color-background); |
+| `--cbp-container-inner-width` | auto; |
+
 ---

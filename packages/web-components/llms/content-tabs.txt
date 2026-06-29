@@ -8,22 +8,47 @@
 ```tsx
 ({
   tabs,
+  orientation,
+  gridTemplateColumns,
   accessibilityText,
   withIcon,
+  onlyIcon,
   withBadge,
   context,
   sx
 }) => {
-  return ` 
-    <cbp-tabs
-      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+  if (orientation == 'vertical') {
+    return `
+    <cbp-grid 
+      grid-template-columns="${gridTemplateColumns}" 
+      gap="1rem"
     >
-      ${createTabs(tabs, withIcon, withBadge)}
-    </cbp-tabs>
 
-    ${createTabPanels(tabs)}
+        <cbp-tabs
+          ${orientation ? `orientation="${orientation}"` : ''}
+          ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+          ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+        >
+          ${createTabs(tabs, withIcon, onlyIcon, withBadge, orientation)}
+        </cbp-tabs>
+        <cbp-grid-item>
+          ${createTabPanels(tabs)}
+        </cbp-grid-item>
+    </cbp-grid>
  `;
+  } else {
+    return `
+      <cbp-tabs
+        ${orientation ? `orientation="${orientation}"` : ''}
+        ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${createTabs(tabs, withIcon, onlyIcon, withBadge, orientation)}
+      </cbp-tabs>
+      ${createTabPanels(tabs)}
+    `;
+  }
 }
 ```

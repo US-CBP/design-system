@@ -1,25 +1,69 @@
-# cbp-toast
+# cbp-toast-container
 
 ## Overview
 
-The Toast component displays a brief, non-intrusive message that appears on a user interface to provide feedback about an action or status update.
+The Toast container is used to hold and position multiple toasts.
 
 ## Properties
 
 | Property | Attribute | Description | Type | Default |
 | --- | --- | --- | --- | --- |
-| `color` | `color` | specifies the color for the toast | `"danger" | "info" | "success" | "warning"` | `'info'` |
+| `position` | `position` | Specifies the position of the toast container relative to the viewport. | `"bottom-center" | "bottom-left" | "bottom-right" | "top-center" | "top-left" | "top-right"` | `'top-right'` |
+
+## Slots
+
+| Slot | Description |
+| --- | --- |
+|  | Only `cbp-toast` components shall be placed in the default slot. |
+
+## CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| `--cbp-toast-container-width` | 20rem |
+
+---
+
+# cbp-toast
+
+## Overview
+
+A Toast is a way to display messages or notifications, often temporarily, that pop out from the edge of the browser viewport.
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `color` | `color` | Specifies the color of the toast. Defaults to "info". | `"danger" | "info" | "success" | "warning"` | `'info'` |
 | `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
-| `duration` | `duration` | specifies time in seconds for the toast to be displayed | `10 | 3 | 5` | `undefined` |
-| `open` | `open` | When set, specifies that the toast is open | `boolean` | `undefined` |
+| `duration` | `duration` | Specifies time in seconds for the toast to be displayed. Defaults to persistent until dismissed. | `number` | `undefined` |
+| `open` | `open` | When set, specifies that the toast is visible. To show and dismiss a toast programmatically after a page has loaded, use the showToast() and dismissToast() methods, respectively. | `boolean` | `undefined` |
 | `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Methods
+
+### `dismissToast() => Promise<void>`
+
+A public method to dismiss a toast notification.
+
+#### Returns
+
+Type: `Promise<void>`
+
+### `showToast() => Promise<void>`
+
+A public method to show a toast notification with its animation.
+
+#### Returns
+
+Type: `Promise<void>`
 
 ## Slots
 
 | Slot | Description |
 | --- | --- |
 |  | The toast content is slotted in the default slot. |
-| `"cbp-toast-buttons"` | The toast action buttons, including a button to dismiss the toast at a minimum, are placed within this named slot. |
+| `"cbp-toast-buttons"` | The toast action buttons are placed within this named slot. |
 | `"cbp-toast-icon"` | The large toast icon, usually corresponding to the color variant, is slotted in this named slot. |
 | `"cbp-toast-title"` | The toast title is slotted within this named slot. |
 

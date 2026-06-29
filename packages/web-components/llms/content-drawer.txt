@@ -39,14 +39,12 @@
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-panel
-        aria-labelledby="panelheader"
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       >
         <cbp-typography
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="panelheader"
         >
           ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}
           Drawer Header
@@ -94,7 +92,6 @@
       ${uid ? `uid=${uid}` : ''}
     >
       <cbp-panel
-        aria-labelledby="userprefs-panel-header"
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         sx='{
           "--cbp-panel-header-color-dark": "var(--cbp-color-text-lighter)",
@@ -105,7 +102,6 @@
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="userprefs-panel-header"
         >
         
           ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}

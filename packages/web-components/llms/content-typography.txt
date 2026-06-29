@@ -10,6 +10,9 @@
   text,
   tag,
   variant,
+  size,
+  lineheight,
+  fontweight,
   divider,
   context,
   sx
@@ -18,6 +21,9 @@
     <cbp-typography
       ${tag ? `tag="${tag}"` : ''}
       ${variant != undefined ? `variant="${variant}"` : ''}
+      ${size != undefined ? `size="${size}"` : ''}
+      ${lineheight != undefined ? `line-height="${lineheight}"` : ''}
+      ${fontweight != undefined ? `font-weight="${fontweight}"` : ''}
       ${divider != 'none' ? `divider="${divider}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -38,106 +44,38 @@
   context,
   sx
 }) => {
-  return ` 
-    <cbp-typography
-      ${tag ? `tag="${tag}"` : ''}
-      variant = "masthead-1"
-      ${divider != 'none' ? `divider="${divider}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${text} (masthead-1)
-    </cbp-typography>
-
-    <cbp-typography
-      ${tag ? `tag="${tag}"` : ''}
-      variant = "masthead-2"
-      ${divider != 'none' ? `divider="${divider}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${text} (masthead-2)
-    </cbp-typography>
-
-    <cbp-typography
-      ${tag ? `tag="${tag}"` : ''}
-      variant = "heading-xxl"
-      ${divider != 'none' ? `divider="${divider}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${text} (heading-xxl)
-    </cbp-typography>
-    
-    <cbp-typography
-      ${tag ? `tag="${tag}"` : ''}
-      variant = "heading-xl"
-      ${divider != 'none' ? `divider="${divider}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${text} (heading-xl)
-    </cbp-typography>
-    
-    <cbp-typography
-      ${tag ? `tag="${tag}"` : ''}
-      variant = "heading-lg"
-      ${divider != 'none' ? `divider="${divider}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${text} (heading-lg)
-    </cbp-typography>
-    
-    <cbp-typography
-      ${tag ? `tag="${tag}"` : ''}
-      variant = "heading-md"
-      ${divider != 'none' ? `divider="${divider}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${text} (heading-md)
-    </cbp-typography>
-    
-    <cbp-typography
-      ${tag ? `tag="${tag}"` : ''}
-      variant = "heading-sm"
-      ${divider != 'none' ? `divider="${divider}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${text} (heading-sm)
-    </cbp-typography>
-    
-    <cbp-typography
-      ${tag ? `tag="${tag}"` : ''}
-      variant = "heading-xs"
-      ${divider != 'none' ? `divider="${divider}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${text} (heading-xs)
-    </cbp-typography>
-    
-    <cbp-typography
-      ${tag ? `tag="${tag}"` : ''}
-      variant = "body-text"
-      ${divider != 'none' ? `divider="${divider}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${text} (body-text)
-    </cbp-typography>
-
-    <cbp-typography
-      ${tag ? `tag="${tag}"` : ''}
-      variant = "subhead"
-      ${divider != 'none' ? `divider="${divider}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${text} (subhead)
-    </cbp-typography>
-  `;
+  var variants = ['heading-xxl', 'heading-xl', 'heading-lg', 'heading-md', 'heading-sm', 'heading-xs', 'body-text', 'subhead'];
+  ;
+  var htmlVariant = ``;
+  var htmlSize = ``;
+  for (var y = 0; y < variants.length; y++) {
+    htmlVariant += `
+      <cbp-typography
+        variant=${variants[y]}
+        ${tag ? `tag="${tag}"` : ''}
+        ${divider != 'none' ? `divider="${divider}"` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${text} (variant=${variants[y]})
+      </cbp-typography>
+    `;
+  }
+  for (var x = 1; x < 20; x++) {
+    htmlSize += `
+      <cbp-typography
+        size=${x}
+        ${tag ? `tag="${tag}"` : ''}
+        ${divider != 'none' ? `divider="${divider}"` : ''}
+        ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+        ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+      >
+        ${text} (size=${x})
+      </cbp-typography>
+    `;
+  }
+  ;
+  var html = htmlVariant + `<hr />` + htmlSize;
+  return html;
 }
 ```

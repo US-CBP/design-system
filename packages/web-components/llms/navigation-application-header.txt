@@ -12,6 +12,7 @@
   search,
   searchMethod,
   searchAction,
+  sticky,
   items,
   sx
 }) => {
@@ -36,6 +37,7 @@
       ${search ? 'search' : ''}
       ${searchMethod ? `search-method="${searchMethod}"` : ''}
       ${searchAction ? `search-action="${searchAction}"` : ''}
+      ${sticky ? `sticky` : ``}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateNavItems(items, drawerId)}
@@ -51,6 +53,7 @@
 ```tsx
 ({
   drawerId,
+  sticky,
   store,
   search,
   searchMethod,
@@ -76,6 +79,7 @@
   return ` 
     <cbp-app-header    
       ${drawerId ? `subnav-drawer-id="${drawerId}"` : ''}
+      ${sticky ? `sticky` : ``}
       ${search ? 'search' : ''}
       ${searchMethod ? `search-method="${searchMethod}"` : ''}
       ${searchAction ? `search-action="${searchAction}"` : ''}
