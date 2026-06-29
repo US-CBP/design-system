@@ -4,7 +4,9 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [unreleased] TBD
+## [0.9.0-beta.1] 06-29-2026
+
+With significant foundational updates, including tokens and icons, this release marks the first official BETA release as we prepare for a full production-ready release.
 
 * BREAKING: Updated design tokens as follows:
   * Updated "primary" and "secondary" "dark" and "darker" color values to be a shade darker for better contrast.
@@ -20,21 +22,22 @@ The React components are wrappers generated from this package and will share the
   * There were no breaking changes in icon names used by the `cbp-icon` component or in the design system.
   * However, there are SVG icons embedded in a few stories directly that should be updated manually if already in use, including:
     * `cbp-menu` (and the `cbp-table` with overflow menu story) - "trashcan" icon has been added to the `cbp-icon` component and the stories updated to use this.
-    * The volume slider story of `cbp-slider`.
-* Updated the `cbp-icon` component to work with the Angular Font Awesome package components, which adds another DOM node between our component and the rendered SVG.
+    * The volume slider story of `cbp-slider` (the icons as well as the sizing were updated).
+* Updated the `cbp-icon` component to work with the Angular Font Awesome package components, which adds another DOM node between the design system web component and the rendered SVG.
 * BREAKING: Updates to Toast:
   * Fixed the color of the buttons in toasts - most use an inverted `context`. This property should be added or updated code copied from Storybook.
   * Changed the sizing to use a shorter width by default.
 * Created the `cbp-toast-container` component to hold and position multiple toast notifications.
   * An individual toast may be used without the container, but it is always placed in the upper right of the viewport.
   * Code copied from Storybook's "multiple toast" story now includes this component.
-* Added an `orientation` property to `cbp-tabs` to allow for vertical tabs (the default is horizontal and does not need to be specified explicitly)
-* Updated the `cbp-universal-header` story code to use slotted `cbp-flex` and `cbp-flex-item` tags around the buttons.
+* Added an `orientation` property to `cbp-tabs` to allow for vertical tabs (the default is horizontal and does not need to be specified explicitly).
+* BREAKING: Updated the `cbp-universal-header` story code to use slotted `cbp-flex` and `cbp-flex-item` tags around the buttons.
   * This avoids needing arbitrary HTML that requires styling within the component.
   * The previous markup will continue to work until the official release, at which point the styling within the component will be removed.
 * Fixed an issue with the slotting the label text via the `cbp-expand-label` named slot being inadvertently hidden.
-* Added CSS API variables to `cbp-section` and `cbp-container` for changing color and background-color with dark mode support.
+* Added CSS API variables to `cbp-section` and `cbp-container` for changing color and background-color with dark mode/context support.
 * Created a "Multi-select with Chips" (dropdown) story to demonstrate how to create this pattern with loosely coupled components (Chips are not part of the dropdown component).
+* Created an "Overview" document about working with Form components.
 
 ## [0.0.1-develop.34] 04-24-2026
 
