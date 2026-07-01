@@ -98,7 +98,7 @@ DefinitionTooltip.args = {
 
 
 const testTemplate = ({}) => {
-  
+  //TODO: style tag is for proof of concept, remove & make into component styling
   return `
   <div style='height: 60rem;overflow: hidden;overflow-y: auto;padding-top: 30rem;'>
   <float-ui> 

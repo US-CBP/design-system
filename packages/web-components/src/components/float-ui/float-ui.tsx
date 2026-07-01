@@ -6,6 +6,7 @@ import {computePosition, flip} from '../../../../../node_modules/@floating-ui/do
   styleUrl: 'float-ui.scss',
 })
 
+//Documentation: https://floating-ui.com/docs/tutorial
 
 export class FloatUi {
 
@@ -17,7 +18,7 @@ export class FloatUi {
   computePos(){
     computePosition(this.button, this.tooltip, {
       placement: 'bottom',
-      middleware: [flip()],
+      middleware: [flip()], //secret sauce: is kinda working in example but needs expanded args & more testing 
     }).then(({x, y}) => {
       Object.assign(this.tooltip.style, {
         left: `${x}px`,
@@ -35,9 +36,7 @@ export class FloatUi {
 
   componentDidRender(){
     window.addEventListener('resize', () => {
-      console.log('Window height:', window.innerHeight);
-      console.log('Window width:', window.innerWidth);
-      this.computePos  
+      this.computePos()
       });
   }
 
