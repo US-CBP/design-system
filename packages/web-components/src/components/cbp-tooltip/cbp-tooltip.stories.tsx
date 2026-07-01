@@ -41,8 +41,9 @@ export default {
 };
 
 const Template = ({ open, uid, alignment, title, content, tooltipControl, context, sx }) => {
-  return ` 
-    <cbp-tooltip
+
+  return `
+  <cbp-tooltip
       ${open ? 'open' : ''}
       ${uid ? `uid="${uid}"` : ''}
       ${alignment ? `alignment="${alignment}"` : ''}
@@ -93,4 +94,41 @@ DefinitionTooltip.args = {
   title: 'Test Definition Tooltip Title',
   content: 'Stub text for definition tooltip.',
   tooltipControl: `TASPD`,
+};
+
+
+const testTemplate = ({}) => {
+  
+  return `
+  <div style='height: 60rem;overflow: hidden;overflow-y: auto;padding-top: 30rem;'>
+  <float-ui> 
+    <style>
+      #tooltip {
+        width: max-content;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #222;
+        color: white;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 4px;
+        font-size: 90%;
+      }
+    </style>
+    <button id="button" aria-describedby="tooltip">
+      My button
+    </button>
+    <div id="tooltip" role="tooltip">My tooltip</div>
+  </float-ui>
+  </div>
+  `;
+};
+export const testTooltip = testTemplate.bind({});
+
+testTooltip.args = {
+  uid: 'tooltip',
+  title: 'Test Tooltip Title',
+  content: 'Stub text for tooltip.',
+  tooltipControl: '<cbp-icon name="user" accessibility-text="User"></cbp-icon>',
 };

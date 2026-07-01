@@ -76,3 +76,4 @@ export const CbpTreeviewItem = /*@__PURE__*/createReactComponent<JSX.CbpTreeview
 export const CbpTypography = /*@__PURE__*/createReactComponent<JSX.CbpTypography, HTMLCbpTypographyElement>('cbp-typography');
 export const CbpUniversalHeader = /*@__PURE__*/createReactComponent<JSX.CbpUniversalHeader, HTMLCbpUniversalHeaderElement>('cbp-universal-header');
 export const CbpUsaBanner = /*@__PURE__*/createReactComponent<JSX.CbpUsaBanner, HTMLCbpUsaBannerElement>('cbp-usa-banner');
+export const FloatUi = /*@__PURE__*/createReactComponent<JSX.FloatUi, HTMLFloatUiElement>('float-ui');
