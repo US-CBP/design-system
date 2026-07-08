@@ -34,22 +34,65 @@ export default {
 };
 
 const Template = ({position, offset, flip, shift, arrow}) => {
+  // return `
+  
+  //   <cbp-float-ui 
+  //       ${position ? `position=${position}` : ``}
+  //       ${offset ? `offset=${offset}` : ``}
+  //       ${flip ? `flip=${flip}` : ``}
+  //       ${shift ? `shift=${shift}` : ``}
+  //       ${arrow ? `arrow=${arrow}` : ``}
+  //   >
+
+  //       <button id="button" aria-describedby="tooltip">
+  //           My button
+  //       </button>
+  //       <style>
+  //         #tooltip {
+  //           background: #222;
+  //           color: white;
+  //           font-weight: bold;
+  //           padding: 5px;
+  //           border-radius: 4px;
+  //           font-size: 90%;
+  //         }
+  //       </style>
+  //       <div id="tooltip" role="tooltip">
+  //         My tooltip
+  //         ${ arrow ? `<div id="arrow"></div>` : ``}
+  //       </div>
+  //   </cbp-float-ui>
+  //  `;
+ 
   return `
-    <cbp-float-ui 
-        ${position ? `position=${position}` : ``}
-        ${offset ? `offset=${offset}` : ``}
-        ${flip ? `flip=${flip}` : ``}
-        ${shift ? `shift=${shift}` : ``}
-        ${arrow ? `arrow=${arrow}` : ``}
-    >
-        <button id="button" aria-describedby="tooltip">
+
+    <div>
+    <button id="button" aria-describedby="tooltip">
             My button
         </button>
+    <floatUI
+      position= ${position}
+      offset=${offset}
+      flip=${flip}
+      shift=${shift}
+      arrow=${arrow}
+      >
+      <style>
+          #tooltip {
+            background: #222;
+            color: white;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 4px;
+            font-size: 90%;
+          }
+        </style>
         <div id="tooltip" role="tooltip">
           My tooltip
           ${ arrow ? `<div id="arrow"></div>` : ``}
         </div>
-    </cbp-float-ui>
-   `;
+    </floatUI>
+    </div>
+  `
 };
 export const floatingAction = Template.bind({});
