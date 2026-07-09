@@ -77,8 +77,8 @@ const renderPreHydrated: DecoratorFunction<WebComponentsRenderer> = (storyFn, co
     setTimeout( async () => {
       channel.emit('storybook/html/codeUpdate', {
         code: rawSnapshot?.replace(/<!---->/g,'')
-        .replace(/(checked|indeterminate|selectable|selected|current|disabled|readonly|required|error|group|success|determinate|hidden|hide|visually-hide|open|pressed|expanded|multiple|inert|controls|download|novalidate|formnovalidate|autofocus|stretch|nobreak|hide-minmax|hide-input|striped|flat|column-hover|hide-status|filter|async|create|enhanced|sticky|debug)=""/gi,'$1') // Represent booleans properly with just the attribute without ="" per innerHTML
-        .replace(/(sx|items)="/gi,'$1=\'').replace(/(}|])"/gi,'$1\'')
+        .replace(/(checked|indeterminate|selectable|selected|current|disabled|readonly|required|error|group|success|determinate|hidden|hide|visually-hide|open|pressed|expanded|multiple|inert|controls|download|novalidate|formnovalidate|autofocus|stretch|nobreak|hide-minmax|hide-input|striped|flat|column-hover|hide-status|filter|async|create|enhanced|sticky|store|debug)=""/gi,'$1') // Represent booleans properly with just the attribute without ="" per innerHTML
+        .replace(/(sx|items)="([{\[])/gi,'$1=\'$2').replace(/(}|])"/gi,'$1\'') // fix JSON props, but not "items" on cbp-pagination
         .replace(/&quot;/gi,'"') // fix sx props in HTML by wrapping the value in single quotes and unescaping the JSON double quotes
         .split('\n')
           //.filter( (line: string) => line.trim() != '' ? line.replace(/^ {0,4}/,'') : null) 
