@@ -1,5 +1,6 @@
 import { Component, Element, Prop, Method, Watch, Event, EventEmitter, Host, h } from '@stencil/core';
-import { setCSSProps, createNamespaceKey, doKeyboardNav, clickAwayListener, floatUI, floatUIProps } from '../../utils/utils';
+import { setCSSProps, createNamespaceKey, doKeyboardNav, clickAwayListener} from '../../utils/utils';
+import { floatUI, floatUIProps } from '../../utils/floating-placement';
 
 /**
  * A Menu contains additional actions in the form of links or buttons, which can be shown by activating a control.
@@ -21,8 +22,11 @@ export class CbpMenu {
 
   @Element() private host: HTMLElement;
 
-  /** Specifies the position of the menu. Defaults to "bottom-start". */
-  @Prop({ reflect: true }) position: 'bottom-start' | "bottom-end" | 'top-start' | "top-end" = 'bottom-start';
+  /** Specifies the position of the menu. Defaults to "bottom". */
+  @Prop({ reflect: true }) position: 'bottom' | 'top' = 'bottom';
+  
+  //** Specifies the placement of the menu horizontally. Defaults to "start" */
+  @Prop({ reflect: true }) placement: 'start' | 'end' = 'start'
 
   /** When set, specifies that the menu is open. */
   @Prop({ reflect: true }) open: boolean=false;
@@ -152,10 +156,13 @@ export class CbpMenu {
     if(this.open){
 
      const floatUiprops: floatUIProps= {
-        placement: 'top',
-        offset: 0,
+        placement: this.position,
+        offset: {
+          mainAxis: (this.host.offsetHeight * -1),
+          crossAxis: this.placement == 'start' ? (this.menu.offsetWidth - this.control.offsetWidth) / 2 : (this.menu.offsetWidth - this.control.offsetWidth) / 2 * -1
+        },
         flip: true,
-        shift: false,
+        shift: true,
       }
 
       floatUI(floatUiprops, this.control, this.menu);
