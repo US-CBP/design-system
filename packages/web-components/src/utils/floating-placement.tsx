@@ -3,7 +3,7 @@ import {computePosition, flip, offset, shift} from '../../../../node_modules/@fl
 //** Using Float UI, external documentation: https://floating-ui.com/ */
 
 export interface floatUIProps {
-    placement: 'top' | 'left' | 'bottom' | 'right',
+    placement:   | 'top'  | 'top-start'  | 'top-end'  | 'right'  | 'right-start'  | 'right-end'  | 'bottom'  | 'bottom-start'  | 'bottom-end'  | 'left'  | 'left-start'  | 'left-end',
     offset:{
         mainAxis?: number,
         crossAxis?: number,

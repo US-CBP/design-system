@@ -22,11 +22,8 @@ export class CbpMenu {
 
   @Element() private host: HTMLElement;
 
-  /** Specifies the position of the menu. Defaults to "bottom". */
-  @Prop({ reflect: true }) position: 'bottom' | 'top' = 'bottom';
-  
-  //** Specifies the placement of the menu horizontally. Defaults to "start" */
-  @Prop({ reflect: true }) placement: 'start' | 'end' = 'start'
+  /** Specifies the position of the menu. Defaults to "bottom-start". */
+  @Prop({ reflect: true }) position: 'bottom-start' | "bottom-end" | 'top-start' | "top-end" = 'bottom-start';
 
   /** When set, specifies that the menu is open. */
   @Prop({ reflect: true }) open: boolean=false;
@@ -154,12 +151,13 @@ export class CbpMenu {
 
   componentDidRender(){
     if(this.open){
+    
+      
 
-     const floatUiprops: floatUIProps= {
+    const floatUiprops: floatUIProps= {
         placement: this.position,
         offset: {
           mainAxis: (this.host.offsetHeight * -1),
-          crossAxis: this.placement == 'start' ? (this.menu.offsetWidth - this.control.offsetWidth) / 2 : (this.menu.offsetWidth - this.control.offsetWidth) / 2 * -1
         },
         flip: true,
         shift: true,

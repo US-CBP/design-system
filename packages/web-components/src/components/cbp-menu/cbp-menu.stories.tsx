@@ -7,11 +7,7 @@ export default {
   argTypes: {
     position: {
       control: 'select',
-      options: [ 'bottom', "top"]
-    },
-    placement: {
-      control: 'select',
-      options: [ 'start', 'end']
+      options: [ 'bottom-start', "bottom-end", 'top-start', "top-end"]
     },
     context : {
       control: 'select',
@@ -40,12 +36,11 @@ function generateMenuItem(items){
   return html.join('');
 }
 
-const Template = ({ position, placement, context, sx }) => {
+const Template = ({ position, context, sx }) => {
   return ` 
     <cbp-menu
       uid="menuId"
       ${position ? `position="${position}"` : ''}
-      ${placement ? `placement="${placement}"` : ''}
       ${context ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -80,12 +75,11 @@ Menu.args = {};
 
 
 
-const ActionsMenuTemplate = ({ position, placement, items, context, sx }) => {
+const ActionsMenuTemplate = ({ position,  items, context, sx }) => {
   return ` 
     <cbp-menu
       uid="menuId"
       ${position ? `position="${position}"` : ''}
-      ${placement ? `placement="${placement}"` : ''}
       ${context ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
