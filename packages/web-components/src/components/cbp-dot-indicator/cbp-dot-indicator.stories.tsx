@@ -28,7 +28,7 @@ const Template = ({ current, items, itemName }) => {
 `;
 };
 
-export const dotIndicator = Template.bind({});
+export const dotIndicator: any = Template.bind({});
 dotIndicator.args = {
   items: 9,
 }

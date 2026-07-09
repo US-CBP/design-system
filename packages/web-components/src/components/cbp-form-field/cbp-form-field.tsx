@@ -236,8 +236,8 @@ export class CbpFormField {
               id={`${this.fieldId}-grouplabel`}
               class="cbp-form-field-label"
             >
-              {this.label}
               <slot name="cbp-form-field-label" />
+              {this.label}
             </legend>
 
             <div
@@ -268,8 +268,8 @@ export class CbpFormField {
             id={`${this.fieldId}-label`}
             class="cbp-form-field-label"
           >
-            {this.label}
             <slot name="cbp-form-field-label" />
+            {this.label}
           </label>
 
           <div

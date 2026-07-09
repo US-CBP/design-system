@@ -25,8 +25,8 @@ export default {
 const Template = ({ text, targetId, shortcutKey, sx }) => {
   return ` 
     <cbp-skip-nav
-      ${targetId ? `targetId="${targetId}"` : ''}
-      ${shortcutKey ? `shortcutKey="${shortcutKey}"` : ''}
+      ${targetId ? `target-id="${targetId}"` : ''}
+      ${shortcutKey ? `shortcut-key="${shortcutKey}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >${text ? text : ''}</cbp-skip-nav>
   `;

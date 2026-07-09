@@ -71,7 +71,7 @@ const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabe
   `;
 }
   
-export const Default = PanelTemplate.bind({});
+export const Default: any = PanelTemplate.bind({});
 Default.args = {
   headingLevel: 'h3',
   header: 'Panel Header',
@@ -80,7 +80,7 @@ Default.args = {
 };
 Default.storyName = 'Default';
 
-export const Sidebar = PanelTemplate.bind({});
+export const Sidebar: any = PanelTemplate.bind({});
 Sidebar.args = {
   headingLevel: 'h3',
   header: 'Sidebar Header',

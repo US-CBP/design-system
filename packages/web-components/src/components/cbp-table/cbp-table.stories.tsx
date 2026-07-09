@@ -32,6 +32,14 @@ export default {
     liveRegion: {
       control: 'text',
     },
+    headers: {
+      name: 'headers (slotted)',
+      control: 'object'
+    },
+    tableData: {
+      name: 'tableData (slotted)',
+      control: 'object'
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -139,7 +147,6 @@ function toolbar() {
 
 
 const Template = ({ tableData, headers, useRowHeader, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
-  
   return ` 
     <cbp-table
       ${striped != 'none' ? `striped="${striped}"` : ''}
@@ -175,7 +182,7 @@ const Template = ({ tableData, headers, useRowHeader, selectable, striped, hover
   `;
 };
 
-export const BasicTable = Template.bind({});
+export const BasicTable: any = Template.bind({});
 BasicTable.args = {
   striped: 'even',
   headers: [
@@ -249,7 +256,7 @@ BasicTable.args = {
 }
 
 
-export const dangerTable = Template.bind({});
+export const dangerTable: any = Template.bind({});
 dangerTable.args = {
   striped: 'even',
   headers: [
@@ -324,7 +331,7 @@ dangerTable.args = {
 }
 
 
-export const highlightTable = Template.bind({});
+export const highlightTable: any = Template.bind({});
 highlightTable.args = {
   striped: 'even',
   headers: [
@@ -398,7 +405,7 @@ highlightTable.args = {
 }
 
 
-export const singleRowActionTable = Template.bind({});
+export const singleRowActionTable: any = Template.bind({});
 singleRowActionTable.args = {
   striped: 'even',
   headers: [
@@ -505,7 +512,7 @@ singleRowActionTable.args = {
 }
 
 
-export const OverflowMenu = Template.bind({});
+export const OverflowMenu: any = Template.bind({});
 OverflowMenu.storyName = "Single Action Table with Overflow Menu"
 OverflowMenu.args = {
   striped: 'even',

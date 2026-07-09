@@ -90,7 +90,7 @@ const Template = ({ display, wrap, direction, alignItems, alignContent, justifyC
   `;
 };
 
-export const Flex = Template.bind({});
+export const Flex: any = Template.bind({});
 Flex.args = {};
 
 

@@ -2,6 +2,18 @@ export default {
   title: 'Content/Tooltip',
   tags: ['beta'],
   argTypes: {
+    control: {
+      name: 'control (slotted)',
+      control: 'text',
+    },
+    title: {
+      name: 'title (slotted)',
+      control: 'text',
+    },
+    content: {
+      name: 'content (slotted)',
+      control: 'text',
+    },
     uid: {
       description: 'A unique `id` applied to the dialog and referenced by the control.',
       control: 'text',
@@ -28,6 +40,7 @@ export default {
         'left-bottom',
       ],
     },
+
     context: {
       control: 'select',
       options: ['light-inverts', 'light-always', 'dark-inverts', 'dark-always'],
@@ -40,7 +53,7 @@ export default {
   parameters: { layout: 'centered' },
 };
 
-const Template = ({ open, uid, alignment, title, content, tooltipControl, context, sx }) => {
+const Template = ({ open, uid, alignment, title, content, control, context, sx }) => {
   return ` 
     <cbp-tooltip
       ${open ? 'open' : ''}
@@ -49,7 +62,7 @@ const Template = ({ open, uid, alignment, title, content, tooltipControl, contex
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >  
-      ${tooltipControl}
+      ${control}
       <div slot="cbp-tooltip-content">
         <div style="font-weight: var(--cbp-font-weight-bold)">${title}</div>
         <div>${content}</div>
@@ -58,16 +71,16 @@ const Template = ({ open, uid, alignment, title, content, tooltipControl, contex
   `;
 };
 
-export const Tooltip = Template.bind({});
+export const Tooltip: any = Template.bind({});
 
 Tooltip.args = {
-  uid: 'tooltip',
+  control: '<cbp-icon name="user" accessibility-text="User"></cbp-icon>',
   title: 'Test Tooltip Title',
   content: 'Stub text for tooltip.',
-  tooltipControl: '<cbp-icon name="user" accessibility-text="User"></cbp-icon>',
+  uid: 'tooltip',
 };
 
-const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipControl, context, sx }) => {
+const DefinitionTemplate = ({ open, uid, alignment, title, content, control, context, sx }) => {
   return ` 
     <cbp-tooltip
       ${open ? 'open' : ''}
@@ -78,7 +91,7 @@ const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipContr
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
 
     >  
-      ${tooltipControl}
+      ${control}
       <div slot="cbp-tooltip-content">
         <div style="font-weight: var(--cbp-font-weight-bold)">${title}</div>
         <div>${content}</div>
@@ -87,10 +100,10 @@ const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipContr
   `;
 };
 
-export const DefinitionTooltip = DefinitionTemplate.bind({});
+export const DefinitionTooltip: any = DefinitionTemplate.bind({});
 DefinitionTooltip.args = {
-  uid: 'tooltip',
+  control: `TASPD`,
   title: 'Test Definition Tooltip Title',
   content: 'Stub text for definition tooltip.',
-  tooltipControl: `TASPD`,
+  uid: 'tooltip',
 };

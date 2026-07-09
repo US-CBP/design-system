@@ -10,11 +10,16 @@ export default {
       control: 'text',
     },
     sticky:{
-      description: 'boolean to set if the app header is sticky.',
+      description: 'determines if the app header is sticky at the top of the page while scrolling the page.',
       control: 'boolean'
     },
     store: {
+      description: 'Sets the `store` property on the related `cbp-subnav` tag so that the primary navigation and sub-navigation can share state.',
       control: 'boolean'
+    },
+    items: {
+      name: 'items (slotted)',
+      control: 'object'
     },
     search: {
       description: 'determines if the search field is rendered',
@@ -197,7 +202,7 @@ const Template = ({ drawerId, sticky, store, search, searchMethod, searchAction,
 
 
 
-export const ApplicationHeader = Template.bind({});
+export const ApplicationHeader: any = Template.bind({});
 //ApplicationHeader.StoryName = "Application Header (Simple)"
 ApplicationHeader.args = {
   drawerId: 'navDrawer',
@@ -229,7 +234,7 @@ ApplicationHeader.args = {
 
 
 
-const AppHeaderWithSubnavTemplate = ({ drawerId, store, search, searchMethod, searchAction, sticky, items, sx }) => {  
+const AppHeaderWithSubnavTemplate: any = ({ drawerId, store, search, searchMethod, searchAction, sticky, items, sx }) => {  
   
   setTimeout(() => {
     // Cancel form submit event on search to prevent full page reload

@@ -2,6 +2,10 @@ export default {
   title: 'Navigation/Breadcrumb',
   tags: ['beta'],
   argTypes: {
+    breadcrumbs: {
+      name: 'breadcrumbs (slotted)',
+      control: 'object'
+    },
     divider: {
       control: 'text',
     },
@@ -68,7 +72,7 @@ const Template = ({ breadcrumbs, home, divider, context, sx }) => {
   `;
 };
 
-export const Breadcrumb = Template.bind({});
+export const Breadcrumb: any = Template.bind({});
 Breadcrumb.args = {
   breadcrumbs: [
     {

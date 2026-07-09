@@ -17,6 +17,10 @@ export default {
     error: {
       control: 'boolean',
     },
+    radios: {
+      name: 'radios (slotted)',
+      control: 'object',
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -136,7 +140,7 @@ const RadioListHorizontalTemplate = ({ radios, label, description, fieldId, disa
     </cbp-form-field>
 */
 
-export const RadioListHorizontal = RadioListHorizontalTemplate.bind({});
+export const RadioListHorizontal: any = RadioListHorizontalTemplate.bind({});
 RadioListHorizontal.args = {
   gap: 'var(--cbp-space-1x) var(--cbp-space-5x)',
   breakpoint: '28rem'
@@ -166,7 +170,7 @@ const RadioListMultiColumnTemplate = ({ radios, gap, columns, width, label, desc
   `;
 };
 
-export const RadioListMultiColumn = RadioListMultiColumnTemplate.bind({});
+export const RadioListMultiColumn: any = RadioListMultiColumnTemplate.bind({});
 RadioListMultiColumn.args = {
   gap: 'var(--cbp-space-4x)',
   columns: '3',

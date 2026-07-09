@@ -88,8 +88,8 @@ const Template = ({ label, withIcon, inText, href, rel, target, download, downlo
       ${href ? `href="${href}"` : ''}
       ${rel ? `rel="${rel}"` : ''}
       ${target ? `target="${target}"` : ''}
-      ${download ? `download${ downloadFileName ? `="${downloadFileName}"` : ''}` : ''}
-      ${shortcutKey ? `accesskey="${shortcutKey}"` : ''}
+      ${download ? `download${downloadFileName ? `="${downloadFileName}"` : ''}` : ''}
+      ${shortcutKey ? `shortcut-key="${shortcutKey}"` : ''}
       ${language ? `lang="${language}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${disabled ? 'disabled' : ''}

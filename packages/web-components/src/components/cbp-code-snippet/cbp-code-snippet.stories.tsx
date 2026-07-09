@@ -39,23 +39,22 @@ const Template = ({ codeSnippet, variant, height, context, sx }) => {
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      ${codeSnippet}
+    ${codeSnippet}
     </cbp-code-snippet>
   `;
 };
 export const CodeSnippet = Template.bind({});
 
 
-export const CodeSnippetBlock = Template.bind({});
+export const CodeSnippetBlock: any = Template.bind({});
 CodeSnippetBlock.args ={
   variant: "block",
   codeSnippet: `<a href='#'>test code snippet</a><br />
-    <a href='#'>test code snippet</a><br />
-    <a href='#'>test code snippet</a><br />
-    <a href='#'>test code snippet</a><br />
-    <a href='#'>test code snippet</a><br />
-    <a href='#'>test code snippet</a><br />
-    <a href='#'>test code snippet</a><br />
-  `,
+<a href='#'>test code snippet</a><br />
+<a href='#'>test code snippet</a><br />
+<a href='#'>test code snippet</a><br />
+<a href='#'>test code snippet</a><br />
+<a href='#'>test code snippet</a><br />
+<a href='#'>test code snippet</a><br />`,
   height: "5rem"
 }

@@ -21,6 +21,11 @@ export default {
       if: { arg: 'tag', neq: 'a' },
       options: ['button', 'submit', 'reset'],
     },
+    name: {
+      description: 'Specifies the `name` attribute of the rendered button.',
+      control: 'text',
+      if: { arg: 'tag', neq: 'a' },
+    },
     value: {
       description: 'Specifies the `value` attribute of the rendered button. Not valid on link buttons.',
       control: 'text',
@@ -114,11 +119,12 @@ export default {
   },
 };
 
-const Template = ({ label, withIcon, tag, type, value, href, rel, target, download, downloadFileName, fill, color, variant, accessibilityText, controls, targetProp, pressed, expanded, disabled, context, sx }) => {
+const Template = ({ label, withIcon, tag, type, name, value, href, rel, target, download, downloadFileName, fill, color, variant, accessibilityText, controls, targetProp, pressed, expanded, disabled, context, sx }) => {
   return ` 
       <cbp-button
         ${tag !== 'button' ? `tag="${tag}"` : ''}
         ${type ? `type="${type}"` : ''}
+        ${name ? `name="${name}"` : ''}
         ${value ? `value="${value}"` : ''}
         ${href ? `href="${href}"` : ''}
         ${rel ? `rel="${rel}"` : ''}
@@ -161,6 +167,7 @@ const SlottedButtonTemplate = ({ label, withIcon, tag, href, fill, color, varian
         <button 
           slot="cbp-button-custom"
           type="button"
+          name="custom-button"
           value="Custom Button Value"
         >
           ${withIcon ? `<cbp-icon name="pen-to-square"></cbp-icon>` : ''}

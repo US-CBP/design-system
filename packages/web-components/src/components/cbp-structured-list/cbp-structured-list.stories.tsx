@@ -18,11 +18,15 @@ export default {
     selectable: {
       control: 'boolean',
     },
-   listItemType: {
-      description: 'determine if structured list is populated with li or structured list item',
-      control: 'select',
-      options: ['li', 'structured list item']
-   },
+    listItemType: {
+        description: 'determine if structured list is populated with li or structured list item',
+        control: 'select',
+        options: ['li', 'structured list item']
+    },
+    listItems: {
+      name: 'listItems (slotted)',
+      control: 'object',
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -42,23 +46,21 @@ export default {
 function generateLIs(items, selectable, context) {
   const html = items.map(({ content }, index) => {
     return `
-        <li>
+      <li>
         ${selectable ?
-            `<cbp-checkbox 
-              value="${index}"
-              ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
-            >
-              <input
-                type="checkbox"
-                name="checkbox"
-                value="${index}"
-              />
-              <cbp-hide visually-hide>
-                Checkbox ${index}
-              </cbp-hide>
-            </cbp-checkbox>`
-          :``
-        }
+        `<cbp-checkbox 
+          value="${index}"
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
+        >
+          <input
+            type="checkbox"
+            name="checkbox"
+            value="${index}"
+          />
+          <cbp-hide visually-hide>
+            Checkbox ${index}
+          </cbp-hide>
+        </cbp-checkbox>` : ''}
         ${content}
       </li>
     `;
@@ -69,9 +71,9 @@ function generateLIs(items, selectable, context) {
 function generateItems(items, selectable, context) {
   const html = items.map(({ content, color}, index) => {
     return `
-      <cbp-structured-list-item ${color ? `color="${color}"` : ''} >
+      <cbp-structured-list-item ${color ? `color="${color}"` : ''}>
         ${selectable ?
-          `<cbp-checkbox 
+        `<cbp-checkbox 
           value="${index}"
           ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
         >
@@ -84,16 +86,14 @@ function generateItems(items, selectable, context) {
             Checkbox ${index}
           </cbp-hide>
         </cbp-checkbox>`
-        :``
-        }
-        ${content}
+        : ''} ${content}
       </cbp-structured-list-item>
     `;
   });
   return html.join('');
 }
 
-const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, listItemType, context, sx }) => {
+const StructuredListTemplate: any = ({ listItems, striped, selectable, showHeader, headerId, showFooter, listItemType, context, sx }) => {
   
   setTimeout(() => {
     let anchors = document.querySelectorAll('cbp-structured-list a');
@@ -110,29 +110,20 @@ const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, he
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${showHeader ? `<div slot="cbp-structured-list-header" ${headerId ? `id="${headerId}"` : ''}>${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list.</div>` : ''}
-
       ${listItemType=="structured list item" ? generateItems(listItems, selectable, context) : generateLIs(listItems, selectable, context)}
-      
       ${showFooter ? `
-        <div slot="cbp-structured-list-footer">
-          <cbp-action-bar variant="inline" context="dark-inverts">
-            <div slot="cbp-action-bar-info">0 items selected.</div>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-          </cbp-action-bar>
-        </div>
-      ` : ''}
+      <div slot="cbp-structured-list-footer">
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>
+      </div>` : ''}
     </cbp-structured-list>
   `;
 };
 export const StructuredList = StructuredListTemplate.bind({});
 StructuredList.storyName = "Structured List (Simple)"
-StructuredList.argTypes = {
-  listItems: {
-    description: 'Configure various aspects of the list items within the structured list.',
-    control: 'object',
-  },
-}
 StructuredList.args = {
   listItemType: 'li',
   listItems: [
@@ -158,7 +149,7 @@ StructuredList.args = {
 export const StructuredListWithGrid = StructuredListTemplate.bind({});
 StructuredListWithGrid.args = {
   listItemType: "structured list item",
-   listItems: [
+  listItems: [
     {
       content: "<cbp-grid gap='var(--cbp-space-4x)'  grid-template-columns='repeat(auto-fit, minmax(5rem, 1fr))'><cbp-grid-item>Grid Item 1</cbp-grid-item><cbp-grid-item>Grid Item 2</cbp-grid-item><cbp-grid-item>Grid Item 3</cbp-grid-item><cbp-grid-item>Grid Item 4</cbp-grid-item></cbp-grid>",
     },

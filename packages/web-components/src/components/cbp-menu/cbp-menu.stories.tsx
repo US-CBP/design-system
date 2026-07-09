@@ -23,14 +23,14 @@ export default {
 function generateMenuItem(items){
   const html = items.map(({tag, color, icon, text}) =>{
     return `
-    <cbp-menu-item
-      ${color ? `color="${color}"` : ``}
-    >
-      <${tag}>
-        ${icon ? `<cbp-icon name="${icon}"></cbp-icon>` : ``}
-        ${text}
-      </${tag}>
-    </cbp-menu-item>
+      <cbp-menu-item
+        ${color ? `color="${color}"` : ``}
+      >
+        <${tag}>
+          ${icon ? `<cbp-icon name="${icon}"></cbp-icon>` : ``}
+          ${text}
+        </${tag}>
+      </cbp-menu-item>
     `
   })
   return html.join('');
@@ -70,7 +70,7 @@ const Template = ({ position, context, sx }) => {
   `;
 };
 
-export const Menu = Template.bind({});
+export const Menu: any = Template.bind({});
 Menu.args = {};
 
 
@@ -101,7 +101,7 @@ const ActionsMenuTemplate = ({ position, items, context, sx }) => {
   `;
 };
 
-export const ActionsMenu = ActionsMenuTemplate.bind({});
+export const ActionsMenu: any = ActionsMenuTemplate.bind({});
 ActionsMenu.args = {
   items:[
     {
