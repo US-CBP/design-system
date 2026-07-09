@@ -50,7 +50,7 @@ const Template = ({ label, checked, name, value, hideStatus, statusTextOn, statu
   `;
 };
 
-export const Toggle = Template.bind({});
+export const Toggle: any = Template.bind({});
 Toggle.args = {
   label: 'Toggle Label',
   name: "toggle",
@@ -59,6 +59,7 @@ Toggle.args = {
 };
 Toggle.argTypes = {
   label: {
+    name: 'label (slotted)',
     description: 'Sets the label for the toggle control',
     control: 'text',
   },
@@ -105,15 +106,20 @@ const MultipleTemplate = ({ ToggleItems, labelWidth, hideStatus, statusTextOn, s
   return `
     <cbp-form-field group
       label="Settings"
-      description="An example of multiple toggles in a form field"
+      description="An example of multiple toggles in a form field group."
     >
       ${generateToggles(ToggleItems, labelWidth, hideStatus, statusTextOn, statusTextOff, disabled, context, sx)} 
     </cbp-form-field>
   `;
 };
 
-export const MultipleToggle = MultipleTemplate.bind({});
-
+export const MultipleToggle: any = MultipleTemplate.bind({});
+MultipleToggle.argTypes = {
+  ToggleItems: {
+    name: 'ToggleItems (slotted)',
+    control: 'object',
+  },
+}
 MultipleToggle.args = {
   ToggleItems: [
     {

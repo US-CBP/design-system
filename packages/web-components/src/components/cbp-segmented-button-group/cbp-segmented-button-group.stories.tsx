@@ -3,7 +3,7 @@ export default {
   tags: ['beta'],
   argTypes: {
     buttons: {
-      name: 'Buttons',
+      name: 'Buttons (slotted)',
       description: 'Configure various aspects of the buttons within the segmented button group.',
       control: 'object',
     },
@@ -59,7 +59,7 @@ const Template = ({ buttons, name, value, multiple, accessibilityText, disabled,
   `;
 };
 
-export const SegmentedButtonGroup = Template.bind({});
+export const SegmentedButtonGroup: any = Template.bind({});
 SegmentedButtonGroup.args = {
   buttons: [
     {
@@ -84,7 +84,7 @@ SegmentedButtonGroup.args = {
 };
 
 
-export const SegmentedButtonGroupIcons = Template.bind({});
+export const SegmentedButtonGroupIcons: any = Template.bind({});
 SegmentedButtonGroupIcons.args = {
   buttons: [
     {

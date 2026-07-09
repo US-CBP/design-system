@@ -69,7 +69,7 @@ export default {
   export const Notice = NoticeTemplate.bind({});
   Notice.args = {    
     title: 'Notice Title',
-    color: 'info',
     content: 'Notice: This is default text',
+    color: 'info',
   };
   

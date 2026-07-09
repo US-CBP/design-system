@@ -105,6 +105,7 @@ const Template = ({ title, headingId, content, color, open, width, height, uid, 
       ${color && color != 'default' ? `color="${color}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
+      ${ title!='' || withIcon ? `
       <cbp-typography
         ${headingId ? `id=${headingId}` : ``}
         slot="cbp-dialog-header"
@@ -119,22 +120,23 @@ const Template = ({ title, headingId, content, color, open, width, height, uid, 
             ></cbp-icon>`
         : ''}
         ${title}
-      </cbp-typography>
+      </cbp-typography>` : ''}
 
+      ${ content!='' ? `
       <cbp-typography
         slot="cbp-dialog-body"
         tag="div"
         variant="heading-xs"
       >
         ${content}
-      </cbp-typography>
+      </cbp-typography>` : ''}
 
       ${renderActions(actionsLayout, headingId, actionsConfig)}
     </cbp-dialog>
   `;
 };
 
-export const Dialog = Template.bind({});
+export const Dialog: any = Template.bind({});
 Dialog.args = {
   title: 'Dialog Title',
   headingId: 'dialog-title',

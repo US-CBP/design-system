@@ -5,7 +5,14 @@ export default {
   title: 'Notifications/Toast',
   tags: ['beta'],
   argTypes: {
-
+    title: {
+      name: 'Title (slotted)',
+      control: 'text'
+    },
+    content: {
+      name: 'Content (slotted)',
+      control: 'text'
+    },
     duration: {
       control: 'select',
       options: [3, 5, 10]
@@ -107,9 +114,9 @@ Toast.argTypes={
 }
 
 Toast.args = {
-  open: true,
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
+  open: true,
 }
 
 const MultiTemplate: any = ({position, multipleToast, open, title, content, duration, color, context, sx }) => {
@@ -161,9 +168,8 @@ setTimeout(() => {
 export const MultipleToast = MultiTemplate.bind({});
 
 MultipleToast.args = {
-  multipleToast: 3,
-  open: true,
   title: 'Test Toast Title',
   content: 'Notification Description - A rule you are following just fired.',
-
+  multipleToast: 3,
+  open: true,
 }

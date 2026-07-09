@@ -5,7 +5,15 @@ export default {
     label: {
       control: 'text',
     },
+    labelSlotted: {
+      name: 'label (slotted)',
+      control: 'text',
+    },
     description: {
+      control: 'text',
+    },
+    descriptionSlotted: {
+      name: 'description (slotted)',
       control: 'text',
     },
     fieldId: {
@@ -36,8 +44,10 @@ export default {
 };
 
 
+//cbp-form-field-label
 
-const TextInputTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
+
+const TextInputTemplate = ({ label, labelSlotted, description, descriptionSlotted, fieldId, error, readonly, disabled, value, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
@@ -49,6 +59,8 @@ const TextInputTemplate = ({ label, description, fieldId, error, readonly, disab
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
+      ${ labelSlotted ? `<span slot="cbp-form-field-label">${labelSlotted}</span>` : ''}
+      ${ descriptionSlotted ? `<span slot="cbp-form-field-description">${descriptionSlotted}</span>` : ''}
       <input 
         type="text"
         name="textinput"
@@ -58,13 +70,13 @@ const TextInputTemplate = ({ label, description, fieldId, error, readonly, disab
   `;
 };
 
-export const TextInput = TextInputTemplate.bind({});
+export const TextInput: any = TextInputTemplate.bind({});
 TextInput.args = {
   value: '',
 };
 
 
-const TextareaTemplate = ({ label, description, fieldId, error, readonly, disabled, value, context, sx }) => {
+const TextareaTemplate = ({ label, labelSlotted, description, descriptionSlotted, fieldId, error, readonly, disabled, value, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
@@ -76,22 +88,21 @@ const TextareaTemplate = ({ label, description, fieldId, error, readonly, disabl
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
+      ${ labelSlotted ? `<span slot="cbp-form-field-label">${labelSlotted}</span>` : ''}
+      ${ descriptionSlotted ? `<span slot="cbp-form-field-description">${descriptionSlotted}</span>` : ''}
       <textarea name="textarea">${value}</textarea>
     </cbp-form-field>
   `;
 };
 
-export const Textarea = TextareaTemplate.bind({});
+export const Textarea: any = TextareaTemplate.bind({});
 Textarea.args = {
   value: '',
 };
 
 
 
-
-
-
-const SelectTemplate = ({ label, description, fieldId, error, disabled, context, sx }) => {
+const SelectTemplate = ({ label, labelSlotted, description, descriptionSlotted, fieldId, error, disabled, context, sx }) => {
   return ` 
     <cbp-form-field
       ${label ? `label="${label}"` : ''}
@@ -102,6 +113,8 @@ const SelectTemplate = ({ label, description, fieldId, error, disabled, context,
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
+      ${ labelSlotted ? `<span slot="cbp-form-field-label">${labelSlotted}</span>` : ''}
+      ${ descriptionSlotted ? `<span slot="cbp-form-field-description">${descriptionSlotted}</span>` : ''}
       <select name="select">
         <option value=""></option>
         <option value="1">Option 1</option>
@@ -117,7 +130,7 @@ const SelectTemplate = ({ label, description, fieldId, error, disabled, context,
   `;
 };
 
-export const Select = SelectTemplate.bind({});
+export const Select: any = SelectTemplate.bind({});
 Select.args = {};
 
 

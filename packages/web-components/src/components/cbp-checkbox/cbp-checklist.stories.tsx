@@ -17,6 +17,10 @@ export default {
     error: {
       control: 'boolean',
     },
+    checkboxes: {
+      name: 'checkboxes (slotted)',
+      control: 'object',
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -127,7 +131,7 @@ const ChecklistHorizontalTemplate = ({ checkboxes, label, description, fieldId, 
     `;
 };
 
-export const ChecklistHorizontal = ChecklistHorizontalTemplate.bind({});
+export const ChecklistHorizontal: any = ChecklistHorizontalTemplate.bind({});
 ChecklistHorizontal.args = {
   gap: 'var(--cbp-space-1x) var(--cbp-space-5x)',
   breakpoint: '35rem'
@@ -157,7 +161,7 @@ const ChecklistMultiColumnTemplate = ({ checkboxes, gap, columns, width, label, 
   `;
 };
 
-export const ChecklistMultiColumn = ChecklistMultiColumnTemplate.bind({});
+export const ChecklistMultiColumn: any = ChecklistMultiColumnTemplate.bind({});
 ChecklistMultiColumn.args = {
   gap: 'var(--cbp-space-4x)',
   columns: '3',
