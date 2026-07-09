@@ -165,15 +165,13 @@ export const clickAwayListener = (host: HTMLElement, callback: any) => {
   });
 };
 
+import {computePosition, flip, offset, shift} from '../../../../node_modules/@floating-ui/dom'; //Using Float UI, external documentation: https://floating-ui.com/
 
-
-import {computePosition, flip, offset, shift} from '../../../../node_modules/@floating-ui/dom'; //TODO: move to top of file before push
 export interface floatUIProps {
   placement: 'top' | 'left' | 'bottom' | 'right',
   offset: number,
   flip: boolean,
   shift: boolean,
-  // arrow: boolean
 }
 
 export const floatUI = (props: floatUIProps, referenceEl: HTMLElement, floatingEl: HTMLElement) => {
@@ -183,20 +181,14 @@ export const floatUI = (props: floatUIProps, referenceEl: HTMLElement, floatingE
     props.offset ? middleware.push(offset(props.offset)) : ``;
     props.flip ? middleware.push(flip()) : ``;
     props.shift ? middleware.push(shift()) : ``;
-    // props.arrow ? middleware.push(arrow({element: props.arrowIndicator})) : ``;
-
-  // console.log('FloatUI input: ', props, middleware, referenceEl, floatingEl); //TODO: local testing, remove
 
   computePosition(referenceEl, floatingEl, {
       placement: props.placement,
       middleware: middleware
     }).then(({x, y}) => {
-      console.log('logic check: ',x ,y, floatingEl)
-
       Object.assign(floatingEl.style, {
         left: `${x}px`,
         top: `${y}px`,
       });
-    });
-
+  });
 }

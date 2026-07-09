@@ -59,15 +59,6 @@ export class CbpMenu {
   watchOpen(newValue) {
     // If the menu was opened, give it time to render and set focus to the selected/first item
 
-    //TODO: floatUI integration test
-    const floatUiprops: floatUIProps= {
-      placement: 'bottom',
-      offset: 0,
-      flip: true,
-      shift: false,
-      // arrow: false
-    }
-    floatUI(floatUiprops, this.control, this.menu);
 
     if (newValue) {
       // TechDebt: this would be needed for reactivity, but not needed otherwise. How to make it smart/conditional?
@@ -154,6 +145,20 @@ export class CbpMenu {
       this.CBPButton.expanded=`${this.open}`;
       this.control.setAttribute('aria-controls',`${this.uid}-menu`);
       this.control.setAttribute("aria-haspopup","menu");
+    }
+  }
+
+  componentDidRender(){
+    if(this.open){
+
+     const floatUiprops: floatUIProps= {
+        placement: 'top',
+        offset: 0,
+        flip: true,
+        shift: false,
+      }
+
+      floatUI(floatUiprops, this.control, this.menu);
     }
   }
 
