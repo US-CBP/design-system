@@ -18,7 +18,7 @@
 
 
 cbp-menu {
-  position: relative;
+  // position: relative;
   display: inline-block;
   max-width: 100%;
 
@@ -38,34 +38,34 @@ cbp-menu {
 
 
   /* Menu Positioning for the larger breakpoints */
-  @media (min-width: 37.5em) {
-    .cbp-menu__menu {
-      width: max-content;
-      max-width: max-content;
-      margin: 0;
-    }
+  // @media (min-width: 37.5em) {
+  //   .cbp-menu__menu {
+  //     width: max-content;
+  //     max-width: max-content;
+  //     margin: 0;
+  //   }
 
-    &[position=top-start] .cbp-menu__menu {
-      top: 100%;
-      left: 0;
-      transform: translate(0, -100%);
-    }
+  //   &[position=top-start] .cbp-menu__menu {
+  //     top: 100%;
+  //     left: 0;
+  //     transform: translate(0, -100%);
+  //   }
 
-    &[position=top-end] .cbp-menu__menu {
-      top: 100%;
-      left: 100%;
-      transform: translate(-100%, -100%);
-    }
+  //   &[position=top-end] .cbp-menu__menu {
+  //     top: 100%;
+  //     left: 100%;
+  //     transform: translate(-100%, -100%);
+  //   }
 
-    &[position=bottom-start] .cbp-menu__menu  {
-      top: 0;
-      left: 0;
-    }
+  //   &[position=bottom-start] .cbp-menu__menu  {
+  //     top: 0;
+  //     left: 0;
+  //   }
 
-    &[position=bottom-end] .cbp-menu__menu {
-      top: 0;
-      left: 100%;
-      transform: translate(-100%, 0);
-    }
-  }
+  //   &[position=bottom-end] .cbp-menu__menu {
+  //     top: 0;
+  //     left: 100%;
+  //     transform: translate(-100%, 0);
+  //   }
+  // }
 }

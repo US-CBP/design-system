@@ -1,5 +1,5 @@
 import { Component, Element, Prop, Method, Watch, Event, EventEmitter, Host, h } from '@stencil/core';
-import { setCSSProps, createNamespaceKey, doKeyboardNav, clickAwayListener } from '../../utils/utils';
+import { setCSSProps, createNamespaceKey, doKeyboardNav, clickAwayListener, floatUI, floatUIProps } from '../../utils/utils';
 
 /**
  * A Menu contains additional actions in the form of links or buttons, which can be shown by activating a control.
@@ -58,6 +58,17 @@ export class CbpMenu {
   @Watch('open')
   watchOpen(newValue) {
     // If the menu was opened, give it time to render and set focus to the selected/first item
+
+    //TODO: floatUI integration test
+    const floatUiprops: floatUIProps= {
+      placement: 'bottom',
+      offset: 0,
+      flip: true,
+      shift: false,
+      // arrow: false
+    }
+    floatUI(floatUiprops, this.control, this.menu);
+
     if (newValue) {
       // TechDebt: this would be needed for reactivity, but not needed otherwise. How to make it smart/conditional?
       this.menuItems = Array.from(this.menu.querySelectorAll('button, a')); // Get and set this array whenever the menu is opened
