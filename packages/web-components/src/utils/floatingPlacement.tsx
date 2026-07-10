@@ -1,4 +1,4 @@
-import {computePosition, flip, offset, shift} from '../../../../node_modules/@floating-ui/dom'; 
+import {computePosition, flip, offset, shift} from '@floating-ui/dom'; 
 
 //** Using Float UI, external documentation: https://floating-ui.com/ */
 
