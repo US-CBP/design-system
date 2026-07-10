@@ -75,7 +75,7 @@ Menu.args = {};
 
 
 
-const ActionsMenuTemplate = ({ position, items, context, sx }) => {
+const ActionsMenuTemplate = ({ position,  items, context, sx }) => {
   return ` 
     <cbp-menu
       uid="menuId"
