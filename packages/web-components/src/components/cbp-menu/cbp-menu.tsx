@@ -1,6 +1,6 @@
 import { Component, Element, Prop, Method, Watch, Event, EventEmitter, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey, doKeyboardNav, clickAwayListener} from '../../utils/utils';
-import { floatUI, floatUIProps } from '../../utils/floating-placement';
+import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 
 /**
  * A Menu contains additional actions in the form of links or buttons, which can be shown by activating a control.
