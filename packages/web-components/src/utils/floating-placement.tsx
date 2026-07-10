@@ -14,12 +14,12 @@ export interface floatUIProps {
 }
 
 export const floatUI = (props: floatUIProps, referenceEl: HTMLElement, floatingEl: HTMLElement) => {
-  
-   let middleware = [];
 
-    props.offset ? middleware.push(offset(props.offset)) : ``;
-    props.flip ? middleware.push(flip()) : ``;
-    props.shift ? middleware.push(shift()) : ``;
+  let middleware = [
+    props.offset? offset(props.offset) : undefined,
+    props.flip ? flip() : undefined,
+    props.shift ? shift() : undefined,
+  ]
 
   computePosition(referenceEl, floatingEl, {
       placement: props.placement,
