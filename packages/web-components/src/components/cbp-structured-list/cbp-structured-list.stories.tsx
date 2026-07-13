@@ -259,6 +259,7 @@ StructuredListMediaCalendar.args = {
                       "width":"100%",
                       "height":"4.25rem",
                       "text-align":"center",
+                      "align-content":"center",
                       "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
                       "border-width":"var(--cbp-border-size-md)",
                       "border-style":"solid",
@@ -270,7 +271,9 @@ StructuredListMediaCalendar.args = {
                       "line-height":"1.75"
                   }'
                     >
+                  <cbp-typography tag="span" variant="heading-xxl" font-weight="black">
                     31
+                  </cbp-typography>
                   </cbp-flex-item>
                 </cbp-flex>
                   <div>
@@ -317,6 +320,7 @@ StructuredListMediaCalendar.args = {
                           "width":"100%",
                           "height":"4.25rem",
                           "text-align":"center",
+                          "align-content":"center",
                           "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
                           "border-width":"var(--cbp-border-size-md)",
                           "border-style":"solid",
@@ -328,7 +332,9 @@ StructuredListMediaCalendar.args = {
                           "line-height":"1.75"
                       }'
                     >
+                  <cbp-typography tag="span" variant="heading-xxl" font-weight="black">
                     15
+                  </cbp-typograpghy>
                   </cbp-flex-item>
                 </cbp-flex>
                   <div>
@@ -376,6 +382,7 @@ StructuredListMediaCalendar.args = {
                           "width":"100%",
                           "height":"4.25rem",
                           "text-align":"center",
+                          "align-content":"center",
                           "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
                           "border-width":"var(--cbp-border-size-md)",
                           "border-style":"solid",
@@ -387,7 +394,9 @@ StructuredListMediaCalendar.args = {
                           "line-height":"1.75"
                       }'
                     >
+                  <cbp-typography tag="span" variant="heading-xxl" font-weight="black">
                     3
+                  </cbp-typography>
                   </cbp-flex-item>
                 </cbp-flex>
                   <div>
