@@ -236,6 +236,7 @@ StructuredListMediaCalendar.args = {
                     display="flex"
                     direction="column"
                     align-items="center"
+                    align-content="center"
                   >
                   <cbp-flex-item
                   sx='{
@@ -246,12 +247,12 @@ StructuredListMediaCalendar.args = {
                         "background-color":"var(--cbp-color-red-50)",
                         "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
-                        "text-transform":"uppercase",
-                        "font-size":"var(--cbp-font-size-heading-xl)",
-                        "font-weight":"var(--cbp-font-weight-regular)"
+                        "text-transform":"uppercase"
                       }'
                   > 
+                  <cbp-typography tag="span" size="8">
                     apr
+                  </cbp-typography>
                   </cbp-flex-item>
                   
                   <cbp-flex-item
@@ -259,7 +260,6 @@ StructuredListMediaCalendar.args = {
                       "width":"100%",
                       "height":"4.25rem",
                       "text-align":"center",
-                      "align-content":"center",
                       "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
                       "border-width":"var(--cbp-border-size-md)",
                       "border-style":"solid",
@@ -307,12 +307,12 @@ StructuredListMediaCalendar.args = {
                         "background-color":"var(--cbp-color-red-50)",
                         "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
-                        "text-transform":"uppercase",
-                        "font-size":"var(--cbp-font-size-heading-xl)",
-                        "font-weight":"var(--cbp-font-weight-regular)"
+                        "text-transform":"uppercase"
                       }'
                   > 
+                  <cbp-typography tag="span" size="8">
                     mar
+                  </cbp-typography>
                   </cbp-flex-item>
                   
                   <cbp-flex-item
@@ -369,12 +369,12 @@ StructuredListMediaCalendar.args = {
                         "background-color":"var(--cbp-color-red-50)",
                         "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
-                        "text-transform":"uppercase",
-                        "font-size":"var(--cbp-font-size-heading-xl)",
-                        "font-weight":"var(--cbp-font-weight-regular)"
+                        "text-transform":"uppercase"
                       }'
                   > 
+                  <cbp-typography tag="span" size="8">
                     feb
+                  </cbp-typography>
                   </cbp-flex-item>
                   
                   <cbp-flex-item
