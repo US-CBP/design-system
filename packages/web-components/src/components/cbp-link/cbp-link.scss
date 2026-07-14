@@ -65,6 +65,15 @@ cbp-link {
     outline-color: var(--cbp-link-color-outline-focus);
     outline-offset: var(--cbp-space-1x);
 
+    cbp-icon {
+      display: inline-block; // remove the nested flex context, which causes issues
+
+      svg {
+        // renders about 1px higher than middle and looks better next to most text if sized similarly; without middle or text-top, affects text flow around it.
+        vertical-align: text-top;
+      }
+    }
+
     &:link {
       text-decoration: underline;
     }

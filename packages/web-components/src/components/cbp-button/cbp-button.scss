@@ -163,6 +163,15 @@ cbp-button {
       --cbp-button-color-bg: var(--cbp-button-color-bg-active);
       --cbp-button-color-border: var(--cbp-button-color-border-active);
     }
+
+    cbp-icon {
+      display: inline-block; // remove the nested flex context, which causes issues
+
+      svg {
+        vertical-align: text-top; // renders about 1px higher than middle and looks better on buttons, which have no descenders in ALL CAPS, if sized similarly
+      }
+    }
+
   }
 
   // For each button fill/color, only override what needs to change
@@ -427,6 +436,10 @@ cbp-button {
     button, a {
       padding: unset;
       letter-spacing: unset;
+
+      cbp-icon svg {
+        vertical-align: middle;
+      }
     }
   }
 
