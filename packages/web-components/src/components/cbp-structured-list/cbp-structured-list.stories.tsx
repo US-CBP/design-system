@@ -231,14 +231,14 @@ StructuredListMediaCalendar.args = {
   listItemType: "structured list item",
   listItems: [
     {
-      content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
+      content: `<cbp-grid grid-template-columns="6.25rem 1fr" gap="1rem">
                   <cbp-flex  
                     display="flex"
                     direction="column"
                     align-items="center"
                   >
-                  <cbp-flex-item
-                  sx='{
+                    <cbp-flex-item
+                      sx='{
                         "width":"100%",
                         "text-align":"center",
                         "border-radius":"var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0",
@@ -246,57 +246,58 @@ StructuredListMediaCalendar.args = {
                         "background-color":"var(--cbp-color-red-50)",
                         "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
-                        "text-transform":"uppercase",
-                        "font-size":"var(--cbp-font-size-heading-xl)",
-                        "font-weight":"var(--cbp-font-weight-regular)"
+                        "text-transform":"uppercase"
                       }'
-                  > 
-                    apr
-                  </cbp-flex-item>
-                  
-                  <cbp-flex-item
-                    sx='{
-                      "width":"100%",
-                      "height":"4.25rem",
-                      "text-align":"center",
-                      "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
-                      "border-width":"var(--cbp-border-size-md)",
-                      "border-style":"solid",
-                      "border-color":"var(--cbp-color-gray-cool-40)",
-                      "border-top":"none",
-                      "color":"var(--cbp-structured-list-color)",
-                      "font-size":"var(--cbp-font-size-masthead-1)",
-                      "font-weight":"var(--cbp-font-weight-black)",
-                      "line-height":"1.75"
-                  }'
+                    > 
+                    <cbp-typography tag="span" size="8">
+                      apr
+                    </cbp-typography>
+                    </cbp-flex-item>
+                    
+                    <cbp-flex-item
+                      sx='{
+                        "width":"100%",
+                        "height":"4.25rem",
+                        "text-align":"center",
+                        "align-content":"center",
+                        "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
+                        "border-width":"var(--cbp-border-size-md)",
+                        "border-style":"solid",
+                        "border-color":"var(--cbp-color-gray-cool-40)",
+                        "border-top":"none",
+                        "color":"var(--cbp-structured-list-color)",
+                        "line-height":"1.75"
+                      }'
                     >
-                    31
-                  </cbp-flex-item>
-                </cbp-flex>
+                      <cbp-typography tag="span" variant="heading-xxl" font-weight="black">
+                        31
+                      </cbp-typography>
+                    </cbp-flex-item>
+                  </cbp-flex>
                   <div>
-                    <cbp-typography tag='p'>
-                      <cbp-link href='#'>
-                        <cbp-icon name='arrow-right'></cbp-icon>
+                    <cbp-typography tag="p">
+                      <cbp-link href="#">
+                        <cbp-icon name="arrow-right"></cbp-icon>
                         Find the Hidden Beetle Training
                       </cbp-link>
                     </cbp-typography>
-                    <cbp-typography tag='p'>This training session will help you find those pesky hiding beetles. Inside boxes, on top of containers, or in someone's pocket, these bugs don't stand a chance of getting to America's sweet, delicious forests</cbp-typography>
-                    <cbp-typography tag='p'>
-                      <cbp-icon name='globe'></cbp-icon>
+                    <cbp-typography tag="p">This training session will help you find those pesky hiding beetles. Inside boxes, on top of containers, or in someone's pocket, these bugs don't stand a chance of getting to America's sweet, delicious forests</cbp-typography>
+                    <cbp-typography tag="p">
+                      <cbp-icon name="globe"></cbp-icon>
                       <i>https://www.cbp.dhs.gov/news/beetles</i>
                     </cbp-typography>
                   </div>
-                <cbp-grid>`,
+                </cbp-grid>`,
     },
     {
-      content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
+      content: `<cbp-grid grid-template-columns="6.25rem 1fr" gap="1rem">
                   <cbp-flex  
                     display="flex"
                     direction="column"
                     align-items="center"
                   >
-                  <cbp-flex-item
-                  sx='{
+                    <cbp-flex-item
+                      sx='{
                         "width":"100%",
                         "text-align":"center",
                         "border-radius":"var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0",
@@ -304,58 +305,58 @@ StructuredListMediaCalendar.args = {
                         "background-color":"var(--cbp-color-red-50)",
                         "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
-                        "text-transform":"uppercase",
-                        "font-size":"var(--cbp-font-size-heading-xl)",
-                        "font-weight":"var(--cbp-font-weight-regular)"
+                        "text-transform":"uppercase"
                       }'
-                  > 
-                    mar
-                  </cbp-flex-item>
-                  
-                  <cbp-flex-item
-                    sx='{
-                          "width":"100%",
-                          "height":"4.25rem",
-                          "text-align":"center",
-                          "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
-                          "border-width":"var(--cbp-border-size-md)",
-                          "border-style":"solid",
-                          "border-color":"var(--cbp-color-gray-cool-40)",
-                          "border-top":"none",
-                          "color":"var(--cbp-structured-list-color)",
-                          "font-size":"var(--cbp-font-size-masthead-1)",
-                          "font-weight":"var(--cbp-font-weight-black)",
-                          "line-height":"1.75"
+                    > 
+                      <cbp-typography tag="span" size="8">
+                        mar
+                      </cbp-typography>
+                    </cbp-flex-item>
+                    
+                    <cbp-flex-item
+                      sx='{
+                        "width":"100%",
+                        "height":"4.25rem",
+                        "text-align":"center",
+                        "align-content":"center",
+                        "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
+                        "border-width":"var(--cbp-border-size-md)",
+                        "border-style":"solid",
+                        "border-color":"var(--cbp-color-gray-cool-40)",
+                        "border-top":"none",
+                        "color":"var(--cbp-structured-list-color)",
+                        "line-height":"1.75"
                       }'
                     >
-                    15
-                  </cbp-flex-item>
-                </cbp-flex>
+                      <cbp-typography tag="span" variant="heading-xxl" font-weight="black">
+                        15
+                      </cbp-typograpghy>
+                    </cbp-flex-item>
+                  </cbp-flex>
                   <div>
-                    <cbp-typography tag='p'>
-                      <cbp-link href='#'>
-                        <cbp-icon name='arrow-right'></cbp-icon>  
+                    <cbp-typography tag="p">
+                      <cbp-link href="#">
+                        <cbp-icon name="arrow-right"></cbp-icon>  
                         Agency Picnic
                       </cbp-link>
                     </cbp-typography>
-                    <cbp-typography tag='p'>Every year the Capital District CBP employees come together to have a nice (ant free) picnic</cbp-typography>
-                    <cbp-typography tag='p'>
-                      <cbp-icon name='globe'></cbp-icon>
+                    <cbp-typography tag="p">Every year the Capital District CBP employees come together to have a nice (ant free) picnic</cbp-typography>
+                    <cbp-typography tag="p">
+                      <cbp-icon name="globe"></cbp-icon>
                       <i>https://www.cbp.dhs.gov/news/capital-picnic</i>
                     </cbp-typography>
                   </div>
-                <cbp-grid>
-      `,
+                </cbp-grid>`,
     },
     {
-      content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
+      content: `<cbp-grid grid-template-columns="6.25rem 1fr" gap="1rem">
                   <cbp-flex  
                     display="flex"
                     direction="column"
                     align-items="center"
                   >
-                  <cbp-flex-item
-                  sx='{
+                    <cbp-flex-item
+                      sx='{
                         "width":"100%",
                         "text-align":"center",
                         "border-radius":"var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0",
@@ -363,47 +364,47 @@ StructuredListMediaCalendar.args = {
                         "background-color":"var(--cbp-color-red-50)",
                         "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
-                        "text-transform":"uppercase",
-                        "font-size":"var(--cbp-font-size-heading-xl)",
-                        "font-weight":"var(--cbp-font-weight-regular)"
+                        "text-transform":"uppercase"
                       }'
-                  > 
-                    feb
-                  </cbp-flex-item>
+                    > 
+                      <cbp-typography tag="span" size="8">
+                        feb
+                      </cbp-typography>
+                    </cbp-flex-item>
                   
-                  <cbp-flex-item
-                    sx='{
-                          "width":"100%",
-                          "height":"4.25rem",
-                          "text-align":"center",
-                          "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
-                          "border-width":"var(--cbp-border-size-md)",
-                          "border-style":"solid",
-                          "border-color":"var(--cbp-color-gray-cool-40)",
-                          "border-top":"none",
-                          "color":"var(--cbp-structured-list-color)",
-                          "font-size":"var(--cbp-font-size-masthead-1)",
-                          "font-weight":"var(--cbp-font-weight-black)",
-                          "line-height":"1.75"
+                    <cbp-flex-item
+                      sx='{
+                        "width":"100%",
+                        "height":"4.25rem",
+                        "text-align":"center",
+                        "align-content":"center",
+                        "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
+                        "border-width":"var(--cbp-border-size-md)",
+                        "border-style":"solid",
+                        "border-color":"var(--cbp-color-gray-cool-40)",
+                        "border-top":"none",
+                        "color":"var(--cbp-structured-list-color)",
+                        "line-height":"1.75"
                       }'
                     >
-                    3
-                  </cbp-flex-item>
-                </cbp-flex>
+                      <cbp-typography tag="span" variant="heading-xxl" font-weight="black">
+                        3
+                      </cbp-typography>
+                    </cbp-flex-item>
+                  </cbp-flex>
                   <div>
-                    <cbp-typography tag='p'>
-                      <cbp-link href='#'>                      
-                        <cbp-icon name='arrow-right'></cbp-icon>
+                    <cbp-typography tag="p">
+                      <cbp-link href="#">                      
+                        <cbp-icon name="arrow-right"></cbp-icon>
                         Commissioners Awards</cbp-link>
                     </cbp-typography>
-                    <cbp-typography tag='p'>Join us in person or online to celebrate this past years CBP employees excellence awards.</cbp-typography>
-                    <cbp-typography tag='p'>
-                      <cbp-icon name='globe'></cbp-icon>
+                    <cbp-typography tag="p">Join us in person or online to celebrate this past years CBP employees excellence awards.</cbp-typography>
+                    <cbp-typography tag="p">
+                      <cbp-icon name="globe"></cbp-icon>
                       <i>https://www.cbp.dhs.gov/news/awards</i>
                     </cbp-typography>
                   </div>
-                <cbp-grid>
-      `,
+                </cbp-grid>`,
     }
   ]
 }
