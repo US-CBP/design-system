@@ -236,7 +236,6 @@ StructuredListMediaCalendar.args = {
                     display="flex"
                     direction="column"
                     align-items="center"
-                    align-content="center"
                   >
                   <cbp-flex-item
                   sx='{
@@ -260,6 +259,7 @@ StructuredListMediaCalendar.args = {
                       "width":"100%",
                       "height":"4.25rem",
                       "text-align":"center",
+                      "align-content":"center",
                       "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
                       "border-width":"var(--cbp-border-size-md)",
                       "border-style":"solid",
