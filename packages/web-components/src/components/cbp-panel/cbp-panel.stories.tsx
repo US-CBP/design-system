@@ -62,8 +62,7 @@ const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabe
         variant="heading-lg"
         ${headerId ? `id="${headerId}"` : ''}
       >
-        ${showIcon ? `<cbp-icon name="star" sx='{"margin-right":"var(--cbp-space-4x)", "vertical-align":"text-top"}'></cbp-icon>` : ''}
-        ${header}
+        ${showIcon ? `<cbp-icon name="user" sx='{"margin-right":"var(--cbp-space-3x)"}'></cbp-icon>` : ''}${header}
       </cbp-typography>
 
       <p>${content}</p>
