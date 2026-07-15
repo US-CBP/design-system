@@ -209,7 +209,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
 };
 
 
-export const GeneralCard = GeneralTemplate.bind({});
+export const GeneralCard: any = GeneralTemplate.bind({});
 GeneralCard.args = {
   title: "Card Title",
   headingId: "card-heading",
@@ -234,7 +234,7 @@ GeneralCard.args = {
   },
 };
 
-export const BannerCard = GeneralTemplate.bind({});
+export const BannerCard: any = GeneralTemplate.bind({});
 BannerCard.args = {
   variant: "banner",
   title: "Banner Card Title",
@@ -260,7 +260,7 @@ BannerCard.args = {
   }
 };
 
-export const FlagCard = FlagTemplate.bind({});
+export const FlagCard: any = FlagTemplate.bind({});
 FlagCard.args = {
   title: "Card Title",
   bodyText: "Here is an example of some body text for this purely informational card",
@@ -275,7 +275,7 @@ FlagCard.argTypes ={
   }
 }
 
-export const InteractiveCard = InteractiveTemplate.bind({});
+export const InteractiveCard: any = InteractiveTemplate.bind({});
 InteractiveCard.args = {
   title: "Banner Card Title",
   bodyText: "Here is an example of some supplementary text for this purely informational card",
@@ -304,8 +304,7 @@ InteractiveCard.argTypes = {
   }
 };
 
-const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIcon, href, context, sx }) => {
-
+const InteractiveRadioListTemplate: any = ({ title, color, disabled, bodyText, withIcon, href, context, sx }) => {
   return ` 
     <cbp-form-field group
       label="Interactive Card Radio List"
@@ -382,7 +381,7 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
 };
 
 
-export const InteractiveRadioList = InteractiveRadioListTemplate.bind({});
+export const InteractiveRadioList: any = InteractiveRadioListTemplate.bind({});
 InteractiveRadioList.args = {
   title: "Banner Card Title",
   bodyText: "Here is an example of some supplementary text for this purely informational card",

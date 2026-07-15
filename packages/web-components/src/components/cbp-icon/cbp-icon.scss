@@ -19,7 +19,7 @@ cbp-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  //vertical-align: middle;
+  //vertical-align: top; // this improves placement next to plain text in most cases (e.g., cbp-usa-banner, cbp-loader, cbp-structured-list
 
   svg,
   // support as a wrapper for icons pulled in via external components (in the DOM or not) with greater specificity

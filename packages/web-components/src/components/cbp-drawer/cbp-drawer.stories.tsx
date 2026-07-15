@@ -76,7 +76,7 @@ const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText,
   `;
 };
 
-export const Drawer = Template.bind({});
+export const Drawer: any = Template.bind({});
 Drawer.args = {
   position: 'left',
   uid: 'drawer',
@@ -130,7 +130,7 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
   `;
 };
 
-export const UserPreferences = UserPreferencesTemplate.bind({});
+export const UserPreferences: any = UserPreferencesTemplate.bind({});
 UserPreferences.args = {
   position: 'right',
   uid: 'drawer',

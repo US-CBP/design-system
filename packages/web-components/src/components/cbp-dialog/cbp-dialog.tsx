@@ -2,7 +2,7 @@ import { Component, Prop, Element, Method, Event, EventEmitter, Watch, Host, h }
 import { setCSSProps, getFocusableElements } from '../../utils/utils';
 
 /**
- * The Dialog component represents a dialog overlaid on top of the web page, which can be used similar 
+ * The Dialog component represents a dialog overlaid on top of the web page, which can be used similarly 
  * to an alert/confirm dialog or contain a small form.
  * 
  * @slot - The body content of the dialog goes in the default slot.

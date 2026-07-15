@@ -142,8 +142,11 @@ cbp-card {
     font-size: var(--cbp-font-size-heading-lg);
     line-height: var(--cbp-line-height-sm);
     
-     > * {
+    // Targets the tag rendered by slotted cbp-typography (including a deeper one used in interactive radio cards)
+    > *,
+    cbp-typography > * {
       display: flex;
+      align-items: center;
       gap: var(--cbp-space-2x);
       color: var(--cbp-card-color-text);
     }
