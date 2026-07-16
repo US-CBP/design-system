@@ -321,6 +321,10 @@ cbp-table {
 
         &:has(button) {
           padding: 0;
+
+          cbp-icon {
+            display: inline-flex;
+          }
         }
 
         &:has(button:hover) {
