@@ -1124,7 +1124,7 @@ export class CbpDropdown {
             mainAxis: 0,
           },
           flip: true,
-          shift: true,
+          shift: false,
         }
   
         floatUI(floatUiprops, this.control, this.listbox);
