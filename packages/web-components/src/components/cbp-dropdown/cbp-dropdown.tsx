@@ -1123,12 +1123,10 @@ export class CbpDropdown {
           offset: {
             mainAxis: 0,
           },
-          flip: false,//true,
+          flip: true,
           shift: true,
-          autoplacement: ['top', 'right', 'bottom']
         }
   
-      console.log('Logic check: ', floatUiprops, this.control, this.listbox);
         floatUI(floatUiprops, this.control, this.listbox);
       // }
     }
