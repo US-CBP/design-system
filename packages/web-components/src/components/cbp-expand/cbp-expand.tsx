@@ -83,6 +83,7 @@ export class CbpExpand {
               class="cbp-expand--toggle"
               fill="ghost"
               color="secondary"
+              variant="square"
               width="var(--cbp-space-6x)"
               height="var(--cbp-space-6x)"
               context={this.context}
