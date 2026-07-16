@@ -255,7 +255,6 @@ cbp-file-input {
         --cbp-button-min-height: var(--cbp-space-7x);
         --cbp-button-width: var(--cbp-space-7x);
         --cbp-button-height: var(--cbp-space-7x);
-        --cbp-button-border-radius: var(--cbp-border-radius-circle);
         --cbp-button-color-hover: var(--cbp-color-text-lightest);
         --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
         --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
@@ -265,7 +264,6 @@ cbp-file-input {
       }
     }
   }
-
 }
 
 // Hide the left icon if needed
