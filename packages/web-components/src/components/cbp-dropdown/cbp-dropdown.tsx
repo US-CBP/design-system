@@ -1,5 +1,6 @@
 import { Component, Prop, State, Element, Event, EventEmitter, Method, Listen, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/utils';
+import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 
 /**
  * The Dropdown component offers an alternative to the native select element that can be fully styled 
@@ -1114,6 +1115,21 @@ export class CbpDropdown {
 
     if(this.debug) console.log('cbp-dropdown debugging - componentDidRender() dropdown items/selected items: ', this.dropdownItems, this.selectedItems);
 
+
+    // Use floatPlacement to position cbp-dropdown-menu
+    if(this.open){
+       const floatUiprops: floatUIProps= {
+          placement: 'bottom',
+          offset: {
+            mainAxis: 0,
+          },
+          flip: true,
+          shift: false,
+        }
+  
+        floatUI(floatUiprops, this.control, this.listbox);
+      // }
+    }
   }
 
 
