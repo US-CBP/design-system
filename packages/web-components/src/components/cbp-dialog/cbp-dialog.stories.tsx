@@ -118,8 +118,7 @@ const Template = ({ title, headingId, content, color, open, width, height, uid, 
             name="user"
             size="var(--cbp-space-5x)"
             ></cbp-icon>`
-        : ''}
-        ${title}
+        : ''}${title}
       </cbp-typography>` : ''}
 
       ${ content!='' ? `

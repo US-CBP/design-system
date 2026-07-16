@@ -4,6 +4,13 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unpublished] TBD
+
+* Imported and integrated the Float-UI library into `cbp-menu` to handle positioning and repositioning fallbacks when positioning goes off-screen.
+* BREAKING: Updated `cbp-icon` underlying CSS to address vertical alignment inconsistencies across several patterns.
+  * Some patterns, such as panel, drawer, and dialog were updated to use flex within the heading, which eliminates the need to apply a margin to the icon directly (when present).
+  * All icons in components and stories have been confirmed, but this change could potentially result in misaligned icons in custom code.
+
 ## [0.9.0-beta.1] 06-29-2026
 
 With significant foundational updates, including tokens and icons, this release marks the first official BETA release as we prepare for a full production-ready release.

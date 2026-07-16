@@ -165,6 +165,18 @@ cbp-button {
     }
   }
 
+
+  &:not([variant=square]):not([variant=circle]) {
+    cbp-icon {
+      display: inline-block; // remove the nested flex context, which causes issues
+
+      svg {
+        vertical-align: text-top; // renders about 1px higher than middle and looks better on buttons, which have no descenders in ALL CAPS, if sized similarly
+      }
+    }
+  }
+
+
   // For each button fill/color, only override what needs to change
   // e.g., focus/active states are the same across the board (except active for ghost buttons??)
   // This seems a little verbose and can probably be optimized further
@@ -420,9 +432,10 @@ cbp-button {
     }
   }
 
-  &[variant=square] {
-      --cbp-button-height: 2.25rem;
-      --cbp-button-width: var(--cbp-button-height); 
+  &[variant=square],
+  &[variant=circle] {
+    --cbp-button-height: 2.25rem;
+    --cbp-button-width: var(--cbp-button-height); 
     
     button, a {
       padding: unset;
@@ -431,14 +444,7 @@ cbp-button {
   }
 
   &[variant=circle] {
-      --cbp-button-height: 2.25rem; 
-      --cbp-button-width: var(--cbp-button-height); 
-      --cbp-button-border-radius: var(--cbp-border-radius-circle);
-    
-      button, a {
-      padding: unset;
-      letter-spacing: unset;
-    }
+    --cbp-button-border-radius: var(--cbp-border-radius-circle);
   }
 
   &[variant=cta] {

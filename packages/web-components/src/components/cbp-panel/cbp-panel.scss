@@ -70,6 +70,17 @@ cbp-panel {
     cbp-icon {
       --cbp-icon-size: var(--cbp-space-6x);
     }
+
+    [slot=cbp-panel-header] {
+      display: block;
+      
+      // Targets the tag rendered by slotted cbp-typography
+      > * {
+        display: flex;
+        align-items: center;
+        gap: var(--cbp-space-3x);
+      }
+    }
   }
 
   .cbp-panel__content {

@@ -423,7 +423,7 @@ function renderDrawer(items, drawerid, store){
               variant="heading-lg"
               id="panelheader"
             >
-              Application Name
+              ${items?.[0]?.label}
             </cbp-typography>
 
             <cbp-form-field 

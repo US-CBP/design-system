@@ -66,7 +66,7 @@ export class CbpUsaBanner {
               />
               <div>
                 <strong>Secure .gov websites use HTTPS</strong>
-                <p>A <strong>lock</strong> (<cbp-icon name="lock" size="var(--cbp-space-3x)" accessibilityText="lock icon"/>) or <strong>https://</strong> means you&#39;ve safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
+                <p>A <strong>lock</strong> (<cbp-icon name="lock" accessibilityText="lock icon"/>) or <strong>https://</strong> means you&#39;ve safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
               </div>
             </div>
           </div>

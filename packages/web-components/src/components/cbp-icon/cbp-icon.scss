@@ -14,10 +14,12 @@
 cbp-icon {
   --cbp-icon-width: var(--cbp-icon-size);
   --cbp-icon-height: var(--cbp-icon-size);
+  
+  // Use inline-flex as default and remove flex inside of link and button components
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  vertical-align: text-top;
+  vertical-align: text-top; // this improves placement (where flex isn't overridden) next to plain text in most cases (e.g., cbp-usa-banner, cbp-loader, cbp-structured-list); large circular loader is broken without.
 
   svg,
   // support as a wrapper for icons pulled in via external components (in the DOM or not) with greater specificity
@@ -26,6 +28,5 @@ cbp-icon {
     width: var(--cbp-icon-width);
     height: var(--cbp-icon-height);
     fill: var(--cbp-icon-color);
-    vertical-align: top;
   }
 }
