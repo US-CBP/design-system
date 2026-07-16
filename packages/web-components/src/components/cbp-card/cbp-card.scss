@@ -360,9 +360,9 @@ cbp-card {
   }
 
   //interactive cards
-  &[interactive="clickable"],
-  &[interactive="selectable"],
-  &[interactive="radio"]{
+  &[interactive=clickable],
+  &[interactive=selectable],
+  &[interactive=radio]{
     --cbp-checkbox-min-height: var(--cbp-space-6x); //adjust spacing for checkbox in title for selectable variant
     --cbp-checkbox-color-border: var(--cbp-color-interactive-secondary-light);
     --cbp-checkbox-color-border-dark: var(--cbp-color-interactive-secondary-light);
@@ -377,6 +377,7 @@ cbp-card {
 
     --cbp-radio-color-bg: transparent;
     --cbp-radio-color-bg-dark: var(--cbp-color-gray-cool-70);
+    --cbp-radio-min-height: 0;
 
     a{
       color: var(--cbp-card-color-text); 
