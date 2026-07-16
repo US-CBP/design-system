@@ -189,6 +189,7 @@ cbp-dropdown {
 
   .cbp-dropdown-multiselect-counter {
     display: inline-block;
+    flex-shrink: 0; // defensively protect against flex shrinkage
     color: var(--cbp-dropdown-menu-color-counter);
     background-color: var(--cbp-dropdown-menu-color-bg-counter);
     font-size: var(--cbp-font-size-subhead);
