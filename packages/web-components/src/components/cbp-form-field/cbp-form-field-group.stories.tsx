@@ -61,7 +61,7 @@ const FullNameTemplate = ({ label, labelSlotted, description, descriptionSlotted
 
       <cbp-flex 
         wrap="wrap"
-        gap="var(--cbp-space-4x)"
+        gap="0 var(--cbp-space-4x)"
         breakpoint="20rem"
       >
 
@@ -153,7 +153,7 @@ const PhoneTemplate = ({ label, labelSlotted, description, descriptionSlotted, f
 
       <cbp-flex 
         wrap="wrap"
-        gap="var(--cbp-space-4x)"
+        gap="0 var(--cbp-space-4x)"
         breakpoint="20rem"
       >
         <cbp-flex-item flex-basis="10rem" flex-shrink="0">
@@ -206,7 +206,7 @@ const GroupAsDividerTemplate = ({ label, labelSlotted, description, descriptionS
 
       <cbp-flex 
         wrap="wrap"
-        gap="var(--cbp-space-4x)"
+        gap="0 var(--cbp-space-4x)"
         breakpoint="20rem"
       >
 
