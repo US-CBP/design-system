@@ -1,5 +1,6 @@
 import { Component, Prop, Element, Host, h, Listen } from '@stencil/core';
 import { setCSSProps, createNamespaceKey, getInvertedContext } from '../../utils/utils';
+import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 
 /**
  * The Tooltip component allows for the disclosure of supplemental, non-essential information via a triggering element.
@@ -21,9 +22,8 @@ export class CbpTooltip {
   /** used to set styles for the definition link for text controls*/
   @Prop({ reflect: true }) variant: 'definition';
 
-
   /** sets where the tooltip will be displayed and where the caret will be placed */
-  @Prop({ reflect: true}) alignment: "top-left" | "top-center" | "top-left" | "right-top" | "right-center" | "right-bottom" | "bottom-left" | "bottom-center" | "bottom-right" | "left-top" | "left-center" | "left-bottom" = "top-center";
+  @Prop({ reflect: true}) alignment: "top-start" | "top" | "top-end" | "right-start" | "right" | "right-end" | "bottom-start" | "bottom" | "bottom-end" | "left-start" | "left" | "left-end" = "top-start";
   
   /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-tooltip');
@@ -77,6 +77,27 @@ export class CbpTooltip {
     } 
   }
 
+componentDidRender(){
+    if(this.open){
+   
+    const control = this.host.querySelector('[role="button"] > *:first-child') as HTMLElement
+    const floatingEl = this.host.querySelector('[role="tooltip"]') as HTMLElement
+
+    const floatUiprops: floatUIProps= {
+        placement: this.alignment,
+        offset: {
+          mainAxis: 16,
+        },
+        flip: true,
+        shift: true,
+        arrow: true
+      }
+
+      console.log('floatUI args: ', floatUiprops, control, floatingEl)
+      floatUI(floatUiprops, control, floatingEl);
+    }
+  }
+
   render() {
     return (
       <Host 
@@ -105,6 +126,7 @@ export class CbpTooltip {
           >
             <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
           </cbp-button>
+          <div id="arrow"></div>
         </div>
       </Host>
     );
