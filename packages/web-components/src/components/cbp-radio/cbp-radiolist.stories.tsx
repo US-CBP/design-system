@@ -31,8 +31,8 @@ export default {
     },
   },
   args: {
-    label: "Radio List Group Label",
-    description: 'Field description.',
+    label: "Insert Radio List Group Label",
+    description: 'Insert group description.',
     radios: [
       {
         label: "Radio 1",

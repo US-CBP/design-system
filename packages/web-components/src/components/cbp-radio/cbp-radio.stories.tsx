@@ -54,9 +54,9 @@ const Template = ({ label, name, value, checked, disabled, context, sx }) => {
   `;
 };
 
-export const Radio = Template.bind({});
+export const Radio: any = Template.bind({});
 Radio.args = {
-  label: "Radio button label",
+  label: "Insert radio button label",
   name: "radio",
   value: "1",
 }

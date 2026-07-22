@@ -65,9 +65,9 @@ const Template = ({ label, name, value, fieldId, checked, indeterminate, disable
     `;
 };
 
-export const Checkbox = Template.bind({});
+export const Checkbox: any = Template.bind({});
 Checkbox.args = {
-  label: "Checkbox label",
+  label: "Insert checkbox label",
   name: "checkbox",
   value: "1",
 }

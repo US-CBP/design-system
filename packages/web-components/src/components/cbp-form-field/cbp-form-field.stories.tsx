@@ -38,8 +38,8 @@ export default {
     },
   },
   args: {
-    label: 'Field Label',
-    description: 'Field description.',
+    label: 'Insert Field Label',
+    description: 'Insert field description.',
   },
 };
 

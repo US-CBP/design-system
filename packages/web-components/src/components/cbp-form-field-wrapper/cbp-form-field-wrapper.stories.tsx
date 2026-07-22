@@ -46,8 +46,8 @@ export default {
     },
   },
   args: {
-    label: 'Field Label',
-    description: 'Field description.',
+    label: 'Insert Field Label',
+    description: 'Insert field description.',
     inputType: 'text'
   },
 };
@@ -79,7 +79,7 @@ const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart
   `;
 };
 
-export const InputWithOverlays = InputWithOverlaysTemplate.bind({});
+export const InputWithOverlays: any = InputWithOverlaysTemplate.bind({});
 InputWithOverlays.args = {
   name: 'textinput',
   value: '',
@@ -122,7 +122,7 @@ const FileInputTemplate = ({ label, description, overlayStart, overlayEnd, field
   `;
 };
 
-export const FileInput = FileInputTemplate.bind({});
+export const FileInput: any = FileInputTemplate.bind({});
 FileInput.storyName="File Input (Simple)"
 FileInput.args = {
   fieldId: 'file-input',
@@ -198,7 +198,7 @@ const NumericCounterTemplate = ({ label, description, inputType, overlayStart, o
   `;
 };
 
-export const NumericCounter = NumericCounterTemplate.bind({});
+export const NumericCounter: any = NumericCounterTemplate.bind({});
 NumericCounter.args = {
   label: 'Numeric Counter Field',
   description: 'This pattern requires some JavaScript to function, which can be found in the story source code.',
@@ -269,7 +269,7 @@ const PasswordTemplate = ({ label, description, inputType,  overlayStart, overla
   `;
 };
 
-export const Password = PasswordTemplate.bind({});
+export const Password: any = PasswordTemplate.bind({});
 Password.args = {
   label: 'Password',
   description: 'This pattern requires some JavaScript to function, which can be found in the story source code.',
@@ -317,7 +317,7 @@ const SearchTemplate = ({ label, description, inputType,  overlayStart, overlayE
   `;
 };
 
-export const Search = SearchTemplate.bind({});
+export const Search: any = SearchTemplate.bind({});
 Search.args = {
   label: 'Search',
   description: '',
@@ -366,9 +366,8 @@ const TimeInputTemplate = ({ label, description, fieldId, name, value, error, re
   `;
 };
 
-export const TimeInput = TimeInputTemplate.bind({});
+export const TimeInput: any = TimeInputTemplate.bind({});
 TimeInput.args = {
-  label: 'Field Title',
   description: '(HH:MM Format) UTC-6 America/New York',
   name: 'time',
   value: '',
