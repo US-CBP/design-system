@@ -90,10 +90,9 @@ componentDidRender(){
         },
         flip: true,
         shift: true,
-        arrow: true
+        arrow: this.host.querySelector('#arrow') as HTMLElement
       }
-
-      console.log('floatUI args: ', floatUiprops, control, floatingEl)
+      
       floatUI(floatUiprops, control, floatingEl);
     }
   }

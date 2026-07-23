@@ -11,46 +11,33 @@ export interface floatUIProps {
     }
     flip?: boolean,
     shift?: boolean,
-    autoPlacement?: boolean, //TODO: this should be an obj similar to offset  => array<placement>
-    arrow?: boolean,
+    arrow?: HTMLElement,
 }
 
 export const floatUI = (props: floatUIProps, referenceEl: HTMLElement, floatingEl: HTMLElement) => {
-
-  const arrowEl = floatingEl.querySelector('#arrow') as HTMLElement;
 
   let middleware = [
     props.offset? offset(props.offset) : undefined,
     props.flip ? flip() : undefined,
     props.shift ? shift() : undefined,
-    // props.autoPlacement ? console.log('props.autoplacement: ', props.autoPlacement) : undefined,
-    props.arrow ? arrow({element: arrowEl, padding: 8}) : undefined,
+    props.arrow ? arrow({element: props.arrow, padding: 8}) : undefined,
   ]
-
-  // console.log('middleware: ', middleware) //TODO: testing, remove
-
-  // computePosition(referenceEl, floatingEl, {
-  //     placement: props.placement,
-  //     middleware: middleware
-  //   }).then(({x, y}) => {
-  //     Object.assign(floatingEl.style, {
-  //       left: `${x}px`,
-  //       top: `${y}px`,
-  //     });
-  // });
-
   
   computePosition(referenceEl, floatingEl, {
       placement: props.placement,
       middleware: middleware
-    }).then(({x, y, middlewareData}) => {
+    }).then(({x, y, middlewareData, placement}) => {
       if(middlewareData.arrow){
         const {x, y} = middlewareData.arrow;
-        console.log('middlewareData.arrow: ', middlewareData.arrow, middlewareData); //TODO: local testing
-        Object.assign(arrowEl.style, {
+        
+        Object.assign(props.arrow.style, {
           left: x != null ? `${x}px` : '',
           top: y != null ? `${y}px` : '',
         });
+
+        //Assign placement as a class name for arrowEl so it can be styled correctly
+        props.arrow.className = '';
+        props.arrow.classList.add(placement);
       }
       Object.assign(floatingEl.style, {
         left: `${x}px`,
