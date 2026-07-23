@@ -22,22 +22,22 @@ export default {
       description: 'toggle the open prop for the tooltip',
       control: 'boolean',
     },
-    alignment: {
+    position: {
       description: 'Sets where the the tooltip will align to the control.',
       control: 'select',
       options: [
-        'top-left',
-        'top-center',
-        'top-right',
-        'right-top',
-        'right-center',
-        'right-bottom',
-        'bottom-left',
-        'bottom-center',
-        'bottom-right',
-        'left-top',
-        'left-center',
-        'left-bottom',
+        "top-start",
+        "top",
+        "top-end",
+        "right-start",
+        "right",
+        "right-end",
+        "bottom-start",
+        "bottom",
+        "bottom-end",
+        "left-start",
+        "left",
+        "left-end"
       ],
     },
 
@@ -53,12 +53,12 @@ export default {
   parameters: { layout: 'centered' },
 };
 
-const Template = ({ open, uid, alignment, title, content, control, context, sx }) => {
+const Template = ({ open, uid, position, title, content, control, context, sx }) => {
   return ` 
     <cbp-tooltip
       ${open ? 'open' : ''}
       ${uid ? `uid="${uid}"` : ''}
-      ${alignment ? `alignment="${alignment}"` : ''}
+      ${position ? `position="${position}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >  
@@ -80,12 +80,12 @@ Tooltip.args = {
   uid: 'tooltip',
 };
 
-const DefinitionTemplate = ({ open, uid, alignment, title, content, control, context, sx }) => {
+const DefinitionTemplate = ({ open, uid, position, title, content, control, context, sx }) => {
   return ` 
     <cbp-tooltip
       ${open ? 'open' : ''}
       ${uid ? `uid="${uid}"` : ''}
-      ${alignment ? `alignment="${alignment}"` : ''}
+      ${position ? `position="${position}"` : ''}
       variant="definition"
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}

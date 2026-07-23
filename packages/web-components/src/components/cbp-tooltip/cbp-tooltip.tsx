@@ -1,5 +1,6 @@
 import { Component, Prop, Element, Host, h, Listen } from '@stencil/core';
 import { setCSSProps, createNamespaceKey, getInvertedContext } from '../../utils/utils';
+import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 
 /**
  * The Tooltip component allows for the disclosure of supplemental, non-essential information via a triggering element.
@@ -14,6 +15,9 @@ import { setCSSProps, createNamespaceKey, getInvertedContext } from '../../utils
 export class CbpTooltip {
 
   @Element() private host: HTMLElement;
+  private arrow: HTMLElement;
+  private control: HTMLElement;
+  private floatingEl: HTMLElement;
   
   /** When set, specifies that the tooltip is open */
   @Prop({ reflect: true }) open: boolean = false;
@@ -21,9 +25,8 @@ export class CbpTooltip {
   /** used to set styles for the definition link for text controls*/
   @Prop({ reflect: true }) variant: 'definition';
 
-
   /** sets where the tooltip will be displayed and where the caret will be placed */
-  @Prop({ reflect: true}) alignment: "top-left" | "top-center" | "top-left" | "right-top" | "right-center" | "right-bottom" | "bottom-left" | "bottom-center" | "bottom-right" | "left-top" | "left-center" | "left-bottom" = "top-center";
+  @Prop({ reflect: true}) position: "top-start" | "top" | "top-end" | "right-start" | "right" | "right-end" | "bottom-start" | "bottom" | "bottom-end" | "left-start" | "left" | "left-end" = "top";
   
   /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-tooltip');
@@ -77,6 +80,23 @@ export class CbpTooltip {
     } 
   }
 
+componentDidRender(){
+    if(this.open){
+   
+    const floatUiprops: floatUIProps= {
+        placement: this.position,
+        offset: {
+          mainAxis: 16,
+        },
+        flip: true,
+        shift: true,
+        arrow: this.arrow
+      }
+
+      floatUI(floatUiprops, this.control, this.floatingEl);
+    }
+  }
+
   render() {
     return (
       <Host 
@@ -85,12 +105,13 @@ export class CbpTooltip {
         tabindex="0"  
         onfocus={() => this.open=true}
         onClick={() => this.host.focus()}
+        ref={el => (this.control = el)}
       >
         <slot />
 
-        <div role="tooltip" id={`${this.fieldId}`}>
+        <div role="tooltip" id={`${this.fieldId}`} ref={el => (this.floatingEl = el)}>
           <div>
-            <slot name="cbp-tooltip-content"></slot>
+            <slot name="cbp-tooltip-content" ></slot>
           </div>
           <cbp-button
             class="cbp-tooltip-close"
@@ -105,6 +126,7 @@ export class CbpTooltip {
           >
             <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
           </cbp-button>
+          <div class="cbp-tooltip-arrow" ref={el => (this.arrow = el)}></div>
         </div>
       </Host>
     );
