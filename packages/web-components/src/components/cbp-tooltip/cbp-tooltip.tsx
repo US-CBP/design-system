@@ -16,6 +16,8 @@ export class CbpTooltip {
 
   @Element() private host: HTMLElement;
   private arrow: HTMLElement;
+  private control: HTMLElement;
+  private floatingEl: HTMLElement;
   
   /** When set, specifies that the tooltip is open */
   @Prop({ reflect: true }) open: boolean = false;
@@ -81,9 +83,6 @@ export class CbpTooltip {
 componentDidRender(){
     if(this.open){
    
-    const control = this.host.querySelector('[role="button"] > *:first-child') as HTMLElement
-    const floatingEl = this.host.querySelector('[role="tooltip"]') as HTMLElement
-
     const floatUiprops: floatUIProps= {
         placement: this.position,
         offset: {
@@ -94,7 +93,7 @@ componentDidRender(){
         arrow: this.arrow
       }
 
-      floatUI(floatUiprops, control, floatingEl);
+      floatUI(floatUiprops, this.control, this.floatingEl);
     }
   }
 
@@ -106,12 +105,13 @@ componentDidRender(){
         tabindex="0"  
         onfocus={() => this.open=true}
         onClick={() => this.host.focus()}
+        ref={el => (this.control = el)}
       >
         <slot />
 
-        <div role="tooltip" id={`${this.fieldId}`}>
+        <div role="tooltip" id={`${this.fieldId}`} ref={el => (this.floatingEl = el)}>
           <div>
-            <slot name="cbp-tooltip-content"></slot>
+            <slot name="cbp-tooltip-content" ></slot>
           </div>
           <cbp-button
             class="cbp-tooltip-close"
