@@ -155,7 +155,7 @@ div[role=tooltip] {
     }
   }
 
-  #arrow{
+  .cbp-tooltip-arrow{
     position: absolute;
     background-color: var(--cbp-tooltip-color-bg);
     transform: rotate(45deg);

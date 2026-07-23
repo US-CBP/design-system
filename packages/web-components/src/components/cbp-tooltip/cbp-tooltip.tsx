@@ -26,7 +26,7 @@ export class CbpTooltip {
   @Prop({ reflect: true }) variant: 'definition';
 
   /** sets where the tooltip will be displayed and where the caret will be placed */
-  @Prop({ reflect: true}) position: "top-start" | "top" | "top-end" | "right-start" | "right" | "right-end" | "bottom-start" | "bottom" | "bottom-end" | "left-start" | "left" | "left-end" = "top-start";
+  @Prop({ reflect: true}) position: "top-start" | "top" | "top-end" | "right-start" | "right" | "right-end" | "bottom-start" | "bottom" | "bottom-end" | "left-start" | "left" | "left-end" = "top";
   
   /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-tooltip');
@@ -126,7 +126,7 @@ componentDidRender(){
           >
             <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
           </cbp-button>
-          <div id="arrow" ref={el => (this.arrow = el)}></div>
+          <div class="cbp-tooltip-arrow" ref={el => (this.arrow = el)}></div>
         </div>
       </Host>
     );
