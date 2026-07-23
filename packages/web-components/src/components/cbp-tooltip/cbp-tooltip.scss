@@ -164,31 +164,23 @@ div[role=tooltip] {
     z-index: var(--cbp-z-index-level-1) - 1;  
     transform: rotate(var(--cbp-tooltip-caret-rotation));
     clip-path: polygon(8% 0, 100% 92%, 100% 100%, 0 100%, 0 0);
-  
-    &.top-start,
-    &.top-end,
-    &.top{
+
+    &[data-placement*=top]{
       bottom: calc((var(--cbp-tooltip-caret-size) / 2) * -1);
       --cbp-tooltip-caret-rotation: 315deg;
     }
 
-    &.right-start,
-    &.right-end,
-    &.right{
+    &[data-placement*=right]{
       left: calc((var(--cbp-tooltip-caret-size) / 2) * -1);
       --cbp-tooltip-caret-rotation: 45deg
     }
 
-    &.bottom-start,
-    &.bottom-end,
-    &.bottom{
+    &[data-placement*=bottom]{
       top: calc((var(--cbp-tooltip-caret-size) / 2) * -1);
       --cbp-tooltip-caret-rotation: 135deg;
     }
 
-    &.left-start,
-    &.left-end,
-    &.left{
+    &[data-placement*=left]{
       right: calc((var(--cbp-tooltip-caret-size) / 2) * -1);
       --cbp-tooltip-caret-rotation: 225deg;
     }

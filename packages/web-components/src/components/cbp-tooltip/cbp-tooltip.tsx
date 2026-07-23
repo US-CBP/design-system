@@ -15,6 +15,7 @@ import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 export class CbpTooltip {
 
   @Element() private host: HTMLElement;
+  private arrow: HTMLElement;
   
   /** When set, specifies that the tooltip is open */
   @Prop({ reflect: true }) open: boolean = false;
@@ -23,7 +24,7 @@ export class CbpTooltip {
   @Prop({ reflect: true }) variant: 'definition';
 
   /** sets where the tooltip will be displayed and where the caret will be placed */
-  @Prop({ reflect: true}) alignment: "top-start" | "top" | "top-end" | "right-start" | "right" | "right-end" | "bottom-start" | "bottom" | "bottom-end" | "left-start" | "left" | "left-end" = "top-start";
+  @Prop({ reflect: true}) position: "top-start" | "top" | "top-end" | "right-start" | "right" | "right-end" | "bottom-start" | "bottom" | "bottom-end" | "left-start" | "left" | "left-end" = "top-start";
   
   /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
   @Prop() fieldId: string = createNamespaceKey('cbp-tooltip');
@@ -84,15 +85,15 @@ componentDidRender(){
     const floatingEl = this.host.querySelector('[role="tooltip"]') as HTMLElement
 
     const floatUiprops: floatUIProps= {
-        placement: this.alignment,
+        placement: this.position,
         offset: {
           mainAxis: 16,
         },
         flip: true,
         shift: true,
-        arrow: this.host.querySelector('#arrow') as HTMLElement
+        arrow: this.arrow
       }
-      
+
       floatUI(floatUiprops, control, floatingEl);
     }
   }
@@ -125,7 +126,7 @@ componentDidRender(){
           >
             <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
           </cbp-button>
-          <div id="arrow"></div>
+          <div id="arrow" ref={el => (this.arrow = el)}></div>
         </div>
       </Host>
     );

@@ -35,9 +35,7 @@ export const floatUI = (props: floatUIProps, referenceEl: HTMLElement, floatingE
           top: y != null ? `${y}px` : '',
         });
 
-        //Assign placement as a class name for arrowEl so it can be styled correctly
-        props.arrow.className = '';
-        props.arrow.classList.add(placement);
+        props.arrow.setAttribute("data-placement", placement);
       }
       Object.assign(floatingEl.style, {
         left: `${x}px`,
