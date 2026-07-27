@@ -22,7 +22,7 @@
  :root{
   --cbp-tooltip-height: auto;
   --cbp-tooltip-width: max-content;
-  --cbp-tooltip-inline-size: 20rem;
+  --cbp-tooltip-max-width: max(20rem, 33vw);
 
   --cbp-tooltip-color: var(--cbp-color-text-lightest);
   --cbp-tooltip-color-dark: var(--cbp-color-text-darkest);
@@ -133,7 +133,7 @@ div[role=tooltip] {
   padding: var(--cbp-space-1x);
   min-height: var(--cbp-space-11x);
   width:  var(--cbp-tooltip-width);
-  max-inline-size: var(--cbp-tooltip-inline-size);
+  max-width: var(--cbp-tooltip-max-width);
   border-style: solid;
   border-width: 0px;
   border-color: transparent;
