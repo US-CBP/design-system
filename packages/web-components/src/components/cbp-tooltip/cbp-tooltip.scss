@@ -20,7 +20,10 @@
  * @prop   --cbp-tooltip-control-color-bg-focus-dark: var(--cbp-color-interactive-focus-light);
  */
  :root{
- 
+  --cbp-tooltip-height: auto;
+  --cbp-tooltip-width: max-content;
+  --cbp-tooltip-max-width: max(20rem, 33vw);
+
   --cbp-tooltip-color: var(--cbp-color-text-lightest);
   --cbp-tooltip-color-dark: var(--cbp-color-text-darkest);
   --cbp-tooltip-color-bg: var(--cbp-color-gray-cool-80);
@@ -126,18 +129,14 @@ cbp-tooltip {
 div[role=tooltip] {
   display: none;
   position: absolute;
-  top: var(--cbp-tooltip-placement-top);
-  left: var(--cbp-tooltip-placement-left);
-  bottom: var(--cbp-tooltip-placement-bottom);
-  height: var(--tooltip-height, auto);
+  height: var(--cbp-tooltip-height);
   padding: var(--cbp-space-1x);
   min-height: var(--cbp-space-11x);
-  width:  max-content;
-  max-width: 33vw;
-  transform: translate(var(--cbp-tooltip-placement-transform-x, 0), var(--cbp-tooltip-placement-transform-y, 0));
+  width:  var(--cbp-tooltip-width);
+  max-width: var(--cbp-tooltip-max-width);
   border-style: solid;
   border-width: 0px;
-  border-color: none;
+  border-color: transparent;
   border-radius: var(--cbp-border-radius-softer);
   background-color: var(--cbp-tooltip-color-bg);
   color: var(--cbp-tooltip-color);
