@@ -152,10 +152,11 @@ export class CbpMenu {
   componentDidRender(){
     if(this.open){
     
-      
-
     const floatUiprops: floatUIProps= {
         placement: this.position,
+        offset: {
+          mainAxis: (parseFloat(window.getComputedStyle(this.host).getPropertyValue('--cbp-menu-floating-placement-offset')) * 16),
+        },
         flip: true,
         shift: true,
       }
