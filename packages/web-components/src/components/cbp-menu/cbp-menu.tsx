@@ -151,11 +151,11 @@ export class CbpMenu {
 
   componentDidRender(){
     if(this.open){
-    
+
     const floatUiprops: floatUIProps= {
         placement: this.position,
         offset: {
-          mainAxis: (parseFloat(window.getComputedStyle(this.host).getPropertyValue('--cbp-menu-floating-placement-offset')) * 16),
+          mainAxis: (parseFloat(window.getComputedStyle(this.host).getPropertyValue('--cbp-menu-gap')) * 16), //techdebt: this is an assumption that cssvar is a rem value, need to update to be more robust
         },
         flip: true,
         shift: true,
