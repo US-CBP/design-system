@@ -156,9 +156,6 @@ export class CbpMenu {
 
     const floatUiprops: floatUIProps= {
         placement: this.position,
-        // offset: {
-        //   mainAxis: (this.host.offsetHeight * -1),
-        // },
         flip: true,
         shift: true,
       }
@@ -184,19 +181,6 @@ export class CbpMenu {
           aria-labelledby={this.control?.id}
         >
           <slot name="cbp-menu-items" />
-
-          {/* <cbp-menu-item class="cbp-menu__close-btn">
-            <cbp-button 
-              fill="solid"
-              color="primary"
-              context="dark-inverts"
-              onButtonClick={ () => this.closeMenu()}
-              onKeyDown={ (e) => this.handleKeyPressCloseButton(e)}
-            >
-              <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
-              Close
-            </cbp-button>
-          </cbp-menu-item> */}
         </div>
       </Host>
     );
