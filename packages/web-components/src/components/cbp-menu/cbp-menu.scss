@@ -1,14 +1,13 @@
 /**
  * @prop --cbp-menu-color-bg: var(--cbp-color-gray-cool-80);
  * @prop --cbp-menu-color-bg-dark: var(--cbp-color-gray-cool-5);
- * @prop --cbp-menu-gap: var(--cbp-space-3x);
+ * @prop --cbp-menu-offset: var(--cbp-space-3x);
  */
 :root {
   --cbp-menu-color-bg: var(--cbp-color-gray-cool-80);
   --cbp-menu-color-bg-dark: var(--cbp-color-gray-cool-5);
 
-  --cbp-menu-gap: var(--cbp-space-3x);
-  --cbp-menu-floating-placement-offset: var(--cbp-space-3x);
+  --cbp-menu-offset: var(--cbp-space-3x);
 }
 
 // Displays dark design based on mode or context
