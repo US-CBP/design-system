@@ -147,6 +147,9 @@ export class CbpMenu {
       this.control.setAttribute('aria-controls',`${this.uid}-menu`);
       this.control.setAttribute("aria-haspopup","menu");
     }
+
+    // set this as a proxy to read the computed value from
+    this.host.style.minWidth = 'var(--cbp-menu-gap)';
   }
 
   componentDidRender(){
@@ -155,7 +158,7 @@ export class CbpMenu {
     const floatUiprops: floatUIProps= {
         placement: this.position,
         offset: {
-          mainAxis: (parseFloat(window.getComputedStyle(this.host).getPropertyValue('--cbp-menu-gap')) * 16), //techdebt: this is an assumption that cssvar is a rem value, need to update to be more robust
+          mainAxis: (parseFloat(window?.getComputedStyle(this.host).getPropertyValue('min-width')) || 0),
         },
         flip: true,
         shift: true,

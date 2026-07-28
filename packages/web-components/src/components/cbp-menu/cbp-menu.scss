@@ -18,7 +18,6 @@
 
 
 cbp-menu {
-  // position: relative;
   display: inline-block;
   max-width: 100%;
 
@@ -33,6 +32,6 @@ cbp-menu {
     background: var(--cbp-menu-color-bg);
     border-radius: var(--cbp-border-radius-softer);
     box-shadow: var(--cbp-shadow-level-1-down);
-    z-index: var(--cbp-z-index-level-0); // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
+    z-index: var(--cbp-z-index-level-1); // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
   }
 }
