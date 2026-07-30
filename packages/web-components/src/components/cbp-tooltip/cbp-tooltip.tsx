@@ -1,5 +1,5 @@
-import { Component, Prop, Element, Host, h, Listen } from '@stencil/core';
-import { setCSSProps, createNamespaceKey, getInvertedContext } from '../../utils/utils';
+import { Component, Prop, Element, Host, h, Listen, State } from '@stencil/core';
+import { setCSSProps, createNamespaceKey, getInvertedContext, clickAwayListener } from '../../utils/utils';
 import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 
 /**
@@ -14,6 +14,7 @@ import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 })
 export class CbpTooltip {
 
+  @State() hoverActivated = false;
   @Element() private host: HTMLElement;
   private arrow: HTMLElement;
   private control: HTMLElement;
@@ -21,6 +22,12 @@ export class CbpTooltip {
   
   /** When set, specifies that the tooltip is open */
   @Prop({ reflect: true }) open: boolean = false;
+
+  /** Specifies the dialog height in CSS units (preferably relative units such as rem). */
+  @Prop() height: string;
+ 
+  /** Specifies the dialog width in CSS units (preferably relative units such as rem). */
+  @Prop() width: string;
 
   /** used to set styles for the definition link for text controls*/
   @Prop({ reflect: true }) variant: 'definition';
@@ -42,8 +49,20 @@ export class CbpTooltip {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.host, {
+      '--cbp-tooltip-height': this.height,
+      '--cbp-tooltip-width': this.width,
       ...this.sx,
     });
+  }
+
+  hoverTooltip(x){
+    if(x && !this.open){
+      this.hoverActivated = true;
+      this.open= true;
+    }else if(this.hoverActivated && !x){//TODO: add a && this.open? getting weird cases when tooltip opened by other means
+      this.hoverActivated = false;
+      this.open=false;
+    }
   }
 
   dismissTooltip(){
@@ -103,8 +122,16 @@ componentDidRender(){
         aria-describedby={`${this.fieldId}`}
         role="button"
         tabindex="0"  
-        onfocus={() => this.open=true}
-        onClick={() => this.host.focus()}
+        onmouseenter={() => this.hoverTooltip(true)}
+        onmouseleave={() => this.hoverTooltip(false)}
+        onfocus={() => {
+          this.open=true;
+          clickAwayListener(this.host, _ => {this.open = false})
+        }}
+        onClick={() => {
+          this.hoverActivated = false;
+          this.host.focus()
+        }}
         ref={el => (this.control = el)}
       >
         <slot />
