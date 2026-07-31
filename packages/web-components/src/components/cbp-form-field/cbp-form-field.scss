@@ -256,10 +256,6 @@ cbp-form-field {
 
   // Selects do not allow ::before pseudo element for a faux-button, so this is implemented differently than cbp-dropdown.
   select:not([multiple]):not([size]) {
-    // Simple chevron replacement, no background
-    //background: right var(--cbp-space-2x) top var(--cbp-space-3x) no-repeat var(--cbp-form-field-color-bg) var(--cbp-form-field-select-chevron);
-    //padding-inline-end: var(--cbp-space-5x);
-
     // Extract the width of the faux button for easier calculations
     --cbp-form-field-dropdown-faux-button-width: calc(var(--cbp-space-9x) - var(--cbp-border-size-md));
 
@@ -267,28 +263,23 @@ cbp-form-field {
     background: right calc( calc(var(--cbp-form-field-dropdown-faux-button-width) / 2 ) - 8px) top calc(1rem - 8px) no-repeat var(--cbp-form-field-select-chevron), 
                 right -0.4px top 0px repeat-y linear-gradient( 90deg, var(--cbp-form-field-color-bg) calc(100% - var(--cbp-form-field-dropdown-faux-button-width)), var(--cbp-form-field-color-border) var(--cbp-space-9x) );
     padding-inline-end: var(--cbp-space-9x);
-    
   }
 
-  // Leave commented styles until verified everything's correct. If so, these are being inherited and can be removed.
+  // Error states
   &[error] {
-    //--cbp-form-field-color: var(--cbp-color-text-darkest);
-    --cbp-form-field-color-bg: var(--cbp-color-danger-lighter);
-    --cbp-form-field-color-border: var(--cbp-color-danger-dark);
-    --cbp-form-field-color-border-hover: var(--cbp-color-danger-darker);
-    //--cbp-form-field-color-border-focus: var(--cbp-color-interactive-focus-dark);
-    //--cbp-form-field-color-label: var(--cbp-color-text-darkest);
     --cbp-form-field-color-description: var(--cbp-color-danger-dark);
-    //--cbp-form-field-color-placeholder: var(--cbp-color-text-dark);
-    
-    //--cbp-form-field-color-dark: var(--cbp-color-text-lightest);
-    --cbp-form-field-color-bg-dark: var(--cbp-color-danger-darker);
-    --cbp-form-field-color-border-dark: var(--cbp-color-danger-light);
-    --cbp-form-field-color-border-hover-dark: var(--cbp-color-danger-lighter);
-    //--cbp-form-field-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
-    //--cbp-form-field-color-label-dark: var(--cbp-color-text-lightest);
     --cbp-form-field-color-description-dark: var(--cbp-color-danger-light);
-    //--cbp-form-field-color-placeholder-dark: var(--cbp-color-text-light);
+
+    // Only fields with errors within a group should be highlighted, not all fields in a group
+    &:not([group]) {
+      --cbp-form-field-color-bg: var(--cbp-color-danger-lighter);
+      --cbp-form-field-color-border: var(--cbp-color-danger-dark);
+      --cbp-form-field-color-border-hover: var(--cbp-color-danger-darker);
+
+      --cbp-form-field-color-bg-dark: var(--cbp-color-danger-darker);
+      --cbp-form-field-color-border-dark: var(--cbp-color-danger-light);
+      --cbp-form-field-color-border-hover-dark: var(--cbp-color-danger-lighter);
+    }
   }
 
   // Auto-filled input background color is set by the user agent stylesheet, so unfortunately there’s no way to override it.
