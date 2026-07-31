@@ -39,7 +39,7 @@ export class CbpForm {
 
 
   handleFormData(e) {
-    // Referencing the native form event's formData seems to allow updating it before submission
+    // Referencing the native form formdata event seems to allow updating formData before submission
     let formData = e.formData;
     if(this.debug) console.log("cbp-form - listening for formData event: ", [...formData]);
     // Add files from enhanced/multi-file inputs
