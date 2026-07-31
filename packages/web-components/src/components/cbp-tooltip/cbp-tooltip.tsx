@@ -19,16 +19,16 @@ export class CbpTooltip {
   private control: HTMLElement;
   private floatingEl: HTMLElement;
 
-  @State() hoverActivated:boolean = false;
+  @State() hoverExitTimeout:boolean = false;
   private timeoutId = undefined;
 
   /** When set, specifies that the tooltip is open */
   @Prop({ reflect: true }) open: boolean = false;
 
-  /** Specifies the dialog height in CSS units (preferably relative units such as rem). */
+  /** Optionally specifies the tooltip height in CSS units (preferably relative units such as rem). */
   @Prop() height: string;
  
-  /** Specifies the dialog width in CSS units (preferably relative units such as rem). */
+  /** Optionally specifies the tooltip width in CSS units (preferably relative units such as rem). */
   @Prop() width: string;
 
   /** used to set styles for the definition link for text controls*/
@@ -57,26 +57,26 @@ export class CbpTooltip {
     });
   }
 
-  hoverTooltip(x){
+  hoverTooltip(hovered){
 
     if(typeof this.timeoutId === "number"){
         clearTimeout(this.timeoutId)
         this.timeoutId = undefined;
       }
 
-    if(x && !this.open){
-      this.hoverActivated = true;
+    if(hovered && !this.open){
+      this.hoverExitTimeout = true;
       this.open= true;
-    }else if(this.hoverActivated && !x){      
+    }else if(this.hoverExitTimeout && !hovered){      
       this.timeoutId = setTimeout(() => {
-        this.hoverActivated = false;
+        this.hoverExitTimeout = false;
         this.open=false;
-      }, 1000);
+      }, 250);
     }
   }
 
   handleClick(){
-    this.hoverActivated = false;
+    this.hoverExitTimeout = false;
     this.host.focus();
   }
 
@@ -143,7 +143,8 @@ componentDidRender(){
         role="button"
         tabindex="0"  
         onmouseover={() => this.hoverTooltip(true)}
-        onmouseleave={() => this.hoverTooltip(false)}
+        // onmouseleave={() => this.hoverTooltip(false)}
+        onmouseout={() => this.hoverTooltip(false)}
         onfocus={() => this.handleFocus()}
         onClick={() => this.handleClick()}
         ref={el => (this.control = el)}
