@@ -58,14 +58,20 @@ export class CbpFormField {
   @Prop() sx: any = {};
 
 
-  /** A custom event emitted when the the nested input is changed by user interaction. */
+  /** 
+   * A custom event emitted when a nested input is changed by user interaction.
+   * If the nested field is a component that already emits its own valueChange event 
+   * this component will not fire another, as the bubbled event will suffice.
+   */
   @Event() valueChange: EventEmitter;
 
 
-
-  // TechDebt: Seems to be firing twice with a different CurrentTarget on each instance (one on the component, the other on the document/root)
-  // TechDebt: needs testing with input groups
+  /*
+    Handles native change events for which event handlers were explicitly set up for.
+    (native change events do not bubble)
+  */
   handleChange(e) {
+    // emit valueChange event
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formField,
@@ -74,22 +80,40 @@ export class CbpFormField {
     });
   }
 
-  // Listen for valueChange events from components that may not emit a native change event.
-  @Listen('valueChange')
-  handleValueChange() {
-    //WIP
-    //console.log('cbp-form-field received valueChange event:', e);
-    //e.stopPropagation();
+  // Listen for checkbox and radio button changes to provide a roll-up of values via valueChange
+  @Listen('stateChanged')
+  handleStateChange(e) {
+    const fieldName = e.detail?.nativeElement.getAttribute('name');
+    const isCheckbox:boolean = e.detail?.nativeElement.getAttribute('type') == "checkbox";
 
-    // Make sure this event is not from itself before emitting a new one
-    /*
-    this.valueChange.emit({
-      host: this.host,
-      nativeElement: e.detail?.nativeElement,
-      value: this.formField?.value,
-      nativeEvent: e.detail?.nativeEvent
-    });
-    */
+    // Get all same-named checkboxes/radios and report the values of all checked items in the list as an array
+    if(isCheckbox && fieldName != undefined) {
+      const checkedItems = Array.from(this.host.querySelectorAll(`input[type="checkbox"][name="${fieldName}"]:checked`));
+      let values = [];
+      checkedItems.forEach( item => {
+        values = [...values, item.getAttribute('value')];
+      });
+
+      // Emit the event (only if the fields are named)
+      this.valueChange.emit({
+        host: this.host,
+        nativeElement: e.detail?.nativeElement,
+        name: fieldName,
+        value: values,
+        nativeEvent: e.detail?.nativeEvent
+      });
+    }
+
+    // If the field was not named or is a radio, just emit a valueChange focused on the single item, returning a null value if unchecked
+    else {
+      this.valueChange.emit({
+        host: this.host,
+        nativeElement: e.detail?.nativeElement,
+        name: fieldName,
+        value: e.detail?.checked ? e.detail?.value : null,
+        nativeEvent: e.detail?.nativeEvent
+      });
+    }
   }
 
 
@@ -163,8 +187,8 @@ export class CbpFormField {
   componentDidLoad() {
     // Moved this logic to componentDidLoad so that it works with buttons rendered by the component lifecycle (not just slotted), such as in file input.
     if (!this.group) {
-      // query the DOM for the slotted form field and wire it up for accessibility and attach an event listener to it
-      this.formField = this.host.querySelector('button[role=combobox],input,select,textarea');
+      // query the DOM for the slotted form field
+      this.formField = this.host.querySelector('input,select,textarea');
       //this.formFields = Array.from(this.host.querySelectorAll('button[role=combobox],input,select,textarea')) as any;
       
       // Treat nested components separately, as it's hard to modify their rendered content directly
@@ -174,15 +198,17 @@ export class CbpFormField {
       this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
       this.hasDescription = !!this.description || !!this.host.querySelector('[slot=cbp-form-field-description]');
 
+      // For single child/non-grouped form field, hook up the ID and aria-describedby and add an onChange listener where appropriate
       if (this.formField) {
         // If the slotted form field has an ID, use it; otherwise, set it.
         this.formField.getAttribute('id')
           ? this.fieldId = this.formField.getAttribute('id')
           : this.formField.setAttribute('id', `${this.fieldId}`);
         this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
-        
-        // Listen for native change events
-        this.formField.addEventListener('change', (e) => this.handleChange(e));
+
+        // Listen for native change events (unless already handled by a custom component)
+        const ignoredField = this.formField.closest('cbp-dropdown,cbp-slider,cbp-file-input');
+        if(!ignoredField) this.formField.addEventListener('change', (e) => this.handleChange(e));
       }
 
       // Set the disabled/readonly/error states on load only if true. (The Watch decorators only listen for changes, not initial state)
@@ -196,8 +222,6 @@ export class CbpFormField {
         this.formFieldComponent.fieldId
           ? this.fieldId = this.formFieldComponent.fieldId
           : this.formFieldComponent.fieldId = this.fieldId;
-        // TechDebt: readonly should probably be removed, as it's not applicable to these components/inputs. Or maybe set the field disabled, because this could be applied to a group?
-        if (this.readonly) this.formFieldComponent.readonly=true;
         if (this.disabled) this.formFieldComponent.disabled=true;
         if (this.error) this.formFieldComponent.error=true;
       }
@@ -275,6 +299,7 @@ export class CbpFormField {
           <div
             id={`${this.fieldId}-description`}
             class="cbp-form-field-description"
+            hidden={!this.description && !this.host.querySelector('[slot=cbp-form-field-description]')}
           >
             {this.error && <cbp-icon name="triangle-exclamation" color="var(--cbp-form-field-color-description)" size="var(--cbp-space-3x)" sx='{"margin-inline-end":"var(--cbp-space-1x)"}'></cbp-icon>}
             {this.description}
