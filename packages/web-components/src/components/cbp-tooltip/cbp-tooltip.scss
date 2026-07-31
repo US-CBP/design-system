@@ -147,6 +147,7 @@ div[role=tooltip] {
   z-index: var(--cbp-z-index-level-1);
 
   > div{
+    flex-grow: 1;
     padding: var(--cbp-space-1x);
   
     [slot='cbp-tooltip-content']{

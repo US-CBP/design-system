@@ -22,6 +22,14 @@ export default {
       description: 'toggle the open prop for the tooltip',
       control: 'boolean',
     },
+    height: {
+      description: 'Specifies a custom CSS height for the dialog',
+      control: 'text'
+    },
+    width: {
+      description: 'Specifies a custom CSS width for the dialog',
+      control: 'text'
+    },
     position: {
       description: 'Sets where the the tooltip will align to the control.',
       control: 'select',
@@ -53,10 +61,12 @@ export default {
   parameters: { layout: 'centered' },
 };
 
-const Template = ({ open, uid, position, title, content, control, context, sx }) => {
+const Template = ({ open, height, width, uid, position, title, content, control, context, sx }) => {
   return ` 
     <cbp-tooltip
       ${open ? 'open' : ''}
+      ${height ? `height="${height}"` : ''}
+      ${width ? `width="${width}"` : ''}
       ${uid ? `uid="${uid}"` : ''}
       ${position ? `position="${position}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}

@@ -1,5 +1,5 @@
-import { Component, Prop, Element, Host, h, Listen } from '@stencil/core';
-import { setCSSProps, createNamespaceKey, getInvertedContext } from '../../utils/utils';
+import { Component, Prop, Element, Host, h, Listen, State } from '@stencil/core';
+import { setCSSProps, createNamespaceKey, getInvertedContext, clickAwayListener } from '../../utils/utils';
 import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 
 /**
@@ -18,9 +18,18 @@ export class CbpTooltip {
   private arrow: HTMLElement;
   private control: HTMLElement;
   private floatingEl: HTMLElement;
-  
+
+  @State() hoverExitTimeout:boolean = false;
+  private timeoutId = undefined;
+
   /** When set, specifies that the tooltip is open */
   @Prop({ reflect: true }) open: boolean = false;
+
+  /** Optionally specifies the tooltip height in CSS units (preferably relative units such as rem). */
+  @Prop() height: string;
+ 
+  /** Optionally specifies the tooltip width in CSS units (preferably relative units such as rem). */
+  @Prop() width: string;
 
   /** used to set styles for the definition link for text controls*/
   @Prop({ reflect: true }) variant: 'definition';
@@ -42,8 +51,41 @@ export class CbpTooltip {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.host, {
+      '--cbp-tooltip-height': this.height,
+      '--cbp-tooltip-width': this.width,
       ...this.sx,
     });
+  }
+
+  hoverTooltip(hovered){
+
+    if(typeof this.timeoutId === "number"){
+        clearTimeout(this.timeoutId)
+        this.timeoutId = undefined;
+      }
+
+    if(hovered && !this.open){
+      this.hoverExitTimeout = true;
+      this.open= true;
+    }else if(this.hoverExitTimeout && !hovered){      
+      this.timeoutId = setTimeout(() => {
+        this.hoverExitTimeout = false;
+        this.open=false;
+      }, 250);
+    }
+  }
+
+  handleClick(e){
+    if (!this.floatingEl.contains(e.target)){
+      this.hoverExitTimeout = false;
+      this.host.focus();
+      this.open = true;
+    }
+  }
+
+  handleFocus(){
+    if(!this.open) { this.open = true}
+    clickAwayListener(this.host, _ => {this.open = false})    
   }
 
   dismissTooltip(){
@@ -98,18 +140,25 @@ componentDidRender(){
   }
 
   render() {
-    return (
+    return ( //todo: add a keydown for space or enter to call the onclick
       <Host 
         aria-describedby={`${this.fieldId}`}
         role="button"
         tabindex="0"  
-        onfocus={() => this.open=true}
-        onClick={() => this.host.focus()}
+        onmouseover={() => this.hoverTooltip(true)}
+        onmouseout={() => this.hoverTooltip(false)}
+        onfocus={() => this.handleFocus()}
+        onClick={(e) => this.handleClick(e)}
+        onKeydown={(e) => {if (e.key === 'Enter' || e.key === ' '){this.handleClick(e)}}}
         ref={el => (this.control = el)}
       >
         <slot />
 
-        <div role="tooltip" id={`${this.fieldId}`} ref={el => (this.floatingEl = el)}>
+        <div 
+          role="tooltip" 
+          id={`${this.fieldId}`} 
+          ref={el => (this.floatingEl = el)}
+        >
           <div>
             <slot name="cbp-tooltip-content" ></slot>
           </div>
