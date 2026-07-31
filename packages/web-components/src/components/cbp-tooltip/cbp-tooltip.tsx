@@ -140,7 +140,7 @@ componentDidRender(){
   }
 
   render() {
-    return (
+    return ( //todo: add a keydown for space or enter to call the onclick
       <Host 
         aria-describedby={`${this.fieldId}`}
         role="button"
@@ -149,6 +149,7 @@ componentDidRender(){
         onmouseout={() => this.hoverTooltip(false)}
         onfocus={() => this.handleFocus()}
         onClick={(e) => this.handleClick(e)}
+        onKeydown={(e) => {if (e.key === 'Enter' || e.key === ' '){this.handleClick(e)}}}
         ref={el => (this.control = el)}
       >
         <slot />
