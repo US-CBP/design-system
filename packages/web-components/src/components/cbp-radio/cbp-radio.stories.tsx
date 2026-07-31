@@ -45,8 +45,8 @@ const Template = ({ label, name, value, checked, disabled, context, sx }) => {
     >
       <input 
         type="radio" 
-        name="${name}"
-        value="${value}"
+        ${name ? `name="${name}"` : ''}
+        ${value ? `value="${value}"` : ''}
         ${checked ? 'checked' : ''}
       />
       ${label}

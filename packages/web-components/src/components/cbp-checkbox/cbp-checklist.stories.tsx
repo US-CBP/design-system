@@ -76,8 +76,8 @@ function generateCheckboxes(context, checkboxes) {
       >
         <input 
           type="checkbox" 
-          name="${name}"
-          value="${value}"
+          ${name ? `name="${name}"` : ''}
+          ${value ? `value="${value}"` : ''}
           ${checked ? 'checked' : ''}
           ${disabled ? 'disabled' : ''}
         />

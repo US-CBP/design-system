@@ -56,8 +56,8 @@ const Template = ({ label, name, value, fieldId, checked, indeterminate, disable
       >
         <input 
           type="checkbox" 
-          name="${name}"
-          value="${value}"
+          ${name ? `name="${name}"` : ''}
+          ${value ? `value="${value}"` : ''}
           ${checked ? 'checked' : ''}
         />
         ${label}

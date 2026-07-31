@@ -76,8 +76,8 @@ function generateRadios(context, radios) {
       >
         <input 
           type="radio" 
-          name="${name}"
-          value="${value}"
+          ${name ? `name="${name}"` : ''}
+          ${value ? `value="${value}"` : ''}
           ${checked ? 'checked' : ''}
           ${disabled ? 'disabled' : ''}
         />
