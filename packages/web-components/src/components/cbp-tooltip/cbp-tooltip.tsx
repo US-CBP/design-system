@@ -14,7 +14,7 @@ import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 })
 export class CbpTooltip {
 
-  @State() hoverActivated = false;
+  @State() hoverActivated:boolean = false;
   @Element() private host: HTMLElement;
   private arrow: HTMLElement;
   private control: HTMLElement;
@@ -59,10 +59,22 @@ export class CbpTooltip {
     if(x && !this.open){
       this.hoverActivated = true;
       this.open= true;
-    }else if(this.hoverActivated && !x){//TODO: add a && this.open? getting weird cases when tooltip opened by other means
-      this.hoverActivated = false;
-      this.open=false;
+    }else if(this.hoverActivated && !x){
+      // setTimeout(() => { //TODO: not persisting on child hover like anticipated
+        this.hoverActivated = false;
+        this.open=false;
+      // }, 1000);
     }
+  }
+
+  handleClick(){
+    this.hoverActivated = false;
+    this.host.focus();
+  }
+
+  handleFocus(){
+    !this.open ? this.open = true : '';
+    clickAwayListener(this.host, _ => {this.open = false})    
   }
 
   dismissTooltip(){
@@ -123,20 +135,19 @@ componentDidRender(){
         role="button"
         tabindex="0"  
         onmouseenter={() => this.hoverTooltip(true)}
-        onmouseleave={() => this.hoverTooltip(false)}
-        onfocus={() => {
-          this.open=true;
-          clickAwayListener(this.host, _ => {this.open = false})
-        }}
-        onClick={() => {
-          this.hoverActivated = false;
-          this.host.focus()
-        }}
+        onmouseover={() => this.hoverTooltip(true)}
+        onmouseleave={() => setTimeout(() => {this.hoverTooltip(false)}, 1000)}
+        onfocus={() => this.handleFocus()}
+        onClick={() => this.handleClick()}
         ref={el => (this.control = el)}
       >
         <slot />
 
-        <div role="tooltip" id={`${this.fieldId}`} ref={el => (this.floatingEl = el)}>
+        <div 
+          role="tooltip" 
+          id={`${this.fieldId}`} 
+          ref={el => (this.floatingEl = el)}
+        >
           <div>
             <slot name="cbp-tooltip-content" ></slot>
           </div>
@@ -148,7 +159,7 @@ componentDidRender(){
             context={this.invertContext()}
             variant="square"
             accessibilityText="Close Tooltip"
-            onClick={() => this.dismissTooltip()}
+            onClick={() => this.dismissTooltip()} //TODO: recursively focusing to open tooltip, so close button not working
             onKeyDown={(e) => this.handleFocusOut(e)}
           >
             <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
