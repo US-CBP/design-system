@@ -14,12 +14,14 @@ import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 })
 export class CbpTooltip {
 
-  @State() hoverActivated:boolean = false;
   @Element() private host: HTMLElement;
   private arrow: HTMLElement;
   private control: HTMLElement;
   private floatingEl: HTMLElement;
-  
+
+  @State() hoverActivated:boolean = false;
+  private timeoutId = undefined;
+
   /** When set, specifies that the tooltip is open */
   @Prop({ reflect: true }) open: boolean = false;
 
@@ -56,14 +58,20 @@ export class CbpTooltip {
   }
 
   hoverTooltip(x){
+
+    if(typeof this.timeoutId === "number"){
+        clearTimeout(this.timeoutId)
+        this.timeoutId = undefined;
+      }
+
     if(x && !this.open){
       this.hoverActivated = true;
       this.open= true;
-    }else if(this.hoverActivated && !x){
-      // setTimeout(() => { //TODO: not persisting on child hover like anticipated
+    }else if(this.hoverActivated && !x){      
+      this.timeoutId = setTimeout(() => {
         this.hoverActivated = false;
         this.open=false;
-      // }, 1000);
+      }, 1000);
     }
   }
 
@@ -134,9 +142,8 @@ componentDidRender(){
         aria-describedby={`${this.fieldId}`}
         role="button"
         tabindex="0"  
-        onmouseenter={() => this.hoverTooltip(true)}
         onmouseover={() => this.hoverTooltip(true)}
-        onmouseleave={() => setTimeout(() => {this.hoverTooltip(false)}, 1000)}
+        onmouseleave={() => this.hoverTooltip(false)}
         onfocus={() => this.handleFocus()}
         onClick={() => this.handleClick()}
         ref={el => (this.control = el)}
