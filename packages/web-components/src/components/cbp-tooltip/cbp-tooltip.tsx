@@ -75,13 +75,16 @@ export class CbpTooltip {
     }
   }
 
-  handleClick(){
-    this.hoverExitTimeout = false;
-    this.host.focus();
+  handleClick(e){
+    if (!this.floatingEl.contains(e.target)){
+      this.hoverExitTimeout = false;
+      this.host.focus();
+      this.open = true;
+    }
   }
 
   handleFocus(){
-    !this.open ? this.open = true : '';
+    if(!this.open) { this.open = true}
     clickAwayListener(this.host, _ => {this.open = false})    
   }
 
@@ -143,10 +146,9 @@ componentDidRender(){
         role="button"
         tabindex="0"  
         onmouseover={() => this.hoverTooltip(true)}
-        // onmouseleave={() => this.hoverTooltip(false)}
         onmouseout={() => this.hoverTooltip(false)}
         onfocus={() => this.handleFocus()}
-        onClick={() => this.handleClick()}
+        onClick={(e) => this.handleClick(e)}
         ref={el => (this.control = el)}
       >
         <slot />
@@ -167,7 +169,7 @@ componentDidRender(){
             context={this.invertContext()}
             variant="square"
             accessibilityText="Close Tooltip"
-            onClick={() => this.dismissTooltip()} //TODO: recursively focusing to open tooltip, so close button not working
+            onClick={() => this.dismissTooltip()}
             onKeyDown={(e) => this.handleFocusOut(e)}
           >
             <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
