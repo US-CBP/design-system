@@ -14,10 +14,10 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
 })
 export class CbpSlider {
 
-  private formFields: HTMLInputElement[] = [];  // You can't set a ref to an array index, so we'll construct the array after they've loaded.
+  private formFields: HTMLInputElement[] = [];
   private valueField1: HTMLInputElement;
   private valueField2: HTMLInputElement;
-  private valueFields: HTMLInputElement[] = [];
+  private valueFields: HTMLInputElement[] = [];  // You can't set a ref to an array index, so we'll construct the array after they've loaded.
   private initialValue: any; // Save the initial value to support reset functionality
 
   @Element() private host: HTMLElement;
@@ -120,8 +120,24 @@ export class CbpSlider {
     });
   }
   
-  // Sync the values regardless of which field was updated.
+
+  // Only emit the valueChange event on native change event for consistency.
   handleChange(e, i=0) {
+    // run this again to catch the other cases where an input event is not fired to sync the slider to the value
+    this.synchronizeFields(e,i);
+
+    // emit the valueChange event
+    this.valueChange.emit({
+      host: this.host,
+      nativeElement: this.formFields[i],
+      value: this.value,
+      nativeEvent: e
+    });
+  }
+
+
+  // Sync the values regardless of which field was updated.
+  synchronizeFields(e, i=0) {
     // normalize invalid values to the min or max
     let newValue = (!isNaN(e.target.value) && !isNaN(parseFloat(e.target.value))) ? e.target.value : this.min;
     
@@ -153,14 +169,6 @@ export class CbpSlider {
       ];
       this.updateRangeBoundaries();
     }
-
-    this.valueChange.emit({
-      host: this.host,
-      nativeElement: this.formFields[i],
-      value: this.value,
-      nativeEvent: e
-    });
-
     this.setSliderBar();
   }
 
@@ -242,6 +250,7 @@ export class CbpSlider {
           item.setAttribute('id', `${this.fieldId}${index == 1 ? '-end' : ''}`);
         }
       }
+
       if (this.value) item.setAttribute('value', this.variant == 'range' ? this.value[index] : this.value);
       if (this.min) item.setAttribute('min', `${this.min}`);
       if (this.max) item.setAttribute('max', `${this.max}`);
@@ -263,8 +272,10 @@ export class CbpSlider {
 
       // The input does not retain focus on Mac when clicked, so force it
       item.addEventListener('click', () => item.focus());
-      item.addEventListener('input', (e) => this.handleChange(e, index));
-          
+      item.addEventListener('input', (e) => this.synchronizeFields(e, index));
+      // Only emit the valueChange event on the actual change event for consistency
+      item.addEventListener('change', (e) => this.handleChange(e, index));
+      
       // Save the initial value after any parsing has been done
       this.initialValue = this.value;
     })
@@ -293,7 +304,7 @@ export class CbpSlider {
             aria-description="Slider 1 value"
             aria-invalid={this.error}
             ref={(el) => this.valueField1 = el}
-            onChange={ (e) => this.handleChange(e,0)}
+            onChange={ (e) => this.handleChange(e, 0)}
           />
         }
 
