@@ -63,6 +63,7 @@ export class CbpToggle {
     this.toggleClick.emit({
       host: this.host,
       nativeElement: this.formField,
+      name: this.formField.name,
       value: this.formField.value,
       checked: this.formField.checked,
       nativeEvent: e
@@ -80,7 +81,6 @@ export class CbpToggle {
     this.checked = this.initialChecked;
     this.initialChecked ? this.formField?.setAttribute('checked','') : this?.formField.removeAttribute('checked');
   }
-
 
 
   @Watch('disabled')
@@ -131,14 +131,13 @@ export class CbpToggle {
 
 
   render() {
-      return (
-        <Host>
-          <label>
-            <slot />
-            {!this.hideStatus && <span>{this.checked ? this.statusTextOn : this.statusTextOff}</span>}
-          </label>
-        </Host>
-      );
+    return (
+      <Host>
+        <label>
+          <slot />
+          {!this.hideStatus && <span>{this.checked ? this.statusTextOn : this.statusTextOff}</span>}
+        </label>
+      </Host>
+    );
   }
-
 }

@@ -43,6 +43,7 @@ cbp-typography {
   
   & > * {
     color: var(--cbp-typography-color);
+    font-style: initial;
   }
 
   &[variant=heading-xxl] > *, h1,
@@ -160,105 +161,107 @@ cbp-typography {
 
   
   &[size="1"] > * {
-    font-size: var(--cbp-font-size-1);
+    //font-size: var(--cbp-font-size-1);
     line-height: var(--cbp-line-height-1);
   }
   
   &[size="2"] > * {
-    font-size: var(--cbp-font-size-2);
+    //font-size: var(--cbp-font-size-2);
     line-height: var(--cbp-line-height-2);
   }
 
   &[size="3"] > * {
-    font-size: var(--cbp-font-size-3);
+    //font-size: var(--cbp-font-size-3);
     line-height: var(--cbp-line-height-3);
   }
 
   &[size="4"] > * {
-    font-size: var(--cbp-font-size-4);
+    //font-size: var(--cbp-font-size-4);
     line-height: var(--cbp-line-height-4);
   }
 
   &[size="5"] > * {
-    font-size: var(--cbp-font-size-5);
+    //font-size: var(--cbp-font-size-5);
     line-height: var(--cbp-line-height-4);
   }
 
   &[size="6"] > * {
-    font-size: var(--cbp-font-size-6);
+    //font-size: var(--cbp-font-size-6);
     line-height: var(--cbp-line-height-4);
   }
 
   &[size="7"] > * {
-    font-size: var(--cbp-font-size-7);
+    //font-size: var(--cbp-font-size-7);
     line-height: var(--cbp-line-height-5);
   }
   
   &[size="8"] > * {
-    font-size: var(--cbp-font-size-8);
+    //font-size: var(--cbp-font-size-8);
     line-height: var(--cbp-line-height-6);
   }
   
   &[size="9"] > * {
-    font-size: var(--cbp-font-size-9);
+    //font-size: var(--cbp-font-size-9);
     line-height: var(--cbp-line-height-7);
   }
   
   &[size="10"] > * {
-    font-size: var(--cbp-font-size-10);
+    //font-size: var(--cbp-font-size-10);
     line-height: var(--cbp-line-height-8);
   }
   
   &[size="11"] > * {
-    font-size: var(--cbp-font-size-11);
+    //font-size: var(--cbp-font-size-11);
     line-height: var(--cbp-line-height-9);
   }
   
   &[size="12"] > * {
-    font-size: var(--cbp-font-size-12);
+    //font-size: var(--cbp-font-size-12);
     line-height: var(--cbp-line-height-10);
   }
   
   &[size="13"] > * {
-    font-size: var(--cbp-font-size-13);
+    //font-size: var(--cbp-font-size-13);
     line-height: var(--cbp-line-height-11);
   }
   
   &[size="14"] > * {
-    font-size: var(--cbp-font-size-14);
+    //font-size: var(--cbp-font-size-14);
     line-height: var(--cbp-line-height-12);
   }
   
   &[size="15"] > * {
-    font-size: var(--cbp-font-size-15);
+    //font-size: var(--cbp-font-size-15);
     line-height: var(--cbp-line-height-13);
   }
   
   &[size="16"] > * {
-    font-size: var(--cbp-font-size-16);
+    //font-size: var(--cbp-font-size-16);
     line-height: var(--cbp-line-height-14);
   }
   
   &[size="17"] > * {
-    font-size: var(--cbp-font-size-17);
+    //font-size: var(--cbp-font-size-17);
     line-height: var(--cbp-line-height-15);
   }
   
   &[size="18"] > * {
-    font-size: var(--cbp-font-size-18);
+    //font-size: var(--cbp-font-size-18);
     line-height: var(--cbp-line-height-16);
   }
 
   &[size="19"] > * {
-    font-size: var(--cbp-font-size-19);
+    //font-size: var(--cbp-font-size-19);
     line-height: var(--cbp-line-height-17);
   }
 
   &[size="20"] > * {
-    font-size: var(--cbp-font-size-20);
+    //font-size: var(--cbp-font-size-20);
     line-height: var(--cbp-line-height-18);
   }
 
+
+  /*
   &[line-height="1"] > * {
     line-height: var(--cbp-line-height-1);
   }
@@ -330,7 +333,9 @@ cbp-typography {
   &[line-height="18"] > * {
     line-height: var(--cbp-line-height-18);
   }
-  
+  */
+
+  /*
   &[font-weight=thin] > * {
     font-weight: var(--cbp-font-weight-thin)
   }
@@ -354,4 +359,5 @@ cbp-typography {
   &[font-weight=black] > * {
     font-weight: var(--cbp-font-weight-black)
   }
+  */
 }

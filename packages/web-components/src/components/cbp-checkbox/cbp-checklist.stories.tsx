@@ -31,8 +31,8 @@ export default {
     },
   },
   args: {
-    label: "Checklist Group Label",
-    description: 'Field description.',
+    label: "Insert Checklist Group Label",
+    description: 'Insert group description.',
     checkboxes: [
       {
         label: "Checkbox 1",
@@ -76,8 +76,8 @@ function generateCheckboxes(context, checkboxes) {
       >
         <input 
           type="checkbox" 
-          name="${name}"
-          value="${value}"
+          ${name ? `name="${name}"` : ''}
+          ${value ? `value="${value}"` : ''}
           ${checked ? 'checked' : ''}
           ${disabled ? 'disabled' : ''}
         />

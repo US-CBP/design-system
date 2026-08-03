@@ -44,6 +44,9 @@ export class CbpTypography {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.renderedTag, {
+      'font-size': this.size ? `var(--cbp-font-size-${this.size})` : undefined,
+      'line-height': this.lineHeight ? `var(--cbp-line-height-${this.lineHeight})` : undefined,
+      'font-weight': this.fontWeight ? `var(--cbp-font-weight-${this.fontWeight})` : undefined,
       ...this.sx
     });
   }
