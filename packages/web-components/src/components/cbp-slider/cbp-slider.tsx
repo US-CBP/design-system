@@ -130,6 +130,7 @@ export class CbpSlider {
     this.valueChange.emit({
       host: this.host,
       nativeElement: this.formFields[i],
+      name: this.formFields[i].name,
       value: this.value,
       nativeEvent: e
     });

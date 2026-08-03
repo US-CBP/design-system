@@ -161,7 +161,6 @@ export class CbpDropdown {
   @Event() populateCombobox: EventEmitter;
 
 
-
   @Listen('dropdownItemClick')
   handleDropdownItemClick(e) {
     const { host, label, value } = e.detail;
@@ -229,6 +228,7 @@ export class CbpDropdown {
       this.valueChange.emit({
         host: this.host,
         nativeElement: this.formField,
+        name: this.formField.name,
         value: this.value,
         label: this.selectedLabel,
         nativeEvent: e
@@ -239,6 +239,7 @@ export class CbpDropdown {
         {
           host: this.host,
           nativeElement: this.formField,
+          name: this.formField.name,
           value: this.value,
           label: this.selectedLabel,
           nativeEvent: e
@@ -365,6 +366,7 @@ export class CbpDropdown {
       this.valueChange.emit({
         host: this.host,
         nativeElement: this.formField,
+        name: this.formField.name,
         value: this.value,
         label: undefined,
         nativeEvent: e
@@ -375,6 +377,7 @@ export class CbpDropdown {
         {
           host: this.host,
           nativeElement: this.formField,
+          name: this.formField.name,
           value: this.value,
           label: undefined,
           nativeEvent: e
