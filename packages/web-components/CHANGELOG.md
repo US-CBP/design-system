@@ -20,6 +20,7 @@ The React components are wrappers generated from this package and will share the
     * For a checkbox, all checked values within named checkboxes will be emitted as an array of values.
     * For an unnamed checkbox (which cannot exist as part of a group), the value will be emitted if checked, otherwise the value will be reported as null.
     * For a radio list, only the value for the selected radio button is emitted.
+  * Added the `name` key to all custom event emitted by form components.
 
 ## [0.9.0-beta.1] 06-29-2026
 

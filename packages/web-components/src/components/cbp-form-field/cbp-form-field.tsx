@@ -88,39 +88,43 @@ export class CbpFormField {
     const fieldName = e.detail?.nativeElement.getAttribute('name');
     const isCheckbox:boolean = e.detail?.nativeElement.getAttribute('type') == "checkbox";
 
+    // Ignore checkboxes inside of a multi-select dropdown.
+    const ignoredField = e.detail?.nativeElement.closest('cbp-dropdown');
+
     // Determine if this is a checklist of same-named items or not.
     let checkedListItems;
     if(isCheckbox && fieldName != undefined) {
       checkedListItems = Array.from(this.host.querySelectorAll(`input[type="checkbox"][name="${fieldName}"]`));
     }
 
-    if(checkedListItems?.length > 1) {
-      // Get all same-named checkboxes/radios and report the values of all checked items in the list as an array
-      const checkedItems = Array.from(this.host.querySelectorAll(`input[type="checkbox"][name="${fieldName}"]:checked`));
-      let values = [];
-      checkedItems.forEach( item => {
-        values = [...values, item.getAttribute('value')];
-      });
+    if(!ignoredField) {
+      if(checkedListItems?.length > 1) {
+        // Get all same-named checkboxes/radios and report the values of all checked items in the list as an array
+        const checkedItems = Array.from(this.host.querySelectorAll(`input[type="checkbox"][name="${fieldName}"]:checked`));
+        let values = [];
+        checkedItems.forEach( item => {
+          values = [...values, item.getAttribute('value')];
+        });
 
-      // Emit the event (only if the fields are named)
-      this.valueChange.emit({
-        host: this.host,
-        nativeElement: e.detail?.nativeElement,
-        name: fieldName,
-        value: values,
-        nativeEvent: e.detail?.nativeEvent
-      });
-    }
-
-    // If the field was not named or is a radio, just emit a valueChange focused on the single item, returning a null value if unchecked
-    else {
-      this.valueChange.emit({
-        host: this.host,
-        nativeElement: e.detail?.nativeElement,
-        name: fieldName,
-        value: e.detail?.checked ? e.detail?.value : null,
-        nativeEvent: e.detail?.nativeEvent
-      });
+        // Emit the event (only if the fields are named)
+        this.valueChange.emit({
+          host: this.host,
+          nativeElement: e.detail?.nativeElement,
+          name: fieldName,
+          value: values,
+          nativeEvent: e.detail?.nativeEvent
+        });
+      }
+      // If the field was not named or is a radio, just emit a valueChange focused on the single item, returning a null value if unchecked
+      else {
+        this.valueChange.emit({
+          host: this.host,
+          nativeElement: e.detail?.nativeElement,
+          name: fieldName,
+          value: e.detail?.checked ? e.detail?.value : null,
+          nativeEvent: e.detail?.nativeEvent
+        });
+      }
     }
   }
 
