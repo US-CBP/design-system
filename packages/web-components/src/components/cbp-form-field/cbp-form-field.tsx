@@ -81,13 +81,20 @@ export class CbpFormField {
   }
 
   // Listen for checkbox and radio button changes to provide a roll-up of values via valueChange
+  @Listen('toggleClick')
   @Listen('stateChanged')
   handleStateChange(e) {
     const fieldName = e.detail?.nativeElement.getAttribute('name');
     const isCheckbox:boolean = e.detail?.nativeElement.getAttribute('type') == "checkbox";
 
-    // Get all same-named checkboxes/radios and report the values of all checked items in the list as an array
+    // Determine if this is a checklist of same-named items or not.
+    let checkedListItems;
     if(isCheckbox && fieldName != undefined) {
+      checkedListItems = Array.from(this.host.querySelectorAll(`input[type="checkbox"][name="${fieldName}"]`));
+    }
+
+    if(checkedListItems?.length > 1) {
+      // Get all same-named checkboxes/radios and report the values of all checked items in the list as an array
       const checkedItems = Array.from(this.host.querySelectorAll(`input[type="checkbox"][name="${fieldName}"]:checked`));
       let values = [];
       checkedItems.forEach( item => {
