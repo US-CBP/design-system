@@ -16,9 +16,9 @@ The React components are wrappers generated from this package and will share the
 * Updated how `valueChange` events are emitted by `cbp-form-field`, resolving cases of multiple events being emitted on a single change:
   * When a `cbp-dropdown`, `cbp-slider`, or `cbp-file-input` are nested in a `cbp-form-field`, `cbp-form-field` will not emit its own `valueChange` event because those components emit one, which bubbles and can be listed to on the `cbp-form-field` element or the form itself, already.
   * Updated `cbp-slider` to emit `valueChange` events according to native `change` events. Some were firing based on `input` events previously, causing an excess of `valueChange` events to be emitted.
-  * For checklists and radio lists, `cbp-form-field` (as a group) will listen for any `stateChanged` event from `cbp-checkbox` or `cbp-radio` and emit an appropriate `valueChange` event as follows:
-    * For a checkbox, all checked values within named checkboxes will be emitted as an array of values.
-    * For an unnamed checkbox (which cannot exist as part of a group), the value will be emitted if checked, otherwise the value will be reported as null.
+  * For checklists (including toggles) and radio lists, `cbp-form-field` (as a group) will listen for any `stateChanged` event from `cbp-checkbox` or `cbp-radio` and `toggleClick` from `cbp-toggle` and emit an appropriate `valueChange` event as follows:
+    * For a checkbox or toggle, all checked values within named checkboxes will be emitted as an array of values.
+    * For individually named checkboxes or toggles or an unnamed one (which cannot exist as part of a group), the value will be emitted if checked, otherwise the value will be reported as null.
     * For a radio list, only the value for the selected radio button is emitted.
   * Added the `name` key to all custom event emitted by form components.
 
