@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, Event, EventEmitter, Listen, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Event, EventEmitter, Listen, Watch, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
@@ -23,6 +23,11 @@ export class CbpPagination {
   private nextPageButton: HTMLCbpButtonElement;
   private previousPageButton: HTMLCbpButtonElement;
 
+  private pagesDropdownItems: HTMLCbpDropdownItemElement[];
+  private showingText: string;
+
+  private emit: boolean = false; // track when to emit a paginationChange event
+
   @Element() private host: HTMLElement;
 
   /** Specifies the number of records in the entire data set (complete or filtered) to be paginated. */
@@ -46,27 +51,61 @@ export class CbpPagination {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
-  @State() private pagesDropdownItems: HTMLCbpDropdownItemElement[];
-  @State() private showingText: string;
-  
+ 
   /** A custom event emitted when the click event occurs for either a rendered button or anchor/link. */
   @Event() paginationChange: EventEmitter;
 
 
+  // Handle next/prev page buttons
   @Listen('buttonClick')
   handlePagesButtonNav( {detail: {value} } ) {
-    if (value == 'next page') this.handlePageChange(this.page+1);
-    if (value == 'previous page') this.handlePageChange(this.page-1);
+    if (value == 'next page') this.page++;
+    if (value == 'previous page') this.page--;
+    this.emit=true;
+  }
+
+  @Watch('page')
+  pageHandler(newValue) {
+    // Update the pages dropdown value to trigger it to re-render (no harm if updated more than once to the same value)
+    this.pagesDropdown.value = newValue;
+    // do additional logic for page change
+    this.checkPageButtonStates();
+  }
+
+  @Watch('pageSize')
+  pageSizeHandler(newValue) {
+    // Update the page size dropdown value to trigger it to re-render (no harm if updated more than once to the same value)
+    this.pageSizeDropdown.value = newValue;
+    // Do additional logic for page size change
+    this.handlePageSizeChange(newValue);
+  }
+
+  @Watch('records')
+  recordsHandler() {
+    this.pagesDropdown.value=0; // set to zero so that it will re-render/select after repopulation
+    //this.pages = this.pageSize == "all" ? 1 : Math.ceil(this.records/this.pageSize);
+    // Update the pages dropdown
+    this.updatePages();
+  }
+
+  private handlePagesDropdownChange(value){
+    this.page=parseInt(value); // let the watch do the heavy lifting
+    this.emit=true;
+  }
+
+  private handlePageSizeDropdownChange(value){
+    this.pageSize = value == "all" ? "all" : parseInt(value); // let the watch do the heavy lifting
+    this.page=1; // always reset the current page to 1 when changing the page size - do this before re-render to prevent another
+    this.emit=true;
   }
 
 
+  // handles changing the page size via the dropdown, which is how it should be normally updated.
   private handlePageSizeChange( value ) {
     this.page=1; // always reset the current page to 1 when changing the page size
     
     // Recalculate and populate the pages dropdown
     if (value == "all" ) {
-      this.pageSize=value;
-      this.pages=1;
       this.pagesDropdown.setAttribute('hidden',''); // if "All" is selected, hide the pages dropdown
       if (this.records > 500) console?.warn(`cbp-pagination - Warning: the "show all" option should be disabled for large data sets. Pushing this amount of data to the user's browser is bad for performance, in addition to rendering a large number of DOM nodes to display it all at once.`);
     }
@@ -79,46 +118,13 @@ export class CbpPagination {
 
     // Update the pages dropdown
     this.updatePages();
-    
-    // Emit the custom event
-    this.paginationChange.emit({
-      host: this.host,
-      records: this.records,
-      pageSize: this.pageSize,
-      page: this.page,
-      pages: this.pages
-    });
-
-    // Update the current page to page 1 and the button states after it's had time to update
-    setTimeout( () => {
-      this.pagesDropdown.value=1;
-      this.checkPageButtonStates();
-    }, 100);
   }
   
-  private handlePageChange(value) {
-    this.page = this.pagesDropdown.value = value; // updating this prop will cause a re-render, recalculating the pagination text
-
-    // Emit the custom event
-    this.paginationChange.emit({
-      host: this.host,
-      records: this.records,
-      pageSize: this.pageSize,
-      page: this.page,
-      pages: this.pages
-    });
-
-    this.checkPageButtonStates();
-  }
-
-  private checkPageButtonStates(){
-    if (this.nextPageButton) this.nextPageButton.disabled = this.page == this.pagesDropdownItems?.length || !this.pagesDropdownItems?.length;
-    if (this.previousPageButton) this.previousPageButton.disabled = this.page == 1 || !this.pagesDropdownItems?.length;
-  }
-
-  // Updates the pages dropdown when the pageSize is changed
+  // Updates the pages dropdown when the pageSize or records are changed
   // TechDebt: This can be improved by making the dropdown act like a dial. (calculate pages to render based on this.page and this.maxPages, taking into account proximity to both ends.)
   private updatePages() {
+    this.pages = this.pageSize == "all" ? 1 : Math.ceil(this.records/this.pageSize);
+
     this.pagesDropdownItems=[];
     let max: number = (this.maxPages && this.maxPages < this.pages) ? this.maxPages : this.pages;
     // Generate a new array of dropdown-items and replace them in the pages dropdown
@@ -128,8 +134,21 @@ export class CbpPagination {
       newItem.innerText=`${this.pages <100 ? 'Page' : ''} ${i} of ${this.pages}`;
       this.pagesDropdownItems=[...this.pagesDropdownItems, newItem];
     }
+    // Replace the pages dropdown items
     this.pagesDropdown.querySelector('[role=listbox]').replaceChildren(...this.pagesDropdownItems);
+
+    // Update the current page to page 1 and the button states after it's had time to update
+    setTimeout( () => {
+      this.pagesDropdown.value=1;
+      this.checkPageButtonStates();
+    }, 10);
   }
+
+  private checkPageButtonStates(){
+    if (this.nextPageButton) this.nextPageButton.disabled = this.page == this.pagesDropdownItems?.length || !this.pagesDropdownItems?.length;
+    if (this.previousPageButton) this.previousPageButton.disabled = this.page == 1 || !this.pagesDropdownItems?.length;
+  }
+
 
   componentWillLoad() {
     if (typeof this.sx == 'string') {
@@ -143,19 +162,34 @@ export class CbpPagination {
   componentDidLoad() {
     // Find the slotted dropdown controls and listen for changes to them
     this.pageSizeDropdown=this.host.querySelector('[slot=cbp-pagination-items-per-page]').querySelector('cbp-dropdown');
-    this.pageSizeDropdown.addEventListener('valueChange', ({detail: {value}}) => this.handlePageSizeChange(value));
+    this.pageSizeDropdown.addEventListener('valueChange', ({detail: {value}}) => this.handlePageSizeDropdownChange(value));
     
     this.pagesDropdown=this.host.querySelector('[slot=cbp-pagination-pages]').querySelector('cbp-dropdown');
-    this.pagesDropdown.addEventListener('valueChange', ({detail: {value}}) => this.handlePageChange(value));
+    this.pagesDropdown.addEventListener('valueChange', ({detail: {value}}) => this.handlePagesDropdownChange(value));
 
     this.nextPageButton = this.host.querySelector('[slot=cbp-dropdown-attached-button-end] cbp-button');
     this.previousPageButton = this.host.querySelector('[slot=cbp-dropdown-attached-button-start] cbp-button');
 
     // Update their values based on pagination props
     this.pageSizeDropdown.value=this.pageSize;
-
     this.handlePageSizeChange(this.pageSize);
   }
+
+  componentDidRender(){
+    // Only emit the custom event once after user interaction (not reactivity or internal updates)
+    if(this.emit) {
+      // Emit the custom event
+      this.paginationChange.emit({
+        host: this.host,
+        records: this.records,
+        pageSize: this.pageSize,
+        page: this.page,
+        pages: this.pages
+      });
+    }
+    this.emit=false;
+  }
+
 
   render() {
     // Set the pagination text
