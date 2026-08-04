@@ -83,7 +83,6 @@ export class CbpPagination {
   @Watch('records')
   recordsHandler() {
     this.pagesDropdown.value=0; // set to zero so that it will re-render/select after repopulation
-    //this.pages = this.pageSize == "all" ? 1 : Math.ceil(this.records/this.pageSize);
     // Update the pages dropdown
     this.updatePages();
   }
