@@ -23,7 +23,7 @@ The Form Field component represents a generic, reusable pattern for form fields 
 
 | Event | Description | Type |
 | --- | --- | --- |
-| `valueChange` | A custom event emitted when the the nested input is changed by user interaction. | `CustomEvent<any>` |
+| `valueChange` | A custom event emitted when a nested input is changed by user interaction. If the nested field is a component that already emits its own valueChange event this component will not fire another, as the bubbled event will suffice. | `CustomEvent<any>` |
 
 ## Slots
 

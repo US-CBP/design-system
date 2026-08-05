@@ -9,10 +9,10 @@
 ({
   open,
   uid,
-  alignment,
+  position,
   title,
   content,
-  tooltipControl,
+  control,
   context,
   sx
 }) => {
@@ -20,13 +20,13 @@
     <cbp-tooltip
       ${open ? 'open' : ''}
       ${uid ? `uid="${uid}"` : ''}
-      ${alignment ? `alignment="${alignment}"` : ''}
+      ${position ? `position="${position}"` : ''}
       variant="definition"
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
 
     >  
-      ${tooltipControl}
+      ${control}
       <div slot="cbp-tooltip-content">
         <div style="font-weight: var(--cbp-font-weight-bold)">${title}</div>
         <div>${content}</div>
@@ -41,23 +41,27 @@
 ```tsx
 ({
   open,
+  height,
+  width,
   uid,
-  alignment,
+  position,
   title,
   content,
-  tooltipControl,
+  control,
   context,
   sx
 }) => {
   return ` 
     <cbp-tooltip
       ${open ? 'open' : ''}
+      ${height ? `height="${height}"` : ''}
+      ${width ? `width="${width}"` : ''}
       ${uid ? `uid="${uid}"` : ''}
-      ${alignment ? `alignment="${alignment}"` : ''}
+      ${position ? `position="${position}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >  
-      ${tooltipControl}
+      ${control}
       <div slot="cbp-tooltip-content">
         <div style="font-weight: var(--cbp-font-weight-bold)">${title}</div>
         <div>${content}</div>

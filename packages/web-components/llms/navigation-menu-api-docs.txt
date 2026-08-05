@@ -59,19 +59,10 @@ Type: `Promise<void>`
 
 -   [cbp-breadcrumb](../cbp-breadcrumb)
 
-### Depends on
-
--   [cbp-menu-item](../cbp-menu-item)
--   [cbp-button](../cbp-button)
--   [cbp-icon](../cbp-icon)
-
 ### Graph
 
 ```mermaid
 graph TD;
-  cbp-menu --> cbp-menu-item
-  cbp-menu --> cbp-button
-  cbp-menu --> cbp-icon
   cbp-breadcrumb --> cbp-menu
   style cbp-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
@@ -126,14 +117,12 @@ The Menu Item component wraps each individual control (link or button) within th
 ### Used by
 
 -   [cbp-breadcrumb](../cbp-breadcrumb)
--   [cbp-menu](../cbp-menu)
 
 ### Graph
 
 ```mermaid
 graph TD;
   cbp-breadcrumb --> cbp-menu-item
-  cbp-menu --> cbp-menu-item
   style cbp-menu-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

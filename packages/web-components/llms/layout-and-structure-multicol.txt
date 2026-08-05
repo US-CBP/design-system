@@ -24,8 +24,7 @@
       ${nobreak ? 'nobreak' : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       role="list"
-    >
-      ${createChildren(content)}
+    >${createChildren(content)}
     </cbp-multicol>
   `;
 }

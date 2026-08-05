@@ -20,7 +20,7 @@
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      ${codeSnippet}
+    ${codeSnippet}
     </cbp-code-snippet>
   `;
 }
@@ -43,7 +43,7 @@
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      ${codeSnippet}
+    ${codeSnippet}
     </cbp-code-snippet>
   `;
 }

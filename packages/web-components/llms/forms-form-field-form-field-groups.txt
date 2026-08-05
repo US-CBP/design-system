@@ -1,0 +1,436 @@
+# Forms/Form Field/Form Field Groups
+
+## Examples
+
+
+### Address
+
+```tsx
+({
+  label,
+  labelSlotted,
+  description,
+  descriptionSlotted,
+  fieldId,
+  error,
+  disabled,
+  context,
+  sx
+}) => {
+  // The native JSON objects may not be properly sorted (such as Countries, which has more appended to the end out of order),
+  // so sort them alphabetically.
+
+  Countries.sort(function (a, b) {
+    return a.label.localeCompare(b.label);
+  });
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${labelSlotted ? `<span slot="cbp-form-field-label">${labelSlotted}</span>` : ''}
+      ${descriptionSlotted ? `<span slot="cbp-form-field-description">${descriptionSlotted}</span>` : ''}
+
+      <cbp-flex 
+        wrap="wrap"
+        gap="0 var(--cbp-space-4x)"
+        breakpoint="22.5rem"
+      >
+
+        <cbp-flex-item flex-grow="1" flex-basis="25ch">
+          <cbp-form-field
+            label="Street Address"
+          >
+            <input name="address1" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item flex-grow="1" flex-basis="25ch">
+          <cbp-form-field
+            label="Apartment, Suite, Building, Etc."
+          >
+            <input name="address2" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item flex-grow="1" flex-basis="25ch">
+          <cbp-form-field
+            label="Line 3"
+          >
+            <input name="address3" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item flex-grow="1" flex-basis="25ch">
+          <cbp-form-field
+            label="Line 4"
+          >
+            <input name="address4" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item flex-grow="1" flex-basis="25ch">
+          <cbp-form-field
+            label="City/Town"
+          >
+            <input name="city" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item flex-grow="1" flex-basis="25ch">
+          <cbp-form-field
+            label="State/Province/Region"
+          >
+            <input name="state" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item flex-grow="0" flex-basis="15ch">
+          <cbp-form-field
+            label="ZIP/Postal Code"
+          >
+            <input name="postalcode" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item flex-grow="2" flex-basis="20ch">
+          <cbp-form-field
+            label="Country"
+          >
+            <cbp-dropdown name="country" items='${JSON.stringify(Countries)}' />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+      </cbp-flex>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Full Name
+
+```tsx
+({
+  label,
+  labelSlotted,
+  description,
+  descriptionSlotted,
+  fieldId,
+  error,
+  disabled,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${labelSlotted ? `<span slot="cbp-form-field-label">${labelSlotted}</span>` : ''}
+      ${descriptionSlotted ? `<span slot="cbp-form-field-description">${descriptionSlotted}</span>` : ''}
+
+      <cbp-flex 
+        wrap="wrap"
+        gap="0 var(--cbp-space-4x)"
+        breakpoint="22.5rem"
+      >
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-shrink="0"
+        >
+          <cbp-form-field
+            label="Prefix"
+          >
+            <cbp-dropdown name="prefix" items='${Prefix}'></cbp-dropdown>
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-grow="1"
+        >
+          <cbp-form-field
+            label="First Name"
+          >
+            <input name="firstname" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-form-field
+          label="M.I."
+          sx='{"width":"5ch"}'
+        >
+          <input name="middleinitial" type="text" maxlength="1" />
+        </cbp-form-field>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-grow="1"
+        >
+          <cbp-form-field
+            label="Last Name"
+          >
+            <input name="lastname" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-shrink="0"
+        >
+          <cbp-form-field
+            label="Suffix"
+          >
+            <cbp-dropdown name="suffix" items='${Suffix}'></cbp-dropdown>
+          </cbp-form-field>
+        </cbp-flex-item>
+
+      </cbp-flex>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Group as Heading (Fill)
+
+```tsx
+({
+  label,
+  labelSlotted,
+  description,
+  descriptionSlotted,
+  fieldId,
+  error,
+  disabled,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${labelSlotted ? `<span slot="cbp-form-field-label">${labelSlotted}</span>` : ''}
+      ${descriptionSlotted ? `<span slot="cbp-form-field-description">${descriptionSlotted}</span>` : ''}
+
+      <cbp-flex 
+        wrap="wrap"
+        gap="0 var(--cbp-space-4x)"
+        breakpoint="22.5rem"
+      >
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-shrink="0"
+        >
+          <cbp-form-field
+            label="Prefix"
+          >
+            <cbp-dropdown name="prefix" items='${Prefix}'></cbp-dropdown>
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-grow="1"
+        >
+          <cbp-form-field
+            label="First Name"
+          >
+            <input name="firstname" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-form-field
+          label="M.I."
+          sx='{"width":"5ch"}'
+        >
+          <input name="middleinitial" type="text" maxlength="1" />
+        </cbp-form-field>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-grow="1"
+        >
+          <cbp-form-field
+            label="Last Name"
+          >
+            <input name="lastname" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-shrink="0"
+        >
+          <cbp-form-field
+            label="Suffix"
+          >
+            <cbp-dropdown name="suffix" items='${Suffix}'></cbp-dropdown>
+          </cbp-form-field>
+        </cbp-flex-item>
+
+      </cbp-flex>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Group as Heading (Underline)
+
+```tsx
+({
+  label,
+  labelSlotted,
+  description,
+  descriptionSlotted,
+  fieldId,
+  error,
+  disabled,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${labelSlotted ? `<span slot="cbp-form-field-label">${labelSlotted}</span>` : ''}
+      ${descriptionSlotted ? `<span slot="cbp-form-field-description">${descriptionSlotted}</span>` : ''}
+
+      <cbp-flex 
+        wrap="wrap"
+        gap="0 var(--cbp-space-4x)"
+        breakpoint="22.5rem"
+      >
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-shrink="0"
+        >
+          <cbp-form-field
+            label="Prefix"
+          >
+            <cbp-dropdown name="prefix" items='${Prefix}'></cbp-dropdown>
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-grow="1"
+        >
+          <cbp-form-field
+            label="First Name"
+          >
+            <input name="firstname" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-form-field
+          label="M.I."
+          sx='{"width":"5ch"}'
+        >
+          <input name="middleinitial" type="text" maxlength="1" />
+        </cbp-form-field>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-grow="1"
+        >
+          <cbp-form-field
+            label="Last Name"
+          >
+            <input name="lastname" type="text" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-shrink="0"
+        >
+          <cbp-form-field
+            label="Suffix"
+          >
+            <cbp-dropdown name="suffix" items='${Suffix}'></cbp-dropdown>
+          </cbp-form-field>
+        </cbp-flex-item>
+
+      </cbp-flex>
+    </cbp-form-field>
+  `;
+}
+```
+
+### Phone
+
+```tsx
+({
+  label,
+  labelSlotted,
+  description,
+  descriptionSlotted,
+  fieldId,
+  error,
+  disabled,
+  context,
+  sx
+}) => {
+  return ` 
+    <cbp-form-field group
+      ${label ? `label="${label}"` : ''}
+      ${description ? `description="${description}"` : ''}
+      ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${disabled ? `disabled` : ''}
+      ${error ? `error` : ''}
+      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+      ${labelSlotted ? `<span slot="cbp-form-field-label">${labelSlotted}</span>` : ''}
+      ${descriptionSlotted ? `<span slot="cbp-form-field-description">${descriptionSlotted}</span>` : ''}
+
+      <cbp-flex 
+        wrap="wrap"
+        gap="0 var(--cbp-space-4x)"
+        breakpoint="22.5rem"
+      >
+        <cbp-flex-item flex-basis="10rem" flex-shrink="0">
+          <cbp-form-field label="Country Code">
+            <cbp-dropdown name="countrycode" items='${CountryCodes}'></cbp-dropdown>
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        <cbp-flex-item
+          flex-basis="10rem"
+          flex-grow="0"
+        >
+          <cbp-form-field label="Phone Number">
+            <input name="phonenumber" type="text" inputmode="numeric" />
+          </cbp-form-field>
+        </cbp-flex-item>
+
+        </cbp-flex>
+    </cbp-form-field>
+  `;
+}
+```

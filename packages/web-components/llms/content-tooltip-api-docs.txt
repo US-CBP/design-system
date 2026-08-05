@@ -8,12 +8,14 @@ The Tooltip component allows for the disclosure of supplemental, non-essential i
 
 | Property | Attribute | Description | Type | Default |
 | --- | --- | --- | --- | --- |
-| `alignment` | `alignment` | sets where the tooltip will be displayed and where the caret will be placed | `"bottom-center" | "bottom-left" | "bottom-right" | "left-bottom" | "left-center" | "left-top" | "right-bottom" | "right-center" | "right-top" | "top-center" | "top-left"` | `"top-center"` |
 | `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
 | `fieldId` | `field-id` | Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility | `string` | `createNamespaceKey('cbp-tooltip')` |
+| `height` | `height` | Optionally specifies the tooltip height in CSS units (preferably relative units such as rem). | `string` | `undefined` |
 | `open` | `open` | When set, specifies that the tooltip is open | `boolean` | `false` |
+| `position` | `position` | sets where the tooltip will be displayed and where the caret will be placed | `"bottom" | "bottom-end" | "bottom-start" | "left" | "left-end" | "left-start" | "right" | "right-end" | "right-start" | "top" | "top-end" | "top-start"` | `"top"` |
 | `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
 | `variant` | `variant` | used to set styles for the definition link for text controls | `"definition"` | `undefined` |
+| `width` | `width` | Optionally specifies the tooltip width in CSS units (preferably relative units such as rem). | `string` | `undefined` |
 
 ## Slots
 

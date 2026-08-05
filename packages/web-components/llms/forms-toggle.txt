@@ -18,8 +18,8 @@
 }) => {
   return `
     <cbp-form-field group
-      label="Settings"
-      description="An example of multiple toggles in a form field"
+      label="Insert Toggle Group Label"
+      description="Insert toggle group description."
     >
       ${generateToggles(ToggleItems, labelWidth, hideStatus, statusTextOn, statusTextOff, disabled, context, sx)} 
     </cbp-form-field>

@@ -47,6 +47,7 @@ A Menu contains additional actions in the form of links or buttons, which can be
     -   Send focus to the first menu item (on a slight delay, so that it is read by screen readers).
     -   Keyboard navigation is supported according to the specifications in the User Interactions section, above.
 -   If the menu is closed by pressing `ESC` or activating the close button, focus will be returned to the menu's control.
+-   NOTE: Accessibility tools may warn that "Element's background color could not be determined because it is overlapped by another element." while the menu is open. This result can be ignored.
 
 ### Additional Notes and Considerations
 

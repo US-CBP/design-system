@@ -33,18 +33,15 @@
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${showHeader ? `<div slot="cbp-structured-list-header" ${headerId ? `id="${headerId}"` : ''}>${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list.</div>` : ''}
-
       ${listItemType == "structured list item" ? generateItems(listItems, selectable, context) : generateLIs(listItems, selectable, context)}
-      
       ${showFooter ? `
-        <div slot="cbp-structured-list-footer">
-          <cbp-action-bar variant="inline" context="dark-inverts">
-            <div slot="cbp-action-bar-info">0 items selected.</div>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-          </cbp-action-bar>
-        </div>
-      ` : ''}
+      <div slot="cbp-structured-list-footer">
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>
+      </div>` : ''}
     </cbp-structured-list>
   `;
 }
@@ -80,18 +77,15 @@
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${showHeader ? `<div slot="cbp-structured-list-header" ${headerId ? `id="${headerId}"` : ''}>${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list.</div>` : ''}
-
       ${listItemType == "structured list item" ? generateItems(listItems, selectable, context) : generateLIs(listItems, selectable, context)}
-      
       ${showFooter ? `
-        <div slot="cbp-structured-list-footer">
-          <cbp-action-bar variant="inline" context="dark-inverts">
-            <div slot="cbp-action-bar-info">0 items selected.</div>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-          </cbp-action-bar>
-        </div>
-      ` : ''}
+      <div slot="cbp-structured-list-footer">
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>
+      </div>` : ''}
     </cbp-structured-list>
   `;
 }
@@ -127,18 +121,15 @@
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${showHeader ? `<div slot="cbp-structured-list-header" ${headerId ? `id="${headerId}"` : ''}>${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list.</div>` : ''}
-
       ${listItemType == "structured list item" ? generateItems(listItems, selectable, context) : generateLIs(listItems, selectable, context)}
-      
       ${showFooter ? `
-        <div slot="cbp-structured-list-footer">
-          <cbp-action-bar variant="inline" context="dark-inverts">
-            <div slot="cbp-action-bar-info">0 items selected.</div>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-          </cbp-action-bar>
-        </div>
-      ` : ''}
+      <div slot="cbp-structured-list-footer">
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>
+      </div>` : ''}
     </cbp-structured-list>
   `;
 }
@@ -174,18 +165,15 @@
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${showHeader ? `<div slot="cbp-structured-list-header" ${headerId ? `id="${headerId}"` : ''}>${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list.</div>` : ''}
-
       ${listItemType == "structured list item" ? generateItems(listItems, selectable, context) : generateLIs(listItems, selectable, context)}
-      
       ${showFooter ? `
-        <div slot="cbp-structured-list-footer">
-          <cbp-action-bar variant="inline" context="dark-inverts">
-            <div slot="cbp-action-bar-info">0 items selected.</div>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-          </cbp-action-bar>
-        </div>
-      ` : ''}
+      <div slot="cbp-structured-list-footer">
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>
+      </div>` : ''}
     </cbp-structured-list>
   `;
 }
@@ -221,18 +209,15 @@
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${showHeader ? `<div slot="cbp-structured-list-header" ${headerId ? `id="${headerId}"` : ''}>${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list.</div>` : ''}
-
       ${listItemType == "structured list item" ? generateItems(listItems, selectable, context) : generateLIs(listItems, selectable, context)}
-      
       ${showFooter ? `
-        <div slot="cbp-structured-list-footer">
-          <cbp-action-bar variant="inline" context="dark-inverts">
-            <div slot="cbp-action-bar-info">0 items selected.</div>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-          </cbp-action-bar>
-        </div>
-      ` : ''}
+      <div slot="cbp-structured-list-footer">
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>
+      </div>` : ''}
     </cbp-structured-list>
   `;
 }
