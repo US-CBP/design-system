@@ -1,4 +1,4 @@
-import {computePosition, flip, offset, shift, arrow} from '@floating-ui/dom'; 
+import {computePosition, flip, offset, size, shift, arrow,} from '@floating-ui/dom'; 
 
 //** Using Float UI, external documentation: https://floating-ui.com/ */
 
@@ -10,15 +10,36 @@ export interface floatUIProps {
         alignmentAxis?: number,    
     }
     flip?: boolean,
+    size?: number,
     shift?: boolean,
     arrow?: HTMLElement,
 }
 
 export const floatUI = (props: floatUIProps, referenceEl: HTMLElement, floatingEl: HTMLElement) => {
 
+  console.log('props.size: ', props.size)
+
   let middleware = [
     props.offset? offset(props.offset) : undefined,
     props.flip ? flip() : undefined,
+    props.size ? size( //TODO: i think there needs to be some comparison of props.size value and the avaliableHeight/ avaliableWidth? not sure what the math is here but working example might help
+      (
+        {
+          apply(
+            {
+              availableHeight, availableWidth, elements
+            }
+          ){
+            console.log('props.size application to middleware: ', availableHeight, availableWidth, elements);
+            Object.assign(elements.floating.style, {
+            maxWidth: `${Math.max(0, availableWidth)}px`,
+            // maxHeight: `${Math.max(0, availableHeight)}px`,
+            maxHeight: props.size < availableHeight ? `${Math.max(0, props.size)}px` : `${Math.max(0, availableHeight)}px`,
+        });
+          }
+        }
+      )
+    ) : undefined,
     props.shift ? shift() : undefined,
     props.arrow ? arrow({element: props.arrow, padding: 8}) : undefined,
   ]
