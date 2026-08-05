@@ -8,11 +8,13 @@
 ```tsx
 ({
   position,
-  withIcon,
   open,
   persistAt,
   uid,
   accessibilityText,
+  withIcon,
+  panelHeading,
+  panelContent,
   context,
   sx
 }) => {
@@ -46,10 +48,11 @@
           tag="h3"
           variant="heading-lg"
         >
-          ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}
-          Drawer Header
+          ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}${panelHeading}
         </cbp-typography>
-        <p>Sidebar Content</p>
+
+        <p>${panelContent}</p>
+
       </cbp-panel>
     </cbp-drawer>
   `;
@@ -65,6 +68,8 @@
   persistAt,
   uid,
   accessibilityText,
+  panelHeading,
+  panelContent,
   withIcon,
   context
 }) => {
@@ -103,11 +108,11 @@
           tag="h3"
           variant="heading-lg"
         >
-        
-          ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}
-          User Preferences
+          ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}${panelHeading}
         </cbp-typography>
-        <p>Drawer Content</p>
+
+        <p>${panelContent}</p>
+
       </cbp-panel>
     </cbp-drawer>
   `;

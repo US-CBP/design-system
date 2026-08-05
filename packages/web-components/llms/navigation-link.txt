@@ -38,7 +38,7 @@
       ${rel ? `rel="${rel}"` : ''}
       ${target ? `target="${target}"` : ''}
       ${download ? `download${downloadFileName ? `="${downloadFileName}"` : ''}` : ''}
-      ${shortcutKey ? `accesskey="${shortcutKey}"` : ''}
+      ${shortcutKey ? `shortcut-key="${shortcutKey}"` : ''}
       ${language ? `lang="${language}"` : ''}
       ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
       ${disabled ? 'disabled' : ''}

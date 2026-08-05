@@ -48,9 +48,6 @@ graph TD;
   cbp-breadcrumb --> cbp-resize-observer
   cbp-breadcrumb --> cbp-menu
   cbp-breadcrumb --> cbp-button
-  cbp-menu --> cbp-menu-item
-  cbp-menu --> cbp-button
-  cbp-menu --> cbp-icon
   style cbp-breadcrumb fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
