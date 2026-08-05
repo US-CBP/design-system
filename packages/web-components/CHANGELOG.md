@@ -4,12 +4,19 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [unpublished] TBD
+## [0.9.0-beta.2] 08-05-2026
 
-* Imported and integrated the Float-UI library into `cbp-menu`, `cbp-dropdown`, and `cbp-tooltip` to handle positioning and repositioning fallbacks when positioning goes off-screen.
-* BREAKING: Updated `cbp-icon` underlying CSS to address vertical alignment inconsistencies across several patterns.
-  * Some patterns, such as panel, drawer, and dialog were updated to use flex within the heading, which eliminates the need to apply a margin to the icon directly (when present).
+* BREAKING: Updated `cbp-icon` underlying CSS to fix vertical alignment inconsistencies across several patterns.
+  * Some patterns, such as panel, drawer, and dialog were updated to use flexbox within the heading, which eliminates the need to apply a margin to the icon directly (when present).
   * All icons in components and stories have been confirmed, but this change could potentially result in misaligned icons in custom code.
+* Imported and integrated the Floating-UI library into `cbp-menu`, `cbp-dropdown`, and `cbp-tooltip` to handle positioning and repositioning fallbacks when positioning goes off-screen.
+* Updated `cbp-menu` as follows:
+  * Repositioned the menu so that it does not cover the control that opened it.
+  * Removed the default close button from the menu itself - it can be closed by clicking/tabbing out of it as well as pressing `ESC`.
+* Updated `cbp-tooltip` as follows:
+  * Tooltip opens on mouse hover (in addition to focus and click).
+  * Tooltip dismisses when clicked/tabbed outside of it.
+  * Added `width` and `height` properties to override the defaults.
 * Updated `cbp-form-field` with fixes for field groups:
   * Do not style all fields in error state when the group has the `error` property set.
   * In this case, the group's description should be styled in an error state, and the specific fields in error within the group should have their own `error` property set to true.
@@ -20,7 +27,7 @@ The React components are wrappers generated from this package and will share the
     * For a checkbox or toggle, all checked values within named checkboxes will be emitted as an array of values.
     * For individually named checkboxes or toggles or an unnamed one (which cannot exist as part of a group), the value will be emitted if checked, otherwise the value will be reported as null.
     * For a radio list, only the value for the selected radio button is emitted.
-  * Added the `name` key to all custom event emitted by form components.
+  * Added the `name` key to all custom events emitted by form components.
 * Updated `cbp-pagination` as follows:
   * Make `page`, `pageSize`, and `records` properties reactive to changes.
   * Reduce the number of `paginationChange` events emitted.
