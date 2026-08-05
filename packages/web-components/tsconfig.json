@@ -12,7 +12,6 @@
       "dom.iterable",
       "es2017"
     ],
-    "ignoreDeprecations": "6.0",
     "moduleResolution": "node", //"bundler"? "node"
     "module": "esnext",
     "target": "es2017",
