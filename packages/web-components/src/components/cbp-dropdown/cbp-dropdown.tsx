@@ -1124,7 +1124,9 @@ export class CbpDropdown {
             mainAxis: 0,
           },
           flip: true,
-          size: (23.5 * 16), //13.5 rem is max-height in CSS
+          size: {
+            height: (13.5 * 16) //13.5 rem is max-height in CSS
+          },
           shift: false,
         }
   

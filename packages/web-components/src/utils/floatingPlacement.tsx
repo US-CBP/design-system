@@ -10,19 +10,20 @@ export interface floatUIProps {
         alignmentAxis?: number,    
     }
     flip?: boolean,
-    size?: number,
+    size?:{
+      height?: number,
+      width?: number,
+    }
     shift?: boolean,
     arrow?: HTMLElement,
 }
 
 export const floatUI = (props: floatUIProps, referenceEl: HTMLElement, floatingEl: HTMLElement) => {
 
-  console.log('props.size: ', props.size)
-
   let middleware = [
     props.offset? offset(props.offset) : undefined,
     props.flip ? flip() : undefined,
-    props.size ? size( //TODO: i think there needs to be some comparison of props.size value and the avaliableHeight/ avaliableWidth? not sure what the math is here but working example might help
+    props.size ? size( 
       (
         {
           apply(
@@ -30,11 +31,9 @@ export const floatUI = (props: floatUIProps, referenceEl: HTMLElement, floatingE
               availableHeight, availableWidth, elements
             }
           ){
-            console.log('props.size application to middleware: ', availableHeight, availableWidth, elements);
             Object.assign(elements.floating.style, {
-            maxWidth: `${Math.max(0, availableWidth)}px`,
-            // maxHeight: `${Math.max(0, availableHeight)}px`,
-            maxHeight: props.size < availableHeight ? `${Math.max(0, props.size)}px` : `${Math.max(0, availableHeight)}px`,
+            maxWidth: props.size.width < availableWidth ? `${Math.max(0, props.size.width)}px` : `${Math.max(0, availableWidth)}px`,
+            maxHeight: props.size.height < availableHeight ? `${Math.max(0, props.size.height)}px` : `${Math.max(0, availableHeight)}px`,
         });
           }
         }
