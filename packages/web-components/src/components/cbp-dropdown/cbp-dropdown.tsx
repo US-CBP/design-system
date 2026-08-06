@@ -1118,9 +1118,7 @@ export class CbpDropdown {
 
     // Use floatPlacement to position cbp-dropdown-menu
     if(this.open){
-      const dropdownMenu = this.host.querySelector(".cbp-dropdown-menu") as HTMLElement
-      const dropdownHeight = parseInt(dropdownMenu.style.height)
-
+      
       const floatUiprops: floatUIProps= {
           placement: 'bottom',
           offset: {
@@ -1128,7 +1126,8 @@ export class CbpDropdown {
           },
           flip: true,
           size: {
-              height: dropdownHeight
+              // height: dropdownHeight
+              height: (parseFloat(window?.getComputedStyle(this.listbox).getPropertyValue('height')) || 0)
           },
           shift: false,
       }

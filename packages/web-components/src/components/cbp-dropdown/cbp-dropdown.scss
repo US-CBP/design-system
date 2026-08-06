@@ -229,7 +229,7 @@ cbp-dropdown {
     border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
     height: fit-content;
     max-height: 13.5rem; //TechDebt: What's the reasoning for this magic number?
-    max-width: 100%; //calc(100% - 2px);
+    width: 100%; //calc(100% - 2px);
 
     overflow-y: auto;
 

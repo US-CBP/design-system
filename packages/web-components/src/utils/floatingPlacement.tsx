@@ -31,10 +31,12 @@ export const floatUI = (props: floatUIProps, referenceEl: HTMLElement, floatingE
               availableHeight, availableWidth, elements
             }
           ){
-            Object.assign(elements.floating.style, {
-            width: props.size.width && props.size.width < availableWidth ? `${Math.max(0, props.size.width)}px` : `${Math.max(0, availableWidth)}px`,
-            height: props.size.height && props.size.height < availableHeight ? `${Math.max(0, props.size.height)}px` : `${Math.max(0, availableHeight)}px`,
-        });
+            props.size.width && props.size.width > availableWidth ? Object.assign(elements.floating.style, {
+              width: `${Math.max(0, props.size.width)}px`
+            }): null
+            props.size.height &&  props.size.height > availableHeight ? Object.assign(elements.floating.style, {
+              height: `${Math.max(0, props.size.height)}px`
+            }) : null
           }
         }
       )
