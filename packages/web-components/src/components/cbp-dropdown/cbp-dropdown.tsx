@@ -1118,17 +1118,20 @@ export class CbpDropdown {
 
     // Use floatPlacement to position cbp-dropdown-menu
     if(this.open){
-       const floatUiprops: floatUIProps= {
+      const dropdownMenu = this.host.querySelector(".cbp-dropdown-menu") as HTMLElement
+      const dropdownHeight = parseInt(dropdownMenu.style.height)
+
+      const floatUiprops: floatUIProps= {
           placement: 'bottom',
           offset: {
             mainAxis: 0,
           },
           flip: true,
           size: {
-            height: (13.5 * 16) //13.5 rem is max-height in CSS
+              height: dropdownHeight
           },
           shift: false,
-        }
+      }
   
         floatUI(floatUiprops, this.control, this.listbox);
       // }
