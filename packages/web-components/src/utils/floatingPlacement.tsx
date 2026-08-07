@@ -32,13 +32,13 @@ export const floatUI = (props: floatUIProps, referenceEl: HTMLElement, floatingE
             }
           ){
             if(props.size.width) { 
-              props.size.width >= availableWidth && parseFloat(window?.getComputedStyle(elements.floating).getPropertyValue('max-width'))? Object.assign(elements.floating.style, {
+              props.size.width >= availableWidth || parseFloat(window?.getComputedStyle(elements.floating).getPropertyValue('max-width'))? Object.assign(elements.floating.style, {
                 width: `${Math.max(0, availableWidth)}px`
               }): Object.assign(elements.floating.style, {width: 'unset'}) 
             }
 
             if(props.size.height) {
-              props.size.height >= availableHeight && availableHeight < parseFloat(window?.getComputedStyle(elements.floating).getPropertyValue('max-height')) ? Object.assign(elements.floating.style, {
+              props.size.height >= availableHeight || availableHeight < parseFloat(window?.getComputedStyle(elements.floating).getPropertyValue('max-height')) ? Object.assign(elements.floating.style, {
                 height: `${Math.max(0, availableHeight)}px`
               }) : Object.assign(elements.floating.style, {height: 'unset'})
             }
