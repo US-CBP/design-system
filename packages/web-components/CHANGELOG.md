@@ -4,6 +4,11 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unreleased] TBD
+
+* Continued improving the Floating UI integration on `cbp-dropdown`, enabling the dropdown to also resize its height if there is insufficient space to display in its default placement or when flipped.
+* Updated `cbp-table` so the column sorting button controls take up the full width of their `th` cells.
+
 ## [0.9.0-beta.2] 08-05-2026
 
 * BREAKING: Updated `cbp-icon` underlying CSS to fix vertical alignment inconsistencies across several patterns.
@@ -14,9 +19,10 @@ The React components are wrappers generated from this package and will share the
   * Repositioned the menu so that it does not cover the control that opened it.
   * Removed the default close button from the menu itself - it can be closed by clicking/tabbing out of it as well as pressing `ESC`.
 * Updated `cbp-tooltip` as follows:
+  * BREAKING: renamed `alignment` property to `position` and renamed its values to be consistent with `cbp-menu` and the Floating UI library.
+  * Added `width` and `height` properties to override the defaults.
   * Tooltip opens on mouse hover (in addition to focus and click).
   * Tooltip dismisses when clicked/tabbed outside of it.
-  * Added `width` and `height` properties to override the defaults.
 * Updated `cbp-form-field` with fixes for field groups:
   * Do not style all fields in error state when the group has the `error` property set.
   * In this case, the group's description should be styled in an error state, and the specific fields in error within the group should have their own `error` property set to true.

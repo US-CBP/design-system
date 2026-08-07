@@ -305,6 +305,7 @@ cbp-table {
         transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
         --cbp-button-color: var(--cbp-table-header-color);
         --cbp-button-color-dark: var(--cbp-table-header-color-dark);
+        --cbp-button-width: 100%;
         color: var(--cbp-table-header-color);
         background-color: var(--cbp-table-header-color-bg);
         font-weight: var(--cbp-font-weight-medium);
@@ -327,7 +328,7 @@ cbp-table {
           }
         }
 
-        &:has(button:hover) {
+        &:has(button):hover { 
           --cbp-table-header-color: var(--cbp-table-header-color-hover);
           --cbp-table-header-color-bg: var(--cbp-table-header-color-bg-hover);
           --cbp-table-header-color-dark: var(--cbp-table-header-color-hover-dark);
