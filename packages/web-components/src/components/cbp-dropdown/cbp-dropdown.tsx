@@ -1121,14 +1121,18 @@ export class CbpDropdown {
 
     // Use floatPlacement to position cbp-dropdown-menu
     if(this.open){
-       const floatUiprops: floatUIProps= {
+      
+      const floatUiprops: floatUIProps= {
           placement: 'bottom',
           offset: {
             mainAxis: 0,
           },
           flip: true,
+          size: {
+              height: (parseFloat(window?.getComputedStyle(this.listbox).getPropertyValue('height')))
+          },
           shift: false,
-        }
+      }
   
         floatUI(floatUiprops, this.control, this.listbox);
       // }

@@ -228,7 +228,7 @@ cbp-dropdown {
     border: var(--cbp-border-size-md) solid var(--cbp-dropdown-menu-color-border);
     border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
     height: fit-content;
-    max-height: 13.5rem; // TechDebt: What's the reasoning for this magic number?
+    max-height: 13.5rem; //TechDebt: What's the reasoning for this magic number?
     width: 100%; //calc(100% - 2px);
 
     overflow-y: auto;

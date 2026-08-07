@@ -1,4 +1,4 @@
-import {computePosition, flip, offset, shift, arrow} from '@floating-ui/dom'; 
+import {computePosition, flip, offset, size, shift, arrow,} from '@floating-ui/dom'; 
 
 //** Using Float UI, external documentation: https://floating-ui.com/ */
 
@@ -10,6 +10,10 @@ export interface floatUIProps {
         alignmentAxis?: number,    
     }
     flip?: boolean,
+    size?:{
+      height?: number,
+      width?: number,
+    }
     shift?: boolean,
     arrow?: HTMLElement,
 }
@@ -19,6 +23,30 @@ export const floatUI = (props: floatUIProps, referenceEl: HTMLElement, floatingE
   let middleware = [
     props.offset? offset(props.offset) : undefined,
     props.flip ? flip() : undefined,
+    props.size ? size( 
+      (
+        {
+          apply(
+            {
+              availableHeight, availableWidth, elements
+            }
+          ){
+            if(props.size.width) { 
+              props.size.width >= availableWidth || parseFloat(window?.getComputedStyle(elements.floating).getPropertyValue('max-width'))? Object.assign(elements.floating.style, {
+                width: `${Math.max(0, availableWidth)}px`
+              }): Object.assign(elements.floating.style, {width: 'unset'}) 
+            }
+
+            if(props.size.height) {
+              props.size.height >= availableHeight || availableHeight < parseFloat(window?.getComputedStyle(elements.floating).getPropertyValue('max-height')) ? Object.assign(elements.floating.style, {
+                height: `${Math.max(0, availableHeight)}px`
+              }) : Object.assign(elements.floating.style, {height: 'unset'})
+            }
+
+          }
+        }
+      )
+    ) : undefined,
     props.shift ? shift() : undefined,
     props.arrow ? arrow({element: props.arrow, padding: 8}) : undefined,
   ]
