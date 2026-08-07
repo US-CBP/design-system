@@ -12,8 +12,8 @@
       "dom.iterable",
       "es2017"
     ],
-    "moduleResolution": "bundler", //"bundler"? "node"
-    "module": "esnext", // was esnext
+    "moduleResolution": "bundler", // was "node"
+    "module": "esnext",
     "target": "es2017",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
