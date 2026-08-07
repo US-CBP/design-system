@@ -4,6 +4,11 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unreleased] TBD
+
+* Continued improving the Floating UI integration on `cbp-dropdown`, enabling the dropdown to also resize its height if there is insufficient space to display in its default placement or when flipped.
+* Updated `cbp-table` so the column sorting button controls take up the full width of their `th` cells.
+
 ## [0.9.0-beta.2] 08-05-2026
 
 * BREAKING: Updated `cbp-icon` underlying CSS to fix vertical alignment inconsistencies across several patterns.
