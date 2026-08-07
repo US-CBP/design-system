@@ -1126,8 +1126,7 @@ export class CbpDropdown {
           },
           flip: true,
           size: {
-              // height: dropdownHeight
-              height: (parseFloat(window?.getComputedStyle(this.listbox).getPropertyValue('height')) || 0)
+              height: (parseFloat(window?.getComputedStyle(this.listbox).getPropertyValue('height')))
           },
           shift: false,
       }
