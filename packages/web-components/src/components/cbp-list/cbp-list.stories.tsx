@@ -31,11 +31,11 @@ function generateLinkListItems(items, size, parentVariant){
     const html = items.map(({content, description}) => {
       return `
         <li>
-          <cbp-link href='#' target='_self'>
+          <cbp-link href='#'
             <cbp-icon 
               ${parentVariant == 'external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
             ></cbp-icon>
-            <cbp-link href='#' target='_self'>${content}</cbp-link>
+            <cbp-link href='#'>${content}</cbp-link>
           </cbp-link>
           <br />
           <cbp-typography tag="span" variant="body-text" sx='{"color":"var(--cbp-link-list-color)"}'>
@@ -52,7 +52,7 @@ function generateLinkListItems(items, size, parentVariant){
     const html = items.map(({content}) =>{
     return `
       <li>
-        <cbp-link href='#' target='_self'>
+        <cbp-link href='#'>
           <cbp-icon 
             ${parentVariant == 'external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
           ></cbp-icon>

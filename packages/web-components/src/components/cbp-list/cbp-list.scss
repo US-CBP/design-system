@@ -8,7 +8,7 @@
    @prop --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
   
    @prop --cbp-link-list-color: var(--cbp-color-text-darkest);
-   @prop --cbp-link-list-color-dark: var(--cbp-color-text-darkest);
+   @prop --cbp-link-list-color-dark: var(--cbp-color-text-lightest);
 */
 
 :root {
@@ -51,7 +51,7 @@ cbp-list {
       padding-block: var(--cbp-list-item-padding-block);
     }
 
-    &[size="large"]:not([variant="link"]){
+    &[size="large"]{
     --cbp-list-font-size: var(--cbp-font-size-heading-sm);
     --cbp-list-item-line-height: var(--cbp-line-height-md);
     --cbp-list-item-padding-block: var(--cbp-space-1x);
@@ -118,7 +118,6 @@ cbp-list {
   &[variant="link"]{
     
     ul{
-      padding-inline-start: var(--cbp-link-list-gutter);
       
       li{
         list-style-type: none;
