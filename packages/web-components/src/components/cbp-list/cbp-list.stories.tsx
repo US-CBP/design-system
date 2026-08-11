@@ -36,7 +36,7 @@ function generateLinkListItems(items, size, parentVariant){
     const html = items.map(({content, description}) => {
       return `
         <li>
-          <cbp-link href="${generateUnvisitedLink('#')}"
+          <cbp-link href="${generateUnvisitedLink('#')}">
             <cbp-icon 
               ${parentVariant == 'external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
             ></cbp-icon>
