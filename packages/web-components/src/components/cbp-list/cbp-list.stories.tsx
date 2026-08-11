@@ -17,6 +17,11 @@ export default {
   },   
 };
 
+function generateUnvisitedLink(href) {
+  if(href == '#') return '?' + (Math.random() + 1).toString(26).slice(2, 7);
+  else return href;
+}
+
 function generateItems(items) {
   const html = items.map(({ content}) => {
       return `<li>${content}</li>
@@ -31,11 +36,11 @@ function generateLinkListItems(items, size, parentVariant){
     const html = items.map(({content, description}) => {
       return `
         <li>
-          <cbp-link href='#'
+          <cbp-link href="${generateUnvisitedLink('#')}"
             <cbp-icon 
               ${parentVariant == 'external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
             ></cbp-icon>
-            <cbp-link href='#'>${content}</cbp-link>
+            <cbp-link href="${generateUnvisitedLink('#')}">${content}</cbp-link>
           </cbp-link>
           <br />
           <cbp-typography tag="span" variant="body-text" sx='{"color":"var(--cbp-link-list-color)"}'>
@@ -52,7 +57,7 @@ function generateLinkListItems(items, size, parentVariant){
     const html = items.map(({content}) =>{
     return `
       <li>
-        <cbp-link href='#'>
+        <cbp-link href="${generateUnvisitedLink('#')}">
           <cbp-icon 
             ${parentVariant == 'external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
           ></cbp-icon>
