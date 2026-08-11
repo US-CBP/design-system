@@ -7,8 +7,8 @@
    @prop --cbp-list-item-color: var(--cbp-color-text-darkest);
    @prop --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
   
-   @prop --cbp-link-list-icon-color: var(--cbp-color-interactive-primary-dark);
-   @prop --cbp-link-list-icon-color-dark: var(--cbp-color-interactive-primary-dark);
+   @prop --cbp-link-list-color: var(--cbp-color-text-darkest);
+   @prop --cbp-link-list-color-dark: var(--cbp-color-text-lightest);
 */
 
 :root {
@@ -21,10 +21,9 @@
   --cbp-list-item-color: var(--cbp-color-text-darkest);
   --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
   
-  --cbp-link-list-gutter: var(--cbp-space-9x);
   --cbp-link-list-icon-margin: calc(var(--cbp-space-5x) * -1);
-  --cbp-link-list-icon-color: var(--cbp-color-interactive-primary-dark);
-  --cbp-link-list-icon-color-dark: var(--cbp-color-interactive-primary-dark);
+  --cbp-link-list-color: var(--cbp-color-text-darkest);
+  --cbp-link-list-color-dark: var(--cbp-color-text-lightest);
 
   --cbp-desc-list-color: var(--cbp-color-text-darker);
   --cbp-desc-list-color-dark: var(--cbp-color-text-lighter);
@@ -36,7 +35,7 @@
 [data-cbp-theme=light] cbp-list[context*=dark]:not([context=light-always]),
 [data-cbp-theme=dark] cbp-list:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-list-item-color: var(--cbp-list-item-color-dark) !important;
-  --cbp-link-list-icon-color: var(--cbp-link-list-icon-color-dark) !important;
+  --cbp-link-list-color: var(--cbp-link-list-color-dark) !important;
   --cbp-desc-list-color: var(--cbp-desc-list-color-dark) !important;
   --cbp-desc-list-description-color: var(--cbp-desc-list-description-color-dark) !important;
 }
@@ -118,20 +117,15 @@ cbp-list {
   &[variant="link"]{
     
     ul{
-      padding-inline-start: var(--cbp-link-list-gutter);
+      padding-inline-start: 0;
       
       li{
         list-style-type: none;
-        
-        cbp-icon{
-          margin-inline-start: var(--cbp-link-list-icon-margin);
-          margin-inline-end: var(--cbp-space-1x);
-        }
+        margin-block-end: var(--cbp-space-3x);
       }
     }
     
     &[size="large"]{
-      --cbp-link-list-gutter: var(--cbp-space-11x);
       --cbp-link-list-icon-margin: calc(var(--cbp-space-6x) * -1);
       --cbp-list-item-line-height: var(--cbp-line-height-sm);
       --cbp-list-item-padding-block: var(--cbp-space-1x);
@@ -151,7 +145,7 @@ cbp-list {
       list-style-type: none;
   
       cbp-icon{
-        margin-inline-start: calc(var(--cbp-space-4x) * -1);
+        margin-inline-start: calc(var(--cbp-list-padding) * -1);
         padding-inline-end: var(--cbp-space-3x);
       }     
     }

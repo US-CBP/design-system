@@ -55,6 +55,10 @@ export default {
       description: 'Renders the anchor in a disabled state. A disabled anchor is non-interactive and unusable.',
       control: 'boolean',
     },
+    large: {
+      description: 'sets the link font size to be 1rem',
+      control: 'boolean'
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -68,24 +72,34 @@ export default {
     label: 'Link text',
     href: '#',
     target: '_self',
+    large: 'false'
   },
 };
 
-const Template = ({ label, withIcon, inText, href, rel, target, download, downloadFileName, language, shortcutKey, accessibilityText, disabled, context, sx }) => {
+// Replace placeholder href="#" with unique URLs that do not show as "visited" (a common problem when using # or self-referencing URLs);
+// Should also use preventDefault() to avoid navigation to a broken link.
+function generateUnvisitedLink(href) {
+  if(href == '#') return '?' + (Math.random() + 1).toString(26).slice(2, 7);
+  else return href;
+}
+
+
+const Template = ({ label, withIcon, inText, href, rel, target, download, downloadFileName, language, shortcutKey, accessibilityText, disabled, large, context, sx }) => {
  
     setTimeout(() => {
       let anchors = document.querySelectorAll('cbp-link a');
       anchors.forEach(anchor => {
         // only prevent default for navigation
-        if(!anchor.hasAttribute('download')) anchor.addEventListener('click', function(e) { e.preventDefault(); })
+        if(!anchor.hasAttribute('download')) anchor.addEventListener('click', function(e) {e.preventDefault();})
       });
     }, 500);
     
  
   return `
     ${ inText ? `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ` : ''}
+    ${large ? `<cbp-typography tag="span" size="4">`:''}
     <cbp-link
-      ${href ? `href="${href}"` : ''}
+      ${href ? `href="${generateUnvisitedLink(href)}"` : ''}
       ${rel ? `rel="${rel}"` : ''}
       ${target ? `target="${target}"` : ''}
       ${download ? `download${downloadFileName ? `="${downloadFileName}"` : ''}` : ''}
@@ -100,6 +114,7 @@ const Template = ({ label, withIcon, inText, href, rel, target, download, downlo
       ${label}
       ${withIcon == 'after' ? `<cbp-icon name="up-right-from-square"></cbp-icon>` : ''}
     </cbp-link>
+    ${large ? `</cbp-typography>`:''}
     ${ inText ? ` Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>` : ''}
   `;
 };
