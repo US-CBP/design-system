@@ -95,6 +95,7 @@ export class CbpTreeview {
     if (navKeys.includes(key)) {    
       this.focusIndex = doKeyboardNav(this.treeviewItems, key, this.focusIndex);
       this.setCurrentTreeviewItem(this.focusIndex);
+      e.preventDefault(); // prevent scrolling as a result of keyboard nav
     }
     return;
   }
@@ -102,11 +103,14 @@ export class CbpTreeview {
   private setCurrentTreeviewItem(i = 0) {
     if(this.treeviewItems[i]?.querySelector('.cbp-treeview-item-toggle > button') != null){
       this.treeviewItems[i]?.querySelector('.cbp-treeview-item-toggle > button').focus();
-    }else if(this.treeviewItems[i]?.querySelector('.cbp-treeview-item-control > cbp-checkbox input') != null) { //If i is end node and has a checkbox 
+    }
+    else if(this.treeviewItems[i]?.querySelector('.cbp-treeview-item-control > cbp-checkbox input') != null) { //If i is end node and has a checkbox 
       this.treeviewItems[i]?.querySelector('.cbp-treeview-item-control > cbp-checkbox input').focus();
-    }else if(this.treeviewItems[i]?.querySelector('[slot="cbp-treeview-item-buttons"] > button') != null){ //If i is end node and has a slotted button
+    }
+    else if(this.treeviewItems[i]?.querySelector('[slot="cbp-treeview-item-buttons"] > button') != null){ //If i is end node and has a slotted button
       this.treeviewItems[i]?.querySelector('[slot="cbp-treeview-item-buttons"] > button').focus();
-    }else { //If no expected internal focusable elements then treeview-item itself is focused
+    }
+    else { //If no expected internal focusable elements then treeview-item itself is focused
       this.treeviewItems[i].focus();
     }
   }
@@ -147,5 +151,4 @@ export class CbpTreeview {
       </Host>
     );
   }
-
 }

@@ -69,12 +69,11 @@ function createTabPanels(tabs) {
 const Template = ({ tabs, orientation, gridTemplateColumns, accessibilityText, withIcon, onlyIcon, withBadge,context, sx }) => {
  
   if(orientation == 'vertical'){
-  return `
-    <cbp-grid 
-      grid-template-columns="${gridTemplateColumns}" 
-      gap="1rem"
-    >
-
+    return `
+      <cbp-grid 
+        grid-template-columns="${gridTemplateColumns}" 
+        gap="1rem"
+      >
         <cbp-tabs
           ${orientation ? `orientation="${orientation}"` : ''}
           ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
@@ -86,9 +85,10 @@ const Template = ({ tabs, orientation, gridTemplateColumns, accessibilityText, w
         <cbp-grid-item>
           ${createTabPanels(tabs)}
         </cbp-grid-item>
-    </cbp-grid>
- `;
-  }else {
+      </cbp-grid>
+    `;
+  }
+  else {
     return `
       <cbp-tabs
         ${orientation ? `orientation="${orientation}"` : ''}
@@ -103,8 +103,7 @@ const Template = ({ tabs, orientation, gridTemplateColumns, accessibilityText, w
   }
 };
 
-export const Tabs = Template.bind({});
-
+export const Tabs: any = Template.bind({});
 Tabs.args = {
   tabs: [
     {
