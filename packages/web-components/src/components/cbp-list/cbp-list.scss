@@ -21,7 +21,6 @@
   --cbp-list-item-color: var(--cbp-color-text-darkest);
   --cbp-list-item-color-dark: var(--cbp-color-text-lightest);
   
-  --cbp-link-list-gutter: var(--cbp-space-9x);
   --cbp-link-list-icon-margin: calc(var(--cbp-space-5x) * -1);
   --cbp-link-list-color: var(--cbp-color-text-darkest);
   --cbp-link-list-color-dark: var(--cbp-color-text-lightest);
@@ -118,6 +117,7 @@ cbp-list {
   &[variant="link"]{
     
     ul{
+      padding-inline-start: 0;
       
       li{
         list-style-type: none;
@@ -126,7 +126,6 @@ cbp-list {
     }
     
     &[size="large"]{
-      --cbp-link-list-gutter: var(--cbp-space-11x);
       --cbp-link-list-icon-margin: calc(var(--cbp-space-6x) * -1);
       --cbp-list-item-line-height: var(--cbp-line-height-sm);
       --cbp-list-item-padding-block: var(--cbp-space-1x);
