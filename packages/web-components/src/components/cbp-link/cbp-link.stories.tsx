@@ -55,6 +55,10 @@ export default {
       description: 'Renders the anchor in a disabled state. A disabled anchor is non-interactive and unusable.',
       control: 'boolean',
     },
+    large: {
+      description: 'sets the link font size to be 1rem',
+      control: 'boolean'
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -68,6 +72,7 @@ export default {
     label: 'Link text',
     href: '#',
     target: '_self',
+    large: 'false'
   },
 };
 
@@ -79,7 +84,7 @@ function generateUnvisitedLink(href) {
 }
 
 
-const Template = ({ label, withIcon, inText, href, rel, target, download, downloadFileName, language, shortcutKey, accessibilityText, disabled, context, sx }) => {
+const Template = ({ label, withIcon, inText, href, rel, target, download, downloadFileName, language, shortcutKey, accessibilityText, disabled, large, context, sx }) => {
  
     setTimeout(() => {
       let anchors = document.querySelectorAll('cbp-link a');
@@ -92,6 +97,7 @@ const Template = ({ label, withIcon, inText, href, rel, target, download, downlo
  
   return `
     ${ inText ? `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ` : ''}
+    ${large ? `<cbp-typography tag="span" size="4">`:''}
     <cbp-link
       ${href ? `href="${generateUnvisitedLink(href)}"` : ''}
       ${rel ? `rel="${rel}"` : ''}
@@ -108,6 +114,7 @@ const Template = ({ label, withIcon, inText, href, rel, target, download, downlo
       ${label}
       ${withIcon == 'after' ? `<cbp-icon name="up-right-from-square"></cbp-icon>` : ''}
     </cbp-link>
+    ${large ? `</cbp-typography>`:''}
     ${ inText ? ` Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>` : ''}
   `;
 };

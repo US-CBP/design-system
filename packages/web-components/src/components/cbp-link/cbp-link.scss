@@ -63,7 +63,7 @@ cbp-link {
     outline-width: 0;
     outline-style: solid;
     outline-color: var(--cbp-link-color-outline-focus);
-    outline-offset: var(--cbp-space-half-x);
+    // outline-offset: 0;
 
     cbp-icon {
       display: inline-block; // remove the nested flex context, which causes issues
