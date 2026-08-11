@@ -77,7 +77,11 @@ const Template = ({ label, withIcon, inText, href, rel, target, download, downlo
       let anchors = document.querySelectorAll('cbp-link a');
       anchors.forEach(anchor => {
         // only prevent default for navigation
-        if(!anchor.hasAttribute('download')) anchor.addEventListener('click', function(e) { e.preventDefault(); })
+        if(!anchor.hasAttribute('download')) anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = e.target as HTMLElement
+          target.parentElement.classList.remove("initialLoad");
+        })
       });
     }, 500);
     
@@ -85,6 +89,7 @@ const Template = ({ label, withIcon, inText, href, rel, target, download, downlo
   return `
     ${ inText ? `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ` : ''}
     <cbp-link
+      class="initialLoad"
       ${href ? `href="${href}"` : ''}
       ${rel ? `rel="${rel}"` : ''}
       ${target ? `target="${target}"` : ''}
@@ -101,6 +106,7 @@ const Template = ({ label, withIcon, inText, href, rel, target, download, downlo
       ${withIcon == 'after' ? `<cbp-icon name="up-right-from-square"></cbp-icon>` : ''}
     </cbp-link>
     ${ inText ? ` Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>` : ''}
+    <style> .initialLoad a:visited:not(:hover):not(:active):not(:focus){color: var(--cbp-link-color)} </style>
   `;
 };
 
