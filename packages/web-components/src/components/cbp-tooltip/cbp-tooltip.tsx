@@ -37,8 +37,11 @@ export class CbpTooltip {
   /** sets where the tooltip will be displayed and where the caret will be placed */
   @Prop({ reflect: true}) position: "top-start" | "top" | "top-end" | "right-start" | "right" | "right-end" | "bottom-start" | "bottom" | "bottom-end" | "left-start" | "left" | "left-end" = "top";
   
-  /** Optionally specify the ID of the visible control here, which is used to generate related pattern node IDs and associate everything for accessibility */
-  @Prop() fieldId: string = createNamespaceKey('cbp-tooltip');
+  /**
+   * Optionally specify the ID of the tooltip, which is used to associate it to the control for accessibility purposes.
+   * If not specified, an ID will be generated automatically.
+   */
+  @Prop() uid: string = createNamespaceKey('cbp-tooltip');
 
   /** Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. */
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
@@ -142,7 +145,7 @@ componentDidRender(){
   render() {
     return ( //todo: add a keydown for space or enter to call the onclick
       <Host 
-        aria-describedby={`${this.fieldId}`}
+        aria-describedby={`${this.uid}`}
         role="button"
         tabindex="0"  
         onmouseover={() => this.hoverTooltip(true)}
@@ -156,7 +159,7 @@ componentDidRender(){
 
         <div 
           role="tooltip" 
-          id={`${this.fieldId}`} 
+          id={`${this.uid}`} 
           ref={el => (this.floatingEl = el)}
         >
           <div>

@@ -91,12 +91,13 @@ export class CbpMenu {
     if (!target.closest(this.host)) this.open=false;
   }
 
+
   // All keypresses within the menu itself
   handleKeyPress(e) {
     const { key, shiftKey} = e;
 
     const openKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft']; // all keys that will do the default open action (Enter and SPACE are omitted because they trigger the click event)
-    const navKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft', 'Enter', 'Home', 'End']; // all keys that will do the default open action
+    const navKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft', 'Home', 'End']; // all keys that will do the default open action (space and enter act as a click and do not need to be included)
 
     if(key == 'Escape') this.closeMenu();
     if(key == 'Tab' && !shiftKey) this.open=false; // close without sending focus back to the control
@@ -104,6 +105,7 @@ export class CbpMenu {
     // handle opening when closed
     if (openKeys.includes(key) && !this.open) {
       this.open = true;
+      e.preventDefault(); // Stop these navigation keys from scrolling the page
       return;
     }
 
@@ -111,6 +113,7 @@ export class CbpMenu {
     if (navKeys.includes(key)) {
       this.focusIndex = doKeyboardNav(this.menuItems, key, this.focusIndex);
       this.setCurrentMenuItem(this.focusIndex);
+      e.preventDefault(); // Stop these navigation keys from scrolling the page
     }
     return;
   }

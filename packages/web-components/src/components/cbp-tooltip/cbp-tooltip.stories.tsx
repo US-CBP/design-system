@@ -15,7 +15,7 @@ export default {
       control: 'text',
     },
     uid: {
-      description: 'A unique `id` applied to the dialog and referenced by the control.',
+      description: 'A unique `id` applied to the tooltip and referenced by the control.',
       control: 'text',
     },
     open: {

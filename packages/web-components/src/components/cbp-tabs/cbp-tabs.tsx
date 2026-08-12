@@ -98,29 +98,30 @@ export class CbpTabs {
     this.observer.observe(this.observedEl);
   }
 
-  keyboardNav(key) {
-    let navKey;
-    if(this.orientation == 'vertical'){
-      navKey = ['ArrowDown',  'ArrowUp', 'Enter', 'Home', 'End'];
-    }else{
-      navKey = ['ArrowRight','ArrowLeft', 'Enter', 'Home', 'End'];
-    }
+  keyboardNav(e) {
+    const { key } = e;
 
-    if (navKey.includes(key)) {
+    let navKey:string[] = (this.orientation == 'vertical') 
+      ? ['ArrowDown', 'ArrowUp', 'Home', 'End']
+      : ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+
+    if(navKey.includes(key)) {
       this.focusIndex = doKeyboardNav(this.tabs, key, this.focusIndex);
       this.tabs[this.focusIndex].focus();
-    }else if(key == 'Tab'){
+      e.preventDefault(); // prevent scrolling as a result of keyboard nav
+    }
+    else if(key == 'Tab'){
       this.focusIndex = this.selectedIndex;
     }
 
     const d = (key == 'ArrowLeft') ?  'end' : 'start';
-    if (this.focusIndex !== undefined && key !== 'Tab') {
+    // Only scroll into view and set focus on valid keyboard behaviors
+    if (this.focusIndex !== undefined && [...navKey,'Enter',' '].includes(key)) {
       this.tabs[this.focusIndex].scrollIntoView({ behavior: "instant", block: "nearest", inline: d });
       setTimeout(() => {
         this.tabs[this.focusIndex].querySelector('button')?.focus();
       }, 20);
     }
-
   }
 
   responsiveNav(direction) {
@@ -178,9 +179,7 @@ export class CbpTabs {
       <Host
         role="tablist"
         aria-label={this.accessibilityText}
-        onKeydown={({ key }) => {
-          this.keyboardNav(key);
-        }}
+        onKeydown={e => this.keyboardNav(e)}
       >
 
       {this.orientation === 'horizontal'  &&
