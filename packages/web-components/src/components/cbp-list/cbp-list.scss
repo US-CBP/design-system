@@ -139,13 +139,13 @@ cbp-list {
     padding-inline-start: var(--cbp-space-8x);
     font-size: var(--cbp-font-size-heading-sm);
     
-    --cbp-list-padding: var(--cbp-space-6x);
+    --cbp-list-padding: var(--cbp-space-11x);
     
     li{
       list-style-type: none;
   
       cbp-icon{
-        margin-inline-start: calc(var(--cbp-list-padding) * -1);
+        margin-inline-start: calc(var(--cbp-space-10x) * -1);
         padding-inline-end: var(--cbp-space-3x);
       }     
     }
