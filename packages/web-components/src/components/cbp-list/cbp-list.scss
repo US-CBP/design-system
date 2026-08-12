@@ -143,10 +143,11 @@ cbp-list {
     
     li{
       list-style-type: none;
+      position: relative;
   
       cbp-icon{
-        margin-inline-start: calc(var(--cbp-space-10x) * -1);
-        padding-inline-end: var(--cbp-space-3x);
+        position: absolute;
+        left: calc(var(--cbp-space-9x) * -1);
       }     
     }
   }
