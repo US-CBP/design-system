@@ -55,7 +55,8 @@ cbp-code-snippet {
       
       // Copy button
       cbp-button { 
-        margin-left: auto;
+        position: absolute;
+        right: var(--cbp-space-5x);
       }
     }
 
