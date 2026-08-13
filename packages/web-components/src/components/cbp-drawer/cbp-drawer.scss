@@ -12,6 +12,7 @@
   --cbp-drawer-color-backdrop-dark: var(--cbp-color-backdrop-dark);
 
   --cbp-drawer-close-button-color: var(--cbp-color-interactive-secondary-darker);
+  --cbp-drawer-content-padding: var(--cbp-space-11x);
 }
 
 /* 
@@ -96,6 +97,11 @@ cbp-drawer[open] {
       &.cbp-drawer--open {
         left: 0;
       }
+           
+      > cbp-panel .cbp-panel__header,
+      > cbp-panel .cbp-panel__content {
+        padding-inline-start: var(--cbp-drawer-content-padding);
+      }
     }
   }
 
@@ -106,6 +112,11 @@ cbp-drawer[open] {
 
       &.cbp-drawer--open {
         right: 0;
+      }
+
+      > cbp-panel .cbp-panel__header,
+      > cbp-panel .cbp-panel__content {
+        padding-inline-end: var(--cbp-drawer-content-padding);
       }
     }
   }
@@ -119,5 +130,10 @@ cbp-drawer[open] {
       width: 25rem;
     }
   }
+
+  @media (max-width: $cbp-breakpoint-sm) {
+  --cbp-drawer-content-padding: var(--cbp-space-5x);
+  }
 }
+
 
