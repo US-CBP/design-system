@@ -12,7 +12,7 @@
   --cbp-drawer-color-backdrop-dark: var(--cbp-color-backdrop-dark);
 
   --cbp-drawer-close-button-color: var(--cbp-color-interactive-secondary-darker);
-  --cbp-drawer-content-padding: var(--cbp-space-11x);
+  --cbp-drawer-content-padding: var(--cbp-responsive-spacing-outer);
 }
 
 /* 
@@ -131,9 +131,9 @@ cbp-drawer[open] {
     }
   }
 
-  @media (max-width: $cbp-breakpoint-sm) {
-  --cbp-drawer-content-padding: var(--cbp-space-5x);
-  }
+  // @media (max-width: $cbp-breakpoint-sm) {
+  // --cbp-drawer-content-padding: var(--cbp-space-5x);
+  // }
 }
 
 
