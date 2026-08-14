@@ -105,12 +105,12 @@ export const ActionsMenu: any = ActionsMenuTemplate.bind({});
 ActionsMenu.args = {
   items:[
     {
-      tag: 'cbp-link',
+      tag: 'cbp-link href="#"',
       icon:'eye',
       text: 'View'
     },
     {
-      tag: 'cbp-button tag="a"',
+      tag: 'cbp-button tag="a" href="#"',
       icon: 'pen-to-square',
       text: 'Edit'
     },
