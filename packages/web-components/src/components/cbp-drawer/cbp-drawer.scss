@@ -114,6 +114,10 @@ cbp-drawer[open] {
         right: 0;
       }
 
+      .cbp-drawer__close-button{
+        right: var(--cbp-responsive-spacing-outer);
+      }
+
       > cbp-panel .cbp-panel__header,
       > cbp-panel .cbp-panel__content {
         padding-inline-end: var(--cbp-drawer-content-padding);
@@ -130,10 +134,6 @@ cbp-drawer[open] {
       width: 25rem;
     }
   }
-
-  // @media (max-width: $cbp-breakpoint-sm) {
-  // --cbp-drawer-content-padding: var(--cbp-space-5x);
-  // }
 }
 
 
