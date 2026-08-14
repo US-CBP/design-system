@@ -162,16 +162,16 @@ export class CbpListbox {
   }
 
   // handle keyboard navigation
-  getActionFromKey(event) {
-    const { key } = event;
+  getActionFromKey(e) {
+    const { key } = e;
     const selectKeys = ['Enter', ' '];
-    const navKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End']; // all keys that will do the default open action
+    const navKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End']; // keyboard navigation within an open listbox
 
     // If the menu is already open, pressing enter or space triggers a click on the current item -
     // with an exception for pressing space as part of a combobox searchString (not the first character).
     // Run this first, before the menu may be opened by later code.
     if (this.open && selectKeys.includes(key)) {
-      event.preventDefault();
+      e.preventDefault();
       this.listboxItems[this.focusIndex!]?.click();
       return;
     }
@@ -193,7 +193,7 @@ export class CbpListbox {
       }
       // Prevent listbox navigation keys from doing things in the input while open, as this may be confusing
       if (navKeys.includes(key)) {
-        event.preventDefault();
+        e.preventDefault();
       }
     }
 

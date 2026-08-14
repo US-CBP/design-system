@@ -23,6 +23,7 @@ The Pagination component presents a common UI pattern for displaying data sets b
 * The empty `cbp-dropdown` with desired properties will be slotted by the application with the "next/previous" attached button controls.
 * The "previous" button will be disabled when the first item in the "pages" dropdown is selected.
 * The "next" button will be disabled when the last item in the "pages" dropdown is selected.
+* The Pagination component shall be reactive to property changes, since it is common for an application to load new data sets or filter data being displayed.
 
 ## Technical Specifications
 
@@ -46,6 +47,10 @@ The Pagination component presents a common UI pattern for displaying data sets b
 
 ### Additional Notes and Considerations
 
+* The `records`, `page`, and `pageSize` properties are all reactive - they may be updated dynamically by the application logic.
+  * The pages dropdown will be re-generated and next/previous button status reevaluated if either the `records` or `pageSize` property changes.
+  * If the data set and/or `records` property is updated, the `page` should also be reset to 1 (by application code) to avoid confusion and/or weird effects.
+  * If the `pageSize` property is updated, the page will automatically be set to 1, consistent with the behavior when a user makes the same change.
 * Applications with access to large data sets should never return the entire data set to the front-end framework or UI.
   * "Chunking" data involves returning part of the data set (whether from a database or API) that is needed for display rather than the entire data set.
   * When paginating such large data sets, the "All Records" options should be omitted from the items per page dropdown.
