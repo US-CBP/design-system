@@ -75,7 +75,7 @@ const Template = ({ position, open, persistAt, uid, accessibilityText, withIcon,
           tag="h3"
           variant="heading-lg"
         >
-          ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}${panelHeading}
+          ${withIcon ? `<cbp-icon name="user"></cbp-icon>` : ''}${panelHeading}
         </cbp-typography>
 
         <p>${panelContent}</p>
@@ -131,7 +131,7 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
           tag="h3"
           variant="heading-lg"
         >
-          ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}${panelHeading}
+          ${withIcon ? `<cbp-icon name="user"></cbp-icon>` : ''}${panelHeading}
         </cbp-typography>
 
         <p>${panelContent}</p>
