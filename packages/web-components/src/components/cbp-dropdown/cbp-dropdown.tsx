@@ -728,17 +728,17 @@ export class CbpDropdown {
   }
 
   // Handles navigation and selection keys
-  getActionFromKey(event) {
-    const { key, altKey, ctrlKey, metaKey } = event;
+  getActionFromKey(e) {
+    const { key, altKey, ctrlKey, metaKey } = e;
     const selectKeys = ['Enter', ' '];
     const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ']; // all keys that will do the default open action
-    const navKeys = ['ArrowDown', 'ArrowUp', 'Enter', 'Home', 'End']; // all keys that will do the default open action
+    const navKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End']; // keyboard navigation within an open dropdown
 
     // If the menu is already open, pressing enter or space triggers a click on the current item -
     // with an exception for pressing space as part of a combobox searchString (not the first character).
     // Run this first, before the menu may be opened by later code.
     if (this.open && selectKeys.includes(key) && !this.typingMode) {
-      event.preventDefault();
+      e.preventDefault();
       this.dropdownItems[this.focusIndex!]?.click();
       return;
     }
@@ -761,6 +761,7 @@ export class CbpDropdown {
         this.setCurrent( (this.filter && (this.searchString)) ? this.matches[n] : n, this.focusIndex); // default to 0 if create?
         if (!this.filter) this.searchString='';
       }
+      if(navKeys.includes(key)) e.preventDefault(); // prevent window scrolling with keyboard navigation.
     }
 
     // handle opening when closed
@@ -768,6 +769,7 @@ export class CbpDropdown {
       if (!this.open) {
         this.open = true;
         this.typingMode=false;
+        e.preventDefault(); // prevent window scrolling with keyboard navigation.
       }
     }
 
