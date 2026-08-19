@@ -1,6 +1,10 @@
 export default {
   title: 'Test/Template with Responsive Table',
   parameters: {
+    layout: 'fullscreen',
+    html: {
+      root: '#storybook-root',
+    },
     chromatic: { disableSnapshot: true }
   },
 };
@@ -134,33 +138,29 @@ const Template: any = () => {
 <cbp-skip-nav></cbp-skip-nav>
 <cbp-flex direction="column" sx='{"min-height":"100vh"}'>
   <cbp-universal-header logo-src-lg="./assets/images/cbp-header-logo.svg" logo-src-sm="./assets/images/cbp-seal.svg">
-    <ul>
-    
-      <li>
+    <cbp-flex gap="var(--cbp-space-4x)">
+      <cbp-flex-item>
         <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
           <cbp-icon name="book"></cbp-icon>
-          <cbp-hide visually-hide-at="max-width:64em">App Directory</cbp-hide>
+          <cbp-hide visually-hide-at="max-width: 64em">App Directory</cbp-hide>
         </cbp-button>
-      </li>
-      <li>
+      </cbp-flex-item>
+      <cbp-flex-item>
         <cbp-button color="secondary" fill="ghost" context="dark-always">
           <cbp-icon name="comment"></cbp-icon>  
-          <cbp-hide visually-hide-at="max-width:64em">Feedback</cbp-hide>
+          <cbp-hide visually-hide-at="max-width: 64em">Feedback</cbp-hide>
         </cbp-button>
-      </li>
-      <li>
+      </cbp-flex-item>
+      <cbp-flex-item>
         <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
           <cbp-icon name="user"></cbp-icon>
-          <cbp-hide visually-hide-at="max-width:64em">HASHIDX</cbp-hide>
+          <cbp-hide visually-hide-at="max-width: 64em">HASHIDX</cbp-hide>
         </cbp-button>
-      </li>
-      
-    </ul>
+      </cbp-flex-item>
+    </cbp-flex>
   </cbp-universal-header>
 
-  <cbp-app-header subnav-drawer-id
-  ="appheaderdrawer">
-    
+  <cbp-app-header subnav-drawer-id="appheaderdrawer">    
     <cbp-nav-item name="Application Name" slot="cbp-home" current>
       <a href="./?path=/story/components-application-header--application-header#">
         Application Name
@@ -185,8 +185,7 @@ const Template: any = () => {
         Nav Item 3
       </a>
     </cbp-nav-item>
-  
-  </cbp-app-header>
+    </cbp-app-header>
   
 
 
