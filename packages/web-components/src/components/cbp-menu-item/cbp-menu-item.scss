@@ -78,13 +78,13 @@ cbp-menu-item {
   &:first-child,
   &:first-child a, 
   &:first-child button {
-    border-radius: var(--cbp-border-radius-softer) var(--cbp-border-radius-softer) 0 0;
+    border-radius: var(--cbp-border-radius-2) var(--cbp-border-radius-2) 0 0;
   }
   
   &:last-child,
   &:last-child a, 
   &:last-child button {
-    border-radius: 0 0 var(--cbp-border-radius-softer) var(--cbp-border-radius-softer);
+    border-radius: 0 0 var(--cbp-border-radius-2) var(--cbp-border-radius-2);
   }
 
   cbp-button,

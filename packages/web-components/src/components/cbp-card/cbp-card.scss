@@ -113,7 +113,7 @@ cbp-card {
   flex-direction: column;
   max-width: 100%;
   background-color: var(--cbp-card-color-background);
-  border-radius: var(--cbp-border-radius-softer);
+  border-radius: var(--cbp-border-radius-3);
   border-color: var(--cbp-card-color-border);
   border-style: solid;
   border-width: var(--cbp-border-size-md);
@@ -208,13 +208,14 @@ cbp-card {
       border-width: var(--cbp-border-size-md);
       border-style: solid;
       border-color: var(--cbp-banner-card-color-border);
-      border-top-left-radius: var(--cbp-border-radius-softer);
-      border-top-right-radius: var(--cbp-border-radius-softer);
+      border-top-left-radius: var(--cbp-border-radius-3);
+      border-top-right-radius: var(--cbp-border-radius-3);
       border-bottom: 0;
     }
   }
      [slot=cbp-card-actions] {
       display: flex;
+      gap: var(--cbp-space-half-x);
 
       cbp-button {
         --cbp-button-border-radius: 0;
@@ -231,7 +232,7 @@ cbp-card {
 
 
         &:first-child {
-          --cbp-button-border-radius: 0 0 0 var(--cbp-border-radius-softer);
+          --cbp-button-border-radius: 0 0 0 var(--cbp-border-radius-3);
 
           &[fill=ghost][color]{
             --cbp-button-border-width: var(--cbp-border-size-md) 0 var(--cbp-border-size-md) var(--cbp-border-size-md);
@@ -239,7 +240,7 @@ cbp-card {
         }
   
         &:last-child {
-          --cbp-button-border-radius: 0 0 var(--cbp-border-radius-softer) 0;
+          --cbp-button-border-radius: 0 0 var(--cbp-border-radius-3) 0;
 
           &[fill=ghost][color]{
             --cbp-button-border-width: var(--cbp-border-size-md) var(--cbp-border-size-md) var(--cbp-border-size-md) 0;
@@ -247,7 +248,7 @@ cbp-card {
         }
         
         &:first-child:last-child {
-          --cbp-button-border-radius: 0 0 var(--cbp-border-radius-softer) var(--cbp-border-radius-softer);
+          --cbp-button-border-radius: 0 0 var(--cbp-border-radius-3) var(--cbp-border-radius-3);
         
           &[fill=ghost][color]{
             --cbp-button-border-width: var(--cbp-border-size-md);
@@ -442,7 +443,7 @@ cbp-card {
       &:not(disabled) .cbp-card-body{
         outline: var(--cbp-border-size-md) solid var(--cbp-card-outline-color-focus); 
         outline-offset: calc(var(--cbp-space-1x) * -1);
-        border-radius: var(--cbp-border-radius-softer);
+        border-radius: var(--cbp-border-radius-3);
       }
     }
 

@@ -27,7 +27,7 @@
 cbp-code-snippet {
   color: var(--cbp-code-snippet-color);
   background-color: var(--cbp-code-snippet-color-bg); 
-  border-radius: var(--cbp-border-radius-soft);  
+  border-radius: var(--cbp-border-radius-1);  
 
   pre {
     margin: 0;
@@ -45,6 +45,7 @@ cbp-code-snippet {
   &[variant=block] {
     display: block;
     padding: var(--cbp-space-2x);
+    border-radius: var(--cbp-border-radius-3);  
     
 
     pre {

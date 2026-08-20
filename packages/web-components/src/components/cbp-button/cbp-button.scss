@@ -27,7 +27,7 @@
  * @prop --cbp-button-color-outline-focus-dark: var(--cbp-color-black);
  * @prop --cbp-button-border-width: var(--cbp-border-size-md);
  * @prop --cbp-button-border-style: solid;
- * @prop --cbp-button-border-radius: var(--cbp-border-radius-soft);
+ * @prop --cbp-button-border-radius: var(--cbp-border-radius-1);
  * @prop --cbp-button-min-width: auto;
  * @prop --cbp-button-min-height: auto;
  * @prop --cbp-button-width: auto;
@@ -79,7 +79,7 @@
   --cbp-button-padding: var(--cbp-space-2x);
   --cbp-button-border-width: var(--cbp-border-size-md);
   --cbp-button-border-style: solid;
-  --cbp-button-border-radius: var(--cbp-border-radius-soft);
+  --cbp-button-border-radius: var(--cbp-border-radius-1);
 
   // Defaulting min-width/height causes issues, but these variables are used as part of the API elsewhere
   --cbp-button-min-width: auto;
@@ -452,6 +452,8 @@ cbp-button {
   }
 
   &[variant=cta] {
+    --cbp-button-border-radius: var(--cbp-border-radius-2);
+    
     button, a {
       font-size: var(--cbp-font-size-heading-sm);
       padding-left: var(--cbp-space-4x);

@@ -30,7 +30,7 @@ cbp-menu {
     width: max-content;
     padding: 0;
     background: var(--cbp-menu-color-bg);
-    border-radius: var(--cbp-border-radius-softer);
+    border-radius: var(--cbp-border-radius-2);
     box-shadow: var(--cbp-shadow-level-1-down);
     z-index: var(--cbp-z-index-level-1); // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
   }

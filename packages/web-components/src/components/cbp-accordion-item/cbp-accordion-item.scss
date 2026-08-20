@@ -12,7 +12,7 @@
  *  @prop  --cbp-accordion-item-color-outline-focus: var(--cbp-color-white);
  *  @prop  --cbp-accordion-item-color-active: var(--cbp-color-text-lightest);
  *  @prop  --cbp-accordion-item-color-background-active: var(--cbp-color-interactive-active-dark);
- *  @prop  --cbp-accordion-item-border-radius: var(--cbp-border-radius-sharp, 0);
+ *  @prop  --cbp-accordion-item-border-radius: var(--cbp-border-radius-none, 0);
  *  @prop  --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
  *  @prop  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
  *  @prop  --cbp-accordion-item-control-gap: var(--cbp-space-3x);
@@ -38,7 +38,7 @@
   --cbp-accordion-item-color-open: var(--cbp-color-text-lighter);
   --cbp-accordion-item-color-background-open: var(--cbp-color-gray-cool-60);
 
-  --cbp-accordion-item-color-hover: var(--cbp-color-text-darker);
+  --cbp-accordion-item-color-hover: var(--cbp-color-text-darkest);
   --cbp-accordion-item-color-background-hover: var(--cbp-color-interactive-secondary-light);
   --cbp-accordion-item-color-open-hover: var(--cbp-color-text-lightest);
   --cbp-accordion-item-color-background-open-hover: var(--cbp-color-interactive-secondary-darker);
@@ -52,7 +52,7 @@
 
   --cbp-accordion-item-border-width: var(--cbp-border-width-xs);
   --cbp-accordion-item-border-style: solid;
-  --cbp-accordion-item-border-radius: var(--cbp-border-radius-sharp, 0);
+  --cbp-accordion-item-border-radius: var(--cbp-border-radius-none, 0);
 
   --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
   --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
@@ -110,6 +110,8 @@
 cbp-accordion-item {
   display: flex;
   flex-direction: column;
+  border-radius: var(--cbp-border-radius-1);
+  overflow: hidden; //Needed for the border radius to display correctly
 
   &[open] {
     --cbp-accordion-item-color: var(--cbp-accordion-item-color-open);

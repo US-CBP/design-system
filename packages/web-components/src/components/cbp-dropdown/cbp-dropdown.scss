@@ -129,12 +129,12 @@ cbp-dropdown {
 
     // Attached buttons act like an overlay in order to wrap the input focus highlight around them.
     [slot=cbp-dropdown-attached-button-start] {
-      --cbp-button-border-radius: var(--cbp-border-radius-soft) 0 0 var(--cbp-border-radius-soft);
+      --cbp-button-border-radius: var(--cbp-border-radius-1) 0 0 var(--cbp-border-radius-1);
       inset-inline-start: 0;
     }
 
     [slot=cbp-dropdown-attached-button-end] {
-      --cbp-button-border-radius: 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0;
+      --cbp-button-border-radius: 0 var(--cbp-border-radius-1) var(--cbp-border-radius-1) 0;
       inset-inline-end: 0;
     }
 
@@ -226,7 +226,7 @@ cbp-dropdown {
     color: var(--cbp-dropdown-menu-color);
     background-color: var(--cbp-dropdown-menu-color-bg);
     border: var(--cbp-border-size-md) solid var(--cbp-dropdown-menu-color-border);
-    border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
+    border-radius: 0 0 var(--cbp-border-radius-1) var(--cbp-border-radius-1);
     height: fit-content;
     max-height: 13.5rem; //TechDebt: What's the reasoning for this magic number?
     width: 100%; //calc(100% - 2px);
@@ -253,7 +253,7 @@ cbp-dropdown {
   }
 
   &[open] {
-    --cbp-form-field-border-radius: var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0;
+    --cbp-form-field-border-radius: var(--cbp-border-radius-1) var(--cbp-border-radius-1) 0 0;
 
     // Rotate the faux-button (chevron) when open
     button::before,
