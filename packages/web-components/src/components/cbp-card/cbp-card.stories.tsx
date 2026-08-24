@@ -49,7 +49,7 @@ export default {
       name: "Color",
       description: "Set the color of the card",
       control: "select",
-      options: ["default", "info", "success", "warning", "danger"],
+      options: ["info", "success", "warning", "danger"],
     },
     context : {
       control: 'select',
@@ -59,9 +59,6 @@ export default {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
     },    
-  },
-  args:{
-    color: 'default'
   }
 };
 
@@ -114,7 +111,7 @@ const GeneralTemplate = ({ variant, color, title, headingId, bodyText, actionsLa
   return ` 
     <cbp-card
       ${variant? `variant=${variant}` : ``}
-      ${color !="default"? `color="${color}"` : ''}
+      ${color? `color="${color}"` : ``}
       ${stretch ? `stretch` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}      
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -134,7 +131,7 @@ const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       variant="flag"
-      ${color ? `color="${color}"` : ''}
+      ${color ? `color="${color}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
@@ -165,7 +162,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
       ${interactive ? `interactive="${interactive}"` : ''}
       ${href ? `href="${href}"` : ''}
       ${disabled ? 'disabled' : ''}
-      ${color ? `color="${color}"` : ''}
+      ${color ? `color="${color}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -318,7 +315,7 @@ const InteractiveRadioListTemplate: any = ({ title, color, disabled, bodyText, w
         interactive="radio"
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
-        ${color ? `color="${color}"` : ''}
+        ${color ? `color="${color}"` : ``}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
@@ -340,7 +337,7 @@ const InteractiveRadioListTemplate: any = ({ title, color, disabled, bodyText, w
         interactive="radio"
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
-        ${color ? `color="${color}"` : ''}
+        ${color ? `color="${color}"` : ``}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
@@ -362,7 +359,7 @@ const InteractiveRadioListTemplate: any = ({ title, color, disabled, bodyText, w
         interactive= 'radio'
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
-        ${color ? `color="${color}"` : ''}
+        ${color ? `color="${color}"` : ``}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
