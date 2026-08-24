@@ -7,6 +7,9 @@ export default {
       description: 'The text content wrapped by the specified semantic tag and styles.',
       control: 'text',
     },
+    withIcon: {
+      control: 'boolean',
+    },
     tag: {
       control: 'select',
       description: 'The semantic element wrapping the content.',
@@ -33,7 +36,25 @@ export default {
   },
 };
 
-const Template = ({ text, tag, variant, size, lineheight, fontweight, divider, context, sx }) => {
+function generateIcon(variant){
+  switch (variant){
+    case 'heading-xxl':
+      return `<cbp-icon size="1.75rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>`
+    case 'heading-xl':
+      return `<cbp-icon size="1.5rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>`
+    case 'heading-lg':
+      return `<cbp-icon size="1.25rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>`
+    case 'heading-md':
+    case 'heading-sm':
+      return `<cbp-icon size="1rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>`
+    case 'heading-xs':
+      return `<cbp-icon size="0.75rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-1x)"}'></cbp-icon>`
+    default:
+      return `<cbp-icon size="0.875rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-1x)"}'></cbp-icon>`
+  }
+}
+
+const Template = ({ text, withIcon, tag, variant, size, lineheight, fontweight, divider, context, sx }) => {
   return ` 
     <cbp-typography
       ${tag ? `tag="${tag}"` : ''}
@@ -45,7 +66,7 @@ const Template = ({ text, tag, variant, size, lineheight, fontweight, divider, c
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      ${text}
+      ${withIcon ? `${generateIcon(variant)}${text}` : `${text}`}
     </cbp-typography>
   `;
 };
@@ -77,7 +98,7 @@ Typography.argTypes = {
 
 
 // TechDebt: This can be more efficiently achieved by looping over an array of all variants; refactor when we add the additional variants/tokens.
-const AllStyles = ({ text, tag, divider,  context, sx }) => {
+const AllStyles = ({ text, withIcon, tag, divider,  context, sx }) => {
   
   var variants = [ 'heading-xxl', 'heading-xl', 'heading-lg', 'heading-md', 'heading-sm', 'heading-xs', 'body-text', 'subhead'];;
   var htmlVariant = ``;
@@ -91,8 +112,8 @@ const AllStyles = ({ text, tag, divider,  context, sx }) => {
         ${divider != 'none' ? `divider="${divider}"` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        ${text} (variant=${variants[y]})
+      >      
+        ${withIcon ? `${generateIcon(variants[y])}${text} (variant=${variants[y]})` : `${text} (variant=${variants[y]})`}
       </cbp-typography>
     `
   }

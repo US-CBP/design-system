@@ -19,7 +19,7 @@
 
  * @prop --cbp-form-field-padding-inline: var(--cbp-space-2x);
  * @prop --cbp-form-field-margin-bottom: var(--cbp-space-4x);
- * @prop --cbp-form-field-border-radius: var(--cbp-border-radius-soft);
+ * @prop --cbp-form-field-border-radius: var(--cbp-border-radius-1);
  */
  :root{
   --cbp-form-field-color: var(--cbp-color-text-darkest);
@@ -42,7 +42,7 @@
 
   --cbp-form-field-padding-inline: var(--cbp-space-2x);
   --cbp-form-field-margin-bottom: var(--cbp-space-4x);
-  --cbp-form-field-border-radius: var(--cbp-border-radius-soft);
+  --cbp-form-field-border-radius: var(--cbp-border-radius-1);
 
   // icon => chevron-down from font-awesome 7.2.0
   // light version on dark "button" background

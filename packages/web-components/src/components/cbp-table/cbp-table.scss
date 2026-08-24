@@ -381,6 +381,14 @@ cbp-table {
             transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
           }
         }
+
+        &:first-of-type{
+          border-top-left-radius: var(--cbp-border-radius-2);
+        }
+
+        &:last-of-type{
+          border-top-right-radius: var(--cbp-border-radius-2);
+        }
       }
 
       th:has(button:hover) {

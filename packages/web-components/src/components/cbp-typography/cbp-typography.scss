@@ -21,6 +21,8 @@
   --cbp-typography-color-divider-fill-dark: var(--cbp-color-gray-cool-70);
   --cbp-typography-color-divider-underline: var(--cbp-color-gray-cool-30);
   --cbp-typography-color-divider-underline-dark: var(--cbp-color-gray-cool-50);
+
+  --cbp-typography-fill-border-radius: var(--cbp-border-radius-1);
 }
 
 // Displays dark design based on mode or context
@@ -80,12 +82,17 @@ cbp-typography {
   &[divider=fill] {
     & > * {
       background-color: var(--cbp-typography-color-divider-fill);
-      border-radius: var(--cbp-border-radius-soft);
+      border-radius: var(--cbp-typography-fill-border-radius);
       padding: var(--cbp-space-3x);
     }
     &[variant=heading-xs] > * , h6 {
       padding-block: var(--cbp-space-1x);
       padding-inline: var(--cbp-space-2x);
+    }
+    &[variant=heading-xxl],
+    &[variant=heading-xl],
+    &[variant=heading-lg]{
+      --cbp-typography-fill-border-radius: var(--cbp-border-radius-2);
     }
   }
 

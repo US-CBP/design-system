@@ -81,7 +81,7 @@ cbp-tooltip {
   align-items: center;
   justify-content: center;
   position: relative;
-  border-radius: var(--cbp-border-radius-soft);
+  border-radius: var(--cbp-border-radius-1);
   padding: var(--cbp-space-1x);
   outline-offset: calc(-1 * var(--cbp-space-1x));
   --cbp-tooltip-placement-gap: var(--cbp-tooltip-gap);
@@ -137,7 +137,7 @@ div[role=tooltip] {
   border-style: solid;
   border-width: 0px;
   border-color: transparent;
-  border-radius: var(--cbp-border-radius-softer);
+  border-radius: var(--cbp-border-radius-2);
   background-color: var(--cbp-tooltip-color-bg);
   color: var(--cbp-tooltip-color);
   font-size: var(--cbp-font-size-body);

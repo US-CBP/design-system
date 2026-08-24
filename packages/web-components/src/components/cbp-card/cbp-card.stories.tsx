@@ -49,7 +49,7 @@ export default {
       name: "Color",
       description: "Set the color of the card",
       control: "select",
-      options: ["default", "info", "success", "warning", "danger"],
+      options: ["info", "success", "warning", "danger"],
     },
     context : {
       control: 'select',
@@ -59,7 +59,7 @@ export default {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
     },    
-  },
+  }
 };
 
 const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1, btn2, btn3 }) => {
@@ -67,11 +67,11 @@ const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1,
   if (layout === 'double') {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}">
+        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="arrow-right"></cbp-icon>` : ''}
           ${btn2.label}
         </cbp-button>
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
@@ -111,7 +111,7 @@ const GeneralTemplate = ({ variant, color, title, headingId, bodyText, actionsLa
   return ` 
     <cbp-card
       ${variant? `variant=${variant}` : ``}
-      ${color !="default"? `color="${color}"` : ''}
+      ${color? `color="${color}"` : ``}
       ${stretch ? `stretch` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}      
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -131,7 +131,7 @@ const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       variant="flag"
-      ${color ? `color="${color}"` : ''}
+      ${color ? `color="${color}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
@@ -162,7 +162,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
       ${interactive ? `interactive="${interactive}"` : ''}
       ${href ? `href="${href}"` : ''}
       ${disabled ? 'disabled' : ''}
-      ${color ? `color="${color}"` : ''}
+      ${color ? `color="${color}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -315,7 +315,7 @@ const InteractiveRadioListTemplate: any = ({ title, color, disabled, bodyText, w
         interactive="radio"
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
-        ${color ? `color="${color}"` : ''}
+        ${color ? `color="${color}"` : ``}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
@@ -337,7 +337,7 @@ const InteractiveRadioListTemplate: any = ({ title, color, disabled, bodyText, w
         interactive="radio"
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
-        ${color ? `color="${color}"` : ''}
+        ${color ? `color="${color}"` : ``}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
@@ -359,7 +359,7 @@ const InteractiveRadioListTemplate: any = ({ title, color, disabled, bodyText, w
         interactive= 'radio'
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
-        ${color ? `color="${color}"` : ''}
+        ${color ? `color="${color}"` : ``}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >

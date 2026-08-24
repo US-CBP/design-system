@@ -294,7 +294,7 @@ function generatePassengers(passengerArgs, page, pageSize) {
                   <img
                     src="https://thispersondoesnotexist.com/"
                     alt="avatar"
-                    style="width: 100px; border-radius: var(--cbp-border-radius-softer);"
+                    style="width: 100px; border-radius: var(--cbp-border-radius-2);"
                   />
                 <cbp-flex direction="column" gap="var(--cbp-space-2x) var(--cbp-space-1x)">
                   <cbp-typography tag="h2">${name}</cbp-typography>
