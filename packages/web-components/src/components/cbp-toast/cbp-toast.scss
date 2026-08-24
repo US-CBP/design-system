@@ -100,8 +100,7 @@ cbp-toast {
     align-items: center;
     padding: var(--cbp-space-4x);
     background-color: var(--cbp-toast-color-bg-sidebar);
-    border-top-left-radius: var(--cbp-border-radius-3);
-    border-bottom-left-radius: var(--cbp-border-radius-3);
+    border-radius: var(--cbp-border-radius-3) 0 0 var(--cbp-border-radius-3);
   
     cbp-icon{
       --cbp-icon-color: var(--cbp-toast-color-icon-sidebar);

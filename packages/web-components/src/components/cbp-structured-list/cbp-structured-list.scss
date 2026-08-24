@@ -86,8 +86,7 @@ cbp-structured-list {
     color: var(--cbp-structured-list-header-color);
     background-color: var(--cbp-structured-list-header-color-bg);
     font-style: italic;
-    border-top-left-radius: var(--cbp-border-radius-2);
-    border-top-right-radius: var(--cbp-border-radius-2);
+    border-radius: var(--cbp-border-radius-2) var(--cbp-border-radius-2) 0 0;
     display: flex;
     align-items: center;
     padding: var(--cbp-space-3x);

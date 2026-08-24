@@ -39,18 +39,18 @@ export default {
 function generateIcon(variant){
   switch (variant){
     case 'heading-xxl':
-      return `<cbp-icon size='1.75rem' name="landmark" sx='{"margin-inline-end":"0.5rem"}'></cbp-icon>`
+      return `<cbp-icon size="1.75rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>`
     case 'heading-xl':
-      return `<cbp-icon size='1.5rem' name="landmark" sx='{"margin-inline-end":"0.5rem"}'></cbp-icon>`
+      return `<cbp-icon size="1.5rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>`
     case 'heading-lg':
-      return `<cbp-icon size='1.25rem' name="landmark" sx='{"margin-inline-end":"0.5rem"}'></cbp-icon>`
+      return `<cbp-icon size="1.25rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>`
     case 'heading-md':
     case 'heading-sm':
-      return `<cbp-icon size='1rem' name="landmark" sx='{"margin-inline-end":"0.5rem"}'></cbp-icon>`
+      return `<cbp-icon size="1rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-2x)"}'></cbp-icon>`
     case 'heading-xs':
-      return `<cbp-icon size='0.75rem' name="landmark" sx='{"margin-inline-end":"0.25rem"}'></cbp-icon>`
+      return `<cbp-icon size="0.75rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-1x)"}'></cbp-icon>`
     default:
-      return `<cbp-icon size='0.875rem' name="landmark" sx='{"margin-inline-end":"0.25rem"}'></cbp-icon>`
+      return `<cbp-icon size="0.875rem" name="landmark" sx='{"margin-inline-end":"var(--cbp-space-1x)"}'></cbp-icon>`
   }
 }
 
@@ -66,8 +66,7 @@ const Template = ({ text, withIcon, tag, variant, size, lineheight, fontweight, 
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      ${withIcon ? generateIcon(variant) : ''}
-      ${text}
+      ${withIcon ? `${generateIcon(variant)}${text}` : `${text}`}
     </cbp-typography>
   `;
 };
@@ -114,8 +113,7 @@ const AllStyles = ({ text, withIcon, tag, divider,  context, sx }) => {
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >      
-        ${withIcon ? generateIcon(variants[y]) : ''}
-        ${text} (variant=${variants[y]})
+        ${withIcon ? `${generateIcon(variants[y])}${text} (variant=${variants[y]})` : `${text} (variant=${variants[y]})`}
       </cbp-typography>
     `
   }

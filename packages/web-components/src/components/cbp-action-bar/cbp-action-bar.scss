@@ -40,8 +40,7 @@ cbp-action-bar {
   }
 
   &[variant=inline] {
-    border-bottom-left-radius: var(--cbp-border-radius-2);
-    border-bottom-right-radius: var(--cbp-border-radius-2);
+    border-radius: 0 0 var(--cbp-border-radius-2) var(--cbp-border-radius-2);
   }
 
   &[variant=floating] {
