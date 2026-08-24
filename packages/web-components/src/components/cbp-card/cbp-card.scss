@@ -122,10 +122,12 @@ cbp-card {
   color: var(--cbp-card-color-text);
   overflow:hidden;
 
+  /*
   & > :first-child{
     border-top-left-radius: var(--cbp-card-border-radius);
     border-top-right-radius: var(--cbp-card-border-radius);
   }
+  */
 
 
   .cbp-card-body {
@@ -219,6 +221,7 @@ cbp-card {
       border-style: solid;
       border-color: var(--cbp-banner-card-color-border);
       border-bottom: 0;
+      border-radius: var(--cbp-card-border-radius) var(--cbp-card-border-radius) 0 0; // this replaces the main border, adding it only to the body and not the actions slot
     }
 
   }
@@ -267,7 +270,7 @@ cbp-card {
     }
 
     .cbp-card-body:not(:has(+ [slot=cbp-card-actions])) {
-      border-radius: 0 0 var(--cbp-card-border-radius) var(--cbp-card-border-radius);
+      //border-radius: 0 0 var(--cbp-card-border-radius) var(--cbp-card-border-radius);
     }
 
     &[color=info] { 
@@ -315,7 +318,9 @@ cbp-card {
       text-align: center;
       color: var(--cbp-flag-card-color);
       background-color: var(--cbp-flag-card-color-background);
-      border-radius: var(--cbp-card-border-radius) 0 0 var(--cbp-card-border-radius);
+      //border-radius: var(--cbp-card-border-radius) 0 0 var(--cbp-card-border-radius);
+      //border-top-right-radius: 0;
+      //border-bottom-right-radius: 0;
     }
 
     .cbp-card-clickable{
