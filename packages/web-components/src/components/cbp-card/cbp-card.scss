@@ -215,11 +215,6 @@ cbp-card {
       border-bottom: 0;
       border-radius: var(--cbp-card-border-radius) var(--cbp-card-border-radius) 0 0; // this replaces the main border, adding it only to the body and not the actions slot
     }
-
-    // &:has([slot="cbp-card-title"]) .cbp-card-body{
-    //   border-radius: 0;
-    //   background-color: red !important;
-    // }
   }
      [slot=cbp-card-actions] {
       display: flex;
