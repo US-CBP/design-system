@@ -60,6 +60,9 @@ export default {
       control: 'object',
     },    
   },
+  args:{
+    color: 'default'
+  }
 };
 
 const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1, btn2, btn3 }) => {
@@ -67,11 +70,11 @@ const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1,
   if (layout === 'double') {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}">
+        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="arrow-right"></cbp-icon>` : ''}
           ${btn2.label}
         </cbp-button>
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>

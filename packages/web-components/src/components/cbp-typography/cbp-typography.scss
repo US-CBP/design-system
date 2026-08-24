@@ -21,6 +21,8 @@
   --cbp-typography-color-divider-fill-dark: var(--cbp-color-gray-cool-70);
   --cbp-typography-color-divider-underline: var(--cbp-color-gray-cool-30);
   --cbp-typography-color-divider-underline-dark: var(--cbp-color-gray-cool-50);
+
+  --cbp-typography-fill-border-radius: var(--cbp-border-radius-1);
 }
 
 // Displays dark design based on mode or context
@@ -80,12 +82,17 @@ cbp-typography {
   &[divider=fill] {
     & > * {
       background-color: var(--cbp-typography-color-divider-fill);
-      border-radius: var(--cbp-border-radius-1);
+      border-radius: var(--cbp-typography-fill-border-radius);
       padding: var(--cbp-space-3x);
     }
     &[variant=heading-xs] > * , h6 {
       padding-block: var(--cbp-space-1x);
       padding-inline: var(--cbp-space-2x);
+    }
+    &[variant=heading-xxl],
+    &[variant=heading-xl],
+    &[variant=heading-lg]{
+      --cbp-typography-fill-border-radius: var(--cbp-border-radius-2);
     }
   }
 
@@ -102,35 +109,35 @@ cbp-typography {
     font-size: var(--cbp-font-size-heading-xxl);
     font-weight: var(--cbp-font-weight-light);
     line-height: var(--cbp-line-height-6);
-    border-radius: var(--cbp-border-radius-2);
+    // border-radius: var(--cbp-border-radius-2);
   }
 
   &[variant=heading-xl] > *, h2 {
     font-size: var(--cbp-font-size-heading-xl);
     font-weight: var(--cbp-font-weight-regular);
     line-height: var(--cbp-line-height-6);
-    border-radius: var(--cbp-border-radius-2);
+    // border-radius: var(--cbp-border-radius-2);
   }
 
   &[variant=heading-lg] > *, h3 {
     font-size: var(--cbp-font-size-heading-lg);
     font-weight: var(--cbp-font-weight-regular);
     line-height: var(--cbp-line-height-5);
-    border-radius: var(--cbp-border-radius-2);
+    // border-radius: var(--cbp-border-radius-2);
   }
 
   &[variant=heading-md] > *, h4 {
     font-size: var(--cbp-font-size-heading-md);
     font-weight: var(--cbp-font-weight-medium);
     line-height: var(--cbp-line-height-4);
-    border-radius: var(--cbp-border-radius-1);
+    // border-radius: var(--cbp-border-radius-1);
   }
 
   &[variant=heading-sm] > *, h5 {
     font-size: var(--cbp-font-size-heading-sm);
     font-weight: var(--cbp-font-weight-medium);
     line-height: var(--cbp-line-height-4);
-    border-radius: var(--cbp-border-radius-1);
+    // border-radius: var(--cbp-border-radius-1);
   }
 
   &[variant=heading-xs] > *, h6 {
@@ -138,7 +145,7 @@ cbp-typography {
     font-size: var(--cbp-font-size-heading-xs);
     font-weight: var(--cbp-font-weight-bold);
     line-height: var(--cbp-line-height-3);
-    border-radius: var(--cbp-border-radius-1);
+    // border-radius: var(--cbp-border-radius-1);
   }
 
   &[variant=body-text] > *, p {

@@ -120,16 +120,13 @@ cbp-card {
   border-style: solid;
   border-width: var(--cbp-border-size-md);
   color: var(--cbp-card-color-text);
+  overflow:hidden;
 
   & > :first-child{
     border-top-left-radius: var(--cbp-card-border-radius);
     border-top-right-radius: var(--cbp-card-border-radius);
   }
 
-  & > :last-child{
-    border-bottom-left-radius: var(--cbp-card-border-radius);
-    border-bottom-right-radius: var(--cbp-card-border-radius);
-  }
 
   .cbp-card-body {
     padding: var(--cbp-space-4x);
@@ -162,7 +159,6 @@ cbp-card {
       align-items: center;
       gap: var(--cbp-space-2x);
       color: var(--cbp-card-color-text);
-      border-radius: var(--cbp-card-border-radius) var(--cbp-card-border-radius) 0 0; 
     }
   }
 
@@ -241,18 +237,6 @@ cbp-card {
           button:not(:hover):not(:focus){
             --cbp-button-color-border: var(--cbp-banner-card-color-border);
           }
-        }
-        
-        &:first-child {
-          --cbp-button-border-radius: 0 0 0 var(--cbp-card-border-radius);
-        }
-  
-        &:last-child {
-          --cbp-button-border-radius: 0 0 var(--cbp-card-border-radius) 0;
-        }
-        
-        &:first-child:last-child {
-          --cbp-button-border-radius: 0 0 var(--cbp-card-border-radius) var(--cbp-card-border-radius);
         }
   
         button, a {
