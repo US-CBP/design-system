@@ -1,5 +1,6 @@
 import { Component, Element, Prop, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, clickAwayListener, createNamespaceKey, createValidId } from '../../utils/utils';
+import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 
 /**
  * A Listbox wraps a standard text or search input, enhancing it by providing suggestions in a format visually similar to a dropdown, from which a selection may optionally be made.
@@ -103,6 +104,22 @@ export class CbpListbox {
 
   private showListbox() {
     if( !this.formField?.hasAttribute('readonly') && !this.formField?.hasAttribute('disabled') ) {
+
+      setTimeout(() => { //delay so component completes render to get accurate values for top & left
+      const floatUiprops: floatUIProps= {
+                placement: 'bottom',
+                offset: {
+                  mainAxis: 0,
+                },
+                flip: true,
+                size: {
+                    height: (parseFloat(window?.getComputedStyle(this.listbox).getPropertyValue('height')))
+                },
+                shift: false,
+            }
+        
+              floatUI(floatUiprops, this.formField, this.listbox);
+          }, 500);
       this.open=true;
       this.formField?.setAttribute('autocomplete',"off");
       this.formField?.setAttribute('aria-expanded',"true");
