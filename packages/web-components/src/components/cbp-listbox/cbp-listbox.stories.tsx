@@ -118,8 +118,7 @@ Listbox.args = {
   label: "Listbox Example",
   description: "This listbox has a default list of suggestions supplied; typing is not required but filters the list further.",
   inputType: "text",
-  fieldId: "text",
-  name: "text",
+  name: "insert-field-name",
   value: "",
   items: Countries //States
 };
@@ -184,7 +183,6 @@ ListboxSearch.args = {
   label: "Search with Suggestions Listbox",
   description: "This search field uses a cbp-listbox to offer suggestions when typing.",
   inputType: "search",
-  fieldId: "search",
-  name: "search",
+  name: "insert-field-name",
   value: "",
 };

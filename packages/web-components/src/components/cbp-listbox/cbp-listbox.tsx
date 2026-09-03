@@ -1,5 +1,6 @@
 import { Component, Element, Prop, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, clickAwayListener, createNamespaceKey, createValidId } from '../../utils/utils';
+import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 
 /**
  * A Listbox wraps a standard text or search input, enhancing it by providing suggestions in a format visually similar to a dropdown, from which a selection may optionally be made.
@@ -315,6 +316,22 @@ export class CbpListbox {
   }
 
   componentDidRender() {
+    // reposition/resize as needed when open
+    if(this.open){
+      const floatUiprops: floatUIProps={
+        placement: 'bottom',
+        offset: {
+          mainAxis: 0,
+        },
+        flip: true,
+        size: {
+          height: (parseFloat(window?.getComputedStyle(this.listbox).getPropertyValue('height')))
+        },
+        shift: false,
+      }
+      floatUI(floatUiprops, this.formField, this.listbox);
+    }
+
     this.listboxItems = Array.from(this.listbox.querySelectorAll('li'));
     // The "current" class is added via DOM manipulation, so it can safely be removed after a re-render, which is caused by a change in open or items
     this.listboxItems.forEach( item => {
