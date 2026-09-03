@@ -104,22 +104,6 @@ export class CbpListbox {
 
   private showListbox() {
     if( !this.formField?.hasAttribute('readonly') && !this.formField?.hasAttribute('disabled') ) {
-
-      setTimeout(() => { //delay so component completes render to get accurate values for top & left
-      const floatUiprops: floatUIProps= {
-                placement: 'bottom',
-                offset: {
-                  mainAxis: 0,
-                },
-                flip: true,
-                size: {
-                    height: (parseFloat(window?.getComputedStyle(this.listbox).getPropertyValue('height')))
-                },
-                shift: false,
-            }
-        
-              floatUI(floatUiprops, this.formField, this.listbox);
-          }, 500);
       this.open=true;
       this.formField?.setAttribute('autocomplete',"off");
       this.formField?.setAttribute('aria-expanded',"true");
@@ -332,6 +316,22 @@ export class CbpListbox {
   }
 
   componentDidRender() {
+    // reposition/resize as needed when open
+    if(this.open){
+      const floatUiprops: floatUIProps={
+        placement: 'bottom',
+        offset: {
+          mainAxis: 0,
+        },
+        flip: true,
+        size: {
+          height: (parseFloat(window?.getComputedStyle(this.listbox).getPropertyValue('height')))
+        },
+        shift: false,
+      }
+      floatUI(floatUiprops, this.formField, this.listbox);
+    }
+
     this.listboxItems = Array.from(this.listbox.querySelectorAll('li'));
     // The "current" class is added via DOM manipulation, so it can safely be removed after a re-render, which is caused by a change in open or items
     this.listboxItems.forEach( item => {
