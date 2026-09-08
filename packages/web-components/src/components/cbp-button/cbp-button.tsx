@@ -104,30 +104,33 @@ export class CbpButton {
 
 
   handleClick(e): void {
-    if (this.controls) {
-      // If the controlled element wasn't found, try to find it again
-      if (!this.controlTarget) this.controlTarget = document.querySelector(`#${this.controls}`);
+    // Since the click event may be triggered from the host, only handle it if the button is not disabled
+    if (!this.disabled) {
+      if (this.controls) {
+        // If the controlled element wasn't found, try to find it again
+        if (!this.controlTarget) this.controlTarget = document.querySelector(`#${this.controls}`);
 
-      // Toggle the prop it controls
-      if (this.controlTarget) {
-        this.controlTarget[this.targetProp] = !this.controlTarget[this.targetProp];
-      } 
-      else {
-        console.warn('cbp-button configuration error: the control target referenced by ID by the `control` property could not be found.');
+        // Toggle the prop it controls
+        if (this.controlTarget) {
+          this.controlTarget[this.targetProp] = !this.controlTarget[this.targetProp];
+        } 
+        else {
+          console.warn('cbp-button configuration error: the control target referenced by ID by the `control` property could not be found.');
+        }
       }
-      // Toggling the control's expanded/pressed props is handled by parent components, so it cannot be done here.
-    }
 
-    this.buttonClick?.emit({
-      host: this.host,
-      nativeElement: this.button,
-      nativeEvent: e,
-      controls: this.controls ? this.controls : null,
-      pressed: this.pressed,
-      expanded: this.expanded,
-      name: this.button.tagName == 'BUTTON' ? this.button.name : null,
-      value: this.button.tagName == 'BUTTON' ? this.button.value : null,
-    });
+      // Emit the custom event, only if the button is not disabled
+      this.buttonClick?.emit({
+        host: this.host,
+        nativeElement: this.button,
+        nativeEvent: e,
+        controls: this.controls ? this.controls : null,
+        pressed: this.pressed,
+        expanded: this.expanded,
+        name: this.button.tagName == 'BUTTON' ? this.button.name : null,
+        value: this.button.tagName == 'BUTTON' ? this.button.value : null,
+      });
+    }
   }
 
   componentWillLoad() {
