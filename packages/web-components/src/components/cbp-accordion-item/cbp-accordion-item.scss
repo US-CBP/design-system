@@ -153,14 +153,14 @@
   --cbp-accordion-item-color-focus: var(--cbp-accordion-item-color-focus-dark) !important;
   --cbp-accordion-item-color-background-focus: var(--cbp-accordion-item-color-background-focus-dark) !important;
   --cbp-accordion-item-color-border-focus: var(--cbp-accordion-item-color-border-focus-dark) !important;
-   --cbp-accordion-item-color-outline-focus: var(--cbp-color-black);
+  --cbp-accordion-item-color-outline-focus: var(--cbp-color-black);
  
   --cbp-accordion-item-color-active: var(--cbp-accordion-item-color-active-dark) !important;
   --cbp-accordion-item-color-background-active: var(--cbp-accordion-item-color-background-active-dark) !important;
   --cbp-accordion-item-color-border-active: var(--cbp-accordion-item-color-border-active-dark) !important;
 
-   --cbp-accordion-item-color-content: var(--cbp-color-text-lightest);
-   --cbp-accordion-item-color-background-content: var(--cbp-color-gray-cool-90);
+  --cbp-accordion-item-color-content: var(--cbp-color-text-lightest);
+  --cbp-accordion-item-color-background-content: var(--cbp-color-gray-cool-90);
  
   --cbp-accordion-item-danger-color: var(--cbp-accordion-item-danger-color-dark) !important;
   --cbp-accordion-item-danger-color-background: var(--cbp-accordion-item-danger-color-background-dark) !important;
@@ -171,6 +171,7 @@
 cbp-accordion-item {
   display: flex;
   flex-direction: column;
+  background-color: var(--cbp-accordion-item-color-background);
   border-radius: var(--cbp-accordion-item-border-radius);
   border-color: var(--cbp-accordion-item-color-border);
   border-width: var(--cbp-border-size-xl);
@@ -245,13 +246,14 @@ cbp-accordion-item {
     flex-direction: var(--cbp-accordion-item-control-direction, row);
     align-items: center;
     gap: var(--cbp-accordion-item-control-gap);
-    min-height: var(--cbp-space-13x);
+    min-height: var(--cbp-space-11x);//var(--cbp-space-13x);
+    border-radius: var(--cbp-accordion-item-border-radius);
     color: var(--cbp-accordion-item-color);
     --cbp-button-color: var(--cbp-accordion-item-color);
     background-color: var(--cbp-accordion-item-color-background);
     font-size: var(--cbp-accordion-item-control-font-size);
     font-weight: var(--cbp-accordion-item-control-font-weight);
-    padding: var(--cbp-accordion-item-control-padding);
+    padding: 0 var(--cbp-accordion-item-control-padding); //var(--cbp-accordion-item-control-padding);
     outline-style: solid;
     outline-color: var(--cbp-accordion-item-color-outline-focus);
     outline-width: 0;
@@ -306,6 +308,7 @@ cbp-accordion-item {
   .cbp-accordion-item--content {
     color: var(--cbp-accordion-item-color-content);
     background-color: var(--cbp-accordion-item-color-background-content);
+    border-top: var(--cbp-border-size-xl) solid var(--cbp-accordion-item-color-border);
     padding: var(--cbp-space-4x) var(--cbp-space-3x);
 
     animation: var(--cbp-accordion-toggle);
@@ -323,8 +326,8 @@ cbp-accordion-item {
     display: none;
   }
 
-  &[color=danger],
-  &[color=danger][open] {
+  &[color=danger]:not(:has(.cbp-accordion-item--control:focus-within)),
+  &[color=danger][open]:not(:has(.cbp-accordion-item--control:focus-within)) {
     --cbp-accordion-item-color: var(--cbp-accordion-item-danger-color);
     --cbp-accordion-item-color-background: var(--cbp-accordion-item-danger-color-background);
     --cbp-accordion-item-color-border: var(--cbp-accordion-item-danger-color-border);
