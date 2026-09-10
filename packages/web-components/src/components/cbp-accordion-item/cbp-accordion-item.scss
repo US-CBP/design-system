@@ -36,7 +36,7 @@
  *  @prop  --cbp-accordion-item-border-radius: var(--cbp-border-radius-1);
 
  *  @prop  --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
- *  @prop  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
+ *  @prop  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-bold);
 
  *  @prop  --cbp-accordion-item-control-gap: var(--cbp-space-3x);
  *  @prop  --cbp-accordion-item-control-padding: var(--cbp-space-3x);
@@ -107,7 +107,7 @@
   --cbp-accordion-item-border-radius: var(--cbp-border-radius-1);
 
   --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
-  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
+  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-bold);
 
   --cbp-accordion-item-control-gap: var(--cbp-space-3x);
   --cbp-accordion-item-control-padding: var(--cbp-space-3x);
@@ -253,7 +253,7 @@ cbp-accordion-item {
     background-color: var(--cbp-accordion-item-color-background);
     font-size: var(--cbp-accordion-item-control-font-size);
     font-weight: var(--cbp-accordion-item-control-font-weight);
-    padding: 0 var(--cbp-accordion-item-control-padding); //var(--cbp-accordion-item-control-padding);
+    padding: 0 var(--cbp-accordion-item-control-padding);
     outline-style: solid;
     outline-color: var(--cbp-accordion-item-color-outline-focus);
     outline-width: 0;
