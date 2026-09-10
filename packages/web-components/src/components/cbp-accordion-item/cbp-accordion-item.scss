@@ -1,61 +1,113 @@
 /**
  *  @prop  --cbp-accordion-item-color: var(--cbp-color-text-darker);
+ *  @prop  --cbp-accordion-item-color-dark: var(--cbp-color-white);
  *  @prop  --cbp-accordion-item-color-background: var(--cbp-color-gray-cool-10);
- *  @prop  --cbp-accordion-item-border-width: var(--cbp-border-width-xs);
- *  @prop  --cbp-accordion-item-border-style: solid;
- *  @prop  --cbp-accordion-item-color-hover: var(--cbp-color-text-darker);
+ *  @prop  --cbp-accordion-item-color-background-dark: var(--cbp-color-gray-cool-50);
+ *  @prop  --cbp-accordion-item-color-border: var(--cbp-color-gray-cool-10);
+ *  @prop  --cbp-accordion-item-color-border-dark: var(--cbp-color-gray-cool-50);
+ *  @prop  --cbp-accordion-item-color-open: var(--cbp-color-text-lighter);
+
+ *  @prop  --cbp-accordion-item-color-hover: var(--cbp-color-text-darkest);
+ *  @prop  --cbp-accordion-item-color-hover-dark: var(--cbp-color-text-darkest);
  *  @prop  --cbp-accordion-item-color-background-hover: var(--cbp-color-interactive-secondary-light);
+ *  @prop  --cbp-accordion-item-color-background-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+ *  @prop  --cbp-accordion-item-color-border-hover: var(--cbp-color-interactive-secondary-light);
+ *  @prop  --cbp-accordion-item-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
  *  @prop  --cbp-accordion-item-color-open-hover: var(--cbp-color-text-lightest);
  *  @prop  --cbp-accordion-item-color-background-open-hover: var(--cbp-color-interactive-secondary-darker);
+
  *  @prop  --cbp-accordion-item-color-focus: var(--cbp-color-text-lightest);
- *  @prop --cbp-accordion-item-color-background-focus: var(--cbp-color-interactive-focus-dark);
+ *  @prop  --cbp-accordion-item-color-focus-dark: var(--cbp-color-text-darkest);
+ *  @prop  --cbp-accordion-item-color-background-focus: var(--cbp-color-interactive-focus-dark);
+ *  @prop  --cbp-accordion-item-color-background-focus-dark: var(--cbp-color-interactive-focus-light);
+ *  @prop  --cbp-accordion-item-color-border-focus: var(--cbp-color-interactive-focus-dark);
+ *  @prop  --cbp-accordion-item-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
  *  @prop  --cbp-accordion-item-color-outline-focus: var(--cbp-color-white);
+
  *  @prop  --cbp-accordion-item-color-active: var(--cbp-color-text-lightest);
+ *  @prop  --cbp-accordion-item-color-active-dark: var(--cbp-color-text-darkest);
  *  @prop  --cbp-accordion-item-color-background-active: var(--cbp-color-interactive-active-dark);
+ *  @prop  --cbp-accordion-item-color-background-active-dark: var(--cbp-color-interactive-active-light);
+ *  @prop  --cbp-accordion-item-color-border-active: var(--cbp-color-interactive-active-dark);
+ *  @prop  --cbp-accordion-item-color-border-active-dark: var(--cbp-color-interactive-active-light);
+  
+ *  @prop  --cbp-accordion-item-border-width: var(--cbp-border-width-xs);
+ *  @prop  --cbp-accordion-item-border-style: solid;
  *  @prop  --cbp-accordion-item-border-radius: var(--cbp-border-radius-1);
+
  *  @prop  --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
- *  @prop  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
+ *  @prop  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-bold);
+
  *  @prop  --cbp-accordion-item-control-gap: var(--cbp-space-3x);
  *  @prop  --cbp-accordion-item-control-padding: var(--cbp-space-3x);
  *  @prop  --cbp-accordion-item-control-direction: row;
+
  *  @prop  --cbp-accordion-item-color-content: var(--cbp-color-text-darkest);
  *  @prop  --cbp-accordion-item-color-background-content: var(--cbp-color-white);
  *  @prop  --cbp-accordion-item-content-font-size: var(--cbp-font-size-md);
  *  @prop  --cbp-accordion-item-content-font-family: inherit;
  *  @prop  --cbp-accordion-item-content-font-weight: var(--cbp-font-weight-regular);
  *  @prop  --cbp-accordion-item-content-padding: var(--cbp-space-3x);
- 
+
+ *  @prop  --cbp-accordion-item-heading-gap: var(--cbp-space-2x);
+
  *  @prop  --cbp-accordion-item-danger-color: var(--cbp-color-white);
  *  @prop  --cbp-accordion-item-danger-color-dark: var(--cbp-color-text-darkest);
  *  @prop  --cbp-accordion-item-danger-color-background: var(--cbp-color-danger-base);
  *  @prop  --cbp-accordion-item-danger-color-background-dark: var(--cbp-color-danger-light);
+ *  @prop  --cbp-accordion-item-danger-color-border: var(--cbp-color-danger-base);
+ *  @prop  --cbp-accordion-item-danger-color-border-dark: var(--cbp-color-danger-light);
  *  @prop  --cbp-accordion-item-danger-color-background-hover: var(--cbp-color-danger-dark);
  *  @prop  --cbp-accordion-item-danger-color-background-hover-dark: var(--cbp-color-danger-lighter);
  */
 :root {
   --cbp-accordion-item-color: var(--cbp-color-text-darker);
+  --cbp-accordion-item-color-dark: var(--cbp-color-white);
   --cbp-accordion-item-color-background: var(--cbp-color-gray-cool-10);
+  --cbp-accordion-item-color-background-dark: var(--cbp-color-gray-cool-50);
+  --cbp-accordion-item-color-border: var(--cbp-color-gray-cool-10);
+  --cbp-accordion-item-color-border-dark: var(--cbp-color-gray-cool-50);
   --cbp-accordion-item-color-open: var(--cbp-color-text-lighter);
+  --cbp-accordion-item-color-open-dark: var(--cbp-color-text-lighter);
   --cbp-accordion-item-color-background-open: var(--cbp-color-gray-cool-60);
+  --cbp-accordion-item-color-background-open-dark: var(--cbp-color-gray-cool-60);
+  --cbp-accordion-item-color-border-open: var(--cbp-color-gray-cool-60);
+  --cbp-accordion-item-color-border-open-dark: var(--cbp-color-gray-cool-60);
 
   --cbp-accordion-item-color-hover: var(--cbp-color-text-darkest);
+  --cbp-accordion-item-color-hover-dark: var(--cbp-color-text-darkest);
   --cbp-accordion-item-color-background-hover: var(--cbp-color-interactive-secondary-light);
+  --cbp-accordion-item-color-background-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-accordion-item-color-border-hover: var(--cbp-color-interactive-secondary-light);
+  --cbp-accordion-item-color-border-hover-dark: var(--cbp-color-interactive-secondary-lighter);
   --cbp-accordion-item-color-open-hover: var(--cbp-color-text-lightest);
+  --cbp-accordion-item-color-open-hover-dark: var(--cbp-color-text-darkest);
   --cbp-accordion-item-color-background-open-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-accordion-item-color-background-open-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+  --cbp-accordion-item-color-border-open-hover: var(--cbp-color-interactive-secondary-darker);
+  --cbp-accordion-item-color-border-open-hover-dark: var(--cbp-color-interactive-secondary-lighter);
 
   --cbp-accordion-item-color-focus: var(--cbp-color-text-lightest);
+  --cbp-accordion-item-color-focus-dark: var(--cbp-color-text-darkest);
   --cbp-accordion-item-color-background-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-accordion-item-color-background-focus-dark: var(--cbp-color-interactive-focus-light);
+  --cbp-accordion-item-color-border-focus: var(--cbp-color-interactive-focus-dark);
+  --cbp-accordion-item-color-border-focus-dark: var(--cbp-color-interactive-focus-light);
   --cbp-accordion-item-color-outline-focus: var(--cbp-color-white);
 
   --cbp-accordion-item-color-active: var(--cbp-color-text-lightest);
+  --cbp-accordion-item-color-active-dark: var(--cbp-color-text-darkest);
   --cbp-accordion-item-color-background-active: var(--cbp-color-interactive-active-dark);
-
+  --cbp-accordion-item-color-background-active-dark: var(--cbp-color-interactive-active-light);
+  --cbp-accordion-item-color-border-active: var(--cbp-color-interactive-active-dark);
+  --cbp-accordion-item-color-border-active-dark: var(--cbp-color-interactive-active-light);
+  
   --cbp-accordion-item-border-width: var(--cbp-border-width-xs);
   --cbp-accordion-item-border-style: solid;
   --cbp-accordion-item-border-radius: var(--cbp-border-radius-1);
 
   --cbp-accordion-item-control-font-size: var(--cbp-font-size-heading-sm);
-  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-semibold);
+  --cbp-accordion-item-control-font-weight: var(--cbp-font-weight-bold);
 
   --cbp-accordion-item-control-gap: var(--cbp-space-3x);
   --cbp-accordion-item-control-padding: var(--cbp-space-3x);
@@ -74,6 +126,8 @@
   --cbp-accordion-item-danger-color-dark: var(--cbp-color-text-darkest);
   --cbp-accordion-item-danger-color-background: var(--cbp-color-danger-base);
   --cbp-accordion-item-danger-color-background-dark: var(--cbp-color-danger-light);
+  --cbp-accordion-item-danger-color-border: var(--cbp-color-danger-base);
+  --cbp-accordion-item-danger-color-border-dark: var(--cbp-color-danger-light);
   --cbp-accordion-item-danger-color-background-hover: var(--cbp-color-danger-dark);
   --cbp-accordion-item-danger-color-background-hover-dark: var(--cbp-color-danger-lighter);
 }
@@ -82,52 +136,107 @@
 [data-cbp-theme='light'] cbp-accordion[context*='dark'],
  [data-cbp-theme='dark'] cbp-accordion:not([context='dark-inverts']):not([context='light-always']) {
 
-   --cbp-accordion-item-color: var(--cbp-color-white);
-   --cbp-accordion-item-color-background: var(--cbp-color-gray-cool-50);
-   --cbp-accordion-item-color-open: var(--cbp-color-white);
-   --cbp-accordion-item-color-background-open: var(--cbp-color-gray-cool-60);
- 
-   --cbp-accordion-item-color-hover: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-background-hover: var(--cbp-color-interactive-secondary-lighter);
-   --cbp-accordion-item-color-open-hover: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-background-open-hover: var(--cbp-color-interactive-secondary-light);
- 
-   --cbp-accordion-item-color-focus: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-background-focus: var(--cbp-color-interactive-focus-light);
-   --cbp-accordion-item-color-outline-focus: var(--cbp-color-black);
- 
-   --cbp-accordion-item-color-active: var(--cbp-color-text-darkest);
-   --cbp-accordion-item-color-background-active: var(--cbp-color-interactive-active-light);
+  --cbp-accordion-item-color: var(--cbp-accordion-item-color-dark) !important;
+  --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-dark) !important;
+  --cbp-accordion-item-color-border: var(--cbp-accordion-item-color-border-dark) !important;
+  --cbp-accordion-item-color-open: var(--cbp-accordion-item-color-open-dark) !important;
+  --cbp-accordion-item-color-background-open: var(--cbp-accordion-item-color-background-open-dark) !important;
+  --cbp-accordion-item-color-border-open: var(--cbp-accordion-item-color-border-open-dark) !important;
 
-   --cbp-accordion-item-color-content: var(--cbp-color-text-lightest);
-   --cbp-accordion-item-color-background-content: var(--cbp-color-gray-cool-90);
+  --cbp-accordion-item-color-hover: var(--cbp-accordion-item-color-hover-dark) !important;
+  --cbp-accordion-item-color-background-hover: var(--cbp-accordion-item-color-background-hover-dark) !important;
+  --cbp-accordion-item-color-border-hover: var(--cbp-accordion-item-color-border-hover-dark) !important;
+  --cbp-accordion-item-color-open-hover: var(--cbp-accordion-item-color-open-hover-dark) !important;
+  --cbp-accordion-item-color-background-open-hover: var(--cbp-accordion-item-color-background-open-hover-dark) !important;
+  --cbp-accordion-item-color-border-open-hover: var(--cbp-accordion-item-color-border-open-hover-dark) !important;
+ 
+  --cbp-accordion-item-color-focus: var(--cbp-accordion-item-color-focus-dark) !important;
+  --cbp-accordion-item-color-background-focus: var(--cbp-accordion-item-color-background-focus-dark) !important;
+  --cbp-accordion-item-color-border-focus: var(--cbp-accordion-item-color-border-focus-dark) !important;
+  --cbp-accordion-item-color-outline-focus: var(--cbp-color-black);
+ 
+  --cbp-accordion-item-color-active: var(--cbp-accordion-item-color-active-dark) !important;
+  --cbp-accordion-item-color-background-active: var(--cbp-accordion-item-color-background-active-dark) !important;
+  --cbp-accordion-item-color-border-active: var(--cbp-accordion-item-color-border-active-dark) !important;
+
+  --cbp-accordion-item-color-content: var(--cbp-color-text-lightest);
+  --cbp-accordion-item-color-background-content: var(--cbp-color-gray-cool-90);
  
   --cbp-accordion-item-danger-color: var(--cbp-accordion-item-danger-color-dark) !important;
   --cbp-accordion-item-danger-color-background: var(--cbp-accordion-item-danger-color-background-dark) !important;
+  --cbp-accordion-item-danger-color-border: var(--cbp-accordion-item-danger-color-border-dark) !important;
   --cbp-accordion-item-danger-color-background-hover: var(--cbp-accordion-item-danger-color-background-hover-dark) !important;
  }
 
 cbp-accordion-item {
   display: flex;
   flex-direction: column;
+  background-color: var(--cbp-accordion-item-color-background);
   border-radius: var(--cbp-accordion-item-border-radius);
+  border-color: var(--cbp-accordion-item-color-border);
+  border-width: var(--cbp-border-size-xl);
+  border-style: var(--cbp-accordion-item-border-style);
   overflow: hidden; //Needed for the border radius to display correctly
 
   &[open] {
     --cbp-accordion-item-color: var(--cbp-accordion-item-color-open);
     --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-open);
+    --cbp-accordion-item-color-border: var(--cbp-accordion-item-color-border-open);
 
     .cbp-accordion-item--control {
       --cbp-accordion-rotate-icon: rotate(270deg);
       --cbp-accordion-toggle: expandTo 500ms;
+    }
+  }
 
-      &:hover:not(:focus-within):not(:active) {
-        --cbp-accordion-item-color: var(--cbp-accordion-item-color-open-hover);
-        --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-open-hover);
+  &:hover{
+    --cbp-accordion-item-color: var(--cbp-accordion-item-color-hover);
+    --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-hover);
+    --cbp-accordion-item-color-border: var(--cbp-accordion-item-color-border-hover);
 
-        + .cbp-accordion-item--content {
-          --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-open-hover);
-        }
+    &[open]{
+    --cbp-accordion-item-color: var(--cbp-accordion-item-color-open-hover);
+    --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-open-hover);
+    --cbp-accordion-item-color-border: var(--cbp-accordion-item-color-border-open-hover);
+    }
+  }
+
+  &:has(.cbp-accordion-item--control:focus-within){
+    --cbp-accordion-item-color: var(--cbp-accordion-item-color-focus);
+    --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-focus);
+    --cbp-accordion-item-color-border: var(--cbp-accordion-item-color-border-focus);
+  
+    .cbp-accordion-item--control{
+      outline-width: var(--cbp-border-size-md);
+      .cbp-accordion-item--toggle {
+        --cbp-button-color: var(--cbp-accordion-item-color-focus) !important;
+      }
+
+      + .cbp-accordion-item--content {
+        --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-focus);
+      }
+    }
+  }
+
+  &:active{
+    --cbp-accordion-item-color: var(--cbp-accordion-item-color-active);
+    --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-active);
+    --cbp-accordion-item-color-border: var(--cbp-accordion-item-color-border-active);
+
+    &[open]{
+      --cbp-accordion-item-color: var(--cbp-accordion-item-color-active);
+      --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-active);
+      --cbp-accordion-item-color-border: var(--cbp-accordion-item-color-border-active);
+    }
+
+    .cbp-accordion-item--control{
+      // button
+      .cbp-accordion-item--toggle {
+        --cbp-button-color: var(--cbp-accordion-item-color-active) !important;
+      }
+
+      + .cbp-accordion-item--content {
+        --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-active);
       }
     }
   }
@@ -137,17 +246,18 @@ cbp-accordion-item {
     flex-direction: var(--cbp-accordion-item-control-direction, row);
     align-items: center;
     gap: var(--cbp-accordion-item-control-gap);
-    min-height: var(--cbp-space-13x);
+    min-height: var(--cbp-space-11x);//var(--cbp-space-13x);
+    border-radius: var(--cbp-accordion-item-border-radius);
     color: var(--cbp-accordion-item-color);
     --cbp-button-color: var(--cbp-accordion-item-color);
     background-color: var(--cbp-accordion-item-color-background);
     font-size: var(--cbp-accordion-item-control-font-size);
     font-weight: var(--cbp-accordion-item-control-font-weight);
-    padding: var(--cbp-accordion-item-control-padding);
+    padding: 0 var(--cbp-accordion-item-control-padding);
     outline-style: solid;
     outline-color: var(--cbp-accordion-item-color-outline-focus);
     outline-width: 0;
-    outline-offset: calc(-1 * var(--cbp-space-1x));
+    outline-offset: calc(-1 * var(--cbp-space-half-x));
     cursor: pointer;
 
     .cbp-accordion-item--heading {
@@ -170,40 +280,6 @@ cbp-accordion-item {
     cbp-typography,
     cbp-typography > * {
       color: var(--cbp-accordion-item-color);
-    }
-
-    &:hover {
-      --cbp-accordion-item-color: var(--cbp-accordion-item-color-hover);
-      --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-hover);
-    }
-
-    &:focus-within {
-      --cbp-accordion-item-color: var(--cbp-accordion-item-color-focus);
-      --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-focus);
-      outline-width: var(--cbp-border-size-md);
-
-      // button
-      .cbp-accordion-item--toggle {
-        --cbp-button-color: var(--cbp-accordion-item-color-focus) !important;
-      }
-
-      + .cbp-accordion-item--content {
-        --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-focus);
-      }
-    }
-
-    &:active {
-      --cbp-accordion-item-color: var(--cbp-accordion-item-color-active);
-      --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-active);
-
-      // button
-      .cbp-accordion-item--toggle {
-        --cbp-button-color: var(--cbp-accordion-item-color-active) !important;
-      }
-
-      + .cbp-accordion-item--content {
-        --cbp-accordion-item-color-background: var(--cbp-accordion-item-color-background-active);
-      }
     }
 
     .cbp-accordion-item--toggle:not(#fakeId) {
@@ -232,11 +308,8 @@ cbp-accordion-item {
   .cbp-accordion-item--content {
     color: var(--cbp-accordion-item-color-content);
     background-color: var(--cbp-accordion-item-color-background-content);
+    border-top: var(--cbp-border-size-xl) solid var(--cbp-accordion-item-color-border);
     padding: var(--cbp-space-4x) var(--cbp-space-3x);
-    border-width: var(--cbp-border-size-xl);
-    border-style: var(--cbp-accordion-item-border-style);
-    border-color: var(--cbp-accordion-item-color-background);
-    border-top: 0;
 
     animation: var(--cbp-accordion-toggle);
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 10);
@@ -253,24 +326,16 @@ cbp-accordion-item {
     display: none;
   }
 
-  &[color=danger],
-  &[color=danger][open] {
+  &[color=danger]:not(:has(.cbp-accordion-item--control:focus-within)),
+  &[color=danger][open]:not(:has(.cbp-accordion-item--control:focus-within)) {
     --cbp-accordion-item-color: var(--cbp-accordion-item-danger-color);
     --cbp-accordion-item-color-background: var(--cbp-accordion-item-danger-color-background);
+    --cbp-accordion-item-color-border: var(--cbp-accordion-item-danger-color-border);
 
-    .cbp-accordion-item--control{
-      &:hover:not(:focus-within):not(:active) {
-        --cbp-accordion-item-color: var(--cbp-accordion-item-danger-color);
-        --cbp-accordion-item-color-background: var(--cbp-accordion-item-danger-color-background-hover);
-
-        + .cbp-accordion-item--content {
-          --cbp-accordion-item-color-background: var(--cbp-accordion-item-danger-color-background-hover);
-        }
-      }
-      cbp-typography,
-      cbp-typography > * {
-        --cbp-accordion-item-color: var(--cbp-accordion-item-danger-color);
-      }
+    &:hover{
+      --cbp-accordion-item-color: var(--cbp-accordion-item-danger-color);
+      --cbp-accordion-item-color-background: var(--cbp-accordion-item-danger-color-background-hover);
+      --cbp-accordion-item-color-border: var(--cbp-accordion-item-danger-color-background-hover);
     }
   }
 } 
