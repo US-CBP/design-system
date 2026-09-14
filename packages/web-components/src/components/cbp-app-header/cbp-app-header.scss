@@ -30,20 +30,18 @@
 }
 
 cbp-app-header {
-
   min-height: var(--cbp-space-14x);
   padding: 0 var(--cbp-responsive-spacing-outer);
   background-color: var(--cbp-app-header-color-background);
   box-shadow: var(--cbp-shadow-level-3-down);
-  z-index: var(--cbp-z-index-level-1);
-  top: calc(-1 * var(--cbp-space-half-x));
-
   display: flex;
   align-items: center;
   gap: var(--cbp-space-4x);
 
   &[sticky]{
     position: sticky;
+    inset-block-start: calc(-1 * var(--cbp-space-half-x));
+    z-index: var(--cbp-z-index-level-1);
   }
 
   nav {

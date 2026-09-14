@@ -164,6 +164,9 @@ export class CbpMenu {
           mainAxis: (parseFloat(window?.getComputedStyle(this.host).getPropertyValue('min-width')) || 0),
         },
         flip: true,
+        size: {
+          height: (parseFloat(window?.getComputedStyle(this.menu).getPropertyValue('height')))
+        },
         shift: true,
       }
 

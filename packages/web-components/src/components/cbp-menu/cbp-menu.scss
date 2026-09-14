@@ -2,18 +2,31 @@
  * @prop --cbp-menu-color-bg: var(--cbp-color-gray-cool-80);
  * @prop --cbp-menu-color-bg-dark: var(--cbp-color-gray-cool-5);
  * @prop --cbp-menu-gap: var(--cbp-space-3x);
+ * @prop --cbp-menu-scrollbar-thumb-color: var(--cbp-color-interactive-secondary-light);
+ * @prop --cbp-menu-scrollbar-thumb-color-dark: var(--cbp-color-interactive-secondary-base);
+ * @prop --cbp-menu-scrollbar-track-color: var(--cbp-color-gray-cool-70);
+ * @prop --cbp-menu-scrollbar-track-color-dark: var(--cbp-color-white);
  */
 :root {
   --cbp-menu-color-bg: var(--cbp-color-gray-cool-80);
   --cbp-menu-color-bg-dark: var(--cbp-color-gray-cool-5);
 
   --cbp-menu-gap: var(--cbp-space-3x);
+
+  --cbp-menu-scrollbar-thumb-color: var(--cbp-color-interactive-secondary-light);
+  --cbp-menu-scrollbar-thumb-color-dark: var(--cbp-color-interactive-secondary-base);
+  
+  --cbp-menu-scrollbar-track-color: var(--cbp-color-gray-cool-70);
+  --cbp-menu-scrollbar-track-color-dark: var(--cbp-color-white);
 }
 
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-menu[context*=dark],
 [data-cbp-theme=dark] cbp-menu:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-menu-color-bg: var(--cbp-menu-color-bg-dark) !important;
+  
+  --cbp-menu-scrollbar-thumb-color: var(--cbp-menu-scrollbar-thumb-color-dark) !important;
+  --cbp-menu-scrollbar-track-color: var(--cbp-menu-scrollbar-track-color-dark) !important;
 }
 
 
@@ -33,5 +46,8 @@ cbp-menu {
     border-radius: var(--cbp-border-radius-softer);
     box-shadow: var(--cbp-shadow-level-1-down);
     z-index: var(--cbp-z-index-level-1); // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cbp-menu-scrollbar-thumb-color) var(--cbp-menu-scrollbar-track-color);
   }
 }

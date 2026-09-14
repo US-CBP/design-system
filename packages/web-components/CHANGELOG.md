@@ -6,14 +6,15 @@ The React components are wrappers generated from this package and will share the
 
 ## [unreleased] TBD
 
-* BREAKING:  renamed the `cbp-tooltip`'s `fieldId` property to `uid` for accuracy and consistency. This property is optional and is automatically generated if not specified, so it only needs to be updated where set explicitly.
-* Continued improving the Floating UI integration on `cbp-dropdown`, enabling the dropdown to also resize its height if there is insufficient space to display in its default placement or when flipped.
+* BREAKING: renamed the `cbp-tooltip`'s `fieldId` property to `uid` for accuracy and consistency. This property is optional and is automatically generated if not specified, so it only needs to be updated where set explicitly.
+* Continued improving the Floating UI integration on `cbp-dropdown` and `cbp-menu`, enabling them to also resize vertically if there is insufficient space to display in its default placement or when flipped.
 * Updated `cbp-table` so the column sorting button controls take up the full width of their `th` cells.
 * Updated `cbp-dropdown`, `cbp-menu`, `cbp-tabs`, and `cbp-treeview` to disable viewport scrolling when using keyboard navigation, including the arrows, `home`, and `end` keys.
 * Additional improvements to `cbp-menu`:
   * Added a `menuItemClick` custom event to `cbp-menu-item`.
   * Normalize all menu items to activate with either `Space` or `Enter`, whether they are buttons or anchors
   * Prevent page scrolling when `Space` is pressed.
+* Updated `cbp-flex` so that the `breakpoint` property is reactive. Upon successful testing, this will be replicated in `cbp-grid` and `cbp-drawer`.
 
 ## [0.9.0-beta.2] 08-05-2026
 

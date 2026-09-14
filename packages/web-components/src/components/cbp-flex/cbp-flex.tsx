@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Host, h } from '@stencil/core';
+import { Component, Prop, Element, Watch, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
 
 /**
@@ -12,6 +12,9 @@ import { setCSSProps } from '../../utils/utils';
   styleUrl: 'cbp-flex.scss',
 })
 export class CbpFlex {
+
+  private mediaQueryList: MediaQueryList; // save the breakpoint media query reference so we can remove the listener later.
+
   @Element() private host: HTMLElement;
 
   /** Specifies the display mode. Defaults to "flex" */
@@ -44,9 +47,26 @@ export class CbpFlex {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+  @Watch('breakpoint')
+  private setBreakpointListener(newValue: string) {
+    // remove the old listener if the breakpoint was updated
+    if(this.mediaQueryList) {
+      this.mediaQueryList.removeEventListener('change', this.handleBreakpointChange);
+    }
+    if(newValue) {
+      this.mediaQueryList = window?.matchMedia(`(max-width: ${newValue})`);
+      if (this.mediaQueryList) {
+        this.mediaQueryList.addEventListener('change', this.handleBreakpointChange); // Add an event listener to the media query
+        this.handleBreakpointChange(this.mediaQueryList); // Run the breakpoint change handler once on load
+      }
+    }
+  }
+
   // Callback function for the media query event listener
-  handleBreakpointChange(mql) {
-    mql.matches ? this.host.classList.add('cbp-flex-linearized') : this.host.classList.remove('cbp-flex-linearized');
+  handleBreakpointChange = (mql: MediaQueryList | MediaQueryListEvent) => {
+    mql.matches 
+      ? this.host.classList.add('cbp-flex-linearized') 
+      : this.host.classList.remove('cbp-flex-linearized');
   }
 
   componentWillLoad() {
@@ -67,13 +87,11 @@ export class CbpFlex {
   }
 
   componentDidLoad() {
-    if (this.breakpoint) {
-      const mediaQueryList = window?.matchMedia(`(max-width: ${this.breakpoint})`);
-      if (mediaQueryList) {
-        mediaQueryList.addEventListener('change', mql => this.handleBreakpointChange(mql)); // Add an event listener to the media query
-        this.handleBreakpointChange(mediaQueryList); // Run the breakpoint change handler once on load
-      }
-    }
+    this.setBreakpointListener(this.breakpoint);
+  }
+
+  disconnectedCallback() {
+    this.mediaQueryList.removeEventListener('change', this.handleBreakpointChange);
   }
 
   render() {
