@@ -1,7 +1,11 @@
 export default {
   title: 'Test/Template with Responsive Table',
   parameters: {
-    chromatic: { disableSnapshot: true }
+    chromatic: { disableSnapshot: true },
+    layout: 'fullscreen',
+    html: {
+      root: '#storybook-root',
+    },
   },
 };
 
@@ -130,7 +134,7 @@ const Template: any = () => {
   }, 500);
 
   return ` 
-<cbp-app> 
+
 <cbp-skip-nav></cbp-skip-nav>
 <cbp-flex direction="column" sx='{"min-height":"100vh"}'>
   <cbp-universal-header logo-src-lg="./assets/images/cbp-header-logo.svg" logo-src-sm="./assets/images/cbp-seal.svg">
@@ -143,10 +147,13 @@ const Template: any = () => {
         </cbp-button>
       </li>
       <li>
-        <cbp-button color="secondary" fill="ghost" context="dark-always">
-          <cbp-icon name="comment"></cbp-icon>  
-          <cbp-hide visually-hide-at="max-width:64em">Feedback</cbp-hide>
-        </cbp-button>
+        <cbp-tooltip>
+          <cbp-button color="secondary" fill="ghost" context="dark-always">
+            <cbp-icon name="comment"></cbp-icon>  
+            <cbp-hide visually-hide-at="max-width: 64em">Feedback</cbp-hide>
+          </cbp-button>
+          <div slot="cbp-tooltip-content">Coming Soon!</div>
+        </cbp-tooltip>
       </li>
       <li>
         <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
@@ -384,7 +391,6 @@ const Template: any = () => {
 </cbp-drawer>
 
 </cbp-flex>
-</cbp-app>
 
   `;
 };
