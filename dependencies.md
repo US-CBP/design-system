@@ -10,6 +10,12 @@ StencilJS is the library used to build the web components. This library should b
 
 The React Output Target creates React wrapper components (via npm run build-all ), which are published as a separate npm package from our mono-repo.
 
+## Code Libraries
+
+* Floating UI - [https://github.com/floating-ui/floating-ui/]
+* Focus Trap - [https://github.com/focus-trap/focus-trap]
+  * Tabbable - [https://github.com/focus-trap/tabbable/]
+
 ## Storybook
 
 Storybook is a rapidly moving target, releasing roughly twice a year. Upgrading is easier since deprecating our Vanilla package, but care should be taken that the Storybook plugins being used work with the latest releases before upgrading.

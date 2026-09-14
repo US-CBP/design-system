@@ -38,8 +38,10 @@
     "build-pages": "stencil build --docs && storybook build --output-dir storybook-static"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.7.6",
     "@stencil/core": "4.15.0",
-    "@floating-ui/dom": "^1.7.6"
+    "focus-trap": "^8.2.2",
+    "tabbable": "^6.5.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.2.1",
