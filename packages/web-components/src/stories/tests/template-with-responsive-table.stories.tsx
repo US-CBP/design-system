@@ -1,11 +1,11 @@
 export default {
   title: 'Test/Template with Responsive Table',
   parameters: {
+    chromatic: { disableSnapshot: true },
     layout: 'fullscreen',
     html: {
       root: '#storybook-root',
     },
-    chromatic: { disableSnapshot: true }
   },
 };
 
@@ -134,7 +134,7 @@ const Template: any = () => {
   }, 500);
 
   return ` 
-<cbp-app> 
+
 <cbp-skip-nav></cbp-skip-nav>
 <cbp-flex direction="column" sx='{"min-height":"100vh"}'>
   <cbp-universal-header logo-src-lg="./assets/images/cbp-header-logo.svg" logo-src-sm="./assets/images/cbp-seal.svg">
@@ -383,7 +383,6 @@ const Template: any = () => {
 </cbp-drawer>
 
 </cbp-flex>
-</cbp-app>
 
   `;
 };

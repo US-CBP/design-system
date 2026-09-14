@@ -1,5 +1,7 @@
 import { Component, Prop, Element, Method, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
-import { setCSSProps, getFocusableElements } from '../../utils/utils';
+import { setCSSProps } from '../../utils/utils';
+import * as FocusTrap from 'focus-trap';
+//import { tabbable } from 'tabbable';
 
 /**
  * The Dialog component represents a dialog overlaid on top of the web page, which can be used similarly 
@@ -16,7 +18,8 @@ import { setCSSProps, getFocusableElements } from '../../utils/utils';
 })
 export class CbpDialog {
   private dialog: HTMLElement;
-  private focusableElements: any[];
+  //private focusableElements: any[];
+  private focusTrap: any;
 
   @Element() private host: HTMLElement;
 
@@ -50,7 +53,8 @@ export class CbpDialog {
 
   @Watch('open')
   watchOpenHandler(newValue: boolean) {
-    newValue == true ? this.setFocus() : this.closeDialog();
+    //newValue == true ? this.setFocus() : this.closeDialog();
+    newValue == true ? void(0) : this.closeDialog();
   }
 
   /** A public method for opening the dialog. */
@@ -73,6 +77,7 @@ export class CbpDialog {
     });
   }
 
+  /*
   setFocus() {
     setTimeout(() => {
       if (!this.focusableElements) {
@@ -81,6 +86,7 @@ export class CbpDialog {
       this.focusableElements[0]?.focus();
     }, 100);
   }
+  */
 
   handleBackdropClick({ target }) {
     if (!target.closest('[role=dialog]')) {
@@ -98,14 +104,31 @@ export class CbpDialog {
       ...this.sx,
     });
     // If the dialog is open on initial load, set focus
-    this.open && this.setFocus();
+    //this.open && this.setFocus(); // this is handled by the focus trap now
   }
 
   componentDidRender() {
+    // Create and deactivate focus trap based on open state (this may need to be behind a timeout too)
+    if(this.open){
+      this.focusTrap = FocusTrap.createFocusTrap(this.dialog, {
+        escapeDeactivates: false,
+        allowOutsideClick: true,
+      }); 
+      this.focusTrap.activate();
+    }
+    else {
+      this.focusTrap?.deactivate(); 
+    }
+
     // Adding/removing a class to support animation
     setTimeout(() => {
       this.open ? this.dialog.classList.add('cbp-dialog--open') : this.dialog.classList.remove('cbp-dialog--open');
     }, 10);
+  }
+  
+  // deactivate the focus trap if the component it removed as well
+  disconnectedCallback(){
+    this.focusTrap?.deactivate(); 
   }
 
   render() {

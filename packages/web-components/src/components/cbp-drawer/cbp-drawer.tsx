@@ -1,5 +1,6 @@
 import { Component, Prop, Element, Event, EventEmitter, Method, Watch, Host, h, State } from '@stencil/core';
-import { setCSSProps, getFocusableElements, getInvertedContext } from '../../utils/utils';
+import { setCSSProps, getInvertedContext } from '../../utils/utils';
+import * as FocusTrap from 'focus-trap';
 
 /**
  * The Drawer is a container that may be hidden and revealed, sliding in from either side of the viewport, 
@@ -14,7 +15,8 @@ import { setCSSProps, getFocusableElements, getInvertedContext } from '../../uti
 })
 export class CbpDrawer {
   private drawer: HTMLElement;
-  private focusableElements: any[];
+  //private focusableElements: any[];
+  private focusTrap: any;
 
   @Element() private host: HTMLElement;
 
@@ -48,7 +50,7 @@ export class CbpDrawer {
 
   @Watch('open')
   watchOpenHandler(newValue: boolean) {
-    newValue == true ?  this.setFocus() :
+    newValue == true ?  void(0) :
     this.drawerClose.emit({
       host: this.host,
       open: this.open,
@@ -67,6 +69,7 @@ export class CbpDrawer {
     this.open = false;
   }
 
+  /*
   setFocus() {
     setTimeout(() => {
       if (!this.focusableElements) {
@@ -75,14 +78,15 @@ export class CbpDrawer {
       this.focusableElements[0]?.focus();
     }, 100);
   }
+  */
 
   handleBackdropClick(e) {
     const { target } = e;
-    !target.closest('.cbp-drawer__content') && this.closeDrawer();
+    if(!target.closest('.cbp-drawer__content')) this.closeDrawer();
   }
 
   handleKeyUp(e) {
-    e.key == 'Escape' && this.closeDrawer();
+    if(e.key == 'Escape') this.closeDrawer();
   }
 
 
@@ -113,16 +117,32 @@ export class CbpDrawer {
       ...this.sx,
     });
     // If the drawer is open on initial load, set focus
-    this.open && this.setFocus();
+    //this.open && this.setFocus(); // this is handled by the focusTrap now
   }
 
   componentDidRender() {
+    // Create and deactivate focus trap based on open state only if not persistent (this may need to be behind a timeout too)
+    if(this.open && !this.persistent){
+      this.focusTrap = FocusTrap.createFocusTrap(this.drawer, {
+        escapeDeactivates: false,
+        allowOutsideClick: true,
+      });
+      this.focusTrap.activate();
+    }
+    else {
+      this.focusTrap?.deactivate(); 
+    }
+
     // Support animation by doing it this way
     setTimeout(() => {
       this.open ? this.drawer.classList.add('cbp-drawer--open') : this.drawer.classList.remove('cbp-drawer--open');
     }, 10);
   }
 
+  // deactivate the focus trap if the component it removed as well
+  disconnectedCallback(){
+    this.focusTrap?.deactivate(); 
+  }
 
   render() {
     return (
