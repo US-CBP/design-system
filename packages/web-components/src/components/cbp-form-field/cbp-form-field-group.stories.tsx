@@ -91,6 +91,8 @@ const AddressTemplate = ({ label, labelSlotted, description, descriptionSlotted,
           </cbp-form-field>
         </cbp-flex-item>
 
+      
+    
         <cbp-flex-item flex-grow="1" flex-basis="25ch">
           <cbp-form-field
             label="Line 3"
@@ -106,6 +108,14 @@ const AddressTemplate = ({ label, labelSlotted, description, descriptionSlotted,
             <input name="address4" type="text" />
           </cbp-form-field>
         </cbp-flex-item>
+
+      </cbp-flex>
+
+      <cbp-flex 
+        wrap="wrap"
+        gap="0 var(--cbp-space-4x)"
+        breakpoint="22.5rem"
+      >
 
         <cbp-flex-item flex-grow="1" flex-basis="25ch">
           <cbp-form-field
