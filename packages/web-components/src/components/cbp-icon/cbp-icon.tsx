@@ -20,7 +20,7 @@ export class CbpIcon {
   /** Specifies which icon to use from the built-in set of icons. */
   @Prop({ reflect: true }) name: string;
   
-  /** Specifies the exact `src` of an SVG file to use. */
+  /* Specifies the exact `src` of an SVG file to use. */
   @Prop() src: string;
 
   /** 
@@ -31,7 +31,13 @@ export class CbpIcon {
    */
   @Prop() size: string;
 
-  /** Optionally specifies the color of the icon (ideally using design-token-based CSS variables). Defaults to "currentColor." */
+  /** 
+   * Optionally specifies the color of the icon (ideally using design tokens). Defaults to "currentColor."
+   * Specifying a single color via this property applies to both light and dark modes and should work in both color schemes.
+   * If the icon is shown in a default (light-inverts) context, the native `light-dark(lightColor, darkColor)` function may 
+   * be used as the value to specify variants for light and dark modes.
+   * If the icon is used in a different context, then use the CSS custom properties directly to set the light and dark colors.
+   */
   @Prop() color: string;
 
   /** Optionally specify the degrees of rotation. */
@@ -39,6 +45,12 @@ export class CbpIcon {
 
   /** For icons that are not decorative, accessibilityText is rendered as an `aria-label` on the `svg` tag. */
   @Prop() accessibilityText: string;
+
+  /** 
+   * Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled.
+   * Default behavior is "light-inverts" and does not have to be specified. 
+   */
+  @Prop({ reflect: true }) context: 'light-inverts' | 'light-always' | 'dark-inverts' | 'dark-always';
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
@@ -322,6 +334,7 @@ export class CbpIcon {
     setCSSProps(this.host, {
       "transform": this.rotate ? `rotate(${this.rotate}deg)` : undefined,
       "--cbp-icon-color": this.color,
+      "--cbp-icon-color-dark": this.color,
       "--cbp-icon-size": this.size,
       ...this.sx
     });
