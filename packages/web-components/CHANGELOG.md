@@ -8,6 +8,7 @@ The React components are wrappers generated from this package and will share the
 
 * BREAKING: renamed the `cbp-tooltip`'s `fieldId` property to `uid` for accuracy and consistency. This property is optional and is automatically generated if not specified, so it only needs to be updated where set explicitly.
 * Continued improving the Floating UI integration on `cbp-dropdown` and `cbp-menu`, enabling them to also resize vertically if there is insufficient space to display in its default placement or when flipped.
+* Updated the `cbp-dialog` and `cbp-drawer` with a proper focus trap for accessibility purposes, so that keyboard navigation cannot leave these components until closed.
 * Updated `cbp-listbox` with Floating UI integration to work the same as `cbp-dropdown`.
 * Updated `cbp-table` so the column sorting button controls take up the full width of their `th` cells.
 * Updated `cbp-dropdown`, `cbp-menu`, `cbp-tabs`, and `cbp-treeview` to disable viewport scrolling when using keyboard navigation, including the arrows, `home`, and `end` keys.
@@ -17,6 +18,10 @@ The React components are wrappers generated from this package and will share the
   * Prevent page scrolling when `Space` is pressed.
 * Updated `cbp-flex` so that the `breakpoint` property is reactive. Upon successful testing, this will be replicated in `cbp-grid` and `cbp-drawer`.
 * Updated `cbp-button` to no longer emit a custom `buttonClick` event or enable the "controls" functionality (e.g., for drawers, dialogs, menus, etc.) when disabled.
+* Updated `cbp-icon` by adding the `context` property, `--cbp-color-dark` CSS custom property, and dark mode toggle.
+  * The default color for both light and dark modes is still `currentColor`.
+  * Specifying a single color via the `color` property applies to both light and dark modes and should work in both color schemes.
+  * If the icon is shown in a default (light-inverts) context, the native `light-dark(lightColor, darkColor)` function may be used as the value to specify variants for light and dark modes.
 
 ## [0.9.0-beta.2] 08-05-2026
 
