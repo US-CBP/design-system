@@ -6,7 +6,32 @@ Many (but not all) of these issues may be flagged when used within a strongly ty
 
 ## From BETA Versions
 
-* TBD
+### Prior to BETA 2 release (August 5, 2026)
+
+* Renamed the `cbp-tooltip`'s `fieldId` property to `uid` for accuracy and consistency. This property is optional and is automatically generated if not specified, so it only needs to be updated where set explicitly.
+Updated `cbp-icon` underlying CSS to fix vertical alignment inconsistencies across several patterns.
+  * Some patterns, such as panel, drawer, and dialog were updated to use flexbox within the heading, which eliminates the need to apply a margin to the icon directly (when present).
+  * All icons in components and stories have been confirmed, but this change could potentially result in misaligned icons in custom code.
+* Updated `cbp-tooltip` renamed `alignment` property to `position` and renamed its values to be consistent with `cbp-menu` and the Floating UI library.
+* Updated design tokens:
+  * Added new, more granular font-size tokens numbered from 1 through 20. These are in addition to the named sizes and `cbp-typography` variants such as "heading-xxl".
+  * Added new, more granular line-height tokens numbered from 1 through 18. These are in addition to the named sizes and are now exposed in `cbp-typography` directly.
+  * Removed "masthead" font size tokens and corresponding `cbp-typography` variants. These can now be replicated with new, more granular "size" tokens.
+* Updated the `cbp-app-header` to make sticky behavior opt-in.
+  * The `sticky` attribute should be added to all current applications using the design system to preserve this functionality.
+  * The `sticky` attribute has been added to the `cbp-app-header` component by default in all applicable stories in this Storybook.
+* Updated the `cbp-universal-header` story code to use slotted `cbp-flex` and `cbp-flex-item` tags around the buttons. This avoids needing arbitrary HTML that requires styling within the component.
+* Updated all icons in the `cbp-icon` component and stories to use Font Awesome 7 icons (upgraded from v6).
+  * There were no breaking changes in icon names used by the `cbp-icon` component or in the design system.
+  * However, there are SVG icons embedded in a few stories directly that should be updated manually if already in use, including:
+    * `cbp-menu` (and the `cbp-table` with overflow menu story) - "trashcan" icon has been added to the `cbp-icon` component and the stories updated to use this.
+    * The volume slider story of `cbp-slider` (the icons as well as the sizing were updated).
+* Updates to Toast:
+  * Fixed the color of the buttons in toasts - most use an inverted `context`. This property should be added or updated code copied from Storybook.
+  * Changed the sizing to use a shorter width by default.
+  * Created the `cbp-toast-container` component to hold and position multiple toast notifications.
+    * An individual toast may be used without the container, but it is always placed in the upper right of the viewport.
+    * Code copied from Storybook's "multiple toast" story now includes this component.
 
 ## From Development Versions
 

@@ -1,15 +1,26 @@
 /**
  * @prop --cbp-icon-color: currentColor;
+ * @prop --cbp-icon-color-dark: currentColor;
  * @prop --cbp-icon-size: 1rem;
  * @prop --cbp-icon-width: var(--cbp-icon-size);
  * @prop --cbp-icon-height: var(--cbp-icon-size);
  */
 :root {
   --cbp-icon-color: currentColor;
+  --cbp-icon-color-dark: currentColor;
   --cbp-icon-size: 1rem;
   --cbp-icon-width: var(--cbp-icon-size);
   --cbp-icon-height: var(--cbp-icon-size);
 }
+
+
+/* 
+ * Dark Mode - display dark design based on mode or context
+ */
+ [data-cbp-theme=light] cbp-icon[context*=dark],
+ [data-cbp-theme=dark] cbp-icon:not([context=dark-inverts]):not([context=light-always]) {
+   --cbp-icon-color: var(--cbp-icon-color-dark) !important;
+ }
 
 cbp-icon {
   --cbp-icon-width: var(--cbp-icon-size);
