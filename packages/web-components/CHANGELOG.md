@@ -8,7 +8,7 @@ The React components are wrappers generated from this package and will share the
 
 * BREAKING: renamed the `cbp-tooltip`'s `fieldId` property to `uid` for accuracy and consistency. This property is optional and is automatically generated if not specified, so it only needs to be updated where set explicitly.
 * Continued improving the Floating UI integration on `cbp-dropdown` and `cbp-menu`, enabling them to also resize vertically if there is insufficient space to display in its default placement or when flipped.
-* Updated the `cbp-dialog` and `cbp-drawer` with a proper focus trap for accessibility purposes, so that keyboard navigation cannot leave these components until closed.
+* Updated `cbp-dialog` and `cbp-drawer` with a proper focus trap for accessibility purposes, so that keyboard navigation cannot leave these components until closed.
 * Updated `cbp-listbox` with Floating UI integration to work the same as `cbp-dropdown`.
 * Updated `cbp-table` so the column sorting button controls take up the full width of their `th` cells.
 * Updated `cbp-dropdown`, `cbp-menu`, `cbp-tabs`, and `cbp-treeview` to disable viewport scrolling when using keyboard navigation, including the arrows, `home`, and `end` keys.
