@@ -237,6 +237,14 @@ cbp-card {
           padding-block: var(--cbp-space-2x);
           width: 100%;
         }
+
+        &:first-of-type button{
+          border-bottom-left-radius: var(--cbp-card-border-radius);
+        }
+        
+        &:last-of-type button{
+          border-bottom-right-radius: var(--cbp-card-border-radius);
+        }
       }
     }
 
