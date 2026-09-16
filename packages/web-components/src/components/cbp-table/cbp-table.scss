@@ -381,14 +381,6 @@ cbp-table {
             transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
           }
         }
-
-        &:first-of-type{
-          border-top-left-radius: var(--cbp-border-radius-2);
-        }
-
-        &:last-of-type{
-          border-top-right-radius: var(--cbp-border-radius-2);
-        }
       }
 
       th:has(button:hover) {
@@ -400,6 +392,15 @@ cbp-table {
         --cbp-button-color-bg-focus: var(--cbp-color-interactive-focus-dark) !important;
         --cbp-button-color-bg-focus-dark: var(--cbp-color-interactive-focus-light) !important;
       }
+
+      tr:first-of-type th:first-of-type{
+        border-top-left-radius: var(--cbp-border-radius-2);
+      }
+
+      tr:first-of-type th:last-of-type{
+        border-top-right-radius: var(--cbp-border-radius-2);
+      }
+
     }
 
 
