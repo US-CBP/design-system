@@ -148,3 +148,13 @@ chromatic.config.json
 # such as folder view preferences, icon positions, and other visual settings. 
 # It's automatically created by the Finder.
 .DS_Store
+packages/react-components/components/stencil-generated/index.ts
+packages/react-components/components/stencil-generated/index.ts
+packages/react-components/components/stencil-generated/react-component-lib/createComponent.tsx
+packages/react-components/components/stencil-generated/react-component-lib/createOverlayComponent.tsx
+packages/react-components/components/stencil-generated/react-component-lib/index.ts
+packages/react-components/components/stencil-generated/react-component-lib/interfaces.ts
+packages/react-components/components/stencil-generated/react-component-lib/utils/attachProps.ts
+packages/react-components/components/stencil-generated/react-component-lib/utils/case.ts
+packages/react-components/components/stencil-generated/react-component-lib/utils/dev.ts
+packages/react-components/components/stencil-generated/react-component-lib/utils/index.tsx
