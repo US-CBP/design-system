@@ -85,7 +85,7 @@ For example, a custom dropdown looks very similar to a native `select` in compos
 
 ### Form Field Groups
 
-The same `cbp-form-field` component may also wrap groups of inputs, such as checklists, radio lists, or compound input patterns containing multiple distinct, but related form controls (e.g., address, phone number, etc.). This is easily achieved by adding the `group` property/attribute to the host tag. In this case, the component renders and `fieldset` (which groups the slotted inputs), and a `legend` rather than `label` tied to a single form control. 
+The same `cbp-form-field` component may also wrap groups of inputs, such as checklists, radio lists, or compound input patterns containing multiple distinct, but related form controls (e.g., address, phone number, etc.). This is easily achieved by adding the `group` property/attribute to the host tag. In this case, the component renders a `fieldset` (which groups the slotted inputs), and a `legend` rather than `label` tied to a single form control. 
 
 This acts as an implicit `role="group"` for describing each input contained within, giving them greater context from the group when using assistive technologies, such as a screen reader. For example, a checklist of fruits containing "apples", "oranges", "bananas", etc. might be unclear without the context of the group label (legend), which could be "Grocery List" or "Favorite Fruits", changing the meaning of the selections significantly.
 
@@ -126,7 +126,7 @@ An example using both overlays might be a monetary input specifying USD such as:
 </cbp-form-field>
 ```
 
-An common example using an attached button control is a password field with visibility toggle (these are loosely coupled and need to be hooked up with application logic, which is typically a small function in this case):
+A common example using an attached button control is a password field with visibility toggle (these are loosely coupled and need to be hooked up with application logic, which is typically a small function in this case):
 
 ```HTML
 <cbp-form-field label="Password" field-id="pw">
@@ -196,7 +196,7 @@ You can find more patterns like these under the [Form Field Wrapper group](./?pa
 
 Similar to the `cbp-form-field-wrapper` the `cbp-listbox` is meant to wrap a native HTML text (or search) input and enhance it with autocomplete/type-ahead functionality.
 
-This component requires application logic to provide the `items` property as a JSON object or stringified JSON, which in intended to update as the user types in the wrapped input. Selecting a suggestion from the listbox populates the input with that text, but unlike a dropdown, a selection is not required; Typed text may be submitted with a form as-is.
+This component requires application logic to provide the `items` property as a JSON object or stringified JSON, which is intended to update as the user types in the wrapped input. Selecting a suggestion from the listbox populates the input with that text, but unlike a dropdown, a selection is not required; Typed text may be submitted with a form as-is.
 
 See the [API Docs](./?path=/docs/forms-listbox-api-docs--docs) for more details using the Listbox component.
 
