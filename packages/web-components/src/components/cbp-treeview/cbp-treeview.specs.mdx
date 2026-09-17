@@ -52,6 +52,7 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
   * With nested items renders the children inside of container with a `role="group"` and populates an `aria-owned` on the host with the children's id.
 * Each expand control (button) for items with nested children toggles `aria-expanded` when the control is activated.
 * The selection state for each selectable node is indicated with `aria-selected="true"`.
+* The treeview control may be nested within a `cbp-form-field` (with the group property) if it contextually makes sense, such as selecting hierarchical items as part of a form submission.
 
 When tabbing into the control to the first expand button or checkbox, the screen reader announces:
 
