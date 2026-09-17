@@ -68,6 +68,7 @@ function filterStartByString(str) {
 const Template = ({ label, description, fieldId, name, error, readonly, disabled, inputType, value, context, sx, items, search }) => {
 
   setTimeout(() => {
+    /*
     let input = document.querySelector('cbp-listbox input');
     input.addEventListener('change', (e) => {
       console.log('Native input change event received: ', e);
@@ -77,6 +78,7 @@ const Template = ({ label, description, fieldId, name, error, readonly, disabled
     formField.addEventListener('valueChange', (e) => {
       console.log('Form field valueChange event received: ', e);
     });
+    */
     
     let listbox = document.querySelector('cbp-listbox');
     listbox.addEventListener('updateListboxSuggestions', (e) => {
