@@ -22,6 +22,8 @@ The React components are wrappers generated from this package and will share the
   * The default color for both light and dark modes is still `currentColor`.
   * Specifying a single color via the `color` property applies to both light and dark modes and should work in both color schemes.
   * If the icon is shown in a default (light-inverts) context, the native `light-dark(lightColor, darkColor)` function may be used as the value to specify variants for light and dark modes.
+* Updated `cbp-form-field` to ignore `cbp-treeview` and `cbp-listbox` events, as those components emit their own `valueChange` event already.
+* Updated the `valueChange` event in `cbp-listbox` to fire for both text entry (on blur, like a native change event) and listbox selection.
 
 ## [0.9.0-beta.2] 08-05-2026
 
