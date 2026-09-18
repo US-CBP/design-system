@@ -21,6 +21,7 @@ export class CbpListbox {
   private generatedItems: HTMLLIElement[] = []; // JSX nodes do not allow DOM manipulation
   private focusIndex: number = -1;
 
+  private changeTimeout: ReturnType<typeof setTimeout>;
   private typingMode: boolean = true; // track typing mode to allow spaces as typeable characters
   private oldValue: string = '';
 
@@ -143,8 +144,6 @@ export class CbpListbox {
 
   // Native change events are not always accurate because the listbox is manipulating the value directly, so we look for changes on blur to mimic a change event
   private handleChange(e) {
-    //this.open = false; // make sure the listbox is closed in case the user tabbed away
-
     // Because selecting from the listbox changes the value without a change event, it creates conditions where a native change doesn't register after typing in the field
     if (this.oldValue != this.formField?.value) {
       // update the stored oldValue if different
@@ -161,6 +160,7 @@ export class CbpListbox {
   }
 
   private handleListboxClick(e) {
+    clearTimeout(this.changeTimeout);
     const {target} = e;
     const listItem = target?.closest('[role=listbox] li');
 
@@ -330,7 +330,9 @@ export class CbpListbox {
     // Set up an input listener to emit events for filtering
     this.formField.addEventListener( 'input', (e) => this.handleInput(e));
     // Set up a blur listener to mimic a change listener so that the valueChange event can fully be handled by this component and not by cbp-form-field
-    this.formField.addEventListener('blur', (e) => this.handleChange(e));
+    this.formField.addEventListener('blur', (e) => {
+      this.changeTimeout = setTimeout(() => this.handleChange(e), 300);
+    });
 
     // Apply sx
     if (typeof this.sx == 'string') {
