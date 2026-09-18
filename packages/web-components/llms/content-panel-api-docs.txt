@@ -22,7 +22,7 @@ A panel is a styled container for displaying information within the main page co
 
 | Name | Description |
 | --- | --- |
-| `--cbp-panel-border-radius` | var(--cbp-border-radius-soft); |
+| `--cbp-panel-border-radius` | var(--cbp-border-radius-3); |
 | `--cbp-panel-border-width` | var(--cbp-border-size-md); |
 | `--cbp-panel-content-color` | var(--cbp-color-text-darkest); |
 | `--cbp-panel-content-color-bg` | var(--cbp-color-white); |

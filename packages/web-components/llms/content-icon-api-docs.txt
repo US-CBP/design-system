@@ -9,11 +9,12 @@ The Icon component represents a standard API for embedding accessible Scalable V
 | Property | Attribute | Description | Type | Default |
 | --- | --- | --- | --- | --- |
 | `accessibilityText` | `accessibility-text` | For icons that are not decorative, accessibilityText is rendered as an `aria-label` on the `svg` tag. | `string` | `undefined` |
-| `color` | `color` | Optionally specifies the color of the icon (ideally using design-token-based CSS variables). Defaults to "currentColor." | `string` | `undefined` |
+| `color` | `color` | Optionally specifies the color of the icon (ideally using design tokens). Defaults to "currentColor." Specifying a single color via this property applies to both light and dark modes and should work in both color schemes. If the icon is shown in a default (light-inverts) context, the native `light-dark(lightColor, darkColor)` function may be used as the value to specify variants for light and dark modes. If the icon is used in a different context, then use the CSS custom properties directly to set the light and dark colors. | `string` | `undefined` |
+| `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
 | `name` | `name` | Specifies which icon to use from the built-in set of icons. | `string` | `undefined` |
 | `rotate` | `rotate` | Optionally specify the degrees of rotation. | `number` | `undefined` |
 | `size` | `size` | Optionally specifies the size (both width and height) of the icon, which defaults (via CSS) to `1rem` (16px), the intended size of icons alongside body text. Icon size may be specified via this property/attribute or the custom CSS property `--cbp-icon-size`. | `string` | `undefined` |
-| `src` | `src` | Specifies the exact `src` of an SVG file to use. | `string` | `undefined` |
+| `src` | `src` |  | `string` | `undefined` |
 | `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
 
 ## Slots
@@ -27,6 +28,7 @@ The Icon component represents a standard API for embedding accessible Scalable V
 | Name | Description |
 | --- | --- |
 | `--cbp-icon-color` | currentColor; |
+| `--cbp-icon-color-dark` | currentColor; |
 | `--cbp-icon-height` | var(--cbp-icon-size); |
 | `--cbp-icon-size` | 1rem; |
 | `--cbp-icon-width` | var(--cbp-icon-size); |

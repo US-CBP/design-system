@@ -37,7 +37,7 @@ The Form Field component represents a generic, reusable pattern for form fields 
 
 | Name | Description |
 | --- | --- |
-| `--cbp-form-field-border-radius` | var(--cbp-border-radius-soft); |
+| `--cbp-form-field-border-radius` | var(--cbp-border-radius-1); |
 | `--cbp-form-field-color` | var(--cbp-color-text-darkest); |
 | `--cbp-form-field-color-bg` | var(--cbp-color-white); |
 | `--cbp-form-field-color-bg-dark` | var(--cbp-color-gray-cool-70); |

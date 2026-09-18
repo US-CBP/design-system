@@ -49,7 +49,7 @@ The Button component represents a UI control visually styled like a button, rega
 
 | Name | Description |
 | --- | --- |
-| `--cbp-button-border-radius` | var(--cbp-border-radius-soft); |
+| `--cbp-button-border-radius` | var(--cbp-border-radius-1); |
 | `--cbp-button-border-style` | solid; |
 | `--cbp-button-border-width` | var(--cbp-border-size-md); |
 | `--cbp-button-color` | var(--cbp-color-text-lightest); |
@@ -79,6 +79,10 @@ The Button component represents a UI control visually styled like a button, rega
 | `--cbp-button-color-outline-focus` | var(--cbp-color-white); |
 | `--cbp-button-color-outline-focus-dark` | var(--cbp-color-black); |
 | `--cbp-button-gap` | 0 var(--cbp-space-2x); |
+| `--cbp-button-height` | auto; |
+| `--cbp-button-min-height` | auto; |
+| `--cbp-button-min-width` | auto; |
+| `--cbp-button-width` | auto; |
 
 ## Dependencies
 

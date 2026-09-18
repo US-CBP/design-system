@@ -7,9 +7,8 @@ The Icon component represents a standard API for embedding accessible Scalable V
 ## Functional Requirements
 
 -   The Icon component packages all icons used within the design system that can be referenced by name.
--   External icons may be loaded by:
-    -   Slotting component-based icons or native SVGs inside of the Icon component.
-    -   Icons may also be loaded by specifying an external `src` property pointing to the SVG file. (TODO)
+-   External icons may be loaded by slotting component-based icons or native SVGs inside of the Icon component.
+-   The Icon component shall allow the icon color, size, and rotation to be specified.
 
 ## Technical Specifications
 
@@ -36,6 +35,8 @@ The Icon component represents a standard API for embedding accessible Scalable V
 ### Additional Notes and Considerations
 
 -   The Icon component may be used as a wrapper for native SVG or component-based icons slotted within it, providing a consistent square form factor and styling hooks.
--   Additional component properties are not passed down to slotted icons at this time, however.
+-   Specifying a single color via the `color` property applies to both light and dark modes and should be verified to work in both color schemes.
+    -   If the icon is shown in a default (light-inverts) context, the native `light-dark(lightColor, darkColor)` function may be used as the value to specify variants for light and dark modes.
+    -   If the icon is used in a different context, then use the CSS custom properties directly to set the light and dark colors.
 -   TODO: implement loading of external icons, including different slotting formats (component, SVG, `img` tag).
 -   TODO: investigate and implement caching of externally requested icons.

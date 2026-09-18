@@ -4,6 +4,27 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [0.9.0-beta.3] 09-18-2026
+
+-   BREAKING: renamed the `cbp-tooltip`'s `fieldId` property to `uid` for accuracy and consistency. This property is optional and is automatically generated if not specified, so it only needs to be updated where set explicitly.
+-   Continued improving the Floating UI integration on `cbp-dropdown` and `cbp-menu`, enabling them to also resize vertically if there is insufficient space to display in its default placement or when flipped.
+-   Updated `cbp-listbox` with Floating UI integration to work the same as `cbp-dropdown`.
+-   Updated `cbp-dialog` and `cbp-drawer` with a proper focus trap for accessibility purposes, so that keyboard navigation cannot leave these components until closed.
+-   Updated `cbp-table` so the column sorting button controls take up the full width of their `th` cells.
+-   Updated `cbp-dropdown`, `cbp-menu`, `cbp-tabs`, and `cbp-treeview` to disable viewport scrolling when using keyboard navigation, including the arrows, `home`, and `end` keys.
+-   Additional improvements to `cbp-menu`:
+    -   Added a `menuItemClick` custom event to `cbp-menu-item`.
+    -   Normalize all menu items to activate with either `Space` or `Enter`, whether they are buttons or anchors
+    -   Prevent page scrolling when `Space` is pressed.
+-   Updated `cbp-flex` so that the `breakpoint` property is reactive. Upon successful testing, this will be replicated in `cbp-grid` and `cbp-drawer`.
+-   Updated `cbp-button` to no longer emit a custom `buttonClick` event or enable the "controls" functionality (e.g., for drawers, dialogs, menus, etc.) when disabled.
+-   Updated `cbp-icon` by adding the `context` property, `--cbp-icon-color-dark` CSS custom property, and dark mode toggle.
+    -   The default color for both light and dark modes is still `currentColor`.
+    -   Specifying a single color via the `color` property applies to both light and dark modes and should work in both color schemes.
+    -   If the icon is shown in a default (light-inverts) context, the native `light-dark(lightColor, darkColor)` function may be used as the value to specify variants for light and dark modes.
+-   Updated `cbp-form-field` to ignore `cbp-treeview` and `cbp-listbox` events, as those components emit their own `valueChange` event already.
+-   Updated the `valueChange` event in `cbp-listbox` to fire for both text entry (on blur, like a native change event) and listbox selection.
+
 ## [0.9.0-beta.2] 08-05-2026
 
 -   BREAKING: Updated `cbp-icon` underlying CSS to fix vertical alignment inconsistencies across several patterns.
@@ -14,9 +35,10 @@ The React components are wrappers generated from this package and will share the
     -   Repositioned the menu so that it does not cover the control that opened it.
     -   Removed the default close button from the menu itself - it can be closed by clicking/tabbing out of it as well as pressing `ESC`.
 -   Updated `cbp-tooltip` as follows:
+    -   BREAKING: renamed `alignment` property to `position` and renamed its values to be consistent with `cbp-menu` and the Floating UI library.
+    -   Added `width` and `height` properties to override the defaults.
     -   Tooltip opens on mouse hover (in addition to focus and click).
     -   Tooltip dismisses when clicked/tabbed outside of it.
-    -   Added `width` and `height` properties to override the defaults.
 -   Updated `cbp-form-field` with fixes for field groups:
     -   Do not style all fields in error state when the group has the `error` property set.
     -   In this case, the group's description should be styled in an error state, and the specific fields in error within the group should have their own `error` property set to true.
