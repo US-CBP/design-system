@@ -4,7 +4,7 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [unreleased] TBD
+## [0.9.0-beta.3] 09-18-2026
 
 * BREAKING: renamed the `cbp-tooltip`'s `fieldId` property to `uid` for accuracy and consistency. This property is optional and is automatically generated if not specified, so it only needs to be updated where set explicitly.
 * Continued improving the Floating UI integration on `cbp-dropdown` and `cbp-menu`, enabling them to also resize vertically if there is insufficient space to display in its default placement or when flipped.
