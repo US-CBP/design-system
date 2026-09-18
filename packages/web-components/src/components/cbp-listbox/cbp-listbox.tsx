@@ -189,8 +189,6 @@ export class CbpListbox {
     const selectKeys = ['Enter', ' '];
     const navKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End']; // keyboard navigation within an open listbox
 
-    console.log('getActionFromKey', key, this.typingMode);
-
     // If the menu is already open, pressing enter or space triggers a click on the current item -
     // with an exception for pressing space as part of a combobox searchString (not the first character).
     // Run this first, before the menu may be opened by later code.
@@ -331,8 +329,7 @@ export class CbpListbox {
     });
     // Set up an input listener to emit events for filtering
     this.formField.addEventListener( 'input', (e) => this.handleInput(e));
-    // Set up a change listener to that the valueChange event can fully be handled by this component and not by cbp-form-field
-    //this.formField.addEventListener('change', (e) => this.handleChange(e));
+    // Set up a blur listener to mimic a change listener so that the valueChange event can fully be handled by this component and not by cbp-form-field
     this.formField.addEventListener('blur', (e) => this.handleChange(e));
 
     // Apply sx
