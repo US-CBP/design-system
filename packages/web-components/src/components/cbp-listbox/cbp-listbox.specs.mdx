@@ -81,10 +81,6 @@ A Listbox wraps a standard text or search input, enhancing it by providing sugge
 * It is recommended to listen for the component's `valueChange` event, which captures both text input (on blur) and listbox selection, rather than the native input's change event.
   * This can also be done on the wrapping `cbp-form-field`, as `valueChange` bubbles.
   * The slotted text input's native change event will not register listbox selection, which can also impact actual change detection.
-  * In the case where a user types a "search string" and then selects an option from the listbox, two `valueChange` events will be emitted:
-    * The first contains the value of the typed text string at the time the listbox click removes focus from the `input`.
-    * The second contains the value if the text populated from the listbox.
-    * There is no avoiding the double events being emitted in this case, but the last one always contains the correct/final value.
 * Decoupling filtering functionality from the component and making it the responsibility of application logic opens up many more options:
   * Search/filtering may be done on the full value or only items that start with the search string.
   * Fuzzy search, AI, or custom weighting may be involved in populating the suggestions.
