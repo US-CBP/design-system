@@ -88,8 +88,8 @@ export class CbpFormField {
     const fieldName = e.detail?.nativeElement.getAttribute('name');
     const isCheckbox:boolean = e.detail?.nativeElement.getAttribute('type') == "checkbox";
 
-    // Ignore checkboxes inside of a multi-select dropdown.
-    const ignoredField = e.detail?.nativeElement.closest('cbp-dropdown');
+    // Ignore checkboxes inside of a multi-select dropdown or treeview control.
+    const ignoredField = e.detail?.nativeElement.closest('cbp-dropdown,cbp-treeview');
 
     // Determine if this is a checklist of same-named items or not.
     let checkedListItems;
@@ -219,7 +219,7 @@ export class CbpFormField {
         this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
 
         // Listen for native change events (unless already handled by a custom component)
-        const ignoredField = this.formField.closest('cbp-dropdown,cbp-slider,cbp-file-input');
+        const ignoredField = this.formField.closest('cbp-dropdown,cbp-slider,cbp-file-input,cbp-listbox');
         if(!ignoredField) this.formField.addEventListener('change', (e) => this.handleChange(e));
       }
 
