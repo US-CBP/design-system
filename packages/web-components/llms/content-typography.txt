@@ -8,6 +8,7 @@
 ```tsx
 ({
   text,
+  withIcon,
   tag,
   variant,
   size,
@@ -28,7 +29,7 @@
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
-      ${text}
+      ${withIcon ? `${generateIcon(variant)}${text}` : `${text}`}
     </cbp-typography>
   `;
 }
@@ -39,6 +40,7 @@
 ```tsx
 ({
   text,
+  withIcon,
   tag,
   divider,
   context,
@@ -56,8 +58,8 @@
         ${divider != 'none' ? `divider="${divider}"` : ''}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-      >
-        ${text} (variant=${variants[y]})
+      >      
+        ${withIcon ? `${generateIcon(variants[y])}${text} (variant=${variants[y]})` : `${text} (variant=${variants[y]})`}
       </cbp-typography>
     `;
   }

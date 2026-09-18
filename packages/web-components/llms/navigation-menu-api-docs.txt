@@ -52,6 +52,10 @@ Type: `Promise<void>`
 | `--cbp-menu-color-bg` | var(--cbp-color-gray-cool-80); |
 | `--cbp-menu-color-bg-dark` | var(--cbp-color-gray-cool-5); |
 | `--cbp-menu-gap` | var(--cbp-space-3x); |
+| `--cbp-menu-scrollbar-thumb-color` | var(--cbp-color-interactive-secondary-light); |
+| `--cbp-menu-scrollbar-thumb-color-dark` | var(--cbp-color-interactive-secondary-base); |
+| `--cbp-menu-scrollbar-track-color` | var(--cbp-color-gray-cool-70); |
+| `--cbp-menu-scrollbar-track-color-dark` | var(--cbp-color-white); |
 
 ## Dependencies
 
@@ -81,6 +85,12 @@ The Menu Item component wraps each individual control (link or button) within th
 | --- | --- | --- | --- | --- |
 | `color` | `color` | Specifies a color variant for the menu item. Currently the only supported variant is "danger". | `"danger"` | `undefined` |
 | `indentLevel` | `indent-level` | Specifies an indent level to represent hierarchical items. Defaults to zero. | `number` | `0` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `menuItemClick` | A custom event emitted when a menu item is clicked/activated. | `CustomEvent<any>` |
 
 ## Slots
 

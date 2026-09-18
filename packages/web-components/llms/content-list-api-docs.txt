@@ -25,8 +25,8 @@ The List component is used to render semantic HTML lists in accordance with the 
 
 | Name | Description |
 | --- | --- |
-| `--cbp-link-list-icon-color` | var(--cbp-color-interactive-primary-dark); |
-| `--cbp-link-list-icon-color-dark` | var(--cbp-color-interactive-primary-dark); |
+| `--cbp-link-list-color` | var(--cbp-color-text-darkest); |
+| `--cbp-link-list-color-dark` | var(--cbp-color-text-lightest); |
 | `--cbp-list-font-size` | var(--cbp-font-size-body); |
 | `--cbp-list-item-color` | var(--cbp-color-text-darkest); |
 | `--cbp-list-item-color-dark` | var(--cbp-color-text-lightest); |

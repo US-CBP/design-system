@@ -19,7 +19,7 @@ A Listbox wraps a standard text or search input, enhancing it by providing sugge
 | Event | Description | Type |
 | --- | --- | --- |
 | `updateListboxSuggestions` | A custom event emitted when the value of the wrapped input changes to update the listbox suggestions (items) via application logic. | `CustomEvent<any>` |
-| `valueChange` | A custom event emitted only when a selection is made in the listbox. This event will be listened for in addition to the native input's change event by the parent `cbp-form-field`, as selection does not trigger a native change event on the input. To get all changes to the wrapped input, listen to the `valueChange` event on the parent `cbp-form-field`. | `CustomEvent<any>` |
+| `valueChange` | A custom event capturing both text input (on blur) and listbox selection. This event should be listened for instead of the slotted text input's native change event, since the latter will not register listbox selection, which can also impact actual change detection. | `CustomEvent<any>` |
 
 ## Slots
 

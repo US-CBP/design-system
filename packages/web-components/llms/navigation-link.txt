@@ -19,6 +19,7 @@
   shortcutKey,
   accessibilityText,
   disabled,
+  large,
   context,
   sx
 }) => {
@@ -33,8 +34,9 @@
   }, 500);
   return `
     ${inText ? `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ` : ''}
+    ${large ? `<cbp-typography tag="span" size="4">` : ''}
     <cbp-link
-      ${href ? `href="${href}"` : ''}
+      ${href ? `href="${generateUnvisitedLink(href)}"` : ''}
       ${rel ? `rel="${rel}"` : ''}
       ${target ? `target="${target}"` : ''}
       ${download ? `download${downloadFileName ? `="${downloadFileName}"` : ''}` : ''}
@@ -49,6 +51,7 @@
       ${label}
       ${withIcon == 'after' ? `<cbp-icon name="up-right-from-square"></cbp-icon>` : ''}
     </cbp-link>
+    ${large ? `</cbp-typography>` : ''}
     ${inText ? ` Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>` : ''}
   `;
 }

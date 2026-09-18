@@ -19,11 +19,10 @@
 }) => {
   if (orientation == 'vertical') {
     return `
-    <cbp-grid 
-      grid-template-columns="${gridTemplateColumns}" 
-      gap="1rem"
-    >
-
+      <cbp-grid 
+        grid-template-columns="${gridTemplateColumns}" 
+        gap="1rem"
+      >
         <cbp-tabs
           ${orientation ? `orientation="${orientation}"` : ''}
           ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
@@ -35,8 +34,8 @@
         <cbp-grid-item>
           ${createTabPanels(tabs)}
         </cbp-grid-item>
-    </cbp-grid>
- `;
+      </cbp-grid>
+    `;
   } else {
     return `
       <cbp-tabs

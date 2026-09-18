@@ -48,7 +48,7 @@
           tag="h3"
           variant="heading-lg"
         >
-          ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}${panelHeading}
+          ${withIcon ? `<cbp-icon name="user"></cbp-icon>` : ''}${panelHeading}
         </cbp-typography>
 
         <p>${panelContent}</p>
@@ -108,7 +108,7 @@
           tag="h3"
           variant="heading-lg"
         >
-          ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}${panelHeading}
+          ${withIcon ? `<cbp-icon name="user"></cbp-icon>` : ''}${panelHeading}
         </cbp-typography>
 
         <p>${panelContent}</p>
