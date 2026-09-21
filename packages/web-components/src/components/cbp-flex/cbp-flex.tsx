@@ -91,7 +91,7 @@ export class CbpFlex {
   }
 
   disconnectedCallback() {
-    this.mediaQueryList.removeEventListener('change', this.handleBreakpointChange);
+    this.mediaQueryList?.removeEventListener('change', this.handleBreakpointChange);
   }
 
   render() {
