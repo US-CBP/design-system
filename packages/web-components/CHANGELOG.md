@@ -4,7 +4,7 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [0.9.0-beta.3] 09-23-2026
+## [0.9.0-beta.4] 09-23-2026
 
 * Fixed a console error when `cbp-flex` is unmounted and no breakpoint media query is specified.
 * Fixed an issue where sortable table columns may hide the text when hovering the table cell but not the actual button.
