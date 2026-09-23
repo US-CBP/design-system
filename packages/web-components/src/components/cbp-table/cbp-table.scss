@@ -335,6 +335,8 @@ cbp-table {
           --cbp-table-header-color-bg-dark: var(--cbp-table-header-color-bg-hover-dark);
           
           cbp-button[fill][color] {
+            --cbp-button-color: var(--cbp-table-header-color-hover);
+            --cbp-button-color-dark: var(--cbp-table-header-color-hover-dark);
             --cbp-button-color-hover: var(--cbp-table-header-color-hover);
             --cbp-button-color-hover-dark: var(--cbp-table-header-color-hover-dark);
           }

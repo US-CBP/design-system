@@ -1,5 +1,5 @@
 export default {
-  title: 'Navigation/Application Header',
+  title: 'Layout and Structure/Application Header',
   tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
