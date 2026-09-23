@@ -4,6 +4,12 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unreleased] TBD
+
+* Fixed a console error when `cbp-flex` is unmounted and no breakpoint media query is specified.
+* Fixed an issue where sortable table columns may hide the text when hovering the table cell but not the actual button.
+* Upgraded Storybook to v10.6.
+
 ## [0.9.0-beta.3] 09-18-2026
 
 * BREAKING: renamed the `cbp-tooltip`'s `fieldId` property to `uid` for accuracy and consistency. This property is optional and is automatically generated if not specified, so it only needs to be updated where set explicitly.
@@ -14,7 +20,7 @@ The React components are wrappers generated from this package and will share the
 * Updated `cbp-dropdown`, `cbp-menu`, `cbp-tabs`, and `cbp-treeview` to disable viewport scrolling when using keyboard navigation, including the arrows, `home`, and `end` keys.
 * Additional improvements to `cbp-menu`:
   * Added a `menuItemClick` custom event to `cbp-menu-item`.
-  * Normalize all menu items to activate with either `Space` or `Enter`, whether they are buttons or anchors
+  * Normalize all menu items to activate with either `Space` or `Enter`, whether they are buttons or anchors.
   * Prevent page scrolling when `Space` is pressed.
 * Updated `cbp-flex` so that the `breakpoint` property is reactive. Upon successful testing, this will be replicated in `cbp-grid` and `cbp-drawer`.
 * Updated `cbp-button` to no longer emit a custom `buttonClick` event or enable the "controls" functionality (e.g., for drawers, dialogs, menus, etc.) when disabled.
