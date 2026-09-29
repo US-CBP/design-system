@@ -89,6 +89,8 @@ The same `cbp-form-field` component may also wrap groups of inputs, such as chec
 
 This acts as an implicit `role="group"` for describing each input contained within, giving them greater context from the group when using assistive technologies, such as a screen reader. For example, a checklist of fruits containing "apples", "oranges", "bananas", etc. might be unclear without the context of the group label (legend), which could be "Grocery List" or "Favorite Fruits", changing the meaning of the selections significantly.
 
+> A little-known feature of HTML is that you can disable an entire `fieldset` rather than each individual input within it. This is supported by the `cbp-form-field` component with the `group` property by setting the `disabled` property.
+
 ```HTML
 <cbp-form-field group label="Checklist Group Label" description="Field description.">
   <cbp-checkbox>

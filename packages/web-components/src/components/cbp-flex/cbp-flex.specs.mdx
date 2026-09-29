@@ -24,9 +24,10 @@ The Flex component invokes a CSS Flexbox context, acting as the flex parent and 
 
 ### Responsiveness
 
-* Flexbox is by default responsive, especially when wrapping is allowed.
-* The parent Flex component accepts a `breakpoint` property that defines (in responsive CSS units) the viewport width at which the flex children linearize vertically.
-* Always use relative CSS units such as `fr` or `rem`. Using pixels is fragile and may break if users have custom text sizing or spacing.
+* Flexbox is by default responsive, as flex items may shrink by default. However, this does not prevent overflow in every situation and responsiveness can be improved by: 
+  * Enabling wrapping, which is off by default.
+  * Setting the `breakpoint` property that defines (in responsive CSS units) the viewport width at which the flex children linearize vertically.
+  * Always use relative CSS units such as `ch` or `rem`. Using pixels is fragile and may break if users have custom text sizing or spacing.
 
 ### Accessibility
 
@@ -36,3 +37,15 @@ The Flex component invokes a CSS Flexbox context, acting as the flex parent and 
 
 * Because Flexbox has a parent-child relationship, be aware that nesting Flex children inside of any component (e.g., `<router-outlet>`) that is present in the DOM will affect this behavior and the intended flex children may not be displayed as intended.
 * Text nodes inserted as direct descendants of the flex parent may yield unexpected results; While use of the cbp-flex-item component is optional, flex children should be DOM nodes in most cases and should be wrapped in a tag such as `div` or `span` for more predictable results.
+* The `gap` property is a more robust way of providing space *between* items than margin or padding, which applies around items instead.
+  * `gap` is shorthand for `column-gap` (vertical spacing) and `row-gap` (horizontal spacing).
+    * If a single value is provided, it is applied to both values.
+    * If a `breakpoint` is specified, then the column-gap (first or sole value) will be applied as vertical spacing between items.
+* It's important to understand the defaults of Flexbox layout and when to change them:
+  * Flex direction defaults to row
+  * Flex does not wrap by default.
+  * Flex align-items and align-content default to stretch. In a row context, these cause the items to fill the vertical space of the flex parent.
+  * Flex justify-content defaults to flex-start.
+  * Flex items are sized according to content by default (flex-basis: auto). The initial sizing hint can be given by setting flex-basis (in rem or ch values, preferably)
+  * Flex items shrink by default.
+  * Flex items do not grow by default.
