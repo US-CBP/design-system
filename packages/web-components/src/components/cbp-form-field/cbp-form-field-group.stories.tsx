@@ -206,13 +206,15 @@ const FullNameTemplate = ({ label, labelSlotted, description, descriptionSlotted
           </cbp-form-field>
         </cbp-flex-item>
 
-        <cbp-form-field
-          label="M.I."
-          sx='{"width":"5ch"}'
-        >
-          <input name="middleinitial" type="text" maxlength="1" />
-        </cbp-form-field>
-
+        <cbp-flex-item>
+          <cbp-form-field
+            label="M.I."
+            sx='{"width":"5ch"}'
+          >
+            <input name="middleinitial" type="text" maxlength="1" />
+          </cbp-form-field>
+        </cbp-flex-item>
+        
         <cbp-flex-item
           flex-basis="10rem"
           flex-grow="1"

@@ -142,7 +142,7 @@ const Template = ({
   `;
 };
 
-export const Grid = Template.bind({});
+export const Grid: any = Template.bind({});
 Grid.args = {
   gridTemplateColumns: 'repeat(5,1fr)',
   gap: '1rem',
