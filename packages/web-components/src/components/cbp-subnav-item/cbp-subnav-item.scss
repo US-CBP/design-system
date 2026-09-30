@@ -86,7 +86,7 @@ cbp-subnav-item {
   cbp-button[fill=outline][color=primary]{
     --cbp-button-min-height: 3.5rem;
     --cbp-button-width: 100%;
-    --cbp-button-border-radius: var(--cbp-border-radius-sharp);
+    --cbp-button-border-radius: var(--cbp-border-radius-none);
     --cbp-button-border-width: var(--cbp-border-size-sm);
     
     --cbp-button-color: var(--cbp-subnav-item-color);

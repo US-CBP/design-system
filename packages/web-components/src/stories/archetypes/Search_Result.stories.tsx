@@ -30,7 +30,11 @@ export default {
         description: 'set the action attribute on the form for search',
         control: 'text',
         if:{ arg: 'search'}
-        }
+        },
+        stickyHeader:{
+          description: 'boolean to set if the app header is sticky.',
+          control: 'boolean'
+        },
     }
 };
 
@@ -414,56 +418,57 @@ const html = items.map(({ anchorTitle, location, pageCreation, lastEdited, textB
       return `
           <cbp-structured-list-item>
             <cbp-flex
-                direction="column"
-                gap="0.5rem"
+              direction="column"
+              gap="0.5rem"
             >
+              <cbp-flex-item>
+                <cbp-typography tag="h6">
+                    <cbp-link href="#">
+                        <cbp-icon name="arrow-right"></cbp-icon>
+                        ${anchorTitle}
+                    </cbp-link>
+                </cbp-typography>
+              </cbp-flex-item>
+              <cbp-flex-item>
+                <div>
+                  <cbp-typography tag="span">
+                    <b>${location}</b>
+                  </cbp-typography>
+                </div>
+                <div>
+                  <cbp-typography tag="span">
+                    <b>Page Created:</b>
+                  </cbp-typography>
+                  ${pageCreation}
+                  <cbp-typography
+                    tag="span"
+                    sx='{"margin-left":"0.25rem"}'
+                  >
+                      <b>Last Edited:</b>
+                  </cbp-typography>
+                  ${lastEdited}
+                </div>
+              </cbp-flex-item>
                 <cbp-flex-item>
-                
-                    <cbp-typography
-                        tag="h6"
-                    >
-                        <cbp-link
-                            href="#"
-                        >
-                            <cbp-icon name="arrow-right"></cbp-icon>
-                            ${anchorTitle}
-                        </cbp-link>
-                    </cbp-typography>
-                </cbp-flex-item>
-                <cbp-flex-item>
-                    <div>
-                        <cbp-typography
-                            tag="span"
-                        >
-                            <b>${location}</b>
-                        </cbp-typography>
-                    </div>
-                    <div>
-                        <cbp-typography
-                            tag="span"
-                        >
-                            <b>Page Created:</b>
-                        </cbp-typography>
-                        ${pageCreation}
-                        <cbp-typography
-                            tag="span"
-                            sx='{"margin-left":"0.25rem"}'
-                        >
-                            <b>Last Edited:</b>
-                        </cbp-typography>
-                        ${lastEdited}
-                    </div>
-                </cbp-flex-item>
-                <cbp-flex-item>
-                    <cbp-typography
-                        tag="p"
-                        variant="body-text"
-                        sx='{"--cbp-line-length-longer":"100%"}'
+                  <cbp-typography
+                    tag="p"
+                    variant="body-text"
+                  >
+                    <mark>
+                      ${searchText}
+                    </mark>
+                    ${textBlock}
+                  </cbp-typography>
+
+                   <cbp-typography
+                      tag="p"
+                      variant="body-text"
+                      sx='{"--cbp-line-length-longer":"100%"}'
                     >
                       <mark>
                         ${searchText}
                       </mark>
-                        ${textBlock}
+                      ${textBlock}
                     </cbp-typography>
                 </cbp-flex-item>
             </cbp-flex>
@@ -646,7 +651,7 @@ function renderPeopleTab(items, searchText){
     `;
 }
 
-const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchText, peopleResults, search, searchMethod, searchAction}) => {
+const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchText, peopleResults, search, searchMethod, searchAction, stickyHeader}) => {
 
     setTimeout(() => {
         initThemeSwitcher();
@@ -668,41 +673,44 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
         logo-src-lg="./assets/images/cbp-header-logo.svg"
         logo-src-sm="./assets/images/cbp-seal.svg"
       >
-        <ul>
+        <cbp-flex
+          gap="var(--cbp-space-4x)"
+        >
         ${ isLoggedIn
           ? `
-          <li>
+          <cbp-flex-item>
             <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="book"></cbp-icon>
               <cbp-hide visually-hide-at="max-width: 64em">App Directory</cbp-hide>
             </cbp-button>
-          </li>
-          <li>
+          </cbp-flex-item>
+          <cbp-flex-item>
             <cbp-button color="secondary" fill="ghost" context="dark-always">
               <cbp-icon name="comment"></cbp-icon>  
               <cbp-hide visually-hide-at="max-width: 64em">Feedback</cbp-hide>
             </cbp-button>
-          </li>
-          <li>
+          </cbp-flex-item>
+          <cbp-flex-item>
             <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
               <cbp-icon name="user"></cbp-icon>
               <cbp-hide visually-hide-at="max-width: 64em">${hashid}</cbp-hide>
             </cbp-button>
-          </li>
+          </cbp-flex-item>
           `
           : `
-          <li>
+          <cbp-flex-item>
             <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
             <cbp-icon name="right-to-bracket"></cbp-icon>
             Login
             </cbp-button>
-          </li>
+          </cbp-flex-item>
           `
         }
-        </ul>
+        </cbp-flex>
       </cbp-universal-header>
 
       <cbp-app-header
+        ${stickyHeader ? `sticky` : ``}
         subnav-drawer-id="appheaderdrawer"
         ${search ? `search` : ``}
         ${searchMethod ? `search-method=${searchMethod}` : ``}
@@ -883,5 +891,6 @@ Search.args ={
             lastEdited: "10/01/2025",
             textBlock: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
-    ]   
+    ], 
+    stickyHeader: true
 }

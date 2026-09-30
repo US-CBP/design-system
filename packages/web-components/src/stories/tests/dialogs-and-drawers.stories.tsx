@@ -1,54 +1,87 @@
-# Test/Template with Responsive Table
+export default {
+  title: 'Test/Dialogs and Drawers',
+  parameters: {
+    chromatic: { disableSnapshot: true },
+    layout: 'fullscreen',
+    html: {
+      root: '#storybook-root',
+    },
+  },
+};
 
-## Examples
+function initThemeSwitcher() {
+  const ThemeSegement = document.querySelector('cbp-segmented-button-group#darkmode') as HTMLCbpSegmentedButtonGroupElement
+  const AppComponent = document.querySelector('cbp-app') as HTMLCbpAppElement;
+  const ThemeSpan = document.querySelector('#darkmodeText') as HTMLSpanElement
+  ThemeSegement.addEventListener('buttonClick', (e: any) => {
+    let value = e.detail.value;
+    AppComponent.theme = value;
+    if(e.detail.value == 'light'){
+      ThemeSpan.innerText = "Light mode active.";
+    }else if(e.detail.value == 'dark'){
+      ThemeSpan.innerText = "Dark mode active.";
+    }else{
+      ThemeSpan.innerText = "Device settings will determine light or dark mode.";
+    }
+  })
+}
 
 
-### Template with Responsive Table
 
-```tsx
-() => {
-  // Set up event handlers for logging and setting errors on files via the `status` prop.
+const Template: any = () => {
+  
   setTimeout(() => {
-    const Button = document.querySelector('#live-region-test') as HTMLCbpButtonElement;
-    const LiveRegion = document.querySelector('[slot=cbp-table-live-region]') as HTMLElement;
-    //console.log(Dropdown, Button);
+    initThemeSwitcher();
 
-    Button.addEventListener('buttonClick', () => {
-      console.log('Updating live region...');
-      LiveRegion.innerText = "Page 1 of 5, sorted by Heading 1, ascending.";
+    // Prevent anchors from navigating away
+    const Anchors = document.querySelectorAll('cbp-universal-header a,cbp-app-header a,cbp-subnav a,cbp-footer a');
+    Anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
+
+    // Listen for button clicks on dialog to close it
+    //const Dialog = document.querySelector('cbp-dialog');
+    const ActionButtons = document.querySelectorAll('[slot="cbp-dialog-actions"] cbp-button');
+    ActionButtons.forEach(button => {
+      button.addEventListener('click', function(e) { 
+        (e.target as HTMLElement).closest('cbp-dialog').closeDialog();
+      });
+    });
+
+
+
   }, 500);
+  
   return ` 
-<cbp-app theme="system"> 
+
 <cbp-skip-nav></cbp-skip-nav>
 <cbp-flex direction="column" sx='{"min-height":"100vh"}'>
   <cbp-universal-header logo-src-lg="./assets/images/cbp-header-logo.svg" logo-src-sm="./assets/images/cbp-seal.svg">
-    <ul>
+    <cbp-flex gap="var(--cbp-space-4x)">
     
-      <li>
+      <cbp-flex-item>
         <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
           <cbp-icon name="book"></cbp-icon>
           <cbp-hide visually-hide-at="max-width:64em">App Directory</cbp-hide>
         </cbp-button>
-      </li>
-      <li>
+      </cbp-flex-item>
+      <cbp-flex-item>
         <cbp-button color="secondary" fill="ghost" context="dark-always">
           <cbp-icon name="comment"></cbp-icon>  
           <cbp-hide visually-hide-at="max-width:64em">Feedback</cbp-hide>
         </cbp-button>
-      </li>
-      <li>
+      </cbp-flex-item>
+      <cbp-flex-item>
         <cbp-button color="secondary" fill="ghost" context="dark-always" controls="userPref" target-prop="open">
           <cbp-icon name="user"></cbp-icon>
           <cbp-hide visually-hide-at="max-width:64em">HASHIDX</cbp-hide>
         </cbp-button>
-      </li>
+      </cbp-flex-item>
       
-    </ul>
+    </cbp-flex>
   </cbp-universal-header>
 
-  <cbp-app-header subnav-drawer-id
-  ="appheaderdrawer">
+  <cbp-app-header sticky subnav-drawer-id="appheaderdrawer">
     
     <cbp-nav-item name="Application Name" slot="cbp-home" current>
       <a href="./?path=/story/components-application-header--application-header#">
@@ -69,84 +102,36 @@
       </a>
     </cbp-nav-item>
   
-    <cbp-nav-item name="Nav Item 3">
-      <a href="./?path=/story/components-application-header--application-header#">
+    <cbp-nav-item name="Nav Item 3"> 
+      <cbp-button fill="ghost" color="secondary" target-prop="open" controls="appheaderdrawer">
         Nav Item 3
-      </a>
+        <cbp-icon name="chevron-right" rotate="90"></cbp-icon>
+      </cbp-button>
     </cbp-nav-item>
   
   </cbp-app-header>
   
-
-
-  <!-- grid-template-columns="minmax(15rem, 1fr) minmax(30rem, 3fr)"  -->
-
-  <cbp-grid 
-      grid-template-columns="minmax(12rem, 1fr) 3fr" 
-      gap="var(--cbp-space-7x)"
-      breakpoint="5rem" 
-      sx='{
-        "padding":"1rem var(--cbp-responsive-spacing-outer)",
-        "flex-grow":"2"
+  <cbp-grid grid-template-columns="minmax(30rem, 3fr) minmax(15rem, 1fr)" gap="var(--cbp-space-7x)" breakpoint="50rem" sx='{
+      "padding":"1rem var(--cbp-responsive-spacing-outer)",
+      "flex-grow":"2"
     }'>
-
-    <div style="overflow-y: auto; height: 80vh">
-      <cbp-typography slot="cbp-panel-header" tag="h2" variant="heading-lg" id="sidebarpanelheader">
-        Sidebar Header
-      </cbp-typography>
-      
-      <cbp-structured-list>
-        ${generateStructuredListItems(20)}
-      </cbp-structure-list>
-
-      <!--
-      <cbp-action-bar variant="sticky">
-        <cbp-button fill="ghost">
-          Action 1
-        </cbp-button>
-        <cbp-button fill="ghost" color="secondary">
-          Action 2
-        </cbp-button>
-      </cbp-action-bar>
-      -->
-    </div>
-
-
-    <main 
-      id="main" 
-      tabindex="-1" 
-      style="overflow:auto"
-    >
+    <main id="main" tabindex="-1">
       <cbp-typography tag="h1" divider="underline" sx='{"margin-bottom":"var(--cbp-space-5x)"}'>
         Page Title
       </cbp-typography>
 
+      <p>Main content here.</p>
+
       
-      <cbp-table debug>
-        <cbp-button 
-          id="live-region-test"
-          color="primary"
-          slot="cbp-table-toolbar"
-        >
-          Update Live Region
-        </cbp-button>
+   </main>
 
-        <span slot="cbp-table-live-region">Test</span>
+    <cbp-panel aria-labelledby="sidebarpanelheader" role="complementary">
+      <cbp-typography slot="cbp-panel-header" tag="h2" variant="heading-lg" id="sidebarpanelheader">
+        Sidebar Header
+      </cbp-typography>
+      <p>Sidebar Content</p>
 
-        <table style="width:100%">
-          <caption><cbp-hide visually-hide>Test Data</cbp-hide></caption>
-          <thead>
-            ${generateTableHeaders(10)}
-          </thead>
-
-          <tbody>
-            ${generateTableData(10, 10)}
-          </tbody>
-        </table>
-      </cbp-table>
-    </main>
-
-    
+    </cbp-panel>
   </cbp-grid>
 
   <cbp-footer>
@@ -197,24 +182,23 @@
           </cbp-form-field-wrapper>
         </cbp-form-field>
 
-        <cbp-subnav accessibility-text="Application Name Navigation" store="">
-          <cbp-subnav-item label="Application Name" name="Application Name" href="./?path=/story/components-application-header--application-header#" current> </cbp-subnav-item><cbp-subnav-item label="Nav Item 1" name="Nav Item 1" href="./?path=/story/components-application-header--application-header#"> <cbp-subnav-item label="Nav Item 1-1" name="Nav Item 1-1" href="./?path=/story/components-application-header--application-header#"> </cbp-subnav-item><cbp-subnav-item label="Nav Item 1-2" name="Nav Item 1-2" href="./?path=/story/components-application-header--application-header#"> </cbp-subnav-item></cbp-subnav-item><cbp-subnav-item label="Nav Item 2" name="Nav Item 2" href="./?path=/story/components-application-header--application-header#"> </cbp-subnav-item><cbp-subnav-item label="Nav Item 3" name="Nav Item 3" href="./?path=/story/components-application-header--application-header#"> </cbp-subnav-item>
+        <cbp-subnav accessibility-text="Application Name Navigation" store>
+          <cbp-subnav-item label="Application Name" name="Application Name" href="./?path=/story/components-application-header--application-header#" current></cbp-subnav-item>
+          <cbp-subnav-item label="Nav Item 1" name="Nav Item 1" href="./?path=/story/components-application-header--application-header#">
+            <cbp-subnav-item label="Nav Item 1a" name="Nav Item 1-1" href="./?path=/story/components-application-header--application-header#"></cbp-subnav-item>
+            <cbp-subnav-item label="Nav Item 1b" name="Nav Item 1-2" href="./?path=/story/components-application-header--application-header#"></cbp-subnav-item>
+          </cbp-subnav-item>
+          <cbp-subnav-item label="Nav Item 2" name="Nav Item 2" href="./?path=/story/components-application-header--application-header#"></cbp-subnav-item>
+          <cbp-subnav-item label="Nav Item 3" name="Nav Item 3" href="./?path=/story/components-application-header--application-header#">
+            <cbp-subnav-item label="Nav Item 3a" name="Nav Item 3a" href="./?path=/story/components-application-header--application-header#"></cbp-subnav-item>
+            <cbp-subnav-item label="Nav Item 3b" name="Nav Item 3b" href="./?path=/story/components-application-header--application-header#"></cbp-subnav-item>
+          </cbp-subnav-item>
         </cbp-subnav>
 
       </cbp-panel>
     </cbp-drawer> 
 
   
-
-  <style>
-  cbp-toggle#darkmode {
-    --cbp-toggle-custom-icon-off: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" style="fill:rgb(92 72 9)" viewBox="0 0 512 512"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>');
-
-    --cbp-toggle-custom-icon-on: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" style="fill:rgb(254 230 133)" viewBox="0 0 640 640"><path d="M320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576C388.8 576 451.3 548.8 497.3 504.6C504.6 497.6 506.7 486.7 502.6 477.5C498.5 468.3 488.9 462.6 478.8 463.4C473.9 463.8 469 464 464 464C362.4 464 280 381.6 280 280C280 207.9 321.5 145.4 382.1 115.2C391.2 110.7 396.4 100.9 395.2 90.8C394 80.7 386.6 72.5 376.7 70.3C358.4 66.2 339.4 64 320 64z"/></svg>');
-  }
-</style>
-
-
 <cbp-drawer uid="userPref" position="right" accessibility-text="User Preference Drawer" sx='{
     "--cbp-drawer-close-button-color":"var(--cbp-color-white)"
   }'>
@@ -279,12 +263,57 @@
       </em>
 
     </cbp-section>
+
+    <cbp-button color="secondary" target-prop="open" controls="dialog">
+      Open Test Dialog
+    </cbp-button>
+
+
   </cbp-panel>
 </cbp-drawer>
 
+<cbp-dialog uid="dialog">
+  <cbp-typography id="dialog-title" slot="cbp-dialog-header" tag="h2" variant="heading-dialog" divider="underline">
+    Dialog Title
+  </cbp-typography>
+  
+  <cbp-typography slot="cbp-dialog-body" tag="div" variant="heading-xs">
+    Here is an example of some body text for this dialog. Put more <a href="#">interactive elements</a> in here for testing.
+  </cbp-typography>
+
+  <cbp-button color="secondary" target-prop="open" controls="nesteddialog">
+    Open Another Dialog
+  </cbp-button>
+
+  <div slot="cbp-dialog-actions">
+    <cbp-button tag="button" fill="solid" color="tertiary" aria-describedby="dialog-title">Action 3</cbp-button>
+    <cbp-button tag="button" fill="solid" color="secondary" aria-describedby="dialog-title">Action 2</cbp-button>
+    <cbp-button tag="button" fill="solid" color="primary" aria-describedby="dialog-title">Action 1</cbp-button>
+  </div>
+</cbp-dialog>
+
+
+<cbp-dialog uid="nesteddialog">
+  <cbp-typography id="dialog-title" slot="cbp-dialog-header" tag="h2" variant="heading-dialog" divider="underline">
+    Nested Dialog Title
+  </cbp-typography>
+  
+  <cbp-typography slot="cbp-dialog-body" tag="div" variant="heading-xs">
+    This dialog was opened from another dialog.
+  </cbp-typography>
+
+  <div slot="cbp-dialog-actions">
+    <cbp-button tag="button" fill="solid" color="primary" aria-describedby="dialog-title">Close</cbp-button>
+  </div>
+</cbp-dialog>
+
+
+
 </cbp-flex>
-</cbp-app>
 
   `;
-}
-```
+};
+
+export const DialogsTest = Template.bind({});
+DialogsTest.storyName="Dialogs and Drawers";
+DialogsTest.args = {};

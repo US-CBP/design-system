@@ -8,7 +8,7 @@ export default {
       options: ['h2', 'h3', 'h4', 'h5', 'h6'],
     },
     header: {
-      name: 'header (slotted)',
+      name: 'Heading (slotted)',
       description: 'Text used as the panel header.',
       control: 'text',
     },
@@ -22,7 +22,7 @@ export default {
       control: 'boolean',
     },
     content: {
-      name: 'content (slotted)',
+      name: 'Content (slotted)',
       description: 'Placeholder text representing the panel contents, which can include HTML markup not supported in this story.',
       control: 'text',
     },
@@ -50,10 +50,9 @@ export default {
 const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabel, showIcon, context, sx }) => {
   return `
     <cbp-panel
-      ${headerId ? `aria-labelledby="${headerId}"` : ''}
       ${role != 'none' ? `role="${role}"` : ''}
       ${ariaLabel ? `aria-label="${ariaLabel}"` : ''}
-      ${headerId ? `aria-labelledby="${headerId}"` : ''}
+      ${headerId && role != 'none'? `aria-labelledby="${headerId}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -63,8 +62,7 @@ const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabe
         variant="heading-lg"
         ${headerId ? `id="${headerId}"` : ''}
       >
-        ${showIcon ? `<cbp-icon name="star" sx='{"margin-right":"var(--cbp-space-4x)", "vertical-align":"text-top"}'></cbp-icon>` : ''}
-        ${header}
+        ${showIcon ? `<cbp-icon name="user"></cbp-icon>` : ''}${header}
       </cbp-typography>
 
       <p>${content}</p>
@@ -72,7 +70,7 @@ const PanelTemplate = ({ role, headingLevel, header, headerId, content, ariaLabe
   `;
 }
   
-export const Default = PanelTemplate.bind({});
+export const Default: any = PanelTemplate.bind({});
 Default.args = {
   headingLevel: 'h3',
   header: 'Panel Header',
@@ -81,7 +79,7 @@ Default.args = {
 };
 Default.storyName = 'Default';
 
-export const Sidebar = PanelTemplate.bind({});
+export const Sidebar: any = PanelTemplate.bind({});
 Sidebar.args = {
   headingLevel: 'h3',
   header: 'Sidebar Header',

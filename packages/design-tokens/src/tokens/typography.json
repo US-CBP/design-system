@@ -12,52 +12,123 @@
     },
 
     "size": {
-      "masthead": {
-        "1": {
-          "value": "2.280rem",
-          "attributes": { "use": "typography", "type": "font" }
-        },
-        "2": {
-          "value": "2.027rem",
-          "attributes": { "use": "typography", "type": "font" }
-        }
-      },
       "heading": {
         "xxl": {
-          "value": "1.802rem",
+          "value": "{font.size.9}",
           "attributes": { "use": "typography", "type": "font" }
         },
         "xl": {
-          "value": "1.602rem",
+          "value": "{font.size.8}",
           "attributes": { "use": "typography", "type": "font" }
         },
         "lg": {
-          "value": "1.424rem",
+          "value": "{font.size.7}",
           "attributes": { "use": "typography", "type": "font" }
         },
         "md": {
-          "value": "1.266rem",
+          "value": "{font.size.6}",
           "attributes": { "use": "typography", "type": "font" }
         },
         "sm": {
-          "value": "1.125rem",
+          "value": "{font.size.5}",
           "attributes": { "use": "typography", "type": "font" }
         },
         "xs": {
-          "value": "1rem",
+          "value": "{font.size.4}",
           "attributes": { "use": "typography", "type": "font" }
         }
       },
       "body": {
-        "value": "0.875rem",
+        "value": "{font.size.3}",
         "attributes": { "use": "typography", "type": "font" }
       },
       "button": {
-        "value": "0.875rem",
+        "value": "{font.size.3}",
         "attributes": { "use": "typography", "type": "font" }
       },
       "subhead": {
+        "value": "{font.size.2}",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+
+      "1":{
+        "value": "0.625rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "2":{
         "value": "0.75rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "3":{
+        "value": "0.875rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "4":{
+        "value": "1rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "5":{
+        "value": "1.125rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "6":{
+        "value": "1.266rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "7":{
+        "value": "1.424rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "8":{
+        "value": "1.602rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "9":{
+        "value": "1.802rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "10":{
+        "value": "2.027rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "11":{
+        "value": "2.281rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "12":{
+        "value": "2.566rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "13":{
+        "value": "2.887rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "14":{
+        "value": "3.247rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "15":{
+        "value": "3.653rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "16":{
+        "value": "4.110rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "17":{
+        "value": "4.624rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "18":{
+        "value": "5.202rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "19":{
+        "value": "5.852rem",
+        "attributes": { "use": "typography", "type": "font" }
+      },
+      "20":{
+        "value": "6.583rem",
         "attributes": { "use": "typography", "type": "font" }
       }
     },
@@ -107,31 +178,103 @@
 
   "line-height": {
     "xs": {
-      "value": "1.25rem",
+      "value": "{line-height.3}",
       "attributes": { "use": "typography" }
     },
     "sm": {
-      "value": "1.5rem",
+      "value": "{line-height.4}",
       "attributes": { "use": "typography" }
     },
     "md": {
-      "value": "1.75rem",
+      "value": "{line-height.5}",
       "attributes": { "use": "typography" }
     },
     "lg": {
-      "value": "2rem",
+      "value": "{line-height.6}",
       "attributes": { "use": "typography" }
     },
     "xl": {
-      "value": "2.25rem",
+      "value": "{line-height.7}",
       "attributes": { "use": "typography" }
     },
     "xxl": {
-      "value": "2.5rem",
+      "value": "{line-height.8}",
       "attributes": { "use": "typography" }
     },
     "xxxl": {
+      "value": "{line-height.9}",
+      "attributes": { "use": "typography" }
+    },
+    "1":{
+      "value": "0.75rem",
+      "attributes": { "use": "typography" }
+    },
+    "2":{
+      "value": "1rem",
+      "attributes": { "use": "typography" }
+    },
+    "3":{
+      "value": "1.25rem",
+      "attributes": { "use": "typography" }
+    },
+    "4":{
+      "value": "1.5rem",
+      "attributes": { "use": "typography" }
+    },
+    "5":{
+      "value": "1.75rem",
+      "attributes": { "use": "typography" }
+    },
+    "6":{
+      "value": "2rem",
+      "attributes": { "use": "typography" }
+    },
+    "7":{
+      "value": "2.25rem",
+      "attributes": { "use": "typography" }
+    },
+    "8":{
+      "value": "2.5rem",
+      "attributes": { "use": "typography" }
+    },
+    "9":{
       "value": "2.75rem",
+      "attributes": { "use": "typography" }
+    },
+    "10":{
+      "value": "3rem",
+      "attributes": { "use": "typography" }
+    },
+    "11":{
+      "value": "3.5rem",
+      "attributes": { "use": "typography" }
+    },
+    "12":{
+      "value": "4rem",
+      "attributes": { "use": "typography" }
+    },
+    "13":{
+      "value": "4.5rem",
+      "attributes": { "use": "typography" }
+    },
+    "14":{
+      "value": "5.25rem",
+      "attributes": { "use": "typography" }
+    },
+    "15":{
+      "value": "6rem",
+      "attributes": { "use": "typography" }
+    },
+    "16":{
+      "value": "6.5rem",
+      "attributes": { "use": "typography" }
+    },
+    "17":{
+      "value": "7.25rem",
+      "attributes": { "use": "typography" }
+    },
+    "18":{
+      "value": "8rem",
       "attributes": { "use": "typography" }
     }
   },

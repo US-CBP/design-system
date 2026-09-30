@@ -44,8 +44,8 @@ export default {
     },
   },
   args: {
-    label: 'Field Label',
-    description: 'Field description.',
+    label: 'Insert Field Label',
+    description: 'Insert field description.',
   },
 };
 
@@ -68,16 +68,7 @@ function filterStartByString(str) {
 const Template = ({ label, description, fieldId, name, error, readonly, disabled, inputType, value, context, sx, items, search }) => {
 
   setTimeout(() => {
-    let input = document.querySelector('cbp-listbox input');
-    input.addEventListener('change', (e) => {
-      console.log('Native input change event received: ', e);
-    });
-
-    let formField = document.querySelector('cbp-form-field');
-    formField.addEventListener('valueChange', (e) => {
-      console.log('Form field valueChange event received: ', e);
-    });
-    
+   
     let listbox = document.querySelector('cbp-listbox');
     listbox.addEventListener('updateListboxSuggestions', (e) => {
       const { value } = e.detail;
@@ -113,13 +104,12 @@ const Template = ({ label, description, fieldId, name, error, readonly, disabled
   `;
 };
 
-export const Listbox = Template.bind({});
+export const Listbox: any = Template.bind({});
 Listbox.args = {
   label: "Listbox Example",
   description: "This listbox has a default list of suggestions supplied; typing is not required but filters the list further.",
   inputType: "text",
-  fieldId: "text",
-  name: "text",
+  name: "insert-field-name",
   value: "",
   items: Countries //States
 };
@@ -178,13 +168,12 @@ const ListboxSearchTemplate = ({ label, description, fieldId, name, error, reado
   `;
 };
 
-export const ListboxSearch = ListboxSearchTemplate.bind({});
+export const ListboxSearch: any = ListboxSearchTemplate.bind({});
 ListboxSearch.storyName="Search with Suggestions"
 ListboxSearch.args = {
   label: "Search with Suggestions Listbox",
   description: "This search field uses a cbp-listbox to offer suggestions when typing.",
   inputType: "search",
-  fieldId: "search",
-  name: "search",
+  name: "insert-field-name",
   value: "",
 };

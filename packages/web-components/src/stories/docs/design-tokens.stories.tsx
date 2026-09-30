@@ -1,25 +1,25 @@
-import { default as Animation } from '../../../design-tokens/src/tokens/animation.json';
-import { default as Border } from '../../../design-tokens/src/tokens/border.json';
-import { default as Breakpoints } from '../../../design-tokens/src/tokens/breakpoints.json';
-import { default as Elevation } from '../../../design-tokens/src/tokens/elevation.json';
-import { default as Space } from '../../../design-tokens/src/tokens/space.json';
-import { default as Theme } from '../../../design-tokens/src/tokens/theme.json';
-import { default as Typography } from '../../../design-tokens/src/tokens/typography.json';
+import { default as Animation } from '../../../../design-tokens/src/tokens/animation.json';
+import { default as Border } from '../../../../design-tokens/src/tokens/border.json';
+import { default as Breakpoints } from '../../../../design-tokens/src/tokens/breakpoints.json';
+import { default as Elevation } from '../../../../design-tokens/src/tokens/elevation.json';
+import { default as Space } from '../../../../design-tokens/src/tokens/space.json';
+import { default as Theme } from '../../../../design-tokens/src/tokens/theme.json';
+import { default as Typography } from '../../../../design-tokens/src/tokens/typography.json';
 
-import { default as Black } from '../../../design-tokens/src/tokens/color/black.json';
-import { default as Blue } from '../../../design-tokens/src/tokens/color/blue.json';
-import { default as Cyan } from '../../../design-tokens/src/tokens/color/cyan.json';
-import { default as Gold } from '../../../design-tokens/src/tokens/color/gold.json';
-import { default as Gray } from '../../../design-tokens/src/tokens/color/gray.json';
-import { default as Green } from '../../../design-tokens/src/tokens/color/green.json';
-import { default as Indigo } from '../../../design-tokens/src/tokens/color/indigo.json';
-import { default as Magenta } from '../../../design-tokens/src/tokens/color/magenta.json';
-import { default as Mint } from '../../../design-tokens/src/tokens/color/mint.json';
-import { default as Orange } from '../../../design-tokens/src/tokens/color/orange.json';
-import { default as Red } from '../../../design-tokens/src/tokens/color/red.json';
-import { default as Violet } from '../../../design-tokens/src/tokens/color/violet.json';
-import { default as White } from '../../../design-tokens/src/tokens/color/white.json';
-import { default as Yellow } from '../../../design-tokens/src/tokens/color/yellow.json';
+import { default as Black } from '../../../../design-tokens/src/tokens/color/black.json';
+import { default as Blue } from '../../../../design-tokens/src/tokens/color/blue.json';
+import { default as Cyan } from '../../../../design-tokens/src/tokens/color/cyan.json';
+import { default as Gold } from '../../../../design-tokens/src/tokens/color/gold.json';
+import { default as Gray } from '../../../../design-tokens/src/tokens/color/gray.json';
+import { default as Green } from '../../../../design-tokens/src/tokens/color/green.json';
+import { default as Indigo } from '../../../../design-tokens/src/tokens/color/indigo.json';
+import { default as Magenta } from '../../../../design-tokens/src/tokens/color/magenta.json';
+import { default as Mint } from '../../../../design-tokens/src/tokens/color/mint.json';
+import { default as Orange } from '../../../../design-tokens/src/tokens/color/orange.json';
+import { default as Red } from '../../../../design-tokens/src/tokens/color/red.json';
+import { default as Violet } from '../../../../design-tokens/src/tokens/color/violet.json';
+import { default as White } from '../../../../design-tokens/src/tokens/color/white.json';
+import { default as Yellow } from '../../../../design-tokens/src/tokens/color/yellow.json';
 
 export default {
   title: 'Design Tokens',
@@ -138,6 +138,7 @@ function sanitizeTokenValue(str) {
   } else return str;
 }
 
+
 function outputTableRow(arr) {
   let rows = '';
   arr.forEach(item => {
@@ -158,7 +159,25 @@ function outputTableRow(arr) {
 }
 
 const Template = () => {
+  let toc = '';
   let pageContents = '';
+
+  AllTokenNames.forEach((item, index) => {
+    //if(index < 7){
+      toc += `
+        <li>
+          <a href="${`#${AllTokenNames[index].toLowerCase()}-tokens`}" 
+            data-id="${`${AllTokenNames[index].toLowerCase()}-tokens`}"
+            onClick="inPageNavigation(event);"
+          >
+            ${item}
+          </a>
+        </li>
+      `;
+    //}
+  });
+  toc=`<ul>${toc}</ul><br /><br />`
+
 
   AllTokens.forEach((item, index) => {
     let contents = iterateObj(item);
@@ -167,7 +186,10 @@ const Template = () => {
 
     pageContents += `
       <cbp-typography 
+        id="${`${AllTokenNames[index].toLowerCase()}-tokens`}"
+        name="${`${AllTokenNames[index].toLowerCase()}-tokens`}"
         tag="h2" 
+        tabindex="-1"
         sx='{"margin-block-end":"var(--cbp-space-2x)"}'
       >
         ${AllTokenNames[index]}
@@ -210,6 +232,7 @@ const Template = () => {
         This extra level of abstraction leads to more maintainable code, reduces design decisions that don't align with the design system, and results in fewer "one-offs."
       </p>
 
+      ${toc}
       ${pageContents}
     </main>
 `;

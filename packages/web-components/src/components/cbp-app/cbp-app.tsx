@@ -8,7 +8,7 @@ import { Component, Prop, Host, h, Env } from '@stencil/core';
  */
 @Component({
   tag: 'cbp-app',
-  styleUrls: ['reset.scss', 'css-variables.scss', 'core.scss', 'cbp-app.scss']
+  styleUrls: ['reset.scss', 'cbp-design-tokens.scss', 'core.scss', 'cbp-app.scss']
 })
 export class CbpApp {
 

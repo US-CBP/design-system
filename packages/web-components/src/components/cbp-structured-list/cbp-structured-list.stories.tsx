@@ -18,11 +18,15 @@ export default {
     selectable: {
       control: 'boolean',
     },
-   listItemType: {
-      description: 'determine if structured list is populated with li or structured list item',
-      control: 'select',
-      options: ['li', 'structured list item']
-   },
+    listItemType: {
+        description: 'determine if structured list is populated with li or structured list item',
+        control: 'select',
+        options: ['li', 'structured list item']
+    },
+    listItems: {
+      name: 'listItems (slotted)',
+      control: 'object',
+    },
     context : {
       control: 'select',
       options: [ "light-inverts", "light-always", "dark-inverts", "dark-always"]
@@ -42,23 +46,21 @@ export default {
 function generateLIs(items, selectable, context) {
   const html = items.map(({ content }, index) => {
     return `
-        <li>
+      <li>
         ${selectable ?
-            `<cbp-checkbox 
-              value="${index}"
-              ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
-            >
-              <input
-                type="checkbox"
-                name="checkbox"
-                value="${index}"
-              />
-              <cbp-hide visually-hide>
-                Checkbox ${index}
-              </cbp-hide>
-            </cbp-checkbox>`
-          :``
-        }
+        `<cbp-checkbox 
+          value="${index}"
+          ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
+        >
+          <input
+            type="checkbox"
+            name="checkbox"
+            value="${index}"
+          />
+          <cbp-hide visually-hide>
+            Checkbox ${index}
+          </cbp-hide>
+        </cbp-checkbox>` : ''}
         ${content}
       </li>
     `;
@@ -69,9 +71,9 @@ function generateLIs(items, selectable, context) {
 function generateItems(items, selectable, context) {
   const html = items.map(({ content, color}, index) => {
     return `
-      <cbp-structured-list-item ${color ? `color="${color}"` : ''} >
+      <cbp-structured-list-item ${color ? `color="${color}"` : ''}>
         ${selectable ?
-          `<cbp-checkbox 
+        `<cbp-checkbox 
           value="${index}"
           ${context && context != 'light-inverts' ? `context="${context}"` : ''}   
         >
@@ -84,16 +86,14 @@ function generateItems(items, selectable, context) {
             Checkbox ${index}
           </cbp-hide>
         </cbp-checkbox>`
-        :``
-        }
-        ${content}
+        : ''} ${content}
       </cbp-structured-list-item>
     `;
   });
   return html.join('');
 }
 
-const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, headerId, showFooter, listItemType, context, sx }) => {
+const StructuredListTemplate: any = ({ listItems, striped, selectable, showHeader, headerId, showFooter, listItemType, context, sx }) => {
   
   setTimeout(() => {
     let anchors = document.querySelectorAll('cbp-structured-list a');
@@ -110,29 +110,20 @@ const StructuredListTemplate = ({ listItems, striped, selectable, showHeader, he
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${showHeader ? `<div slot="cbp-structured-list-header" ${headerId ? `id="${headerId}"` : ''}>${listItems.length} results, filters applied, etc. This acts as the "aria-description" for the list.</div>` : ''}
-
       ${listItemType=="structured list item" ? generateItems(listItems, selectable, context) : generateLIs(listItems, selectable, context)}
-      
       ${showFooter ? `
-        <div slot="cbp-structured-list-footer">
-          <cbp-action-bar variant="inline" context="dark-inverts">
-            <div slot="cbp-action-bar-info">0 items selected.</div>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
-            <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
-          </cbp-action-bar>
-        </div>
-      ` : ''}
+      <div slot="cbp-structured-list-footer">
+        <cbp-action-bar variant="inline" context="dark-inverts">
+          <div slot="cbp-action-bar-info">0 items selected.</div>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Delete selected items">Delete</cbp-button>
+          <cbp-button fill="ghost" context="dark-inverts" accessibility-text="Compare selected items">Compare</cbp-button>
+        </cbp-action-bar>
+      </div>` : ''}
     </cbp-structured-list>
   `;
 };
 export const StructuredList = StructuredListTemplate.bind({});
 StructuredList.storyName = "Structured List (Simple)"
-StructuredList.argTypes = {
-  listItems: {
-    description: 'Configure various aspects of the list items within the structured list.',
-    control: 'object',
-  },
-}
 StructuredList.args = {
   listItemType: 'li',
   listItems: [
@@ -158,7 +149,7 @@ StructuredList.args = {
 export const StructuredListWithGrid = StructuredListTemplate.bind({});
 StructuredListWithGrid.args = {
   listItemType: "structured list item",
-   listItems: [
+  listItems: [
     {
       content: "<cbp-grid gap='var(--cbp-space-4x)'  grid-template-columns='repeat(auto-fit, minmax(5rem, 1fr))'><cbp-grid-item>Grid Item 1</cbp-grid-item><cbp-grid-item>Grid Item 2</cbp-grid-item><cbp-grid-item>Grid Item 3</cbp-grid-item><cbp-grid-item>Grid Item 4</cbp-grid-item></cbp-grid>",
     },
@@ -240,179 +231,180 @@ StructuredListMediaCalendar.args = {
   listItemType: "structured list item",
   listItems: [
     {
-      content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
+      content: `<cbp-grid grid-template-columns="6.25rem 1fr" gap="1rem">
                   <cbp-flex  
                     display="flex"
                     direction="column"
                     align-items="center"
                   >
-                  <cbp-flex-item
-                  sx='{
+                    <cbp-flex-item
+                      sx='{
                         "width":"100%",
                         "text-align":"center",
-                        "border-radius":"var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0",
+                        "border-radius":"var(--cbp-border-radius-1) var(--cbp-border-radius-1) 0 0",
                         "padding-block":"var(--cbp-space-2x)",
                         "background-color":"var(--cbp-color-red-50)",
                         "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
-                        "text-transform":"uppercase",
-                        "font-size":"var(--cbp-font-size-heading-xl)",
-                        "font-weight":"var(--cbp-font-weight-regular)"
+                        "text-transform":"uppercase"
                       }'
-                  > 
-                    apr
-                  </cbp-flex-item>
-                  
-                  <cbp-flex-item
-                    sx='{
-                      "width":"100%",
-                      "height":"4.25rem",
-                      "text-align":"center",
-                      "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
-                      "border-width":"var(--cbp-border-size-md)",
-                      "border-style":"solid",
-                      "border-color":"var(--cbp-color-gray-cool-40)",
-                      "border-top":"none",
-                      "color":"var(--cbp-structured-list-color)",
-                      "font-size":"var(--cbp-font-size-masthead-1)",
-                      "font-weight":"var(--cbp-font-weight-black)",
-                      "line-height":"1.75"
-                  }'
+                    > 
+                    <cbp-typography tag="span" size="8">
+                      apr
+                    </cbp-typography>
+                    </cbp-flex-item>
+                    
+                    <cbp-flex-item
+                      sx='{
+                        "width":"100%",
+                        "height":"4.25rem",
+                        "text-align":"center",
+                        "align-content":"center",
+                        "border-radius":"0 0 var(--cbp-border-radius-1) var(--cbp-border-radius-1)",
+                        "border-width":"var(--cbp-border-size-md)",
+                        "border-style":"solid",
+                        "border-color":"var(--cbp-color-gray-cool-40)",
+                        "border-top":"none",
+                        "color":"var(--cbp-structured-list-color)",
+                        "line-height":"1.75"
+                      }'
                     >
-                    31
-                  </cbp-flex-item>
-                </cbp-flex>
+                      <cbp-typography tag="span" variant="heading-xxl" font-weight="black">
+                        31
+                      </cbp-typography>
+                    </cbp-flex-item>
+                  </cbp-flex>
                   <div>
-                    <cbp-typography tag='p'>
-                      <cbp-link href='#'>
-                        <cbp-icon name='arrow-right'></cbp-icon>
+                    <cbp-typography tag="p">
+                      <cbp-link href="#">
+                        <cbp-icon name="arrow-right"></cbp-icon>
                         Find the Hidden Beetle Training
                       </cbp-link>
                     </cbp-typography>
-                    <cbp-typography tag='p'>This training session will help you find those pesky hiding beetles. Inside boxes, on top of containers, or in someone's pocket, these bugs don't stand a chance of getting to America's sweet, delicious forests</cbp-typography>
-                    <cbp-typography tag='p'>
-                      <cbp-icon name='globe'></cbp-icon>
+                    <cbp-typography tag="p">This training session will help you find those pesky hiding beetles. Inside boxes, on top of containers, or in someone's pocket, these bugs don't stand a chance of getting to America's sweet, delicious forests</cbp-typography>
+                    <cbp-typography tag="p">
+                      <cbp-icon name="globe"></cbp-icon>
                       <i>https://www.cbp.dhs.gov/news/beetles</i>
                     </cbp-typography>
                   </div>
-                <cbp-grid>`,
+                </cbp-grid>`,
     },
     {
-      content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
+      content: `<cbp-grid grid-template-columns="6.25rem 1fr" gap="1rem">
                   <cbp-flex  
                     display="flex"
                     direction="column"
                     align-items="center"
                   >
-                  <cbp-flex-item
-                  sx='{
+                    <cbp-flex-item
+                      sx='{
                         "width":"100%",
                         "text-align":"center",
-                        "border-radius":"var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0",
+                        "border-radius":"var(--cbp-border-radius-1) var(--cbp-border-radius-1) 0 0",
                         "padding-block":"var(--cbp-space-2x)",
                         "background-color":"var(--cbp-color-red-50)",
                         "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
-                        "text-transform":"uppercase",
-                        "font-size":"var(--cbp-font-size-heading-xl)",
-                        "font-weight":"var(--cbp-font-weight-regular)"
+                        "text-transform":"uppercase"
                       }'
-                  > 
-                    mar
-                  </cbp-flex-item>
-                  
-                  <cbp-flex-item
-                    sx='{
-                          "width":"100%",
-                          "height":"4.25rem",
-                          "text-align":"center",
-                          "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
-                          "border-width":"var(--cbp-border-size-md)",
-                          "border-style":"solid",
-                          "border-color":"var(--cbp-color-gray-cool-40)",
-                          "border-top":"none",
-                          "color":"var(--cbp-structured-list-color)",
-                          "font-size":"var(--cbp-font-size-masthead-1)",
-                          "font-weight":"var(--cbp-font-weight-black)",
-                          "line-height":"1.75"
+                    > 
+                      <cbp-typography tag="span" size="8">
+                        mar
+                      </cbp-typography>
+                    </cbp-flex-item>
+                    
+                    <cbp-flex-item
+                      sx='{
+                        "width":"100%",
+                        "height":"4.25rem",
+                        "text-align":"center",
+                        "align-content":"center",
+                        "border-radius":"0 0 var(--cbp-border-radius-1) var(--cbp-border-radius-1)",
+                        "border-width":"var(--cbp-border-size-md)",
+                        "border-style":"solid",
+                        "border-color":"var(--cbp-color-gray-cool-40)",
+                        "border-top":"none",
+                        "color":"var(--cbp-structured-list-color)",
+                        "line-height":"1.75"
                       }'
                     >
-                    15
-                  </cbp-flex-item>
-                </cbp-flex>
+                      <cbp-typography tag="span" variant="heading-xxl" font-weight="black">
+                        15
+                      </cbp-typograpghy>
+                    </cbp-flex-item>
+                  </cbp-flex>
                   <div>
-                    <cbp-typography tag='p'>
-                      <cbp-link href='#'>
-                        <cbp-icon name='arrow-right'></cbp-icon>  
+                    <cbp-typography tag="p">
+                      <cbp-link href="#">
+                        <cbp-icon name="arrow-right"></cbp-icon>  
                         Agency Picnic
                       </cbp-link>
                     </cbp-typography>
-                    <cbp-typography tag='p'>Every year the Capital District CBP employees come together to have a nice (ant free) picnic</cbp-typography>
-                    <cbp-typography tag='p'>
-                      <cbp-icon name='globe'></cbp-icon>
+                    <cbp-typography tag="p">Every year the Capital District CBP employees come together to have a nice (ant free) picnic</cbp-typography>
+                    <cbp-typography tag="p">
+                      <cbp-icon name="globe"></cbp-icon>
                       <i>https://www.cbp.dhs.gov/news/capital-picnic</i>
                     </cbp-typography>
                   </div>
-                <cbp-grid>
-      `,
+                </cbp-grid>`,
     },
     {
-      content: `<cbp-grid grid-template-columns='6.25rem 1fr' gap='1rem'>
+      content: `<cbp-grid grid-template-columns="6.25rem 1fr" gap="1rem">
                   <cbp-flex  
                     display="flex"
                     direction="column"
                     align-items="center"
                   >
-                  <cbp-flex-item
-                  sx='{
+                    <cbp-flex-item
+                      sx='{
                         "width":"100%",
                         "text-align":"center",
-                        "border-radius":"var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0",
+                        "border-radius":"var(--cbp-border-radius-1) var(--cbp-border-radius-1) 0 0",
                         "padding-block":"var(--cbp-space-2x)",
                         "background-color":"var(--cbp-color-red-50)",
                         "border":"var(--cbp-border-size-sm) solid var(--cbp-color-red-50)",
                         "color":"var(--cbp-color-white)",
-                        "text-transform":"uppercase",
-                        "font-size":"var(--cbp-font-size-heading-xl)",
-                        "font-weight":"var(--cbp-font-weight-regular)"
+                        "text-transform":"uppercase"
                       }'
-                  > 
-                    feb
-                  </cbp-flex-item>
+                    > 
+                      <cbp-typography tag="span" size="8">
+                        feb
+                      </cbp-typography>
+                    </cbp-flex-item>
                   
-                  <cbp-flex-item
-                    sx='{
-                          "width":"100%",
-                          "height":"4.25rem",
-                          "text-align":"center",
-                          "border-radius":"0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft)",
-                          "border-width":"var(--cbp-border-size-md)",
-                          "border-style":"solid",
-                          "border-color":"var(--cbp-color-gray-cool-40)",
-                          "border-top":"none",
-                          "color":"var(--cbp-structured-list-color)",
-                          "font-size":"var(--cbp-font-size-masthead-1)",
-                          "font-weight":"var(--cbp-font-weight-black)",
-                          "line-height":"1.75"
+                    <cbp-flex-item
+                      sx='{
+                        "width":"100%",
+                        "height":"4.25rem",
+                        "text-align":"center",
+                        "align-content":"center",
+                        "border-radius":"0 0 var(--cbp-border-radius-1) var(--cbp-border-radius-1)",
+                        "border-width":"var(--cbp-border-size-md)",
+                        "border-style":"solid",
+                        "border-color":"var(--cbp-color-gray-cool-40)",
+                        "border-top":"none",
+                        "color":"var(--cbp-structured-list-color)",
+                        "line-height":"1.75"
                       }'
                     >
-                    3
-                  </cbp-flex-item>
-                </cbp-flex>
+                      <cbp-typography tag="span" variant="heading-xxl" font-weight="black">
+                        3
+                      </cbp-typography>
+                    </cbp-flex-item>
+                  </cbp-flex>
                   <div>
-                    <cbp-typography tag='p'>
-                      <cbp-link href='#'>                      
-                        <cbp-icon name='arrow-right'></cbp-icon>
+                    <cbp-typography tag="p">
+                      <cbp-link href="#">                      
+                        <cbp-icon name="arrow-right"></cbp-icon>
                         Commissioners Awards</cbp-link>
                     </cbp-typography>
-                    <cbp-typography tag='p'>Join us in person or online to celebrate this past years CBP employees excellence awards.</cbp-typography>
-                    <cbp-typography tag='p'>
-                      <cbp-icon name='globe'></cbp-icon>
+                    <cbp-typography tag="p">Join us in person or online to celebrate this past years CBP employees excellence awards.</cbp-typography>
+                    <cbp-typography tag="p">
+                      <cbp-icon name="globe"></cbp-icon>
                       <i>https://www.cbp.dhs.gov/news/awards</i>
                     </cbp-typography>
                   </div>
-                <cbp-grid>
-      `,
+                </cbp-grid>`,
     }
   ]
 }

@@ -1,0 +1,30 @@
+# What is a Design System?
+
+A design system is a higher-level abstraction that encompasses several related artifacts:
+
+-   Design Tokens: represent atomic design decisions in a reusable, platform-agnostic format.
+-   Style Guide: Best practices on how to use the design system, design tokens, components, and patterns.
+-   UI Toolkit: A design toolkit, in our case as a Sketch library.
+-   Reusable Components: Code comprising composable building blocks, UI components, and patterns, in our case made up of standards-based, framework-agnostic web components.
+
+## Value Proposition
+
+A design system deploys at scale branding, design, and user interactions that are cohesive, responsive, and accessible.
+
+## Benefits
+
+-   Reduces duplication of effort, allowing development teams to devote more of their time to the requirements and challenges of their application and customers.
+-   Create a cohesive user experience across the CBP Enterprise.
+    -   Don't reinvent the wheel.
+    -   Utilize strong affordances and consistent application of user interface elements to reduce user's cognitive load.
+-   Aligns to CBP Enterprise needs.
+    -   Moves at our pace, not another organization's.
+    -   Creates user interfaces that reflect the data-rich, dense applications our users need to accomplish their mission.
+    -   Make design decisions that reflect that the CBP Design System serves one customer but a plethora of applications, websites, mobile apps, and site architectures.
+-   Accessible out of the box.
+
+## Design System vs Headless Component Libraries
+
+A design system is opinionated by design. Every part of the design system from design tokens to the style guide to the web component implementation was designed with intention. When you use a design system, you are opting in to these design decisions.
+
+While some component libraries may offer robust functionality and often tighter framework integration, these benefits come with trade-offs. Most importantly, the time and effort it takes to "skin" a headless component library to look like the design system components is significant with no guarantee that it will match the design system specifications completely, thereby undermining the design consistency and sometimes even interactions of user interface elements between applications within the same organization.

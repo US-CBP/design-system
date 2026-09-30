@@ -7,6 +7,7 @@
 | `search` | `search` | Specifies if there will be a slotted input for global search | `boolean` | `undefined` |
 | `searchAction` | `search-action` | Specifies the action attribute for the search form | `string` | `undefined` |
 | `searchMethod` | `search-method` | Specifies the method attribute for the search form | `string` | `undefined` |
+| `sticky` | `sticky` | Specifies if the app header is sticky | `boolean` | `undefined` |
 | `subnavDrawerId` | `subnav-drawer-id` | Specifies the id of the drawer to be launched | `string` | `undefined` |
 
 ## Events

@@ -60,7 +60,7 @@ const Template = ({ treeItems, name, selectable, accessibilityText, context, sx 
   `;
 };
 
-export const Treeview = Template.bind({});
+export const Treeview: any = Template.bind({});
 Treeview.args = {
   accessibilityText: 'Treeview storybook example',
   name: 'treeitem',
@@ -177,7 +177,7 @@ const actionButtonTemplate = ({ treeItems, name,  accessibilityText, context, sx
   `;
 };
 
-export const actionButtonTreeview = actionButtonTemplate.bind({});
+export const actionButtonTreeview: any = actionButtonTemplate.bind({});
 actionButtonTreeview.storyName = 'Treeview with Action Button'
 actionButtonTreeview.args = {
   accessibilityText: 'Treeview storybook example',

@@ -2,6 +2,11 @@ export default {
   title: 'Layout and Structure/Multicol',
   tags: ['beta','code-only'],
   argTypes: {
+    content: {
+      name: 'Content (slotted)',
+      description: 'The multi-col children and their contents.',
+      control: 'object',
+    },
     columns: {
       control: 'number',
     },
@@ -60,7 +65,8 @@ export default {
 
 function createChildren(children) {
   const html = children.map(({ text }) => {
-    return `<li>${text}</li>`;
+    return `
+      <li>${text}</li>`;
   });
   return html.join('');
 }
@@ -75,13 +81,12 @@ const Template = ({ content, columns, width, gap, rule, nobreak, sx }) => {
       ${nobreak ? 'nobreak' : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       role="list"
-    >
-      ${createChildren(content)}
+    >${createChildren(content)}
     </cbp-multicol>
   `;
 };
 
-export const Multicol = Template.bind({});
+export const Multicol: any = Template.bind({});
 Multicol.args = {
   columns: 2,
   width: '8rem',

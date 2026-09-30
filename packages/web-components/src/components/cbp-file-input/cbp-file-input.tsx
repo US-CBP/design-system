@@ -278,6 +278,7 @@ export class CbpFileInput {
                 <cbp-button
                   fill="ghost"
                   color="secondary"
+                  variant="circle"
                   value={`${index}`}
                   accessibilityText={ (this.files.length > 0 && this.multiple && !this.enhanced) ? 'Remove Files' : `Remove ${name}`}
                 >

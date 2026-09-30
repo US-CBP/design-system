@@ -83,6 +83,7 @@ export class CbpExpand {
               class="cbp-expand--toggle"
               fill="ghost"
               color="secondary"
+              variant="square"
               width="var(--cbp-space-6x)"
               height="var(--cbp-space-6x)"
               context={this.context}
@@ -96,17 +97,15 @@ export class CbpExpand {
           </cbp-flex-item>
 
           <cbp-flex-item id={this.headingId} flexGrow={1}>
-            { this.host.querySelector('[slot="cbp-expand-label"]')
-              ? <slot name="cbp-expand-label" />
-              : <cbp-typography 
-                  tag={this.headingLevel} 
-                  variant="heading-xs"
-                  context={this.context}
-                  sx='{"line-height":"var(--cbp-space-6x)"}'
-                >
-                  {this.label}
-                </cbp-typography>
-            }
+            <cbp-typography 
+              tag={this.headingLevel} 
+              variant="heading-xs"
+              context={this.context}
+              sx='{"line-height":"var(--cbp-space-6x)"}'
+            >
+              <slot name="cbp-expand-label" />
+              {this.label}
+            </cbp-typography>
           </cbp-flex-item>
         </cbp-flex>
 

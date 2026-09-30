@@ -1,33 +1,54 @@
 export default {
   title: 'Content/Tooltip',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
+    control: {
+      name: 'control (slotted)',
+      control: 'text',
+    },
+    title: {
+      name: 'title (slotted)',
+      control: 'text',
+    },
+    content: {
+      name: 'content (slotted)',
+      control: 'text',
+    },
     uid: {
-      description: 'A unique `id` applied to the dialog and referenced by the control.',
+      description: 'A unique `id` applied to the tooltip and referenced by the control.',
       control: 'text',
     },
     open: {
       description: 'toggle the open prop for the tooltip',
       control: 'boolean',
     },
-    alignment: {
+    height: {
+      description: 'Specifies a custom CSS height for the dialog',
+      control: 'text'
+    },
+    width: {
+      description: 'Specifies a custom CSS width for the dialog',
+      control: 'text'
+    },
+    position: {
       description: 'Sets where the the tooltip will align to the control.',
       control: 'select',
       options: [
-        'top-left',
-        'top-center',
-        'top-right',
-        'right-top',
-        'right-center',
-        'right-bottom',
-        'bottom-left',
-        'bottom-center',
-        'bottom-right',
-        'left-top',
-        'left-center',
-        'left-bottom',
+        "top-start",
+        "top",
+        "top-end",
+        "right-start",
+        "right",
+        "right-end",
+        "bottom-start",
+        "bottom",
+        "bottom-end",
+        "left-start",
+        "left",
+        "left-end"
       ],
     },
+
     context: {
       control: 'select',
       options: ['light-inverts', 'light-always', 'dark-inverts', 'dark-always'],
@@ -40,16 +61,18 @@ export default {
   parameters: { layout: 'centered' },
 };
 
-const Template = ({ open, uid, alignment, title, content, tooltipControl, context, sx }) => {
+const Template = ({ open, height, width, uid, position, title, content, control, context, sx }) => {
   return ` 
     <cbp-tooltip
       ${open ? 'open' : ''}
+      ${height ? `height="${height}"` : ''}
+      ${width ? `width="${width}"` : ''}
       ${uid ? `uid="${uid}"` : ''}
-      ${alignment ? `alignment="${alignment}"` : ''}
+      ${position ? `position="${position}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >  
-      ${tooltipControl}
+      ${control}
       <div slot="cbp-tooltip-content">
         <div style="font-weight: var(--cbp-font-weight-bold)">${title}</div>
         <div>${content}</div>
@@ -58,27 +81,27 @@ const Template = ({ open, uid, alignment, title, content, tooltipControl, contex
   `;
 };
 
-export const Tooltip = Template.bind({});
+export const Tooltip: any = Template.bind({});
 
 Tooltip.args = {
-  uid: 'tooltip',
+  control: '<cbp-icon name="user" accessibility-text="User"></cbp-icon>',
   title: 'Test Tooltip Title',
   content: 'Stub text for tooltip.',
-  tooltipControl: '<cbp-icon name="user" accessibility-text="User"></cbp-icon>',
+  uid: 'tooltip',
 };
 
-const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipControl, context, sx }) => {
+const DefinitionTemplate = ({ open, uid, position, title, content, control, context, sx }) => {
   return ` 
     <cbp-tooltip
       ${open ? 'open' : ''}
       ${uid ? `uid="${uid}"` : ''}
-      ${alignment ? `alignment="${alignment}"` : ''}
+      ${position ? `position="${position}"` : ''}
       variant="definition"
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
 
     >  
-      ${tooltipControl}
+      ${control}
       <div slot="cbp-tooltip-content">
         <div style="font-weight: var(--cbp-font-weight-bold)">${title}</div>
         <div>${content}</div>
@@ -87,10 +110,10 @@ const DefinitionTemplate = ({ open, uid, alignment, title, content, tooltipContr
   `;
 };
 
-export const DefinitionTooltip = DefinitionTemplate.bind({});
+export const DefinitionTooltip: any = DefinitionTemplate.bind({});
 DefinitionTooltip.args = {
-  uid: 'tooltip',
+  control: `TASPD`,
   title: 'Test Definition Tooltip Title',
   content: 'Stub text for definition tooltip.',
-  tooltipControl: `TASPD`,
+  uid: 'tooltip',
 };

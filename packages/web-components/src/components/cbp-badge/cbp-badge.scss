@@ -19,6 +19,7 @@
 
 cbp-badge {
   display: inline-block;
+  flex-shrink: 0; // defensively prevent flex context from affecting the shape of the badge
   width: var(--cbp-space-6x);
   height: var(--cbp-space-6x);
   color: var(--cbp-badge-color);

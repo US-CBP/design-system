@@ -27,7 +27,11 @@
  * @prop --cbp-button-color-outline-focus-dark: var(--cbp-color-black);
  * @prop --cbp-button-border-width: var(--cbp-border-size-md);
  * @prop --cbp-button-border-style: solid;
- * @prop --cbp-button-border-radius: var(--cbp-border-radius-soft);
+ * @prop --cbp-button-border-radius: var(--cbp-border-radius-1);
+ * @prop --cbp-button-min-width: auto;
+ * @prop --cbp-button-min-height: auto;
+ * @prop --cbp-button-width: auto;
+ * @prop --cbp-button-height: auto;
  * @prop --cbp-button-gap: 0 var(--cbp-space-2x);
  */
 
@@ -75,7 +79,7 @@
   --cbp-button-padding: var(--cbp-space-2x);
   --cbp-button-border-width: var(--cbp-border-size-md);
   --cbp-button-border-style: solid;
-  --cbp-button-border-radius: var(--cbp-border-radius-soft);
+  --cbp-button-border-radius: var(--cbp-border-radius-1);
 
   // Defaulting min-width/height causes issues, but these variables are used as part of the API elsewhere
   --cbp-button-min-width: auto;
@@ -164,6 +168,18 @@ cbp-button {
       --cbp-button-color-border: var(--cbp-button-color-border-active);
     }
   }
+
+
+  &:not([variant=square]):not([variant=circle]) {
+    cbp-icon {
+      display: inline-block; // remove the nested flex context, which causes issues
+
+      svg {
+        vertical-align: text-top; // renders about 1px higher than middle and looks better on buttons, which have no descenders in ALL CAPS, if sized similarly
+      }
+    }
+  }
+
 
   // For each button fill/color, only override what needs to change
   // e.g., focus/active states are the same across the board (except active for ghost buttons??)
@@ -420,9 +436,10 @@ cbp-button {
     }
   }
 
-  &[variant=square] {
-      --cbp-button-height: 2.25rem;
-      --cbp-button-width: var(--cbp-button-height); 
+  &[variant=square],
+  &[variant=circle] {
+    --cbp-button-height: 2.25rem;
+    --cbp-button-width: var(--cbp-button-height); 
     
     button, a {
       padding: unset;
@@ -431,17 +448,12 @@ cbp-button {
   }
 
   &[variant=circle] {
-      --cbp-button-height: 2.25rem; 
-      --cbp-button-width: var(--cbp-button-height); 
-      --cbp-button-border-radius: var(--cbp-border-radius-circle);
-    
-      button, a {
-      padding: unset;
-      letter-spacing: unset;
-    }
+    --cbp-button-border-radius: var(--cbp-border-radius-circle);
   }
 
   &[variant=cta] {
+    --cbp-button-border-radius: var(--cbp-border-radius-2);
+    
     button, a {
       font-size: var(--cbp-font-size-heading-sm);
       padding-left: var(--cbp-space-4x);

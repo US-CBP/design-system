@@ -1,5 +1,6 @@
 import { Component, Element, Prop, Method, Watch, Event, EventEmitter, Host, h } from '@stencil/core';
-import { setCSSProps, createNamespaceKey, doKeyboardNav, clickAwayListener } from '../../utils/utils';
+import { setCSSProps, createNamespaceKey, doKeyboardNav, clickAwayListener} from '../../utils/utils';
+import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 
 /**
  * A Menu contains additional actions in the form of links or buttons, which can be shown by activating a control.
@@ -58,6 +59,8 @@ export class CbpMenu {
   @Watch('open')
   watchOpen(newValue) {
     // If the menu was opened, give it time to render and set focus to the selected/first item
+
+
     if (newValue) {
       // TechDebt: this would be needed for reactivity, but not needed otherwise. How to make it smart/conditional?
       this.menuItems = Array.from(this.menu.querySelectorAll('button, a')); // Get and set this array whenever the menu is opened
@@ -88,12 +91,13 @@ export class CbpMenu {
     if (!target.closest(this.host)) this.open=false;
   }
 
+
   // All keypresses within the menu itself
   handleKeyPress(e) {
     const { key, shiftKey} = e;
 
     const openKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft']; // all keys that will do the default open action (Enter and SPACE are omitted because they trigger the click event)
-    const navKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft', 'Enter', 'Home', 'End']; // all keys that will do the default open action
+    const navKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft', 'Home', 'End']; // all keys that will do the default open action (space and enter act as a click and do not need to be included)
 
     if(key == 'Escape') this.closeMenu();
     if(key == 'Tab' && !shiftKey) this.open=false; // close without sending focus back to the control
@@ -101,6 +105,7 @@ export class CbpMenu {
     // handle opening when closed
     if (openKeys.includes(key) && !this.open) {
       this.open = true;
+      e.preventDefault(); // Stop these navigation keys from scrolling the page
       return;
     }
 
@@ -108,6 +113,7 @@ export class CbpMenu {
     if (navKeys.includes(key)) {
       this.focusIndex = doKeyboardNav(this.menuItems, key, this.focusIndex);
       this.setCurrentMenuItem(this.focusIndex);
+      e.preventDefault(); // Stop these navigation keys from scrolling the page
     }
     return;
   }
@@ -144,6 +150,28 @@ export class CbpMenu {
       this.control.setAttribute('aria-controls',`${this.uid}-menu`);
       this.control.setAttribute("aria-haspopup","menu");
     }
+
+    // set this as a proxy to read the computed value from
+    this.host.style.minWidth = 'var(--cbp-menu-gap)';
+  }
+
+  componentDidRender(){
+    if(this.open){
+
+    const floatUiprops: floatUIProps= {
+        placement: this.position,
+        offset: {
+          mainAxis: (parseFloat(window?.getComputedStyle(this.host).getPropertyValue('min-width')) || 0),
+        },
+        flip: true,
+        size: {
+          height: (parseFloat(window?.getComputedStyle(this.menu).getPropertyValue('height')))
+        },
+        shift: true,
+      }
+
+      floatUI(floatUiprops, this.control, this.menu);
+    }
   }
 
   render() {
@@ -163,19 +191,6 @@ export class CbpMenu {
           aria-labelledby={this.control?.id}
         >
           <slot name="cbp-menu-items" />
-
-          <cbp-menu-item class="cbp-menu__close-btn">
-            <cbp-button 
-              fill="solid"
-              color="primary"
-              context="dark-inverts"
-              onButtonClick={ () => this.closeMenu()}
-              onKeyDown={ (e) => this.handleKeyPressCloseButton(e)}
-            >
-              <cbp-icon name="circle-xmark" size="var(--cbp-space-5x)"></cbp-icon>
-              Close
-            </cbp-button>
-          </cbp-menu-item>
         </div>
       </Host>
     );

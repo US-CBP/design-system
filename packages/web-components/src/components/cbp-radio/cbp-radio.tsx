@@ -46,6 +46,7 @@ export class CbpRadio {
     this.stateChanged.emit({
       host: this.host,
       nativeElement: this.formField,
+      name: this.formField.name,
       value: this.formField.value,
       checked: this.formField.checked,
       nativeEvent: e

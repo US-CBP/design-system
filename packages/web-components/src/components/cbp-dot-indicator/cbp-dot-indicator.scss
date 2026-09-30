@@ -11,6 +11,9 @@
  */
 
 :root {
+  --cbp-dot-indicator-color-border: var(--cbp-color-interactive-secondary-darker);
+  --cbp-dot-indicator-color-border-dark: var(--cbp-color-interactive-secondary-lighter);
+
   --cbp-dot-indicator-color-hover: var(--cbp-color-interactive-secondary-darker);
   --cbp-dot-indicator-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
 
@@ -26,6 +29,7 @@
  */
 [data-cbp-theme=light] cbp-dot-indicator[context*=dark],
 [data-cbp-theme=dark] cbp-dot-indicator:not([context=dark-inverts]):not([context=light-always]) {
+  --cbp-dot-indicator-color-border: var(--cbp-dot-indicator-color-border-dark) !important;
   --cbp-dot-indicator-color-hover: var(--cbp-dot-indicator-color-hover-dark) !important;
   --cbp-dot-indicator-color-focus: var(--cbp-dot-indicator-color-focus-dark) !important;
   --cbp-dot-indicator-color-selected: var(--cbp-dot-indicator-color-selected-dark) !important;
@@ -51,7 +55,7 @@ cbp-dot-indicator {
       span {
         height: var(--cbp-space-4x);
         width: var(--cbp-space-4x);
-        border: var(--cbp-border-size-md) solid var(--cbp-color-interactive-secondary-darker);
+        border: var(--cbp-border-size-md) solid var(--cbp-dot-indicator-color-border);
         border-radius: var(--cbp-border-radius-circle);
 
       }

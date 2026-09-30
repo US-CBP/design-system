@@ -1,5 +1,6 @@
 import { Component, Element, Prop, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, clickAwayListener, createNamespaceKey, createValidId } from '../../utils/utils';
+import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 
 /**
  * A Listbox wraps a standard text or search input, enhancing it by providing suggestions in a format visually similar to a dropdown, from which a selection may optionally be made.
@@ -19,6 +20,10 @@ export class CbpListbox {
   private listboxItems: HTMLLIElement[] = [];
   private generatedItems: HTMLLIElement[] = []; // JSX nodes do not allow DOM manipulation
   private focusIndex: number = -1;
+
+  private changeTimeout: ReturnType<typeof setTimeout>;
+  private typingMode: boolean = true; // track typing mode to allow spaces as typeable characters
+  private oldValue: string = '';
 
   @Element() private host: HTMLCbpDropdownElement;
 
@@ -55,10 +60,9 @@ export class CbpListbox {
   @Event() updateListboxSuggestions: EventEmitter;
 
   /** 
-   * A custom event emitted only when a selection is made in the listbox.
-   * This event will be listened for in addition to the native input's change event by the parent `cbp-form-field`, 
-   * as selection does not trigger a native change event on the input.
-   * To get all changes to the wrapped input, listen to the `valueChange` event on the parent `cbp-form-field`.
+   * A custom event capturing both text input (on blur) and listbox selection.
+   * This event should be listened for instead of the slotted text input's native change event, 
+   * since the latter will not register listbox selection, which can also impact actual change detection.
    */
   @Event() valueChange: EventEmitter;
 
@@ -138,13 +142,31 @@ export class CbpListbox {
     }
   }
 
+  // Native change events are not always accurate because the listbox is manipulating the value directly, so we look for changes on blur to mimic a change event
+  private handleChange(e) {
+    // Because selecting from the listbox changes the value without a change event, it creates conditions where a native change doesn't register after typing in the field
+    if (this.oldValue != this.formField?.value) {
+      // update the stored oldValue if different
+      this.oldValue = this.formField?.value;
+
+      // Emit the custom event here
+      this.valueChange.emit({
+        host: this.host,
+        nativeElement: this.formField,
+        value: this.formField.value,
+        nativeEvent: e
+      });
+    }
+  }
+
   private handleListboxClick(e) {
+    clearTimeout(this.changeTimeout);
     const {target} = e;
     const listItem = target?.closest('[role=listbox] li');
 
     // When a selection is made, populate it as the text field's value, clear, and close the listbox
     if (listItem) {
-      this.formField.value = listItem.innerText;
+      this.formField.value = this.oldValue = listItem.innerText;
       this.formField.focus();
       this.open = false;
       // Clear the list if a selection was made
@@ -162,16 +184,16 @@ export class CbpListbox {
   }
 
   // handle keyboard navigation
-  getActionFromKey(event) {
-    const { key } = event;
+  getActionFromKey(e) {
+    const { key } = e;
     const selectKeys = ['Enter', ' '];
-    const navKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End']; // all keys that will do the default open action
+    const navKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End']; // keyboard navigation within an open listbox
 
     // If the menu is already open, pressing enter or space triggers a click on the current item -
     // with an exception for pressing space as part of a combobox searchString (not the first character).
     // Run this first, before the menu may be opened by later code.
-    if (this.open && selectKeys.includes(key)) {
-      event.preventDefault();
+    if (this.open && selectKeys.includes(key) && !this.typingMode && this.focusIndex > -1) {
+      e.preventDefault();
       this.listboxItems[this.focusIndex!]?.click();
       return;
     }
@@ -189,20 +211,23 @@ export class CbpListbox {
 
       // If it was a navigation key
       if (n !== undefined && key !== 'Tab') {
+        this.typingMode=false;
         this.setCurrent( n, this.focusIndex);
       }
       // Prevent listbox navigation keys from doing things in the input while open, as this may be confusing
-      if (navKeys.includes(key)) {
-        event.preventDefault();
+      if (navKeys.includes(key) && !this.typingMode) {
+        e.preventDefault();
       }
     }
 
     // Close the menu when pressing ESC anywhere in the component and send focus back to the control
     if (key == 'Escape') {
+      this.typingMode=true;
       this.closeListbox();
     }
     // Close the menu when pressing TAB anywhere in the component
     if (key == 'Tab') {
+      this.typingMode=true;
       this.closeListbox();
     }
   }
@@ -296,13 +321,17 @@ export class CbpListbox {
     this.formField?.setAttribute('aria-expanded', `${this.open}`);
     // aria-activedescendant is handled by setCurrent()
 
+    this.oldValue=this.formField?.value; // set the initial value
+
     // Set up a focus listener for showing a default listbox
     this.formField.addEventListener( 'focus', () => {
       this.handleFocus();
     });
     // Set up an input listener to emit events for filtering
-    this.formField.addEventListener( 'input', (e) => {
-      this.handleInput(e);
+    this.formField.addEventListener( 'input', (e) => this.handleInput(e));
+    // Set up a blur listener to mimic a change listener so that the valueChange event can fully be handled by this component and not by cbp-form-field
+    this.formField.addEventListener('blur', (e) => {
+      this.changeTimeout = setTimeout(() => this.handleChange(e), 300);
     });
 
     // Apply sx
@@ -315,6 +344,22 @@ export class CbpListbox {
   }
 
   componentDidRender() {
+    // reposition/resize as needed when open
+    if(this.open){
+      const floatUiprops: floatUIProps={
+        placement: 'bottom',
+        offset: {
+          mainAxis: 0,
+        },
+        flip: true,
+        size: {
+          height: (parseFloat(window?.getComputedStyle(this.listbox).getPropertyValue('height')))
+        },
+        shift: false,
+      }
+      floatUI(floatUiprops, this.formField, this.listbox);
+    }
+
     this.listboxItems = Array.from(this.listbox.querySelectorAll('li'));
     // The "current" class is added via DOM manipulation, so it can safely be removed after a re-render, which is caused by a change in open or items
     this.listboxItems.forEach( item => {

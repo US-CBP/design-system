@@ -15,5 +15,12 @@
 
 <!-- https://storybook.js.org/docs/builders/vite#interaction-tests-not-working-as-expected -->
 <script>
-    window.global = window;
+  window.global = window;
+
+  // in-page navigation doesn't work properly, so call this onClick instead
+  function inPageNavigation(e) {
+    e.preventDefault();
+    document.querySelector(`[id=${e.target.dataset.id}]`).focus();
+    return false;
+  }
 </script>

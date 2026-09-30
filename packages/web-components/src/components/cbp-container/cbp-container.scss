@@ -1,22 +1,61 @@
+/**
+ * @prop --cbp-container-color: inherit;
+ * @prop --cbp-container-color-bg: transparent;
+ * @prop --cbp-container-inner-color-bg: var(--cbp-container-color-background);
+ * @prop --cbp-container-color-dark: inherit;
+ * @prop --cbp-container-color-bg-dark: transparent;
+ * @prop --cbp-container-color-border: transparent;
+ * @prop --cbp-container-color-border-dark: transparent;
+ * @prop --cbp-container-border-width: 0;
+ * @prop --cbp-container-border-style: solid;
+ * @prop --cbp-container-content-padding: 0;
+ * @prop --cbp-container-inner-width: auto;
+ */
+
 :root {
-  --cbp-container-color-text: inherit;
-  --cbp-container-color-background: transparent;
-  --cbp-container-color-inner-background: var(--cbp-container-color-background);
+  --cbp-container-color: inherit;
+  --cbp-container-color-bg: transparent;
+  --cbp-container-inner-color-bg: var(--cbp-container-color-background);
+  --cbp-container-inner-color-bg-dark: var(--cbp-container-color-background);
+
+  --cbp-container-color-dark: inherit;
+  --cbp-container-color-bg-dark: transparent;
+
+  --cbp-container-color-border: transparent;
+  --cbp-container-color-border-dark: transparent;
+  --cbp-container-border-width: 0;
+  --cbp-container-border-style: solid;
+
 
   --cbp-container-content-padding: 0;
   --cbp-container-inner-width: auto;
 }
 
+
+// Displays dark design based on mode or context
+[data-cbp-theme=light] cbp-container[context*=dark],
+[data-cbp-theme=dark] cbp-container:not([context=dark-inverts]):not([context=light-always]) {
+
+  --cbp-container-color: var(--cbp-container-color-dark) !important;
+  --cbp-container-color-bg: var(--cbp-container-color-bg-dark) !important;
+  --cbp-container-inner-color-bg: var(--cbp-container-inner-color-bg-dark) !important;
+  --cbp-container-color-border: var(--cbp-container-color-border-dark) !important;
+
+}
+
 cbp-container {
   display: block;
-  color: var(--cbp-container-color-text);
-  background: var(--cbp-container-color-background);
+  color: var(--cbp-container-color);
+  background: var(--cbp-container-color-bg);
+  border-width: var(--cbp-container-border-width);
+  border-style: var(--cbp-container-border-style);
+  border-color: var(--cbp-container-color-border);
   padding: var(--cbp-container-content-padding);
   max-width: 100%;
 
   .cbp-container--inner {
     display: block;
-    background: var(--cbp-container-color-inner-background);
+    background: var(--cbp-container-inner-color-bg);
     margin: auto;
     width: var(--cbp-container-inner-width);
   }

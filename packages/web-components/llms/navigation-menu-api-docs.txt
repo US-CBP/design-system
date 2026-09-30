@@ -52,6 +52,10 @@ Type: `Promise<void>`
 | `--cbp-menu-color-bg` | var(--cbp-color-gray-cool-80); |
 | `--cbp-menu-color-bg-dark` | var(--cbp-color-gray-cool-5); |
 | `--cbp-menu-gap` | var(--cbp-space-3x); |
+| `--cbp-menu-scrollbar-thumb-color` | var(--cbp-color-interactive-secondary-light); |
+| `--cbp-menu-scrollbar-thumb-color-dark` | var(--cbp-color-interactive-secondary-base); |
+| `--cbp-menu-scrollbar-track-color` | var(--cbp-color-gray-cool-70); |
+| `--cbp-menu-scrollbar-track-color-dark` | var(--cbp-color-white); |
 
 ## Dependencies
 
@@ -59,19 +63,10 @@ Type: `Promise<void>`
 
 -   [cbp-breadcrumb](../cbp-breadcrumb)
 
-### Depends on
-
--   [cbp-menu-item](../cbp-menu-item)
--   [cbp-button](../cbp-button)
--   [cbp-icon](../cbp-icon)
-
 ### Graph
 
 ```mermaid
 graph TD;
-  cbp-menu --> cbp-menu-item
-  cbp-menu --> cbp-button
-  cbp-menu --> cbp-icon
   cbp-breadcrumb --> cbp-menu
   style cbp-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
@@ -90,6 +85,12 @@ The Menu Item component wraps each individual control (link or button) within th
 | --- | --- | --- | --- | --- |
 | `color` | `color` | Specifies a color variant for the menu item. Currently the only supported variant is "danger". | `"danger"` | `undefined` |
 | `indentLevel` | `indent-level` | Specifies an indent level to represent hierarchical items. Defaults to zero. | `number` | `0` |
+
+## Events
+
+| Event | Description | Type |
+| --- | --- | --- |
+| `menuItemClick` | A custom event emitted when a menu item is clicked/activated. | `CustomEvent<any>` |
 
 ## Slots
 
@@ -126,14 +127,12 @@ The Menu Item component wraps each individual control (link or button) within th
 ### Used by
 
 -   [cbp-breadcrumb](../cbp-breadcrumb)
--   [cbp-menu](../cbp-menu)
 
 ### Graph
 
 ```mermaid
 graph TD;
   cbp-breadcrumb --> cbp-menu-item
-  cbp-menu --> cbp-menu-item
   style cbp-menu-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

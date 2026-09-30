@@ -8,11 +8,13 @@
 ```tsx
 ({
   position,
-  withIcon,
   open,
   persistAt,
   uid,
   accessibilityText,
+  withIcon,
+  panelHeading,
+  panelContent,
   context,
   sx
 }) => {
@@ -39,19 +41,18 @@
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-panel
-        aria-labelledby="panelheader"
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       >
         <cbp-typography
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="panelheader"
         >
-          ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}
-          Drawer Header
+          ${withIcon ? `<cbp-icon name="user"></cbp-icon>` : ''}${panelHeading}
         </cbp-typography>
-        <p>Sidebar Content</p>
+
+        <p>${panelContent}</p>
+
       </cbp-panel>
     </cbp-drawer>
   `;
@@ -67,6 +68,8 @@
   persistAt,
   uid,
   accessibilityText,
+  panelHeading,
+  panelContent,
   withIcon,
   context
 }) => {
@@ -94,7 +97,6 @@
       ${uid ? `uid=${uid}` : ''}
     >
       <cbp-panel
-        aria-labelledby="userprefs-panel-header"
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         sx='{
           "--cbp-panel-header-color-dark": "var(--cbp-color-text-lighter)",
@@ -105,13 +107,12 @@
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="userprefs-panel-header"
         >
-        
-          ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}
-          User Preferences
+          ${withIcon ? `<cbp-icon name="user"></cbp-icon>` : ''}${panelHeading}
         </cbp-typography>
-        <p>Drawer Content</p>
+
+        <p>${panelContent}</p>
+
       </cbp-panel>
     </cbp-drawer>
   `;

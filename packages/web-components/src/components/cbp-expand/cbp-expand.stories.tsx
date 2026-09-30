@@ -6,6 +6,11 @@ export default {
       description: 'Label text making up the heading control for the Expand component.',
       control: 'text',
     },
+    labelSlotted: {
+      name: 'label (slotted)',
+      description: 'Slotted label text making up the heading control for the Expand component.',
+      control: 'text',
+    },
     content: {
       name: 'content (slotted)',
       description: 'Content to be hidden/revealed. May include markup, but not supported by Storybook.',
@@ -35,15 +40,16 @@ export default {
   },
 };
 
-const Template = ({ label, content, open, headingLevel, context, sx }) => {
+const Template = ({ label, labelSlotted, content, open, headingLevel, context, sx }) => {
   return ` 
     <cbp-expand
-      ${label ? `label="${label}"` : ''}
+      ${label && !labelSlotted ? `label="${label}"` : ''}
       ${headingLevel ? `heading-level="${headingLevel}"` : ''}
       ${open ? 'open' : ''}
       ${context ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
+      ${labelSlotted ? `<span slot="cbp-expand-label">${labelSlotted}</span>` : ''}
       ${content}
     </cbp-expand>
   `;

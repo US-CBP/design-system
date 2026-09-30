@@ -1,5 +1,6 @@
 import { Component, Prop, State, Element, Event, EventEmitter, Method, Listen, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/utils';
+import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
 
 /**
  * The Dropdown component offers an alternative to the native select element that can be fully styled 
@@ -160,7 +161,6 @@ export class CbpDropdown {
   @Event() populateCombobox: EventEmitter;
 
 
-
   @Listen('dropdownItemClick')
   handleDropdownItemClick(e) {
     const { host, label, value } = e.detail;
@@ -228,6 +228,7 @@ export class CbpDropdown {
       this.valueChange.emit({
         host: this.host,
         nativeElement: this.formField,
+        name: this.name,
         value: this.value,
         label: this.selectedLabel,
         nativeEvent: e
@@ -238,6 +239,7 @@ export class CbpDropdown {
         {
           host: this.host,
           nativeElement: this.formField,
+          name: this.name,
           value: this.value,
           label: this.selectedLabel,
           nativeEvent: e
@@ -290,8 +292,7 @@ export class CbpDropdown {
 
     // Only update the selection if the value is different from the hidden field's value (externally updated).
     // TechDebt: verify this isn't prone to race conditions when re-rendering
-    //if (newValue != this.formField?.value && newValue != '') {
-    if (newValue != this.formField?.value) {
+        if (newValue != this.formField?.value) {
       this.setSelectedFromValue();
     }
     //else console.log('Value Watch on dropdown fired - component and form values already match, so no action needed.');
@@ -365,6 +366,7 @@ export class CbpDropdown {
       this.valueChange.emit({
         host: this.host,
         nativeElement: this.formField,
+        name: this.name,
         value: this.value,
         label: undefined,
         nativeEvent: e
@@ -375,6 +377,7 @@ export class CbpDropdown {
         {
           host: this.host,
           nativeElement: this.formField,
+          name: this.name,
           value: this.value,
           label: undefined,
           nativeEvent: e
@@ -383,8 +386,20 @@ export class CbpDropdown {
     }
   }
 
+
+  // TODO: Reorder multi-select dropdowns with selected items at the start (only works with JSON items)
+  /*
+  multiSelectReorderSelected() {
+    itemsJSON = 
+    let selectedItems = this.items.filter( (item) =>  item.value ? this.value.includes(item.value) : this.value.includes(item.label));
+    let unselectedItems = this.items.filter( (item) =>  item.value ? !e.detail.value.includes(item.value) : !e.detail.value.includes(item.label));
+    // return the filtered JSON result to the component via the items property
+    this.items = [...selectedItems, ...unselectedItems];
+  }
+  */
+
   // Create a new dropdown item (and select it) after the user clicked the "Create" item
-  doCreateItem(e){
+  doCreateItem(e: CustomEvent){
     const { value } = e.detail;
     e.stopPropagation();
 
@@ -463,7 +478,13 @@ export class CbpDropdown {
     
     if(this.multiple) {
       let values = (typeof this.value == "string") ? this.value.split(",") : this.value;
-      
+
+      // deselect them all first
+      this.dropdownItems.forEach( item => {
+        item.selected=false;
+      });
+
+      // now select those from the values
       this.dropdownItems.forEach( item => {
         if(item.value) {
           if(values.includes(item.value)) {
@@ -707,17 +728,17 @@ export class CbpDropdown {
   }
 
   // Handles navigation and selection keys
-  getActionFromKey(event) {
-    const { key, altKey, ctrlKey, metaKey } = event;
+  getActionFromKey(e) {
+    const { key, altKey, ctrlKey, metaKey } = e;
     const selectKeys = ['Enter', ' '];
     const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ']; // all keys that will do the default open action
-    const navKeys = ['ArrowDown', 'ArrowUp', 'Enter', 'Home', 'End']; // all keys that will do the default open action
+    const navKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End']; // keyboard navigation within an open dropdown
 
     // If the menu is already open, pressing enter or space triggers a click on the current item -
     // with an exception for pressing space as part of a combobox searchString (not the first character).
     // Run this first, before the menu may be opened by later code.
     if (this.open && selectKeys.includes(key) && !this.typingMode) {
-      event.preventDefault();
+      e.preventDefault();
       this.dropdownItems[this.focusIndex!]?.click();
       return;
     }
@@ -740,6 +761,7 @@ export class CbpDropdown {
         this.setCurrent( (this.filter && (this.searchString)) ? this.matches[n] : n, this.focusIndex); // default to 0 if create?
         if (!this.filter) this.searchString='';
       }
+      if(navKeys.includes(key)) e.preventDefault(); // prevent window scrolling with keyboard navigation.
     }
 
     // handle opening when closed
@@ -747,6 +769,7 @@ export class CbpDropdown {
       if (!this.open) {
         this.open = true;
         this.typingMode=false;
+        e.preventDefault(); // prevent window scrolling with keyboard navigation.
       }
     }
 
@@ -1097,6 +1120,25 @@ export class CbpDropdown {
 
     if(this.debug) console.log('cbp-dropdown debugging - componentDidRender() dropdown items/selected items: ', this.dropdownItems, this.selectedItems);
 
+
+    // Use floatPlacement to position cbp-dropdown-menu
+    if(this.open){
+      
+      const floatUiprops: floatUIProps= {
+          placement: 'bottom',
+          offset: {
+            mainAxis: 0,
+          },
+          flip: true,
+          size: {
+              height: (parseFloat(window?.getComputedStyle(this.listbox).getPropertyValue('height')))
+          },
+          shift: false,
+      }
+  
+        floatUI(floatUiprops, this.control, this.listbox);
+      // }
+    }
   }
 
 

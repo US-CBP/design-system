@@ -6,7 +6,7 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 
 ## Purpose
 
-* These template stories represent a shell made up of design system components, implementing best practices, and using plain HTML markup, to be used for any internal CBP sites or applications. Internal stater applications may address additional best practices and integration concerns if one exists for your framework of choice.
+* These template stories represent a shell made up of design system components, implementing best practices and design system guidance, and using plain HTML markup, to be used for any internal CBP sites or applications. Internal stater applications may address additional best practices and integration concerns if one exists for your framework of choice.
 
 ## Functional Requirements
 
@@ -30,23 +30,39 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 * The footer is generally the last element making up the layout shell.
   * The footer should generally be included, but may be omitted for small developer-focused applications.
   * For applications not listed in the Application Directory, the row of footer navigation may be excluded.
-* Positioned elements such as dialogs and drawers may be included beneath the footer (but within the `cbp-app` tag) to keep the primary page contents less cluttered and for code organization purposes.
+* Positioned elements such as dialogs, drawers, and toast notifications may be included beneath the footer (but within the `cbp-app` tag) to keep the primary page contents less cluttered and for code organization purposes.
+  * Responsive Navigation Drawer: Every application with navigation items in the `cbp-app-header` should contain a drawer for the responsive navigation, which opens when the "hamburger" control is activated.
+    * This responsive navigation drawer contents shall be placed in a `cbp-panel` component.
+    * The drawer/panel contents shall include the site navigation using `cbp-subnav` and its child components.
+    * If the application contains sub-level navigation, this drawer doubles as the way to access those items (rather than any sort of fly-out menu) in a user friendly way that works across all device sizes. 
+    * The drawer/panel contents may contain a site search as well, if supported by the application.
+  * User Preferences Drawer: Every application shall also contain a "User Preferences" drawer, that is opened by the button control with the Username or HashID in the Universal Header.
+    * This drawer contains some unique styling from the default drawer to set it apart visually.
+    * This drawer contents shall be placed within a `cbp-panel` and contain:
+      * The username and HashID of the currently logged in user.
+      * A Logout button.
+      * A "dark mode toggle":
+        * Implemented with a `cbp-segmented-button-group` containing the options of "System", "Light", and "Dark".
+        * The control shall have short descriptive text beneath it, which is updated dynamically based on the selection via application code.
+        * Any persistence of the user-selected value shall be implemented by the application (via framework state, localStorage, sessionStorage, cookies, database, etc.).
 
 ## Technical Specifications
 
 ### User Interactions
 
 * The User Name or HashID control in the Universal Header shall open the "User Preferences" drawer.
-  * This drawer should contain a light/dark mode toggle so that users may toggle this setting contextually and separately from their OS's light/dark setting. This selection may be persisted using localStorage, sessionStorage, or any other method deemed fitting by the application owner.
-  * Other application settings may be presented in this drawer.
+  * This drawer shall contain a "Logout" button.
+  * This drawer should contain a light/dark mode toggle so that users may toggle this setting contextually and separately from their OS's light/dark setting.
 * Individual navigation items in the `cbp-app-header` shall be represented by links within a `cbp-nav-item` component and can also work as router links.
-* If a navigation item in the Application Header contains nested children, these nav items shall be represented as button controls that open a drawer with the full navigation, implemented using the `cbp-subnav` and `cbp-subnav-item` components. A drawer is preferable to a popup menu because it is a consistent interaction across devices of different sizes and regardless of the complexity of the navigation tree.
+* If a navigation item in the Application Header contains nested children, these nav items shall be represented as button controls that open a drawer with the full navigation:
+  * The drawer, which doubles as responsive navigation, implements the navigation using the `cbp-subnav` and `cbp-subnav-item` components.
+  * A drawer is preferable to a popup menu because it is a consistent interaction across devices of different sizes and regardless of the complexity of the navigation tree.
 
 ### Responsiveness
 
 * The main template parts shall use a design token (`--cbp-responsive-spacing-outer`) for inline-padding that is responsive and changes size at different breakpoints.
 * The Universal Header link and button controls (when logged in) will minimize to their icons at the medium or small breakpoints (less than 64em or 1024px) and the seal will also collapse to a smaller version at viewports 37.5em (600px) or less.
-* The application header will automatically hide its nav-items and show a "hamburger menu" control when it runs out of space to display each of the nav-items (using a resize observer).
+* The application header will automatically hide its navigation items and show a "hamburger menu" control when it runs out of space to display each of the navigation items (using a resize observer).
   * The hamburger menu controls the same drawer that any nav items with children would control.
 
 ### Accessibility

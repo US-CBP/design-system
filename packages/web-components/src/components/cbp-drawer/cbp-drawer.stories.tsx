@@ -22,6 +22,14 @@ export default {
       description: 'Accessibility text is required to label the drawer (dialog) and is applied as an `aria-label`.',
       control: 'text',
     },
+    panelHeading: {
+      name: 'Panel Heading (slotted)',
+      control: 'text',
+    },
+    panelContent: {
+      name: 'Panel Content (slotted)',
+      control: 'text',
+    },
     withIcon: {
       control: 'boolean',
     },
@@ -36,7 +44,7 @@ export default {
   },
 };
 
-const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText, context, sx }) => {
+const Template = ({ position, open, persistAt, uid, accessibilityText, withIcon, panelHeading, panelContent, context, sx }) => {
   return `
     ${persistAt ? `<cbp-hide hide-at="${persistAt}">` : ''}
       <cbp-button
@@ -60,32 +68,34 @@ const Template = ({ position, withIcon, open, persistAt, uid, accessibilityText,
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <cbp-panel
-        aria-labelledby="panelheader"
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       >
         <cbp-typography
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="panelheader"
         >
-          ${withIcon ? `<cbp-icon name='triangle-exclamation'></cbp-icon>` : ''}
-          Drawer Header
+          ${withIcon ? `<cbp-icon name="user"></cbp-icon>` : ''}${panelHeading}
         </cbp-typography>
-        <p>Sidebar Content</p>
+
+        <p>${panelContent}</p>
+
       </cbp-panel>
     </cbp-drawer>
   `;
 };
 
-export const Drawer = Template.bind({});
+export const Drawer: any = Template.bind({});
 Drawer.args = {
   position: 'left',
   uid: 'drawer',
+  accessibilityText: 'Drawer Header',
+  panelHeading: 'Drawer Header',
+  panelContent: 'Drawer Content'
 };
 
 
-const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibilityText, withIcon, context}) => {
+const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibilityText, panelHeading, panelContent, withIcon, context}) => {
   return `
     <cbp-button
       type="button"
@@ -110,7 +120,6 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
       ${uid ? `uid=${uid}` : ''}
     >
       <cbp-panel
-        aria-labelledby="userprefs-panel-header"
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         sx='{
           "--cbp-panel-header-color-dark": "var(--cbp-color-text-lighter)",
@@ -121,21 +130,23 @@ const UserPreferencesTemplate = ({ position, open, persistAt, uid, accessibility
           slot="cbp-panel-header"
           tag="h3"
           variant="heading-lg"
-          id="userprefs-panel-header"
         >
-        
-          ${withIcon ? `<cbp-icon name='user'></cbp-icon>` : ''}
-          User Preferences
+          ${withIcon ? `<cbp-icon name="user"></cbp-icon>` : ''}${panelHeading}
         </cbp-typography>
-        <p>Drawer Content</p>
+
+        <p>${panelContent}</p>
+
       </cbp-panel>
     </cbp-drawer>
   `;
 };
 
-export const UserPreferences = UserPreferencesTemplate.bind({});
+export const UserPreferences: any = UserPreferencesTemplate.bind({});
 UserPreferences.args = {
   position: 'right',
   uid: 'drawer',
   context: 'dark-always',
+  accessibilityText: 'User Preferences',
+  panelHeading: 'User Preferences',
+  panelContent: 'Drawer Content'
 };

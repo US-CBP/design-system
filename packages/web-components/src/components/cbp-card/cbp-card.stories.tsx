@@ -49,7 +49,7 @@ export default {
       name: "Color",
       description: "Set the color of the card",
       control: "select",
-      options: ["default", "info", "success", "warning", "danger"],
+      options: ["info", "success", "warning", "danger"],
     },
     context : {
       control: 'select',
@@ -59,7 +59,7 @@ export default {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
     },    
-  },
+  }
 };
 
 const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1, btn2, btn3 }) => {
@@ -67,11 +67,11 @@ const renderActions = (layout, fill, color, context, withIcon, headingId,{ btn1,
   if (layout === 'double') {
     return `
       <div slot="cbp-card-actions">
-        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}">
+        <cbp-button tag="${btn2.tag}" ${btn2.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${btn2.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="arrow-right"></cbp-icon>` : ''}
           ${btn2.label}
         </cbp-button>
-        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}">
+        <cbp-button tag="${btn1.tag}" ${btn1.tag == 'a' ? `href="#"` : ''} fill="${fill}" color="${color == 'danger' ? 'danger' : btn1.color}" ${context ? `context="${context}"` : ``} ${headingId ? `aria-describedby="${headingId}"` : ``}>
           ${withIcon ? `<cbp-icon name="check"></cbp-icon>` : ''}
           ${btn1.label}
         </cbp-button>
@@ -111,7 +111,7 @@ const GeneralTemplate = ({ variant, color, title, headingId, bodyText, actionsLa
   return ` 
     <cbp-card
       ${variant? `variant=${variant}` : ``}
-      ${color !="default"? `color="${color}"` : ''}
+      ${color? `color="${color}"` : ``}
       ${stretch ? `stretch` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}      
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -131,7 +131,7 @@ const FlagTemplate = ({ title, color, bodyText, withIcon, context, sx }) => {
   return ` 
     <cbp-card
       variant="flag"
-      ${color ? `color="${color}"` : ''}
+      ${color ? `color="${color}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? 'sx=' + JSON.stringify(sx) : ''}
     >
@@ -162,7 +162,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
       ${interactive ? `interactive="${interactive}"` : ''}
       ${href ? `href="${href}"` : ''}
       ${disabled ? 'disabled' : ''}
-      ${color ? `color="${color}"` : ''}
+      ${color ? `color="${color}"` : ``}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -209,7 +209,7 @@ const InteractiveTemplate = ({ title, color, disabled, bodyText, withIcon, inter
 };
 
 
-export const GeneralCard = GeneralTemplate.bind({});
+export const GeneralCard: any = GeneralTemplate.bind({});
 GeneralCard.args = {
   title: "Card Title",
   headingId: "card-heading",
@@ -234,7 +234,7 @@ GeneralCard.args = {
   },
 };
 
-export const BannerCard = GeneralTemplate.bind({});
+export const BannerCard: any = GeneralTemplate.bind({});
 BannerCard.args = {
   variant: "banner",
   title: "Banner Card Title",
@@ -260,7 +260,7 @@ BannerCard.args = {
   }
 };
 
-export const FlagCard = FlagTemplate.bind({});
+export const FlagCard: any = FlagTemplate.bind({});
 FlagCard.args = {
   title: "Card Title",
   bodyText: "Here is an example of some body text for this purely informational card",
@@ -275,7 +275,7 @@ FlagCard.argTypes ={
   }
 }
 
-export const InteractiveCard = InteractiveTemplate.bind({});
+export const InteractiveCard: any = InteractiveTemplate.bind({});
 InteractiveCard.args = {
   title: "Banner Card Title",
   bodyText: "Here is an example of some supplementary text for this purely informational card",
@@ -304,8 +304,7 @@ InteractiveCard.argTypes = {
   }
 };
 
-const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIcon, href, context, sx }) => {
-
+const InteractiveRadioListTemplate: any = ({ title, color, disabled, bodyText, withIcon, href, context, sx }) => {
   return ` 
     <cbp-form-field group
       label="Interactive Card Radio List"
@@ -316,7 +315,7 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
         interactive="radio"
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
-        ${color ? `color="${color}"` : ''}
+        ${color ? `color="${color}"` : ``}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
@@ -338,7 +337,7 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
         interactive="radio"
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
-        ${color ? `color="${color}"` : ''}
+        ${color ? `color="${color}"` : ``}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
@@ -360,7 +359,7 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
         interactive= 'radio'
         ${href ? `href="${href}"` : ''}
         ${disabled ? 'disabled' : ''}
-        ${color ? `color="${color}"` : ''}
+        ${color ? `color="${color}"` : ``}
         ${context && context != 'light-inverts' ? `context="${context}"` : ''}
         ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
       >
@@ -382,7 +381,7 @@ const InteractiveRadioListTemplate = ({ title, color, disabled, bodyText, withIc
 };
 
 
-export const InteractiveRadioList = InteractiveRadioListTemplate.bind({});
+export const InteractiveRadioList: any = InteractiveRadioListTemplate.bind({});
 InteractiveRadioList.args = {
   title: "Banner Card Title",
   bodyText: "Here is an example of some supplementary text for this purely informational card",

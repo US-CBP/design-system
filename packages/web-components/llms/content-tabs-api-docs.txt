@@ -10,6 +10,7 @@ Tabs are a common UI pattern of progressive disclosure mimicking the real world 
 | --- | --- | --- | --- | --- |
 | `accessibilityText` | `accessibility-text` | The accessible label of the tablist. Required unless `aria-labelledby` is specified on the host tag directly. | `string` | `undefined` |
 | `context` | `context` | Specifies the context of the component as it applies to the visual design and whether it inverts when light/dark mode is toggled. Default behavior is "light-inverts" and does not have to be specified. | `"dark-always" | "dark-inverts" | "light-always" | "light-inverts"` | `undefined` |
+| `orientation` | `orientation` | Determines the ortientation that the tabs are displayed | `"horizontal" | "vertical"` | `'horizontal'` |
 | `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
 
 ## Slots
@@ -34,8 +35,8 @@ Tabs are a common UI pattern of progressive disclosure mimicking the real world 
 | `--cbp-tab-color-bg-focus-dark` | var(--cbp-color-interactive-focus-light); |
 | `--cbp-tab-color-bg-hover` | var(--cbp-color-interactive-secondary-lighter); |
 | `--cbp-tab-color-bg-hover-dark` | var(--cbp-color-interactive-secondary-darker); |
-| `--cbp-tab-color-bg-selected` | transparent; |
-| `--cbp-tab-color-bg-selected-dark` | transparent; |
+| `--cbp-tab-color-bg-selected` | var(--cbp-color-interactive-active-light); |
+| `--cbp-tab-color-bg-selected-dark` | var(--cbp-color-interactive-active-dark); |
 | `--cbp-tab-color-border` | transparent; |
 | `--cbp-tab-color-border-active` | var(--cbp-color-interactive-active-dark); |
 | `--cbp-tab-color-border-active-dark` | var(--cbp-color-interactive-active-light); |

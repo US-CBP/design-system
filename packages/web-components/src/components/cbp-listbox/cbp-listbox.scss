@@ -128,7 +128,7 @@ cbp-listbox {
     background-color: var(--cbp-listbox-menu-color-bg);
 
     border: var(--cbp-border-size-md) solid var(--cbp-listbox-menu-color-border);
-    border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
+    border-radius: 0 0 var(--cbp-border-radius-1) var(--cbp-border-radius-1);
     height: fit-content;
     max-height: 13.5rem;
     width: 100%;
@@ -188,7 +188,7 @@ cbp-listbox {
   }
 
   &[open] {
-    --cbp-form-field-border-radius: var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0;
+    --cbp-form-field-border-radius: var(--cbp-border-radius-1) var(--cbp-border-radius-1) 0 0;
 
     ul[role=listbox] {
       display: block;

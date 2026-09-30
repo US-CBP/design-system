@@ -38,6 +38,8 @@ export class CbpAppHeader {
   /** Specifies the action attribute for the search form  */
   @Prop() searchAction: string;
 
+  /** Specifies if the app header is sticky */
+  @Prop({ reflect: true }) sticky: boolean;
   
   @Listen('drawerClose', { target: 'body' })
   handleNavDrawerClose(e) {

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Dialog component represents a dialog overlaid on top of the web page, which can be used similar to an alert/confirm dialog or contain a small form.
+The Dialog component represents a dialog overlaid on top of the web page, which can be used similarly to an alert/confirm dialog or contain a small form.
 
 ## Properties
 
@@ -54,7 +54,7 @@ Type: `Promise<void>`
 
 | Name | Description |
 | --- | --- |
-| `--cbp-dialog-border-radius` | var(--cbp-border-radius-softer); |
+| `--cbp-dialog-border-radius` | var(--cbp-border-radius-3); |
 | `--cbp-dialog-color` | var(--cbp-color-text-darkest); |
 | `--cbp-dialog-color-bg` | var(--cbp-color-white); |
 | `--cbp-dialog-color-bg-dark` | var(--cbp-color-gray-cool-60); |

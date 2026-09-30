@@ -23,11 +23,11 @@ The Multicol component is a wrapper that invokes a CSS Multi-column layout conte
 
 ### Accessibility
 
-N/A
+-   When interactive elements or complex patterns are used within a multi-column layout, be sure to specify the `nobreak` property/attribute so that related content is not broken up between columns, potentially visually separating accessible labels from interactive elements they describe.
 
 ### Additional Notes and Considerations
 
--   Because Multi=column layout has a parent-child relationship, be aware that nesting children inside of any component (e.g., `<router-outlet>`) that is present in the DOM will affect this behavior and the intended children may not be displayed as intended.
+-   Because Multi-column layout has a parent-child relationship, be aware that nesting children inside of any component (e.g., `<router-outlet>`) that is present in the DOM will affect this behavior and the intended children may not be displayed as intended.
 -   Individual immediate children may use the following CSS to affect multi-column layout, if needed/desired:
     -   column-span: all;
     -   break-inside: avoid;

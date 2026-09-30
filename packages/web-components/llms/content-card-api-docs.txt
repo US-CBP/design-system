@@ -37,6 +37,7 @@ The Card component is a visual treatment for a container meant for similarly-siz
 | `--cbp-banner-card-color-dark` | var(--cbp-color-gray-cool-20); |
 | `--cbp-banner-card-color-title` | var(--cbp-color-text-lighter); |
 | `--cbp-banner-card-color-title-dark` | var(--cbp-color-text-darker); |
+| `--cbp-card-border-radius` | var(--cbp-border-radius-3); |
 | `--cbp-card-color-background` | var(--cbp-color-white) |
 | `--cbp-card-color-background-dark` | var(--cbp-color-gray-cool-60); |
 | `--cbp-card-color-background-selected` | var(--cbp-color-interactive-selected-dark); |

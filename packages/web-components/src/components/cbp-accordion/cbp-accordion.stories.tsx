@@ -98,7 +98,7 @@ const Template = ({ items, multiple, showBadge, context, sx }) => {
   `;
 };
 
-export const Accordion = Template.bind({});
+export const Accordion: any = Template.bind({});
 Accordion.args = {};
 
 
@@ -133,7 +133,7 @@ const AccordionWithSlottedLabelTemplate = ({ items, multiple, showBadge, context
   `;
 };
 
-export const AccordionWithSlottedLabel = AccordionWithSlottedLabelTemplate.bind({});
+export const AccordionWithSlottedLabel: any = AccordionWithSlottedLabelTemplate.bind({});
 AccordionWithSlottedLabel.args = {
   showBadge: true,
 };

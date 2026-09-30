@@ -10,31 +10,31 @@ The Tooltip component allows for the disclosure of supplemental, non-essential i
 
 ## Functional Requirements
 
-* Tooltip is designed to wrap a slotted control, the control can be anything but the click and focus functionality will be impeded 
-since they are used to launch the tooltip
-* Consumers will have to define the alignment of the tooltip. See the alignment prop for the defined options
+* Tooltip is designed to wrap a slotted control, which can be any element.
+* The tooltip positioning defaults above the control, centered, but may be positioned to the top, bottom, left or right, aligning to the starting or ending edge of the control or centered to the control.
+* If the specified positioning results in the tooltip going off-screen, it will be repositioned on-screen by flipping its positioning and/or sliding it if needed.
 
 ## Technical Specifications
 
 ### User Interactions
 
-* Tooltips are activated by focusing or clicking the triggering element.
-* Once tooltip is open it will persist until the it is closed via clicking or focusing off of the close button in to left of content. 
-* Once closed the focus will return to the tooltip control.
+* Tooltips are activated by hovering, focusing, or clicking the triggering element.
+* When the tooltip is activated via mouse hover, it will be dismissed when no longer hovering the control or tooltip.
+* When activated via focus or click, the tooltip will persist until it is closed via clicking the close button or clicking/tabbing away from the tooltip. 
+* When closed, focus will return to the tooltip control.
 
 ### Responsiveness
 
-* TBD
+* The tooltip is sized responsively by default and even if a width is specified by default, it uses a max-width: 100% so that it shall never exceed the size of the viewport.
+* If the specified positioning results in the tooltip going off-screen, it will be repositioned on-screen by flipping its positioning and/or sliding it if needed.
 
 ### Accessibility
 
-* Tooltip is designed with keyboard navigation in mind, with the tooltip launching on focus & closing both via the escape key & focus 
-leaving the close button
-* Tooltip has the roles semantically defined in HTML with the parent as role='button' and the tooltip container role='tooltip'
-* The tooltip root/parent has a tabindex of 0 to assist with Accessibility concerns with focus
+* The Tooltip trigger (host tag) has a `tabindex="0"` to make it focusable and keyboard navigable.
+* The tooltip control has a `role="button"` applied.
+* The actual tooltip has a `role="tooltip"`.
 
 ### Additional Notes and Considerations
 
 * Tooltips should be used sparingly since hiding functionality should be avoided if at all possible.
-* Historically, tooltips were accessible via hover but this does not conform to accessibility standards, and is completely invisible on touch-based 
-devices. As such, tooltips are activated by focusing or clicking the triggering element.
+* The Tooltip component needs additional testing with other elements and interactions with nested interactive elements.

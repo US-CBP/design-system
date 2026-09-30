@@ -1,0 +1,70 @@
+# Layout and Structure
+
+The web components under this heading are made up of two types:
+
+-   Template parts, which have a distinct place in the composition of a page layout, e.g., Universal Header, Application Header, Footer, etc.
+-   Generic layout components, which can be used in many ways and even nested, e.g., Grid, Flex, etc.
+
+## Template Parts
+
+The following components define visual blocks of the standard page template, in order of appearance on the screen:
+
+-   [App](./?path=/docs/layout-and-structure-app-specifications--docs) - wraps the entire application or page.
+-   [Skip Navigation Link](./?path=/story/layout-and-structure-skip-navigation-link--skip-navigation-link) - visually hidden by default, but revealed by keyboard navigation as the first focusable element on the page.
+-   [USA Banner](./?path=/story/layout-and-structure-usa-banner--usabanner) - for public-facing applications.
+-   [Universal Header](./?path=/story/layout-and-structure-universal-header--universal-header) - standard CBP branding and (non-application specific) controls.
+-   [Application Header](./?path=/story/layout-and-structure-application-header--application-header) - contains the application name, home link, and additional site/application navigation.
+-   [Footer](./?path=/story/layout-and-structure-footer--internal-footer) - contains internal links and support information.
+
+These are the building blocks of the visual template, but most of these components are containers that hold additional links, controls, and content. There's much more that goes into a page template, including hooking up the User Preferences drawer and responsive navigation.
+
+You can read more specific details about the [complete specifications of the page template here](./?path=/docs/page-templates-specifications--docs).
+
+## Reusable Layout Components
+
+### Container (`cbp-container`)
+
+The Container component is a generic building-block component, sufficient for building a "hero image" pattern with content and/or call-to-action within.
+
+The Container component is used in the Template stories to wrap the main content area in a single-column layout, and apply some custom CSS via the `sx` property. The Container component is replaced by the Grid component for the two-column layout.
+
+This could also be achieved without the container component, using regular CSS or inline styles, but the component gives a consistent component and CSS API supporting CSS variables and dark mode toggling.
+
+### Section (`cbp-section`)
+
+The Section component represents a generic block that may be used for semantic meaning or as an generic container for styling. By default it's little more than a `div`, but it can be useful to:
+
+-   Wrap clocks of content and apply styling such as borders (as dividers) or zebra striping via `sx`.
+-   Wrap a semantic block of content that is identified as an HTML landmark by rendering the `section` tag with an accessible label.
+
+Either of these cases can be accomplished with native HTML, but the component gives a consistent component and CSS API supporting CSS variables and dark mode toggling.
+
+### Flex (`cbp-flex` and `cbp-flex-item`)
+
+The Flex component invokes a CSS Flexbox context, acting as the flex parent and implementing CSS Flexbox as a component API. Flexbox is ideal for placing items of differing sizes in a row (or column), optionally allowing them to wrap. Flex layout is informed by content size/length.
+
+While it may be possible to use Flex for template-level content blocks, Grid is more appropriate and robust for such cases. However, you may notice that the CBP DS Templates use Flex in a column to expand the content area and pin the footer to the bottom of the viewport in case the actual page content is short.
+
+Once again, it may be possible to implement Flex in pure CSS, but the component offers structural visibility of the layout and and discoverability of properties and values, as well as a reactive breakpoint option at which point it linearizes the flex items.
+
+### Grid (`cbp-grid` and `cbp-grid-item`)
+
+The Grid component invokes a CSS Grid context, acting as the grid parent and implementing CSS Grid as a component API. Grid is ideal for maintaining consistent column sizes regardless of content size/length.
+
+The Grid component may be used for establishing site structure for two or three-column layouts, allowing for columns to be set to defined sizes while the main content area fills the remaining space ways that a percentage-based grid cannot.
+
+Grid's power is further enhanced by using native CSS features and functions, such as:
+
+-   fr units
+-   repeat()
+-   minmax()
+
+Once again, it may be possible to implement Grid in pure CSS, but the component offers structural visibility of the layout and discoverability of properties and values, as well as a reactive breakpoint option at which point it linearizes the grid items (primarily for small screens and mobile devices).
+
+### Multicol (`cbp-multicol`)
+
+The Multicol component invokes a CSS multi-column layout, which allows content to flow in vertical columns, reading from top to bottom (in a standard ltr reading mode) and flowing to the next column.
+
+Multi-column layout is ideal for longer lists of items, especially selectable via checkboxes or radio buttons. When these items are ordered in a visible pattern, they are more readable in top-to-bottom columns, than horizontally such as a flexbox or grid layout.
+
+Multi-column layout is exceptionally robust for resizing based on available space without specifying a breakpoint, simply by specifying a column width and maximum number of columns.

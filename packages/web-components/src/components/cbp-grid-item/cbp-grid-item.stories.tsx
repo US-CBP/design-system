@@ -43,8 +43,7 @@ export default {
     },
     content: {
       name: 'Content (slotted)',
-      description: 'The flex children and their contents.',
-      control: 'object',
+      control: 'text',
     },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',

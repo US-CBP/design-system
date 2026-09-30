@@ -3,7 +3,7 @@
 ## Examples
 
 
-### Description Link List
+### Description List
 
 ```tsx
 ({
@@ -25,39 +25,7 @@
 }
 ```
 
-### External Link List
-
-```tsx
-({
-  linkListItems,
-  size,
-  accessibilityText,
-  context,
-  sx
-}) => {
-  setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-list a');
-    anchors.forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-      });
-    });
-  }, 500);
-  return ` 
-    <cbp-list
-      variant="link"
-      ${size ? `size="${size}"` : ''}
-      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${generateLinkListItems(linkListItems, size, 'link-external')}
-  </cbp-list>
-  `;
-}
-```
-
-### Icon Link List
+### Icon List
 
 ```tsx
 ({
@@ -76,37 +44,6 @@
       ${generateIconItems(linkListItems)}
     </cbp-list>
   `;
-}
-```
-
-### Internal Link List
-
-```tsx
-({
-  linkListItems,
-  size,
-  accessibilityText,
-  context,
-  sx
-}) => {
-  setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-list a');
-    anchors.forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-      });
-    });
-  }, 500);
-  return ` 
-  <cbp-list
-    variant="link" 
-    ${size ? `size="${size}"` : ''}
-    ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-    ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-    ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-  >
-    ${generateLinkListItems(linkListItems, size, 'link-internal')}
-  </cbp-list>`;
 }
 ```
 
@@ -158,5 +95,69 @@
       ${generateItems(listItems)}
     </cbp-list>
   `;
+}
+```
+
+### Large Link List
+
+```tsx
+({
+  linkListItems,
+  variant,
+  size,
+  accessibilityText,
+  context,
+  sx
+}) => {
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-list a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
+  }, 500);
+  return ` 
+  <cbp-list
+    variant="link" 
+    ${size ? `size="${size}"` : ''}
+    ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+    ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+    ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+  >
+    ${generateLinkListItems(linkListItems, size, variant)}
+  </cbp-list>`;
+}
+```
+
+### Link List
+
+```tsx
+({
+  linkListItems,
+  variant,
+  size,
+  accessibilityText,
+  context,
+  sx
+}) => {
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-list a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
+  }, 500);
+  return ` 
+  <cbp-list
+    variant="link" 
+    ${size ? `size="${size}"` : ''}
+    ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+    ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+    ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+  >
+    ${generateLinkListItems(linkListItems, size, variant)}
+  </cbp-list>`;
 }
 ```

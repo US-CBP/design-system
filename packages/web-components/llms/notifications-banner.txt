@@ -7,8 +7,8 @@
 
 ```tsx
 ({
-  bannerTitle,
-  bannerContent
+  title,
+  content
 }) => {
   return ` 
       <cbp-banner>
@@ -18,9 +18,9 @@
           variant="heading-md"
           context="dark-always"
         >
-          ${bannerTitle}
+          ${title}
         </cbp-typography>
-        ${bannerContent}
+        ${content}
       </cbp-banner>
     `;
 }

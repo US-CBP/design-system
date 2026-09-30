@@ -132,7 +132,7 @@ cbp-file-input {
     background-color: var(--cbp-file-input-color-bg);
     border-width: var(--cbp-border-size-md);
     border-color: var(--cbp-file-input-color-border);
-    border-radius: var(--cbp-file-input-border-radius);
+    border-radius: var(--cbp-border-radius-2);
     outline-style: solid;
     outline-width: 0;
     outline-color: var(--cbp-file-input-color-outline);
@@ -237,6 +237,7 @@ cbp-file-input {
       align-items: center;
       gap: var(--cbp-space-2x);
       padding: var(--cbp-space-2x);
+      border-radius: var(--cbp-border-radius-1);
       background-color: var(--cbp-file-input-file-color-bg);
       font-style: italic;
       line-height: var(--cbp-line-height-xs);
@@ -255,7 +256,6 @@ cbp-file-input {
         --cbp-button-min-height: var(--cbp-space-7x);
         --cbp-button-width: var(--cbp-space-7x);
         --cbp-button-height: var(--cbp-space-7x);
-        --cbp-button-border-radius: var(--cbp-border-radius-circle);
         --cbp-button-color-hover: var(--cbp-color-text-lightest);
         --cbp-button-color-hover-dark: var(--cbp-color-text-darkest);
         --cbp-button-color-bg-hover: var(--cbp-color-interactive-secondary-darker);
@@ -265,7 +265,6 @@ cbp-file-input {
       }
     }
   }
-
 }
 
 // Hide the left icon if needed

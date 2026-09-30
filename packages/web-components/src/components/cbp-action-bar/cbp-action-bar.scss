@@ -39,6 +39,10 @@ cbp-action-bar {
     margin-inline-end: auto;
   }
 
+  &[variant=inline] {
+    border-radius: 0 0 var(--cbp-border-radius-2) var(--cbp-border-radius-2);
+  }
+
   &[variant=floating] {
     --cbp-action-bar-color-bg: var(--cbp-action-bar-floating-color-bg);
     --cbp-action-bar-color-bg-dark: var(--cbp-action-bar-floating-color-bg-dark);

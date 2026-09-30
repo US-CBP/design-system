@@ -11,6 +11,7 @@
   withIcon,
   tag,
   type,
+  name,
   value,
   href,
   rel,
@@ -33,6 +34,7 @@
       <cbp-button
         ${tag !== 'button' ? `tag="${tag}"` : ''}
         ${type ? `type="${type}"` : ''}
+        ${name ? `name="${name}"` : ''}
         ${value ? `value="${value}"` : ''}
         ${href ? `href="${href}"` : ''}
         ${rel ? `rel="${rel}"` : ''}
@@ -84,6 +86,7 @@
         <button 
           slot="cbp-button-custom"
           type="button"
+          name="custom-button"
           value="Custom Button Value"
         >
           ${withIcon ? `<cbp-icon name="pen-to-square"></cbp-icon>` : ''}

@@ -58,5 +58,5 @@ const Template = ({ order, alignSelf, flexGrow, flexShrink, flexBasis, content, 
   `;
 };
 
-export const FlexItem = Template.bind({});
+export const FlexItem: any = Template.bind({});
 FlexItem.args = {};

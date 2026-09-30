@@ -1,6 +1,6 @@
 export default {
   title: 'Forms/Toggle',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     hideStatus: {
       description: 'Determines if the status text for the `on` and `off` is visible for the toggle control',
@@ -50,15 +50,16 @@ const Template = ({ label, checked, name, value, hideStatus, statusTextOn, statu
   `;
 };
 
-export const Toggle = Template.bind({});
+export const Toggle: any = Template.bind({});
 Toggle.args = {
-  label: 'Toggle Label',
+  label: 'Insert Toggle Label',
   name: "toggle",
   value: "1",
   checked: false,
 };
 Toggle.argTypes = {
   label: {
+    name: 'label (slotted)',
     description: 'Sets the label for the toggle control',
     control: 'text',
   },
@@ -104,16 +105,21 @@ function generateToggles(items, labelWidth, hideStatus, statusTextOn, statusText
 const MultipleTemplate = ({ ToggleItems, labelWidth, hideStatus, statusTextOn, statusTextOff, disabled, context, sx }) => {
   return `
     <cbp-form-field group
-      label="Settings"
-      description="An example of multiple toggles in a form field"
+      label="Insert Toggle Group Label"
+      description="Insert toggle group description."
     >
       ${generateToggles(ToggleItems, labelWidth, hideStatus, statusTextOn, statusTextOff, disabled, context, sx)} 
     </cbp-form-field>
   `;
 };
 
-export const MultipleToggle = MultipleTemplate.bind({});
-
+export const MultipleToggle: any = MultipleTemplate.bind({});
+MultipleToggle.argTypes = {
+  ToggleItems: {
+    name: 'ToggleItems (slotted)',
+    control: 'object',
+  },
+}
 MultipleToggle.args = {
   ToggleItems: [
     {

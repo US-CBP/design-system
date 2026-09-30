@@ -1,6 +1,6 @@
 export default {
   title: 'Content/Table',
-  tags: ['new'],
+  tags: ['beta'],
   argTypes: {
     striped: {
       control: 'select',
@@ -31,6 +31,14 @@ export default {
     },
     liveRegion: {
       control: 'text',
+    },
+    headers: {
+      name: 'headers (slotted)',
+      control: 'object'
+    },
+    tableData: {
+      name: 'tableData (slotted)',
+      control: 'object'
     },
     context : {
       control: 'select',
@@ -139,7 +147,6 @@ function toolbar() {
 
 
 const Template = ({ tableData, headers, useRowHeader, selectable, striped, hover, columnHover, overflow, showToolbar, showCaption, liveRegion, context, sx }) => {
-  
   return ` 
     <cbp-table
       ${striped != 'none' ? `striped="${striped}"` : ''}
@@ -175,7 +182,7 @@ const Template = ({ tableData, headers, useRowHeader, selectable, striped, hover
   `;
 };
 
-export const BasicTable = Template.bind({});
+export const BasicTable: any = Template.bind({});
 BasicTable.args = {
   striped: 'even',
   headers: [
@@ -249,7 +256,7 @@ BasicTable.args = {
 }
 
 
-export const dangerTable = Template.bind({});
+export const dangerTable: any = Template.bind({});
 dangerTable.args = {
   striped: 'even',
   headers: [
@@ -324,7 +331,7 @@ dangerTable.args = {
 }
 
 
-export const highlightTable = Template.bind({});
+export const highlightTable: any = Template.bind({});
 highlightTable.args = {
   striped: 'even',
   headers: [
@@ -398,7 +405,7 @@ highlightTable.args = {
 }
 
 
-export const singleRowActionTable = Template.bind({});
+export const singleRowActionTable: any = Template.bind({});
 singleRowActionTable.args = {
   striped: 'even',
   headers: [
@@ -505,7 +512,7 @@ singleRowActionTable.args = {
 }
 
 
-export const OverflowMenu = Template.bind({});
+export const OverflowMenu: any = Template.bind({});
 OverflowMenu.storyName = "Single Action Table with Overflow Menu"
 OverflowMenu.args = {
   striped: 'even',
@@ -552,22 +559,20 @@ OverflowMenu.args = {
             </cbp-button>
 
             <cbp-menu-item>
-              <cbp-button> 
+              <a href="#" target="_self"> 
                 <cbp-icon name="eye"></cbp-icon>
                 View
-              </cbp-button>
+              </a>
             </cbp-menu-item>
             <cbp-menu-item>
-              <cbp-button> 
+              <a href="#" target="_self"> 
                 <cbp-icon name="pen-to-square"></cbp-icon>
                 Edit
-              </cbp-button>
+              </a>
             </cbp-menu-item>
             <cbp-menu-item color="danger">
               <cbp-button fill="ghost" color="danger">   
-                <cbp-icon>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-                </cbp-icon>
+                <cbp-icon name="trash"></cbp-icon>
                 Delete
               </cbp-button>
             </cbp-menu-item>
@@ -612,9 +617,7 @@ OverflowMenu.args = {
             </cbp-menu-item>
             <cbp-menu-item color="danger">
               <cbp-button fill="ghost" color="danger">   
-                <cbp-icon>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-                </cbp-icon>
+                <cbp-icon name="trash"></cbp-icon>
                 Delete
               </cbp-button>
             </cbp-menu-item>
@@ -659,9 +662,7 @@ OverflowMenu.args = {
             </cbp-menu-item>
             <cbp-menu-item color="danger">
               <cbp-button fill="ghost" color="danger">   
-                <cbp-icon>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-                </cbp-icon>
+                <cbp-icon name="trash"></cbp-icon>
                 Delete
               </cbp-button>
             </cbp-menu-item>
@@ -706,9 +707,7 @@ OverflowMenu.args = {
             </cbp-menu-item>
             <cbp-menu-item color="danger">
               <cbp-button fill="ghost" color="danger">   
-                <cbp-icon>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-                </cbp-icon>
+                <cbp-icon name="trash"></cbp-icon>
                 Delete
               </cbp-button>
             </cbp-menu-item>
@@ -753,9 +752,7 @@ OverflowMenu.args = {
             </cbp-menu-item>
             <cbp-menu-item color="danger">
               <cbp-button fill="ghost" color="danger">   
-                <cbp-icon>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
-                </cbp-icon>
+                <cbp-icon name="trash"></cbp-icon>
                 Delete
               </cbp-button>
             </cbp-menu-item>

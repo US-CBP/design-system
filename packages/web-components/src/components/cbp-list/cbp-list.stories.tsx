@@ -17,6 +17,11 @@ export default {
   },   
 };
 
+function generateUnvisitedLink(href) {
+  if(href == '#') return '?' + (Math.random() + 1).toString(26).slice(2, 7);
+  else return href;
+}
+
 function generateItems(items) {
   const html = items.map(({ content}) => {
       return `<li>${content}</li>
@@ -25,8 +30,45 @@ function generateItems(items) {
   return html.join('');
 }
 
+function generateLinkListItems(items, size, parentVariant){
+  // if(variant == 'external'){
+  if(size == 'large'){
+    const html = items.map(({content, description}) => {
+      return `
+        <li>
+          <cbp-link href="${generateUnvisitedLink('#')}">
+            <cbp-icon 
+              ${parentVariant == 'external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
+            ></cbp-icon>
+            <cbp-link href="${generateUnvisitedLink('#')}">${content}</cbp-link>
+          </cbp-link>
+          <br />
+          <cbp-typography tag="span" variant="body-text" sx='{"color":"var(--cbp-link-list-color)"}'>
+            <i>
+              <cbp-icon name="globe"></cbp-icon>
+              ${description}
+            </i>
+          </cbp-typography>
+        </li>
+      `
+    });
+    return html.join('')
+  }else{
+    const html = items.map(({content}) =>{
+    return `
+      <li>
+        <cbp-link href="${generateUnvisitedLink('#')}">
+          <cbp-icon 
+            ${parentVariant == 'external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
+          ></cbp-icon>
+          ${content}
+        </cbp-link>
+      </li>`
+    });  
+    return html.join('');
+  }  
+}
 
-  
 const Template = ({UnorderedListItems, OrderedListItems, tag, size, accessibilityText, context, sx}) => {
   return ` 
     <cbp-list
@@ -163,120 +205,6 @@ UnstyledList.argTypes ={
   },
 }
 
-function generateLinkListItems(items, size, parentVariant) {
-  if(size != 'normal'){
-    
-    const html = items.map(({ content}) => {
-      return `
-        <li>
-          <cbp-icon 
-            ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
-            sx='{"color":"var(--cbp-link-list-icon-color)"}'
-          ></cbp-icon>
-          <cbp-link href='#' target='_self'>${content}</cbp-link>
-          ${parentVariant == 'link-external' ? `<br /><cbp-icon name="globe" /> </cbp-icon><cbp-typography tag="span" variant="body-text" sx='{"color":"var(--cbp-link-list-icon-color)"}'><i> ` + content + ` description </i></cbp-typography>` : ''} 
-        </li>
-      `;
-    });
-    return html.join('');
-  } 
-  else {  //size == 'normal'
-    const html = items.map(({ content}) => {
-      return `
-        <li>
-          <cbp-icon
-            ${parentVariant == 'link-external' ? 'name="external-link-alt"' : 'name="arrow-right"'}
-            sx='{"color":"var(--cbp-link-list-icon-color)"}'
-          ></cbp-icon>
-          <cbp-link href='#' target='_self'>${content}</cbp-link>
-        </li>
-      `;
-    });
-    return html.join('');    
-  } 
-}
-              
-const InternalLinkListTemplate = ({linkListItems, size, accessibilityText, context, sx}) => {
-  
-  setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-list a');
-    anchors.forEach(anchor => {
-      anchor.addEventListener('click', function(e) { e.preventDefault(); })
-    });
-  }, 500);
-  
-  return ` 
-  <cbp-list
-    variant="link" 
-    ${size ? `size="${size}"` : ''}
-    ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-    ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-    ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-  >
-    ${generateLinkListItems(linkListItems, size, 'link-internal')}
-  </cbp-list>`;
-};
-
-export const InternalLinkList = InternalLinkListTemplate.bind({});
-  InternalLinkList.args = {
-      linkListItems: [
-          {
-            content: "List Link Item 1",
-          },
-          {
-            content: "List Link Item 2",
-          },
-          {
-            content: "List Link Item 3",
-          },
-        ]
-};
-
-const ExternalLinkListTemplate = ({linkListItems, size, accessibilityText, context, sx}) => {
-  
-  setTimeout(() => {
-    let anchors = document.querySelectorAll('cbp-list a');
-    anchors.forEach(anchor => {
-      anchor.addEventListener('click', function(e) { e.preventDefault(); })
-    });
-  }, 500);
-
-  return ` 
-    <cbp-list
-      variant="link"
-      ${size ? `size="${size}"` : ''}
-      ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
-      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
-    >
-      ${generateLinkListItems(linkListItems, size, 'link-external')}
-  </cbp-list>
-  `;
-};
-
-export const ExternalLinkList = ExternalLinkListTemplate.bind({});
-ExternalLinkList.args = {
-  linkListItems: [
-    {
-      content: "List Link Item 1",
-    },
-    {
-      content: "List Link Item 2",
-    },
-    {
-      content: "List Link Item 3",
-    },
-  ],
-  size: 'normal'
-};
-ExternalLinkList.argTypes ={
-  size: {
-    control: 'select',
-    description: 'Font size of list text',
-    options: ['normal', 'large'],
-  },
-}
-
 function generateIconItems(items) {
   const html = items.map(({ content, icon, color}) => {
     return `
@@ -292,6 +220,87 @@ function generateIconItems(items) {
   return html.join('');
 }
 
+const LinkListTemplate = ({linkListItems, variant, size, accessibilityText, context, sx}) => {
+  setTimeout(() => {
+    let anchors = document.querySelectorAll('cbp-list a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) { e.preventDefault(); })
+    });
+  }, 500);
+  
+  return ` 
+  <cbp-list
+    variant="link" 
+    ${size ? `size="${size}"` : ''}
+    ${accessibilityText ? `accessibility-text="${accessibilityText}"` : ''}
+    ${context && context != 'light-inverts' ? `context="${context}"` : ''}
+    ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+  >
+    ${generateLinkListItems(linkListItems, size, variant)}
+  </cbp-list>`;
+}
+
+export const linkList = LinkListTemplate.bind({});
+linkList.args ={
+  linkListItems: [
+        {
+          content: "List Link Item 1",
+          description: 'https://www.text-line.com/help-me'
+        },
+        {
+          content: "List Link Item 2",
+          description: 'https://www.text-line.com/help-me'
+        },
+        {
+          content: "List Link Item 3",
+          description: 'https://www.text-line.com/help-me'
+        },
+      ],
+    variant: 'internal',
+    size: 'normal'
+};
+
+linkList.argTypes = {
+  variant: {
+    control: 'select',
+    description: 'Internal / External versions of icon list',
+    options: ['internal', 'external']
+  },
+  size: {
+    control: 'select',
+    description: 'Font size of list text',
+    options: ['normal', 'large'],
+  },
+}
+
+export const largeLinkList = LinkListTemplate.bind({});
+largeLinkList.args ={
+  linkListItems: [
+        {
+          content: "List Link Item 1",
+          description: 'https://www.text-line.com/help-me'
+        },
+        {
+          content: "List Link Item 2",
+          description: 'https://www.text-line.com/help-me'
+        },
+        {
+          content: "List Link Item 3",
+          description: 'https://www.text-line.com/help-me'
+        },
+      ],
+    variant: 'internal',
+    size: 'large'
+};
+
+largeLinkList.argTypes = {
+  variant: {
+    control: 'select',
+    description: 'Internal / External versions of icon list',
+    options: ['internal', 'external']
+  }
+}
+
 const IconListTemplate = ({linkListItems, accessibilityText, context, sx}) => {
   return ` 
     <cbp-list
@@ -303,10 +312,11 @@ const IconListTemplate = ({linkListItems, accessibilityText, context, sx}) => {
       ${generateIconItems(linkListItems)}
     </cbp-list>
   `;
+
 };
 
-export const IconLinkList = IconListTemplate.bind({});
-IconLinkList.args = {
+export const IconList = IconListTemplate.bind({});
+IconList.args = {
   linkListItems: [
     {
       content: "List Item 1",
@@ -354,8 +364,8 @@ const DescriptionListTemplate = ({linkListItems, accessibilityText, context, sx}
   `;
 };
 
-export const DescriptionLinkList = DescriptionListTemplate.bind({});
-DescriptionLinkList.args = {
+export const DescriptionList = DescriptionListTemplate.bind({});
+DescriptionList.args = {
   linkListItems: [
     {
       content: "Always pay with Cash.",

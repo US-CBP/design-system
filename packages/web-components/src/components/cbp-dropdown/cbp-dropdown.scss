@@ -45,12 +45,13 @@
   --cbp-dropdown-attached-button-start-width: 0px;
   --cbp-dropdown-attached-button-end-width: 0px;
   --cbp-dropdown-multiselect-indent: 0px; // override for combobox
-
+  
+  
+  // icon => chevron-down from font-awesome 7.2.0
   // On dark "button" background
-  --cbp-dropdown-chevron-down: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="%23fcfcfc"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
-  --cbp-dropdown-chevron-down-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512" fill="%231b1b1b"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
+  --cbp-dropdown-chevron-down: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512" fill="%23fcfcfc"><path d="M201.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 338.7 54.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
+  --cbp-dropdown-chevron-down-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512" fill="%231b1b1b"><path d="M201.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 338.7 54.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
 }
-
 
 /* 
  * Dark Mode - display dark design based on mode or context
@@ -75,8 +76,9 @@ cbp-dropdown {
   // Adjustments for attached buttons e.g., pagination
   &:has([slot="cbp-dropdown-attached-button-start"]),
   &:has([slot="cbp-dropdown-attached-button-end"]) {
-    --cbp-dropdown-chevron-down: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%231b1b1b"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
-    --cbp-dropdown-chevron-down-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%23fcfcfc"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>');
+    // icon => caret-down from font-awesome 7.2.0
+    --cbp-dropdown-chevron-down: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%231b1b1b"><path d="M140.3 376.8c12.6 10.2 31.1 9.5 42.8-2.2l128-128c9.2-9.2 11.9-22.9 6.9-34.9S301.4 192 288.5 192l-256 0c-12.9 0-24.6 7.8-29.6 19.8S.7 237.5 9.9 246.6l128 128 2.4 2.2z"/></svg>');
+    --cbp-dropdown-chevron-down-dark: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 320 512" fill="%23fcfcfc"><path d="M140.3 376.8c12.6 10.2 31.1 9.5 42.8-2.2l128-128c9.2-9.2 11.9-22.9 6.9-34.9S301.4 192 288.5 192l-256 0c-12.9 0-24.6 7.8-29.6 19.8S.7 237.5 9.9 246.6l128 128 2.4 2.2z"/></svg>');
     
     button.cbp-custom-form-control {
       --cbp-dropdown-chevron: var(--cbp-dropdown-chevron-down);
@@ -126,13 +128,13 @@ cbp-dropdown {
     }
 
     // Attached buttons act like an overlay in order to wrap the input focus highlight around them.
-    [slot="cbp-dropdown-attached-button-start"] {
-      --cbp-button-border-radius: var(--cbp-border-radius-soft) 0 0 var(--cbp-border-radius-soft);
+    [slot=cbp-dropdown-attached-button-start] {
+      --cbp-button-border-radius: var(--cbp-border-radius-1) 0 0 var(--cbp-border-radius-1);
       inset-inline-start: 0;
     }
 
-    [slot="cbp-dropdown-attached-button-end"] {
-      --cbp-button-border-radius: 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0;
+    [slot=cbp-dropdown-attached-button-end] {
+      --cbp-button-border-radius: 0 var(--cbp-border-radius-1) var(--cbp-border-radius-1) 0;
       inset-inline-end: 0;
     }
 
@@ -187,6 +189,7 @@ cbp-dropdown {
 
   .cbp-dropdown-multiselect-counter {
     display: inline-block;
+    flex-shrink: 0; // defensively protect against flex shrinkage
     color: var(--cbp-dropdown-menu-color-counter);
     background-color: var(--cbp-dropdown-menu-color-bg-counter);
     font-size: var(--cbp-font-size-subhead);
@@ -198,6 +201,10 @@ cbp-dropdown {
     border-radius: var(--cbp-border-radius-pill);
     outline: 0px solid var(--cbp-dropdown-menu-color-counter-outline-focus);
     outline-offset: calc(-1 * (var(--cbp-space-1x) - 1px));
+
+    cbp-icon {
+      vertical-align: bottom; // anything else other than top/bottom causes growth in height by 1-2px or more
+    }
 
     &:hover {
       --cbp-dropdown-menu-color-bg-counter: var(--cbp-form-field-color-border-hover);
@@ -219,9 +226,9 @@ cbp-dropdown {
     color: var(--cbp-dropdown-menu-color);
     background-color: var(--cbp-dropdown-menu-color-bg);
     border: var(--cbp-border-size-md) solid var(--cbp-dropdown-menu-color-border);
-    border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
+    border-radius: 0 0 var(--cbp-border-radius-1) var(--cbp-border-radius-1);
     height: fit-content;
-    max-height: 13.5rem; // TechDebt: What's the reasoning for this magic number?
+    max-height: 13.5rem; //TechDebt: What's the reasoning for this magic number?
     width: 100%; //calc(100% - 2px);
 
     overflow-y: auto;
@@ -246,7 +253,7 @@ cbp-dropdown {
   }
 
   &[open] {
-    --cbp-form-field-border-radius: var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0 0;
+    --cbp-form-field-border-radius: var(--cbp-border-radius-1) var(--cbp-border-radius-1) 0 0;
 
     // Rotate the faux-button (chevron) when open
     button::before,

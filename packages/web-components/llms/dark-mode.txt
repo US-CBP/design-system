@@ -4,9 +4,9 @@
 
 ### Implementation
 
-The CBP Design System components support both light and dark modes, as indicated by a user's operating system preferences. There is nothing required by the developer for regular light and dark mode toggling based on user preferences other than wrapping the entire site/application template in the `cbp-app` tag.
+The CBP Design System components support both light and dark modes, as indicated by a user's operating system preferences. The developer need only wrap the site/application template in the `cbp-app` tag to get this baseline functionality.
 
-A developer wishing to create an application-based toggle, which would override the system settings, can do so by togging the `cbp-app` component's `theme` property between "light" and "dark" values. The `cbp-app` component should wrap the entire site (as in the template story) and is meant for hoisting site or page-wide functionality such as light and dark modes.
+A developer wishing to create an application-based toggle, which would override the system settings, can do so by togging the `cbp-app` component's `theme` property between "light" and "dark" values. The `cbp-app` component should wrap the entire site (as in the template stories) and is meant for hoisting site or page-wide functionality such as light and dark modes.
 
 ### Accessibility
 

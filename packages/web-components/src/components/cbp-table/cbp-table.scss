@@ -305,6 +305,7 @@ cbp-table {
         transition: width 2s; // a long transition prevents jumpiness when clicking sortable controls
         --cbp-button-color: var(--cbp-table-header-color);
         --cbp-button-color-dark: var(--cbp-table-header-color-dark);
+        --cbp-button-width: 100%;
         color: var(--cbp-table-header-color);
         background-color: var(--cbp-table-header-color-bg);
         font-weight: var(--cbp-font-weight-medium);
@@ -321,15 +322,21 @@ cbp-table {
 
         &:has(button) {
           padding: 0;
+
+          cbp-icon {
+            display: inline-flex;
+          }
         }
 
-        &:has(button:hover) {
+        &:has(button):hover { 
           --cbp-table-header-color: var(--cbp-table-header-color-hover);
           --cbp-table-header-color-bg: var(--cbp-table-header-color-bg-hover);
           --cbp-table-header-color-dark: var(--cbp-table-header-color-hover-dark);
           --cbp-table-header-color-bg-dark: var(--cbp-table-header-color-bg-hover-dark);
           
           cbp-button[fill][color] {
+            --cbp-button-color: var(--cbp-table-header-color-hover);
+            --cbp-button-color-dark: var(--cbp-table-header-color-hover-dark);
             --cbp-button-color-hover: var(--cbp-table-header-color-hover);
             --cbp-button-color-hover-dark: var(--cbp-table-header-color-hover-dark);
           }
@@ -386,6 +393,15 @@ cbp-table {
       th:has(button:focus) {
         --cbp-button-color-bg-focus: var(--cbp-color-interactive-focus-dark) !important;
         --cbp-button-color-bg-focus-dark: var(--cbp-color-interactive-focus-light) !important;
+      }
+
+      tr:first-child{
+        th:first-child{
+          border-top-left-radius: var(--cbp-border-radius-2);
+        }
+        th:last-child{
+            border-top-right-radius: var(--cbp-border-radius-2);
+        }
       }
     }
 

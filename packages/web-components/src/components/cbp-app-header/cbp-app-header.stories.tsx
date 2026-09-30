@@ -1,5 +1,5 @@
 export default {
-  title: 'Navigation/Application Header',
+  title: 'Layout and Structure/Application Header',
   tags: ['beta'],
   parameters: {
     layout: 'fullscreen',
@@ -9,8 +9,17 @@ export default {
       description: 'A unique `id` applied to the drawer and referenced by the control.',
       control: 'text',
     },
-    store: {
+    sticky:{
+      description: 'determines if the app header is sticky at the top of the page while scrolling the page.',
       control: 'boolean'
+    },
+    store: {
+      description: 'Sets the `store` property on the related `cbp-subnav` tag so that the primary navigation and sub-navigation can share state.',
+      control: 'boolean'
+    },
+    items: {
+      name: 'items (slotted)',
+      control: 'object'
     },
     search: {
       description: 'determines if the search field is rendered',
@@ -108,7 +117,7 @@ function renderDrawer(items, drawerId, store){
             variant="heading-lg"
             id="panelheader"
           >
-            Application Name
+            ${items?.[0]?.label}
           </cbp-typography>
 
           <cbp-form-field 
@@ -145,7 +154,7 @@ function renderDrawer(items, drawerId, store){
 }
 
 
-const Template = ({ drawerId, store, search, searchMethod, searchAction, items, sx }) => {  
+const Template = ({ drawerId, sticky, store, search, searchMethod, searchAction, items, sx }) => {  
   
   setTimeout(() => {
     // Cancel form submit event on search to prevent full page reload
@@ -164,6 +173,7 @@ const Template = ({ drawerId, store, search, searchMethod, searchAction, items, 
   return ` 
     <cbp-app-header    
       ${drawerId ? `subnav-drawer-id="${drawerId}"`: ''}
+      ${sticky ? `sticky` : ``}
       ${search ? 'search' : ''}
       ${searchMethod ? `search-method="${searchMethod}"` : ''}
       ${searchAction ? `search-action="${searchAction}"` : ''}
@@ -192,7 +202,7 @@ const Template = ({ drawerId, store, search, searchMethod, searchAction, items, 
 
 
 
-export const ApplicationHeader = Template.bind({});
+export const ApplicationHeader: any = Template.bind({});
 //ApplicationHeader.StoryName = "Application Header (Simple)"
 ApplicationHeader.args = {
   drawerId: 'navDrawer',
@@ -218,12 +228,13 @@ ApplicationHeader.args = {
       name: 'Nav Item 3',
       href: './?path=/story/components-application-header--application-header#',
     },
-  ] 
+  ],
+  sticky: true
 }
 
 
 
-const AppHeaderWithSubnavTemplate = ({ drawerId, store, search, searchMethod, searchAction, items, sx }) => {  
+const AppHeaderWithSubnavTemplate: any = ({ drawerId, store, search, searchMethod, searchAction, sticky, items, sx }) => {  
   
   setTimeout(() => {
     // Cancel form submit event on search to prevent full page reload
@@ -245,6 +256,7 @@ const AppHeaderWithSubnavTemplate = ({ drawerId, store, search, searchMethod, se
       ${search ? 'search' : ''}
       ${searchMethod ? `search-method="${searchMethod}"` : ''}
       ${searchAction ? `search-action="${searchAction}"` : ''}
+      ${sticky ? `sticky` : ``}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       ${generateNavItems(items, drawerId)}
@@ -338,5 +350,6 @@ AppHeaderWithSubnav.args = {
       name: 'Nav Item 3',
       href: './?path=/story/components-application-header--application-header#',
     },
-  ] 
+  ],
+  sticky: true 
 }

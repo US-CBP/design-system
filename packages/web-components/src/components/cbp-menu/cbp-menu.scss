@@ -2,23 +2,35 @@
  * @prop --cbp-menu-color-bg: var(--cbp-color-gray-cool-80);
  * @prop --cbp-menu-color-bg-dark: var(--cbp-color-gray-cool-5);
  * @prop --cbp-menu-gap: var(--cbp-space-3x);
+ * @prop --cbp-menu-scrollbar-thumb-color: var(--cbp-color-interactive-secondary-light);
+ * @prop --cbp-menu-scrollbar-thumb-color-dark: var(--cbp-color-interactive-secondary-base);
+ * @prop --cbp-menu-scrollbar-track-color: var(--cbp-color-gray-cool-70);
+ * @prop --cbp-menu-scrollbar-track-color-dark: var(--cbp-color-white);
  */
 :root {
   --cbp-menu-color-bg: var(--cbp-color-gray-cool-80);
   --cbp-menu-color-bg-dark: var(--cbp-color-gray-cool-5);
 
   --cbp-menu-gap: var(--cbp-space-3x);
+
+  --cbp-menu-scrollbar-thumb-color: var(--cbp-color-interactive-secondary-light);
+  --cbp-menu-scrollbar-thumb-color-dark: var(--cbp-color-interactive-secondary-base);
+  
+  --cbp-menu-scrollbar-track-color: var(--cbp-color-gray-cool-70);
+  --cbp-menu-scrollbar-track-color-dark: var(--cbp-color-white);
 }
 
 // Displays dark design based on mode or context
 [data-cbp-theme=light] cbp-menu[context*=dark],
 [data-cbp-theme=dark] cbp-menu:not([context=dark-inverts]):not([context=light-always]) {
   --cbp-menu-color-bg: var(--cbp-menu-color-bg-dark) !important;
+  
+  --cbp-menu-scrollbar-thumb-color: var(--cbp-menu-scrollbar-thumb-color-dark) !important;
+  --cbp-menu-scrollbar-track-color: var(--cbp-menu-scrollbar-track-color-dark) !important;
 }
 
 
 cbp-menu {
-  position: relative;
   display: inline-block;
   max-width: 100%;
 
@@ -31,41 +43,11 @@ cbp-menu {
     width: max-content;
     padding: 0;
     background: var(--cbp-menu-color-bg);
-    border-radius: var(--cbp-border-radius-softer);
+    border-radius: var(--cbp-border-radius-2);
     box-shadow: var(--cbp-shadow-level-1-down);
-    z-index: var(--cbp-z-index-level-0); // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
-  }
-
-
-  /* Menu Positioning for the larger breakpoints */
-  @media (min-width: 37.5em) {
-    .cbp-menu__menu {
-      width: max-content;
-      max-width: max-content;
-      margin: 0;
-    }
-
-    &[position=top-start] .cbp-menu__menu {
-      top: 100%;
-      left: 0;
-      transform: translate(0, -100%);
-    }
-
-    &[position=top-end] .cbp-menu__menu {
-      top: 100%;
-      left: 100%;
-      transform: translate(-100%, -100%);
-    }
-
-    &[position=bottom-start] .cbp-menu__menu  {
-      top: 0;
-      left: 0;
-    }
-
-    &[position=bottom-end] .cbp-menu__menu {
-      top: 0;
-      left: 100%;
-      transform: translate(-100%, 0);
-    }
+    z-index: var(--cbp-z-index-level-1); // TechDebt: revisit - this likely needs to be higher as it should overlay anything on the content-level including sticky items
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cbp-menu-scrollbar-thumb-color) var(--cbp-menu-scrollbar-track-color);
   }
 }

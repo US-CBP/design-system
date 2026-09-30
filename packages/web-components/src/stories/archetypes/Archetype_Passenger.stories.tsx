@@ -21,7 +21,11 @@ export default {
       description: 'set the action attribute on the form for search',
       control: 'text',
       if:{ arg: 'search'}
-    }
+    },
+    stickyHeader:{
+      description: 'boolean to set if the app header is sticky.',
+      control: 'boolean'
+    },
   },
   args: {
     username: 'Johnathan Smithington',
@@ -50,7 +54,7 @@ export default {
         href: './?path=/story/components-application-header--application-header#',
       },
     ],
-
+    stickyHeader: true
   },
 };
 
@@ -290,7 +294,7 @@ function generatePassengers(passengerArgs, page, pageSize) {
                   <img
                     src="https://thispersondoesnotexist.com/"
                     alt="avatar"
-                    style="width: 100px; border-radius: var(--cbp-border-radius-softer);"
+                    style="width: 100px; border-radius: var(--cbp-border-radius-2);"
                   />
                 <cbp-flex direction="column" gap="var(--cbp-space-2x) var(--cbp-space-1x)">
                   <cbp-typography tag="h2">${name}</cbp-typography>
@@ -908,7 +912,7 @@ function initThemeSwitcher() {
 }
 
 
-const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, passengersArgs, manifestArgs }) => {
+const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, searchMethod, searchAction, stickyHeader, passengersArgs, manifestArgs }) => {
   /** Techdebt for iteration on filter & manifest pane:
    * Icon for the app directory button is incorrect, verify all icons in buttons, most of these are initial stubs
    * Buttons in the universal header need spacing between icon & text
@@ -937,28 +941,29 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
       logo-src-lg="./assets/images/cbp-header-logo.svg"
       logo-src-sm="./assets/images/cbp-seal.svg"
     >
-      <ul>
+      <cbp-flex
+        gap="var(--cbp-space-4x)"
+      >
       ${
         isLoggedIn
           ? `
-        <li>
+        <cbp-flex-item>
           <cbp-button color="secondary" fill="ghost" context="dark-always">
             <cbp-icon name="book"></cbp-icon>
             <cbp-hide visually-hide-at="max-width: 64em">
                 App Directory
               </cbp-hide>
           </cbp-button>
-        </li>
-        <li>
+        </cbp-flex-item>
+        <cbp-flex-item>
           <cbp-button color="secondary" fill="ghost" context="dark-always">
             <cbp-icon name="comment"></cbp-icon>  
             <cbp-hide visually-hide-at="max-width: 64em">
               Feedback
             </cbp-hide>
           </cbp-button>
-        </li>
-        <li>
-
+        </cbp-flex-item>
+        <cbp-flex-item>
           <cbp-button 
           type="button"
           color="secondary" 
@@ -972,20 +977,21 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
               ${hashid}
             </cbp-hide>
           </cbp-button>
-        </li>
+        </cbp-flex-item>
         `
           : `
-        <li>
+        <cbp-flex-item>
           <cbp-button tag="a" href="#" color="secondary" fill="ghost" context="dark-always">
             <cbp-icon name="right-to-bracket"></cbp-icon>Login
           </cbp-button>
-        </li>
+        </cbp-flex-item>
         `
       }
-      </ul>
+      </cbp-flex>
     </cbp-universal-header>
 
     <cbp-app-header
+      ${stickyHeader ? `sticky` : ``}
       subnav-drawer-id="appheaderdrawer"
       ${search ? `search` : ``}
       ${searchMethod ? `search-method=${searchMethod}` : ``}

@@ -57,7 +57,7 @@ export class CbpBanner {
               name="circle-xmark" 
               size="var(--cbp-space-5x)"
             />
-              Dismiss
+            Dismiss
           </cbp-button>
         </div>
       </Host>

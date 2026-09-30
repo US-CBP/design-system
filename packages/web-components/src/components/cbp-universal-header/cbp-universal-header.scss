@@ -22,7 +22,7 @@ cbp-universal-header {
     }
   }
 
-  // Tech Debt: this should probably be replaced with cbp-flex in the story to achieve this functionality explicitly
+  // Deprecated: (6/2/2026) leaving to not break styling for apps
   .cbp-universal-header__content {
     ul,
     ol {

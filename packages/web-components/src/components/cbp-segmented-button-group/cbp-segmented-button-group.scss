@@ -10,12 +10,12 @@ cbp-segmented-button-group {
     --cbp-button-border-radius: 0;
 
     &:first-child {
-      --cbp-button-border-radius: var(--cbp-border-radius-soft) 0 0 var(--cbp-border-radius-soft);
+      --cbp-button-border-radius: var(--cbp-border-radius-1) 0 0 var(--cbp-border-radius-1);
       --cbp-button-border-width: var(--cbp-border-size-md) calc(var(--cbp-border-size-md) / 2) var(--cbp-border-size-md) var(--cbp-border-size-md);
     }
     // there can potentially be a hidden input at the end, so :last-child doesn't work here
     &:last-of-type {
-      --cbp-button-border-radius: 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft) 0;
+      --cbp-button-border-radius: 0 var(--cbp-border-radius-1) var(--cbp-border-radius-1) 0;
       --cbp-button-border-width: var(--cbp-border-size-md) var(--cbp-border-size-md) var(--cbp-border-size-md) calc(var(--cbp-border-size-md) / 2);
     }
 

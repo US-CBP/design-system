@@ -263,11 +263,11 @@
           "attributes": { "use": "theme", "type": "primary" }
         },
         "dark": {
-          "value": "{color.blue.60.value}",
+          "value": "{color.blue.70.value}",
           "attributes": { "use": "theme", "type": "primary" }
         },
         "darker": {
-          "value": "{color.blue.70.value}",
+          "value": "{color.blue.80.value}",
           "attributes": { "use": "theme", "type": "primary" }
         }
       },
@@ -286,11 +286,11 @@
           "attributes": { "use": "theme", "type": "neutral" }
         },
         "dark": {
-          "value": "{color.gray.warm.60.value}",
+          "value": "{color.gray.warm.70.value}",
           "attributes": { "use": "theme", "type": "neutral" }
         },
         "darker": {
-          "value": "{color.gray.warm.70.value}",
+          "value": "{color.gray.warm.80.value}",
           "attributes": { "use": "theme", "type": "neutral" }
         }
       },

@@ -19,10 +19,9 @@
 }) => {
   return `
     <cbp-panel
-      ${headerId ? `aria-labelledby="${headerId}"` : ''}
       ${role != 'none' ? `role="${role}"` : ''}
       ${ariaLabel ? `aria-label="${ariaLabel}"` : ''}
-      ${headerId ? `aria-labelledby="${headerId}"` : ''}
+      ${headerId && role != 'none' ? `aria-labelledby="${headerId}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -32,8 +31,7 @@
         variant="heading-lg"
         ${headerId ? `id="${headerId}"` : ''}
       >
-        ${showIcon ? `<cbp-icon name="star" sx='{"margin-right":"var(--cbp-space-4x)", "vertical-align":"text-top"}'></cbp-icon>` : ''}
-        ${header}
+        ${showIcon ? `<cbp-icon name="user"></cbp-icon>` : ''}${header}
       </cbp-typography>
 
       <p>${content}</p>
@@ -58,10 +56,9 @@
 }) => {
   return `
     <cbp-panel
-      ${headerId ? `aria-labelledby="${headerId}"` : ''}
       ${role != 'none' ? `role="${role}"` : ''}
       ${ariaLabel ? `aria-label="${ariaLabel}"` : ''}
-      ${headerId ? `aria-labelledby="${headerId}"` : ''}
+      ${headerId && role != 'none' ? `aria-labelledby="${headerId}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
@@ -71,8 +68,7 @@
         variant="heading-lg"
         ${headerId ? `id="${headerId}"` : ''}
       >
-        ${showIcon ? `<cbp-icon name="star" sx='{"margin-right":"var(--cbp-space-4x)", "vertical-align":"text-top"}'></cbp-icon>` : ''}
-        ${header}
+        ${showIcon ? `<cbp-icon name="user"></cbp-icon>` : ''}${header}
       </cbp-typography>
 
       <p>${content}</p>
