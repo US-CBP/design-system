@@ -144,7 +144,7 @@ div[role=tooltip] {
   font-weight: var(--cbp-font-weight-regular);  
   text-underline-offset: initial;
   box-shadow: var(--cbp-shadow-level-1-center);
-  z-index: var(--cbp-z-index-level-1);
+  z-index: var(--cbp-z-index-level-2);
 
   > div{
     flex-grow: 1;
@@ -161,7 +161,7 @@ div[role=tooltip] {
     transform: rotate(45deg);
     height:  var(--cbp-tooltip-caret-size);
     width: var(--cbp-tooltip-caret-size);
-    z-index: var(--cbp-z-index-level-1) - 1;  
+    z-index: var(--cbp-z-index-level-2) - 1;  
     transform: rotate(var(--cbp-tooltip-caret-rotation));
     clip-path: polygon(8% 0, 100% 92%, 100% 100%, 0 100%, 0 0);
 

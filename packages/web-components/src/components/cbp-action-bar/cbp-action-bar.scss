@@ -51,6 +51,7 @@ cbp-action-bar {
     left: 0;
     padding-inline: var(--cbp-responsive-spacing-outer);
     box-shadow: var(--cbp-shadow-level-3-up);
+    z-index: var(--cbp-z-index-level-1);
   }
 
   &[variant=sticky] {
@@ -58,5 +59,6 @@ cbp-action-bar {
     bottom: 0;
     left: 0;
     box-shadow: var(--cbp-shadow-level-3-up);
+    z-index: var(--cbp-z-index-level-1);
   }
 }

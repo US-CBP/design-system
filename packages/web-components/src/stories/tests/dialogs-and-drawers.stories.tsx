@@ -122,6 +122,105 @@ const Template: any = () => {
 
       <p>Main content here.</p>
 
+      <cbp-toast id="cbp-toast-1" open icon="circle-info">  
+        <div slot="cbp-toast-icon">
+          <cbp-icon name="circle-info"></cbp-icon>
+        </div>
+        <div slot="cbp-toast-title">Test Toast Title</div>
+        Notification Description - A rule you are following just fired.
+        <div slot="cbp-toast-buttons">
+        
+      <cbp-button fill="ghost" color="secondary" name="dismiss" context="dark-inverts">
+      dismiss
+      </cbp-button>
+
+        
+      <cbp-button fill="ghost" color="secondary" name="default" context="dark-inverts">
+      default
+      </cbp-button>
+
+        </div>
+      </cbp-toast>
+
+      <br />
+
+      <cbp-menu uid="menuId">
+        <cbp-button fill="outline" color="secondary" target-prop="open" controls="menuId">   
+          <cbp-icon name="bars"></cbp-icon>     
+          Menu
+        </cbp-button>
+
+        <cbp-menu-item slot="cbp-menu-items">
+          <a href="#">Option 1</a>
+        </cbp-menu-item>
+        <cbp-menu-item slot="cbp-menu-items">
+          <a href="#">Option 2</a>
+        </cbp-menu-item>
+        <cbp-menu-item slot="cbp-menu-items">
+          <a href="#">Option 3 is longer</a>
+        </cbp-menu-item>
+        <cbp-menu-item slot="cbp-menu-items">
+          <a href="#">Option 4</a>
+        </cbp-menu-item>
+      </cbp-menu>
+      
+      <br />
+
+      <cbp-form-field label="Listbox Example" name="insert-field-name" description="This listbox has a default list of suggestions supplied; typing is not required but filters the list further.">
+        <cbp-listbox items='[{"label":"Afghanistan"},{"label":"Albania"},{"label":"Algeria"},{"label":"Andaman Islands"},{"label":"Andorra"},{"label":"Angola"},{"label":"Anguilla"},{"label":"Annobon Island"},{"label":"Antigua"},{"label":"Antigua and Barbuda"},{"label":"Argentina"},{"label":"Armenia"},{"label":"Aruba"},{"label":"Ascension Island"},{"label":"Australia"},{"label":"Austria"},{"label":"Azerbaijan"},{"label":"Azores"},{"label":"Bahamas"},{"label":"Bahrain"},{"label":"Balearic Islands"},{"label":"Bangladesh"},{"label":"Barbados"},{"label":"Barbuda"},{"label":"Basse Terre"},{"label":"Belarus"},{"label":"Belau"},{"label":"Belgium"},{"label":"Belize"},{"label":"Benin"},{"label":"Bermuda"},{"label":"Bhutan"},{"label":"Bolivia"},{"label":"Bonaire"},{"label":"Bosnia and Herzegovina"},{"label":"Bosnia-Herzegovina"},{"label":"Botswana"},{"label":"Brazil"},{"label":"British Virgin Islands"},{"label":"Brunei"},{"label":"Bulgaria"},{"label":"Burkina Faso"},{"label":"Burma"},{"label":"Burundi"},{"label":"Byelarus"},{"label":"Cabinda"},{"label":"Caicos Islands"},{"label":"Cambodia"},{"label":"Cameroon"},{"label":"Canada"},{"label":"Canary Islands"},{"label":"Canton Islands"},{"label":"Cape Verde"},{"label":"Carriacou"},{"label":"Castelrosse Islands"},{"label":"Cayman Islands"},{"label":"Central African Rep"},{"label":"Chad"},{"label":"Channel Islands"},{"label":"Chile"},{"label":"China"},{"label":"Christmas Island"},{"label":"Cocos Islands"},{"label":"Colombia"},{"label":"Comoros"},{"label":"Congo"},{"label":"Cook Islands"},{"label":"Corsica"},{"label":"Costa Rica"},{"label":"Crete"},{"label":"Croatia"},{"label":"Cuba"},{"label":"Curacao"},{"label":"Cyprus"},{"label":"Czech Republic"},{"label":"Dem Rep of Congo"},{"label":"Denmark"},{"label":"Diego Garcia"},{"label":"Djibouti"},{"label":"Dodecanese Islands"},{"label":"Dominica"},{"label":"Dominican Republic"},{"label":"East Timor"},{"label":"Easter Island"},{"label":"Ecuador"},{"label":"Egypt"},{"label":"Eire"},{"label":"El Salvador"},{"label":"England"},{"label":"Equatorial Guinea"},{"label":"Eritrea"},{"label":"Estonia"},{"label":"Ethiopia"},{"label":"Falkland Islands"},{"label":"Faroe Islands"},{"label":"Fernando de Noronha"},{"label":"Fiji"},{"label":"Finland"},{"label":"France"},{"label":"French Guiana"},{"label":"French Polynesia"},{"label":"French West Indies"},{"label":"Gabon"},{"label":"Gambia"},{"label":"Georgia"},{"label":"Germany"},{"label":"Ghana"},{"label":"Gibraltar"},{"label":"Grand Cayman Island"},{"label":"Grand Terre"},{"label":"Grand Turk"},{"label":"Great Britain"},{"label":"Greece"},{"label":"Greenland"},{"label":"Grenada"},{"label":"Grenadine Islands"},{"label":"Guadeloupe"},{"label":"Guatemala"},{"label":"Guinea"},{"label":"Guinea-Bissau"},{"label":"Guyana"},{"label":"Haiti"},{"label":"Honduras"},{"label":"Hong Kong"},{"label":"Hungary"},{"label":"Iceland"},{"label":"India"},{"label":"Indonesia"},{"label":"Iran"},{"label":"Iraq"},{"label":"Ireland"},{"label":"Ireland, Republic of"},{"label":"Isle of Man"},{"label":"Israel"},{"label":"Italy"},{"label":"Jamaica"},{"label":"Jan Mayen Island"},{"label":"Japan"},{"label":"Jerusalem"},{"label":"Jordan"},{"label":"Kampuchea"},{"label":"Kazakhstan"},{"label":"Kenya"},{"label":"Kiribati"},{"label":"Kuwait"},{"label":"Kyrgyzstan"},{"label":"Laos"},{"label":"Latvia"},{"label":"Lebanon"},{"label":"Lesotho"},{"label":"Liberia"}]'>
+          <input type="text" name="insert-field-name">
+        </cbp-listbox>
+      </cbp-form-field>
+
+      <br />
+
+      <cbp-form-field label="Insert Field Label" description="Insert field description." field-id="dropdown-id">
+        <cbp-dropdown name="dropdown" field-id="dropdown-id">
+          
+          <cbp-dropdown-item value="1">Option 1</cbp-dropdown-item>
+        
+          <cbp-dropdown-item value="2">Option 2</cbp-dropdown-item>
+        
+          <cbp-dropdown-item value="3">Option 3</cbp-dropdown-item>
+        
+          <cbp-dropdown-item value="4">Option 4</cbp-dropdown-item>
+        
+          <cbp-dropdown-item value="5">Option 5</cbp-dropdown-item>
+        
+        </cbp-dropdown>
+      </cbp-form-field>
+
+      <br />
+
+      <cbp-tooltip uid="tooltip">  
+        <cbp-icon name="user" accessibility-text="User"></cbp-icon>
+        <div slot="cbp-tooltip-content">
+          <div style="font-weight: var(--cbp-font-weight-bold)">Test Tooltip Title</div>
+          <div>Stub text for tooltip.</div>
+        </div>
+      </cbp-tooltip>
+
+      <br />
+
+      <cbp-action-bar variant="floating">
+        <cbp-typography slot="cbp-action-bar-info" tag="div">
+          0 items selected.
+        </cbp-typography>
+        <cbp-button fill="ghost">
+          Action 1
+        </cbp-button>
+        <cbp-button fill="ghost" color="secondary">
+          Action 2
+        </cbp-button>
+      </cbp-action-bar>
+
+      <br />
+
+      <cbp-floating-action right="var(--cbp-responsive-spacing-outer)" bottom="5rem">
+        <cbp-button color="primary" variant="circle" accessibility-text="Action" sx='{"--cbp-button-height":"3.5rem"}'>
+          <cbp-icon name="magnifying-glass" size="1.5rem"></cbp-icon>
+        </cbp-button>
+      </cbp-floating-action>
       
    </main>
 
