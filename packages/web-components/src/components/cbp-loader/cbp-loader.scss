@@ -225,7 +225,7 @@ cbp-loader {
       &:after {
         content: '';
         position: absolute;
-        z-index: var(--cbp-z-index-level-2);
+        z-index: calc(var(--cbp-z-index-level-1) + 1);
         height: calc(var(--cbp-loader-diameter) - var(--cbp-loader-gutter-width));
         width: calc(var(--cbp-loader-diameter) - var(--cbp-loader-gutter-width));
         border-radius: calc(var(--cbp-border-radius-circle) / 2);
@@ -245,7 +245,7 @@ cbp-loader {
       width: var(--cbp-loader-diameter);
       line-height: var(--cbp-loader-status-description-line-height);
       text-align: center;
-      z-index: var(--cbp-z-index-level-3);
+      z-index: calc(var(--cbp-z-index-level-1) + 2);
     }
 
     &:not([determinate]):not([error]):not([success]) .cbp-progress-container::before {
@@ -265,7 +265,7 @@ cbp-loader {
         width: var(--cbp-loader-diameter);
         line-height: var(--cbp-loader-status-description-line-height);
         text-align: center;
-        z-index: var(--cbp-z-index-level-3);
+        z-index: calc(var(--cbp-z-index-level-1) + 2);
         color: var(--cbp-loader-color);
         font-weight: var(--cbp-font-weight-bold);
       }

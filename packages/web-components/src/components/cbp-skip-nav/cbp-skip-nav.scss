@@ -21,6 +21,6 @@ cbp-skip-nav {
     outline-width: var(--cbp-border-size-md);
     outline-color: var(--cbp-button-color-outline-focus);
     outline-offset: calc(-1 * var(--cbp-space-1x));
-    z-index: var(-cbp-z-index-level-top);
+    z-index: var(-cbp-z-index-level-4);
   }
 }
