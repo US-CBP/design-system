@@ -21,6 +21,7 @@ export class CbpAppHeader {
   private children: HTMLElement[] = [];
   private navWidth;
 
+  private searchTag:HTMLElement;
   private searchForm:HTMLElement;
   private searchControl:HTMLCbpButtonElement;
   private searchField:HTMLInputElement;
@@ -74,19 +75,7 @@ export class CbpAppHeader {
         this.closeSearch();
       }
     }
-  }
-
-  // @Listen('click', { target: 'body' }) //TODO: first pass, sync discussion to move this under the openSearch below
-  //  handleClick(e) {
-  //   if(this.search){
-  //     clickAwayListener(this.searchForm, _ => {
-  //       if(!this.searchForm.hidden && !this.searchControl.contains(e.target)){ 
-  //         this.closeSearch();
-  //       }
-  //     })
-  //   }
-  // }   
-
+  } 
 
   /** A public method to show the search form in the application header. */
   @Method()
@@ -96,9 +85,8 @@ export class CbpAppHeader {
       this.searchControl.expanded = 'true';
       this.searchField.focus();
 
-      clickAwayListener(this.searchForm, _ => {
-        console.log('clickAwayListener check'); //TODO: triggering on launch button click. Only triggering with launch, doesn't seem to persist when search is open
-        // this.closeSearch();
+       clickAwayListener(this.searchTag, _ => {
+        this.closeSearch(); 
       })
     }
   }
@@ -236,7 +224,9 @@ export class CbpAppHeader {
         <slot name="cbp-app-header-extras" />
 
         {this.search && (
-          <search>
+          <search
+            ref={el => (this.searchTag = el)}
+          >
             <cbp-button
               id="global-search-toggle"
               type="button"
