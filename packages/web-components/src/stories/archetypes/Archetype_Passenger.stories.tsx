@@ -932,6 +932,14 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
+
+    let subNavItems = document.querySelectorAll('cbp-subnav-item');
+    subNavItems.forEach((subNavItem) =>{
+      subNavItem.addEventListener('subnavItemClick', function(e) {
+        e.preventDefault();
+        subNavItem.closest('cbp-drawer').closeDrawer();
+      })
+    })
   }, 500);
   
   return `

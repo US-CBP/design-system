@@ -110,6 +110,14 @@ const InternalTemplate: any = ({ isLoggedIn, username, hashid, navItems, search,
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
+
+    let subNavItems = document.querySelectorAll('cbp-subnav-item');
+    subNavItems.forEach((subNavItem) =>{
+      subNavItem.addEventListener('subnavItemClick', function(e) {
+        e.preventDefault();
+        subNavItem.closest('cbp-drawer').closeDrawer();
+      })
+    })
   }, 500);
   
   return ` 
@@ -227,6 +235,14 @@ const Internal2ColumnTemplate: any = ({ isLoggedIn, username, hashid, navItems, 
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
+
+    let subNavItems = document.querySelectorAll('cbp-subnav-item');
+    subNavItems.forEach((subNavItem) =>{
+      subNavItem.addEventListener('subnavItemClick', function(e) {
+        e.preventDefault();
+        subNavItem.closest('cbp-drawer').closeDrawer();
+      })
+    })
   }, 500);
   
   return ` 
@@ -619,6 +635,14 @@ const InternalCardsLayoutTemplate: any = ({ isLoggedIn, username, hashid, navIte
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
+
+    let subNavItems = document.querySelectorAll('cbp-subnav-item');
+    subNavItems.forEach((subNavItem) =>{
+      subNavItem.addEventListener('subnavItemClick', function(e) {
+        e.preventDefault();
+        subNavItem.closest('cbp-drawer').closeDrawer();
+      })
+    })
   }, 500);
 
   return ` 

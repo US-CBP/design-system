@@ -252,10 +252,9 @@ const AppHeaderWithSubnavTemplate: any = ({ drawerId, store, search, searchMetho
     let subNavItems = document.querySelectorAll('cbp-subnav-item');
     subNavItems.forEach((subNavItem) =>{
       subNavItem.addEventListener('subnavItemClick', function(e) {
-      e.preventDefault();
-      subNavItem.closest('cbp-drawer').closeDrawer();
-    })
-
+        e.preventDefault();
+        subNavItem.closest('cbp-drawer').closeDrawer();
+      })
     })
     
   }, 500);

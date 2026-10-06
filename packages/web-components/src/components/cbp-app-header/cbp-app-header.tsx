@@ -42,16 +42,6 @@ export class CbpAppHeader {
   /** Specifies if the app header is sticky */
   @Prop({ reflect: true }) sticky: boolean;
   
-  // @Listen('drawerClose', { target: 'body' })
-  // handleNavDrawerClose(e) {
-  //   const Subnav = e.target.querySelector('cbp-subnav');
-  //   // Only update focus and current states if the drawer holds a subnav using state store.
-  //   if (Subnav?.store == true) {
-  //     // let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLButtonElement;
-  //     // active?.focus(); // TechDebt: this needs to be revisited for navigation events that may auto-close the drawer.
-  //     //this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`))
-  //   }
-  // }
 
   /** A custom event emitted in accordance with the native input's onInput event. */
   @Event() searchInput: EventEmitter;
@@ -86,16 +76,16 @@ export class CbpAppHeader {
     }
   }
 
-  @Listen('click', { target: 'body' })
-   handleClick(e) {
-    if(this.search){
-      clickAwayListener(this.searchForm, _ => {
-        if(!this.searchForm.hidden && !this.searchControl.contains(e.target)){ 
-          this.closeSearch();
-        }
-      })
-    }
-  }   
+  // @Listen('click', { target: 'body' }) //TODO: first pass, sync discussion to move this under the openSearch below
+  //  handleClick(e) {
+  //   if(this.search){
+  //     clickAwayListener(this.searchForm, _ => {
+  //       if(!this.searchForm.hidden && !this.searchControl.contains(e.target)){ 
+  //         this.closeSearch();
+  //       }
+  //     })
+  //   }
+  // }   
 
 
   /** A public method to show the search form in the application header. */
@@ -105,6 +95,11 @@ export class CbpAppHeader {
       this.searchForm.hidden = false;
       this.searchControl.expanded = 'true';
       this.searchField.focus();
+
+      clickAwayListener(this.searchForm, _ => {
+        console.log('clickAwayListener check'); //TODO: triggering on launch button click. Only triggering with launch, doesn't seem to persist when search is open
+        // this.closeSearch();
+      })
     }
   }
 
