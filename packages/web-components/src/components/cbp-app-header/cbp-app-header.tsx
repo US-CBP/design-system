@@ -1,5 +1,6 @@
 import { Component, Element, Event, EventEmitter, Listen, Host, h, Prop, Method } from '@stencil/core';
-import { debounce } from '../../utils/utils';
+import { debounce, clickAwayListener  } from '../../utils/utils';
+// import { debounce} from '../../utils/utils';
 import state from '../cbp-app-header/store';
 /**
  * @slot - The default slot usually contains only `cbp-nav-item` tags, but other content may also be included.
@@ -41,16 +42,16 @@ export class CbpAppHeader {
   /** Specifies if the app header is sticky */
   @Prop({ reflect: true }) sticky: boolean;
   
-  @Listen('drawerClose', { target: 'body' })
-  handleNavDrawerClose(e) {
-    const Subnav = e.target.querySelector('cbp-subnav');
-    // Only update focus and current states if the drawer holds a subnav using state store.
-    if (Subnav?.store == true) {
-      let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLButtonElement;
-      active?.focus(); // TechDebt: this needs to be revisited for navigation events that may auto-close the drawer.
-      //this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`))
-    }
-  }
+  // @Listen('drawerClose', { target: 'body' })
+  // handleNavDrawerClose(e) {
+  //   const Subnav = e.target.querySelector('cbp-subnav');
+  //   // Only update focus and current states if the drawer holds a subnav using state store.
+  //   if (Subnav?.store == true) {
+  //     // let active = this.host.querySelector(`[name="${state.activeItemName}"] cbp-button > button `) as HTMLButtonElement;
+  //     // active?.focus(); // TechDebt: this needs to be revisited for navigation events that may auto-close the drawer.
+  //     //this.setActiveNav(this.host.querySelector(`[name="${state.currentParent}"]`))
+  //   }
+  // }
 
   /** A custom event emitted in accordance with the native input's onInput event. */
   @Event() searchInput: EventEmitter;
@@ -85,16 +86,17 @@ export class CbpAppHeader {
     }
   }
 
-  // TechDebt: try to use clickAwayListener - but verify it's not loading multiple event listeners each time it's toggled.
   @Listen('click', { target: 'body' })
-  handleClick(event: MouseEvent) {
-    if(this.search) {
-      const searchVisible = document.getElementById('cbp-app-header-search')?.hidden == false;
-      if (!this.host.contains(event.target as Node) && this.search && searchVisible) {
-        this.closeSearch();
-      }
+   handleClick(e) {
+    if(this.search){
+      clickAwayListener(this.searchForm, _ => {
+        if(!this.searchForm.hidden && !this.searchControl.contains(e.target)){ 
+          this.closeSearch();
+        }
+      })
     }
-  }
+  }   
+
 
   /** A public method to show the search form in the application header. */
   @Method()
