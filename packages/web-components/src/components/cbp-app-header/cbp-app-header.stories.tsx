@@ -243,8 +243,8 @@ const AppHeaderWithSubnavTemplate: any = ({ drawerId, store, search, searchMetho
       e.detail.nativeEvent.preventDefault();
     });
 
-    // Cancel events on anchors to prevent navigating away from the story
-    let anchors = document.querySelectorAll('cbp-app-header a, cbp-subnav a');
+    // Cancel events on anchors to prevent navigating away from the story (subnav is handled separately, below)
+    let anchors = document.querySelectorAll('cbp-app-header a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -252,7 +252,7 @@ const AppHeaderWithSubnavTemplate: any = ({ drawerId, store, search, searchMetho
     let subNavItems = document.querySelectorAll('cbp-subnav-item');
     subNavItems.forEach((subNavItem) =>{
       subNavItem.addEventListener('subnavItemClick', function(e) {
-        e.preventDefault();
+        e.detail.nativeEvent.preventDefault();
         subNavItem.closest('cbp-drawer').closeDrawer();
       })
     })
