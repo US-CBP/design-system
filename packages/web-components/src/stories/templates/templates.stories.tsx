@@ -106,7 +106,7 @@ const InternalTemplate: any = ({ isLoggedIn, username, hashid, navItems, search,
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    let anchors = document.querySelectorAll('cbp-app-header a');
+    let anchors = document.querySelectorAll('cbp-universal-header a,cbp-app-header a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -231,7 +231,7 @@ const Internal2ColumnTemplate: any = ({ isLoggedIn, username, hashid, navItems, 
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    let anchors = document.querySelectorAll('cbp-app-header a');
+    let anchors = document.querySelectorAll('cbp-universal-header a,cbp-app-header a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -631,7 +631,7 @@ const InternalCardsLayoutTemplate: any = ({ isLoggedIn, username, hashid, navIte
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    let anchors = document.querySelectorAll('cbp-app-header a');
+    let anchors = document.querySelectorAll('cbp-universal-header a,cbp-app-header a,cbp-footer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
