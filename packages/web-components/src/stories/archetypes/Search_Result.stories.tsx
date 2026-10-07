@@ -657,15 +657,15 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
         initThemeSwitcher();
 
         // Prevent anchors from navigating away
-        let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a,cbp-footer a');
+        let anchors = document.querySelectorAll('cbp-app-header a');
         anchors.forEach(anchor => {
-        anchor.addEventListener('click', function(e) { e.preventDefault(); })
+          anchor.addEventListener('click', function(e) { e.preventDefault(); })
         });
-
+        
         let subNavItems = document.querySelectorAll('cbp-subnav-item');
         subNavItems.forEach((subNavItem) =>{
           subNavItem.addEventListener('subnavItemClick', function(e) {
-            e.preventDefault();
+            e.detail.nativeEvent.preventDefault();
             subNavItem.closest('cbp-drawer').closeDrawer();
           })
         })

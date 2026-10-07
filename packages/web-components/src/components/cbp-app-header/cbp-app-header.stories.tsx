@@ -164,10 +164,18 @@ const Template = ({ drawerId, sticky, store, search, searchMethod, searchAction,
     });
 
     // Cancel events on anchors to prevent navigating away from the story
-    let anchors = document.querySelectorAll('cbp-app-header a,cbp-subnav a');
+    let anchors = document.querySelectorAll('cbp-app-header a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
+    
+    let subNavItems = document.querySelectorAll('cbp-subnav-item');
+    subNavItems.forEach((subNavItem) =>{
+      subNavItem.addEventListener('subnavItemClick', function(e) {
+        e.detail.nativeEvent.preventDefault();
+        subNavItem.closest('cbp-drawer').closeDrawer();
+      })
+    })
   }, 500);
 
   return ` 
