@@ -30,6 +30,9 @@ export class CbpTypography {
   /** Specifies the font-weight of a the text */
   @Prop({ reflect: true }) fontWeight: 'thin' | 'light' | 'regular' | 'medium' | 'bold' | 'black' ;
 
+   /** Specifies the font-style of a the text */
+  @Prop({ reflect: true }) fontStyle: 'normal' | 'italic' | 'oblique' ;
+
   /** Specifies whether the text contains visual treatments that act as a divider. */
   @Prop({ reflect: true }) divider: 'underline' | 'fill';
 
@@ -47,6 +50,7 @@ export class CbpTypography {
       'font-size': this.size ? `var(--cbp-font-size-${this.size})` : undefined,
       'line-height': this.lineHeight ? `var(--cbp-line-height-${this.lineHeight})` : undefined,
       'font-weight': this.fontWeight ? `var(--cbp-font-weight-${this.fontWeight})` : undefined,
+      'font-style': this.fontStyle ? `${this.fontStyle}` : undefined,
       ...this.sx
     });
   }

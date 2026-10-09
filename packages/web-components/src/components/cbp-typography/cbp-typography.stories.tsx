@@ -54,7 +54,7 @@ function generateIcon(variant){
   }
 }
 
-const Template = ({ text, withIcon, tag, variant, size, lineheight, fontweight, divider, context, sx }) => {
+const Template = ({ text, withIcon, tag, variant, size, lineheight, fontweight, fontstyle, divider, context, sx }) => {
   return ` 
     <cbp-typography
       ${tag ? `tag="${tag}"` : ''}
@@ -62,6 +62,7 @@ const Template = ({ text, withIcon, tag, variant, size, lineheight, fontweight, 
       ${size != undefined ? `size="${size}"` : ''}
       ${lineheight != undefined ? `line-height="${lineheight}"` : ''}
       ${fontweight != undefined ? `font-weight="${fontweight}"` : ''}
+      ${fontstyle != undefined ? `font-style="${fontstyle}"` : ''}
       ${divider != 'none' ? `divider="${divider}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -91,6 +92,11 @@ Typography.argTypes = {
     control: 'select',
     description: 'an optional control used to set the font weight of the element',
     options: ['thin', 'light', 'regular', 'medium', 'bold', 'black' ]
+  },
+  fontstyle:{
+    control: 'select',
+    description: 'an optional control used to set the font style of the element',
+    options: ['normal', 'italic', 'oblique' ]
   }
 }
 
