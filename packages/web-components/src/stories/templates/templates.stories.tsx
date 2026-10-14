@@ -231,7 +231,7 @@ const Internal2ColumnTemplate: any = ({ isLoggedIn, username, hashid, navItems, 
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    let anchors = document.querySelectorAll('cbp-universal-header a, cbp-app-header a, cbp-footer a, cbp-drawer a');
+    let anchors = document.querySelectorAll('cbp-universal-header a, cbp-app-header a, cbp-footer a, #userPref a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });

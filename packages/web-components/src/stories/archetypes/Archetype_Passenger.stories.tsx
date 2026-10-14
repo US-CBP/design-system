@@ -932,7 +932,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    let anchors = document.querySelectorAll('cbp-app-header a, cbp-drawer a');
+    let anchors = document.querySelectorAll('cbp-app-header a, #userPref a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });

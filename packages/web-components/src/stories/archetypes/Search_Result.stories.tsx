@@ -661,7 +661,7 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
         initThemeSwitcher();
 
         // Prevent anchors from navigating away
-        let anchors = document.querySelectorAll('cbp-app-header a, cbp-footer a, cbp-drawer a');
+        let anchors = document.querySelectorAll('cbp-app-header a, cbp-footer a, #userPref a');
         anchors.forEach(anchor => {
           anchor.addEventListener('click', function(e) { e.preventDefault(); })
         });
