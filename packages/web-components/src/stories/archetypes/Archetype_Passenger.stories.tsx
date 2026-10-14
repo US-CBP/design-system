@@ -220,6 +220,7 @@ function renderUserPref(username) {
           <cbp-button 
             color="secondary"
             tag="a"
+            href="/sign-out"
           >
             <cbp-icon name="arrow-right-from-bracket"></cbp-icon>
             logout
@@ -931,7 +932,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    let anchors = document.querySelectorAll('cbp-app-header a');
+    let anchors = document.querySelectorAll('cbp-app-header a, cbp-drawer a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });

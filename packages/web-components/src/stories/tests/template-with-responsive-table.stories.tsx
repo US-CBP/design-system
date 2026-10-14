@@ -345,6 +345,7 @@ const Template: any = () => {
       <cbp-button 
             color="secondary"
             tag="a"
+            href="/sign-out"
           >
         <cbp-icon name="arrow-right-from-bracket"></cbp-icon>
         logout

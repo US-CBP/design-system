@@ -34,7 +34,7 @@ const Template: any = () => {
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    const Anchors = document.querySelectorAll('cbp-universal-header a,cbp-app-header a,cbp-subnav a,cbp-footer a');
+    const Anchors = document.querySelectorAll('cbp-universal-header a, cbp-app-header a, cbp-subnav a, cbp-footer a, cbp-drawer a');
     Anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -328,6 +328,7 @@ const Template: any = () => {
       <cbp-button 
             color="secondary"
             tag="a"
+            href="/sign-out"
           >
         <cbp-icon name="arrow-right-from-bracket"></cbp-icon>
         logout
