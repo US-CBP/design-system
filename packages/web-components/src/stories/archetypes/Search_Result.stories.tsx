@@ -211,7 +211,11 @@ function renderUserPref(username, hashid) {
           gap="1rem"
           sx='{"margin-block":"var(--cbp-space-3x)"}'
         >
-          <cbp-button color="secondary">
+          <cbp-button 
+            color="secondary"
+            tag="a"
+            href="/sign-out"
+          >
             <cbp-icon name="arrow-right-from-bracket"></cbp-icon>
             logout
           </cbp-button>
@@ -657,7 +661,7 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
         initThemeSwitcher();
 
         // Prevent anchors from navigating away
-        let anchors = document.querySelectorAll('cbp-app-header a, cbp-footer a');
+        let anchors = document.querySelectorAll('cbp-app-header a, cbp-footer a, #userPref a');
         anchors.forEach(anchor => {
           anchor.addEventListener('click', function(e) { e.preventDefault(); })
         });
