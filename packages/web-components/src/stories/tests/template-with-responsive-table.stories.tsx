@@ -342,7 +342,10 @@ const Template: any = () => {
       HASH ID: XXXXXXX
     </cbp-typography>
     <cbp-flex gap="1rem" sx='{"margin-block":"var(--cbp-space-3x)"}'>
-      <cbp-button color="secondary">
+      <cbp-button 
+            color="secondary"
+            tag="a"
+          >
         <cbp-icon name="arrow-right-from-bracket"></cbp-icon>
         logout
       </cbp-button>
