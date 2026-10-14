@@ -106,7 +106,7 @@ const InternalTemplate: any = ({ isLoggedIn, username, hashid, navItems, search,
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    let anchors = document.querySelectorAll('cbp-universal-header a, cbp-app-header a, cbp-footer a, cbp-drawer a');
+    let anchors = document.querySelectorAll('cbp-universal-header a, cbp-app-header a, cbp-footer a, #userPref a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
@@ -635,7 +635,7 @@ const InternalCardsLayoutTemplate: any = ({ isLoggedIn, username, hashid, navIte
     initThemeSwitcher();
 
     // Prevent anchors from navigating away
-    let anchors = document.querySelectorAll('cbp-universal-header a, cbp-app-header a, cbp-footer a, cbp-drawer a');
+    let anchors = document.querySelectorAll('cbp-universal-header a, cbp-app-header a, cbp-footer a, #userPref a');
     anchors.forEach(anchor => {
       anchor.addEventListener('click', function(e) { e.preventDefault(); })
     });
