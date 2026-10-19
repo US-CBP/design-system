@@ -17,7 +17,7 @@ export class CbpFooter {
   @Element() private host: HTMLElement;
 
   /** Fully qualified or relative URL pointing to the larger SVG containing the CPB seal with text. */
-  @Prop() logoSrc: string = "/assets/images/cbp-seal.svg";
+  @Prop() logoSrc: string = "./assets/images/cbp-seal.svg";
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
@@ -45,11 +45,13 @@ export class CbpFooter {
           <div class="cbp-footer-content">
             <cbp-flex
               gap="var(--cbp-space-2x)"
-              sx='{"padding-bottom" : "var(--cbp-space-6x)"}'
+              sx='{"padding-bottom" : "var(--cbp-space-3x)","margin-bottom" : "var(--cbp-space-3x)","border-bottom": "var(--cbp-space-half-x) solid var(--cbp-color-gray-cool-60)"}'
             >
-              <picture>
+              <cbp-flex-item
+                flexShrink={0}
+              >
                 <img src={this.logoSrc} alt="U.S. Customs and Border Protection" height="44" width="44" />
-              </picture>
+              </cbp-flex-item>
               <cbp-flex 
                 direction="column"
               >
