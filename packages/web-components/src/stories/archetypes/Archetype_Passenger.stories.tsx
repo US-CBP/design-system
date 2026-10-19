@@ -1028,7 +1028,9 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
 
     </cbp-container>
 
-    <cbp-footer>
+    <cbp-footer
+      logo-src="./assets/images/cbp-seal.svg"
+    >
       <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
         <cbp-flex role="list" breakpoint="37.5rem">
           <cbp-flex-item role="listitem">
@@ -1054,7 +1056,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
             
         <cbp-flex gap="var(--cbp-space-2x)" wrap="wrap">
           <span><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></span>
-          <cbp-flex>
+          <cbp-flex gap="var(--cbp-space-2x)" wrap="wrap">
             <span><b>Email: </b><cbp-link href="mailto:somebody@example.com" context="dark-always" >this-application-support@abc.def.gov</cbp-link></span>
             <span><b>CBP Helpdesk: </b><cbp-link href="tel:555-555-5555" context="dark-always" >(555) 555-5555</cbp-link></span>
           </cbp-flex>

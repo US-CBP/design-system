@@ -45,7 +45,7 @@ export class CbpFooter {
           <div class="cbp-footer-content">
             <cbp-flex
               gap="var(--cbp-space-2x)"
-              sx='{"padding-bottom" : "var(--cbp-space-3x)","margin-bottom" : "var(--cbp-space-3x)","border-bottom": "var(--cbp-space-half-x) solid var(--cbp-color-gray-cool-60)"}'
+              sx='{"padding-bottom" : "var(--cbp-space-3x)","margin-bottom" : "var(--cbp-space-3x)","border-bottom": "var(--cbp-border-size-md) solid var(--cbp-color-gray-cool-60)"}'
             >
               <cbp-flex-item
                 flexShrink={0}
