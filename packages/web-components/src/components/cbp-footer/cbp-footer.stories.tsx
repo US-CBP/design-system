@@ -10,6 +10,10 @@ export default {
       description: 'Configure various aspects of the footer navigation shown.',
       control: 'object',
     },
+    logoSrc: {
+      description: 'The src to the large-viewport seal/branding.',
+      control: 'text',
+    },
   },
 };
 
@@ -26,9 +30,12 @@ function generateFooterNav(footerNav) {
   return html.join('');
 }
 
-const InternalTemplate = ({ footerNav }) => {
+const InternalTemplate = ({ footerNav, logoSrc }) => {
   return `
-    <cbp-footer data-cbp-container-context="dark">
+    <cbp-footer 
+      data-cbp-container-context="dark"
+      ${logoSrc ? `logo-src=${logoSrc}` : ''}
+      >
       <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
         <cbp-flex role="list" breakpoint="37.5rem">
           ${generateFooterNav(footerNav)}
@@ -36,17 +43,17 @@ const InternalTemplate = ({ footerNav }) => {
       </nav>
 
       <section>
-        <cbp-typography tag="span" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>
+        <cbp-typography tag="span" variant="heading-xs" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>
           <cbp-icon name='headset' size='1.25rem'> </cbp-icon>
           Application Support
         </cbp-typography>
-        
-        <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
-        
-        <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
-          <span><i>Having an issue?</i></span>
-          <span><b>Email: </b><cbp-link href="mailto:somebody@example.com" context="dark-always" >this-application-support@abc.def.gov</cbp-link></span>
-          <span><b>CBP Helpdesk: </b><cbp-link href="tel:555-555-5555" context="dark-always" >(555) 555-5555</cbp-link></span>
+            
+        <cbp-flex gap="var(--cbp-space-2x)" wrap="wrap">
+          <span><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></span>
+          <cbp-flex gap="var(--cbp-space-2x)" wrap="wrap">
+            <span><b>Email: </b><cbp-link href="mailto:somebody@example.com" context="dark-always" >this-application-support@abc.def.gov</cbp-link></span>
+            <span><b>CBP Helpdesk: </b><cbp-link href="tel:555-555-5555" context="dark-always" >(555) 555-5555</cbp-link></span>
+          </cbp-flex>
         </cbp-flex>
       </section>
     </cbp-footer>
@@ -73,5 +80,6 @@ InternalFooter.args = {
       href: '#',
     },
   ],
+  logoSrc: "./assets/images/cbp-seal.svg"
 };
 InternalFooter.storyName = 'Internal';
