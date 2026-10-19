@@ -10,6 +10,10 @@ export default {
       description: 'Configure various aspects of the footer navigation shown.',
       control: 'object',
     },
+    logoSrc: {
+      description: 'The src to the large-viewport seal/branding.',
+      control: 'text',
+    },
   },
 };
 
@@ -26,9 +30,12 @@ function generateFooterNav(footerNav) {
   return html.join('');
 }
 
-const InternalTemplate = ({ footerNav }) => {
+const InternalTemplate = ({ footerNav, logoSrc }) => {
   return `
-    <cbp-footer data-cbp-container-context="dark">
+    <cbp-footer 
+      data-cbp-container-context="dark"
+      ${logoSrc ? `logo-src=${logoSrc}` : ''}
+      >
       <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
         <cbp-flex role="list" breakpoint="37.5rem">
           ${generateFooterNav(footerNav)}
@@ -73,5 +80,6 @@ InternalFooter.args = {
       href: '#',
     },
   ],
+  logoSrc: "./assets/images/cbp-seal.svg"
 };
 InternalFooter.storyName = 'Internal';
