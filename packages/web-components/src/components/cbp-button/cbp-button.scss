@@ -87,6 +87,7 @@
   --cbp-button-width: auto;
   --cbp-button-height: auto;
   --cbp-button-gap: 0 var(--cbp-space-2x);
+  --cbp-button-letter-spacing: var(--cbp-letter-spacing-loose);
 }
 
 /* 
@@ -128,9 +129,11 @@ cbp-button {
     border-radius: var(--cbp-button-border-radius);
     font-weight: var(--cbp-font-weight-medium);
     text-transform: uppercase;
-    letter-spacing: var(--cbp-letter-spacing-loose);
+    letter-spacing: var(--cbp-button-letter-spacing);
+    //margin-right: calc(-1 * var(--cbp-button-letter-spacing)); // to counteract the trailing letter spacing
     text-decoration: none;
     padding: var(--cbp-button-padding);
+    padding-inline-end: calc(var(--cbp-button-padding) - var(--cbp-button-letter-spacing)); // to counteract the trailing letter spacing
     transition: all var(--cbp-motion-duration-shorter);
     min-width: var(--cbp-button-min-width);
     min-height: var(--cbp-button-min-height);
