@@ -11,16 +11,19 @@
 cbp-datepicker-calendar {
   .cbp-datepicker-calendar-toolbar {
     display: flex;
-    width: 100%;
+    //width: 100%;
     align-items: center;
     text-align: left;
+    gap: var(--cbp-space-2x);
+    margin-block-end: var(--cbp-space-4x);
   }
 
   [role=application] {
     display: grid;
     align-items: center;
     justify-items: center;
-    gap: var(--cbp-space-1x);
+    gap: var(--cbp-space-1x) var(--cbp-space-2x);
+    --cbp-button-width: 100%;
   }
 
   &[panel=day] {

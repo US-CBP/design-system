@@ -69,13 +69,12 @@ cbp-datepicker {
     --cbp-button-color-border-dark: var(--cbp-form-field-color-border-focus-dark);
   }
 
-
-
   [role=dialog] {
     position: absolute;
     z-index: var(--cbp-z-index-level-4);
     //width: var(--cbp-datepicker-width);
     width: 100%;
+    height: fit-content;
     max-height: var(--cbp-datepicker-height);
     overflow-y: auto;
     overflow-x: hidden;

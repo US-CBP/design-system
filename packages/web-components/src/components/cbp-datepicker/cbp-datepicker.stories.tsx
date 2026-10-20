@@ -40,10 +40,10 @@ export default {
     },
   },
   args: {
-    label: 'Field Label',
-    description: 'Field description.',
+    label: 'Insert Field Label',
+    description: 'Insert Field description.',
     inputType: "date",
-    fieldId: 'insert-unique-datepicker-id',
+    //fieldId: 'insert-unique-datepicker-id',
     name: 'insert-datepicker-field-name',
     //value: '2017-06-01'
   },

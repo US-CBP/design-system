@@ -1,6 +1,7 @@
-import { Component, Element, Prop, Method, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
+import { Component, Element, Prop, Method, Listen, Event, EventEmitter, Watch, Host, h } from '@stencil/core';
 import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/utils';
-
+import { floatUI, floatUIProps } from '../../utils/floatingPlacement';
+import * as FocusTrap from 'focus-trap';
 
 /** 
  * The File Input component builds upon the native file input, allowing for custom styles and 
@@ -16,17 +17,23 @@ import { setCSSProps, createNamespaceKey, clickAwayListener } from '../../utils/
 export class CbpDatepicker {
 
   private formField: HTMLInputElement;
+  private dialog: HTMLElement;
   private datePicker: HTMLCbpDatepickerCalendarElement;
+  private focusTrap: any;
   //private initialValue: any; // Save the initial value to support reset functionality
+  private type: string = "date";
   private disabled: boolean;
   private readonly: boolean;
 
-  private today: Date = new Date();
+  private today: string = new Date().toJSON().slice(0, 10);
 
   @Element() private host: HTMLElement;
 
   /** The `name` attribute of the input, which is passed as part of formData (as a key). */
   @Prop({ mutable: true }) name: string;
+
+  /** The `name` attribute of the input, which is passed as part of formData (as a key). */
+  @Prop({ mutable: true }) value: string;
 
   /** 
    * Optionally specify the ID of the input here, which is used to generate related pattern 
@@ -78,7 +85,15 @@ export class CbpDatepicker {
       host: this.host,
       nativeElement: this.formField,
       name: this.name,
-      value: this.formField.value,
+      value: this.formField?.value,
+      nativeEvent: e
+    });
+    
+    console.log('cbp-datepickerValue Change Event Emitted: ', {
+      host: this.host,
+      nativeElement: this.formField,
+      name: this.name,
+      value: this.formField?.value,
       nativeEvent: e
     });
   }
@@ -86,12 +101,18 @@ export class CbpDatepicker {
   @Watch('open')
   watchOpen(newValue) {
     if (newValue) {
-      this.datePicker.setFocus(this.today.toJSON().slice(0, 10));
+      // Toggling the value passed to the calendar should resolve this, letting the datepicker-calendar handle the focus on its own.
+      //this.datePicker.setFocus(this.today.toJSON().slice(0, 10));
       
       // Set up a clickaway listener to close the menu
       clickAwayListener(this.host, _ => {
         this.open = false;
       });
+    }
+    else {
+      clickAwayListener(this.host, null); // Remove the clickaway listener when the menu is closed
+      this.focusTrap?.deactivate(); 
+      this.datePicker.panel='day'; // reset the panel to day when the datepicker is closed
     }
   }
 
@@ -102,6 +123,15 @@ export class CbpDatepicker {
         ? this.formField.setAttribute('disabled', '')
         : this.formField.removeAttribute('disabled');
     }
+  }
+
+  @Listen('dateSelected')
+  handleDateSelected(e) {
+    this.open = false;
+    this.value = e.detail.date;
+    this.formField.value = e.detail.date;
+    this.formField.focus();
+    this.handleChange(e);
   }
 
   /** Closes the datepicker dialog and returns focus to the form field. */
@@ -163,7 +193,7 @@ export class CbpDatepicker {
       //if (this.readonly) this.formField.setAttribute('readonly', ``);
 
       // Set event listeners
-      //this.formField.addEventListener('change', (e) => this.handleChange(e));
+      this.formField?.addEventListener('change', (e) => this.handleChange(e));
 
       // If a native date input is used (preferred), prevent it from opening the native date picker dialog
       const dateTypes = ["date", "month", "week"];
@@ -176,6 +206,11 @@ export class CbpDatepicker {
         this.formField.addEventListener('focus', (e) => e.preventDefault());
         this.formField.addEventListener('click', (e) => e.preventDefault());
       }
+
+      // If the type is month or week, set the type property accordingly (anything else is treated as a date type)
+      if (["month", "week"].includes(inputType)) {
+        this.type = inputType;
+      }
     }
   }
 
@@ -185,7 +220,38 @@ export class CbpDatepicker {
     //console.log(this.disabled, this.readonly);
   }
 
+  componentDidRender() {
+    if (this.open) {
+      const floatUiprops: floatUIProps= {
+        placement: 'bottom',
+        offset: {
+          mainAxis: 0,
+        },
+        flip: true,
+        size: {
+          height: (parseFloat(window?.getComputedStyle(this.dialog).getPropertyValue('height')))
+        },
+        shift: false,
+      }
+
+      floatUI(floatUiprops, this.formField, this.dialog);
+
+      // Create and deactivate focus trap based on open state (this may need to be behind a timeout too)
+      this.focusTrap = FocusTrap.createFocusTrap(this.datePicker, {
+        escapeDeactivates: false,
+        allowOutsideClick: true,
+      });
+      this.focusTrap.activate();
+    }
+  }
+
   render() {
+    console.log('Rendering cbp-datepicker: ');
+    console.log('Form Field Value: ', this.formField?.value);
+    console.log('Today: ', this.today);
+    console.log('What is passed to the datepicker-calendar: ', this.open ? (this.formField?.value ? this.formField?.value : this.today) : '');
+
+
     return (
       <Host onKeyDown={(e) => this.handleEscape(e)}>
         <cbp-form-field-wrapper>
@@ -208,11 +274,14 @@ export class CbpDatepicker {
           role="dialog"
           tabindex={-1}
           arial-label="Select Date"
+          ref={el => this.dialog = el!}
         >
           <cbp-datepicker-calendar
             min={this.min}
             max={this.max}
-            date={this.formField.value ? this.formField.value : null}
+            date={this.open ? (this.formField?.value ? this.formField?.value : this.today) : ''}
+            type={this.open ? this.type : ''}
+            //panel={this.open ? null : 'day'}
             ref={el => this.datePicker = el!}
           />
         </div>

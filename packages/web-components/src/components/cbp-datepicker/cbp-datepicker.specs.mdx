@@ -10,11 +10,10 @@ The Date Picker component offers a calendar to choose a date for a form field in
 
 ## Functional Requirements
 
-* The Date Picker component wraps a native `input type="text"`.
+* The Date Picker component wraps a native `input type="text"` or `input type="date"`.
 * The Date Picker shall be slotted within the `cbp-form-field` component to provide a consistent and accessible input pattern.
 * The Date Picker accepts a slotted `input`, which can be `type="text"` or `type="date"`, and wraps this in a `cbp-form-field-wrapper` with an attached calendar icon button that toggles the date picker dialog open and closed.
 * For `input type="date"`, pressing `Enter` or `Space` while focused on the input toggles the date picker dialog (same as the native control) while suppressing the native control.
-
 
 ## Technical Specifications
 
@@ -25,16 +24,34 @@ The Date Picker component offers a calendar to choose a date for a form field in
   * For native `input type="date"` fields, pressing `Enter` or `Space` while the field is in focus will toggle the date picker dialog.
   * For native `input type="text"` fields, pressing `Enter` while the field is in focus will toggle the date picker dialog.
   * Pressing `Escape` while focus is anywhere within the pattern (input, button, or dialog) will close the dialog.
+* When initially opened, the calendar view of the current year and month will be displayed with focus placed on the current day corresponding to:
+  * The component value or
+  * Today's date when no value is explicitly set.
+* Keyboard navigation is fully supported as described in the accessibility section below.
+* Edge Cases:
+  * Changing the month while a day is selected that is invalid for the new month will result in the last day of the chosen month being highlighted.
+  * TODO: should changing the month or year update the input's date, or is this only done upon selection of the day in the calendar view? The latter may be confusing if the desired day is already populated and highlighted.
 
 ### Responsiveness
 
 * The native input is styled at 100% of its container by default, with a max-width of 100% so that they cannot break out of their container, like other text inputs within the design system.
+* The date picker dialog may shift position to the top if there is not enough space to display it beneath the `input`.
 
 ### Accessibility
 
 * The `cbp-datepicker` component shall be slotted within the `cbp-form-field` component to provide an accessible label and description.
-* The native `input type="text"` is focusable and may be typed in.
+* The native `input type="text"` or `input type="date" is focusable and may be typed in.
+* The date picker has a `role="dialog"` and implements a focus trap.
+  * When initially opened, focus will be placed on the day corresponding to the component value or today's date as a default.
+  * Tabbing within the dialog will shift focus between the month and year buttons and current day.
+  * When focused on the current date, arrow navigation is used to highlight/focus on different dates in the calendar.
+  * When displaying the month or year panes, focus is placed on the current value and arrow navigation is also used to navigate the grid of months/years.
 
 ### Additional Notes and Considerations
 
-TBD.
+* When using an `input type="date"`, the displayed date format will differ from the actual value. The displayed date is formatted based on the locale of the user's browser, but the parsed value is always formatted `yyyy-mm-dd`.
+* TODO: test using Shadow DOM for the datepicker calendar and its impacts on CSS especially (possibly referencing the parent datepicker component as well).
+* TODO: Calendar days need to be padded left and right to fit into their appropriate day of the week columns.
+* TODO: Arrow navigation on all panels.
+* TODO: What is the desired format of the input value? Should we support a mask?
+* TODO: Can we also handle `input type="month"` and `input type="week"`? This seems doable.
