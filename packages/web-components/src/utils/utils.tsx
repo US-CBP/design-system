@@ -133,34 +133,50 @@ export const clickAwayListener = (host: HTMLElement, callback: any) => {
   const events = ['click', 'touchend'];
   const eventHandler = ({ target }) => {
     const parentElement = target.closest(tagName);
-    if (!parentElement) {
-      callback({
-        flag: false
-      });
-      cancelEvents();
-    }
-    else if (!parentElement.contains(host)) {
-      if (!(parentElement === null || parentElement === void 0 ? void 0 : parentElement.parentElement.closest(tagName))) {
+    // if the event target is not a child of the host element, a click away has occurred and remove the event listeners
+    if(callback != null) {
+      if (!parentElement) {
         callback({
-          flag: true
+          flag: false
         });
+        cancelEvents();
+      }
+      else if (!parentElement.contains(host)) {
+        if (!(parentElement === null || parentElement === void 0 ? void 0 : parentElement.parentElement.closest(tagName))) {
+          callback({
+            flag: true
+          });
+        }
+      }
+      else {
+        if (parentElement.closest(tagName) != host) {
+          callback({
+            flag: true
+          });
+        }
       }
     }
     else {
-      if (parentElement.closest(tagName) != host) {
-        callback({
-          flag: true
-        });
-      }
+      cancelEvents();
     }
   };
 
+  // Remove the event listeners from the document to stop detecting clicks outside the host element
   const cancelEvents = () => {
     events.forEach(e => {
       document.removeEventListener(e, eventHandler, false);
     });
   };
+
+  // Add the event listeners to the document to detect clicks outside the host element
   events.forEach(e => {
     document.addEventListener(e, eventHandler);
   });
+
+  // If no callback is provided, cancel the event listeners immediately
+  /*
+  if (!callback) {
+    cancelEvents();
+  }
+  */
 };
