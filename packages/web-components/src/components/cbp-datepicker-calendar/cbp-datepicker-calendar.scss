@@ -18,29 +18,35 @@ cbp-datepicker-calendar {
     margin-block-end: var(--cbp-space-4x);
   }
 
+  .cbp-datepicker-calendar-day-header {
+    text-transform: uppercase;
+  }
+
   [role=application] {
     display: grid;
     align-items: center;
     justify-items: center;
-    gap: var(--cbp-space-1x) var(--cbp-space-2x);
     --cbp-button-width: 100%;
   }
 
   &[panel=day] {
     [role=application] {
       grid-template-columns: repeat(var(--cbp-datepicker-calendar-grid-columns),1fr);
+      //gap: var(--cbp-space-1x) var(--cbp-space-2x);
     }
   }
 
   &[panel=month] {
     [role=application] {
       grid-template-columns: repeat(var(--cbp-datepicker-calendar-grid-columns),1fr);
+      gap: var(--cbp-space-1x) var(--cbp-space-2x);
     }
   }
   
   &[panel=year] {
     [role=application] {
       grid-template-columns: repeat(var(--cbp-datepicker-calendar-grid-columns),1fr);
+      gap: var(--cbp-space-1x) var(--cbp-space-2x);
     }
   }
 }

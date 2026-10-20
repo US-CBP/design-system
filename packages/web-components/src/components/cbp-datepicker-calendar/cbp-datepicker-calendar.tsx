@@ -215,7 +215,8 @@ export class CbpDatepickerCalendar {
     switch(panel) {
       case "day": 
         this.gridColumns = 7;
-        const weekdayAbbrs = [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+        //const weekdayAbbrs = [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+        const weekdayAbbrs = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         const calendarToolbar = <div class="cbp-datepicker-calendar-toolbar">
           <cbp-button fill="outline" color="secondary" name="selectYear" value={`${dateObject.getFullYear()}`}>{dateObject.getFullYear()}</cbp-button>
           <cbp-button fill="outline" color="secondary" name="selectMonth" value={`${dateObject.getMonth()}`}>{this.monthNames[dateObject.getMonth()]}</cbp-button>
@@ -223,7 +224,7 @@ export class CbpDatepickerCalendar {
 
         let dayHeaders: HTMLElement[]=[];
         for (let dayHeader = 0; dayHeader < weekdayAbbrs.length; dayHeader++ ) {
-          let header:HTMLCbpButtonElement = <div>{weekdayAbbrs[dayHeader]}</div>;
+          let header:HTMLCbpButtonElement = <div class="cbp-datepicker-calendar-day-header">{weekdayAbbrs[dayHeader]}</div>;
           dayHeaders = [...dayHeaders, header];
         };
 
