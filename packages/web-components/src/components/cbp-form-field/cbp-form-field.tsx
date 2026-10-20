@@ -210,7 +210,7 @@ export class CbpFormField {
       //this.formFields = Array.from(this.host.querySelectorAll('button[role=combobox],input,select,textarea')) as any;
       
       // Treat nested components separately, as it's hard to modify their rendered content directly
-      this.formFieldComponent = this.host.querySelector('cbp-dropdown,cbp-slider,cbp-file-input');
+      this.formFieldComponent = this.host.querySelector('cbp-dropdown,cbp-datepicker,cbp-slider,cbp-file-input');
 
       this.buttons = this.host.querySelectorAll('cbp-button');
       this.attachedButtons = this.host.querySelectorAll('[slot=cbp-form-field-attached-button] cbp-button');
@@ -225,7 +225,7 @@ export class CbpFormField {
         this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
 
         // Listen for native change events (unless already handled by a custom component)
-        const ignoredField = this.formField.closest('cbp-dropdown,cbp-slider,cbp-file-input,cbp-listbox');
+        const ignoredField = this.formField.closest('cbp-dropdown,cbp-datepicker,cbp-slider,cbp-file-input,cbp-listbox');
         if(!ignoredField) this.formField.addEventListener('change', (e) => this.handleChange(e));
       }
 
