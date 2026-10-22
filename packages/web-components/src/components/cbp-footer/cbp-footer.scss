@@ -33,6 +33,8 @@ cbp-footer {
 
       cbp-link {
       --cbp-link-color-dark: var(--cbp-color-blue-20);
+      --cbp-link-color: var(--cbp-link-color-dark);
+      --cbp-link-color-visited: var(--cbp-link-color-visited-dark);
       }
     }
 }
