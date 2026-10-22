@@ -125,7 +125,6 @@ const ExternalTemplate = ({ footerNav, linkList, logoSrc}) => {
             width="16rem" 
             gap="var(--cbp-space-8x)" 
             sx='{
-              "padding-inline-start":"var(--cbp-space-4x)",
               "list-style":"none"
             }' 
             role="list">
@@ -156,19 +155,19 @@ export const ExternalFooter = ExternalTemplate.bind({});
 ExternalFooter.args = {
   footerNav: [ 
     {
-      label: '<cbp-icon name="facebook" accessibility-text="facebook"></cbp-icon>',
+      label: '<cbp-icon name="facebook" accessibility-text="CBP facebook"></cbp-icon>',
       href: 'https://www.facebook.com/CBPgov',
     },
     {
-      label: '<cbp-icon name="twitter" accessibility-text="twitter"></cbp-icon>',
+      label: '<cbp-icon name="x-twitter" accessibility-text="CBP X"></cbp-icon>',
       href: 'https://x.com/cbp',
     },
     {
-      label: '<cbp-icon name="youtube" accessibility-text="youtube"></cbp-icon>',
+      label: '<cbp-icon name="youtube" accessibility-text="CBP youtube"></cbp-icon>',
       href: 'https://www.youtube.com/channel/UCVRj-aUsXBrlM8elk3zmLvw',
     },
     {
-      label: '<cbp-icon name="instagram" accessibility-text="instagram"></cbp-icon>',
+      label: '<cbp-icon name="instagram" accessibility-text="CBP instagram"></cbp-icon>',
       href: 'https://www.instagram.com/cbpgov',
     },
   ],
