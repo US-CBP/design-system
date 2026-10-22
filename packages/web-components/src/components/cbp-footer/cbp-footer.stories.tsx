@@ -116,13 +116,12 @@ const ExternalTemplate = ({ footerNav, linkList, logoSrc}) => {
         </cbp-flex>
       </nav>
 
-      <style>
-        cbp-list ul{column-count: auto; column-width: 200px;}
-      </style>
       <cbp-flex>
         <cbp-flex-item flex-grow=1>
           <cbp-list variant="link" size="normal">
+            <cbp-multicol columns="3" width="16rem" gap="var(--cbp-space-8x)" sx='{"padding-inline-start":"var(--cbp-space-4x)"}' role="list">
               ${generateLinkListItem(linkList)}
+            </cbp-multicol>
           </cbp-list>
           
         </cbp-flex-item>
@@ -149,74 +148,74 @@ export const ExternalFooter = ExternalTemplate.bind({});
 ExternalFooter.args = {
   footerNav: [ //TODO: replace labels with social media icons. Do I need to add said icons to the design system or is there a different approach prefered
     {
-      label: 'App Overview',
+      label: '<cbp-icon name="facebook"></cbp-icon>',
       href: '#',
     },
     {
-      label: 'Trainings',
+      label: '<cbp-icon name="twitter"></cbp-icon>',
       href: '#',
     },
     {
-      label: 'FAQs',
+      label: '<cbp-icon name="youtube"></cbp-icon>',
       href: '#',
     },
     {
-      label: 'Release Notes',
+      label: '<cbp-icon name="instagram"></cbp-icon>',
       href: '#',
     },
   ],
   linkList: [
     {
       value: "About CBP",
-      href: '#'
+      href: 'https://www.cbp.gov/about'
     },
     {
       value: "Section 508 Accessibility",
-      href: '#'
+      href: 'https://www.cbp.gov/site-policy-notices/accessibility'
     },
     {
       value: "Accountability",
-      href: '#'
+      href: 'https://www.cbp.gov/newsroom/accountability-and-transparency'
     },
     {
       value: "DHS Components",
-      href: '#'
+      href: 'https://www.dhs.gov/operational-and-support-components'
     },
     {
       value: "Forms",
-      href: '#'
+      href: 'https://www.cbp.gov/newsroom/publications/forms'
     },
     {
       value: "Freedom of Information Act (FOIA)",
-      href: '#'
+      href: 'https://www.cbp.gov/site-policy-notices/foia'
     },
     {
       value: "Inspector General",
-      href: '#'
+      href: 'https://www.oig.dhs.gov/'
     },
     {
       value: "No FEAR Act",
-      href: '#'
+      href: 'https://www.cbp.gov/about/eeo/no-fear-act'
     },
     {
       value: "Vulnerability Disclosure Program",
-      href: '#'
+      href: 'https://www.cbp.gov/document/directives/vulnerability-disclosure-program-policy-and-rules-engagement'
     },
     {
       value: "Privacy",
-      href: '#'
+      href: 'https://www.cbp.gov/site-policy-notices/privacy-policy'
     },
     {
       value: "Contact Us",
-      href: '#'
+      href: 'https://www.cbp.gov/about/contact'
     },
     {
       value: "Site Policies",
-      href: '#'
+      href: 'https://www.cbp.gov/site-policy-notices'
     },
     {
       value: "The White House",
-      href: '#'
+      href: 'https://www.whitehouse.gov/'
     },
     {
       value: "USA.gov",
@@ -224,7 +223,7 @@ ExternalFooter.args = {
     },
     {
       value: "Freedom 250",
-      href: '#'
+      href: 'https://www.cbp.gov/250'
     },
     
   ],
