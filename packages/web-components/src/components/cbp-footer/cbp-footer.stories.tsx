@@ -38,10 +38,10 @@ function generateLink(href) {
 function generateLinkListItem(linkList) {
   const html = linkList.map(({value, href}) => {
     return `
-    <li>
-      <cbp-link href="${generateLink(href)}">
+    <li style="margin-bottom: var(--cbp-space-3x);">
+      <cbp-link href="${generateLink(href)}" >
         <cbp-icon name="arrow-right"></cbp-icon>
-        <cbp-link href="${generateLink(href)}">${value}</cbp-link>
+        ${value}
       </cbp-link>
     </li>
     `;
@@ -52,7 +52,6 @@ function generateLinkListItem(linkList) {
 const InternalTemplate = ({ footerNav, logoSrc }) => {
   return `
     <cbp-footer 
-      data-cbp-container-context="dark"
       ${logoSrc ? `logo-src=${logoSrc}` : ''}
       >
       <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
@@ -104,25 +103,34 @@ InternalFooter.args = {
 InternalFooter.storyName = 'Internal';
 
 const ExternalTemplate = ({ footerNav, linkList, logoSrc}) => {
-  //TODO: style tag added since ul cannot be directly targetted, should this move to component css?
+
+  setTimeout(() => {
+      document.getElementById("externalFooterList").removeAttribute("role")
+    }, 100);
+
    return `
     <cbp-footer 
-      data-cbp-container-context="dark"
       ${logoSrc ? `logo-src=${logoSrc}` : ''}
       >
       <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
-        <cbp-flex role="list" breakpoint="37.5rem">
+        <cbp-flex role="list">
           ${generateFooterNav(footerNav)}
         </cbp-flex>
       </nav>
 
       <cbp-flex>
         <cbp-flex-item flex-grow=1>
-          <cbp-list variant="link" size="normal">
-            <cbp-multicol columns="3" width="16rem" gap="var(--cbp-space-8x)" sx='{"padding-inline-start":"var(--cbp-space-4x)"}' role="list">
-              ${generateLinkListItem(linkList)}
-            </cbp-multicol>
-          </cbp-list>
+          <cbp-multicol 
+            columns="3" 
+            width="16rem" 
+            gap="var(--cbp-space-8x)" 
+            sx='{
+              "padding-inline-start":"var(--cbp-space-4x)",
+              "list-style":"none"
+            }' 
+            role="list">
+            ${generateLinkListItem(linkList)}
+          </cbp-multicol>
           
         </cbp-flex-item>
         <cbp-flex
@@ -146,22 +154,22 @@ const ExternalTemplate = ({ footerNav, linkList, logoSrc}) => {
 };
 export const ExternalFooter = ExternalTemplate.bind({});
 ExternalFooter.args = {
-  footerNav: [ //TODO: replace labels with social media icons. Do I need to add said icons to the design system or is there a different approach prefered
+  footerNav: [ 
     {
-      label: '<cbp-icon name="facebook"></cbp-icon>',
-      href: '#',
+      label: '<cbp-icon name="facebook" accessibility-text="facebook"></cbp-icon>',
+      href: 'https://www.facebook.com/CBPgov',
     },
     {
-      label: '<cbp-icon name="twitter"></cbp-icon>',
-      href: '#',
+      label: '<cbp-icon name="twitter" accessibility-text="twitter"></cbp-icon>',
+      href: 'https://x.com/cbp',
     },
     {
-      label: '<cbp-icon name="youtube"></cbp-icon>',
-      href: '#',
+      label: '<cbp-icon name="youtube" accessibility-text="youtube"></cbp-icon>',
+      href: 'https://www.youtube.com/channel/UCVRj-aUsXBrlM8elk3zmLvw',
     },
     {
-      label: '<cbp-icon name="instagram"></cbp-icon>',
-      href: '#',
+      label: '<cbp-icon name="instagram" accessibility-text="instagram"></cbp-icon>',
+      href: 'https://www.instagram.com/cbpgov',
     },
   ],
   linkList: [
@@ -227,6 +235,6 @@ ExternalFooter.args = {
     },
     
   ],
-  logoSrc: "./assets/images/cbp-seal.svg"
+  logoSrc: "./assets/images/dhs-seal.svg"
 };
 ExternalFooter.storyName = 'External';

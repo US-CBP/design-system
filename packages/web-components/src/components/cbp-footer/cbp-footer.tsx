@@ -55,7 +55,7 @@ export class CbpFooter {
               <cbp-flex 
                 direction="column"
               >
-                <cbp-typography variant="heading-xs">US Customs and Border Protection</cbp-typography>
+                <cbp-typography variant="heading-xs" context="dark-always">US Customs and Border Protection</cbp-typography>
                 <cbp-typography variant="body-text">This is an official website of the United States government, Department of Homeland Security</cbp-typography>
               </cbp-flex>
             </cbp-flex>
