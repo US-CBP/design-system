@@ -188,7 +188,7 @@ const InternalTemplate: any = ({ isLoggedIn, username, hashid, navItems, search,
       </cbp-container>
 
       <cbp-footer
-        logo-src="./assets/images/cbp-seal.svg"
+        logo-src="./assets/images/dhs-seal.svg"
       >
         <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
           <cbp-flex role="list" breakpoint="37.5rem">
@@ -343,7 +343,7 @@ const Internal2ColumnTemplate: any = ({ isLoggedIn, username, hashid, navItems, 
       </cbp-grid>
 
       <cbp-footer
-        logo-src="./assets/images/cbp-seal.svg"
+        logo-src="./assets/images/dhs-seal.svg"
       >
         <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
           <cbp-flex role="list" breakpoint="37.5rem">
@@ -737,7 +737,7 @@ const InternalCardsLayoutTemplate: any = ({ isLoggedIn, username, hashid, navIte
       </cbp-container>
 
       <cbp-footer
-        logo-src="./assets/images/cbp-seal.svg"
+        logo-src="./assets/images/dhs-seal.svg"
       >
         <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
           <cbp-flex role="list" breakpoint="37.5rem">

@@ -1029,7 +1029,7 @@ const InternalTemplate = ({ isLoggedIn, username, hashid, navItems, search, sear
     </cbp-container>
 
     <cbp-footer
-      logo-src="./assets/images/cbp-seal.svg"
+      logo-src="./assets/images/dhs-seal.svg"
     >
       <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
         <cbp-flex role="list" breakpoint="37.5rem">

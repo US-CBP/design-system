@@ -747,7 +747,7 @@ const searchResultsTemplate = ({isLoggedIn, username, hashid, navItems, searchTe
       </cbp-container>
 
       <cbp-footer
-        logo-src="./assets/images/cbp-seal.svg"
+        logo-src="./assets/images/dhs-seal.svg"
       >
         <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
           <cbp-flex role="list" breakpoint="37.5rem">

@@ -17,7 +17,7 @@ export class CbpFooter {
   @Element() private host: HTMLElement;
 
   /** Fully qualified or relative URL pointing to the larger SVG containing the CPB seal with text. */
-  @Prop() logoSrc: string = "/assets/images/cbp-seal.svg";
+  @Prop() logoSrc: string = "/assets/images/dhs-seal.svg";
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};

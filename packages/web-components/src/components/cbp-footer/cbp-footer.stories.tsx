@@ -98,7 +98,7 @@ InternalFooter.args = {
       href: '#',
     },
   ],
-  logoSrc: "./assets/images/cbp-seal.svg"
+  logoSrc: "./assets/images/dhs-seal.svg"
 };
 InternalFooter.storyName = 'Internal';
 
@@ -142,6 +142,7 @@ const ExternalTemplate = ({ footerNav, linkList, logoSrc}) => {
             type="button" 
             fill="ghost" 
             color="secondary"
+            context="dark-always"
           >
             <cbp-icon name="arrow-right"></cbp-icon>
             Learn More
