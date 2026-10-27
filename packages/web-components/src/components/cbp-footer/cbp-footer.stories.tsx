@@ -118,7 +118,9 @@ const ExternalTemplate = ({ footerNav, linkList, logoSrc}) => {
         </cbp-flex>
       </nav>
 
-      <cbp-flex>
+      <cbp-flex
+        wrap="wrap"
+      >
         <cbp-flex-item flex-grow=1>
           <cbp-multicol 
             columns="3" 
