@@ -125,58 +125,81 @@ export const doKeyboardNav = (collection: any[], key, focusIndex: number = 0) : 
   return focusIndex;
 }
 
-// TechDebt: Can this be simplified by leveraging e.composedPath() ?
-export const clickAwayListener = (host: HTMLElement, callback: any) => {
-  const tagName = host === null || host === void 0 ? void 0 : host.tagName.toLowerCase();
-  if (!tagName) return;
-  
-  const events = ['click', 'touchend'];
-  const eventHandler = ({ target }) => {
-    const parentElement = target.closest(tagName);
-    // if the event target is not a child of the host element, a click away has occurred and remove the event listeners
-    if(callback != null) {
-      if (!parentElement) {
-        callback({
-          flag: false
-        });
-        cancelEvents();
-      }
-      else if (!parentElement.contains(host)) {
-        if (!(parentElement === null || parentElement === void 0 ? void 0 : parentElement.parentElement.closest(tagName))) {
-          callback({
-            flag: true
-          });
-        }
-      }
-      else {
-        if (parentElement.closest(tagName) != host) {
-          callback({
-            flag: true
-          });
-        }
-      }
-    }
-    else {
-      cancelEvents();
-    }
-  };
+// Active listeners tracked per host element to allow removal and prevent duplicate listeners
+const activeListeners = new WeakMap<HTMLElement, {
+  eventHandler: (e: Event) => void;
+  events: string[];
+}>();
 
-  // Remove the event listeners from the document to stop detecting clicks outside the host element
+/**
+ * Attaches or removes a clickaway listener for the given host element.
+ * 
+ * - When callback is provided: listens for clicks or touches outside of `host` (using `event.composedPath()`).
+ *   If a clickaway occurs, the listener is removed and callback is invoked.
+ * - When callback is null/undefined/falsy: removes any active clickaway listener for `host`.
+ * - If called multiple times on the same host, existing listeners are removed before registering new ones.
+ * - Returns a cleanup function that can be called to remove the listener manually.
+ */
+export const clickAwayListener = (host: HTMLElement, callback?: any): (() => void) => {
+  if (!host || typeof document === 'undefined') {
+    return () => {};
+  }
+
+  const events = ['click', 'touchend'];
+
+  // Remove any previously registered listener for this host element
+  const existing = activeListeners.get(host);
+  if (existing) {
+    existing.events.forEach(e => {
+      document.removeEventListener(e, existing.eventHandler, false);
+    });
+    activeListeners.delete(host);
+  }
+
+  // If no callback is provided, we only needed to remove the existing listener
+  if (!callback) {
+    return () => {};
+  }
+
   const cancelEvents = () => {
     events.forEach(e => {
+      console.log('Removing clickaway listener for event: ', e);
       document.removeEventListener(e, eventHandler, false);
     });
+    activeListeners.delete(host);
   };
 
-  // Add the event listeners to the document to detect clicks outside the host element
-  events.forEach(e => {
-    document.addEventListener(e, eventHandler);
+  const eventHandler = (e: Event) => {
+    // If the host element was disconnected from the DOM, clean up and return
+    if (typeof host.isConnected === 'boolean' && !host.isConnected) {
+      cancelEvents();
+      return;
+    }
+
+    const path = typeof e.composedPath === 'function' ? e.composedPath() : [];
+    const target = (e.target || (path.length > 0 ? path[0] : null)) as Node | null;
+
+    // Check if the event target or any element in the event path is within host
+    const isInside = path.includes(host) || (target ? (target === host || (typeof host.contains === 'function' && host.contains(target))) : false);
+
+    if (!isInside) {
+      cancelEvents();
+      callback({
+        flag: false,
+        event: e,
+      });
+    }
+  };
+
+  activeListeners.set(host, {
+    eventHandler,
+    events,
   });
 
-  // If no callback is provided, cancel the event listeners immediately
-  /*
-  if (!callback) {
-    cancelEvents();
-  }
-  */
+  events.forEach(e => {
+    console.log('Adding clickaway listener for event: ', e);
+    document.addEventListener(e, eventHandler, false);
+  });
+
+  return cancelEvents;
 };

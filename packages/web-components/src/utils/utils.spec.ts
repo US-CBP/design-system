@@ -1,4 +1,4 @@
-import { createValidId } from './utils';
+import { createValidId, clickAwayListener } from './utils';
 
 describe('createValidId', () => {
   it('should convert strings to lowercase and replace spaces with hyphens', () => {
@@ -40,3 +40,135 @@ describe('createValidId', () => {
     expect(createValidId('Item 123 - Test 456')).toBe('item-123-test-456');
   });
 });
+
+describe('clickAwayListener', () => {
+  let host: HTMLElement;
+  let insideBtn: HTMLElement;
+  let outsideEl: HTMLElement;
+
+  beforeEach(() => {
+    host = document.createElement('div');
+    host.id = 'host-component';
+
+    insideBtn = document.createElement('button');
+    insideBtn.id = 'inside-btn';
+    host.appendChild(insideBtn);
+
+    outsideEl = document.createElement('button');
+    outsideEl.id = 'outside-btn';
+
+    document.body.appendChild(host);
+    document.body.appendChild(outsideEl);
+  });
+
+  afterEach(() => {
+    clickAwayListener(host, null);
+    if (host.parentNode) host.parentNode.removeChild(host);
+    if (outsideEl.parentNode) outsideEl.parentNode.removeChild(outsideEl);
+  });
+
+  it('should call callback and remove listeners when clicking outside host', () => {
+    let callCount = 0;
+    clickAwayListener(host, () => {
+      callCount++;
+    });
+
+    outsideEl.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(callCount).toBe(1);
+
+    // Second click outside should NOT call callback because the listener was already removed
+    outsideEl.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(callCount).toBe(1);
+  });
+
+  it('should not trigger callback when clicking inside host', () => {
+    let callCount = 0;
+    clickAwayListener(host, () => {
+      callCount++;
+    });
+
+    insideBtn.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(callCount).toBe(0);
+
+    host.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(callCount).toBe(0);
+  });
+
+  it('should properly remove listeners when called with null callback', () => {
+    let callCount = 0;
+    clickAwayListener(host, () => {
+      callCount++;
+    });
+
+    // Remove listener using null callback
+    clickAwayListener(host, null);
+
+    outsideEl.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(callCount).toBe(0);
+  });
+
+  it('should properly remove listeners when the returned cleanup function is invoked', () => {
+    let callCount = 0;
+    const cleanup = clickAwayListener(host, () => {
+      callCount++;
+    });
+
+    cleanup();
+
+    outsideEl.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(callCount).toBe(0);
+  });
+
+  it('should replace previous listener without stacking when called multiple times on the same host', () => {
+    let firstCallCount = 0;
+    let secondCallCount = 0;
+
+    clickAwayListener(host, () => {
+      firstCallCount++;
+    });
+
+    // Re-register listener on the same host without explicit prior teardown
+    clickAwayListener(host, () => {
+      secondCallCount++;
+    });
+
+    outsideEl.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
+    expect(firstCallCount).toBe(0);
+    expect(secondCallCount).toBe(1);
+  });
+
+  it('should trigger on touchend outside host', () => {
+    let callCount = 0;
+    clickAwayListener(host, () => {
+      callCount++;
+    });
+
+    outsideEl.dispatchEvent(new CustomEvent('touchend', { bubbles: true }));
+    expect(callCount).toBe(1);
+  });
+
+  it('should clean up when host is disconnected from DOM', () => {
+    let callCount = 0;
+    clickAwayListener(host, () => {
+      callCount++;
+    });
+
+    host.remove();
+
+    outsideEl.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    expect(callCount).toBe(0);
+  });
+
+  it('should safely handle null or undefined host', () => {
+    let callCount = 0;
+    const cleanup = clickAwayListener(null as any, () => {
+      callCount++;
+    });
+
+    expect(typeof cleanup).toBe('function');
+    cleanup();
+    expect(callCount).toBe(0);
+  });
+});
+
