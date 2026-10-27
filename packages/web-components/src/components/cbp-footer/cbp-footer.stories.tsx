@@ -119,7 +119,7 @@ const ExternalTemplate = ({ footerNav, linkList, logoSrc}) => {
       </nav>
 
       <cbp-flex
-        wrap="wrap"
+        breakpoint="50rem"
       >
         <cbp-flex-item flex-grow=1>
           <cbp-multicol 

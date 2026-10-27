@@ -92,6 +92,7 @@ cbp-dialog {
       display: flex;
       gap: var(--cbp-space-half-x);
       background-color: var(--cbp-dialog-color-bg);
+      border-radius: 0 0 var(--cbp-dialog-border-radius) var(--cbp-dialog-border-radius);
 
       cbp-button {
         --cbp-button-border-radius: 0;
