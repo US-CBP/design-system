@@ -56,7 +56,8 @@ cbp-dialog {
     opacity: 1;
     position: fixed;
     z-index: var(--cbp-z-index-level-top);
-    max-width: 80vw;
+    width: 21rem; //375px(mobile viewport) - 40px rounded up to closest rem
+    max-width: 90vw;
     max-height: 90vh;
     box-shadow: var(--cbp-dialog-shadow);
     border-radius: var(--cbp-dialog-border-radius);
@@ -75,6 +76,7 @@ cbp-dialog {
     [slot=cbp-dialog-body] {
       display: block;
       overflow-y: auto;
+      scrollbar-width: thin;
       max-height: 70vh;
     }
 
