@@ -192,7 +192,7 @@ cbp-form-field {
     // These overrides are fairly minimal because the disabled state already sets the interactive states to the base color.
     cbp-button[fill=solid]:has(button:disabled) {
       --cbp-button-color: var(--cbp-color-text-lightest);
-      --cbp-button-color-bg: var(--cbp-color-white);
+      --cbp-button-color-bg: var(--cbp-color-interactive-secondary-light);
       --cbp-button-color-border: var(--cbp-form-field-color-border);
 
       --cbp-button-color-dark: var(--cbp-color-text-base);
