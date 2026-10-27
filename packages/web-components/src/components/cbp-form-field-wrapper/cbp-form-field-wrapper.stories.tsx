@@ -60,6 +60,8 @@ const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? 'readonly' : ''}
+      ${disabled ? 'disabled' : ''}
       ${error ? 'error' : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -69,8 +71,6 @@ const InputWithOverlaysTemplate = ({ label, description, inputType, overlayStart
           type="${inputType}" 
           ${name ? `name="${name}"` : ''} 
           ${value ? `value="${value}"` : ''} 
-          ${readonly ? 'readonly' : ''}
-          ${disabled ? 'disabled' : ''}
         />
         ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
         ${overlayEnd != undefined ? `<span slot="cbp-form-field-overlay-end">${overlayEnd}</span>` : ''}
@@ -93,7 +93,9 @@ const FileInputTemplate = ({ label, description, overlayStart, overlayEnd, field
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
-      ${name ? `name="${name}"` : ''} 
+      ${name ? `name="${name}"` : ''}
+      ${readonly ? `readonly` : ''} 
+      ${disabled ? `disabled` : ''}  
       ${error ? 'error' : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -102,8 +104,6 @@ const FileInputTemplate = ({ label, description, overlayStart, overlayEnd, field
         <input 
           type="file" 
           name="fileinput" 
-          ${readonly ? `readonly` : ''} 
-          ${disabled ? `disabled` : ''} 
         />
         ${overlayStart != undefined ? `<span slot="cbp-form-field-overlay-start">${overlayStart}</span>` : ''}
         ${overlayEnd != undefined ? `<span slot="cbp-form-field-overlay-end">${overlayEnd}</span>` : ''}
@@ -334,6 +334,8 @@ const TimeInputTemplate = ({ label, description, fieldId, name, value, error, re
       ${label ? `label="${label}"` : ''}
       ${description ? `description="${description}"` : ''}
       ${fieldId ? `field-id="${fieldId}"` : ''}
+      ${readonly ? 'readonly' : ''}
+      ${disabled ? 'disabled' : ''} 
       ${error ? 'error' : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
@@ -344,8 +346,6 @@ const TimeInputTemplate = ({ label, description, fieldId, name, value, error, re
           maxlength="5"
           ${name ? `name="${name}"` : ''}
           ${value ? `value="${value}"` : ''}
-          ${readonly ? 'readonly' : ''}
-          ${disabled ? 'disabled' : ''} 
         />
         <cbp-icon 
           slot="cbp-form-field-overlay-start" 

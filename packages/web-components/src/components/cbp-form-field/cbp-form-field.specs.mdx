@@ -71,8 +71,10 @@ import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 
 * This component is required for bringing in the style for all form controls/inputs. It should be flexible enough for various cases such as:
   * when the label is hidden
-* This component may manage the form field (and associated buttons) disabled/readonly/error states, but does its best to get out of the way if the application wants to manage those states directly on the slotted elements.
-* Overlays and attached buttons are currently handled by child component, `cbp-form-field-wrapper`
+* This component may manage the form field (and associated buttons) disabled/readonly/error states, but does its best to get out of the way if they are set directly on the slotted elements.
+  * However, when a pattern includes attached buttons, disabled or readonly states should be applied at the `cbp-form-field` component level, not directly on the slotted input.
+  * If an application may toggle these states dynamically, it should also be done at the component level rather than the slotted input.
+* Overlays and attached buttons are supported by nesting the child component, `cbp-form-field-wrapper`
 * When autocomplete/autofill is used to fill the field, the browser adds styling (only visible in light mode).
 * Textareas now support `field-sizing: content`, which causes the textarea to expand vertically to the size of its content (within the bounds of min- and max-heights). This may not be desireable as a default, but could make a useful option.
 * Additional notes on slotted form fields and their use, since these are not strictly controlled by the design system:

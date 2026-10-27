@@ -224,17 +224,16 @@ export class CbpFormField {
           : this.formField.setAttribute('id', `${this.fieldId}`);
         this.hasDescription && this.formField.setAttribute('aria-describedby',`${this.fieldId}-description`);
 
+        // Set the disabled/readonly/error states on load only if true. (The Watch decorators only listen for changes, not initial state)
+        if (this.readonly) this.formField.setAttribute('readonly', '');
+        if (this.disabled) this.formField.setAttribute('disabled', '');
+        if (this.error) this.formField.setAttribute('aria-invalid', 'true');
+
         // Listen for native change events (unless already handled by a custom component)
         const ignoredField = this.formField.closest('cbp-dropdown,cbp-datepicker,cbp-slider,cbp-file-input,cbp-listbox');
         if(!ignoredField) this.formField.addEventListener('change', (e) => this.handleChange(e));
       }
 
-      // Set the disabled/readonly/error states on load only if true. (The Watch decorators only listen for changes, not initial state)
-      if (!!this.formField) {
-        if (this.readonly) this.formField.setAttribute('readonly', '');
-        if (this.disabled) this.formField.setAttribute('disabled', '');
-        if (this.error) this.formField.setAttribute('aria-invalid', 'true');
-      }
       if (this.formFieldComponent) {
         // Use the ID from the slotted formFieldComponent, which should always exist
         this.formFieldComponent.fieldId
