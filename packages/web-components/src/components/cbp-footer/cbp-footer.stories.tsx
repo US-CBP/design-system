@@ -78,7 +78,7 @@ const InternalTemplate = ({ footerNav, logoSrc }) => {
   `;
 };
 
-export const InternalFooter = InternalTemplate.bind({});
+export const InternalFooter: any = InternalTemplate.bind({});
 InternalFooter.args = {
   footerNav: [
     {
@@ -119,7 +119,7 @@ const ExternalTemplate = ({ footerNav, linkList, logoSrc}) => {
       </nav>
 
       <cbp-flex
-        breakpoint="50rem"
+        breakpoint="27rem"
       >
         <cbp-flex-item flex-grow=1>
           <cbp-multicol 
@@ -132,8 +132,8 @@ const ExternalTemplate = ({ footerNav, linkList, logoSrc}) => {
             role="list">
             ${generateLinkListItem(linkList)}
           </cbp-multicol>
-          
         </cbp-flex-item>
+
         <cbp-flex
           direction="column"
           align-items="center"
@@ -154,7 +154,7 @@ const ExternalTemplate = ({ footerNav, linkList, logoSrc}) => {
     </cbp-footer>
   `;
 };
-export const ExternalFooter = ExternalTemplate.bind({});
+export const ExternalFooter: any = ExternalTemplate.bind({});
 ExternalFooter.args = {
   footerNav: [ 
     {
