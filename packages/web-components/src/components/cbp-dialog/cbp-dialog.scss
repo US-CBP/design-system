@@ -39,14 +39,12 @@ cbp-dialog {
   width: 100%;
   height: 100%;
   z-index: var(--cbp-z-index-level-top);
-  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.3); // backdrop
 
   &[open] {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
   }
 
   &[color=danger] {
@@ -57,9 +55,9 @@ cbp-dialog {
   div[role=dialog] {
     opacity: 1;
     position: fixed;
-    overflow-y: auto;
     z-index: var(--cbp-z-index-level-top);
-    max-width: 100%;
+    width: 21rem; //375px(mobile viewport) - 40px rounded up to closest rem
+    max-width: 90vw;
     max-height: 90vh;
     box-shadow: var(--cbp-dialog-shadow);
     border-radius: var(--cbp-dialog-border-radius);
@@ -75,6 +73,13 @@ cbp-dialog {
       }
     }
 
+    [slot=cbp-dialog-body] {
+      display: block;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      max-height: 70vh;
+    }
+
     .cbp-dialog-body {
       color: var(--cbp-dialog-color);
       background-color: var(--cbp-dialog-color-bg);
@@ -87,6 +92,7 @@ cbp-dialog {
       display: flex;
       gap: var(--cbp-space-half-x);
       background-color: var(--cbp-dialog-color-bg);
+      border-radius: 0 0 var(--cbp-dialog-border-radius) var(--cbp-dialog-border-radius);
 
       cbp-button {
         --cbp-button-border-radius: 0;

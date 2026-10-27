@@ -233,7 +233,6 @@ cbp-dropdown {
 
     overflow-y: auto;
 
-    // TechDebt: verify across browsers (FF and Safari)
     scrollbar-width: thin;
     scrollbar-color: var(--cbp-dropdown-menu-color-border) var(--cbp-form-field-color-bg);
 

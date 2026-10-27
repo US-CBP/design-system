@@ -50,7 +50,7 @@ export class CbpFooter {
               <cbp-flex-item
                 flexShrink={0}
               >
-                <img src={this.logoSrc} alt="U.S. Customs and Border Protection" height="44" width="44" />
+                <img src={this.logoSrc} alt="U.S. Department of Homeland Security seal" height="44" width="44" />
               </cbp-flex-item>
               <cbp-flex 
                 direction="column"
