@@ -49,7 +49,7 @@ export class CbpDatepickerCalendar {
 
   /*
     getDate() - returns day (numeric)
-    getDay()
+    getDay() - returns index of the day of the week (0-6)
 
     getMonth() - returns zero-based index
 
@@ -76,6 +76,7 @@ export class CbpDatepickerCalendar {
   handleButtonClick(e) {
     console.log('Button Click', e);
     const { name, value } = e.detail;
+    
     switch(name) {
       case "selectYear": 
         this.panel="year";
@@ -83,6 +84,22 @@ export class CbpDatepickerCalendar {
 
       case "selectMonth": 
         this.panel="month";
+        break;
+
+      case "prevMonth": 
+        //this.panel="day";
+        //this.selectMonth(value > 0 ? value-1 : 11)
+        this.dateObject.setMonth(value-1);
+        this.date = this.dateObject.toJSON().slice(0, 10);
+        console.log('prevMonth', value, this.dateObject, this.date);
+        break;
+
+      case "nextMonth": 
+        //this.panel="day";
+        //this.selectMonth(value < 11 ? value+1 : 0)
+        this.dateObject.setMonth(value+1);
+        this.date = this.dateObject.toJSON().slice(0, 10);
+        console.log('nextMonth', value, this.dateObject, this.date);
         break;
 
       case "date": 
@@ -108,7 +125,7 @@ export class CbpDatepickerCalendar {
     this.focusIndex = this.panelItems.findIndex(item => item.querySelector('button').getAttribute('value') == `${value}`);
 
     setTimeout(() => {
-      console.log('Setting focus on: ', value, this.focusIndex, this.host.querySelector(`button[value="${value}"]`));
+      //console.log('Setting focus on: ', value, this.focusIndex, this.host.querySelector(`button[value="${value}"]`));
       (this.host.querySelector(`button[value="${value}"]`) as HTMLButtonElement)?.focus();
     }, 100);
   }
@@ -144,7 +161,7 @@ export class CbpDatepickerCalendar {
         End: l,
       }[key];
       if (n !== undefined) {
-        console.log('Date Picker Calendar Key Press: ', key, {i}, {l}, {n}, {position}, {lastItemPosition});
+        //console.log('Date Picker Calendar Key Press: ', key, {i}, {l}, {n}, {position}, {lastItemPosition});
         this.focusIndex = n;
         this.setCurrentPanelItem(this.focusIndex);
         e.preventDefault(); // Stop these navigation keys from scrolling the page
@@ -169,13 +186,14 @@ export class CbpDatepickerCalendar {
   }
 
   private selectMonth(month) {
-    //this.month=month;
+    // If input type is month, emit the event and close the dialog
     if(this.type == "month") {
       this.dateSelected.emit({ 
         month: month
       });
       this.datePicker.close();
     }
+    // For all other types, set the month and return to the day panel
     else {
       // set the month initially
       this.dateObject.setMonth(month);
@@ -186,6 +204,7 @@ export class CbpDatepickerCalendar {
         this.dateObject.setDate(0);
       }
       this.date = this.dateObject.toJSON().slice(0, 10);
+      console.log('selected Month', month, this.date, this.dateObject);
       //this.focus=true;
       this.panel="day";
     }
@@ -201,10 +220,9 @@ export class CbpDatepickerCalendar {
 
 
   // render the contents of the day/month/year panel based on the current value of the `panel` property.
-  private showPanel(panel) {
-    console.log('Show Panel: ', this.panel, this.dateObject, this.date);
-    //this.focus=true;
-    const dateObject = new Date(this.date);
+  private showPanel(panel, date) {
+    const dateObj = new Date(date);
+    console.log('Show Panel: ', this.panel, this.dateObject, dateObj, this.date);
 
     let panelContents;
     const min = new Date(this.min);
@@ -217,11 +235,25 @@ export class CbpDatepickerCalendar {
         this.gridColumns = 7;
         //const weekdayAbbrs = [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
         const weekdayAbbrs = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        
+        // add the calendar toolbar buttons
         const calendarToolbar = <div class="cbp-datepicker-calendar-toolbar">
-          <cbp-button fill="outline" color="secondary" name="selectYear" value={`${dateObject.getFullYear()}`}>{dateObject.getFullYear()}</cbp-button>
-          <cbp-button fill="outline" color="secondary" name="selectMonth" value={`${dateObject.getMonth()}`}>{this.monthNames[dateObject.getMonth()]}</cbp-button>
+          <cbp-button fill="ghost" color="secondary" variant="square" name="prevMonth" value={`${dateObj.getMonth()}`} accessibilityText="Previous Month">
+            <cbp-icon name="chevron-right" rotate={180} />
+          </cbp-button>
+          <cbp-button fill="ghost" color="secondary" name="selectMonth" value={`${dateObj.getMonth()}`}>
+            {this.monthNames[dateObj.getMonth()]}
+          </cbp-button>
+          <cbp-button fill="ghost" color="secondary" variant="square" name="nextMonth" value={`${dateObj.getMonth()}`} accessibilityText="Next Month">
+            <cbp-icon name="chevron-right" />
+          </cbp-button>
+          
+          <cbp-button fill="ghost" color="secondary" name="selectYear" value={`${dateObj.getFullYear()}`}>
+            {dateObj.getFullYear()}
+          </cbp-button>
         </div>
 
+        // add the day headers
         let dayHeaders: HTMLElement[]=[];
         for (let dayHeader = 0; dayHeader < weekdayAbbrs.length; dayHeader++ ) {
           let header:HTMLCbpButtonElement = <div class="cbp-datepicker-calendar-day-header">{weekdayAbbrs[dayHeader]}</div>;
@@ -230,14 +262,27 @@ export class CbpDatepickerCalendar {
 
         let dateControls: HTMLCbpButtonElement[]=[];
         // Passing 0 as the day gives us the last day of the specified month
-        const totalDays = new Date(dateObject.getFullYear(), dateObject.getMonth() + 1, 0).getDate(); 
+        const totalDays = new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 0).getDate(); 
         
         // loop over days of the month
-        // TODO: needs to account for day of the week positioning
         for (let day = 1; day <= totalDays; day++ ) {
-          let control:HTMLCbpButtonElement = <cbp-button fill="ghost" color="secondary" name="date" value={`${dateObject.getFullYear()}-${(dateObject.getMonth() + 1).toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`}>{day}</cbp-button>;
+          let control:HTMLCbpButtonElement = <cbp-button fill="ghost" color="secondary" name="date" value={`${dateObj.getFullYear()}-${(dateObj.getMonth() + 1).toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`}>{day}</cbp-button>;
           dateControls = [...dateControls, control];
         };
+        // pad the start of the calendar
+        const firstDayOfMonth = new Date(dateObj.getFullYear(), dateObj.getMonth(), 1).getDay(); // index of day of the week
+        const lastDayOfPreviousMonth = new Date(dateObj.getFullYear(), dateObj.getMonth(), 0).getDate();
+        for (let padStart = firstDayOfMonth; padStart > 0; padStart-- ) {
+          let control:HTMLCbpButtonElement = <cbp-button fill="ghost" color="secondary" name="date" value="">{lastDayOfPreviousMonth - firstDayOfMonth + padStart}</cbp-button>;
+          dateControls = [control, ...dateControls];
+        }
+        // pad the end of the calendar
+        const lastDayOfMonth = new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 0).getDay(); // index of day of the week
+        for (let padEnd = lastDayOfMonth; padEnd < 6; padEnd++ ) {
+          let value = `${dateObj.getFullYear()}-${(dateObj.getMonth() < 11 ? dateObj.getMonth() + 2 : 1).toString().padStart(2, "0")}-${(padEnd+1).toString().padStart(2, "0")}`;
+          let control:HTMLCbpButtonElement = <cbp-button fill="ghost" color="secondary" name="date" value={value}>{padEnd-lastDayOfMonth+1}</cbp-button>;
+          dateControls = [...dateControls, control];
+        }
 
         panelContents = <div>
           {calendarToolbar}
@@ -284,9 +329,6 @@ export class CbpDatepickerCalendar {
     if(this.date) {
       // using yyyy-mm-dd format invokes UTC date format, but converting to commas or slashes uses local date format.
       this.dateObject = new Date(this.date.split('-').join('/'));
-      //this.day = this.dateObject.getDate();
-      //this.month = this.dateObject.getMonth()+1; // convert to actual month number from zero-based month index
-      //this.year = this.dateObject.getFullYear();
     }
   }
 
@@ -316,16 +358,16 @@ export class CbpDatepickerCalendar {
 
   render() {
     //this.focus=false;
-    console.log('Date Picker Calendar render');
-    console.log('Date Property: ', this.date);
-    console.log('Date Object: ', this.dateObject);
-    //console.log('Year: ', this.year);
-    //console.log('Month: ', this.month);
-    //console.log('Day: ', this.day);
+    //console.log('Date Picker Calendar render');
+    //console.log('Date Property: ', this.date);
+    //console.log('Date Object: ', this.dateObject);
 
     return (
-      <Host onKeyDown={(e) => this.handleKeyPress(e)}>
-        {this.date && this.showPanel(this.panel)}
+      <Host 
+        data-date={this.date}
+        onKeyDown={(e) => this.handleKeyPress(e)}
+      >
+        {this.showPanel(this.panel, this.date)}
         <slot />
       </Host>
     );

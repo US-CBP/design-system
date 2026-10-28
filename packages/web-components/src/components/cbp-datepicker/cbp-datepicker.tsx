@@ -41,8 +41,8 @@ export class CbpDatepicker {
    */
   @Prop({ mutable: true }) fieldId: string = createNamespaceKey('cbp-datepicker');
 
-  @Prop({ mutable: true }) min: string = '1900-01-01';
-  @Prop({ mutable: true }) max: string = '2099-12-31';
+  @Prop({ mutable: true }) min: string = '01/01/1900' //'1900-01-01';
+  @Prop({ mutable: true }) max: string = '12/31/2099' //'2099-12-31';
 
   /* The `value` attribute of the input, which is passed as part of formData. */
   //@Prop({ mutable: true }) value: string;
@@ -103,15 +103,18 @@ export class CbpDatepicker {
     if (newValue) {
       // Toggling the value passed to the calendar should resolve this, letting the datepicker-calendar handle the focus on its own.
       //this.datePicker.setFocus(this.today.toJSON().slice(0, 10));
-      
+      console.log('cbp-datepicker opened, setting up clickaway listener.');
       // Set up a clickaway listener to close the menu
-      clickAwayListener(this.host, _ => {
-        this.open = false;
-      });
+      setTimeout(() => {
+        clickAwayListener(this.datePicker, _ => {
+          this.open = false;
+        });
+      }, 10);
     }
     else {
-      clickAwayListener(this.host, null); // Remove the clickaway listener when the menu is closed
-      this.focusTrap?.deactivate(); 
+      console.log('cbp-datepicker closed, removing clickaway listener?');
+      this.focusTrap?.deactivate();
+      clickAwayListener(this.datePicker, null); // Remove the clickaway listener when the menu is closed
       this.datePicker.panel='day'; // reset the panel to day when the datepicker is closed
     }
   }
@@ -214,6 +217,14 @@ export class CbpDatepicker {
     }
   }
 
+  componentDidLoad() {
+    // Create focus trap for the dialog (toggles on in componentDidRender when the dialog is opened and off in the watch decorator)
+    this.focusTrap = FocusTrap.createFocusTrap(this.dialog, {
+      escapeDeactivates: false,
+      allowOutsideClick: true,
+    });
+  }
+
   componentWillRender() {
     this.disabled = !!this.formField?.getAttribute('disabled');
     this.readonly = !!this.formField?.getAttribute('readonly');
@@ -223,7 +234,7 @@ export class CbpDatepicker {
   componentDidRender() {
     if (this.open) {
       const floatUiprops: floatUIProps= {
-        placement: 'bottom',
+        placement: 'bottom-start',
         offset: {
           mainAxis: 0,
         },
@@ -233,39 +244,37 @@ export class CbpDatepicker {
         },
         shift: false,
       }
-
       floatUI(floatUiprops, this.formField, this.dialog);
 
-      // Create and deactivate focus trap based on open state (this may need to be behind a timeout too)
-      this.focusTrap = FocusTrap.createFocusTrap(this.datePicker, {
-        escapeDeactivates: false,
-        allowOutsideClick: true,
-      });
+      // Activate focus trap when dialog is opened (this may need to be behind a timeout too)
       this.focusTrap.activate();
     }
   }
 
   render() {
-    console.log('Rendering cbp-datepicker: ');
-    console.log('Form Field Value: ', this.formField?.value);
-    console.log('Today: ', this.today);
-    console.log('What is passed to the datepicker-calendar: ', this.open ? (this.formField?.value ? this.formField?.value : this.today) : '');
+    //console.log('Rendering cbp-datepicker: ');
+    //console.log('Form Field Value: ', this.formField?.value);
+    //console.log('Today: ', this.today);
+    //console.log('What is passed to the datepicker-calendar: ', this.open ? (this.formField?.value ? this.formField?.value : this.today) : '');
 
 
     return (
       <Host onKeyDown={(e) => this.handleEscape(e)}>
         <cbp-form-field-wrapper>
           <slot />
-          <cbp-button
-            color="secondary"
-            accessibilityText="Open date picker dialog"
-            aria-describedby={`${this.fieldId}-label`}
-            slot="cbp-form-field-attached-button"
-            //ref={ el => this.control = el}
-            onButtonClick={() => this.toggleDatePicker()}
-          >
-            <cbp-icon name="calendar-days" />
-          </cbp-button>
+          <span slot="cbp-form-field-attached-button">
+            <cbp-button
+              color="secondary"
+              accessibilityText="Date picker dialog"
+              aria-describedby={`${this.fieldId}-label`}
+              controls={`${this.fieldId}-datepicker`}
+              expanded={`${this.open}`}
+              //ref={ el => this.control = el}
+              onButtonClick={() => this.toggleDatePicker()}
+            >
+              <cbp-icon name="calendar-days" />
+            </cbp-button>
+          </span>
         </cbp-form-field-wrapper>
         
         <div

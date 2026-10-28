@@ -14,6 +14,8 @@
 
   --cbp-datepicker-width: 20.75rem;
   --cbp-datepicker-height: 23rem;
+  --cbp-datepicker-dialog-width: 20.75rem;
+  --cbp-datepicker-dialog-height: 20rem;
 }
 
 
@@ -29,7 +31,7 @@
 cbp-datepicker {
   display: block;
   position: relative;
-  width: var(--cbp-datepicker-width);
+  //width: var(--cbp-datepicker-width);
 
   // TIL: appearance: none doesn't affect native date inputs
   input[type=date]:not(#fakeId) {
@@ -71,11 +73,12 @@ cbp-datepicker {
 
   [role=dialog] {
     position: absolute;
+    //left: 0;
     z-index: var(--cbp-z-index-level-4);
-    //width: var(--cbp-datepicker-width);
-    width: 100%;
+    width: var(--cbp-datepicker-dialog-width);
+    //width: 100%;
     height: fit-content;
-    max-height: var(--cbp-datepicker-height);
+    max-height: var(--cbp-datepicker-dialog-height);
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
@@ -84,9 +87,7 @@ cbp-datepicker {
     color: var(--cbp-datepicker-color);
     background-color: var(--cbp-datepicker-color-bg);
     border: var(--cbp-border-size-md) solid var(--cbp-datepicker-color-border);
-    border-radius: 0 0 var(--cbp-border-radius-soft) var(--cbp-border-radius-soft);
-
-    padding: var(--cbp-space-3x);
+    border-radius: 0 0 var(--cbp-border-radius-1) var(--cbp-border-radius-1);
 
     /*
     &:focus-within {

@@ -1,7 +1,5 @@
-/*
-:host {
-  display: block;
-}
+/**
+
 */
 
 :root {
@@ -9,6 +7,9 @@
 }
 
 cbp-datepicker-calendar {
+  display: block;
+  padding: var(--cbp-space-3x);
+
   .cbp-datepicker-calendar-toolbar {
     display: flex;
     //width: 100%;
@@ -16,10 +17,15 @@ cbp-datepicker-calendar {
     text-align: left;
     gap: var(--cbp-space-2x);
     margin-block-end: var(--cbp-space-4x);
+
+    :nth-child(3) {
+      flex-grow: 1;
+    }
   }
 
   .cbp-datepicker-calendar-day-header {
     text-transform: uppercase;
+    margin-block-end: var(--cbp-space-1x);
   }
 
   [role=application] {
