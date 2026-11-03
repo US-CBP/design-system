@@ -11,7 +11,7 @@ export class CbpSecurityBanner {
   private content;
 
   /** Specifies the level of classification of the security banner */
-  @Prop({ reflect: true}) classification: 'unclassified' | 'cui' | 'confidential' = 'unclassified'; //Todo: should these be capitalized?
+  @Prop({ reflect: true}) classification: 'unclassified' | 'cui' | 'confidential' = 'unclassified';
 
   /** Sepcifies if the content of the security banner is visible */
   @Prop({reflect: true}) open: boolean =  false;

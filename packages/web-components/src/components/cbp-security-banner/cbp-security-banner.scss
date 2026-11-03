@@ -1,3 +1,7 @@
+:root {
+  --cbp-security-banner-height: 2rem;
+}
+
 cbp-security-banner{
   display: block;
   background-color: var(--cbp-security-banner-color-bg);
@@ -7,9 +11,6 @@ cbp-security-banner{
   right: 0;
   top: 0;
   z-index: calc(var(--cbp-z-index-level-top) + 100); //Security banner should never be occluded
-
-  //TODO: need to account for security banner presence in the app header/ other stuff at top of page
-  //TODO: overlapping the drawer close button, should drawer be pushed down to allow for click?
 
   &:not([open]) .cbp-security-banner-content{
     display: none !important;
@@ -29,7 +30,7 @@ cbp-security-banner{
 
   .cbp-security-banner-header{
     margin-inline-end: var(--cbp-space-2x);
-    height: 2rem;
+    height: var(--cbp-security-banner-height);
     align-content: center;
   }
 
@@ -38,7 +39,6 @@ cbp-security-banner{
     //addition of fill & color in the selector is to up specificity to override button's dark mode var remapping correctly
     --cbp-button-gap: var(--cbp-space-1x);
     --cbp-button-height: 2rem;
-    // --cbp-button-min-height: 1rem;
 
     --cbp-button-padding: var(--cbp-space-1x);
 
@@ -81,3 +81,9 @@ cbp-security-banner{
 
 
 }
+
+//adjust for presence of security banner to avoid overlap with drawer content & sticky app header
+    cbp-app:has(cbp-security-banner) cbp-drawer .cbp-drawer__content,
+    cbp-app:has(cbp-security-banner) cbp-app-header[sticky]{
+      top: var(--cbp-security-banner-height);
+    }
