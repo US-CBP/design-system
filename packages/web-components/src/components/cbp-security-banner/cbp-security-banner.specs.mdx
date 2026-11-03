@@ -10,28 +10,31 @@ the Security Banner is to be used to notify users if there is classified informa
 
 ## Functional Requirements
 
-* Cannot be occluded from view
-* variants for classification levels based on the classification prop (unclassified, CUI, & confidential)
+* The Security Banner spans the entire viewport and is meant to be displayed at the top of public-facing pages. The Security Banner cannot be occluded from view
+* The Security Banner should contain the same language as the U.S. Web Design System component and should not be customizable or customized, for consistency across government sites.
+* Variants for classification levels based on the classification prop (Unclassified, CUI, & Confidential)
 * Security Banner initially displays as "collapsed" and is expandable for more information on classification 
 
 ## Technical Specifications
 
-* User can toggle the visibility of Additional content by interacting with the button in the title section (Learn more/show less)
+* 
 
 ### User Interactions
 
-* 
+* The user may expand/collapse the additional information with the button labelled "Learn More" using the mouse or keyboard.
+* The banner will remain expanded until closed manually via the control. 
 
 ### Responsiveness
 
 * The Security Banner is responsive in both its collapsed and expanded states and its content will wrap and reflow as needed on smaller screen sizes.
 
-
 ### Accessibility
 
-* 
+* The ghost button control has an `aria-controls` attribute referencing the hidden `cbp-flex`.
+* The control also has an `aria-expanded` attribute to indicate that it controls expandable content.
+* As a semantic button, the control can be reached by keyboard navigation and activated/toggled by pressing `Space` or `Enter`.
 
 ### Additional Notes and Considerations
 
-* classification prop to update for Secret, Top Secret, & Top Secret Specifications
-* need to implement conditional slots for "classified by" & "declassify on" for above classification levels
+* TODO: classification prop to update for Secret, Top Secret, & Top Secret Specifications
+* TODO: need to implement conditional slots for "classified by" & "declassify on" for above classification levels

@@ -12,7 +12,13 @@ cbp-security-banner{
   top: 0;
   z-index: calc(var(--cbp-z-index-level-top) + 100); //Security banner should never be occluded
 
-  &:not([open]) .cbp-security-banner-content{
+  --cbp-security-banner-icon-rotate: rotate(90deg);
+
+  &[open]{
+    --cbp-security-banner-icon-rotate: rotate(270deg);
+  }
+  
+  &:not([open]) #cbp-security-banner-content{
     display: none !important;
   }
 
@@ -39,9 +45,7 @@ cbp-security-banner{
     //addition of fill & color in the selector is to up specificity to override button's dark mode var remapping correctly
     --cbp-button-gap: var(--cbp-space-1x);
     --cbp-button-height: 2rem;
-
     --cbp-button-padding: var(--cbp-space-1x);
-
     --cbp-button-color: var(--cbp-color-text-lightest);
     --cbp-button-color-dark: var(--cbp-color-text-lightest);
     --cbp-button-color-hover: var(--cbp-color-interactive-secondary-lighter);
@@ -50,13 +54,11 @@ cbp-security-banner{
     --cbp-button-color-focus-dark: var(--cbp-color-interactive-focus-light);
     --cbp-button-color-active: var(--cbp-color-interactive-focus-light);
     --cbp-button-color-active-dark: var(--cbp-color-interactive-focus-light);
-
     --cbp-button-color-border-hover: transparent;
     --cbp-button-color-border-focus: transparent;
     --cbp-button-color-border-active: transparent;
     --cbp-button-border-radius: 0;
     --cbp-button-color-outline-focus: var(--cbp-color-interactive-focus-light);
-
     --cbp-button-color-bg: transparent;
     --cbp-button-color-bg-dark: transparent;
     --cbp-button-color-bg-hover: transparent;
@@ -65,20 +67,26 @@ cbp-security-banner{
     --cbp-button-color-bg-focus-dark: transparent;
     --cbp-button-color-bg-active: transparent;
     --cbp-button-color-bg-active-dark: transparent;
-
     > button {
       letter-spacing: unset;
       text-transform: unset;
       text-decoration: underline;
       outline-offset: -1px;
+      font-size: var(--cbp-font-size-subhead);
     }
 
     cbp-icon svg {
       transition: transform 150ms;
-      transform: var(--cbp-usa-banner-icon-rotate);
+      transform: var(--cbp-security-banner-icon-rotate);
     }
   }
 
+  cbp-typography{
+    --cbp-typography-color: var(--cbp-color-text-lightest);
+  }
+  .cbp-security-banner-content-header{
+    text-transform: uppercase;
+  }
 
 }
 
