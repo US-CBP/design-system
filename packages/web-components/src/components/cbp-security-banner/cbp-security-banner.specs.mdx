@@ -1,0 +1,37 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Notifications/Security Banner/Specifications" />
+
+# cbp-security-banner
+
+## Purpose
+
+the Security Banner is to be used to notify users if there is classified information on the page(s), and to communicate the classification level of information 
+
+## Functional Requirements
+
+* Cannot be occluded from view
+* variants for classification levels based on the classification prop (unclassified, CUI, & confidential)
+* Security Banner initially displays as "collapsed" and is expandable for more information on classification 
+
+## Technical Specifications
+
+* User can toggle the visibility of Additional content by interacting with the button in the title section (Learn more/show less)
+
+### User Interactions
+
+* 
+
+### Responsiveness
+
+* The Security Banner is responsive in both its collapsed and expanded states and its content will wrap and reflow as needed on smaller screen sizes.
+
+
+### Accessibility
+
+* 
+
+### Additional Notes and Considerations
+
+* classification prop to update for Secret, Top Secret, & Top Secret Specifications
+* need to implement conditional slots for "classified by" & "declassify on" for above classification levels
