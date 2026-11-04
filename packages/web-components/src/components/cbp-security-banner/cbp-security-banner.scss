@@ -100,7 +100,11 @@ cbp-security-banner{
 }
 
 //adjust for presence of security banner to avoid overlap with drawer content & sticky app header
-    cbp-app:has(cbp-security-banner) cbp-drawer .cbp-drawer__content,
     cbp-app:has(cbp-security-banner) cbp-app-header[sticky]{
       top: var(--cbp-security-banner-height);
+    }
+
+    cbp-app:has(cbp-security-banner) cbp-drawer .cbp-drawer__content{
+      top: var(--cbp-security-banner-height);
+      height: calc(100% - var(--cbp-security-banner-height));
     }

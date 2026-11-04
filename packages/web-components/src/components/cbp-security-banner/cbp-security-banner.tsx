@@ -1,5 +1,10 @@
 import { Component, Host, h, Prop } from '@stencil/core';
 
+/**
+ * The Security Banner displays at the top of a page to detail the highest security classification of
+ * content present on the page
+*/
+
 @Component({
   tag: 'cbp-security-banner',
   styleUrl: 'cbp-security-banner.scss',
@@ -77,10 +82,9 @@ export class CbpSecurityBanner {
             context="dark-always"
             class="cbp-security-banner-content-header"
           >
-              <cbp-icon name="file-circle-exclamation"></cbp-icon>{this.classification != 'unclassified' ? 'WARNING' : ''} data access: {this.classification}
+              <cbp-icon name="file-circle-exclamation"></cbp-icon>  {this.classification != 'unclassified' ? 'WARNING' : ''} data access: {this.classification}
           </cbp-typography>
           {this.getContent()}
-          <slot />
         </div>
         {/* </cbp-flex> */}
       </Host>
