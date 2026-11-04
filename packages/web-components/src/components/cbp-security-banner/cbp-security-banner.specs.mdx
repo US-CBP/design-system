@@ -1,0 +1,38 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Notifications/Security Banner/Specifications" />
+
+# cbp-security-banner
+
+## Purpose
+
+the Security Banner is to be used to notify users if there is classified information on the page(s), and to communicate the classification level of information 
+
+## Functional Requirements
+
+* The Security Banner spans the entire viewport and is meant to be displayed at the top pages with classified material. 
+* The Security Banner cannot be occluded from view. Meaning it is sticky to the top of the page with a z-index of 100 + the highest elevation variable
+* Variants for classification levels based on the classification prop (Unclassified, CUI, & Confidential)
+* Security Banner initially displays as "collapsed" and is expandable for more information on classification 
+
+## Technical Specifications
+
+### User Interactions
+
+* The user may expand/collapse the additional information with the button labelled "Learn More" using the mouse or keyboard.
+* The banner will remain expanded until closed manually via the control. 
+
+### Responsiveness
+
+* The Security Banner is responsive in both its collapsed and expanded states and its content will wrap and reflow as needed on smaller screen sizes.
+
+### Accessibility
+
+* The ghost button control has an `aria-controls` attribute referencing the hidden `cbp-flex`.
+* The control also has an `aria-expanded` attribute to indicate that it controls expandable content.
+* As a semantic button, the control can be reached by keyboard navigation and activated/toggled by pressing `Space` or `Enter`.
+
+### Additional Notes and Considerations
+
+* TODO: classification prop to update for Secret, Top Secret, & Top Secret Specifications
+* TODO: need to implement conditional slots for "classified by" & "declassify on" for above classification levels

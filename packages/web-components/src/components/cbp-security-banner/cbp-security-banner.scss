@@ -1,0 +1,123 @@
+:root {
+  --cbp-security-banner-height: 2rem;
+}
+
+cbp-security-banner{
+  display: block;
+  background-color: var(--cbp-security-banner-color-bg);
+  padding: 0 var(--cbp-responsive-spacing-outer);
+  position: sticky;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: calc(var(--cbp-z-index-level-top) + 100); //Security banner should never be occluded
+
+  --cbp-security-banner-icon-rotate: rotate(90deg);
+
+  .cbp-security-banner-header{
+    display: flex;
+    justify-content: center;
+  }
+
+  #cbp-security-banner-content{
+    display: none;
+    padding-bottom: var(--cbp-space-4x);
+
+    cbp-typography{
+      margin-bottom: var(--cbp-space-2x);
+    }
+  }
+
+  &[open]{
+    --cbp-security-banner-icon-rotate: rotate(270deg);
+
+    #cbp-security-banner-content{
+      display: block;
+    }
+  }
+
+  .cbp-security-banner-icon{
+    margin-inline-end: var(--cbp-space-1x);
+  }
+
+  &[classification="unclassified"]{
+    --cbp-security-banner-color-bg: var(--cbp-color-success-base);
+  }
+
+  &[classification="cui"]{
+    --cbp-security-banner-color-bg: var(--cbp-color-violet-70);
+  }
+
+  &[classification="confidential"]{
+    --cbp-security-banner-color-bg: var(--cbp-color-magenta-60);
+  }
+
+  .cbp-security-banner-title{
+    margin-inline-end: var(--cbp-space-2x);
+    height: var(--cbp-security-banner-height);
+    align-content: center;
+    text-transform: uppercase;
+  }
+
+  //restyle expand button to look like small link
+  cbp-button.cbp-security-banner-expand[fill=ghost][color=primary]:not(#fakeId) {
+    //addition of fill & color in the selector is to up specificity to override button's dark mode var remapping correctly
+    --cbp-button-gap: var(--cbp-space-1x);
+    --cbp-button-height: 2rem;
+    --cbp-button-padding: var(--cbp-space-1x);
+    --cbp-button-color: var(--cbp-color-text-lightest);
+    --cbp-button-color-dark: var(--cbp-color-text-lightest);
+    --cbp-button-color-hover: var(--cbp-color-interactive-secondary-lighter);
+    --cbp-button-color-hover-dark: var(--cbp-color-interactive-secondary-lighter);
+    --cbp-button-color-focus: var(--cbp-color-interactive-focus-light);
+    --cbp-button-color-focus-dark: var(--cbp-color-interactive-focus-light);
+    --cbp-button-color-active: var(--cbp-color-interactive-focus-light);
+    --cbp-button-color-active-dark: var(--cbp-color-interactive-focus-light);
+    --cbp-button-color-border-hover: transparent;
+    --cbp-button-color-border-focus: transparent;
+    --cbp-button-color-border-active: transparent;
+    --cbp-button-border-radius: 0;
+    --cbp-button-color-outline-focus: var(--cbp-color-interactive-focus-light);
+    --cbp-button-color-bg: transparent;
+    --cbp-button-color-bg-dark: transparent;
+    --cbp-button-color-bg-hover: transparent;
+    --cbp-button-color-bg-hover-dark: transparent;
+    --cbp-button-color-bg-focus: transparent;
+    --cbp-button-color-bg-focus-dark: transparent;
+    --cbp-button-color-bg-active: transparent;
+    --cbp-button-color-bg-active-dark: transparent;
+    > button {
+      letter-spacing: unset;
+      text-transform: unset;
+      text-decoration: underline;
+      outline-offset: -1px;
+      font-size: var(--cbp-font-size-subhead);
+    }
+
+    cbp-icon svg {
+      transition: transform 150ms;
+      transform: var(--cbp-security-banner-icon-rotate);
+    }
+  }
+
+  cbp-typography{
+    --cbp-typography-color: var(--cbp-color-text-lightest);
+  }
+  .cbp-security-banner-content-header{
+    text-transform: uppercase;
+    font-size: var(--cbp-font-size-heading-xs);
+    font-weight: var(--cbp-font-weight-bold);
+    line-height: var(--cbp-line-height-3);
+  }
+
+}
+
+//adjust for presence of security banner to avoid overlap with drawer content & sticky app header
+cbp-app:has(cbp-security-banner) cbp-app-header[sticky]{
+  top: var(--cbp-security-banner-height);
+}
+
+cbp-app:has(cbp-security-banner) cbp-drawer .cbp-drawer__content{
+  top: var(--cbp-security-banner-height);
+  height: calc(100% - var(--cbp-security-banner-height));
+}

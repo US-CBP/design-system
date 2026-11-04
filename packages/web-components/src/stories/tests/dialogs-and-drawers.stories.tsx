@@ -55,6 +55,7 @@ const Template: any = () => {
   return ` 
 
 <cbp-skip-nav></cbp-skip-nav>
+<cbp-security-banner></cbp-security-banner>
 <cbp-flex direction="column" sx='{"min-height":"100vh"}'>
   <cbp-universal-header logo-src-lg="./assets/images/cbp-header-logo.svg" logo-src-sm="./assets/images/cbp-seal.svg">
     <cbp-flex gap="var(--cbp-space-4x)">
