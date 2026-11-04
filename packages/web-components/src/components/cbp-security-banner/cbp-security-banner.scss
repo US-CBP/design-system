@@ -14,20 +14,30 @@ cbp-security-banner{
 
   --cbp-security-banner-icon-rotate: rotate(90deg);
 
-  &[open]{
-    --cbp-security-banner-icon-rotate: rotate(270deg);
-
-    #cbp-security-banner-content{
-      display: flex;
-    }
+  .cbp-security-banner-header{
+    display: flex;
+    justify-content: center;
   }
 
   #cbp-security-banner-content{
     display: none;
-    flex-direction: column;
-    gap: var(--cbp-space-2x);
     padding-bottom: var(--cbp-space-4x);
 
+    cbp-typography{
+      margin-bottom: var(--cbp-space-2x);
+    }
+  }
+
+  &[open]{
+    --cbp-security-banner-icon-rotate: rotate(270deg);
+
+    #cbp-security-banner-content{
+      display: block;
+    }
+  }
+
+  .cbp-security-banner-icon{
+    margin-inline-end: var(--cbp-space-1x);
   }
 
   &[classification="unclassified"]{
@@ -42,7 +52,7 @@ cbp-security-banner{
     --cbp-security-banner-color-bg: var(--cbp-color-magenta-60);
   }
 
-  .cbp-security-banner-header{
+  .cbp-security-banner-title{
     margin-inline-end: var(--cbp-space-2x);
     height: var(--cbp-security-banner-height);
     align-content: center;
@@ -95,16 +105,19 @@ cbp-security-banner{
   }
   .cbp-security-banner-content-header{
     text-transform: uppercase;
+    font-size: var(--cbp-font-size-heading-xs);
+    font-weight: var(--cbp-font-weight-bold);
+    line-height: var(--cbp-line-height-3);
   }
 
 }
 
 //adjust for presence of security banner to avoid overlap with drawer content & sticky app header
-    cbp-app:has(cbp-security-banner) cbp-app-header[sticky]{
-      top: var(--cbp-security-banner-height);
-    }
+cbp-app:has(cbp-security-banner) cbp-app-header[sticky]{
+  top: var(--cbp-security-banner-height);
+}
 
-    cbp-app:has(cbp-security-banner) cbp-drawer .cbp-drawer__content{
-      top: var(--cbp-security-banner-height);
-      height: calc(100% - var(--cbp-security-banner-height));
-    }
+cbp-app:has(cbp-security-banner) cbp-drawer .cbp-drawer__content{
+  top: var(--cbp-security-banner-height);
+  height: calc(100% - var(--cbp-security-banner-height));
+}

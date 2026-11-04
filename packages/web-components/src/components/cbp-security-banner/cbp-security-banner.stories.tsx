@@ -8,6 +8,10 @@ export default {
       control: 'select',
       options: ['unclassified', 'cui', 'confidential']
     },
+    open:{
+      description: 'Determines if the content of the banner is visible',
+      control: 'boolean'
+    },
     sx: {
       description: 'Supports adding inline styles as an object of key-value pairs comprised of CSS properties and values. Values should reference design tokens when possible.',
       control: 'object',
@@ -16,11 +20,11 @@ export default {
 };
 
 
-const SecurityBannerTemplate = ({ classification, context, sx }) => {
+const SecurityBannerTemplate = ({ classification, open, sx }) => {
   return `
     <cbp-security-banner
+      ${open ? 'open': ``}
       ${classification ? `classification= ${classification}` : ``}
-      ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
     </cbp-security-banner>

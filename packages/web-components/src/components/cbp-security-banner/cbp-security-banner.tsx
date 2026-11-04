@@ -15,7 +15,7 @@ export class CbpSecurityBanner {
   @Prop({ reflect: true}) classification: 'unclassified' | 'cui' | 'confidential' = 'unclassified';
 
   /** Sepcifies if the content of the security banner is visible */
-  @Prop({reflect: true}) open: boolean =  false;
+  @Prop({reflect: true, mutable: true }) open: boolean =  false;
 
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
@@ -48,14 +48,14 @@ export class CbpSecurityBanner {
 
     return (
       <Host>
-        <cbp-flex
-          justify-content="center"
+        <div
+          class='cbp-security-banner-header'
         >
           <cbp-typography
             variant="subhead"
-            class="cbp-security-banner-header"
+            class="cbp-security-banner-title"
           >
-            <cbp-icon name="shield"></cbp-icon>  {this.classification}
+            <cbp-icon name="shield" class="cbp-security-banner-icon"></cbp-icon>{this.classification}
           </cbp-typography>
           <cbp-button
             class="cbp-security-banner-expand"
@@ -67,26 +67,17 @@ export class CbpSecurityBanner {
             Learn More
             <cbp-icon name="chevron-right" size="var(--cbp-space-3x)"></cbp-icon>
           </cbp-button>
-        </cbp-flex>
-        {/* <cbp-flex
-          direction="column"
-          gap="var(--cbp-space-2x)"
-          sx='{"padding-bottom":"var(--cbp-space-4x)"}'
-          hidden={!this.open}
-        > */}
+        </div>
         <div
           id='cbp-security-banner-content'
         >
-          <cbp-typography
-            variant="heading-xs"
-            context="dark-always"
+          <span
             class="cbp-security-banner-content-header"
           >
-              <cbp-icon name="file-circle-exclamation"></cbp-icon>  {this.classification != 'unclassified' ? 'WARNING' : ''} data access: {this.classification}
-          </cbp-typography>
+              <cbp-icon name="file-circle-exclamation" class="cbp-security-banner-icon"></cbp-icon>{this.classification != 'unclassified' ? 'WARNING' : ''} data access: {this.classification}
+          </span>
           {this.getContent()}
         </div>
-        {/* </cbp-flex> */}
       </Host>
     );
   }
