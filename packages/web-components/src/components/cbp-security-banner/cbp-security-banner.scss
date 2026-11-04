@@ -16,10 +16,18 @@ cbp-security-banner{
 
   &[open]{
     --cbp-security-banner-icon-rotate: rotate(270deg);
+
+    #cbp-security-banner-content{
+      display: flex;
+    }
   }
-  
-  &:not([open]) #cbp-security-banner-content{
-    display: none !important;
+
+  #cbp-security-banner-content{
+    display: none;
+    flex-direction: column;
+    gap: var(--cbp-space-2x);
+    padding-bottom: var(--cbp-space-4x);
+
   }
 
   &[classification="unclassified"]{
@@ -38,6 +46,7 @@ cbp-security-banner{
     margin-inline-end: var(--cbp-space-2x);
     height: var(--cbp-security-banner-height);
     align-content: center;
+    text-transform: uppercase;
   }
 
   //restyle expand button to look like small link

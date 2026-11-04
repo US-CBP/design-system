@@ -27,4 +27,4 @@ const SecurityBannerTemplate = ({ classification, context, sx }) => {
   `;
 }
   
-export const Default: any = SecurityBannerTemplate.bind({});
+export const SecurityBanner: any = SecurityBannerTemplate.bind({});
