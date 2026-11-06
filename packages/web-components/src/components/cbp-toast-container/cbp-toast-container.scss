@@ -25,6 +25,7 @@ cbp-toast-container {
   right: var(--cbp-toast-container-right);
   bottom: var(--cbp-toast-container-bottom);
   left: var(--cbp-toast-container-left);
+  z-index: var(--cbp-z-index-level-4);
 
   cbp-toast{
     width: 100%;

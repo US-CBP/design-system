@@ -121,3 +121,7 @@ cbp-app:has(cbp-security-banner) cbp-drawer .cbp-drawer__content{
   top: var(--cbp-security-banner-height);
   height: calc(100% - var(--cbp-security-banner-height));
 }
+
+cbp-app:has(cbp-security-banner) cbp-toast-container[position*=top] {
+  --cbp-toast-container-top: calc(var(--cbp-space-4x) + var(--cbp-security-banner-height));
+}
