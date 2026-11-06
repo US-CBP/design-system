@@ -122,7 +122,6 @@ const Template: any = () => {
       </cbp-typography>
 
       <p>Main content here.</p>
-
       <cbp-toast id="cbp-toast-1" open icon="circle-info">  
         <div slot="cbp-toast-icon">
           <cbp-icon name="circle-info"></cbp-icon>
@@ -142,7 +141,6 @@ const Template: any = () => {
 
         </div>
       </cbp-toast>
-
       <br />
 
       <cbp-menu uid="menuId">
