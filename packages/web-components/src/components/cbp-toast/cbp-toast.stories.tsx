@@ -13,10 +13,6 @@ export default {
       name: 'Content (slotted)',
       control: 'text'
     },
-    top: {
-      description: 'sets the CSS top of the component',
-      control: 'text'
-    },
     duration: {
       control: 'select',
       options: [3, 5, 10]
@@ -73,7 +69,7 @@ return `
 `;
 }
 
-const Template: any = ({ open, title, content, top, duration, color, context, sx }) => {
+const Template: any = ({ open, title, content, duration, color, context, sx }) => {
   setTimeout(() => {
     const dismiss = document.querySelector('cbp-button[name="dismiss"]') as HTMLCbpButtonElement;
     dismiss.addEventListener('buttonClick', e => {
@@ -88,7 +84,6 @@ const Template: any = ({ open, title, content, top, duration, color, context, sx
       id="cbp-toast-1"
       ${open ? 'open' : ''}
       ${color ? `color="${color}"` : ''}
-      ${top ? `top="${top}"` : ``}
       ${duration ? `duration="${duration}"` : ''}
       icon=${generateIcon(color)}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}

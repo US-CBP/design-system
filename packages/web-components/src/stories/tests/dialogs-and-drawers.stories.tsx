@@ -122,27 +122,25 @@ const Template: any = () => {
       </cbp-typography>
 
       <p>Main content here.</p>
-      <cbp-toast-container>
-        <cbp-toast id="cbp-toast-1" open icon="circle-info">  
-          <div slot="cbp-toast-icon">
-            <cbp-icon name="circle-info"></cbp-icon>
-          </div>
-          <div slot="cbp-toast-title">Test Toast Title</div>
-          Notification Description - A rule you are following just fired.
-          <div slot="cbp-toast-buttons">
-          
-        <cbp-button fill="ghost" color="secondary" name="dismiss" context="dark-inverts">
-        dismiss
-        </cbp-button>
+      <cbp-toast id="cbp-toast-1" open icon="circle-info">  
+        <div slot="cbp-toast-icon">
+          <cbp-icon name="circle-info"></cbp-icon>
+        </div>
+        <div slot="cbp-toast-title">Test Toast Title</div>
+        Notification Description - A rule you are following just fired.
+        <div slot="cbp-toast-buttons">
+        
+      <cbp-button fill="ghost" color="secondary" name="dismiss" context="dark-inverts">
+      dismiss
+      </cbp-button>
 
-          
-        <cbp-button fill="ghost" color="secondary" name="default" context="dark-inverts">
-        default
-        </cbp-button>
+        
+      <cbp-button fill="ghost" color="secondary" name="default" context="dark-inverts">
+      default
+      </cbp-button>
 
-          </div>
-        </cbp-toast>
-      </cbp-toast-container>
+        </div>
+      </cbp-toast>
       <br />
 
       <cbp-menu uid="menuId">

@@ -1,4 +1,5 @@
 /**
+ * @prop   --cbp-toast-top: 1rem;
  * @prop   --cbp-toast-color-bg: var(--cbp-color-info-dark);
  * @prop   --cbp-toast-color-bg-dark: var(--cbp-color-info-lighter);
  * @prop   --cbp-toast-color: var(--cbp-color-text-lighter);
@@ -11,6 +12,7 @@
  * @prop   --cbp-toast-color-icon-sidebar-dark: var(--cbp-color-text-darker);
  */
 :root {
+  --cbp-toast-top: 1rem;
   --cbp-toast-color-bg: var(--cbp-color-info-dark);
   --cbp-toast-color-bg-dark: var(--cbp-color-info-lighter);
   --cbp-toast-color: var(--cbp-color-text-lighter);
@@ -41,6 +43,7 @@ cbp-toast {
   border-radius: var(--cbp-border-radius-3);
   opacity: 0;
   position: fixed;
+  top: var(--cbp-toast-top);
   right: var(--cbp-space-6x);
   z-index:var(--cbp-z-index-level-4);
   

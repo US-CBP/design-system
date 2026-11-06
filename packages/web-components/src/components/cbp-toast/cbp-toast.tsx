@@ -25,9 +25,6 @@ export class CbpToast {
   /** Specifies time in seconds for the toast to be displayed. Defaults to persistent until dismissed. */
   @Prop() duration: number;
 
-  /** Specifies the top CSS property if the toast is not in a toast container*/
-  @Prop({reflect: true}) top: string = '1rem';
-
   /**
    * When set, specifies that the toast is visible. To show and dismiss a toast programmatically after a page has loaded, 
    * use the showToast() and dismissToast() methods, respectively.
@@ -65,7 +62,6 @@ export class CbpToast {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.host, {
-      'top': this.top,
       ...this.sx,
     });
   }
