@@ -4,6 +4,20 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
+## [unpublished] TBD
+
+* Initial version of the `cbp-security-banner` released.
+* BREAKING: Updated `cbp-list`, `cbp-section`, and `cbp-typography` to validate the specified tags rendered against valid values. If you were specifying unsupported values in the `tag` property, it will no longer work and a console warning will be logged about it.
+* BREAKING: Updated the `cbp-footer` component to include the DHS Seal and identifying text.
+  * Some small changes were made to the slotted content in the internal footer story, which should be updated or re-copied into applications already using the CBP design system.
+  * The DHS Seal is included in the CBP DS distribution and should be copied into the project's assets/img directory in the same location as the CBP Seal.
+  * Created a story for the external (public-facing) footer pattern.
+* Updated `cbp-typography` by adding a `fontStyle` property.
+* Fixed the positioning of individual `cbp-toast` components without a parent `cbp-toast-container`.
+* Took inventory of all components with elevation above the page and updated all `z-index` values for better interoperability.
+* Updated the "Logout" buttons in the User Preferences drawer in all template and archetype stories to render an anchor, consistent with application best practices.
+* Added Grid and Flex recipes, demonstrating specific techniques using these layout components.
+
 ## [0.9.0-beta.4] 09-23-2026
 
 * Fixed a console error when `cbp-flex` is unmounted and no breakpoint media query is specified.
