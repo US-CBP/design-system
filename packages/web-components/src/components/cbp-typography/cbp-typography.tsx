@@ -1,5 +1,6 @@
 import { Component, Prop, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
+import { TYPOGRAPHY_TAGS, TypographyTags,  } from '../../utils/interface';
 
 /**
  * The Typography component encapsulates predefined styles for different kinds of text that makes 
@@ -16,7 +17,7 @@ export class CbpTypography {
   private renderedTag: HTMLElement;
 
   /** Specifies the semantic tag to be rendered. */
-  @Prop() tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'code' | 'pre' | 'div' | 'span' = "span";
+  @Prop() tag: TypographyTags = "span";
   
   /** Specifies the visual style of the text regardless of the semantic tag. */
   @Prop({ reflect: true }) variant: 'heading-xxl' | 'heading-xl' | 'heading-lg' | 'heading-md' | 'heading-sm' | 'heading-xs' | 'body-text' | 'subhead' | 'heading-dialog';
@@ -42,6 +43,11 @@ export class CbpTypography {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+
+  private isTypographyTag(value: string): value is TypographyTags {
+    return TYPOGRAPHY_TAGS.some(tag => tag === value);
+  }
+
   componentDidLoad() {
     if (typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
@@ -56,6 +62,11 @@ export class CbpTypography {
   }
 
   render() {
+    if (!this.isTypographyTag(this.tag)) {
+      console.warn(`cbp-typography - Invalid tag value "${this.tag}" for cbp-typography. Valid values are: ${TYPOGRAPHY_TAGS.join(', ')}`);
+      return void(0);
+    }
+
     const Tag = this.tag;
     return (
       <Host>
