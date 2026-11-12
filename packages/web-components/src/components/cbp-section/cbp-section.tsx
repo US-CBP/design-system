@@ -1,5 +1,6 @@
 import { Component, Prop, Element, Host, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
+import { SECTION_TAGS, SectionTags } from '../../utils/interface';
 
 /**
  * The Section component represents a generic block that may be used for semantic meaning or as 
@@ -16,7 +17,7 @@ export class CbpSection {
   @Element() private host: HTMLElement;
 
   /** Specifies the tag to render. Use `section` with the `accessibilityText` property to make an accessible landmark element. */
-  @Prop() tag: 'div' | 'section' | 'none' = 'none';
+  @Prop() tag: SectionTags = 'none';
 
   /** Specifies an accessible label as `aria-label` to make a `section` tag an accessible landmark element. Likely has no effect otherwise. */
   @Prop() accessibilityText: string;
@@ -24,8 +25,13 @@ export class CbpSection {
   /** Supports adding inline styles as an object */
   @Prop() sx: any = {};
 
+
+  private isSectionTag(value: string): value is SectionTags {
+    return SECTION_TAGS.some(tag => tag === value);
+  }
+
   componentWillLoad() {
-    if (typeof this.sx == 'string') {
+    if(typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.host, {
@@ -34,11 +40,15 @@ export class CbpSection {
   }
 
   render() {
-    const Tag = this.tag;
+    if(!this.isSectionTag(this.tag)) {
+      console.warn(`cbp-section - Invalid tag value "${this.tag}" for cbp-section. Valid values are: ${SECTION_TAGS.join(', ')}`);
+      return void(0);
+    }
 
+    const Tag = this.tag;
     return (
       <Host>
-        { this.tag != 'none' ?
+        { this.isSectionTag(this.tag) && this.tag != 'none' ?
           <Tag aria-label={this.accessibilityText}>
             <slot />
           </Tag>

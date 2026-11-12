@@ -33,7 +33,6 @@ export class CbpUsaBanner {
               <cbp-button
                 class="cbp-usa-banner-expand"
                 fill="ghost"
-                target-prop="open"
                 controls="gov-banner"
                 expanded={`${this.open}`}
                 onClick={() => this.handleClick()}

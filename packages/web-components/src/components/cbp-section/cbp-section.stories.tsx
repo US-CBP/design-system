@@ -10,7 +10,7 @@ export default {
     tag: {
       description: 'Specifies the child tag rendered by the component.',
       control: 'select',
-      options: ['div', 'section', 'none'],
+      options: ['aside', 'div', 'section', 'none'],
     },
     accessibilityText: {
       description:

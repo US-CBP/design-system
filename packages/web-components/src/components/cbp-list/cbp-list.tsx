@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 import { setCSSProps } from '../../utils/utils';
+import { LIST_TAGS, ListTags } from '../../utils/interface';
 
 /**
  * The List component is used to render semantic HTML lists in accordance with the design system, 
@@ -19,7 +20,7 @@ export class CbpList {
   @Prop({ reflect: true }) variant: 'unstyled' | 'link' | 'icon'; 
   
   /** Specifies the semantic tag to be rendered. */
-  @Prop() tag: 'ul' | 'ol' | 'dl' = 'ul';
+  @Prop() tag: ListTags = 'ul';
 
   /** Specifies the font size for the list */
   @Prop({ reflect: true }) size: 'normal' | 'large' = 'normal';
@@ -34,8 +35,12 @@ export class CbpList {
   @Prop({ reflect: true }) context: "light-inverts" | "light-always" | "dark-inverts" | "dark-always";
   
 
+  private isListTag(value: string): value is ListTags {
+    return LIST_TAGS.some(tag => tag === value);
+  }
+
   componentDidLoad() {
-    if (typeof this.sx == 'string') {
+    if(typeof this.sx == 'string') {
       this.sx = JSON.parse(this.sx) || {};
     }
     setCSSProps(this.renderedTag, {
@@ -44,19 +49,21 @@ export class CbpList {
   }
 
   render() {
-    
-    const Tag = this.tag;
-      return (
-        <Host>
-          <Tag 
-            ref={(el) => this.renderedTag = el} 
-            aria-label={this.accessibilityText}
-          >
-            <slot />
-          </Tag>
-        </Host>
-      );
+    if(!this.isListTag(this.tag)) {
+      console.warn(`cbp-list - Invalid tag value "${this.tag}" for cbp-list. Valid values are: ${LIST_TAGS.join(', ')}`);
+      return void(0);
     }
-    
-    
+
+    const Tag = this.tag;
+    return (
+      <Host>
+        <Tag 
+          ref={(el) => this.renderedTag = el} 
+          aria-label={this.accessibilityText}
+        >
+          <slot />
+        </Tag>
+      </Host>
+    );
   }
+}
