@@ -71,12 +71,17 @@ export class CbpForm {
   addFiles(formData) {
     // Update formData with enhanced/multi-file input (allowing manipulation of FileList)
     Object.keys(this.files).forEach( key => {
+      // Only handle those with multiple files selected, since single file inputs are handled natively by the browser
       if (this.files?.[key]?.length > 0){
         // delete the empty key if there are files specified
         formData.delete(key);
         // loop over the files and add each as a new entry using append (set overrides the same entry)
         this.files?.[key].forEach( file => {
-          formData.append(key, file);
+          // Make sure the file input is still attached to the DOM and not disabled before adding it to the formData
+          let fileInputIsValid = this.form.querySelector(`input[name="${key}"]:not(:disabled)`);
+          if(fileInputIsValid) {
+            formData.append(key, file);
+          }
         });
       }
       formData[key] = this.files[key];
