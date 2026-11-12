@@ -12,6 +12,7 @@ The React components are wrappers generated from this package and will share the
   * Some small changes were made to the slotted content in the internal footer story, which should be updated or re-copied into applications already using the CBP design system.
   * The DHS Seal is included in the CBP DS distribution and should be copied into the project's assets/img directory in the same location as the CBP Seal.
   * Created a story for the external (public-facing) footer pattern.
+* Updated the `cbp-form` handling of multi-file inputs to validate that the input has not been removed from the DOM or disabled at the time of submission, since supporting this functionality requires some manual modification of the submitted formData.
 * Updated `cbp-typography` by adding a `fontStyle` property.
 * Fixed the positioning of individual `cbp-toast` components without a parent `cbp-toast-container`.
 * Took inventory of all components with elevation above the page and updated all `z-index` values for better interoperability.
