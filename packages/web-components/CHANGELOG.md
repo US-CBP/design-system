@@ -7,7 +7,7 @@ The React components are wrappers generated from this package and will share the
 ## [unpublished] TBD
 
 * Initial version of the `cbp-security-banner` released.
-* BREAKING: Updated `cbp-list`, `cbp-section`, and `cbp-typography` to validate the specified tags rendered against valid values. If you were specifying unsupported values in the `tag` property, it will no longer work and a console warning will be logged about it.
+* BREAKING: Updated `cbp-list`, `cbp-section`, and `cbp-typography` to validate the specified tags rendered against valid values. If you were specifying unsupported values in the `tag` property, it will no longer work and a console warning will be logged.
 * BREAKING: Updated the `cbp-footer` component to include the DHS Seal and identifying text.
   * Some small changes were made to the slotted content in the internal footer story, which should be updated or re-copied into applications already using the CBP design system.
   * The DHS Seal is included in the CBP DS distribution and should be copied into the project's assets/img directory in the same location as the CBP Seal.
