@@ -108,8 +108,13 @@ export class CbpDropdown {
   @Prop({ mutable: true }) selectedLabel: string | undefined;
 
   /** 
-   * Specifies the value of the hidden input holding the value (or barring one, the text label) 
-   * of the selected item. Primarily updated dynamically by the component. 
+   * Specifies the initial value of the component and hidden input 
+   * holding the value (or barring one, the text label) of the selected item.
+   * If you must pass the value as a string via HTML attribute, you can escape 
+   * any commas within the values by using an array-encoding format as a JSON string 
+   * to represent multiple values in string format.
+   * If the value is passed as an array directly to the property, this is not necessary.
+   * This property is updated dynamically (as an array) as user interactions occur.
    */
   @Prop({ mutable: true }) value: any = ''; //string | object;
 
@@ -399,7 +404,7 @@ export class CbpDropdown {
   */
 
   // Create a new dropdown item (and select it) after the user clicked the "Create" item
-  doCreateItem(e: CustomEvent){
+  private doCreateItem(e: CustomEvent){
     const { value } = e.detail;
     e.stopPropagation();
 
@@ -414,16 +419,19 @@ export class CbpDropdown {
     newItem.value=value;
     newItem.selected=true;
     if (this.multiple) {
-      newItem.innerHTML=`<cbp-checkbox ${this.context ? `context="${this.context}"` : ''}>
-        <input 
-          type="checkbox" 
-          name="${this.name}-selection"
-          value="${value}"
-          tabindex={-1}
-          checked
-        />
-        ${value}
-      </cbp-checkbox>`;
+      const checkbox = document.createElement('cbp-checkbox');
+      if (this.context) {
+        checkbox.setAttribute('context', this.context);
+      }
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.name = `${this.name}-selection`;
+      input.value = value;         // Safe property assignment
+      input.tabIndex = -1;
+      input.checked = true;
+      checkbox.appendChild(input);
+      checkbox.appendChild(document.createTextNode(value)); // Safe text node (no HTML parsing)
+      newItem.appendChild(checkbox);
     }
     else newItem.textContent=e.detail.value;
     this.host.appendChild(newItem);
@@ -455,11 +463,11 @@ export class CbpDropdown {
   }
 
 
-  updateValue(value:string, selected:boolean=true) {
+  private updateValue(value:string, selected:boolean=true) {
     // multi-select behavior
     if (this.multiple) {
         // If there is already a value, turn it into an array
-        if(this.value && typeof this.value == "string") this.value=this.value.split(',');
+        this.value = this.multiSelectValueToArray(this.value);
         // Update the values array based on selected/unselected state of the clicked item
         selected ? (this.value = [...this.value, value]) : (this.value = this.value.filter(item => item !== value));
     }
@@ -469,7 +477,29 @@ export class CbpDropdown {
     }
   }
 
-  setSelectedFromValue() {
+  // Make sure the multi-select value is an array
+  private multiSelectValueToArray(value) {
+    if (value && typeof value == "string") {
+      try {
+        // If the value is a string, check if it is a JSON-encoded array
+        if(value && JSON.parse(value) && Array.isArray(JSON.parse(value))) {
+          return JSON.parse(value);
+        }
+      }
+      catch(_) {
+        // If not, split it into an array as a comma-separated string
+        return value.split(",");
+      }
+    }
+    else if (value) {
+      // else return the array or make it one
+      return Array.isArray(value) ? value : [value];
+    }
+    //return '';
+    return [];
+  }
+
+  private setSelectedFromValue() {
     // debugging
     if(this.debug) console.log('cbp-dropdown debugging - setSelectedFromValue:', this.value, this.host);
 
@@ -477,7 +507,7 @@ export class CbpDropdown {
     let selectedItems:HTMLCbpDropdownItemElement[] = [];
     
     if(this.multiple) {
-      let values = (typeof this.value == "string") ? this.value.split(",") : this.value;
+      let values = this.multiSelectValueToArray(this.value);
 
       // deselect them all first
       this.dropdownItems.forEach( item => {
@@ -518,7 +548,8 @@ export class CbpDropdown {
     }
   }
 
-  setValueFromSelected() {
+  /* Flagged because it's not currently being called 
+  private setValueFromSelected() {
     // debugging
     if(this.debug) console.log('cbp-dropdown debugging - setValueFromSelected:', this.host);
 
@@ -542,9 +573,8 @@ export class CbpDropdown {
     }
 
     this.selectedItemCount = this.value.length;
-
   }
-
+  */
 
   /*
     When generating new items based on JSON, it will attempt to set those items matching the value 
@@ -560,7 +590,7 @@ export class CbpDropdown {
       until user interaction occurs, then it updates to the first selected item if shown
 
   */
-  generateItems(items) {
+  private generateItems(items) {
     // Parse stringified JSON into an object for easier manipulation
     if (typeof items == 'string') {
       items = JSON.parse(items) || {};
@@ -576,8 +606,8 @@ export class CbpDropdown {
     // If selections specified via JSON items, rebuild the value
     if(Selected) newValue = [];
     // Otherwise, if there is already a string value for multiselect, turn it into an array
-    else if(this.multiple && this.value && typeof this.value == "string") this.value=this.value.split(',');
-
+    else if(this.multiple) this.value = this.multiSelectValueToArray(this.value);
+    
     // for async dropdowns, clear the items locally if search string is too short (the component is not emitting an event to update then)
     if (this.async && this.searchString.length < this.minimumInputLength) {
       items = this.dropdownItems = [];
@@ -689,26 +719,26 @@ export class CbpDropdown {
 
 
   // Check existing items in a combobox for an exact match to hide the "create" option in that case
-  checkExactMatch(): boolean {
+  private checkExactMatch(): boolean {
     let exactMatch: boolean = false;
     this.dropdownItems.forEach( item => {
-      const label = item.innerText.toLowerCase().trim();
+      const label = item.textContent.trim().toLowerCase();
       if (this.searchString.toLowerCase() == label) exactMatch=true;
     });
     return exactMatch;
   }
 
-  handleSlotChange(e) {
+  private handleSlotChange(e) {
     console.log('Dropdown Slot Change: ', e); // Testing: I don't believe this event fires with polyfilled slots.
   }
 
-  handleCounterClick(e) {
+  private handleCounterClick(e) {
     this.clearSelections(e);
     e.stopImmediatePropagation();
     this.counterControl.focus();
   }
 
-  handleCounterKeydown(e) {
+  private handleCounterKeydown(e) {
     const { key } = e;
     if (key == ' ' || key == 'Enter') {
       this.clearSelections(e);
@@ -720,7 +750,7 @@ export class CbpDropdown {
 
 
   // This handles activating the button via touch, Space or Enter as well (as long as it's not readonly or disabled).
-  handleDropdownClick(e) {
+  private handleDropdownClick(e) {
     if (e.detail && !this.readonly && !this.disabled) {
       this.open = !this.open;
       this.control?.focus();
@@ -728,7 +758,7 @@ export class CbpDropdown {
   }
 
   // Handles navigation and selection keys
-  getActionFromKey(e) {
+  private getActionFromKey(e) {
     const { key, altKey, ctrlKey, metaKey } = e;
     const selectKeys = ['Enter', ' '];
     const openKeys = ['ArrowDown', 'ArrowUp', 'Enter', ' ']; // all keys that will do the default open action
@@ -805,7 +835,7 @@ export class CbpDropdown {
   /*
    *  Single letter cycling (like a native select)
    */
-  jumpToLetter(letter) {
+  private jumpToLetter(letter) {
     // if the letter pressed is different from the last one, find all the matches and select the first
     if (letter != this.searchString) {
       this.searchString = letter;
@@ -826,10 +856,10 @@ export class CbpDropdown {
     }
   }
 
-  getFirstLetterMatches(letter) {
+  private getFirstLetterMatches(letter) {
     let matches: number[] = [];
     this.dropdownItems.forEach( (item, index) => {
-      const label=item.innerText.toLowerCase().trim();
+      const label=item.textContent.trim().toLowerCase();
       // does this item start with the character pressed?
       if (label.startsWith(letter)) {
         matches=[...matches, index];
@@ -840,13 +870,13 @@ export class CbpDropdown {
 
 
   // The input even now triggers filtering in a combobox after keyboard navigation has been filtered out
-  handleComboBoxInput(event) {
+  private handleComboBoxInput(event) {
     this.searchString = this.control.value.toLowerCase();
     this.searchByString(this.searchString, event);
   }
 
   // Filtering by search string via "input" event rather than keypress (supports arbitrary typing/deletion as well as paste)
-  searchByString(searchString,e) {
+  private searchByString(searchString,e) {
     // Emit the filterKeypress event once the search string is updated
     this.filterKeypress.emit({
       host: this.host,
@@ -884,10 +914,10 @@ export class CbpDropdown {
   };
   
   // Updates the matches[], based on search string matches (searching the entire collection of dropdown items)
-  getSearchStringMatches(searchString) {
+  private getSearchStringMatches(searchString) {
     let matches: number[] = [];
     this.dropdownItems.forEach( (item, index) => {
-      const label=item.innerText.toLowerCase().trim();
+      const label=item.textContent.trim().toLowerCase();
 
       // does this item contain the search string entered?
       if (label.indexOf(searchString) >= 0) {
@@ -903,14 +933,14 @@ export class CbpDropdown {
   }
 
   // Updates the selectable dropdown items based on matches[] by hiding the rest
-  filterDropdownItems(matches){
+  private filterDropdownItems(matches){
     this.dropdownItems.forEach( (item, index) => {
       matches.includes(index) ? item.removeAttribute('hidden') : item.setAttribute('hidden','');
     });
   }
 
   // Clears all filters and variables that persist them.
-  clearFilters() {
+  private clearFilters() {
     this.matches=[];
     this.matchIndex=undefined;
     this.searchString='';
@@ -923,7 +953,7 @@ export class CbpDropdown {
 
   // Managing the "current" item for keyboard navigation
   // May cause a re-render if selectedItems (state) is updated
-  setDefaultItem(){
+  private setDefaultItem(){
     let oldIndex = this.focusIndex;
     let newIndex;
  
@@ -942,7 +972,7 @@ export class CbpDropdown {
 
 
   // Sets the "current" item during keyboard navigation
-  setCurrent(newValue: number = 0, oldValue: number | undefined = undefined) {
+  private setCurrent(newValue: number = 0, oldValue: number | undefined = undefined) {
     if(this.debug) console.log('cbp-dropdown debugging - setCurrent(): ', oldValue, ' => ', newValue);
 
     // Unset the old item, if any
@@ -968,13 +998,13 @@ export class CbpDropdown {
   }
 
   // check if an element is currently scrollable
-  isScrollable(element) {
+  private isScrollable(element) {
     return element && element.clientHeight < element.scrollHeight;
   }
 
   // Ensure a given child element is within the parent's visible scroll area;
   // if the child is not visible, scroll the parent.
-  maintainScrollVisibility(activeElement, scrollParent) {
+  private maintainScrollVisibility(activeElement, scrollParent) {
     const { offsetHeight, offsetTop } = activeElement;
     const { offsetHeight: parentOffsetHeight, scrollTop } = scrollParent;
     const isAbove = offsetTop < scrollTop;
@@ -988,7 +1018,7 @@ export class CbpDropdown {
     }
   }
 
-  getSizeInfo() {
+  private getSizeInfo() {
     this.visible = !!this.host.offsetWidth;
 
     if (this.visible) {
@@ -1045,8 +1075,8 @@ export class CbpDropdown {
 
     // Set the selected items count from the value on initial load
     if (this.multiple && !!this.value) {
-      if (typeof this.value == "string") this.value=this.value.split(",");
-        this.selectedItemCount = this.value.length;
+      this.value = this.multiSelectValueToArray(this.value);
+      this.selectedItemCount = this.value.length;
     }
 
     // Apply sx

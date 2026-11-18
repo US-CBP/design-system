@@ -196,7 +196,7 @@ const Template: any = ({ label, description, fieldId, name, placeholder, multipl
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
-        ${value ? `value="${value}"` : ''}
+        ${value ? (value.trimStart().startsWith('[') ? `value='${value}'` : `value="${value}"`) : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${multiple ? 'multiple' : ''}
@@ -213,6 +213,7 @@ const Template: any = ({ label, description, fieldId, name, placeholder, multipl
     </cbp-form-field>
   `;
 };
+// Test JSON array values for multi-select with ["Ireland, Republic of","Yemen, Republic of"]
 
 
 export const Dropdown = Template.bind({});
