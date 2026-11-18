@@ -467,7 +467,6 @@ export class CbpDropdown {
     // multi-select behavior
     if (this.multiple) {
         // If there is already a value, turn it into an array
-        //if(this.value && typeof this.value == "string") this.value=this.value.split(',');
         this.value = this.multiSelectValueToArray(this.value);
         // Update the values array based on selected/unselected state of the clicked item
         selected ? (this.value = [...this.value, value]) : (this.value = this.value.filter(item => item !== value));
@@ -607,7 +606,6 @@ export class CbpDropdown {
     // If selections specified via JSON items, rebuild the value
     if(Selected) newValue = [];
     // Otherwise, if there is already a string value for multiselect, turn it into an array
-    //else if(this.multiple && this.value && typeof this.value == "string") this.value=this.value.split(',');
     else if(this.multiple) this.value = this.multiSelectValueToArray(this.value);
     
     // for async dropdowns, clear the items locally if search string is too short (the component is not emitting an event to update then)
@@ -1077,7 +1075,6 @@ export class CbpDropdown {
 
     // Set the selected items count from the value on initial load
     if (this.multiple && !!this.value) {
-      //if (typeof this.value == "string") this.value=this.value.split(",");
       this.value = this.multiSelectValueToArray(this.value);
       this.selectedItemCount = this.value.length;
     }
