@@ -107,6 +107,11 @@ The Dropdown component offers an alternative to the native select element that c
 
 ### Additional Notes and Considerations
 
+* When setting an initial value for a multi-select dropdown:
+  * When passing the `value` via an HTML attribute, values with commas may be incorrectly parsed into separate values. 
+  * If your values may contain commas, you can use an array-encoding format as a JSON string to represent multiple values in string format. E.g., `value='["New York, NY","California"]'`.
+  * If the values do not contain commas, you can safely pass a comma-separated string of values to the `value` property.
+  * If the value is passed as an array directly to the property, this is not necessary.
 * While visually more consistent with the CBP Design System, the Dropdown component has some drawbacks compared to a native `select` element:
   * On mobile devices, a native `select` will be presented as an enlarged overlay of radio options, which is drastically more usable in this context.
 * Since the main control is a button, it is disabled in "readonly" mode (while the hidden input may still submit the value). Does this cause issues in user expectations?
