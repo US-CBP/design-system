@@ -481,8 +481,6 @@ export class CbpDropdown {
   // Make sure the multi-select value is an array
   private multiSelectValueToArray(value) {
     if (value && typeof value == "string") {
-      console.log('multiSelectValueToArray: value is a string:', value);
-
       try {
         // If the value is a string, check if it is a JSON-encoded array
         if(value && JSON.parse(value) && Array.isArray(JSON.parse(value))) {
