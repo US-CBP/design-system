@@ -8,7 +8,7 @@ StencilJS is the library used to build the web components. This library should b
 
 ## React Output Target
 
-The React Output Target creates React wrapper components (via npm run build-all ), which are published as a separate npm package from our mono-repo.
+The React Output Target creates React wrapper components (via npm run build-all ), which are published as a separate npm package from our mono-repo. [https://github.com/stenciljs/output-targets]
 
 ## Code Libraries
 

@@ -4,7 +4,7 @@ This CHANGELOG.md tracks the updates to the web components package of the CBP de
 
 The React components are wrappers generated from this package and will share the same changes. Projects using React 19 may use the native web components without React wrappers.
 
-## [unpublished] TBD
+## [0.9.0-beta.5] 11-23-2026
 
 * Initial version of the `cbp-security-banner` released.
 * BREAKING: Updated `cbp-list`, `cbp-section`, and `cbp-typography` to validate the specified tags rendered against valid values. If you were specifying unsupported values in the `tag` property, it will no longer work and a console warning will be logged.
@@ -15,7 +15,7 @@ The React components are wrappers generated from this package and will share the
 * Updated the `cbp-form` handling of multi-file inputs to validate that the input has not been removed from the DOM or disabled at the time of submission, since supporting this functionality requires some manual modification of the submitted formData.
 * Updated the `cbp-dropdown`:
   * Fixed a security vulnerability when using the "create item" functionality.
-  * Accept an array of values as a JSON string for multi-selects as a way to escape commas in the values. E.g., `value='["Ireland, Republic of","Yemen, Republic of"]'`
+  * Accept an array of values as a JSON string for multi-selects as a way to escape commas in the values. E.g., `value='["Ireland, Republic of","Yemen, Republic of"]'`5
 * Updated `cbp-typography` by adding a `fontStyle` property.
 * Fixed the positioning of individual `cbp-toast` components without a parent `cbp-toast-container`.
 * Took inventory of all components with elevation above the page and updated all `z-index` values for better interoperability.
