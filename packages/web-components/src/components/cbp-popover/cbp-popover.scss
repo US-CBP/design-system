@@ -72,7 +72,9 @@ cbp-popover {
   //Popover Content
   & > *:not([slot=cbpPopoverHeader]):not([slot=cbpPopoverActions]){
     display: block;
+    height: calc(100% - var(--cbp-space-14x) - var(--cbp-space-11x)); //100% - cbpPopoverHeader - cbpPopoverActions
     padding: var(--cbp-space-4x);
+    overflow-y: auto;
   }
 
   //Popover actions

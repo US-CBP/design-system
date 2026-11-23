@@ -123,7 +123,7 @@ const renderActions = (id, layout, fill,  context, { btn1, btn2, btn3 }) => {
 const PopoverTemplate = ({open, height, width, position, danger, headerContent, headerClose, actionsLayout, actionsFill, actionsConfig, id, context, sx }) => {
   return `
     <cbp-button
-      id="control"
+      id="popoverControl"
       color="secondary"
       accessibility-text="Open Popover"
       target-prop="open"
@@ -139,6 +139,7 @@ const PopoverTemplate = ({open, height, width, position, danger, headerContent, 
       ${width ? `width="${width}"` : ''}
       ${position ? `position="${position}"` : ''}
       ${danger ? 'danger' : ''}
+      control-selector = "#popoverControl"
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <div slot="cbpPopoverHeader">
@@ -155,12 +156,9 @@ const PopoverTemplate = ({open, height, width, position, danger, headerContent, 
           </cbp-button>
           ` : ``}  
       </div>
-      <cbp-typography
-        tag="div"
-        slot="cbpPopoverContent"
-      >
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.
-      </cbp-typography>
+      <div>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades
+      </div>
       ${actionsLayout ? renderActions(id, actionsLayout, actionsFill, context, actionsConfig) : ``}
     </cbp-popover>
   `;
