@@ -1,6 +1,6 @@
 export default {
   title: 'Notifications/Security Banner',
-  tags: ['beta'],
+  tags: ['new'],
   argTypes: {
 
     classification: {

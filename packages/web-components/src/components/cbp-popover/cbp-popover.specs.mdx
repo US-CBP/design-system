@@ -1,0 +1,32 @@
+import { Meta, Markdown } from "@storybook/addon-docs/blocks";
+
+<Meta title="Content/Popover/Specifications" />
+
+# cbp-popover
+
+## Purpose
+
+* the Popover component allows for the disclosure of supplemental, non-essential information via a triggering element
+
+## Functional Requirements
+
+* The Popover is a generic wrapper that positions content in reference to the associated control.
+* The Popover may optionally contain a title and/or actions in the form of buttons (or links).
+
+## Technical Specifications
+
+### User Interactions
+
+* Popovers are essentially containers and any user interactions will be handled by slotted content and components.
+
+### Responsiveness
+
+* If the specified positioning results in the popover going off-screen, it will be repositioned on-screen by flipping its positioning and/or sliding it if needed.
+
+### Accessibility
+
+* It is highly recommended that the popovers contain a title, using the appropriate level heading.
+
+### Additional Notes and Considerations
+
+*TODO: implement a 'draggable' variant of the popover

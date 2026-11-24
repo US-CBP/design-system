@@ -26,6 +26,10 @@ cbp-security-banner{
     cbp-typography{
       margin-bottom: var(--cbp-space-2x);
     }
+
+    p{
+      margin-bottom: 0;
+    }
   }
 
   &[open]{
