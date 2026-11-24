@@ -102,7 +102,7 @@
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
-        ${value ? `value="${value}"` : ''}
+        ${value ? value.trimStart().startsWith('[') ? `value='${value}'` : `value="${value}"` : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${multiple ? 'multiple' : ''}
@@ -220,7 +220,7 @@
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
-        ${value ? `value="${value}"` : ''}
+        ${value ? value.trimStart().startsWith('[') ? `value='${value}'` : `value="${value}"` : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${multiple ? 'multiple' : ''}
@@ -338,7 +338,7 @@
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
-        ${value ? `value="${value}"` : ''}
+        ${value ? value.trimStart().startsWith('[') ? `value='${value}'` : `value="${value}"` : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${multiple ? 'multiple' : ''}
@@ -456,7 +456,7 @@
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
-        ${value ? `value="${value}"` : ''}
+        ${value ? value.trimStart().startsWith('[') ? `value='${value}'` : `value="${value}"` : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${multiple ? 'multiple' : ''}
@@ -574,7 +574,7 @@
     >
       <cbp-dropdown
         ${name ? `name="${name}"` : ''}
-        ${value ? `value="${value}"` : ''}
+        ${value ? value.trimStart().startsWith('[') ? `value='${value}'` : `value="${value}"` : ''}
         ${fieldId ? `field-id="${fieldId}"` : ''}
         ${placeholder ? `placeholder="${placeholder}"` : ''}
         ${multiple ? 'multiple' : ''}

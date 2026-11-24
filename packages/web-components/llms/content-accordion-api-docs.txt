@@ -54,7 +54,7 @@ Accordion Items are placed as children of the parent `cbp-accordion` tag. The co
 | Slot | Description |
 | --- | --- |
 |  | Accordion Item content is placed in the default slot. |
-| `"cbp-accordion-item-label"` | Optionally, an Accordion Item heading with markup may be placed in this slot rather than via the labal property. |
+| `"cbp-accordion-item-label"` | Optionally, an Accordion Item heading with markup may be placed in this slot rather than via the label property. |
 
 ## CSS Custom Properties
 

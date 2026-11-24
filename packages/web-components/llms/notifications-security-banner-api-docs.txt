@@ -1,0 +1,33 @@
+# cbp-security-banner
+
+## Overview
+
+The Security Banner displays at the top of a page to detail the highest security classification of content present on the page
+
+## Properties
+
+| Property | Attribute | Description | Type | Default |
+| --- | --- | --- | --- | --- |
+| `classification` | `classification` | Specifies the level of classification of the security banner | `"confidential" | "cui" | "unclassified"` | `'unclassified'` |
+| `open` | `open` | Sepcifies if the content of the security banner is visible | `boolean` | `false` |
+| `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-typography](../cbp-typography)
+-   [cbp-icon](../cbp-icon)
+-   [cbp-button](../cbp-button)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-security-banner --> cbp-typography
+  cbp-security-banner --> cbp-icon
+  cbp-security-banner --> cbp-button
+  style cbp-security-banner fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+---

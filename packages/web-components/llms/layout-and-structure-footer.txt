@@ -3,14 +3,76 @@
 ## Examples
 
 
+### External
+
+```tsx
+({
+  footerNav,
+  linkList,
+  logoSrc
+}) => {
+  setTimeout(() => {
+    document.getElementById("externalFooterList").removeAttribute("role");
+  }, 100);
+  return `
+    <cbp-footer 
+      ${logoSrc ? `logo-src=${logoSrc}` : ''}
+      >
+      <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
+        <cbp-flex role="list">
+          ${generateFooterNav(footerNav)}
+        </cbp-flex>
+      </nav>
+
+      <cbp-flex
+        breakpoint="27rem"
+      >
+        <cbp-flex-item flex-grow=1>
+          <cbp-multicol 
+            columns="3" 
+            width="16rem" 
+            gap="var(--cbp-space-8x)" 
+            sx='{
+              "list-style":"none"
+            }' 
+            role="list">
+            ${generateLinkListItem(linkList)}
+          </cbp-multicol>
+        </cbp-flex-item>
+
+        <cbp-flex
+          direction="column"
+          align-items="center"
+          gap="var(--cbp-space-4x)"
+        >
+          <iframe src="https://www.dhs.gov/ntas/" name="National Terrorism Advisory System" title="National Terrorism Advisory System" height="185px" width="174px"></iframe>
+          <cbp-button 
+            type="button" 
+            fill="ghost" 
+            color="secondary"
+            context="dark-always"
+          >
+            <cbp-icon name="arrow-right"></cbp-icon>
+            Learn More
+          </cbp-button>
+        </cbp-flex>
+      </cbp-flex>
+    </cbp-footer>
+  `;
+}
+```
+
 ### Internal
 
 ```tsx
 ({
-  footerNav
+  footerNav,
+  logoSrc
 }) => {
   return `
-    <cbp-footer data-cbp-container-context="dark">
+    <cbp-footer 
+      ${logoSrc ? `logo-src=${logoSrc}` : ''}
+      >
       <nav slot="cbp-footer-nav" aria-label="Footer Navigation">
         <cbp-flex role="list" breakpoint="37.5rem">
           ${generateFooterNav(footerNav)}
@@ -18,17 +80,17 @@
       </nav>
 
       <section>
-        <cbp-typography tag="span" variant="heading-md" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>
+        <cbp-typography tag="span" variant="heading-xs" context="dark-always" sx='{"margin-bottom":"var(--cbp-space-2x)"}'>
           <cbp-icon name='headset' size='1.25rem'> </cbp-icon>
           Application Support
         </cbp-typography>
-        
-        <p><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></p>
-        
-        <cbp-flex gap="var(--cbp-space-4x)" wrap="wrap">
-          <span><i>Having an issue?</i></span>
-          <span><b>Email: </b><cbp-link href="mailto:somebody@example.com" context="dark-always" >this-application-support@abc.def.gov</cbp-link></span>
-          <span><b>CBP Helpdesk: </b><cbp-link href="tel:555-555-5555" context="dark-always" >(555) 555-5555</cbp-link></span>
+            
+        <cbp-flex gap="var(--cbp-space-2x)" wrap="wrap">
+          <span><em>This application is maintained by The Office of Information Technology: <abbr title="Targeting and Analysis Systems Program Directorate">TASPD</abbr>.</em></span>
+          <cbp-flex gap="var(--cbp-space-2x)" wrap="wrap">
+            <span><b>Email: </b><cbp-link href="mailto:somebody@example.com" context="dark-always" >this-application-support@abc.def.gov</cbp-link></span>
+            <span><b>CBP Helpdesk: </b><cbp-link href="tel:555-555-5555" context="dark-always" >(555) 555-5555</cbp-link></span>
+          </cbp-flex>
         </cbp-flex>
       </section>
     </cbp-footer>

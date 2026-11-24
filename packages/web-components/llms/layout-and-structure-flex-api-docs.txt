@@ -37,6 +37,7 @@ The Flex component invokes a CSS Flexbox context, acting as the flex parent and 
 
 -   [cbp-breadcrumb](../cbp-breadcrumb)
 -   [cbp-expand](../cbp-expand)
+-   [cbp-footer](../cbp-footer)
 
 ### Graph
 
@@ -44,6 +45,7 @@ The Flex component invokes a CSS Flexbox context, acting as the flex parent and 
 graph TD;
   cbp-breadcrumb --> cbp-flex
   cbp-expand --> cbp-flex
+  cbp-footer --> cbp-flex
   style cbp-flex fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
@@ -77,12 +79,14 @@ The Flex Item component may optionally be used to specify properties of an indiv
 ### Used by
 
 -   [cbp-expand](../cbp-expand)
+-   [cbp-footer](../cbp-footer)
 
 ### Graph
 
 ```mermaid
 graph TD;
   cbp-expand --> cbp-flex-item
+  cbp-footer --> cbp-flex-item
   style cbp-flex-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

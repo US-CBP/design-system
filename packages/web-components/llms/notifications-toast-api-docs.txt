@@ -81,5 +81,6 @@ Type: `Promise<void>`
 | `--cbp-toast-color-dark` | var(--cbp-color-text-darker); |
 | `--cbp-toast-color-icon-sidebar` | var(--cbp-color-text-light); |
 | `--cbp-toast-color-icon-sidebar-dark` | var(--cbp-color-text-darker); |
+| `--cbp-toast-top` | 1rem; |
 
 ---

@@ -8,6 +8,7 @@ The Footer component serves site visitors who arrive at the bottom of a page wit
 
 | Property | Attribute | Description | Type | Default |
 | --- | --- | --- | --- | --- |
+| `logoSrc` | `logo-src` | Fully qualified or relative URL pointing to the larger SVG containing the CPB seal with text. | `string` | `"/assets/images/dhs-seal.svg"` |
 | `sx` | `sx` | Supports adding inline styles as an object | `any` | `{}` |
 
 ## Slots
@@ -16,5 +17,23 @@ The Footer component serves site visitors who arrive at the bottom of a page wit
 | --- | --- |
 |  | The main footer content goes in the default slot. |
 | `"cbp-footer-nav"` | Footer navigation links are slotted within this named slot. |
+
+## Dependencies
+
+### Depends on
+
+-   [cbp-flex](../cbp-flex)
+-   [cbp-flex-item](../cbp-flex-item)
+-   [cbp-typography](../cbp-typography)
+
+### Graph
+
+```mermaid
+graph TD;
+  cbp-footer --> cbp-flex
+  cbp-footer --> cbp-flex-item
+  cbp-footer --> cbp-typography
+  style cbp-footer fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ---
