@@ -139,7 +139,6 @@ const PopoverTemplate = ({open, height, width, position, danger, headerContent, 
       ${width ? `width="${width}"` : ''}
       ${position ? `position="${position}"` : ''}
       ${danger ? 'danger' : ''}
-      control-selector = "#popoverControl"
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
     >
       <div slot="cbpPopoverHeader">
@@ -166,8 +165,6 @@ const PopoverTemplate = ({open, height, width, position, danger, headerContent, 
   
 export const Popover: any = PopoverTemplate.bind({});
 Popover.args ={
-  // height: "20rem",
-  // width: "20rem",
   id: "popover",
   headerContent: "<cbp-icon name='check-circle'></cbp-icon> Header",
   actionsFill: "solid",

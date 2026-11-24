@@ -38,6 +38,7 @@ cbp-popover {
   border-radius: var(--cbp-border-radius-3);
   z-index: var(--cbp-z-index-level-2);
   box-shadow: var(--cbp-shadow-level-2-center);
+  width: min-content;
   position: absolute;
   top: 0;
   left: 0;
@@ -59,10 +60,6 @@ cbp-popover {
     padding-inline: var(--cbp-space-4x);
     font-size: var(--cbp-font-size-heading-md);
     font-weight: var(--cbp-font-weight-medium);
-
-    // cbp-icon{
-    //   margin-inline-end: var(--cbp-space-2x);
-    // }
   }
   
   &[danger] [slot=cbpPopoverHeader]{
@@ -89,10 +86,6 @@ cbp-popover {
 
       &[fill=ghost][color]{
         --cbp-button-border-width: var(--cbp-border-size-md);
-      
-        // button:not(:hover):not(:focus){
-        //   --cbp-button-color-border: var(--cbp-banner-card-color-border);
-        // }
       }
 
       button, a {
