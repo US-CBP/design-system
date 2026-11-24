@@ -1,0 +1,23 @@
+# Notifications/Security Banner
+
+## Examples
+
+
+### Security Banner
+
+```tsx
+({
+  classification,
+  open,
+  sx
+}) => {
+  return `
+    <cbp-security-banner
+      ${open ? 'open' : ``}
+      ${classification ? `classification= ${classification}` : ``}
+      ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
+    >
+    </cbp-security-banner>
+  `;
+}
+```

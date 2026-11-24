@@ -97,6 +97,7 @@ The Button component represents a UI control visually styled like a button, rega
 -   [cbp-drawer](../cbp-drawer)
 -   [cbp-expand](../cbp-expand)
 -   [cbp-file-input](../cbp-file-input)
+-   [cbp-security-banner](../cbp-security-banner)
 -   [cbp-subnav-item](../cbp-subnav-item)
 -   [cbp-table](../cbp-table)
 -   [cbp-tabs](../cbp-tabs)
@@ -117,6 +118,7 @@ graph TD;
   cbp-drawer --> cbp-button
   cbp-expand --> cbp-button
   cbp-file-input --> cbp-button
+  cbp-security-banner --> cbp-button
   cbp-subnav-item --> cbp-button
   cbp-table --> cbp-button
   cbp-tabs --> cbp-button

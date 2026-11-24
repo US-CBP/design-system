@@ -7,7 +7,7 @@ import { setCSSProps, createNamespaceKey } from '../../utils/utils';
  * heading control text is provided via the label property or the optional named slot.
  * 
  * @slot - Accordion Item content is placed in the default slot.
- * @slot cbp-accordion-item-label - Optionally, an Accordion Item heading with markup may be placed in this slot rather than via the labal property.
+ * @slot cbp-accordion-item-label - Optionally, an Accordion Item heading with markup may be placed in this slot rather than via the label property.
  */
 @Component({
   tag: 'cbp-accordion-item',

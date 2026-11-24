@@ -14,6 +14,7 @@
   size,
   lineheight,
   fontweight,
+  fontstyle,
   divider,
   context,
   sx
@@ -25,6 +26,7 @@
       ${size != undefined ? `size="${size}"` : ''}
       ${lineheight != undefined ? `line-height="${lineheight}"` : ''}
       ${fontweight != undefined ? `font-weight="${fontweight}"` : ''}
+      ${fontstyle != undefined ? `font-style="${fontstyle}"` : ''}
       ${divider != 'none' ? `divider="${divider}"` : ''}
       ${context && context != 'light-inverts' ? `context="${context}"` : ''}
       ${sx ? `sx='${JSON.stringify(sx)}'` : ''}
